@@ -36,26 +36,26 @@ missing-name/import-fragment questions and duplicate residence/nickname
 templates, normalizes wiki labels and preserves available links. It is not
 a manual fact-check of every question, distractor or paraphrase in the data.
 
-### Witcher medium split in data version 2
+### Witcher data version 3
 
-Build 218 reviews all 6,571 retained Witcher question IDs for the medium from
-which the particular fact comes. The full Polish set remains available, while
-two derived sets expose games and books together with screen adaptations. All
-three views use one source database and a compact ID-to-medium map; the large
-question database is not copied for either derived set.
+Build 218 introduced the three-set medium split over 6,571 retained Witcher
+question IDs. The full Polish set and two derived sets use one shared database;
+the detailed game and books-with-screen sets partition the IDs without copying
+the large question resource.
 
-The review compares the question wording, the medium of the concrete answer,
-the supplied preliminary map and categories returned by Wiedźmin Wiki for
-3,971 unique subjects and answers. It corrects 2,351 assignments relative to
-the preliminary map and adds a natural medium qualification to 5,810 prompts
-that were not already unambiguous. IDs, answers, distractors, difficulty and
-thematic round categories remain unchanged. Four damaged imported performer
-labels are repaired in prompt text; no answer is rewritten by this audit.
+A follow-up content audit mapped all 6,571 records to their source relations and
+fetched 2,542 current Wiedźmin Wiki pages with revision IDs on 14 September
+2026. Every prompt and all four options were checked, together with 78 generator
+schema/origin combinations and an independent cross-cutting review. The audit
+removed 6,187 records, replaced 35 complete records and retained 349
+unchanged. Data version 3 contains 384 questions: 144 game questions, 231
+literary questions and 9 screen-adaptation questions.
 
-This is a complete classification and clarity review, not a complete factual
-verification of all answers. The full decision list, the comparison with the
-preliminary map and the captured source metadata are stored outside the signed
-application under `diagnostics/witcher-medium-audit-218`.
+The audit verifies that questions follow the cited current community-wiki
+revisions. It is not independent primary-source research into the fictional
+canon. Complete removals, replacements, source revision IDs and reproducibility
+data are in `QUIZ_WITCHER_AUDIT.md`, `QUIZ_WITCHER_REMOVALS.json`,
+`QUIZ_WITCHER_EDITS.json` and `QUIZ_WITCHER_AUDIT_LEDGER.json`.
 
 ## Rebuilding these files
 
@@ -63,6 +63,7 @@ Use a checkout of the exact revision above, then run from the Game Room root:
 
 ```text
 ruby tools/import-reviewed-quiz-packs.rb PATH_TO_REVIEWED_CHECKOUT content
+ruby tools/rebuild-audited-witcher-quiz.rb
 ```
 
 Only the pinned data hashes are accepted (LF/CRLF checkouts are supported).

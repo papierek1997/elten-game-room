@@ -65,46 +65,35 @@ assert(
   packs.map(&:title) == ["Wiedźmin", "Wiedźmin — gry", "Wiedźmin — książki i ekranizacje"],
   "the Polish Witcher set names are wrong"
 )
-assert(packs.all? { |pack| pack.version == 2 }, "a Witcher set did not receive data version 2")
+assert(packs.all? { |pack| pack.version == 3 }, "a Witcher set did not receive data version 3")
 
 full, games, books_screen = packs.map(&:data)
 full_questions = full.fetch("questions")
 game_questions = games.fetch("questions")
 book_screen_questions = books_screen.fetch("questions")
-assert(full_questions.length == 6571, "the full Witcher set is incomplete")
-assert(game_questions.length == 3292, "the game set has the wrong size")
-assert(book_screen_questions.length == 3279, "the books and screen set has the wrong size")
+assert(full_questions.length == 384, "the full Witcher set is incomplete")
+assert(game_questions.length == 144, "the game set has the wrong size")
+assert(book_screen_questions.length == 240, "the books and screen set has the wrong size")
 
 full_ids = full_questions.map { |question| question.fetch("id") }
 game_ids = game_questions.map { |question| question.fetch("id") }
 book_screen_ids = book_screen_questions.map { |question| question.fetch("id") }
-assert(full_ids.uniq.length == 6571, "the full Witcher set contains duplicate IDs")
+assert(full_ids.uniq.length == 384, "the full Witcher set contains duplicate IDs")
 assert(game_ids.uniq.length == game_ids.length, "the game set contains duplicate IDs")
 assert(book_screen_ids.uniq.length == book_screen_ids.length, "the books and screen set contains duplicate IDs")
 assert((game_ids & book_screen_ids).empty?, "a question belongs to both detailed sets")
-assert((game_ids + book_screen_ids).sort == full_ids.sort, "the detailed sets do not partition all 6571 IDs")
+assert((game_ids + book_screen_ids).sort == full_ids.sort, "the detailed sets do not partition all audited IDs")
 
 classification = GameRoomContent::WitcherPolishMediumData.load
-assert(classification.fetch("version") == 2, "the medium map has the wrong data version")
+assert(classification.fetch("version") == 3, "the medium map has the wrong data version")
 assert(classification.fetch("media").keys.sort == full_ids.sort, "the medium map does not cover every question")
-assert(classification.fetch("media").values.tally == { "g" => 3292, "b" => 3154, "s" => 125 }, "the reviewed medium totals changed")
+assert(classification.fetch("media").values.tally == { "g" => 144, "b" => 231, "s" => 9 }, "the reviewed medium totals changed")
 assert(game_ids.all? { |id| classification.fetch("media").fetch(id) == "g" }, "the game set contains another medium")
 assert(book_screen_ids.all? { |id| classification.fetch("media").fetch(id) != "g" }, "the books and screen set contains a game question")
 
 source = GameRoomContent::Pack1f9366a686ccc2dddda06ad6.load.fetch("questions")
-source_by_id = source.to_h { |question| [question.fetch("id"), question] }
-full_by_id = full_questions.to_h { |question| [question.fetch("id"), question] }
-full_questions.each do |question|
-  original = source_by_id.fetch(question.fetch("id"))
-  assert(question.keys.sort == original.keys.sort, "the audit changed the question schema")
-  (question.keys - ["prompt"]).each do |key|
-    assert(question.fetch(key) == original.fetch(key), "the audit changed #{key} for #{question.fetch('id')}")
-  end
-end
-assert(classification.fetch("prompts").length == 5810, "the number of clarified prompts changed")
-classification.fetch("prompts").each do |id, prompt|
-  assert(full_by_id.fetch(id).fetch("prompt") == prompt, "a clarified prompt was not applied")
-end
+assert(full_questions == source, "the full set is not the shared audited question database")
+assert(classification.fetch("prompts").empty?, "audited prompts are duplicated in the medium map")
 assert(full_questions.none? { |question| question.fetch("prompt").include?("] —") }, "an imported actor name still ends in a bracket")
 assert(full_questions.none? { |question| question.fetch("prompt").start_with?("dubbing: )") }, "the malformed dubbing subject remains")
 
@@ -139,4 +128,4 @@ context = GameRoomGames::ActionContext.new(
   assert((replayed.state[:choices] - available_categories).empty?, "#{set_id} replayed a category from another set")
 end
 
-puts "Witcher medium split tests passed: 6571 stable IDs, exact partition, lazy packs, Polish names, start and replay"
+puts "Witcher medium split tests passed: 384 stable IDs, exact partition, lazy packs, Polish names, start and replay"

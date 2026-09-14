@@ -13,6 +13,7 @@ end
 
 require_relative "../games/base"
 require_relative "../lib/bot_turn_gate"
+require_relative "../lib/game_repository"
 require_relative "../lib/game_screen"
 
 def assert(condition, message)

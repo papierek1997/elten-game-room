@@ -6,7 +6,7 @@ require "rbconfig"
 root = File.expand_path("..", __dir__)
 names = %w[
   quiz_data_cleanup quiz_pack_builder quiz_party quiz_party_startup
-  quiz_party_review_regressions quiz_party_translation witcher_medium_split game_content
+  quiz_party_review_regressions quiz_party_translation witcher_medium_split witcher_content_audit game_content
   hidden_submissions_storage quiz_party_storage categories_storage
   game_option_form surface_framework packaged_rules_encoding categories
   tysiac room_interface game_rules_ui game_rules_translation game_messages_ui

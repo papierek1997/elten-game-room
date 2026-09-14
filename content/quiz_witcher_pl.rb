@@ -1,6 +1,3 @@
-# encoding: UTF-8
-# The three sets share one source database and one audited medium map. Their
-# contents are materialized only when the selected set is opened.
 require_relative "../lib/game_content"
 
 witcher_sets = [
@@ -9,24 +6,24 @@ witcher_sets = [
     set_id: "quiz.witcher",
     title: "Wiedźmin",
     scope: :all,
-    entry_count: 6571,
-    checksum: "dc5c73b141a2c58b482214d365e764475e8ac2fce944efeca08c4a20df51d1ab"
+    entry_count: 384,
+    checksum: "a9ff6f5134a19b85a1c82e4a881bef8915a547d0fdbbc5defc5d9de29ecc2e0d"
   },
   {
     id: "quiz.witcher.g.pl",
     set_id: "quiz.witcher.g",
     title: "Wiedźmin — gry",
     scope: :games,
-    entry_count: 3292,
-    checksum: "edfea37897aa97716812e26637958ff925a79a69aa81259d48b485e7ab4880ff"
+    entry_count: 144,
+    checksum: "0708e41e556fe241a34f513098fc87de08568116ddf329d670f21aab5baf72c1"
   },
   {
     id: "quiz.witcher.b.pl",
     set_id: "quiz.witcher.b",
     title: "Wiedźmin — książki i ekranizacje",
     scope: :books_screen,
-    entry_count: 3279,
-    checksum: "578f560d4d5cffe75292ca10fb97433560e8b6cb747806bea064a1f8e7765a87"
+    entry_count: 240,
+    checksum: "dbd822f4712731e95df240e1db45fefcd54e62b32ae14cccf74f6aefcfc8bf13"
   }
 ].freeze
 
@@ -37,7 +34,7 @@ witcher_sets.each do |definition|
     set_id: definition.fetch(:set_id),
     kind: :quiz,
     language_id: "pl-PL",
-    version: 2,
+    version: 3,
     title: definition.fetch(:title),
     game_ids: ["quiz"],
     license: "CC BY-SA 3.0 (Fandom, Wiedźmin Wiki)",

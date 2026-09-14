@@ -2,6 +2,12 @@
 
 ## Poprawki po buildzie 218 (niewydane)
 
+- Przejrzano wszystkie 6571 pytań Wiedźmina względem 2542 bieżących rewizji
+  Wiedźmin Wiki. Usunięto 6187 pytań, poprawiono 35 i pozostawiono 384.
+- Trzy warianty nadal korzystają z jednej bazy bez kopiowania pytań: pełny ma
+  384, gry 144, a książki i ekranizacje 240 pytań. Szczegóły i kompletne
+  manifesty audytu znajdują się w `content/QUIZ_WITCHER_AUDIT.md`.
+
 - Przejściowy błąd połączenia nie zamyka ekranu pokoju ani partii. Zachowany
   jest ostatni poprawny stan i tekst czatu do czasu odzyskania połączenia.
 - Ujednolicono odzyskiwanie niepewnych ruchów ludzi, botów i automatycznych

@@ -65,7 +65,7 @@ audit = JSON.parse(File.read(File.expand_path("../content/QUIZ_IMPORT_REPORT.jso
 assert(polish_pack.data["questions"].length == 15_498, "the Polish Wikidata question pack lost its questions")
 assert(polish_pack.verified? && packs.drop(1).none?(&:verified?), "loading Polish also loaded an unrelated pack")
 witcher_pack = GameRoomContent.registry.pack("quiz.witcher.pl")
-assert(witcher_pack.data["questions"].length == audit.fetch(witcher_pack.id).fetch("kept") && witcher_pack.verified?, "the cleaned Witcher data did not verify")
+assert(witcher_pack.data["questions"].length == audit.fetch(witcher_pack.id).fetch("audited_kept") && witcher_pack.verified?, "the audited Witcher data did not verify")
 assert(packs[2..].none?(&:verified?), "loading the full Witcher set eagerly loaded a detailed set")
 assert(game.selected_content_pack(options) != nil, "the default table options do not resolve to an installed pack")
 polish_sets = game.send(:available_content_sets, "pl-PL").map(&:id).sort
