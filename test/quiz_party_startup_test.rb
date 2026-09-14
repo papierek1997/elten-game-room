@@ -25,6 +25,7 @@ module GameSurfaces
   QuestionSpec = Struct.new(:id, :prompt, :mode, :options, :value, :submit_label, :required, :read_only, :max_length, :submit_on_select, :prompt_in_choices, keyword_init: true)
 end
 
+require "digest"
 require "json"
 require_relative "../lib/game_content"
 require_relative "../content/languages"
@@ -62,7 +63,37 @@ packs = %w[
 ].map { |id| GameRoomContent.registry.pack(id) }
 assert(packs.all? { |pack| pack && !pack.verified? }, "rules/defaults/options eagerly loaded a question database")
 audit = JSON.parse(File.read(File.expand_path("../content/QUIZ_IMPORT_REPORT.json", __dir__), encoding: "UTF-8"))["packs"]
-assert(polish_pack.data["questions"].length == 15_498, "the Polish Wikidata question pack lost its questions")
+polish_questions = polish_pack.data["questions"]
+assert(polish_questions.length == 15_428, "the Polish Wikidata question pack lost its questions")
+sport_questions = polish_questions.select { |question| question["category"] == "sport" }
+assert(sport_questions.length == 3_001, "the corrected sport category fell below its target")
+undated_coach_questions = sport_questions.select do |question|
+  prompt = question["prompt"]
+  coach_relation = prompt.match?(/\b(?:trener\w*|prowadz\w*|szkoleniow\w*|selekcjoner\w*|menedżer\w*)\b/i) ||
+    (prompt.match?(/\btrenuj\w*\b/i) && !prompt.start_with?("Skoczek "))
+  coach_relation && !prompt.match?(/\b(?:18|19|20)\d{2}\b/)
+end
+assert(undated_coach_questions.empty?, "an undated coach question survived review")
+reviewed = sport_questions.select { |question| question["source_links"] }
+assert(reviewed.length == 61, "the reviewed sport replacements are incomplete")
+assert(reviewed.count { |question| question["prompt"].start_with?("Klub ") } == 26, "a reviewed club-year question is missing")
+assert(reviewed.count { |question| question["prompt"].start_with?("Mistrzostwa świata w piłce nożnej ", "Euro ") } == 30, "a reviewed competition question is missing")
+reviewed_payload = reviewed.map do |question|
+  [question["prompt"], question["correct"], question["wrong"], question["source_links"]]
+end.sort_by(&:first)
+reviewed_digest = Digest::SHA256.hexdigest(JSON.generate(reviewed_payload))
+assert(reviewed_digest == "fd7d0af0e4d90c33881a5c2fdb1b245ec3e636bd7e990a53310eda695913e264", "reviewed sport facts or sources changed")
+lewandowski_answers = {
+  "W którym roku Robert Lewandowski strzelił pięć goli w dziewięć minut?" => "2015",
+  "Przeciw któremu klubowi Robert Lewandowski strzelił pięć goli w dziewięć minut?" => "VfL Wolfsburg",
+  "Ile goli Robert Lewandowski strzelił w Bundeslidze w sezonie 2020/2021?" => "41",
+  "Z którym klubem Robert Lewandowski wygrał Ligę Mistrzów w 2020 roku?" => "Bayern Monachium",
+  "Ile goli Robert Lewandowski strzelił w Lidze Mistrzów 2019/2020?" => "15"
+}
+lewandowski_answers.each do |prompt, answer|
+  question = reviewed.find { |candidate| candidate["prompt"] == prompt }
+  assert(question && question["correct"] == answer && !question["source_links"].empty?, "a sourced Robert Lewandowski question is missing")
+end
 assert(polish_pack.verified? && packs.drop(1).none?(&:verified?), "loading Polish also loaded an unrelated pack")
 witcher_pack = GameRoomContent.registry.pack("quiz.witcher.pl")
 assert(witcher_pack.data["questions"].length == audit.fetch(witcher_pack.id).fetch("kept") && witcher_pack.verified?, "the cleaned Witcher data did not verify")

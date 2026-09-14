@@ -3,7 +3,7 @@ require 'json'
 module GameRoomContent
   module Packa0830f585cc4689a1e2a6335
     def self.load
-      JSON.parse(<<'QUIZ_DATA_5850da276253ee3e70688ff05a1c670f30fe048279fb0143ad58dba196326206')
+      JSON.parse(<<'QUIZ_DATA_6dfc71551d4d32c8e1cc17420187c3b7269a1452c9c3e7e475b8a6779f4bcbc8')
 {
   "questions": [
     {
@@ -73939,6 +73939,231 @@ module GameRoomContent
       ]
     },
     {
+      "id": "96085d9fa3e7",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 1968 — która reprezentacja zwyciężyła?",
+      "correct": "Włochy",
+      "wrong": [
+        "Niemcy Zachodnie",
+        "Dania",
+        "Czechosłowacja"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "f1cbc03baca6",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 1972 — która reprezentacja zwyciężyła?",
+      "correct": "Niemcy Zachodnie",
+      "wrong": [
+        "Holandia",
+        "Dania",
+        "Czechosłowacja"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "a41c64ddfaa2",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 1976 — która reprezentacja zwyciężyła?",
+      "correct": "Czechosłowacja",
+      "wrong": [
+        "Portugalia",
+        "Włochy",
+        "Holandia"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "cf49a9e93147",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 1980 — która reprezentacja zwyciężyła?",
+      "correct": "Niemcy Zachodnie",
+      "wrong": [
+        "Dania",
+        "Hiszpania",
+        "Portugalia"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "1a2e87b44bef",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 1984 — która reprezentacja zwyciężyła?",
+      "correct": "Francja",
+      "wrong": [
+        "Portugalia",
+        "Włochy",
+        "Grecja"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "0f7847a35efe",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 1988 — która reprezentacja zwyciężyła?",
+      "correct": "Holandia",
+      "wrong": [
+        "Hiszpania",
+        "Dania",
+        "Czechosłowacja"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "7e91aeda0061",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 1992 — która reprezentacja zwyciężyła?",
+      "correct": "Dania",
+      "wrong": [
+        "Niemcy Zachodnie",
+        "Holandia",
+        "Portugalia"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "c6706e5ed1f3",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 1996 — która reprezentacja zwyciężyła?",
+      "correct": "Niemcy",
+      "wrong": [
+        "Francja",
+        "Holandia",
+        "Grecja"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "4bc967831f55",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 2000 — która reprezentacja zwyciężyła?",
+      "correct": "Francja",
+      "wrong": [
+        "Grecja",
+        "Niemcy Zachodnie",
+        "Dania"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "d8839f35ff8a",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 2004 — która reprezentacja zwyciężyła?",
+      "correct": "Grecja",
+      "wrong": [
+        "Portugalia",
+        "Hiszpania",
+        "Dania"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "4db56ae3f63a",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 2008 — która reprezentacja zwyciężyła?",
+      "correct": "Hiszpania",
+      "wrong": [
+        "Czechosłowacja",
+        "Włochy",
+        "Francja"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "53b9bc026de6",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 2012 — która reprezentacja zwyciężyła?",
+      "correct": "Hiszpania",
+      "wrong": [
+        "Portugalia",
+        "Niemcy",
+        "Dania"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "213fb0665dea",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 2016 — która reprezentacja zwyciężyła?",
+      "correct": "Portugalia",
+      "wrong": [
+        "Holandia",
+        "Grecja",
+        "Niemcy Zachodnie"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "637fd5743bca",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 2020 — która reprezentacja zwyciężyła?",
+      "correct": "Włochy",
+      "wrong": [
+        "Grecja",
+        "Hiszpania",
+        "Holandia"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
+      "id": "584055645c6e",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Euro 2024 — która reprezentacja zwyciężyła?",
+      "correct": "Hiszpania",
+      "wrong": [
+        "Niemcy Zachodnie",
+        "Dania",
+        "Francja"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefaeuro/history/winners/"
+      ]
+    },
+    {
       "id": "3728518d2ca4",
       "category": "sport",
       "level": "easy",
@@ -74104,6 +74329,21 @@ module GameRoomContent
         "szachy",
         "lekkoatletyka",
         "kolarstwo szosowe"
+      ]
+    },
+    {
+      "id": "26d9cfbfa2ec",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Ile goli Robert Lewandowski strzelił w Bundeslidze w sezonie 2020/2021?",
+      "correct": "41",
+      "wrong": [
+        "38",
+        "40",
+        "42"
+      ],
+      "source_links": [
+        "https://bundesliga.com/en/bundesliga/news/top-scorer-2020-21-lewandowski-haaland-sancho-gnabry-thuram-hwang-12909"
       ]
     },
     {
@@ -74479,6 +74719,22 @@ module GameRoomContent
       ]
     },
     {
+      "id": "e8851e4b409d",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Aris Limassol — w którym roku powstał?",
+      "correct": "1930",
+      "wrong": [
+        "1998",
+        "1907",
+        "1937"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q367788",
+        "https://www.kerkida.net/eidiseis/a-katigoria/aris/giortazei-kai-harizei-diarkeias-o-aris"
+      ]
+    },
+    {
       "id": "c1330bea235e",
       "category": "sport",
       "level": "easy",
@@ -74500,6 +74756,22 @@ module GameRoomContent
         "1869",
         "1874",
         "2003"
+      ]
+    },
+    {
+      "id": "e6917a4847a2",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub BK Häcken — w którym roku powstał?",
+      "correct": "1940",
+      "wrong": [
+        "1922",
+        "1899",
+        "1897"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q639723",
+        "http://www.bolletinen.se/sfs/allsvenskan/grundades.pdf"
       ]
     },
     {
@@ -74587,6 +74859,38 @@ module GameRoomContent
       ]
     },
     {
+      "id": "6c734bc6e692",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Degerfors IF — w którym roku powstał?",
+      "correct": "1907",
+      "wrong": [
+        "1904",
+        "2015",
+        "1930"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q1140767",
+        "http://www.bolletinen.se/sfs/allsvenskan/grundades.pdf"
+      ]
+    },
+    {
+      "id": "e6a5142baf5f",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Dijon FCO — w którym roku powstał?",
+      "correct": "1998",
+      "wrong": [
+        "1942",
+        "1899",
+        "1904"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q503317",
+        "https://www.journal-officiel.gouv.fr/pages/associations-detail-annonce/?q.id=id:199800270380"
+      ]
+    },
+    {
       "id": "95d62f3970ab",
       "category": "sport",
       "level": "easy",
@@ -74635,6 +74939,22 @@ module GameRoomContent
       ]
     },
     {
+      "id": "7caf6497c02d",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub FC Andorra — w którym roku powstał?",
+      "correct": "1942",
+      "wrong": [
+        "1914",
+        "1904",
+        "1910"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q1386854",
+        "https://www.fcandorra.com/historia-del-club/"
+      ]
+    },
+    {
       "id": "4075feadd41b",
       "category": "sport",
       "level": "easy",
@@ -74644,6 +74964,22 @@ module GameRoomContent
         "1899",
         "1940",
         "1892"
+      ]
+    },
+    {
+      "id": "26953f05bce8",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub FC Barcelona — w którym roku powstał?",
+      "correct": "1899",
+      "wrong": [
+        "1907",
+        "1914",
+        "1940"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q7156",
+        "https://cementiris.ajuntament.barcelona.cat/index.php/ca/rutes-lliures/ruta-cultural-de-lesport"
       ]
     },
     {
@@ -74668,6 +75004,22 @@ module GameRoomContent
         "1969",
         "1966",
         "1877"
+      ]
+    },
+    {
+      "id": "490258f65d61",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub FC Midtjylland — w którym roku powstał?",
+      "correct": "1999",
+      "wrong": [
+        "1937",
+        "1940",
+        "1922"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q618520",
+        "https://web.archive.org/web/20160730072428/http://www.fcm.dk/om-fcm/historie"
       ]
     },
     {
@@ -74719,6 +75071,22 @@ module GameRoomContent
       ]
     },
     {
+      "id": "ec57f50d4931",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub GIF Sundsvall — w którym roku powstał?",
+      "correct": "1903",
+      "wrong": [
+        "1907",
+        "1940",
+        "1949"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q725332",
+        "http://www.bolletinen.se/sfs/allsvenskan/grundades.pdf"
+      ]
+    },
+    {
       "id": "b65aebd73a2a",
       "category": "sport",
       "level": "easy",
@@ -74755,6 +75123,38 @@ module GameRoomContent
       ]
     },
     {
+      "id": "7dd8e7f89b17",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Halmstads BK — w którym roku powstał?",
+      "correct": "1914",
+      "wrong": [
+        "1913",
+        "1897",
+        "1939"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q584858",
+        "http://www.bolletinen.se/sfs/allsvenskan/grundades.pdf"
+      ]
+    },
+    {
+      "id": "51fe21da57fa",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Helsingborgs IF — w którym roku powstał?",
+      "correct": "1907",
+      "wrong": [
+        "1904",
+        "1939",
+        "1914"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q207503",
+        "http://www.bolletinen.se/sfs/allsvenskan/grundades.pdf"
+      ]
+    },
+    {
       "id": "581672529291",
       "category": "sport",
       "level": "easy",
@@ -74779,6 +75179,54 @@ module GameRoomContent
       ]
     },
     {
+      "id": "a26aeeb659ac",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub IF Elfsborg — w którym roku powstał?",
+      "correct": "1904",
+      "wrong": [
+        "1905",
+        "1910",
+        "1996"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q211753",
+        "http://www.bolletinen.se/sfs/allsvenskan/grundades.pdf"
+      ]
+    },
+    {
+      "id": "3af75587493c",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub IFK Göteborg — w którym roku powstał?",
+      "correct": "1904",
+      "wrong": [
+        "1999",
+        "1937",
+        "1996"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q201567",
+        "https://ifkgoteborg.se/om-ifk-goteborg/var-historia/"
+      ]
+    },
+    {
+      "id": "71dc774610ce",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub IK Start — w którym roku powstał?",
+      "correct": "1905",
+      "wrong": [
+        "1937",
+        "1904",
+        "1949"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q737947",
+        "https://www.ikstart.no/start-historien/nokkeldatoer-i-starts-historie"
+      ]
+    },
+    {
       "id": "a0132b5c82ee",
       "category": "sport",
       "level": "easy",
@@ -74791,6 +75239,22 @@ module GameRoomContent
       ]
     },
     {
+      "id": "17c6d3fd1e1e",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Juventus F.C. — w którym roku powstał?",
+      "correct": "1897",
+      "wrong": [
+        "1903",
+        "1899",
+        "1930"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q1422",
+        "http://www.juventus.com/juve/it/club/juventus%20in%20breve/01-La%20storia%20di%20una%20leggenda"
+      ]
+    },
+    {
       "id": "8c4c7778bcc3",
       "category": "sport",
       "level": "easy",
@@ -74800,6 +75264,22 @@ module GameRoomContent
         "1985",
         "1921",
         "2019"
+      ]
+    },
+    {
+      "id": "11ef91550be0",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Kalmar FF — w którym roku powstał?",
+      "correct": "1910",
+      "wrong": [
+        "1996",
+        "1904",
+        "1913"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q644157",
+        "http://www.bolletinen.se/sfs/allsvenskan/grundades.pdf"
       ]
     },
     {
@@ -74824,6 +75304,22 @@ module GameRoomContent
         "1884",
         "1888",
         "1945"
+      ]
+    },
+    {
+      "id": "c009d7c2eb1a",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Le Mans FC — w którym roku powstał?",
+      "correct": "1985",
+      "wrong": [
+        "1930",
+        "1905",
+        "1914"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q210864",
+        "https://www.journal-officiel.gouv.fr/associations/detail-annonce/associations_b_archive/19850027/0904"
       ]
     },
     {
@@ -74863,6 +75359,70 @@ module GameRoomContent
       ]
     },
     {
+      "id": "92792f827ef9",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Malmö FF — w którym roku powstał?",
+      "correct": "1910",
+      "wrong": [
+        "1899",
+        "1913",
+        "1905"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q204881",
+        "http://www.bolletinen.se/sfs/allsvenskan/grundades.pdf"
+      ]
+    },
+    {
+      "id": "4bb69bf2fb20",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Mjällby AIF — w którym roku powstał?",
+      "correct": "1939",
+      "wrong": [
+        "1910",
+        "1907",
+        "1914"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q749138",
+        "http://www.bolletinen.se/sfs/allsvenskan/grundades.pdf"
+      ]
+    },
+    {
+      "id": "4c663598bbe3",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Nea Salamina Famagusta Larnaka — w którym roku powstał?",
+      "correct": "1948",
+      "wrong": [
+        "1999",
+        "1905",
+        "1907"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q714581",
+        "http://www.famagusta.org.cy/default.asp?id=261"
+      ]
+    },
+    {
+      "id": "d4eab7b9b2df",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Nîmes Olympique — w którym roku powstał?",
+      "correct": "1937",
+      "wrong": [
+        "1907",
+        "1996",
+        "1949"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q730809",
+        "https://www.journal-officiel.gouv.fr/pages/associations-detail-annonce/?q.id=id:193700930059"
+      ]
+    },
+    {
       "id": "2ab1fba6e984",
       "category": "sport",
       "level": "easy",
@@ -74884,6 +75444,22 @@ module GameRoomContent
         "1888",
         "1996",
         "1960"
+      ]
+    },
+    {
+      "id": "cccf63e6311a",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Racing de Santander — w którym roku powstał?",
+      "correct": "1913",
+      "wrong": [
+        "1905",
+        "1903",
+        "1948"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q12236",
+        "http://www.racinguistas.com/wiki/Historia_Del_Racing_De_Santander"
       ]
     },
     {
@@ -74968,6 +75544,38 @@ module GameRoomContent
         "1988",
         "1994",
         "1913"
+      ]
+    },
+    {
+      "id": "e4abd42fa670",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub SK Dnipro-1 — w którym roku powstał?",
+      "correct": "2015",
+      "wrong": [
+        "1937",
+        "1949",
+        "1899"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q30964198",
+        "https://www.scdnipro1.com.ua/історія/"
+      ]
+    },
+    {
+      "id": "6e5aa0dc2ff8",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub SP Tre Fiori — w którym roku powstał?",
+      "correct": "1949",
+      "wrong": [
+        "1996",
+        "1904",
+        "1930"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q506224",
+        "https://www.rsssf.org/tabless/sanmfound.html"
       ]
     },
     {
@@ -75067,6 +75675,22 @@ module GameRoomContent
       ]
     },
     {
+      "id": "b55317ff12dd",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Velež Mostar — w którym roku powstał?",
+      "correct": "1922",
+      "wrong": [
+        "1999",
+        "1949",
+        "1905"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q818698",
+        "https://fkvelez.ba/o_fk_velez_mostar/"
+      ]
+    },
+    {
       "id": "5461b7fd899d",
       "category": "sport",
       "level": "easy",
@@ -75148,6 +75772,38 @@ module GameRoomContent
         "1955",
         "1935",
         "1998"
+      ]
+    },
+    {
+      "id": "dc3040a5215d",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Östers IF — w którym roku powstał?",
+      "correct": "1930",
+      "wrong": [
+        "1939",
+        "1905",
+        "1897"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q306787",
+        "http://www.bolletinen.se/sfs/allsvenskan/grundades.pdf"
+      ]
+    },
+    {
+      "id": "e39284cf2a67",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Klub Östersunds FK — w którym roku powstał?",
+      "correct": "1996",
+      "wrong": [
+        "1948",
+        "1930",
+        "1905"
+      ],
+      "source_links": [
+        "https://www.wikidata.org/wiki/Q306797",
+        "https://www.svd.se/ofk-kan-fa-storlag-i-europa-league"
       ]
     },
     {
@@ -75868,6 +76524,231 @@ module GameRoomContent
         "łyżwiarstwo figurowe",
         "lekkoatletyka",
         "piłka nożna"
+      ]
+    },
+    {
+      "id": "597e530a63f8",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 1966 — która reprezentacja zwyciężyła?",
+      "correct": "Anglia",
+      "wrong": [
+        "Niemcy",
+        "Francja",
+        "Argentyna"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1930-1978-uruguay-italy-germany-brazil-england-argentina"
+      ]
+    },
+    {
+      "id": "d4de636e3761",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 1970 — która reprezentacja zwyciężyła?",
+      "correct": "Brazylia",
+      "wrong": [
+        "Hiszpania",
+        "Włochy",
+        "Niemcy Zachodnie"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1930-1978-uruguay-italy-germany-brazil-england-argentina"
+      ]
+    },
+    {
+      "id": "f31fd8320a80",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 1974 — która reprezentacja zwyciężyła?",
+      "correct": "Niemcy Zachodnie",
+      "wrong": [
+        "Francja",
+        "Anglia",
+        "Hiszpania"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1930-1978-uruguay-italy-germany-brazil-england-argentina"
+      ]
+    },
+    {
+      "id": "558a59db75f6",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 1978 — która reprezentacja zwyciężyła?",
+      "correct": "Argentyna",
+      "wrong": [
+        "Francja",
+        "Włochy",
+        "Niemcy"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1930-1978-uruguay-italy-germany-brazil-england-argentina"
+      ]
+    },
+    {
+      "id": "989239a21da3",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 1982 — która reprezentacja zwyciężyła?",
+      "correct": "Włochy",
+      "wrong": [
+        "Brazylia",
+        "Hiszpania",
+        "Argentyna"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2022-italy-argentina-germany-brazil-france-spain"
+      ]
+    },
+    {
+      "id": "76d7815be7e0",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 1986 — która reprezentacja zwyciężyła?",
+      "correct": "Argentyna",
+      "wrong": [
+        "Hiszpania",
+        "Niemcy",
+        "Włochy"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2022-italy-argentina-germany-brazil-france-spain"
+      ]
+    },
+    {
+      "id": "1e5123848847",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 1990 — która reprezentacja zwyciężyła?",
+      "correct": "Niemcy Zachodnie",
+      "wrong": [
+        "Francja",
+        "Hiszpania",
+        "Włochy"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2022-italy-argentina-germany-brazil-france-spain"
+      ]
+    },
+    {
+      "id": "a9ff6f41a1fe",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 1994 — która reprezentacja zwyciężyła?",
+      "correct": "Brazylia",
+      "wrong": [
+        "Hiszpania",
+        "Francja",
+        "Niemcy Zachodnie"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2022-italy-argentina-germany-brazil-france-spain"
+      ]
+    },
+    {
+      "id": "17e560bf266f",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 1998 — która reprezentacja zwyciężyła?",
+      "correct": "Francja",
+      "wrong": [
+        "Brazylia",
+        "Anglia",
+        "Niemcy"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2022-italy-argentina-germany-brazil-france-spain"
+      ]
+    },
+    {
+      "id": "ed88f585716e",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 2002 — która reprezentacja zwyciężyła?",
+      "correct": "Brazylia",
+      "wrong": [
+        "Argentyna",
+        "Anglia",
+        "Francja"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2022-italy-argentina-germany-brazil-france-spain"
+      ]
+    },
+    {
+      "id": "a906861b76ce",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 2006 — która reprezentacja zwyciężyła?",
+      "correct": "Włochy",
+      "wrong": [
+        "Brazylia",
+        "Anglia",
+        "Argentyna"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2022-italy-argentina-germany-brazil-france-spain"
+      ]
+    },
+    {
+      "id": "8c2a5231e5be",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 2010 — która reprezentacja zwyciężyła?",
+      "correct": "Hiszpania",
+      "wrong": [
+        "Niemcy",
+        "Anglia",
+        "Argentyna"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2022-italy-argentina-germany-brazil-france-spain"
+      ]
+    },
+    {
+      "id": "3ec1df0bd94d",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 2014 — która reprezentacja zwyciężyła?",
+      "correct": "Niemcy",
+      "wrong": [
+        "Włochy",
+        "Argentyna",
+        "Brazylia"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2022-italy-argentina-germany-brazil-france-spain"
+      ]
+    },
+    {
+      "id": "abaa28221512",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 2018 — która reprezentacja zwyciężyła?",
+      "correct": "Francja",
+      "wrong": [
+        "Włochy",
+        "Brazylia",
+        "Anglia"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2022-italy-argentina-germany-brazil-france-spain"
+      ]
+    },
+    {
+      "id": "0ba59b4b0455",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Mistrzostwa świata w piłce nożnej 2022 — która reprezentacja zwyciężyła?",
+      "correct": "Argentyna",
+      "wrong": [
+        "Anglia",
+        "Brazylia",
+        "Niemcy"
+      ],
+      "source_links": [
+        "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2022-italy-argentina-germany-brazil-france-spain"
       ]
     },
     {
@@ -79480,6 +80361,21 @@ module GameRoomContent
         "Gijón",
         "Kostrzyn nad Odrą",
         "Czechowice-Dziedzice"
+      ]
+    },
+    {
+      "id": "49c25752e224",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Przeciw któremu klubowi Robert Lewandowski strzelił pięć goli w dziewięć minut?",
+      "correct": "VfL Wolfsburg",
+      "wrong": [
+        "Borussia Dortmund",
+        "Bayer Leverkusen",
+        "RB Leipzig"
+      ],
+      "source_links": [
+        "https://fcbayern.com/en/news/matchreports/2015/09/match-report-fc-bayern---vfl-wolfsburg-220915"
       ]
     },
     {
@@ -85183,1578 +86079,6 @@ module GameRoomContent
       ]
     },
     {
-      "id": "bfa2bf4423f1",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Aaron Ramsey — jaki klub prowadzi?",
-      "correct": "Oxford United F.C.",
-      "wrong": [
-        "FC København",
-        "Norwich City F.C.",
-        "Arsenal FC"
-      ]
-    },
-    {
-      "id": "ead4b165d906",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Alan Smith — jaki klub prowadzi?",
-      "correct": "Notts County F.C.",
-      "wrong": [
-        "Hércules Alicante",
-        "Bayer Leverkusen",
-        "SSC Napoli"
-      ]
-    },
-    {
-      "id": "df159363c07f",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Alberto Aquilani — jaki klub prowadzi?",
-      "correct": "US Sassuolo Calcio",
-      "wrong": [
-        "Kyoto Sanga F.C.",
-        "1. FC Kaiserslautern",
-        "Notts County F.C."
-      ]
-    },
-    {
-      "id": "128b40fa7034",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Alberto Zaccheroni — jaki klub prowadzi?",
-      "correct": "A.C. Milan",
-      "wrong": [
-        "Leeds United A.F.C.",
-        "Reading F.C.",
-        "Servette Genewa"
-      ]
-    },
-    {
-      "id": "40b51ddb01c0",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Alessandro Costacurta — jaki klub prowadzi?",
-      "correct": "A.C. Milan",
-      "wrong": [
-        "Bristol City F.C.",
-        "Aberdeen F.C.",
-        "Birmingham City FC"
-      ]
-    },
-    {
-      "id": "548419dc651e",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Alessandro Diamanti — jaki klub prowadzi?",
-      "correct": "AC Cesena",
-      "wrong": [
-        "FC Schalke 04",
-        "SBV Vitesse",
-        "RSC Anderlecht"
-      ]
-    },
-    {
-      "id": "1df516a25447",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Alessandro Nesta — jaki klub prowadzi?",
-      "correct": "Perugia Calcio",
-      "wrong": [
-        "Millwall F.C.",
-        "VfL Wolfsburg",
-        "Valencia CF"
-      ]
-    },
-    {
-      "id": "93fa43d499c3",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Alf Ramsey — jaki klub prowadzi?",
-      "correct": "Birmingham City FC",
-      "wrong": [
-        "FC Zürich",
-        "Swansea City A.F.C.",
-        "RCD Espanyol"
-      ]
-    },
-    {
-      "id": "8d2078da96bb",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Andrij Szewczenko — jaki klub prowadzi?",
-      "correct": "Genoa CFC",
-      "wrong": [
-        "Vitória Salvador",
-        "Standard Liège",
-        "Atalanta Bergamo"
-      ]
-    },
-    {
-      "id": "b5ef8a215b39",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener André Villas-Boas — jaki klub prowadzi?",
-      "correct": "Tottenham Hotspur",
-      "wrong": [
-        "Rayo Vallecano",
-        "Juventus F.C.",
-        "Plymouth Argyle F.C."
-      ]
-    },
-    {
-      "id": "f1b8d2d75cf5",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Bill Shankly — jaki klub prowadzi?",
-      "correct": "Carlisle United F.C.",
-      "wrong": [
-        "Deportivo La Coruña",
-        "Hajduk Split",
-        "LASK Linz"
-      ]
-    },
-    {
-      "id": "ffa21b86c484",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Bobby Charlton — jaki klub prowadzi?",
-      "correct": "Wigan Athletic F.C.",
-      "wrong": [
-        "CS Herediano",
-        "Oxford United F.C.",
-        "Al Qadsiah FC"
-      ]
-    },
-    {
-      "id": "a9c881ad4bb6",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Brendan Rodgers — jaki klub prowadzi?",
-      "correct": "Al Qadsiah FC",
-      "wrong": [
-        "AZ Alkmaar",
-        "Hull City A.F.C.",
-        "Rangers F.C."
-      ]
-    },
-    {
-      "id": "b98f5d7674da",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Bryan Robson — jaki klub prowadzi?",
-      "correct": "Bradford City A.F.C.",
-      "wrong": [
-        "Southampton F.C.",
-        "Blackburn Rovers F.C.",
-        "SD Compostela"
-      ]
-    },
-    {
-      "id": "00bfd6b0336c",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Carlos Alberto Parreira — jaki klub prowadzi?",
-      "correct": "New York Red Bulls",
-      "wrong": [
-        "TSG 1899 Hoffenheim",
-        "Fulham F.C.",
-        "Deportivo La Coruña"
-      ]
-    },
-    {
-      "id": "4dfa0b018edd",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Carlos Tévez — jaki klub prowadzi?",
-      "correct": "Club Atlético Independiente",
-      "wrong": [
-        "Omiya Ardija",
-        "Paris Saint-Germain",
-        "Real Saragossa"
-      ]
-    },
-    {
-      "id": "c30146d750a9",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Cesare Maldini — jaki klub prowadzi?",
-      "correct": "A.C. Milan",
-      "wrong": [
-        "Bayern Monachium",
-        "UD Las Palmas",
-        "Nottingham Forest F.C."
-      ]
-    },
-    {
-      "id": "27045d4c4a40",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Cesare Prandelli — jaki klub prowadzi?",
-      "correct": "Atalanta Bergamo",
-      "wrong": [
-        "Milton Keynes Dons F.C.",
-        "Szynnik Jarosławl",
-        "SC Bastia"
-      ]
-    },
-    {
-      "id": "e09c6a073bbd",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Claude Makélélé — jaki klub prowadzi?",
-      "correct": "SC Bastia",
-      "wrong": [
-        "US Città di Pontedera",
-        "UD Las Palmas",
-        "Szynnik Jarosławl"
-      ]
-    },
-    {
-      "id": "c9a38da46d2d",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Cristian Chivu — jaki klub prowadzi?",
-      "correct": "Inter Mediolan",
-      "wrong": [
-        "AS Roma",
-        "Zenit Petersburg",
-        "Swansea City A.F.C."
-      ]
-    },
-    {
-      "id": "519085f57f35",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Daiki Iwamasa — jaki klub prowadzi?",
-      "correct": "Kashima Antlers",
-      "wrong": [
-        "Urawa Red Diamonds",
-        "TSG 1899 Hoffenheim",
-        "Rayo Vallecano"
-      ]
-    },
-    {
-      "id": "1c10e75c3f03",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Damien Duff — jaki klub prowadzi?",
-      "correct": "Shelbourne FC",
-      "wrong": [
-        "Derby County F.C.",
-        "1. FC Kaiserslautern",
-        "Godoy Cruz Antonio Tomba"
-      ]
-    },
-    {
-      "id": "e7593b05a115",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Daniel Passarella — jaki klub prowadzi?",
-      "correct": "River Plate Buenos Aires",
-      "wrong": [
-        "FC Schalke 04",
-        "Kyoto Sanga F.C.",
-        "Bolton Wanderers F.C."
-      ]
-    },
-    {
-      "id": "113e014c67e4",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Daniele De Rossi — jaki klub prowadzi?",
-      "correct": "Genoa CFC",
-      "wrong": [
-        "VfL Bochum",
-        "VfB Stuttgart",
-        "Godoy Cruz Antonio Tomba"
-      ]
-    },
-    {
-      "id": "fa9e8d0f0fe6",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Darren Fletcher — jaki klub prowadzi?",
-      "correct": "Manchester United F.C.",
-      "wrong": [
-        "Manchester City F.C.",
-        "Granada CF",
-        "Austria Kärnten"
-      ]
-    },
-    {
-      "id": "5817eb87925d",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener David Moyes — jaki klub prowadzi?",
-      "correct": "Everton F.C.",
-      "wrong": [
-        "Racing Club de France",
-        "ACF Fiorentina",
-        "FC København"
-      ]
-    },
-    {
-      "id": "f36617466322",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Enzo Maresca — jaki klub prowadzi?",
-      "correct": "Manchester City F.C.",
-      "wrong": [
-        "Montpellier HSC",
-        "Akhisar Belediyespor",
-        "Deportivo La Coruña"
-      ]
-    },
-    {
-      "id": "188f186ad6ce",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Ernst Happel — jaki klub prowadzi?",
-      "correct": "Real Betis",
-      "wrong": [
-        "Torino Football Club",
-        "AEL Limassol",
-        "SD Compostela"
-      ]
-    },
-    {
-      "id": "3f96b25cd6a1",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Fernando Santos — jaki klub prowadzi?",
-      "correct": "Sporting Clube de Portugal",
-      "wrong": [
-        "Paris Saint-Germain",
-        "Spezia Calcio",
-        "VfL Wolfsburg"
-      ]
-    },
-    {
-      "id": "b7614596e438",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Filippo Inzaghi — jaki klub prowadzi?",
-      "correct": "Palermo FC",
-      "wrong": [
-        "Real Betis",
-        "Deportivo La Coruña",
-        "Celta Vigo"
-      ]
-    },
-    {
-      "id": "a4f422835b42",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Frank Lampard — jaki klub prowadzi?",
-      "correct": "Coventry City F.C.",
-      "wrong": [
-        "FC Basel 1893",
-        "US Città di Pontedera",
-        "Aberdeen F.C."
-      ]
-    },
-    {
-      "id": "7a1853335a90",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Franz Beckenbauer — jaki klub prowadzi?",
-      "correct": "Bayern Monachium",
-      "wrong": [
-        "VfL Bochum",
-        "PSV Eindhoven",
-        "Olympique Marsylia"
-      ]
-    },
-    {
-      "id": "c8e8833ab7c2",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Fredrik Ljungberg — jaki klub prowadzi?",
-      "correct": "Arsenal FC",
-      "wrong": [
-        "1. FC Kaiserslautern",
-        "Sevilla FC",
-        "Urawa Red Diamonds"
-      ]
-    },
-    {
-      "id": "eb4df8c66d99",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Gabi — jaki klub prowadzi?",
-      "correct": "Real Saragossa",
-      "wrong": [
-        "SD Compostela",
-        "Newell's Old Boys Rosario",
-        "Spartak Moskwa"
-      ]
-    },
-    {
-      "id": "b8ec140eead9",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Gabriel Heinze — jaki klub prowadzi?",
-      "correct": "Newell's Old Boys Rosario",
-      "wrong": [
-        "Montpellier HSC",
-        "Tottenham Hotspur",
-        "Akhisar Belediyespor"
-      ]
-    },
-    {
-      "id": "a52d464b4fe4",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Gareth Southgate — jaki klub prowadzi?",
-      "correct": "Middlesbrough F.C.",
-      "wrong": [
-        "RB Leipzig",
-        "Servette Genewa",
-        "İstanbul Başakşehir"
-      ]
-    },
-    {
-      "id": "53c8e01d1013",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Gary Neville — jaki klub prowadzi?",
-      "correct": "Valencia CF",
-      "wrong": [
-        "Kashima Antlers",
-        "Southend United F.C.",
-        "Reading F.C."
-      ]
-    },
-    {
-      "id": "f20fbaee4889",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Gennaro Gattuso — jaki klub prowadzi?",
-      "correct": "Lazio Rzym",
-      "wrong": [
-        "Godoy Cruz Antonio Tomba",
-        "Vitória SC",
-        "Unión Santa Fe"
-      ]
-    },
-    {
-      "id": "2be87416f93d",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Gianluca Vialli — jaki klub prowadzi?",
-      "correct": "Watford F.C.",
-      "wrong": [
-        "Standard Liège",
-        "FC København",
-        "Manchester United F.C."
-      ]
-    },
-    {
-      "id": "e27dc0d627c9",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Guido Buchwald — jaki klub prowadzi?",
-      "correct": "Urawa Red Diamonds",
-      "wrong": [
-        "RCD Mallorca",
-        "VfL Bochum",
-        "CA Osasuna"
-      ]
-    },
-    {
-      "id": "d3fc7c379617",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Guti — jaki klub prowadzi?",
-      "correct": "UD Almería",
-      "wrong": [
-        "SC Bastia",
-        "Yokohama FC",
-        "West Ham United F.C."
-      ]
-    },
-    {
-      "id": "18b7b2cd33b9",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Guus Hiddink — jaki klub prowadzi?",
-      "correct": "Valencia CF",
-      "wrong": [
-        "Aberdeen F.C.",
-        "Slavia Praga",
-        "Feyenoord Rotterdam"
-      ]
-    },
-    {
-      "id": "5b29feafa8d7",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Hans Krankl — jaki klub prowadzi?",
-      "correct": "LASK Linz",
-      "wrong": [
-        "Derby County F.C.",
-        "Norwich City F.C.",
-        "Akron Togliatti"
-      ]
-    },
-    {
-      "id": "aa8da73d82e7",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Hans-Dieter Flick — jaki klub prowadzi?",
-      "correct": "Bayern Monachium",
-      "wrong": [
-        "Atalanta Bergamo",
-        "NK Olimpija Lublana",
-        "VfL Bochum"
-      ]
-    },
-    {
-      "id": "17715c0b1252",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Harry Redknapp — jaki klub prowadzi?",
-      "correct": "AFC Bournemouth",
-      "wrong": [
-        "Los Angeles Galaxy",
-        "Omiya Ardija",
-        "River Plate Buenos Aires"
-      ]
-    },
-    {
-      "id": "d1938bf38d71",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Henrik Larsson — jaki klub prowadzi?",
-      "correct": "Helsingborgs IF",
-      "wrong": [
-        "SC Bastia",
-        "Linfield F.C.",
-        "AZ Alkmaar"
-      ]
-    },
-    {
-      "id": "9539a4043306",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Hiromi Hara — jaki klub prowadzi?",
-      "correct": "Urawa Red Diamonds",
-      "wrong": [
-        "Hércules Alicante",
-        "Swansea City A.F.C.",
-        "Middlesbrough F.C."
-      ]
-    },
-    {
-      "id": "50a2c6530c75",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Ignazio Abate — jaki klub prowadzi?",
-      "correct": "Torino Football Club",
-      "wrong": [
-        "Yokohama FC",
-        "Palermo FC",
-        "Notts County F.C."
-      ]
-    },
-    {
-      "id": "d999e3ce0838",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Igor Lediachow — jaki klub prowadzi?",
-      "correct": "Szynnik Jarosławl",
-      "wrong": [
-        "Notts County F.C.",
-        "Middlesbrough F.C.",
-        "Vitória Salvador"
-      ]
-    },
-    {
-      "id": "18cf77ccc1be",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Ikuo Matsumoto — jaki klub prowadzi?",
-      "correct": "Sagan Tosu",
-      "wrong": [
-        "Salford City F.C.",
-        "Szachtar Donieck",
-        "1. FC Nürnberg"
-      ]
-    },
-    {
-      "id": "531a7b3453f0",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Jaap Stam — jaki klub prowadzi?",
-      "correct": "Reading F.C.",
-      "wrong": [
-        "LASK Linz",
-        "1. FSV Mainz 05",
-        "İstanbul Başakşehir"
-      ]
-    },
-    {
-      "id": "8ae6e1a96c24",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Jean Tigana — jaki klub prowadzi?",
-      "correct": "Fulham F.C.",
-      "wrong": [
-        "CA Osasuna",
-        "Wigan Athletic F.C.",
-        "Kashima Antlers"
-      ]
-    },
-    {
-      "id": "a30a0be31b4a",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Jens Lehmann — jaki klub prowadzi?",
-      "correct": "Arsenal FC",
-      "wrong": [
-        "FC København",
-        "Torino Football Club",
-        "Leeds United A.F.C."
-      ]
-    },
-    {
-      "id": "0dfd936c55ba",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Joachim Löw — jaki klub prowadzi?",
-      "correct": "VfB Stuttgart",
-      "wrong": [
-        "Eintracht Frankfurt",
-        "Werder Brema",
-        "Hajduk Split"
-      ]
-    },
-    {
-      "id": "c8e820cff6b6",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Joey Barton — jaki klub prowadzi?",
-      "correct": "Fleetwood Town F.C.",
-      "wrong": [
-        "FC Nantes",
-        "Juventus F.C.",
-        "Vitória Salvador"
-      ]
-    },
-    {
-      "id": "f1b80e7f06a4",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Johan Cruijff — jaki klub prowadzi?",
-      "correct": "Ajax Amsterdam",
-      "wrong": [
-        "Akron Togliatti",
-        "Bristol City F.C.",
-        "FC Twente"
-      ]
-    },
-    {
-      "id": "65adf797c768",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Johan Neeskens — jaki klub prowadzi?",
-      "correct": "Zug 94",
-      "wrong": [
-        "Notts County F.C.",
-        "AIK Solna",
-        "Manchester City F.C."
-      ]
-    },
-    {
-      "id": "26151a3ea2a9",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener John Heitinga — jaki klub prowadzi?",
-      "correct": "Ajax Amsterdam",
-      "wrong": [
-        "Hajduk Split",
-        "LASK Linz",
-        "Southampton F.C."
-      ]
-    },
-    {
-      "id": "358b9188a494",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Jorginho — jaki klub prowadzi?",
-      "correct": "Kashima Antlers",
-      "wrong": [
-        "Racing Club de Avellaneda",
-        "1. FC Kaiserslautern",
-        "RB Leipzig"
-      ]
-    },
-    {
-      "id": "a1512748106c",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener José Antonio Camacho — jaki klub prowadzi?",
-      "correct": "Rayo Vallecano",
-      "wrong": [
-        "Oxford United F.C.",
-        "Wycombe Wanderers F.C.",
-        "Al-Nassr"
-      ]
-    },
-    {
-      "id": "d60264c36823",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener José Mourinho — jaki klub prowadzi?",
-      "correct": "Real Madryt",
-      "wrong": [
-        "FC Basel 1893",
-        "Millwall F.C.",
-        "Celta Vigo"
-      ]
-    },
-    {
-      "id": "3e20e2b2aa86",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Kolo Touré — jaki klub prowadzi?",
-      "correct": "Wigan Athletic F.C.",
-      "wrong": [
-        "Manchester City F.C.",
-        "Blackpool F.C.",
-        "New York Red Bulls"
-      ]
-    },
-    {
-      "id": "1acd810f944d",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Leonardo Nascimento de Araújo — jaki klub prowadzi?",
-      "correct": "A.C. Milan",
-      "wrong": [
-        "FC Porto",
-        "RCD Mallorca",
-        "Rayo Vallecano"
-      ]
-    },
-    {
-      "id": "b2881c5ec990",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Leopoldo Luque — jaki klub prowadzi?",
-      "correct": "Unión Santa Fe",
-      "wrong": [
-        "Galatasaray SK",
-        "OGC Nice",
-        "LASK Linz"
-      ]
-    },
-    {
-      "id": "e0898c6fb066",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Lionel Scaloni — jaki klub prowadzi?",
-      "correct": "Sevilla FC",
-      "wrong": [
-        "Tottenham Hotspur",
-        "Carlisle United F.C.",
-        "Galatasaray SK"
-      ]
-    },
-    {
-      "id": "f9424d55468b",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Luciano Spalletti — jaki klub prowadzi?",
-      "correct": "Juventus F.C.",
-      "wrong": [
-        "Hércules Alicante",
-        "TSG 1899 Hoffenheim",
-        "Bayer Leverkusen"
-      ]
-    },
-    {
-      "id": "2b9362789d5d",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Luis Enrique — jaki klub prowadzi?",
-      "correct": "Paris Saint-Germain",
-      "wrong": [
-        "Southend United F.C.",
-        "Tottenham Hotspur",
-        "Racing Club de Avellaneda"
-      ]
-    },
-    {
-      "id": "a0e75b1f162d",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Manuel Pellegrini — jaki klub prowadzi?",
-      "correct": "Real Betis",
-      "wrong": [
-        "Southend United F.C.",
-        "Club Atlético Independiente",
-        "Linfield F.C."
-      ]
-    },
-    {
-      "id": "afd1f3f98ca6",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Marco van Basten — jaki klub prowadzi?",
-      "correct": "Ajax Amsterdam",
-      "wrong": [
-        "AEK Larnaka",
-        "SBV Vitesse",
-        "SC Bastia"
-      ]
-    },
-    {
-      "id": "45f534b8bf7e",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Mark Hughes — jaki klub prowadzi?",
-      "correct": "Carlisle United F.C.",
-      "wrong": [
-        "PSV Eindhoven",
-        "Athletic Club",
-        "Plymouth Argyle F.C."
-      ]
-    },
-    {
-      "id": "7cf89a777e6e",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Massimiliano Allegri — jaki klub prowadzi?",
-      "correct": "SSC Napoli",
-      "wrong": [
-        "FC Vaduz",
-        "Perugia Calcio",
-        "SBV Vitesse"
-      ]
-    },
-    {
-      "id": "871602a79fc7",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Massimo Oddo — jaki klub prowadzi?",
-      "correct": "Pescara Calcio",
-      "wrong": [
-        "Olympique Lyon",
-        "Crystal Palace F.C.",
-        "RC Lens"
-      ]
-    },
-    {
-      "id": "bb09b853bd42",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Matt Busby — jaki klub prowadzi?",
-      "correct": "Manchester United F.C.",
-      "wrong": [
-        "A.C. Milan",
-        "Aberdeen F.C.",
-        "Birmingham City FC"
-      ]
-    },
-    {
-      "id": "403398eff325",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Maurizio Sarri — jaki klub prowadzi?",
-      "correct": "Atalanta Bergamo",
-      "wrong": [
-        "Nottingham Forest F.C.",
-        "Kyoto Sanga F.C.",
-        "Swansea City A.F.C."
-      ]
-    },
-    {
-      "id": "88bcccf848be",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Mauro Camoranesi — jaki klub prowadzi?",
-      "correct": "AEK Larnaka",
-      "wrong": [
-        "Beşiktaş JK",
-        "Linfield F.C.",
-        "Slavia Praga"
-      ]
-    },
-    {
-      "id": "aa2385332610",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Michael Bradley — jaki klub prowadzi?",
-      "correct": "New York Red Bulls",
-      "wrong": [
-        "IFK Göteborg",
-        "Rosenborg BK",
-        "Fortuna Düsseldorf"
-      ]
-    },
-    {
-      "id": "b1a31e7a66ec",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Michael Carrick — jaki klub prowadzi?",
-      "correct": "Manchester United F.C.",
-      "wrong": [
-        "Beşiktaş JK",
-        "Bradford City A.F.C.",
-        "Ajax Amsterdam"
-      ]
-    },
-    {
-      "id": "db0aa9162b7a",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Michael Laudrup — jaki klub prowadzi?",
-      "correct": "Swansea City A.F.C.",
-      "wrong": [
-        "Getafe CF",
-        "İstanbul Başakşehir",
-        "Southampton F.C."
-      ]
-    },
-    {
-      "id": "1e994525aca1",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Mikel Arteta — jaki klub prowadzi?",
-      "correct": "Arsenal FC",
-      "wrong": [
-        "UD Las Palmas",
-        "Millwall F.C.",
-        "OGC Nice"
-      ]
-    },
-    {
-      "id": "b566bc4acb6f",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Miroslav Klose — jaki klub prowadzi?",
-      "correct": "1. FC Nürnberg",
-      "wrong": [
-        "New York Red Bulls",
-        "Blackpool F.C.",
-        "Zenit Petersburg"
-      ]
-    },
-    {
-      "id": "9a6c630107e3",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Motohiro Yamaguchi — jaki klub prowadzi?",
-      "correct": "Yokohama FC",
-      "wrong": [
-        "Omiya Ardija",
-        "Elche CF",
-        "SD Compostela"
-      ]
-    },
-    {
-      "id": "83512a60b520",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Niko Kovač — jaki klub prowadzi?",
-      "correct": "Borussia Dortmund",
-      "wrong": [
-        "Wycombe Wanderers F.C.",
-        "Elche CF",
-        "Celta Vigo"
-      ]
-    },
-    {
-      "id": "01c52c8204e0",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Nils Liedholm — jaki klub prowadzi?",
-      "correct": "A.C. Milan",
-      "wrong": [
-        "FC Nantes",
-        "Godoy Cruz Antonio Tomba",
-        "West Bromwich Albion F.C."
-      ]
-    },
-    {
-      "id": "a011fe6430bd",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Omar Sívori — jaki klub prowadzi?",
-      "correct": "Racing Club de Avellaneda",
-      "wrong": [
-        "Torino Football Club",
-        "Plymouth Argyle F.C.",
-        "AFC Bournemouth"
-      ]
-    },
-    {
-      "id": "3455d8e15dce",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Osvaldo Ardiles — jaki klub prowadzi?",
-      "correct": "Racing Club de Avellaneda",
-      "wrong": [
-        "Hull City A.F.C.",
-        "River Plate Buenos Aires",
-        "Montpellier HSC"
-      ]
-    },
-    {
-      "id": "e89fe3f9f6ed",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Ołeh Protasow — jaki klub prowadzi?",
-      "correct": "AEL Limassol",
-      "wrong": [
-        "Austria Kärnten",
-        "Bristol City F.C.",
-        "VfL Wolfsburg"
-      ]
-    },
-    {
-      "id": "6a9bd856cc97",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Paolo Di Canio — jaki klub prowadzi?",
-      "correct": "Sunderland A.F.C.",
-      "wrong": [
-        "UD Las Palmas",
-        "Toulouse FC",
-        "Sporting Gijón"
-      ]
-    },
-    {
-      "id": "0d152cdd0388",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Paul Ince — jaki klub prowadzi?",
-      "correct": "Blackpool F.C.",
-      "wrong": [
-        "Werder Brema",
-        "Plymouth Argyle F.C.",
-        "Burnley F.C."
-      ]
-    },
-    {
-      "id": "837c83cf2c37",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Paulo Wanchope — jaki klub prowadzi?",
-      "correct": "CS Herediano",
-      "wrong": [
-        "Hajduk Split",
-        "FC Twente",
-        "Werder Brema"
-      ]
-    },
-    {
-      "id": "47092da038d1",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Pedro Troglio — jaki klub prowadzi?",
-      "correct": "Godoy Cruz Antonio Tomba",
-      "wrong": [
-        "FC Twente",
-        "RCD Mallorca",
-        "Lazio Rzym"
-      ]
-    },
-    {
-      "id": "4ba0f9846cf2",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Peter Bosz — jaki klub prowadzi?",
-      "correct": "PSV Eindhoven",
-      "wrong": [
-        "Wycombe Wanderers F.C.",
-        "Werder Brema",
-        "Málaga CF"
-      ]
-    },
-    {
-      "id": "8c27da839d4c",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Peter Shilton — jaki klub prowadzi?",
-      "correct": "Plymouth Argyle F.C.",
-      "wrong": [
-        "Watford F.C.",
-        "UD Almería",
-        "US Città di Pontedera"
-      ]
-    },
-    {
-      "id": "56ad47fb9b3b",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Phil Neville — jaki klub prowadzi?",
-      "correct": "Salford City F.C.",
-      "wrong": [
-        "OGC Nice",
-        "Los Angeles Galaxy",
-        "FC København"
-      ]
-    },
-    {
-      "id": "b71d02c2b984",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Pierre Littbarski — jaki klub prowadzi?",
-      "correct": "Yokohama FC",
-      "wrong": [
-        "Wolverhampton Wanderers F.C.",
-        "Valencia CF",
-        "VfL Wolfsburg"
-      ]
-    },
-    {
-      "id": "b8b20327266b",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Raymond Domenech — jaki klub prowadzi?",
-      "correct": "Olympique Lyon",
-      "wrong": [
-        "Slavia Praga",
-        "LASK Linz",
-        "Stoke City F.C."
-      ]
-    },
-    {
-      "id": "61e41977469d",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener René Higuita — jaki klub prowadzi?",
-      "correct": "Al-Nassr",
-      "wrong": [
-        "Urawa Red Diamonds",
-        "Aberdeen F.C.",
-        "Kyoto Sanga F.C."
-      ]
-    },
-    {
-      "id": "91ab6f5c5b22",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Robbie Fowler — jaki klub prowadzi?",
-      "correct": "Al Qadsiah FC",
-      "wrong": [
-        "Palermo FC",
-        "Valencia CF",
-        "Millwall F.C."
-      ]
-    },
-    {
-      "id": "ee90e4e16c00",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Robbie Keane — jaki klub prowadzi?",
-      "correct": "Ferencvárosi TC",
-      "wrong": [
-        "1. FC Kaiserslautern",
-        "Salford City F.C.",
-        "West Ham United F.C."
-      ]
-    },
-    {
-      "id": "335e4bda96fa",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Roberto Carlos — jaki klub prowadzi?",
-      "correct": "Akhisar Belediyespor",
-      "wrong": [
-        "Derby County F.C.",
-        "Blackpool F.C.",
-        "AS Monaco"
-      ]
-    },
-    {
-      "id": "9b700d045e66",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Roberto Donadoni — jaki klub prowadzi?",
-      "correct": "Spezia Calcio",
-      "wrong": [
-        "Parma Calcio 1913",
-        "Standard Liège",
-        "SBV Vitesse"
-      ]
-    },
-    {
-      "id": "9dd93529ef69",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Roy Hodgson — jaki klub prowadzi?",
-      "correct": "Bristol City F.C.",
-      "wrong": [
-        "West Ham United F.C.",
-        "Everton F.C.",
-        "Ipswich Town F.C."
-      ]
-    },
-    {
-      "id": "da22f2dc31b9",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Roy Keane — jaki klub prowadzi?",
-      "correct": "Sunderland A.F.C.",
-      "wrong": [
-        "Stevenage F.C.",
-        "Stoke City F.C.",
-        "Shelbourne FC"
-      ]
-    },
-    {
-      "id": "43ca133f06bd",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Rudi Völler — jaki klub prowadzi?",
-      "correct": "AS Roma",
-      "wrong": [
-        "Málaga CF",
-        "Szynnik Jarosławl",
-        "Urawa Red Diamonds"
-      ]
-    },
-    {
-      "id": "c663d6336c08",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Ruud Gullit — jaki klub prowadzi?",
-      "correct": "Los Angeles Galaxy",
-      "wrong": [
-        "Eintracht Frankfurt",
-        "Beşiktaş JK",
-        "VfL Wolfsburg"
-      ]
-    },
-    {
-      "id": "492e3db381c7",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Ryan Giggs — jaki klub prowadzi?",
-      "correct": "Manchester United F.C.",
-      "wrong": [
-        "Pescara Calcio",
-        "Urawa Red Diamonds",
-        "Zenit Petersburg"
-      ]
-    },
-    {
-      "id": "deacb7dc121d",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Rúben Amorim — jaki klub prowadzi?",
-      "correct": "A.C. Milan",
-      "wrong": [
-        "Werder Brema",
-        "Bayern Monachium",
-        "AS Roma"
-      ]
-    },
-    {
-      "id": "b8b86a43177e",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Sam Allardyce — jaki klub prowadzi?",
-      "correct": "Sunderland A.F.C.",
-      "wrong": [
-        "Palermo FC",
-        "Nottingham Forest F.C.",
-        "West Ham United F.C."
-      ]
-    },
-    {
-      "id": "b5dd97bc9707",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Shunsuke Nakamura — jaki klub prowadzi?",
-      "correct": "Yokohama FC",
-      "wrong": [
-        "Al Qadsiah FC",
-        "LASK Linz",
-        "Club Atlético Independiente"
-      ]
-    },
-    {
-      "id": "bb20ab3da70f",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Siarhiej Alejnikau — jaki klub prowadzi?",
-      "correct": "US Città di Pontedera",
-      "wrong": [
-        "Everton F.C.",
-        "Helsingborgs IF",
-        "Olympique Marsylia"
-      ]
-    },
-    {
-      "id": "991541d5a072",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Sol Campbell — jaki klub prowadzi?",
-      "correct": "Southend United F.C.",
-      "wrong": [
-        "VfL Bochum",
-        "Kyoto Sanga F.C.",
-        "Plymouth Argyle F.C."
-      ]
-    },
-    {
-      "id": "fb97a26a095d",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Stanisław Czerczesow — jaki klub prowadzi?",
-      "correct": "Ferencvárosi TC",
-      "wrong": [
-        "Vitória SC",
-        "Nottingham Forest F.C.",
-        "Ipswich Town F.C."
-      ]
-    },
-    {
-      "id": "3ab33622aa5e",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Stephan Lichtsteiner — jaki klub prowadzi?",
-      "correct": "FC Basel 1893",
-      "wrong": [
-        "BATE Borysów",
-        "Málaga CF",
-        "RC Lens"
-      ]
-    },
-    {
-      "id": "da047a6296ac",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Sándor Kocsis — jaki klub prowadzi?",
-      "correct": "Hércules Alicante",
-      "wrong": [
-        "Brighton & Hove Albion F.C.",
-        "Manchester City F.C.",
-        "FC Zürich"
-      ]
-    },
-    {
-      "id": "be729e58cecd",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Takuya Takagi — jaki klub prowadzi?",
-      "correct": "Omiya Ardija",
-      "wrong": [
-        "New York Red Bulls",
-        "Everton F.C.",
-        "Reading F.C."
-      ]
-    },
-    {
-      "id": "f4fbd9de3a0f",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Teddy Sheringham — jaki klub prowadzi?",
-      "correct": "Stevenage F.C.",
-      "wrong": [
-        "VfL Wolfsburg",
-        "VfL Bochum",
-        "Borussia Dortmund"
-      ]
-    },
-    {
-      "id": "191ef7ac0685",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Teofanis Gekas — jaki klub prowadzi?",
-      "correct": "Akhisar Belediyespor",
-      "wrong": [
-        "Olympique Lyon",
-        "Bayern Monachium",
-        "Real Betis"
-      ]
-    },
-    {
-      "id": "940da50c69c6",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Thierry Henry — jaki klub prowadzi?",
-      "correct": "AS Monaco",
-      "wrong": [
-        "Club Atlético Independiente",
-        "Norwich City F.C.",
-        "Szachtar Donieck"
-      ]
-    },
-    {
-      "id": "a0a92143c191",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Tiago Mendes — jaki klub prowadzi?",
-      "correct": "Vitória SC",
-      "wrong": [
-        "OGC Nice",
-        "Galatasaray SK",
-        "AS Monaco"
-      ]
-    },
-    {
-      "id": "39ab515e725b",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Tom Cleverley — jaki klub prowadzi?",
-      "correct": "Watford F.C.",
-      "wrong": [
-        "Notts County F.C.",
-        "Bayern Monachium",
-        "Crystal Palace F.C."
-      ]
-    },
-    {
-      "id": "1a09bd0d239a",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Toninho Cerezo — jaki klub prowadzi?",
-      "correct": "Vitória Salvador",
-      "wrong": [
-        "Los Angeles Galaxy",
-        "US Sassuolo Calcio",
-        "Wolverhampton Wanderers F.C."
-      ]
-    },
-    {
-      "id": "5c2df92c5c26",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Tony Adams — jaki klub prowadzi?",
-      "correct": "Wycombe Wanderers F.C.",
-      "wrong": [
-        "LASK Linz",
-        "River Plate Buenos Aires",
-        "Unión Santa Fe"
-      ]
-    },
-    {
-      "id": "54b739d639b8",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Unai Emery — jaki klub prowadzi?",
-      "correct": "Aston Villa F.C.",
-      "wrong": [
-        "Parma Calcio 1913",
-        "Celta Vigo",
-        "Juventus F.C."
-      ]
-    },
-    {
-      "id": "778595f43e37",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Vicente del Bosque — jaki klub prowadzi?",
-      "correct": "Real Madryt",
-      "wrong": [
-        "AIK Solna",
-        "Spartak Moskwa",
-        "Granada CF"
-      ]
-    },
-    {
-      "id": "8449cf7c4058",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Vincent Kompany — jaki klub prowadzi?",
-      "correct": "Bayern Monachium",
-      "wrong": [
-        "SD Compostela",
-        "Szachtar Donieck",
-        "Eintracht Frankfurt"
-      ]
-    },
-    {
-      "id": "97d6c44ee128",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Vittorio Pozzo — jaki klub prowadzi?",
-      "correct": "A.C. Milan",
-      "wrong": [
-        "Salford City F.C.",
-        "Athletic Club",
-        "Sagan Tosu"
-      ]
-    },
-    {
-      "id": "988339f2bbb0",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Walerij Karpin — jaki klub prowadzi?",
-      "correct": "FK Rostów",
-      "wrong": [
-        "Valencia CF",
-        "Bristol City F.C.",
-        "VfL Wolfsburg"
-      ]
-    },
-    {
-      "id": "32433b87c8d2",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Walter Samuel — jaki klub prowadzi?",
-      "correct": "Inter Mediolan",
-      "wrong": [
-        "Toulouse FC",
-        "Olympique Marsylia",
-        "Nottingham Forest F.C."
-      ]
-    },
-    {
-      "id": "172d07ef3a9b",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Yutaka Akita — jaki klub prowadzi?",
-      "correct": "Kyoto Sanga F.C.",
-      "wrong": [
-        "Norwich City F.C.",
-        "Rangers F.C.",
-        "RSC Anderlecht"
-      ]
-    },
-    {
-      "id": "2abb1f28a08f",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Zbigniew Boniek — jaki klub prowadzi?",
-      "correct": "U.S. Lecce",
-      "wrong": [
-        "UD Las Palmas",
-        "Wigan Athletic F.C.",
-        "Bradford City A.F.C."
-      ]
-    },
-    {
-      "id": "7d66b0d05797",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Álvaro Arbeloa — jaki klub prowadzi?",
-      "correct": "Fulham F.C.",
-      "wrong": [
-        "Wigan Athletic F.C.",
-        "Feyenoord Rotterdam",
-        "Manchester United F.C."
-      ]
-    },
-    {
-      "id": "0b80ab2bd7c6",
-      "category": "sport",
-      "level": "easy",
-      "prompt": "Trener Željko Petrović — jaki klub prowadzi?",
-      "correct": "Sunderland A.F.C.",
-      "wrong": [
-        "VfB Stuttgart",
-        "Bradford City A.F.C.",
-        "VfL Bochum"
-      ]
-    },
-    {
       "id": "c53826beeb1a",
       "category": "sport",
       "level": "easy",
@@ -87004,6 +86328,36 @@ module GameRoomContent
         "szachy",
         "łyżwiarstwo figurowe",
         "tenis"
+      ]
+    },
+    {
+      "id": "09ed9b38a490",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "W którym roku Robert Lewandowski strzelił pięć goli w dziewięć minut?",
+      "correct": "2015",
+      "wrong": [
+        "2013",
+        "2017",
+        "2019"
+      ],
+      "source_links": [
+        "https://fcbayern.com/en/news/matchreports/2015/09/match-report-fc-bayern---vfl-wolfsburg-220915"
+      ]
+    },
+    {
+      "id": "66335fbf8550",
+      "category": "sport",
+      "level": "easy",
+      "prompt": "Z którym klubem Robert Lewandowski wygrał Ligę Mistrzów w 2020 roku?",
+      "correct": "Bayern Monachium",
+      "wrong": [
+        "Borussia Dortmund",
+        "FC Barcelona",
+        "Real Madryt"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefachampionsleague/news/025b-0ee5f2774f21-1dfc341952f8-1000--champions-league-final-meet-the-winners/"
       ]
     },
     {
@@ -87640,6 +86994,21 @@ module GameRoomContent
         "lekkoatletyka",
         "biathlon",
         "biegi narciarskie"
+      ]
+    },
+    {
+      "id": "6761c3f2a2a5",
+      "category": "sport",
+      "level": "medium",
+      "prompt": "Ile goli Robert Lewandowski strzelił w Lidze Mistrzów 2019/2020?",
+      "correct": "15",
+      "wrong": [
+        "12",
+        "13",
+        "17"
+      ],
+      "source_links": [
+        "https://www.uefa.com/uefachampionsleague/news/025b-0ee5f2774f21-1dfc341952f8-1000--champions-league-final-meet-the-winners/"
       ]
     },
     {
@@ -185983,9 +185352,9 @@ module GameRoomContent
       ]
     }
   ],
-  "source": "https://github.com/budyn1211/elten-game-room/blob/efa6e640a57901e7b01e5ac2158e84f1c3375435/content/quiz_pl_wikidata.rb"
+  "source": "Base pack: https://github.com/budyn1211/elten-game-room/blob/efa6e640a57901e7b01e5ac2158e84f1c3375435/content/quiz_pl_wikidata.rb; sport corrections: content/QUIZ_PL_SPORT_SOURCES.txt"
 }
-QUIZ_DATA_5850da276253ee3e70688ff05a1c670f30fe048279fb0143ad58dba196326206
+QUIZ_DATA_6dfc71551d4d32c8e1cc17420187c3b7269a1452c9c3e7e475b8a6779f4bcbc8
     end
   end
 end
