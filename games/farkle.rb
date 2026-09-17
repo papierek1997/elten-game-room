@@ -29,7 +29,7 @@ module GameRoomGames
         rule_section(:banking, _("Banking thresholds and the winning score"),
           _("Score limit changes the winning total. Minimum score to bank a turn controls later banks. Minimum score to enter the game applies while a player's banked score is still zero. All three values are entered when the table is created."),
           _("The scoring combinations themselves do not change between table configurations."),
-          _("The first player whose banked total reaches or exceeds the selected score limit wins immediately."),
+          _("When a player's banked total reaches or exceeds the selected score limit, the round is played to its end, so that every player has taken the same number of turns. The highest banked total then wins, and equal totals end the game in a draw."),
           _("Reaching the target with unbanked turn points is not enough: you must bank them. A Farkle loses only the current turn's unbanked points, not points saved in earlier turns. The first-bank minimum applies while your saved score is zero; after a successful first bank the ordinary minimum applies.")),
         rule_section(:controls, _("Selecting combinations, rolling and banking"),
           _("Use the Up and Down Arrow keys to browse available scoring combinations, Roll and Bank. Press Enter to choose the current item. Roll and Bank appear next to each other in the same list rather than as separate Tab fields."),
@@ -151,7 +151,7 @@ module GameRoomGames
       history = [starting_history(players)]
 
       events.each do |event|
-        break if state[:winner] != nil
+        break if state[:phase] == :finished
 
         actor = repository.actor_of(event, session)
         applied = case event["action"].to_s
@@ -174,7 +174,7 @@ module GameRoomGames
         players: players,
         current_player: state[:current_player],
         winner: state[:winner],
-        draw: false,
+        draw: state[:draw],
         accepted_events: accepted,
         history: history,
         state: state
@@ -187,7 +187,7 @@ module GameRoomGames
 
     def legal_actions(replay, actor, context: nil)
       state = replay.state
-      return [] if state == nil || state[:winner] != nil
+      return [] if state == nil || state[:phase] == :finished
       return [] if !same_user?(state[:current_player], actor)
 
       if state[:phase] == :selecting
@@ -402,7 +402,9 @@ module GameRoomGames
         dice_to_roll: DIE_COUNT,
         last_roll: [],
         selected_indices: [],
-        winner: nil
+        final_round: false,
+        winner: nil,
+        draw: false
       }
     end
 
@@ -438,7 +440,7 @@ module GameRoomGames
           actor: actor,
           kind: :farkle
         )
-        finish_turn(state, actor)
+        finish_turn(state, actor, event_id, history)
       else
         state[:phase] = :selecting
       end
@@ -520,24 +522,47 @@ module GameRoomGames
         kind: :bank,
         value: points
       )
-      if state[:scores][player] >= state[:options]["score_limit"].to_i
-        state[:winner] = player
-        state[:phase] = :finished
-        state[:current_player] = nil
-        history << result_history(event_id: event_id, winner: player)
-      else
-        finish_turn(state, actor)
+      if !state[:final_round] && state[:scores][player] >= state[:options]["score_limit"].to_i
+        state[:final_round] = true
+        history << HistoryEntry.new(
+          key: "final:#{event_id}",
+          text: _("%{player} reached %{limit} points. The current round is played to its end.") % {
+            player: participant_name(player),
+            limit: state[:options]["score_limit"]
+          },
+          event_id: event_id,
+          actor: actor,
+          kind: :final_round
+        )
       end
+      finish_turn(state, actor, event_id, history)
       true
     end
 
-    def finish_turn(state, actor)
+    def finish_turn(state, actor, event_id, history)
+      following = next_player(state[:players], actor)
+      return conclude_game(state, event_id, history) if final_round_complete?(state, following)
+
       state[:phase] = :awaiting_roll
-      state[:current_player] = next_player(state[:players], actor)
+      state[:current_player] = following
       state[:turn_points] = 0
       state[:dice_to_roll] = DIE_COUNT
       state[:last_roll] = []
       state[:selected_indices] = []
+    end
+
+    def final_round_complete?(state, following)
+      state[:final_round] && same_user?(following, state[:players].first)
+    end
+
+    def conclude_game(state, event_id, history)
+      maximum = state[:scores].values.max
+      winners = state[:players].select { |player| state[:scores][player] == maximum }
+      state[:winner] = winners.one? ? winners.first : nil
+      state[:draw] = winners.length > 1
+      state[:phase] = :finished
+      state[:current_player] = nil
+      history << result_history(event_id: event_id, winner: state[:winner], draw: state[:draw])
     end
 
     def can_bank?(state, actor)

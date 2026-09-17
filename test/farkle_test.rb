@@ -150,4 +150,44 @@ status, bank_plan = game.action_for(
 )
 assert(status == :ok && bank_plan.events.first.action == "bank", "Enter on Bank did not bank the points")
 
+final_session = {
+  "options" => JSON.generate(game.normalize_options("score_limit" => 100, "turn_minimum" => 0, "entry_minimum" => 0))
+}
+three = FarkleRepository.new(["Alice", "Bob", "Carol"])
+round = [
+  farkle_event(1, "Alice", "roll", "2,2,3,3,4,6"),
+  farkle_event(2, "Bob", "roll", "1,2,3,4,5,6"),
+  farkle_event(3, "Bob", "keep", "0,1,2,3,4,5"),
+  farkle_event(4, "Bob", "bank")
+]
+pending = game.replay(final_session, round, three)
+assert(!pending.finished?, "reaching the score limit ended the game immediately")
+assert(pending.current_player == "Carol", "the rest of the round did not continue")
+assert(pending.state[:scores]["Bob"] == 200, "the bank that reached the limit was not saved")
+
+closed = game.replay(final_session, round + [farkle_event(5, "Carol", "roll", "2,2,3,3,4,6")], three)
+assert(closed.winner == "Bob", "the game did not end once the round was complete")
+assert(closed.current_player == nil, "a player took a turn after the round was complete")
+
+assert(game.replay(final_session, round, repository).winner == "Bob", "the last player of the round did not end the game")
+
+opening = [
+  farkle_event(1, "Alice", "roll", "1,2,3,4,5,6"),
+  farkle_event(2, "Alice", "keep", "0,1,2,3,4,5"),
+  farkle_event(3, "Alice", "bank")
+]
+assert(game.replay(final_session, opening, repository).current_player == "Bob", "the opening player ended the round too early")
+overtake = game.replay(final_session, opening + [
+  farkle_event(4, "Bob", "roll", "1,1,1,1,1,1"),
+  farkle_event(5, "Bob", "keep", "0,1,2,3,4,5"),
+  farkle_event(6, "Bob", "bank")
+], repository)
+assert(overtake.winner == "Bob" && !overtake.draw, "the rest of the round did not let a trailing player win")
+tie = game.replay(final_session, opening + [
+  farkle_event(4, "Bob", "roll", "1,2,3,4,5,6"),
+  farkle_event(5, "Bob", "keep", "0,1,2,3,4,5"),
+  farkle_event(6, "Bob", "bank")
+], repository)
+assert(tie.draw && tie.winner == nil, "equal totals did not end the game in a draw")
+
 puts "Farkle model tests passed"
