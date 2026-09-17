@@ -87,7 +87,7 @@ end
 Kernel.prepend(BinaryRulesLoad::Requires)
 BinaryRulesLoad.load(File.join(BinaryRulesLoad::ROOT, "__app.rb"))
 registry = EltenGameRoom::GAME_REGISTRY
-raise "Lost games during binary loading" unless registry.ids.length == 17
+raise "Lost games during binary loading" unless registry.ids.length == 18
 raise "Quiz Party was not loaded from binary sources" unless registry.ids.include?("quiz")
 %w[quiz.general.en quiz.wikidata.pl quiz.witcher.pl quiz.witcher.g.pl quiz.witcher.b.pl].each do |id|
   pack = GameRoomContent.registry.pack(id)
@@ -138,7 +138,7 @@ end
 # second ordinary require of the checkout. No network or host UI is used.
 raise "Missing binary save engine" unless defined?(SavedGames) && SavedGames::FORMAT == 1
 raise "Missing binary saved games menu" unless EltenGameRoom::MAIN_OPTIONS.include?(_("Saved games"))
-raise "Wrong number of saveable games" unless registry.ids.count { |id| registry.build(id).supports_saved_games? } == 15
+raise "Wrong number of saveable games" unless registry.ids.count { |id| registry.build(id).supports_saved_games? } == 16
 %w[reversi checkers chess].each do |id|
   game = registry.build(id)
   session = { "__players" => %w[Alice Bob], "options" => JSON.generate(game.default_options) }
@@ -210,4 +210,4 @@ Form.class_eval do
   alias_method :wait, :binary_help_original_wait
   remove_method :binary_help_original_wait
 end
-puts "Binary program loading, opened invitation, all 17 rule books and 19 Monopoly boards passed"
+puts "Binary program loading, opened invitation, all 18 rule books and 19 Monopoly boards passed"

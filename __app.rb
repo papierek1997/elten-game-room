@@ -86,6 +86,7 @@ require_relative "games/yahtzee"
 require_relative "games/uno"
 require_relative "games/poker"
 require_relative "games/makao"
+require_relative "games/biblios"
 require_relative "games/quiz_party"
 require_relative "games/registry"
 
@@ -154,6 +155,7 @@ class EltenGameRoom < Program
     GameRoomGames::Uno,
     GameRoomGames::Poker,
     GameRoomGames::Makao,
+    GameRoomGames::Biblios,
     GameRoomGames::QuizParty
   ])
 

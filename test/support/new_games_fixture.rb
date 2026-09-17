@@ -34,6 +34,7 @@ require_relative "../../games/yahtzee"
 require_relative "../../games/uno"
 require_relative "../../games/poker"
 require_relative "../../games/makao"
+require_relative "../../games/biblios"
 
 class NewGames116Repository
   def initialize(players)
