@@ -27,6 +27,14 @@ module GameSurfaces
       @surfaces.flat_map(&:fields)
     end
 
+    # Layout may place selected game controls after the shared chat/history.
+    # Actions and remembered state still belong to their original surface.
+    def fields_for_parts(ids)
+      @parts.each_with_index.flat_map do |part, index|
+        ids.include?(part.id.to_s) ? @surfaces[index].fields : []
+      end
+    end
+
     def state
       values = {}
       @parts.each_with_index do |part, index|

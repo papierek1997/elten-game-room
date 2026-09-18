@@ -19,6 +19,10 @@ class GameRoomServerTables
       @provider.perform { @table.insert(values) }
     end
 
+    def insert_many(values)
+      @provider.perform(default: []) { @table.insert_many(values) }
+    end
+
     def update(id, values)
       @provider.perform { @table.update(id, values) }
     end
@@ -27,9 +31,12 @@ class GameRoomServerTables
 
   attr_reader :access_state, :last_error
 
-  def initialize(program, client: nil)
+  def initialize(program, client: nil, table_app_uuids: {})
     @server_app_uuid = program.server_app_uuid.to_s
     raise ArgumentError, "ELTEN Game Room server application is not declared" if @server_app_uuid.empty?
+
+    @table_app_uuids = table_app_uuids.to_h.transform_keys(&:to_s).transform_values(&:to_s).freeze
+    raise ArgumentError, "a table server application UUID must not be empty" if @table_app_uuids.values.any?(&:empty?)
 
     # Repository calls run inside Tasks.run workers. A context-free client waits
     # without trying to drive the ELTEN UI loop from that worker thread.
@@ -91,7 +98,7 @@ class GameRoomServerTables
   private
 
   def raw_table(name)
-    @raw_tables[name] ||= EltenLink::Apps.table(@client, @server_app_uuid, name)
+    @raw_tables[name] ||= EltenLink::Apps.table(@client, @table_app_uuids.fetch(name, @server_app_uuid), name)
   end
 
   def reset_access_state

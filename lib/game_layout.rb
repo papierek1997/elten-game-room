@@ -4,10 +4,16 @@ module GameRoomLayout
   STANDARD_SECTIONS = [:status, :game, :chat, :history, :users].freeze
 
   class ViewSpec
-    attr_reader :surface, :sections, :history_header, :history_empty_label
+    attr_reader :surface, :sections, :history_header, :history_empty_label,
+      :trailing_parts, :restartable, :finished_text, :status_commands
 
-    def initialize(surface: nil, history_header: nil, history_empty_label: nil)
-      @sections = STANDARD_SECTIONS
+    def initialize(surface: nil, history_header: nil, history_empty_label: nil,
+      trailing_parts: [], restartable: true, finished_text: nil, status_commands: [])
+      @trailing_parts = trailing_parts.map(&:to_s).freeze
+      @sections = @trailing_parts.empty? ? STANDARD_SECTIONS : (STANDARD_SECTIONS + [:game_actions]).freeze
+      @restartable = restartable
+      @finished_text = finished_text
+      @status_commands = status_commands.to_a.freeze
       @surface = surface
       @history_header = history_header == nil ? nil : history_header.to_s
       @history_empty_label = history_empty_label == nil ? nil : history_empty_label.to_s
@@ -156,6 +162,7 @@ module GameRoomLayout
       @primary_button = Button.new(_("Start game"))
       @restart_button = Button.new(_("Restart game"))
       @waiting_status = GameSurfaces::RefreshAwareListBox.new([], header: "", quiet: true)
+      @status_command_buttons = {}
       @back_button = Button.new(_("Leave"))
       @form = GameSurfaces::RefreshAwareForm.new([], index: 0, quiet: true)
       @preserved_hand_surface_state = nil
@@ -262,18 +269,26 @@ module GameRoomLayout
       @users.index = bounded_index(users_index, @user_items) if users_index != nil
       @phase = phase
       waiting_text = phase == :finished ? _("Waiting for a new game to start") : _("Waiting for the game to start")
+      waiting_text = view_spec.finished_text if phase == :finished && view_spec.finished_text != nil
       @waiting_status.options = [waiting_text] if @waiting_status.options != [waiting_text]
       @waiting_status.index = 0
+      reconcile_status_command_buttons(view_spec.status_commands)
+      status_actions = view_spec.status_commands.filter_map do |command|
+        @status_command_buttons[command.id.to_s]
+      end
       status_fields = if phase == :waiting
-        own_table ? [@primary_button] : [@waiting_status]
+        (own_table ? [@primary_button] : [@waiting_status]) + status_actions
       elsif phase == :finished
-        own_table ? [@restart_button] : [@waiting_status]
+        (own_table && view_spec.restartable ? [@restart_button] : [@waiting_status]) + status_actions
       else
         []
       end
+      game_fields = @surface == nil ? [] : @surface.fields
+      trailing_fields = @surface.respond_to?(:fields_for_parts) ? @surface.fields_for_parts(view_spec.trailing_parts) : []
       section_fields = {
         status: status_fields,
-        game: @surface == nil ? [] : @surface.fields,
+        game: game_fields - trailing_fields,
+        game_actions: trailing_fields,
         users: [@users],
         chat: [@chat], history: [@history]
       }
@@ -282,7 +297,7 @@ module GameRoomLayout
       view_spec.sections.each do |section|
         section_fields.fetch(section).each_with_index do |field, index|
           @content_fields << field
-          @field_locations << [section, index]
+          @field_locations << ([:game, :game_actions].include?(section) ? [:game, game_fields.index(field)] : [section, index])
         end
       end
       new_fields = @content_fields + [@back_button]
@@ -357,7 +372,19 @@ module GameRoomLayout
     private
 
     def binding_controls
-      [@form, @users, @history, @primary_button, @restart_button, @waiting_status, @back_button]
+      [@form, @users, @history, @primary_button, @restart_button, @waiting_status,
+        *@status_command_buttons.values, @back_button]
+    end
+
+    def reconcile_status_command_buttons(commands)
+      current = @status_command_buttons
+      @status_command_buttons = commands.to_a.each_with_object({}) do |command, buttons|
+        id = command.id.to_s
+        button = current[id] || Button.new(command.label.to_s)
+        button.extend(Bindings) unless button.is_a?(Bindings)
+        button.label = command.label.to_s
+        buttons[id] = button
+      end
     end
 
     def bounded_index(index, items)
@@ -367,6 +394,9 @@ module GameRoomLayout
     end
 
     def form_index_for_location(location)
+      exact = @field_locations.index(location)
+      return exact if exact != nil
+
       matches = @field_locations.each_index.select { |index| @field_locations[index][0] == location.to_a[0] }
       if matches.empty?
         return @field_locations.index([:status, 0]) ||

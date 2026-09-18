@@ -45,6 +45,7 @@ module GameRoomGames
     :now,
     :options,
     :table_owner,
+    :local_data,
     keyword_init: true
   )
 

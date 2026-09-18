@@ -101,7 +101,7 @@ GameRoomBotNames::NAMES.each do |token, name|
     raise "Binary lobby bot announcement lost name" unless global.valid_encoding? && global.include?(name) && !global.include?("komputer")
   end
 end
-raise "Lost games during binary loading" unless registry.ids.length == 23
+raise "Lost games during binary loading" unless registry.ids.length == 24
 raise "Quiz Party was not loaded from binary sources" unless registry.ids.include?("quiz")
 %w[quiz.general.en quiz.wikidata.pl quiz.witcher.pl quiz.witcher.g.pl quiz.witcher.b.pl].each do |id|
   pack = GameRoomContent.registry.pack(id)
@@ -156,7 +156,7 @@ end
 # second ordinary require of the checkout. No network or host UI is used.
 raise "Missing binary save engine" unless defined?(SavedGames) && SavedGames::FORMAT == 1
 raise "Missing binary saved games menu" unless EltenGameRoom::MAIN_OPTIONS.include?(_("Saved games"))
-raise "Wrong number of saveable games" unless registry.ids.count { |id| registry.build(id).supports_saved_games? } == 21
+raise "Wrong number of saveable games" unless registry.ids.count { |id| registry.build(id).supports_saved_games? } == 22
 %w[reversi checkers chess].each do |id|
   game = registry.build(id)
   session = { "__players" => %w[Alice Bob], "options" => JSON.generate(game.default_options) }
@@ -359,4 +359,4 @@ end
     now += id == 'taboo' && step == 4 ? 100 : 4
   end
 end
-puts 'Binary program loading, invitations, opaque-ID table notices, widget loading, 23 rule books, six new-game screen/move simulations, 19 Monopoly boards, two Scrabble dictionaries/drafts and 1000 Taboo cards passed'
+puts 'Binary program loading, invitations, opaque-ID table notices, widget loading, 24 rule books, six new-game screen/move simulations, 19 Monopoly boards, two Scrabble dictionaries/drafts and 1000 Taboo cards passed'

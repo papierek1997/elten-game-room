@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 =begin Elten3AppInfo
 {
   "id": "c24d98cc-9ccd-4d50-b801-459da324ff60",
@@ -24,13 +26,16 @@
       "farkle", "hit1", "interception", "lose1", "lose3", "play", "play2", "replay",
       "reverse", "reverse3", "roll", "skip", "win1", "win2",
       "farkle_bank", "ninety3366", "1000_mariage", "win_party", "lose_party",
-      "domino_refill", "domino_move_tile", "domino_take_chip"
+      "domino_refill", "domino_move_tile", "domino_take_chip",
+      "krowa-race", "krowa-word-tower", "krowa-single", "krowa-opponent-guessed",
+      "krowa-duplicate", "krowa-unknown", "krowa-length", "krowa-success"
     ]
   }
 }
 =end Elten3AppInfo
 
 require "json"
+require_relative "lib/game_audio"
 require_relative "lib/game_room_transport"
 require_relative "lib/game_sync"
 require_relative "lib/game_room_server_tables"
@@ -96,6 +101,7 @@ require_relative "games/mexican_train"
 require_relative "games/scrabble"
 require_relative "games/taboo"
 require_relative "games/biblios"
+require_relative "games/krowa"
 require_relative "games/registry"
 
 class EltenGameRoom < Program
@@ -135,6 +141,50 @@ class EltenGameRoom < Program
       "permissions" => ["select", "insert"],
       "indexes" => [["table_id", "created_at"], ["created_at"]],
       "limits" => { "max_select_limit" => 2_000 }
+    },
+    "krowa_daily_completions" => {
+      "visibility" => "shared",
+      "columns" => {
+        "day_key" => "integer",
+        "status" => "integer"
+      },
+      "permissions" => ["select", "insert"],
+      "indexes" => [["day_key"]],
+      "limits" => { "max_select_limit" => 500 }
+    },
+    "krowa_word_scores" => {
+      "visibility" => "public",
+      "columns" => {
+        "word" => "string:32",
+        "attempts" => "integer"
+      },
+      "permissions" => ["select", "insert"],
+      "indexes" => [["word", "attempts"]],
+      "limits" => { "max_select_limit" => 2_000 }
+    },
+    "krowa_tower_scores" => {
+      "visibility" => "public",
+      "columns" => {
+        "run_code" => "integer",
+        "rounds" => "integer",
+        "participants" => "string:1024"
+      },
+      "permissions" => ["select", "insert"],
+      "indexes" => [["run_code"], ["rounds"]],
+      "limits" => { "max_select_limit" => 500 }
+    },
+    "krowa_tower_rounds" => {
+      "visibility" => "public",
+      "columns" => {
+        "run_code" => "integer",
+        "round" => "integer",
+        "word" => "string:32",
+        "attempts" => "integer",
+        "solved" => "integer"
+      },
+      "permissions" => ["select", "insert"],
+      "indexes" => [["run_code", "round"]],
+      "limits" => { "max_select_limit" => 500 }
     }
   }.freeze
 
@@ -144,6 +194,7 @@ class EltenGameRoom < Program
     _("Game rules"),
     _("Invitations"),
     _("Saved games"),
+    _("Leaderboards"),
     _("Settings"),
     _("What's new")
   ].freeze
@@ -171,10 +222,15 @@ class EltenGameRoom < Program
     GameRoomGames::MexicanTrain,
     GameRoomGames::Scrabble,
     GameRoomGames::Taboo,
-    GameRoomGames::Biblios
+    GameRoomGames::Biblios,
+    GameRoomGames::Krowa
   ])
 
   DEFAULT_SETTINGS = GameRoomPreferences.defaults(GAME_REGISTRY.ids).freeze
+
+  # All Krowa tables use the canonical Game Room application. A test build
+  # must never route production tables through a developer's personal app.
+  SERVER_TABLE_APP_UUIDS = {}.freeze
 
   server_app(
     uuid: "468f59c5-c9d7-47cd-80f1-1a6fbfd1aa80",
@@ -367,9 +423,13 @@ class EltenGameRoom < Program
 
   private
 
+  def game_room_server_tables
+    @server_tables ||= GameRoomServerTables.new(self, table_app_uuids: SERVER_TABLE_APP_UUIDS)
+  end
+
   def initialize_services
     @transport ||= GameRoomTransport.new(self)
-    @server_tables ||= GameRoomServerTables.new(self)
+    game_room_server_tables
     @game_room_users ||= GameRoomUserRegistry.new(server_tables: @server_tables)
     @table_activity ||= TableActivityRepository.new(server_tables: @server_tables, transport: @transport)
     @lobby ||= LobbyRepository.new(
@@ -568,10 +628,30 @@ class EltenGameRoom < Program
     when 4
       show_saved_games
     when 5
-      show_settings
+      show_leaderboards
     when 6
+      show_settings
+    when 7
       show_changelog
     end
+  end
+
+  def show_leaderboards
+    available = GAME_REGISTRY.ids.select do |game_id|
+      game_definition(game_id)&.build_leaderboard_client(self) != nil
+    end
+    if available.empty?
+      alert(_("No leaderboards are available in this version."))
+      return
+    end
+
+    game_id = select_game(_("Leaderboards"), available)
+    return if game_id == nil
+
+    client = game_definition(game_id).build_leaderboard_client(self)
+    client.run
+  ensure
+    client&.close
   end
 
   def show_update_changelog

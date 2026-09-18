@@ -61,4 +61,4 @@ windows = 0
   end
 end
 Form.rules_window_driver = nil
-puts "PASS binary rules UI: #{windows} document windows for 23 games, EN/PL and English fallback beside a non-English host, with native dictionary compatibility"
+puts "PASS binary rules UI: #{windows} document windows for 24 games, EN/PL and English fallback beside a non-English host, with native dictionary compatibility"

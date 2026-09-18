@@ -7,11 +7,14 @@ module GameSurfaces
     :options,
     :value,
     :submit_label,
+    :show_submit_button,
     :required,
     :read_only,
     :max_length,
     :submit_on_select,
     :prompt_in_choices,
+    :clear_on_submit,
+    :extra_commands,
     keyword_init: true
   )
 
@@ -31,16 +34,27 @@ module GameSurfaces
       @answer = build_answer_control(state)
       bind_immediate_choice
       @submit = build_submit_button
+      @answer.on_submit { submit_answer } if @mode == :text && !@spec.read_only
+      @extra_buttons = if @spec.read_only || @mode != :text
+        []
+      else
+        @spec.extra_commands.to_a.map do |command|
+          button = Button.new(command.label)
+          button.on(:press) { submit_answer(command.id) }
+          button
+        end
+      end
     end
 
     def fields
-      [@answer, @submit].compact
+      [@answer, @submit].compact + @extra_buttons
     end
 
     def state
       case @mode
       when :text
-        { "text" => @answer.text.to_s }
+        { "text" => @answer.text.to_s, "index" => @answer.index,
+          "check" => @answer.check, "question_id" => @spec.id }
       when :single_choice
         { "index" => @answer.index.to_i }
       when :multiple_choice
@@ -64,7 +78,7 @@ module GameSurfaces
           "answer" => answer,
           "required" => @spec.required == true
         }
-      )
+      ).tap { clear_text_answer if @mode == :text && @spec.clear_on_submit == true }
     end
 
     private
@@ -91,15 +105,22 @@ module GameSurfaces
     def build_answer_control(state)
       case @mode
       when :text
+        remembered_id = state_value(state, "question_id", @spec.id)
+        state = {} if remembered_id != @spec.id
         text = state_value(state, "text", @spec.value.to_s)
         flags = @spec.read_only == true ? EditBox::Flags::ReadOnly : 0
-        RefreshAwareEditBox.new(
+        control = RefreshAwareEditBox.new(
           @spec.prompt.to_s,
           type: flags,
           text: text,
           quiet: true,
           max_length: maximum_length
         )
+        control.restore_selection(
+          index: state_value(state, "index", text.length),
+          check: state_value(state, "check", text.length)
+        )
+        control
       when :information
         RefreshAwareEditBox.new(
           @spec.prompt.to_s,
@@ -132,20 +153,34 @@ module GameSurfaces
 
     def build_submit_button
       return nil if @spec.read_only == true || @mode == :information || @spec.submit_on_select == true
+      return nil if @spec.show_submit_button == false
 
       button = Button.new((@spec.submit_label || _("Submit answer")).to_s)
-      button.on(:press) do
-        emit_action(
-          "question",
-          "submit",
-          {
-            "question_id" => @spec.id.to_s,
-            "answer" => answer_value,
-            "required" => @spec.required == true
-          }
-        )
-      end
+      button.on(:press) { submit_answer }
       button
+    end
+
+    def submit_answer(action = "submit")
+      value = answer_value
+      clear_text_answer if @mode == :text && @spec.clear_on_submit == true
+      emit_action(
+        "question",
+        action,
+        {
+          "question_id" => @spec.id.to_s,
+          "answer" => value,
+          "required" => @spec.required == true
+        }
+      )
+    end
+
+    def clear_text_answer
+      if @answer.respond_to?(:set_text)
+        @answer.set_text("")
+      else
+        @answer.text = ""
+      end
+      @answer.restore_selection(index: 0, check: 0)
     end
 
     def answer_value
