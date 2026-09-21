@@ -18,6 +18,11 @@ module GameRoomSounds
     domino_take_chip
     farkle
     farkle_bank
+    cht-roll-dice
+    cht-bank
+    cht-lost-points
+    cht-cat-minus-8
+    cht-cat-plus-8
     ninety3366
     1000_mariage
     hit1
@@ -183,6 +188,19 @@ module GameRoomSounds
       ninety_nine_cue(event, before_replay, after_replay, viewer)
     when "farkle"
       farkle_cue(event, before_replay, after_replay, repository)
+    when "cat_head_tail"
+      entries = history_for_event(after_replay, event, repository)
+      if action == "bank"
+        return "cht-bank" if entries.any? { |entry| entry.kind == :bank }
+        return nil
+      end
+      return nil if action != "roll"
+
+      cues = ["cht-roll-dice"]
+      cues << "cht-lost-points" if entries.any? { |entry| entry.kind == :lost_points }
+      cues << "cht-cat-minus-8" if entries.any? { |entry| entry.kind == :cat_minus }
+      cues << "cht-cat-plus-8" if entries.any? { |entry| entry.kind == :cat_plus }
+      cues
     when "uno"
       event_history = history_for_event(after_replay, event, repository)
       return nil if event_history.any? { |entry| entry.key.to_s.start_with?("too_late:") }

@@ -2,6 +2,7 @@ def _(text)
   text
 end
 
+require "json"
 require_relative "../lib/game_sounds"
 
 def assert(condition, message)
@@ -43,6 +44,35 @@ def cue(game_id, event, before, after, repository, viewer)
 end
 
 playing = Replay.new(players: [viewer, "Bob"], winner: nil, draw: false, state: {}, history: [])
+root = File.expand_path("..", __dir__)
+manifest = JSON.parse(File.read(File.join(root, "manifest.json"), encoding: "UTF-8"))
+app_source = File.read(File.join(root, "__app.rb"), encoding: "UTF-8")
+embedded_manifest = JSON.parse(app_source[/\A=begin Elten3AppInfo\s+(\{.*?\})\s+=end Elten3AppInfo/m, 1])
+assert(manifest == embedded_manifest, "the source manifests disagree")
+{
+  "cht-bank" => "cht-bank.opus",
+  "cht-cat-minus-8" => "cht-cat-minus-8.opus",
+  "cht-cat-plus-8" => "cht-cat-plus-8.opus",
+  "cht-lost-points" => "cht-lost-points.opus",
+  "cht-roll-dice" => "cht-roll-dice.opus"
+}.each do |asset, filename|
+  assert(GameRoomSounds::ASSET_NAMES.include?(asset), "#{asset} is not registered")
+  assert(manifest.dig("required_assets", "sounds").include?(asset), "#{asset} is missing from the manifest")
+  assert(File.file?(File.join(root, "Audio", filename)), "#{filename} is missing")
+end
+cht_event = { "id" => 7999, "action" => "roll", "value" => "1" }
+cht_after = playing.dup
+cht_after.history = [History.new(event_id: 7999, kind: :lost_points)]
+assert(cue("cat_head_tail", cht_event, playing, cht_after, repository, viewer) == %w[cht-roll-dice cht-lost-points], "one has the wrong Cat, head, tail sounds")
+cht_after.history = [History.new(event_id: 7999, kind: :cat_minus)]
+assert(cue("cat_head_tail", cht_event, playing, cht_after, repository, viewer) == %w[cht-roll-dice cht-cat-minus-8], "negative cat tail has the wrong sounds")
+cht_after.history = [History.new(event_id: 7999, kind: :cat_plus)]
+assert(cue("cat_head_tail", cht_event, playing, cht_after, repository, viewer) == %w[cht-roll-dice cht-cat-plus-8], "positive cat tail has the wrong sounds")
+cht_after.history = [History.new(event_id: 7999, kind: :roll)]
+assert(cue("cat_head_tail", cht_event, playing, cht_after, repository, viewer) == "cht-roll-dice", "an ordinary roll has the wrong sound")
+cht_bank = { "id" => 7999, "action" => "bank", "value" => "" }
+cht_after.history = [History.new(event_id: 7999, kind: :bank)]
+assert(cue("cat_head_tail", cht_bank, playing, cht_after, repository, viewer) == "cht-bank", "banking has the wrong sound")
 %w[rummy domino mexican_train].each do |game_id|
   event = { "id" => 8000, "action" => game_id, "value" => "compact" }
   sounds = game_id == "rummy" ? %w[shuffle draw play] : %w[domino_refill domino_take_chip domino_move_tile]

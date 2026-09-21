@@ -21,7 +21,8 @@
   "required_assets": {
     "sounds": [
       "connect", "disconnect", "chatmsg", "notice", "buzzer2", "ding", "shuffle", "draw", "draw2",
-      "farkle", "hit1", "hit_ship1", "hit_ship2", "rocket_launch1", "rocket_launch2", "rocket_launch3", "rocket_miss",
+      "farkle", "cht-roll-dice", "cht-bank", "cht-lost-points", "cht-cat-minus-8", "cht-cat-plus-8",
+      "hit1", "hit_ship1", "hit_ship2", "rocket_launch1", "rocket_launch2", "rocket_launch3", "rocket_miss",
       "interception", "lose1", "lose3", "play", "play2", "replay",
       "reverse", "reverse3", "roll", "skip", "win1", "win2",
       "farkle_bank", "ninety3366", "1000_mariage", "win_party", "lose_party",
@@ -125,6 +126,7 @@ require_relative "games/reversi"
 require_relative "games/ludo"
 require_relative "games/spades"
 require_relative "games/farkle"
+require_relative "games/cat_head_tail"
 require_relative "games/ninety_nine"
 require_relative "games/tysiac"
 require_relative "games/categories"
@@ -207,6 +209,7 @@ class EltenGameRoom < Program
     GameRoomGames::Ludo,
     GameRoomGames::Spades,
     GameRoomGames::Farkle,
+    GameRoomGames::CatHeadTail,
     GameRoomGames::NinetyNine,
     GameRoomGames::Tysiac,
     GameRoomGames::Categories,
