@@ -1,0 +1,60 @@
+{
+  "source": "games/three_five_eight.rb",
+  "sections": [
+    {
+      "id": "course",
+      "title": {"en": "Eighteen deals and six contracts", "pl": "Osiemnaście rozdań i sześć rodzajów rozgrywki"},
+      "paragraphs": [
+        {"en": "3-5-8 is an individual game for exactly three players, using all 52 cards. Each player receives 16 cards and four cards form the kitty. The player to the dealer's left chooses the contract after seeing their first six cards, then receives the rest of their hand.", "pl": "3-5-8 jest grą indywidualną dla dokładnie trzech osób, pełną talią 52 kart. Każdy dostaje 16 kart, a cztery tworzą musik. Gracz po lewej stronie rozdającego wybiera rodzaj rozgrywki po obejrzeniu pierwszych sześciu kart, a dopiero potem otrzymuje resztę ręki."},
+        {"en": "There are six contracts: hearts, spades, diamonds and clubs as trump, no trump, and misere. During the game every player must choose each contract exactly once. The dealer moves one seat after every deal, so the complete game has 18 deals.", "pl": "Jest sześć rodzajów rozgrywki: kiery, piki, kara i trefle jako atut, bez atu oraz bez lew. W całej partii każdy gracz musi wybrać każdy rodzaj dokładnie raz. Rozdający przesuwa się o jedno miejsce po każdym rozdaniu, dlatego pełna gra ma 18 rozdań."},
+        {"en": "After any exchanges, the chooser reveals the four-card kitty, adds it to their hand and discards four cards face down. The chooser leads the first trick. The winner of every trick leads the next one.", "pl": "Po ewentualnych wymianach wybierający odkrywa czterokartowy musik, dodaje go do ręki i odkłada cztery karty zakryte. Wybierający rozpoczyna pierwszą lewę, a zdobywca każdej lewy wychodzi do następnej."}
+      ]
+    },
+    {
+      "id": "play",
+      "title": {"en": "Following suit", "pl": "Dokładanie do koloru"},
+      "paragraphs": [
+        {"en": "Cards rank from two, the lowest, to ace, the highest. You must follow the led suit when you can, but you do not have to beat the currently winning card.", "pl": "Karty rosną od najniższej dwójki do najwyższego asa. Trzeba dołożyć do koloru wyjścia, jeśli ma się kartę w tym kolorze, ale nie trzeba przebijać karty, która aktualnie wygrywa."},
+        {"en": "If you cannot follow, you may play any card. You do not have to play a trump or overtrump. No-trump and misere deals have no trump suit.", "pl": "Jeśli nie możesz dołożyć do koloru, wolno zagrać dowolną kartę. Nie trzeba zagrywać atu ani przebijać wyższym atutem. W rozgrywkach bez atu i bez lew nie ma koloru atutowego."}
+      ]
+    },
+    {
+      "id": "exchange",
+      "title": {"en": "Exchanging cards after the first deal", "pl": "Wymiana kart po pierwszym rozdaniu"},
+      "paragraphs": [
+        {"en": "The table owner can disable card exchange in the game options. When it is disabled, every deal goes directly from contract selection to taking the kitty.", "pl": "Właściciel stołu może wyłączyć wymianę kart w opcjach gry. Po jej wyłączeniu każde rozdanie przechodzi bezpośrednio od wyboru rodzaju rozgrywki do zabrania musiku."},
+        {"en": "Card exchange is available only in a trump contract. A player who scored above zero in the previous deal may exchange up to that many cards with players who scored below zero. A player with the higher target in the current deal exchanges first. You may stop before using the whole allowance.", "pl": "Wymiana jest dostępna wyłącznie w rozgrywce atutowej. Gracz, który w poprzednim rozdaniu zdobył wynik dodatni, może wymienić najwyżej tyle kart z graczami z wynikiem ujemnym. Pierwszeństwo ma osoba z wyższym celem w bieżącym rozdaniu. Wolno zakończyć wymianę przed wykorzystaniem całego limitu."},
+        {"en": "For a non-trump card, the recipient automatically returns their highest card of the same suit; if the received card is their only card of that suit, it simply returns. For a trump card, the recipient may instead return any non-trump card, or their highest trump. Exchanges are completed before the chooser takes the kitty.", "pl": "Za kartę nieatutową odbiorca automatycznie oddaje swoją najwyższą kartę tego samego koloru; jeśli otrzymana karta jest jego jedyną w tym kolorze, po prostu ją zwraca. Za kartę atutową odbiorca może zamiast tego oddać dowolną kartę nieatutową albo swój najwyższy atut. Wszystkie wymiany kończą się przed zabraniem musiku."}
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {"en": "Targets and scoring", "pl": "Cele i punktacja"},
+      "paragraphs": [
+        {"en": "In an ordinary deal the dealer's target is 3 tricks, the player to the dealer's right needs 5, and the chooser to the dealer's left needs 8. Your score for the deal is tricks won minus your target. The three changes therefore always total zero.", "pl": "W zwykłym rozdaniu rozdający ma cel 3 lew, gracz po jego prawej stronie 5, a wybierający po lewej 8. Wynik rozdania to liczba zdobytych lew minus cel, dlatego suma trzech zmian zawsze wynosi zero."},
+        {"en": "Misere reverses the targets: the dealer may take at most 8 tricks, the player to the dealer's right at most 5, and the chooser at most 3. Your score is the limit minus tricks won, so avoiding tricks earns points and exceeding the limit loses points.", "pl": "W rozgrywce bez lew cele są odwrócone: rozdający może wziąć najwyżej 8 lew, gracz po jego prawej najwyżej 5, a wybierający najwyżej 3. Wynik to limit minus zdobyte lewy, więc unikanie lew daje punkty, a przekroczenie limitu je odbiera."},
+        {"en": "After the eighteenth deal, the player with the highest total score wins. Equal highest totals produce a shared draw.", "pl": "Po osiemnastym rozdaniu wygrywa gracz z najwyższym łącznym wynikiem. Równe najwyższe wyniki oznaczają wspólny remis."}
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {"en": "Game keyboard shortcuts", "pl": "Skróty klawiszowe gry"},
+      "paragraphs": [
+        {"en": "Arrows: browse cards or available commands.", "pl": "Strzałki: przeglądaj karty albo dostępne polecenia."},
+        {"en": "Enter: choose a contract, exchange or return a card, discard to the kitty, or play the selected card.", "pl": "Enter: wybierz rodzaj rozgrywki, wymień lub oddaj kartę, odłóż ją do musiku albo zagraj wybraną kartę."},
+        {"en": "H: read your hand.", "pl": "H: odczytaj swoją rękę."},
+        {"en": "C: read the trick cards.", "pl": "C: odczytaj karty w lewie."},
+        {"en": "Ctrl+C: browse the trick cards.", "pl": "Ctrl+C: przeglądaj karty w lewie."},
+        {"en": "F: read the current contract and trump suit.", "pl": "F: odczytaj bieżący rodzaj rozgrywki i kolor atutowy."},
+        {"en": "V: read tricks, targets and the current deal.", "pl": "V: odczytaj lewy, cele i numer bieżącego rozdania."},
+        {"en": "S: read scores.", "pl": "S: odczytaj wyniki."},
+        {"en": "T: read whose turn it is.", "pl": "T: odczytaj, czyja jest tura."},
+        {"en": "Z: next legal card; play it automatically if it is the only unambiguous option.", "pl": "Z: następna legalna karta; zagraj ją automatycznie, jeśli to jedyna jednoznaczna możliwość."},
+        {"en": "Shift+Z: previous legal card; play it automatically if it is the only unambiguous option.", "pl": "Shift+Z: poprzednia legalna karta; zagraj ją automatycznie, jeśli to jedyna jednoznaczna możliwość."},
+        {"en": "Shift+C: sort by suit or colour; press again to reverse the order.", "pl": "Shift+C: sortuj według koloru; naciśnij ponownie, aby odwrócić kolejność."},
+        {"en": "Shift+H: sort by rank or value; press again to reverse the order.", "pl": "Shift+H: sortuj według wartości; naciśnij ponownie, aby odwrócić kolejność."},
+        {"en": "Shift+M: restore the order in which cards were received.", "pl": "Shift+M: przywróć kolejność otrzymania kart."}
+      ]
+    }
+  ]
+}

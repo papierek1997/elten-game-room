@@ -27,7 +27,7 @@ def _(text)
   raise "Game Room called the host translator: #{text}"
 end
 
-files = %w[tic_tac_toe four_in_a_row spades farkle ninety_nine tysiac categories chess checkers reversi ludo monopoly yahtzee uno poker makao rummy domino mexican_train scrabble taboo biblios quiz_party]
+files = %w[tic_tac_toe four_in_a_row spades farkle ninety_nine tysiac three_five_eight categories chess checkers reversi ludo monopoly yahtzee uno poker makao rummy domino mexican_train scrabble taboo biblios quiz_party]
 require_relative "../games/base"
 require_relative "../content/languages"
 require_relative "../content/quiz_general_en"

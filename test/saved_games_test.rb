@@ -2,7 +2,7 @@ require_relative "support/native_live_sessions"
 require_relative "../lib/saved_games"
 require_relative "../lib/game_simulation"
 require_relative "../content/monopoly_boards"
-%w[four_in_a_row tic_tac_toe chess checkers reversi ludo spades farkle cat_head_tail ninety_nine tysiac monopoly yahtzee uno poker makao].each do |name|
+%w[four_in_a_row tic_tac_toe chess checkers reversi ludo spades farkle cat_head_tail ninety_nine tysiac three_five_eight monopoly yahtzee uno poker makao].each do |name|
   require_relative "../games/#{name}"
 end
 
@@ -33,7 +33,7 @@ invalid_storage = ArchiveStorage.new
 invalid_storage.instance_variable_set(:@state, { "games" => "broken" })
 expect_error("corrupt saved storage escaped validation") { SavedGames.new(invalid_storage, owner: "Alice").delete("missing") }
 
-types = %w[FourInARow TicTacToe Chess Checkers Reversi Ludo Spades Farkle CatHeadTail NinetyNine Tysiac Monopoly Yahtzee Uno Poker Makao]
+types = %w[FourInARow TicTacToe Chess Checkers Reversi Ludo Spades Farkle CatHeadTail NinetyNine Tysiac ThreeFiveEight Monopoly Yahtzee Uno Poker Makao]
 # Optional class names allow a new game to run the same save assertions on its
 # own. The ordinary invocation still covers every game in the list.
 unless ARGV.empty?

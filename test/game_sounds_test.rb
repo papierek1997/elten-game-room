@@ -92,6 +92,14 @@ assert(cue("spades", { "id" => 1, "action" => "deal" }, playing, playing, reposi
 assert(cue("spades", { "id" => 2, "action" => "play", "value" => "AS" }, playing, playing, repository, viewer) == ["play", "draw2"], "Spades trump did not layer draw2 over the card sound")
 assert(cue("spades", { "id" => 3, "action" => "play", "value" => "AH" }, playing, playing, repository, viewer) == "play", "ordinary Spades card did not use play")
 
+three_five_eight = Replay.new(players: [viewer, "Bob", "Carol"], winner: nil, draw: false, state: { contract: "H" }, history: [])
+assert(cue("three_five_eight", { "id" => 31, "action" => "deal" }, playing, three_five_eight, repository, viewer) == "shuffle", "3-5-8 did not shuffle on a deal")
+assert(cue("three_five_eight", { "id" => 32, "action" => "choose_contract" }, playing, three_five_eight, repository, viewer) == "ding", "3-5-8 contract selection has no sound")
+assert(cue("three_five_eight", { "id" => 33, "action" => "play", "value" => "AH" }, playing, three_five_eight, repository, viewer) == %w[play draw2], "3-5-8 trump did not layer its sound")
+assert(cue("three_five_eight", { "id" => 34, "action" => "discard", "value" => "2C" }, playing, three_five_eight, repository, viewer) == "draw", "3-5-8 discard has no sound")
+three_five_eight.history = [History.new(event_id: 35, kind: :round_result, actor: viewer, value: 5)]
+assert(cue("three_five_eight", { "id" => 35, "action" => "play", "value" => "2C" }, playing, three_five_eight, repository, viewer) == %w[play win1], "3-5-8 positive round result has no sound")
+
 before_32 = Replay.new(players: [viewer, "Bob"], winner: nil, draw: false, state: { total: 32, eliminated: { viewer => false, "Bob" => false } }, history: [])
 after_34 = Replay.new(players: [viewer, "Bob"], winner: nil, draw: false, state: { total: 34, eliminated: { viewer => false, "Bob" => false } }, history: [])
 assert(cue("ninety_nine", { "id" => 4, "action" => "play", "value" => "05C|normal" }, before_32, after_34, repository, viewer) == ["play", "draw2"], "crossing 33 did not layer draw2 over the card sound")

@@ -150,6 +150,7 @@ require_relative "games/farkle"
 require_relative "games/cat_head_tail"
 require_relative "games/ninety_nine"
 require_relative "games/tysiac"
+require_relative "games/three_five_eight"
 require_relative "games/categories"
 require_relative "games/monopoly"
 require_relative "games/yahtzee"
@@ -235,6 +236,7 @@ class EltenGameRoom < Program
     GameRoomGames::CatHeadTail,
     GameRoomGames::NinetyNine,
     GameRoomGames::Tysiac,
+    GameRoomGames::ThreeFiveEight,
     GameRoomGames::Categories,
     GameRoomGames::Monopoly,
     GameRoomGames::Yahtzee,

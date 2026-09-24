@@ -115,7 +115,7 @@ GameRoomBotNames::NAMES.each do |token, name|
     raise "Binary lobby bot announcement lost name" unless global.valid_encoding? && global.include?(name) && !global.include?("komputer")
   end
 end
-raise "Lost games during binary loading" unless registry.ids.length == 29
+raise "Lost games during binary loading" unless registry.ids.length == 30
 raise "Audio Ball was not loaded from binary sources" unless registry.ids.include?("audio_ball")
 raise "Quiz Party was not loaded from binary sources" unless registry.ids.include?("quiz")
 %w[quiz.general.en quiz.wikidata.pl quiz.witcher.pl quiz.witcher.g.pl quiz.witcher.b.pl].each do |id|
@@ -171,7 +171,7 @@ end
 # second ordinary require of the checkout. No network or host UI is used.
 raise "Missing binary save engine" unless defined?(SavedGames) && SavedGames::FORMAT == 1
 raise "Missing binary saved games menu" unless EltenGameRoom::MAIN_OPTIONS.include?(RULES_CATALOG.fetch("Saved games"))
-raise "Wrong number of saveable games" unless registry.ids.count { |id| registry.build(id).supports_saved_games? } == 24
+raise "Wrong number of saveable games" unless registry.ids.count { |id| registry.build(id).supports_saved_games? } == 25
 %w[reversi checkers chess].each do |id|
   game = registry.build(id)
   session = { "__players" => %w[Alice Bob], "options" => JSON.generate(game.default_options) }

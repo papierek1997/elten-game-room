@@ -174,6 +174,25 @@ module GameRoomSounds
       return nil if action != "play"
 
       event["value"].to_s.end_with?("S") ? ["play", "draw2"] : "play"
+    when "three_five_eight"
+      entries = history_for_event(after_replay, event, repository)
+      cues = []
+      cues << "shuffle" if action == "deal"
+      cues << "ding" if action == "choose_contract"
+      cues << "draw" if %w[exchange return stop_exchange discard].include?(action)
+      if action == "play"
+        cues << "play"
+        trump = after_replay&.state.to_h[:contract].to_s
+        cues << "draw2" if %w[H S D C].include?(trump) && event["value"].to_s.end_with?(trump)
+      end
+      round_result = entries.find do |entry|
+        entry.kind == :round_result && GameRoomParticipants.same?(entry.actor, viewer)
+      end
+      if round_result
+        change = round_result.value.to_i
+        cues << (change > 0 ? "win1" : (change < 0 ? "lose1" : "ding"))
+      end
+      cues
     when "tysiac"
       return "shuffle" if action == "deal"
       return nil if action != "play"
