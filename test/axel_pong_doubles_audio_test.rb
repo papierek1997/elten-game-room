@@ -338,15 +338,15 @@ check.call('doubles echo remains anchored to the local participant paddle') do
   end
 end
 
-check.call('doubles shields retain local ownership and original nonlocal mix') do
+check.call('doubles shield toggles belong to the team while impacts retain participant identity') do
   [[0, 0, 1, 1], [0, 1, 0, 1]].each do |teams|
     teams.each_index do |viewer|
       with_audio do |audio, program|
         state = snapshot(teams)
         number = 0
         teams.each_index do |source|
-          own = source == viewer
           %w[shield_on shield_off shield_hit].each do |kind|
+            own = kind == 'shield_hit' ? source == viewer : teams[source] == teams[viewer]
             x = state['p'][source]
             state['fx'] = [[number += 1, kind, source, x, teams[source].zero? ? 0 : 20]]
             audio.update(state, viewer: viewer, paused: false)
@@ -357,7 +357,7 @@ check.call('doubles shields retain local ownership and original nonlocal mix') d
               near(program.sounds[name].pan, rendered_pan(x - state['p'][viewer]), 'shield impact used the wrong paddle position')
               near(program.sounds[name].frequency, 44100 * identity_pitch(teams, source), 'shield return lost its participant identity')
             else
-              assert(name == "pong_#{own ? '' : 'op_'}#{kind}", 'shield toggle confused teammate and local paddle')
+              assert(name == "pong_#{own ? '' : 'op_'}#{kind}", 'shield toggle did not identify the protected team')
               near(program.sounds[name].volume, own ? 1.0 : 0.24, 'shield toggle gain changed')
               near(program.sounds[name].pan, 0, 'shield toggle pan changed')
               near(program.sounds[name].frequency, 44100 * (own ? 1 : 0.9438743126816935), 'shield toggle pitch changed')

@@ -42,10 +42,7 @@ module GameRoomPong
     def apply_effects(data)
       return false unless data['turn'] <= @turn && !@goal
       side = data['side']
-      if data['renew']
-        @shields[side] = 625
-        cue('shield_on', side)
-      end
+      renew_shield(side) if data['renew']
       if data['turn'] == @turn && data['invisible']
         @invisible = true
         cue('invisible', side)

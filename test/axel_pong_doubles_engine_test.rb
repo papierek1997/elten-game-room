@@ -59,7 +59,7 @@ assert(peer.strike(0) && peer.turn == 1 && peer.take_transition['turn'] == 1, 'p
 [[0, 0, 1, 1], [0, 1, 0, 1]].each do |teams|
   [0, 1].each do |first|
     (1..4).each do |turn|
-      %i[automatic held shield partner_automatic partner_held partner_shield miss].each do |mode|
+      %i[automatic held shield partner_automatic partner_held miss].each do |mode|
         engine = GameRoomPong::Engine.new(teams: teams, first_server: first, arcade: true)
         turn.times do |index|
           side = engine.rotation.hitter(index)
@@ -81,20 +81,19 @@ assert(peer.strike(0) && peer.turn == 1 && peer.take_transition['turn'] == 1, 'p
           inputs[side] = {'hit' => true}
           engine.paddles[side] = 15.0
         when :shield
-          engine.shields[side] = 100
+          [side, partner].each { |member| engine.shields[member] = 100 }
         when :partner_automatic
           engine.automatic_for(partner, true)
         when :partner_held
           inputs[partner] = {'hit' => true}
-        when :partner_shield
-          engine.shields[partner] = 100
         end
         engine.step(inputs)
         assert(engine.turn == turn + 1, "#{mode} did not consume exactly one designated contact")
         if [:automatic, :held, :shield].include?(mode)
           assert(engine.goal.nil? && engine.incoming?(engine.rotation.hitter(turn + 1)), "#{mode} did not advance to the next partner")
           if mode == :shield
-            assert(engine.shields[side] == 99 && engine.invisible, 'shield ownership/timer or invisibility changed')
+            assert([side, partner].all? { |member| engine.shields[member] == 99 } && engine.invisible,
+              'team shield timer or invisibility changed')
             assert(engine.ball['y'] == (teams[side].zero? ? 1.0 : 19.0), 'shield returned from the wrong baseline')
             assert(engine.events.last[1, 2] == ['shield_hit', side], 'shield cue identified the court instead of the player')
           end
@@ -237,4 +236,4 @@ end
   end
 end
 
-puts 'PASS Pong doubles engine: ordered owner/peer contacts, arbitrary seats, singles physics, player shields, remote rejection, turn counters and mixed/all-bot rallies'
+puts 'PASS Pong doubles engine: ordered owner/peer contacts, arbitrary seats, singles physics, team shields, remote rejection, turn counters and mixed/all-bot rallies'

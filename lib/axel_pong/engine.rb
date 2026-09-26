@@ -244,10 +244,7 @@ module GameRoomPong
 
     def roll_effects(side)
       if @arcade
-        if @rng.rand < 0.07
-          @shields[side] = (10 / STEP).round
-          cue('shield_on', side)
-        end
+        renew_shield(side) if @rng.rand < 0.07
         if @rng.rand < 0.07
           @invisible = true
           cue('invisible', side)
@@ -300,6 +297,11 @@ module GameRoomPong
 
     def controls_side?(_side); true; end
 
+    def renew_shield(side)
+      @rotation.members(@rotation.team(side)).each { |member| @shields[member] = (10 / STEP).round }
+      cue('shield_on', side)
+    end
+
     def tick_shields(elapsed_ms)
       @shield_fraction += elapsed_ms / 16.0
       ticks = @shield_fraction.floor
@@ -307,7 +309,9 @@ module GameRoomPong
       @shields.each_index do |side|
         next unless @shields[side] > 0
         @shields[side] = [0, @shields[side] - ticks].max
-        cue('shield_off', side) if @shields[side].zero?
+        if @shields[side].zero? && @rotation.members(@rotation.team(side)).all? { |member| @shields[member].zero? }
+          cue('shield_off', side)
+        end
       end
     end
 

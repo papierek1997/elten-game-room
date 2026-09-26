@@ -48,10 +48,19 @@ end
         await_relay(rig, "return #{index}") { h.clients.values.all? { |c| c.engine.turn == turn + 1 } }
         assert(h.clients.values.all? { |c| c.engine.goal == nil }, 'delay created a false goal')
       end
+      await_relay(rig, 'effect delivery') do
+        h.network.values.all? do |channel|
+          channel.instance_variable_get(:@event_outbox).empty? &&
+            channel.instance_variable_get(:@deliveries).empty? &&
+            !channel.instance_variable_get(:@event_work).busy?
+        end
+      end
       loser = host.engine.rotation.hitter(host.engine.turn)
       # Make the terminal fixture an actual unprotected miss. Otherwise a
       # valid Arcade shield returns it and the following player can lose.
-      h.clients.each_value { |c| c.engine.shields[loser] = 0 }
+      h.clients.each_value do |client|
+        client.engine.rotation.members(teams[loser]).each { |seat| client.engine.shields[seat] = 0 }
+      end
       losing = h.clients[GameRoomParticipants.bot?(players[loser]) ? 'Alice' : players[loser]].engine
       losing.ball.merge!('x' => losing.paddles[loser] < 15 ? 29.0 : 1.0,
         'y' => host.engine.rotation.team(loser).zero? ? -0.01 : 20.01)

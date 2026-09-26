@@ -227,6 +227,7 @@ module GameRoomPong
         pitch = WALL_PITCH[(distance / 4).to_i.clamp(0, 4)]
         volume = distance <= 3 ? 1.0 : [0.95 - (distance - 4) * 0.06, 0].max
       when 'shield_on', 'shield_off'
+        own = court_side(snapshot, side) == viewer_side
         name = "pong_#{own ? '' : 'op_'}#{kind}"
         pan, volume = 0, own ? 2.0 : 0.24
         pitch = 0.9438743126816935 unless own
