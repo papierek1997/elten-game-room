@@ -2986,18 +2986,18 @@ class EltenGameRoom < Program
 
     minimum = [game.minimum_players.to_i, 1].max
     maximum = [game.maximum_players.to_i, minimum].max
-    if minimum == maximum
-      _("This game requires exactly %{required} players. There are currently %{current} users at the table.") % {
-        required: minimum,
-        current: current_count.to_i
-      }
+    count = current_count.to_i
+    requirement = if minimum == maximum
+      _("This game requires exactly %{required} players.") % { required: minimum }
     else
-      _("This game requires from %{minimum} to %{maximum} players. There are currently %{current} users at the table.") % {
-        minimum: minimum,
-        maximum: maximum,
-        current: current_count.to_i
-      }
+      _("This game requires from %{minimum} to %{maximum} players.") % { minimum: minimum, maximum: maximum }
     end
+    attendance = n_(
+      "There is currently %{current} user at the table.",
+      "There are currently %{current} users at the table.",
+      count
+    ) % { current: count }
+    "#{requirement} #{attendance}"
   end
 
   def game_definition(game_id)
