@@ -1,0 +1,94 @@
+{
+  "statistics_accounts": {
+    "visibility": "shared",
+    "unique_per_user": true,
+    "columns": {
+      "marker": "integer"
+    },
+    "permissions": [
+      "select",
+      "insert",
+      "update"
+    ],
+    "limits": {
+      "max_select_limit": 1
+    }
+  },
+  "statistics_events": {
+    "visibility": "public",
+    "filtered_columns": [
+      "__insertion_user",
+      "__last_update_user",
+      "__insertion_time",
+      "__last_update_time"
+    ],
+    "filter_for": "everyone",
+    "columns": {
+      "event_key": "string:64",
+      "kind": "string:16",
+      "game": "string:32",
+      "day_key": "integer",
+      "mode": "string:8",
+      "person": "integer"
+    },
+    "permissions": [
+      "select",
+      "insert"
+    ],
+    "indexes": [
+      [
+        "event_key"
+      ],
+      [
+        "day_key",
+        "kind"
+      ],
+      [
+        "game",
+        "day_key"
+      ]
+    ],
+    "limits": {
+      "max_select_limit": 2000
+    }
+  },
+  "room_presence": {
+    "visibility": "public",
+    "unique_per_user": false,
+    "filtered_columns": [
+      "__insertion_user",
+      "__last_update_user",
+      "__insertion_time",
+      "__last_update_time"
+    ],
+    "filter_for": "everyone",
+    "columns": {
+      "reporter_key": "string:64",
+      "room_key": "string:64",
+      "game": "string:32",
+      "private_room": "integer",
+      "people": "integer",
+      "playing": "integer",
+      "seen_slot": "integer"
+    },
+    "permissions": [
+      "select",
+      "insert",
+      "update"
+    ],
+    "indexes": [
+      [
+        "reporter_key"
+      ],
+      [
+        "room_key"
+      ],
+      [
+        "seen_slot"
+      ]
+    ],
+    "limits": {
+      "max_select_limit": 2000
+    }
+  }
+}

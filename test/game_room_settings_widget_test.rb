@@ -210,6 +210,7 @@ assert(filter_app.send(:load_widget_table_snapshots) == [available, unavailable]
 # supplied by the main scene instead of creating a new list on every update.
 captured_tab = nil
 extension_builder = Object.new
+extension_builder.define_singleton_method(:every) { |_key, **_options, &_block| }
 extension_builder.define_singleton_method(:start) { |&_block| }
 extension_builder.define_singleton_method(:tick) { |**_options, &_block| }
 extension_builder.define_singleton_method(:stop) { |&_block| }

@@ -101,6 +101,11 @@ require_relative "lib/game_sync"
 require_relative "lib/game_table_background"
 require_relative "lib/game_room_server_tables"
 require_relative "lib/game_room_user_registry"
+require_relative "lib/game_statistics_service"
+require_relative "lib/game_room_presence_store"
+require_relative "lib/game_room_presence_collector"
+require_relative "lib/game_room_presence_screen"
+require_relative "lib/game_statistics_screen"
 require_relative "lib/table_activity_repository"
 require_relative "lib/game_rules"
 require_relative "lib/game_room_changelog"
@@ -183,7 +188,7 @@ class EltenGameRoom < Program
   GAME_ROOM_CAPABILITIES = ["invitations", "live_sessions", "live_session_stack"].freeze
   LOBBY_ACTIVITY_POLL_INTERVAL = 5.0
 
-  SERVER_TABLES = GameRoomGames::KrowaServerSchema::TABLES.merge({
+  SERVER_TABLES = GameRoomGames::KrowaServerSchema::TABLES.merge(GameRoomStatistics::Schema::TABLES).merge(GameRoomPresence::Schema::TABLES).merge({
     GameRoomTableWatch::TABLE => GameRoomTableWatch::SCHEMA,
     "game_room_users" => {
       "visibility" => "public",
@@ -222,6 +227,7 @@ class EltenGameRoom < Program
     _("Invitations"),
     _("Saved games"),
     _("Leaderboards"),
+    _("Statistics"),
     _("Settings"),
     _("What's new")
   ].freeze
@@ -275,7 +281,13 @@ class EltenGameRoom < Program
     return if @game_room_extension_registered == true
 
     program = new
-    extension("game_room_main_tab") do |extension|
+    @statistics_extension = extension("game_room_main_tab") do |extension|
+      extension.every("statistics_upload", seconds: 30, autorun: true, persistent: false, first: :after_interval) do |context|
+        statistics_service&.flush(context.token)
+      end
+      extension.every("room_presence", seconds: 30, autorun: true, persistent: false, first: :after_interval) do |context|
+        room_presence_collector&.heartbeat(context.token)
+      end
       extension.start { table_watch_start }
       extension.tick(interval: 1.0) { contacts_tick; table_watch_tick; InvitationResponseOutbox.tick_default }
       extension.stop { table_watch_stop; contacts_stop }
@@ -292,6 +304,48 @@ class EltenGameRoom < Program
     @game_room_extension_registered = true
   rescue StandardError => error
     Log.warning("ELTEN Game Room extension registration failed: #{error.class}: #{error.message}") if defined?(Log)
+  end
+
+  def self.analytics_enabled?
+    $developer_mode != true
+  end
+
+  def self.statistics_service
+    return nil unless analytics_enabled?
+    return nil unless respond_to?(:app_runtime) && app_runtime && !Session.name.to_s.empty?
+    @statistics_lock ||= Mutex.new
+    @statistics_lock.synchronize do
+      user = Session.name.to_s.downcase
+      if @statistics_user != user
+        service = GameRoomStatistics::Service.new(program: self, user: user,
+          trigger: -> { @statistics_extension&.trigger("statistics_upload") })
+        return nil if service.last_error
+        @statistics_service = service
+        @statistics_user = user
+      end
+      @statistics_service
+    end
+  rescue StandardError
+    nil
+  end
+
+  def self.room_presence_collector
+    return nil unless analytics_enabled?
+    return nil unless respond_to?(:app_runtime) && app_runtime && !Session.name.to_s.empty?
+    @presence_lock ||= Mutex.new
+    @presence_lock.synchronize do
+      user = Session.name.to_s.downcase
+      if @presence_user != user
+        collector = GameRoomPresence::Collector.new(user: user, enabled: -> { analytics_enabled? }, store_factory: -> {
+          reporter = GameRoomPresence::Collector.reporter_key(storage: self, user: user)
+          GameRoomPresence::Store.new(app_uuid: server_app_uuid, user: user, reporter_key: reporter)
+        })
+        @presence_collector, @presence_user = collector, user
+      end
+      @presence_collector
+    end
+  rescue StandardError
+    nil
   end
 
   def self.normalized_settings
@@ -381,6 +435,7 @@ class EltenGameRoom < Program
 
   def program_main
     initialize_services
+    record_statistics_visit
     show_update_changelog
     check_server_table_access
     current = run_network_task(_("Checking your current table")) do
@@ -399,6 +454,7 @@ class EltenGameRoom < Program
     return false if action.to_s.to_sym != :open_invitation
 
     initialize_services
+    record_statistics_visit
     check_server_table_access
     connected = run_network_task(_("Connecting to Elten")) { @transport.start }
     return true unless connected
@@ -442,6 +498,62 @@ class EltenGameRoom < Program
 
   private
 
+  def record_statistics_visit
+    self.class.statistics_service&.visit
+  rescue StandardError
+    nil
+  end
+
+  def record_statistics_start(session, game, service: self.class.statistics_service)
+    return unless self.class.analytics_enabled?
+    service&.started(session: session, game_id: game.id)
+  rescue StandardError => error
+    log_statistics_failure("Statistics start recording failed: #{error.class}")
+  end
+
+  def statistics_observer_for(game, service: self.class.statistics_service, viewer: Session.name.to_s.dup.freeze)
+    return nil unless service && self.class.analytics_enabled?
+    lambda do |session, replay|
+      next unless self.class.analytics_enabled?
+      service.observe(session: session, replay: replay, game_id: game.id,
+        viewer: viewer, participants: session.fetch("__players", []))
+    rescue StandardError => error
+      log_statistics_failure("Statistics observation failed: #{error.class}")
+    end
+  end
+
+  def log_statistics_failure(message)
+    Log.warning(message) if defined?(Log)
+  rescue StandardError
+    nil
+  end
+
+  def register_room_presence
+    collector = self.class.room_presence_collector
+    return unless collector
+    endpoint = live_sessions
+    return if @presence_source_endpoint.equal?(endpoint) && @presence_source_collector.equal?(collector)
+    @presence_source_registration&.close
+    user, transport = Session.name.to_s.dup.freeze, @transport
+    registration = collector.register do |token|
+      next [] if endpoint.closed?
+      raise IOError, "Room presence endpoint belongs to another account" unless GameRoomParticipants.same?(endpoint.user, user)
+      endpoint.sessions.filter_map do |session|
+        token&.raise_if_cancelled!
+        next if session.closed?
+        metadata = session.metadata.to_h
+        next unless metadata["kind"] == GameRoomLiveSessionStore::KIND && GameRoomPresence::Identity.valid?(metadata["statistics_room_id"])
+        snapshot = transport.room_snapshot(metadata["table_id"], force: true, read_only: true, timeout: 5, cancellation_token: token)
+        LobbyRepository::TableSnapshot.new(**snapshot) if snapshot
+      end
+    end
+    manage(registration)
+    @presence_source_registration, @presence_source_endpoint, @presence_source_collector = registration, endpoint, collector
+  rescue StandardError => error
+    registration&.close
+    log_statistics_failure("Room presence registration failed: #{error.class}")
+  end
+
   def initialize_services
     @transport ||= GameRoomTransport.new(self)
     @server_tables ||= GameRoomServerTables.new(self)
@@ -463,6 +575,7 @@ class EltenGameRoom < Program
       client: EltenLink::Client.new,
       app_uuid: self.class.server_app_uuid
     )
+    register_room_presence
   end
 
   def check_server_table_access
@@ -537,6 +650,8 @@ class EltenGameRoom < Program
       when :invitations
         switch_to_invited_table
         reset_lobby_activity_cursor
+      when :room_activity
+        show_room_activity
       when :reject_invitation
         show_pending_invitations(mode: :reject)
         reset_lobby_activity_cursor
@@ -643,8 +758,10 @@ class EltenGameRoom < Program
     when 5
       show_leaderboards
     when 6
-      show_settings
+      show_statistics
     when 7
+      show_settings
+    when 8
       show_changelog
     end
   end
@@ -661,6 +778,39 @@ class EltenGameRoom < Program
     client&.run
   ensure
     client&.close
+  end
+
+  def show_room_activity
+    user = Session.name.to_s.dup.freeze
+    GameRoomPresenceScreen.new(program: self, reader: -> {
+      read_statistics do |token|
+        next unless !user.empty? && GameRoomParticipants.same?(Session.name, user)
+        collector = self.class.room_presence_collector
+        if collector
+          GameRoomClock.synchronize
+          collector.store.report(cancellation_token: token)
+        end
+      end
+    }).run
+  end
+
+  def show_statistics
+    service = self.class.statistics_service
+    GameRoomStatisticsScreen.new(
+      program: self,
+      registry: GAME_REGISTRY,
+      reader: ->(period) { read_statistics { |token| service&.store&.report(period, cancellation_token: token) } },
+      years_reader: -> { read_statistics { |token| service&.store&.years(today: GameRoomStatistics::Periods.today, cancellation_token: token) } }
+    ).run
+  end
+
+  def read_statistics
+    return nil unless self.class.analytics_enabled?
+    EltenAPI::Tasks.run(title: _("Loading statistics"), cancellable: true, show_after: 5.0) do |_progress, token|
+      next unless self.class.analytics_enabled?
+      token.raise_if_cancelled!
+      yield token
+    end
   end
 
   def bind_game_room_shortcuts(form, game, &dispatch)
@@ -2100,6 +2250,7 @@ class EltenGameRoom < Program
       program: self,
       loader: -> { load_widget_table_snapshots },
       opener: ->(snapshot) { open_widget_table(snapshot) },
+      on_visit: -> { record_statistics_visit },
       creator: ->(slot) { create_table_from_widget(slot) },
       invitations: -> { accept_invitation_from_widget },
       labeler: ->(snapshot) { widget_table_label(snapshot) },
@@ -2193,6 +2344,7 @@ class EltenGameRoom < Program
 
   def prepare_widget_program
     initialize_services
+    record_statistics_visit
     if @widget_program_prepared != true
       check_server_table_access
       run_network_task(_("Connecting to Elten"), silent: true) do
@@ -2320,6 +2472,7 @@ class EltenGameRoom < Program
   end
 
   def open_new_table_notification(notification)
+    record_statistics_visit
     receiver = self.class.table_watch_receiver
     initialize_services
     result = run_network_task(_("Checking table")) do
@@ -2598,6 +2751,7 @@ class EltenGameRoom < Program
     row = refreshed_room.table
 
     previous_id = state.session_id(@games)
+    statistics_service = self.class.statistics_service
     result = run_network_task(_("Starting game")) do
       guard = game.build_start_guard(self, user: Session.name, **game_local_services)
       if guard != nil
@@ -2612,6 +2766,7 @@ class EltenGameRoom < Program
         recipients: refreshed_room.members,
         expected_previous_session_id: previous_id
       )
+      record_statistics_start(started, game, service: statistics_service) if started != nil
       @lobby.set_game_active(row, true, snapshot: refreshed_room) if started != nil
       started
     end
@@ -2746,6 +2901,8 @@ class EltenGameRoom < Program
   def load_room_state(row, title:, synchronizer: nil, ui: nil, force: false)
     return :unavailable if synchronizer != nil && synchronizer.waiting?
 
+    statistics_service = self.class.statistics_service
+    statistics_viewer = Session.name.to_s.dup.freeze
     payload = run_network_task(title, ui: ui) do
       operation = lambda do
         room = force ? @lobby.snapshot_for(row, force: true) : @lobby.snapshot_for(row)
@@ -2776,6 +2933,9 @@ class EltenGameRoom < Program
       nil
     else
       game.replay(game_snapshot.session, game_snapshot.events, @games)
+    end
+    if replay != nil
+      statistics_observer_for(game, service: statistics_service, viewer: statistics_viewer)&.call(game_snapshot.session, replay)
     end
     players = game_snapshot == nil ? [] : @games.players_for(game_snapshot.session)
     GameRoomLifecycle::State.new(
@@ -2833,6 +2993,7 @@ class EltenGameRoom < Program
       invite_contacts: ->(current_table) { show_invite_users(current_table, source: :contacts) },
       membership_tracker: room_membership_tracker(table),
       game_status_changed: ->(current_table, active) { @lobby.set_game_active(current_table, active) },
+      statistics_observer: statistics_observer_for(game),
       activity_repository: @table_activity,
       game_name: ->(id) { game_name(id) },
       send_chat: ->(current_table, message, _users) do

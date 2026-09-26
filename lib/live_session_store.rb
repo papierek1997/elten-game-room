@@ -8,6 +8,8 @@ require_relative "game_participants"
 require_relative "network_errors"
 require_relative "game_session_clock"
 require_relative "table_control"
+require_relative "game_statistics_identity"
+require_relative "game_room_presence_identity"
 
 # The authoritative, ephemeral state of one Game Room table lives in one
 # discoverable LiveSession.  Every mutation is appended to the session stack;
@@ -133,6 +135,7 @@ class GameRoomLiveSessionStore
       # Earlier clients must not join and silently ignore a clock/timeout event.
       "protocol" => CURRENT_DISCOVERY_PROTOCOL,
       "table_id" => table_id,
+      "statistics_room_id" => GameRoomPresence::Identity.create,
       "owner" => owner.to_s,
       "name" => name.to_s,
       "game" => game.to_s,
@@ -226,22 +229,22 @@ class GameRoomLiveSessionStore
     table['bot_players'] || GameRoomParticipants.bots_for(table_id, table['bot_count'].to_i, names: table['bot_names'])
   end
 
-  def room_snapshot(table_or_id, force: false)
+  def room_snapshot(table_or_id, force: false, read_only: false, **read_options)
     table_id = table_identifier(table_or_id)
     return nil if table_id == nil
 
-    ensure_current(table_id, force: force)
+    ensure_current(table_id, force: force, **read_options)
     session = active_session(table_id)
     return nil if session == nil
 
-    reconcile_control_owner(table_id)
+    reconcile_control_owner(table_id) unless read_only
     table = table_for(table_id)
     return nil if table == nil || !%w[waiting playing].include?(table["status"].to_s)
 
     members = connected_users(table_id)
     owner = table["owner"].to_s
     members.sort_by! { |member| same_user?(member, owner) ? 0 : 1 }
-    publish_discovery(table_id)
+    publish_discovery(table_id) unless read_only
     {
       table: table,
       members: unique_users(members),
@@ -616,6 +619,12 @@ class GameRoomLiveSessionStore
   def start_game(table:, game:, players:, options:, actor:, restore: nil)
     table_id = table_identifier(table)
     raise ArgumentError, "Invalid room" if table_id == nil
+    if restore && restore.key?(:statistics)
+      unless GameRoomStatistics::Identity.valid?(restore[:statistics], require_started_at: true)
+        raise ArgumentError, 'Invalid restored statistics identity'
+      end
+      statistics = GameRoomStatistics::Identity.copy(restore[:statistics])
+    end
     archive = restore && (restore.fetch(:events) + restore.fetch(:seat_changes, [])).sort_by { |item| item['id'] }
     if archive && archive.length > MAX_ARCHIVE_EVENTS
       raise ArgumentError, "The saved game is too large to restore safely"
@@ -667,7 +676,9 @@ class GameRoomLiveSessionStore
       "options" => options.to_s,
       "created_at" => GameRoomClock.now.to_i
     }
+    payload['statistics'] = GameRoomStatistics::Identity.create(players: requested_players) unless restore
     if restore != nil
+      payload['statistics'] = statistics if statistics
       payload['controllers'] = restored_controllers unless restored_controllers.empty?
       payload['initial_players'] = restore.fetch(:initial_players, requested_players)
       payload.merge!("archive_id" => archive_id, "archive_events" => archive.length,
@@ -1183,7 +1194,7 @@ class GameRoomLiveSessionStore
     session
   end
 
-  def ensure_current(table_id, force: false)
+  def ensure_current(table_id, force: false, cancellation_token: nil, timeout: nil)
     begin_room_io(table_id)
     session = active_session(table_id)
     return false if session == nil || !session.respond_to?(:stack_read)
@@ -1192,8 +1203,12 @@ class GameRoomLiveSessionStore
     cursor = @mutex.synchronize { @stack_cursors[table_id].to_i }
     return true if !force && last_sequence <= cursor
 
+    read_options = {}
+    read_options[:cancellation_token] = cancellation_token if cancellation_token
+    read_options[:timeout] = timeout if timeout
     loop do
-      page = session.stack_read(after: cursor, limit: STACK_PAGE_SIZE)
+      cancellation_token&.raise_if_cancelled!
+      page = session.stack_read(after: cursor, limit: STACK_PAGE_SIZE, **read_options)
       return false unless @mutex.synchronize { @sessions[table_id].equal?(session) }
       Array(page["entries"]).each do |entry|
         sender = if entry["sender"].is_a?(Hash)
@@ -1518,6 +1533,9 @@ class GameRoomLiveSessionStore
     row["created_at"] = metadata["created_at"].to_i if row["created_at"].to_i <= 0 && metadata
     row["updated_at"] = row["created_at"].to_i if row["updated_at"].to_i <= 0
     row["__live_session_id"] = session.id.to_s if session&.respond_to?(:id)
+    row.delete('__statistics_room_id')
+    identity = metadata['statistics_room_id']
+    row['__statistics_room_id'] = identity.dup.freeze if GameRoomPresence::Identity.valid?(identity)
     row
   end
 
@@ -1620,7 +1638,7 @@ class GameRoomLiveSessionStore
     end
     players = ledger.players(id, initial: players)
 
-    {
+    session = {
       "__id" => id,
       "id" => id,
       "__insertion_user" => record.sender.to_s,
@@ -1652,6 +1670,10 @@ class GameRoomLiveSessionStore
       "__frozen" => clock[:frozen_at] != nil,
       "__aborted" => game_aborted?(record.table_id, id)
     }
+    if data.key?('statistics')
+      session['__statistics'] = GameRoomStatistics::Identity.copy(data['statistics'], started_at: record.created_at.to_i)
+    end
+    session
   end
 
   def game_clock_state(table_id, session_id, offset)
@@ -1839,6 +1861,7 @@ class GameRoomLiveSessionStore
   # defaults just to fit the public description.
   def compact_discovery(metadata)
     result = metadata.dup
+    result.delete('statistics_room_id')
     if result.key?('game_options')
       options = result['game_options'].to_s
       raise ArgumentError, 'Game options are too large' if options.bytesize > MAX_OPTIONS_BYTES

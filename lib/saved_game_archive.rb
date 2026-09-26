@@ -6,6 +6,7 @@ require_relative "live_session_store"
 require_relative "game_session_clock"
 require_relative "hidden_submissions"
 require_relative "participant_replay"
+require_relative "game_statistics_identity"
 
 # JSON archive format and validation shared by explicit storage adapters.
 class GameRoomSavedGameArchive
@@ -40,6 +41,9 @@ class GameRoomSavedGameArchive
           "value" => event["value"].to_s, "created_at" => event["created_at"].to_i }
       end
     }
+    if snapshot.session.key?('__statistics')
+      row['statistics'] = GameRoomStatistics::Identity.copy(snapshot.session['__statistics'])
+    end
     controllers = snapshot.session.fetch('__controllers', {})
     row['controllers'] = controllers.dup unless controllers.empty?
     unless snapshot.session.fetch('__seat_changes', []).empty?
@@ -61,6 +65,9 @@ class GameRoomSavedGameArchive
     raise ArgumentError, "Incompatible saved game" unless row.is_a?(Hash) && row["format"] == FORMAT &&
       row["game"] == game.id && row["game_schema"] == game.saved_game_schema_version &&
       GameRoomParticipants.same?(row["owner"], @owner) && row["checksum"] == checksum(row)
+    if row.key?('statistics') && !GameRoomStatistics::Identity.valid?(row['statistics'], require_started_at: true)
+      raise ArgumentError, 'Invalid saved statistics identity'
+    end
     players = row["players"]
     raise ArgumentError, "Invalid saved seats" unless players.is_a?(Array) && players.length.between?(game.minimum_players, game.maximum_players) &&
       players.all? { |player| player.is_a?(String) && player.length.between?(1, 64) } && GameRoomParticipants.unique(players).length == players.length
@@ -118,6 +125,7 @@ class GameRoomSavedGameArchive
       events: row["events"].map { |event| event.merge("actor" => mapping.fetch(event["actor"].downcase), "value" => game.restored_event_value(event, mapping)) },
       clock_offset: now.to_i - row["game_time"].to_i, game_time: row["game_time"].to_i
     }
+    restored[:statistics] = GameRoomStatistics::Identity.copy(row['statistics']) if row.key?('statistics')
     replay = game.replay({ '__players' => restored[:players], '__initial_players' => restored[:initial_players],
       '__seat_changes' => restored[:seat_changes], 'options' => row['options'] }, restored[:events], ReplayRepository.new)
     raise ArgumentError, "Incompatible saved game seats" unless replay.accepted_events.length == row["events"].length

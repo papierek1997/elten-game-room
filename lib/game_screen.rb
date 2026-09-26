@@ -38,6 +38,7 @@ class GameScreen
     invite_contacts: nil,
     membership_tracker: nil,
     game_status_changed: nil,
+    statistics_observer: nil,
     activity_repository: nil,
     game_name: nil,
     send_chat: nil,
@@ -72,6 +73,7 @@ class GameScreen
     @invite_contacts = invite_contacts
     @membership_tracker = membership_tracker
     @game_status_changed = game_status_changed
+    @statistics_observer = statistics_observer
     @activity_repository = activity_repository
     @game_name = game_name || ->(id) { id.to_s }
     @send_chat = send_chat
@@ -243,6 +245,7 @@ class GameScreen
         end
         next if changed
       end
+      @statistics_observer&.call(@session, replay) unless using_cached_payload
       @game_client.update_table_control(@session) if @game_client&.respond_to?(:update_table_control)
       @game_client&.before_wait(replay, Session.name)
       synchronize_table_status(replay) if !using_cached_payload && !@session_runner
@@ -400,7 +403,7 @@ class GameScreen
     @session_runner = GameRoomSessionRunner.new(program: @program, transport: transport,
       repository: @repository, game: @game, session: @session, table: @table,
       owner: @table_owner, viewer: Session.name, room_snapshot_provider: @room_snapshot_provider,
-      context: action_context, game_status_changed: @game_status_changed,
+      context: action_context, game_status_changed: @game_status_changed, statistics_observer: @statistics_observer,
       activity_repository: @activity_repository, covered: @runner_covered).start
     @background_presentation = GameRoomBackgroundPresentation.attach(self,
       program: @program, runner: @session_runner, key: [@program.class, table_id, Session.name.to_s.downcase])

@@ -14,8 +14,9 @@ module GameRoomWidget
     include GameRoomUI::PingControl
     attr_reader :snapshots
 
-    def initialize(loader:, opener:, labeler:, id_for:, active: -> { true }, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) }, worker: nil, foreground: nil, manual_refresh: -> {}, creator: nil, invitations: nil, program: nil)
+    def initialize(loader:, opener:, labeler:, id_for:, active: -> { true }, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) }, worker: nil, foreground: nil, manual_refresh: -> {}, creator: nil, invitations: nil, program: nil, on_visit: nil)
       @game_room_program = program
+      @on_visit = on_visit
       @loader = loader
       @opener = opener
       @labeler = labeler
@@ -53,6 +54,7 @@ module GameRoomWidget
       # ListBox focuses its selected row while handling arrows. Only a host
       # entry from outside update is a real tab entry, not list navigation.
       if !@updating && active?
+        @on_visit&.call
         # Preserve the original order: fetch, replace rows, then let the host
         # read the selected row. Only periodic/manual refresh runs in the
         # background; Tab must not present a previous visit's rows as current.

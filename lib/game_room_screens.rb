@@ -114,28 +114,29 @@ module GameRoomScreens
         action = :exit
         form.resume
       end
+      context_entries = [[:room_activity, _("Current room activity"), "w", "Ctrl+W"]]
       if @invitations
-        invitation_entries = [
+        context_entries.concat([
           [:invitations, _("Accept invitation"), "j", "Ctrl+J"],
           [:reject_invitation, _("Reject invitation"), "J", "Ctrl+Shift+J"]
-        ]
-        options.disable_contextinglobal
-        options.bind_context do |menu|
-          invitation_entries.each do |requested, label, key, _help_key|
-            menu.option(label, nil, key) do
-              next if action != nil
+        ])
+      end
+      options.disable_contextinglobal
+      options.bind_context do |menu|
+        context_entries.each do |requested, label, key, _help_key|
+          menu.option(GameRoomContent.utf8(label), nil, key) do
+            next if action != nil
 
-              @index = options.index.to_i
-              action = requested
-              form.resume
-            end
+            @index = options.index.to_i
+            action = requested
+            form.resume
           end
         end
-        help_tips = invitation_entries.map do |_requested, label, _key, help_key|
-          GameRoomContextHelp.shortcut_tip(help_key, label)
-        end
-        GameRoomContextHelp.replace([options, history], help_tips)
       end
+      help_tips = context_entries.map do |_requested, label, _key, help_key|
+        GameRoomContextHelp.shortcut_tip(help_key, label)
+      end
+      GameRoomContextHelp.replace([options, history], help_tips)
       if @refresh != nil
         form.add_timer(FormTimer.new(0.5, repeat: true) do
           changed = if @refresh.arity == 0

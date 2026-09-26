@@ -1,5 +1,6 @@
 require 'json'
 require_relative 'table_control'
+require_relative 'game_statistics_identity'
 
 # Pure stack validation. Only earlier accepted starts enter the index; neither
 # future starts nor rejected authors can grant permission to a game action.
@@ -66,6 +67,7 @@ class GameRoomLiveSessionStore
           %w[message owner game].all? { |key| data[key].is_a?(String) }
       when "game_started"
         return false if !same_user?(sender, owner) || !same_user?(actor, owner)
+        return false if data.key?('statistics') && !GameRoomStatistics::Identity.valid?(data['statistics'])
 
         if data.key?("archive_id")
           return false unless nonempty_text?(data["archive_id"]) && data["archive_id"].length <= 64 &&

@@ -96,8 +96,8 @@ class GameRoomTransport
     @live_store.current_room(user)
   end
 
-  def room_snapshot(table_or_id, force: false)
-    @live_store.room_snapshot(table_or_id, force: force)
+  def room_snapshot(table_or_id, force: false, **options)
+    @live_store.room_snapshot(table_or_id, force: force, **options)
   end
 
   def transfer_room_owner(table_or_id, user, control_guard: nil)

@@ -67,7 +67,7 @@ class GameRoomSessionRunner
 
   def initialize(program:, transport:, repository:, game:, session:, table:,
     owner:, viewer:, room_snapshot_provider:, context:, game_status_changed: nil,
-    covered: nil, activity_repository: nil)
+    covered: nil, activity_repository: nil, statistics_observer: nil)
     @program, @transport, @repository = program, transport, repository
     @game = game.build_session_game
     @session, @table = copy(session), copy(table)
@@ -75,6 +75,7 @@ class GameRoomSessionRunner
     @table_id = (table["__id"] || table["id"]).to_i
     @room_snapshot_provider, @game_status_changed = room_snapshot_provider, game_status_changed
     @activity_repository = activity_repository
+    @statistics_observer = statistics_observer
     @context_template = context
     @clock = GameRoomSessionClock.new
     @coordinator = GameRoomBots::Coordinator.new
@@ -305,6 +306,7 @@ class GameRoomSessionRunner
         room = @room_snapshot_provider.call || room
         @room, @table = room, copy(room.table)
       end
+      @statistics_observer&.call(@session, @replay)
       @turn.observe(session_id: @repository.session_id(@session), events: snapshot.events,
         confirmed_event_ids: @repository.confirmed_event_ids(@session), verified: force)
       presentation = copy({session: @session, table: @table, replay: @replay, members: room.members,
