@@ -6,7 +6,7 @@ def assert(value, message); raise message unless value; end
 
 files = QuizTextExport.files
 packs = GameRoomContent.registry.packs.select { |pack| pack.kind.to_s == 'quiz' }
-assert(packs.size >= 5, 'Expected the five current quiz sets')
+assert(packs.size >= 6, 'Expected the six current quiz sets')
 assert(files.size == packs.size, 'Not every quiz set was exported')
 assert(!GameRoomReleaseFiles.allowed?('tools/export-quiz-text.rb'), 'Exporter must not enter the installer')
 files.each_key { |name| assert(!GameRoomReleaseFiles.allowed?("docs/quiz-questions/#{name}"), 'Review TXT must not enter the installer') }

@@ -17,6 +17,13 @@ changes “All/None of the above” to “All/None of these” for shuffled opti
 and excludes questions depending on a previous question. The modified
 English data retain the same license.
 
+## Russian
+
+The Russian general-knowledge pack is an original editorial set prepared for
+ELTEN Game Room and released under CC0-1.0. It does not translate or derive
+questions from the English or Polish imports. The source intentionally writes
+the letter «ё» wherever standard Russian spelling requires it.
+
 ## Polish imports
 
 The PR declares the Wikidata pack as CC0-1.0, credited to “ELTEN Game Room”,

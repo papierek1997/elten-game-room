@@ -18,3 +18,6 @@ Kolejność odpowiedzi w TXT jest stała, ale może być inna niż podczas parti
 Eksport nie zmienia pytań, losowania ani stanu gry. Pliki są w UTF-8.
 Materiały te nie trafiają do instalatora. Pochodzenie i licencje treści
 pozostają takie same jak dla odpowiednich zestawów w `content/`.
+
+Rosyjski zestaw używa nagłówka `Правильный ответ` i zachowuje literę
+`ё` wszędzie tam, gdzie wymaga jej standardowa rosyjska pisownia.

@@ -30,6 +30,7 @@ require "json"
 require_relative "../lib/game_content"
 require_relative "../content/languages"
 require_relative "../content/quiz_general_en"
+require_relative "../content/quiz_general_ru"
 require_relative "../content/quiz_pl_wikidata"
 require_relative "../content/quiz_witcher_pl"
 require_relative "../games/quiz_party"
@@ -59,7 +60,7 @@ assert(keys.include?("content_language_id"), "the table cannot choose a question
 polish_pack = GameRoomContent.registry.pack("quiz.wikidata.pl")
 packs = %w[
   quiz.wikidata.pl quiz.witcher.pl quiz.witcher.g.pl
-  quiz.witcher.b.pl quiz.general.en
+  quiz.witcher.b.pl quiz.general.en quiz.general.ru
 ].map { |id| GameRoomContent.registry.pack(id) }
 assert(packs.all? { |pack| pack && !pack.verified? }, "rules/defaults/options eagerly loaded a question database")
 audit = JSON.parse(File.read(File.expand_path("../content/QUIZ_IMPORT_REPORT.json", __dir__), encoding: "UTF-8"))["packs"]
@@ -142,6 +143,11 @@ assert((english_pack.data["questions"].map { |q| q["id"] } & removed).empty?, "a
 assert(english_pack.data["questions"].map { |question| question["category"] }.uniq.length == 20, "the English question pack lost its categories")
 assert(GameRoomContent.registry.pack_set("quiz.general").language_ids == ["en"], "the removed Polish general variant is still registered")
 
+russian_pack = GameRoomContent.registry.pack("quiz.general.ru")
+assert(russian_pack != nil && russian_pack.language_id == "ru-RU", "the Russian question pack is not registered")
+assert(russian_pack.data["questions"].length == 36 && russian_pack.verified?, "the Russian question pack failed lazy verification")
+assert(game.send(:available_content_sets, "ru-RU").map(&:id) == ["quiz.general.ru"], "Russian does not offer its question set")
+
 GameRoomContent.registry.register_language(
   GameRoomContent::LanguageProfile.new(
     id: "it-IT",
@@ -195,7 +201,7 @@ GameRoomContent.registry.register_pack(
 fresh = GameRoomGames::QuizParty.new
 language_choices = fresh.effective_option_definitions
   .find { |definition| definition.key == "content_language_id" }.choices.map(&:value)
-assert(language_choices.sort == ["en", "it-IT", "pl-PL"], "a newly installed language did not appear as a table choice: #{language_choices.inspect}")
+assert(language_choices.sort == ["en", "it-IT", "pl-PL", "ru-RU"], "a newly installed language did not appear as a table choice: #{language_choices.inspect}")
 
 italian = fresh.normalize_options(
   "content_set_id" => "quiz.general",

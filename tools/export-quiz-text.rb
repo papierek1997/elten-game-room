@@ -4,6 +4,7 @@ require 'digest'
 require 'fileutils'
 require_relative '../content/languages'
 require_relative '../content/quiz_general_en'
+require_relative '../content/quiz_general_ru'
 require_relative '../content/quiz_pl_wikidata'
 require_relative '../content/quiz_witcher_pl'
 
@@ -11,6 +12,7 @@ module QuizTextExport
   DIRECTORY = File.expand_path('../docs/quiz-questions', __dir__)
   NAMES = {
     'quiz.general.en' => 'general-knowledge-en.txt',
+    'quiz.general.ru' => 'obshchie-znaniya-ru.txt',
     'quiz.wikidata.pl' => 'wiedza-ogolna-pl.txt',
     'quiz.witcher.pl' => 'wiedzmin-pelny-pl.txt',
     'quiz.witcher.g.pl' => 'wiedzmin-gry-pl.txt',
@@ -27,8 +29,13 @@ module QuizTextExport
   end
 
   def render(pack)
-    english = pack.language_id.start_with?('en')
-    heading = english ? 'Correct answer' : 'Poprawna odpowiedź'
+    heading = if pack.language_id.start_with?('en')
+      'Correct answer'
+    elsif pack.language_id.start_with?('ru')
+      'Правильный ответ'
+    else
+      'Poprawna odpowiedź'
+    end
     lines = [pack.title, '']
     pack.data.fetch('questions').each do |question|
       values = answers(question)

@@ -18,3 +18,12 @@ GameRoomContent.registry.register_language(
     normalizer: ->(text) { text.downcase }
   )
 )
+
+GameRoomContent.registry.register_language(
+  GameRoomContent::LanguageProfile.new(
+    id: "ru-RU",
+    label: GameRoomLocalization.translate("Russian"),
+    alphabet: %w[а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я],
+    normalizer: ->(text) { text.downcase }
+  )
+)
