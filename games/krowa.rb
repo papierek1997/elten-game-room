@@ -16,7 +16,8 @@ module GameRoomGames
     include KrowaPresentation
     include KrowaSavedSecret
 
-    TOWER_ATTEMPTS_PER_LETTER = 8
+    TOWER_ATTEMPT_LIMITS = {3 => 15, 4 => 24, 5 => 30,
+      6 => 42, 7 => 49, 8 => 64}.freeze
 
     def initialize(bank: KrowaWordBank.default)
       @bank = bank
@@ -119,7 +120,7 @@ module GameRoomGames
     end
 
     def tower_attempt_limit(length)
-      length * TOWER_ATTEMPTS_PER_LETTER
+      TOWER_ATTEMPT_LIMITS.fetch(length.to_i)
     end
 
     def save_game_error(replay)
@@ -168,8 +169,8 @@ module GameRoomGames
       length = options["length"].to_i.zero? ? _("random length") : _("%{count} letters") % {count: options["length"]}
       score = options["race_scoring"] == "time" ? _("by time") : _("by number of attempts")
       return _("%{variant}; 3 to 9 letters") % {variant: label} if options["variant"] == "daily"
-      return _("%{variant}; 3 to 8 letters; %{count} attempts per letter") % {
-        variant: label, count: TOWER_ATTEMPTS_PER_LETTER
+      return _("%{variant}; 3 to 8 letters; attempt limit depends on word length") % {
+        variant: label
       } if options["variant"] == "tower"
       options["variant"] == "race" ? "#{label}; #{length}; #{score}" : "#{label}; #{length}"
     end
@@ -283,7 +284,7 @@ module GameRoomGames
         missing_secret: _("The saved secret is unavailable. The game cannot check attempts until it is restored."),
         local_storage_unavailable: _("The secret could not be saved locally. The word has not been started; please try again."),
         clock: _("Could not retrieve the server time."), stale: _("Another word has already started."),
-        add_word_unavailable: _("Custom words can be added only in a single-player Daily Krowa or Random word game.")
+        add_word_unavailable: _("Custom words can be added only in a single-player Random word game.")
       }.fetch(status) { super }
     end
 
@@ -305,7 +306,7 @@ module GameRoomGames
     def tower?(state); state[:options]["variant"] == "tower"; end
     def owner?(state, actor); same_user?(state[:players].first, actor); end
     def user_vocabulary_allowed?(state)
-      state[:players].length == 1 && %w[random daily].include?(state[:options]["variant"])
+      state[:players].length == 1 && state[:options]["variant"] == "random"
     end
 
     def solo_variant?(state)

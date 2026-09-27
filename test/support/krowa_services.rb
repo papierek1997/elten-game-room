@@ -35,6 +35,21 @@ class KrowaTestTables
     def select(where: {}, order: [], limit: 500, offset: 0, **extra)
       @queries << {where: where, order: order, limit: limit, offset: offset}.merge(extra)
       selected = @rows.select { |row| where.all? { |key, value| row[key] == value } }
+      if extra[:group_by]
+        keys = Array(extra[:group_by])
+        selected = selected.group_by { |row| keys.map { |key| row[key] } }.map do |values, members|
+          aggregate = keys.zip(values).to_h
+          extra.fetch(:aggregates, {}).each do |name, spec|
+            values = members.map { |row| row[spec.fetch("column")] }
+            aggregate[name] = case spec.fetch("function")
+            when "min" then values.min
+            when "max" then values.max
+            when "count" then values.length
+            end
+          end
+          aggregate
+        end
+      end
       order.reverse_each { |key, direction| selected = selected.sort_by { |row| row[key] }; selected.reverse! if direction == "desc" }
       selected.drop(offset).first(limit)
     end

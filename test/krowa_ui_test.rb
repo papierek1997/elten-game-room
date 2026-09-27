@@ -16,6 +16,7 @@ screen.define_singleton_method(:getkeychar) { "" }
 {
   game: game, repository: run.repository, session: run.session, table: row,
   table_owner: "Alice", room_snapshot: room, surface_state: {},
+  board_preferences: GameRoomBoardPreferences.new(run.program, game.id),
   history_navigator: GameRoomHistory::Navigator.new, bot_turn_controller: controller,
   turn_history_entries: {}, activity_entries: []
 }.each { |key, value| screen.instance_variable_set("@#{key}", value) }

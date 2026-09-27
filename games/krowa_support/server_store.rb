@@ -1,12 +1,14 @@
 # encoding: UTF-8
 
 require "json"
+require "date"
 
 module GameRoomGames
   # Persistent, account-aware Krowa data. Match state still belongs exclusively
   # to Game Room events; these tables contain availability and published scores.
   class KrowaServerStore
     DAILY_TABLE = "krowa_daily_completions".freeze
+    DAILY_SCORES_TABLE = "krowa_daily_scores".freeze
     WORD_TABLE = "krowa_word_scores".freeze
     TOWER_TABLE = "krowa_tower_scores".freeze
     TOWER_ROUNDS_TABLE = "krowa_tower_rounds".freeze
@@ -94,6 +96,71 @@ module GameRoomGames
         "day_key" => date_key(date),
         "status" => solved ? DAILY_SOLVED : DAILY_SURRENDERED
       ) != nil
+    end
+
+    # Daily results are separate from per-word scores: today's solution must
+    # never be present in a public leaderboard record.
+    def publish_daily(date_id, attempts)
+      date = normalized_date(date_id)
+      count = attempts.to_i
+      return :unavailable if date == nil || count <= 0 || !available? || !daily_completed?(date)
+
+      own = daily_scores_table.select(
+        where: {"day_key" => date_key(date), "__insertion_user" => @user},
+        order: [["attempts", "asc"]], limit: 1
+      ).to_a.first
+      return :unchanged if own && own["attempts"].to_i <= count
+
+      inserted = daily_scores_table.insert("day_key" => date_key(date), "attempts" => count)
+      inserted == nil ? :unavailable : :published
+    end
+
+    def daily_ranking(date_id, limit: nil)
+      date = normalized_date(date_id)
+      return [] if date == nil || !available?
+
+      rows = []
+      offset = 0
+      loop do
+        page_limit = limit ? [500, [limit.to_i, 1].max - rows.length].min : 500
+        page = daily_scores_table.select(
+          where: {"day_key" => date_key(date)},
+          columns: ["__insertion_user"], group_by: ["__insertion_user"],
+          aggregates: {"attempts" => {"function" => "min", "column" => "attempts"}},
+          order: [["attempts", "asc"], ["__insertion_user", "asc"]],
+          limit: page_limit, offset: offset
+        ).to_a
+        rows.concat(page)
+        offset += page.length
+        break if page.length < page_limit || (limit && rows.length >= limit.to_i)
+      end
+      rows
+    end
+
+    def daily_days(limit: nil)
+      return [] unless available?
+
+      days = []
+      offset = 0
+      loop do
+        page_limit = limit ? [500, [limit.to_i, 1].max - days.length].min : 500
+        page = daily_scores_table.select(
+          columns: ["day_key"], group_by: ["day_key"],
+          aggregates: {"results" => {"function" => "count", "column" => "__id"}},
+          order: [["day_key", "desc"]], limit: page_limit, offset: offset
+        ).to_a
+        days.concat(page.filter_map { |row| date_from_key(row["day_key"]) })
+        offset += page.length
+        break if page.length < page_limit || (limit && days.length >= limit.to_i)
+      end
+      days.uniq
+    end
+
+    def daily_word(date_id)
+      date = normalized_date(date_id)
+      return nil if date == nil
+
+      @bank.daily(Time.utc(*date.split("-").map(&:to_i), 12)).last
     end
 
     # Returns :published, :unchanged or :unavailable.
@@ -236,13 +303,23 @@ module GameRoomGames
     end
 
     def daily_table; @daily_table ||= @server_tables.fetch(DAILY_TABLE); end
+    def daily_scores_table; @daily_scores_table ||= @server_tables.fetch(DAILY_SCORES_TABLE); end
     def word_table; @word_table ||= @server_tables.fetch(WORD_TABLE); end
     def tower_table; @tower_table ||= @server_tables.fetch(TOWER_TABLE); end
     def tower_rounds_table; @tower_rounds_table ||= @server_tables.fetch(TOWER_ROUNDS_TABLE); end
 
     def normalized_date(value)
       text = value.to_s
-      /\A\d{4}-\d{2}-\d{2}\z/.match?(text) ? text : nil
+      return nil unless /\A\d{4}-\d{2}-\d{2}\z/.match?(text)
+      Date.iso8601(text).iso8601 == text ? text : nil
+    rescue Date::Error
+      nil
+    end
+
+    def date_from_key(value)
+      key = value.to_i.to_s
+      return nil unless /\A\d{8}\z/.match?(key)
+      normalized_date("#{key[0, 4]}-#{key[4, 2]}-#{key[6, 2]}")
     end
 
     def date_key(date)

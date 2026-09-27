@@ -98174,6 +98174,14 @@ module GameRoomKrowa
       fani
       fanka
       fanki
+      mural
+      murale
+      gej
+      geje
+      zapadnia
+      zapadnie
+      aronia
+      aronie
     KROWA_NOUNS
     WORDS.freeze
   end

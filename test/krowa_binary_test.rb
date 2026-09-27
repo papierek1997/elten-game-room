@@ -48,7 +48,7 @@ windows = 0
   end
 end
 repository = GameRoomKrowa::WordRepository.default
-raise "Original noun entries removed" unless repository.words.length == 98_170 && repository.words.uniq.length == 84_865
+raise "Noun entries lost or duplicated" unless repository.words.length == 98_178 && repository.words.uniq.length == 84_873
 raise "Polish nouns corrupted" unless repository.include?("żółć")
 provider = GameRoomKrowa::SjpDefinitionProvider.new(fetcher: ->(_uri) { '<p><b>znaczenie:</b></p></div><p>Żółć &amp; słowo.<br>Drugi wiersz.</p>'.b })
 raise "Binary SJP decoding" unless provider.definition_for("żółć") == "Żółć & słowo.\nDrugi wiersz."

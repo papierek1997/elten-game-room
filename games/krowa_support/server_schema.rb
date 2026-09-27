@@ -6,6 +6,11 @@ module GameRoomGames
         "permissions" => ["select", "insert"], "indexes" => [["day_key"]],
         "limits" => {"max_select_limit" => 500}
       },
+      "krowa_daily_scores" => {
+        "visibility" => "public", "columns" => {"day_key" => "integer", "attempts" => "integer"},
+        "permissions" => ["select", "insert"], "indexes" => [["day_key", "attempts"]],
+        "limits" => {"max_select_limit" => 500}
+      },
       "krowa_word_scores" => {
         "visibility" => "public", "columns" => {"word" => "string:32", "attempts" => "integer"},
         "permissions" => ["select", "insert"], "indexes" => [["word", "attempts"]],

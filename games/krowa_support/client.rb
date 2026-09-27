@@ -293,10 +293,14 @@ module GameRoomGames
       if %w[random daily].include?(variant) && replay.players.length == 1
         player, result = state[:results].find { |name, _value| @game.send(:same_user?, name, viewer) }
         return unless player && result[:solved]
-        key = "word:#{word}:#{result[:attempts]}:#{state[:started_ms]}"
+        key = "#{variant}:#{state[:day]}:#{word}:#{result[:attempts]}:#{state[:started_ms]}"
         return if @publication_offered[key]
         @publication_offered[key] = true
-        if confirm(_("Publish the result for %{word}: %{attempts} attempts?") % {word: word, attempts: result[:attempts]})
+        if variant == "daily"
+          if confirm(_("Publish your Daily Krowa result: %{attempts} attempts?") % {attempts: result[:attempts]})
+            @leaderboards.publish_daily(state[:day], result[:attempts])
+          end
+        elsif confirm(_("Publish the result for %{word}: %{attempts} attempts?") % {word: word, attempts: result[:attempts]})
           @leaderboards.publish_word(word, result[:attempts])
         end
         return

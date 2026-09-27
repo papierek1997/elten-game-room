@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 require_relative "server_store"
+require_relative "warsaw_date"
 
 require_relative "../../lib/game_room_localization"
 
@@ -28,6 +29,7 @@ module GameRoomGames
       index = 0
       options = [
         _("Search for a word"),
+        _("Daily Krowa leaderboard"),
         _("Word Tower leaderboard")
       ]
       loop do
@@ -47,7 +49,8 @@ module GameRoomGames
 
         case index
         when 0 then search_words
-        when 1 then show_tower_ranking
+        when 1 then show_daily_dates
+        when 2 then show_tower_ranking
         end
       end
     end
@@ -93,6 +96,23 @@ module GameRoomGames
       end
     end
 
+    def publish_daily(date_id, attempts)
+      result = network(_("Publishing Daily Krowa result")) { @store.publish_daily(date_id, attempts) }
+      case result
+      when :published
+        alert(_("Daily Krowa result published."))
+        show_daily_ranking(date_id)
+        true
+      when :unchanged
+        alert(_("The server already has the same or a better result."))
+        show_daily_ranking(date_id)
+        true
+      else
+        alert(_("Could not publish the Daily Krowa result."))
+        false
+      end
+    end
+
     def publish_tower(run_code:, participants:, rounds:)
       result = network(_("Publishing Word Tower result")) do
         @store.publish_tower(run_code: run_code, participants: participants, rounds: rounds)
@@ -115,6 +135,66 @@ module GameRoomGames
     def close; end
 
     private
+
+    def show_daily_dates
+      today = network(_("Checking server date")) do
+        GameRoomClock.synchronize
+        raise "Unconfirmed server time" unless GameRoomClock.synchronized?
+        GameRoomKrowa::WarsawDate.today_id(clock: -> { Time.at(GameRoomClock.now).utc })
+      end
+      return if today == nil
+
+      dates = network(_("Loading Daily Krowa dates")) { @store.daily_days }
+      return if dates == nil
+      dates = ([today] + dates.select { |date| date <= today }).uniq.sort.reverse
+      rows = daily_date_rows(dates, today)
+      selected = show_table(
+        [_('Date'), _('Word')], rows, header: _("Daily Krowa leaderboard"),
+        empty_label: _("No daily results")
+      )
+      show_daily_ranking(dates[selected], today: today) if selected != nil
+    end
+
+    def show_daily_ranking(date_id, today: nil)
+      date = date_id.to_s
+      results = network(_("Loading Daily Krowa leaderboard")) { @store.daily_ranking(date) }
+      return if results == nil
+
+      previous_attempts = nil
+      previous_rank = 0
+      rows = results.each_with_index.map do |result, index|
+        attempts = result["attempts"].to_i
+        rank = attempts == previous_attempts ? previous_rank : index + 1
+        previous_attempts = attempts
+        previous_rank = rank
+        [rank.to_s, result["__insertion_user"].to_s, attempts.to_s]
+      end
+      # A direct post-publication view also needs confirmed server time before
+      # an old solution can be revealed.
+      today ||= network(_("Checking server date")) do
+        GameRoomClock.synchronize
+        raise "Unconfirmed server time" unless GameRoomClock.synchronized?
+        GameRoomKrowa::WarsawDate.today_id(clock: -> { Time.at(GameRoomClock.now).utc })
+      end
+      return if today == nil
+      header = daily_ranking_header(date, today)
+      show_table(
+        [_('Place'), _('User'), _('Attempts')], rows,
+        header: header, empty_label: _("No published results"), selectable: false
+      )
+    end
+
+    def daily_date_rows(dates, today)
+      dates.map { |date| [date, date < today ? @store.daily_word(date).to_s : ""] }
+    end
+
+    def daily_ranking_header(date, today)
+      if date < today
+        _("Daily Krowa: %{date}, %{word}") % {date: date, word: @store.daily_word(date)}
+      else
+        _("Daily Krowa: %{date}") % {date: date}
+      end
+    end
 
     def search_words
       query = nil
