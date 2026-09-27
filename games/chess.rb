@@ -296,7 +296,7 @@ module GameRoomGames
       ]
       {
         "k" => ["king", _("king")],
-        "d" => ["queen", _("queen")],
+        "d" => ["queen", _("chess queen")],
         "r" => ["rook", _("rook")],
         "b" => ["bishop", _("bishop")],
         "n" => ["knight", _("knight")],
@@ -898,7 +898,7 @@ module GameRoomGames
       when "N" then _("knight")
       when "B" then _("bishop")
       when "R" then _("rook")
-      when "Q" then _("queen")
+      when "Q" then _("chess queen")
       when "K" then _("king")
       else kind.to_s
       end

@@ -7,11 +7,12 @@
   "build_id": "239",
   "EltenAPIVersion": "3.0.4",
   "main_language": "en",
-  "supported_languages": ["en", "pl", "cs", "es"],
+  "supported_languages": ["en", "pl", "cs", "es", "ru"],
   "localized_descriptions": {
     "pl": "Dostępne gry wieloosobowe dla użytkowników ELTEN-a.",
     "cs": "Přístupné hry pro více hráčů v ELTENu.",
-    "es": "Juegos multijugador accesibles para usuarios de ELTEN."
+    "es": "Juegos multijugador accesibles para usuarios de ELTEN.",
+    "ru": "Доступные многопользовательские игры для пользователей ELTEN."
   },
   "author": "papierek",
   "main": "__app.rb",

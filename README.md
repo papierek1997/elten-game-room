@@ -57,6 +57,13 @@ jest wyłącznie jawną zgodą na pomijanie opcjonalnych prób, nie ustawieniem 
 Pomocniki w `test/support/` nie powinny wykonywać scenariuszy innych testów.
 Szczegóły zakresu porządków: [MAINTAINABILITY_CLEANUP.md](docs/MAINTAINABILITY_CLEANUP.md).
 
+## Tłumaczenia
+
+Rosyjski katalog źródłowy i instrukcje jego sprawdzania opisuje
+[RUSSIAN_LOCALIZATION.md](docs/RUSSIAN_LOCALIZATION.md).
+Wszystkie rosyjskie tłumaczenia w `locale/RU.po` mają status `fuzzy`
+(wymagają przeglądu); katalog `locale/RU.mo` zawiera je do testowania w ELTEN-ie.
+
 ## Praca nad kodem
 
 Najważniejsze punkty wejścia:
