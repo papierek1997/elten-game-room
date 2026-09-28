@@ -101,10 +101,10 @@ assert(app.writes.zero? && app.stored == legacy, "widget refresh caused disk wri
 Form.widget_settings_driver = lambda do |form|
   list = form.fields.find { |field| field.is_a?(ListBox) && field.header == "Games shown on the main screen" }
   assert(list != nil, "widget game list is missing")
-  assert(list.multiselections.map { |index| current_ids[index] } == expected, "Settings displayed stale game selections")
+  assert(list.game_indices.map { |index| current_ids[index] } == expected, "Settings displayed stale game selections")
   # FakeControl's test helper only selects entries; clear the fake mask to
   # simulate unchecking a row without adding an API to the real control.
-  list.instance_variable_get(:@selected)[current_ids.index("domino")] = false
+  list.instance_variable_get(:@selected)[current_ids.index("domino") + GameRoomScreens::GameList::ACTION_ROWS] = false
   form.accept_button.trigger(:press)
 end
 app.send(:show_settings)

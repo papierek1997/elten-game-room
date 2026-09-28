@@ -73,22 +73,13 @@ begin
     wanted = {'auto_return'=>true, 'own_volume'=>75, 'opponent_volume'=>150, 'announcer_volume'=>40}
     assert(app.send(:pong_preferences) == wanted && state['pong'] == wanted, 'quick panel not persisted')
     assert(state['unrelated'] == 'keep' && state['table_watch_games'] == ['uno'] && network.zero?, 'local panel altered unrelated data')
-    # Main category reuses exactly these controls and values, without an
-    # intermediate settings button. Tab continues into the selected category.
     driver = lambda do |form|
-      categories = form.fields.first
-      pong_index = categories.options.index('Axel Pong')
-      assert(pong_index, 'missing Pong category')
-      categories.index = pong_index; categories.trigger(:move)
-      visible = form.fields - form.hidden_controls
-      pong = visible[1..4]
-      assert(pong[0].checked && pong[1..3].map(&:index) == [75, 150, 40], 'category differs from quick panel')
-      assert(pong[1..3].map(&:header) == expected_labels, 'different control definitions')
-      pong[1].index = 65
+      assert(!form.fields.first.options.include?('Axel Pong'), 'Game Room settings still list a Pong category')
+      assert(form.fields.none? { |field| expected_labels.include?(field.header.to_s) }, 'Game Room settings still contain Pong controls')
       form.accept_button.trigger(:press)
     end
     edited = GameRoomScreens::Settings.new(app.send(:game_room_settings), games: [], program: app).wait
-    assert(edited['pong'] == wanted.merge('own_volume'=>65), 'main category cannot save Pong controls')
+    assert(edited['pong'] == wanted, 'Game Room settings changed Pong preferences')
     before = Marshal.dump(state)
     driver = lambda do |form|
       form.fields[0].checked = false; form.fields[1].index = 0

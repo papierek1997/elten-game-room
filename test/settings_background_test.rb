@@ -67,13 +67,14 @@ begin
     form.instance_variable_get(:@timers).each(&:update)
     assert(form.fields[form.index].equal?(volume) && sections.index == 3 && volume.index == 29,
       'Loading subscriptions moved focus/category or overwrote local edits')
-    watched = form.fields.find { |field| field.header.to_s.start_with?('Notify me about new') }
-    assert(watched.is_a?(ListBox) && watched.multiselections == [1] && form.hidden_controls.include?(watched),
+    watched = form.fields.find { |field| field.header.to_s.start_with?('Notify me about games') }
+    assert(watched.is_a?(ListBox) && watched.game_indices == [1] && form.hidden_controls.include?(watched),
       'Ready subscriptions were missing, wrong or made another category visible')
-    watched.deselect_multiselection_indices([1])
-    watched.select_multiselection_indices([0])
+    offset = GameRoomScreens::GameList::ACTION_ROWS
+    watched.deselect_multiselection_indices([1 + offset])
+    watched.select_multiselection_indices([offset])
     5.times { form.instance_variable_get(:@timers).each(&:update) }
-    assert(watched.multiselections == [0], 'Refresh erased edited subscription selection')
+    assert(watched.game_indices == [0], 'Refresh erased edited subscription selection')
     form.accept_button.trigger(:press)
   end
   ready = GameRoomScreens::Settings.new(values, games: games, table_watch_available: false,

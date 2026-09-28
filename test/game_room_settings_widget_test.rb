@@ -54,9 +54,9 @@ Form.class_eval do
     sections.trigger(:move)
     raise "widget controls were not shown together" if fields[18..21].any? { |control| hidden_controls.include?(control) }
     raise "lobby controls remained visible in the widget category" if fields[5..9].any? { |control| !hidden_controls.include?(control) }
-    fields[10].index = 1
+    fields[10].index = 2
     fields[14].index = 0
-    fields[19].select_multiselection_indices([1])
+    fields[19].select_multiselection_indices([1 + GameRoomScreens::GameList::ACTION_ROWS])
     fields[-2].trigger(:press)
   end
 end

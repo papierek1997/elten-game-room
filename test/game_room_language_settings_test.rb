@@ -57,7 +57,7 @@ ensure
 end
 
 settings_dialog do |form|
-  assert(form.fields.first.options == ["General", "Lobby messages", "Notification settings", "Sounds", "Widget", "Axel Pong"],
+  assert(form.fields.first.options == ["General", "Lobby messages", "Notification settings", "Sounds", "Widget"],
     "General must contain language and the common background settings")
   form.cancel_button.trigger(:press)
 end

@@ -53,7 +53,7 @@ begin
         form.fields.first.index = form.fields.first.options.index(expected.call('Lobby messages', 'Komunikaty lobby')) || raise('Missing lobby category')
         form.fields.first.trigger(:move)
         lobby_list = form.fields.find { |field| field.is_a?(ListBox) && field.header == expected.call('Games covered by lobby messages', 'Gry objęte komunikatami lobby') }
-        assert(lobby_list.is_a?(ListBox) && lobby_list.multiselections.map { |index| game_ids[index] } == expected_lobby,
+        assert(lobby_list.is_a?(ListBox) && lobby_list.game_indices.map { |index| game_ids[index] } == expected_lobby,
           "binary Settings lost migrated lobby checks")
         assert(settings["table_watch_games"].empty?, "binary migration enabled notification subscriptions")
         form.fields.first.index = form.fields.first.options.index(expected.call('Widget', 'Widget')) || raise('Missing Widget category')

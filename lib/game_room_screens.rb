@@ -158,8 +158,65 @@ module GameRoomScreens
     end
   end
 
+  class GameList < ListBox
+    ACTION_ROWS = 2
+
+    def initialize(games, header:, selected:)
+      @game_count = games.size
+      actions = [_("Select all games"), _("Deselect all games")].map { |label| GameRoomContent.utf8(label) }
+      super(actions + games.map { |game| game.fetch(:name).to_s }, header: header,
+        flags: ListBox::Flags::MultiSelection, quiet: true)
+      wanted = selected.to_a.map(&:to_s)
+      select_multiselection_indices(games.each_index.select { |index| wanted.include?(games[index].fetch(:id).to_s) }
+        .map { |index| index + ACTION_ROWS })
+      sync_action_rows
+      on(:multiselection_beforechanged) { @game_changes = [] unless @applying_game_action }
+      on(:multiselection_selected) { |index| record_game_change(index, true) }
+      on(:multiselection_unselected) { |index| record_game_change(index, false) }
+      on(:multiselection_changed) { apply_game_changes }
+    end
+
+    def game_indices
+      multiselections.filter_map { |index| index - ACTION_ROWS if index >= ACTION_ROWS }
+    end
+
+    private
+
+    def record_game_change(index, selected)
+      (@game_changes ||= []) << [Array(index).first.to_i, selected] unless @applying_game_action
+    end
+
+    def apply_game_changes
+      return if @applying_game_action
+      changes, @game_changes = @game_changes.to_a, []
+      @applying_game_action = true
+      begin
+        if changes.length == 1 && changes.first.first < ACTION_ROWS
+          row, selected = changes.first
+          games = (ACTION_ROWS...options.size).to_a
+          (row.zero? == selected) ? select_multiselection_indices(games) : deselect_multiselection_indices(games)
+        end
+      ensure
+        @applying_game_action = false
+      end
+      sync_action_rows
+    end
+
+    def sync_action_rows
+      count = game_indices.size
+      @applying_game_action = true
+      begin
+        [count == @game_count && count.positive?, count.zero?].each_with_index do |checked, row|
+          checked ? select_multiselection_indices([row]) : deselect_multiselection_indices([row])
+        end
+      ensure
+        @applying_game_action = false
+      end
+    end
+  end
+
   class Settings
-    INVITATION_POLICIES = %w[contacts nobody everyone].freeze
+    INVITATION_POLICIES = %w[everyone contacts nobody].freeze
     attr_reader :table_watch_baseline
 
     def initialize(values, games:, program: nil, preset_editor: nil, preset_writer: nil,
@@ -177,7 +234,7 @@ module GameRoomScreens
     def wait
       action = nil
       sections = ListBox.new(
-        [_("General"), _("Lobby messages"), _("Notification settings"), _("Sounds"), _("Widget"), _("Axel Pong")],
+        [_("General"), _("Lobby messages"), _("Notification settings"), _("Sounds"), _("Widget")],
         header: _("Settings"), quiet: true
       )
       lobby_games = multiple_game_list(_("Games covered by lobby messages"), @values["lobby_games"])
@@ -194,16 +251,16 @@ module GameRoomScreens
         checked: setting_enabled?("announce_player_left")
       )
       computers = CheckBox.new(
-        _("Announce when a computer is added or removed"),
+        _("Announce when a computer is added to or removed from a table"),
         checked: setting_enabled?("announce_computer_changes")
       )
       invitation_policy = ListBox.new(
-        [_("From contacts"), _("From nobody"), _("From everyone")],
+        [_("From everyone"), _("From contacts"), _("From nobody")],
         header: _("Show invitation notifications from"),
         index: [INVITATION_POLICIES.index(@values["invitation_notifications"].to_s).to_i, 0].max,
         quiet: true
       )
-      watched_header = GameRoomContent.utf8(_("Notify me about new public tables (preferences are visible to table creators)"))
+      watched_header = GameRoomContent.utf8(_("Notify me about games on public tables"))
       watched_games = if @table_watch_available
         multiple_game_list(watched_header, @values["table_watch_games"])
       else
@@ -234,7 +291,6 @@ module GameRoomScreens
       save_button = Button.new(_("Save"))
       cancel_button = Button.new(_("Cancel"))
 
-      pong_fields = GameRoomPong::SettingsFields.new(@values['pong'])
       background_speech = CheckBox.new(GameRoomContent.utf8(_("Read table messages outside the table window")),
         checked: setting_enabled?("background_table_speech"))
       background_turn = CheckBox.new(GameRoomContent.utf8(_("Play a sound for my turn outside the table window")),
@@ -263,8 +319,7 @@ module GameRoomScreens
         [lobby_games, created, joined, left, computers],
         [invitation_policy, watched_games, watched_contacts],
         volume_fields.values,
-        [widget_enabled, widget_games, widget_unavailable, widget_contacts, presets].compact,
-        pong_fields.fields
+        [widget_enabled, widget_games, widget_unavailable, widget_contacts, presets].compact
       ]
       form = PresetSettingsForm.new([sections] + groups.flatten + [save_button, cancel_button], program: @program, quiet: true)
       form.preset_target = -> { sections.index.to_i == 4 ? presets : nil }
@@ -330,7 +385,6 @@ module GameRoomScreens
         "background_table_speech" => background_speech.checked,
         "background_turn_sound" => background_turn.checked,
         "known_languages" => known_languages.multiselections.map { |index| languages.fetch(index).fetch(:id) },
-        "pong" => pong_fields.values,
         "lobby_games" => selected_game_ids(lobby_games),
         "lobby_known_games" => GameRoomPreferences.normalized_game_ids(
           @values["lobby_known_games"].to_a + @games.map { |game| game.fetch(:id) }
@@ -365,21 +419,11 @@ module GameRoomScreens
     end
 
     def multiple_game_list(header, selected)
-      control = ListBox.new(
-        @games.map { |game| game.fetch(:name).to_s },
-        header: header,
-        flags: ListBox::Flags::MultiSelection,
-        quiet: true
-      )
-      wanted = selected.to_a.map(&:to_s)
-      control.select_multiselection_indices(
-        @games.each_index.select { |index| wanted.include?(@games[index].fetch(:id).to_s) }
-      )
-      control
+      GameList.new(@games, header: header, selected: selected)
     end
 
     def selected_game_ids(control)
-      control.multiselections.filter_map { |index| @games[index]&.fetch(:id)&.to_s }
+      control.game_indices.filter_map { |index| @games[index]&.fetch(:id)&.to_s }
     end
 
     def setting_enabled?(key)

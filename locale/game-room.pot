@@ -303,7 +303,7 @@ msgstr ""
 msgid "%{game} (%{waiting}/%{total})"
 msgstr ""
 
-#: lib/game_room_screens.rb:533
+#: lib/game_room_screens.rb:577
 msgid "%{game} rules"
 msgstr ""
 
@@ -315,7 +315,7 @@ msgstr ""
 msgid "%{game}, %{table}"
 msgstr ""
 
-#: lib/game_room_screens.rb:546
+#: lib/game_room_screens.rb:590
 msgid "%{game}: %{section}"
 msgstr ""
 
@@ -3397,19 +3397,19 @@ msgstr ""
 msgid "Announce lobby changes"
 msgstr ""
 
-#: lib/game_room_screens.rb:197
-msgid "Announce when a computer is added or removed"
+#: lib/game_room_screens.rb:254
+msgid "Announce when a computer is added to or removed from a table"
 msgstr ""
 
-#: lib/game_room_screens.rb:189
+#: lib/game_room_screens.rb:246
 msgid "Announce when a player joins a table"
 msgstr ""
 
-#: lib/game_room_screens.rb:193
+#: lib/game_room_screens.rb:250
 msgid "Announce when a player leaves a table"
 msgstr ""
 
-#: lib/game_room_screens.rb:185
+#: lib/game_room_screens.rb:242
 msgid "Announce when a table is created"
 msgstr ""
 
@@ -3690,7 +3690,7 @@ msgstr ""
 msgid "Assign automatically"
 msgstr ""
 
-#: lib/game_room_screens.rb:413 lib/game_room_screens.rb:418
+#: lib/game_room_screens.rb:457 lib/game_room_screens.rb:462
 msgid "Assign or edit"
 msgstr ""
 
@@ -3810,7 +3810,7 @@ msgstr ""
 msgid "Audio Ball settings"
 msgstr ""
 
-#: lib/audio_tutorial.rb:53 lib/game_room_screens.rb:531
+#: lib/audio_tutorial.rb:53 lib/game_room_screens.rb:575
 msgid "Audio tutorial"
 msgstr ""
 
@@ -3832,7 +3832,7 @@ msgstr ""
 msgid "Available moves from %{field}: %{moves}."
 msgstr ""
 
-#: games/axel_pong.rb:17 lib/game_room_screens.rb:180
+#: games/axel_pong.rb:17
 msgid "Axel Pong"
 msgstr ""
 
@@ -3901,7 +3901,7 @@ msgstr ""
 msgid "B: respond to the buzzer."
 msgstr ""
 
-#: __app.rb:1073 __app.rb:1170 __app.rb:1214 __app.rb:1339 __app.rb:1881 __app.rb:1997 __app.rb:2193 games/krowa_support/leaderboards.rb:39 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:536 lib/game_room_screens.rb:557 lib/game_screen.rb:1129 lib/game_screen.rb:354 lib/game_statistics_screen.rb:25 lib/game_statistics_screen.rb:59
+#: __app.rb:1073 __app.rb:1170 __app.rb:1214 __app.rb:1339 __app.rb:1881 __app.rb:1997 __app.rb:2193 games/krowa_support/leaderboards.rb:39 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:580 lib/game_room_screens.rb:601 lib/game_screen.rb:1129 lib/game_screen.rb:354 lib/game_statistics_screen.rb:25 lib/game_statistics_screen.rb:59
 msgid "Back"
 msgstr ""
 
@@ -4468,7 +4468,7 @@ msgstr ""
 msgid "Calm (short search)"
 msgstr ""
 
-#: __app.rb:1797 __app.rb:2882 __app.rb:2940 games/krowa_support/client.rb:184 games/krowa_support/leaderboards.rb:203 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:38 lib/game_option_editor.rb:87 lib/game_room_screens.rb:235 lib/game_screen.rb:1039 lib/game_screen.rb:1083 lib/game_surfaces/word_board.rb:182
+#: __app.rb:1797 __app.rb:2882 __app.rb:2940 games/krowa_support/client.rb:184 games/krowa_support/leaderboards.rb:203 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:38 lib/game_option_editor.rb:87 lib/game_room_screens.rb:292 lib/game_screen.rb:1039 lib/game_screen.rb:1083 lib/game_surfaces/word_board.rb:182
 msgid "Cancel"
 msgstr ""
 
@@ -5304,7 +5304,7 @@ msgstr ""
 msgid "Clean water company"
 msgstr ""
 
-#: lib/game_room_screens.rb:415
+#: lib/game_room_screens.rb:459
 msgid "Clear assignment"
 msgstr ""
 
@@ -5712,7 +5712,7 @@ msgid "Ctrl+P and Audio Ball settings in the table menu open your personal setti
 msgstr ""
 
 #: games/axel_pong.rb:276
-msgid "Ctrl+P and the Pong settings item in the table menu open the same local panel as the Axel Pong category in Game Room settings. Besides automatic return, you can adjust your paddle movement, the opponent's movement and the recorded announcer separately. Each volume ranges from 0 to 200 percent; 100 percent keeps the original balance, and 0 mutes that group. Game Room's overall volume still applies. Save keeps these values for your future matches on this computer; Cancel leaves them unchanged. They are not table rules and do not change the opponent's settings. The match continues while this panel is open, but its controls do not move your paddle."
+msgid "Ctrl+P and the Pong settings item in the table menu open your local Pong settings. Besides automatic return, you can adjust your paddle movement, the opponent's movement and the recorded announcer separately. Each volume ranges from 0 to 200 percent; 100 percent keeps the original balance, and 0 mutes that group. Game Room's overall volume still applies. Save keeps these values for your future matches on this computer; Cancel leaves them unchanged. They are not table rules and do not change the opponent's settings. The match continues while this panel is open, but its controls do not move your paddle."
 msgstr ""
 
 msgid "Ctrl+P at a Pong table opens personal settings, also available from the table menu and Settings > Axel Pong. Automatic return is now your own choice, off by default, not a shared table rule. Separate volume controls cover your paddle, your opponent's paddle and the recorded announcer. These settings are saved locally and do not affect the opponent."
@@ -6096,6 +6096,10 @@ msgstr ""
 
 #: games/taboo.rb:34
 msgid "Describing turns per person"
+msgstr ""
+
+#: lib/game_room_screens.rb:166
+msgid "Deselect all games"
 msgstr ""
 
 #: games/monopoly.rb:71
@@ -7525,15 +7529,15 @@ msgstr ""
 msgid "From auction to the last trick"
 msgstr ""
 
-#: lib/game_room_screens.rb:201
+#: lib/game_room_screens.rb:258
 msgid "From contacts"
 msgstr ""
 
-#: lib/game_room_screens.rb:201
+#: lib/game_room_screens.rb:258
 msgid "From everyone"
 msgstr ""
 
-#: lib/game_room_screens.rb:201
+#: lib/game_room_screens.rb:258
 msgid "From nobody"
 msgstr ""
 
@@ -7728,11 +7732,11 @@ msgstr ""
 msgid "Games completed: %{count}"
 msgstr ""
 
-#: lib/game_room_screens.rb:183
+#: lib/game_room_screens.rb:240
 msgid "Games covered by lobby messages"
 msgstr ""
 
-#: lib/game_room_screens.rb:225
+#: lib/game_room_screens.rb:282
 msgid "Games shown on the main screen"
 msgstr ""
 
@@ -7756,7 +7760,7 @@ msgstr ""
 msgid "Gara de Nord"
 msgstr ""
 
-#: lib/game_room_screens.rb:180
+#: lib/game_room_screens.rb:237
 msgid "General"
 msgstr ""
 
@@ -8639,7 +8643,7 @@ msgstr ""
 msgid "Kings move and capture over any distance is on by default. Such a king travels along a clear diagonal and may land on an empty square beyond the opposing piece it jumps. It cannot jump two occupied squares in a single jump. If the setting is off, a king moves one square or makes a short capture jump, still in either direction."
 msgstr ""
 
-#: lib/game_room_screens.rb:249
+#: lib/game_room_screens.rb:305
 msgid "Known languages"
 msgstr ""
 
@@ -8916,7 +8920,7 @@ msgstr ""
 msgid "Loading invitations"
 msgstr ""
 
-#: lib/game_room_screens.rb:361
+#: lib/game_room_screens.rb:415
 msgid "Loading notification settings"
 msgstr ""
 
@@ -8950,7 +8954,7 @@ msgstr ""
 msgid "Lobby announcements"
 msgstr ""
 
-#: lib/game_room_screens.rb:180
+#: lib/game_room_screens.rb:237
 msgid "Lobby messages"
 msgstr ""
 
@@ -9261,7 +9265,7 @@ msgstr ""
 msgid "Missing reveals count as blank answers: %{players}."
 msgstr ""
 
-#: lib/game_room_screens.rb:256
+#: lib/game_room_screens.rb:312
 msgid "Missing translations use other known languages, then English. Restart ELTEN to apply language changes."
 msgstr ""
 
@@ -9463,7 +9467,7 @@ msgstr ""
 msgid "New-table notifications now use a distinct sound, balanced to the existing notification volume. Invitations keep their previous sound."
 msgstr ""
 
-#: lib/game_room_screens.rb:362
+#: lib/game_room_screens.rb:416
 msgid "New-table subscriptions are unavailable without access to server settings. Other settings can still be changed."
 msgstr ""
 
@@ -9789,7 +9793,7 @@ msgstr ""
 msgid "No ship you still own fits from %{field}."
 msgstr ""
 
-#: lib/game_room_screens.rb:477 lib/game_room_ui.rb:282
+#: lib/game_room_screens.rb:521 lib/game_room_ui.rb:282
 msgid "No shortcuts are available on this screen."
 msgstr ""
 
@@ -9893,15 +9897,15 @@ msgstr ""
 msgid "Nothing changes hands until the recipient accepts. Both sides must still afford their payments and own the offered properties. Mortgaged properties and streets in a group with buildings cannot be traded. A bot may decline an apparently fair face-value purchase because the property completes or protects an important group; the printed price is not a promise that the owner will sell."
 msgstr ""
 
-#: lib/game_room_screens.rb:180
+#: lib/game_room_screens.rb:237
 msgid "Notification settings"
 msgstr ""
 
-#: lib/game_room_screens.rb:206
-msgid "Notify me about new public tables (preferences are visible to table creators)"
+#: lib/game_room_screens.rb:263
+msgid "Notify me about games on public tables"
 msgstr ""
 
-#: lib/game_room_screens.rb:213
+#: lib/game_room_screens.rb:270
 msgid "Notify me about new tables only from contacts"
 msgstr ""
 
@@ -10083,7 +10087,7 @@ msgstr ""
 msgid "Only the table master may start a game."
 msgstr ""
 
-#: __app.rb:1072 __app.rb:1169 games/krowa_support/leaderboards.rb:279 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:535 lib/game_room_screens.rb:93
+#: __app.rb:1072 __app.rb:1169 games/krowa_support/leaderboards.rb:279 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:579 lib/game_room_screens.rb:93
 msgid "Open"
 msgstr ""
 
@@ -10483,7 +10487,7 @@ msgstr ""
 msgid "Play a card matching the colour or value, or play a wild card. Space draws a card. Drawing is allowed even with a playable card by default, up to the configured limit; reaching the limit does not end the turn."
 msgstr ""
 
-#: lib/game_room_screens.rb:240
+#: lib/game_room_screens.rb:296
 msgid "Play a sound for my turn outside the table window"
 msgstr ""
 
@@ -10831,7 +10835,7 @@ msgstr ""
 msgid "Press Enter on the pawn list to roll. If exactly one pawn can move, it moves automatically. If several pawns can move, the list shows only those choices together with their destinations; use the Arrow keys and Enter to choose."
 msgstr ""
 
-#: lib/game_room_screens.rb:449
+#: lib/game_room_screens.rb:493
 msgid "Press Enter to assign."
 msgstr ""
 
@@ -10839,7 +10843,7 @@ msgstr ""
 msgid "Press Enter to bid."
 msgstr ""
 
-#: lib/game_room_screens.rb:449
+#: lib/game_room_screens.rb:493
 msgid "Press Enter to edit."
 msgstr ""
 
@@ -10936,7 +10940,7 @@ msgstr ""
 msgid "Pressing an assigned widget shortcut creates a table with those settings without reopening the setup form. It does not start the match automatically or replace a table you are already at. Empty slots only report that nothing is assigned. Presets are local to this computer; an outdated preset asks you to review it before creating a table."
 msgstr ""
 
-#: lib/game_room_screens.rb:246
+#: lib/game_room_screens.rb:302
 msgid "Primary interface language"
 msgstr ""
 
@@ -11155,7 +11159,7 @@ msgstr ""
 msgid "Reaching the target with unbanked turn points is not enough: you must bank them. A Farkle loses only the current turn's unbanked points, not points saved in earlier turns. The first-bank minimum applies while your saved score is zero; after a successful first bank the ordinary minimum applies."
 msgstr ""
 
-#: lib/game_room_screens.rb:238
+#: lib/game_room_screens.rb:294
 msgid "Read table messages outside the table window"
 msgstr ""
 
@@ -11811,7 +11815,7 @@ msgstr ""
 msgid "Sarajevo Railway Station"
 msgstr ""
 
-#: games/krowa_support/client.rb:184 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:38 lib/game_room_screens.rb:234
+#: games/krowa_support/client.rb:184 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:38 lib/game_room_screens.rb:291
 msgid "Save"
 msgstr ""
 
@@ -12013,6 +12017,10 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
+#: lib/game_room_screens.rb:166
+msgid "Select all games"
+msgstr ""
+
 #: games/categories.rb:204
 msgid "Select at least one category for the custom pool."
 msgstr ""
@@ -12036,7 +12044,7 @@ msgstr ""
 msgid "Select each card only once, from your own hand."
 msgstr ""
 
-#: lib/game_room_screens.rb:420
+#: lib/game_room_screens.rb:464
 msgid "Select this table shortcut for editing"
 msgstr ""
 
@@ -12151,7 +12159,7 @@ msgstr ""
 msgid "Sets: %{own} to %{opponent}."
 msgstr ""
 
-#: __app.rb:235 lib/game_room_screens.rb:181
+#: __app.rb:235 lib/game_room_screens.rb:238
 msgid "Settings"
 msgstr ""
 
@@ -12439,19 +12447,19 @@ msgstr ""
 msgid "Short line railroad"
 msgstr ""
 
-#: lib/game_room_screens.rb:222
+#: lib/game_room_screens.rb:279
 msgid "Show Game Room on the ELTEN main screen"
 msgstr ""
 
-#: lib/game_room_screens.rb:227
+#: lib/game_room_screens.rb:284
 msgid "Show full or unavailable tables"
 msgstr ""
 
-#: lib/game_room_screens.rb:202
+#: lib/game_room_screens.rb:259
 msgid "Show invitation notifications from"
 msgstr ""
 
-#: lib/game_room_screens.rb:231
+#: lib/game_room_screens.rb:288
 msgid "Show only tables created by contacts"
 msgstr ""
 
@@ -12581,7 +12589,7 @@ msgstr ""
 msgid "Sound pack (only for you)"
 msgstr ""
 
-#: lib/game_room_screens.rb:180
+#: lib/game_room_screens.rb:237
 msgid "Sounds"
 msgstr ""
 
@@ -12982,7 +12990,7 @@ msgstr ""
 msgid "Table master judges every round"
 msgstr ""
 
-#: lib/game_room_screens.rb:410
+#: lib/game_room_screens.rb:454
 msgid "Table shortcuts"
 msgstr ""
 
@@ -14184,7 +14192,7 @@ msgstr ""
 msgid "The ship does not fit there."
 msgstr ""
 
-#: lib/game_room_screens.rb:458
+#: lib/game_room_screens.rb:502
 msgid "The shortcut could not be saved. Please try again."
 msgstr ""
 
@@ -16071,7 +16079,7 @@ msgstr ""
 msgid "Whole team finish mode changes this: all teammates must empty their hands before the team ends the round. Players who already finished are skipped and do not draw again. The option is off by default and appears only for team play. Elimination and the final result use team totals."
 msgstr ""
 
-#: lib/game_room_screens.rb:180
+#: lib/game_room_screens.rb:237
 msgid "Widget"
 msgstr ""
 

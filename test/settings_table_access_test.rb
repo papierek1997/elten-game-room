@@ -76,7 +76,7 @@ Form.settings_access_driver = lambda do |form|
   opened += 1
   form.instance_variable_get(:@timers).to_a.each(&:update)
   sections = form.fields.first
-  assert(sections.options.length == 6, 'Some local settings categories disappeared')
+  assert(sections.options.length == 5, 'Some local settings categories disappeared')
   sections.options.each_index do |index|
     sections.index = index
     sections.trigger(:move)
@@ -85,21 +85,22 @@ Form.settings_access_driver = lambda do |form|
   sections.index = 2
   sections.trigger(:move)
   controls = form.fields - form.hidden_controls
-  watched = controls.find { |control| control.header.to_s.start_with?('Notify me about new public tables') }
+  watched = controls.find { |control| control.header.to_s.start_with?('Notify me about games on public tables') }
   assert(watched, 'Missing subscriptions field or explanation')
   if available
     assert(watched.is_a?(ListBox), 'Available subscriptions cannot be edited')
     if select_games
-      watched.deselect_multiselection_indices(watched.multiselections)
+      offset = GameRoomScreens::GameList::ACTION_ROWS
+      watched.deselect_multiselection_indices(watched.game_indices.map { |index| index + offset })
       ids = EltenGameRoom::GAME_REGISTRY.ids
-      watched.select_multiselection_indices(select_games.map { |id| ids.index(id) })
+      watched.select_multiselection_indices(select_games.map { |id| ids.index(id) + offset })
     end
   else
     assert(watched.is_a?(EditBox) && watched.flags & EditBox::Flags::ReadOnly != 0,
       'Unavailable subscriptions look editable')
     assert(watched.text.include?('Other settings'), 'No explanation of partial availability')
   end
-  controls.find { |control| control.header == 'Show invitation notifications from' }.index = 0
+  controls.find { |control| control.header == 'Show invitation notifications from' }.index = 1
   if select_language
     primary = form.fields.find { |control| control.header == 'Primary interface language' }
     primary.index = GameRoomLocalization.available_languages.index { |language| language[:id] == select_language }

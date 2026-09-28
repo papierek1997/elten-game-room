@@ -311,7 +311,7 @@ msgstr "%{from} przekazuje graczowi %{target}: %{assets}"
 msgid "%{game} (%{waiting}/%{total})"
 msgstr "%{game} (%{waiting}/%{total})"
 
-#: lib/game_room_screens.rb:533
+#: lib/game_room_screens.rb:577
 msgid "%{game} rules"
 msgstr "Zasady gry %{game}"
 
@@ -323,7 +323,7 @@ msgstr "%{game}, %{owner}"
 msgid "%{game}, %{table}"
 msgstr "%{game}, %{table}"
 
-#: lib/game_room_screens.rb:546
+#: lib/game_room_screens.rb:590
 msgid "%{game}: %{section}"
 msgstr "%{game}: %{section}"
 
@@ -3431,19 +3431,19 @@ msgstr "Zwierzę"
 msgid "Announce lobby changes"
 msgstr "Ogłaszaj zmiany w poczekalni"
 
-#: lib/game_room_screens.rb:197
-msgid "Announce when a computer is added or removed"
-msgstr "Informuj o dodaniu lub usunięciu komputera"
+#: lib/game_room_screens.rb:254
+msgid "Announce when a computer is added to or removed from a table"
+msgstr "Informuj o dodaniu lub usunięciu komputera do stołu"
 
-#: lib/game_room_screens.rb:189
+#: lib/game_room_screens.rb:246
 msgid "Announce when a player joins a table"
 msgstr "Informuj o dołączeniu gracza do stołu"
 
-#: lib/game_room_screens.rb:193
+#: lib/game_room_screens.rb:250
 msgid "Announce when a player leaves a table"
 msgstr "Informuj o wyjściu gracza ze stołu"
 
-#: lib/game_room_screens.rb:185
+#: lib/game_room_screens.rb:242
 msgid "Announce when a table is created"
 msgstr "Informuj o utworzeniu stołu"
 
@@ -3729,7 +3729,7 @@ msgstr "Oceń każdą odpowiedź przed zakończeniem."
 msgid "Assign automatically"
 msgstr "Przydziel automatycznie"
 
-#: lib/game_room_screens.rb:413 lib/game_room_screens.rb:418
+#: lib/game_room_screens.rb:457 lib/game_room_screens.rb:462
 msgid "Assign or edit"
 msgstr "Przypisz lub edytuj"
 
@@ -3849,7 +3849,7 @@ msgstr "Audio Ball wymaga dokładnie dwóch graczy."
 msgid "Audio Ball settings"
 msgstr "Ustawienia Audio Ball"
 
-#: lib/audio_tutorial.rb:53 lib/game_room_screens.rb:531
+#: lib/audio_tutorial.rb:53 lib/game_room_screens.rb:575
 msgid "Audio tutorial"
 msgstr "Audiotutorial"
 
@@ -3871,7 +3871,7 @@ msgstr "Automatyczne odbijanie to Twoje osobiste ustawienie, domyślnie wyłącz
 msgid "Available moves from %{field}: %{moves}."
 msgstr "Dostępne ruchy z pola %{field}: %{moves}."
 
-#: games/axel_pong.rb:17 lib/game_room_screens.rb:180
+#: games/axel_pong.rb:17
 msgid "Axel Pong"
 msgstr "Axel Pong"
 
@@ -3940,7 +3940,7 @@ msgstr "B: odczytaj obecną aukcję."
 msgid "B: respond to the buzzer."
 msgstr "B: zareaguj na brzęczyk."
 
-#: __app.rb:1073 __app.rb:1170 __app.rb:1214 __app.rb:1339 __app.rb:1881 __app.rb:1997 __app.rb:2193 games/krowa_support/leaderboards.rb:39 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:536 lib/game_room_screens.rb:557 lib/game_screen.rb:1129 lib/game_screen.rb:354 lib/game_statistics_screen.rb:25 lib/game_statistics_screen.rb:59
+#: __app.rb:1073 __app.rb:1170 __app.rb:1214 __app.rb:1339 __app.rb:1881 __app.rb:1997 __app.rb:2193 games/krowa_support/leaderboards.rb:39 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:580 lib/game_room_screens.rb:601 lib/game_screen.rb:1129 lib/game_screen.rb:354 lib/game_statistics_screen.rb:25 lib/game_statistics_screen.rb:59
 msgid "Back"
 msgstr "Wstecz"
 
@@ -4507,7 +4507,7 @@ msgstr "Sprawdź za %{amount}"
 msgid "Calm (short search)"
 msgstr "Spokojny (krótka analiza)"
 
-#: __app.rb:1797 __app.rb:2882 __app.rb:2940 games/krowa_support/client.rb:184 games/krowa_support/leaderboards.rb:203 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:38 lib/game_option_editor.rb:87 lib/game_room_screens.rb:235 lib/game_screen.rb:1039 lib/game_screen.rb:1083 lib/game_surfaces/word_board.rb:182
+#: __app.rb:1797 __app.rb:2882 __app.rb:2940 games/krowa_support/client.rb:184 games/krowa_support/leaderboards.rb:203 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:38 lib/game_option_editor.rb:87 lib/game_room_screens.rb:292 lib/game_screen.rb:1039 lib/game_screen.rb:1083 lib/game_surfaces/word_board.rb:182
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -5345,7 +5345,7 @@ msgstr "Talie klasyczna, No Mercy i Flip"
 msgid "Clean water company"
 msgstr "Zakład uzdatniania wody"
 
-#: lib/game_room_screens.rb:415
+#: lib/game_room_screens.rb:459
 msgid "Clear assignment"
 msgstr "Usuń przypisanie"
 
@@ -5753,8 +5753,8 @@ msgid "Ctrl+P and Audio Ball settings in the table menu open your personal setti
 msgstr "Ctrl+P oraz pozycja Ustawienia Audio Ball w menu stołu otwierają Twoje ustawienia osobiste przed meczem i w jego trakcie. Domyślna jest prawa strona: atakujesz od prawej do lewej, a piłka nadlatuje z lewej do prawej. Wybierz lewą stronę, aby odwrócić dźwięki lotu i przygotowania tylko u siebie. Zmiana jest zapisywana lokalnie i nie zmienia graczy, sterowania, wyników ani zasad stołu."
 
 #: games/axel_pong.rb:276
-msgid "Ctrl+P and the Pong settings item in the table menu open the same local panel as the Axel Pong category in Game Room settings. Besides automatic return, you can adjust your paddle movement, the opponent's movement and the recorded announcer separately. Each volume ranges from 0 to 200 percent; 100 percent keeps the original balance, and 0 mutes that group. Game Room's overall volume still applies. Save keeps these values for your future matches on this computer; Cancel leaves them unchanged. They are not table rules and do not change the opponent's settings. The match continues while this panel is open, but its controls do not move your paddle."
-msgstr "Ctrl+P oraz pozycja Ustawienia Ponga w menu stołu otwierają ten sam lokalny panel co kategoria Axel Pong w ustawieniach Game Roomu. Oprócz automatycznego odbijania ustawisz w nim oddzielnie głośność ruchu swojej paletki, ruchu przeciwnika i nagrań lektora. Każdy regulator ma zakres od 0 do 200 procent: 100 procent zachowuje oryginalne proporcje, a 0 wycisza daną grupę. Nadal działa ogólna głośność Game Roomu. Zapisz zachowuje te wartości na kolejne mecze na tym komputerze; Anuluj pozostawia je bez zmian. Nie są to zasady stołu i nie wpływają na ustawienia przeciwnika. Podczas korzystania z tego panelu mecz trwa dalej, ale jego kontrolki nie sterują paletką."
+msgid "Ctrl+P and the Pong settings item in the table menu open your local Pong settings. Besides automatic return, you can adjust your paddle movement, the opponent's movement and the recorded announcer separately. Each volume ranges from 0 to 200 percent; 100 percent keeps the original balance, and 0 mutes that group. Game Room's overall volume still applies. Save keeps these values for your future matches on this computer; Cancel leaves them unchanged. They are not table rules and do not change the opponent's settings. The match continues while this panel is open, but its controls do not move your paddle."
+msgstr "Ctrl+P oraz pozycja Ustawienia Ponga w menu stołu otwierają Twoje lokalne ustawienia Ponga. Oprócz automatycznego odbijania ustawisz w nim oddzielnie głośność ruchu swojej paletki, ruchu przeciwnika i nagrań lektora. Każdy regulator ma zakres od 0 do 200 procent: 100 procent zachowuje oryginalne proporcje, a 0 wycisza daną grupę. Nadal działa ogólna głośność Game Roomu. Zapisz zachowuje te wartości na kolejne mecze na tym komputerze; Anuluj pozostawia je bez zmian. Nie są to zasady stołu i nie wpływają na ustawienia przeciwnika. Podczas korzystania z tego panelu mecz trwa dalej, ale jego kontrolki nie sterują paletką."
 
 msgid "Ctrl+P at a Pong table opens personal settings, also available from the table menu and Settings > Axel Pong. Automatic return is now your own choice, off by default, not a shared table rule. Separate volume controls cover your paddle, your opponent's paddle and the recorded announcer. These settings are saved locally and do not affect the opponent."
 msgstr "Ctrl+P przy stole Ponga otwiera ustawienia osobiste, dostępne również z menu stołu oraz przez Ustawienia > Axel Pong. Automatyczne odbijanie jest teraz własną opcją gracza, domyślnie wyłączoną, a nie wspólną zasadą stołu. Osobno ustawisz głośność swojej paletki, paletki przeciwnika i nagrań lektora. Ustawienia zapisują się lokalnie i nie zmieniają ustawień przeciwnika."
@@ -6138,6 +6138,10 @@ msgstr "Opisywanie i rozstrzyganie kart"
 #: games/taboo.rb:34
 msgid "Describing turns per person"
 msgstr "Liczba tur opisywania na osobę"
+
+#: lib/game_room_screens.rb:166
+msgid "Deselect all games"
+msgstr "Odznacz wszystkie gry"
 
 #: games/monopoly.rb:71
 msgid "Develop a group evenly"
@@ -7566,15 +7570,15 @@ msgstr "Swobodna kolejność stojaka."
 msgid "From auction to the last trick"
 msgstr "Od licytacji do ostatniej lewy"
 
-#: lib/game_room_screens.rb:201
+#: lib/game_room_screens.rb:258
 msgid "From contacts"
 msgstr "Od kontaktów"
 
-#: lib/game_room_screens.rb:201
+#: lib/game_room_screens.rb:258
 msgid "From everyone"
 msgstr "Od wszystkich"
 
-#: lib/game_room_screens.rb:201
+#: lib/game_room_screens.rb:258
 msgid "From nobody"
 msgstr "Od nikogo"
 
@@ -7769,11 +7773,11 @@ msgstr "W komunikatach lobby zaznaczono gry dodane od wersji 2.0; każda kolejna
 msgid "Games completed: %{count}"
 msgstr "Ukończone partie: %{count}"
 
-#: lib/game_room_screens.rb:183
+#: lib/game_room_screens.rb:240
 msgid "Games covered by lobby messages"
 msgstr "Gry objęte komunikatami lobby"
 
-#: lib/game_room_screens.rb:225
+#: lib/game_room_screens.rb:282
 msgid "Games shown on the main screen"
 msgstr "Gry pokazywane na ekranie głównym"
 
@@ -7797,7 +7801,7 @@ msgstr "Dworzec w Konstancy"
 msgid "Gara de Nord"
 msgstr "Dworzec Północny"
 
-#: lib/game_room_screens.rb:180
+#: lib/game_room_screens.rb:237
 msgid "General"
 msgstr "Ogólne"
 
@@ -8688,7 +8692,7 @@ msgstr "Daleki ruch i bicie damką są domyślnie włączone. Latająca damka po
 msgid "Kings move and capture over any distance is on by default. Such a king travels along a clear diagonal and may land on an empty square beyond the opposing piece it jumps. It cannot jump two occupied squares in a single jump. If the setting is off, a king moves one square or makes a short capture jump, still in either direction."
 msgstr "Damki domyślnie poruszają się i biją na dowolną odległość. Taka damka idzie po wolnej przekątnej i może wylądować na pustym polu za przeskakiwaną figurą przeciwnika. Nie może przeskoczyć dwóch zajętych pól jednym skokiem. Po wyłączeniu tej opcji damka chodzi o jedno pole lub wykonuje krótkie bicie, nadal w obu kierunkach."
 
-#: lib/game_room_screens.rb:249
+#: lib/game_room_screens.rb:305
 msgid "Known languages"
 msgstr "Znane języki"
 
@@ -8965,7 +8969,7 @@ msgstr "Wczytywanie kontaktów"
 msgid "Loading invitations"
 msgstr "Wczytywanie zaproszeń"
 
-#: lib/game_room_screens.rb:361
+#: lib/game_room_screens.rb:415
 msgid "Loading notification settings"
 msgstr "Wczytywanie ustawień powiadomień"
 
@@ -8999,7 +9003,7 @@ msgstr "Pobieranie rankingu słowa"
 msgid "Lobby announcements"
 msgstr "Komunikaty lobby"
 
-#: lib/game_room_screens.rb:180
+#: lib/game_room_screens.rb:237
 msgid "Lobby messages"
 msgstr "Komunikaty lobby"
 
@@ -9310,7 +9314,7 @@ msgstr "Nędza"
 msgid "Missing reveals count as blank answers: %{players}."
 msgstr "Nieujawnione odpowiedzi są liczone jako puste: %{players}."
 
-#: lib/game_room_screens.rb:256
+#: lib/game_room_screens.rb:312
 msgid "Missing translations use other known languages, then English. Restart ELTEN to apply language changes."
 msgstr "Jeśli brakuje tłumaczenia, używany jest inny znany język, a na końcu angielski. Zmiany języka zaczną obowiązywać po ponownym uruchomieniu ELTEN-a."
 
@@ -9512,7 +9516,7 @@ msgstr "Powiadomienie o nowym stole podaje właściciela, grę i typ powiadomien
 msgid "New-table notifications now use a distinct sound, balanced to the existing notification volume. Invitations keep their previous sound."
 msgstr "Powiadomienia o nowych stołach mają teraz osobny dźwięk o głośności dopasowanej do dotychczasowego powiadomienia. Zaproszenia zachowują poprzedni dźwięk."
 
-#: lib/game_room_screens.rb:362
+#: lib/game_room_screens.rb:416
 msgid "New-table subscriptions are unavailable without access to server settings. Other settings can still be changed."
 msgstr "Subskrypcje nowych stołów są niedostępne bez dostępu do ustawień serwerowych. Pozostałe ustawienia możesz nadal zmieniać."
 
@@ -9838,7 +9842,7 @@ msgstr "Nie rozstawiono jeszcze żadnego statku."
 msgid "No ship you still own fits from %{field}."
 msgstr "Żaden z pozostałych statków nie zmieści się od pola %{field}."
 
-#: lib/game_room_screens.rb:477 lib/game_room_ui.rb:282
+#: lib/game_room_screens.rb:521 lib/game_room_ui.rb:282
 msgid "No shortcuts are available on this screen."
 msgstr "Na tym ekranie nie ma dostępnych skrótów."
 
@@ -9943,15 +9947,15 @@ msgstr "Nie przypisano"
 msgid "Nothing changes hands until the recipient accepts. Both sides must still afford their payments and own the offered properties. Mortgaged properties and streets in a group with buildings cannot be traded. A bot may decline an apparently fair face-value purchase because the property completes or protects an important group; the printed price is not a promise that the owner will sell."
 msgstr "Nic nie zmienia właściciela, dopóki odbiorca nie zaakceptuje. Obie strony muszą nadal mieć środki na swoje wpłaty oraz posiadać oferowane pola. Nie można wymieniać nieruchomości zastawionych ani ulic z grupy, na której stoją budynki. Bot może odrzucić zakup za cenę z karty, jeśli pole uzupełnia lub chroni ważny komplet. Cena wydrukowana na polu nie zobowiązuje właściciela do sprzedaży."
 
-#: lib/game_room_screens.rb:180
+#: lib/game_room_screens.rb:237
 msgid "Notification settings"
 msgstr "Ustawienia powiadomień"
 
-#: lib/game_room_screens.rb:206
-msgid "Notify me about new public tables (preferences are visible to table creators)"
-msgstr "Powiadamiaj o nowych publicznych stołach (wybrane gry są widoczne dla twórców stołów)"
+#: lib/game_room_screens.rb:263
+msgid "Notify me about games on public tables"
+msgstr "Powiadamiaj o grach na publicznych stołach"
 
-#: lib/game_room_screens.rb:213
+#: lib/game_room_screens.rb:270
 msgid "Notify me about new tables only from contacts"
 msgstr "Powiadamiaj o nowych stołach tylko od kontaktów"
 
@@ -10133,7 +10137,7 @@ msgstr "Tylko gospodarz może to zrobić."
 msgid "Only the table master may start a game."
 msgstr "Tylko założyciel stołu może rozpocząć grę."
 
-#: __app.rb:1072 __app.rb:1169 games/krowa_support/leaderboards.rb:279 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:535 lib/game_room_screens.rb:93
+#: __app.rb:1072 __app.rb:1169 games/krowa_support/leaderboards.rb:279 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:579 lib/game_room_screens.rb:93
 msgid "Open"
 msgstr "Otwórz"
 
@@ -10533,7 +10537,7 @@ msgstr "Zagraj kartę pasującą kolorem albo wartością lub zagraj dziką kart
 msgid "Play a card matching the colour or value, or play a wild card. Space draws a card. Drawing is allowed even with a playable card by default, up to the configured limit; reaching the limit does not end the turn."
 msgstr "Zagraj kartę pasującą kolorem albo wartością lub zagraj kartę zmiany koloru. Spacja dobiera kartę. Domyślnie można dobierać także wtedy, gdy ma się kartę do zagrania, aż do ustawionego limitu. Osiągnięcie limitu nie kończy tury."
 
-#: lib/game_room_screens.rb:240
+#: lib/game_room_screens.rb:296
 msgid "Play a sound for my turn outside the table window"
 msgstr "Sygnalizuj dźwiękiem moją turę poza oknem stołu"
 
@@ -10881,7 +10885,7 @@ msgstr "Naciśnij Enter na liście pionków, aby rzucić kostką albo wybrać po
 msgid "Press Enter on the pawn list to roll. If exactly one pawn can move, it moves automatically. If several pawns can move, the list shows only those choices together with their destinations; use the Arrow keys and Enter to choose."
 msgstr "Naciśnij Enter na liście pionków, aby rzucić kostką. Jeśli może poruszyć się dokładnie jeden pionek, ruch zostanie wykonany automatycznie. Jeśli można ruszyć kilkoma pionkami, lista pokaże tylko te możliwości wraz z polami docelowymi; wybierz ruch strzałkami i Enterem."
 
-#: lib/game_room_screens.rb:449
+#: lib/game_room_screens.rb:493
 msgid "Press Enter to assign."
 msgstr "Wciśnij Enter, aby przypisać."
 
@@ -10889,7 +10893,7 @@ msgstr "Wciśnij Enter, aby przypisać."
 msgid "Press Enter to bid."
 msgstr "Wciśnij Enter, aby zalicytować."
 
-#: lib/game_room_screens.rb:449
+#: lib/game_room_screens.rb:493
 msgid "Press Enter to edit."
 msgstr "Wciśnij Enter, aby edytować."
 
@@ -10986,7 +10990,7 @@ msgstr "Naciśnij T, aby sprawdzić, czyja jest kolej. Tabulator przechodzi mię
 msgid "Pressing an assigned widget shortcut creates a table with those settings without reopening the setup form. It does not start the match automatically or replace a table you are already at. Empty slots only report that nothing is assigned. Presets are local to this computer; an outdated preset asks you to review it before creating a table."
 msgstr "Wciśnięcie przypisanego skrótu na widgecie tworzy stół z zapisanymi ustawieniami, bez ponownego otwierania formularza. Nie rozpoczyna automatycznie partii ani nie zastępuje stołu, przy którym już jesteś. Pusty skrót jedynie informuje o braku przypisania. Ustawienia są lokalne dla tego komputera; nieaktualny zestaw wymaga sprawdzenia przed utworzeniem stołu."
 
-#: lib/game_room_screens.rb:246
+#: lib/game_room_screens.rb:302
 msgid "Primary interface language"
 msgstr "Główny język interfejsu"
 
@@ -11205,7 +11209,7 @@ msgstr "Osiągnięcie celu nie urywa rundy. Kończycie wszystkie trzy pytania i 
 msgid "Reaching the target with unbanked turn points is not enough: you must bank them. A Farkle loses only the current turn's unbanked points, not points saved in earlier turns. The first-bank minimum applies while your saved score is zero; after a successful first bank the ordinary minimum applies."
 msgstr "Osiągnięcie celu niezapisanymi punktami tury nie wystarczy: trzeba je zapisać. Farkle zabiera tylko niezapisane punkty bieżącej tury, nie wyniki wcześniejszych tur. Minimum wejścia obowiązuje, dopóki zapisany wynik wynosi zero; po pierwszym udanym zapisie obowiązuje zwykłe minimum."
 
-#: lib/game_room_screens.rb:238
+#: lib/game_room_screens.rb:294
 msgid "Read table messages outside the table window"
 msgstr "Odczytuj komunikaty stołu poza jego oknem"
 
@@ -11861,7 +11865,7 @@ msgstr "Lotnisko Sabiha Gökçen"
 msgid "Sarajevo Railway Station"
 msgstr "Dworzec w Sarajewie"
 
-#: games/krowa_support/client.rb:184 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:38 lib/game_room_screens.rb:234
+#: games/krowa_support/client.rb:184 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:38 lib/game_room_screens.rb:291
 msgid "Save"
 msgstr "Zapisz"
 
@@ -12063,6 +12067,10 @@ msgstr "Kamienie w każdym dołku"
 msgid "Select"
 msgstr "Wybierz"
 
+#: lib/game_room_screens.rb:166
+msgid "Select all games"
+msgstr "Zaznacz wszystkie gry"
+
 #: games/categories.rb:204
 msgid "Select at least one category for the custom pool."
 msgstr "Wybierz co najmniej jedną kategorię do własnej puli."
@@ -12086,7 +12094,7 @@ msgstr "Zaznaczaj karty w takiej kolejności, w jakiej mają leżeć w układzie
 msgid "Select each card only once, from your own hand."
 msgstr "Wybierz karty ze swojej ręki, każdą najwyżej raz."
 
-#: lib/game_room_screens.rb:420
+#: lib/game_room_screens.rb:464
 msgid "Select this table shortcut for editing"
 msgstr "Przejdź do przypisania tego skrótu"
 
@@ -12201,7 +12209,7 @@ msgstr "Sety do zwycięstwa"
 msgid "Sets: %{own} to %{opponent}."
 msgstr "Sety: %{own} do %{opponent}."
 
-#: __app.rb:235 lib/game_room_screens.rb:181
+#: __app.rb:235 lib/game_room_screens.rb:238
 msgid "Settings"
 msgstr "Ustawienia"
 
@@ -12489,19 +12497,19 @@ msgstr "Statki mogą się stykać"
 msgid "Short line railroad"
 msgstr "Kolej Short Line"
 
-#: lib/game_room_screens.rb:222
+#: lib/game_room_screens.rb:279
 msgid "Show Game Room on the ELTEN main screen"
 msgstr "Pokazuj Game Room na ekranie głównym ELTEN-a"
 
-#: lib/game_room_screens.rb:227
+#: lib/game_room_screens.rb:284
 msgid "Show full or unavailable tables"
 msgstr "Pokazuj pełne lub niedostępne stoły"
 
-#: lib/game_room_screens.rb:202
+#: lib/game_room_screens.rb:259
 msgid "Show invitation notifications from"
 msgstr "Pokazuj powiadomienia o zaproszeniach od"
 
-#: lib/game_room_screens.rb:231
+#: lib/game_room_screens.rb:288
 msgid "Show only tables created by contacts"
 msgstr "Pokazuj tylko stoły osób z kontaktów"
 
@@ -12631,7 +12639,7 @@ msgstr "Głośność efektów"
 msgid "Sound pack (only for you)"
 msgstr "Pakiet dźwięków (tylko dla Ciebie)"
 
-#: lib/game_room_screens.rb:180
+#: lib/game_room_screens.rb:237
 msgid "Sounds"
 msgstr "Dźwięki"
 
@@ -13033,7 +13041,7 @@ msgstr "Listy stołów i widget pokazują dokładniejszą obsadę oraz informacj
 msgid "Table master judges every round"
 msgstr "Założyciel stołu sędziuje każdą rundę"
 
-#: lib/game_room_screens.rb:410
+#: lib/game_room_screens.rb:454
 msgid "Table shortcuts"
 msgstr "Skróty tworzenia stołów"
 
@@ -14237,7 +14245,7 @@ msgstr "Wspólny tor ma 52 pola. Gracze wchodzą na niego kolejno na polach 1, 1
 msgid "The ship does not fit there."
 msgstr "Statek się tutaj nie mieści."
 
-#: lib/game_room_screens.rb:458
+#: lib/game_room_screens.rb:502
 msgid "The shortcut could not be saved. Please try again."
 msgstr "Nie udało się zapisać skrótu. Spróbuj ponownie."
 
@@ -16126,7 +16134,7 @@ msgstr "Kto sędziuje i ile trwa pisanie"
 msgid "Whole team finish mode changes this: all teammates must empty their hands before the team ends the round. Players who already finished are skipped and do not draw again. The option is off by default and appears only for team play. Elimination and the final result use team totals."
 msgstr "Opcja kończenia całą drużyną zmienia ten warunek: wszyscy jej członkowie muszą pozbyć się kostek. Osoby, które już skończyły, są pomijane i nie dobierają ponownie. Opcja jest domyślnie wyłączona i dotyczy tylko gry drużynowej. Eliminacja oraz wynik końcowy opierają się na sumach zespołów."
 
-#: lib/game_room_screens.rb:180
+#: lib/game_room_screens.rb:237
 msgid "Widget"
 msgstr "Widget"
 

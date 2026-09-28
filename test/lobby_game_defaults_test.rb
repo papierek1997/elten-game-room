@@ -96,8 +96,8 @@ begin
     form.fields.first.trigger(:move)
     list = form.fields.find { |field| field.is_a?(ListBox) && field.header == "Games covered by lobby messages" }
     assert(list && !form.hidden_controls.include?(list), "lobby list missing from Lobby messages")
-    assert(list.multiselections.map { |index| ids[index] } == expected, "Settings displays stale lobby choices")
-    list.instance_variable_get(:@selected)[ids.index("domino")] = false
+    assert(list.game_indices.map { |index| ids[index] } == expected, "Settings displays stale lobby choices")
+    list.instance_variable_get(:@selected)[ids.index("domino") + GameRoomScreens::GameList::ACTION_ROWS] = false
     form.accept_button.trigger(:press)
   end
   app.send(:show_settings)
@@ -116,7 +116,7 @@ begin
   # value object. Otherwise normalization after Save rechecks manual opt-outs.
   driver = lambda do |form|
     list = form.fields.find { |field| field.is_a?(ListBox) && field.header == "Games covered by lobby messages" }
-    list.instance_variable_get(:@selected)[ids.index("domino")] = false
+    list.instance_variable_get(:@selected)[ids.index("domino") + GameRoomScreens::GameList::ACTION_ROWS] = false
     form.accept_button.trigger(:press)
   end
   direct = GameRoomScreens::Settings.new(migrated.reject { |key, _| key == "lobby_known_games" },
