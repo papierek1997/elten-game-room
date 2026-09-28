@@ -1346,7 +1346,7 @@ module GameRoomGames
       when "film" then _("Film")
       when "song" then _("Song")
       when "music_group" then _("Music group")
-      when "river" then _("River")
+      when "river" then p_("categories", "River")
       when "mountain" then _("Mountain")
       when "island" then _("Island")
       when "language" then _("Language")

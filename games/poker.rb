@@ -721,7 +721,7 @@ module GameRoomGames
       count = state[:street].zero? ? 3 : 1
       cards = state[:deck].shift(count)
       state[:community].concat(cards)
-      label = [_("Flop"), _("Turn"), _("River")].fetch(state[:street])
+      label = [_("Flop"), _("Turn"), p_("poker", "River")].fetch(state[:street])
       history << HistoryEntry.new(key: "stage:#{event_id}:community:#{state[:street] + 1}",
         text: _("%{stage}: %{cards}.") % { stage: label, cards: cards.map { |card| poker_card_label(card) }.join(", ") },
         event_id: event_id, actor: "", kind: :game)

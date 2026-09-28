@@ -54,6 +54,8 @@ end
 chess = GameRoomGames::Chess.new
 raise 'Chess promotion uses card terminology' unless chess.send(:translated_piece_name, 'Q') == 'ферзь'
 raise 'Chess context lookup failed' unless GameRoomLocalization.translate('queen', context: 'chess') == 'ферзь'
+raise 'Categories river context failed' unless GameRoomLocalization.translate('River', context: 'categories') == 'Река'
+raise 'Poker river context failed' unless GameRoomLocalization.translate('River', context: 'poker') == 'Ривер'
 
 singular = 'There is currently %{current} user at the table.'
 plural = 'There are currently %{current} users at the table.'
