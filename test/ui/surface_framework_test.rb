@@ -1003,7 +1003,7 @@ assert(room_layout.form.instance_variable_get(:@timers).empty?, "leaving a scree
 
 require_relative "../../lib/participant_menu"
 menu_calls = []
-allowed = [:invite_online, :invite_contacts, :accept_invitation, :reject_invitation, :add_bot, :remove_bot, :rules]
+allowed = [:invite_online, :invite_contacts, :accept_invitation, :reject_invitation, :add_bot, :remove_bot, :rules, :save_table_history]
 room_layout.users.index = 2
 GameRoomParticipantMenu.bind(room_layout, available: -> { allowed }) { |action, id| menu_calls << [action, id] }
 global_menu = FakeMenu.new
@@ -1012,6 +1012,8 @@ assert(global_menu.options.none? { |option| ["Accept a game invitation", "Reject
 assert(["Invite an online Elten user", "Invite someone from your contacts"].all? { |label| global_menu.options.any? { |option| option[0] == label } }, "global table menu lost outgoing invitations")
 assert_global_invitation_menu(room_layout.form, keys: %w[i I])
 assert(global_menu.options.any? { |option| option[0] == "Game rules" }, "rules are absent from the global table menu")
+save_history = global_menu.options.find { |option| option[0] == "Save table history" }
+assert(save_history != nil && save_history[2] == "S", "table history has no native Ctrl+Shift+S shortcut")
 add = global_menu.options.find { |option| option[0] == "Add a computer" }
 assert(add != nil && add[2] == "o", "adding a computer has no native Ctrl+O shortcut")
 menu = FakeMenu.new

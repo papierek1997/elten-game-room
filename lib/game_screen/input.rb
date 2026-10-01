@@ -196,6 +196,7 @@ class GameScreen
       form = layout.form
       GameRoomParticipantMenu.bind(layout, available: -> do
         actions = [:rules, :leave]
+        actions << :save_table_history if @save_table_history != nil
         actions << :save_game if @save_game != nil && same_user?(@table_owner, Session.name)
         compatible = !@table.key?("__discovery_protocol") || @table["__discovery_protocol"].to_i >= GameRoomLiveSessionStore::CURRENT_DISCOVERY_PROTOCOL
         if compatible && same_user?(@table_owner, Session.name) && !@session["__frozen"]

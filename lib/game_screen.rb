@@ -49,6 +49,7 @@ class GameScreen
     manage_computer: nil,
     manage_observer: nil,
     manage_teams: nil,
+    save_table_history: nil,
     save_game: nil,
     edit_options: nil,
     abort_game: nil,
@@ -59,6 +60,7 @@ class GameScreen
     @manage_computer = manage_computer
     @manage_observer = manage_observer
     @manage_teams = manage_teams
+    @save_table_history = save_table_history
     @save_game = save_game
     @edit_options = edit_options
     @abort_game = abort_game
@@ -250,6 +252,9 @@ class GameScreen
         return :back if switch_to_new_session == false
       when :rules
         show_game_rules(replay)
+      when :save_table_history
+        @save_table_history&.call(combined_history_entries(replay))
+        @suppress_surface_focus = true
       when :save_game
         surface = @layout&.surface
         if surface.respond_to?(:save_game_error) && (error = surface.save_game_error)

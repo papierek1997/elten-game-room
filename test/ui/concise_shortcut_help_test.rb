@@ -5,7 +5,11 @@ require_relative "../support/binary_rule_dictionary"
   $rules_english = language != "pl"
   GameRoomTestLocalization.use_language(language)
   entry = GameRoomParticipantMenu.entries.find { |item| item.action == :table_options }
+  history_entry = GameRoomParticipantMenu.entries.find { |item| item.action == :save_table_history }
   expected = language == "pl" ? "Ctrl+R, Odczytaj wariant i ustawienia stołu." : "Ctrl+R, Read the table variant and settings."
+  expected_history = language == "pl" ? "Zapisz historię stołu" : "Save table history"
+  raise "Incorrect table history translation" unless history_entry.label == expected_history
+  raise "Incorrect table history shortcut" unless history_entry.menu_key == "S" && history_entry.help_key == "Ctrl+Shift+S"
   field = ListBox.new(["card"], header: "Hand")
   field.define_singleton_method(:add_tip) { |_| }
   form = GameRoomUI::Form.new([field])

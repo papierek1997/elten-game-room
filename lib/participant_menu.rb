@@ -25,6 +25,7 @@ module GameRoomParticipantMenu
       Entry.new(action: :edit_options, label: _("Change settings for the next game"), menu_key: "x", help_key: "Ctrl+X"),
       Entry.new(action: :edit_teams, label: _("Choose teams"), menu_key: ""),
       Entry.new(action: :abort_game, label: _("End the current game without closing the table"), menu_key: "q", help_key: "Ctrl+Q"),
+      Entry.new(action: :save_table_history, label: _("Save table history"), menu_key: "S", help_key: "Ctrl+Shift+S"),
       Entry.new(action: :save_game, label: _("Save the game and close the table"), menu_key: "s", help_key: "Ctrl+S"),
       Entry.new(action: :close_table, label: _("Close the table for everyone"), menu_key: ""),
       Entry.new(action: :leave, label: _("Leave"), menu_key: "")

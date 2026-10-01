@@ -111,6 +111,7 @@ require_relative "lib/game_room_presence_screen"
 require_relative "lib/game_room_analytics_runtime"
 require_relative "lib/game_statistics_screen"
 require_relative "lib/table_activity_repository"
+require_relative "lib/table_history_exporter"
 require_relative "lib/game_rules"
 require_relative "lib/game_room_changelog"
 require_relative "lib/game_room_screens"
@@ -931,6 +932,23 @@ class EltenGameRoom < Program
     false
   end
 
+  def save_table_history(entries)
+    directory = get_file(
+      _("Save table history"),
+      path: EltenPath.with_separator(Dirs.documents),
+      save: true
+    )
+    return false if directory == nil
+
+    path = GameRoomTableHistoryExporter.new.write(EltenPath.normalize(directory), entries)
+    alert(_("The table history has been saved to %{path}.") % { path: path })
+    true
+  rescue ArgumentError, EncodingError, IOError, SystemCallError => error
+    Log.warning("ELTEN Game Room table history save failed: #{error.class}: #{error.message}") if defined?(Log)
+    alert(_("The table history could not be saved."))
+    false
+  end
+
   def show_saved_games
     loop do
       rows = run_network_task(_("Loading saved games")) { saved_games.list }
@@ -1434,7 +1452,7 @@ class EltenGameRoom < Program
         end
       end
       GameRoomParticipantMenu.bind(layout, available: -> do
-        [:invite_online, :invite_contacts, :rules, :leave] +
+        [:invite_online, :invite_contacts, :rules, :save_table_history, :leave] +
           GameRoomParticipantMenu.role_actions(room: snapshot, viewer: Session.name, owner: owner) +
           (editable_table_state?(state) && state.game.team_assignment(state.game.options_from_json(row["game_options"]), players: snapshot.game_participants) ? [:edit_teams] : []) +
           GameRoomParticipantMenu.lifecycle_actions(active: state.active?, viewer: Session.name, owner: owner,
@@ -1498,6 +1516,9 @@ class EltenGameRoom < Program
         quiet_reentry = true
       when :rules
         show_game_rules(state.game, options: state.game&.options_from_json(row["game_options"]))
+      when :save_table_history
+        save_table_history(room_history_entries(state, state.activity_entries))
+        quiet_reentry = true
       when :invite_online
         show_invite_users(row, source: :online)
       when :invite_contacts
@@ -2977,6 +2998,7 @@ class EltenGameRoom < Program
       manage_computer: ->(current_table, action, participant) { change_room_computer(current_table, action, participant) },
       manage_observer: ->(current_table, action, participant = nil) { change_observer_mode(current_table, action, participant) },
       manage_teams: ->(current_table) { change_table_teams(current_table) },
+      save_table_history: ->(entries) { save_table_history(entries) },
       edit_options: ->(current_table) { change_table_game_options(current_table) },
       abort_game: ->(current_table, current_session) { abort_current_game(current_table, current_session) },
       leave_table: ->(current_table) { leave_table_from_screen(current_table) },
