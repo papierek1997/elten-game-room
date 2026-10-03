@@ -269,9 +269,18 @@ class EditBox < FakeControl
   module Flags
     ReadOnly = 1
     MultiLine = 2
+    MarkDown = 32
   end
 
-  def initialize(header, type: 0, text: "", quiet: true, max_length: -1)
+  class Element < Struct.new(:from, :to, :type, :param)
+    Header = 1
+    Link = 2
+    Frame = 14
+  end
+
+  def append_text_links; end
+
+  def initialize(header, type: 0, text: "", quiet: true, max_length: -1, detect_text_links: true)
     super()
     @header = header
     @type = type
@@ -279,6 +288,7 @@ class EditBox < FakeControl
     @text = text
     @index = @check = 0
     @max_length = max_length
+    @elements = []
   end
 
   def focus(_index = nil, _count = nil, spk = true)

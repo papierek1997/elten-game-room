@@ -1,5 +1,6 @@
 require_relative "context_help"
 require_relative "game_room_ui"
+require_relative "game_rules_view"
 require_relative "game_room_localization"
 require_relative "axel_pong/settings"
 require_relative "table_presets"
@@ -608,11 +609,7 @@ module GameRoomScreens
       content = if shortcuts
         ListBox.new(section.paragraphs, header: header, quiet: true)
       else
-        EditBox.new(header,
-          type: EditBox::Flags::ReadOnly | EditBox::Flags::MultiLine,
-          text: section.text,
-          quiet: true
-        )
+        GameRoomRules::View.new(header, document: section)
       end
       back_button = Button.new(_("Back"))
       form = GameRoomUI::Form.new([content, back_button], program: @program, quiet: true)

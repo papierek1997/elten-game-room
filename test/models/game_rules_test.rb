@@ -59,9 +59,12 @@ game_types.each do |game_type|
   assert(book.sections.all? { |section| !section.text.empty? }, "#{game.id} contains empty rules")
   assert(book.sections.all? { |section| !section.title.empty? }, "#{game.id} contains an untitled rule section")
   assert(book.documents.map(&:id) == [:rules, :controls], "#{game.id} library must have exactly two documents")
-  book.sections.reject { |section| section.id == :controls }.each do |section|
-    assert(book.documents.first.text.include?("#{section.title}\r\n#{section.text}"), "#{game.id} lost a heading or rule paragraph")
-  end
+  rules = book.documents.first
+  assert(rules.sections == book.sections.reject { |section| section.id == :controls }, "#{game.id} lost structured rule sections")
+  assert(rules.contents_title == _("Contents"), "#{game.id} lost its translated contents heading")
+  contents = [rules.contents_title, *rules.sections.map(&:title)].join("\r\n")
+  body = rules.sections.map { |section| "#{section.title}\r\n#{section.text}" }
+  assert(rules.text == [contents, *body].join("\r\n\r\n"), "#{game.id} lost contents or changed rule text")
   controls = book.sections.find { |section| section.id == :controls }
   assert(book.documents[1].text.include?(controls.text), "#{game.id} lost its game shortcuts")
   assert(book.documents[1].paragraphs == controls.paragraphs, "#{game.id} includes unrelated shared shortcuts")
@@ -84,7 +87,9 @@ assert(configured.sections.first.text.include?("2000"), "room rules lost the con
 assert(farkle.rule_book.sections.none? { |section| section.id == :current_options }, "library rules unexpectedly contain table options")
 assert(configured.documents.last.text.include?("40"), "room rules lost turn minimum")
 assert(configured.documents.last.text.include?("80"), "room rules lost entry minimum")
-assert(configured.with_current_options("replacement").documents.last.text == "replacement", "table settings must be replaceable without duplicate sections")
+replacement = configured.with_current_options("replacement").documents.last
+assert(replacement.sections.length == 1 && replacement.sections.first.text == "replacement", "table settings must be replaceable without duplicate sections")
+assert(replacement.text == "#{replacement.title}\r\nreplacement", "table settings lost their heading")
 
 def settings(game, values = {})
   game.rule_book(options: values).documents.last.text
