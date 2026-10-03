@@ -37,6 +37,18 @@ module GameRoomRules
     end
   end
 
+  class Document < Section
+    attr_reader :sections, :contents_title
+
+    def initialize(id:, title:, sections:, contents: false)
+      @sections = sections.to_a.dup.freeze
+      @contents_title = GameRoomContent.utf8(_("Contents")) if contents
+      paragraphs = @sections.map { |section| "#{section.title}\r\n#{section.text}" }
+      paragraphs.unshift([@contents_title, *@sections.map(&:title)].join("\r\n")) if contents
+      super(id: id, title: title, paragraphs: paragraphs)
+    end
+  end
+
   class Book
     attr_reader :game_id, :title, :sections
 
@@ -63,11 +75,11 @@ module GameRoomRules
     # Keep the two documents independent so rules never repeat key bindings.
     def documents
       result = [
-        Section.new(id: :rules, title: _("Rules"), paragraphs: sections.reject { |section| [:controls, :current_options].include?(section.id) }.map { |section| "#{section.title}\r\n#{section.text}" }),
+        Document.new(id: :rules, title: _("Rules"), sections: sections.reject { |section| [:controls, :current_options].include?(section.id) }, contents: true),
         Section.new(id: :controls, title: _("In-game keyboard shortcuts"), paragraphs: sections.find { |section| section.id == :controls }.paragraphs)
       ]
       current = sections.find { |section| section.id == :current_options }
-      result << current if current
+      result << Document.new(id: current.id, title: current.title, sections: [current]) if current
       result
     end
 
