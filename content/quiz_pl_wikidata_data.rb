@@ -3,7 +3,7 @@ require 'json'
 module GameRoomContent
   module Packa0830f585cc4689a1e2a6335
     def self.load
-      JSON.parse(<<'QUIZ_DATA_8a5d0db5bfea754a21940892cab235752582e7f1bb66bc1886df38a743ea1406')
+      JSON.parse(<<'QUIZ_DATA_c62d695aff37acbbfc938af22542803861aaac46a72f8576307eaf974b1ce1b8')
 {
   "questions": [
     {
@@ -1114,7 +1114,7 @@ module GameRoomContent
       "id": "polqa_00670",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "Jak nazywa się most zwodzony w Londynie, wybudowany w XIX wieku?",
+      "prompt": "Jak nazywa się most zwodzony w Londynie, wybudowany w 19. wieku?",
       "correct": "Tower Bridge",
       "wrong": [
         "London Bridge",
@@ -6042,7 +6042,7 @@ module GameRoomContent
       "id": "polqa_03589",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "W latach 30-tych XX w. w Nowym Jorku powstał budynek, który był przez długi czas najwyższy na świecie. Jak się nazywa?",
+      "prompt": "W latach 30. 20. wieku w Nowym Jorku powstał budynek, który był przez długi czas najwyższy na świecie. Jak się nazywa?",
       "correct": "Empire State Building",
       "wrong": [
         "Chrysler Building",
@@ -10026,7 +10026,7 @@ module GameRoomContent
       "id": "polqa_06585",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "Jak nazywa się grecka wyspa na Morzu Egejskim, gdzie w XIX w. odkryto pomnik Nike wystawiony obecnie w Luwrze?",
+      "prompt": "Jak nazywa się grecka wyspa na Morzu Egejskim, gdzie w 19. wieku odkryto pomnik Nike wystawiony obecnie w Luwrze?",
       "correct": "Samotraka",
       "wrong": [
         "Rodos",
@@ -10074,7 +10074,7 @@ module GameRoomContent
       "id": "polqa_06608",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "W którym tureckim mieście stoi Błękitny Meczet z początku XVII w.?",
+      "prompt": "W którym tureckim mieście stoi Błękitny Meczet z początku 17. wieku?",
       "correct": "Stambuł",
       "wrong": [
         "Ankara",
@@ -10266,7 +10266,7 @@ module GameRoomContent
       "id": "polqa_06757",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "W XV w. w Uppsali powstał uniwersytet. W którym państwie leży Uppsala?",
+      "prompt": "W 15. wieku w Uppsali powstał uniwersytet. W którym państwie leży Uppsala?",
       "correct": "w Szwecji",
       "wrong": [
         "w Norwegii",
@@ -12058,7 +12058,7 @@ module GameRoomContent
       "id": "1z10_02524e33b253a680",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "Na której bałtyckiej wyspie można zwiedzić XIX-wieczny Fort Gerharda?",
+      "prompt": "Na której bałtyckiej wyspie można zwiedzić 19-wieczny Fort Gerharda?",
       "correct": "Wolin",
       "wrong": [
         "Bornholm",
@@ -16426,7 +16426,7 @@ module GameRoomContent
       "id": "1z10_4523469b1ce59801",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "Które miasta połączył luksusowy pociąg kursujący od XIX wieku Orient Express?",
+      "prompt": "Które miasta połączył luksusowy pociąg kursujący od 19. wieku Orient Express?",
       "correct": "Paryż i Stambuł",
       "wrong": [
         "Londyn i Rzym",
@@ -17130,7 +17130,7 @@ module GameRoomContent
       "id": "1z10_d95cdfee5ffbe835",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "Które miasto było stolicą Wielkiego Księstwa Finlandii w XIX wieku, w latach 1809-12?",
+      "prompt": "Które miasto było stolicą Wielkiego Księstwa Finlandii w 19. wieku, w latach 1809-12?",
       "correct": "Turku",
       "wrong": [
         "Helsinki",
@@ -20490,7 +20490,7 @@ module GameRoomContent
       "id": "1z10_b0d85943ffb2468f",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "Kleparz, który prawa miejskie uzyskał w XIV wieku, to jest obecnie część którego miasta?",
+      "prompt": "Kleparz, który prawa miejskie uzyskał w 14. wieku, to jest obecnie część którego miasta?",
       "correct": "Krakowa",
       "wrong": [
         "Poznania",
@@ -23034,7 +23034,7 @@ module GameRoomContent
       "id": "1z10_081396cadd8f5d98",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "Który kontynent badał David Livingstone, żyjący w XIX wieku?",
+      "prompt": "Który kontynent badał David Livingstone, żyjący w 19. wieku?",
       "correct": "Afrykę",
       "wrong": [
         "Azję",
@@ -28058,7 +28058,7 @@ module GameRoomContent
       "id": "1z10_3e572c600b4a2fbe",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "W którym mieście stoi pochodzący z XIII wieku drewniany kościół ewangelicki Wang?",
+      "prompt": "W którym mieście stoi pochodzący z 13. wieku drewniany kościół ewangelicki Wang?",
       "correct": "W Karpaczu",
       "wrong": [
         "W Szklarskiej Porębie",
@@ -28923,11 +28923,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył Dżyngis-chan?",
-      "correct": "w XIII",
+      "correct": "w 13.",
       "wrong": [
-        "w IX",
-        "w XIV",
-        "w XV"
+        "w 9.",
+        "w 14.",
+        "w 15."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -29067,11 +29067,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Z którego wieku pochodzą Drzwi Gnieźnieńskie?",
-      "correct": "z XII",
+      "correct": "z 12.",
       "wrong": [
-        "z X",
-        "z XI",
-        "z XIII"
+        "z 10.",
+        "z 11.",
+        "z 13."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -29099,11 +29099,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstała pierwsza fabryka płyt gramofonowych?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVIII",
-        "w XVII",
-        "w XX"
+        "w 18.",
+        "w 17.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -29323,11 +29323,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Od którego wieku istnieje Katolicki Uniwersytet Lubelski?",
-      "correct": "od XX",
+      "correct": "od 20.",
       "wrong": [
-        "od XVII",
-        "od XVIII",
-        "od XIX"
+        "od 17.",
+        "od 18.",
+        "od 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -29723,11 +29723,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył Karol Darwin?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -29787,11 +29787,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstało w Londynie Muzeum Królowej Wiktorii i Księcia Alberta?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -29803,11 +29803,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku panował Henryk VIII?",
-      "correct": "w XVI wieku",
+      "correct": "w 16. wieku",
       "wrong": [
-        "w XIV wieku",
-        "w XV wieku",
-        "w XVII wieku"
+        "w 14. wieku",
+        "w 15. wieku",
+        "w 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -29851,11 +29851,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "1444 rok – który to wiek?",
-      "correct": "XV",
+      "correct": "15.",
       "wrong": [
-        "XIV",
-        "XVI",
-        "XIII"
+        "14.",
+        "16.",
+        "13."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -29979,11 +29979,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku została utworzona kolej z Krakowa do Zakopanego?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -30107,11 +30107,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miał miejsce Rokosz Zebrzydowskiego?",
-      "correct": "w XVII",
+      "correct": "w 17.",
       "wrong": [
-        "w XV",
-        "w XVI",
-        "w XVIII"
+        "w 15.",
+        "w 16.",
+        "w 18."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -30283,11 +30283,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku odbyła się bitwa pod Somosierrą?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -30763,11 +30763,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku została zawarta konwencja haska zakazująca używania broni dum-dum?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -31147,11 +31147,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zostały sprowadzone do Europy kukurydza, tytoń, ziemniaki?",
-      "correct": "w XVI",
+      "correct": "w 16.",
       "wrong": [
-        "w XIV",
-        "w XV",
-        "w XVIII"
+        "w 14.",
+        "w 15.",
+        "w 18."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -31483,11 +31483,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku został wydany pierwszy polski znaczek pocztowy?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -31866,7 +31866,7 @@ module GameRoomContent
       "id": "polqa_01262",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Która dynastia panowała na Litwie, w Polsce, na Węgrzech i w Czechach w XVI wieku?",
+      "prompt": "Która dynastia panowała na Litwie, w Polsce, na Węgrzech i w Czechach w 16. wieku?",
       "correct": "Jagiellonowie",
       "wrong": [
         "Piastowie",
@@ -32106,7 +32106,7 @@ module GameRoomContent
       "id": "polqa_01347",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Które miasto w XIX wieku było siedzibą władz brytyjskich w Indiach?",
+      "prompt": "Które miasto w 19. wieku było siedzibą władz brytyjskich w Indiach?",
       "correct": "Kalkuta",
       "wrong": [
         "Bombaj",
@@ -32203,11 +32203,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Od którego wieku Buckingham Palace jest oficjalną siedzibą brytyjskiej rodziny królewskiej?",
-      "correct": "od XIX wieku",
+      "correct": "od 19. wieku",
       "wrong": [
-        "od XVI wieku",
-        "od XVII wieku",
-        "od XVIII wieku"
+        "od 16. wieku",
+        "od 17. wieku",
+        "od 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -32266,7 +32266,7 @@ module GameRoomContent
       "id": "polqa_01426",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Który władca na początku XIII wieku zjednoczył plemiona mongolskie i tureckie?",
+      "prompt": "Który władca na początku 13. wieku zjednoczył plemiona mongolskie i tureckie?",
       "correct": "Czyngis-chan",
       "wrong": [
         "Kubilaj-chan",
@@ -32299,11 +32299,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstała formalnie w Niemczech Hanza?",
-      "correct": "w XIII",
+      "correct": "w 13.",
       "wrong": [
-        "w XI",
-        "w XII",
-        "w XV"
+        "w 11.",
+        "w 12.",
+        "w 15."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -32459,11 +32459,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku odbył się ślub Jadwigi z Władysławem Jagiełłą?",
-      "correct": "w XIV",
+      "correct": "w 14.",
       "wrong": [
-        "w XIII",
-        "w XV",
-        "w XVI"
+        "w 13.",
+        "w 15.",
+        "w 16."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -32491,11 +32491,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Tamerlan podbił Złotą Ordę?",
-      "correct": "w XIV wieku",
+      "correct": "w 14. wieku",
       "wrong": [
-        "w XII wieku",
-        "w XIII wieku",
-        "w XV wieku"
+        "w 12. wieku",
+        "w 13. wieku",
+        "w 15. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -32506,7 +32506,7 @@ module GameRoomContent
       "id": "polqa_01520",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W którym państwie w XV wieku trwała Wojna Dwóch Róż?",
+      "prompt": "W którym państwie w 15. wieku trwała Wojna Dwóch Róż?",
       "correct": "w Anglii",
       "wrong": [
         "we Francji",
@@ -32523,11 +32523,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstał Międzynarodowy Czerwony Krzyż?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVIII",
-        "w XX",
-        "w XVII"
+        "w 18.",
+        "w 20.",
+        "w 17."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -32651,11 +32651,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku rządził Bolesław Śmiały?",
-      "correct": "w XI wieku",
+      "correct": "w 11. wieku",
       "wrong": [
-        "w X wieku",
-        "w XII wieku",
-        "w XIII wieku"
+        "w 10. wieku",
+        "w 12. wieku",
+        "w 13. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -32827,11 +32827,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył Seneka Młodszy?",
-      "correct": "w I",
+      "correct": "w 1.",
       "wrong": [
-        "w II",
-        "w III",
-        "w IV"
+        "w 2.",
+        "w 3.",
+        "w 4."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -32843,11 +32843,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył Ludwik Waryński?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVIII",
-        "w XVII",
-        "w XX"
+        "w 18.",
+        "w 17.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -33099,11 +33099,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstały Austro-Węgry?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -33322,7 +33322,7 @@ module GameRoomContent
       "id": "polqa_01941",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W których latach XIX wieku obradował Kongres Wiedeński?",
+      "prompt": "W których latach 19. wieku obradował Kongres Wiedeński?",
       "correct": "1814–1815",
       "wrong": [
         "1806–1807",
@@ -33418,7 +33418,7 @@ module GameRoomContent
       "id": "polqa_01956",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywała się lekka kawaleria założona przez Józefa Lisowskiego w początkach XVII wieku?",
+      "prompt": "Jak nazywała się lekka kawaleria założona przez Józefa Lisowskiego w początkach 17. wieku?",
       "correct": "lisowczycy",
       "wrong": [
         "husaria",
@@ -33514,7 +33514,7 @@ module GameRoomContent
       "id": "polqa_01973",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W którym państwie od XVI wieku bito złotą monetę zwaną dublonem?",
+      "prompt": "W którym państwie od 16. wieku bito złotą monetę zwaną dublonem?",
       "correct": "w Hiszpanii",
       "wrong": [
         "we Francji",
@@ -33595,11 +33595,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku II Międzynarodówka ustanowiła 1 Maja świętem pracy?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -33739,11 +33739,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku nastąpiło pierwsze zerwanie Sejmu przez liberum veto?",
-      "correct": "w XVII",
+      "correct": "w 17.",
       "wrong": [
-        "w XV",
-        "w XVI",
-        "w XVIII"
+        "w 15.",
+        "w 16.",
+        "w 18."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -33946,7 +33946,7 @@ module GameRoomContent
       "id": "polqa_02201",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak w XII i XIII wieku nazywał się urzędnik sprawujący władzę nad zamkiem lub grodem i przyległym okręgiem?",
+      "prompt": "Jak w 12. i 13. wieku nazywał się urzędnik sprawujący władzę nad zamkiem lub grodem i przyległym okręgiem?",
       "correct": "kasztelan",
       "wrong": [
         "wojewoda",
@@ -34027,11 +34027,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku wybudowano Kanał Koryncki?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -34170,7 +34170,7 @@ module GameRoomContent
       "id": "polqa_02312",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Kto w XIV wieku nadał szlachcie przywilej koszycki?",
+      "prompt": "Kto w 14. wieku nadał szlachcie przywilej koszycki?",
       "correct": "Ludwik Węgierski",
       "wrong": [
         "Kazimierz Wielki",
@@ -34186,7 +34186,7 @@ module GameRoomContent
       "id": "polqa_02313",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Nadwornym malarzem którego angielskiego króla był Hans Holbein syn żyjący na przełomie XV i XVI wieku?",
+      "prompt": "Nadwornym malarzem którego angielskiego króla był Hans Holbein syn żyjący na przełomie 15. i 16. wieku?",
       "correct": "Henryka VIII",
       "wrong": [
         "Henryka VII",
@@ -34331,11 +34331,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku wprowadzono do prawa i praktyki wojennej pojęcie zbrodni wojennej?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XIX"
+        "w 17.",
+        "w 18.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -34491,11 +34491,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Rzymianie ostatecznie zniszczyli Kartaginę?",
-      "correct": "w II p.n.e.",
+      "correct": "w 2. p.n.e.",
       "wrong": [
-        "w IV p.n.e.",
-        "w III p.n.e.",
-        "w I p.n.e."
+        "w 4. p.n.e.",
+        "w 3. p.n.e.",
+        "w 1. p.n.e."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -34587,11 +34587,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył Wielki Wezyr Kara Mustafa?",
-      "correct": "w XVII",
+      "correct": "w 17.",
       "wrong": [
-        "w XV",
-        "w XVI",
-        "w XVIII"
+        "w 15.",
+        "w 16.",
+        "w 18."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -34731,11 +34731,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miało miejsce powstanie Pugaczowa w Rosji?",
-      "correct": "w XVIII wieku",
+      "correct": "w 18. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XIX wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -35227,11 +35227,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zniesiono w Rosji pańszczyznę?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -35562,7 +35562,7 @@ module GameRoomContent
       "id": "polqa_02874",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Tymczasową stolicą którego azjatyckiego kraju był w XX wieku Nankin?",
+      "prompt": "Tymczasową stolicą którego azjatyckiego kraju był w 20. wieku Nankin?",
       "correct": "Chin",
       "wrong": [
         "Japonii",
@@ -35594,7 +35594,7 @@ module GameRoomContent
       "id": "polqa_02889",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Która dynastia panowała w Chinach od XIV do XVII wieku?",
+      "prompt": "Która dynastia panowała w Chinach od 14. do 17. wieku?",
       "correct": "Ming",
       "wrong": [
         "Qing",
@@ -35610,7 +35610,7 @@ module GameRoomContent
       "id": "polqa_02895",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Flota którego państwa pokonała w XVI wieku tzw. Wielką Armadę?",
+      "prompt": "Flota którego państwa pokonała w 16. wieku tzw. Wielką Armadę?",
       "correct": "Anglii",
       "wrong": [
         "Francji",
@@ -35819,11 +35819,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce bitwa pod Akcjum?",
-      "correct": "w I p.n.e.",
+      "correct": "w 1. p.n.e.",
       "wrong": [
-        "w II p.n.e.",
-        "w I n.e.",
-        "w II n.e."
+        "w 2. p.n.e.",
+        "w 1. n.e.",
+        "w 2. n.e."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -35851,11 +35851,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku upadło Cesarstwo Bizantyjskie?",
-      "correct": "w XV",
+      "correct": "w 15.",
       "wrong": [
-        "w XIII",
-        "w XIV",
-        "w XVI"
+        "w 13.",
+        "w 14.",
+        "w 16."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -35995,11 +35995,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku rozegrała się wojna polsko-szwedzka zwana potopem?",
-      "correct": "w XVII",
+      "correct": "w 17.",
       "wrong": [
-        "w XV",
-        "w XVI",
-        "w XVIII"
+        "w 15.",
+        "w 16.",
+        "w 18."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -36347,11 +36347,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zawarto traktat trzech czarnych orłów?",
-      "correct": "w XVIII",
+      "correct": "w 18.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XIX"
+        "w 16.",
+        "w 17.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -36459,11 +36459,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstały statuty Kazimierza Wielkiego?",
-      "correct": "w XIV",
+      "correct": "w 14.",
       "wrong": [
-        "w XII",
-        "w XIII",
-        "w XV"
+        "w 12.",
+        "w 13.",
+        "w 15."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -36475,11 +36475,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Od którego wieku zaczęto używać oficjalnej nazwy Imperium Rosyjskie?",
-      "correct": "w XVIII",
+      "correct": "w 18.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XIX"
+        "w 16.",
+        "w 17.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -36602,7 +36602,7 @@ module GameRoomContent
       "id": "polqa_03285",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Który polski król zreorganizował Akademię Krakowską pod koniec XIV wieku?",
+      "prompt": "Który polski król zreorganizował Akademię Krakowską pod koniec 14. wieku?",
       "correct": "Władysław Jagiełło",
       "wrong": [
         "Kazimierz Wielki",
@@ -36859,11 +36859,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku cesarz Henryk IV udał się do Canossy?",
-      "correct": "w XI",
+      "correct": "w 11.",
       "wrong": [
-        "w IX",
-        "w X",
-        "w XII"
+        "w 9.",
+        "w 10.",
+        "w 12."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -36891,11 +36891,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Pakistan proklamował niepodległość?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XVIII",
-        "w XIX",
-        "w XVII"
+        "w 18.",
+        "w 19.",
+        "w 17."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -36970,7 +36970,7 @@ module GameRoomContent
       "id": "polqa_03411",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Z jakiego metalu od XIV wieku wybijano trzeciaki, monety o wartości trzech denarów?",
+      "prompt": "Z jakiego metalu od 14. wieku wybijano trzeciaki, monety o wartości trzech denarów?",
       "correct": "ze srebra",
       "wrong": [
         "ze złota",
@@ -36987,11 +36987,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce wojna secesyjna?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -37195,11 +37195,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Nowa Holandia zmieniła oficjalnie nazwę na Australia?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -37211,11 +37211,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku odkryto grotę z malowidłami naskalnymi Lascaux?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XIX"
+        "w 17.",
+        "w 18.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -37227,11 +37227,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce bitwa pod Poitiers?",
-      "correct": "w VIII",
+      "correct": "w 8.",
       "wrong": [
-        "w VI",
-        "w VII",
-        "w IX"
+        "w 6.",
+        "w 7.",
+        "w 9."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -37243,11 +37243,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zostało zbudowane wiedeńskie diabelskie koło?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -37339,11 +37339,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku został odlany dzwon Zygmunta?",
-      "correct": "w XVI",
+      "correct": "w 16.",
       "wrong": [
-        "w XIV",
-        "w XV",
-        "w XVII"
+        "w 14.",
+        "w 15.",
+        "w 17."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -37402,7 +37402,7 @@ module GameRoomContent
       "id": "polqa_03562",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywało się duże gospodarstwo rolne, wykorzystujące wcześniej pracę chłopów pańszczyźnianych, a od XIX wieku pracę najemną?",
+      "prompt": "Jak nazywało się duże gospodarstwo rolne, wykorzystujące wcześniej pracę chłopów pańszczyźnianych, a od 19. wieku pracę najemną?",
       "correct": "folwark",
       "wrong": [
         "cech",
@@ -37547,11 +37547,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku rozpoczął się pierwszy proces przed Międzynarodowym Trybunałem Karnym w Hadze?",
-      "correct": "w XXI wieku",
+      "correct": "w 21. wieku",
       "wrong": [
-        "w XVIII wieku",
-        "w XIX wieku",
-        "w XX wieku"
+        "w 18. wieku",
+        "w 19. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -37627,11 +37627,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zostały zjednoczone Włochy?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -37771,11 +37771,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku urodził się Horatio Nelson?",
-      "correct": "w XVIII wieku",
+      "correct": "w 18. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XIX wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -37834,7 +37834,7 @@ module GameRoomContent
       "id": "polqa_03687",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywał się legendarny bohater szwajcarski z okresu walk o niepodległość przeciw Habsburgom w XIV wieku?",
+      "prompt": "Jak nazywał się legendarny bohater szwajcarski z okresu walk o niepodległość przeciw Habsburgom w 14. wieku?",
       "correct": "Wilhelm Tell",
       "wrong": [
         "Arnold Winkelried",
@@ -38203,11 +38203,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstał kodeks Justyniana?",
-      "correct": "w VI wieku",
+      "correct": "w 6. wieku",
       "wrong": [
-        "w III wieku",
-        "w IV wieku",
-        "w IX wieku"
+        "w 3. wieku",
+        "w 4. wieku",
+        "w 9. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -38506,7 +38506,7 @@ module GameRoomContent
       "id": "polqa_04022",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywał się żeglarz i odkrywca angielski, który w XVIII w. dwukrotnie opłynął świat?",
+      "prompt": "Jak nazywał się żeglarz i odkrywca angielski, który w 18. wieku dwukrotnie opłynął świat?",
       "correct": "James Cook",
       "wrong": [
         "Francis Drake",
@@ -38763,11 +38763,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku kobiety uzyskały prawa wyborcze w Wielkiej Brytanii?",
-      "correct": "w XX wieku",
+      "correct": "w 20. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XIX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -39131,11 +39131,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zbudowano w Berlinie Reichstag?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -39147,11 +39147,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku doszło do rozbicia Polski na dzielnice?",
-      "correct": "w XII wieku",
+      "correct": "w 12. wieku",
       "wrong": [
-        "w X wieku",
-        "w XI wieku",
-        "w XIII wieku"
+        "w 10. wieku",
+        "w 11. wieku",
+        "w 13. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -39163,11 +39163,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku został założony uniwersytet w Cambridge?",
-      "correct": "w XIII wieku",
+      "correct": "w 13. wieku",
       "wrong": [
-        "w XI wieku",
-        "w XIV wieku",
-        "w XVI wieku"
+        "w 11. wieku",
+        "w 14. wieku",
+        "w 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -39323,11 +39323,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce odsiecz oblężonego przez Turków Wiednia?",
-      "correct": "w XVII wieku",
+      "correct": "w 17. wieku",
       "wrong": [
-        "w XV wieku",
-        "w XVI wieku",
-        "w XVIII wieku"
+        "w 15. wieku",
+        "w 16. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -39498,7 +39498,7 @@ module GameRoomContent
       "id": "polqa_04321",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W IX wieku Kraków był ośrodkiem którego plemienia?",
+      "prompt": "W 9. wieku Kraków był ośrodkiem którego plemienia?",
       "correct": "Wiślan",
       "wrong": [
         "Polan",
@@ -39930,7 +39930,7 @@ module GameRoomContent
       "id": "polqa_04495",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Który król powołał w XVI w. Komisję Morską, czyli pierwszy Polski urząd do spraw żeglugi?",
+      "prompt": "Który król powołał w 16. wieku Komisję Morską, czyli pierwszy Polski urząd do spraw żeglugi?",
       "correct": "Zygmunt II August",
       "wrong": [
         "Zygmunt I Stary",
@@ -40379,11 +40379,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce tzw. katastrofa tunguska w syberyjskiej tajdze?",
-      "correct": "w XX wieku",
+      "correct": "w 20. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XIX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -40955,11 +40955,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Wezuwiusz zniszczył rzymskie Pompeje i Herkulanum?",
-      "correct": "w I wieku",
+      "correct": "w 1. wieku",
       "wrong": [
-        "w II wieku",
-        "w III wieku",
-        "w IV wieku"
+        "w 2. wieku",
+        "w 3. wieku",
+        "w 4. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -41035,11 +41035,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku panował w Rzymie cesarz Kaligula?",
-      "correct": "w I wieku",
+      "correct": "w 1. wieku",
       "wrong": [
-        "w II wieku",
-        "w III wieku",
-        "w IV wieku"
+        "w 2. wieku",
+        "w 3. wieku",
+        "w 4. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -41099,11 +41099,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Jan Gutenberg skonstruował prasę drukarską?",
-      "correct": "w XV wieku",
+      "correct": "w 15. wieku",
       "wrong": [
-        "w XIII wieku",
-        "w XIV wieku",
-        "w XVI wieku"
+        "w 13. wieku",
+        "w 14. wieku",
+        "w 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -41195,11 +41195,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku z Francji wyruszyła wyprawa do Egiptu pod wodzą Napoleona I?",
-      "correct": "w XVIII wieku",
+      "correct": "w 18. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XIX wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -41771,11 +41771,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstał Związek Polaków na Białorusi?",
-      "correct": "w XX wieku",
+      "correct": "w 20. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XIX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -41995,11 +41995,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku nadano szlachcie przywilej koszycki?",
-      "correct": "w XIV wieku",
+      "correct": "w 14. wieku",
       "wrong": [
-        "w XII wieku",
-        "w XIII wieku",
-        "w XV wieku"
+        "w 12. wieku",
+        "w 13. wieku",
+        "w 15. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -42170,7 +42170,7 @@ module GameRoomContent
       "id": "polqa_05287",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Którym państwem na przełomie XII i XIII wieku władała Tamara?",
+      "prompt": "Którym państwem na przełomie 12. i 13. wieku władała Tamara?",
       "correct": "Gruzją",
       "wrong": [
         "Armenią",
@@ -42218,7 +42218,7 @@ module GameRoomContent
       "id": "polqa_05312",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak brzmi nazwa terytorium, które u schyłku XIX wieku USA zakupiły od Rosji?",
+      "prompt": "Jak brzmi nazwa terytorium, które u schyłku 19. wieku USA zakupiły od Rosji?",
       "correct": "Alaska",
       "wrong": [
         "Luizjana",
@@ -42299,11 +42299,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku kobiety w Arabii Saudyjskiej zyskały czynne i bierne prawo wyborcze?",
-      "correct": "w XXI wieku",
+      "correct": "w 21. wieku",
       "wrong": [
-        "w XVIII wieku",
-        "w XIX wieku",
-        "w XX wieku"
+        "w 18. wieku",
+        "w 19. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -42346,7 +42346,7 @@ module GameRoomContent
       "id": "polqa_05345",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywało się magnackie stronnictwo Czartoryskich, które w XVIII wieku próbowało przeprowadzić reformy w Rzeczypospolitej?",
+      "prompt": "Jak nazywało się magnackie stronnictwo Czartoryskich, które w 18. wieku próbowało przeprowadzić reformy w Rzeczypospolitej?",
       "correct": "Familia",
       "wrong": [
         "Koteria Petersburska",
@@ -42427,11 +42427,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zniesiono niewolnictwo w USA?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -42459,11 +42459,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku odbyła się pierwsza wyprawa krzyżowa?",
-      "correct": "w XI wieku",
+      "correct": "w 11. wieku",
       "wrong": [
-        "w IX wieku",
-        "w X wieku",
-        "w XII wieku"
+        "w 9. wieku",
+        "w 10. wieku",
+        "w 12. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -42507,11 +42507,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Krzysztof Kolumb odbył ostatnią wizytę do Ameryki?",
-      "correct": "w XVI wieku",
+      "correct": "w 16. wieku",
       "wrong": [
-        "w XIV wieku",
-        "w XV wieku",
-        "w XVII wieku"
+        "w 14. wieku",
+        "w 15. wieku",
+        "w 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -42539,11 +42539,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce wyprawa tysiąca?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -42555,11 +42555,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku panował król Zygmunt Stary?",
-      "correct": "w XVI wieku",
+      "correct": "w 16. wieku",
       "wrong": [
-        "w XIV wieku",
-        "w XV wieku",
-        "w XVII wieku"
+        "w 14. wieku",
+        "w 15. wieku",
+        "w 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -42715,11 +42715,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Konrad Mazowiecki sprowadził na ziemie polskie rycerzy krzyżackich?",
-      "correct": "w XIII wieku",
+      "correct": "w 13. wieku",
       "wrong": [
-        "w XI wieku",
-        "w XII wieku",
-        "w XIV wieku"
+        "w 11. wieku",
+        "w 12. wieku",
+        "w 14. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -42778,7 +42778,7 @@ module GameRoomContent
       "id": "polqa_05486",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Na którym kontynencie toczyła się w XIX w. tzw. wojna o saletrę?",
+      "prompt": "Na którym kontynencie toczyła się w 19. wieku tzw. wojna o saletrę?",
       "correct": "w Ameryce Południowej",
       "wrong": [
         "w Ameryce Północnej",
@@ -42827,11 +42827,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku szerzyła się wielka epidemia dżumy, która zabiła 1/3 Europejczyków?",
-      "correct": "w XIV wieku",
+      "correct": "w 14. wieku",
       "wrong": [
-        "w XII wieku",
-        "w XIII wieku",
-        "w XV wieku"
+        "w 12. wieku",
+        "w 13. wieku",
+        "w 15. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -43099,11 +43099,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miały miejsce trzy rozbiory Polski?",
-      "correct": "w XVIII wieku",
+      "correct": "w 18. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XIX wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -43130,7 +43130,7 @@ module GameRoomContent
       "id": "polqa_05621",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W którym państwie w latach pięćdziesiątych XX w. rozwinął się w polityce wewnętrznej tzw. makkartyzm?",
+      "prompt": "W którym państwie w latach pięćdziesiątych 20. wieku rozwinął się w polityce wewnętrznej tzw. makkartyzm?",
       "correct": "w Stanach Zjednoczonych",
       "wrong": [
         "w Wielkiej Brytanii",
@@ -43258,7 +43258,7 @@ module GameRoomContent
       "id": "polqa_05662",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Kto w połowie XV w. wydał biblię drukiem?",
+      "prompt": "Kto w połowie 15. wieku wydał biblię drukiem?",
       "correct": "Gutenberg",
       "wrong": [
         "Aldus Manutius",
@@ -43451,11 +43451,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce wojna trzynastoletnia między Polską a Zakonem Krzyżackim?",
-      "correct": "w XV wieku",
+      "correct": "w 15. wieku",
       "wrong": [
-        "w XIII wieku",
-        "w XIV wieku",
-        "w XVI wieku"
+        "w 13. wieku",
+        "w 14. wieku",
+        "w 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -43530,7 +43530,7 @@ module GameRoomContent
       "id": "polqa_05739",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywał się sułtan turecki z XVI wieku o przydomku Wspaniały?",
+      "prompt": "Jak nazywał się sułtan turecki z 16. wieku o przydomku Wspaniały?",
       "correct": "Sulejman",
       "wrong": [
         "Selim",
@@ -43579,11 +43579,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zbudowano Kanał Sueski?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 16. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -43594,7 +43594,7 @@ module GameRoomContent
       "id": "polqa_05762",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywał się włoski podróżnik, który w XIII wieku dotarł do Chin?",
+      "prompt": "Jak nazywał się włoski podróżnik, który w 13. wieku dotarł do Chin?",
       "correct": "Marco Polo",
       "wrong": [
         "Amerigo Vespucci",
@@ -43643,11 +43643,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku wojska I krucjaty zdobyły Jerozolimę?",
-      "correct": "w XI wieku",
+      "correct": "w 11. wieku",
       "wrong": [
-        "w X wieku",
-        "w XII wieku",
-        "w XIII wieku"
+        "w 10. wieku",
+        "w 12. wieku",
+        "w 13. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -43659,11 +43659,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku rzeźbiarz Jan Wnęk odbył pierwsze loty na własnej lotni?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 16. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -43866,7 +43866,7 @@ module GameRoomContent
       "id": "polqa_05884",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jaką nazwę nosi ugrupowanie, sprawujące krwawe rządy w Kambodży w drugiej połowie lat 70. XX wieku?",
+      "prompt": "Jaką nazwę nosi ugrupowanie, sprawujące krwawe rządy w Kambodży w drugiej połowie lat 70. 20. wieku?",
       "correct": "Czerwoni Khmerowie",
       "wrong": [
         "Viet Minh",
@@ -44139,11 +44139,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku odbył się pierwszy lot ludzi balonem?",
-      "correct": "w XVIII wieku",
+      "correct": "w 18. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XIX wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -44314,7 +44314,7 @@ module GameRoomContent
       "id": "polqa_06158",
       "category": "Historia",
       "level": "medium",
-      "prompt": "„Malleus Maleficarum”, traktat Heinricha Kramera i Jakoba Sprengera wydany w XV w., to inaczej „Młot na...”?",
+      "prompt": "„Malleus Maleficarum”, traktat Heinricha Kramera i Jakoba Sprengera wydany w 15. wieku, to inaczej „Młot na...”?",
       "correct": "czarownice",
       "wrong": [
         "heretyków",
@@ -44474,7 +44474,7 @@ module GameRoomContent
       "id": "polqa_06238",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Którą część ciała żołnierza chronił kapalin, noszony przez piechotę od XIV w.?",
+      "prompt": "Którą część ciała żołnierza chronił kapalin, noszony przez piechotę od 14. wieku?",
       "correct": "głowę",
       "wrong": [
         "tułów",
@@ -44506,7 +44506,7 @@ module GameRoomContent
       "id": "polqa_06246",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Który władca w XVIII w. p.n.e. stolicą swego państwa uczynił Babilon?",
+      "prompt": "Który władca w 18. wieku p.n.e. stolicą swego państwa uczynił Babilon?",
       "correct": "Hammurabi",
       "wrong": [
         "Sargon Wielki",
@@ -44938,7 +44938,7 @@ module GameRoomContent
       "id": "polqa_06376",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Który astronom bronił zamku olsztyńskiego przed Krzyżakami w XVI w.?",
+      "prompt": "Który astronom bronił zamku olsztyńskiego przed Krzyżakami w 16. wieku?",
       "correct": "Mikołaj Kopernik",
       "wrong": [
         "Jan Heweliusz",
@@ -45210,7 +45210,7 @@ module GameRoomContent
       "id": "polqa_06538",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jaką potoczną nazwą określa się najazd Szwedów na Polskę w XVII w.?",
+      "prompt": "Jaką potoczną nazwą określa się najazd Szwedów na Polskę w 17. wieku?",
       "correct": "potop szwedzki",
       "wrong": [
         "wojna północna",
@@ -45514,7 +45514,7 @@ module GameRoomContent
       "id": "polqa_06705",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Na którym kontynencie toczyły się na przełomie XIX i XX w. wojny burskie?",
+      "prompt": "Na którym kontynencie toczyły się na przełomie 19. i 20. wieku wojny burskie?",
       "correct": "w Afryce",
       "wrong": [
         "w Azji",
@@ -45530,7 +45530,7 @@ module GameRoomContent
       "id": "polqa_06710",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W którym mieście w I w. p.n.e. wzniesiono wieżę wiatrów z wiatrowskazem i zegarem słonecznym?",
+      "prompt": "W którym mieście w 1. wieku p.n.e. wzniesiono wieżę wiatrów z wiatrowskazem i zegarem słonecznym?",
       "correct": "w Atenach",
       "wrong": [
         "w Rzymie",
@@ -45739,11 +45739,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku był rok 1314?",
-      "correct": "w XIV",
+      "correct": "w 14.",
       "wrong": [
-        "w XII",
-        "w XIII",
-        "w XV"
+        "w 12.",
+        "w 13.",
+        "w 15."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45755,11 +45755,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku działał ksiądz Piotr Ściegienny?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45771,11 +45771,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miało miejsce powstanie nazywane rabacją galicyjską albo rzezią galicyjską?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XVIII"
+        "w 16.",
+        "w 17.",
+        "w 18."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45787,11 +45787,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstało Muzeum Narodowe w Krakowie?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45803,11 +45803,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku sufrażystki rozpoczęły działalność w anglosaskich krajach?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XVIII"
+        "w 16.",
+        "w 17.",
+        "w 18."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45819,11 +45819,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żyła Emilia Plater?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XVIII"
+        "w 16.",
+        "w 17.",
+        "w 18."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45835,11 +45835,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył kronikarz Wincenty Kadłubek?",
-      "correct": "w XII i XIII wieku",
+      "correct": "w 12. i 13. wieku",
       "wrong": [
-        "w X i XI wieku",
-        "w XIV i XV wieku",
-        "w XVI i XVII wieku"
+        "w 10. i 11. wieku",
+        "w 14. i 15. wieku",
+        "w 16. i 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45851,11 +45851,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku hiszpańska Wielka Armada Filipa II poniosła klęskę w wyprawie przeciw Anglii?",
-      "correct": "w XVI",
+      "correct": "w 16.",
       "wrong": [
-        "w XIV",
-        "w XV",
-        "w XVII"
+        "w 14.",
+        "w 15.",
+        "w 17."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45867,11 +45867,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Marcin Luter zapoczątkował ruch zwany reformacją?",
-      "correct": "w XVI",
+      "correct": "w 16.",
       "wrong": [
-        "w XIV",
-        "w XV",
-        "w XVII"
+        "w 14.",
+        "w 15.",
+        "w 17."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45883,11 +45883,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku podpisano traktat trzech czarnych orłów, zwany także traktatem Loewenwolda?",
-      "correct": "w XVIII",
+      "correct": "w 18.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XIX"
+        "w 16.",
+        "w 17.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45899,11 +45899,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku generał Baden-Powell stworzył pierwszą drużynę skautową?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XIX"
+        "w 17.",
+        "w 18.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45915,11 +45915,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku został zawarty pakt ograniczający wykorzystanie obszaru Antarktydy tylko do celów pokojowych?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XIX"
+        "w 17.",
+        "w 18.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -45930,7 +45930,7 @@ module GameRoomContent
       "id": "polqa_06788",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywała się powstała w II wieku fortyfikacja, którą Rzymianie odgrodzili podbitą Brytanię od Szkocji?",
+      "prompt": "Jak nazywała się powstała w 2. wieku fortyfikacja, którą Rzymianie odgrodzili podbitą Brytanię od Szkocji?",
       "correct": "wał Hadriana",
       "wrong": [
         "wał Antonina",
@@ -46090,7 +46090,7 @@ module GameRoomContent
       "id": "polqa_06826",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak określa się trwającą w XV w. wojnę Lancesterów i Yorków o tron Anglii?",
+      "prompt": "Jak określa się trwającą w 15. wieku wojnę Lancesterów i Yorków o tron Anglii?",
       "correct": "Wojna Dwóch Róż",
       "wrong": [
         "wojna stuletnia",
@@ -46507,11 +46507,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym stuleciu zbudowano w Ciechocinku drewniane tężnie?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -46587,11 +46587,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Z którego wieku pochodzi najstarsza książka drukowana grażdanką?",
-      "correct": "Z XVIII wieku",
+      "correct": "Z 18. wieku",
       "wrong": [
-        "Z XVI wieku",
-        "Z XVII wieku",
-        "Z XIX wieku"
+        "Z 16. wieku",
+        "Z 17. wieku",
+        "Z 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -46747,11 +46747,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żyła królowa Szkocji, Maria Stuart?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -46907,11 +46907,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Holendrzy założyli Nowy Amsterdam?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -47147,11 +47147,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miało miejsce wielkie powstanie niewolników pod wodzą Spartakusa?",
-      "correct": "W I wieku p.n.e.",
+      "correct": "W 1. wieku p.n.e.",
       "wrong": [
-        "W II wieku p.n.e.",
-        "W III wieku p.n.e.",
-        "W I wieku n.e."
+        "W 2. wieku p.n.e.",
+        "W 3. wieku p.n.e.",
+        "W 1. wieku n.e."
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -47178,7 +47178,7 @@ module GameRoomContent
       "id": "1z10_3adac89203add513",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Która polska uczelnia w XVIII wieku nosiła nazwę Szkoły Głównej Koronnej?",
+      "prompt": "Która polska uczelnia w 18. wieku nosiła nazwę Szkoły Głównej Koronnej?",
       "correct": "Uniwersytet Jagielloński",
       "wrong": [
         "Uniwersytet Wileński",
@@ -47242,7 +47242,7 @@ module GameRoomContent
       "id": "1z10_ba5cf9c110dc9ba6",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Który władca Franków pokonał Arabów w bitwie pod Poitiers w VIII wieku?",
+      "prompt": "Który władca Franków pokonał Arabów w bitwie pod Poitiers w 8. wieku?",
       "correct": "Karol Młot",
       "wrong": [
         "Karol Wielki",
@@ -47274,7 +47274,7 @@ module GameRoomContent
       "id": "1z10_fdd085b7e122304c",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Który król polski panujący w XVII wieku miał brata noszącego imię Marek?",
+      "prompt": "Który król polski panujący w 17. wieku miał brata noszącego imię Marek?",
       "correct": "Jan III Sobieski",
       "wrong": [
         "Władysław IV Waza",
@@ -47290,7 +47290,7 @@ module GameRoomContent
       "id": "1z10_d669fa4220f29028",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Ilu carów z dynastii Romanowów o imieniu Mikołaj zasiadało na tronie Rosji w XIX wieku?",
+      "prompt": "Ilu carów z dynastii Romanowów o imieniu Mikołaj zasiadało na tronie Rosji w 19. wieku?",
       "correct": "Dwóch",
       "wrong": [
         "Jeden",
@@ -47483,11 +47483,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku została obalona Konstytucja 3 maja z 1791 roku?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XIX wieku",
-        "W XX wieku",
-        "W XXI wieku"
+        "W 19. wieku",
+        "W 20. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -47530,7 +47530,7 @@ module GameRoomContent
       "id": "1z10_8424b8953452577d",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Z armią którego państwa walczyły wojska polskie i austriackie w bitwach pod Parkanami w XVII wieku?",
+      "prompt": "Z armią którego państwa walczyły wojska polskie i austriackie w bitwach pod Parkanami w 17. wieku?",
       "correct": "Imperium Osmańskiego",
       "wrong": [
         "Carstwa Rosyjskiego",
@@ -47643,11 +47643,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Hammurabi wydał kodeks praw?",
-      "correct": "W XVIII wieku p.n.e.",
+      "correct": "W 18. wieku p.n.e.",
       "wrong": [
-        "W XX wieku p.n.e.",
-        "W XVI wieku p.n.e.",
-        "W XIV wieku p.n.e."
+        "W 20. wieku p.n.e.",
+        "W 16. wieku p.n.e.",
+        "W 14. wieku p.n.e."
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -47755,11 +47755,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Turcy zajęli Sofię?",
-      "correct": "W XIV wieku",
+      "correct": "W 14. wieku",
       "wrong": [
-        "W XII wieku",
-        "W XV wieku",
-        "W XVI wieku"
+        "W 12. wieku",
+        "W 15. wieku",
+        "W 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -47883,11 +47883,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku panowali Henryk Walezy i Stefan Batory?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XV wieku",
-        "W XVII wieku"
+        "W 14. wieku",
+        "W 15. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -48234,7 +48234,7 @@ module GameRoomContent
       "id": "1z10_6eb1232ba0242d4a",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W którym polskim mieście w połowie XVIII wieku powstała Biblioteka Załuskich?",
+      "prompt": "W którym polskim mieście w połowie 18. wieku powstała Biblioteka Załuskich?",
       "correct": "W Warszawie",
       "wrong": [
         "W Krakowie",
@@ -48315,11 +48315,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Francuzi uruchomili pierwszą linię telegrafu optycznego na trasie Paris-Lille?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -48603,11 +48603,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstała Niepodległa Republika Czarnogóry?",
-      "correct": "W XXI wieku",
+      "correct": "W 21. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XX wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -48843,11 +48843,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył Montesquieu, francuski myśliciel i pisarz polityczny?",
-      "correct": "W XVII i XVIII wieku",
+      "correct": "W 17. i 18. wieku",
       "wrong": [
-        "W XV i XVI wieku",
-        "W XVI i XVII wieku",
-        "W XVIII i XIX wieku"
+        "W 15. i 16. wieku",
+        "W 16. i 17. wieku",
+        "W 18. i 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -48859,11 +48859,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstała kolej warszawsko-wiedeńska?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -49035,11 +49035,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku bracia Montgolfier zademonstrowali po raz pierwszy lot balonu wypełnionego gorącym powietrzem?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -49099,11 +49099,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku wprowadzono do użytku znaczek pocztowy?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -49643,11 +49643,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku rozpoczęto budowę Zamku Krzyżackiego w Toruniu?",
-      "correct": "W XIII wieku",
+      "correct": "W 13. wieku",
       "wrong": [
-        "W XII wieku",
-        "W XIV wieku",
-        "W XV wieku"
+        "W 12. wieku",
+        "W 14. wieku",
+        "W 15. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -49834,7 +49834,7 @@ module GameRoomContent
       "id": "1z10_88080ce47d7f4702",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Wyróżniona broń palna z hakiem pod lufą służącym do zaczepienia albo podpierania broni o mur używana od XV wieku to?",
+      "prompt": "Wyróżniona broń palna z hakiem pod lufą służącym do zaczepienia albo podpierania broni o mur używana od 15. wieku to?",
       "correct": "Hakownica",
       "wrong": [
         "Muszkiet",
@@ -49883,11 +49883,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Określenie belle époque odnosi się do przełomu których stuleci?",
-      "correct": "XIX i XX wieku",
+      "correct": "19. i 20. wieku",
       "wrong": [
-        "XVII i XVIII wieku",
-        "XVIII i XIX wieku",
-        "XX i XXI wieku"
+        "17. i 18. wieku",
+        "18. i 19. wieku",
+        "20. i 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -50042,7 +50042,7 @@ module GameRoomContent
       "id": "1z10_7afbeb94671e8e9e",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W którym państwie w XIX wieku powstał ruch kulturalno-polityczny zwany panslawizmem, dążący do wyzwolenia i zjednoczenia Słowian?",
+      "prompt": "W którym państwie w 19. wieku powstał ruch kulturalno-polityczny zwany panslawizmem, dążący do wyzwolenia i zjednoczenia Słowian?",
       "correct": "W Czechach",
       "wrong": [
         "W Serbii",
@@ -50059,11 +50059,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce bitwa pod Somosierrą, która otworzyła Napoleonowi drogę do Madrytu?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -50187,11 +50187,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył Thomas Cook, założyciel pierwszego biura podróży?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -50843,11 +50843,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku król Wizygotów Alaryk I zdobył Rzym?",
-      "correct": "W V wieku",
+      "correct": "W 5. wieku",
       "wrong": [
-        "W III wieku",
-        "W IV wieku",
-        "W VI wieku"
+        "W 3. wieku",
+        "W 4. wieku",
+        "W 6. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -51163,11 +51163,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku odnaleziono zasypane przez wybuch Wezuwiusza miasto Herkulanum?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -51483,11 +51483,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku toczyły się w Europie dwie tak zwane wojny bałkańskie?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -51547,11 +51547,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył Takamori Saigo, jeden z bardziej wpływowych samurajów? Na podstawie jego życia powstał film Ostatni Samuraj.",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -51707,11 +51707,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku car Piotr I zaczął budowę Sankt Petersburga?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -52042,7 +52042,7 @@ module GameRoomContent
       "id": "1z10_e4e38aef138b5721",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Z którym miastem związana była od XVI wieku kupiecka rodzina Fukierów?",
+      "prompt": "Z którym miastem związana była od 16. wieku kupiecka rodzina Fukierów?",
       "correct": "Z Warszawą",
       "wrong": [
         "Z Krakowem",
@@ -52203,11 +52203,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku pierwszy pasażerski parowiec przepłynął Atlantyk?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -52283,11 +52283,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstał Związek Węglarzy Polskich? Tajna organizacja polityczna.",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -52427,11 +52427,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zbudowano tunel drogowy pod masywem Mont Blanc?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -52539,11 +52539,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Delhi zostało stolicą Indii?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -52554,7 +52554,7 @@ module GameRoomContent
       "id": "1z10_ee2e522694398356",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jakie imię nosił sławny wódz plemienia Zulusów, który w XIX wieku stworzył państwo w południowej Afryce?",
+      "prompt": "Jakie imię nosił sławny wódz plemienia Zulusów, który w 19. wieku stworzył państwo w południowej Afryce?",
       "correct": "Czaka (Shaka)",
       "wrong": [
         "Dingane",
@@ -52666,7 +52666,7 @@ module GameRoomContent
       "id": "1z10_0f76b1b741c34518",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Który ród panował we Florencji w XVI i XVII wieku?",
+      "prompt": "Który ród panował we Florencji w 16. i 17. wieku?",
       "correct": "Medyceusze",
       "wrong": [
         "Sforzowie",
@@ -52715,11 +52715,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym stuleciu po raz pierwszy dokonano okrążenia Ziemi balonem bez międzylądowania?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -52843,11 +52843,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku odbyła się Uczta u Wierzynka?",
-      "correct": "W XIV wieku",
+      "correct": "W 14. wieku",
       "wrong": [
-        "W XIII wieku",
-        "W XV wieku",
-        "W XVI wieku"
+        "W 13. wieku",
+        "W 15. wieku",
+        "W 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -52891,11 +52891,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Buda i Pest połączyły się w jedno miasto?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -52986,7 +52986,7 @@ module GameRoomContent
       "id": "1z10_e986e5f72070246b",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Na stepach nad którym morzem koczowali pieczyngowie od schyłku IX wieku?",
+      "prompt": "Na stepach nad którym morzem koczowali pieczyngowie od schyłku 9. wieku?",
       "correct": "Nad Morzem Czarnym",
       "wrong": [
         "Nad Morzem Bałtyckim",
@@ -53418,7 +53418,7 @@ module GameRoomContent
       "id": "1z10_a281261dccaf8bfa",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywał się urzędnik, który zarządzał skarbem państwa w Rzeczypospolitej w XV wieku?",
+      "prompt": "Jak nazywał się urzędnik, który zarządzał skarbem państwa w Rzeczypospolitej w 15. wieku?",
       "correct": "Podskarbi",
       "wrong": [
         "Podkomorzy",
@@ -53483,11 +53483,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym stuleciu kobiety w Polsce uzyskały prawo głosowania?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -53547,11 +53547,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zniesiono w Polsce karę śmierci za czary?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -53770,7 +53770,7 @@ module GameRoomContent
       "id": "1z10_2edbf961cec08f70",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Która dynastia objęła rządy w Rosji po okresie wielkiej smuty w XVII wieku?",
+      "prompt": "Która dynastia objęła rządy w Rosji po okresie wielkiej smuty w 17. wieku?",
       "correct": "Dynastia Romanowów",
       "wrong": [
         "Dynastia Rurykowiczów",
@@ -53819,11 +53819,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym stuleciu po raz pierwszy użyto sygnału SOS?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -53866,7 +53866,7 @@ module GameRoomContent
       "id": "1z10_d2104a90695766ff",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywało się utworzone w połowie XVI wieku stałe wojsko zaciężne, utrzymywane z czwartej części dochodów z dóbr królewskich?",
+      "prompt": "Jak nazywało się utworzone w połowie 16. wieku stałe wojsko zaciężne, utrzymywane z czwartej części dochodów z dóbr królewskich?",
       "correct": "Wojsko kwarciane",
       "wrong": [
         "Wojsko komputowe",
@@ -53899,11 +53899,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku panował rzymski cesarz Klaudiusz?",
-      "correct": "W I wieku naszej ery",
+      "correct": "W 1. wieku naszej ery",
       "wrong": [
-        "W I wieku przed naszą erą",
-        "W II wieku naszej ery",
-        "W III wieku naszej ery"
+        "W 1. wieku przed naszą erą",
+        "W 2. wieku naszej ery",
+        "W 3. wieku naszej ery"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -53947,11 +53947,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku założono uniwersytet w Padwie?",
-      "correct": "W XIII wieku",
+      "correct": "W 13. wieku",
       "wrong": [
-        "W XI wieku",
-        "W XII wieku",
-        "W XIV wieku"
+        "W 11. wieku",
+        "W 12. wieku",
+        "W 14. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -54106,7 +54106,7 @@ module GameRoomContent
       "id": "1z10_54faede9009f2f6c",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywały się dwie wojny w XIX i XX wieku stoczone w Afryce Południowej pomiędzy osadnikami pochodzenia holenderskiego, a Brytyjczykami?",
+      "prompt": "Jak nazywały się dwie wojny w 19. i 20. wieku stoczone w Afryce Południowej pomiędzy osadnikami pochodzenia holenderskiego, a Brytyjczykami?",
       "correct": "Wojny burskie",
       "wrong": [
         "Wojny zuluskie",
@@ -54155,11 +54155,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Hernán Cortés wyruszył na podbój dzisiejszego Meksyku?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XV wieku",
-        "W XVII wieku"
+        "W 14. wieku",
+        "W 15. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -54219,11 +54219,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym stuleciu żył Giordano Bruno?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XV wieku",
-        "W XVII wieku"
+        "W 14. wieku",
+        "W 15. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -54267,11 +54267,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku została odkryta Antarktyda?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -54299,11 +54299,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku niemiecki neuropatolog Alois Alzheimer opisał chorobę nazwaną później jego imieniem?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -54443,11 +54443,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W których wiekach trwała wojna stuletnia?",
-      "correct": "W XIV i XV wieku",
+      "correct": "W 14. i 15. wieku",
       "wrong": [
-        "W XII i XIII wieku",
-        "W XIII i XIV wieku",
-        "W XV i XVI wieku"
+        "W 12. i 13. wieku",
+        "W 13. i 14. wieku",
+        "W 15. i 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -54506,7 +54506,7 @@ module GameRoomContent
       "id": "1z10_c449b185b799fc72",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Do którego państwa w XIX wieku zostały przyłączone Gruzja, Finlandia, Besarabia i Azerbejdżan?",
+      "prompt": "Do którego państwa w 19. wieku zostały przyłączone Gruzja, Finlandia, Besarabia i Azerbejdżan?",
       "correct": "Do Rosji",
       "wrong": [
         "Do Szwecji",
@@ -54587,11 +54587,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył portugalski żeglarz Bartolomeu Dias?",
-      "correct": "W XV wieku",
+      "correct": "W 15. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XVI wieku",
-        "W XVII wieku"
+        "W 14. wieku",
+        "W 16. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -54730,7 +54730,7 @@ module GameRoomContent
       "id": "1z10_9469927a4a8c0f57",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Od której warszawskiej ulicy wziął nazwę Pawiak, więzienie zbudowane w XIX wieku?",
+      "prompt": "Od której warszawskiej ulicy wziął nazwę Pawiak, więzienie zbudowane w 19. wieku?",
       "correct": "Od ulicy Pawiej",
       "wrong": [
         "Od ulicy Dzielnej",
@@ -55131,11 +55131,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zmarł szkocki lekarz i mikrobiolog Aleksander Fleming?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -55595,11 +55595,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku urodził się Wojciech Korfanty?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -55611,11 +55611,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce wojna sueska?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -55674,7 +55674,7 @@ module GameRoomContent
       "id": "1z10_387bda059f943a4a",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Który zakon Filip IV, zwany Pięknym, zlikwidował we Francji na początku XIV wieku?",
+      "prompt": "Który zakon Filip IV, zwany Pięknym, zlikwidował we Francji na początku 14. wieku?",
       "correct": "Templariuszy",
       "wrong": [
         "Krzyżaków",
@@ -56026,7 +56026,7 @@ module GameRoomContent
       "id": "1z10_b872b9d99b3e1627",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jakiej narodowości byli osadnicy, którzy osuszali Żuławy Wiślane w XVI wieku?",
+      "prompt": "Jakiej narodowości byli osadnicy, którzy osuszali Żuławy Wiślane w 16. wieku?",
       "correct": "Holenderskiej",
       "wrong": [
         "Szwedzkiej",
@@ -56266,7 +56266,7 @@ module GameRoomContent
       "id": "1z10_5f46dde0d72db61a",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jakie imię nosił hetman wielki litewski Chodkiewicz, który żył w XVI i XVII wieku?",
+      "prompt": "Jakie imię nosił hetman wielki litewski Chodkiewicz, który żył w 16. i 17. wieku?",
       "correct": "Jan Karol",
       "wrong": [
         "Jan Hieronim",
@@ -56379,11 +56379,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zdobyto obydwa bieguny Ziemi?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -56395,11 +56395,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku urodził się generał Jan Henryk Dąbrowski, twórca Legionów Polskich we Włoszech?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -56442,7 +56442,7 @@ module GameRoomContent
       "id": "1z10_8a4dbf52a94175cb",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak w XVII wieku nazywał się piechur wyszkolony w rzucaniu granatów? Słowo pochodzi z francuskiego.",
+      "prompt": "Jak w 17. wieku nazywał się piechur wyszkolony w rzucaniu granatów? Słowo pochodzi z francuskiego.",
       "correct": "Grenadier",
       "wrong": [
         "Muszkieter",
@@ -56907,11 +56907,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Historia. W którym wieku powstał zakon templariuszy?",
-      "correct": "W XII wieku",
+      "correct": "W 12. wieku",
       "wrong": [
-        "W XI wieku",
-        "W XIII wieku",
-        "W XIV wieku"
+        "W 11. wieku",
+        "W 13. wieku",
+        "W 14. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -57387,11 +57387,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstała najstarsza polska uczelnia, czyli Akademia Krakowska?",
-      "correct": "W XIV wieku",
+      "correct": "W 14. wieku",
       "wrong": [
-        "W XII wieku",
-        "W XIII wieku",
-        "W XV wieku"
+        "W 12. wieku",
+        "W 13. wieku",
+        "W 15. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -57419,11 +57419,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku odbyła się Krucjata Dziecięca?",
-      "correct": "W XIII wieku",
+      "correct": "W 13. wieku",
       "wrong": [
-        "W XI wieku",
-        "W XII wieku",
-        "W XIV wieku"
+        "W 11. wieku",
+        "W 12. wieku",
+        "W 14. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -57563,11 +57563,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Polskie miasta. W którym wieku Gdynia dostała prawa miejskie?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -57722,7 +57722,7 @@ module GameRoomContent
       "id": "1z10_bec1db52d650536f",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Na terenie którego współczesnego państwa w XIX wieku były toczone wojny maoryskie?",
+      "prompt": "Na terenie którego współczesnego państwa w 19. wieku były toczone wojny maoryskie?",
       "correct": "Nowej Zelandii",
       "wrong": [
         "Australii",
@@ -57739,11 +57739,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Benedykt Polak pierwszy znany polski podróżnik dotarł do chana mongolskiego w Karakorum?",
-      "correct": "W XIII wieku",
+      "correct": "W 13. wieku",
       "wrong": [
-        "W XI wieku",
-        "W XII wieku",
-        "W XIV wieku"
+        "W 11. wieku",
+        "W 12. wieku",
+        "W 14. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -57835,11 +57835,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstała konwencja berneńska, międzynarodowa umowa o ochronie dzieł literackich i artystycznych?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -57946,7 +57946,7 @@ module GameRoomContent
       "id": "1z10_c532170581cf71b3",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Kto w XIX wieku skonstruował parowóz zwany rakietą?",
+      "prompt": "Kto w 19. wieku skonstruował parowóz zwany rakietą?",
       "correct": "George Stephenson",
       "wrong": [
         "Richard Trevithick",
@@ -57978,7 +57978,7 @@ module GameRoomContent
       "id": "1z10_0f231d41c120b9df",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywa się najwyższy order angielski ustanowiony przez króla Edwarda III w XIV wieku?",
+      "prompt": "Jak nazywa się najwyższy order angielski ustanowiony przez króla Edwarda III w 14. wieku?",
       "correct": "Order Podwiązki",
       "wrong": [
         "Order Łaźni",
@@ -58171,11 +58171,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W jakim wieku utworzono piechotę wybraniecką?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XIII wieku",
-        "W XV wieku",
-        "W XVII wieku"
+        "W 13. wieku",
+        "W 15. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -58250,7 +58250,7 @@ module GameRoomContent
       "id": "1z10_88ca8519d111be19",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W którym polskim mieście pod koniec XVI wieku rozpoczęła działalność wyższa uczelnia, która miała kształcić światłych obywateli Rzeczypospolitej?",
+      "prompt": "W którym polskim mieście pod koniec 16. wieku rozpoczęła działalność wyższa uczelnia, która miała kształcić światłych obywateli Rzeczypospolitej?",
       "correct": "W Zamościu",
       "wrong": [
         "W Lublinie",
@@ -58427,11 +58427,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstała Rzeczpospolita Obojga Narodów?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XV wieku",
-        "W XVII wieku"
+        "W 14. wieku",
+        "W 15. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -58491,11 +58491,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku urodziła się Lucrezia Borgia, uważana za trucicielkę?",
-      "correct": "W XV wieku",
+      "correct": "W 15. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XVI wieku",
-        "W XVII wieku"
+        "W 14. wieku",
+        "W 16. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -58555,11 +58555,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Kiedy uruchomiono pierwszą transatlantycką linię telegraficzną?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -58571,11 +58571,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku ustalono obecny podział administracyjny Polski na 16 województw?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -58683,11 +58683,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku zaczęła działać Mennica Warszawska?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -58699,11 +58699,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym stuleciu powstał najstarszy w Europie Uniwersytet Boloński?",
-      "correct": "W XI wieku",
+      "correct": "W 11. wieku",
       "wrong": [
-        "W IX wieku",
-        "W X wieku",
-        "W XII wieku"
+        "W 9. wieku",
+        "W 10. wieku",
+        "W 12. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -58715,11 +58715,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce bitwa pod Maratonem?",
-      "correct": "W V wieku p.n.e.",
+      "correct": "W 5. wieku p.n.e.",
       "wrong": [
-        "W VII wieku p.n.e.",
-        "W VI wieku p.n.e.",
-        "W IV wieku p.n.e."
+        "W 7. wieku p.n.e.",
+        "W 6. wieku p.n.e.",
+        "W 4. wieku p.n.e."
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -58746,7 +58746,7 @@ module GameRoomContent
       "id": "1z10_9766f97df6840479",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Kolonią którego państwa był Madagaskar od końca XIX wieku?",
+      "prompt": "Kolonią którego państwa był Madagaskar od końca 19. wieku?",
       "correct": "Francji",
       "wrong": [
         "Wielkiej Brytanii",
@@ -58843,11 +58843,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku po raz pierwszy przyznano Błękitną Wstęgę Atlantyku?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -58874,7 +58874,7 @@ module GameRoomContent
       "id": "1z10_441ae7c7dddab037",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak w XVI i XVII wieku nazywano we Francji wyznawców kalwinizmu?",
+      "prompt": "Jak w 16. i 17. wieku nazywano we Francji wyznawców kalwinizmu?",
       "correct": "Hugenotami",
       "wrong": [
         "Husytami",
@@ -59147,11 +59147,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku niemiecki geograf Hans Meyer jako pierwszy zdobył szczyt Kilimanjaro?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -59162,7 +59162,7 @@ module GameRoomContent
       "id": "1z10_b348af69377db250",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jaką nazwę nosiła zachodnia część dzisiejszej Łotwy w XVII wieku?",
+      "prompt": "Jaką nazwę nosiła zachodnia część dzisiejszej Łotwy w 17. wieku?",
       "correct": "Kurlandia",
       "wrong": [
         "Inflanty",
@@ -59275,11 +59275,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył włoski lekarz i fizyk Luigi Galvani?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -59483,11 +59483,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku rozpoczęło się panowanie arabskie w Sewilli?",
-      "correct": "W VIII wieku",
+      "correct": "W 8. wieku",
       "wrong": [
-        "W VI wieku",
-        "W X wieku",
-        "W XII wieku"
+        "W 6. wieku",
+        "W 10. wieku",
+        "W 12. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -59579,11 +59579,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku wzniesiono paryską Bastylię, zburzoną później w 1789 roku?",
-      "correct": "W XIV wieku",
+      "correct": "W 14. wieku",
       "wrong": [
-        "W XII wieku",
-        "W XVI wieku",
-        "W XVII wieku"
+        "W 12. wieku",
+        "W 16. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -59691,11 +59691,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku uchwalono w Polsce konstytucję Nihil novi?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XV wieku",
-        "W XVII wieku"
+        "W 14. wieku",
+        "W 15. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -59755,11 +59755,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym stuleciu André-Jacques Garnerin wykonał pierwszy skok ze spadochronem?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -59914,7 +59914,7 @@ module GameRoomContent
       "id": "1z10_5324e8cb0cb9714d",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak z języka angielskiego nazywano w Wielkiej Brytanii i Stanach Zjednoczonych kobiety walczące o prawa wyborcze w drugiej połowie XIX i na początku XX wieku?",
+      "prompt": "Jak z języka angielskiego nazywano w Wielkiej Brytanii i Stanach Zjednoczonych kobiety walczące o prawa wyborcze w drugiej połowie 19. i na początku 20. wieku?",
       "correct": "Sufrażystki",
       "wrong": [
         "Abolicjonistki",
@@ -59979,11 +59979,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku urodził się niemiecki filozof Georg Wilhelm Hegel?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -60026,7 +60026,7 @@ module GameRoomContent
       "id": "1z10_0cc65847a3c4efc2",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Żoną którego króla Francji była Maria Antonina, żyjąca w drugiej połowie XVIII wieku?",
+      "prompt": "Żoną którego króla Francji była Maria Antonina, żyjąca w drugiej połowie 18. wieku?",
       "correct": "Ludwika XVI",
       "wrong": [
         "Ludwika XIV",
@@ -60042,7 +60042,7 @@ module GameRoomContent
       "id": "1z10_a9f20ef09a4e3a86",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywała się używana od XVI do XVIII wieku ręczna broń palna o lejkowato rozszerzonym wylocie lufy?",
+      "prompt": "Jak nazywała się używana od 16. do 18. wieku ręczna broń palna o lejkowato rozszerzonym wylocie lufy?",
       "correct": "Garłacz",
       "wrong": [
         "Muszkiet",
@@ -60203,11 +60203,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku panował król Stanisław Leszczyński?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVI wieku",
-        "W XVII wieku"
+        "W 15. wieku",
+        "W 16. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -60235,11 +60235,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku prawa miejskie uzyskało amerykańskie miasto Las Vegas?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -60251,11 +60251,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Samuel Colt skonstruował sześciostrzałowy rewolwer?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -60330,7 +60330,7 @@ module GameRoomContent
       "id": "1z10_e2411e13b9002c95",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Za panowania którego króla miało miejsce powstanie Rzeczpospolitej Obojga Narodów w XVI wieku?",
+      "prompt": "Za panowania którego króla miało miejsce powstanie Rzeczpospolitej Obojga Narodów w 16. wieku?",
       "correct": "Zygmunta Augusta",
       "wrong": [
         "Zygmunta Starego",
@@ -60474,7 +60474,7 @@ module GameRoomContent
       "id": "1z10_465ebe2f57664e39",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywał się związek Danii, Szwecji i Norwegii zawarty w Kalmarze w końcu XIV wieku?",
+      "prompt": "Jak nazywał się związek Danii, Szwecji i Norwegii zawarty w Kalmarze w końcu 14. wieku?",
       "correct": "Unia kalmarska",
       "wrong": [
         "Unia utrechcka",
@@ -60618,7 +60618,7 @@ module GameRoomContent
       "id": "1z10_bf44d5725ab6e409",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Które miasto oprócz Rzymu było w XIV wieku siedzibą papieży?",
+      "prompt": "Które miasto oprócz Rzymu było w 14. wieku siedzibą papieży?",
       "correct": "Awinion",
       "wrong": [
         "Madryt",
@@ -60731,11 +60731,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku urodził się fizyk Sir Isaac Newton?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVI wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 16. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -60858,7 +60858,7 @@ module GameRoomContent
       "id": "1z10_84e98c2d3896870e",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W którym państwie rozpoczęła się w końcu XVIII wieku rewolucja przemysłowa?",
+      "prompt": "W którym państwie rozpoczęła się w końcu 18. wieku rewolucja przemysłowa?",
       "correct": "W Wielkiej Brytanii",
       "wrong": [
         "We Francji",
@@ -61259,11 +61259,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstało pierwsze metro na świecie?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -61403,11 +61403,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku urodził się Napoleon Bonaparte?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -61610,7 +61610,7 @@ module GameRoomContent
       "id": "1z10_ee79ae88bdc5550d",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Która dynastia władała Austrią od XIII wieku?",
+      "prompt": "Która dynastia władała Austrią od 13. wieku?",
       "correct": "Habsburgowie",
       "wrong": [
         "Wittelsbachowie",
@@ -61707,11 +61707,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstała Kronika Galla Anonima?",
-      "correct": "W XII wieku",
+      "correct": "W 12. wieku",
       "wrong": [
-        "W X wieku",
-        "W XI wieku",
-        "W XIII wieku"
+        "W 10. wieku",
+        "W 11. wieku",
+        "W 13. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -61771,11 +61771,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył tatrzański zbójnik Janosik?",
-      "correct": "W XVII i XVIII wieku",
+      "correct": "W 17. i 18. wieku",
       "wrong": [
-        "W XV i XVI wieku",
-        "W XVI i XVII wieku",
-        "W XVIII i XIX wieku"
+        "W 15. i 16. wieku",
+        "W 16. i 17. wieku",
+        "W 18. i 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -61786,7 +61786,7 @@ module GameRoomContent
       "id": "1z10_8f6c26be5c79f2e7",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Tereny którego współczesnego państwa podbił w XVI wieku konkwistador Francisco Pizarro?",
+      "prompt": "Tereny którego współczesnego państwa podbił w 16. wieku konkwistador Francisco Pizarro?",
       "correct": "Peru",
       "wrong": [
         "Meksyku",
@@ -61819,11 +61819,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył król Jan III Sobieski?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVI wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 16. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -61851,11 +61851,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstał King's College w Nowym Jorku, znany obecnie jako Uniwersytet Columbia?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -61994,7 +61994,7 @@ module GameRoomContent
       "id": "1z10_44078567e8bfc5b9",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Na którym kontynencie w XVIII i XIX wieku istniało Królestwo Sardynii?",
+      "prompt": "Na którym kontynencie w 18. i 19. wieku istniało Królestwo Sardynii?",
       "correct": "W Europie",
       "wrong": [
         "W Afryce",
@@ -62106,7 +62106,7 @@ module GameRoomContent
       "id": "1z10_859ea2ca948356ba",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W którym stanie stoi dawny fort Alamo, którego załoga została w XIX wieku wymordowana przez wojska meksykańskie?",
+      "prompt": "W którym stanie stoi dawny fort Alamo, którego załoga została w 19. wieku wymordowana przez wojska meksykańskie?",
       "correct": "W Teksasie",
       "wrong": [
         "W Nowym Meksyku",
@@ -62155,11 +62155,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstała konfederacja o nazwie Skonfederowane Stany Ameryki?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -62314,7 +62314,7 @@ module GameRoomContent
       "id": "1z10_213ed7bcc399fcc7",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Przeciwko któremu polskiemu królowi skierowany był Rokosz Lubomirskiego w XVII wieku?",
+      "prompt": "Przeciwko któremu polskiemu królowi skierowany był Rokosz Lubomirskiego w 17. wieku?",
       "correct": "Przeciwko Janowi II Kazimierzowi",
       "wrong": [
         "Przeciwko Władysławowi IV",
@@ -62347,11 +62347,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstał Benelux, a właściwie Unia Gospodarcza Beneluxu?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -62475,11 +62475,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku urodził się Joachim Lelewel?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XIX wieku",
-        "W XVI wieku"
+        "W 17. wieku",
+        "W 19. wieku",
+        "W 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -62507,11 +62507,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku po raz pierwszy został opublikowany traktat inkwizytorski Młot na czarownice?",
-      "correct": "W XV wieku",
+      "correct": "W 15. wieku",
       "wrong": [
-        "W XIII wieku",
-        "W XIV wieku",
-        "W XVI wieku"
+        "W 13. wieku",
+        "W 14. wieku",
+        "W 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -62523,11 +62523,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miało miejsce powstanie taipingów w Chinach?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -62555,11 +62555,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku otwarto Teatr Narodowy w Warszawie?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XIX wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 19. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -62730,7 +62730,7 @@ module GameRoomContent
       "id": "1z10_35e6b6af5e5ae56d",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Z ilu izb składał się sejm od schyłku XV wieku?",
+      "prompt": "Z ilu izb składał się sejm od schyłku 15. wieku?",
       "correct": "Z dwóch",
       "wrong": [
         "Z jednej",
@@ -62843,11 +62843,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku dolar został walutą Stanów Zjednoczonych?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XIX wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 19. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -62906,7 +62906,7 @@ module GameRoomContent
       "id": "1z10_806d0d72c2e318df",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazwano pokazowy proces w Moskwie w XX wieku, w którym został osądzony i skazany generał Leopold Okulicki?",
+      "prompt": "Jak nazwano pokazowy proces w Moskwie w 20. wieku, w którym został osądzony i skazany generał Leopold Okulicki?",
       "correct": "Proces szesnastu",
       "wrong": [
         "Proces brzeski",
@@ -63082,7 +63082,7 @@ module GameRoomContent
       "id": "1z10_4b11b256f83b2bd5",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywał się XIX-wieczny wydawca niemiecki, założyciel agencji prasowej w Akwisgranie, później przeniesionej do Londynu?",
+      "prompt": "Jak nazywał się 19-wieczny wydawca niemiecki, założyciel agencji prasowej w Akwisgranie, później przeniesionej do Londynu?",
       "correct": "Paul Julius Reuter",
       "wrong": [
         "Charles-Louis Havas",
@@ -63259,11 +63259,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku William Lindley opracował projekt miejskiej sieci kanalizacyjnej i wodociągowej dla miasta Warszawy?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -63419,11 +63419,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Bolesław Krzywousty podzielił Polskę między swoich synów?",
-      "correct": "W XII wieku",
+      "correct": "W 12. wieku",
       "wrong": [
-        "W X wieku",
-        "W XI wieku",
-        "W XIII wieku"
+        "W 10. wieku",
+        "W 11. wieku",
+        "W 13. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -63515,11 +63515,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce Arabska wiosna ludów?",
-      "correct": "W XXI wieku",
+      "correct": "W 21. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XX wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -63562,7 +63562,7 @@ module GameRoomContent
       "id": "1z10_80e4e3b6a8a61a9b",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Którego polskiego miasta dotyczył XVI-wieczny kodeks Baltazara Behema?",
+      "prompt": "Którego polskiego miasta dotyczył 16-wieczny kodeks Baltazara Behema?",
       "correct": "Krakowa",
       "wrong": [
         "Wrocławia",
@@ -63723,11 +63723,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku panował Michał Korybut Wiśniowiecki?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVI wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 16. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -63867,11 +63867,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstał bank angielski, czyli angielski bank emisyjny?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -63947,11 +63947,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstały tak zwane artykuły Henrykowskie?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -63979,11 +63979,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku miała miejsce pandemia grypy hiszpanki?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -64090,7 +64090,7 @@ module GameRoomContent
       "id": "1z10_d98cfbaa50aac1b9",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak nazywała się doborowa piechota turecka utworzona w XIV wieku z młodych chrześcijańskich brańców?",
+      "prompt": "Jak nazywała się doborowa piechota turecka utworzona w 14. wieku z młodych chrześcijańskich brańców?",
       "correct": "Janczarzy",
       "wrong": [
         "Spahisi",
@@ -64283,11 +64283,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstał kalendarz gregoriański obowiązujący w Europie do dziś?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XV wieku",
-        "W XVII wieku"
+        "W 14. wieku",
+        "W 15. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -64442,7 +64442,7 @@ module GameRoomContent
       "id": "1z10_b117a3ee74666da7",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Z którym państwem był związany unią personalną Szlezwik Holsztyn od XV do XIX wieku?",
+      "prompt": "Z którym państwem był związany unią personalną Szlezwik Holsztyn od 15. do 19. wieku?",
       "correct": "Z Danią",
       "wrong": [
         "Ze Szwecją",
@@ -64475,11 +64475,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku działała Konfederacja Barska?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -64539,11 +64539,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym stuleciu Louis Braille stworzył alfabet dla niewidomych?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -64843,11 +64843,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku istniało Cesarstwo Mandżurii?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -65114,7 +65114,7 @@ module GameRoomContent
       "id": "1z10_e157cd76c6b7cabe",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jaką nazwę nosił wenecki dukat, bity od końca XIII wieku?",
+      "prompt": "Jaką nazwę nosił wenecki dukat, bity od końca 13. wieku?",
       "correct": "Cekin",
       "wrong": [
         "Floren",
@@ -65339,11 +65339,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył jezuita Jakub Wujek, autor przekładu Pisma Świętego?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -65386,7 +65386,7 @@ module GameRoomContent
       "id": "1z10_7881626b26368413",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Królami którego europejskiego państwa byli w XX wieku Albert I, Leopold III i Baldwin I?",
+      "prompt": "Królami którego europejskiego państwa byli w 20. wieku Albert I, Leopold III i Baldwin I?",
       "correct": "Belgii",
       "wrong": [
         "Niderlandów",
@@ -65531,11 +65531,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku rozpoczęto budowę tak zwanej Krzywej Wieży w Pizie?",
-      "correct": "W XII wieku",
+      "correct": "W 12. wieku",
       "wrong": [
-        "W XI wieku",
-        "W XIII wieku",
-        "W XIV wieku"
+        "W 11. wieku",
+        "W 13. wieku",
+        "W 14. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -65563,11 +65563,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku biel i czerwień stały się uchwałą Sejmu Polskimi Barwami Narodowymi?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -65755,11 +65755,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W jakim wieku pociąg Orient Express rozpoczął regularne kursy z Paryża do Stambułu i z powrotem?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -66298,7 +66298,7 @@ module GameRoomContent
       "id": "1z10_ed70afff7554d4cd",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak w dawnej Polsce od XIII wieku nazywał się członek Rady Miejskiej?",
+      "prompt": "Jak w dawnej Polsce od 13. wieku nazywał się członek Rady Miejskiej?",
       "correct": "Rajca",
       "wrong": [
         "Ławnik",
@@ -66347,11 +66347,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żyła markiza Jeanne Antoinette de Pompadour?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -66442,7 +66442,7 @@ module GameRoomContent
       "id": "1z10_6c077f678cab3f18",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Historia. Władców którego europejskiego kraju do XIII wieku koronowano na tak zwanym Kamieniu ze Scone?",
+      "prompt": "Historia. Władców którego europejskiego kraju do 13. wieku koronowano na tak zwanym Kamieniu ze Scone?",
       "correct": "Szkocji",
       "wrong": [
         "Anglii",
@@ -66570,7 +66570,7 @@ module GameRoomContent
       "id": "1z10_f868d2d5ac81ce99",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Na czyje zlecenie powstała na początku XVIII wieku bursztynowa komnata?",
+      "prompt": "Na czyje zlecenie powstała na początku 18. wieku bursztynowa komnata?",
       "correct": "Fryderyka I Hohenzollerna",
       "wrong": [
         "Fryderyka II Wielkiego",
@@ -66651,11 +66651,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył biskup Jan Dantyszek, poeta i dyplomata w służbie Zygmunta Starego?",
-      "correct": "W XV i XVI wieku",
+      "correct": "W 15. i 16. wieku",
       "wrong": [
-        "W XIII i XIV wieku",
-        "W XIV i XV wieku",
-        "W XVI i XVII wieku"
+        "W 13. i 14. wieku",
+        "W 14. i 15. wieku",
+        "W 16. i 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -66763,11 +66763,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku powstało obserwatorium astronomiczne w Greenwich w Londynie?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -66826,7 +66826,7 @@ module GameRoomContent
       "id": "1z10_738419276d4d1413",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W której dekadzie XX wieku wybudowano w Polsce centralną magistralę kolejową?",
+      "prompt": "W której dekadzie 20. wieku wybudowano w Polsce centralną magistralę kolejową?",
       "correct": "W latach siedemdziesiątych",
       "wrong": [
         "W latach pięćdziesiątych",
@@ -66891,11 +66891,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Na przełomie których wieków żył Mikołaj Kopernik?",
-      "correct": "XV i XVI wieku",
+      "correct": "15. i 16. wieku",
       "wrong": [
-        "XIV i XV wieku",
-        "XVI i XVII wieku",
-        "XVII i XVIII wieku"
+        "14. i 15. wieku",
+        "16. i 17. wieku",
+        "17. i 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -67163,11 +67163,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył Nikolaj Przewalski, rosyjski podróżnik i badacz Azji Środkowej?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -67291,11 +67291,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Henryk II Pobożny przegrał bitwę pod Legnicą?",
-      "correct": "W XIII wieku",
+      "correct": "W 13. wieku",
       "wrong": [
-        "W XI wieku",
-        "W XII wieku",
-        "W XIV wieku"
+        "W 11. wieku",
+        "W 12. wieku",
+        "W 14. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -67451,11 +67451,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Parowy pojazd drogowy Mikołaja Cugnota uważany jest za prototyp samochodu. W którym wieku powstał?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -67627,11 +67627,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku ukazało się drukiem dzieło Mikołaja Kopernika o obrotach sfer niebieskich?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -67642,12 +67642,12 @@ module GameRoomContent
       "id": "1z10_cea6d939b2ea3d9d",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W którym wieku odnaleziono kodeks Hammurabiego wydany w XVIII wieku przed naszą erą?",
-      "correct": "W XX wieku",
+      "prompt": "W którym wieku odnaleziono kodeks Hammurabiego wydany w 18. wieku przed naszą erą?",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -67659,11 +67659,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Od którego wieku w Wielkiej Brytanii rozpoczęło się panowanie dynastii Windsorów?",
-      "correct": "Od XX wieku",
+      "correct": "Od 20. wieku",
       "wrong": [
-        "Od XVII wieku",
-        "Od XVIII wieku",
-        "Od XIX wieku"
+        "Od 17. wieku",
+        "Od 18. wieku",
+        "Od 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -67995,11 +67995,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Egipt został przekształcony w rzymską prowincję?",
-      "correct": "W I wieku p.n.e.",
+      "correct": "W 1. wieku p.n.e.",
       "wrong": [
-        "W II wieku p.n.e.",
-        "W I wieku n.e.",
-        "W II wieku n.e."
+        "W 2. wieku p.n.e.",
+        "W 1. wieku n.e.",
+        "W 2. wieku n.e."
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -68107,11 +68107,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Tu zbudowano kaplicę Zygmuntowską w katedrze na Wawelu. Kiedy to było?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -68155,11 +68155,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku we Francji panował ostatni cesarz?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -68266,7 +68266,7 @@ module GameRoomContent
       "id": "1z10_0d43b5fc4ee20a5f",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Który dostojnik kościoła był w połowie XX wieku więziony m.in. w Komańczy?",
+      "prompt": "Który dostojnik kościoła był w połowie 20. wieku więziony m.in. w Komańczy?",
       "correct": "Stefan Wyszyński",
       "wrong": [
         "Adam Sapieha",
@@ -68299,11 +68299,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Historia Polski. W którym wieku królem był Jan Olbracht?",
-      "correct": "W XV i XVI wieku",
+      "correct": "W 15. i 16. wieku",
       "wrong": [
-        "W XIII i XIV wieku",
-        "W XIV i XV wieku",
-        "W XVI i XVII wieku"
+        "W 13. i 14. wieku",
+        "W 14. i 15. wieku",
+        "W 16. i 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -68315,11 +68315,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku żył niemiecki myśliciel i działacz polityczny Fryderyk Engels?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -68539,11 +68539,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku Nowa Zelandia uzyskała niepodległość?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -68555,11 +68555,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "Od którego wieku stosowano w Polsce umowę szlachty z nowo obranym królem nazywaną Pakta Konwenta?",
-      "correct": "Od XVI wieku",
+      "correct": "Od 16. wieku",
       "wrong": [
-        "Od XV wieku",
-        "Od XVII wieku",
-        "Od XVIII wieku"
+        "Od 15. wieku",
+        "Od 17. wieku",
+        "Od 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -68667,11 +68667,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku na świat przyszedł Mahatma Gandhi?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -68842,7 +68842,7 @@ module GameRoomContent
       "id": "1z10_a762a423f406e9d4",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Podaj nazwisko jednego z dwóch polskich uczonych, którzy dotarli na Antarktydę pod koniec XIX wieku.",
+      "prompt": "Podaj nazwisko jednego z dwóch polskich uczonych, którzy dotarli na Antarktydę pod koniec 19. wieku.",
       "correct": "Henryk Arctowski",
       "wrong": [
         "Benedykt Dybowski",
@@ -68859,11 +68859,11 @@ module GameRoomContent
       "category": "Historia",
       "level": "medium",
       "prompt": "W którym wieku odkryto rzeźbę Wenus z Willendorfu, prehistoryczną figurkę kobiety?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -69642,7 +69642,7 @@ module GameRoomContent
       "id": "polqa_00120",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Jak nazywa się polski malarz XIX-wieczny, autor cyklu rysunków „Polonia”?",
+      "prompt": "Jak nazywa się polski malarz 19-wieczny, autor cyklu rysunków „Polonia”?",
       "correct": "Artur Grottger",
       "wrong": [
         "Jan Matejko",
@@ -69803,11 +69803,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "Z którego wieku pochodzi kierunek w meblarstwie zwany biedermeier?",
-      "correct": "z XIX",
+      "correct": "z 19.",
       "wrong": [
-        "z XVII",
-        "z XVIII",
-        "z XX"
+        "z 17.",
+        "z 18.",
+        "z 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -71003,11 +71003,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył Henryk Wieniawski?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -71211,11 +71211,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku urodził się Michał Anioł?",
-      "correct": "w XV",
+      "correct": "w 15.",
       "wrong": [
-        "w XIV",
-        "w XVI",
-        "w XVII"
+        "w 14.",
+        "w 16.",
+        "w 17."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -71770,7 +71770,7 @@ module GameRoomContent
       "id": "polqa_01084",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Jak nazywał się hiszpański malarz z XVII wieku, autor m.in. „Kuźni Wulkana”?",
+      "prompt": "Jak nazywał się hiszpański malarz z 17. wieku, autor m.in. „Kuźni Wulkana”?",
       "correct": "Diego Velázquez",
       "wrong": [
         "Francisco de Zurbarán",
@@ -72106,7 +72106,7 @@ module GameRoomContent
       "id": "polqa_01242",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Jak nazywa się miasto, w którym w XVIII wieku założono Covent Garden?",
+      "prompt": "Jak nazywa się miasto, w którym w 18. wieku założono Covent Garden?",
       "correct": "Londyn",
       "wrong": [
         "Paryż",
@@ -72138,7 +72138,7 @@ module GameRoomContent
       "id": "polqa_01247",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Jak nazywało się pismo wychodzące w pierwszej połowie XVIII wieku w Londynie?",
+      "prompt": "Jak nazywało się pismo wychodzące w pierwszej połowie 18. wieku w Londynie?",
       "correct": "Spectator",
       "wrong": [
         "The Times",
@@ -72235,11 +72235,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku została założona opera wiedeńska?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -73003,11 +73003,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku Offenbach skomponował operetkę „Piękna Helena”?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -73579,11 +73579,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku Edvard Munch namalował obraz „Krzyk”?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -73947,11 +73947,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku urodził się barceloński architekt Antonio Gaudi?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -73979,11 +73979,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku tworzył Salvador Dali?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XVIII",
-        "w XIX",
-        "w XVII"
+        "w 18.",
+        "w 19.",
+        "w 17."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -74026,7 +74026,7 @@ module GameRoomContent
       "id": "polqa_02142",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Jak nazywał się XVIII- i XIX-wieczny malarz hiszpański obrazujący okrucieństwa wojny?",
+      "prompt": "Jak nazywał się 18- i 19-wieczny malarz hiszpański obrazujący okrucieństwa wojny?",
       "correct": "Francisco Goya",
       "wrong": [
         "Diego Velázquez",
@@ -74747,11 +74747,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku tworzył ormiański kompozytor Aram Chaczaturian?",
-      "correct": "w XX wieku",
+      "correct": "w 20. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XIX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -74763,11 +74763,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku Wit Stwosz wyrzeźbił ołtarz mariacki?",
-      "correct": "w XV wieku",
+      "correct": "w 15. wieku",
       "wrong": [
-        "w XIII wieku",
-        "w XIV wieku",
-        "w XVI wieku"
+        "w 13. wieku",
+        "w 14. wieku",
+        "w 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -74779,11 +74779,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku miał miejsce kierunek w sztuce art déco?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XIX"
+        "w 17.",
+        "w 18.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -75083,11 +75083,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku tworzył Franciszek Schubert?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XX"
+        "w 16.",
+        "w 17.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -75435,11 +75435,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku urodził się Walt Disney?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XVIII",
-        "w XIX",
-        "w XVII"
+        "w 18.",
+        "w 19.",
+        "w 17."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -75979,11 +75979,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył Mozart?",
-      "correct": "w XVIII",
+      "correct": "w 18.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XIX"
+        "w 16.",
+        "w 17.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -76011,11 +76011,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył van Gogh?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -76986,7 +76986,7 @@ module GameRoomContent
       "id": "polqa_03804",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Jak się nazywają religijne pieśni Murzynów amerykańskich, stanowiące jedno ze źródeł bluesa, które wykonywane początkowo jedynie podczas nabożeństw kościelnych, zanim usamodzielniły się w latach 30. XX wieku?",
+      "prompt": "Jak się nazywają religijne pieśni Murzynów amerykańskich, stanowiące jedno ze źródeł bluesa, które wykonywane początkowo jedynie podczas nabożeństw kościelnych, zanim usamodzielniły się w latach 30. 20. wieku?",
       "correct": "negro spirituals",
       "wrong": [
         "work songs",
@@ -77706,7 +77706,7 @@ module GameRoomContent
       "id": "polqa_04117",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Który polski malarz jest autorem XIX-wiecznego obrazu „Wernyhora”?",
+      "prompt": "Który polski malarz jest autorem 19-wiecznego obrazu „Wernyhora”?",
       "correct": "Jan Matejko",
       "wrong": [
         "Juliusz Kossak",
@@ -77755,11 +77755,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył malarz portrecista Henryk Rodakowski?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -78043,11 +78043,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku odbyła się prapremiera opery Stanisława Moniuszki „Straszny Dwór”?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -78458,7 +78458,7 @@ module GameRoomContent
       "id": "polqa_04460",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Jak nazywa się kompozytor polski I połowy XX wieku, autor baletu „Harnasie”?",
+      "prompt": "Jak nazywa się kompozytor polski pierwszej połowy 20. wieku, autor baletu „Harnasie”?",
       "correct": "Karol Szymanowski",
       "wrong": [
         "Ludomir Różycki",
@@ -79099,11 +79099,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku rozwinął się kierunek w malarstwie o nazwie taszyzm?",
-      "correct": "w XX wieku",
+      "correct": "w 20. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XIX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -80138,7 +80138,7 @@ module GameRoomContent
       "id": "polqa_05224",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Kto był twórcą największego europejskiego księgozbioru o charakterze Biblioteki Narodowej, mieszczącego się w XVIII wieku w Warszawie?",
+      "prompt": "Kto był twórcą największego europejskiego księgozbioru o charakterze Biblioteki Narodowej, mieszczącego się w 18. wieku w Warszawie?",
       "correct": "Józef i Andrzej Załuscy",
       "wrong": [
         "Jan i Jędrzej Śniadeccy",
@@ -80187,11 +80187,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku urodził się Edgar Degas?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -80235,11 +80235,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku został wykonany przez Wita Stwosza Ołtarz Mariacki?",
-      "correct": "w XV wieku",
+      "correct": "w 15. wieku",
       "wrong": [
-        "w XIII wieku",
-        "w XIV wieku",
-        "w XVI wieku"
+        "w 13. wieku",
+        "w 14. wieku",
+        "w 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -80266,7 +80266,7 @@ module GameRoomContent
       "id": "polqa_05271",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Który malarz hiszpański żyjący w XVIII i XIX w. jest autorem obrazu „Saturn pożerający swoje dzieci”?",
+      "prompt": "Który malarz hiszpański żyjący w 18. i 19. wieku jest autorem obrazu „Saturn pożerający swoje dzieci”?",
       "correct": "Francisco Goya",
       "wrong": [
         "Diego Velázquez",
@@ -80379,11 +80379,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku wybudowano La Scalę, teatr operowy w Mediolanie?",
-      "correct": "w XVIII wieku",
+      "correct": "w 18. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XIX wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -80410,7 +80410,7 @@ module GameRoomContent
       "id": "polqa_05335",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Kto w XVII w. namalował obraz „Straż Nocna”?",
+      "prompt": "Kto w 17. wieku namalował obraz „Straż Nocna”?",
       "correct": "Rembrandt van Rijn",
       "wrong": [
         "Frans Hals",
@@ -81387,11 +81387,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku zaczął się rozwijać w architekturze styl gotycki?",
-      "correct": "w XII wieku",
+      "correct": "w 12. wieku",
       "wrong": [
-        "w X wieku",
-        "w XIV wieku",
-        "w XVI wieku"
+        "w 10. wieku",
+        "w 14. wieku",
+        "w 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -81499,11 +81499,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku powstał budynek Royal Albert Hall?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 16. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -82682,7 +82682,7 @@ module GameRoomContent
       "id": "polqa_06587",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Kto jest autorem obrazu „Narodziny Wenus” powstałego we Włoszech w XV w.?",
+      "prompt": "Kto jest autorem obrazu „Narodziny Wenus” powstałego we Włoszech w 15. wieku?",
       "correct": "Sandro Botticelli",
       "wrong": [
         "Leonardo da Vinci",
@@ -82987,11 +82987,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku Miron wyrzeźbił posąg Dyskobola?",
-      "correct": "w V p.n.e.",
+      "correct": "w 5. p.n.e.",
       "wrong": [
-        "w VII p.n.e.",
-        "w III p.n.e.",
-        "w I p.n.e."
+        "w 7. p.n.e.",
+        "w 3. p.n.e.",
+        "w 1. p.n.e."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -83003,11 +83003,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył Artur Grottger, polski rysownik i malarz?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XVIII"
+        "w 16.",
+        "w 17.",
+        "w 18."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -83019,11 +83019,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył Giacomo Puccini autor „Cyganerii”, „Toski”?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XVIII"
+        "w 16.",
+        "w 17.",
+        "w 18."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -83035,11 +83035,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku urodził się niemiecki kompozytor Ludwig van Beethoven?",
-      "correct": "w XVIII",
+      "correct": "w 18.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XIX"
+        "w 16.",
+        "w 17.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -83051,11 +83051,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku powstał Polski Instytut Sztuki Filmowej który wspiera rozwój polskiej kinematografii?",
-      "correct": "w XXI",
+      "correct": "w 21.",
       "wrong": [
-        "w XVIII",
-        "w XIX",
-        "w XX"
+        "w 18.",
+        "w 19.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -83131,11 +83131,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "Na przełomie których wieków komponował Niemiec Ryszard Strauss?",
-      "correct": "XIX i XX",
+      "correct": "19. i 20.",
       "wrong": [
-        "XVII i XVIII",
-        "XVIII i XIX",
-        "XX i XXI"
+        "17. i 18.",
+        "18. i 19.",
+        "20. i 21."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -83818,7 +83818,7 @@ module GameRoomContent
       "id": "1z10_d3766790f0ec90b4",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Kto na początku XX wieku zaprojektował strój krakowskiego lajkonika?",
+      "prompt": "Kto na początku 20. wieku zaprojektował strój krakowskiego lajkonika?",
       "correct": "Stanisław Wyspiański",
       "wrong": [
         "Józef Mehoffer",
@@ -83963,11 +83963,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku powstało Muzeum Guggenheima w Nowym Jorku?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -83995,11 +83995,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył niderlandzki malarz Hieronimus Bosch?",
-      "correct": "W XV i XVI wieku",
+      "correct": "W 15. i 16. wieku",
       "wrong": [
-        "W XIII i XIV wieku",
-        "W XIV i XV wieku",
-        "W XVI i XVII wieku"
+        "W 13. i 14. wieku",
+        "W 14. i 15. wieku",
+        "W 16. i 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -85051,11 +85051,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku Austriaccy artyści założyli stowarzyszenie nazywane Secesją Wiedeńską?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -85355,11 +85355,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył francuski kompozytor Jakub Offenbach?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -85451,11 +85451,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku powstał kubizm?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -85515,11 +85515,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku otwarto na nowojorskim Broadwayu teatr Metropolitan Opera?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -85883,11 +85883,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku zostało otwarte dla publiczności muzeum w Luwrze?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -86331,11 +86331,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku działał Komitet Paryski, tak zwani kapiści, grupa zrzeszająca polskich artystów malarzy?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -86379,11 +86379,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym stuleciu wydano Wielką Encyklopedię Francuską pod redakcją Denisa Diderota?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -87243,11 +87243,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył kompozytor Dymitr Szostakowicz?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XVII wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -87419,11 +87419,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył i tworzył Bizet?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -87515,11 +87515,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "Kiedy nagrany został przebój The Beach Boys - I Get Around?",
-      "correct": "W latach 60. XX wieku",
+      "correct": "W latach 60. 20. wieku",
       "wrong": [
-        "W latach 50. XX wieku",
-        "W latach 70. XX wieku",
-        "W latach 80. XX wieku"
+        "W latach 50. 20. wieku",
+        "W latach 70. 20. wieku",
+        "W latach 80. 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -87642,7 +87642,7 @@ module GameRoomContent
       "id": "1z10_86f19ddb996fcd04",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Do jakiej dziedziny sztuki w XIX-wiecznej Rosji należeli twórcy grupy zwanej Potężną Gromadką?",
+      "prompt": "Do jakiej dziedziny sztuki w 19-wiecznej Rosji należeli twórcy grupy zwanej Potężną Gromadką?",
       "correct": "Do muzyki",
       "wrong": [
         "Do malarstwa",
@@ -87739,11 +87739,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku urodził się Andrzej Rublow?",
-      "correct": "W XIV wieku",
+      "correct": "W 14. wieku",
       "wrong": [
-        "W XIII wieku",
-        "W XV wieku",
-        "W XVI wieku"
+        "W 13. wieku",
+        "W 15. wieku",
+        "W 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -87771,11 +87771,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył Jan Matejko?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -88331,11 +88331,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku bracia Lumière w podziemiach paryskiej kawiarni zaprezentowali pierwszy film?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -88795,11 +88795,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku powstał taniec La Folia?",
-      "correct": "W XV wieku",
+      "correct": "W 15. wieku",
       "wrong": [
-        "W XIII wieku",
-        "W XVI wieku",
-        "W XVII wieku"
+        "W 13. wieku",
+        "W 16. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -88939,11 +88939,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył włoski malarz Bernardo Bellotto zwany Canalettem?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -89115,11 +89115,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku powstały balet Romeo i Julia oraz opera Wojna i Pokój Sergiusza Prokofiewa?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -89371,11 +89371,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku odbył się amerykański debiut Heleny Modrzejewskiej?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -89931,11 +89931,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku w sztuce angielskiej pojawił się styl wiktoriański?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -90507,11 +90507,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku urodził się francuski rzeźbiarz August Rodin?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -91674,7 +91674,7 @@ module GameRoomContent
       "id": "1z10_11e65fc901216a3c",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Który XIX-wieczny włoski kompozytor jest twórcą chóru z opery komicznej Don Pasquale?",
+      "prompt": "Który 19-wieczny włoski kompozytor jest twórcą chóru z opery komicznej Don Pasquale?",
       "correct": "Gaetano Donizetti",
       "wrong": [
         "Gioacchino Rossini",
@@ -92091,11 +92091,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku powstał w Paryżu teatr Comédie-Française?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -92203,11 +92203,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "Który wiek uważa się za umowną datę powstania teatru elżbietańskiego?",
-      "correct": "XVI wiek",
+      "correct": "16. wiek",
       "wrong": [
-        "XV wiek",
-        "XVII wiek",
-        "XVIII wiek"
+        "15. wiek",
+        "17. wiek",
+        "18. wiek"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -92282,7 +92282,7 @@ module GameRoomContent
       "id": "1z10_fd1346511b81dd93",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Kim z zawodu był August Zamoyski, tworzący w XX wieku między innymi we Francji i Brazylii?",
+      "prompt": "Kim z zawodu był August Zamoyski, tworzący w 20. wieku między innymi we Francji i Brazylii?",
       "correct": "Rzeźbiarzem",
       "wrong": [
         "Malarzem",
@@ -93291,11 +93291,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku urodził się flamandzki malarz Peter Paul Rubens?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -93483,11 +93483,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku urodził się Antonio Vivaldi, słynny włoski skrzypek i kompozytor?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -94523,11 +94523,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku powstała commedia dell'arte?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 14. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -94539,11 +94539,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku tworzył malarz Auguste Renoir?",
-      "correct": "W XIX i XX wieku",
+      "correct": "W 19. i 20. wieku",
       "wrong": [
-        "W XVII i XVIII wieku",
-        "W XVIII i XIX wieku",
-        "W XVI i XVII wieku"
+        "W 17. i 18. wieku",
+        "W 18. i 19. wieku",
+        "W 16. i 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -94698,7 +94698,7 @@ module GameRoomContent
       "id": "1z10_275856ebd92afe74",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Który XIX-wieczny polski malarz jest autorem obrazów Wojna Kokosza, Posłowie u Sobieskiego i portret generała Henryka Dembińskiego?",
+      "prompt": "Który 19-wieczny polski malarz jest autorem obrazów Wojna Kokosza, Posłowie u Sobieskiego i portret generała Henryka Dembińskiego?",
       "correct": "Henryk Rodakowski",
       "wrong": [
         "Jan Matejko",
@@ -95354,7 +95354,7 @@ module GameRoomContent
       "id": "1z10_b752768379e92e2d",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "W którym państwie powstał w XIX wieku impresjonizm, kierunek w malarstwie?",
+      "prompt": "W którym państwie powstał w 19. wieku impresjonizm, kierunek w malarstwie?",
       "correct": "We Francji",
       "wrong": [
         "We Włoszech",
@@ -95755,11 +95755,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył Stanisław Moniuszko?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -96491,11 +96491,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył Niccolo Paganini?",
-      "correct": "W XVIII i XIX wieku",
+      "correct": "W 18. i 19. wieku",
       "wrong": [
-        "W XVI i XVII wieku",
-        "W XVII i XVIII wieku",
-        "W XIX i XX wieku"
+        "W 16. i 17. wieku",
+        "W 17. i 18. wieku",
+        "W 19. i 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -96506,7 +96506,7 @@ module GameRoomContent
       "id": "1z10_7c732c78777fca60",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Jaki zespół wokalny tworzyły swingujące od lat trzydziestych XX wieku siostry Andrews?",
+      "prompt": "Jaki zespół wokalny tworzyły swingujące od lat trzydziestych 20. wieku siostry Andrews?",
       "correct": "Tercet",
       "wrong": [
         "Duet",
@@ -96522,7 +96522,7 @@ module GameRoomContent
       "id": "1z10_88d1722d8b57bc56",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Jak nazywa się kierunek w literaturze i sztuce europejskiej nawiązujący do wzorów antycznych, ukształtowany w XVII i XVIII wieku?",
+      "prompt": "Jak nazywa się kierunek w literaturze i sztuce europejskiej nawiązujący do wzorów antycznych, ukształtowany w 17. i 18. wieku?",
       "correct": "Klasycyzm",
       "wrong": [
         "Romantyzm",
@@ -96875,11 +96875,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "Fin de siècle to okres w kulturze, który obejmuje koniec którego wieku?",
-      "correct": "XIX wieku",
+      "correct": "19. wieku",
       "wrong": [
-        "XVII wieku",
-        "XVIII wieku",
-        "XX wieku"
+        "17. wieku",
+        "18. wieku",
+        "20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -97450,7 +97450,7 @@ module GameRoomContent
       "id": "1z10_2092bc76d45badd3",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Jak nazywa się urodzony w 1927 roku wybitny tancerz, założyciel międzynarodowego zespołu balet XX wieku?",
+      "prompt": "Jak nazywa się urodzony w 1927 roku wybitny tancerz, założyciel międzynarodowego zespołu Balet XX Wieku?",
       "correct": "Maurice Béjart",
       "wrong": [
         "Rudolf Nuriejew",
@@ -97819,11 +97819,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył Fryderyk Chopin?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -98587,11 +98587,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku powstała Pieta Watykańska Michała Anioła?",
-      "correct": "W XV wieku",
+      "correct": "W 15. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XVI wieku",
-        "W XVII wieku"
+        "W 14. wieku",
+        "W 16. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -98683,11 +98683,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "Panie Wojciechu, w którym wieku powstały wielkie organy oliwskie?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -98747,11 +98747,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku włoski budowniczy instrumentów muzycznych Bartolomeo Cristofori skonstruował fortepian?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -99387,11 +99387,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył włoski malarz Caravaggio?",
-      "correct": "W XVI i XVII wieku",
+      "correct": "W 16. i 17. wieku",
       "wrong": [
-        "W XIV i XV wieku",
-        "W XV i XVI wieku",
-        "W XVIII i XIX wieku"
+        "W 14. i 15. wieku",
+        "W 15. i 16. wieku",
+        "W 18. i 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -99691,11 +99691,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku powstał we Francji styl cesarstwa, tak zwany empire?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -99706,7 +99706,7 @@ module GameRoomContent
       "id": "1z10_f3ac384d403f535d",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Który polski wykonawca został piosenkarzem XX wieku w plebiscycie Tygodnika Polityka?",
+      "prompt": "Który polski wykonawca został piosenkarzem 20. wieku w plebiscycie Tygodnika Polityka?",
       "correct": "Czesław Niemen",
       "wrong": [
         "Marek Grechuta",
@@ -99771,11 +99771,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "Na przełomie których wieków żył włoski kompozytor Claudio Monteverdi?",
-      "correct": "XVI i XVII wieku",
+      "correct": "16. i 17. wieku",
       "wrong": [
-        "XV i XVI wieku",
-        "XVII i XVIII wieku",
-        "XVIII i XIX wieku"
+        "15. i 16. wieku",
+        "17. i 18. wieku",
+        "18. i 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -100138,7 +100138,7 @@ module GameRoomContent
       "id": "1z10_5e2430022f9b10e5",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Kto w XIX wieku namalował obraz Hołd Pruski?",
+      "prompt": "Kto w 19. wieku namalował obraz Hołd Pruski?",
       "correct": "Jan Matejko",
       "wrong": [
         "Henryk Siemiradzki",
@@ -100170,7 +100170,7 @@ module GameRoomContent
       "id": "1z10_1d6a675de077f48f",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Który Holender jest autorem obrazu z XVII wieku Powrót syna marnotrawnego?",
+      "prompt": "Który Holender jest autorem obrazu z 17. wieku Powrót syna marnotrawnego?",
       "correct": "Rembrandt",
       "wrong": [
         "Jan Vermeer",
@@ -100955,11 +100955,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "Na początku którego stulecia w malarstwie francuskim rozwinął się fowizm?",
-      "correct": "XX stulecia",
+      "correct": "20. stulecia",
       "wrong": [
-        "XVII stulecia",
-        "XVIII stulecia",
-        "XIX stulecia"
+        "17. stulecia",
+        "18. stulecia",
+        "19. stulecia"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -101498,7 +101498,7 @@ module GameRoomContent
       "id": "1z10_fdd2523643e510e6",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "W którym państwie narodził się socrealizm na początku lat trzydziestych XX wieku?",
+      "prompt": "W którym państwie narodził się socrealizm na początku lat trzydziestych 20. wieku?",
       "correct": "W Związku Radzieckim",
       "wrong": [
         "W Niemczech",
@@ -101883,11 +101883,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył francuski malarz Edouard Manet, autor obrazu Śniadanie na trawie?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -102699,11 +102699,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku powstał budynek Teatru Wielkiego w Warszawie?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -103979,11 +103979,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku żył Leonardo da Vinci?",
-      "correct": "W XV i XVI wieku",
+      "correct": "W 15. i 16. wieku",
       "wrong": [
-        "W XIV i XV wieku",
-        "W XVI i XVII wieku",
-        "W XVII i XVIII wieku"
+        "W 14. i 15. wieku",
+        "W 16. i 17. wieku",
+        "W 17. i 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -104507,11 +104507,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "Instrumenty muzyczne. W którym wieku żył włoski lutnik Antonio Stradivari?",
-      "correct": "W XVII i XVIII wieku",
+      "correct": "W 17. i 18. wieku",
       "wrong": [
-        "W XV i XVI wieku",
-        "W XVI i XVII wieku",
-        "W XVIII i XIX wieku"
+        "W 15. i 16. wieku",
+        "W 16. i 17. wieku",
+        "W 18. i 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -104859,11 +104859,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku rozwijał się awangardowy ruch literacko-artystyczny zwany dadaizmem?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -105195,11 +105195,11 @@ module GameRoomContent
       "category": "Kultura",
       "level": "medium",
       "prompt": "W którym wieku urodzili się kompozytorzy Moniuszko, Szymanowski i Paderewski?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -105418,7 +105418,7 @@ module GameRoomContent
       "id": "1z10_5612ba3770aac1ea",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "W którym kraju produkowane były patéfony na początku XX wieku?",
+      "prompt": "W którym kraju produkowane były patéfony na początku 20. wieku?",
       "correct": "We Francji",
       "wrong": [
         "W Polsce",
@@ -107482,7 +107482,7 @@ module GameRoomContent
       "id": "polqa_00386",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Jaką nazwę nosi założona w Londynie w latach dwudziestych XX wieku międzynarodowa organizacja skupiająca pisarzy?",
+      "prompt": "Jaką nazwę nosi założona w Londynie w latach dwudziestych 20. wieku międzynarodowa organizacja skupiająca pisarzy?",
       "correct": "PEN Club",
       "wrong": [
         "Bloomsbury Group",
@@ -107707,11 +107707,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku powstały słowa Roty?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XVIII",
-        "w XIX",
-        "w XVII"
+        "w 18.",
+        "w 19.",
+        "w 17."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -108155,11 +108155,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku dzieje się akcja powieści „Hrabina Cosel” autorstwa Kraszewskiego?",
-      "correct": "w XVIII",
+      "correct": "w 18.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XIX"
+        "w 16.",
+        "w 17.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -108555,11 +108555,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku Bruno Schulz napisał „Sklepy cynamonowe”?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XIX",
-        "w XVIII",
-        "w XXI"
+        "w 19.",
+        "w 18.",
+        "w 21."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -108795,11 +108795,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku ukazał się na łamach Kuriera Codziennego ostatni odcinek „Lalki”?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVIII",
-        "w XX",
-        "w XVII"
+        "w 18.",
+        "w 20.",
+        "w 17."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -108827,11 +108827,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku żył polski pisarz Mikołaj Sęp-Szarzyński?",
-      "correct": "w XVI wieku",
+      "correct": "w 16. wieku",
       "wrong": [
-        "w XV wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 15. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -109354,7 +109354,7 @@ module GameRoomContent
       "id": "polqa_01383",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Jak miał na imię XIX-wieczny rosyjski pisarz Dostojewski?",
+      "prompt": "Jak miał na imię 19-wieczny rosyjski pisarz Dostojewski?",
       "correct": "Fiodor",
       "wrong": [
         "Lew",
@@ -109610,7 +109610,7 @@ module GameRoomContent
       "id": "polqa_01528",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Psałterz floriański z przełomu XIV i XV wieku nazywa się psałterzem której królowej Polski?",
+      "prompt": "Psałterz floriański z przełomu 14. i 15. wieku nazywa się psałterzem której królowej Polski?",
       "correct": "Jadwigi",
       "wrong": [
         "Bony",
@@ -110171,11 +110171,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku tworzył Hans Christian Andersen?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -111691,11 +111691,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku tworzył Francesco Petrarca?",
-      "correct": "w XIV",
+      "correct": "w 14.",
       "wrong": [
-        "w XIII",
-        "w XV",
-        "w XVI"
+        "w 13.",
+        "w 15.",
+        "w 16."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -111723,11 +111723,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku żył angielski pisarz Karol Dickens?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -112634,7 +112634,7 @@ module GameRoomContent
       "id": "polqa_03191",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Jak nazywał się autor zbioru bajek w 12 tomach wydanego w XVII wieku?",
+      "prompt": "Jak nazywał się autor zbioru bajek w 12 tomach wydanego w 17. wieku?",
       "correct": "Jean de La Fontaine",
       "wrong": [
         "Charles Perrault",
@@ -112922,7 +112922,7 @@ module GameRoomContent
       "id": "polqa_03344",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Ten urodzony w XIX w. Nantes francuski pisarz uchodzi za prekursora literatury fantastycznonaukowej. O kogo chodzi?",
+      "prompt": "Ten urodzony w 19. wieku w Nantes francuski pisarz uchodzi za prekursora literatury fantastycznonaukowej. O kogo chodzi?",
       "correct": "Juliusz Verne",
       "wrong": [
         "Victor Hugo",
@@ -113211,11 +113211,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku toczy się akcja „Krzyżaków”?",
-      "correct": "Na przełomie XIV i XV wieku",
+      "correct": "Na przełomie 14. i 15. wieku",
       "wrong": [
-        "Na przełomie XII i XIII wieku",
-        "Na przełomie XIII i XIV wieku",
-        "Na przełomie XV i XVI wieku"
+        "Na przełomie 12. i 13. wieku",
+        "Na przełomie 13. i 14. wieku",
+        "Na przełomie 15. i 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -113339,11 +113339,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku żył Sofokles?",
-      "correct": "w V wieku p.n.e.",
+      "correct": "w 5. wieku p.n.e.",
       "wrong": [
-        "w VIII wieku p.n.e.",
-        "w III wieku p.n.e.",
-        "w I wieku p.n.e."
+        "w 8. wieku p.n.e.",
+        "w 3. wieku p.n.e.",
+        "w 1. wieku p.n.e."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -113579,11 +113579,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku urodził się Witold Gombrowicz?",
-      "correct": "w XX wieku",
+      "correct": "w 20. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XIX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -113611,11 +113611,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku żyła francuska pisarka George Sand?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -113931,11 +113931,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku żył Molier?",
-      "correct": "w XVII wieku",
+      "correct": "w 17. wieku",
       "wrong": [
-        "w XV wieku",
-        "w XVI wieku",
-        "w XVIII wieku"
+        "w 15. wieku",
+        "w 16. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -114890,7 +114890,7 @@ module GameRoomContent
       "id": "polqa_04914",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Jak brzmi tytuł powieści Bolesława Prusa, nawiązujący do nasilającego się pod koniec XIX wieku ruchu mającego na celu równouprawnienie kobiet?",
+      "prompt": "Jak brzmi tytuł powieści Bolesława Prusa, nawiązujący do nasilającego się pod koniec 19. wieku ruchu mającego na celu równouprawnienie kobiet?",
       "correct": "Emancypantki",
       "wrong": [
         "Lalka",
@@ -115067,11 +115067,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku żył Wiktor Hugo?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XVIII wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -115579,11 +115579,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku Bolesław Prus skończył pisać „Lalkę”?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -117387,11 +117387,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku wydano powieść Daniela Defoe opisującą przygody Robinsona na bezludnej wyspie?",
-      "correct": "w XVIII",
+      "correct": "w 18.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XIX"
+        "w 16.",
+        "w 17.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -117402,7 +117402,7 @@ module GameRoomContent
       "id": "polqa_06793",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "W którym państwie powstał naturalizm – kierunek w literaturze XIX w.?",
+      "prompt": "W którym państwie powstał naturalizm – kierunek w literaturze 19. wieku?",
       "correct": "we Francji",
       "wrong": [
         "w Anglii",
@@ -118139,11 +118139,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku Lewis Carroll napisał książkę Alicja w Krainie Czarów?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -118395,11 +118395,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku tworzył Franciszek Bohomolec?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -119403,11 +119403,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku żył Pierre Larousse, francuski wydawca i leksykograf?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -119435,11 +119435,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku toczy się akcja dramatu Matka Courage i jej dzieci Bertolta Brechta?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -120154,7 +120154,7 @@ module GameRoomContent
       "id": "1z10_640b98eb25620758",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "W którym XIX-wiecznym dziele literackim siostry o imionach Emina i Zibelda kuszą młodzieńca Alfonsa van Wordena, wędrującego po Hiszpanii?",
+      "prompt": "W którym 19-wiecznym dziele literackim siostry o imionach Emina i Zibelda kuszą młodzieńca Alfonsa van Wordena, wędrującego po Hiszpanii?",
       "correct": "Rękopis znaleziony w Saragossie",
       "wrong": [
         "Diable eliksiry",
@@ -120618,7 +120618,7 @@ module GameRoomContent
       "id": "1z10_91c8444c96d4973c",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Literatura. Ile było sióstr Brontë, XIX-wiecznych angielskich pisarek?",
+      "prompt": "Literatura. Ile było sióstr Brontë, 19-wiecznych angielskich pisarek?",
       "correct": "Trzy",
       "wrong": [
         "Dwie",
@@ -121403,11 +121403,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku powstało w Krakowie Sodalitas Litteraria Vistulana, czyli pierwsze towarzystwo literackie w Polsce?",
-      "correct": "W XV wieku",
+      "correct": "W 15. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XVI wieku",
-        "W XVII wieku"
+        "W 14. wieku",
+        "W 16. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -122058,7 +122058,7 @@ module GameRoomContent
       "id": "1z10_6adfde946cbc32e9",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Co oznaczają niemieckie słowa Sturm und Drang, będące nazwą okresu w literaturze niemieckiej w XVIII wieku?",
+      "prompt": "Co oznaczają niemieckie słowa Sturm und Drang, będące nazwą okresu w literaturze niemieckiej w 18. wieku?",
       "correct": "Burza i napór",
       "wrong": [
         "Rozum i uczucie",
@@ -122395,11 +122395,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku ukazała się pierwsza książka Artura Conan Doyla o przygodach Sherlocka Holmesa?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -123211,11 +123211,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku żył francuski dramatopisarz Jean-Baptiste Racine?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -123227,11 +123227,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku rozgrywa się akcja powieści Kamienie na szaniec Aleksandra Kamińskiego?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -123419,11 +123419,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku żył Mikołaj Rej?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -124267,11 +124267,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku wystawiono dramat Jana Kochanowskiego „Odprawa posłów greckich”?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -124442,7 +124442,7 @@ module GameRoomContent
       "id": "1z10_897dedeb2a1f9a7c",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Jak nazywa się tytułowa wyspa z dzieła Tomasza Mora z XVI wieku?",
+      "prompt": "Jak nazywa się tytułowa wyspa z dzieła Tomasza Mora z 16. wieku?",
       "correct": "Utopia",
       "wrong": [
         "Atlantyda",
@@ -124523,11 +124523,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku po raz pierwszy opublikowano „Kazania sejmowe” Piotra Skargi?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -124666,7 +124666,7 @@ module GameRoomContent
       "id": "1z10_1e475fa772e4f6b8",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Jak nazywał się włoski poeta z XIV wieku, autor pieśni opiewających miłość do Laury?",
+      "prompt": "Jak nazywał się włoski poeta z 14. wieku, autor pieśni opiewających miłość do Laury?",
       "correct": "Francesco Petrarka",
       "wrong": [
         "Dante Alighieri",
@@ -126170,7 +126170,7 @@ module GameRoomContent
       "id": "1z10_93ca32e9b4da47ff",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Kto uważany jest za najbardziej płodnego polskiego pisarza XIX wieku?",
+      "prompt": "Kto uważany jest za najbardziej płodnego polskiego pisarza 19. wieku?",
       "correct": "Józef Ignacy Kraszewski",
       "wrong": [
         "Henryk Sienkiewicz",
@@ -126346,7 +126346,7 @@ module GameRoomContent
       "id": "1z10_db5cb430b90408b1",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Kto jest autorem zbioru epigramatów pod tytułem Figliki, wydanego w XVI wieku?",
+      "prompt": "Kto jest autorem zbioru epigramatów pod tytułem Figliki, wydanego w 16. wieku?",
       "correct": "Mikołaj Rej",
       "wrong": [
         "Jan Kochanowski",
@@ -126795,11 +126795,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku bracia Grimm wydali opracowane przez siebie baśnie?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -128539,11 +128539,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku rozgrywa się akcja reportażu Ryszarda Kapuścińskiego, Cesarz?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -128715,11 +128715,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku Andrzej Frycz-Modrzewski napisał traktat o poprawie Rzeczypospolitej?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -128810,7 +128810,7 @@ module GameRoomContent
       "id": "1z10_9edd12566517285b",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Kto jest autorem dzieła z XVI wieku pt. Pochwała głupoty?",
+      "prompt": "Kto jest autorem dzieła z 16. wieku pt. Pochwała głupoty?",
       "correct": "Erazm z Rotterdamu",
       "wrong": [
         "Tomasz Morus",
@@ -129403,11 +129403,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "Na przełomie których stuleci toczy się akcja powieści Noce i Dnie Marii Dąbrowskiej?",
-      "correct": "XIX i XX",
+      "correct": "19. i 20.",
       "wrong": [
-        "XVII i XVIII",
-        "XVIII i XIX",
-        "XX i XXI"
+        "17. i 18.",
+        "18. i 19.",
+        "20. i 21."
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -129435,11 +129435,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku w Warszawie rozgrywa się akcja książki Król Szczepana Twardocha?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -130107,11 +130107,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku ukazała się encyklopedia Benedykta Chmielowskiego zatytułowana „Nowe Ateny albo Akademia wszelkiej scjencyi pełna”?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -130187,11 +130187,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku rozgrywa się akcja trylogii Henryka Sienkiewicza?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVI wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 16. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -131099,11 +131099,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku została napisana przez nieznanego autora Satyra na leniwych chłopów?",
-      "correct": "W XV wieku",
+      "correct": "W 15. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XVI wieku",
-        "W XVII wieku"
+        "W 14. wieku",
+        "W 16. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -131243,11 +131243,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "W którym wieku tworzyli Aleksander Dumas ojciec i Aleksander Dumas syn?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -131930,7 +131930,7 @@ module GameRoomContent
       "id": "1z10_267a1f33897d0262",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "W którym rodzaju książek specjalizował się Karl Baedeker, niemiecki wydawca żyjący w XIX wieku?",
+      "prompt": "W którym rodzaju książek specjalizował się Karl Baedeker, niemiecki wydawca żyjący w 19. wieku?",
       "correct": "Przewodnikach turystycznych",
       "wrong": [
         "Podręcznikach szkolnych",
@@ -131947,11 +131947,11 @@ module GameRoomContent
       "category": "Literatura",
       "level": "medium",
       "prompt": "Napisane przez Jana Długosza roczniki obejmują dzieje Polski od czasów najdawniejszych do którego wieku?",
-      "correct": "Do XV wieku",
+      "correct": "Do 15. wieku",
       "wrong": [
-        "Do XIII wieku",
-        "Do XIV wieku",
-        "Do XVI wieku"
+        "Do 13. wieku",
+        "Do 14. wieku",
+        "Do 16. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -133035,11 +133035,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku Dunlop wynalazł gumową oponę?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -133355,11 +133355,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku Rudolf Diesel skonstruował silnik wysokoprężny?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -133850,7 +133850,7 @@ module GameRoomContent
       "id": "polqa_00850",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Kto w XVII wieku sformułował prawo powszechnego ciążenia?",
+      "prompt": "Kto w 17. wieku sformułował prawo powszechnego ciążenia?",
       "correct": "Isaac Newton",
       "wrong": [
         "Galileusz",
@@ -134811,11 +134811,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku urodził się Thomas A. Edison?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVIII",
-        "w XVII",
-        "w XX"
+        "w 18.",
+        "w 17.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -135131,11 +135131,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku Kepler sformułował trzy prawa rządzące ruchem planet?",
-      "correct": "w XVII wieku",
+      "correct": "w 17. wieku",
       "wrong": [
-        "w XV wieku",
-        "w XVI wieku",
-        "w XVIII wieku"
+        "w 15. wieku",
+        "w 16. wieku",
+        "w 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -135339,11 +135339,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku zmarł Alfred Nobel?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -135467,11 +135467,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku żył francuski filozof Denis Diderot?",
-      "correct": "w XVIII",
+      "correct": "w 18.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XIX"
+        "w 16.",
+        "w 17.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -135915,11 +135915,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku ukazał się „Traktat o elektryczności i magnetyzmie” autorstwa Maxwella?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -136171,11 +136171,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku Mendelejew opublikował układ okresowy pierwiastków?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -136587,11 +136587,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku została opracowana skala Mohsa, używana do określania twardości minerałów?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -137003,11 +137003,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku urodził się francuski naukowiec André-Marie Ampère?",
-      "correct": "w XVIII",
+      "correct": "w 18.",
       "wrong": [
-        "w XVI",
-        "w XVII",
-        "w XIX"
+        "w 16.",
+        "w 17.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -137083,11 +137083,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku odkryto pierwiastek polon?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -137099,11 +137099,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku Chadwick odkrył neutron w jądrze atomowym?",
-      "correct": "w XX wieku",
+      "correct": "w 20. wieku",
       "wrong": [
-        "w XVIII wieku",
-        "w XIX wieku",
-        "w XXI wieku"
+        "w 18. wieku",
+        "w 19. wieku",
+        "w 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -137307,11 +137307,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku Edward Jenner wynalazł szczepionkę przeciw ospie?",
-      "correct": "w XVIII wieku",
+      "correct": "w 18. wieku",
       "wrong": [
-        "w XVI wieku",
-        "w XVII wieku",
-        "w XIX wieku"
+        "w 16. wieku",
+        "w 17. wieku",
+        "w 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -137786,7 +137786,7 @@ module GameRoomContent
       "id": "polqa_03918",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Jak brzmi nazwisko braci żyjących na przełomie XVIII i XIX wieku, z których Jan był matematykiem, a Jędrzej chemikiem?",
+      "prompt": "Jak brzmi nazwisko braci żyjących na przełomie 18. i 19. wieku, z których Jan był matematykiem, a Jędrzej chemikiem?",
       "correct": "Śniadeccy",
       "wrong": [
         "Grimmowie",
@@ -138378,7 +138378,7 @@ module GameRoomContent
       "id": "polqa_04222",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Jak nazywa się wielki francuski filozof i matematyk, żyjący w XVII wieku, który powiedział: „Myślę, więc jestem”?",
+      "prompt": "Jak nazywa się wielki francuski filozof i matematyk, żyjący w 17. wieku, który powiedział: „Myślę, więc jestem”?",
       "correct": "Kartezjusz",
       "wrong": [
         "Blaise Pascal",
@@ -138554,7 +138554,7 @@ module GameRoomContent
       "id": "polqa_04335",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Który wybitny lekarz niemiecki żyjący na przełomie XIX i XX wieku odkrył prątka gruźlicy?",
+      "prompt": "Który wybitny lekarz niemiecki żyjący na przełomie 19. i 20. wieku odkrył prątka gruźlicy?",
       "correct": "Robert Koch",
       "wrong": [
         "Paul Ehrlich",
@@ -138826,7 +138826,7 @@ module GameRoomContent
       "id": "polqa_04583",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Jak nazywał się etnograf polski, któremu zawdzięczamy olbrzymią wiedzę o wsi i folklorze polskim XIX wieku?",
+      "prompt": "Jak nazywał się etnograf polski, któremu zawdzięczamy olbrzymią wiedzę o wsi i folklorze polskim 19. wieku?",
       "correct": "Oskar Kolberg",
       "wrong": [
         "Zygmunt Gloger",
@@ -139579,11 +139579,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku został wynaleziony mikroskop?",
-      "correct": "w XVI wieku",
+      "correct": "w 16. wieku",
       "wrong": [
-        "w XIV wieku",
-        "w XV wieku",
-        "w XVII wieku"
+        "w 14. wieku",
+        "w 15. wieku",
+        "w 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -139819,11 +139819,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku żył Arystoteles?",
-      "correct": "w IV wieku p.n.e.",
+      "correct": "w 4. wieku p.n.e.",
       "wrong": [
-        "w VI wieku p.n.e.",
-        "w II wieku p.n.e.",
-        "w I wieku n.e."
+        "w 6. wieku p.n.e.",
+        "w 2. wieku p.n.e.",
+        "w 1. wieku n.e."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -140187,11 +140187,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku samochód osiągnął po raz pierwszy prędkość 100 km/h?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -140378,7 +140378,7 @@ module GameRoomContent
       "id": "polqa_05514",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "W którym mieście urodził się XIX-wieczny filozof Arthur Schopenhauer?",
+      "prompt": "W którym mieście urodził się 19-wieczny filozof Arthur Schopenhauer?",
       "correct": "w Gdańsku",
       "wrong": [
         "w Królewcu",
@@ -142698,7 +142698,7 @@ module GameRoomContent
       "id": "1z10_bab7a5c0f64b849a",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Którą dziedziną zajmował się uczony grecki Euklides, żyjący w IV i III wieku przed naszą erą?",
+      "prompt": "Którą dziedziną zajmował się uczony grecki Euklides, żyjący w 4. i 3. wieku przed naszą erą?",
       "correct": "Matematyką",
       "wrong": [
         "Filozofią",
@@ -144362,7 +144362,7 @@ module GameRoomContent
       "id": "1z10_c22269f327d44d41",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "W którym roku rozpoczął się XXI wiek?",
+      "prompt": "W którym roku rozpoczął się 21. wiek?",
       "correct": "2001",
       "wrong": [
         "2000",
@@ -144587,11 +144587,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku odkryto proton, składnik jądra atomowego?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -146363,11 +146363,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku otrzymano pierwiastki kaliforn i mendelew?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -148267,11 +148267,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku szwedzki uczony Karol Linneusz udoskonalił system klasyfikacji organizmów?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -148299,11 +148299,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku żył gdański astronom Jan Heweliusz?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -148507,11 +148507,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku skonstruowano pierwszy kieszonkowy zegarek?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XIV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 14. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -149579,11 +149579,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku powstał NASK?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -150843,11 +150843,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku żył holenderski filozof Baruch Spinoza?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -151818,7 +151818,7 @@ module GameRoomContent
       "id": "1z10_bf6249001cc2265d",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Który francuski filozof w XVIII wieku napisał: „Człowiek zrodził się wolny, a wszędzie jest w kajdanach”?",
+      "prompt": "Który francuski filozof w 18. wieku napisał: „Człowiek zrodził się wolny, a wszędzie jest w kajdanach”?",
       "correct": "Jean-Jacques Rousseau",
       "wrong": [
         "Wolter",
@@ -152763,11 +152763,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku odkryto zjawisko nadprzewodnictwa?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -153547,11 +153547,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym stuleciu Newton sformułował trzy zasady dynamiki?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -155035,11 +155035,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku Samuel Chróścikowski wydał pierwszy polski podręcznik fizyki pod tytułem Fizyka doświadczeniami potwierdzona?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -155339,11 +155339,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku James Watt wynalazł regulator prędkości obrotowej w maszynie parowej?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XIX wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 19. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -155514,7 +155514,7 @@ module GameRoomContent
       "id": "1z10_378ca0aa9b812fea",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Który angielski uczony podał w XVII wieku definicję pierwiastka chemicznego jako substancji, której nie można rozłożyć na substancje prostsze?",
+      "prompt": "Który angielski uczony podał w 17. wieku definicję pierwiastka chemicznego jako substancji, której nie można rozłożyć na substancje prostsze?",
       "correct": "Robert Boyle",
       "wrong": [
         "Isaac Newton",
@@ -156955,11 +156955,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym stuleciu żył Anders Celsius, twórca skali temperatury?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -158411,11 +158411,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku powstał rachunek różniczkowy?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVI wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 16. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -158539,11 +158539,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym stuleciu polscy uczeni Zygmunt Wróblewski i Karol Olszewski skroplili tlen i azot z powietrza?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -158795,11 +158795,11 @@ module GameRoomContent
       "category": "Nauka",
       "level": "medium",
       "prompt": "W którym wieku powstało prawo hydrostatyki zwane prawem Paskala?",
-      "correct": "W XVII wieku",
+      "correct": "W 17. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -162091,11 +162091,11 @@ module GameRoomContent
       "category": "Przyroda",
       "level": "medium",
       "prompt": "W którym wieku została wydana jedna z najważniejszych książek nauki O powstawaniu gatunków Karola Darwina?",
-      "correct": "w XIX wieku",
+      "correct": "w 19. wieku",
       "wrong": [
-        "w XVII wieku",
-        "w XVIII wieku",
-        "w XX wieku"
+        "w 17. wieku",
+        "w 18. wieku",
+        "w 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -169515,11 +169515,11 @@ module GameRoomContent
       "category": "Przyroda",
       "level": "medium",
       "prompt": "W którym wieku dogoniła stonka ziemniaczana ziemniaki w Europie?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -171339,11 +171339,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku rozpoczął się kult w Fatimie?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XVIII",
-        "w XIX",
-        "w XVII"
+        "w 18.",
+        "w 19.",
+        "w 17."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -172571,11 +172571,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku żyła św. Bernadetta?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -172810,7 +172810,7 @@ module GameRoomContent
       "id": "polqa_02276",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Który król izraelski zdobył w X w. p.n.e. Jerozolimę?",
+      "prompt": "Który król izraelski zdobył w 10. wieku p.n.e. Jerozolimę?",
       "correct": "Dawid",
       "wrong": [
         "Salomon",
@@ -173019,11 +173019,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku została wydana Biblia królowej Zofii?",
-      "correct": "w XV",
+      "correct": "w 15.",
       "wrong": [
-        "w XIII",
-        "w XIV",
-        "w XVI"
+        "w 13.",
+        "w 14.",
+        "w 16."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -173387,11 +173387,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku odbył się Sobór Watykański II?",
-      "correct": "w XX",
+      "correct": "w 20.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XIX"
+        "w 17.",
+        "w 18.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -174202,7 +174202,7 @@ module GameRoomContent
       "id": "polqa_03876",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Który papież w XX wieku władał Kościołem tylko 33 dni?",
+      "prompt": "Który papież w 20. wieku władał Kościołem tylko 33 dni?",
       "correct": "Jan Paweł I",
       "wrong": [
         "Jan XXIII",
@@ -174634,7 +174634,7 @@ module GameRoomContent
       "id": "polqa_04398",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Jak się nazywał syn św. Moniki, biskup Hippony, doktor Kościoła żyjący na przełomie IV i V wieku?",
+      "prompt": "Jak się nazywał syn św. Moniki, biskup Hippony, doktor Kościoła żyjący na przełomie 4. i 5. wieku?",
       "correct": "Augustyn",
       "wrong": [
         "Ambroży",
@@ -174683,11 +174683,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku żył Stanisław Kostka?",
-      "correct": "w XVI wieku",
+      "correct": "w 16. wieku",
       "wrong": [
-        "w XIII wieku",
-        "w XIV wieku",
-        "w XVII wieku"
+        "w 13. wieku",
+        "w 14. wieku",
+        "w 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -174747,11 +174747,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku Ignacy Loyola założył zakon jezuitów?",
-      "correct": "w XVI wieku",
+      "correct": "w 16. wieku",
       "wrong": [
-        "w XIII wieku",
-        "w XIV wieku",
-        "w XV wieku"
+        "w 13. wieku",
+        "w 14. wieku",
+        "w 15. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -174938,7 +174938,7 @@ module GameRoomContent
       "id": "polqa_04807",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Jak nazywał się papież, który zebrał i uporządkował śpiewy kościelne w VI wieku?",
+      "prompt": "Jak nazywał się papież, który zebrał i uporządkował śpiewy kościelne w 6. wieku?",
       "correct": "Grzegorz I",
       "wrong": [
         "Leon I",
@@ -174971,11 +174971,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku papieże znajdowali się w tzw. niewoli awiniońskiej?",
-      "correct": "w XIV wieku",
+      "correct": "w 14. wieku",
       "wrong": [
-        "w XII wieku",
-        "w XIII wieku",
-        "w XV wieku"
+        "w 12. wieku",
+        "w 13. wieku",
+        "w 15. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -174986,7 +174986,7 @@ module GameRoomContent
       "id": "polqa_04857",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Jak brzmi imię świętego, którego śmierć przedstawiono na „Drzwiach Gnieźnieńskich” z drugiej połowy XII wieku?",
+      "prompt": "Jak brzmi imię świętego, którego śmierć przedstawiono na „Drzwiach Gnieźnieńskich” z drugiej połowy 12. wieku?",
       "correct": "Wojciech",
       "wrong": [
         "Stanisław",
@@ -175130,7 +175130,7 @@ module GameRoomContent
       "id": "polqa_05001",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Jak się nazywa święta góra Słowian, o której w początkach XI wieku pisał kronikarz niemiecki Thietmar?",
+      "prompt": "Jak się nazywa święta góra Słowian, o której w początkach 11. wieku pisał kronikarz niemiecki Thietmar?",
       "correct": "Ślęża",
       "wrong": [
         "Łysica",
@@ -175307,11 +175307,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku odbył się pierwszy sobór nicejski?",
-      "correct": "w IV wieku",
+      "correct": "w 4. wieku",
       "wrong": [
-        "w II wieku",
-        "w III wieku",
-        "w VI wieku"
+        "w 2. wieku",
+        "w 3. wieku",
+        "w 6. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -175706,7 +175706,7 @@ module GameRoomContent
       "id": "polqa_05620",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Z którego miasta pochodził św. Tomasz – XIII-wieczny filozof i teolog?",
+      "prompt": "Z którego miasta pochodził św. Tomasz – 13-wieczny filozof i teolog?",
       "correct": "z Akwinu",
       "wrong": [
         "z Asyżu",
@@ -176186,7 +176186,7 @@ module GameRoomContent
       "id": "polqa_06110",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Która święta patronuje bazylice znajdującej się blisko Stoczni Gdańskiej, związanej z Solidarnością w latach osiemdziesiątych XX w.?",
+      "prompt": "Która święta patronuje bazylice znajdującej się blisko Stoczni Gdańskiej, związanej z Solidarnością w latach osiemdziesiątych 20. wieku?",
       "correct": "św. Brygida",
       "wrong": [
         "św. Barbara",
@@ -176779,11 +176779,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku żył reformator religijny Jan Kalwin?",
-      "correct": "w XVI wieku",
+      "correct": "w 16. wieku",
       "wrong": [
-        "w XIII wieku",
-        "w XIV wieku",
-        "w XV wieku"
+        "w 13. wieku",
+        "w 14. wieku",
+        "w 15. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -176794,12 +176794,12 @@ module GameRoomContent
       "id": "polqa_06785",
       "category": "Religia",
       "level": "medium",
-      "prompt": "W którym wieku została zdjęta ekskomunika którą rzuciły wzajemnie na siebie kościoły wschodni i rzymskokatolicki w XI w.?",
-      "correct": "w XX",
+      "prompt": "W którym wieku została zdjęta ekskomunika którą rzuciły wzajemnie na siebie kościoły wschodni i rzymskokatolicki w 11. wieku?",
+      "correct": "w 20.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XIX"
+        "w 17.",
+        "w 18.",
+        "w 19."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -177083,11 +177083,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku wydano tak zwaną Biblię Wujka?",
-      "correct": "W XVI wieku",
+      "correct": "W 16. wieku",
       "wrong": [
-        "W XV wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 15. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -177291,11 +177291,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku powstała w Stanach Zjednoczonych wspólnota religijna mormonów?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -177435,11 +177435,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku Watykan zniósł indeks librorum prohibitorum?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -178955,11 +178955,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku święty Wojciech został kanonizowany?",
-      "correct": "W X wieku",
+      "correct": "W 10. wieku",
       "wrong": [
-        "W XI wieku",
-        "W XII wieku",
-        "W XIII wieku"
+        "W 11. wieku",
+        "W 12. wieku",
+        "W 13. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -179290,7 +179290,7 @@ module GameRoomContent
       "id": "1z10_6236db36672523b7",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Na terenie którego współczesnego państwa powstał zakon Franciszkanów w XIII wieku?",
+      "prompt": "Na terenie którego współczesnego państwa powstał zakon Franciszkanów w 13. wieku?",
       "correct": "Na terenie Włoch",
       "wrong": [
         "Na terenie Francji",
@@ -181338,7 +181338,7 @@ module GameRoomContent
       "id": "1z10_f246e9296388d804",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Jak miała na imię dziewczynka, której w grocie blisko Lourdes w połowie XIX wieku ukazała się Matka Boska?",
+      "prompt": "Jak miała na imię dziewczynka, której w grocie blisko Lourdes w połowie 19. wieku ukazała się Matka Boska?",
       "correct": "Bernadetta",
       "wrong": [
         "Katarzyna",
@@ -183482,7 +183482,7 @@ module GameRoomContent
       "id": "1z10_3fcf690b442b7d96",
       "category": "Religia",
       "level": "medium",
-      "prompt": "W XVI wieku kto dokonał przekładu Biblii z języków hebrajskiego i greckiego na niemiecki?",
+      "prompt": "W 16. wieku kto dokonał przekładu Biblii z języków hebrajskiego i greckiego na niemiecki?",
       "correct": "Marcin Luter",
       "wrong": [
         "John Wycliffe",
@@ -184107,11 +184107,11 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W którym wieku bracia Cyryl i Metody przybyli na Morawy, aby szerzyć chrześcijańską wiarę?",
-      "correct": "W IX wieku",
+      "correct": "W 9. wieku",
       "wrong": [
-        "W VII wieku",
-        "W VIII wieku",
-        "W X wieku"
+        "W 7. wieku",
+        "W 8. wieku",
+        "W 10. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -186235,11 +186235,11 @@ module GameRoomContent
       "category": "Sport",
       "level": "medium",
       "prompt": "W którym wieku rozegrano pierwszą Wielką Pardubicką?",
-      "correct": "w XIX",
+      "correct": "w 19.",
       "wrong": [
-        "w XVII",
-        "w XVIII",
-        "w XX"
+        "w 17.",
+        "w 18.",
+        "w 20."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -190186,7 +190186,7 @@ module GameRoomContent
       "id": "1z10_676af8171ab384ba",
       "category": "Sport",
       "level": "medium",
-      "prompt": "W którym państwie powstał w XIX wieku klub sportowy FC Porto?",
+      "prompt": "W którym państwie powstał w 19. wieku klub sportowy FC Porto?",
       "correct": "W Portugalii",
       "wrong": [
         "W Hiszpanii",
@@ -190491,11 +190491,11 @@ module GameRoomContent
       "category": "Sport",
       "level": "medium",
       "prompt": "W którym wieku odbyły się pierwsze nowożytne Igrzyska Olimpijskie?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XX wieku",
-        "W XVII wieku"
+        "W 18. wieku",
+        "W 20. wieku",
+        "W 17. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -191979,11 +191979,11 @@ module GameRoomContent
       "category": "Sport",
       "level": "medium",
       "prompt": "W którym wieku powstało Warszawskie Towarzystwo Cyklistów?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -193019,11 +193019,11 @@ module GameRoomContent
       "category": "Sport",
       "level": "medium",
       "prompt": "W którym wieku zostały opracowane szachy heksagonalne?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XXI wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 21. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -193451,11 +193451,11 @@ module GameRoomContent
       "category": "Sport",
       "level": "medium",
       "prompt": "W którym wieku odbył się pierwszy tenisowy turniej w Wimbledonie?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -193835,11 +193835,11 @@ module GameRoomContent
       "category": "Sport",
       "level": "medium",
       "prompt": "Himalaizm. W którym wieku po raz pierwszy Himalaiści pokonali wysokość 8 tysięcy metrów?",
-      "correct": "W XX wieku",
+      "correct": "W 20. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XIX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -194667,11 +194667,11 @@ module GameRoomContent
       "category": "Sport",
       "level": "medium",
       "prompt": "W którym wieku pierwszy raz zdobyto szczyt Mont Blanc?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -194699,11 +194699,11 @@ module GameRoomContent
       "category": "Sport",
       "level": "medium",
       "prompt": "W którym wieku w programie igrzysk olimpijskich pojawiło się kolarstwo?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -205754,7 +205754,7 @@ module GameRoomContent
       "id": "1z10_3c7577a3571fe99a",
       "category": "Język",
       "level": "medium",
-      "prompt": "Jak z niemieckiego nazywał się warkocz albo węzeł peruki noszony przez mężczyzn w XVIII wieku?",
+      "prompt": "Jak z niemieckiego nazywał się warkocz albo węzeł peruki noszony przez mężczyzn w 18. wieku?",
       "correct": "Harcap",
       "wrong": [
         "Irokez",
@@ -207755,11 +207755,11 @@ module GameRoomContent
       "category": "Język",
       "level": "medium",
       "prompt": "W którym stuleciu Ludwik Zamenhof wydał podręcznik w którym przedstawił język esperanto?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XVIII wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 18. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -213018,7 +213018,7 @@ module GameRoomContent
       "id": "polqa_00111",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "W którym państwie w latach 50-tych XX wieku wydana została pierwsza karta kredytowa?",
+      "prompt": "W którym państwie w latach 50. 20. wieku wydana została pierwsza karta kredytowa?",
       "correct": "w Stanach Zjednoczonych",
       "wrong": [
         "w Wielkiej Brytanii",
@@ -219802,7 +219802,7 @@ module GameRoomContent
       "id": "1z10_9f935692de732e2f",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Który drapieżny ptak jest w nazwie Polskiego Towarzystwa Gimnastycznego Młodzieżowej Organizacji Założonej w XIX wieku we Lwowie?",
+      "prompt": "Który drapieżny ptak jest w nazwie Polskiego Towarzystwa Gimnastycznego Młodzieżowej Organizacji Założonej w 19. wieku we Lwowie?",
       "correct": "Sokół",
       "wrong": [
         "Orzeł",
@@ -219915,11 +219915,11 @@ module GameRoomContent
       "category": "Społeczeństwo",
       "level": "medium",
       "prompt": "W którym wieku powstało Polskie Towarzystwo Opieki nad Zwierzętami?",
-      "correct": "W XIX wieku",
+      "correct": "W 19. wieku",
       "wrong": [
-        "W XVII wieku",
-        "W XVIII wieku",
-        "W XX wieku"
+        "W 17. wieku",
+        "W 18. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -220602,7 +220602,7 @@ module GameRoomContent
       "id": "1z10_9e2514854aae0e26",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Jak w Polsce od XVIII wieku nazywano ogólnokształcącą prywatną szkołę?",
+      "prompt": "Jak w Polsce od 18. wieku nazywano ogólnokształcącą prywatną szkołę?",
       "correct": "Pensję",
       "wrong": [
         "Seminarium",
@@ -221627,11 +221627,11 @@ module GameRoomContent
       "category": "Społeczeństwo",
       "level": "medium",
       "prompt": "W którym wieku do obrotu gotówkowego wprowadzono euro zastępując nim waluty narodowe?",
-      "correct": "W XXI wieku",
+      "correct": "W 21. wieku",
       "wrong": [
-        "W XVIII wieku",
-        "W XIX wieku",
-        "W XX wieku"
+        "W 18. wieku",
+        "W 19. wieku",
+        "W 20. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -223275,11 +223275,11 @@ module GameRoomContent
       "category": "Społeczeństwo",
       "level": "medium",
       "prompt": "W którym wieku żył Adam Smith, uznawany za twórcę klasycznej szkoły ekonomii politycznej?",
-      "correct": "W XVIII wieku",
+      "correct": "W 18. wieku",
       "wrong": [
-        "W XVI wieku",
-        "W XVII wieku",
-        "W XIX wieku"
+        "W 16. wieku",
+        "W 17. wieku",
+        "W 19. wieku"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -225434,7 +225434,7 @@ module GameRoomContent
       "id": "1z10_7a88a859d6e409e8",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Kto był premierem Polski na przełomie XX i XXI wieku?",
+      "prompt": "Kto był premierem Polski na przełomie 20. i 21. wieku?",
       "correct": "Jerzy Buzek",
       "wrong": [
         "Tadeusz Mazowiecki",
@@ -225930,7 +225930,7 @@ module GameRoomContent
       "id": "polqa_00014",
       "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "Jak nazywał się sztywny kapelusz męski o zaokrąglonej główce i wąskim lekko uniesionym rondelku, modny w drugiej połowie XIX wieku?",
+      "prompt": "Jak nazywał się sztywny kapelusz męski o zaokrąglonej główce i wąskim lekko uniesionym rondelku, modny w drugiej połowie 19. wieku?",
       "correct": "melonik",
       "wrong": [
         "cylinder",
@@ -227226,7 +227226,7 @@ module GameRoomContent
       "id": "polqa_01713",
       "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "Jak z rosyjskiego nazywa się koszula popularna zwłaszcza w XIX wieku?",
+      "prompt": "Jak z rosyjskiego nazywa się koszula popularna zwłaszcza w 19. wieku?",
       "correct": "rubaszka",
       "wrong": [
         "papacha",
@@ -230042,7 +230042,7 @@ module GameRoomContent
       "id": "polqa_05556",
       "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "Jaką nazwę nosi obuwie z cienkiej skórki o mocno wydłużonym nosie, noszone w Europie w XII–XV wieku?",
+      "prompt": "Jaką nazwę nosi obuwie z cienkiej skórki o mocno wydłużonym nosie, noszone w Europie w 12.–15. wieku?",
       "correct": "ciżma",
       "wrong": [
         "sabot",
@@ -230987,11 +230987,11 @@ module GameRoomContent
       "category": "Życie codzienne",
       "level": "medium",
       "prompt": "Najstarsza polska książka kucharska to „Compendium ferculorum” Stanisława Czernieckiego. W którym wieku powstała?",
-      "correct": "w XVII",
+      "correct": "w 17.",
       "wrong": [
-        "w XV",
-        "w XVI",
-        "w XVIII"
+        "w 15.",
+        "w 16.",
+        "w 18."
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -236378,7 +236378,7 @@ module GameRoomContent
       "id": "1z10_d745aafd56fd56a5",
       "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "Jak nazywa się wysoki, sztywny kapelusz z walcowatą główką i małym rondem, używany na uroczyste okazje w XX wieku?",
+      "prompt": "Jak nazywa się wysoki, sztywny kapelusz z walcowatą główką i małym rondem, używany na uroczyste okazje w 20. wieku?",
       "correct": "Cylinder",
       "wrong": [
         "Melonik",
@@ -238201,7 +238201,7 @@ module GameRoomContent
   ],
   "source": "content/QUIZ_PL_GENERAL_SOURCES.txt"
 }
-QUIZ_DATA_8a5d0db5bfea754a21940892cab235752582e7f1bb66bc1886df38a743ea1406
+QUIZ_DATA_c62d695aff37acbbfc938af22542803861aaac46a72f8576307eaf974b1ce1b8
     end
   end
 end
