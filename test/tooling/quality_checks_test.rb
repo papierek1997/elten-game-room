@@ -10,6 +10,11 @@ assert(GameRoomQuality.new_findings(found, baseline).empty?, 'known debt rejecte
 assert_equal(2, GameRoomQuality.new_findings(found + found, baseline).length, 'duplicate violation hidden by baseline')
 assert(GameRoomQuality.inspect_source('games/example.rb', 'class Broken').any? { |item| item[:rule] == 'syntax' }, 'invalid syntax accepted')
 assert(GameRoomQuality.inspect_source('games/example.rb', 'GameRoomRandom.shuffle(cards, random: rng)').empty?, 'host-compatible shuffle rejected')
+GameRoomQuality::UI_ADAPTERS.each do |path|
+  assert_equal(['host_shuffle'], GameRoomQuality.inspect_source(path, source).map { |item| item[:rule] }, 'presentation adapter excluded from unrelated checks')
+  assert(GameRoomQuality.inspect_source(path, 'class Broken').any? { |item| item[:rule] == 'syntax' }, 'invalid UI adapter accepted')
+end
+assert_equal(['model_ui'], GameRoomQuality.inspect_source('games/krowa_support/private_reveal.rb', "alert('wrong layer')").map { |item| item[:rule] }, 'Krowa models must still reject UI calls')
 puts 'PASS incremental quality checks and baseline accounting'
 
 long = {file: 'lib/example.rb', rule: 'long_method', detail: 'run:100'}

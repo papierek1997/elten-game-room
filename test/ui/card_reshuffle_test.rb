@@ -40,7 +40,11 @@ types.each do |type|
       played = []
       $spoken_messages.clear
       program = Object.new
-      program.define_singleton_method(:play_sound_from_asset) { |name| played << name }
+      program.define_singleton_method(:play_sound_from_asset) do |name, volume:|
+        raise "Unexpected reshuffle volume: #{volume}" unless volume == 1.0
+        played << name
+        nil
+      end
       screen = GameScreen.new(program: program, repository: repo, game: game, session: session,
         table: {}, table_owner: actor, room_snapshot_provider: nil, synchronizer: nil)
       screen.send(:process_new_events, before)

@@ -4,9 +4,11 @@ FormTimer = EltenAPI::Controls::FormTimer unless defined?(FormTimer)
 
 class CheckBox < FakeControl
   attr_accessor :checked
+  attr_accessor :label
 
-  def initialize(_label, checked: false)
+  def initialize(label, checked: false)
     super()
+    @label = label
     @checked = checked
   end
 end

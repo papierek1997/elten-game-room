@@ -109,6 +109,12 @@ test("dirty tricks restore stopped cars and unrelated problems rather than grant
       state[:hands]["Carol"] = ["#{safety}:1", "50:1"]
       state[:tracks][2].merge!(miles: 425, two_hundreds: 1, moving: false, hazards: problems.dup)
       prior = Marshal.load(Marshal.dump(state[:tracks][2]))
+      if hazard == "stop"
+        equal(:invalid, fixture.play(state, "Alice", "play", "stop:1", target: "2"), "red light cannot stop a car that is already stopped")
+        equal(prior, state[:tracks][2], "invalid red light cannot change a stopped car")
+        equal(nil, state[:reaction], "invalid red light cannot open a dirty-trick window")
+        next
+      end
       equal(:ok, fixture.play(state, "Alice", "play", "#{hazard}:1", target: "2"), "attack stopped car with accumulation")
       equal(:ok, fixture.play(state, "Carol", "dirty_trick", "#{safety}:1", reaction: state[:reaction][:token]), "immediate matching reaction")
       expected = prior.merge(safeties: [safety], dirty_tricks: 1, moving: safety == "right_of_way" && problems.empty?)

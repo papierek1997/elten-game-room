@@ -317,9 +317,7 @@ names.each do |language, name|
     raise "#{language}: untranslated selected-card shortcut"
   end
   confirmation = catalog[nil, "Discard %{card}?"].msgstr
-  unless discard_shortcut.payload.fetch("confirmation") == confirmation
-    raise "#{language}: untranslated selected-card confirmation"
-  end
+  raise "#{language}: J must discard without confirmation" if discard_shortcut.payload.key?("confirmation")
   checked_confirmations = 0
   surface.zones.flat_map(&:cards).each do |surface_card|
     next unless surface_card.confirmation

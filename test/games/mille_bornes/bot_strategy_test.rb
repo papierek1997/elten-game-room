@@ -20,7 +20,7 @@ module MilleBornesBotRegression
     chosen
   end
 
-  def with_runner(seed, covered:)
+  def with_runner(seed, covered:, driving_bot: false)
     game = GameRoomGames::MilleBornes.new
     options = game.default_options.merge("bot_delay" => 0, "target_score" => 5000,
       "accumulate_hazards" => true, "counterflow" => true,
@@ -58,6 +58,7 @@ module MilleBornesBotRegression
     await(advance) { harness.replay("Alice").state[:round] == 1 }
     bot = harness.replay("Alice").players.find { |player| GameRoomParticipants.bot?(player) }
     assert(bot, "Native room has a real bot seat")
+    prepare_driving_bot(harness, runners, bot) if driving_bot
     yield harness, runners, advance, bot
     verify_history(harness)
   ensure
@@ -89,6 +90,36 @@ module MilleBornesBotRegression
     harness.game.replay(harness.session, harness.events("Alice").take(count), harness.repositories.fetch("Alice"))
   end
 
+  def prepare_driving_bot(harness, runners, bot)
+    # Red lights only target moving cars. Establish that precondition with
+    # accepted draw/discard/green-light events, never a patched replay state.
+    # These two bot setup moves are scripted; the safety reaction under test
+    # below is chosen and written exclusively by the real session runner.
+    harness.users.each do |user|
+      human_action(harness, runners, user) { |action| action["action"] == "draw" }
+      human_action(harness, runners, user) { |action| action["action"] == "discard" && !action["card"].start_with?("stop:") }
+    end
+    owner = harness.users.first
+    ["draw", "go"].each do |setup|
+      replay = harness.replay(owner)
+      action = harness.game.legal_actions(replay, bot).find do |candidate|
+        setup == "draw" ? candidate["action"] == "draw" :
+          candidate["action"] == "play" && candidate["card"].start_with?("go:")
+      end
+      assert(action, "Fixed deal must let the bot draw and start its car")
+      status, plan = harness.game.action_for(action, replay, bot)
+      equal(:ok, status, "Bot setup follows the normal model rules")
+      harness.as(owner) do
+        repository = harness.repositories.fetch(owner)
+        repository.append_events(session: harness.session, actor: bot, events: plan.events,
+          sequence: repository.next_sequence(harness.session, harness.events(owner)))
+      end
+      harness.broker.deliver(duplicate: true)
+      harness.assert_converged("Driving bot setup")
+    end
+    assert(harness.replay(owner).state[:tracks][2][:moving], "Red-light target must be moving")
+  end
+
   def verify_history(harness)
     events = harness.events("Alice")
     events.each_with_index do |event, index|
@@ -113,14 +144,14 @@ module MilleBornesBotRegression
 end
 
 {
-  "stop" => ["right_of_way", 97, 129], "speed_limit" => ["right_of_way", 16, 16],
+  "stop" => ["right_of_way", 97, 143], "speed_limit" => ["right_of_way", 16, 16],
   "out_of_gas" => ["extra_tank", 60, 156], "flat_tire" => ["puncture_proof", 145, 1],
   "accident" => ["driving_ace", 75, 156], "counterflow" => ["driving_ace", 61, 317]
 }.each do |hazard, (safety, outside_turn_seed, own_turn_seed)|
   [false, true].product([["Alice", false], ["Alice", true], ["Bob", false]]).each do |covered, (attacker, following_draw)|
     seed = attacker == "Alice" ? outside_turn_seed : own_turn_seed
     test("active runner dirty trick #{hazard}/#{safety}, covered=#{covered}, attacker=#{attacker}, following_draw=#{following_draw}") do
-      MilleBornesBotRegression.with_runner(seed, covered: covered) do |harness, runners, advance, bot|
+      MilleBornesBotRegression.with_runner(seed, covered: covered, driving_bot: hazard == "stop") do |harness, runners, advance, bot|
         initial = harness.replay("Alice")
         card = "#{safety}:1"
         assert(initial.state[:hands].fetch(bot).include?(card), "Fixed deal must give the bot its safety")

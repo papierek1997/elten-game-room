@@ -319,7 +319,9 @@ audio_ball_test('authored rules explain fixed scoring, sound, timing and every a
   ['one against one', 'bot', 'Classic', '25 steps', 'on the right', 'on the left', 'two steps',
     'press the matching defence key once', 'then release it', 'last active defence', 'most recently pressed key still held', 'Every new ball needs a new press',
     'even if the shot type is the same', 'Preparing', 'ten seconds', 'as long as you like', 'random',
-    'every two completed points', 'across sets', '7 points', 'lead by at least two', '1, 2 or 3', 'five-second',
+    'every two completed points', 'Players take turns starting each new set',
+    'the player who starts the first also starts the third', 'the opponent starts the second and fourth',
+    '7 points', 'lead by at least two', '1, 2 or 3', 'five-second',
     'set number', 'who is serving'].each do |text|
     assert(rules.include?(text), "Audio Ball rules do not explain #{text}")
   end

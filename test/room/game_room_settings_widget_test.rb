@@ -51,14 +51,26 @@ Form.class_eval do
   define_method(:wait) do
     captured_form = self
     sections = fields[0]
-    sections.index = 4
+    control = lambda do |header|
+      fields.find { |field| field.respond_to?(:header) && field.header == header } ||
+        fields.find { |field| field.respond_to?(:label) && field.label == header } ||
+        raise("Missing setting: #{header}")
+    end
+    sections.index = sections.options.index("Widget")
     sections.trigger(:move)
-    raise "widget controls were not shown together" if fields[18..21].any? { |control| hidden_controls.include?(control) }
-    raise "lobby controls remained visible in the widget category" if fields[5..9].any? { |control| !hidden_controls.include?(control) }
-    fields[10].index = 2
-    fields[14].index = 0
-    fields[19].select_multiselection_indices([1 + GameRoomScreens::GameList::ACTION_ROWS])
-    fields[-2].trigger(:press)
+    ["Show Power Games on the ELTEN main screen", "Games shown on the main screen",
+      "Show full or unavailable tables", "Show only tables created by contacts"].each do |header|
+      assert(!hidden_controls.include?(control.call(header)), "Widget control hidden: #{header}")
+    end
+    ["Games covered by lobby messages", "Announce when a table is created",
+      "Announce when a player joins a table", "Announce when a player leaves a table",
+      "Announce when a computer is added to or removed from a table"].each do |header|
+      assert(hidden_controls.include?(control.call(header)), "Lobby control visible in Widget: #{header}")
+    end
+    control.call("Show invitation notifications from").index = 2
+    control.call("Game sounds").index = 0
+    control.call("Games shown on the main screen").select_multiselection_indices([1 + GameRoomScreens::GameList::ACTION_ROWS])
+    accept_button.trigger(:press)
   end
 end
 
@@ -174,7 +186,7 @@ app.define_singleton_method(:run_network_task) do |title, **options, &operation|
 end
 entry_widget = app.send(:build_widget_control)
 entry_widget.focus
-assert(entry_tasks == [["Loading Game Room tables", { silent: true }]], "entry bypassed the host task")
+assert(entry_tasks == [["Loading Power Games tables", { silent: true }]], "entry bypassed the host task")
 assert(entry_widget.options == ["UNO, Bob, 1/8, open"] && entry_widget.sayoption_count.to_i == 0, "entry did not read current rows through native focus")
 entry_widget.close
 unavailable_session = Object.new

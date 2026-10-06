@@ -14,7 +14,7 @@ games.each do |game|
     assert(game.effective_option_definitions.none? { |d| d.key == 'bot_delay' }, "continuous bot has turn delay #{game.id}")
     next
   end
-  default = %w[uno makao].include?(game.id) ? 1 : 0
+  default = %w[uno makao mille_bornes].include?(game.id) ? 1 : 0
   defs = game.effective_option_definitions.select { |d| d.key == "bot_delay" }
   assert(defs.length == 1 && defs.first.default == default, "shared option #{game.id}")
   [0, 1, 5].each do |delay|

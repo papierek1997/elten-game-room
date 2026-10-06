@@ -200,14 +200,7 @@ module GameRoomLayout
       # Only game/status fields move to the new phase's meaningful control.
       phase_transition = @phase == nil || @phase != phase || new_game
       previous_location = focus_location || self.focus_location
-      keep_room_focus = [:chat, :history, :users].include?(previous_location.to_a.first)
-      location = if phase_transition && !keep_room_focus && phase == :active
-        [:game, 0]
-      elsif phase_transition && !keep_room_focus
-        [:status, 0]
-      else
-        previous_location || [:status, 0]
-      end
+      location = transition_focus_location(previous_location, phase, phase_transition)
       old_identity = @surface_identity
       old_field = @form.fields[@form.index.to_i]
       hand_update = GameSurfaces.hand_surface?(view_spec.surface)
@@ -292,6 +285,15 @@ module GameRoomLayout
       new_index = form_index_for_location(location)
       @form.index = new_index if @form.index.to_i != new_index
       self
+    end
+
+    private def transition_focus_location(previous_location, phase, phase_transition)
+      keep_room_focus = [:chat, :history, :users].include?(previous_location.to_a.first)
+      if phase_transition && !keep_room_focus
+        phase == :active ? [:game, 0] : [:status, 0]
+      else
+        previous_location || [:status, 0]
+      end
     end
 
     def focus_location

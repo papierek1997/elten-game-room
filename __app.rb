@@ -1193,12 +1193,7 @@ class EltenGameRoom < Program
         selected: -> { snapshots[tables.index.to_i] }, id_for: ->(snapshot) { @lobby.table_id(snapshot.table) },
         active: -> { form.fields[form.index.to_i].equal?(tables) }, speaker: ->(text) { speak(text) },
         game_for: ->(id) { game_definition(id) })
-      tables.on(:move) { options_reader.invalidate }
-      tables.on(:blur) { options_reader.invalidate }
-      form.add_timer(FormTimer.new(0.1, repeat: true) { options_reader.update })
-      tables.on(:move) { roster_reader.invalidate }
-      tables.on(:blur) { roster_reader.invalidate }
-      form.add_timer(FormTimer.new(0.1, repeat: true) { roster_reader.update })
+      bind_table_preview_readers(form, tables, roster_reader, options_reader)
       join_button.on(:press) do
         # The settings reader below uses the same selected snapshot as Join.
         selected_index = tables.index.to_i
@@ -1210,15 +1205,6 @@ class EltenGameRoom < Program
         form.resume
       end
 
-      form.bind_context do |menu|
-        menu.option(_("Read the table participants"), nil, "w") { roster_reader.request }
-        menu.option(_("Read the table variant and settings"), nil, "r") do
-          options_reader.request
-        end
-      end
-      GameRoomContextHelp.replace([tables], [GameRoomContextHelp.shortcut_tip(
-        "Ctrl+R", _("Read the table variant and settings")),
-        GameRoomContextHelp.shortcut_tip("Ctrl+W", _("Read the table participants"))])
       begin
         form.wait
       ensure
@@ -1250,6 +1236,21 @@ class EltenGameRoom < Program
         alert(_("This table is no longer available."))
       end
     end
+  end
+
+  def bind_table_preview_readers(form, tables, roster_reader, options_reader)
+    [options_reader, roster_reader].each do |reader|
+      tables.on(:move) { reader.invalidate }
+      tables.on(:blur) { reader.invalidate }
+      form.add_timer(FormTimer.new(0.1, repeat: true) { reader.update })
+    end
+    form.bind_context do |menu|
+      menu.option(_("Read the table participants"), nil, "w") { roster_reader.request }
+      menu.option(_("Read the table variant and settings"), nil, "r") { options_reader.request }
+    end
+    GameRoomContextHelp.replace([tables], [
+      GameRoomContextHelp.shortcut_tip("Ctrl+R", _("Read the table variant and settings")),
+      GameRoomContextHelp.shortcut_tip("Ctrl+W", _("Read the table participants"))])
   end
 
   def join_table_snapshot(snapshot)
@@ -1371,6 +1372,15 @@ class EltenGameRoom < Program
     Log.warning("ELTEN Game Room could not save option preferences: #{error.class}: #{error.message}") if defined?(Log)
   end
 
+  def table_game_view_spec(state)
+    if !state.waiting? && state.replay != nil && state.game != nil
+      state.game.game_view_spec(state.replay, Session.name)
+    else
+      state.game ? state.game.waiting_view_spec(Session.name, history_empty_label: _("No games have been played yet")) :
+        GameRoomLayout::ViewSpec.new(history_empty_label: _("No games have been played yet"))
+    end
+  end
+
   def show_table_screen(row)
     previous_network_view = @table_network_view
     return if row == nil
@@ -1420,14 +1430,8 @@ class EltenGameRoom < Program
       end
       activity_cursor = announce_new_table_activity(state.activity_entries, after_id: layout&.activity_cursor)
       synchronizer.update_session(state.session_id(@games))
-      view_spec = if !state.waiting? && state.replay != nil && state.game != nil
-        state.game.game_view_spec(state.replay, Session.name)
-      else
-        state.game ? state.game.waiting_view_spec(Session.name, history_empty_label: _("No games have been played yet")) :
-          GameRoomLayout::ViewSpec.new(history_empty_label: _("No games have been played yet"))
-      end
       options = {
-        view_spec: view_spec, history_items: room_history_items(state, state.activity_entries),
+        view_spec: table_game_view_spec(state), history_items: room_history_items(state, state.activity_entries),
         user_items: room_user_rows(state), users_header: table_header(snapshot),
         phase: state.phase, own_table: own_table
       }

@@ -55,7 +55,7 @@ accepted = PongDoublesLobbyTest.with_forms(lambda do |form|
   control.index = 1
   control.define_singleton_method(:keyboard_binding_pressed?) { |binding| binding == [:key_down, :shift] }
   control.update
-  PongDoublesLobbyTest.button(form, 'Accept').trigger(:press)
+  PongDoublesLobbyTest.button(form, 'Accept teams').trigger(:press)
 end) { app.send(:change_table_teams, row) }
 assert(accepted, 'Team editor did not persist the selected line-up')
 assert(app.games.session_for_table(row, force: true)['__id'] == session['__id'], 'Team editor unexpectedly started a match')

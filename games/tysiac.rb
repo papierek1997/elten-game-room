@@ -1273,14 +1273,7 @@ module GameRoomGames
       end
       score = 0.0
 
-      if mode != "marriage" && ["K", "Q"].include?(rank) &&
-          hand_for(state, player).include?("K#{card_suit(card)}") &&
-          hand_for(state, player).include?("Q#{card_suit(card)}")
-        # Keep an undeclared marriage intact whenever another legal card is
-        # available. This is especially important on the first trick, when a
-        # marriage cannot yet be announced.
-        score -= 8_000.0
-      end
+      score -= 8_000.0 if mode != "marriage" && bot_undeclared_marriage?(state, player, card)
 
       if mode == "marriage"
         bonus = MARRIAGE_POINTS.fetch(card_suit(card))
@@ -1337,6 +1330,14 @@ module GameRoomGames
       score
     rescue ArgumentError, KeyError
       -100_000.0
+    end
+
+    def bot_undeclared_marriage?(state, player, card)
+      # Keep an undeclared marriage intact whenever another legal card is
+      # available, particularly on the first trick when it cannot be announced.
+      ["K", "Q"].include?(card_rank(card)) &&
+        hand_for(state, player).include?("K#{card_suit(card)}") &&
+        hand_for(state, player).include?("Q#{card_suit(card)}")
     end
 
     def bot_public_played_cards(replay)

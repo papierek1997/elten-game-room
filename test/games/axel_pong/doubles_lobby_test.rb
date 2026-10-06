@@ -56,7 +56,7 @@ test("Choose teams randomly shuffles people into valid teams without starting") 
       list = form.fields.first
       assert(list.options.map { |text| text.split(', team ').first }.sort == players.sort, "Randomization lost players")
       assert(list.index == 2, "Automatic assignment reset the player cursor")
-      button(form, "Accept").trigger(:press)
+      button(form, "Accept teams").trigger(:press)
     end
   ) { app.send(:start_new_game, row) }
   chosen = JSON.parse(app.lobby.snapshot_for(row, force: true).table["game_options"])["team_seats"]
@@ -120,7 +120,7 @@ test("Start rejects an incomplete 3+1 selection and keeps the chooser open") do
     lambda do |form|
       team_form(form, players, [0, 0, 0, 1])
       invalid_form = form
-      button(form, "Accept").trigger(:press)
+      button(form, "Accept teams").trigger(:press)
       assert(app.notices == ["Team 1 must contain exactly 2 players; it currently contains 3."], "An incomplete team did not explain why Start was rejected")
       assert_no_game(app, row)
     end,
@@ -180,7 +180,7 @@ test("a same-sized roster change after choosing teams rejects the start") do
       join(app, row, "Eve")
       latest = app.lobby.snapshot_for(row, force: true)
       assert(latest.game_participants == %w[Bob Carol Dave Eve], "Roster-change setup did not replace a player at the same count")
-      button(form, "Accept").trigger(:press)
+      button(form, "Accept teams").trigger(:press)
     end
   ) { app.send(:start_new_game, row) }
   assert(result == nil, "Teams were started against a changed roster")
@@ -198,7 +198,7 @@ test("an observer joining during selection does not change or block teams") do
     lambda do |form|
       team_form(form, players, [0, 1, 0, 1])
       join(app, row, "Watcher", observer: true)
-      button(form, "Accept").trigger(:press)
+      button(form, "Accept teams").trigger(:press)
     end
   ) { app.send(:start_new_game, row) }
   assert_started(app, row, result, players, [0, 1, 0, 1])

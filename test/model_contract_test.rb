@@ -5,7 +5,18 @@ include GameRoomTest::Assertions
 
 corpus = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/histories.json'), encoding: 'UTF-8'))
 assert_equal(1, corpus.fetch('schema'))
-cases = corpus.fetch('cases') + [JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/mille_bornes.json'), encoding: 'UTF-8'))]
+# Build 242 added four roster/team fields to Tysiac. The reviewed v2 capture
+# preserves every prior action, event, actor and RNG value; only full replay
+# hashes differ. Keep the original v1 reference for the other models.
+tysiac = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/tysiac.json'), encoding: 'UTF-8'))
+previous_tysiac = corpus.fetch('cases').find { |item| item.fetch('game') == 'tysiac' }
+without_replay_hashes = lambda do |item|
+  item.merge('steps' => item.fetch('steps').map { |step| step.reject { |key, _| key == 'replay' } },
+    'final' => item.fetch('final').reject { |key, _| key == 'replay' })
+end
+assert_equal(without_replay_hashes.call(previous_tysiac), without_replay_hashes.call(tysiac), 'Tysiac roster fields must not replace the reference actions or RNG')
+cases = corpus.fetch('cases').reject { |item| item.fetch('game') == 'tysiac' } + [tysiac,
+  JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/mille_bornes.json'), encoding: 'UTF-8'))]
 expected_ids = GameRoomGames::CATALOG.ids.reject { |id| %w[axel_pong audio_ball].include?(id) }.sort
 assert_equal(expected_ids, cases.map { |item| item.fetch('game') }.sort, 'corpus must explicitly cover every turn-based game')
 assert((ARGV - expected_ids).empty?, 'unknown game requested for contract verification')

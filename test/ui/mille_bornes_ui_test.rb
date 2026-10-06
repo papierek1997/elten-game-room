@@ -644,8 +644,8 @@ module MilleBornesUIVerification
       equal(before, Marshal.dump(harness.state), "Blocked J changed game state")
       check($native_tutorial_driver.modal_forms.empty?, "Pending opponent choice opened a second modal")
       harness.press(0x1B)
-      discard_dialog(harness, "stop:1", 0x28, 0x0D)
       harness.press(0x4A)
+      check($native_tutorial_driver.modal_forms.empty?, "J opened a confirmation after cancelling the opponent choice")
       equal("discard", harness.apply_last.events.first.action, "J did not recover after cancelling the opponent choice")
     end
 

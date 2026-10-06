@@ -6,6 +6,9 @@ module GameRoomQuality
   BASELINE = File.expand_path('../fixtures/quality_baseline.json', __dir__)
   EXCLUDED = %r{\A(?:content/|lib/vendor/|games/krowa_support/noun_data\.rb|games/generated/)}
   MODEL_UI_CALLS = %i[loop_update speak speech_wait alert input_text selector].freeze
+  # These are presentation adapters, not replay/action models. Keep every
+  # other check active for them, including syntax and runtime dependencies.
+  UI_ADAPTERS = %w[games/krowa_support/client.rb games/krowa_support/leaderboards.rb].freeze
   module_function
 
   def walk(node, &block)
@@ -20,7 +23,7 @@ module GameRoomQuality
       rule = detail = nil
       if node.is_a?(Prism::DefNode) && node.location.end_line - node.location.start_line + 1 > 80
         rule, detail = 'long_method', "#{node.name}:#{node.location.end_line - node.location.start_line + 1}"
-      elsif path.start_with?('games/') && node.is_a?(Prism::CallNode) && MODEL_UI_CALLS.include?(node.name)
+      elsif path.start_with?('games/') && !UI_ADAPTERS.include?(path) && node.is_a?(Prism::CallNode) && MODEL_UI_CALLS.include?(node.name)
         rule, detail = 'model_ui', node.location.slice
       elsif node.is_a?(Prism::CallNode) && [:shuffle, :shuffle!].include?(node.name) &&
           !%w[GameRoomRandom GameRoomDominoTiles].include?(node.receiver&.location&.slice)

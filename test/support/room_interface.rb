@@ -4,6 +4,10 @@ require_relative "manual_form_timer"
 
 class Program
   def self.server_app(**_options); end
+
+  def self.read_json(_path, default:)
+    Marshal.load(Marshal.dump(default))
+  end
 end
 
 module Session

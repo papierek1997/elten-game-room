@@ -51,7 +51,7 @@ Form.tutorial_driver = lambda do |form|
   list = form.fields.first
   program.volume = 0
   list.trigger(:select)
-  assert(program.plays.empty? && $spoken_messages.last == 'This sound is muted in Game Room settings.', 'Muted volume was ignored or left unexplained')
+  assert(program.plays.empty? && $spoken_messages.last == 'This sound is muted in Power Games settings.', 'Muted volume was ignored or left unexplained')
   program.volume, program.enabled = 0.6, false
   list.trigger(:select)
   assert(program.plays.empty?, 'Disabled sound was played')

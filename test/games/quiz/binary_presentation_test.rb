@@ -25,7 +25,9 @@ expected.each do |language, text|
     raise 'Invalid release encoding' unless (translated + ' — słowo').valid_encoding?
   end
 end
-raise 'Wrong runtime version' unless EltenGameRoom::GAME_ROOM_VERSION == '2.0.4.6' && EltenGameRoom::GAME_ROOM_BUILD_ID == 245
+manifest = JSON.parse(BinaryRulesLoad.read(File.join(BinaryRulesLoad::ROOT, 'manifest.json')))
+raise 'Wrong runtime version' unless EltenGameRoom::GAME_ROOM_VERSION == manifest.fetch('version') &&
+  EltenGameRoom::GAME_ROOM_BUILD_ID == manifest.fetch('build_id').to_i
 sound = BinaryRulesLoad.read(File.join(BinaryRulesLoad::ROOT, 'Audio/quiz_wrong_answer.opus'))
 raise 'Missing Opus sound' unless sound.start_with?('OggS') && sound.byteslice(0, 128).include?('OpusHead')
 puts 'PASS binary Quiz status and release 245 in PL/EN/CS/ES/RU/fallback, controls and packaged sound'

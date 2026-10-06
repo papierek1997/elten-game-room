@@ -190,7 +190,7 @@ module PongDoublesLobbyTest
 
   def team_form(form, players, seats)
     assert(form.fields.map { |field| field.is_a?(Button) ? field.label : field.header } == [
-      "Players and teams", "Choose teams randomly", "Accept", "Change team", "Cancel"
+      "Players and teams", "Choose teams randomly", "Accept teams", "Change team", "Cancel"
     ], "Doubles bypassed or changed the shared team selector")
     assert(form.hidden_controls == [button(form, "Change team"), button(form, "Cancel")], "Tab includes hidden team commands")
     labels = players.each_with_index.map do |player, index|
@@ -222,7 +222,7 @@ module PongDoublesLobbyTest
   def start_teams(players, seats)
     lambda do |form|
       team_form(form, players, seats)
-      button(form, "Accept").trigger(:press)
+      button(form, "Accept teams").trigger(:press)
     end
   end
 
