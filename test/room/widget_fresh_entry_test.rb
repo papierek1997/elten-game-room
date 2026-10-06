@@ -35,7 +35,7 @@ rows = []
 widget.update
 active = true
 widget.focus
-assert(widget.focus_texts.last == "No matching Game Room tables" && widget.options.empty?, "a completed old response was read on reentry")
+assert(widget.focus_texts.last == "No matching Power Games tables" && widget.options.empty?, "a completed old response was read on reentry")
 widget.trigger(:select)
 assert(opened == [3], "Enter opened an old row after the fresh empty response")
 

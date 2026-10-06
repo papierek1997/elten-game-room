@@ -19,6 +19,17 @@ adapter odtwarza zasób z głośnością przy odczycie `sound` przez hosta podcz
 dostarczenia, po sprawdzeniu wyciszenia i odrzucenia powiadomienia; zwraca nil,
 aby host nie odtworzył go drugi raz. Samo mapowanie nie odtwarza dźwięku.
 
+## Edytor opcji
+
+Edytor opcji zmienia zawartość liczbowego `EditBox` przez natywne
+`set_text`, nie przez nieistniejące `text=`. Dotyczy to również wartości
+ukrytych przy budowaniu formularza i resetowania talii po wyłączeniu trybu
+dowolnego. Test zgodności musi używać rzeczywistego `EditBox` hosta;
+atrapa dodająca setter `text=` maskuje błąd już przy tworzeniu stołu.
+Regresja: `test/ui/game_option_editor_native_test.rb` (źródła binarne lub
+ścieżka `.eltsetup` jako argument; formularze EN/PL, tworzenie, zapis,
+anulowanie, tryb dowolny i zależne ustawienia Remika).
+
 ## F1 i rozszerzanie interfejsu
 
 Używaj `GameRoomUI::Form` albo `GameSurfaces::RefreshAwareForm` i przekazuj

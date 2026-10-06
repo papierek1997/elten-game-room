@@ -3,6 +3,7 @@ require_relative "../support/sequence_random"
 require_relative "../../lib/game_random"
 require_relative "../../lib/hidden_submissions"
 require_relative "../support/hidden_submission_files"
+require "tmpdir"
 
 def assert(condition, message)
   raise message if !condition
@@ -59,13 +60,17 @@ assert(
 assert(vault.discard(session_id: 7, round_id: "round-1", user: "Alice"), "hidden submission was not discarded")
 
 # The retry history must survive the same JSON boundary used by real profiles.
-program = HiddenSubmissionFiles.new
-saved_vault = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(program))
-first = saved_vault.prepare(session_id: 8, round_id: "1", user: "Bob", payload: payload)
-saved_vault.prepare(session_id: 8, round_id: "1", user: "Bob", payload: tampered)
-reopened_vault = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(program))
-reopened = reopened_vault.reveal(session_id: 8, round_id: "1", user: "Bob", commitment: first.commitment)
-assert(reopened.payload == payload && reopened_vault.verify(reopened), "reopening the vault lost an accepted commitment")
+Dir.mktmpdir("framework-hidden-storage-") do |directory|
+  program = HiddenSubmissionFiles.new(directory)
+  saved_vault = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(program))
+  first = saved_vault.prepare(session_id: 8, round_id: "1", user: "Bob", payload: payload)
+  saved_vault.prepare(session_id: 8, round_id: "1", user: "Bob", payload: tampered)
+  assert(File.file?(program.data_path(HiddenSubmissions::ProgramStorage::DEFAULT_PATH)), "the vault was not persisted to disk")
+  reopened_program = HiddenSubmissionFiles.new(directory)
+  reopened_vault = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(reopened_program))
+  reopened = reopened_vault.reveal(session_id: 8, round_id: "1", user: "Bob", commitment: first.commitment)
+  assert(reopened.payload == payload && reopened_vault.verify(reopened), "reopening the vault lost an accepted commitment")
+end
 assert(vault.reveal(session_id: 7, round_id: "round-1", user: "Alice") == nil, "discarded submission remained available")
 
 puts "Game framework model tests passed"

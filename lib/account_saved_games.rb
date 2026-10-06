@@ -80,8 +80,7 @@ class AccountSavedGames < GameRoomSavedGameArchive
       GameRoomParticipants.same?(row["owner"], @owner) &&
       GameRoomParticipants.same?(resource.uploader, @owner) &&
       row["game"].is_a?(String) && row["saved_at"].is_a?(Integer) && row["saved_at"].positive? &&
-      row["players"].is_a?(Array) && row["players"].length.between?(1, 8) &&
-      row["players"].all? { |player| player.is_a?(String) && player.length.between?(1, 64) } &&
+      GameRoomTableControl.valid_players?(row["players"]) &&
       row["bytes"].is_a?(Integer) && row["bytes"].between?(1, MAX_BYTES) &&
       row["sha256"].to_s.match?(/\A[0-9a-f]{64}\z/) && resource.filesize.to_i.between?(1, MAX_BYTES)
     row.merge("__resource_id" => resource.id)

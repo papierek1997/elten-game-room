@@ -3,6 +3,7 @@ require "json"
 require "fileutils"
 require "pathname"
 require "digest"
+require "open3"
 
 module GameRoomReleaseFiles
   ROOT_FILES = %w[__app.rb manifest.json README.md LICENSE THIRD_PARTY_NOTICES.md].freeze
@@ -56,14 +57,18 @@ module GameRoomReleaseFiles
     selected.freeze
   end
 
-  def self.stage(source, destination)
+  def self.stage(source, destination, workspace_staging: false)
     source = File.realpath(source)
     destination = File.expand_path(destination)
     raise "Release destination already exists" if File.exist?(destination)
     paths = files(source)
     # Resolve the existing parent, rejecting links back into the source tree.
     File.realpath(File.dirname(destination))
-    raise "Release destination must be outside the source tree" if within?(destination, source)
+    if workspace_staging
+      validate_workspace_destination(source, destination)
+    else
+      raise "Release destination must be outside the source tree" if within?(destination, source)
+    end
     Dir.mkdir(destination)
     paths.each do |relative|
       target = File.join(destination, relative)
@@ -75,6 +80,19 @@ module GameRoomReleaseFiles
       raise "Staged bytes differ: #{relative}" unless File.binread(File.join(source, relative)) == File.binread(File.join(destination, relative))
     end
     paths
+  end
+
+  def self.validate_workspace_destination(source, destination)
+    workspace = File.join(source, "Workspace")
+    expected = File::ALT_SEPARATOR == "\\" ? workspace.downcase : workspace
+    parent = File.dirname(destination)
+    parent = parent.downcase if File::ALT_SEPARATOR == "\\"
+    unless parent == expected && canonical_target(workspace) == expected && File.dirname(canonical_target(destination)) == expected
+      raise ArgumentError, 'Workspace staging requires a new direct subdirectory of <source>/Workspace'
+    end
+    return unless Pathname.new(source).ascend.any? { |directory| File.exist?(directory.join(".git")) }
+    _output, status = Open3.capture2e("git", "-C", source, "check-ignore", "-q", "--", "Workspace/")
+    raise 'Workspace must be ignored by Git before staging' unless status.success?
   end
 
   # The last components may not exist yet. Resolve their existing ancestor so

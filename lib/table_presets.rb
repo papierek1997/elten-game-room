@@ -38,10 +38,14 @@ module GameRoomTablePresets
   end
 
   def label(index, entry)
+    "#{shortcut(index)}: #{title(entry)}"
+  end
+
+  def title(entry)
     title = entry && GameRoomContent.utf8(entry["name"]).strip
     title = GameRoomContent.utf8(entry["game"]) if entry && title.empty?
     title = GameRoomContent.utf8(_("Not assigned")) unless entry
-    "#{shortcut(index)}: #{title}"
+    title
   end
 
   def shortcut(index)

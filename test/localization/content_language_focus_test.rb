@@ -73,7 +73,7 @@ Form.driver = lambda do |form|
   assert(waits == 1, "three-language form rebuilt")
   field = ->(header) { form.fields.find { |item| item.header == header } }
   language, sets = field.call("Language"), field.call("Set")
-  field.call("Seconds").text = "75"
+  field.call("Seconds").set_text("75")
   field.call("Flag").checked = true
   form.index = form.fields.index(language)
   [[1, "shared"], [2, "third"], [0, "shared"]].each do |index, selected|

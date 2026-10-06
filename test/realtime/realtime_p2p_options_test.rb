@@ -49,17 +49,17 @@ games.each do |game|
       checkbox.checked = true
       checkbox.trigger(:change)
       assert(form.fields[form.index].equal?(checkbox) && !form.hidden_controls.include?(limit), 'toggle steals focus or hides limit')
-      limit.text = '12'
+      limit.set_text('12')
       checkbox.checked = false
       checkbox.trigger(:change)
       assert(form.hidden_controls.include?(limit), 'toggle off leaves limit visible')
       checkbox.checked = true
       checkbox.trigger(:change)
       assert(limit.text == '12', 'toggle reset custom limit')
-      limit.text = ''
+      limit.set_text('')
     else
       assert(step == 1 && errors.length == 1 && limit.text.empty?, 'invalid edit was not retained')
-      limit.text = '12'
+      limit.set_text('12')
     end
     step += 1
     form.accept_button.trigger(:press)

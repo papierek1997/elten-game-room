@@ -45,7 +45,7 @@ paths.each do |language, path|
     assert(form.game_room_program.equal?(app), "README bypasses the shared program form")
     field.extend(NativeRuleInput)
     headings = elements(field, EditBox::Element::Header)
-    expected_titles = markdown.lines.filter_map { |line| line[/\A#+ (.+)$/, 1] }
+    expected_titles = markdown.lines.filter_map { |line| line.chomp[/\A#+ (.+)$/, 1] }
     assert(headings.map { |h| field.text_range(h.from, h.to) } == expected_titles, "#{language}: native headings or Unicode offsets changed")
     links = elements(field, EditBox::Element::Link)
     contents = links.select { |link| link.param[1].start_with?("#") }

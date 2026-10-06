@@ -15,7 +15,7 @@ module GameRoomWidget
     include GameRoomUI::PingControl
     attr_reader :snapshots
 
-    def initialize(loader:, opener:, labeler:, id_for:, active: -> { true }, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) }, worker: nil, foreground: nil, manual_refresh: -> {}, creator: nil, invitations: nil, program: nil, on_visit: nil, roster: nil, table_options: nil, game_for: nil)
+    def initialize(loader:, opener:, labeler:, id_for:, active: -> { true }, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) }, worker: nil, foreground: nil, manual_refresh: -> {}, creator: nil, invitations: nil, program: nil, on_visit: nil, roster: nil, table_options: nil, game_for: nil, presets: -> { [] })
       @game_room_program = program
       @on_visit = on_visit
       @loader = loader
@@ -26,6 +26,7 @@ module GameRoomWidget
       @active, @clock = active, clock
       @manual_refresh = manual_refresh
       @creator = creator
+      @presets = presets
       @invitations = invitations
       @foreground = foreground || ->(&operation) { operation.call }
       @load_mutex = Mutex.new
@@ -163,11 +164,15 @@ module GameRoomWidget
       # Do not register these shortcuts globally or on other main-screen tabs.
       disable_contextinglobal
       bind_context do |menu|
-        menu.option(GameRoomContent.utf8(_("Read the table variant and settings"))) { @options_reader.request } if @options_reader
-        menu.option(GameRoomContent.utf8(_("Read the table participants"))) { @roster_reader.request } if @roster_reader
-        menu.option(GameRoomContent.utf8(_("Accept invitation"))) { accept_invitation } if @invitations
-        (@creator ? creation_actions : []).each do |_key, slot, label|
-          menu.option(GameRoomContent.utf8(label)) { create_table(slot) }
+        menu.option(GameRoomContent.utf8(_("Read the table variant and settings")), nil, "r") { @options_reader.request } if @options_reader
+        menu.option(GameRoomContent.utf8(_("Read the table participants")), nil, "w") { @roster_reader.request } if @roster_reader
+        menu.option(GameRoomContent.utf8(_("Accept invitation")), nil, "j") { accept_invitation } if @invitations
+        saved = GameRoomTablePresets.slots(@presets.call) if @creator
+        (@creator ? creation_actions : []).each do |key, slot, label, modifier|
+          next if slot != nil && saved[slot] == nil
+          label = GameRoomTablePresets.title(saved[slot]) if slot != nil
+          shortcut = modifier == :control ? key : GameRoomTablePresets.shortcut(slot).downcase.tr("+", "_").to_sym
+          menu.option(GameRoomContent.utf8(label), nil, shortcut) { create_table(slot) }
         end
       end
       tips = (@creator ? creation_actions : []).map { |_key, slot, label| GameRoomContextHelp.shortcut_tip(slot == nil ? 'Ctrl+N' : GameRoomTablePresets.shortcut(slot), label) }

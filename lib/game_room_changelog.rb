@@ -396,6 +396,14 @@ module GameRoomChangelog
         "Shortened the Quiz confirmation to Answer sent. Removed the redundant Quiz heading and Collecting the answers announcement.",
         "Quiz now plays the UNO call sound when five seconds remain and a separate sound for a wrong answer."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.4.7",
+      build: 246,
+      changes: [
+        "Added 1000 miles (Mille Bornes), by Patryk (Pates2004): a card race for 2 to 8 players, with bots and team play. Reach 1000 miles, obstruct your opponents and protect your car. You can also change the deck and enable additional card types. Bots wait one second by default.",
+        "The widget context menu now shows command shortcuts, including Ctrl+W for table participants and Ctrl+J for invitations. Assigned table presets appear by name with their shortcuts; unassigned presets are hidden."
+      ].freeze
     ).freeze
   ].freeze
 

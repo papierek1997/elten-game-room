@@ -61,6 +61,18 @@ Tłumaczenia aplikacji nie zależą od prywatnego katalogu hosta.
 
 ## Własne kontrakty aplikacji
 
+### Pojemność stołów LiveSessions
+
+Usługa dopuszcza pojemność od 2 do 8. Maksimum transportu, lobby, modelu
+i formatu archiwum wynosi 8. Nowe stoły i stoły wznawianych
+partii mają stałą pojemność 8, także w 1000 mil. Boty i obserwatorzy również
+zajmują miejsca w lobby. Zapis wymagający więcej miejsc jest odrzucany przed
+utworzeniem stołu, z czytelnym komunikatem; sam zapis pozostaje nienaruszony.
+Gospodarz nieobecny w zapisanej obsadzie wymaga dodatkowego miejsca obserwatora.
+Testowy broker musi odrzucać żądania pojemności poza zakresem usługi.
+
+### Pozostałe mechanizmy
+
 Pozostają własne mechanizmy potrzebne do kontraktów gry: jeden wykonawca sesji,
 projekcje i walidacja historii, uzgadnianie zapisów, prywatne odpowiedzi,
 odrębny lifecycle realtime, deterministyczne tasowanie i kopie modeli.

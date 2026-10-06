@@ -3,8 +3,8 @@
   "id": "c24d98cc-9ccd-4d50-b801-459da324ff60",
   "name": "Power Games",
   "description": "Accessible multiplayer games for ELTEN users.",
-  "version": "2.0.4.6",
-  "build_id": "245",
+  "version": "2.0.4.7",
+  "build_id": "246",
   "EltenAPIVersion": "3.0.4",
   "main_language": "en",
   "supported_languages": ["en", "pl", "cs", "es", "ru"],
@@ -83,7 +83,30 @@
       "audio_ball_audiodisc_down",
       "audio_ball_audiodisc_ready",
       "audio_ball_audiodisc_stop",
-      "audio_ball_audiodisc_goal"
+      "audio_ball_audiodisc_goal",
+      "mille_accident",
+      "mille_red_light",
+      "mille_dirty_trick",
+      "mille_distance_25",
+      "mille_distance_50",
+      "mille_distance_75",
+      "mille_distance_100",
+      "mille_distance_200",
+      "mille_driving_ace",
+      "mille_fuel_drain",
+      "mille_counterflow",
+      "mille_puncture_proof",
+      "mille_refuel",
+      "mille_right_of_way",
+      "mille_start",
+      "mille_tire_puncture",
+      "mille_wheel_change",
+      "mille_repair",
+      "mille_speed_limit",
+      "mille_end_speed_limit",
+      "mille_extra_tank",
+      "mille_end_counterflow",
+      "mille_instant_repair"
     ]
   }
 }
@@ -161,8 +184,8 @@ class EltenGameRoom < Program
   extend GameRoomTableWatchRuntime
   extend GameRoomContactFiltersRuntime
   extend GameRoomAnalyticsRuntime
-  GAME_ROOM_VERSION = "2.0.4.6".freeze
-  GAME_ROOM_BUILD_ID = 245
+  GAME_ROOM_VERSION = "2.0.4.7".freeze
+  GAME_ROOM_BUILD_ID = 246
   GAME_ROOM_CAPABILITIES = ["invitations", "live_sessions", "live_session_stack"].freeze
   LOBBY_ACTIVITY_POLL_INTERVAL = 5.0
 
@@ -1024,6 +1047,14 @@ class EltenGameRoom < Program
   def create_saved_game_table(saved)
     game = game_definition(saved["game"])
     saved_games.validate(saved, game: game)
+    required_seats = saved["players"].length
+    required_seats += 1 unless GameRoomParticipants.includes?(saved["players"], Session.name)
+    if required_seats > LobbyRepository::MAX_ROOM_CAPACITY
+      alert(_("This saved game needs %{count} seats, but tables support at most %{maximum}.") % {
+        count: required_seats, maximum: LobbyRepository::MAX_ROOM_CAPACITY
+      })
+      return nil
+    end
     checked = run_network_task(_("Checking the current table"), ui: :none) { [@lobby.current_table_for(Session.name)] }
     return nil if checked == nil
     current = checked.first
@@ -2254,6 +2285,7 @@ class EltenGameRoom < Program
       opener: ->(snapshot) { launch_game_room_entry(:open_widget_table, snapshot) },
       on_visit: -> { record_statistics_visit },
       creator: ->(slot) { launch_game_room_entry(:create_table_from_widget, slot) },
+      presets: -> { game_room_settings["table_presets"] },
       invitations: -> { launch_game_room_entry(:accept_invitation_from_widget) },
       roster: ->(snapshot) { @lobby.discovered_roster(snapshot) },
       table_options: ->(snapshot) { @lobby.discovered_options(snapshot) },

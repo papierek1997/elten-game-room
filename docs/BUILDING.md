@@ -132,6 +132,14 @@ zapewnia profil narzędzia, nie samo rozszerzenie. Przed przyjęciem nagrań
 sprawdź dekodowanie przez BASS/bassopus ELTEN-a, restart, pętle używane przez
 grę, długość, poziomy i odsłuch. Kontrola techniczna nie zastępuje odsłuchu.
 
+Celowany test `ruby test/tooling/mille_audio_continuity_test.rb` wymaga FFmpeg
+i FFprobe w PATH. Dekoduje pięć nagrań dystansów, Asa drogi, czerwone światło,
+przebicie i ochronę opon, dodatkowy zbiornik, ograniczenie prędkości oraz
+koniec ograniczenia i jazdy pod prąd w 1000 mil. Sprawdza różne próbki,
+pełne dekodowanie i ciche początki i końce (okna 50 ms co najmniej
+20 dB poniżej najgłośniejszego okna). Chroni przed powrotem urwanych pętli
+silnika, ale nie ocenia realizmu ani przyjemności odsłuchu.
+
 ### Staging instalatora
 
 Paczki buduje narzędzie z repozytorium ELTEN-a, ale nie należy przekazywać
@@ -142,6 +150,24 @@ wydania poza repozytorium. Przykład:
 ruby C:/src/elten-game-room/tools/stage-release.rb --source C:/src/elten-game-room --destination C:/build/game-room-runtime
 ruby C:/src/elten3/tools/build-eltsetup.rb --unsigned C:/build/game-room-runtime C:/build/ELTEN-Game-Room.eltsetup
 ```
+
+Jawny opt-in `--workspace-staging` pozwala zamiast tego użyć wyłącznie nowego,
+bezpośredniego podkatalogu `<source>/Workspace/`. Sam `Workspace` musi już
+istnieć i nie może przekierowywać do innego katalogu przez symlink lub junction.
+Nie wolno wskazać jego korzenia, zagnieżdżonego podkatalogu ani miejsca poza
+tym Workspace, również przez alias z innego katalogu. W repozytorium Git
+`git check-ignore` musi potwierdzić ignorowanie
+całego `Workspace/`; narzędzie nie zmienia `.gitignore`. Przykład:
+
+```console
+ruby tools/stage-release.rb --source D:/Gameroom --destination D:/Gameroom/Workspace/runtime-test --workspace-staging --manifest D:/Gameroom/Workspace/runtime-test-inventory.json
+```
+
+Flaga wymaga `--destination`; nie służy do `--check`. Bez niej nadal obowiązuje
+staging poza źródłami. Pozostają kontrole kanonicznych ścieżek, nieistniejącego
+celu, limitu długości i wykazu poza stagingiem. `Workspace` i jego materiały
+pomocnicze nie należą do wykazu plików wykonawczych i nie trafiają do paczki,
+także przy kolejnym stagingu z tych samych źródeł.
 
 Ruby używane do budowania musi mieć zależności wymagane przez narzędzie ELTEN-a,
 w szczególności `zstd-ruby`. Najprościej użyć środowiska uruchomieniowego

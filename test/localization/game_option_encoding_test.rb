@@ -29,6 +29,14 @@ ids = ["reversi"] + (EltenGameRoom::GAME_REGISTRY.ids - ["reversi"])
         raise "Editing Tysiac changed selected variants" unless actual == changed
       end
     end
+    if id == "mille_bornes"
+      [true, false].each do |enabled|
+        changed = game.normalize_options("include_safeties" => enabled)
+        actual = app.send(:configure_game_options, game, initial_options: changed, submit_label: "Save changes")
+        raise "Editing Mille Bornes changed selected safeties" unless actual == changed
+        raise "Safety option did not change the deck" unless game.send(:deck_for, actual).length == (enabled ? 106 : 102)
+      end
+    end
     next unless id == "reversi"
 
     changed = game.normalize_options("allow_passing" => false, "mandatory_capture" => false)

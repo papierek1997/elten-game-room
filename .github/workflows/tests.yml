@@ -29,6 +29,12 @@ jobs:
           ruby-version: "4.0"
       - name: Install translation authoring tools
         run: bundle install --gemfile tools/Gemfile.i18n
+      - name: Install audio validation tools
+        if: matrix.suite == 'tooling'
+        run: |
+          if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue) -or -not (Get-Command ffprobe -ErrorAction SilentlyContinue)) {
+            choco install ffmpeg --no-progress -y
+          }
       - name: Install native package test dependencies
         if: matrix.suite == 'native'
         run: |

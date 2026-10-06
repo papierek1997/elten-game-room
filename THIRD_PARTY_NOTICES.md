@@ -35,6 +35,87 @@ scalenia PR-ów na GitHubie.
 
 ## Dźwięki
 
+### 1000 mil (Mille Bornes)
+
+Dwadzieścia trzy efekty `Audio/mille_*.opus` wykorzystują nagrania pojazdów,
+hamulców, klaksonu, cieczy, powietrza, narzędzi, opony, kolizji oraz sygnał sukcesu
+z Freesound, SoundBible i BigSoundBank.
+Nie są to dźwięki Playroom ani RS Games. Licencje obejmują tylko wskazane
+nagrania, nie wcześniejsze zasoby aplikacji.
+
+Źródłem nagrań z Freesound były publiczne podglądy MP3 HQ, nie bezstratne mastery.
+Air Wrench Short pochodzi z udostępnionego przez SoundBible pliku PCM WAV.
+Nagrania Asa drogi, hamowania roweru, zwolnienia hamulca ręcznego i kierunkowskazu
+pochodzą z pełnych plików WAV/BWF BigSoundBank, nie ze stratnych podglądów.
+Całe nagrania przekodowano narzędziem `tools/encode_audio.rb` do Ogg Opus:
+144 kb/s VBR, 48 kHz, ramki 20 ms, complexity 10, tryb audio, bez przycinania,
+normalizacji, zmiany kanałów lub dodawania warstw. Efekt kolizji ma w grze
+wzmocnienie odtwarzania 0,7; pliku nie normalizowano. Kolizja jest nagraniem
+efektów fizycznych metalu i szkła przygotowanym przez autora, nie zapisem
+rzeczywistego wypadku drogowego. As drogi ma wzmocnienie odtwarzania 0,75,
+a Pierwszeństwo przejazdu 0,8. Przejazdy dla 50 i 75 mil mają wzmocnienie 0,35,
+100 mil — 0,5, a klucz pneumatyczny do wymiany koła — 0,5;
+25 i 200 mil zachowują wzmocnienie 1,0, a błyskawiczna naprawa używa 0,65. Ogranicza to szczyty i różnice głośności
+podczas odtwarzania, bez zmiany poziomów zapisanych plików. Nowe hamowanie
+ograniczenia prędkości używa 0,35, przebicie opony 0,8, a korek zbiornika
+i kierunkowskaz 0,7. Ostatnie dwa nagrania mają niewielkie szczyty powyżej
+pełnej skali w dekodowaniu zmiennoprzecinkowym; wzmocnienie odtwarzania
+zapobiega ich przesterowaniu bez ponownego kodowania lub normalizacji.
+Tankowanie ilustruje nalewanie cieczy do butelki, a spuszczanie paliwa —
+odpływanie wody w metalowym zlewie; nie są to nagrania rzeczywistego paliwa.
+As drogi korzysta z pełnego nagrania przejeżdżającego i trąbiącego samochodu
+z cichym początkiem i końcem, Pierwszeństwo przejazdu z krótkiej
+syreny policyjnej, a udana kontra kartą ochronną z muzycznego sygnału sukcesu.
+Karty 25, 50 i 75 mil mają trzy różne nagrania ulicznych przejazdów samochodu,
+100 mil — przejazd po mokrej drodze, a 200 mil — przejazd wyścigowy Le Mans.
+Wykorzystano pełne nagrania z cichymi początkami i końcami, nie fragmenty
+pętli obrotów silnika. Nie są to pomiary pięciu prędkości. Ochronę opon
+ilustruje zamknięcie zatrzasku walizki ochronnej, nie pompowanie ani przebicie.
+Przebicie opony korzysta z osobnego nagrania „PUNCTURE” opisanego przez autora
+jako przebicie opony; wymiana koła używa klucza pneumatycznego do śruby,
+a naprawa — krótkiego nagrania klucza zapadkowego. Dodatkowy zbiornik
+otrzymał zamykanie korka i klapki wlewu (pełne 8,133125 s, bez skracania).
+Ograniczenie prędkości ilustruje hamowanie roweru, jego koniec — zwolnienie
+hamulca ręcznego samochodu. Jazda pod prąd używa klaksonu, a jej koniec —
+kierunkowskazu. Są to odrębne nagrania i umowne skojarzenia z czynnościami,
+nie duplikaty dźwięków dystansu, tankowania lub czerwonego światła.
+Błyskawiczną naprawę ilustruje pełne, krótkie nagranie wiertarki akumulatorowej;
+to metafora szybkiej usługi mechanicznej, nie nagranie wszystkich napraw samochodu.
+Kontenery dwóch krótszych efektów (pierwszeństwa i kontry) przepakowano
+bezstratnie do stron Ogg po 20 ms dla zgodności z dekoderem BASS ELTEN-a;
+pakiety Opus, metadane i próbki dźwięku pozostały niezmienione.
+
+| Plik w aplikacji | Oryginalny tytuł i autor | Źródło | Licencja |
+| --- | --- | --- | --- |
+| `Audio/mille_accident.opus` | Car Crash (with Glass) — magnuswaker | [Freesound](https://freesound.org/people/magnuswaker/sounds/592388/) | [CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_red_light.opus` | Tires Squeaking.aif — RutgerMuller | [Freesound](https://freesound.org/people/RutgerMuller/sounds/104026/) | [CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_dirty_trick.opus` | Powerup/success.wav — GabrielAraujo | [Freesound](https://freesound.org/people/GabrielAraujo/sounds/242501/) | [CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_distance_25.opus` | Car passing by — Aiwha | [Freesound](https://freesound.org/people/Aiwha/sounds/415483/) | [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) |
+| `Audio/mille_distance_50.opus` | Car Passing — Johnnyfarmer | [Freesound](https://freesound.org/people/Johnnyfarmer/sounds/209767/) | [CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_distance_200.opus` | rbh Le Mans passby 05.wav — RHumphries | [Freesound](https://freesound.org/people/RHumphries/sounds/1930/) | [CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/) |
+| `Audio/mille_distance_75.opus` | Car passing by.wav — hinzebeat | [Freesound](https://freesound.org/people/hinzebeat/sounds/171447/) | [CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_driving_ace.opus` | Car Honking at 90 km/h #3 — Joseph SARDIN & Axeline T. | [BigSoundBank](https://bigsoundbank.com/car-honking-at-90-km-h-3-s3438.html), [warunki licencji](https://bigsoundbank.com/licenses.html) | [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_fuel_drain.opus` | Drain Gurgling 2.wav — F.M.Audio | [Freesound](https://freesound.org/people/F.M.Audio/sounds/554761/) | [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) |
+| `Audio/mille_distance_100.opus` | Passing Car (Wet road) — Breviceps | [Freesound](https://freesound.org/people/Breviceps/sounds/462862/) | [CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_counterflow.opus` | Car Horn.wav — DuranBurrus | [Freesound](https://freesound.org/people/DuranBurrus/sounds/547667/) | [CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_puncture_proof.opus` | close-latch-pelicase — Eelke | [Freesound](https://freesound.org/people/Eelke/sounds/387193/) | [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) |
+| `Audio/mille_instant_repair.opus` | power drill — AlaskaRobotics | [Freesound](https://freesound.org/people/AlaskaRobotics/sounds/551504/) | [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_refuel.opus` | pour 2 — piotrkier | [Freesound](https://freesound.org/people/piotrkier/sounds/700153/) | [CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_right_of_way.opus` | Siren.ogg — egomassive; na podstawie Police Siren Yelp.mp3 — MultiMax2121 | [Freesound](https://freesound.org/people/egomassive/sounds/536773/), [nagranie pierwotne](https://freesound.org/people/MultiMax2121/sounds/156868/) | [CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_start.opus` | SFX_Car_Engine_Outside_Start.wav — GiocoSound | [Freesound](https://freesound.org/people/GiocoSound/sounds/401558/) | [CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_tire_puncture.opus` | PUNCTURE — SamuelGremaud | [Freesound](https://freesound.org/people/SamuelGremaud/sounds/457442/) | [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_extra_tank.opus` | auto gas cap screw back on +lid close.wav — kyles | [Freesound](https://freesound.org/people/kyles/sounds/452546/) | [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) |
+| `Audio/mille_speed_limit.opus` | Bike Brake #1 — Joseph SARDIN | [BigSoundBank](https://bigsoundbank.com/bike-brake-1-s1087.html) | [CC0-1.0](https://bigsoundbank.com/licenses.html) |
+| `Audio/mille_end_speed_limit.opus` | Handbrake, released #1 — Joseph SARDIN & Axeline T. | [BigSoundBank](https://bigsoundbank.com/handbrake-released-1-s3104.html) | [CC0-1.0](https://bigsoundbank.com/licenses.html) |
+| `Audio/mille_end_counterflow.opus` | Car turn signals #3 — Joseph SARDIN & Axeline T. | [BigSoundBank](https://bigsoundbank.com/car-turn-signals-3-s3108.html) | [CC0-1.0](https://bigsoundbank.com/licenses.html) |
+| `Audio/mille_wheel_change.opus` | Air Wrench Short — Lightning McQue | [SoundBible](https://soundbible.com/1975-Air-Wrench-Short.html) | [CC-BY-3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `Audio/mille_repair.opus` | Ratchet.wav — KenRT | [Freesound](https://freesound.org/people/KenRT/sounds/319996/) | [CC0-1.0](http://creativecommons.org/publicdomain/zero/1.0/) |
+
+Pełne teksty licencji: [CC0 1.0](LICENSES/CC0-1.0.txt),
+[CC BY 3.0](LICENSES/CC-BY-3.0.txt) oraz [CC BY 4.0](LICENSES/CC-BY-4.0.txt).
+Autorzy nie sponsorują aplikacji.
+Odnośniki, autorstwo i informację o konwersji należy zachować przy dystrybucji.
+
 ### Audio Ball
 
 Przygotowanie `Audio/audio_ball_prepare.opus` pochodzi z nagrania

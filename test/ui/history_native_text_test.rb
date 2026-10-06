@@ -22,7 +22,7 @@ load native_source
 native = EltenAPI::Controls.const_get(:EditBox)
 native_text_scope = Module.new
 native_text_scope.const_set(:EditBox, native)
-%w[game_room_ui game_surfaces/card_hand_cursor game_surfaces/card_sorting game_surfaces/state_reader game_surfaces game_history_view].each do |name|
+%w[game_room_ui game_surfaces/card_hand_cursor game_surfaces/card_sorting game_surfaces/card_actions game_surfaces/state_reader game_surfaces game_history_view].each do |name|
   path = File.join(BinaryRulesLoad::ROOT, 'lib', "#{name}.rb")
   native_text_scope.module_eval(BinaryRulesLoad.read(path), path, 1)
 end

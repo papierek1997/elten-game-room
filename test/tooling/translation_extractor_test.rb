@@ -168,7 +168,7 @@ class TranslationExtractorTest < Minitest::Test
     index = records.to_h { |record| [[record[:msgctxt], record[:msgid]], record] }
     books = Dir.glob('*.json', base: File.join(ROOT, 'tools/data/rulebooks')).map { |name| File.join(ROOT, 'tools/data/rulebooks', name) }
     sources = JSON.parse(File.read(File.join(ROOT, 'tools/rulebook_sources.json'), encoding: 'UTF-8'))
-    assert_equal 32, books.size
+    assert_equal 33, books.size
     books.each do |file|
       book = JSON.parse(File.read(file, encoding: "UTF-8"))
       book.fetch("sections").each do |section|

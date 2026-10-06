@@ -16,6 +16,8 @@ module Session
 end
 
 class EditBox
+  undef_method :text=
+
   module Flags
     Numbers = 8
   end

@@ -47,7 +47,7 @@ class LobbyRepository
   TABLE_NAME_MIN_LENGTH = 3
   TABLE_NAME_MAX_LENGTH = 60
   DEFAULT_ROOM_CAPACITY = 8
-  MAX_ROOM_CAPACITY = 8
+  MAX_ROOM_CAPACITY = GameRoomLiveSessionStore::MAX_CAPACITY
   AVAILABLE_STATUSES = %w[waiting playing].freeze
 
   def initialize(program, transport: nil, server_tables: nil, activity_repository: nil)
