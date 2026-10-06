@@ -67,4 +67,19 @@ reviewed_general.each do |id, expected|
   question = general.fetch(id)
   expected.each { |field, value| assert(question.fetch(field) == value, "#{id}: reviewed #{field} changed") }
 end
+roman_century = /(?<![[:alpha:]])[IVXL]+(?:\.|-|\s+(?:i|do|–)\s+[IVXL]+)*\s*(?:-?wieczn|wiek|w\.|stuleci)/
+general.each do |id, question|
+  [question.fetch('prompt'), question.fetch('correct'), *question.fetch('wrong')].each do |text|
+    assert(!text.match?(roman_century), "#{id}: century written in Roman numerals")
+  end
+end
+{
+  'polqa_00368' => ['W którym wieku panował Henryk VIII?', 'w 16. wieku'],
+  'polqa_06837' => ['Na przełomie których wieków komponował Niemiec Ryszard Strauss?', '19. i 20.'],
+  'polqa_02428' => ['W którym wieku Rzymianie ostatecznie zniszczyli Kartaginę?', 'w 2. p.n.e.'],
+  'polqa_04406' => ['Jak brzmi nazwisko tancerza polskiego urodzonego w 1944 roku, solisty m.in. baletu Teatru Wielkiego w Warszawie i Baletu XX Wieku?', 'Wilk']
+}.each do |id, (prompt, answer)|
+  question = general.fetch(id)
+  assert(question.fetch('prompt') == prompt && question.fetch('correct') == answer, "#{id}: Arabic century wording changed")
+end
 puts 'Reviewed quiz questions: fixture counts/versions and preserved Polish source decisions: OK'

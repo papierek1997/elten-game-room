@@ -429,6 +429,16 @@ do aktywnego zestawu. Zachowuj wyraźne ograniczenia użytkownika dotyczące
 źródeł i zmian tekstu; nie przepisuj przy okazji innych zestawów. Przy nowym
 języku stosuj wspólne zasady i uzupełnij sprawdzone uwagi w tym dokumencie.
 
+Przy dodawaniu, imporcie lub poprawianiu polskich pytań zamieniaj rzymskie
+cyfry oznaczające wiek na arabskie. Po liczebniku porządkowym stawiaj kropkę
+(zasada PWN 340): „w 17. wieku”, „na przełomie 19. i 20. wieku”,
+„od 14. do 17. wieku”, „w 5. wieku p.n.e.”, „w latach 30. 20. wieku”.
+W krótkich odpowiedziach również: „w 17.”, „19. i 20.”. Skrót „w.” rozwijaj
+do „wieku”. W przymiotnikach kropki nie ma: „19-wieczny”, „18- i 19-wieczny”.
+Nie zmieniaj rzymskich liczebników, które są częścią imienia lub nazwy:
+władców i papieży (Henryk VIII, Jan Paweł II), „II wojna światowa”,
+„Sobór Watykański II”, „I krucjata”, tytuły i nazwy własne („Balet XX Wieku”).
+
 ## Czytelne kopie pytań quizu
 
 - Po każdej zmianie pytań, odpowiedzi, podziału lub dodaniu zestawu uruchom
