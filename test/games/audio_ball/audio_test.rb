@@ -432,13 +432,14 @@ test('documents current default recordings without borrowing historical files at
     assert(notice.include?(author), "Missing supplied flight source attribution: #{author}")
   end
   assert(notice.include?('https://creativecommons.org/licenses/by/4.0/'), 'Supplied flight license link is missing')
-  assert(notice.include?('0,5 L + 0,5 R') && notice.include?('wyrównanie dynamiki i głośności'),
+  assert(notice.include?('0.5 L + 0.5 R') && notice.include?('adjustment of dynamics and loudness'),
     'The flight recording changes are not disclosed')
   %w[discUp.ogg discCenter.ogg discDown.ogg rocketReady.ogg rocketStop.ogg rocketGoal.ogg].each do |source|
     assert(notice.include?(source), "Missing Audiodisc provenance: #{source}")
   end
-  assert(notice.include?('powiązanie nagrań z autorami/licencjami wymaga potwierdzenia') &&
-    notice.include?('Do tych siedmiu plików nie dostarczono identyfikatorów źródeł'),
+  notice_text = notice.gsub(/\s+/, ' ')
+  assert(notice_text.include?('the mapping between recordings, authors and licenses needs confirmation') &&
+    notice_text.include?('No source identifiers or author/license information were supplied for these seven files.'),
     'Unconfirmed recording licenses were presented as confirmed')
 end
 

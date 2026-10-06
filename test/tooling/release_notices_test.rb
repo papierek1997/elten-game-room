@@ -4,10 +4,10 @@ root = File.expand_path("../..", __dir__)
 verify_notices = lambda do |read|
   notices = read.call("THIRD_PARTY_NOTICES.md").force_encoding("UTF-8")
   sections = [
-    "1000 mil (Mille Bornes)", "Audio Ball", "Audio Ball — pakiet Audiodisc i zatrzymanie piłki",
-    "Wcześniejsze zasoby", "Powiadomienie o nowym stole", "Cat, head, tail",
-    "Dźwięki kostek Domino i Mexican Train", "Ponowne tasowanie kart",
-    "Dodatkowe kroki debla i brzęczyk UNO", "Nowe dźwięki Statków", "Krowa — słownik i nagrania"
+    "1000 miles (Mille Bornes)", "Audio Ball", "Audio Ball — Audiodisc pack and ball stop",
+    "Earlier assets", "New-table notification", "Cat, head, tail",
+    "Domino and Mexican Train tile sounds", "Reshuffling cards",
+    "Additional doubles footsteps and UNO buzzer", "New Battleship sounds", "Krowa — dictionary and recordings"
   ]
   headings = notices.lines.map(&:strip)
   sections.each do |section|
