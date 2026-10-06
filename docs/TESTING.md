@@ -70,7 +70,7 @@ pokrycia agregat i jego dzieci nie są niezależnymi dodatkowymi testami.
 
 Usunięto kontrole jednorazowych audytów Quizu wymagające zewnętrznych
 raportów oraz testową implementację dawnego `TurnGate`. Bieżące sumy,
-pytania po korektach, podział Wiedźmina i eksport są w `games/quiz/`.
+pytania po korektach, książkowy zestaw Wiedźmina i eksport są w `games/quiz/`.
 Fixture starej klawiatury i rozszerzeń hosta nadal służą regresjom aktualizacji
 w jednym procesie; są aktywnym kontraktem, nie porzuconym backendem.
 

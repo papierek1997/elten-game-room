@@ -6,7 +6,7 @@ app.define_singleton_method(:alert) { |message| raise message }
 game = GameRoomGames::QuizParty.new
 polish_set_ids = game.send(:available_content_sets, "pl-PL").map(&:id).sort
 assert(
-  polish_set_ids == ["quiz.wikidata", "quiz.witcher", "quiz.witcher.b", "quiz.witcher.g"],
+  polish_set_ids == ["quiz.wikidata", "quiz.witcher.books"],
   "the Polish question-set list is incomplete"
 )
 target_language = game.default_options["content_language_id"] == "en" ? "pl-PL" : "en"
@@ -30,11 +30,11 @@ Form.driver = lambda do |form|
   assert(selected_language == target_language, "updating choices reset the selected language")
   set_control = form.fields.find { |field| field.is_a?(ListBox) && field.header == "Game content set" }
   assert(form.fields[form.index] == language_control, "changing language moved focus from the language list")
-  expected_count = target_language == "pl-PL" ? 4 : 1
+  expected_count = target_language == "pl-PL" ? 2 : 1
   assert(set_control != nil && set_control.options.length == expected_count, "changing language did not immediately replace the question sets")
   labels = set_control.options.join(" ")
   if target_language == "pl-PL"
-    polish_counts = %w[quiz.wikidata.pl quiz.witcher.pl quiz.witcher.g.pl quiz.witcher.b.pl]
+    polish_counts = %w[quiz.wikidata.pl quiz.witcher.books.pl]
       .map { |id| GameRoomContent.registry.pack(id).entry_count.to_s }
     assert(polish_counts.all? { |count| labels.include?(count) } && !labels.include?(GameRoomContent.registry.pack("quiz.general.en").entry_count.to_s), "Polish still shows the English question set")
   else

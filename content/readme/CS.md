@@ -39,15 +39,15 @@ Při spuštění může program nabídnout stažení novější verze. Odmítnut
 
 Power Games v současnosti obsahuje 32 her:
 
-- **Karetní hry:** 3-5-8, 99, Biblios, Makao, Piky, Poker, Rummy, Tisíc, UNO, War a Scientific War.
-- **Deskové a strategické hry:** Člověče, nezlob se, Čtyři v řadě, Piškvorky, Mankala, Monopoly, Reversi, Lodě, Šachy a Dáma.
-- **Kostky a domino:** Cat, head, tail, Domino, Farkle, Mexican Train a Yahtzee.
-- **Slova a vědomosti:** Krowa, Kategorie, Quiz Party, Scrabble a Taboo.
-- **Zvukové akční hry:** Axel Pong a Audio Ball.
+- Karetní hry: 3-5-8, 99, Biblios, Makao, Piky, Poker, Rummy, Tisíc, UNO, War a Scientific War.
+- Deskové a strategické hry: Člověče, nezlob se, Čtyři v řadě, Piškvorky, Mankala, Monopoly, Reversi, Lodě, Šachy a Dáma.
+- Kostky a domino: Cat, head, tail, Domino, Farkle, Mexican Train a Yahtzee.
+- Slova a vědomosti: Krowa, Kategorie, Quiz Party, Scrabble a Taboo.
+- Zvukové akční hry: Axel Pong a Audio Ball.
 
 Mnoho her nabízí několik variant. Jejich výběr, počet účastníků, dostupnost botů a další nastavení závisejí na konkrétní hře. Podrobná pravidla, bodování a ovládání popisuje část „Pravidla hry“ v programu.
 
-Taboo počítá s hlasovou komunikací mezi účastníky. Můžete využít konferenci ELTENu, jiný komunikační program nebo hrát společně na jednom místě. Samotný stůl hlasové spojení nespouští.
+Ve hře Taboo potřebujete komunikovat s ostatními hráči. Můžete k tomu využít konferenci v ELTENu, jiný komunikační program nebo hrát osobně.
 
 ## Stoly a společné hraní
 
@@ -110,13 +110,13 @@ Některé hry mají i osobní nastavení pod Ctrl+P, dostupné z menu stolu. Pat
 Widget Power Games na hlavní obrazovce ELTENu umožňuje procházet stoly bez předchozího otevření hlavního menu programu. Můžete v něm vybrat stůl, zjistit jeho nastavení či účastníky a přijmout pozvánku.
 Ctrl+N vás rovnou přenese k výběru hry při vytváření nového stolu. R obnoví seznam ručně. Widget jej obnovuje také při vstupu a každých pět sekund, dokud jej používáte.
 
-V **Nastavení → Widget** můžete widget zapnout, vybrat zobrazované hry a omezit seznam na stoly vytvořené vašimi kontakty.
+V Nastavení → Widget můžete widget zapnout, vybrat zobrazované hry a omezit seznam na stoly vytvořené vašimi kontakty.
 
 ### Vlastní zkratky pro vytváření stolů
 
 Pokud často hrajete se stejným nastavením, uložte je pod některou z 30 zkratek: Ctrl+1 až Ctrl+0, Alt+1 až Alt+0 nebo Shift+1 až Shift+0.
 
-1. Otevřete **Nastavení → Widget**.
+1. Otevřete Nastavení → Widget.
 2. Tabem přejděte na seznam zkratek pro vytváření stolů.
 3. Vyberte položku a stiskněte Enter. Můžete také stisknout přímo danou zkratku a okamžitě ji v seznamu vybrat.
 4. Zvolte hru, nastavte stůl a potvrďte přiřazení.
@@ -125,11 +125,11 @@ Od té chvíle vytvoří zkratka ve widgetu stůl s uloženým nastavením. Part
 
 ## Oznámení
 
-V **Nastavení → Nastavení oznámení** vyberete hry, o jejichž nových veřejných stolech chcete dostávat zprávy. Můžete například sledovat jen Tisíc a Kategorie, bez oznámení ostatních her. Volitelně lze oznámení omezit na stoly lidí z kontaktů.
+V Nastavení → Nastavení oznámení vyberete hry, o jejichž nových veřejných stolech chcete dostávat zprávy. Můžete například sledovat jen Tisíc a Kategorie, bez oznámení ostatních her. Volitelně lze oznámení omezit na stoly lidí z kontaktů.
 
 Samostatně určíte, zda chcete pozvánky od všech, jen od kontaktů, nebo od nikoho. Pozvánky a oznámení nových stolů mají různé zvuky. Jejich popis stručně uvádí hru a nejdůležitější nastavení; úplný popis nastavení stolu přečte Ctrl+R.
 
-V **Nastavení → Oznámení v lobby** zvlášť vybíráte, které zprávy se mají předčítat při pobytu v hlavním okně programu.
+V Nastavení → Oznámení v lobby zvlášť vybíráte, které zprávy se mají předčítat při pobytu v hlavním okně programu.
 
 ## Zvuky a hraní na pozadí
 
@@ -140,11 +140,11 @@ Hlasitost můžete měnit bez opuštění hry:
 - Shift+F2 — předchozí skupina zvuků.
 - Shift+F3 — další skupina zvuků.
 
-Lze ovládat všechny zvuky společně nebo zvlášť zvuky hry, příchody a odchody od stolu, chat a pozvánky s oznámeními. Stejné úrovně najdete v **Nastavení → Zvuky**.
+Lze ovládat všechny zvuky společně nebo zvlášť zvuky hry, příchody a odchody od stolu, chat a pozvánky s oznámeními. Stejné úrovně najdete v Nastavení → Zvuky.
 
 Přechod do zpráv, konference nebo jiného okna ELTENu partii nezastaví. Je to důležité hlavně u akčních her a při zapnutém časovém limitu tahu.
 
-V **Nastavení → General** (obecné nastavení) zvlášť určíte:
+V Nastavení → General (obecné nastavení) zvlášť určíte:
 
 - zda se mají zprávy stolu předčítat i mimo jeho okno;
 - zda má znít upozornění na váš tah;
@@ -154,7 +154,7 @@ Ve výchozím nastavení se zvuky her neztlumují. Ztlumení na pozadí nenahraz
 
 ## Jazyky
 
-Power Games má vlastní výběr jazyka rozhraní v **Nastavení → General**. K dispozici je angličtina, polština, čeština, španělština a ruština. Tato volba nemění jazyk celého ELTENu. Aby se uplatnila ve všech částech Power Games včetně widgetu, restartujte ELTEN.
+Power Games má vlastní výběr jazyka rozhraní v Nastavení → General. K dispozici je angličtina, polština, čeština, španělština a ruština. Tato volba nemění jazyk celého ELTENu. Aby se uplatnila ve všech částech Power Games včetně widgetu, restartujte ELTEN.
 
 Volitelný seznam „Jazyky, kterým rozumíte“ slouží k doplnění chybějících překladů. Pokud text není v hlavním jazyce, program může použít některý ze zaškrtnutých jazyků a nakonec angličtinu.
 
@@ -294,8 +294,8 @@ Pro místní testy je potřeba Ruby 4.0, závislosti popsané v dokumentaci a zd
 
 ## Autoři a licence
 
-Projekt vede **papierek** za přispění autorů her, překladů a oprav i lidí testujících jednotlivé verze. Příspěvky autorů jsou uvedeny v historii změn a dokumentaci součástí.
+Projekt vede papierek za přispění autorů her, překladů a oprav i lidí testujících jednotlivé verze. Příspěvky autorů jsou uvedeny v historii změn a dokumentaci součástí.
 
-**Axel Pong není původní projekt papierka.** Hra se původně jmenovala Dragon-Pong, poté ji vylepšili Axel a balteam a nakonec byla s jejich souhlasem převedena do ELTENu.
+Axel Pong není původní projekt papierka. Hra se původně jmenovala Dragon-Pong, poté ji vylepšili Axel a balteam a nakonec byla s jejich souhlasem převedena do ELTENu.
 
 Kód Power Games je dostupný pod licencí GNU General Public License version 3. Úplné znění je v souboru [LICENSE](https://github.com/papierek1997/elten-game-room/blob/main/LICENSE). Zvuky, otázky a další materiály mohou mít vlastní podmínky užití; jejich původ a licenční informace najdete v [THIRD_PARTY_NOTICES.md](https://github.com/papierek1997/elten-game-room/blob/main/THIRD_PARTY_NOTICES.md).

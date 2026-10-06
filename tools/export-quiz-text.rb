@@ -14,9 +14,7 @@ module QuizTextExport
     'quiz.general.en' => 'general-knowledge-en.txt',
     'quiz.general.ru' => 'obshchie-znaniya-ru.txt',
     'quiz.wikidata.pl' => 'wiedza-ogolna-pl.txt',
-    'quiz.witcher.pl' => 'wiedzmin-pelny-pl.txt',
-    'quiz.witcher.g.pl' => 'wiedzmin-gry-pl.txt',
-    'quiz.witcher.b.pl' => 'wiedzmin-ksiazki-i-ekranizacje-pl.txt'
+    'quiz.witcher.books.pl' => 'wiedzmin-ksiazki-pl.txt'
   }.freeze
   module_function
 

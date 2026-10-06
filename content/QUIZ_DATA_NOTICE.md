@@ -1,12 +1,11 @@
 # Quiz Party data: provenance and review limits
 
-The source for this local integration is budyn1211's PR #3, revision
-`efa6e640a57901e7b01e5ac2158e84f1c3375435`. The three original data files
-are identified by SHA-256 in `QUIZ_IMPORT_REPORT.json`. That report lists
-every excluded record and the IDs of every cleaned record. Question IDs
-are retained, so a record can be compared with the exact original import.
-Each generated pack also stores its import URL; explicit article links
-found in the input are retained as `source_links` in the question data.
+The initial import came from budyn1211's PR #3, revision
+`efa6e640a57901e7b01e5ac2158e84f1c3375435`. Its three original data files
+are identified by SHA-256 in the development report `QUIZ_IMPORT_REPORT.json`,
+which lists excluded records and retained IDs. The English pack retains
+that provenance. The Polish general-knowledge and Witcher packs have since
+been replaced; their current sources and review limits are described below.
 
 ## English
 
@@ -42,7 +41,33 @@ of dependent choices are adjusted where necessary. No question is added or
 removed: all 14,887 IDs, categories, source records and their order remain.
 This is a focused wording review, not a new factual audit of the entire set.
 
-## Earlier Polish imports and current Witcher sets
+## Current Polish Witcher books set
+
+From Power Games 2.0.4.5 (build 244), `quiz.witcher.books.pl` replaces all
+three previous Witcher sets. Questions cover Andrzej Sapkowski's Ostatnie
+życzenie, Miecz przeznaczenia, five saga volumes, Sezon burz and Rozdroże
+kruków, plus Droga, z której się nie wraca and Coś się kończy, coś się zaczyna.
+The latter two stories are always named in the question. The alternative
+wedding story is not treated as a continuation of the saga.
+
+The new collection expands an independently edited books-only draft.
+A subsequent review used selected topics from the retired database as
+leads for further reading, not as factual evidence or ready-made questions.
+Those topics were rewritten with new answer sets and checked against the
+supplied books; game and screen-adaptation facts were excluded. Answers in
+the collection were checked against the supplied literary texts.
+Questions and distractors have their own wording;
+the books and the private verification excerpts are not distributed in the
+application. Each question identifies its literary source. The set includes
+spoilers throughout the books. Difficulty labels are editorial estimates,
+not measurements from player testing.
+
+The literary works remain the works of Andrzej Sapkowski. No public-domain
+or CC0 status is claimed for them, and the former Fandom pack's license
+declaration must not be applied to this new set. The earlier provenance
+notes below are retained solely as the history of the removed imports.
+
+## Earlier Polish imports and retired Witcher sets
 
 The PR declares the Wikidata pack as CC0-1.0, credited to “ELTEN Game Room”,
 and the Witcher pack as “CC BY-SA 3.0 (Fandom, Wiedźmin Wiki)”, also credited

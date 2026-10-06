@@ -55,21 +55,20 @@ wersję u wszystkich uczestników. Opis zmian znajdziesz w „Co nowego”.
 
 Obecnie Power Games zawiera 32 gry:
 
-- **Karcianki:** 3-5-8, 99, Biblios, Makao, Piki, Poker, Remik, Tysiąc,
+- Karcianki: 3-5-8, 99, Biblios, Makao, Piki, Poker, Remik, Tysiąc,
   UNO, Wojna i Wojna naukowa.
-- **Gry planszowe i strategiczne:** Chińczyk, Cztery w rzędzie,
+- Gry planszowe i strategiczne: Chińczyk, Cztery w rzędzie,
   Kółko i krzyżyk, Mankala, Monopoly, Reversi, Statki, Szachy i Warcaby.
-- **Kości i domino:** Cat, head, tail, Domino, Farkle, Mexican Train i Yahtzee.
-- **Słowa i wiedza:** Krowa, Państwa-miasta, Quiz, Scrabble i Taboo.
-- **Gry zręcznościowe audio:** Axel Pong i Audio Ball.
+- Kości i domino: Cat, head, tail, Domino, Farkle, Mexican Train i Yahtzee.
+- Słowa i wiedza: Krowa, Państwa-miasta, Quiz, Scrabble i Taboo.
+- Gry zręcznościowe audio: Axel Pong i Audio Ball.
 
 Wiele gier ma kilka wariantów. Ich wybór, liczba uczestników, dostępność botów
 i dodatkowe ustawienia zależą od konkretnego tytułu. Szczegółowe reguły,
 punktację i sterowanie opisuje dostępna w programie sekcja „Zasady gry”.
 
-Taboo zakłada rozmowę głosową między uczestnikami. Można wykorzystać
-konferencję ELTEN-a, inny komunikator albo grać wspólnie na miejscu;
-sam stół nie uruchamia połączenia głosowego.
+W grze taboo potrzebujesz komunikacji z innymi graczami. Możesz użyć do tego
+konferencji w eltenie, innego komunikatora lub grać na żywo.
 
 ## Stoły i wspólna gra
 
@@ -174,7 +173,7 @@ Ctrl+N przenosi od razu do wyboru gry przy tworzeniu nowego stołu.
 R odświeża listę ręcznie. Widget odświeża ją także przy wejściu i co pięć
 sekund, gdy z niego korzystasz.
 
-W **Ustawienia → Widget** możesz włączyć widget, wybrać widoczne gry
+W Ustawienia → Widget możesz włączyć widget, wybrać widoczne gry
 i ograniczyć listę do stołów utworzonych przez osoby z kontaktów.
 
 ### Własne skróty tworzenia stołów
@@ -182,7 +181,7 @@ i ograniczyć listę do stołów utworzonych przez osoby z kontaktów.
 Jeśli często grasz z tymi samymi ustawieniami, zapisz je pod jednym
 z 30 skrótów: Ctrl+1 do Ctrl+0, Alt+1 do Alt+0 albo Shift+1 do Shift+0.
 
-1. Otwórz **Ustawienia → Widget**.
+1. Otwórz Ustawienia → Widget.
 2. Tabem przejdź do listy „Skróty tworzenia stołów”.
 3. Wybierz pozycję i naciśnij Enter. Możesz też nacisnąć dany skrót,
    aby od razu wskazać go na liście.
@@ -196,7 +195,7 @@ Niepotrzebne przypisanie usuniesz w menu tej listy.
 
 ## Powiadomienia
 
-W **Ustawienia → Ustawienia powiadomień** wybierzesz gry, o których nowych
+W Ustawienia → Ustawienia powiadomień wybierzesz gry, o których nowych
 publicznych stołach chcesz być informowany. Możesz na przykład obserwować
 tylko Tysiąca i Państwa-miasta, bez komunikatów o pozostałych grach.
 Opcjonalnie powiadomienia można ograniczyć do stołów osób z kontaktów.
@@ -206,7 +205,7 @@ czy od nikogo. Powiadomienia o zaproszeniach i o nowych stołach mają różne
 dźwięki. Ich opisy zawierają krótką informację o grze i jej najważniejszych
 ustawieniach; pełny opis stołu jest dostępny pod Ctrl+R.
 
-W **Ustawienia → Komunikaty lobby** osobno wybierasz, jakie komunikaty
+W Ustawienia → Komunikaty lobby osobno wybierasz, jakie komunikaty
 mają być odczytywane podczas przebywania w głównym oknie programu.
 
 ## Dźwięki i gra w tle
@@ -220,13 +219,13 @@ Głośność można regulować bez opuszczania gry:
 
 Do wyboru są wszystkie dźwięki razem lub oddzielnie: dźwięki gry, wejścia
 i wyjścia ze stołu, czat oraz zaproszenia i powiadomienia. Te same poziomy
-znajdziesz w **Ustawienia → Dźwięki**.
+znajdziesz w Ustawienia → Dźwięki.
 
 Przejście do wiadomości, konferencji lub innego okna ELTEN-a nie oznacza
 wstrzymania partii. To ważne szczególnie w grach zręcznościowych i przy
 włączonym limicie czasu na ruch.
 
-W **Ustawienia → Ogólne** osobno określisz:
+W Ustawienia → Ogólne osobno określisz:
 
 - czy poza oknem stołu mają być odczytywane jego komunikaty;
 - czy ma być odtwarzany sygnał Twojej tury;
@@ -240,7 +239,7 @@ innych części ELTEN-a, jak i przejścia do innego programu.
 
 ## Języki
 
-Power Games ma własny wybór języka interfejsu w **Ustawienia → Ogólne**.
+Power Games ma własny wybór języka interfejsu w Ustawienia → Ogólne.
 Dostępne są angielski, polski, czeski, hiszpański i rosyjski. Wybór nie
 zmienia języka całego ELTEN-a. Aby zastosować go we wszystkich częściach
 Power Games, także w widgecie, uruchom ELTEN-a ponownie.
@@ -437,11 +436,11 @@ od początku.
 
 ## Autorzy i licencja
 
-Projekt prowadzi **papierek**, przy udziale autorów gier, tłumaczeń,
+Projekt prowadzi papierek, przy udziale autorów gier, tłumaczeń,
 poprawek i osób testujących kolejne wersje. Wkład poszczególnych autorów
 jest opisany w historii zmian i dokumentacji składników.
 
-**Axel Pong nie jest autorskim projektem papierka.** Gra pierwotnie nazywała
+Axel Pong nie jest autorskim projektem papierka. Gra pierwotnie nazywała
 się Dragon-Pong, następnie została ulepszona przez Axela i balteama,
 a ostatecznie przeportowana do ELTEN-a za ich zgodą.
 

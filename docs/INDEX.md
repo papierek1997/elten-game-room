@@ -35,6 +35,12 @@
 
 ## Utrzymywane treści
 
+[Zasady redakcji pytań quizowych](QUIZ_EDITORIAL.md) są obowiązkowe przy
+tworzeniu, imporcie, rozbudowie i tłumaczeniu zestawów. Obejmują naturalny
+język, źródła, trzy wiarygodne błędne odpowiedzi, powtórzenia oraz przegląd
+każdej pozycji, ze wskazówkami dla polskiego, angielskiego, czeskiego,
+hiszpańskiego, rosyjskiego i kolejnych języków.
+
 [tools/data/rulebooks/](../tools/data/rulebooks/) zawiera źródła zasad dla
 kompilatora `tools/compile-rulebooks.rb`. Gra ładuje wygenerowane Ruby
 z `games/generated/rulebooks/` oraz tłumaczenia MO; JSON pozostaje poza paczką.
@@ -50,7 +56,8 @@ redakcji. Gra czyta zestawy Ruby w `content/`; TXT nie są jej źródłem danych
 Każdy TXT odpowiada zestawowi i zawiera numer, pytanie, odpowiedzi
 A–D oraz wskazanie poprawnej odpowiedzi, bez technicznych ID. Numeracja zaczyna
 się od 1 w każdym zestawie; kolejność odpowiedzi jest stała i może różnić się
-od partii. Pełny Wiedźmin obejmuje oba podzestawy. Aby zgłosić błąd, podaj
+od partii. Zestaw „Wiedźmin — książki” zastępuje wszystkie dawne zestawy
+Wiedźmina; nie obejmuje gier ani ekranizacji. Aby zgłosić błąd, podaj
 nazwę zestawu i treść pytania. Edytuj dane w `content/`, następnie uruchom:
 
 ```console

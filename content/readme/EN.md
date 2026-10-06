@@ -39,15 +39,15 @@ On startup, the program may offer to download a newer version. Declining does no
 
 Power Games currently includes 32 games:
 
-- **Card games:** 3-5-8, 99, Biblios, Makao, Spades, Poker, Rummy, Thousand, UNO, War and Scientific War.
-- **Board and strategy games:** Ludo, Four in a Row, Tic Tac Toe, Mancala, Monopoly, Reversi, Battleships, Chess and Checkers.
-- **Dice and dominoes:** Cat, head, tail, Dominos, Farkle, Mexican Train and Yahtzee.
-- **Words and knowledge:** Krowa, Categories, Quiz Party, Scrabble and Taboo.
-- **Audio action games:** Axel Pong and Audio Ball.
+- Card games: 3-5-8, 99, Biblios, Makao, Spades, Poker, Rummy, Thousand, UNO, War and Scientific War.
+- Board and strategy games: Ludo, Four in a Row, Tic Tac Toe, Mancala, Monopoly, Reversi, Battleships, Chess and Checkers.
+- Dice and dominoes: Cat, head, tail, Dominos, Farkle, Mexican Train and Yahtzee.
+- Words and knowledge: Krowa, Categories, Quiz Party, Scrabble and Taboo.
+- Audio action games: Axel Pong and Audio Ball.
 
 Many games have several variants. The choices, player counts, bot support and additional settings depend on the game. Detailed rules, scoring and controls are described in the program's “Game rules” section.
 
-Taboo requires voice communication between participants. You can use an ELTEN conference, another voice application or play together in person; the table itself does not start a voice call.
+In Taboo, you need to communicate with the other players. You can use an ELTEN conference, another messaging app or play in person.
 
 ## Tables and playing together
 
@@ -110,13 +110,13 @@ Some games also have personal settings under Ctrl+P, available in the table menu
 The Power Games widget on ELTEN's main screen lets you browse tables without opening the program's main menu first. You can select a table, check its settings or participants and accept an invitation.
 Ctrl+N goes straight to the game picker for a new table. R refreshes the list manually. The widget also refreshes when you enter it and every five seconds while you are using it.
 
-In **Settings → Widget**, you can enable the widget, choose which games it shows and restrict the list to tables created by your contacts.
+In Settings → Widget, you can enable the widget, choose which games it shows and restrict the list to tables created by your contacts.
 
 ### Your own table creation shortcuts
 
 If you often play with the same settings, save them under one of 30 shortcuts: Ctrl+1 through Ctrl+0, Alt+1 through Alt+0 or Shift+1 through Shift+0.
 
-1. Open **Settings → Widget**.
+1. Open Settings → Widget.
 2. Tab to the table creation shortcuts list.
 3. Select an entry and press Enter. You can also press the shortcut itself to jump straight to it in the list.
 4. Choose a game, configure the table and confirm the assignment.
@@ -125,11 +125,11 @@ From then on, pressing the shortcut in the widget creates a table with the saved
 
 ## Notifications
 
-In **Settings → Notification settings**, choose the games whose new public tables you want to hear about. For example, you can follow just Thousand and Categories, without notices about other games. Optionally, you can restrict these notifications to tables created by your contacts.
+In Settings → Notification settings, choose the games whose new public tables you want to hear about. For example, you can follow just Thousand and Categories, without notices about other games. Optionally, you can restrict these notifications to tables created by your contacts.
 
 Separately, choose whether to show invitations from everyone, only contacts or nobody. Invitations and new table notifications have different sounds. Their descriptions include brief information about the game and its main settings; Ctrl+R gives you the full table settings.
 
-In **Settings → Lobby announcements**, you separately choose which announcements are read while you are in the program's main window.
+In Settings → Lobby announcements, you separately choose which announcements are read while you are in the program's main window.
 
 ## Sounds and playing in the background
 
@@ -140,11 +140,11 @@ You can adjust the volume without leaving the game:
 - Shift+F2 — previous sound group.
 - Shift+F3 — next sound group.
 
-Choose all sounds together or separate groups: game sounds, people joining and leaving the table, chat, and invitations and notifications. The same levels are available in **Settings → Sounds**.
+Choose all sounds together or separate groups: game sounds, people joining and leaving the table, chat, and invitations and notifications. The same levels are available in Settings → Sounds.
 
 Moving to messages, a conference or another ELTEN window does not pause the game. This matters particularly in action games and when a turn time limit is enabled.
 
-In **Settings → General**, you can separately choose:
+In Settings → General, you can separately choose:
 
 - whether table announcements are spoken outside the table window;
 - whether to play your turn signal;
@@ -154,7 +154,7 @@ Game sounds are not muted by default. Muting them in the background does not rep
 
 ## Languages
 
-Power Games has its own interface language selection in **Settings → General**. English, Polish, Czech, Spanish and Russian are available. This does not change the language of ELTEN itself. Restart ELTEN to apply the choice throughout Power Games, including the widget.
+Power Games has its own interface language selection in Settings → General. English, Polish, Czech, Spanish and Russian are available. This does not change the language of ELTEN itself. Restart ELTEN to apply the choice throughout Power Games, including the widget.
 
 The optional “Known languages” list provides fallback translations. If text is missing in the main language, the program can use one of the selected languages and ultimately English.
 
@@ -294,8 +294,8 @@ Local tests require Ruby 4.0, the documented dependencies and compatible ELTEN s
 
 ## Authors and licence
 
-The project is led by **papierek**, with contributions from game authors, translators, contributors and people testing each version. Individual contributions are described in the changelog and component documentation.
+The project is led by papierek, with contributions from game authors, translators, contributors and people testing each version. Individual contributions are described in the changelog and component documentation.
 
-**Axel Pong is not an original project by papierek.** It was originally called Dragon-Pong, then improved by Axel and balteam, and finally ported to ELTEN with their permission.
+Axel Pong is not an original project by papierek. It was originally called Dragon-Pong, then improved by Axel and balteam, and finally ported to ELTEN with their permission.
 
 Power Games code is released under the GNU General Public License version 3. The full text is in [LICENSE](https://github.com/papierek1997/elten-game-room/blob/main/LICENSE). Sounds, questions and other material may have separate terms of use; their origins and licence information are documented in [THIRD_PARTY_NOTICES.md](https://github.com/papierek1997/elten-game-room/blob/main/THIRD_PARTY_NOTICES.md).

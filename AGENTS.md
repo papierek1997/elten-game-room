@@ -416,6 +416,19 @@ Szczegóły procedury: `docs/BUILDING.md`. Licencje i autorstwo zachowaj.
   nie pola gry. Pomoc sprawdza bieżącą dostępność, a wywołanie ponownie
   weryfikuje uprawnienia i tożsamość, nie sam indeks wiersza.
 
+## Redakcja pytań quizu
+
+Przed tworzeniem, importem, rozbudową, poprawianiem lub tłumaczeniem zestawu
+przeczytaj w całości [zasady redakcji pytań](docs/QUIZ_EDITORIAL.md) i stosuj
+je do KAŻDEGO nowego lub zmienionego pytania, także z gotowej bazy lub PR-a.
+Obowiązują we wszystkich językach. Sprawdź źródło, jednoznaczność, naturalne
+brzmienie, trzy wiarygodne błędne odpowiedzi i powtórzenia znaczeniowe.
+Wykonaj osobny przegląd językowy całej dodawanej partii; próbka i zaliczone
+testy formatu nie zastępują redakcji. Nierozstrzygniętych pozycji nie dodawaj
+do aktywnego zestawu. Zachowuj wyraźne ograniczenia użytkownika dotyczące
+źródeł i zmian tekstu; nie przepisuj przy okazji innych zestawów. Przy nowym
+języku stosuj wspólne zasady i uzupełnij sprawdzone uwagi w tym dokumencie.
+
 ## Czytelne kopie pytań quizu
 
 - Po każdej zmianie pytań, odpowiedzi, podziału lub dodaniu zestawu uruchom
@@ -423,7 +436,9 @@ Szczegóły procedury: `docs/BUILDING.md`. Licencje i autorstwo zachowaj.
 - Pliki do czytania zawierają kolejny numer w osobnej linijce przed pytaniem
   (od 1 w każdym zestawie), treść, odpowiedzi A–D i wskazanie poprawnej
   odpowiedzi, **bez technicznych identyfikatorów pytań**. Nie edytuj ich ręcznie: źródłem
-  prawdy są zestawy w `content/`. Pełny Wiedźmin i oba podzestawy muszą być zgodne.
+  prawdy są zestawy w `content/`. Jedynym bieżącym zestawem Wiedźmina jest
+  `quiz.witcher.books.pl` (książki); nie przywracaj usuniętych zbiorów o grach
+  i ekranizacjach. Pytania weryfikuj w tekstach książek, nie w adaptacjach.
 - `ruby tools/export-quiz-text.rb --check` oraz `test/games/quiz/text_export_test.rb`
   wykrywają nieaktualne kopie. Przy nowym zestawie sprawdź także jego obecność
   w eksporcie. Nie dołączaj TXT ani narzędzia eksportu do instalatora gry.

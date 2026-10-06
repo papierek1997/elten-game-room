@@ -5,7 +5,7 @@ require_relative "../../../content/quiz_pl_wikidata"
 require_relative "../../../content/quiz_witcher_pl"
 def assert(value, message); raise message unless value; end
 reference = JSON.parse(File.read(File.expand_path('../../fixtures/quiz/questions.json', __dir__), encoding: 'UTF-8'))
-pack_ids = %w[quiz.wikidata.pl quiz.witcher.pl quiz.witcher.g.pl quiz.witcher.b.pl]
+pack_ids = %w[quiz.wikidata.pl quiz.witcher.books.pl]
 data = pack_ids.to_h do |id|
   expected = reference.fetch('packs').fetch(id)
   pack = GameRoomContent.registry.pack(id)
@@ -15,9 +15,6 @@ data = pack_ids.to_h do |id|
   assert(ids.length == expected.fetch('count') && ids.uniq == ids, "#{id}: count/duplicate IDs")
   [id, questions.to_h { |question| [question.fetch('id'), question] }]
 end
-all, games, books = data.values_at('quiz.witcher.pl', 'quiz.witcher.g.pl', 'quiz.witcher.b.pl')
-assert((games.keys & books.keys).empty? && (games.keys + books.keys).sort == all.keys.sort, 'Incomplete/overlapping medium partition')
-(games.merge(books)).each { |id, question| assert(question == all[id], 'Full/detail wording differs') }
 general = data.fetch('quiz.wikidata.pl')
 assert(general.values.none? { |question| question['review_required'] }, 'Unresolved editorial notes entered the released set')
 # Confirmed key mistakes must not return; the actual wording is preserved.
@@ -70,8 +67,4 @@ reviewed_general.each do |id, expected|
   question = general.fetch(id)
   expected.each { |field, value| assert(question.fetch(field) == value, "#{id}: reviewed #{field} changed") }
 end
-%w[74a52fd22210 b22e943857b8 7b0b05c80ea6].each { |id| assert(books.key?(id), 'Loredo book village moved into games') }
-assert(books['74a52fd22210']['correct'] == 'wieś' && !books['74a52fd22210']['wrong'].include?('wioska'), 'Two synonymous correct choices')
-%w[7a193c109c77 7bfa3a3165f8 86277e2087bb].each { |id| assert(games[id]['prompt'].include?('Carys') && games[id]['prompt'].include?('Hail'), 'Carys confused with Cerys') }
-%w[86185faaec88 33a78b6ff1ee].each { |id| assert(games[id]['correct'] == 'GWINT: Wiedźmińska Gra Karciana', 'Valid Gwent answer replaced') }
-puts 'Reviewed quiz questions: fixture counts/versions, Polish source decisions and Witcher full/detail agreement: OK'
+puts 'Reviewed quiz questions: fixture counts/versions and preserved Polish source decisions: OK'

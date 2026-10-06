@@ -4,7 +4,6 @@ require_relative "../../../content/languages"
 require_relative "../../../content/quiz_general_en"
 require_relative "../../../content/quiz_pl_wikidata"
 require_relative "../../../content/quiz_witcher_pl"
-require_relative "../../../content/quiz_witcher_pl_medium_data"
 
 def assert(value, message); raise message unless value; end
 root = File.expand_path("../../..", __dir__)
@@ -27,21 +26,11 @@ data = packs.to_h do |id, pack|
   end
   [id, indexed]
 end
-media = GameRoomContent::WitcherPolishMediumData.load
 reference.fetch('excluded_ids').each do |pack_id, ids|
   ids.each do |id|
     assert(!data.fetch(pack_id).key?(id), "Rejected question remains: #{id}")
-    assert(!media.fetch('media').key?(id), "Rejected medium remains: #{id}") if pack_id == 'quiz.witcher.pl'
   end
 end
-reference.fetch('medium').each do |id, expected|
-  assert(media.fetch('media').fetch(id) == expected, "Unexpected medium: #{id}")
-end
-all, games, books = data.values_at('quiz.witcher.pl', 'quiz.witcher.g.pl', 'quiz.witcher.b.pl')
-assert((games.keys & books.keys).empty? && (games.keys + books.keys).sort == all.keys.sort, 'Witcher partition is incomplete')
-assert(all == games.merge(books), 'Witcher question content differs between full and detailed sets')
-assert(media.fetch('source_question_count') == all.size && media.fetch('media').keys.sort == all.keys.sort, 'Stale medium map')
-assert(media.fetch('prompts').empty?, 'Do not maintain conflicting wording overlays')
 general = data.fetch('quiz.wikidata.pl')
 expected_categories = ['Geografia', 'Historia', 'Kultura', 'Literatura', 'Nauka',
   'Przyroda', 'Religia', 'Sport', 'Język', 'Społeczeństwo', 'Życie codzienne']
@@ -66,12 +55,10 @@ end
 }.each do |id, prompt|
   assert(!general.key?(id) && general.values.none? { |q| q.fetch('prompt') == prompt }, "Ambiguous reviewed question returned: #{id}")
 end
-# Witcher regressions remain independent of the replaced general question set.
-assert(all.values.none? { |q| q['prompt'].match?(/z którą.*powiązana ta postać/) }, 'Vague relationship template remains')
-assert(books['6954116f2096'] == nil && games['6954116f2096']['prompt'].include?('Krew i Wino'), 'Adela Marta confused with the story The Bounds of Reason')
-assert(books['50798ae287af']['prompt'].include?('serialu Netflixa'), 'Actor still in game-only set')
-assert(games.values.any? { |q| q['correct'] == 'Lambert' && q['prompt'].include?('Keira Metz może') }, 'Conditional romance presented as certain')
-comic_relations = %w[85ec02362906 eb2bb9f3f506].map { |id| all.fetch(id) }
-assert(comic_relations.size == 2 && comic_relations.all? { |q| q['prompt'].include?('Klątwa kruków') }, 'Comic relationship assigned to the wrong comic')
-assert(all.values.select { |q| q['prompt'].include?('Hanna, chłopka') }.all? { |q| !q['prompt'].include?('Krew i Wino') }, 'Hanna assigned to the wrong game')
-puts "Quiz question integrity: pinned content, excluded questions, classifications and complete lazy Witcher views: OK"
+books = data.fetch('quiz.witcher.books.pl').values
+books.each do |q|
+  assert(q.fetch('id').length <= 32, 'Witcher question ID exceeds the event limit')
+  assert(q.fetch('source').start_with?('Andrzej Sapkowski:'), 'Missing literary attribution')
+  assert(!q.fetch('prompt').match?(/Netflix|CD Projekt|GWINT|ekranizacj/i), 'An adaptation question returned')
+end
+puts "Quiz question integrity: pinned content, excluded questions, sources and lazy packs: OK"

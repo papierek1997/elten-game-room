@@ -3,8 +3,8 @@
   "id": "c24d98cc-9ccd-4d50-b801-459da324ff60",
   "name": "Power Games",
   "description": "Accessible multiplayer games for ELTEN users.",
-  "version": "2.0.4.4",
-  "build_id": "243",
+  "version": "2.0.4.5",
+  "build_id": "244",
   "EltenAPIVersion": "3.0.4",
   "main_language": "en",
   "supported_languages": ["en", "pl", "cs", "es", "ru"],
@@ -161,8 +161,8 @@ class EltenGameRoom < Program
   extend GameRoomTableWatchRuntime
   extend GameRoomContactFiltersRuntime
   extend GameRoomAnalyticsRuntime
-  GAME_ROOM_VERSION = "2.0.4.4".freeze
-  GAME_ROOM_BUILD_ID = 243
+  GAME_ROOM_VERSION = "2.0.4.5".freeze
+  GAME_ROOM_BUILD_ID = 244
   GAME_ROOM_CAPABILITIES = ["invitations", "live_sessions", "live_session_stack"].freeze
   LOBBY_ACTIVITY_POLL_INTERVAL = 5.0
 

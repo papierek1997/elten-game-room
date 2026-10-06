@@ -8,6 +8,8 @@ assert(paths.keys.sort == manifest.fetch("supported_languages").sort, "Every int
 assert(paths.values.sort == (["README.md"] + GameRoomReleaseFiles::README_TRANSLATIONS).sort, "README runtime and installer lists differ")
 assert(GameRoomReadmeView.path("future") == paths.fetch("en"), "Future unknown language has no English fallback")
 source = File.read(File.join(root, "README.md"), encoding: "UTF-8")
+taboo_intro = "W grze taboo potrzebujesz komunikacji z innymi graczami. Możesz użyć do tego konferencji w eltenie, innego komunikatora lub grać na żywo."
+assert(source.gsub(/\s+/, " ").include?(taboo_intro), "Polish Taboo introduction differs from the requested text")
 levels = source.lines.filter_map { |line| line[/\A(#+) /, 1]&.length }
 bullets = source.lines.count { |line| line.start_with?("- ") }
 menu = EltenGameRoom::MAIN_OPTIONS
@@ -26,6 +28,7 @@ paths.each do |language, path|
   bytes = File.binread(File.join(root, path))
   markdown = bytes.dup.force_encoding(Encoding::UTF_8)
   assert(markdown.valid_encoding?, "#{language}: invalid UTF-8")
+  assert(!markdown.include?("*"), "#{language}: README contains unwanted asterisks")
   assert(markdown.lines.filter_map { |line| line[/\A(#+) /, 1]&.length } == levels, "#{language}: section structure differs from the user's README")
   assert(markdown.lines.count { |line| line.start_with?("- ") } == bullets, "#{language}: missing list entries")
   %w[Ctrl+R Ctrl+W Ctrl+I Ctrl+Shift+I Ctrl+J Ctrl+O Ctrl+M Ctrl+Shift+R Ctrl+Q Ctrl+X Ctrl+F1 Ctrl+F4 Ctrl+P Ctrl+N Ctrl+S Ctrl+Shift+S Ctrl+Home Ctrl+End Shift+C Shift+H Shift+M Ctrl+C Ctrl+Shift+H Ctrl+H].each do |key|

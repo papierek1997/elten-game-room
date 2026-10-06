@@ -39,15 +39,15 @@ Al iniciarse, el programa puede ofrecerte descargar una versión más reciente. 
 
 Power Games incluye actualmente 32 juegos:
 
-- **Cartas:** 3-5-8, 99, Biblios, Makao, Picas, Póker, Rummy, Mil, UNO, War y Scientific War.
-- **Tablero y estrategia:** Ludo, Cuatro en raya, Tres en raya, Mancala, Monopoly, Reversi, Batalla naval, Ajedrez y Damas.
-- **Dados y dominó:** Cat, head, tail, Dominó, Farkle, Mexican Train y Yahtzee.
-- **Palabras y conocimientos:** Krowa, Categorías, Quiz Party, Scrabble y Taboo.
-- **Acción con audio:** Axel Pong y Audio Ball.
+- Cartas: 3-5-8, 99, Biblios, Makao, Picas, Póker, Rummy, Mil, UNO, War y Scientific War.
+- Tablero y estrategia: Ludo, Cuatro en raya, Tres en raya, Mancala, Monopoly, Reversi, Batalla naval, Ajedrez y Damas.
+- Dados y dominó: Cat, head, tail, Dominó, Farkle, Mexican Train y Yahtzee.
+- Palabras y conocimientos: Krowa, Categorías, Quiz Party, Scrabble y Taboo.
+- Acción con audio: Axel Pong y Audio Ball.
 
 Muchos juegos tienen varias variantes. Las opciones, el número de participantes, la disponibilidad de bots y otros ajustes dependen del título. La sección «Reglas del juego» explica las reglas, la puntuación y los controles en detalle.
 
-Taboo requiere comunicación por voz entre los participantes. Se puede usar una conferencia de ELTEN, otra aplicación de voz o jugar juntos en el mismo lugar; la mesa no inicia una llamada por sí sola.
+En Taboo necesitas comunicarte con los demás jugadores. Puedes usar una conferencia de ELTEN, otra aplicación de mensajería o jugar en persona.
 
 ## Mesas y juego en compañía
 
@@ -110,13 +110,13 @@ Algunos juegos también tienen ajustes personales bajo Ctrl+P, accesibles desde 
 El widget de Power Games en la pantalla principal de ELTEN permite consultar las mesas sin abrir primero el menú principal del programa. Puedes seleccionar una mesa, comprobar sus ajustes o participantes y aceptar una invitación.
 Ctrl+N lleva directamente a la selección del juego para crear una mesa. R actualiza la lista manualmente. El widget también se actualiza al entrar en él y cada cinco segundos mientras lo utilizas.
 
-En **Ajustes → Widget** puedes activar el widget, elegir los juegos visibles y limitar la lista a mesas creadas por tus contactos.
+En Ajustes → Widget puedes activar el widget, elegir los juegos visibles y limitar la lista a mesas creadas por tus contactos.
 
 ### Tus propios atajos para crear mesas
 
 Si sueles jugar con los mismos ajustes, guárdalos en uno de los 30 atajos: de Ctrl+1 a Ctrl+0, de Alt+1 a Alt+0 o de Shift+1 a Shift+0.
 
-1. Abre **Ajustes → Widget**.
+1. Abre Ajustes → Widget.
 2. Usa Tab para llegar a la lista de atajos de creación de mesas.
 3. Selecciona una entrada y pulsa Enter. También puedes pulsar el propio atajo para seleccionarlo directamente en la lista.
 4. Elige el juego, configura la mesa y confirma la asignación.
@@ -125,11 +125,11 @@ A partir de entonces, pulsar el atajo en el widget creará una mesa con esos aju
 
 ## Notificaciones
 
-En **Ajustes → Ajustes de notificaciones**, elige los juegos cuyas nuevas mesas públicas quieres conocer. Por ejemplo, puedes seguir solo Mil y Categorías, sin avisos de los demás juegos. También puedes limitar las notificaciones a las mesas de tus contactos.
+En Ajustes → Ajustes de notificaciones, elige los juegos cuyas nuevas mesas públicas quieres conocer. Por ejemplo, puedes seguir solo Mil y Categorías, sin avisos de los demás juegos. También puedes limitar las notificaciones a las mesas de tus contactos.
 
 Por separado, elige si quieres ver invitaciones de todos, solo de tus contactos o de nadie. Las invitaciones y los avisos de mesas nuevas tienen sonidos diferentes. Sus descripciones incluyen información breve sobre el juego y sus ajustes principales; Ctrl+R ofrece los ajustes completos de la mesa.
 
-En **Ajustes → Avisos de la sala de espera** eliges por separado qué avisos se leen mientras estás en la ventana principal del programa.
+En Ajustes → Avisos de la sala de espera eliges por separado qué avisos se leen mientras estás en la ventana principal del programa.
 
 ## Sonidos y juego en segundo plano
 
@@ -140,11 +140,11 @@ Puedes ajustar el volumen sin salir del juego:
 - Shift+F2 — grupo de sonidos anterior.
 - Shift+F3 — grupo de sonidos siguiente.
 
-Puedes controlar todos los sonidos juntos o grupos separados: juego, entradas y salidas de la mesa, chat, e invitaciones y notificaciones. Encontrarás los mismos niveles en **Ajustes → Sonidos**.
+Puedes controlar todos los sonidos juntos o grupos separados: juego, entradas y salidas de la mesa, chat, e invitaciones y notificaciones. Encontrarás los mismos niveles en Ajustes → Sonidos.
 
 Pasar a mensajes, a una conferencia o a otra ventana de ELTEN no pausa la partida. Esto es especialmente importante en juegos de acción o cuando hay un límite de tiempo por turno.
 
-En **Ajustes → General** puedes elegir por separado:
+En Ajustes → General puedes elegir por separado:
 
 - si se leen los avisos de la mesa fuera de su ventana;
 - si suena la señal de tu turno;
@@ -154,7 +154,7 @@ Por defecto no se silencian los sonidos del juego. Silenciarlos en segundo plano
 
 ## Idiomas
 
-Power Games tiene su propia selección de idioma de interfaz en **Ajustes → General**. Están disponibles inglés, polaco, checo, español y ruso. La selección no cambia el idioma de todo ELTEN. Reinicia ELTEN para aplicarla a todas las partes de Power Games, incluido el widget.
+Power Games tiene su propia selección de idioma de interfaz en Ajustes → General. Están disponibles inglés, polaco, checo, español y ruso. La selección no cambia el idioma de todo ELTEN. Reinicia ELTEN para aplicarla a todas las partes de Power Games, incluido el widget.
 
 La lista opcional «Idiomas conocidos» sirve para completar traducciones que falten. Si un texto no está en el idioma principal, el programa puede recurrir a uno de los idiomas marcados y, en último término, al inglés.
 
@@ -294,8 +294,8 @@ Las pruebas locales necesitan Ruby 4.0, las dependencias descritas en la documen
 
 ## Autores y licencia
 
-**papierek** dirige el proyecto, con aportaciones de autores de juegos, traducciones y mejoras, y de las personas que prueban las versiones. Las contribuciones individuales se describen en el historial de cambios y la documentación de los componentes.
+papierek dirige el proyecto, con aportaciones de autores de juegos, traducciones y mejoras, y de las personas que prueban las versiones. Las contribuciones individuales se describen en el historial de cambios y la documentación de los componentes.
 
-**Axel Pong no es un proyecto original de papierek.** El juego se llamó originalmente Dragon-Pong, después fue mejorado por Axel y balteam y finalmente se adaptó a ELTEN con su autorización.
+Axel Pong no es un proyecto original de papierek. El juego se llamó originalmente Dragon-Pong, después fue mejorado por Axel y balteam y finalmente se adaptó a ELTEN con su autorización.
 
 El código de Power Games se distribuye bajo la GNU General Public License version 3. El texto completo está en [LICENSE](https://github.com/papierek1997/elten-game-room/blob/main/LICENSE). Los sonidos, las preguntas y otros materiales pueden tener condiciones de uso diferentes; sus fuentes y licencias se describen en [THIRD_PARTY_NOTICES.md](https://github.com/papierek1997/elten-game-room/blob/main/THIRD_PARTY_NOTICES.md).
