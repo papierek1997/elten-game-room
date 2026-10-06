@@ -1,128 +1,128 @@
-# Dodawanie gry
+# Adding a game
 
-## 1. Wybierz istniejący model
+## 1. Choose an existing model
 
-Najpierw sprawdź wspólne klasy. Gra planszowa z ruchem figura–pole powinna
-dziedziczyć po `GameRoomGames::TurnBasedBoardGame`. Inne gry dziedziczą po
-`GameRoomGames::Base`, ale nadal korzystają z `GameSurfaces`, układu, skrótów,
-historii, punktacji, rund i botów.
+Check the shared classes first. A board game with piece-to-square moves should
+inherit from `GameRoomGames::TurnBasedBoardGame`. Other games inherit from
+`GameRoomGames::Base`, but still use `GameSurfaces`, the layout, shortcuts,
+history, scoring, rounds and bots.
 
-Nie twórz nowej warstwy tylko dlatego, że jedna gra potrzebuje dodatkowej
-akcji. Najpierw spróbuj rozszerzyć specyfikację powierzchni albo dodać mały,
-wielokrotnego użytku element do istniejącego szkieletu.
+Do not create a new layer just because one game needs an additional
+action. First try extending the surface specification or adding a small,
+reusable component to the existing framework.
 
-## 2. Zaimplementuj model
+## 2. Implement the model
 
-Utwórz plik `games/<id>.rb` i zaimplementuj co najmniej:
+Create `games/<id>.rb` and implement at least:
 
-- `id`, `name` i `rule_sections`;
-- `minimum_players` i `maximum_players`;
-- `option_definitions`, jeśli gra ma warianty;
-- zdarzenia rozpoczynające partię;
-- `replay`, który deterministycznie odtwarza stan;
-- `surface_spec`, który opisuje dostępny interfejs;
-- `action_for`, który sprawdza kolej, rodzaj akcji i wszystkie reguły;
-- czytelne wpisy historii i komunikaty błędów.
+- `id`, `name` and `rule_sections`;
+- `minimum_players` and `maximum_players`;
+- `option_definitions` if the game has variants;
+- events that start a match;
+- `replay`, which reconstructs the state deterministically;
+- `surface_spec`, which describes the accessible interface;
+- `action_for`, which validates turn order, action type and all rules;
+- readable history entries and error messages.
 
-Zdarzenie powinno zawierać dane konieczne do odtworzenia ruchu, ale nie dane,
-które można bezpiecznie wyliczyć ze stanu. Prywatne informacje, takie jak ręce
-kart albo odpowiedzi przed ujawnieniem, muszą korzystać z istniejących
-mechanizmów ukrytych danych.
+An event should contain the data needed to reproduce a move, but not data
+that can safely be derived from the state. Private information, such as card
+hands or answers before they are revealed, must use the existing
+hidden-data mechanisms.
 
-## 3. Podłącz wspólny interfejs
+## 3. Connect the shared interface
 
-Wybierz właściwą powierzchnię z `lib/game_surfaces/`:
+Choose the appropriate surface from `lib/game_surfaces/`:
 
-- `piece_board` dla planszy z figurami;
-- `pawn_track` dla toru pionków;
-- `dice_tray` dla kości;
-- powierzchnię kart dla ręki i stosu;
-- `answer_sheet` albo `review_surface` dla odpowiedzi i oceniania;
-- `command_panel` dla niewielkiego zestawu poleceń.
+- `piece_board` for a board with pieces;
+- `pawn_track` for a pawn track;
+- `dice_tray` for dice;
+- a card surface for a hand and pile;
+- `answer_sheet` or `review_surface` for answers and scoring;
+- `command_panel` for a small set of commands.
 
-Historia, lista użytkowników, pomoc F1, zasady Ctrl+F1 i ogólny układ ekranu są
-wspólne. Skróty charakterystyczne dla rodziny gry dodawaj do wspólnego
-szkieletu tylko wtedy, gdy ich znaczenie jest rzeczywiście takie samo.
+History, the user list, F1 help, Ctrl+F1 rules and the overall screen layout are
+shared. Add shortcuts specific to a game family to the shared
+framework only when their meaning is genuinely the same.
 
-### Wyszukiwanie grywalnych kart
+### Finding playable cards
 
-Rzeczywista ręka karciana powinna implementować `playable_card_navigation` i
-zwracać `card_navigation_spec`. Specyfikacja podaje identyfikator kontrolki ręki
-oraz grupuje wszystkie aktualnie legalne akcje według stabilnego identyfikatora
-fizycznej karty. Nie wolno grupować według opisu ruchu: as liczony jako 1 lub 11
-to jedna karta z dwoma sposobami użycia.
+An actual card hand should implement `playable_card_navigation` and
+return `card_navigation_spec`. The specification provides the hand control's
+identifier and groups all currently legal actions by the stable identifier
+of the physical card. Do not group by move description: an ace counted as 1 or 11
+is one card with two ways to use it.
 
-Wspólna warstwa dodaje `Z` i `Shift+Z`, przechodzi cyklicznie po wskazanych
-kartach i wypowiada nową pozycję bez odświeżania formularza i bez sieci. Gra
-podaje też zbiór kart dopuszczonych do automatycznego ruchu. Ruch zostanie
-wykonany tylko przy dokładnie jednej grywalnej fizycznej karcie, dokładnie jednej
-legalnej akcji oraz jawnej zgodzie gry. W przeciwnym razie zmienia się wyłącznie
-kursor.
+The shared layer adds `Z` and `Shift+Z`, cycles through the specified
+cards and announces the new position without refreshing the form or using the network.
+The game also supplies the set of cards eligible for an automatic move. A move
+is made only when there is exactly one playable physical card, exactly one
+legal action and explicit permission from the game. Otherwise, only the
+cursor changes.
 
-Nie zezwalaj na automatyczny ruch, jeżeli po karcie pozostaje wybór koloru,
-celu, wartości, meldunku, deklaracji albo pakietu. W fazach, w których pomoc nie
-ma sensu lub dawałaby przewagę w wyścigu reakcji, zwracaj `nil`. Samo wskazanie
-karty nie może omijać `action_for`, zmieniać stanu ani wysyłać żądania.
+Do not allow an automatic move if playing the card still requires choosing a color,
+target, value, meld, declaration or packet. Return `nil` in phases where the aid
+makes no sense or would give an advantage in a reaction race. Merely selecting
+a card must not bypass `action_for`, change state or send a request.
 
-Sama kontrolka obsługująca paczki nie jest powodem wyłączenia automatycznego
-zagrania. Jeżeli reprezentuje zwykłą pojedynczą kartę jako jednoelementową
-tablicę, sprawdź rzeczywiste alternatywy legalnego ruchu. Makao blokuje automat
-przy możliwości zagrania kilku kart razem albo wyborze deklaracji; zwykłą,
-jedyną grywalną kartę bez tych alternatyw może zagrać automatycznie.
-Nawigacja Z/Shift+Z odczytuje wyłącznie wskazaną kartę, bez nagłówka ręki.
+A control that supports packets is not in itself a reason to disable automatic
+play. If it represents an ordinary single card as a one-element
+array, check the actual alternatives for the legal move. Makao blocks automatic play
+when several cards can be played together or a declaration must be chosen; an ordinary,
+sole playable card without these alternatives can be played automatically.
+Z/Shift+Z navigation reads only the selected card, without the hand heading.
 
-## 4. Dodaj bota opcjonalnie
+## 4. Optionally add a bot
 
-Ustaw `supports_bots?`, wystaw pełną listę legalnych akcji i zarejestruj
-strategię. Bot może używać heurystyk lub przeszukiwania, ale wybrana akcja musi
-wrócić do zwykłego `action_for`; strategia nie może sama dopisywać zdarzeń.
+Set `supports_bots?`, expose the full list of legal actions and register a
+strategy. A bot may use heuristics or search, but the selected action must
+go back through the ordinary `action_for`; the strategy must not append events itself.
 
-Gra turowa pozostawia `session_runner? == true`: wspólny
-`GameRoomSessionRunner` planuje, sprawdza aktualność i zapisuje decyzję.
-Nie dodawaj drugiego wykonawcy do `GameScreen` ani kontrolki gry.
-Gra realtime wyłącza ten runner tylko wtedy, gdy jej klient ma własną
-pętlę fizyki i botów; automatyczny zapis punktu nadal przechodzi zwykłą
-granicą zatwierdzania akcji. Narzędzia treningowe i raporty trzymaj w `tools/`,
-nie w bibliotekach ładowanych przez zainstalowaną grę.
+A turn-based game leaves `session_runner? == true`: the shared
+`GameRoomSessionRunner` plans, checks freshness and writes the decision.
+Do not add a second executor to `GameScreen` or the game control.
+A realtime game disables this runner only when its client has its own
+physics and bot loop; automatic point writes still pass through the ordinary
+action-commit boundary. Keep training tools and reports in `tools/`,
+not in libraries loaded by the installed game.
 
-Sprawdź osobno:
+Check separately:
 
-- brak legalnego ruchu;
-- koniec rundy i koniec partii;
-- kilka botów wykonujących kolejne ruchy;
-- informację niepełną i pełną, jeśli gra ma wariant bota „oracle”.
+- no legal move;
+- the end of a round and the end of a match;
+- several bots making consecutive moves;
+- incomplete and complete information, if the game has an “oracle” bot variant.
 
-## 5. Zarejestruj grę
+## 5. Register the game
 
-Dodaj `require_relative` oraz klasę do `GameRoomGames::CATALOG` w
-`games/catalog.rb`. `__app.rb` korzysta z tego samego katalogu przez
-`GAME_REGISTRY`. Rejestr wywołuje `rule_book`, dlatego brak zasad zostanie
-wykryty przy starcie.
+Add `require_relative` and the class to `GameRoomGames::CATALOG` in
+`games/catalog.rb`. `__app.rb` uses the same catalog through
+`GAME_REGISTRY`. The registry calls `rule_book`, so missing rules will be
+detected at startup.
 
-## Tłumaczenia interfejsu i zasad
+## Interface and rulebook translations
 
-Angielskie komunikaty oznaczaj `_`, `n_`, `p_` lub `np_`, a w głównym module
-pliku włącz `using GameRoomLocalization::Translations`. Zasady mają osobną
-strukturę angielską w `tools/data/rulebooks` i przypisanie opcji do rozdziałów
-w `tools/rulebook_option_chapters.json`; generuj je przez
-`ruby tools/compile-rulebooks.rb`. Następnie `ruby tools/translations.rb update`
-dopisze wiadomości do katalogów. Tłumacz edytuje wyłącznie `locale/PL.po`
-lub PO innego języka; `compile PL` tworzy MO oraz polskie widoki zgodności.
-Nie dodawaj nowych ręcznie utrzymywanych fragmentów tłumaczeń JSON.
-Szczegóły: `docs/TRANSLATIONS.md`.
+Mark English messages with `_`, `n_`, `p_` or `np_`, and enable
+`using GameRoomLocalization::Translations` inside the file's root module. Rulebooks have a separate
+English structure in `tools/data/rulebooks` and an option-to-chapter mapping
+in `tools/rulebook_option_chapters.json`; generate them with
+`ruby tools/compile-rulebooks.rb`. Then `ruby tools/translations.rb update`
+adds messages to the catalogs. Translators edit only `locale/PL.po`
+or another language's PO; `compile PL` creates MO and the Polish compatibility views.
+Do not add new manually maintained JSON translation fragments.
+Details: `docs/TRANSLATIONS.md`.
 
-## 6. Napisz testy
+## 6. Write tests
 
-Minimalny zestaw obejmuje:
+The minimum set covers:
 
-- prawidłowy start dla skrajnych liczb graczy;
-- legalny i nielegalny ruch;
-- pełne zakończenie partii;
-- deterministyczny replay;
-- powierzchnię i podstawowe skróty;
-- oba kierunki wyszukiwania grywalnych kart, brak ruchu, zawijanie listy oraz
-  przypadek jednej i wielu akcji tej samej fizycznej karty;
-- bota, jeśli jest obsługiwany;
-- regresję dla każdego naprawianego błędu.
+- a correct start at the minimum and maximum player counts;
+- a legal and an illegal move;
+- a match played through to completion;
+- deterministic replay;
+- the surface and basic shortcuts;
+- both directions of playable-card navigation, no move, list wrapping, and
+  the cases of one and multiple actions for the same physical card;
+- the bot, if supported;
+- a regression for every bug being fixed.
 
-Na końcu uruchom `ruby test/run.rb`.
+Finally, run `ruby test/run.rb`.

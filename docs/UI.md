@@ -1,111 +1,113 @@
-# Formularze, głośność i pomoc
+# Forms, volume and help
 
-`F2` zmniejsza, `F3` zwiększa głośność o 10 punktów (0–100%).
-`Shift+F2/F3` wybiera poprzednią/następną grupę: wszystkie, gra,
-wejście/wyjście, czat, zaproszenia/powiadomienia. Wybrana grupa zaczyna od
-„wszystkie” w nowej instancji programu. Poziomy są lokalnie zapamiętywane.
-Poziom wszystkich jest mnożnikiem, nie nadpisuje poziomów grup.
+`F2` lowers and `F3` raises the volume by 10 points (0–100%).
+`Shift+F2/F3` selects the previous/next group: all, game, join/leave, chat,
+invitations/notifications. In a new program instance, the selected group starts
+at “wszystkie” (“all”). Levels are stored locally. The all-groups level is a
+multiplier; it does not overwrite group levels.
 
-Ustawienia pokazują pięć list poziomów 0–100%, bez zdublowanych przełączników.
-Dawne wyłączenie kategorii migruje do 0%, włączenie do 100%.
-Klawisze w ustawieniach edytują te same wartości robocze: Zapisz zatwierdza,
-Anuluj odrzuca. W pozostałych oknach zmiana zapisuje wyłącznie lokalną
-głośność. Przy granicy zakresu nie ma zbędnego zapisu.
+Settings shows five lists of levels from 0–100%, without duplicate toggles.
+A previously disabled category migrates to 0%, and an enabled one to 100%.
+In Settings, the keys edit the same working values: Save commits them, and
+Cancel discards them. In other windows, a change saves only the local volume.
+There is no redundant write at the limit of the range.
 
-Zasoby aplikacji są odtwarzane przez jej SoundPool z parametrem `volume`.
-Nie zmienia się mowy, konferencji, interfejsu ELTEN-a ani równoległego
-odtwarzania dźwięków. Prezentacja powiadomienia ma tylko ścieżkę dźwięku:
-adapter odtwarza zasób z głośnością przy odczycie `sound` przez hosta podczas
-dostarczenia, po sprawdzeniu wyciszenia i odrzucenia powiadomienia; zwraca nil,
-aby host nie odtworzył go drugi raz. Samo mapowanie nie odtwarza dźwięku.
+Application resources are played through its SoundPool with the `volume`
+parameter. Speech, conferences, ELTEN's interface and concurrent sound playback
+are not changed. Notification presentation has only a sound path: the adapter
+plays the resource at the configured volume when the host reads `sound` during
+delivery, after checking whether the notification is muted or dismissed; it
+returns nil so that the host does not play it a second time. Mapping alone
+does not play sound.
 
-## Edytor opcji
+## Option editor
 
-Edytor opcji zmienia zawartość liczbowego `EditBox` przez natywne
-`set_text`, nie przez nieistniejące `text=`. Dotyczy to również wartości
-ukrytych przy budowaniu formularza i resetowania talii po wyłączeniu trybu
-dowolnego. Test zgodności musi używać rzeczywistego `EditBox` hosta;
-atrapa dodająca setter `text=` maskuje błąd już przy tworzeniu stołu.
-Regresja: `test/ui/game_option_editor_native_test.rb` (źródła binarne lub
-ścieżka `.eltsetup` jako argument; formularze EN/PL, tworzenie, zapis,
-anulowanie, tryb dowolny i zależne ustawienia Remika).
+The option editor changes the contents of a numeric `EditBox` through the
+native `set_text`, not the nonexistent `text=`. This also applies to values
+hidden when the form is built and to resetting the deck after custom mode is
+disabled. The compatibility test must use the host's real `EditBox`; a stub
+that adds a `text=` setter masks the error as early as table creation.
+Regression test: `test/ui/game_option_editor_native_test.rb` (binary sources
+or an `.eltsetup` path as an argument; EN/PL forms, creation, saving,
+cancellation, custom mode and dependent Rummy settings).
 
-## F1 i rozszerzanie interfejsu
+## F1 and extending the interface
 
-Używaj `GameRoomUI::Form` albo `GameSurfaces::RefreshAwareForm` i przekazuj
-`program:` (w układzie współdzielonym ustaw `form.game_room_program`).
-Nie twórz nowej własnej obsługi F1/F2/F3 dla gry. Host obsługuje te klawisze
-przed zdarzeniami formularza. Jednorazowy most w dyspozytorze QuickActions
-przechwytuje tylko F1, F2, F3 i Shift+F2/F3, gdy aktywna kontrolka należy do
-czekającego formularza Game Roomu. Nie zapisuje ustawień skrótów ELTEN-a,
-nie przechwytuje Ctrl+F1 i nie zmienia źródeł hosta. Nie przechowuje programu
-w globalnym mostku. Po wyjściu lub przełączeniu okna zachowanie hosta wraca.
+Use `GameRoomUI::Form` or `GameSurfaces::RefreshAwareForm` and pass
+`program:` (in a shared layout, set `form.game_room_program`). Do not create
+new game-specific F1/F2/F3 handling. The host handles these keys before form
+events. A one-time bridge in the QuickActions dispatcher intercepts only F1,
+F2, F3 and Shift+F2/F3 when the active control belongs to a waiting Game Room
+form. It does not save ELTEN shortcut settings, intercept Ctrl+F1 or change
+host sources. It does not retain the program in the global bridge. After
+leaving or switching windows, host behavior resumes.
 
-F1 zbiera `GameShortcut` i dynamiczne akcje tego ekranu przez
-`GameRoomContextHelp`. Gra, ekran, pomoc kontrolki, historia i głośność to
-kolejność listy. Duplikaty są usuwane przy zachowaniu kolejności; wymiana
-definicji fazy usuwa stare wpisy. Czat nie dostaje skrótów literowych gry
-ani skrótów historii zastępujących normalną edycję tekstu. Lista ma jedną
-widoczną kontrolkę; Enter/Escape zamyka, po zamknięciu wraca dotychczasowy
-kursor bez rekonstrukcji formularza.
+F1 collects `GameShortcut` entries and the screen's dynamic actions through
+`GameRoomContextHelp`. The list order is game, screen, control help, history
+and volume. Duplicates are removed while preserving order; replacing phase
+definitions removes old entries. Chat does not receive letter-based game
+shortcuts or history shortcuts that override normal text editing. The list has
+one visible control; Enter/Escape closes it, and the previous cursor position
+returns without rebuilding the form.
 
-## Pomoc podczas partii
+## Help during a game
 
-F1, Ctrl+F1 i [samouczek audio](AUDIO_TUTORIAL.md) korzystają ze stosu
-pomocy wspólnego formularza. Wejście trafia tylko do jego najwyższego okna;
-timery rodzica nadal działają. Odświeżenie zachowuje tekst, kursor i zaznaczenie
-pomocy. Wykonawca partii, terminy i prezentacja nadal działają zwykłą ścieżką.
-Enter/Escape zamyka pomoc bez wykonania ruchu pod spodem. Zamknięcie gry
-sprząta cały stos i audio samouczka. Powierzchnia realtime respektuje
-`game_room_background_help?` już w klatce otwierającej pomoc.
+F1, Ctrl+F1 and the [audio tutorial](AUDIO_TUTORIAL.md) use the shared form's
+help stack. Input reaches only its topmost window; parent timers keep running.
+Refresh preserves the help text, cursor and selection. The game runner,
+deadlines and presentation continue through the normal path. Enter/Escape
+closes help without making a move underneath. Closing the game cleans up the
+entire stack and tutorial audio. The real-time surface respects
+`game_room_background_help?` from the very frame that opens help.
 
-## Nawigacja w zasadach
+## Navigating the rules
 
-`GameRoomRules::Document` zachowuje sekcje i zwykły tekst, a
-`GameRoomRules::View` dodaje natywne elementy nagłówków i łączy do `EditBox`.
-Spis treści ma poziom 1, tytuły sekcji poziom 2. H i 1–6 przechodzą między
-nagłówkami, K między łączami; Shift odwraca kierunek. Enter na pozycji spisu
-przenosi kursor do nagłówka i czyta jego tytuł, bez otwierania przeglądarki.
-Zewnętrzne adresy nadal korzystają z obsługi hosta.
+`GameRoomRules::Document` preserves sections and plain text, while
+`GameRoomRules::View` adds native heading and link elements to `EditBox`.
+The table of contents is level 1, and section titles are level 2. H and 1–6
+move between headings, K between links; Shift reverses the direction. Enter
+on a table-of-contents entry moves the cursor to the heading and reads its
+title without opening a browser. External addresses still use host handling.
 
-Nie parsujemy zasad jako Markdown: znaki w akapitach i przetłumaczonych
-tytułach pozostają dosłowne. Dokument bieżących opcji ma jeden nagłówek,
-bez spisu. Skróty pozostają listą. Oba tryby pomocy (`wait` i `open_on`)
-korzystają z tego samego widoku, także ze snapshotem skrótów podczas gry.
-Regresja `test/ui/rules_native_navigation_test.rb` ładuje prawdziwy `EditBox`
-z `ELTEN_HOST_SOURCE` i sprawdza wszystkie gry oraz języki interfejsu.
+The rules are not parsed as Markdown: characters in paragraphs and translated
+titles remain literal. The current-options document has one heading and no
+table of contents. Shortcuts remain a list. Both help modes (`wait` and
+`open_on`) use the same view, including a snapshot of shortcuts during play.
+The regression test `test/ui/rules_native_navigation_test.rb` loads the real
+`EditBox` from `ELTEN_HOST_SOURCE` and checks all games and interface languages.
 
-## README w menu głównym
+## README in the main menu
 
-Po Ustawieniach, a przed Co nowego znajduje się README. Odczytuje lokalny,
-dołączony do instalatora plik: polski `README.md` lub tłumaczenie
-`content/readme/<LANG>.md` zgodne z językiem interfejsu, bez pobierania z sieci
-ani kopii tekstu w kodzie. Znane języki nie zmieniają wybranego dokumentu.
-Natywne pole Markdown tylko do odczytu pozwala poruszać się po nagłówkach
-(H, Shift+H, 1–6) i łączach (K, Shift+K). Enter w spisie treści przechodzi do
-rozdziału, a nie zamyka okna. Escape lub przycisk Zamknij wraca do menu.
-Łącza do dokumentacji deweloperskiej otwierają jej wersję na GitHubie.
-`test/ui/readme_test.rb` sprawdza wszystkie języki, ich strukturę, nagłówki,
-wewnętrzne odnośniki i wybór pliku przez rzeczywistą ścieżkę menu.
+README appears after Settings and before What's new. It reads a local file
+included in the installer: the Polish `README.md` or the translation at
+`content/readme/<LANG>.md` matching the interface language, without a network
+download or a copy of the text in code. The known-languages setting does not
+change the selected document. The native read-only Markdown field supports
+heading navigation (H, Shift+H, 1–6) and link navigation (K, Shift+K). Enter in
+the table of contents goes to the section rather than closing the window.
+Escape or the Close button returns to the menu. Links to developer
+documentation open its GitHub version. `test/ui/readme_test.rb` checks all
+languages, their structure, headings, internal links and file selection
+through the actual menu path.
 
-## Historia i opcje
+## History and options
 
-Historia korzysta z `GameRoomHistory::View` oraz `GameRoomHistory.bind`.
-`index`/`check` oznaczają pozycje znaków, `entry_index` wskazuje wpis.
-Skróty poprzednich lew lub bitew odczytują historycznych autorów, bez zamiany
-na nazwy aktualnej obsady.
+History uses `GameRoomHistory::View` and `GameRoomHistory.bind`.
+`index`/`check` refer to character positions; `entry_index` identifies an entry.
+Shortcuts for previous tricks or battles read historical authors without
+substituting the names of the current participants.
 
-Ctrl+Shift+S lub „Zapisz historię stołu” w menu zapisuje dostępną historię
-zdarzeń i czatu do pliku TXT w wybranym folderze. Działa przed partią,
-w jej trakcie i po zakończeniu; nie zapisuje ani nie zamyka samej partii.
-Plik ma kodowanie UTF-8 i unikalną nazwę, więc kolejny eksport nie nadpisuje
-poprzedniego. Powrót zachowuje fokus i niewysłany szkic czatu.
+Ctrl+Shift+S or “Zapisz historię stołu” (“Save table history”) in the menu saves
+the available event and chat history to a TXT file in the selected folder.
+It works before, during and after a game; it neither saves nor closes the game
+itself. The file uses UTF-8 and a unique name, so another export does not
+overwrite the previous one. Returning preserves focus and the unsent chat draft.
 
-Ctrl+R czyta `table_options_announcement` oparte na tych samych definicjach
-co dokument ustawień. Licznik S planszówki korzysta z
-`remaining_piece_counts(replay)` i faktycznej planszy, w kolejności graczy.
-Skróty literowe gry nie obowiązują w edytowalnym czacie.
+Ctrl+R reads `table_options_announcement`, based on the same definitions as
+the settings document. The board game's S counter uses
+`remaining_piece_counts(replay)` and the actual board, in player order.
+Letter-based game shortcuts do not apply in editable chat.
 
-Regresje: `test/ui/volume_and_help_test.rb`, `test/ui/background_help_test.rb`,
+Regression tests: `test/ui/volume_and_help_test.rb`, `test/ui/background_help_test.rb`,
 `test/ui/background_help_native_test.rb`, `test/ui/background_help_game_screen_test.rb`
-oraz testy odpowiedniej powierzchni i gry.
+and the tests for the relevant surface and game.

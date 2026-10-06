@@ -1,75 +1,79 @@
-# Współtworzenie ELTEN Game Room
+# Contributing to ELTEN Game Room
 
-Dziękuję za chęć pomocy. Projekt jest przede wszystkim interfejsem dźwiękowym i
-klawiaturowym, dlatego poprawność działania z czytnikiem ekranu jest tak samo
-ważna jak poprawność reguł gry.
+Thank you for wanting to help. This project is primarily an audio and
+keyboard interface, so working correctly with a screen reader is just as
+important as implementing the game rules correctly.
 
-## Zasady pracy
+## Workflow
 
-1. Utwórz gałąź od aktualnego `main`.
-2. Jedna gałąź i jeden pull request powinny rozwiązywać jeden spójny problem.
-3. Dodawaj lub aktualizuj test odtwarzający zmieniane zachowanie.
-4. Uruchom `ruby test/run.rb`.
-5. W opisie pull requesta podaj przyczynę, zakres zmiany i sposób ręcznego
-   sprawdzenia w ELTEN-ie.
+1. Create a branch from the current `main`.
+2. Each branch and pull request should address one coherent problem.
+3. Add or update a test that reproduces the behavior being changed.
+4. Run `ruby test/run.rb`.
+5. In the pull request description, explain the cause, the scope of the change,
+   and how to check it manually in ELTEN.
 
-## Ważne ograniczenia projektu
+## Important project constraints
 
-- Korzystaj z event-driven UI ELTEN-a oraz wspólnych klas w `lib/`.
-- Nie dodawaj ręcznej pętli zdarzeń ani okresowego odświeżania, jeśli istnieje
-  zdarzeniowy mechanizm aktualizacji.
-- Nie omijaj `GameRepository`, walidacji gry ani `GameRoomTransport` przy
-  zapisywaniu ruchu.
-- Publiczne stoły wyszukuj przez discovery LiveSessions, a ich stan zapisuj w
-  stosie sesji. Nie dodawaj pomocniczych tabel ani Signals do dołączania,
-  synchronizacji pokoju lub ruchów.
-- Komunikaty powinny być krótkie, jednoznaczne i możliwe do przejrzenia w
-  historii. Unikaj niepotrzebnego odbudowywania formularza i przesuwania fokusu.
-- Nie zmieniaj numeru wersji ani buildu w zwykłym pull requeście. Robi to autor
-  podczas przygotowania wydania.
+- Use ELTEN's event-driven UI and the shared classes in `lib/`.
+- Do not add a manual event loop or periodic refresh when an event-driven
+  update mechanism is available.
+- Do not bypass `GameRepository`, game validation or `GameRoomTransport` when
+  writing a move.
+- Find public tables through LiveSessions discovery and store their state in
+  the session stack. Do not add auxiliary tables or Signals for joining,
+  room synchronization or moves.
+- Messages should be short, unambiguous and available for review in the
+  history. Avoid unnecessary form rebuilds and focus changes.
+- Do not change the version or build number in an ordinary pull request.
+  The author does this when preparing a release.
 
-## Bezpieczeństwo i prywatność
+## Security and privacy
 
-Nigdy nie dodawaj do repozytorium:
+Never add the following to the repository:
 
-- tokenów MCP lub nagłówków autoryzacyjnych;
-- certyfikatu albo prywatnego klucza podpisującego;
-- profilu ELTEN-a, logów zawierających prywatne rozmowy lub danych kont;
-- gotowych podpisanych paczek `.eltsetup`.
+- MCP tokens or authorization headers;
+- a signing certificate or private signing key;
+- an ELTEN profile, logs containing private conversations or account data;
+- finished, signed `.eltsetup` packages.
 
-Przed dołączeniem logu usuń nazwy użytkowników, tokeny i treści prywatne, jeśli
-nie są niezbędne do odtworzenia problemu.
+Before attaching a log, remove usernames, tokens and private content unless
+they are essential to reproducing the problem.
 
-## Tłumaczenia interfejsu
+## Interface translations
 
-Jedynym edytowalnym źródłem tłumaczeń danego języka jest jego plik
-`locale/<LANG>.po`, np. `PL.po`. Używamy standardu GetText jak ELTEN.
-Po zmianach angielskich napisów uruchom `ruby tools/translations.rb update`;
-po tłumaczeniu `ruby tools/translations.rb compile PL` i `check PL`.
-Polskie pola zasad i polskie listy zmian są generowane z PO i nie mogą
-nadpisywać pracy tłumacza. W `locale/` są wyłącznie PO/MO, szablon POT
-i instrukcja; nie dodawaj fragmentów JSON. Słowniki Scrabble/Krowy, pytania
-quizu i karty Taboo pozostają osobnymi danymi rozgrywki.
-Zależności i dokładny przebieg: `docs/TRANSLATIONS.md`.
+The only editable translation source for a language is its
+`locale/<LANG>.po` file, such as `PL.po`. We use the GetText standard, as ELTEN does.
+After changing English strings, run `ruby tools/translations.rb update`;
+after translating, run `ruby tools/translations.rb compile PL` and `check PL`.
+Polish rulebook fields and Polish changelogs are generated from PO and must not
+overwrite the translator's work. `locale/` contains only PO/MO files, the POT
+template and instructions; do not add JSON fragments. Scrabble/Krowa dictionaries,
+quiz questions and Taboo cards remain separate gameplay data.
+Dependencies and the exact workflow: `docs/TRANSLATIONS.md`.
 
-## Nowe gry
+## New games
 
-Nowa gra powinna mieć stabilne reguły, deterministyczne odtwarzanie z listy
-zdarzeń, testy legalnych i nielegalnych ruchów oraz dostępny interfejs oparty na
-wspólnych powierzchniach. Szczegółowa lista kontrolna jest w
+A new game should have stable rules, deterministic replay from an event list,
+tests of legal and illegal moves, and an accessible interface built on
+shared surfaces. The detailed checklist is in
 `docs/ADDING_A_GAME.md`.
 
-## Dokumentacja i artefakty
+## Documentation and artifacts
 
-Jedynym README jest główny `README.md`. Szczegółowe instrukcje umieszczaj
-w `docs/` i podpinaj do indeksu; nie twórz README w podkatalogach.
-Wejścia generatorów należą do `tools/data/`, w tym JSON-y zasad
-w `tools/data/rulebooks/`. Czytelne eksporty pytań quizu pozostają w `docs/`.
+Maintain technical and contributor documentation in English, in the existing
+files, without parallel Polish copies. Put detailed instructions in `docs/`
+and link them from the index; do not create additional README files in subdirectories.
+The player guide remains multilingual: Polish in `README.md` and the other
+supported languages in `content/readme/`. Keep those versions, and the game
+rules, up to date together as required by `AGENTS.md`.
+Generator inputs belong in `tools/data/`, including rulebook JSON files
+in `tools/data/rulebooks/`. Readable quiz-question exports remain in `docs/`.
 
-`docs/` zawiera bieżące kontrakty, instrukcje i czytelne eksporty treści;
-indeks jest w [docs/INDEX.md](docs/INDEX.md). Aktualizuj dokument właściciela
-zachowania zamiast dopisywać raport oznaczony datą lub numerem buildu.
-Historię implementacji zachowuje Git. Wyniki testów, benchmarków, jednorazowych
-audytów i diagnostyk zapisuj w ignorowanym `tmp/` albo poza repozytorium.
-Dane wzorcowe wymagane przez testy należą do `test/fixtures/`; mają opisywać
-oczekiwane zachowanie, bez całych raportów i dzienników ich powstawania.
+`docs/` contains current contracts, instructions and readable content exports;
+the index is [docs/INDEX.md](docs/INDEX.md). Update the document that owns the
+behavior instead of adding a report labeled with a date or build number.
+Git preserves the implementation history. Save test results, benchmarks,
+one-off audits and diagnostics in the ignored `tmp/` directory or outside the repository.
+Reference data required by tests belongs in `test/fixtures/`; it should describe
+expected behavior, without entire reports or logs of how that data was created.

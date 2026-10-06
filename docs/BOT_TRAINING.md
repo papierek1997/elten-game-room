@@ -1,11 +1,11 @@
-# Trening i ocena strategii botów
+# Training and evaluating bot strategies
 
-Kod w `tools/training/` działa poza aplikacją i nie trafia do instalatora.
-Wyniki treningu nie są automatycznie przenoszone do strategii używanych przez graczy.
+Code in `tools/training/` runs outside the application and is not included in the installer.
+Training results are not automatically transferred to the strategies used by players.
 
 ## Spades
 
-Jedno CLI obsługuje trening i niezależną ocenę wybranych profili:
+One CLI handles training and independent evaluation of selected profiles:
 
 ```console
 ruby tools/spades.rb train --help
@@ -13,32 +13,32 @@ ruby tools/spades.rb train --profiles standard_team_p4_t2 --output candidate.jso
 ruby tools/spades.rb evaluate --report candidate.json --profiles standard_team_p4_t2 --output evaluation.json
 ```
 
-Nazwy profili pochodzą z `SpadesLearning::ARRANGEMENT_PROFILES` w
-`spades_training.rb`. Bez `--profiles` trening obejmuje wszystkie układy,
-a ocena wszystkie profile z raportu. `evaluate` porównuje kandydata z
-bieżącymi profilami runtime na innych ziarnach; domyślnie wykonuje też
-osobną kalibrację obu strategii. Nie odtwarza historycznych buildów.
+Profile names come from `SpadesLearning::ARRANGEMENT_PROFILES` in
+`spades_training.rb`. Without `--profiles`, training covers all arrangements,
+and evaluation covers all profiles in the report. `evaluate` compares the candidate
+with the current runtime profiles using different seeds; by default, it also performs
+a separate calibration of both strategies. It does not reproduce historical builds.
 
-`train` zachowuje kampanie, walidację i końcowy zbiór holdout. Niedokończona
-partia w holdout blokuje przyjęcie kandydata. Niedokończona ocena końcowa
-lub jej kalibracja kończy polecenie kodem 2, błąd argumentów kodem 1. Wyjście JSON
-trafia na stdout lub do nowego pliku `--output`; istniejący plik nie jest
-nadpisywany. Komunikaty postępu trafiają na stderr.
+`train` retains campaigns, validation and the final holdout set. An unfinished
+match in the holdout blocks acceptance of the candidate. An incomplete final evaluation
+or its calibration exits with code 2; an argument error exits with code 1. JSON output
+goes to stdout or a new `--output` file; an existing file is not
+overwritten. Progress messages go to stderr.
 
-`spades_workflow.rb` współdzieli porównania, kryteria przyjęcia i formatowanie
-raportu. `spades_training.rb` zawiera macierz scenariuszy, arenę i trening.
-Zmiana wag produkcyjnych wymaga osobnej edycji i weryfikacji; CLI ich nie zapisuje.
+`spades_workflow.rb` shares comparisons, acceptance criteria and report
+formatting. `spades_training.rb` contains the scenario matrix, arena and training.
+Changing production weights requires a separate edit and verification; the CLI does not write them.
 
-## Wspólne biblioteki
+## Shared libraries
 
-- `match_runner.rb`: pełna partia na `GameRoomSimulation::Environment`,
-  strategie przypisane uczestnikom i jawny powód przerwania.
-- `game_training.rb`: tablica wartości decyzji, self-play i turniej ze zmianą
-  miejsc oraz raportami wyników; polityka ma serializację JSON.
-- `learned_strategy.rb`: strategia ucząca się używana przez self-play,
-  niedostępna po samym wczytaniu runtime.
+- `match_runner.rb`: a complete match in `GameRoomSimulation::Environment`,
+  strategies assigned to participants and an explicit reason for termination.
+- `game_training.rb`: a decision-value table, self-play and a tournament with
+  seat rotation and result reports; the policy supports JSON serialization.
+- `learned_strategy.rb`: a learning strategy used by self-play,
+  unavailable when only the runtime is loaded.
 
-Te biblioteki nie są grami ani osobnymi poleceniami CLI. Scenariusze regresji
-są w `test/tooling/training_test.rb`, `test/games/spades/learning_test.rb`,
-`test/games/spades/tool_test.rb` i testach symulacji. Pomocnik audytu Tysiąca
-należy do `test/support/tysiac_audit.rb`.
+These libraries are neither games nor separate CLI commands. Regression scenarios
+are in `test/tooling/training_test.rb`, `test/games/spades/learning_test.rb`,
+`test/games/spades/tool_test.rb` and the simulation tests. The Tysiąc audit helper
+belongs in `test/support/tysiac_audit.rb`.

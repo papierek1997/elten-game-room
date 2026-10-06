@@ -1,166 +1,176 @@
-# Redakcja pytań quizowych
+# Editing quiz questions
 
-Pytanie ma brzmieć tak, jakby przygotowała je osoba znająca temat i umiejąca
-o nim opowiadać. Gracz powinien zastanawiać się nad odpowiedzią, nie nad tym,
-co autor miał na myśli. Trzy błędne odpowiedzi są równie ważne jak pytanie
-i odpowiedź poprawna: mają sprawdzać wiedzę, a nie zdradzać rozwiązanie.
+A question should sound as though it was written by someone who knows the
+subject and can explain it. Players should be thinking about the answer,
+not trying to work out what the author meant. The three wrong answers are
+just as important as the question and the correct answer: they should test
+knowledge, not give the solution away.
 
-Te zasady obowiązują przy tworzeniu, importowaniu, rozbudowie, ratowaniu
-starych zestawów i tłumaczeniu pytań, niezależnie od języka. Przeczytaj cały
-dokument przed rozpoczęciem takiej pracy. Dotyczy on także treści z PR-ów
-i gotowych baz. Nie upoważnia do przepisywania istniejących zestawów przy
-okazji innych zmian ani do zmieniania tekstów, które użytkownik polecił
-zachować. Szczegółowe polecenia użytkownika mają pierwszeństwo.
+These rules apply to writing, importing, expanding, repairing old sets and
+translating questions, regardless of language. Read the entire document before
+starting this work. It also applies to content from PRs and existing question
+databases. It does not authorise rewriting existing sets as part of unrelated
+changes or altering wording the user has asked to preserve. The user's
+specific instructions take precedence.
 
-## Zakres i sposób pracy z materiałem
+## Scope and approach to the material
 
-Najpierw ustal źródła, temat, język, odbiorców i zakres zmian. Rozróżniaj:
+First establish the sources, subject, language, audience and scope of changes.
+Distinguish between:
 
-- Nowe pytania: samodzielna redakcja na podstawie sprawdzonych faktów.
-- Adaptację gotowej bazy: zachowanie dobrego brzmienia, z poprawkami tylko
-  w uzgodnionym zakresie. Nie przerabiaj dobrego pytania po to, żeby było inne.
-- Ratowanie słabego zestawu: stare pytanie jest tropem do sprawdzenia,
-  nie źródłem prawdy. Po weryfikacji napisz od nowa pytanie i wszystkie
-  odpowiedzi, bez podmieniania kilku słów w dawnym szablonie.
-- Tłumaczenie: zachowanie sprawdzanego faktu i sensu wszystkich odpowiedzi,
-  ale naturalna konstrukcja w języku docelowym, nie kopia szyku oryginału.
+- New questions: original writing based on verified facts.
+- Adapting an existing database: preserve good wording, making changes only
+  within the agreed scope. Do not rework a good question just to make it different.
+- Repairing a weak set: the old question is a lead to investigate, not a source
+  of truth. After verification, rewrite the question and all its answers,
+  rather than swapping a few words in the old template.
+- Translation: preserve the fact being tested and the meaning of all answers,
+  but use natural target-language constructions rather than copying the
+  original word order.
 
-Zapoznaj się z zaakceptowanymi pytaniami z danego zestawu. Traktuj je jako
-wzór poziomu, tonu i szczegółowości, nie jako szablon do seryjnego powielania.
-Nie narzucaj własnego limitu pytań ani nie uzupełniaj zestawu słabymi pozycjami
-dla osiągnięcia liczby. Przy dużym materiale pracuj w partiach pozwalających
-przeczytać i sprawdzić każdą pozycję.
+Read the accepted questions in the set. Treat them as a guide to difficulty,
+tone and level of detail, not as a template for mass reproduction. Do not
+impose your own question limit or pad the set with weak entries to reach a
+number. For large collections, work in batches that allow you to read and
+check every item.
 
-## Fakty i źródła
+## Facts and sources
 
-Każde nowe pytanie musi mieć sprawdzoną podstawę. Znajdź w dozwolonym źródle
-fragment potwierdzający dokładnie to, o co pytasz. Przeczytaj jego kontekst:
-trafienie nazwy w wyszukiwarce nie potwierdza jeszcze osoby, wydarzenia,
-związku przyczynowego ani czasu.
+Every new question must have a verified basis. Find a passage in an allowed
+source that confirms exactly what you are asking about. Read its context:
+finding a name in a search does not by itself confirm the person, event,
+causal relationship or time.
 
-- W materiałach literackich odróżniaj zdarzenie od plotki, przypuszczenia,
-  relacji bohatera, legendy lub treści obrazu. W razie potrzeby pytaj
-  „Według opowieści…”, zamiast przedstawiać relację jako bezsporny fakt.
-- Nie mieszaj książek, gier, ekranizacji, wydań i alternatywnych historii.
-  Tytuł lub inne doprecyzowanie dodaj tam, gdzie rzeczywiście rozstrzyga
-  zakres. W zestawie książkowym również błędne odpowiedzi nie mogą być
-  zapożyczeniami z wykluczonych adaptacji.
-- Jeżeli użytkownik ograniczył źródła do dostarczonych książek, sprawdzaj
-  właśnie w nich. Wiedza modelu, wiki ani inne pytanie z quizu ich nie zastępują.
-- Przy danych zmiennych w czasie podaj potrzebną datę lub okres i sprawdź
-  źródło dla tego okresu. Unikaj pytań o „obecnego” rekordzistę bez daty.
-- Poprawiaj oczywiste literówki w dozwolonym zakresie. Nie odtwarzaj
-  nieczytelnej transkrypcji na podstawie domysłu. Nierozstrzygnięty tekst
-  odłóż do wyjaśnienia lub odrzuć, zamiast dopowiadać brakujące wydarzenie.
-- Sprawdź prawa do wykorzystania materiału i zachowaj autorstwo oraz
-  wymagane informacje o pochodzeniu. Publiczna dostępność nie oznacza
-  zgody na skopiowanie całego zestawu; przeredagowanie nie znosi licencji.
+- In literary material, distinguish an event from a rumour, supposition,
+  a character's account, a legend or the content of a painting. Where needed,
+  ask “Według opowieści…” (“According to the story…”) rather than presenting
+  an account as an undisputed fact.
+- Do not mix books, games, screen adaptations, editions and alternative
+  histories. Add a title or other qualification where it actually establishes
+  the scope. In a book-based set, even the wrong answers must not be borrowed
+  from excluded adaptations.
+- If the user has limited the sources to supplied books, verify the facts in
+  those books. Model knowledge, a wiki or another quiz question is no substitute.
+- For information that changes over time, specify the necessary date or period
+  and check a source for that period. Avoid undated questions about the
+  “obecnego” (“current”) record holder.
+- Correct obvious typos within the permitted scope. Do not reconstruct an
+  illegible transcript by guessing. Set unresolved text aside for clarification
+  or reject it, rather than inventing the missing event.
+- Check the rights to use the material and preserve attribution and required
+  provenance information. Public availability does not grant permission to
+  copy an entire set; rewriting does not remove licence obligations.
 
-W notatkach redakcyjnych powiąż każde nowe lub zmienione pytanie ze źródłem:
-tytułem i rozdziałem, stroną konkretnego wydania, zakresem linii pliku albo
-adresem i wskazanym fragmentem. Zapisz krótko, jaki fakt został potwierdzony.
-Przy numerach linii określ plik i sposób ich liczenia. Dowód ma umożliwiać
-ponowne odnalezienie fragmentu, nie być samym zapewnieniem „sprawdzono”.
+In editorial notes, link every new or changed question to its source:
+a title and chapter, a page in a specific edition, a range of lines in a file,
+or an address and a specified passage. Briefly record which fact was confirmed.
+For line numbers, identify the file and how the lines were counted. The
+evidence must let someone find the passage again, not merely assert “checked”.
 
-Prywatne teksty książek, długie cytaty i robocze raporty nie trafiają do
-instalatora ani automatycznie do repozytorium. Raport przechowuj w ignorowanym
-`tmp/` albo w uzgodnionym katalogu poza repo. W danych zachowaj wymagane
-pochodzenie i licencję zgodnie z [informacją o źródłach](../content/QUIZ_DATA_NOTICE.md).
+Private book texts, long quotations and working reports do not belong in the
+installer and must not automatically be added to the repository. Keep the
+report in the ignored `tmp/` directory or an agreed location outside the
+repository. Preserve the required provenance and licence in the data as
+described in the [source notice](../content/QUIZ_DATA_NOTICE.md).
 
-## Naturalne brzmienie
+## Natural wording
 
-Pisz zwyczajnym, poprawnym językiem quizu: konkretnie, bez urzędowego tonu,
-ozdobników i zbędnych wstępów. Naturalność nie oznacza potocznych wtrętów,
-żartów dopisywanych na siłę ani celowego pozostawiania błędów.
+Use ordinary, correct quiz language: specific, without bureaucratic wording,
+embellishments or unnecessary introductions. Natural wording does not mean
+colloquial asides, forced jokes or deliberately leaving errors in place.
 
-- Zaczynaj od właściwego pytania. Zamiast „W kontekście wydarzeń
-  przedstawionych w utworze, jaka postać pełniła funkcję dowódcy…” zazwyczaj
-  wystarczy „Kto dowodził…?”. Zachowaj jednak kontekst potrzebny do odpowiedzi.
-- Pytaj wprost o czynność lub relację. „Kim była żona X?” brzmi lepiej niż
-  „Jaką osobę przypisano X w charakterze małżonka?”. Nie myl przy tym
-  małżeństwa, partnerstwa i pokrewieństwa.
-- Unikaj konstrukcji z eksportu danych, np. „X — zawód tej postaci?”
-  lub „Do jakiej kategorii przynależności państwowej przypisano X?”.
-  Dobierz pojęcie do źródła: obywatelstwo, narodowość, miejsce urodzenia
-  i służba konkretnemu władcy nie znaczą tego samego.
-- Nie dodawaj do każdej pozycji „w uniwersum”, „w książkach z cyklu”,
-  „spośród wymienionych” czy „jak wiadomo”. Nie są to zakazane wyrażenia;
-  zostają tylko wtedy, gdy w danym pytaniu coś wyjaśniają.
-- Nie wymuszaj różnorodności samym zastępowaniem „kto” przez „jaka postać”.
-  Krótkie pytania „Kto…?”, „Gdzie…?” i „Dlaczego…?” są normalne.
-  Różnorodność ma wynikać głównie z treści i sposobu sprawdzania wiedzy.
-- Nie przycinaj tekstu do telegraficznych urywków. Dwa proste zdania bywają
-  czytelniejsze niż jedno zdanie z kilkoma wtrąceniami.
-- Nie podnoś trudności zagmatwaną składnią. Rzadziej znany fakt może dać
-  trudne pytanie, ale polecenie nadal powinno być jasne.
+- Start with the actual question. Instead of “W kontekście wydarzeń
+  przedstawionych w utworze, jaka postać pełniła funkcję dowódcy…”, the shorter
+  “Kto dowodził…?” will usually do. Retain any context needed to answer.
+- Ask directly about the action or relationship. “Kim była żona X?” sounds
+  better than “Jaką osobę przypisano X w charakterze małżonka?”. Do not,
+  however, confuse marriage, partnership and kinship.
+- Avoid constructions that sound like a data export, such as
+  “X — zawód tej postaci?” or “Do jakiej kategorii przynależności państwowej przypisano X?”.
+  Choose the term that matches the source: citizenship, nationality,
+  birthplace and service to a particular ruler do not mean the same thing.
+- Do not add “w uniwersum”, “w książkach z cyklu”, “spośród wymienionych”
+  or “jak wiadomo” to every item. These expressions are not forbidden;
+  keep them only when they clarify something in that question.
+- Do not force variety merely by replacing “kto” with “jaka postać”.
+  Short questions such as “Kto…?”, “Gdzie…?” and “Dlaczego…?” are normal.
+  Variety should come mainly from the content and the way knowledge is tested.
+- Do not cut the text down to telegraphic fragments. Two simple sentences
+  can be clearer than one sentence with several asides.
+- Do not increase difficulty through convoluted syntax. A less familiar fact
+  may make a question difficult, but the question itself should remain clear.
 
-Przeczytaj pytanie i odpowiedzi tak, jak usłyszy je gracz, bez oglądania
-notatki ze źródłem. Jeśli sam musisz wrócić do początku, aby rozpoznać
-podmiot lub sens zdania, popraw redakcję.
+Read the question and answers as the player will hear them, without looking
+at the source note. If you have to return to the beginning to identify the
+subject or understand the sentence, revise the wording.
 
-## Jednoznaczne pytanie
+## An unambiguous question
 
-Pytanie musi działać samodzielnie, także po wylosowaniu między pytaniami
-o zupełnie innych sprawach. Nie odsyłaj do „poprzedniego pytania”,
-„wspomnianego bohatera”, „tego miasta” ani „powyższych wydarzeń”, jeśli
-odniesienie nie znajduje się w tej samej pozycji.
+The question must work on its own, even when randomly placed between
+questions about entirely different subjects. Do not refer to “poprzedniego pytania”,
+“wspomnianego bohatera”, “tego miasta” or “powyższych wydarzeń” unless
+the referent appears in the same item.
 
-Sprawdź przed przyjęciem:
+Before accepting it, check:
 
-- Czy pytasz o jeden konkretny fakt? Jeśli łączysz fakty, cała odpowiedź
-  musi dawać się jednoznacznie ocenić.
-- Czy wiadomo, o którą osobę, bitwę, wersję utworu lub etap fabuły chodzi?
-  Dodaj potrzebne nazwisko, miejsce, okres lub tytuł, nie streszczenie sceny.
-- Czy słowa „pierwszy”, „największy”, „jedyny” albo „najstarszy” mają jasną
-  miarę i zakres? Nie zamieniaj oceny lub spornego pierwszeństwa w pewnik.
-- Czy „dlaczego” pyta o przyczynę podaną w źródle, a nie dowolną interpretację?
-- Czy pytanie nie zawiera już rozwiązania lub nie eliminuje części odpowiedzi?
-- Czy odpowiedź nie zależy od wyróżnienia kolorem, kursywą, układem strony
-  lub inną wskazówką niesłyszalną w syntezie?
+- Are you asking about one specific fact? If you combine facts, the whole
+  answer must be unambiguously assessable.
+- Is it clear which person, battle, version of a work or stage of the plot
+  is meant? Add the necessary surname, place, period or title, not a scene summary.
+- Do words such as “pierwszy”, “największy”, “jedyny” or “najstarszy”
+  have a clear measure and scope? Do not turn an opinion or a disputed claim
+  of precedence into a certainty.
+- Does “dlaczego” ask for a cause stated in the source, rather than an
+  arbitrary interpretation?
+- Does the question already contain the solution or rule out some answers?
+- Does the answer depend on colour, italics, page layout or another clue
+  that cannot be heard through speech synthesis?
 
-Nie zostawiaj w treści trzech wyliczonych możliwości, jeżeli gra przedstawia
-cztery odpowiedzi. Gracz nie powinien móc odrzucić czwartej tylko dlatego,
-że nie było jej w pytaniu. Redaguj minimalnie: „Która z trzech rzek…” może
-stać się „Która z rzek…”. Po usunięciu wyliczenia sprawdź jednak ponownie
-jednoznaczność — pierwotne możliwości mogły zawężać sens pytania.
+Do not leave three possibilities listed in the question when the game
+presents four answers. Players should not be able to reject the fourth merely
+because it was not mentioned in the question. Make the smallest necessary
+edit: “Która z trzech rzek…” can become “Która z rzek…”. After removing
+the list, however, check again for ambiguity: the original options may have
+narrowed the meaning of the question.
 
-Unikaj podwójnych przeczeń. Pytania „Który… nie…” można stosować oszczędnie,
-jeżeli przeczenie jest wyraźne również w odczycie. Nie opieraj rozstrzygnięcia
-na przeoczeniu drobnego słowa.
+Avoid double negatives. Questions of the form “Który… nie…” may be used
+sparingly if the negation is clear when read aloud as well. Do not make the
+outcome depend on overlooking a small word.
 
-## Cztery odpowiedzi
+## Four answers
 
-Standard zestawów to jedna poprawna i trzy różne błędne odpowiedzi. Każdą
-z trzech trzeba umieć obronić jako prawdopodobną pomyłkę, a następnie
-wykluczyć w dokładnym zakresie pytania.
+The standard format is one correct answer and three distinct wrong answers.
+You must be able to justify each of the three as a plausible mistake and
+then rule it out within the exact scope of the question.
 
-1. Zachowaj wspólny rodzaj odpowiedzi. Na pytanie o miasto podaj miasta,
-   o zawód — zawody, o władcę — osoby, które sensownie można pomylić.
-   Nie mieszaj nazwy państwa z nazwą kontynentu, chyba że pytanie faktycznie
-   dopuszcza taki wspólny poziom odpowiedzi.
-2. Dopasuj kontekst: epokę, region, dziedzinę, rolę, uniwersum i potrzebne
-   cechy osoby. Jeśli pytanie mówi o mężu bohaterki, nie dodawaj kobiety
-   jako łatwej do wyeliminowania odpowiedzi. Nie wnioskuj jednak o płci
-   z samego imienia — sprawdź konkretną osobę.
-3. Dopasuj gramatykę wszystkich czterech propozycji do pytania: przypadek,
-   liczbę, rodzaj i przyimek. Żadna nie może odpadać wyłącznie językowo.
-4. Zachowaj podobny stopień szczegółowości i styl. Nie otaczaj jednego
-   pełnego, precyzyjnego opisu trzema ogólnikami. Długości nie muszą być
-   identyczne; nie wydłużaj nazw sztucznymi dopiskami dla równego wyglądu.
-5. Sprawdź, czy nie są to aliasy, synonimy, różne pisownie tej samej nazwy
-   albo odpowiedzi częściowo zawierające się w sobie. „Włochy” i „Italia”
-   nie tworzą dwóch niezależnych możliwości w pytaniu o państwo.
-6. Sprawdź wszystkie odpowiedzi po zmianie kolejności. Nie używaj „obie
-   powyższe”, „A i C”, „żadna z pozostałych” ani podobnych odwołań do listy.
-7. Nie wymyślaj fałszywych osób, miejsc ani terminów tylko po to, by wypełnić
-   wolne miejsca. Wyjątkiem może być pytanie rzeczywiście sprawdzające
-   rozpoznanie nieistniejącego pojęcia, jeśli taki charakter jest jasny.
-8. Nie uznawaj odpowiedzi za fałszywą dlatego, że nie wystąpiła w jednym
-   znalezionym fragmencie. Sprawdź realną możliwość drugiego rozwiązania.
-   Jeśli pozostaje nierozstrzygnięta, zawęź pytanie zgodnie ze źródłem,
-   wymień tę odpowiedź lub odłóż pozycję.
+1. Keep answers in the same category. For a question about a city, give
+   cities; about an occupation, occupations; about a ruler, people who could
+   reasonably be confused with one another. Do not mix a country name with
+   a continent name unless the question genuinely allows that shared level
+   of answer.
+2. Match the context: period, region, field, role, fictional universe and the
+   relevant characteristics of the person. If the question refers to a female
+   character's husband, do not add a woman as an easily eliminated answer.
+   Do not infer gender from the name alone, however; check the actual person.
+3. Match the grammar of all four options to the question: case, number,
+   gender and preposition. None may be eliminated on linguistic grounds alone.
+4. Keep a similar level of detail and style. Do not surround one complete,
+   precise description with three vague ones. Lengths need not be identical;
+   do not lengthen names with artificial additions to make them look equal.
+5. Check for aliases, synonyms, different spellings of the same name or
+   partially overlapping answers. “Włochy” and “Italia” do not make two
+   independent options in a question about a country.
+6. Check all answers after changing their order. Do not use “obie powyższe”,
+   “A i C”, “żadna z pozostałych” or similar references to the list.
+7. Do not invent fake people, places or terms merely to fill empty slots.
+   A question that genuinely tests recognition of a nonexistent concept may
+   be an exception, provided that purpose is clear.
+8. Do not label an answer false merely because it did not appear in one
+   passage you found. Check whether it could genuinely be a second solution.
+   If that remains unresolved, narrow the question in line with the source,
+   replace that answer or set the item aside.
 
-Przykład do oceny konstrukcji, nie polecenie dodania pytania:
+An example for assessing the construction, not an instruction to add the question:
 
 > W którym państwie leży uzdrowisko Karlowe Wary?
 >
@@ -171,219 +181,231 @@ Przykład do oceny konstrukcji, nie polecenie dodania pytania:
 >
 > Poprawna odpowiedź: A.
 
-Wszystkie propozycje są państwami z sensownego kontekstu geograficznego.
-Zestaw „Czechy, Bałtyk, Europa, Warszawa” sprawdzałby przede wszystkim
-rozpoznanie kategorii, nie położenie uzdrowiska.
+All the options are countries from a reasonable geographical context.
+The set “Czechy, Bałtyk, Europa, Warszawa” would mainly test recognition of
+categories, not the location of the spa town.
 
-Pytania faktycznie dwuwariantowe, np. tak/nie, nie nadają się do tego formatu.
-Nie dokładaj „czasami” i „nie wiadomo” jako pozornie innych odpowiedzi.
-Odrzuć takie pozycje. Jeśli nie da się znaleźć trzech uczciwych pomyłek,
-nie ratuj pytania absurdalnymi propozycjami.
+Questions that genuinely have only two alternatives, such as yes/no, do not
+fit this format. Do not add “czasami” and “nie wiadomo” as supposedly
+distinct answers. Reject those items. If three fair mistakes cannot be
+found, do not rescue the question with absurd options.
 
-## Różnorodność i powtórzenia
+## Variety and repetition
 
-Przeglądaj nie tylko pojedyncze pytania, ale również sąsiadujące fragmenty
-i cały zestaw. Kilkadziesiąt poprawnych pytań o to, kto kogo spotkał, może
-tworzyć monotonny quiz.
+Review not only individual questions, but also neighbouring sections and the
+whole set. Several dozen valid questions about who met whom can still make
+a monotonous quiz.
 
-W zależności od materiału uwzględniaj postacie i ich relacje, wydarzenia,
-politykę, ustroje, wojny, geografię, kulturę, codzienność, przyrodę, wiedzę
-o świecie i znaczenie pojęć. Nie dopisuj kategorii, dla których źródło
-nie dostarcza dobrych pytań. Nazwy kategorii powinny być krótkie i zrozumiałe,
-a podział na tyle szeroki, by pomagał graczowi, nie rozdrabniał zestawu.
+Depending on the material, cover characters and their relationships, events,
+politics, systems of government, wars, geography, culture, everyday life,
+nature, knowledge of the world and the meaning of terms. Do not add categories
+for which the source provides no good questions. Category names should be
+short and clear, and the grouping broad enough to help the player rather than
+fragment the set.
 
-Porównuj sprawdzany fakt, nie tylko identyczne zdania. „Kto zabił X?”
-i „Z czyjej ręki zginął X?” to powtórzenie. Pytanie o sprawcę i pytanie
-o miejsce tej samej śmierci mogą być odrębne, jeśli oba fakty są istotne
-i jedno pytanie nie służy wyłącznie rozbiciu drugiego na drobiazgi.
+Compare the fact being tested, not just identical sentences. “Kto zabił X?”
+and “Z czyjej ręki zginął X?” are duplicates. A question about the perpetrator
+and one about the location of the same death may be separate if both facts
+matter and neither question merely splits the other into trivial details.
 
-Nie usuwaj automatycznie wszystkich pytań o tę samą postać ani wszystkich
-o tej samej poprawnej odpowiedzi. Sprawdź ich sens. Przy rozbudowie porównaj
-nowe propozycje zarówno między sobą, jak i z istniejącą bazą.
+Do not automatically remove every question about the same character or
+every question with the same correct answer. Examine their meaning. When
+expanding a set, compare new proposals both with one another and with the
+existing database.
 
-Zakończ rozbudowę, gdy pozostają głównie powtórzenia, niepewne fakty albo
-przypadkowe szczegóły bez ciekawego kontekstu. Nie twierdź, że osiągnięto
-matematycznie maksymalną liczbę pytań. Podawaj rzeczywisty zakres przeglądu.
+Stop expanding when what remains consists mainly of repetition, uncertain
+facts or incidental details without interesting context. Do not claim to have
+reached a mathematically maximum number of questions. State the actual scope
+of the review.
 
-## Zasady wspólne dla języków
+## Principles shared by all languages
 
-Zestaw ma być naturalny w swoim języku, nie tylko zrozumiały po tłumaczeniu.
-Język pytań jest zasobem gry i nie musi być językiem jej interfejsu.
-Dodanie polskiego zestawu nie nakazuje tworzenia jego wersji we wszystkich
-językach UI. Każda rzeczywiście przygotowana wersja podlega pełnej redakcji.
+A set must sound natural in its own language, not merely be understandable
+after translation. The language of the questions is a game resource and need
+not match the interface language. Adding a Polish set does not require versions
+in every UI language. Every version actually prepared must undergo full
+editorial review.
 
-- Zachowuj znaki diakrytyczne, pisownię nazw i normalną interpunkcję języka.
-  Nie usuwaj akcentów ani nie zapisuj całego pytania wielkimi literami.
-- Stosuj przyjęte nazwy geograficzne oraz nazwy z właściwego wydania
-  literackiego. Nie tłumacz samodzielnie imion i tytułów, które mają już
-  ustaloną lokalną postać. W obrębie zestawu zachowuj konsekwencję.
-- Czytaj pytanie wraz z każdą odpowiedzią. W językach fleksyjnych tłumaczenie
-  samych nazw bez odmiany może zdradzić poprawną odpowiedź.
-- Nie przenoś mechanicznie idiomów, szyku ani konstrukcji „jaki jest
-  nazywany…”. Jeśli zdanie wymaga przeformułowania, przeformułuj je,
-  zachowując dokładnie sprawdzany fakt.
-- Gry słów, homonimy, liczba liter, rymy i zagadki gramatyczne wymagają
-  osobnej oceny po tłumaczeniu. Sam przekład może zniszczyć rozwiązanie
-  albo stworzyć drugą poprawną odpowiedź. Nie zastępuj wtedy po cichu faktu
-  innym: odłóż pytanie lub uzgodnij adaptację.
-- Zwracaj uwagę na zapis dat, jednostki i liczby dziesiętne. Nie zmieniaj
-  wartości przez pomylenie separatora lub systemu miar.
-- Nie opieraj się wyłącznie na tłumaczeniu zwrotnym. Może ono potwierdzić
-  sens, ale nie dowodzi naturalności w języku docelowym.
+- Preserve diacritics, the spelling of names and the language's normal
+  punctuation. Do not remove accents or write the entire question in capitals.
+- Use established geographical names and names from the relevant literary
+  edition. Do not invent translations of names and titles that already have
+  an established local form. Be consistent within the set.
+- Read the question with each answer. In inflected languages, translating
+  names without the required inflection can give away the correct answer.
+- Do not mechanically transfer idioms, word order or constructions such as
+  “jaki jest nazywany…”. If a sentence needs rephrasing, rephrase it while
+  preserving the exact fact being tested.
+- Wordplay, homonyms, letter counts, rhymes and grammatical riddles need a
+  separate assessment after translation. The translation itself may destroy
+  the solution or create a second correct answer. Do not silently substitute
+  a different fact: set the question aside or agree on an adaptation.
+- Pay attention to date formats, units and decimal numbers. Do not change a
+  value by confusing a separator or a measurement system.
+- Do not rely solely on back-translation. It can confirm meaning, but does
+  not establish that the target-language wording is natural.
 
-### Polski
+### Polish
 
-Pilnuj odmiany nazwisk i nazw miejsc, zgodności rodzaju oraz rozróżnienia
-relacji. „Małżonek” nie jest lepszym słowem niż „mąż” lub „żona”, jeśli źródło
-mówi wprost, o kogo chodzi. Zwykle wybieraj „Gdzie urodził się…?” zamiast
-„Jakie było miejsce narodzin…?” i „Czym zajmował się…?” zamiast „Jaki zawód
-przypisano…?”. Nie zastępuj jednak każdego podobnego zdania jednym wzorcem.
+Watch the inflection of surnames and place names, gender agreement and
+distinctions between relationships. “Małżonek” is not better than “mąż” or
+“żona” when the source says directly who is meant. Usually prefer
+“Gdzie urodził się…?” to “Jakie było miejsce narodzin…?” and
+“Czym zajmował się…?” to “Jaki zawód przypisano…?”. Do not, however,
+replace every similar sentence with a single pattern.
 
-Unikaj automatycznych kalk i nadmiaru rzeczowników odczasownikowych.
-„Kto dowodził obroną miasta?” jest czytelniejsze niż „Kto był osobą
-odpowiedzialną za realizację dowodzenia obroną miasta?”. Przypadek odpowiedzi
-musi pasować także do „z kim”, „komu”, „przez kogo” i „z czyjego rozkazu”.
+Avoid automatic calques and excessive verbal nouns.
+“Kto dowodził obroną miasta?” is clearer than “Kto był osobą
+odpowiedzialną za realizację dowodzenia obroną miasta?”. The case of the
+answer must also fit “z kim”, “komu”, “przez kogo” and “z czyjego rozkazu”.
 
-### Angielski
+### English
 
-Stosuj naturalny szyk pytania, właściwe czasy i przedimki. „Who led…?”
-lub „Where was … born?” zwykle wystarczy zamiast „Which character was
-responsible for the act of leading…?”. Nie używaj w każdym pytaniu
-„Which of the following…”, ale zostaw to wyrażenie tam, gdzie jest użyteczne.
+Use natural question word order, appropriate tenses and articles. “Who led…?”
+or “Where was … born?” is usually enough instead of “Which character was
+responsible for the act of leading…?”. Do not use “Which of the following…”
+in every question, but keep the expression where it is useful.
 
-Przyjmij spójną odmianę angielskiego dla zestawu, zgodną z jego źródłami
-i ustaleniami. Nie zmieniaj cytowanych nazw własnych tylko dla ujednolicenia
-pisowni. Jeśli „a” albo „an” przed odpowiedzią zdradza wybór, przebuduj
-pytanie lub dobierz wszystkie możliwości tak, by żadna nie odpadała
-z powodu samego przedimka.
+Choose a consistent variety of English for the set, in line with its sources
+and the agreed requirements. Do not alter quoted proper names merely to
+standardise spelling. If “a” or “an” before an answer gives the choice away,
+restructure the question or choose all options so that none can be ruled out
+by the article alone.
 
-### Czeski
+### Czech
 
-Redaguj po czesku, nie jako polskie zdanie z wymienionymi wyrazami. Sprawdzaj
-rekcję, przypadki, szyk, przyimki oraz wyrazy podobne do polskich, ale
-o innym znaczeniu. Zachowuj czeskie znaki i ustalone nazwy własne.
-„Kde se … narodil?” jest zwykle naturalniejsze niż rozbudowane pytanie
-o „místo narození”; rodzaj czasownika dopasuj do osoby.
+Write in Czech, not as a Polish sentence with the words replaced. Check
+grammatical government, cases, word order, prepositions and words that resemble
+Polish words but have different meanings. Preserve Czech characters and
+established proper names. “Kde se … narodil?” is usually more natural than
+an elaborate question about “místo narození”; match the verb's gender to
+the person.
 
-### Hiszpański
+### Spanish
 
-Zachowuj oba znaki pytania oraz akcenty, m.in. w „qué”, „quién”, „cuál”
-i „dónde”, gdy pełnią funkcję pytającą. Sprawdzaj rodzajniki, rodzaj i liczbę
-odpowiedzi. „¿Dónde nació…?” nie potrzebuje rozbudowanego „¿Cuál fue
-el lugar de nacimiento de…?”. Dobór „qué” i „cuál” zależy od konstrukcji,
-nie od jednego odpowiednika polskiego „jaki”.
+Preserve both question marks and accents, including those in “qué”, “quién”,
+“cuál” and “dónde” when used interrogatively. Check the articles, gender
+and number of the answers. “¿Dónde nació…?” does not need the elaborate
+“¿Cuál fue el lugar de nacimiento de…?”. The choice between “qué” and
+“cuál” depends on the construction, not on a single equivalent of the
+Polish “jaki”.
 
-Ustal neutralną lub wskazaną odmianę języka i sprawdzaj regionalizmy.
-Wyraz powszechny w jednym kraju nie zawsze ma to samo znaczenie w drugim.
+Choose a neutral or specified variety of the language and check regionalisms.
+A word common in one country does not always have the same meaning in another.
 
-### Rosyjski
+### Russian
 
-Pilnuj odmiany, rodzaju i aspektu czasowników oraz poprawnego zapisu nazw.
-Nie przenoś polskiej składni ani angielskich konstrukcji rzeczownikowych.
-„Где родился…?” zwykle brzmi naturalniej niż „Каково было место рождения…?”.
-Nie mieszaj przypadkowo liter łacińskich z podobnymi znakami cyrylicy.
-W zapisie „е” i „ё” zachowuj rozróżnienia potrzebne dla znaczenia,
-wymowy i nazw własnych; nie zamieniaj znaków zbiorczo bez sprawdzenia.
+Watch inflection, gender, verbal aspect and the correct spelling of names.
+Do not transfer Polish syntax or English noun constructions.
+“Где родился…?” usually sounds more natural than “Каково было место рождения…?”.
+Do not accidentally mix Latin letters with similar-looking Cyrillic characters.
+For “е” and “ё”, preserve distinctions needed for meaning, pronunciation and
+proper names; do not replace characters in bulk without checking.
 
-### Kolejne języki
+### Additional languages
 
-Stosuj cały wspólny proces i dopisz istotne, sprawdzone uwagi językowe do
-tego dokumentu. Nie zakładaj, że zasady fleksji lub nazewnictwa z języka
-pokrewnego wystarczą. Jeśli nie potrafisz rzetelnie ocenić języka docelowego,
-oznacz materiał jako wymagający redakcji, zamiast przedstawiać surowe
-tłumaczenie jako gotowe. Nie trzeba tworzyć osobnej kopii tego poradnika
-dla każdego języka; źródło zasad pozostaje jedno.
+Follow the full shared process and add relevant, verified language notes to
+this document. Do not assume that inflection or naming rules from a related
+language are sufficient. If you cannot reliably assess the target language,
+mark the material as requiring editorial review rather than presenting a raw
+translation as finished. There is no need to create a separate copy of this
+guide for each language; keep a single source for the rules.
 
-## Obowiązkowy przegląd przed integracją
+## Mandatory review before integration
 
-Przejdź poniższe etapy dla każdej nowej lub zmienionej pozycji. Przy dużym
-zestawie zapisuj postęp, aby po wznowieniu nie pominąć części materiału.
-Próbka służy uzgodnieniu stylu; nie zastępuje przeglądu pozostałych pytań.
+Follow these steps for every new or changed item. For large sets, record
+progress so that no material is missed when work resumes. A sample is used
+to agree on style; it does not replace a review of the remaining questions.
 
-1. Potwierdź fakt i zakres w źródle. Zapisz odnośnik redakcyjny.
-2. Napisz lub popraw pytanie zgodnie z dozwolonym zakresem zmian.
-3. Dobierz trzy wiarygodne pomyłki i sprawdź, dlaczego każda jest błędna.
-4. Przeczytaj pytanie bez źródła i bez zaznaczenia poprawnej odpowiedzi.
-   Sprawdź, czy jest samodzielne i zrozumiałe po jednym odczycie.
-5. Spróbuj wykazać, że druga odpowiedź też pasuje. Poszukaj aliasu,
-   innego okresu, innej wersji zdarzenia albo szerszego znaczenia słowa.
-   Nierozstrzygniętej niejednoznaczności nie zatwierdzaj.
-6. W osobnym przebiegu przeczytaj całą nową partię pod kątem naturalności:
-   składni, monotonii, zbędnych dopisków, zgodności gramatycznej odpowiedzi
-   i wskazówek zdradzających rozwiązanie.
-7. Sprawdź powtórzenia znaczeniowe oraz podział tematyczny względem całej
-   bazy. Potem wykonaj kontrolę techniczną i odśwież eksport dla czytelników.
+1. Confirm the fact and its scope in the source. Record an editorial reference.
+2. Write or revise the question within the permitted scope of changes.
+3. Choose three plausible mistakes and check why each is wrong.
+4. Read the question without the source and without marking the correct answer.
+   Check that it is self-contained and understandable after a single reading.
+5. Try to show that a second answer also fits. Look for an alias, a different
+   period, another version of the event or a broader meaning of a word.
+   Do not approve an unresolved ambiguity.
+6. In a separate pass, read the entire new batch for natural wording:
+   syntax, monotony, unnecessary additions, grammatical agreement of the
+   answers and clues that give the solution away.
+7. Check semantic duplicates and thematic grouping against the entire
+   database. Then perform technical validation and refresh the reader-facing
+   export.
 
-Jeżeli do zadania dopuszczono innych agentów, przekaż im także te instrukcje
-i granice źródeł. Wykorzystaj przegląd krzyżowy, lecz osoba łącząca zestaw
-nadal odpowiada za powtórzenia i spójność całości. Sam dokument nie jest
-zgodą na uruchamianie pomocników. Bez nich wykonaj osobny przebieg redakcyjny
-samodzielnie; nie nazywaj go niezależną recenzją.
+If other agents are authorised for the task, give them these instructions
+and the source boundaries as well. Use cross-review, but the person integrating
+the set remains responsible for duplication and overall consistency. This
+document does not itself authorise starting helpers. Without them, perform
+a separate editorial pass yourself; do not call it an independent review.
 
-Wynik przeglądu pozycji to: przyjęta, poprawiona i ponownie sprawdzona,
-odłożona z konkretną wątpliwością albo odrzucona z powodem. Do aktywnej bazy
-trafiają wyłącznie dwie pierwsze grupy. Usunięcie już opublikowanej treści
-musi pozostawać w zakresie zlecenia. Nie przerzucaj nieukończonej redakcji
-na użytkownika pod hasłem „resztę można poprawić podczas grania”.
+An item's review outcome is: accepted, revised and rechecked, set aside with
+a specific unresolved issue, or rejected with a reason. Only the first two
+groups enter the active database. Removing already published content must
+remain within the task's scope. Do not shift unfinished editing onto the user
+by saying that “the rest can be fixed while playing”.
 
-## Kontrola techniczna i włączenie zestawu
+## Technical validation and integrating a set
 
-Automaty mogą znaleźć pustą odpowiedź, powtórzoną nazwę, uszkodzone kodowanie
-lub nieaktualny eksport. Nie potrafią samym zaliczeniem testu potwierdzić
-prawdziwości faktu, naturalności języka ani wiarygodności trzech pomyłek.
-Nie stosuj listy „słów brzmiących jak AI” ani automatycznego wyniku takiego
-detektora jako kryterium przyjęcia lub odrzucenia pytania.
+Automation can find an empty answer, a repeated name, broken encoding or an
+outdated export. A passing test cannot by itself confirm factual accuracy,
+natural wording or the plausibility of the three wrong answers. Do not use
+a list of “AI-sounding words” or an automated detector's score as a criterion
+for accepting or rejecting a question.
 
-- Korzystaj z istniejących formatów w `content/` i narzędzi opisanych
-  w [TOOLS.md](TOOLS.md). `tools/build-quiz-pack.rb` sprawdza m.in. liczbę
-  odpowiedzi, duplikaty i wymagane pola; nie jest redaktorem merytorycznym.
-- Przy imporcie podawaj właściwe autorstwo, źródło i licencję. Domyślne
-  `CC0-1.0` w narzędziu nie jest dowodem, że materiał ma taką licencję.
-- Zachowuj tożsamość istniejących pytań tam, gdzie wymaga jej dany zestaw.
-  Nie przywracaj odrzuconej pozycji pod nowym identyfikatorem. Numer pytania
-  w TXT jest tylko kolejnym numerem do czytania, nie trwałym ID.
-- Pytania są osobnymi zasobami, nie wpisami tłumaczeń interfejsu w PO/MO.
-  Rozdzielenie opisuje [TRANSLATIONS.md](TRANSLATIONS.md). Nie zmieniaj
-  języka interfejsu przy wyborze zestawu ani nie tłumacz go przy okazji.
-- Uruchom celowane testy zmienionych danych, ich rejestracji i eksportu.
-  Punkty odniesienia to `test/games/quiz/question_integrity_test.rb`,
-  `test/games/quiz/reviewed_questions_test.rb` oraz
-  `test/games/quiz/text_export_test.rb`; dla książkowego Wiedźmina także
-  `test/games/quiz/witcher_books_test.rb`. Dobierz zakres do konkretnej zmiany.
-- Po zatwierdzeniu danych zaktualizuj odpowiednie oczekiwane liczby, wersje
-  i sumy w testach. Nie kasuj regresji ani nie zmieniaj wzorca wyłącznie
-  po to, by test przestał wykrywać błąd.
-- Po zmianie treści, odpowiedzi lub kategorii uruchom z katalogu repo:
+- Use the existing formats in `content/` and the tools described in
+  [TOOLS.md](TOOLS.md). Among other things, `tools/build-quiz-pack.rb` checks
+  the number of answers, duplicates and required fields; it is not a
+  subject-matter editor.
+- When importing, supply the correct attribution, source and licence. The
+  tool's `CC0-1.0` default is not evidence that the material has that licence.
+- Preserve the identity of existing questions where the set requires it.
+  Do not restore a rejected item under a new identifier. The question number
+  in the TXT is only a sequential number for reading, not a permanent ID.
+- Questions are separate resources, not UI translation entries in PO/MO.
+  [TRANSLATIONS.md](TRANSLATIONS.md) explains the separation. Do not change
+  the interface language when selecting a set or translate the interface
+  as a side task.
+- Run targeted tests for the changed data, its registration and its export.
+  Reference tests are `test/games/quiz/question_integrity_test.rb`,
+  `test/games/quiz/reviewed_questions_test.rb` and
+  `test/games/quiz/text_export_test.rb`; for the book-based Witcher set,
+  also `test/games/quiz/witcher_books_test.rb`. Match the scope to the
+  specific change.
+- After approving the data, update the relevant expected counts, versions
+  and checksums in the tests. Do not delete regressions or change a reference
+  merely to stop a test from detecting an error.
+- After changing question text, answers or categories, run from the repository
+  directory:
 
 ```console
 ruby tools/export-quiz-text.rb
 ruby tools/export-quiz-text.rb --check
 ```
 
-Czytelne kopie `docs/quiz-questions/*.txt` mają numery od 1, w osobnej linii
-przed każdym pytaniem, odpowiedzi A–D i wskazanie rozwiązania, bez technicznych
-ID. Po usunięciu pozycji numeracja musi pozostać ciągła. Nie poprawiaj TXT
-ręcznie zamiast źródła. Eksporty i prywatne materiały redakcyjne nie są
-zasobami instalatora.
+The readable copies in `docs/quiz-questions/*.txt` have numbers starting at 1
+on a separate line before each question, answers A–D and the correct answer,
+without technical IDs. After removing an item, numbering must remain
+continuous. Do not edit the TXT manually instead of the source. Exports and
+private editorial materials are not installer resources.
 
-Nowy format, sposób wyświetlania lub język sprawdź również w rzeczywistym
-odczycie gry, w granicach uprawnień do testów. Przy samej korekcie treści
-dobieraj kontrolę proporcjonalnie; nie przedstawiaj testu danych jako
-odsłuchu ani testu żywej partii.
+Also check any new format, display method or language in the game's actual
+readout, within the authorised testing scope. For wording-only corrections,
+choose proportionate checks; do not present a data test as a listening check
+or a live game test.
 
-## Kiedy pracę można uznać za gotową
+## When the work is complete
 
-Gotowy zestaw ma potwierdzone źródła i prawa wykorzystania, sprawdzone
-pojedyncze pytania, naturalną redakcję w języku docelowym, jedną poprawną
-odpowiedź w każdej pozycji oraz trzy sensowne pomyłki. Nowe pozycje przeszły
-przegląd znaczeniowych powtórzeń, kontrolę techniczną i aktualizację TXT.
+A finished set has verified sources and usage rights, individually checked
+questions, natural target-language wording, one correct answer per item and
+three plausible mistakes. New items have undergone semantic duplicate review,
+technical validation and a TXT update.
 
-W podsumowaniu podaj liczby przyjętych, odłożonych i odrzuconych pytań,
-główne powody odrzucenia oraz rzeczywisty zakres weryfikacji. Nie obiecuj
-bezbłędności ani nie nazywaj pytań pisanych z udziałem AI „niegenerowanymi
-przez AI”. Oceniaj gotową treść, nie deklarację o sposobie jej powstania.
+In the summary, give the numbers of accepted, deferred and rejected questions,
+the main reasons for rejection and the actual scope of verification. Do not
+promise perfection or call questions written with AI assistance “not
+AI-generated”. Judge the finished content, not claims about how it was created.
 
-Brakujące źródło, niewyjaśniona druga odpowiedź lub nieprzejrzany język
-oznaczają nieukończoną pozycję. Najpierw ją popraw, sprawdź ponownie albo
-odłóż poza aktywny zestaw. Te kroki są częścią pracy autora, nie zadaniem,
-które użytkownik powinien dopiero odkryć po wydaniu.
+A missing source, an unresolved second answer or target-language wording that
+has not been reviewed means the item is unfinished. First revise and recheck it
+or set it aside outside the active set. These steps are part of the author's
+work, not something the user should have to discover after release.

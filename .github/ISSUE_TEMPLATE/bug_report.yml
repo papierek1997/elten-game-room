@@ -1,44 +1,44 @@
-name: Zgłoszenie błędu
-description: Zgłoś powtarzalny problem w ELTEN Game Room
-title: "[Błąd] "
+name: Bug report
+description: Report a reproducible problem in ELTEN Game Room
+title: "[Bug] "
 labels: [bug]
 body:
   - type: input
     id: version
     attributes:
-      label: Wersja i build
-      placeholder: "np. 1.1.0, build 176"
+      label: Version and build
+      placeholder: "e.g. 1.1.0, build 176"
     validations:
       required: true
   - type: input
     id: game
     attributes:
-      label: Gra lub ekran
-      placeholder: "np. Ninety-Nine, lobby, zaproszenia"
+      label: Game or screen
+      placeholder: "e.g. Ninety-Nine, lobby, invitations"
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: Kroki odtworzenia
-      description: Napisz dokładnie, co robisz od uruchomienia programu.
+      label: Steps to reproduce
+      description: Describe exactly what you do, starting from launching the application.
     validations:
       required: true
   - type: textarea
     id: actual
     attributes:
-      label: Co się dzieje?
+      label: What happens?
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
-      label: Co powinno się wydarzyć?
+      label: What should happen?
     validations:
       required: true
   - type: textarea
     id: log
     attributes:
-      label: Log lub dodatkowe informacje
-      description: Usuń tokeny, prywatne wiadomości i zbędne dane użytkowników.
+      label: Log or additional information
+      description: Remove tokens, private messages and unnecessary user data.
       render: text

@@ -1,119 +1,126 @@
-# Wykonanie partii i prezentacja za innym oknem
+# Game execution and presentation behind another window
 
-`GameRoomSessionRunner` wykonuje model, polityki automatyczne i boty bez
-formularza. Widoczna i przykryta gra korzystają z tego samego wykonawcy.
-`GameScreen` zachowuje kontrolki, obsługę klawiszy, mowę, dźwięki, fokus,
-historię i dialogi. Za obcym oknem nie są aktualizowane kontrolki ani
-wywoływana synteza z wątku roboczego. Odczyt i efekty już odebranych zdarzeń
-obsługuje jednak aktywny wątek UI, także przed powrotem do gry. Po powrocie
-ekran pokazuje potwierdzony replay, bez ponownego odczytywania tych zdarzeń.
+`GameRoomSessionRunner` runs the model, automatic policies and bots without
+a form. The visible and covered game use the same runner. `GameScreen`
+retains the controls, key handling, speech, sounds, focus, history and dialogs.
+Behind another window, controls are not updated and speech synthesis is not
+invoked from the worker thread. The active UI thread does, however, handle
+announcements and effects for events already received, even before returning
+to the game. On return, the screen shows the confirmed replay without
+announcing those events again.
 
-Pong i Audio Ball nie korzystają z tego wykonawcy. Ich niezależna symulacja,
-protokół pauzy, wejście i Communications pozostają bez zmian.
+Pong and Audio Ball do not use this runner. Their independent simulation,
+pause protocol, input and Communications remain unchanged.
 
-## Mowa i dźwięki podczas otwartych Wiadomości lub forum
+## Speech and sounds while Messages or the forum is open
 
-Wykonawca publikuje skopiowany pakiet prezentacji po istniejącym
-odczycie stanu; nie odpytuje serwera dodatkowo. `GameRoomBackgroundPresentation`
-rejestruje aktywny ekran i korzysta z wąskiego mostu w `EltenAPI::UI#loop_update`.
-Oryginalna metoda działa bez zmian; po niej tylko aktualny wątek UI może
-przekazać gotowe zdarzenia przykrytej gry do istniejących prezenterów.
-Nie jest to drugi `GameScreen#run`, globalny tick rozszerzeń ani ręczne
-aktualizowanie formularza gry. Most nie czyta klawiatury i nie zmienia
-aktywnego okna, fokusu, szkicu, zaznaczenia lub pozycji w historii.
+The runner publishes a copied presentation bundle after an existing state
+read; it does not make additional server queries. `GameRoomBackgroundPresentation`
+registers the active screen and uses a narrow bridge in `EltenAPI::UI#loop_update`.
+The original method runs unchanged; afterward, only the current UI thread may
+pass ready events from the covered game to the existing presenters. This is
+not a second `GameScreen#run`, a global extension tick or a manual update of
+the game form. The bridge does not read the keyboard or change the active
+window, focus, draft, selection or history position.
 
-Używane są te same opisy zdarzeń, przejścia tur, wynik, selektor dźwięków,
-ustawienia głośności i wspólne kursory deduplikacji. Mowa ma `stop: false`
-i `break_sequence: false`. Sekwencja dźwięków Statków jest kontynuowana
-również bez kolejnego zdarzenia sieciowego. Ogłoszenia czasu quizu używają
-tego samego zegara sesji i kluczy co widoczny ekran. Komunikaty czatu są
-przekazywane tą samą ścieżką; formularz pozostaje nietknięty.
+It uses the same event descriptions, turn transitions, score, sound selector,
+volume settings and shared deduplication cursors. Speech uses `stop: false`
+and `break_sequence: false`. Battleship's sound sequence continues even without
+another network event. Quiz time announcements use the same session clock and
+keys as the visible screen. Chat messages follow the same path; the form
+remains untouched.
 
-Rewanż może nadejść, gdy gracz nadal przebywa na forum. Kursor prezentacji
-rozróżnia sesje, ale nie porównuje ich ID liczbowo: natywne identyfikatory
-są losowe. Powrót starego widoku nie może cofnąć ogłoszonej już nowej partii.
-Odgłosy wejścia/wyjścia również używają jednej projekcji uczestników, aby
-stary bufor ekranu nie generował pozornego wyjścia i ponownego wejścia.
+A rematch may arrive while the player is still on the forum. The presentation
+cursor distinguishes sessions but does not compare their IDs numerically:
+native identifiers are random. Returning to an old view must not roll back a
+new game that has already been announced. Join/leave sounds also use one
+participant projection so that the old screen buffer does not produce a
+spurious departure and re-entry.
 
-Most hosta nie przechowuje closure ze starej przestrzeni aplikacji. Jest
-instalowany raz, a zarządzane rejestracje są usuwane po zamknięciu gry.
-Bez aktywnej rejestracji niczego nie odczytuje ani nie odtwarza. Nie zmieniono
-plików źródłowych ELTEN-a. Lokalne dialogi Krowy nadal otwiera jej widoczny
-adapter, nie prezenter działający za innym oknem.
+The host bridge does not retain a closure from the old application namespace.
+It is installed once, and managed registrations are removed when the game
+closes. Without an active registration, it reads and plays nothing. ELTEN's
+source files were not changed. Krowa's local dialogs are still opened by its
+visible adapter, not by the presenter running behind another window.
 
-Regresje: `test/ui/game_background_presentation_test.rb` oraz
-`test/ui/game_background_native_input_test.rb`. Pierwszy obejmuje pełną partię,
-rewanż, losowe ID, odczyt wyniku, sekwencję audio, zegar quizu, deduplikację,
-czyszczenie rejestracji i 20 binarnych przeładowań przestrzeni aplikacji.
-Drugi używa natywnych kontrolek, klawiatury i adaptera mowy hosta z kontrolowanym
-źródłem znaków: polski tekst, kursor i zaznaczenie nie ulegają zmianie.
+Regression tests: `test/ui/game_background_presentation_test.rb` and
+`test/ui/game_background_native_input_test.rb`. The first covers a complete
+game, rematch, random IDs, score announcements, audio sequencing, the quiz
+clock, deduplication, registration cleanup and 20 binary reloads of the
+application namespace. The second uses the host's native controls, keyboard
+and speech adapter with a controlled character source: Polish text, cursor
+and selection remain unchanged.
 
-## Granice bezpieczeństwa
+## Safety boundaries
 
-- Subskrypcja `GameRoomSessionFeed` ma własne złączane sygnały. Odczyt przez
-  wykonawcę nie zużywa sygnału przeznaczonego dla ekranu.
-- Dostarczane są tylko gotowe callbacki własnego endpointu. Lokalny przebieg
-  co 50 ms nie oznacza odpytywania serwera. Odczyt stanu następuje po zmianie,
-  przy istniejącej weryfikacji zapisu lub odzyskiwaniu połączenia.
-- Model wykonawcy i model planisty są oddzielone od modelu interfejsu.
-  `ActionContext` zawiera skopiowane dane, nie kontrolki. Szkic Państw-miast
-  pochodzi z UI i ma identyfikator własnej rundy/fazy.
-- Zachowane są `Coordinator`, `Simulation`, `TurnController`, `action_for`
-  i repozytorium. Nie dodano heurystyk, kar, wyborów odpowiedzi za człowieka
-  ani innej autoryzacji. Seed oraz budżety wyszukiwania bota pozostały takie
-  jak w dotychczasowej ścieżce.
-- Planowanie bota nie trzyma blokady zapisu. Po obliczeniu decyzji wykonawca
-  dostarcza callbacki odebrane podczas obliczeń, ponownie odczytuje stan
-  i odrzuca nieaktualny plan. Przechwycenie UNO lub powiedzenie Makao nie
-  musi czekać na zakończenie obliczeń bota.
-- Zapis akcji, zmiana sesji i operacje sieciowe ekranu mają wspólną krótką
-  granicę synchronizacji. Oczekiwanie na nią odbywa się w `Tasks`, nie przez
-  zablokowanie pętli UI. Nie obejmuje oczekiwania na formularz ani planisty.
-- Kilka otwartych instancji tego samego konta/stołu wybiera jednego
-  wykonawcę. Pierwszeństwo ma aktywne okno, a gdy wszystkie są przykryte —
-  ostatnie. Przekazanie wykonania uzgadnia stan i nie omija przerwy po
-  niepewnym zapisie. Ten mechanizm nie przekazuje gospodarza serwera.
-- Zwykły wybór jest związany z wyświetloną rewizją. Gry z równoległym
-  wejściem dopuszczają tylko jawnie opisane wyjątki we własnej rundzie/fazie:
-  odpowiedzi quizu i Państw-miast, floty Statków, próby wyścigu Krowy,
-  przechwytywanie/deklaracje UNO oraz deklaracja Makao. Ostatecznie zawsze
-  waliduje je `action_for` na świeżym stanie. Zachowano również karę UNO
-  za spóźnioną próbę; stara karta nie przechodzi do kolejnego rozdania.
-- Zamrożenie zapisu, przerwanie partii i zamknięcie stołu zatrzymują akcje.
-  Rewanż używa nowego ID sesji. Niepewny zapis zachowuje istniejącą ścieżkę
-  potwierdzenia, identyfikator wiadomości i backoff; nie jest wysyłany jako
-  nowy ruch. Zamknięcie nie zabija wątku w połowie zapisu.
-- Przejściowy błąd zapisu akcji automatycznej podlega backoffowi, również
-  dla lokalnego szkicu. Błąd programu zatrzymuje ponawianie wadliwej akcji. Błąd trafia do adaptera UI dopiero
-  z jego własnego wątku. Powrót po zakończonym odzyskiwaniu połączenia nie
-  rozpoczyna od nowa historycznej 30-sekundowej przerwy.
+- A `GameRoomSessionFeed` subscription has its own coalesced signals. A read
+  by the runner does not consume the signal intended for the screen.
+- Only ready callbacks from the runner's own endpoint are delivered. A local
+  pass every 50 ms does not mean server polling. State is read after a change,
+  during existing write verification or during connection recovery.
+- The runner model and planner model are separate from the UI model.
+  `ActionContext` contains copied data, not controls. The Categories draft
+  comes from the UI and carries the identity of its own round/phase.
+- `Coordinator`, `Simulation`, `TurnController`, `action_for` and the repository
+  are preserved. No heuristics, penalties, answer choices on behalf of a human
+  or different authorization were added. The seed and bot search budgets
+  remain the same as in the existing path.
+- Bot planning does not hold the write lock. After computing a decision, the
+  runner delivers callbacks received during the computation, rereads the state
+  and rejects a stale plan. UNO interception or saying Makao need not wait
+  for the bot's computation to finish.
+- Action writes, session changes and the screen's network operations share a
+  short synchronization boundary. Waiting for it happens in `Tasks`, not by
+  blocking the UI loop. It does not cover form waits or planning.
+- Multiple open instances for the same account/table select one runner. The
+  active window has priority, or the last active window when all are covered.
+  Handing off execution reconciles state and does not bypass the pause after
+  an uncertain write. This mechanism does not transfer the server-side table
+  host role.
+- An ordinary choice is tied to the displayed revision. Games with concurrent
+  input allow only explicitly defined exceptions within their own round/phase:
+  Quiz and Categories answers, Battleship fleets, Krowa race attempts, UNO
+  interceptions/declarations and the Makao declaration. Ultimately,
+  `action_for` always validates them against fresh state. The UNO penalty for
+  a late attempt is also preserved; an old card does not carry over into the
+  next deal.
+- A save freeze, game interruption and table closure stop actions. A rematch
+  uses a new session ID. An uncertain write preserves the existing confirmation
+  path, message identifier and backoff; it is not sent as a new move. Closing
+  does not kill the thread midway through a write.
+- A transient error when writing an automatic action is subject to backoff,
+  including for a local draft. A programming error stops retries of the faulty
+  action. The error reaches the UI adapter only on its own thread. Returning
+  after connection recovery has completed does not restart the previous
+  30-second pause.
 
-## Wskazówki dla nowych gier
+## Guidance for new games
 
-Model i polityki automatyczne muszą działać bez UI. Nie wolno w nich otwierać
-formularzy, odczytywać aktywnej kontrolki, wołać `loop_update` lub mówić.
-Niestandardowe argumenty konstruktora trzeba zachować w `build_session_game`
-(przykład: bank słów Krowy). Planista ma własną, trwałą instancję modelu;
-nie należy współdzielić jej mutowalnych cache z ekranem.
+The model and automatic policies must work without the UI. They must not open
+forms, read the active control, call `loop_update` or speak. Custom constructor
+arguments must be preserved in `build_session_game` (for example, Krowa's word
+bank). The planner has its own persistent model instance; its mutable caches
+must not be shared with the screen.
 
-Termin opisuje `automatic_action_due?`, a legalną operację
-`automatic_action`/`action_for`. Nie zakładać, że cała polityka będzie
-wywoływana bez końca dla niezmienionej pozycji. Jeżeli potrzebny jest szkic,
-zdefiniować `automatic_surface_identity` i bezpieczny snapshot danych.
-`concurrent_session_input?` nie może być ogólnym pominięciem kontroli
-rewizji; porównuje konkretną tożsamość rundy i rodzaju operacji.
+`automatic_action_due?` defines when an action is due, and
+`automatic_action`/`action_for` define the legal operation. Do not assume that
+the entire policy will be called indefinitely for an unchanged position. If
+a draft is needed, define `automatic_surface_identity` and a safe data
+snapshot. `concurrent_session_input?` must not be a blanket bypass of revision
+checks; it compares the specific round identity and operation type.
 
-Lokalne usługi prezentacyjne Krowy (dialog definicji, galeria, propozycja
-publikacji wyniku i prywatne pokazanie rozwiązania po poddaniu) nadal należą
-do adaptera UI. Wykonawca obsługuje stan, ocenę prób i publiczne rozstrzygnięcie,
-nie przenosi dowolnej metody `game_client` do wątku roboczego.
+Krowa's local presentation services (definition dialog, gallery, invitation to
+publish a score and private solution display after giving up) still belong to
+the UI adapter. The runner handles state, attempt evaluation and the public
+outcome; it does not move arbitrary `game_client` methods to the worker thread.
 
-## Weryfikacja
+## Verification
 
-Testy wykonawcy są w `test/session/`, a prezentacji w
-`test/ui/game_background_presentation_test.rb` i
-`test/ui/game_background_native_input_test.rb`. Sprawdzaj wiele instancji,
-planowanie poza blokadą, niepewny zapis, powrót, deadline, rewanż i zamknięcie.
-Próba żywego klienta musi potwierdzić wyjście mowy i aktywne audio jeszcze
-za natywnym oknem. Zgodny model po powrocie nie dowodzi prezentacji w tle;
-atrapy audio nie zastępują odsłuchu.
+Runner tests are in `test/session/`, and presentation tests are in
+`test/ui/game_background_presentation_test.rb` and
+`test/ui/game_background_native_input_test.rb`. Check multiple instances,
+planning outside the lock, uncertain writes, return, deadlines, rematches and
+closure. A live-client trial must confirm speech output and active audio while
+the game is still behind a native window. A matching model after return does
+not prove background presentation; audio stubs are not a substitute for
+listening.

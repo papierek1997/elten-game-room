@@ -1,53 +1,57 @@
-# Prywatne odpowiedzi i zapis partii
+# Private answers and saved games
 
-## Lokalne zobowiązania odpowiedzi
+## Local answer commitments
 
-`ProgramStorage` pomija zapis niezmienionego stanu, także ponowne `discard`
-po usunięciu wpisu. Transakcja odczyt–modyfikacja–zapis jest koordynowana
-między ekranami. Zwykły plik to `hidden_submissions.json`; przy błędzie I/O
-magazyn próbuje `hidden_submissions.json.recovery.json` w tym samym prywatnym
-katalogu aplikacji. Host ustala i sprawdza ścieżkę raz na plik w danej
-wczytanej aplikacji. Kolejne odczyty i zapisy używają tej ścieżki bez ponownego
-rozpakowywania instalatora. Zawartość pliku nie jest buforowana. Zapis powstaje
-w pliku tymczasowym i zastępuje docelowy plik dopiero po zamknięciu zapisu,
-tak samo jak w natywnym magazynie hosta.
+`ProgramStorage` skips writing unchanged state, including another `discard`
+after an entry has been removed. The read–modify–write transaction is coordinated
+across screens. The normal file is `hidden_submissions.json`; on an I/O error,
+the store tries `hidden_submissions.json.recovery.json` in the same private
+application directory. The host resolves and validates the path once per file
+for each loaded application. Subsequent reads and writes use that path without
+unpacking the installer again. The file contents are not cached. Writes go to
+a temporary file, which replaces the destination only after the write has been
+closed, just as in the host's native storage.
 
-Snapshot zawiera rosnące `storage_revision`. Odczyt wybiera najnowszy kompletny
-stan, więc stary plik główny nie cofa usunięcia potwierdzonego w kopii awaryjnej.
-Kolejny udany zapis główny zastępuje starszą kopię. Plik bez rewizji ma rewizję 0.
-Nie usuwaj ani nie skracaj oryginału, aby wymusić podmianę.
+The snapshot contains an increasing `storage_revision`. Reads choose the newest
+complete state, so an old primary file cannot undo a deletion confirmed in the
+recovery copy. The next successful primary write replaces the older copy. A file
+without a revision has revision 0. Do not delete or truncate the original to
+force replacement.
 
-Nowa odpowiedź trafia do gry dopiero po trwałym zapisie. Poprzednie wersje
-i nonce pozostają dostępne dla już zaakceptowanego zobowiązania. Awaria obu
-ścieżek przygotowania zwraca kontrolowany błąd bez planu zdarzenia. Błąd
-sprzątania zwraca `false`, zamiast przerywać postęp gry; lokalny wpis może
-pozostać do następnej udanej próby. Po podwójnej awarii zapis ma sekundę
-backoffu i jedno ostrzeżenie do odzyskania, bez usypiania ani nowej pętli.
+A new answer reaches the game only after a durable write. Previous versions
+and nonces remain available for an already accepted commitment. Failure of both
+preparation paths returns a controlled error without an event plan. A cleanup
+error returns `false` instead of interrupting game progress; the local entry may
+remain until the next successful attempt. After both paths fail, writes have a
+one-second backoff and a single warning until recovery, without sleeping or
+adding another loop.
 
-Koordynacja obejmuje instancje tego samego natywnego Programu współdzielące
-plik w procesie. Oddzielne procesy ELTEN-a zapisujące do jednego profilu
-nie są wspieranym układem wielu autorów. Format lokalnego magazynu nie
-zmienia protokołu commit/reveal ani rozstrzygnięć partii.
+Coordination covers instances of the same native Program sharing a file within
+one process. Separate ELTEN processes writing to one profile are not a supported
+multi-writer setup. The local storage format does not change the commit/reveal
+protocol or game outcomes.
 
-## Granice zmiany stołu i obsady
+## Boundaries for changing tables and participants
 
-Przekazanie gospodarza, zastępstwo gracza i opuszczenie stołu ponownie
-sprawdzają prywatną fazę na granicy zapisu, także po dialogu wyboru osoby.
-Zastępstwo rozróżnia sekret tej osoby od cudzych oczekujących zobowiązań.
-Przyjęcie zaproszenia korzysta z tej samej ochrony co zwykłe wyjście.
+Transferring the table host role, replacing a player and leaving a table recheck
+the private phase at the write boundary, including after the participant
+selection dialog. Replacement distinguishes that participant's secret from
+other participants' pending commitments. Accepting an invitation uses the same
+safeguard as leaving normally.
 
-## Archiwum konta
+## Account archive
 
-`AccountSavedGames` zapisuje standardową historię przez prywatne pliki
-konta. `saved_game_schema_version` wersjonuje format. Gra określa
-`save_game_error` dla niebezpiecznych faz albo wyłącza zapis przez
-`supports_saved_games?`. Nazwy kontrolerów w konkretnych polach zdarzeń
-odtwarza `restored_event_value`; nie zastępuj dowolnych tekstów historii.
+`AccountSavedGames` saves the standard history through the account's private
+files. `saved_game_schema_version` versions the format. A game defines
+`save_game_error` for unsafe phases or disables saving through
+`supports_saved_games?`. `restored_event_value` restores controller names in
+specific event fields; do not replace arbitrary history text.
 
-Zamknięcie stołu i zastąpienie uczestników wymaga potwierdzonego zapisu
-archiwum. Niepewny wynik zachowuje zamrożenie. Cofnięcie zamrożenia
-wymaga tej samej partii, aktualnego gospodarza i potwierdzenia własnej
-granicy zapisu; nie odblokowuje nowszej operacji.
+Closing the table and replacing participants require a confirmed archive
+write. An uncertain result keeps the freeze in place. Releasing the freeze
+requires the same game, the current table host and confirmation of the
+operation's own write boundary; it does not unfreeze a newer operation.
 
-Regresje magazynu odpowiedzi i archiwum znajdują się w `test/persistence/`;
-scenariusze prywatnych faz także w testach Quizu, Państw-miast i Statków.
+Regression tests for answer storage and archives are in `test/persistence/`;
+private-phase scenarios are also covered by the Quiz, Categories and Battleship
+tests.

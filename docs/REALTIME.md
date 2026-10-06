@@ -1,71 +1,76 @@
-# Gry czasu rzeczywistego
+# Real-time games
 
-Pong i Audio Ball mają własny lifecycle klienta (`session_runner? false`).
-`Channel` i `EventChannel` współdzielą połączenie Communications, kolejki,
-ping i dostawę. Klient gry odpowiada za fizykę, reset własnych pól i legalność
-przejść. LiveSessions przechowuje stół, rozpoczęcie i trwałe rozstrzygnięcia.
+Pong and Audio Ball have their own client lifecycle (`session_runner? false`).
+`Channel` and `EventChannel` share the Communications connection, queues,
+ping and delivery. The game client is responsible for physics, resetting its
+own fields and transition legality. LiveSessions stores the table, game start
+and durable outcomes.
 
-## Droga akcji i uprawnienia
+## Action path and authority
 
-1. Aktywne pole gry przyjmuje świeże wejście; silnik sprawdza przejście.
-2. Zaakceptowana akcja trafia od razu do ograniczonej kolejki wysyłki w tle.
-3. Communications rozsyła ją do uczestników bez dodatkowego skoku przez
-   gospodarza, gdy rozstrzygnięcie należy do nadawcy.
-4. Odbiorca sprawdza autentycznego nadawcę, miejsce, mecz, generację,
-   kolejność i duplikaty przed zastosowaniem i prezentacją.
-5. Gospodarz uzgadnia punkt ze wszystkimi wymaganymi ludźmi. Dopiero zgodne
-   potwierdzenia pozwalają na zdarzenie prezentacji punktu. Wynik i koniec
-   partii zatwierdza normalna ścieżka `action_for`, repozytorium i replay.
+1. The active game field accepts fresh input; the engine validates the transition.
+2. An accepted action goes straight to a bounded background send queue.
+3. Communications broadcasts it to participants without an extra hop through
+   the table host when the sender has authority to decide the outcome.
+4. Before applying and presenting it, the recipient checks the authenticated
+   sender, seat, match, generation, ordering and duplicates.
+5. The table host reconciles the point with all required human participants.
+   Only matching acknowledgements permit a point-presentation event. The score
+   and game end are committed through the normal `action_for`, repository and
+   replay path.
 
-W Pongu człowiek rozstrzyga własny serw, odbicie i chybienie. Gospodarz
-prowadzi boty, także jako obserwator; nie przejmuje paletek ludzi.
-Zastępowalne pozycje i snapshoty mają osobną ścieżkę koordynacji przez
-gospodarza. Zdalny obserwator odtwarza pełny snapshot po sprawdzeniu nadawcy
-i epoki; nie odtwarza od zera nieotrzymanej historii odbić.
-[Audio Ball](AUDIO_BALL.md) opisuje własne przejścia i uprawnienie odbiorcy
-lotu do rozstrzygnięcia obrony.
+In Pong, a human player determines their own serve, hit and miss. The table
+host runs the bots, including when observing; it does not take over human
+paddles. Replaceable positions and snapshots have a separate path coordinated
+by the table host. A remote observer reconstructs a full snapshot after checking
+the sender and epoch; it does not try to replay from scratch a history of hits
+that it never received. [Audio Ball](AUDIO_BALL.md) describes its own transitions
+and the flight recipient's authority to determine the defense outcome.
 
-Ważne akcje wymagają pełnego potwierdzenia dostawy. Chwilowo nieobecny odbiorca
-nie znika z wymagań. Pozycje mogą zachowywać tylko najnowszą wartość; akcje
-nie mogą ginąć przy złączeniu pakietów. Oczekiwanie na sieć lub dysk nie należy
-do klatki UI. Nowa partia tworzy nowego klienta; stare zadania, zamknięcia
-kanału i powtórne zaproszenia nie mogą naruszyć nowego połączenia. Reconnect
-przywraca rejestrację pingu i ustawienia kanału, bez wymaganego Entera.
+Important actions require full delivery acknowledgement. A temporarily absent
+recipient is not removed from the requirements. Positions may retain only the
+latest value; actions must not be lost when packets are coalesced. Waiting for
+the network or disk does not belong in the UI frame. A new game creates a new
+client; old tasks, channel closures and repeated invitations must not disrupt
+the new connection. Reconnect restores ping registration and channel settings
+without requiring Enter.
 
-## Pauzy, timery i prezentacja
+## Pauses, timers and presentation
 
-Timer korzysta z natywnego lifecycle `FormTimer`, z bramką kadencji meczu
-opisaną w [HOST_API.md](HOST_API.md). Nie nadrabia zaległych klatek.
-Gotowa ważna akcja nie czeka na następny okresowy pakiet ani klatkę.
+The timer uses the native `FormTimer` lifecycle with the match-cadence gate
+described in [HOST_API.md](HOST_API.md). It does not catch up on missed frames.
+A ready important action does not wait for the next periodic packet or frame.
 
-Zapowiedź pary serwisowej Ponga jest zwykłą mową. Koniec syntezy nie jest
-barierą gotowości. Po punkcie obowiązuje harmonogram wyniku i zwykłe 2,7 s
-przygotowania; późna zapowiedź nie rozpoczyna kolejnego odliczania.
-Gotowość sieciowa nadal jest wymagana. Weryfikacja obejmuje syntezator, który
-nigdy nie zwraca końcowego indeksu, oraz przerwanie mowy.
+Pong's serving-pair announcement is ordinary speech. The end of speech
+synthesis is not a readiness barrier. After a point, the score schedule and
+the usual 2.7 s preparation period apply; a late announcement does not start
+another countdown. Network readiness is still required. Verification includes
+a synthesizer that never returns the final index, as well as interrupted speech.
 
-Zgodna prezentacja punktu może wyprzedzać trwały zapis. Nie może sama zmieniać
-wyniku ani powtarzać efektu po późniejszym zapisie. Pauza połączenia zatrzymuje
-zegar gry; odtwarzanie stanu nie uznaje niepotwierdzonej wymiany za punkt.
-Pomoc i ustawienia respektują blokadę wejścia oraz obsługę puszczenia klawiszy.
+Agreed point presentation may precede the durable write. It cannot change the
+score by itself or repeat the effect after the later write. A connection pause
+stops the game clock; replay does not treat an unconfirmed rally as a point.
+Help and settings respect input blocking and key-release handling.
 
-## P2P i pomiary
+## P2P and measurements
 
-Opcjonalne pełne P2P używa natywnego `p2p: :full` oraz
-`p2p_participants_limit`. Domyślnie jest wyłączone; limit to 8 uczestników,
-0 oznacza brak limitu. Obserwatorzy wliczają się do limitu, miejsca botów nie.
-Brak połączenia bezpośredniego pozostawia relay. Game Room nie zmienia
-globalnej zgody ELTEN-a na P2P. `routing: :peers` określa odbiorców,
-nie dowodzi fizycznego połączenia bezpośredniego.
+Optional full P2P uses the native `p2p: :full` and
+`p2p_participants_limit`. It is off by default; the limit is 8 participants,
+and 0 means no limit. Observers count toward the limit; bot seats do not.
+Without a direct connection, transport stays on the relay. Game Room does not
+change ELTEN's global P2P consent. `routing: :peers` specifies recipients;
+it does not prove that a physical direct connection exists.
 
-Ctrl+F4 rozdziela HTTP, UDP do relay i RTT poszczególnych uczestników P2P.
-Stan ścieżki pochodzi z `Session#p2p_status`, nie z opcji stołu. Wygasłe RTT
-nie jest bieżącym pomiarem; połączenia mieszane wymagają osobnego opisu.
-Odczyt nie wysyła sond ani nie uruchamia połączeń lub callbacków.
+Ctrl+F4 distinguishes HTTP, UDP to the relay and RTT for individual P2P
+participants. The path state comes from `Session#p2p_status`, not the table
+options. Expired RTT is not a current measurement; mixed connections require
+separate descriptions. Reading the status does not send probes or start
+connections or callbacks.
 
-Mierz osobno HTTP, relay RTT, kolejki/UI, zastosowanie akcji i trwały zapis.
-Nie odejmuj surowych zegarów różnych komputerów. Scenariusze powinny obejmować
-ludzi, boty, gospodarza-obserwatora, zastępstwa, rewanż, tło, reconnect oraz
-utratę, duplikację i zmianę kolejności. Cztery procesy na jednym komputerze
-nie zastępują różnych łączy. Regresje są w `test/realtime/`,
-`test/games/axel_pong/` i `test/games/audio_ball/`.
+Measure HTTP, relay RTT, queues/UI, action application and durable writes
+separately. Do not subtract raw clocks from different computers. Scenarios
+should cover humans, bots, an observing table host, replacements, rematches,
+background operation, reconnect, loss, duplication and reordering. Four
+processes on one computer are not a substitute for different network links.
+Regression tests are in `test/realtime/`, `test/games/axel_pong/` and
+`test/games/audio_ball/`.

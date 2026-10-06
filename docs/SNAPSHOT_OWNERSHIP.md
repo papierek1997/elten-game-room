@@ -1,36 +1,39 @@
-# Własność snapshotów
+# Snapshot ownership
 
-- Zdarzenia zaakceptowane przez magazyn są niezmienną historią. Projekcja
-  uczestników i komunikaty historyczne mają osobne zastosowania.
-- Runner posiada model wykonawczy. Publikacja do UI i planowanie otrzymują
-  własne kopie przez `GameRoomSnapshot.copy`; UI nie edytuje modelu workera.
-- Pierwsze `publish_view` odłącza `accepted_events` widocznego replaya od
-  jego źródeł: podstawia własną, głęboko zamrożoną kopię tej listy. Lokalny
-  `ViewRevision` wiąże gotową rewizję z dokładnie tą listą oraz tożsamością
-  stołu/partii/epoki obsady. Podmiana listy lub skopiowanie replaya wymaga
-  nowego przechwycenia; poprawki historii trafiają przez nowy replay/listę,
-  nie mutację zamrożonego prefiksu. Reszta modelu nie jest zamrażana.
-  Zwykłe `GameRoomSnapshot.copy` nadal zwraca mutowalną kopię, także dla
-  przyrostowych reducerów. Token nie trafia do replaya, archiwum ani workera
-  jako dowód aktualności zapisu; walidacja przed zapisem pozostaje świeża.
-- Prezenter kopiuje również prefiksy. Dla wartości niedających się skopiować
-  może jawnie odtworzyć projekcję; nie wolno zwrócić oryginału jako fallbacku.
-- Symulacja kopiuje stan i generator RNG. Wcześniejszy, jawny kontrakt
-  `shareable_simulation_snapshot?` pozostaje jedynym wyjątkiem; nie rozszerzamy
-  go automatycznie na nowe gry.
-- Kopia zachowuje symbole, Struct, cykle i aliasy wewnątrz grafu. Nie zamieniamy
-  jej na JSON ani płytkie `dup`. `Replay#state` może być `nil`.
-- Wewnętrzny `NinetyNinePlanning::State` posiada własny graf wartości,
-  zamrożony po utworzeniu świata. Gałąź kopiuje kolekcje zmieniane przez
-  reducer, a nowo wprowadzane wartości kart też są zamrożone. Ten jawny
-  kontrakt planera nie zmienia kopii replayów ani ogólnego snapshotu.
-- Cache aktywności należy do repository, po odczycie zaakceptowanych
-  projekcji transportu. Porównuje pełne wartości, przechowuje własne kopie
-  i oddaje nowe mutowalne wyniki. Współdzielenie wewnętrznych projekcji nie
-  zastępuje walidacji ani bieżącej granicy wizyty widza.
+- Events accepted by the store are immutable history. Participant projections
+  and historical messages serve separate purposes.
+- The runner owns the execution model. UI publication and planning receive
+  their own copies through `GameRoomSnapshot.copy`; the UI does not edit the
+  worker's model.
+- The first `publish_view` detaches the visible replay's `accepted_events`
+  from its sources: it substitutes its own deeply frozen copy of that list.
+  The local `ViewRevision` binds the completed revision to that exact list and
+  to the table/game/participant-epoch identity. Replacing the list or copying
+  the replay requires a new capture; history corrections arrive through a new
+  replay/list, not by mutating the frozen prefix. The rest of the model is not
+  frozen. Ordinary `GameRoomSnapshot.copy` still returns a mutable copy,
+  including for incremental reducers. The token is not passed to the replay,
+  archive or worker as proof that a write is current; pre-write validation
+  still uses fresh state.
+- The presenter also copies prefixes. For values that cannot be copied, it
+  may explicitly reconstruct the projection; it must not return the original
+  as a fallback.
+- Simulation copies the state and RNG. The earlier, explicit
+  `shareable_simulation_snapshot?` contract remains the only exception; it is
+  not automatically extended to new games.
+- Copying preserves symbols, Struct, cycles and aliases within the graph. It
+  is not replaced with JSON or a shallow `dup`. `Replay#state` may be `nil`.
+- The internal `NinetyNinePlanning::State` owns its value graph, frozen after
+  the world is created. A branch copies the collections modified by the
+  reducer, and newly introduced card values are also frozen. This explicit
+  planner contract does not change replay copying or the general snapshot.
+- The activity cache belongs to the repository, after reading accepted
+  transport projections. It compares full values, stores its own copies and
+  returns fresh mutable results. Sharing internal projections does not replace
+  validation or the viewer's current visit boundary.
 
-`tools/benchmark-runtime.rb` mierzy oddzielnie replay, kopiowanie, budowę
-specyfikacji, legalne ruchy, decyzję bota i koszt niezajętej blokady. Raport
-zawiera wersję Ruby, platformę i SHA-256 korpusu. Nie porównuj czasu CPU
-z RTT ani nie wyciągaj z niego wniosku o zachowaniu audio za natywnym oknem.
-Przykład: `ruby tools/benchmark-runtime.rb --iterations 10 --output tmp/runtime.json`.
+`tools/benchmark-runtime.rb` measures replay, copying, specification building,
+legal moves, bot decisions and uncontended lock cost separately. The report
+includes the Ruby version, platform and corpus SHA-256. Do not compare CPU time
+with RTT or use it to infer audio behavior behind a native window.
+Example: `ruby tools/benchmark-runtime.rb --iterations 10 --output tmp/runtime.json`.

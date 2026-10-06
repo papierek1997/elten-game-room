@@ -1,40 +1,40 @@
-# Testowanie i budowanie
+# Testing and building
 
-## Testy bez ELTEN-a
+## Tests without ELTEN
 
-Testy logiki gier są samodzielnymi skryptami Ruby. Testy narzędzi tłumaczeń
-wymagają dodatkowo standardowego gema GetText:
+Game-logic tests are standalone Ruby scripts. Translation-tool tests
+also require the standard GetText gem:
 
 ```console
 bundle install --gemfile tools/Gemfile.i18n
 ```
 
-Zalecana jest wersja Ruby 4.0, zgodna ze środowiskiem bieżącego ELTEN-a.
-Testy kontraktów hosta wymagają także jego zgodnych źródeł (obecnie ELTEN
-3.0.4). Ustaw `ELTEN_HOST_SOURCE` na katalog zawierający `src/` i `locale/`.
-W CI źródła hosta są przypięte do konkretnego commita w workflow testów.
-Aktualny pin to `3418d67dea40ee116f4a8ba545b1c409fd04706f` (wydanie 3.0.4).
-Wcześniejsze RC1 nie dostarcza wymaganego kontraktu równoległych scen.
+Ruby 4.0 is recommended, matching the current ELTEN environment.
+Host-contract tests also require matching host sources (currently ELTEN
+3.0.4). Set `ELTEN_HOST_SOURCE` to the directory containing `src/` and `locale/`.
+In CI, the host sources are pinned to a specific commit in the test workflow.
+The current pin is `3418d67dea40ee116f4a8ba545b1c409fd04706f` (release 3.0.4).
+The earlier RC1 does not provide the required parallel-scene contract.
 
 ```console
 ruby test/run.rb --report tmp/test-results.json
 ```
 
-Runner uruchamia skrypty w osobnych procesach i po błędzie kontynuuje,
-zapisując wynik każdego z nich. Domyślny limit to 180 sekund na skrypt;
-można go zmienić przez `--timeout`. Błąd, timeout i niezatwierdzone pominięcie
-zwracają niezerowy kod. Brak wymaganej zależności nie jest sukcesem.
-Katalogi, nazwy lub wzorce plików podane na końcu polecenia ograniczają
-zakres do wybranych prób, np. `test/games/spades` albo
+The runner executes scripts in separate processes and continues after a failure,
+recording each result. The default limit is 180 seconds per script;
+it can be changed with `--timeout`. A failure, timeout or unapproved skip
+returns a nonzero exit code. A missing required dependency is not a success.
+Directories, filenames or file patterns at the end of the command limit
+the scope to selected checks, for example `test/games/spades` or
 `test/transport/game_sync_test.rb test/transport/transport_test.rb`.
-Katalogi są przeszukiwane rekurencyjnie, z pominięciem pomocników i fixture.
-Układ gier i wspólnych warstw opisuje [docs/TESTING.md](TESTING.md).
-`--suite models|transport|ui|native|tooling|integration` wybiera jedną warstwę;
-`--list` pokazuje zakres. Nie łącz `--suite` z ręczną listą plików. CI zachowuje
-raport również po błędzie. Podczas bieżących porządków obowiązuje zapisane
-w `AGENTS.md` ograniczenie do testów dotkniętych zmianą.
+Directories are searched recursively, excluding helpers and fixtures.
+The layout of games and shared layers is described in [docs/TESTING.md](TESTING.md).
+`--suite models|transport|ui|native|tooling|integration` selects one layer;
+`--list` shows the scope. Do not combine `--suite` with a manual file list. CI retains
+the report even on failure. During the current cleanup, the restriction in
+`AGENTS.md` to tests affected by the change remains in force.
 
-## Generatory kodu wykonawczego
+## Runtime code generators
 
 ```console
 ruby tools/compile-rulebooks.rb --check
@@ -42,193 +42,193 @@ ruby tools/generate-krowa-nouns.rb --check
 ruby test/code_quality_test.rb
 ```
 
-Zasady pochodzą z `tools/data/rulebooks/*.json`, a lista właścicieli i wyjść z
-`tools/rulebook_sources.json`. Kompilator zapisuje tylko
-`games/generated/rulebooks/`; nie podmienia metod w utrzymywanym kodzie gry.
-Profile plansz Monopoly nadal powstają z bieżących definicji plansz.
-Gettext obejmuje generowane reguły. Po zmianie tekstów zaktualizuj katalogi
-zgodnie z instrukcją tłumaczeń poniżej.
+Rulebooks come from `tools/data/rulebooks/*.json`, and the list of owners and outputs from
+`tools/rulebook_sources.json`. The compiler writes only to
+`games/generated/rulebooks/`; it does not replace methods in maintained game code.
+Monopoly board profiles are still generated from the current board definitions.
+Gettext covers the generated rules. After changing text, update the catalogs
+as described in the translation instructions below.
 
-Kontrola `--check` obu generatorów kończy się błędem przy niezgodności,
-bez naprawiania plików.
+Both generators' `--check` mode fails on a mismatch
+without fixing any files.
 
-### Źródło rzeczowników Krowy
+### Krowa noun source
 
-Pierwsze 98 178 wierszy `tools/data/krowa_nouns.txt` zachowują dokładny tekst
-`GameRoomKrowa::NounData::WORDS` z commita `0c86d03`,
-bez sortowania, deduplikacji ani zmiany wyrazów. SHA-256 tekstu UTF-8 z LF:
+The first 98 178 lines of `tools/data/krowa_nouns.txt` preserve the exact text of
+`GameRoomKrowa::NounData::WORDS` from commit `0c86d03`,
+without sorting, deduplication or word changes. SHA-256 of the UTF-8 text with LF:
 `5e9e97a7681e662e97527a794846f965a0b789e1f47b3c06c5fc8404490d0389`.
-Nie udało się ustalić wejść dawnego `generate_noun_data.ps1`, wskazanego
-w nagłówku oryginału. To zachowany stan repozytorium umożliwiający odtworzenie
-Ruby, bez rekonstrukcji dawnej selekcji słownika lub zmiany autorstwa i licencji.
-TXT i generator pozostają poza instalatorem; runtime używa wygenerowanego Ruby.
-Na końcu listy dopisano dziewięć haseł zatwierdzonych przez autora projektu:
-łam, zacios, zaciosy, prosię, silnia, silnie, afro, szmat i ksero.
-5 października 2026 dopisano następne 60 zatwierdzonych haseł (34 i później
-kolejne 26), bez zmiany wcześniejszej kolejności. Aktualny plik zawiera
-98 247 wierszy; sprawdzają
-to generator i jego test. Dopisanie rzeczownika nie tworzy lokalnej
-definicji: objaśnienia są pobierane z SJP dotychczasową ścieżką na żądanie.
+The inputs to the old `generate_noun_data.ps1`, mentioned in the
+original header, could not be established. This preserves the repository state so that
+the Ruby can be reproduced, without reconstructing the former dictionary selection or changing credits and licenses.
+The TXT and generator stay outside the installer; the runtime uses the generated Ruby.
+Nine entries approved by the project author were appended to the list:
+łam, zacios, zaciosy, prosię, silnia, silnie, afro, szmat and ksero.
+On 5 October 2026, a further 60 approved entries were appended (34, followed by
+another 26), without changing the previous order. The current file contains
+98 247 lines; the generator
+and its test check this. Adding a noun does not create a local
+definition: explanations are retrieved from SJP on demand through the existing path.
 
-## Tłumaczenia interfejsu
+## Interface translations
 
-Edytuj jeden plik PO na język, np. `locale/PL.po`. Po edycji uruchom
-`ruby tools/translations.rb compile PL`, następnie
-`ruby tools/translations.rb check PL`. MO i polskie pola dokumentów zasad
-powstają z PO. Wpisy historii zmian edytuj w `lib/game_room_changelog.rb`,
-a ich tłumaczenia w PO; są wyświetlane bezpośrednio przez aplikację.
-Słowniki wyrazów, pytania i karty gier pozostają odrębnymi zasobami.
-Pełna instrukcja: `docs/TRANSLATIONS.md`.
+Edit one PO file per language, such as `locale/PL.po`. After editing, run
+`ruby tools/translations.rb compile PL`, followed by
+`ruby tools/translations.rb check PL`. MO and the Polish fields in rulebook documents
+are generated from PO. Edit changelog entries in `lib/game_room_changelog.rb`
+and their translations in PO; they are displayed directly by the application.
+Word dictionaries, questions and game cards remain separate resources.
+Full instructions: `docs/TRANSLATIONS.md`.
 
-Zachowaj płaskie `locale/<LANG>.mo`: natywne buildery zapisują katalogi
-jako rekordy języka z dwuliterowym kodem, a runtime w trybie źródłowym
-szuka właśnie tej ścieżki. PO/POT nie trafiają do stagingu.
-`test/tooling/locale_build_contract_test.rb` sprawdza oba manifesty,
-staging oraz faktyczne `build-eltenapp.rb` i `build-eltsetup.rb` z
-`ELTEN_HOST_SOURCE`, używając tymczasowej aplikacji z katalogami Game Roomu.
-Sprawdza pakiety natywnym czytnikiem i porównuje bajty wszystkich MO.
-Nie tworzy wydania gry ani nie używa kluczy podpisujących.
-Ten test wymaga również `rubyzip` i `zstd-ruby`, zgodnie z Gemfile hosta;
-CI instaluje wersje 3.2.2 i 2.0.6 w zestawie `native`.
+Keep the flat `locale/<LANG>.mo` layout: native builders store catalogs
+as language records with two-letter codes, and the source-mode runtime
+looks for this exact path. PO/POT files are not included in staging.
+`test/tooling/locale_build_contract_test.rb` checks both manifests,
+staging, and the actual `build-eltenapp.rb` and `build-eltsetup.rb` from
+`ELTEN_HOST_SOURCE`, using a temporary application with Game Room's catalogs.
+It checks the packages with the native reader and compares the bytes of every MO.
+It neither creates a game release nor uses signing keys.
+This test also requires `rubyzip` and `zstd-ruby`, as specified in the host's Gemfile;
+CI installs versions 3.2.2 and 2.0.6 in the `native` suite.
 
-Manifest w `__app.rb` musi zachować LF, zgodnie z `.gitattributes`:
-parser ELTEN-a 3.0.4 nie akceptuje CRLF przy końcowym `=end Elten3AppInfo`.
-Na Windows ograniczony token może dodatkowo zwrócić pusty wynik absolutnego
-globu używanego przez builder. Taki wynik oznacza błąd testu, nie poprawny
-pakiet; samego istnienia pliku ani sygnatury nie traktujemy jako weryfikacji.
+The manifest in `__app.rb` must retain LF, as specified by `.gitattributes`:
+ELTEN 3.0.4's parser does not accept CRLF at the closing `=end Elten3AppInfo`.
+On Windows, a restricted token can also cause the builder's absolute
+glob to return an empty result. That result is a test failure, not a valid
+package; neither the file's existence nor its signature alone counts as verification.
 
-## Uruchomienie ze źródeł
+## Running from source
 
-Do testu integracyjnego umieść katalog aplikacji tak, aby `__app.rb` znajdował
-się w katalogu programu deweloperskiego ELTEN-a, na przykład
-`dev_apps/game_platform/`. Uruchom ELTEN-a ze źródeł lub w trybie debugowania i
-otwórz ELTEN Game Room z menu programów.
+For an integration test, place the application directory so that `__app.rb` is
+in ELTEN's development-program directory, for example
+`dev_apps/game_platform/`. Run ELTEN from source or in debug mode and
+open ELTEN Game Room from the programs menu.
 
-Używaj oddzielnego profilu testowego, jeśli test może zmieniać dane stołów.
-Nie kopiuj profilu, logów ani ustawień MCP do repozytorium.
+Use a separate test profile if the test can change table data.
+Do not copy the profile, logs or MCP settings into the repository.
 
-## Paczka niepodpisana
+## Unsigned package
 
-### Domyślny format nagrań
+### Default recording format
 
-Wszystkie efekty, głosy, pętle i muzyka w `Audio/` mają format **Ogg Opus,
-144 kb/s VBR, 48 kHz, ramki 20 ms**, tryb audio i complexity 10.
-Zachowuj oryginalne mono/stereo, poziom głośności, pełne nagranie i metadane.
-Nie zwiększaj mono do stereo, nie usuwaj autorstwa i nie normalizuj przy okazji.
+All effects, voices, loops and music in `Audio/` use **Ogg Opus,
+144 kb/s VBR, 48 kHz, 20 ms frames**, audio mode and complexity 10.
+Preserve the original mono/stereo channels, volume level, complete recording and metadata.
+Do not upmix mono to stereo, remove credits or normalize as an incidental change.
 
 ```console
 ruby tools/encode_audio.rb C:/originals/new-sound.wav C:/src/elten-game-room/Audio/new-sound.opus
 ```
 
-Narzędzie wymaga FFmpeg z libopus i FFprobe w PATH; można też podać ich
-ścieżki jako trzeci i czwarty argument. Odmawia nadpisania istniejącego pliku.
-Oryginał zachowaj poza paczką. Do następnego kodowania używaj oryginału,
-nie poprzedniej stratnej konwersji. Poprawnego Opusa 144 VBR nie koduj ponownie.
-Identyfikator zasobu pozostaje bez rozszerzenia, np. `new-sound`.
+The tool requires FFmpeg with libopus and FFprobe in PATH; their
+paths can also be passed as the third and fourth arguments. It refuses to overwrite an existing file.
+Keep the original outside the package. For the next encoding, use the original,
+not a previous lossy conversion. Do not re-encode a valid 144 VBR Opus file.
+The asset identifier stays extensionless, for example `new-sound`.
 
-Pakowanie nie wykonuje konwersji: odrzuca inne formaty oraz plik tylko
-przemianowany na `.opus`. Sprawdza nagłówek Ogg/Opus; bitrate i ramki
-zapewnia profil narzędzia, nie samo rozszerzenie. Przed przyjęciem nagrań
-sprawdź dekodowanie przez BASS/bassopus ELTEN-a, restart, pętle używane przez
-grę, długość, poziomy i odsłuch. Kontrola techniczna nie zastępuje odsłuchu.
+Packaging does not perform conversion: it rejects other formats and files merely
+renamed to `.opus`. It checks the Ogg/Opus header; the bitrate and frame size
+are ensured by the tool's profile, not the extension. Before accepting recordings,
+check decoding through ELTEN's BASS/bassopus, restarts, loops used by
+the game, duration, levels and listening quality. Technical checks do not replace listening.
 
-Celowany test `ruby test/tooling/mille_audio_continuity_test.rb` wymaga FFmpeg
-i FFprobe w PATH. Dekoduje pięć nagrań dystansów, Asa drogi, czerwone światło,
-przebicie i ochronę opon, dodatkowy zbiornik, ograniczenie prędkości oraz
-koniec ograniczenia i jazdy pod prąd w 1000 mil. Sprawdza różne próbki,
-pełne dekodowanie i ciche początki i końce (okna 50 ms co najmniej
-20 dB poniżej najgłośniejszego okna). Chroni przed powrotem urwanych pętli
-silnika, ale nie ocenia realizmu ani przyjemności odsłuchu.
+The targeted test `ruby test/tooling/mille_audio_continuity_test.rb` requires FFmpeg
+and FFprobe in PATH. It decodes the five distance recordings, Driving Ace, red light,
+puncture and puncture protection, extra tank, speed limit,
+end of speed limit and wrong-way driving in 1000 Miles. It checks for varying samples,
+complete decoding, and quiet beginnings and endings (50 ms windows at least
+20 dB below the loudest window). It guards against the return of cut-off engine
+loops, but does not assess realism or listening enjoyment.
 
-### Staging instalatora
+### Installer staging
 
-Paczki buduje narzędzie z repozytorium ELTEN-a, ale nie należy przekazywać
-mu całego katalogu projektu. Najpierw przygotuj nowy, nieistniejący katalog
-wydania poza repozytorium. Przykład:
+Packages are built by the tool from the ELTEN repository, but do not pass
+the entire project directory to it. First prepare a new, nonexistent release
+directory outside the repository. Example:
 
 ```console
 ruby C:/src/elten-game-room/tools/stage-release.rb --source C:/src/elten-game-room --destination C:/build/game-room-runtime
 ruby C:/src/elten3/tools/build-eltsetup.rb --unsigned C:/build/game-room-runtime C:/build/ELTEN-Game-Room.eltsetup
 ```
 
-Jawny opt-in `--workspace-staging` pozwala zamiast tego użyć wyłącznie nowego,
-bezpośredniego podkatalogu `<source>/Workspace/`. Sam `Workspace` musi już
-istnieć i nie może przekierowywać do innego katalogu przez symlink lub junction.
-Nie wolno wskazać jego korzenia, zagnieżdżonego podkatalogu ani miejsca poza
-tym Workspace, również przez alias z innego katalogu. W repozytorium Git
-`git check-ignore` musi potwierdzić ignorowanie
-całego `Workspace/`; narzędzie nie zmienia `.gitignore`. Przykład:
+The explicit `--workspace-staging` opt-in instead permits only a new,
+direct child directory of `<source>/Workspace/`. `Workspace` itself must already
+exist and must not redirect to another directory through a symlink or junction.
+Do not specify its root, a nested subdirectory or a location outside
+that Workspace, including through an alias from another directory. In a Git repository,
+`git check-ignore` must confirm that the entire
+`Workspace/` is ignored; the tool does not change `.gitignore`. Example:
 
 ```console
 ruby tools/stage-release.rb --source D:/Gameroom --destination D:/Gameroom/Workspace/runtime-test --workspace-staging --manifest D:/Gameroom/Workspace/runtime-test-inventory.json
 ```
 
-Flaga wymaga `--destination`; nie służy do `--check`. Bez niej nadal obowiązuje
-staging poza źródłami. Pozostają kontrole kanonicznych ścieżek, nieistniejącego
-celu, limitu długości i wykazu poza stagingiem. `Workspace` i jego materiały
-pomocnicze nie należą do wykazu plików wykonawczych i nie trafiają do paczki,
-także przy kolejnym stagingu z tych samych źródeł.
+The flag requires `--destination`; it is not used with `--check`. Without it,
+staging must still be outside the source tree. The checks for canonical paths, a nonexistent
+destination, the path-length limit and an inventory outside staging remain in place.
+`Workspace` and its supporting materials are not part of the runtime-file inventory
+and are not included in the package, including during subsequent staging from the same sources.
 
-Ruby używane do budowania musi mieć zależności wymagane przez narzędzie ELTEN-a,
-w szczególności `zstd-ruby`. Najprościej użyć środowiska uruchomieniowego
-przygotowanego razem ze źródłami ELTEN-a.
+The Ruby used for building must have the dependencies required by ELTEN's tool,
+particularly `zstd-ruby`. The simplest option is to use the runtime
+prepared alongside ELTEN's sources.
 
-## Paczka podpisana
+## Signed package
 
-Podpisaną paczkę przygotowuje wyłącznie autor wydania:
+Only the release author prepares a signed package:
 
 ```console
 ruby C:/src/elten3/tools/build-eltsetup.rb --cert C:/private/author.crt.pem --key C:/private/author.key.pem C:/build/game-room-runtime C:/build/ELTEN-Game-Room-signed.eltsetup
 ```
 
-Certyfikat i klucz muszą pozostać poza repozytorium. Pliki `.eltsetup` również
-nie są śledzone — dystrybucja odbywa się przez katalog programów ELTEN-a.
+The certificate and key must remain outside the repository. `.eltsetup` files
+are also untracked — distribution takes place through ELTEN's program catalog.
 
-`tools/support/release_files.rb` jest wspólną listą zawartości wydania. Zachowuje kod,
-dane, audio, gotowe tłumaczenia, manifesty, licencje i informacje o źródłach.
-Pomija testy, narzędzia, dokumentację roboczą, raporty importu, materiały
-redakcyjne i źródłowe katalogi tłumaczeń. Te pliki pozostają w repozytorium.
-Skrypt sprawdza zależności Ruby, obecność wymaganych zasobów i zgodność kopii.
-Repozytoryjne `tools/stage-release.rb` przygotowuje staging i opcjonalny,
-deterministyczny wykaz hashy jako plik obok stagingu:
+`tools/support/release_files.rb` is the shared release-content list. It retains code,
+data, audio, compiled translations, manifests, licenses and source information.
+It excludes tests, tools, working documentation, import reports, editorial
+materials and source translation catalogs. These files remain in the repository.
+The script checks Ruby dependencies, required assets and copy consistency.
+The repository's `tools/stage-release.rb` prepares staging and an optional,
+deterministic hash inventory as a file next to it:
 
 ```console
 ruby tools/stage-release.rb --destination C:/build/gr --manifest C:/build/gr-inventory.json
 ruby tools/stage-release.rb --source C:/build/gr --manifest C:/build/gr-inventory.json --check
 ```
 
-Bez `--destination` narzędzie tylko sprawdza źródła i tworzy wskazany wykaz.
-Katalog nadrzędny wykazu musi już istnieć. Wykaz musi leżeć poza stagingiem;
-kontrola uwzględnia również aliasy wielkości liter na Windows i rozwiązane
-ścieżki istniejących katalogów. Niepoprawne granice są odrzucane przed zapisem.
-Nie podpisuje, nie instaluje i nie publikuje paczki. Dawny skrypt workspace
-`../tools/build-game-room.ps1` jest zewnętrznym udogodnieniem, nie zależnością
-odtworzenia stagingu. Na Windows nowy wrapper ogranicza ścieżkę stagingu do
-80 znaków. Zbyt długa ścieżka może spowodować
-puste wyniki globu narzędzia ELTEN-a; sama poprawna sygnatura nie dowodzi
-obecności kodu w paczce.
-Podawaj krótki podkatalog, nie sam korzeń dysku (np. `Z:/`): natywny builder
-może wtedy zapisać bezwzględne ścieżki zamiast nazw względnych i nie rozpoznać
-katalogów tłumaczeń ani dźwięków. Końcowa kontrola zawartości odrzuca taką paczkę.
+Without `--destination`, the tool only checks the sources and creates the specified inventory.
+The inventory's parent directory must already exist. The inventory must be outside staging;
+the check also accounts for Windows case aliases and the resolved
+paths of existing directories. Invalid boundaries are rejected before any write.
+The tool does not sign, install or publish the package. The old workspace script
+`../tools/build-game-room.ps1` is an external convenience, not a dependency for
+reproducing staging. On Windows, the new wrapper limits the staging path to
+80 characters. An overly long path can cause
+ELTEN's tool to return empty glob results; a valid signature alone does not prove
+that the package contains code.
+Specify a short subdirectory, not a drive root itself (such as `Z:/`): otherwise, the native builder
+may store absolute paths instead of relative names and fail to recognize
+translation or sound directories. The final content check rejects such a package.
 
-## Przygotowanie wydania
+## Preparing a release
 
-Główny `README.md` i tłumaczenia `content/readme/{EN,CS,ES,RU}.md` należą do
-wymaganych zasobów instalatora. Program odczytuje właściwy plik przez
-`asset_path`, według języka interfejsu, po wybraniu README w menu głównym.
-Nie twórz drugiej kopii tekstu w kodzie i nie dołączaj całego `docs/`.
-Dokumenty są zwykłymi plikami obok kontenera kodu w `.eltsetup`.
+The main `README.md` and the translations in `content/readme/{EN,CS,ES,RU}.md` are
+required installer assets. The program reads the appropriate file through
+`asset_path`, according to the interface language, when README is selected in the main menu.
+Do not create a second copy of the text in code or include all of `docs/`.
+The documents are ordinary files next to the code container in `.eltsetup`.
 
-1. Wykonaj kontrole zgodnie z zatwierdzonym zakresem. Przy zmianie samego
-   pakowania sprawdź `test/tooling/release_files_test.rb` oraz celowane testy binarne,
-   w tym `test/tooling/release_binary_loading_test.rb GOTOWA_PACZKA`. Testy i ich
-   pomocniki pochodzą z repo; kod produkcyjny musi pochodzić z instalatora.
-2. Numer wersji, build i changelog zmieniaj tylko zgodnie z poleceniem autora.
-   Ponowne wydanie tego samego buildu nie wymaga nowego wpisu changelogu.
-3. Przygotuj staging, zbuduj podpisaną paczkę i zweryfikuj manifesty, runtime,
-   podpis autora, dokładną listę plików oraz zgodność każdego pliku ze źródłem.
-   Nie maskuj braków danych wczytaniem ich z lokalnego repozytorium.
-4. Wykonaj celowane wczytanie gotowej paczki, także danych ładowanych na
-   żądanie, zasad, tłumaczeń i wymaganych dźwięków. Nie umieszczaj testów
-   w instalatorze tylko po to, żeby przechodziły stare założenia narzędzi.
-5. Instalacja, publikacja i wysyłka na GitHub wymagają osobnego polecenia.
+1. Perform checks within the approved scope. For packaging-only changes,
+   check `test/tooling/release_files_test.rb` and targeted binary tests,
+   including `test/tooling/release_binary_loading_test.rb GOTOWA_PACZKA`. Tests and their
+   helpers come from the repository; production code must come from the installer.
+2. Change the version number, build and changelog only as instructed by the author.
+   Reissuing the same build does not require a new changelog entry.
+3. Prepare staging, build the signed package and verify manifests, the runtime,
+   the author's signature, the exact file list and each file's consistency with its source.
+   Do not hide missing data by loading it from the local repository.
+4. Perform targeted loading of the finished package, including on-demand data,
+   rules, translations and required sounds. Do not put tests
+   in the installer merely to satisfy old assumptions in the tools.
+5. Installation, publication and pushing to GitHub require a separate instruction.

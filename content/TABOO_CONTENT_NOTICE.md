@@ -1,33 +1,36 @@
-# Taboo — pochodzenie i redakcja talii 1
+# Taboo — deck 1 provenance and editorial review
 
-Data: 17 września 2026. Po 500 kart PL i EN, po pięć zakazanych określeń.
-Źródłem gotowych danych jest `taboo_editorial.txt`; trwały numer wiersza
-danych określa ID. Nie przestawiać ani nie usuwać wierszy bez migracji wersji.
-`tools/build-taboo-cards.rb` odtwarza zasoby Ruby i sumy kontrolne.
+Date: 17 September 2026. There are 500 cards in each of PL and EN, with five
+forbidden terms per card. The finished data source is `taboo_editorial.txt`;
+the stable data-line number determines the ID. Do not reorder or remove lines
+without a version migration. `tools/build-taboo-cards.rb` regenerates the Ruby
+resources and checksums.
 
-To talie zredagowane dla Game Roomu, na licencji projektu GPL-3.0-or-later.
-Nie są importem komercyjnego Taboo, talią QC ani kopią otwartej bazy.
-Podczas opracowania porównano konstrukcję i jakość ograniczeń z przykładami
-otwartego projektu [tabooo](https://github.com/pawelblaszczyk5/tabooo/blob/0ffb860bdb3753093f040b423bf1debb3cea1b1a/frontend/src/helpers/card.ts),
-udostępnionego przez Pawła Błaszczyka na MIT. Materiał wzorcowy ma około
-100 pozycji na język, nie stanowi źródła deklarowanych 500 pozycji.
-Nie importowano Taboo-Data ani nie kopiowano kart z instrukcji Hasbro.
+These decks were edited for Game Room under the project's GPL-3.0-or-later
+license. They are not an import of commercial Taboo, a QC deck or a copy of an
+open database. During development, the structure and quality of the forbidden
+terms were compared with examples from the open-source
+[tabooo](https://github.com/pawelblaszczyk5/tabooo/blob/0ffb860bdb3753093f040b423bf1debb3cea1b1a/frontend/src/helpers/card.ts)
+project, published by Paweł Błaszczyk under MIT. That reference material has
+about 100 entries per language; it is not the source of the stated 500 entries.
+Taboo-Data was not imported, and cards from Hasbro's instructions were not copied.
 
-Każdy wiersz opracowano z kontrolą hasła i pięciu skojarzeń; warianty EN
-nie zawsze tłumaczą dosłownie polskie ograniczenia. Zakres: dom, jedzenie,
-zwierzęta, przyroda, podróże, miejsca, zawody, fantastyka, sport, muzyka,
-technika, przedmioty szkolne, wydarzenia i pojęcia abstrakcyjne.
-Przykłady świadomych różnic: Bison/plains wobec Żubr/Puszcza Białowieska,
-Goose/honk wobec Gęś/gęgać, bez przenoszenia polskich kalamburów do EN.
-Zrezygnowano z przykładów stygmatyzujących choroby, nazw żyjących polityków,
-niejasnych potocznych haseł i niepowiązanych ograniczeń z materiału wzorcowego.
+Each line was reviewed for its target word and five associations; EN versions
+do not always translate the Polish restrictions literally. Topics include the
+home, food, animals, nature, travel, places, occupations, fantasy, sport, music,
+technology, school subjects, events and abstract concepts.
+Deliberate differences include Bison/plains versus Żubr/Puszcza Białowieska,
+and Goose/honk versus Gęś/gęgać, without carrying Polish wordplay over into EN.
+Examples that stigmatized illnesses, names of living politicians, unclear
+colloquial target words and unrelated restrictions from the reference material
+were left out.
 
-Kontrola redakcyjna obejmuje pisownię, naturalność, brak definicji fałszywych,
-duplikatów haseł, pustych pól i powtórzeń zakazów. Zestawy nie są katalogiem
-encyklopedycznych definicji: ograniczenie może być skojarzeniem lub kontrastem.
-Właściwe rozstrzygnięcie wypowiedzi pozostaje przy ludziach.
+Editorial checks cover spelling, natural wording, false definitions, duplicate
+target words, empty fields and repeated forbidden terms. The sets are not a
+catalogue of encyclopedic definitions: a forbidden term may be an association
+or a contrast. Players remain responsible for judging what was said.
 
-Nie przeprowadzono jeszcze próbnych tur głosowych z ludźmi. Kontrola danych
-i testy programu nie dowodzą jednakowego poziomu trudności wszystkich kart;
-przed publicznym wydaniem wskazane są takie próby. Podczas partii nie powstają
-nowe karty i nie ma zapytań do zewnętrznych usług generowania tekstu.
+No trial voice rounds with human players have been conducted yet. Data checks
+and software tests do not establish that all cards have equal difficulty;
+such trials are recommended before public release. No new cards are generated
+during play, and the game makes no requests to external text-generation services.

@@ -1,73 +1,81 @@
-# Dokumentacja
+# Documentation
 
-## Dla graczy
+Technical and contributor documentation is maintained in English, in the
+existing files. Player guides and game rules remain multilingual; their
+translations must be kept up to date together.
 
-- [Power Games — przewodnik po programie](../README.md): pierwsze kroki,
-  stoły, zaproszenia, widget, ustawienia, zapis partii i najważniejsze skróty.
+## For players
 
-## Planowane poprawki
+- [Power Games — user guide](../content/readme/EN.md): getting started,
+  tables, invitations, the widget, settings, saved games and key shortcuts.
+  The [Polish guide](../README.md) and the other translations in
+  [content/readme/](../content/readme/) remain available.
 
-- [Nowy plan poprawek Game Roomu](NEXT_FIXES_PLAN.md):
-  zakres do wdrożenia i oznaczone kwestie do doprecyzowania.
+## Planned fixes
 
-## Utrzymanie
+- [New Game Room fixes plan](NEXT_FIXES_PLAN.md):
+  implementation scope and explicitly marked questions still to be settled.
 
-- [Architektura](ARCHITECTURE.md): przepływ danych, warstwy i ich właściciele.
-- [API hosta](HOST_API.md): kontrakt finalnego ELTEN-a 3.0.4.
-- [Budowanie](BUILDING.md): zależności, testy, generatory i staging.
-- [Dodawanie gry](ADDING_A_GAME.md): integracja modelu, UI, treści i botów.
-- [Własność snapshotów](SNAPSHOT_OWNERSHIP.md) i [benchmarki](BENCHMARKS.md).
-- [Narzędzia](TOOLS.md), [testy](TESTING.md)
-  i [tłumaczenia](TRANSLATIONS.md): bieżące polecenia i układ katalogów.
-- [Trening botów](BOT_TRAINING.md): ocena strategii i obsługa narzędzi Spades.
+## Maintenance
 
-## Kontrakty funkcji
+- [Architecture](ARCHITECTURE.md): data flow, layers and their responsibilities.
+- [Host API](HOST_API.md): the final ELTEN 3.0.4 contract.
+- [Building](BUILDING.md): dependencies, tests, generators and staging.
+- [Adding a game](ADDING_A_GAME.md): integrating the model, UI, content and bots.
+- [Snapshot ownership](SNAPSHOT_OWNERSHIP.md) and [benchmarks](BENCHMARKS.md).
+- [Tools](TOOLS.md), [testing](TESTING.md)
+  and [translations](TRANSLATIONS.md): current commands and directory layout.
+- [Bot training](BOT_TRAINING.md): evaluating strategies and using the Spades tools.
 
-- [Formularze i pomoc](UI.md), [ręka kart](CARD_HAND.md)
-  i [samouczek audio](AUDIO_TUTORIAL.md).
-- [Wykonanie i prezentacja w tle](BACKGROUND_GAME_EXECUTION.md).
-- [Realtime](REALTIME.md) i [Audio Ball](AUDIO_BALL.md).
-- [Prywatne odpowiedzi i zapis partii](PRIVATE_STATE.md).
-- [Drużyny, role i fokus](TEAMS_ROLES_AND_FOCUS.md).
-- [Języki interfejsu](INTERFACE_LANGUAGES.md).
-- [Statystyki](STATISTICS.md) i ich [fragment schematu](STATISTICS_TABLES.json).
-- [Pochodzenie i ograniczenia plansz Monopoly](MONOPOLY_REGIONAL_BOARDS.md).
+## Feature contracts
 
-## Utrzymywane treści
+- [Forms and help](UI.md), [card hands](CARD_HAND.md)
+  and the [audio tutorial](AUDIO_TUTORIAL.md).
+- [Background execution and presentation](BACKGROUND_GAME_EXECUTION.md).
+- [Realtime](REALTIME.md) and [Audio Ball](AUDIO_BALL.md).
+- [Private answers and saved games](PRIVATE_STATE.md).
+- [Teams, roles and focus](TEAMS_ROLES_AND_FOCUS.md).
+- [Interface languages](INTERFACE_LANGUAGES.md).
+- [Statistics](STATISTICS.md) and their [schema fragment](STATISTICS_TABLES.json).
+- [Monopoly board sources and limitations](MONOPOLY_REGIONAL_BOARDS.md).
 
-[Zasady redakcji pytań quizowych](QUIZ_EDITORIAL.md) są obowiązkowe przy
-tworzeniu, imporcie, rozbudowie i tłumaczeniu zestawów. Obejmują naturalny
-język, źródła, trzy wiarygodne błędne odpowiedzi, powtórzenia oraz przegląd
-każdej pozycji, ze wskazówkami dla polskiego, angielskiego, czeskiego,
-hiszpańskiego, rosyjskiego i kolejnych języków.
+## Maintained content
 
-[tools/data/rulebooks/](../tools/data/rulebooks/) zawiera źródła zasad dla
-kompilatora `tools/compile-rulebooks.rb`. Gra ładuje wygenerowane Ruby
-z `games/generated/rulebooks/` oraz tłumaczenia MO; JSON pozostaje poza paczką.
-Polskie teksty źródeł są odświeżane z PO; procedurę opisuje
+The [quiz editorial guidelines](QUIZ_EDITORIAL.md) are mandatory when creating,
+importing, extending or translating question sets. They cover natural language,
+sources, three plausible wrong answers, duplicates and a review of every item,
+with guidance for Polish, English, Czech, Spanish, Russian and future languages.
+
+[tools/data/rulebooks/](../tools/data/rulebooks/) contains rulebook sources for
+the `tools/compile-rulebooks.rb` compiler. The game loads generated Ruby from
+`games/generated/rulebooks/` and MO translations; JSON stays outside the package.
+Polish source text is refreshed from PO; the procedure is described in
 [docs/TRANSLATIONS.md](TRANSLATIONS.md).
 
-Historia zmian aplikacji ma jedno źródło:
-[game_room_changelog.rb](../lib/game_room_changelog.rb), tłumaczone przez PO/MO
-i wyświetlane w „Co nowego”. Nie utrzymujemy osobnych kopii Markdown wydań.
+The application's changelog has a single source:
+[game_room_changelog.rb](../lib/game_room_changelog.rb), translated through PO/MO
+and displayed in What's new. We do not maintain separate Markdown copies of
+release notes.
 
-[Czytelne pytania quizu](quiz-questions/) są eksportem z `content/` na potrzeby
-redakcji. Gra czyta zestawy Ruby w `content/`; TXT nie są jej źródłem danych.
-Każdy TXT odpowiada zestawowi i zawiera numer, pytanie, odpowiedzi
-A–D oraz wskazanie poprawnej odpowiedzi, bez technicznych ID. Numeracja zaczyna
-się od 1 w każdym zestawie; kolejność odpowiedzi jest stała i może różnić się
-od partii. Zestaw „Wiedźmin — książki” zastępuje wszystkie dawne zestawy
-Wiedźmina; nie obejmuje gier ani ekranizacji. Aby zgłosić błąd, podaj
-nazwę zestawu i treść pytania. Edytuj dane w `content/`, następnie uruchom:
+The [readable quiz question lists](quiz-questions/) are exports from `content/`
+for editorial review. The game reads Ruby packs in `content/`; TXT files are
+not its data source. Each TXT corresponds to a set and contains a sequential
+number, question, choices A–D and the correct answer, without technical IDs.
+Numbering starts at 1 in each set; answer order is fixed and may differ from
+the order during a game. The “Wiedźmin — książki” (The Witcher — books) set
+replaces all previous Witcher sets; it excludes games and screen adaptations.
+To report an error, provide the set name and question text. Edit the data in
+`content/`, then run:
 
 ```console
 ruby tools/export-quiz-text.rb
 ruby tools/export-quiz-text.rb --check
 ```
 
-Eksporty mają UTF-8, zachowują pochodzenie i licencje zestawów; nie trafiają
-do instalatora. Polecenie `--check` sprawdza aktualność bez zapisu.
+Exports use UTF-8 and preserve each set's provenance and licensing information;
+they are not included in the installer. `--check` verifies that they are up to
+date without writing files.
 
-Raporty testów, audytów, pomiarów i jednorazowych eksperymentów zapisuj
-w ignorowanym `tmp/` albo poza repozytorium. Historię zmian zachowuje Git;
-bieżące kontrakty aktualizuj w dokumentach powyżej.
+Keep test reports, audits, measurements and one-off experiment reports in the
+ignored `tmp/` directory or outside the repository. Git preserves the change
+history; update current contracts in the documents listed above.

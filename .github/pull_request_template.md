@@ -1,13 +1,13 @@
-## Co zmienia ten pull request?
+## What does this pull request change?
 
 
-## Jak odtworzyć wcześniejszy problem?
+## How can the previous problem be reproduced?
 
 
-## Jak sprawdzono zmianę?
+## How was the change verified?
 
-- [ ] Dodano lub zaktualizowano test regresji.
-- [ ] `ruby test/run.rb` kończy się powodzeniem.
-- [ ] Sprawdzono interfejs klawiaturowy i komunikaty czytnika ekranu.
-- [ ] Zmiana nie zawiera profilu, logów prywatnych, tokenów, kluczy ani paczki
-      `.eltsetup`.
+- [ ] A regression test was added or updated.
+- [ ] `ruby test/run.rb` completes successfully.
+- [ ] The keyboard interface and screen-reader announcements were checked.
+- [ ] The change contains no profiles, private logs, tokens, keys or
+      `.eltsetup` package.

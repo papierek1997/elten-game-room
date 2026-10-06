@@ -1,9 +1,9 @@
 # Audio Ball
 
-Gra `audio_ball` obsługuje dwóch graczy (ludzi lub boty); gospodarz może
-obserwować. Autorem pierwotnej implementacji jest `budyn1211` (PR #13).
-Wspólny transport opisuje [REALTIME.md](REALTIME.md), a podgląd dźwięków
-[AUDIO_TUTORIAL.md](AUDIO_TUTORIAL.md).
+The `audio_ball` game supports two players (humans or bots); the owner may
+observe. The original implementation is by `budyn1211` (PR #13).
+The shared transport is described in [REALTIME.md](REALTIME.md), and sound previews
+in [AUDIO_TUTORIAL.md](AUDIO_TUTORIAL.md).
 
 ## Controls and rules
 

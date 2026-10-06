@@ -1,4 +1,4 @@
-# Lokalne benchmarki
+# Local benchmarks
 
 ```console
 mkdir tmp
@@ -6,23 +6,23 @@ ruby tools/benchmark-runtime.rb --iterations 20 --output tmp/benchmark.json
 ruby tools/benchmark-runtime.rb --games spades,monopoly,uno --iterations 20 --output tmp/subset.json
 ```
 
-Katalog `tmp/` przygotuj, jeśli jeszcze nie istnieje; jego zawartość jest ignorowana przez Git.
+Create `tmp/` if it does not already exist; its contents are ignored by Git.
 
-Wejściem jest wersjonowany korpus `test/fixtures/contracts/v1/histories.json`.
-Raport zapisuje jego hash, wersję Ruby i platformę. Każda faza ma rozgrzewkę,
-liczbę iteracji, czas CPU, czas ścienny i liczbę alokacji. Replay, głęboka kopia,
-budowa specyfikacji widoku, legalne akcje i decyzja bota są mierzone osobno.
-Digest decyzji obejmuje wybraną akcję i dalszy stan RNG; porównanie szybkości
-ma sens dopiero po potwierdzeniu zgodności tych wyników.
+The input is the versioned corpus `test/fixtures/contracts/v1/histories.json`.
+The report records its hash, the Ruby version and the platform. Each phase has a warm-up,
+an iteration count, CPU time, wall-clock time and an allocation count. Replay, deep copying,
+view-specification construction, legal actions and bot decisions are measured separately.
+The decision digest includes the selected action and the subsequent RNG state;
+a speed comparison is meaningful only after these results are confirmed to match.
 
-Pomiar pustej blokady jest osobną pozycją. Nie mierzy oczekiwania na planera,
-sieci, dysku, hosta ani syntezatora. Nie należy odejmować go od RTT ani
-interpretować lokalnego czasu CPU jako opóźnienia gracza. Kolejki i relay
-wymagają osobnych scenariuszy realtime, a rzeczywiste różne łącza — prób
-klientów na tych łączach.
+The empty-lock measurement is a separate item. It does not measure waiting for
+the planner, network, disk, host or speech synthesizer. Do not subtract it from RTT or
+interpret local CPU time as player-perceived latency. Queues and the relay
+require separate realtime scenarios, and genuinely different connections require
+tests with clients using those connections.
 
-Porównuj tę samą wersję Ruby, platformę, korpus i liczbę iteracji, po kilku
-przebiegach bez równoległego runnera. Brak progu czasu w CI jest celowy:
-zmienność współdzielonego hosta nie może udawać regresji reguł gry.
-Raport zawiera wynik ostatniej iteracji; wzorce decyzji i replayów kontrolują
-osobno `model_contract_test.rb` oraz `test/games/spades/decision_contract_test.rb`.
+Compare the same Ruby version, platform, corpus and iteration count, across several
+runs without a concurrent runner. The absence of a timing threshold in CI is intentional:
+shared-host variability must not masquerade as a regression in game rules.
+The report contains the last iteration's result; expected decisions and replays are
+checked separately by `model_contract_test.rb` and `test/games/spades/decision_contract_test.rb`.
