@@ -108,6 +108,12 @@ assert(!transports["Bob"].private_game_messages_pending?(table["__id"], 10), "wr
   restored.fetch(:before_publish).call(999)
   assert(case_run.automatic == :ok, "secret not rebound to new session for #{variant}")
   storage.fail_write = true
+  # Restoring uses the production store directly, not the fixture's subclass.
+  # Make both temporary destinations unwritable without locking the originals.
+  [HiddenSubmissions::ProgramStorage::DEFAULT_PATH,
+    HiddenSubmissions::ProgramStorage::DEFAULT_PATH + '.recovery.json'].each do |name|
+    Dir.mkdir(storage.data_path(name) + ".tmp-#{Process.pid}-#{Thread.current.object_id}")
+  end
   begin
     restored.fetch(:before_publish).call(1000)
     raise "failed secret persistence accepted"

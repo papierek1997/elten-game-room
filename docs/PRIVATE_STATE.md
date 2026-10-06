@@ -6,7 +6,11 @@
 po usunięciu wpisu. Transakcja odczyt–modyfikacja–zapis jest koordynowana
 między ekranami. Zwykły plik to `hidden_submissions.json`; przy błędzie I/O
 magazyn próbuje `hidden_submissions.json.recovery.json` w tym samym prywatnym
-katalogu aplikacji, przez API zapisu hosta.
+katalogu aplikacji. Host ustala i sprawdza ścieżkę raz na plik w danej
+wczytanej aplikacji. Kolejne odczyty i zapisy używają tej ścieżki bez ponownego
+rozpakowywania instalatora. Zawartość pliku nie jest buforowana. Zapis powstaje
+w pliku tymczasowym i zastępuje docelowy plik dopiero po zamknięciu zapisu,
+tak samo jak w natywnym magazynie hosta.
 
 Snapshot zawiera rosnące `storage_revision`. Odczyt wybiera najnowszy kompletny
 stan, więc stary plik główny nie cofa usunięcia potwierdzonego w kopii awaryjnej.

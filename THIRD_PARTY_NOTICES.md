@@ -128,6 +128,18 @@ aby zbliżyć zmierzoną głośność do `notice`, i przekodowano do Ogg Opus
 Nie stosowano kompresji dynamiki ani ogranicznika; oryginał pozostał bez zmian.
 Dźwięk dotyczy nowych stołów, a zaproszenia nadal używają `notice.opus`.
 
+### Błędna odpowiedź w quizie
+
+`Audio/quiz_wrong_answer.opus` — [Dat's Wrong!](https://freesound.org/s/587253/)
+autorstwa **Beetlemuse**, na licencji
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Nagranie dostarczył użytkownik jako
+`587253_Dat's Wrong!_preview-hq-ogg.ogg` wraz z informacją licencyjną.
+6 października 2026 r. przekodowano je do Ogg Opus 144 kb/s VBR, 48 kHz,
+ramki 20 ms, zachowując pełne nagranie, kanały i metadane. Na polecenie
+użytkownika ściszono nagranie o 10% (mnożnik amplitudy 0,9).
+Oryginału nie zmieniono. Licencja tego dźwięku nie jest licencją kodu gry.
+
 ### Cat, head, tail
 
 Gra i jej pierwotna implementacja zostały dostarczone przez **TD Programs**

@@ -231,6 +231,7 @@ module GameRoomGames
 
     # Timer announcements are local UI cues. A stable key lets the screen say
     # each cue once without writing cosmetic events to the shared game log.
+    # Entries contain [key, message, optional_sound_asset].
     def timer_announcements(_replay, _viewer, now: GameRoomClock.now.to_i)
       []
     end

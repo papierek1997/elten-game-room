@@ -1,15 +1,20 @@
 # Small deterministic fixtures: no network, profiles or live client.
 require "json"
+require_relative "hidden_submission_files"
 def _(text); text; end
 require_relative "../../games/krowa"
 require_relative "../../lib/game_random"
 
 def assert(value, message); raise message unless value; end
 
-class KrowaTestProgram
+class KrowaTestProgram < HiddenSubmissionFiles
   attr_accessor :fail_write
   attr_reader :files, :writes
-  def initialize; @files = {}; @writes = 0; end
+  def initialize; super; @files = {}; @writes = 0; end
+  def before_hidden_write(_name)
+    raise IOError, "test disk unavailable" if fail_write
+    @writes += 1
+  end
   def read_json(path, default:); Marshal.load(Marshal.dump(@files.fetch(path, default))); end
   def write_json(path, data)
     raise IOError, "test disk unavailable" if fail_write
@@ -53,7 +58,7 @@ class KrowaTestGame
     @repository = KrowaTestRepository.new(players)
     @events = []
     @context = GameRoomGames::ActionContext.new(session_id: 10, table_id: 2, table_owner: "Alice",
-      hidden_submissions: HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(program)),
+      hidden_submissions: HiddenSubmissions::Vault.new(program.storage),
       random_source: KrowaTestRandom.new, now: 1_800_000_000.0, local_data: {"daily_day" => "2026-09-18"})
   end
   def replay; @game.replay(@session, @events, @repository); end

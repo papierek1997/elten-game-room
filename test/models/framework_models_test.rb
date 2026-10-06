@@ -2,6 +2,7 @@ require_relative "../support/sequence_random"
 
 require_relative "../../lib/game_random"
 require_relative "../../lib/hidden_submissions"
+require_relative "../support/hidden_submission_files"
 
 def assert(condition, message)
   raise message if !condition
@@ -58,10 +59,7 @@ assert(
 assert(vault.discard(session_id: 7, round_id: "round-1", user: "Alice"), "hidden submission was not discarded")
 
 # The retry history must survive the same JSON boundary used by real profiles.
-json_files = {}
-program = Object.new
-program.define_singleton_method(:write_json) { |path, value| json_files[path] = JSON.generate(value) }
-program.define_singleton_method(:read_json) { |path, default:| json_files.key?(path) ? JSON.parse(json_files[path]) : default }
+program = HiddenSubmissionFiles.new
 saved_vault = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(program))
 first = saved_vault.prepare(session_id: 8, round_id: "1", user: "Bob", payload: payload)
 saved_vault.prepare(session_id: 8, round_id: "1", user: "Bob", payload: tampered)

@@ -1,8 +1,14 @@
 require_relative "../../support/binary_rule_dictionary"
+require "tmpdir"
 BinaryRulesLoad.load(File.join(BinaryRulesLoad::ROOT, "games/krowa_support/client.rb"))
 
 class KrowaBinaryStorage
-  def initialize; @data = {}; end
+  def initialize
+    @data = {}
+    directory = @directory = Dir.mktmpdir("krowa-binary-hidden-")
+    at_exit { FileUtils.remove_entry(directory) if File.directory?(directory) }
+  end
+  def data_path(name); File.join(@directory, name); end
   def read_json(path, default:); @data.fetch(path, default); end
   def write_json(path, value); @data[path] = value; true; end
   def update_json(path, default:); value = read_json(path, default: default); yield value; write_json(path, value); value; end

@@ -2,6 +2,7 @@ require "digest"
 require "json"
 require "securerandom"
 require "monitor"
+require "fileutils"
 
 module HiddenSubmissions
   class StorageError < StandardError; end
@@ -86,7 +87,7 @@ module HiddenSubmissions
       # Program instances delegate file storage to their program class in
       # ELTEN. Coordinate that shared file, not just one screen's instance.
       # The class also bounds the lifetime to this loaded application.
-      owner = program.class.respond_to?(:read_json) && program.class.respond_to?(:write_json) ? program.class : program
+      owner = program.class.respond_to?(:data_path) ? program.class : program
       @coordinator = COORDINATORS_LOCK.synchronize do
         stores = owner.instance_variable_get(:@game_room_hidden_submission_stores)
         if stores == nil
@@ -121,14 +122,20 @@ module HiddenSubmissions
     private
 
     def paths
-      [@path, @path + ".recovery.json"]
+      # Resolving an installed Program's data path can reparse its package.
+      # Ask the host once, retaining its path validation and private directory;
+      # do not cache the answers themselves, which another screen may update.
+      @coordinator[:paths] ||= begin
+        path = @program.data_path(@path).to_s
+        [path.freeze, (path + ".recovery.json").freeze].freeze
+      end
     end
 
     def read_snapshot
       # A newer recovery snapshot supersedes the original, including deletions.
       # This also works after reopening the screen or restarting ELTEN.
       snapshots = paths.map do |path|
-        normalize_root(@program.read_json(path, default: { "entries" => {} }))
+        normalize_root(read_snapshot_file(path))
       end
       snapshots.max_by { |root| root.fetch(REVISION_KEY, 0).to_i }
     rescue SystemCallError, IOError
@@ -138,8 +145,7 @@ module HiddenSubmissions
     def persist_snapshot(root)
       paths.each do |path|
         begin
-          result = @program.write_json(path, root)
-          raise IOError, "JSON write failed" if result == false
+          write_snapshot_file(path, root)
           @coordinator[:retry_at] = 0.0
           @coordinator[:warned] = false
           return
@@ -156,6 +162,21 @@ module HiddenSubmissions
         @coordinator[:warned] = true
       end
       raise StorageError, "Cannot save hidden answers on this device."
+    end
+
+    def read_snapshot_file(path)
+      JSON.parse(File.binread(path))
+    rescue Errno::ENOENT, JSON::ParserError
+      { "entries" => {} }
+    end
+
+    def write_snapshot_file(path, root)
+      FileUtils.mkdir_p(File.dirname(path))
+      temporary = "#{path}.tmp-#{Process.pid}-#{Thread.current.object_id}"
+      File.binwrite(temporary, JSON.generate(root).encode(Encoding::UTF_8))
+      FileUtils.mv(temporary, path)
+    ensure
+      File.delete(temporary) if temporary && File.file?(temporary)
     end
 
     def normalize_root(root)

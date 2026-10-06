@@ -31,11 +31,12 @@ module GameRoomGames
       return "draw" if action == "round_category"
       return nil if action != "question_finished"
 
-      answered_correctly = history.any? do |entry|
-        entry.kind == :answer_result && entry.field.to_s == "right" &&
-          GameRoomParticipants.same?(entry.actor, viewer)
+      answer = history.find do |entry|
+        entry.kind == :answer_result && GameRoomParticipants.same?(entry.actor, viewer)
       end
-      answered_correctly ? "replay" : nil
+      return nil if answer == nil
+
+      answer.field.to_s == "right" ? "replay" : "quiz_wrong_answer"
     end
 
     def id
@@ -276,7 +277,7 @@ module GameRoomGames
 
       remaining = state[:deadline].to_i - now.to_i
       announcements = []
-      announcements << ["quiz:#{question_key(state)}:five", _("5 seconds remain.")] if remaining <= 5 && remaining > 0
+      announcements << ["quiz:#{question_key(state)}:five", _("5 seconds remain."), "buzzer2"] if remaining <= 5 && remaining > 0
       announcements << ["quiz:#{question_key(state)}:expired", _("Time is up.")] if remaining <= 0
       announcements
     end
@@ -533,7 +534,7 @@ module GameRoomGames
     end
 
     def information_surface(id, message)
-      GameSurfaces::QuestionSpec.new(id: id, prompt: name, mode: :information, value: message)
+      GameSurfaces::QuestionSpec.new(id: id, prompt: "", mode: :information, value: message)
     end
 
     def submit_category(selection, state, actor)
@@ -1157,12 +1158,12 @@ module GameRoomGames
         result_text(Replay.new(state: state)) || scores_text(state)
       when :answering
         if player_hash_key?(state[:commitments], viewer)
-          _("Your answer was sent. Waiting for the other players.")
+          _("Answer sent.")
         else
           _("Waiting for the players to answer.")
         end
       when :revealing
-        _("Collecting the answers.")
+        ""
       when :starting
         _("The next question is being prepared.")
       when :drawing

@@ -247,11 +247,12 @@ class GameRoomEventPresenter
 
   def announce_due_timers(replay, now:)
     @game.call.timer_announcements(replay, @viewer.call, now: now).to_a.each do |announcement|
-      key, message = announcement.to_a
-      next if key.to_s.empty? || message.to_s.empty? || @spoken_timer_announcements[key.to_s]
+      key, message, sound = announcement.to_a
+      next if key.to_s.empty? || (message.to_s.empty? && sound.to_s.empty?) || @spoken_timer_announcements[key.to_s]
 
       @spoken_timer_announcements[key.to_s] = true
-      @speech.call(message.to_s)
+      GameRoomSounds.play(@program.call, sound) unless sound.to_s.empty?
+      @speech.call(message.to_s) unless message.to_s.empty?
     end
   rescue StandardError => error
     Log.warning("ELTEN Game Room timer announcement failed: #{error.class}: #{error.message}") if defined?(Log)

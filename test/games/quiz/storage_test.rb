@@ -12,7 +12,7 @@ Dir.mktmpdir("quiz-storage-217-") do |dir|
   main = HiddenSubmissions::ProgramStorage::DEFAULT_PATH
   recovery = main + ".recovery.json"
   f.contexts.each_value do |c|
-    c.hidden_submissions = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(program))
+    c.hidden_submissions = HiddenSubmissions::Vault.new(program.storage)
   end
   program.blocked = [main]
   f.h.users.each { |u| f.h.write(u, f.plan(u).events) }
@@ -20,7 +20,7 @@ Dir.mktmpdir("quiz-storage-217-") do |dir|
   # Recreate both the Program wrapper and vaults: no memory-only recovery.
   program = HiddenSubmissionFiles.new(dir)
   f.contexts.each_value do |c|
-    c.hidden_submissions = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(program))
+    c.hidden_submissions = HiddenSubmissions::Vault.new(program.storage)
   end
   f.auto("Alice")
   f.h.users.each { |u| f.auto(u) }
@@ -54,7 +54,7 @@ Dir.mktmpdir("quiz-storage-217-") do |dir|
   bot_fixture = QuizReviewFixture.new(["Alice"], bots: 1)
   runner = runner_for(bot_fixture.h)
   runner.instance_variable_get(:@context_template).hidden_submissions =
-    HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(program))
+    HiddenSubmissions::Vault.new(program.storage)
   bot_attempts = 0
   model = runner.instance_variable_get(:@game)
   validate = model.method(:action_for)

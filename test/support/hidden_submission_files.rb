@@ -1,17 +1,46 @@
 require "json"
 require "fileutils"
+require "tmpdir"
 require_relative "../../lib/hidden_submissions"
 
-# Mirrors ELTEN Program.write_binary_file, including replacement and cleanup.
+# Real private files; replacement faults are injected at the storage boundary.
 # All paths belong to a disposable test directory, never a real user profile.
 class HiddenSubmissionFiles
-  attr_reader :directory, :writes
+  class Storage < HiddenSubmissions::ProgramStorage
+    private
+
+    def write_snapshot_file(path, value)
+      @program.before_hidden_write(File.basename(path))
+      super
+    end
+  end
+
+  attr_reader :directory, :writes, :path_resolutions
   attr_accessor :blocked
 
-  def initialize(directory)
+  def initialize(directory = nil)
+    if directory == nil
+      directory = Dir.mktmpdir("game-room-hidden-fixture-")
+      at_exit { FileUtils.remove_entry(directory) if File.directory?(directory) }
+    end
     @directory = directory
     @writes = []
     @blocked = []
+    @path_resolutions = 0
+  end
+
+  def data_path(name = "")
+    @path_resolutions += 1
+    File.join(directory, name)
+  end
+
+  def storage
+    Storage.new(self)
+  end
+
+  def before_hidden_write(name)
+    writes << name
+    raise Errno::EACCES, "simulated replacement lock" if blocked.include?(name)
   end
 
   def read_json(name, default:)
@@ -20,15 +49,8 @@ class HiddenSubmissionFiles
   end
 
   def write_json(name, value)
-    writes << name
-    path = File.join(directory, name)
-    tmp = path + ".tmp-#{Process.pid}-#{Thread.current.object_id}"
-    File.binwrite(tmp, JSON.generate(value).b)
-    raise Errno::EACCES, "simulated replacement lock" if blocked.include?(name)
-    FileUtils.mv(tmp, path)
+    storage.send(:write_snapshot_file, File.join(directory, name), value)
     true
-  ensure
-    File.delete(tmp) if tmp && File.file?(tmp)
   end
 
   def retry_now

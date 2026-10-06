@@ -387,6 +387,15 @@ module GameRoomChangelog
         "Replaced all previous Witcher quiz sets with a new Polish set, Witcher — books. Seven categories cover characters, the plot, politics and wars, geography, magic and witchers, creatures and nature, and life and culture.",
         "The questions were checked against Andrzej Sapkowski's books, including Season of Storms and Crossroads of Ravens. The two additional stories, Droga, z której się nie wraca and Coś się kończy, coś się zaczyna, are always named in their questions. There are no questions about games or screen adaptations. The set includes spoilers."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.4.6",
+      build: 245,
+      changes: [
+        "Quiz answers are now saved and checked faster, reducing the wait before results when everyone has answered.",
+        "Shortened the Quiz confirmation to Answer sent. Removed the redundant Quiz heading and Collecting the answers announcement.",
+        "Quiz now plays the UNO call sound when five seconds remain and a separate sound for a wrong answer."
+      ].freeze
     ).freeze
   ].freeze
 

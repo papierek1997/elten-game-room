@@ -8,7 +8,7 @@ Dir.mktmpdir("categories-storage-217-") do |dir|
   repository = CategoriesRepository.new(players)
   session = { "options" => JSON.generate(game.default_options.merge("round_category_count" => 9)) }
   program = HiddenSubmissionFiles.new(dir)
-  vault = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(program))
+  vault = HiddenSubmissions::Vault.new(program.storage)
   context = GameRoomGames::ActionContext.new(session_id: 217, table_id: 4, now: 100,
     hidden_submissions: vault, random_source: GameRoomRandom::SeededSource.new(217))
   events = []
@@ -33,7 +33,7 @@ Dir.mktmpdir("categories-storage-217-") do |dir|
     append_plan(events, plan, u)
     replay = game.replay(session, events, repository)
   end
-  context.hidden_submissions = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(HiddenSubmissionFiles.new(dir)))
+  context.hidden_submissions = HiddenSubmissions::Vault.new(HiddenSubmissionFiles.new(dir).storage)
   action = game.automatic_action(replay, "Alice", context: context)
   status, plan = game.action_for(action, replay, "Alice", context: context)
   assert(status == :ok, "Categories did not close answers")
@@ -49,7 +49,7 @@ Dir.mktmpdir("categories-storage-217-") do |dir|
   assert(replay.state[:reveals].size == 2, "Categories lost a reveal")
   failed_cleanup = HiddenSubmissionFiles.new(dir)
   failed_cleanup.blocked = [main, main + ".recovery.json"]
-  context.hidden_submissions = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(failed_cleanup))
+  context.hidden_submissions = HiddenSubmissions::Vault.new(failed_cleanup.storage)
   %w[Bob Carol].each { |u| game.automatic_action(replay, u, context: context) }
   action = game.automatic_action(replay, "Alice", context: context)
   status, plan = game.action_for(action, replay, "Alice", context: context)

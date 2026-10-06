@@ -475,9 +475,11 @@ assert(
   "a correct answer did not confirm itself with a sound"
 )
 assert(
-  quiz_cue(game, scored_event, replay, replay, repository, "Bob") == nil,
-  "a wrong answer played the correct-answer sound"
+  quiz_cue(game, scored_event, replay, replay, repository, "Bob") == "quiz_wrong_answer",
+  "a wrong answer did not play its own sound"
 )
+assert(quiz_cue(game, scored_event, replay, replay, repository, "Observer") == nil,
+  "an observer heard another player's answer result sound")
 commit_cue_event = events.find { |event| event["action"] == "answer_commit" }
 assert(
   quiz_cue(game, commit_cue_event, replay, replay, repository, "Alice") == nil,
@@ -639,7 +641,7 @@ grace_context = context.dup
 grace_context.now = 200 + GameRoomGames::QuizParty::DEADLINE_SUBMISSION_GRACE
 assert(game.automatic_action_due?(pending_replay, "Alice", context: grace_context), "the grace period never woke the game")
 assert(
-  game.timer_announcements(pending_replay, "Bob", now: 196).any? { |key, text| key.include?("five") && text.include?("5") },
+  game.timer_announcements(pending_replay, "Bob", now: 196).any? { |key, text, cue| key.include?("five") && text.include?("5") && cue == "buzzer2" },
   "the five-second warning is missing"
 )
 assert(

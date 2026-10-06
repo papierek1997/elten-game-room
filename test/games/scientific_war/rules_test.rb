@@ -280,13 +280,8 @@ spy_tricks = 0
 end
 assert(bot_table.replay.finished?, "bots could not finish a game")
 assert(spy_tricks == 0 || spy_wins * 2 >= spy_tricks, "the spy bot does not use the revealed cards: #{spy_wins}/#{spy_tricks}")
-class ScientificWarArchive
-  def initialize = @files = {}
-  def read_json(path, default:) = Marshal.load(Marshal.dump(@files.fetch(path, default)))
-  def write_json(path, data)
-    @files[path] = Marshal.load(Marshal.dump(data))
-    true
-  end
+require_relative "../../support/hidden_submission_files"
+class ScientificWarArchive < HiddenSubmissionFiles
   def update_json(path, default:)
     data = read_json(path, default: default)
     yield data

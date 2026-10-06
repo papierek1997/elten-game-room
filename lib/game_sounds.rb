@@ -12,6 +12,7 @@ module GameRoomSounds
     invitation_rejected
     buzzer
     buzzer2
+    quiz_wrong_answer
     war_open
     ding
     shuffle

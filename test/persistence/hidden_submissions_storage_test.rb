@@ -11,7 +11,7 @@ KEY = { session_id: 217, round_id: "1:1", user: "Alice" }.freeze
 
 Dir.mktmpdir("game-room-hidden-217-") do |dir|
   program = HiddenSubmissionFiles.new(dir)
-  vault = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(program))
+  vault = HiddenSubmissions::Vault.new(program.storage)
   20.times { assert(!vault.discard(**KEY), "missing envelope was removed") }
   assert(program.writes.empty?, "discard of missing envelope wrote a file")
   first = vault.prepare(**KEY, payload: { "answer" => "2" })
@@ -21,11 +21,11 @@ Dir.mktmpdir("game-room-hidden-217-") do |dir|
 
   program.blocked = [MAIN]
   edited = vault.prepare(**KEY, payload: { "answer" => "3" })
-  fresh = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(HiddenSubmissionFiles.new(dir)))
+  fresh = HiddenSubmissions::Vault.new(HiddenSubmissionFiles.new(dir).storage)
   assert(fresh.reveal(**KEY).commitment == edited.commitment, "restart lost the recovery snapshot")
   assert(fresh.reveal(**KEY, commitment: first.commitment).payload == { "answer" => "2" }, "recovery lost an accepted older nonce")
   assert(vault.discard(**KEY), "recovery could not persist cleanup")
-  fresh = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(HiddenSubmissionFiles.new(dir)))
+  fresh = HiddenSubmissions::Vault.new(HiddenSubmissionFiles.new(dir).storage)
   assert(fresh.reveal(**KEY).nil?, "stale main file resurrected a removed answer")
   count = program.writes.size
   20.times { vault.discard(**KEY) }
@@ -52,7 +52,7 @@ Dir.mktmpdir("game-room-hidden-217-") do |dir|
   assert(Dir.children(dir).none? { |n| n.include?(".tmp-") }, "temporary files leaked")
 
   # Two screens of the same Program cannot overwrite each other's answers.
-  stores = 2.times.map { HiddenSubmissions::ProgramStorage.new(program) }
+  stores = 2.times.map { program.storage }
   threads = stores.each_with_index.map do |store, i|
     Thread.new do
       15.times { |n| store.update { |root| Thread.pass; root["entries"]["#{i}:#{n}"] = n } }
@@ -72,7 +72,7 @@ if Gem.win_platform?
   end
   Dir.mktmpdir("game-room-locked-217-") do |dir|
     program = HiddenSubmissionFiles.new(dir)
-    vault = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(program))
+    vault = HiddenSubmissions::Vault.new(program.storage)
     first = vault.prepare(**KEY, payload: { "answer" => "0" })
     path = File.join(dir, MAIN).tr("/", "\\").encode("UTF-16LE").b + "\0\0".b
     # Allow read/write but deny FILE_SHARE_DELETE, as with a transient reader.
@@ -85,7 +85,7 @@ if Gem.win_platform?
       rescue Errno::EACCES, Errno::EPERM
       end
       second = vault.prepare(**KEY, payload: { "answer" => "1" })
-      fresh = HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(HiddenSubmissionFiles.new(dir)))
+      fresh = HiddenSubmissions::Vault.new(HiddenSubmissionFiles.new(dir).storage)
       assert(fresh.reveal(**KEY).commitment == second.commitment, "native lock lost the new answer")
       assert(fresh.reveal(**KEY, commitment: first.commitment).commitment == first.commitment, "native lock lost old commitment")
       assert(vault.discard(**KEY), "native lock prevented safe cleanup")

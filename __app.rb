@@ -3,8 +3,8 @@
   "id": "c24d98cc-9ccd-4d50-b801-459da324ff60",
   "name": "Power Games",
   "description": "Accessible multiplayer games for ELTEN users.",
-  "version": "2.0.4.5",
-  "build_id": "244",
+  "version": "2.0.4.6",
+  "build_id": "245",
   "EltenAPIVersion": "3.0.4",
   "main_language": "en",
   "supported_languages": ["en", "pl", "cs", "es", "ru"],
@@ -23,7 +23,7 @@
   },
   "required_assets": {
     "sounds": [
-      "connect", "disconnect", "chatmsg", "notice", "table_notice", "invitation_rejected", "buzzer", "buzzer2", "war_open", "ding", "shuffle", "draw", "draw2",
+      "connect", "disconnect", "chatmsg", "notice", "table_notice", "invitation_rejected", "buzzer", "buzzer2", "quiz_wrong_answer", "war_open", "ding", "shuffle", "draw", "draw2",
       "farkle", "cht-roll-dice", "cht-bank", "cht-lost-points", "cht-cat-minus-8", "cht-cat-plus-8",
       "hit1", "hit_ship1", "hit_ship2", "rocket_launch1", "rocket_launch2", "rocket_launch3", "rocket_miss",
       "interception", "lose1", "lose3", "play", "play2", "replay",
@@ -161,8 +161,8 @@ class EltenGameRoom < Program
   extend GameRoomTableWatchRuntime
   extend GameRoomContactFiltersRuntime
   extend GameRoomAnalyticsRuntime
-  GAME_ROOM_VERSION = "2.0.4.5".freeze
-  GAME_ROOM_BUILD_ID = 244
+  GAME_ROOM_VERSION = "2.0.4.6".freeze
+  GAME_ROOM_BUILD_ID = 245
   GAME_ROOM_CAPABILITIES = ["invitations", "live_sessions", "live_session_stack"].freeze
   LOBBY_ACTIVITY_POLL_INTERVAL = 5.0
 
