@@ -29,6 +29,13 @@ kości, listy akcji i pozostałe listy zachowują własną nawigację.
   akcję co Enter przez zwykłe `action_for`. Kilka sposobów użycia tej samej
   karty zawsze oznacza jedynie ustawienie kursora.
 
+W 1000 mil przy dokładnie dwóch graczach grywalny atak ma jednoznacznego
+przeciwnika: Enter pomija listę celu, a nawigacja może automatycznie zagrać
+jedyną grywalną kartę zgodnie z powyższą zasadą. W większej obsadzie wybór
+celu pozostaje jawny, także gdy aktualnie tylko jeden przeciwnik jest podatny
+na atak. Nie dotyczy to wyboru problemu dla błyskawicznej naprawy ani
+potwierdzenia odrzucenia karty. Każdy ruch nadal przechodzi bieżące `action_for`.
+
 ## Nowe gry
 
 Logika jest raz w `lib/game_surfaces/card_hand_cursor.rb`. CardTable i
@@ -70,5 +77,26 @@ Ręczne sortowanie deklaruje `hand_sorting_available?` oraz wspólne
 colour/number/none. Sortowanie widoku nie zmienia stanu partii, kolejności
 zaznaczania pakietu ani domyślnego układu. Fizyczne ID i kursor pozostają stabilne.
 
-Regresje: `test/ui/card_hand_cursor_test.rb`, `test/games/uno/sort_order_test.rb`
-i testy dotkniętej karcianki.
+## Potwierdzanie akcji karty
+
+Opcjonalne `Card#confirmation` podaje gotowe pytanie przed zwykłą akcją Entera.
+Brak pytania zachowuje dotychczasowe zachowanie pozostałych karcianek.
+Potwierdzenie korzysta z `GameRoomUI::Form` z właścicielem `program:`, domyślnym
+wyborem „Nie” i anulowaniem przez Escape. Wybór przeciwnika nadal jest osobnym
+etapem; nie zastępuje się go potwierdzeniem odrzucenia.
+
+Skrót typu `:surface` może wywołać `selected_card_action`, przekazując
+`hand_id`, mapę `actions` według fizycznych ID, szablon `confirmation`
+z polem `%{card}` oraz identyfikator `shortcut`. Wspólna powierzchnia ustala
+kartę pod kursorem po sortowaniu, a nie po jej etykiecie. Przy otwartym
+wyborze celu wymaga jego ukończenia lub anulowania. Po potwierdzeniu zwraca
+jedną akcję do normalnej ścieżki ekranu, nie emituje jej drugi raz.
+
+Gra deklaruje wyłącznie legalne akcje i nie traktuje potwierdzenia jako
+uprawnienia do zapisu: aktualna rewizja, wykonawca i `action_for` nadal
+podlegają ponownej walidacji. W 1000 mil Enter proponuje odrzucenie tylko
+niegrywalnej karty, którą wolno odrzucić w tej fazie; J pozwala świadomie
+odrzucić również grywalną kartę. Nie zmienia to nawigacji Z ani modeli innych gier.
+
+Regresje: `test/ui/card_hand_cursor_test.rb`, `test/ui/card_actions_test.rb`,
+`test/games/uno/sort_order_test.rb` i testy dotkniętej karcianki.

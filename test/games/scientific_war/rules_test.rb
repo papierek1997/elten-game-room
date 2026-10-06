@@ -1,6 +1,8 @@
 require_relative "../../support/elten_array_shuffle"
 require_relative "../../support/ui"
 require "json"
+require "tmpdir"
+require_relative "../../support/hidden_submission_files"
 class Program
   def self.server_app(**_options); end
 end
@@ -280,7 +282,6 @@ spy_tricks = 0
 end
 assert(bot_table.replay.finished?, "bots could not finish a game")
 assert(spy_tricks == 0 || spy_wins * 2 >= spy_tricks, "the spy bot does not use the revealed cards: #{spy_wins}/#{spy_tricks}")
-require_relative "../../support/hidden_submission_files"
 class ScientificWarArchive < HiddenSubmissionFiles
   def update_json(path, default:)
     data = read_json(path, default: default)
@@ -290,42 +291,46 @@ class ScientificWarArchive < HiddenSubmissionFiles
   end
 end
 
-save_bot = GameRoomParticipants.bots_for(1, 1).first
-save_players = ["Alice", save_bot]
-archive = ScientificWarArchive.new
-saves = SavedGames.new(archive, owner: "Alice")
-save_table = ScientificWarTable.new(save_players)
-save_table.instance_variable_set(:@vault, HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(archive)))
-save_table.trick("Alice" => "8H1", save_bot => "5S1")
-bot_status = save_table.choose(save_bot, card_of(save_table, save_bot, "K"))
-assert(bot_status == :ok, "the bot could not choose before saving: #{bot_status} #{save_table.replay.state.slice(:phase, :trick, :commits)}")
-snapshot = Struct.new(:session, :events).new(save_table.session.merge("__players" => save_players, "__id" => 7), save_table.events)
-table_info = { "owner" => "Alice", "name" => "Scientific War" }
-row = saves.put(game: game, table: table_info, snapshot: snapshot, repository: save_table.repository, now: 1_900_000_000)
-assert(row["private_data"]["cards"]["1"]["card"].start_with?("K"), "the bot's sealed card was not saved")
-assert(row["events"].none? { |event| event["value"].include?(row["private_data"]["cards"]["1"]["card"]) }, "the sealed card leaked into the public archive")
-restored = saves.restored_data(row, game: game, table_id: 55, now: 1_900_000_100)
-restored.fetch(:before_publish).call(99)
-new_bot = restored[:players].last
-restored_repo = ScientificWarRepository.new(restored[:players])
-restored_session = { "options" => row["options"] }
-after = game.replay(restored_session, restored[:events], restored_repo)
-assert(after.state[:powers]["Alice"] == "8" && after.state[:commits].key?(new_bot), "the restored game lost the power or the bot's choice")
-restored_context = GameRoomGames::ActionContext.new(session_id: 99, hidden_submissions: HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(archive)))
-status, = game.action_for({ "kind" => "card", "action" => "select", "zone" => "hand", "card" => card_of(save_table, "Alice", "2") }, after, "Alice", context: restored_context)
-assert(status == :ok, "the restored game could not continue")
-bad = Marshal.load(Marshal.dump(row))
-bad["private_data"]["cards"]["1"]["nonce"] = "0" * 32
-bad["checksum"] = saves.send(:checksum, bad)
-begin
-  saves.validate(bad, game: game)
-  raise "a corrupt sealed card was accepted"
-rescue ArgumentError
+Dir.mktmpdir("scientific-war-hidden-storage-") do |directory|
+  save_bot = GameRoomParticipants.bots_for(1, 1).first
+  save_players = ["Alice", save_bot]
+  archive = ScientificWarArchive.new(directory)
+  saves = SavedGames.new(archive, owner: "Alice")
+  save_table = ScientificWarTable.new(save_players)
+  save_table.instance_variable_set(:@vault, HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(archive)))
+  save_table.trick("Alice" => "8H1", save_bot => "5S1")
+  bot_status = save_table.choose(save_bot, card_of(save_table, save_bot, "K"))
+  assert(bot_status == :ok, "the bot could not choose before saving: #{bot_status} #{save_table.replay.state.slice(:phase, :trick, :commits)}")
+  snapshot = Struct.new(:session, :events).new(save_table.session.merge("__players" => save_players, "__id" => 7), save_table.events)
+  table_info = { "owner" => "Alice", "name" => "Scientific War" }
+  row = saves.put(game: game, table: table_info, snapshot: snapshot, repository: save_table.repository, now: 1_900_000_000)
+  assert(row["private_data"]["cards"]["1"]["card"].start_with?("K"), "the bot's sealed card was not saved")
+  assert(row["events"].none? { |event| event["value"].include?(row["private_data"]["cards"]["1"]["card"]) }, "the sealed card leaked into the public archive")
+  restored = saves.restored_data(row, game: game, table_id: 55, now: 1_900_000_100)
+  restored.fetch(:before_publish).call(99)
+  new_bot = restored[:players].last
+  restored_repo = ScientificWarRepository.new(restored[:players])
+  restored_session = { "options" => row["options"] }
+  after = game.replay(restored_session, restored[:events], restored_repo)
+  assert(after.state[:powers]["Alice"] == "8" && after.state[:commits].key?(new_bot), "the restored game lost the power or the bot's choice")
+  reopened_archive = ScientificWarArchive.new(directory)
+  restored_context = GameRoomGames::ActionContext.new(session_id: 99, hidden_submissions: HiddenSubmissions::Vault.new(HiddenSubmissions::ProgramStorage.new(reopened_archive)))
+  assert(game.saved_private_data(after, context: restored_context) == row["private_data"], "reopening the file-backed vault lost the restored bot's sealed card")
+  status, = game.action_for({ "kind" => "card", "action" => "select", "zone" => "hand", "card" => card_of(save_table, "Alice", "2") }, after, "Alice", context: restored_context)
+  assert(status == :ok, "the restored game could not continue")
+  bad = Marshal.load(Marshal.dump(row))
+  bad["private_data"]["cards"]["1"]["nonce"] = "0" * 32
+  bad["checksum"] = saves.send(:checksum, bad)
+  begin
+    saves.validate(bad, game: game)
+    raise "a corrupt sealed card was accepted"
+  rescue ArgumentError
+  end
+  assert(save_table.choose("Alice", card_of(save_table, "Alice", "2")) == :ok, "Alice could not choose")
+  blocked = ScientificWarTable.new(%w[Alice Bob])
+  blocked.choose("Alice", "AH1")
+  assert(game.save_game_error(blocked.replay).to_s.include?("beginning of a trick"), "a game with a person's sealed card could be saved")
+  assert(game.save_game_error(ScientificWarTable.new(%w[Alice Bob]).replay).nil?, "a game at the start of a trick could not be saved")
 end
-assert(save_table.choose("Alice", card_of(save_table, "Alice", "2")) == :ok, "Alice could not choose")
-blocked = ScientificWarTable.new(%w[Alice Bob])
-blocked.choose("Alice", "AH1")
-assert(game.save_game_error(blocked.replay).to_s.include?("beginning of a trick"), "a game with a person's sealed card could be saved")
-assert(game.save_game_error(ScientificWarTable.new(%w[Alice Bob]).replay).nil?, "a game at the start of a trick could not be saved")
 
 puts "PASS Scientific War: equal suits, sorted hands after a swap or refill, Z navigation, sealed choices, wars, revolution, spy, three, eight, jokers, elimination, limit, sounds, save and restore, controller changes, #{lengths.length} games up to #{lengths.max} events, bots"

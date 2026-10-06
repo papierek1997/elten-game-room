@@ -3,6 +3,7 @@ require_relative "game_history_navigation"
 require_relative "game_room_clock"
 require_relative "game_content"
 require_relative "game_snapshot"
+require_relative "table_control"
 
 require_relative "game_room_localization"
 
@@ -454,7 +455,7 @@ class TableActivityRepository
 
   def teams_from(row)
     players, seats = row["team_players"], row["team_seats"]
-    return nil unless players.is_a?(Array) && seats.is_a?(Array) && players.length.between?(4, 8) && seats.length == players.length
+    return nil unless players.is_a?(Array) && seats.is_a?(Array) && players.length.between?(4, GameRoomTableControl::MAX_SEATS) && seats.length == players.length
     return nil unless players.all? { |name| name.is_a?(String) && !name.strip.empty? && name.length <= 64 } &&
       GameRoomParticipants.unique(players).length == players.length && seats.all? { |seat| seat.is_a?(Integer) && seat.between?(0, 3) }
     teams = Array.new(seats.max + 1) { [] }

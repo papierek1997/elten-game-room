@@ -37,15 +37,39 @@ Al iniciarse, el programa puede ofrecerte descargar una versión más reciente. 
 
 ## A qué puedes jugar
 
-Power Games incluye actualmente 32 juegos:
+Power Games incluye actualmente 33 juegos:
 
-- Cartas: 3-5-8, 99, Biblios, Makao, Picas, Póker, Rummy, Mil, UNO, War y Scientific War.
+- Cartas: 3-5-8, 99, 1000 millas, Biblios, Makao, Picas, Póker, Rummy, Mil, UNO, War y Scientific War.
 - Tablero y estrategia: Ludo, Cuatro en raya, Tres en raya, Mancala, Monopoly, Reversi, Batalla naval, Ajedrez y Damas.
 - Dados y dominó: Cat, head, tail, Dominó, Farkle, Mexican Train y Yahtzee.
 - Palabras y conocimientos: Krowa, Categorías, Quiz Party, Scrabble y Taboo.
 - Acción con audio: Axel Pong y Audio Ball.
 
 Muchos juegos tienen varias variantes. Las opciones, el número de participantes, la disponibilidad de bots y otros ajustes dependen del título. La sección «Reglas del juego» explica las reglas, la puntuación y los controles en detalle.
+
+1000 millas es una carrera de cartas según las reglas de QuentinC: llega exactamente a las 1000 millas, ataca a tus rivales y elimina los obstáculos con las cartas correspondientes. Las protecciones duran hasta el final de la ronda. Jugar la protección correspondiente inmediatamente después de un ataque, incluso fuera de tu turno, es un contraataque si el siguiente jugador aún no ha robado ni jugado una carta. Otorga 300 puntos de bonificación además de los 100 de la protección, una carta de reemplazo si está disponible y un turno adicional con su robo normal. Los compañeros de equipo comparten distancia, obstáculos, protección y puntos, pero cada uno tiene su propia mano y turno. Puedes ajustar la puntuación objetivo (5000 puntos de forma predeterminada), los equipos, «Acumulación de problemas» y «Usar las cartas descartadas como un nuevo mazo cuando se agote el actual».
+
+Con la demora de los movimientos de los bots en 0, el siguiente bot puede robar inmediatamente después de anunciarse el ataque, antes de que puedas reaccionar. Establece una demora de los bots distinta de cero para poder realizar contraataques con más comodidad. No se garantiza un tiempo de reacción: la oportunidad sigue terminando cuando el siguiente jugador roba o juega una carta.
+
+Añadir cartas de protección está activado de forma predeterminada: el mazo estándar tiene 106 cartas. Al desactivarlo se eliminan Depósito adicional, Neumáticos antipinchazos, Prioridad de paso y As del volante y quedan 102 cartas, sin protección permanente ni contraataques. Las partidas anteriores sin este ajuste siguen incluyendo protecciones. Las cartas de sentido contrario se añaden por separado. Sin combustible y Pinchazo se solucionan con Combustible y Rueda de repuesto, respectivamente.
+
+El sentido contrario es opcional y está desactivado de forma predeterminada. Añadir cartas de sentido contrario normalmente añade 4 cartas de ataque y 6 de fin de sentido contrario, igual que las cantidades estándar de límite de velocidad y fin de límite de velocidad. Son valores predeterminados locales aprobados, no cantidades verificadas del mazo de QuentinC Playroom. Las partidas anteriores conservan sus cantidades guardadas explícitamente. Mazo personalizado permite cambiar ambas cantidades por separado. El ataque afecta incluso a un coche detenido, independientemente de los límites de velocidad, las averías y el ajuste de acumulación de problemas. Mientras dure, las cartas legales de 25, 50, 75, 100 y 200 millas restan distancia, sin bajar de cero; jugar una en cero deja la distancia en cero. Siguen vigentes los requisitos del semáforo verde, la eliminación de obstáculos, los límites de velocidad y el máximo de dos cartas de 200 millas por ronda, incluso al retroceder. El as del volante protege contra el sentido contrario, lo elimina y permite realizar un contraataque. El fin de sentido contrario elimina únicamente este efecto y no exige otro semáforo verde; los demás obstáculos y sus requisitos siguen vigentes.
+
+Reparación instantánea
+
+Añadir cartas de reparación instantánea es opcional y está desactivado de forma predeterminada. Al activarlo, añade dos cartas de reparación instantánea al mazo estándar. Mazo personalizado permite cambiar su cantidad; el interruptor sigue decidiendo si se incluyen.
+
+Después de robar en tu turno normal, juega una reparación instantánea sobre tu coche o equipo y elige exactamente un problema que eliminar: semáforo rojo, falta del semáforo verde inicial, falta de combustible, pinchazo, accidente, límite de velocidad o sentido contrario. Una carta resuelve únicamente el problema elegido, aunque se hayan acumulado varios.
+
+Eliminar el semáforo rojo o la falta del semáforo verde inicial permite avanzar solo si no lo impide otro problema. Reparar un problema de combustible, neumáticos o accidente sigue requiriendo un semáforo verde, salvo que tengas Prioridad de paso. Los demás problemas no cambian. La reparación instantánea no es una protección ni una respuesta inmediata a un ataque: no concede inmunidad, turno extra ni bonificación de 100 o 300 puntos.
+
+Mazo personalizado
+
+Mazo personalizado permite establecer una cantidad para cada tipo de carta: las cinco distancias, cada remedio y ataque, cada protección, sentido contrario, fin de sentido contrario y reparación instantánea. Elige un número entero de 0 a 100 para cada tipo. Añadir cartas de protección, Añadir cartas de sentido contrario y Añadir cartas de reparación instantánea siguen controlando su inclusión: un grupo desactivado queda fuera del mazo aunque sus cantidades guardadas sean positivas. El límite de dos cartas de 200 millas por jugador o equipo y ronda no cambia.
+
+Las cartas incluidas deben bastar para repartir seis a cada jugador al inicio y permitir sumar puntos: incluye una protección, o cartas de distancia junto con un semáforo verde, Prioridad de paso o reparación instantánea. Esto no garantiza que se puedan alcanzar las 1000 millas. No se puede empezar con un mazo personalizado no válido. Cambiar los ajustes de la mesa no reescribe el mazo ni la reproducción de una partida existente. Mazo personalizado está desactivado de forma predeterminada; al desactivarlo se restauran las cantidades estándar para las nuevas partidas.
+
+En 1000 millas, las flechas recorren tu mano, Enter juega una carta y pide un objetivo cuando es necesario y Espacio roba. Después de robar, Enter sobre una carta que no se pueda jugar pregunta si quieres descartarla. J pregunta si quieres descartar la carta seleccionada de tu mano, aunque se pueda jugar. No o Escape cierra la confirmación sin descartar la carta ni registrar una jugada. Delete sigue abriendo la selección de una carta para descartar. Z y Shift+Z buscan cartas que se puedan jugar. I lee el estado de tu coche, Shift+I el de todos los coches, S las puntuaciones y T el turno actual. F1 abre la ayuda contextual y Ctrl+F1 las reglas completas.
 
 En Taboo necesitas comunicarte con los demás jugadores. Puedes usar una conferencia de ELTEN, otra aplicación de mensajería o jugar en persona.
 

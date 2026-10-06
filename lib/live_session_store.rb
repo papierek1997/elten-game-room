@@ -29,6 +29,7 @@ class GameRoomLiveSessionStore
   DISCOVERY_BYTES = 1024
   MAX_OPTIONS_BYTES = 8192
   MAX_CAPACITY = 8
+  DEFAULT_CAPACITY = 8
   STACK_ENTRIES = 4_096
   STACK_ENTRY_BYTES = 16_384
   ARCHIVE_EVENTS_PER_RECORD = 10
@@ -143,7 +144,7 @@ class GameRoomLiveSessionStore
     end
   end
 
-  def create_room(name:, game:, owner:, game_options:, capacity: MAX_CAPACITY, private_table: false, resume_save_id: nil, bot_count: 0, bot_names: nil)
+  def create_room(name:, game:, owner:, game_options:, capacity: DEFAULT_CAPACITY, private_table: false, resume_save_id: nil, bot_count: 0, bot_names: nil)
     start
     table_id = unused_identifier
     maximum = bounded_capacity(capacity)

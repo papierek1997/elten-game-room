@@ -54,6 +54,6 @@ class HiddenSubmissionFiles
   end
 
   def retry_now
-    instance_variable_get(:@game_room_hidden_submission_stores)&.each_value { |s| s[:retry_at] = 0.0 }
+    instance_variable_get(:@game_room_hidden_submission_stores)&.each_value { |store| store[:retry_at] = 0.0 }
   end
 end

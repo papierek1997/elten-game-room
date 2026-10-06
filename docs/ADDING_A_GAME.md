@@ -94,8 +94,10 @@ Sprawdź osobno:
 
 ## 5. Zarejestruj grę
 
-Dodaj `require_relative` oraz klasę do `GAME_REGISTRY` w `__app.rb`. Rejestr
-wywołuje `rule_book`, dlatego brak zasad zostanie wykryty przy starcie.
+Dodaj `require_relative` oraz klasę do `GameRoomGames::CATALOG` w
+`games/catalog.rb`. `__app.rb` korzysta z tego samego katalogu przez
+`GAME_REGISTRY`. Rejestr wywołuje `rule_book`, dlatego brak zasad zostanie
+wykryty przy starcie.
 
 ## Tłumaczenia interfejsu i zasad
 

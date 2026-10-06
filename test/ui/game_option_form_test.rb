@@ -105,7 +105,7 @@ Form.driver = lambda do |form|
   elimination.checked = true
   elimination.trigger(:change)
   assert(limit.text == "500", "elimination did not update the default limit in the editor")
-  limit.text = "1500"
+  limit.set_text("1500")
   elimination.checked = false
   elimination.trigger(:change)
   assert(limit.text == "1500", "variant change overwrote a custom limit")
@@ -138,4 +138,22 @@ Form.driver = lambda do |form|
 end
 edited = app.send(:configure_game_options, rummy, initial_options: rummy.normalize_options('score_limit' => 1700), submit_label: 'Save changes')
 assert(edited['score_limit'] == 1700, 'save replaced the current options with remembered defaults')
+mille_bornes = GameRoomGames::MilleBornes.new
+[nil, {}, { "include_safeties" => true }, { "include_safeties" => false }].each do |initial|
+  [true, false].each do |selected|
+    expected = initial == nil ? true : initial.fetch("include_safeties", true)
+    Form.driver = lambda do |form|
+      definition = mille_bornes.option_definitions.find { |item| item.key == "include_safeties" }
+      control = form.fields.find { |field| field.is_a?(CheckBox) && field.header == definition.label }
+      assert(control != nil, "Mille Bornes safety checkbox missing")
+      assert(control.checked == expected, "sparse normalized safety default lost its declared value")
+      control.checked = selected
+      control.trigger(:change)
+      form.accept_button.trigger(:press)
+    end
+    options = app.send(:configure_game_options, mille_bornes, initial_options: initial)
+    assert(options == mille_bornes.normalize_options("include_safeties" => selected), "safety editor changed the normalized option contract")
+    assert(mille_bornes.send(:deck_for, options).length == (selected ? 106 : 102), "safety checkbox did not change the physical deck")
+  end
+end
 puts "Game option form tests passed"

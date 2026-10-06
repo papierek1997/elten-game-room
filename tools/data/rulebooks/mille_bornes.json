@@ -1,0 +1,255 @@
+{
+  "source": "games/mille_bornes.rb",
+  "sections": [
+    {
+      "id": "race",
+      "title": {
+        "en": "The race to exactly 1000 miles",
+        "pl": "Wyścig na dokładnie 1000 mil"
+      },
+      "paragraphs": [
+        {
+          "en": "Travel exactly 1000 miles before your opponents. Distance cards cover 25, 50, 75, 100 or 200 miles. You cannot pass the finish line. Each player or team may play at most two 200-mile cards in a round.",
+          "pl": "Przejedź dokładnie 1000 mil przed przeciwnikami. Karty dystansu pozwalają pokonać 25, 50, 75, 100 lub 200 mil. Nie wolno przekroczyć mety. Każdy gracz lub drużyna może zagrać najwyżej dwie karty 200 mil w jednej rundzie."
+        },
+        {
+          "en": "Everyone starts stopped with six cards. On your turn, draw a card, then play or discard one. You may discard even when a legal play is available. Nobody may take a discarded card. With an empty draw pile, continue with your remaining cards. The round ends immediately when somebody reaches 1000 miles or any player has no cards left.",
+          "pl": "Każdy zaczyna z sześcioma kartami, a jego samochód stoi. W swojej turze dobierz kartę, a następnie zagraj lub odrzuć jedną. Możesz odrzucić kartę nawet wtedy, gdy masz dozwolone zagranie. Nikt nie może zabrać odrzuconej karty. Gdy stos dobierania się wyczerpie, graj kartami pozostałymi w ręce. Runda kończy się natychmiast, gdy ktoś osiągnie 1000 mil lub któremukolwiek graczowi skończą się karty."
+        }
+      ]
+    },
+    {
+      "id": "hazards",
+      "title": {
+        "en": "Hazards and remedies",
+        "pl": "Ataki i środki zaradcze"
+      },
+      "paragraphs": [
+        {
+          "en": "Play a green light to start driving. A red light stops an opponent. Out of gas requires fuel, a flat tire requires a spare tire, and an accident requires repairs. After these three remedies, you also need a green light before driving again.",
+          "pl": "Zagraj zielone światło, aby ruszyć. Czerwone światło zatrzymuje przeciwnika. Spuszczenie paliwa wymaga zatankowania, przedziurawienie opon — koła zapasowego, a wypadek — naprawy. Po użyciu każdego z tych trzech środków zaradczych potrzebujesz jeszcze zielonego światła, aby ponownie ruszyć."
+        },
+        {
+          "en": "A speed limit allows only 25- and 50-mile cards until an end of speed limit is played. A speed limit can also affect a stopped car. Without attack accumulation, you cannot impose another main hazard on an already stopped opponent. You cannot attack your own team.",
+          "pl": "Ograniczenie prędkości pozwala zagrywać tylko karty 25 i 50 mil, dopóki nie zagrasz końca ograniczenia prędkości. Ograniczeniem można objąć także stojący samochód. Bez kumulowania problemów nie można nałożyć kolejnej głównej przeszkody na już zatrzymanego przeciwnika. Nie możesz atakować własnej drużyny."
+        }
+      ]
+    },
+    {
+      "id": "safeties",
+      "title": {
+        "en": "Permanent protection",
+        "pl": "Stała ochrona"
+      },
+      "paragraphs": [
+        {
+          "en": "An extra tank protects against running out of gas, puncture-proof tires protect against flat tires, and the driving ace protects against accidents and counterflow. Right of way protects against red lights and speed limits and removes the need for green lights. A safety removes the corresponding current problem and protects you until the round ends.",
+          "pl": "Dodatkowy zbiornik chroni przed spuszczeniem paliwa, opony odporne na przebicie — przed przedziurawieniem opon, a as drogi — przed wypadkami i jazdą pod prąd. Pierwszeństwo przejazdu chroni przed czerwonym światłem i ograniczeniem prędkości oraz znosi konieczność zagrywania zielonego światła. Karta uniewrażliwiająca usuwa odpowiadający jej bieżący problem i chroni do końca rundy."
+        },
+        {
+          "en": "Playing a safety earns 100 points and gives you another turn. Teammates share protection but keep separate hands.",
+          "pl": "Zagranie zabezpieczenia daje 100 punktów i dodatkową turę. Członkowie drużyny mają wspólną ochronę, ale osobne ręce kart."
+        }
+      ]
+    },
+    {
+      "id": "dirty_tricks",
+      "title": {
+        "en": "Dirty tricks",
+        "pl": "Nieczyste zagrywki"
+      },
+      "paragraphs": [
+        {
+          "en": "Immediately after an attack, play the matching safety from your hand, even outside your normal turn. This opportunity ends when the next player draws or plays. Moving the cursor or opening information does not end it.",
+          "pl": "Tuż po ataku zagraj z ręki pasujące zabezpieczenie, nawet poza swoją zwykłą turą. Możesz to zrobić tylko do chwili, gdy następny gracz dobierze lub zagra kartę. Przesunięcie kursora ani otwarcie informacji nie kończy tej możliwości."
+        },
+        {
+          "en": "A dirty trick cancels the attack and preserves the previous driving state. It earns 300 bonus points in addition to the safety's 100 points. Draw a replacement card if one is available, then take an extra turn with its normal draw. Play continues with the player after you; intervening players are skipped. A safety played later gives ordinary protection without this bonus.",
+          "pl": "Nieczysta zagrywka anuluje atak i zachowuje poprzedni stan jazdy. Daje 300 punktów premii oprócz 100 punktów za kartę uniewrażliwiającą. Dobierz kartę w jej miejsce, jeśli jest dostępna, a następnie rozegraj dodatkową turę ze zwykłym doborem. Potem gra przechodzi do osoby siedzącej po tobie; gracze pomiędzy wami są pomijani. Karta uniewrażliwiająca zagrana później zapewnia zwykłą ochronę, bez tej premii."
+        },
+        {
+          "en": "With the bot move delay set to 0, the next bot may draw immediately after the attack is presented, before you can react. Set a nonzero bot move delay for more comfortable dirty tricks. No reaction time is guaranteed: the opportunity still ends when the next player draws or plays.",
+          "pl": "Gdy opóźnienie ruchów botów wynosi 0, następny bot może dobrać od razu po prezentacji ataku, zanim zdążysz zareagować. Aby łatwiej wykonywać nieczyste zagrywki, ustaw niezerowe opóźnienie ruchów botów. Gra nie gwarantuje czasu na reakcję: możliwość wykonania nieczystej zagrywki nadal kończy się, gdy następny gracz dobierze lub zagra kartę."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "en": "Mileage and victory bonuses",
+        "pl": "Dystans i premie za zwycięstwo"
+      },
+      "paragraphs": [
+        {
+          "en": "Your current mileage contributes to your score. Normally, distance cards add miles; under counterflow, they subtract miles without going below zero. Each safety scores 100 points; a dirty trick adds 300. Reaching exactly 1000 miles earns a 300-point victory bonus. Reaching the finish with an empty draw pile adds another 300 points.",
+          "pl": "Bieżący dystans wlicza się do wyniku. Zwykle karty dystansu dodają mile, ale przy jeździe pod prąd odejmują je, nie schodząc poniżej zera. Każde zabezpieczenie daje 100 punktów, a nieczysta zagrywka dodatkowe 300. Osiągnięcie dokładnie 1000 mil daje 300 punktów premii za zwycięstwo. Dotarcie do mety przy pustym stosie dobierania daje kolejne 300 punktów."
+        },
+        {
+          "en": "The round winner earns another 500 points if every opponent or opposing team still has zero miles, and another 300 points if the winning side has played all four safeties. No victory bonuses are awarded when a hand becomes empty. Scores carry over between rounds.",
+          "pl": "Zwycięzca rundy otrzymuje dodatkowo 500 punktów, jeśli każdy przeciwnik lub przeciwna drużyna nadal ma zero mil, oraz kolejne 300 punktów, jeśli zwycięska strona zagrała wszystkie cztery zabezpieczenia. Gdy runda kończy się przez opróżnienie ręki, premii za zwycięstwo nie przyznaje się. Punkty przechodzą na kolejne rundy."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "en": "Individual and team races",
+        "pl": "Wyścigi indywidualne i drużynowe"
+      },
+      "paragraphs": [
+        {
+          "en": "Teammates share mileage, hazards, protection and points. Each player keeps a separate hand and takes a separate turn. Four players may form two pairs. Six may form two teams of three or three pairs. Eight may form two teams of four or four pairs. Nine may form three teams of three.",
+          "pl": "Członkowie drużyny mają wspólny dystans, przeszkody, ochronę i punkty. Każdy gracz ma osobną rękę kart i własną turę. Cztery osoby mogą utworzyć dwie pary. Sześć — dwie drużyny trzyosobowe lub trzy pary. Osiem — dwie drużyny czteroosobowe lub cztery pary. Dziewięć — trzy drużyny trzyosobowe."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Optional rules",
+        "pl": "Zasady opcjonalne"
+      },
+      "paragraphs": [
+        {
+          "en": "Attack accumulation allows several different problems at once, including attacks on an already stopped car. Resolve every blocking problem before driving. An identical active problem cannot be added twice.",
+          "pl": "Kumulowanie problemów pozwala na kilka różnych problemów jednocześnie, w tym ataki na już zatrzymany samochód. Przed ruszeniem trzeba usunąć wszystkie problemy blokujące jazdę. Tego samego aktywnego problemu nie można nałożyć dwukrotnie."
+        },
+        {
+          "en": "Discard recycling refills an exhausted draw pile by shuffling discarded cards. Cards in hands or already played on the track are not recycled.",
+          "pl": "Ponowne tasowanie kart odrzuconych uzupełnia wyczerpany stos dobierania potasowanymi kartami ze stosu odrzuconych. Karty w rękach oraz już zagrane na trasie nie wracają do stosu."
+        },
+        {
+          "en": "Add safety cards is on by default: the standard deck contains 106 cards, including the four safeties. Turning it off removes those four cards, leaving 102 cards without permanent protection or dirty tricks. Optional counterflow cards are added separately. Existing games without this setting still include safeties.",
+          "pl": "Opcja Dodaj karty uniewrażliwiające jest domyślnie włączona: standardowa talia zawiera 106 kart, w tym cztery karty uniewrażliwiające. Wyłączenie tej opcji usuwa te cztery karty, pozostawiając 102 karty bez stałej ochrony i nieczystych zagrywek. Opcjonalne karty jazdy pod prąd dodaje się osobno. Dotychczasowe partie bez tego ustawienia nadal zawierają karty uniewrażliwiające."
+        },
+        {
+          "en": "Counterflow is optional and off by default. Add counterflow cards normally adds 4 counterflow attacks and 6 end of counterflow cards, matching the standard speed-limit and end-of-speed-limit counts. These are approved local defaults, not verified QuentinC Playroom deck counts. Existing games retain their explicitly saved counts. Custom deck lets you change both counts separately.",
+          "pl": "Jazda pod prąd jest opcjonalna i domyślnie wyłączona. Opcja Dodaj kartę jazdy pod prąd standardowo dodaje 4 karty ataku i 6 kart końca jazdy pod prąd, tak jak liczby kart ograniczenia prędkości i jego końca w standardowej talii. Są to zatwierdzone lokalne wartości domyślne, nie potwierdzone liczby kart w QuentinC Playroom. Dotychczasowe partie zachowują jawnie zapisane liczby. Tryb dowolny pozwala zmienić obie liczby osobno."
+        },
+        {
+          "en": "A counterflow attack can affect an opponent even while stopped. It is independent of speed limits and mechanical hazards and does not require attack accumulation. An already active counterflow cannot be added twice. Driving ace prevents this attack, removes an active counterflow and can be played immediately as a dirty trick against it.",
+          "pl": "Atak jazdy pod prąd może dotknąć przeciwnika nawet wtedy, gdy jego samochód stoi. Działa niezależnie od ograniczenia prędkości i usterek oraz nie wymaga włączenia kumulowania problemów. Aktywnej jazdy pod prąd nie można nałożyć drugi raz. As drogi zapobiega temu atakowi, usuwa aktywną jazdę pod prąd i może zostać zagrany natychmiast jako nieczysta zagrywka."
+        },
+        {
+          "en": "Under counterflow, each otherwise legal 25-, 50-, 75-, 100- or 200-mile card subtracts its distance instead of adding it. Mileage cannot fall below zero: 100 miles minus a 200-mile card becomes 0, and playing a distance card at 0 leaves it at 0. You must still be able to drive: green-light requirements, blocking hazards, speed limits and the maximum of two 200-mile cards per round still apply, including when those cards subtract miles.",
+          "pl": "Pod wpływem jazdy pod prąd każda dozwolona według pozostałych zasad karta 25, 50, 75, 100 lub 200 mil odejmuje swój dystans zamiast go dodawać. Dystans nie może spaść poniżej zera: 100 mil po odjęciu karty 200 mil daje 0, a zagranie karty dystansu przy 0 pozostawia 0. Nadal musisz mieć możliwość jazdy: obowiązują wymagania zielonego światła, przeszkody blokujące jazdę, ograniczenie prędkości i limit dwóch kart 200 mil w rundzie, także wtedy, gdy karty te odejmują mile."
+        },
+        {
+          "en": "End of counterflow removes only the counterflow effect. It does not remove a speed limit, a red light or a mechanical hazard, and does not itself require an extra green light. Any green light or remedy still required for another reason remains necessary.",
+          "pl": "Koniec jazdy pod prąd usuwa wyłącznie efekt jazdy pod prąd. Nie usuwa ograniczenia prędkości, czerwonego światła ani usterki i sam nie wymaga dodatkowego zielonego światła. Zielone światło lub środek zaradczy wymagane z innego powodu nadal są konieczne."
+        }
+      ]
+    },
+    {
+      "id": "instant_repair",
+      "title": {
+        "en": "Instant repair",
+        "pl": "Błyskawiczna naprawa"
+      },
+      "paragraphs": [
+        {
+          "en": "Add instant repair cards is optional and off by default. When enabled, it adds two instant repair cards to the standard deck. Custom deck lets you change their count; the switch still decides whether they are included.",
+          "pl": "Opcja Dodaj karty błyskawicznej naprawy jest opcjonalna i domyślnie wyłączona. Po włączeniu dodaje dwie karty błyskawicznej naprawy do standardowej talii. Tryb dowolny pozwala zmienić ich liczbę; o ich obecności w talii nadal decyduje przełącznik."
+        },
+        {
+          "en": "After drawing on your normal turn, play an instant repair on your own car or team and choose exactly one problem to remove: a red light, no initial green light, out of gas, a flat tire, an accident, a speed limit or counterflow. One card resolves only the selected problem, even when several problems have accumulated.",
+          "pl": "Po dobraniu karty w swojej zwykłej turze zagraj błyskawiczną naprawę na własny samochód lub drużynę i wybierz dokładnie jeden problem do usunięcia: czerwone światło, początkowy brak zielonego światła, spuszczenie paliwa, przedziurawienie opon, wypadek, ograniczenie prędkości lub jazdę pod prąd. Jedna karta usuwa tylko wybrany problem, nawet gdy skumulowało się ich kilka."
+        },
+        {
+          "en": "Removing a red light or the lack of an initial green light allows driving only if no other problem blocks it. Repairing a fuel, tire or accident problem still requires a green light unless you have Right of way. Other problems remain unchanged. Instant repair is not a safety or an immediate response to an attack: it grants no immunity, extra turn, or 100- or 300-point bonus.",
+          "pl": "Usunięcie czerwonego światła lub początkowego braku zielonego światła pozwala ruszyć tylko wtedy, gdy nie blokuje tego inny problem. Usunięcie problemu z paliwem, oponą lub wypadkiem nadal wymaga zielonego światła, chyba że masz Pierwszeństwo przejazdu. Pozostałe problemy nie zmieniają się. Błyskawiczna naprawa nie jest kartą uniewrażliwiającą ani natychmiastową reakcją na atak: nie daje odporności, dodatkowej tury ani premii 100 lub 300 punktów."
+        }
+      ]
+    },
+    {
+      "id": "custom_deck",
+      "title": {
+        "en": "Custom deck",
+        "pl": "Tryb dowolny"
+      },
+      "paragraphs": [
+        {
+          "en": "Custom deck allows a separate count for every card type: all five distances, every remedy and hazard, each safety, counterflow, end of counterflow and instant repair. Choose an integer from 0 to 100 for each type. Add safety cards, Add counterflow cards and Add instant repair cards still control inclusion: a disabled group stays out of the deck even if its saved counts are positive. The limit of two 200-mile cards per player or team per round does not change.",
+          "pl": "Tryb dowolny pozwala osobno ustawić liczbę kart każdego typu: wszystkich pięciu dystansów, każdej naprawy i ataku, każdej karty uniewrażliwiającej, jazdy pod prąd, jej końca oraz błyskawicznej naprawy. Dla każdego typu wybierz liczbę całkowitą od 0 do 100. Opcje Dodaj karty uniewrażliwiające, Dodaj kartę jazdy pod prąd i Dodaj karty błyskawicznej naprawy nadal decydują o obecności tych kart: wyłączona grupa nie trafia do talii nawet przy dodatnich zapisanych liczbach. Limit dwóch kart 200 mil na gracza lub drużynę w rundzie nie zmienia się."
+        },
+        {
+          "en": "The included cards must provide at least six cards per player for the initial deal and allow some points to be scored: include a safety, or distance cards together with a green light, Right of way or instant repair. This does not guarantee that 1000 miles can be reached. Invalid custom decks cannot start. Changing table settings does not rewrite an existing game's deck or replay. Custom deck is off by default; turning it off restores standard counts for new games.",
+          "pl": "Włączone karty muszą wystarczyć na początkowe rozdanie po sześć kart każdemu graczowi i umożliwiać zdobywanie punktów: dodaj kartę uniewrażliwiającą albo karty dystansu wraz z zielonym światłem, Pierwszeństwem przejazdu lub błyskawiczną naprawą. Nie gwarantuje to możliwości osiągnięcia 1000 mil. Nieprawidłowa talia w trybie dowolnym uniemożliwia rozpoczęcie gry. Zmiana ustawień stołu nie przepisuje talii ani odtwarzania dotychczasowej partii. Tryb dowolny jest domyślnie wyłączony; jego wyłączenie przywraca standardowe liczby kart dla nowych partii."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Game keyboard shortcuts",
+        "pl": "Skróty klawiszowe gry"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: browse your hand or card choices.",
+          "pl": "Strzałki: przeglądaj rękę lub karty do wyboru."
+        },
+        {
+          "en": "Enter: play the selected card or confirm the chosen opponent. After drawing, an unplayable card opens a discard confirmation; No or Escape leaves it in your hand without making a move.",
+          "pl": "Enter: zagraj wybraną kartę lub potwierdź wybranego przeciwnika. Po dobraniu karty wybór karty niemożliwej do zagrania otwiera potwierdzenie odrzucenia; Nie lub Escape pozostawia ją w ręce bez wykonania ruchu."
+        },
+        {
+          "en": "Escape: cancel the current card or opponent choice.",
+          "pl": "Escape: anuluj bieżący wybór karty lub przeciwnika."
+        },
+        {
+          "en": "Space: draw a card.",
+          "pl": "Spacja: dobierz kartę."
+        },
+        {
+          "en": "J: ask to discard the selected hand card after drawing, even if it is playable. No or Escape cancels without making a move.",
+          "pl": "J: po dobraniu zapytaj o odrzucenie wybranej karty z ręki, nawet jeśli można ją zagrać. Nie lub Escape anuluje bez wykonania ruchu."
+        },
+        {
+          "en": "Delete: choose a card to discard.",
+          "pl": "Delete: wybierz kartę do odrzucenia."
+        },
+        {
+          "en": "H: read your hand.",
+          "pl": "H: odczytaj swoją rękę."
+        },
+        {
+          "en": "I: read your mileage, hazards and safeties.",
+          "pl": "I: odczytaj swój dystans, przeszkody i zabezpieczenia."
+        },
+        {
+          "en": "Shift+I: read every car's mileage, hazards and safeties.",
+          "pl": "Shift+I: odczytaj dystans, przeszkody i zabezpieczenia wszystkich samochodów."
+        },
+        {
+          "en": "S: read scores.",
+          "pl": "S: odczytaj wyniki."
+        },
+        {
+          "en": "T: read whose turn it is.",
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "en": "Z: find the next playable card on your turn, outside the dirty-trick window.",
+          "pl": "Z: znajdź następną kartę możliwą do zagrania we własnej turze, poza czasem na nieczystą zagrywkę."
+        },
+        {
+          "en": "Shift+Z: find the previous playable card on your turn, outside the dirty-trick window.",
+          "pl": "Shift+Z: znajdź poprzednią kartę możliwą do zagrania we własnej turze, poza czasem na nieczystą zagrywkę."
+        },
+        {
+          "en": "Shift+C: sort by card type; press again to reverse the order.",
+          "pl": "Shift+C: sortuj według rodzaju kart; naciśnij ponownie, aby odwrócić kolejność."
+        },
+        {
+          "en": "Shift+H: sort by distance or card value; press again to reverse the order.",
+          "pl": "Shift+H: sortuj według dystansu lub wartości karty; naciśnij ponownie, aby odwrócić kolejność."
+        },
+        {
+          "en": "Shift+M: restore the order in which cards were received.",
+          "pl": "Shift+M: przywróć kolejność otrzymania kart."
+        }
+      ]
+    }
+  ]
+}

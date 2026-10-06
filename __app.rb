@@ -83,7 +83,30 @@
       "audio_ball_audiodisc_down",
       "audio_ball_audiodisc_ready",
       "audio_ball_audiodisc_stop",
-      "audio_ball_audiodisc_goal"
+      "audio_ball_audiodisc_goal",
+      "mille_accident",
+      "mille_red_light",
+      "mille_dirty_trick",
+      "mille_distance_25",
+      "mille_distance_50",
+      "mille_distance_75",
+      "mille_distance_100",
+      "mille_distance_200",
+      "mille_driving_ace",
+      "mille_fuel_drain",
+      "mille_counterflow",
+      "mille_puncture_proof",
+      "mille_refuel",
+      "mille_right_of_way",
+      "mille_start",
+      "mille_tire_puncture",
+      "mille_wheel_change",
+      "mille_repair",
+      "mille_speed_limit",
+      "mille_end_speed_limit",
+      "mille_extra_tank",
+      "mille_end_counterflow",
+      "mille_instant_repair"
     ]
   }
 }
@@ -1024,6 +1047,14 @@ class EltenGameRoom < Program
   def create_saved_game_table(saved)
     game = game_definition(saved["game"])
     saved_games.validate(saved, game: game)
+    required_seats = saved["players"].length
+    required_seats += 1 unless GameRoomParticipants.includes?(saved["players"], Session.name)
+    if required_seats > LobbyRepository::MAX_ROOM_CAPACITY
+      alert(_("This saved game needs %{count} seats, but tables support at most %{maximum}.") % {
+        count: required_seats, maximum: LobbyRepository::MAX_ROOM_CAPACITY
+      })
+      return nil
+    end
     checked = run_network_task(_("Checking the current table"), ui: :none) { [@lobby.current_table_for(Session.name)] }
     return nil if checked == nil
     current = checked.first

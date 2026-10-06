@@ -10,7 +10,7 @@ require_relative "game_participants"
 class GameRoomTableControl
   KIND = "table_control".freeze
   ANCHOR_KEY = "control_anchor".freeze
-  MAX_SEATS = 8
+  MAX_SEATS = 9
 
   def self.canonical(value)
     case value

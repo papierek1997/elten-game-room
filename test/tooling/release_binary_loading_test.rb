@@ -1,5 +1,13 @@
 require_relative "../support/binary_rules_load"
 
+%w[__app.rb games/mille_bornes.rb lib/game_sounds.rb content/quiz_general_ru.rb test/support/ui.rb tools/stage-release.rb].each do |relative|
+  raise "Project source bypasses binary loading: #{relative}" unless BinaryRulesLoad.source_path?(File.join(BinaryRulesLoad::ROOT, relative))
+end
+%w[Workspace/runtime/library.rb snapshots/old/lib/library.rb trash/lib/library.rb tmp/library.rb].each do |relative|
+  raise "Auxiliary dependency treated as packaged code: #{relative}" if BinaryRulesLoad.source_path?(File.join(BinaryRulesLoad::ROOT, relative))
+end
+raise "External dependency treated as packaged code" if BinaryRulesLoad.source_path?(File.expand_path("../external/lib/library.rb", BinaryRulesLoad::ROOT))
+
 original_entries = BinaryRulesLoad.instance_variable_get(:@entries)
 keys = %w[games/scrabble.rb lib/game_room_localization.rb locale/pl.mo]
 entries = original_entries || keys.to_h do |key|

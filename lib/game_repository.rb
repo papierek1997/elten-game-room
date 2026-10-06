@@ -5,6 +5,7 @@ require_relative "participant_replay"
 require_relative "bot_turn_gate"
 require_relative "game_event_protocol"
 require_relative "game_session_contracts"
+require_relative "table_control"
 
 class GameRepository
   GameSnapshot = GameRoomSessionContracts::GameSnapshot
@@ -12,7 +13,7 @@ class GameRepository
   MAX_EVENTS_PER_ACTION = GameRoomEventProtocol::MAX_EVENTS
   MAX_ACTION_LENGTH = GameRoomEventProtocol::MAX_ACTION_LENGTH
   MAX_VALUE_LENGTH = GameRoomEventProtocol::MAX_VALUE_LENGTH
-  MAX_PLAYERS = 8
+  MAX_PLAYERS = GameRoomTableControl::MAX_SEATS
   MAX_PLAYER_LENGTH = 64
   PLAYERS_FORMAT_VERSION = 1
   MAX_PLAYERS_JSON_LENGTH = 1_024

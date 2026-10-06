@@ -69,13 +69,18 @@ module BinaryRulesLoad
     GameRoomTestLocalization.runtime(language, files: files, reader: method(:read))
   end
 
+  def self.source_path?(path)
+    relative = path.delete_prefix(ROOT + "/")
+    relative == "__app.rb" || %w[games/ lib/ content/ test/ tools/].any? { |prefix| relative.start_with?(prefix) }
+  end
+
   module Requires
     def require_relative(name)
       origin = File.expand_path(caller_locations(1, 1).first.path)
-      if origin.start_with?(BinaryRulesLoad::ROOT + "/")
+      if BinaryRulesLoad.source_path?(origin)
         path = File.expand_path(name, File.dirname(origin))
         path += ".rb" unless path.end_with?(".rb")
-        return BinaryRulesLoad.load(path) if path.start_with?(BinaryRulesLoad::ROOT + "/")
+        return BinaryRulesLoad.load(path) if BinaryRulesLoad.source_path?(path)
       end
       require File.expand_path(name, File.dirname(origin))
     end

@@ -4,7 +4,8 @@ require_relative "support/release_files"
 module GameRoomReleaseStage
   module_function
 
-  def run(source:, destination: nil, manifest: nil, check: false)
+  def run(source:, destination: nil, manifest: nil, check: false, workspace_staging: false)
+    raise ArgumentError, 'Workspace staging needs a destination' if workspace_staging && !destination
     raise ArgumentError, 'Check needs an existing manifest and no destination' if check && (!manifest || destination)
     expected = GameRoomReleaseFiles.snapshot(source)
     if check
@@ -23,7 +24,7 @@ module GameRoomReleaseStage
       # Native ELTEN packaging on Windows has a short-path constraint. Leave
       # room for its own temporary files and the longest runtime relative path.
       raise 'Use a short staging directory (at most 80 characters on Windows)' if /mswin|mingw/ =~ RUBY_PLATFORM && File.expand_path(destination).length > 80
-      GameRoomReleaseFiles.stage(source, destination)
+      GameRoomReleaseFiles.stage(source, destination, workspace_staging: workspace_staging)
       raise 'Source changed while staging' unless GameRoomReleaseFiles.snapshot(destination) == expected
     end
     File.binwrite(manifest, JSON.pretty_generate(expected) + "\n") if manifest
@@ -36,6 +37,7 @@ if $PROGRAM_NAME == __FILE__
   OptionParser.new do |parser|
     parser.on('--source DIRECTORY') { |value| options[:source] = File.expand_path(value) }
     parser.on('--destination NEW_DIRECTORY') { |value| options[:destination] = File.expand_path(value) }
+    parser.on('--workspace-staging') { options[:workspace_staging] = true }
     parser.on('--manifest NEW_FILE') { |value| options[:manifest] = File.expand_path(value) }
     parser.on('--check') { options[:check] = true }
   end.parse!

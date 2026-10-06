@@ -37,15 +37,39 @@ On startup, the program may offer to download a newer version. Declining does no
 
 ## What you can play
 
-Power Games currently includes 32 games:
+Power Games currently includes 33 games:
 
-- Card games: 3-5-8, 99, Biblios, Makao, Spades, Poker, Rummy, Thousand, UNO, War and Scientific War.
+- Card games: 3-5-8, 99, 1000 miles, Biblios, Makao, Spades, Poker, Rummy, Thousand, UNO, War and Scientific War.
 - Board and strategy games: Ludo, Four in a Row, Tic Tac Toe, Mancala, Monopoly, Reversi, Battleships, Chess and Checkers.
 - Dice and dominoes: Cat, head, tail, Dominos, Farkle, Mexican Train and Yahtzee.
 - Words and knowledge: Krowa, Categories, Quiz Party, Scrabble and Taboo.
 - Audio action games: Axel Pong and Audio Ball.
 
 Many games have several variants. The choices, player counts, bot support and additional settings depend on the game. Detailed rules, scoring and controls are described in the program's “Game rules” section.
+
+1000 miles is a card race using QuentinC rules: reach exactly 1000 miles, attack opponents and remove hazards with the matching cards. Safeties protect you until the round ends. Playing a matching safety immediately after an attack, even outside your turn, is a dirty trick (coup fourré) if the next player has not drawn or played yet. It earns 300 bonus points plus the safety’s 100 points, a replacement card if available and an extra turn with its normal draw. Teammates share mileage, hazards, protection and points, but each has their own hand and turn. You can set the target score (5000 points by default), teams, “Accumulate problems” and “Use discarded cards as a new deck when the current deck runs out”.
+
+With the bot move delay set to 0, the next bot may draw immediately after the attack is presented, before you can react. Set a nonzero bot move delay for more comfortable dirty tricks. No reaction time is guaranteed: the opportunity still ends when the next player draws or plays.
+
+Add safety cards is on by default: the standard deck has 106 cards. Turning it off removes Extra tank, Puncture-proof, Right of way and Driving ace, leaving 102 cards without permanent protection or dirty tricks. Existing games without this setting still include safeties. Counterflow cards are added separately. Out of gas and Flat tire are remedied by Gas and Spare tire respectively.
+
+Counterflow is optional and off by default. Add counterflow cards normally adds 4 counterflow attacks and 6 end of counterflow cards, matching the standard speed-limit and end-of-speed-limit counts. These are approved local defaults, not verified QuentinC Playroom deck counts. Existing games retain their explicitly saved counts. Custom deck lets you change both counts separately. The attack works even on a stopped car, independently of speed limits, mechanical hazards and the problem-accumulation setting. While affected, legal 25-, 50-, 75-, 100- and 200-mile cards subtract distance, never below zero; playing one at zero leaves zero. Green-light requirements, blocking hazards, speed limits and the limit of two 200-mile cards per round still apply, including while moving backwards. Driving ace prevents counterflow, removes it and can be used as a dirty trick against it. End of counterflow removes only this effect and requires no extra green light; all other hazards and their requirements remain in force.
+
+Instant repair
+
+Add instant repair cards is optional and off by default. When enabled, it adds two instant repair cards to the standard deck. Custom deck lets you change their count; the switch still decides whether they are included.
+
+After drawing on your normal turn, play an instant repair on your own car or team and choose exactly one problem to remove: a red light, no initial green light, out of gas, a flat tire, an accident, a speed limit or counterflow. One card resolves only the selected problem, even when several problems have accumulated.
+
+Removing a red light or the lack of an initial green light allows driving only if no other problem blocks it. Repairing a fuel, tire or accident problem still requires a green light unless you have Right of way. Other problems remain unchanged. Instant repair is not a safety or an immediate response to an attack: it grants no immunity, extra turn, or 100- or 300-point bonus.
+
+Custom deck
+
+Custom deck allows a separate count for every card type: all five distances, every remedy and hazard, each safety, counterflow, end of counterflow and instant repair. Choose an integer from 0 to 100 for each type. Add safety cards, Add counterflow cards and Add instant repair cards still control inclusion: a disabled group stays out of the deck even if its saved counts are positive. The limit of two 200-mile cards per player or team per round does not change.
+
+The included cards must provide at least six cards per player for the initial deal and allow some points to be scored: include a safety, or distance cards together with a green light, Right of way or instant repair. This does not guarantee that 1000 miles can be reached. Invalid custom decks cannot start. Changing table settings does not rewrite an existing game's deck or replay. Custom deck is off by default; turning it off restores standard counts for new games.
+
+In 1000 miles, the arrow keys browse your hand, Enter plays a card and asks for a target when needed, and Space draws. After drawing, Enter on an unplayable card asks whether to discard it. J asks to discard the currently selected hand card even if it is playable. No or Escape closes the confirmation without discarding or recording a move. Delete still opens the choice of a card to discard. Z and Shift+Z find playable cards. I reads your car, Shift+I all cars, S scores and T the current turn. F1 opens contextual help and Ctrl+F1 the full rules.
 
 In Taboo, you need to communicate with the other players. You can use an ELTEN conference, another messaging app or play in person.
 

@@ -15,15 +15,15 @@ Form.driver = lambda do |form|
     privacy.checked = true
     field.call("elimination").checked = true
     field.call("manipulation").checked = true
-    field.call("first_meld").text = "45"
-    field.call("score_limit").text = "0"
+    field.call("first_meld").set_text("45")
+    field.call("score_limit").set_text("0")
     form.index = form.fields.index(field.call("score_limit"))
   else
     assert(form.equal?(forms.first), "validation rebuilt the controls")
     assert(privacy.checked && field.call("elimination").checked && field.call("manipulation").checked, "validation lost checkboxes")
     assert(field.call("first_meld").text == "45" && field.call("score_limit").text == "0", "validation lost typed values")
     assert(form.fields[form.index] == field.call("score_limit"), "validation lost input focus")
-    field.call("score_limit").text = "500"
+    field.call("score_limit").set_text("500")
   end
   form.accept_button.trigger(:press)
 end

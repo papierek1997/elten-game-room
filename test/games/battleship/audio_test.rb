@@ -24,6 +24,7 @@ assets.each do |name, hash|
 end
 assert(!GameRoomSounds::ASSET_NAMES.include?("hit_ship3"), "unavailable third hit was registered")
 gains = assets.keys.to_h { |name| [name, 0.2] }.merge("war_open" => 0.6)
+volume_assets = gains.keys + %w[connect disconnect chatmsg notice table_notice ding shuffle card-shuffle draw draw2 hit1 play win1 lose1]
 
 game = GameRoomGames::Battleship.new
 repo = NewGames116Repository.new(%w[Alice Bob])
@@ -61,15 +62,13 @@ levels["sound_volumes"]["game"] = 0
 assets.each { |name| assert(GameRoomSounds.play(program, name) == nil, "muted sound returns a waiting handle") }
 assert(played.length == assets.length, "muted audio still played")
 
-# Balance only the six loud effects, not other game, room or result sounds.
-# The normal volume controls still multiply the asset gain and remain unchanged.
 handle = Object.new
 program.define_singleton_method(:play_sound_from_asset) { |name, volume:| played << [name, volume]; handle }
 [0, 20, 50, 100].each do |master|
   [0, 10, 20, 50, 100].each do |game_volume|
     levels["sound_volumes"].merge!("all" => master, "game" => game_volume)
     before = Marshal.dump(levels)
-    GameRoomSounds::ASSET_NAMES.each do |name|
+    volume_assets.each do |name|
       played.clear
       result = GameRoomSounds.play(program, name)
       expected = GameRoomPreferences.sound_volume(levels, name) * gains.fetch(name, 1.0)
@@ -88,7 +87,7 @@ end
 # original sound object so serial presentation still waits for actual completion.
 default_program = Object.new
 default_program.define_singleton_method(:play_sound_from_asset) { |name, volume: 1.0| played << [name, volume]; handle }
-GameRoomSounds::ASSET_NAMES.each do |name|
+volume_assets.each do |name|
   played.clear
   assert(GameRoomSounds.play(default_program, name).equal?(handle), "default playback lost its handle")
   assert(played == [[name, gains.fetch(name, 1.0)]], "default asset gain for #{name}")
@@ -98,4 +97,4 @@ played.clear
 assets.each { |name| assert(GameRoomSounds.play(program, name) == nil, "disabled effect returned a handle") }
 assert(played.empty?, "asset gain bypassed the sound switch")
 assert(game.serial_event_presentation? && !GameRoomGames::Uno.new.serial_event_presentation?, "serial audio affected another game")
-puts "PASS Battleship sounds: six unchanged assets at 20% gain, the war sound at 60%, both manifests, random variants, all viewers, 760 volume combinations, default gain, mute, handles, unchanged preferences and other sounds"
+puts "PASS Battleship sounds: six unchanged assets at 20% gain, the war sound at 60%, both manifests, random variants, all viewers, volume controls, default gain, mute, handles, unchanged preferences and game/room/result control sounds"

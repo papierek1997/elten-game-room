@@ -11,6 +11,7 @@ require_relative "spades"
 require_relative "farkle"
 require_relative "cat_head_tail"
 require_relative "ninety_nine"
+require_relative "mille_bornes"
 require_relative "tysiac"
 require_relative "three_five_eight"
 require_relative "categories"
@@ -47,6 +48,7 @@ module GameRoomGames
     GameRoomGames::Farkle,
     GameRoomGames::CatHeadTail,
     GameRoomGames::NinetyNine,
+    GameRoomGames::MilleBornes,
     GameRoomGames::Tysiac,
     GameRoomGames::ThreeFiveEight,
     GameRoomGames::Categories,

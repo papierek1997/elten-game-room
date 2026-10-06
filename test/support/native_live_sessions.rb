@@ -87,6 +87,8 @@ class NativeLiveSessionsBroker
     end
 
     def create(metadata:, participant_metadata:, capacity:, visibility:, discovery_metadata:, **options)
+      raise EltenLink::Error.new("capacity must be between 2 and 8") unless capacity.between?(2, 8)
+
       id = SecureRandom.uuid
       core = Core.new(
         id: id,

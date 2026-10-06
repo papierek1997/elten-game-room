@@ -6,6 +6,7 @@ require_relative "game_surfaces/card_sorting"
 require_relative "game_room_ui"
 
 require_relative "game_room_localization"
+require_relative "game_surfaces/card_actions"
 
 module GameSurfaces
   using GameRoomLocalization::Translations
@@ -543,6 +544,7 @@ module GameSurfaces
 
   class CardTable
     include CardSorting
+    include CardActions
     include ActionEmitter
 
     attr_reader :command_field_index
@@ -661,16 +663,7 @@ module GameSurfaces
             next
           end
 
-          emit_action(
-            "card",
-            "select",
-            {
-              "zone" => zone.id.to_s,
-              "index" => selected_index,
-              "card_id" => card_id(card),
-              "card" => card_value(card)
-            }
-          )
+          submit_card_selection(zone, card, selected_index)
         end
         @controls << control
       end
@@ -756,6 +749,7 @@ module GameSurfaces
 
     def handle_command(command, payload = {})
       @command_field_index = nil
+      return selected_card_action(payload) if command.to_s == "selected_card_action"
       if command.to_s == "navigate_playable_card"
         return navigate_playable_card(payload)
       end

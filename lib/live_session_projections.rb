@@ -267,7 +267,7 @@ class GameRoomLiveSessionStore
         "private" => metadata["private"] == true,
         "resume_save_id" => metadata["resume_save_id"].to_s,
         "status" => %w[waiting playing].include?(metadata["status"]) ? metadata["status"] : "waiting",
-        "max_players" => bounded_capacity(metadata["max_players"] || MAX_CAPACITY),
+        "max_players" => bounded_capacity(metadata["max_players"] || DEFAULT_CAPACITY),
         "bot_count" => [[metadata["bot_count"].to_i, 0].max, MAX_CAPACITY].min,
         "game_options" => discovery_options(metadata),
         "player_count" => metadata.key?("player_count") ? [[metadata["player_count"].to_i, 0].max, MAX_CAPACITY].min : 1,

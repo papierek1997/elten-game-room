@@ -31,6 +31,29 @@ module GameRoomSounds
     cht-cat-plus-8
     ninety3366
     1000_mariage
+    mille_accident
+    mille_distance_25
+    mille_distance_50
+    mille_distance_75
+    mille_distance_100
+    mille_distance_200
+    mille_start
+    mille_red_light
+    mille_fuel_drain
+    mille_driving_ace
+    mille_right_of_way
+    mille_dirty_trick
+    mille_refuel
+    mille_tire_puncture
+    mille_wheel_change
+    mille_puncture_proof
+    mille_counterflow
+    mille_repair
+    mille_speed_limit
+    mille_end_speed_limit
+    mille_extra_tank
+    mille_end_counterflow
+    mille_instant_repair
     hit1
     hit_ship1
     hit_ship2
@@ -58,7 +81,13 @@ module GameRoomSounds
   BATTLESHIP_LAUNCHES = %w[rocket_launch1 rocket_launch2 rocket_launch3].freeze
   # Balance the loud Battleship recordings before the user's volume controls.
   # Keep the audio files and playback handles intact for serial presentation.
-  ASSET_VOLUME_GAINS = (BATTLESHIP_HITS + BATTLESHIP_LAUNCHES + ["rocket_miss"]).to_h { |name| [name, 0.2] }.merge("war_open" => 0.6).freeze
+  ASSET_VOLUME_GAINS = (BATTLESHIP_HITS + BATTLESHIP_LAUNCHES + ["rocket_miss"]).to_h { |name| [name, 0.2] }
+    .merge("war_open" => 0.6, "mille_accident" => 0.7,
+      "mille_right_of_way" => 0.8, "mille_driving_ace" => 0.75,
+      "mille_distance_50" => 0.35, "mille_distance_75" => 0.35, "mille_distance_100" => 0.5,
+      "mille_wheel_change" => 0.5, "mille_instant_repair" => 0.65,
+      "mille_speed_limit" => 0.35, "mille_tire_puncture" => 0.8,
+      "mille_extra_tank" => 0.7, "mille_end_counterflow" => 0.7).freeze
 
   class MembershipTracker
     def initialize

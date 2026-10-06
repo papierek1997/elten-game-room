@@ -35,7 +35,7 @@ class GameRoomOptionEditor
         when "boolean"
           control = CheckBox.new(
             definition.label.to_s,
-            checked: defaults[key] == true
+            checked: defaults.fetch(key, definition.default) == true
           )
           controls << control
           bindings << [definition, control]
@@ -93,7 +93,7 @@ class GameRoomOptionEditor
         values = game.normalize_options(game_option_values(bindings))
         game.option_editor_changes(previous_options, values).each do |key, value|
           binding = bindings.find { |definition, _control| definition.key.to_s == key.to_s }
-          binding[1].text = value.to_s if binding && binding[0].kind.to_s == "integer"
+          binding[1].set_text(value.to_s) if binding && binding[0].kind.to_s == "integer"
         end
         values = game.normalize_options(game_option_values(bindings))
         previous_options = values

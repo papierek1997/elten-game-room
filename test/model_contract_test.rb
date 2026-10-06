@@ -5,9 +5,12 @@ include GameRoomTest::Assertions
 
 corpus = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/histories.json'), encoding: 'UTF-8'))
 assert_equal(1, corpus.fetch('schema'))
+cases = corpus.fetch('cases') + [JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/mille_bornes.json'), encoding: 'UTF-8'))]
 expected_ids = GameRoomGames::CATALOG.ids.reject { |id| %w[axel_pong audio_ball].include?(id) }.sort
-assert_equal(expected_ids, corpus.fetch('cases').map { |item| item.fetch('game') }.sort, 'corpus must explicitly cover every turn-based game')
-corpus.fetch('cases').each do |item|
+assert_equal(expected_ids, cases.map { |item| item.fetch('game') }.sort, 'corpus must explicitly cover every turn-based game')
+assert((ARGV - expected_ids).empty?, 'unknown game requested for contract verification')
+cases = cases.select { |item| ARGV.include?(item.fetch('game')) } unless ARGV.empty?
+cases.each do |item|
   game = GameRoomGames::CATALOG.build(item.fetch('game'))
   random = Random.new(item.fetch('seed'))
   SecureRandom.define_singleton_method(:hex) { |n = 16| Array.new(n) { random.rand(256).to_s(16).rjust(2, '0') }.join }

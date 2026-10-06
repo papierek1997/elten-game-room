@@ -33,6 +33,10 @@ module GameSurfaces
       @surfaces.each { |surface| surface.action_guard = guard }
     end
 
+    def program=(program)
+      @surfaces.each { |surface| surface.program = program if surface.respond_to?(:program=) }
+    end
+
     # Layout may place selected game controls after the shared chat/history.
     # Actions and remembered state still belong to their original surface.
     def fields_for_parts(ids)

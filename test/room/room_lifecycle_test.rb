@@ -242,7 +242,7 @@ lobby.set_game_active(row, false, snapshot: fresh)
 assert(fresh.table['status'] == 'waiting', 'end did not restore waiting status')
 6.times { assert(lobby.remove_bot(row, snapshot: fresh).updated?, 'bot removal failed') }
 assert(lobby.remove_bot(row, snapshot: fresh).status == :none, 'absent bot removal changed room')
-assert(lobby.capacity_of({'max_players' => 2}) == 8 && lobby.capacity_of({'max_players' => 12}) == 8, 'room capacity contract changed')
+assert(lobby.capacity_of({'max_players' => 2}) == 8 && lobby.capacity_of({'max_players' => 12}) == 8, 'lobby capacity exceeded the eight-seat service limit')
 
 active_labels = RoomPresentation.user_labels(
   ["Alice", "Bob", "Carol"],

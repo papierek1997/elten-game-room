@@ -93,7 +93,7 @@ module GameSurfaces
 
   CardChoice = Struct.new(:id, :label, :value, keyword_init: true)
 
-  Card = Struct.new(:id, :label, :value, :choices, :shift_choice, :choice_header, :sort_keys, keyword_init: true)
+  Card = Struct.new(:id, :label, :value, :choices, :shift_choice, :choice_header, :sort_keys, :confirmation, keyword_init: true)
 
   CardZoneSpec = Struct.new(:id, :header, :cards, :empty_label, :hand_order, :hand_epoch, keyword_init: true)
 

@@ -1,5 +1,6 @@
 require_relative "game_room_transport"
 require_relative "game_participants"
+require_relative "table_control"
 
 class LobbyRepository
   CreateResult = Struct.new(:table, :created, keyword_init: true) do
@@ -47,7 +48,7 @@ class LobbyRepository
   TABLE_NAME_MIN_LENGTH = 3
   TABLE_NAME_MAX_LENGTH = 60
   DEFAULT_ROOM_CAPACITY = 8
-  MAX_ROOM_CAPACITY = 8
+  MAX_ROOM_CAPACITY = GameRoomLiveSessionStore::MAX_CAPACITY
   AVAILABLE_STATUSES = %w[waiting playing].freeze
 
   def initialize(program, transport: nil, server_tables: nil, activity_repository: nil)
@@ -91,7 +92,7 @@ class LobbyRepository
     return snapshot == nil ? nil : native_snapshot(snapshot)
   end
 
-  def create_table(name:, game:, owner:, game_options: "{}", private_table: false, resume_save_id: nil, bot_count: 0, bot_names: nil)
+  def create_table(name:, game:, owner:, game_options: "{}", capacity: DEFAULT_ROOM_CAPACITY, private_table: false, resume_save_id: nil, bot_count: 0, bot_names: nil)
     clean_name = normalized_name(name)
     raise ArgumentError, "Invalid table name" if !valid_table_name?(clean_name)
 
@@ -103,7 +104,7 @@ class LobbyRepository
       game: game,
       owner: owner,
       game_options: game_options,
-      capacity: DEFAULT_ROOM_CAPACITY,
+      capacity: capacity,
       private_table: private_table, resume_save_id: resume_save_id, bot_count: bot_count, bot_names: bot_names
     )
     append_activity(table, "created", actor: owner, table_users: [owner])
