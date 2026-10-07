@@ -12,8 +12,8 @@ GameRoomContent.registry.register_pack(GameRoomContent::Pack.new(
   game_ids: ["quiz"],
   author: "Power Games",
   license: "See QUIZ_DATA_NOTICE.md; no CC0 or inherited Fandom license claimed",
-  entry_count: 1275,
-  checksum: "f44884edfb481a051cdf6f818d5dd702f1a6788a3ca4821ad26f792153db8a6a",
+  entry_count: 1457,
+  checksum: "d6520037cfd9a0a667043af65d44d2f3cb98e824ba1d1d57449df09478e1671a",
   loader: lambda {
     require_relative "quiz_witcher_pl_data"
     GameRoomContent::Packb2f3aa32decbfd64667e7738.load
