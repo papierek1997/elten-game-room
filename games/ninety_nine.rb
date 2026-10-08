@@ -79,6 +79,10 @@ module GameRoomGames
       "99"
     end
 
+    def short_description
+      _("Play cards that change a shared total and try to hold on to your tokens longer than your opponents.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

@@ -1,0 +1,227 @@
+{
+  "source": "games/mancala.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Mancala is played by two people moving stones between pits. Collect more stones than your opponent; each stone in your store is worth one point."
+        },
+        {
+          "en": "The default game is Oware, explained first below. The first player opens and you then alternate turns."
+        }
+      ]
+    },
+    {
+      "id": "board",
+      "title": {
+        "en": "The pits"
+      },
+      "paragraphs": [
+        {
+          "en": "The board has two rows of six pits. Your row is at the bottom, A1 to F1; the opponent's is above it, A2 to F2. Pits in the same column face one another."
+        },
+        {
+          "en": "Each pit starts with four stones, making 48 in all. Both stores are empty. Left and Right arrow move between pits; Up and Down arrow switch rows."
+        }
+      ]
+    },
+    {
+      "id": "sowing",
+      "title": {
+        "en": "Making a move"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose a non-empty pit in your own row with the arrows and press Enter. Its stones are picked up and dropped, one at a time, into the following pits. This is called sowing."
+        },
+        {
+          "en": "Stones travel from A1 towards F1, across the opponent's row from F2 towards A2, then back to your row. In Oware, they skip both stores. If there are enough stones to make a full circuit, they also skip the pit they came from."
+        }
+      ]
+    },
+    {
+      "id": "capture",
+      "title": {
+        "en": "Capturing in Oware"
+      },
+      "paragraphs": [
+        {
+          "en": "If your last stone lands in an enemy pit and leaves two or three stones there, capture them into your store."
+        },
+        {
+          "en": "Work backwards along the opponent's row, against the direction of sowing. If the preceding pit also has two or three stones, capture those too. Continue until a pit has a different number or you reach the end of the enemy row."
+        },
+        {
+          "en": "You may not empty the opponent's entire row this way. If the full capture would do so, nothing is captured on that move. All the stones remain where they were sown."
+        }
+      ]
+    },
+    {
+      "id": "feeding",
+      "title": {
+        "en": "Keeping the opponent in play"
+      },
+      "paragraphs": [
+        {
+          "en": "If the opponent's row is empty at the start of your turn, you must choose a move that supplies it with at least one stone, if you can. That means choosing a pit with enough stones to reach their side."
+        },
+        {
+          "en": "If none of your moves can feed the opponent, the game ends. It also ends if the player to move has no stones in their own pits."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "Scoring Oware"
+      },
+      "paragraphs": [
+        {
+          "en": "Collecting more than half the stones wins immediately. With the usual four stones per pit, that means 25."
+        },
+        {
+          "en": "If play ends because there is no move, each player collects the stones remaining on their own side. The same happens after 120 consecutive moves without a capture."
+        },
+        {
+          "en": "The larger store wins, or equal stores draw. Press S to read both scores during play."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Choosing a variant"
+      },
+      "paragraphs": [
+        {
+          "en": "The table settings offer three games:"
+        },
+        {
+          "en": "- Oware uses the rules above, capturing consecutive enemy pits containing two or three stones."
+        },
+        {
+          "en": "- Ayoayo keeps sowing by picking up stones from the pit where the previous sowing ended. It is explained next."
+        },
+        {
+          "en": "- Kalah sows into your own store, letting you score during the move, and sometimes gives another turn."
+        }
+      ]
+    },
+    {
+      "id": "ayoayo",
+      "title": {
+        "en": "Ayoayo"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose one of your pits and press Enter, just as in Oware. Sowing skips both stores and the pit whose stones are currently being spread."
+        },
+        {
+          "en": "If the last stone lands in a pit that already had stones, pick up its entire contents and keep sowing. This can happen on either side. The move ends only when the last stone reaches a previously empty pit."
+        },
+        {
+          "en": "If that final pit is on your side and the opposite pit contains enemy stones, collect those stones and your final stone into your store. Ending on the enemy side, or opposite an empty pit, captures nothing."
+        },
+        {
+          "en": "You must still feed an empty enemy row when possible. If you have no legal move on your turn, the game ends and the opponent takes all stones left on the board. The larger store wins; equal scores draw. Unlike Oware, collecting more than half does not end play early."
+        }
+      ]
+    },
+    {
+      "id": "kalah",
+      "title": {
+        "en": "Kalah"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose a pit and press Enter as before. Here sowing includes your own store, just beyond your row: every stone dropped there stays as a point. Skip the enemy store, but do not skip the starting pit when going all the way around."
+        },
+        {
+          "en": "Ending in your store earns another move. Choose another of your pits and press Enter."
+        },
+        {
+          "en": "If the last stone lands in a previously empty pit on your side, capture it and the stones opposite, provided the opposite pit is not empty. This capture rule can be disabled in Kalah settings without changing the other ways of scoring."
+        },
+        {
+          "en": "The game ends when either row is empty after a move, even if that move would have earned another turn. The owner of the non-empty row collects its remaining stones. The larger store wins, with equal scores drawing."
+        }
+      ]
+    },
+    {
+      "id": "stones",
+      "title": {
+        "en": "Starting stones"
+      },
+      "paragraphs": [
+        {
+          "en": "You can start with two to eight stones per pit instead of four, in any variant. Oware's immediate win still requires more than half of all stones."
+        }
+      ]
+    },
+    {
+      "id": "computer",
+      "title": {
+        "en": "Bot strength"
+      },
+      "paragraphs": [
+        {
+          "en": "Before a game against a bot, choose its strength in the table settings:"
+        },
+        {
+          "en": "- Calm is the easiest opponent."
+        },
+        {
+          "en": "- Steady is the default."
+        },
+        {
+          "en": "- Sharp is the strongest opponent."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Left arrow: move to the pit on the left."
+        },
+        {
+          "en": "Right arrow: move to the pit on the right."
+        },
+        {
+          "en": "Up arrow: move to the upper row."
+        },
+        {
+          "en": "Down arrow: move to the lower row."
+        },
+        {
+          "en": "Enter: sow from the selected pit in your row."
+        },
+        {
+          "en": "S: read both stores, highest score first."
+        },
+        {
+          "en": "P: read your pits in sowing order."
+        },
+        {
+          "en": "Shift+P: read the opponent's pits in their sowing order."
+        },
+        {
+          "en": "T: read whose turn it is."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "stones": "stones",
+    "skill": "computer",
+    "capture": "kalah"
+  }
+}

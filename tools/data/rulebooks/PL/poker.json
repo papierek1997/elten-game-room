@@ -1,0 +1,370 @@
+{
+  "source": "games/poker.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W pokerze walczysz o żetony wpłacone przez graczy do wspólnej puli. Możesz ją wygrać na dwa sposoby: mieć najlepsze karty przy porównaniu albo postawić tyle, że wszyscy przeciwnicy zrezygnują z dalszej gry. Dlatego nie zawsze wygrywa ten, kto rzeczywiście ma najmocniejszą rękę."
+        },
+        {
+          "pl": "Gra od dwóch do ośmiu osób. Każdy zaczyna z 1000 żetonów, a całą grę wygrywa ostatnia osoba, której pozostaną żetony. Podstawowy wariant to Texas Hold'em."
+        }
+      ]
+    },
+    {
+      "id": "holdem",
+      "title": {
+        "pl": "Początek rozdania"
+      },
+      "paragraphs": [
+        {
+          "pl": "Dostajesz dwie własne karty, które odczytasz klawiszem D. W trakcie rozdania na stole pojawi się jeszcze pięć kart wspólnych. Każdy korzysta z nich razem ze swoimi kartami, żeby uzyskać najlepszy układ pięciu kart. Możesz wykorzystać obie własne karty, tylko jedną lub ułożyć całą piątkę z kart wspólnych."
+        },
+        {
+          "pl": "Przed pierwszą decyzją dwie osoby wpłacają obowiązkowe stawki: małą ciemną 5 żetonów i dużą ciemną 10 żetonów. Płacą je dwie osoby po rozdającym. Gdy gracie we dwoje, małą ciemną płaci rozdający, a dużą druga osoba. W następnym rozdaniu te obowiązki przesuwają się dalej."
+        },
+        {
+          "pl": "Pierwsza licytacja zaczyna się od osoby po dużej ciemnej. Klawisz V podaje, ile trzeba obecnie dopłacić, P odczytuje pulę, a S twoje pozostałe żetony."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "pl": "Decyzja w swojej turze"
+      },
+      "paragraphs": [
+        {
+          "pl": "W licytacji gracze kolejno decydują, czy zostają w rozdaniu i jaką stawkę chcą zapłacić. Masz następujące możliwości:"
+        },
+        {
+          "pl": "- Klawiszem C czekasz, jeśli nie ma nic do dopłacenia. Zachowujesz karty i przekazujesz kolejkę bez wpłaty."
+        },
+        {
+          "pl": "- Jeśli jest stawka do wyrównania, C ją sprawdza: dopłacasz brakujące żetony i pozostajesz w rozdaniu. Gdy masz za mało żetonów, wpłacasz wszystkie i grasz dalej o tę część puli, którą pokryłeś."
+        },
+        {
+          "pl": "- Klawiszem R stawiasz lub podbijasz. Wpisz, o ile chcesz zwiększyć obecną stawkę, i naciśnij Enter. Potrzebne wyrównanie dolicza się osobno. Jeśli brakuje ci 10 do wyrównania i podbijesz o 20, wpłacisz łącznie 30."
+        },
+        {
+          "pl": "- Klawiszem A stawiasz wszystkie pozostałe żetony, czyli grasz all-in. Nie oznacza to odpadnięcia z rozdania: twoje karty nadal mogą wygrać."
+        },
+        {
+          "pl": "- Klawiszem F pasujesz. Rezygnujesz z tego rozdania i z wcześniej wpłaconych do niego żetonów."
+        },
+        {
+          "pl": "Zwykłe podbicie musi zwiększać stawkę co najmniej o dużą ciemną, a po większym podbiciu — co najmniej o wartość tego ostatniego podbicia. Możesz postawić więcej, aż do wszystkich swoich żetonów. Pole podbicia podaje dostępne granice."
+        },
+        {
+          "pl": "Jeśli ktoś zagra all-in za kwotę zbyt małą na pełne podbicie, pozostali gracze muszą dopłacić, żeby zostać w rozdaniu. Ci, którzy wcześniej już zagrali, nie mogą jednak ponownie podbić tylko z powodu tej dopłaty."
+        },
+        {
+          "pl": "Licytacja kończy się, kiedy pozostali gracze wyrównają stawkę lub postawią wszystkie żetony. Jeśli nikt nie stawia, wystarczy, że wszyscy zaczekają. Gdy wszyscy poza jedną osobą spasują, ta osoba od razu bierze pulę, bez porównywania kart."
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "title": {
+        "pl": "Karty wspólne"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeżeli po pierwszej licytacji w rozdaniu pozostały co najmniej dwie osoby, odkrywane są karty wspólne. Od tej chwili każdą licytację zaczyna pierwsza nadal grająca osoba po rozdającym."
+        },
+        {
+          "pl": "Karty pojawiają się w trzech etapach:"
+        },
+        {
+          "pl": "- Flop to pierwsze trzy karty wspólne. Po ich odkryciu odbywa się kolejna licytacja."
+        },
+        {
+          "pl": "- Turn to czwarta karta wspólna, po której znów decydujecie o stawkach."
+        },
+        {
+          "pl": "- River to piąta i ostatnia karta wspólna. Po ostatniej licytacji porównujecie układy."
+        },
+        {
+          "pl": "Klawisz E odczytuje karty wspólne, a G twój najlepszy obecny układ. Nie wybierasz ręcznie pięciu kart do porównania. Jeśli nikt nie może już dalej licytować, bo gracze postawili wszystkie żetony, pozostałe karty wspólne zostają odkryte i od razu następuje rozliczenie."
+        }
+      ]
+    },
+    {
+      "id": "hands",
+      "title": {
+        "pl": "Układy kart"
+      },
+      "paragraphs": [
+        {
+          "pl": "Porównuje się układy pięciu kart. Oto ich kolejność od najsłabszego do najmocniejszego:"
+        },
+        {
+          "pl": "- Wysoka karta oznacza, że nie masz żadnego z poniższych układów. Liczy się wtedy twoja najwyższa karta."
+        },
+        {
+          "pl": "- Para to dwie karty tej samej wartości, na przykład dwie damy."
+        },
+        {
+          "pl": "- Dwie pary to na przykład dwie damy i dwie siódemki."
+        },
+        {
+          "pl": "- Trójka to trzy karty tej samej wartości."
+        },
+        {
+          "pl": "- Strit tworzy pięć kolejnych wartości, na przykład 6, 7, 8, 9 i 10."
+        },
+        {
+          "pl": "- Kolor to pięć kart jednego koloru, na przykład pięć kierów."
+        },
+        {
+          "pl": "- Ful to trójka i para, na przykład trzy króle i dwie ósemki."
+        },
+        {
+          "pl": "- Kareta to cztery karty tej samej wartości."
+        },
+        {
+          "pl": "- Poker to strit w jednym kolorze. Najwyższy, od dziesiątki do asa, nazywa się pokerem królewskim."
+        },
+        {
+          "pl": "As jest najwyższą kartą, ale w stricie może też stać przed dwójką. A, 2, 3, 4, 5 jest najniższym stritem."
+        }
+      ]
+    },
+    {
+      "id": "comparing_hands",
+      "title": {
+        "pl": "Porównywanie takich samych układów"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gdy kilka osób ma ten sam rodzaj układu, porównuje się wartości kart. Na przykład para dam wygrywa z parą dziesiątek. Tak samo porównuje się trójki i karety. Przy stricie lub pokerze decyduje najwyższa karta."
+        },
+        {
+          "pl": "Przy dwóch parach najpierw porównujesz wyższe pary, a jeśli są równe — niższe. Przy fulu najpierw liczy się trójka, a dopiero potem para."
+        },
+        {
+          "pl": "Jeśli sam układ nie rozstrzyga, porównuje się pozostałe karty, zaczynając od najwyższej. Na przykład przy jednakowych parach dam as wygrywa z królem. Przy kolorze i wysokiej karcie porównuje się kolejno wszystkie pięć kart."
+        },
+        {
+          "pl": "Jeżeli porównywane układy mają te same wartości wszystkich pięciu kart, gracze dzielą pulę. Żaden kolor nie jest silniejszy od innego."
+        }
+      ]
+    },
+    {
+      "id": "all_in",
+      "title": {
+        "pl": "All-in i podział puli"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gracz, który wpłacił wszystkie żetony, nie podejmuje już decyzji o stawkach, ale czeka na rozstrzygnięcie. Może wygrać tylko tyle od każdego przeciwnika, ile sam włożył do rozdania. Dalsze wpłaty pozostałych osób tworzą dodatkową pulę, o którą ta osoba już nie gra."
+        },
+        {
+          "pl": "Na przykład ty wpłacasz ostatnie 40 żetonów, a dwaj przeciwnicy po 100. W głównej puli jest 120 żetonów: po 40 od każdego. Tę pulę może wygrać każdy z was trojga. Pozostałe 120 żetonów, po 60 od przeciwników, wygra jeden z nich albo podzielą je między siebie przy remisie."
+        },
+        {
+          "pl": "Każda pula jest dzielona osobno. Przy remisie żetony rozdziela się równo, a ewentualne pojedyncze żetony trafiają kolejno do remisujących osób, zaczynając od pierwszej po rozdającym."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Koniec rozdania i gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po wypłaceniu puli gracze bez żetonów odpadają. Pozostali dostają nowe karty i rozgrywają następne rozdanie."
+        },
+        {
+          "pl": "Co pięć rozdań mała i duża ciemna podwajają się. Po początkowych stawkach 5 i 10 przyjdą więc 10 i 20, potem 20 i 40. Aktualne ciemne odczytasz klawiszem L. Gra kończy się, kiedy tylko jedna osoba ma jeszcze żetony."
+        }
+      ]
+    },
+    {
+      "id": "draw",
+      "title": {
+        "pl": "Poker dobierany"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu przed grą można wybrać pokera dobieranego zamiast Texas Hold'em. Dostajesz wtedy pięć własnych kart, a kart wspólnych nie ma. Domyślnie na początku każdy płaci 5 żetonów, czyli ante. Po pierwszej licytacji każdy pozostający w rozdaniu może raz wymienić od zera do trzech kart. Potem odbywa się druga licytacja i porównanie rąk. W grze z ante minimalne pełne podbicie wynosi początkowo 10, a nie wysokość ante."
+        },
+        {
+          "pl": "Do wymiany wybieraj karty strzałkami i zaznaczaj je skrótem Shift+Enter. Gdy zaznaczysz wszystkie wybrane karty, pozostaw wybór na jednej z nich i naciśnij Enter. Wymiana zostanie wykonana od razu. Enter na niezaznaczonej karcie dołącza ją do wymiany, a gdy niczego nie zaznaczyłeś, wymienia tylko tę kartę."
+        },
+        {
+          "pl": "Jeśli chcesz zachować całą rękę, przejdź Tabem do przycisku „Zachowaj wszystkie karty” i naciśnij Enter. Do wymiany mają prawo również gracze, którzy wcześniej postawili wszystkie żetony."
+        },
+        {
+          "pl": "Dla tego wariantu dostępne są dodatkowe ustawienia:"
+        },
+        {
+          "pl": "- Można pozwolić na wymianę całej piątki. Wtedy w jednej wymianie wolno oddać do pięciu kart zamiast trzech."
+        },
+        {
+          "pl": "- Zasada „walety lub lepiej” wymaga co najmniej pary waletów, aby postawić pierwszy zakład przed wymianą. Po rozpoczęciu licytacji inni mogą sprawdzać i podbijać ze słabszymi kartami. Jeśli wszyscy zaczekają, przechodzicie do wymiany. Po wymianie warunek już nie obowiązuje."
+        },
+        {
+          "pl": "- Zamiast ante można włączyć małą i dużą ciemną, tak jak w Texas Hold'em. Ciemne są już postawionym zakładem, więc wymóg pary waletów nie ogranicza wtedy rozpoczęcia licytacji."
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "title": {
+        "pl": "Ograniczenia podbić"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu można zmienić swobodną licytację No Limit na jeden z poniższych wariantów:"
+        },
+        {
+          "pl": "- Pot Limit pozwala podbić najwyżej o wartość puli obliczoną po twoim wyrównaniu. Jeśli w puli jest 40, a do wyrównania brakuje ci 10, możesz podbić o najwyżej 50, wpłacając łącznie 60."
+        },
+        {
+          "pl": "- Half-pot Limit działa podobnie, ale granicą podbicia jest połowa puli po wyrównaniu, zaokrąglona w dół."
+        },
+        {
+          "pl": "- Fixed Limit oznacza podbicie dokładnie o wartość dużej ciemnej. Jeśli nie masz tylu żetonów, możesz dołożyć wszystkie pozostałe."
+        },
+        {
+          "pl": "Pot Limit i Half-pot Limit zawsze dopuszczają przynajmniej minimalne pełne podbicie, o ile masz na nie żetony. W tych wariantach all-in nie pozwala ominąć ograniczenia stawki."
+        },
+        {
+          "pl": "Osobno można ograniczyć liczbę pełnych podbić w jednej licytacji; po włączeniu domyślny limit wynosi trzy. Pierwsze pełne postawienie zakładu również wlicza się do tego limitu. Po jego osiągnięciu zostają czekanie, sprawdzenie lub pas; all-in nadal może służyć wyrównaniu, jeśli nie starcza ci żetonów."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "pl": "Żetony, stawki i czas"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed rozpoczęciem gry w ustawieniach stołu można ustalić początkowy zapas żetonów oraz wysokość małej ciemnej, dużej ciemnej i ante. Dla ciemnych można też zmienić tempo wzrostu: liczbę rozdań lub minut między podwyżkami i mnożnik stawek. Można całkowicie wyłączyć ich wzrost. Zmiana poziomu ciemnych następuje przy nowym rozdaniu."
+        },
+        {
+          "pl": "Domyślnie nie ma limitu czasu na decyzję. Jeśli go włączycie, po upływie czasu automatycznie pasujesz, nawet gdy nie miałeś nic do dopłacenia. Wyjątkiem jest wymiana kart po all-in: zachowujesz wtedy wszystkie karty i nadal uczestniczysz w rozdaniu."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "C: czekaj lub wyrównaj."
+        },
+        {
+          "pl": "F: spasuj."
+        },
+        {
+          "pl": "R: wpisz kwotę podbicia ponad wyrównanie."
+        },
+        {
+          "pl": "A: zagraj all-in."
+        },
+        {
+          "pl": "S: odczytaj swoje żetony."
+        },
+        {
+          "pl": "Shift+S: odczytaj żetony pozostałych graczy."
+        },
+        {
+          "pl": "V: odczytaj kwotę do wyrównania."
+        },
+        {
+          "pl": "P: odczytaj całą pulę."
+        },
+        {
+          "pl": "I: odczytaj swój wkład w rozdaniu."
+        },
+        {
+          "pl": "H: odczytaj, kto gra, a kto spasował."
+        },
+        {
+          "pl": "L: odczytaj ciemne."
+        },
+        {
+          "pl": "D: odczytaj swoje karty."
+        },
+        {
+          "pl": "E: odczytaj karty wspólne."
+        },
+        {
+          "pl": "G: odczytaj swój najlepszy obecny układ."
+        },
+        {
+          "pl": "Strzałki: wybierz decyzję w licytacji lub kartę podczas wymiany."
+        },
+        {
+          "pl": "Shift+Enter: podczas wymiany zaznacz lub odznacz wybraną kartę."
+        },
+        {
+          "pl": "Enter: zatwierdź decyzję; przy wymianie wymień zaznaczone karty razem ze wskazaną kartą."
+        },
+        {
+          "pl": "Escape: anuluj wpisywanie kwoty lub wybór kart."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "pl": "Shift+C: podczas wymiany sortuj karty według koloru; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+H: podczas wymiany sortuj karty według wartości; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+M: podczas wymiany przywróć kolejność otrzymania kart."
+        },
+        {
+          "pl": "1: odczytaj pierwszą własną kartę."
+        },
+        {
+          "pl": "2: odczytaj drugą własną kartę."
+        },
+        {
+          "pl": "3: w Hold'em odczytaj pierwszą kartę wspólną; w dobieranym trzecią własną kartę."
+        },
+        {
+          "pl": "4: w Hold'em odczytaj drugą kartę wspólną; w dobieranym czwartą własną kartę."
+        },
+        {
+          "pl": "5: w Hold'em odczytaj trzecią kartę wspólną; w dobieranym piątą własną kartę."
+        },
+        {
+          "pl": "6: w Hold'em odczytaj czwartą kartę wspólną."
+        },
+        {
+          "pl": "7: w Hold'em odczytaj piątą kartę wspólną."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "thinking_time": "settings",
+    "variant": "draw",
+    "starting_chips": "settings",
+    "small_blind": "settings",
+    "big_blind": "settings",
+    "ante": "settings",
+    "draw_uses_blinds": "draw",
+    "betting": "limits",
+    "raise_cap_enabled": "limits",
+    "raise_cap": "limits",
+    "blind_interval": "settings",
+    "blind_interval_value": "settings",
+    "blind_multiplier": "settings",
+    "draw_five": "draw",
+    "jacks_or_better": "draw"
+  }
+}

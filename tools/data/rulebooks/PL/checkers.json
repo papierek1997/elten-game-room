@@ -1,0 +1,176 @@
+{
+  "source": "games/checkers.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W warcabach chcesz zbić wszystkie piony i damki przeciwnika albo zablokować je tak, żeby nie mógł wykonać ruchu. Grają dwie osoby, a zaczynają białe."
+        },
+        {
+          "pl": "Przy zwykłych ustawieniach plansza ma osiem rzędów i osiem kolumn. Każdy gracz zaczyna z dwunastoma pionami. Gra toczy się wyłącznie po ciemnych polach."
+        }
+      ]
+    },
+    {
+      "id": "moves",
+      "title": {
+        "pl": "Ruchy pionów"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zwykły pion przesuwa się o jedno pole po przekątnej do przodu, jeśli to pole jest puste. Przejdź do piona strzałkami i wybierz go Enterem. Potem wskaż pole docelowe i jeszcze raz naciśnij Enter. Stojąc na polu z pionem lub damką, możesz nacisnąć V, żeby sprawdzić możliwe ruchy."
+        },
+        {
+          "pl": "Gdy pion zakończy swój ruch w ostatnim rzędzie po stronie przeciwnika, zostaje damką. Damka ma większy zasięg: może przejść o dowolną liczbę pustych pól po przekątnej, do przodu lub do tyłu."
+        }
+      ]
+    },
+    {
+      "id": "captures",
+      "title": {
+        "pl": "Bicie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli po przekątnej stoi sąsiedni pion albo damka przeciwnika, a tuż za nim jest puste pole, możesz go przeskoczyć i zbić. Pion bije zarówno do przodu, jak i do tyłu. Wybierasz pion Enterem, a drugim Enterem zatwierdzasz puste pole za zbijaną bierką."
+        },
+        {
+          "pl": "Bicie jest obowiązkowe. Gdy masz kilka możliwości, musisz wybrać taką serię skoków, która pozwoli zbić najwięcej bierek. Jeśli kilka serii daje ten sam wynik, możesz wybrać dowolną z nich."
+        },
+        {
+          "pl": "Po skoku sprawdzasz, czy tym samym pionem lub damką da się bić dalej. Jeśli tak, musisz kontynuować. Wybierz ponownie poruszany pion Enterem i wskaż kolejne pole lądowania. W ten sposób wykonujesz każdy skok, aż seria się skończy."
+        },
+        {
+          "pl": "Damka może dojść po przekątnej do odległej bierki przeciwnika i przeskoczyć ją. Ląduje na dowolnym wolnym polu za nią, dopóki nie napotka następnej bierki. Każdy skok zbija tylko jedną bierkę."
+        },
+        {
+          "pl": "Zbite piony i damki znikają dopiero po zakończeniu całej serii. Do tego czasu zajmują pola i blokują drogę; nie można ich przeskoczyć po raz drugi."
+        },
+        {
+          "pl": "Pion staje się damką dopiero na końcu całego ruchu. Jeśli w trakcie serii dotrze do ostatniego rzędu, lecz kolejne bicie wyprowadzi go z tego rzędu, pozostanie pionem."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Zakończenie partii"
+      },
+      "paragraphs": [
+        {
+          "pl": "Wygrywasz, gdy przeciwnik straci wszystkie bierki lub nie będzie miał żadnego dozwolonego ruchu."
+        },
+        {
+          "pl": "Partia kończy się remisem po trzykrotnym powtórzeniu pozycji albo po osiemdziesięciu kolejnych turach bez bicia i bez przemiany piona w damkę. Cała seria skoków liczy się jako jedna tura."
+        }
+      ]
+    },
+    {
+      "id": "board_variant",
+      "title": {
+        "pl": "Większe plansze"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach przed grą można wybrać większą planszę. Dostępne są trzy rozmiary:"
+        },
+        {
+          "pl": "- Na planszy 8 na 8 każdy gracz ma dwanaście pionów. To zwykłe ustawienie."
+        },
+        {
+          "pl": "- Na planszy 10 na 10 każdy zaczyna z dwudziestoma pionami."
+        },
+        {
+          "pl": "- Na planszy 12 na 12 każdy zaczyna z trzydziestoma pionami."
+        },
+        {
+          "pl": "Na każdej z tych plansz piony przeciwników rozdzielają na początku dwa puste rzędy."
+        }
+      ]
+    },
+    {
+      "id": "rule_variants",
+      "title": {
+        "pl": "Zmiany zasad ruchu i bicia"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach przed grą można osobno zmieniać zasady ruchu i bicia. Wielkość planszy sama w sobie nie włącza żadnej z tych zmian."
+        },
+        {
+          "pl": "- Wyłączenie bicia pionem do tyłu zostawia mu tylko bicie do przodu."
+        },
+        {
+          "pl": "- Wyłączenie dalekiego ruchu damki ogranicza jej zwykły ruch do jednego pola po przekątnej, a bicie do skoku nad bezpośrednim sąsiadem."
+        },
+        {
+          "pl": "- Po wyłączeniu obowiązku bicia możesz wykonać zwykły ruch, choć masz okazję zbić przeciwnika."
+        },
+        {
+          "pl": "- Po wyłączeniu dalszych bić tura kończy się już po pierwszym skoku."
+        },
+        {
+          "pl": "- Po wyłączeniu obowiązku najdłuższego bicia wybierasz dowolną dopuszczalną serię. Obowiązek najdłuższego bicia można stosować tylko razem z obowiązkowym biciem i kontynuowaniem serii."
+        },
+        {
+          "pl": "- Można pozwolić zwykłym pionom na ruch o jedno puste pole po przekątnej do tyłu. W normalnej grze piony mogą cofać się tylko przy biciu."
+        },
+        {
+          "pl": "- Pierwszeństwo damki rozstrzyga wybór między równie długimi seriami: jeśli jedną z nich może wykonać damka, trzeba użyć damki. Ta zasada wymaga włączenia najdłuższego bicia; zwykle jest wyłączona."
+        },
+        {
+          "pl": "- Można włączyć natychmiastową przemianę podczas bicia. Pion, który dotrze do ostatniego rzędu, staje się wtedy damką i dalsze skoki wykonuje już jako damka."
+        },
+        {
+          "pl": "- Po wyłączeniu pozostawiania zbitych bierek na planszy każda znika od razu po skoku. Może to otworzyć drogę do kolejnego bicia w tej samej serii."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: przeglądaj pola planszy."
+        },
+        {
+          "pl": "Enter: wybierz pion lub damkę, a następnie cel ruchu; w serii bić zatwierdzaj każdy skok osobno."
+        },
+        {
+          "pl": "V: odczytaj możliwe ruchy oglądanej figury."
+        },
+        {
+          "pl": "K: przejdź do kolejnej swojej damki."
+        },
+        {
+          "pl": "Shift+K: przejdź do kolejnej damki przeciwnika."
+        },
+        {
+          "pl": "C: odczytaj kolory graczy."
+        },
+        {
+          "pl": "S: odczytaj pozostałe piony i damki obu graczy."
+        },
+        {
+          "pl": "Ctrl+H: przełącz numery pól i współrzędne szachowe."
+        },
+        {
+          "pl": "Ctrl+Shift+H: obróć widok planszy."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "board_size": "board_variant",
+    "rules": "rule_variants"
+  }
+}

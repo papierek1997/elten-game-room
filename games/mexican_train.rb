@@ -9,6 +9,10 @@ module GameRoomGames
     def id; "mexican_train"; end
     def name; _("Mexican Train"); end
 
+    def short_description
+      _("Build several trains of dominoes and try to play all your tiles before anyone else.")
+    end
+
     def option_definitions
       [
         OptionDefinition.new(key: "allow_playable_draw", label: _("Allow drawing with a playable tile"), kind: :boolean, default: false),

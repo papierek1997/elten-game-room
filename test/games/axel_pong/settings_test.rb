@@ -54,7 +54,7 @@ begin
     GameRoomTestLocalization.use_language(language)
     $rules_english = language == :en
     $rules_dictionary = language == :fallback ? BinaryRuleDictionary.new({}) : dictionary
-    expected_labels = language == :pl ? ['Głośność ruchu Twojej paletki', 'Głośność ruchu paletki przeciwnika', 'Głośność lektora'] :
+    expected_labels = language == :pl ? ['Głośność ruchu Twojej rakietki', 'Głośność ruchu rakietki przeciwnika', 'Głośność lektora'] :
       ['Your paddle volume', 'Opponent paddle volume', 'Announcer volume']
     driver = lambda do |form|
       check, *rest = form.fields

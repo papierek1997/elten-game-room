@@ -1,0 +1,202 @@
+{
+  "source": "games/three_five_eight.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Three players each play a card, and the winner collects the group, called a trick. Usually you want as many tricks as possible, but each player has a different target: three, five or eight. Exceed yours to earn points; fall short and lose points."
+        },
+        {
+          "en": "Play eighteen deals, taking turns to choose each deal's rules. The highest combined score at the end wins."
+        }
+      ]
+    },
+    {
+      "id": "contract",
+      "title": {
+        "en": "Choosing the contract"
+      },
+      "paragraphs": [
+        {
+          "en": "You first receive six cards. Browse them with the arrows or read them with H. The player after the dealer chooses a contract based only on these six. When it is your choice, Tab to the contract button you want and press Enter."
+        },
+        {
+          "en": "The contracts are:"
+        },
+        {
+          "en": "- Hearts, spades, diamonds or clubs as trumps. That suit beats other suits; try to win tricks."
+        },
+        {
+          "en": "- No trumps: no suit beats the others simply by being trump. Still aim to win as many tricks as possible."
+        },
+        {
+          "en": "- Misère, or no tricks: there are no trumps and you try to take as few tricks as possible. Scoring is reversed."
+        },
+        {
+          "en": "Across the match, each player chooses each of the four trump suits, no trumps and misère once. A used choice is no longer available to that player. F reads the current contract and trump suit."
+        }
+      ]
+    },
+    {
+      "id": "kitty",
+      "title": {
+        "en": "The kitty"
+      },
+      "paragraphs": [
+        {
+          "en": "After the contract is chosen, everyone receives enough cards to bring their hand to sixteen. The chooser also gets four extra cards, the kitty, whose contents are shown to everyone."
+        },
+        {
+          "en": "The chooser now has twenty cards and must discard four. Select each unwanted card with the arrows and Enter. These cards are out of play, and the discard choices are secret."
+        },
+        {
+          "en": "From the second deal, players may exchange cards before the kitty is taken. This depends on the previous result and is explained after scoring."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "en": "Playing tricks"
+      },
+      "paragraphs": [
+        {
+          "en": "The contract chooser leads first. Select a card with the arrows and Enter. After the opening card, follow its suit if possible. Without that suit, play any card: you may use a trump but do not have to."
+        },
+        {
+          "en": "Ranks descend from ace, king, queen and jack through 10 to 2. The highest card of the opening suit wins, unless a trump was played; then the highest trump wins."
+        },
+        {
+          "en": "The winner leads next. Continue until all sixteen cards have been played. Even in misère, the winning player must collect the trick and lead. C reads table cards; V reads tricks and targets."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "en": "Scoring"
+      },
+      "paragraphs": [
+        {
+          "en": "For a trump or no-trump contract, targets are:"
+        },
+        {
+          "en": "- Contract chooser: eight tricks."
+        },
+        {
+          "en": "- Dealer: three tricks."
+        },
+        {
+          "en": "- Third player: five tricks."
+        },
+        {
+          "en": "Every trick above target earns 1 point; every trick short loses 1. With a target of eight, ten tricks score plus 2 and six score minus 2."
+        },
+        {
+          "en": "Misère changes the targets:"
+        },
+        {
+          "en": "- Contract chooser: three tricks."
+        },
+        {
+          "en": "- Dealer: eight tricks."
+        },
+        {
+          "en": "- Third player: five tricks."
+        },
+        {
+          "en": "It also reverses scoring: each trick below target earns 1 and each above loses 1. Taking no tricks against a target of three earns 3 points."
+        },
+        {
+          "en": "Scores carry across deals; S reads them. After eighteen deals, the highest total wins. Equal highest totals draw."
+        }
+      ]
+    },
+    {
+      "id": "exchange",
+      "title": {
+        "en": "Exchanging cards"
+      },
+      "paragraphs": [
+        {
+          "en": "From the second deal onwards, trump contracts allow exchanges based on the previous deal. A positive score earns that many exchanges with players who scored below zero. Each losing player must accept at most the number they lost. Only the immediately preceding deal counts."
+        },
+        {
+          "en": "Exchange after trumps are chosen and sixteen cards dealt, but before the kitty is taken. If two players have exchange rights, the one with the larger target in the current deal acts first. Select a card with the arrows and Enter, then choose its recipient and confirm."
+        },
+        {
+          "en": "The return depends on what you give:"
+        },
+        {
+          "en": "- For a non-trump, you automatically receive the recipient's highest card in that suit. If the card you just gave them is now their highest, it comes straight back."
+        },
+        {
+          "en": "- For a trump, the recipient chooses any non-trump or their highest trump. When responding, select your return card with the arrows and Enter."
+        },
+        {
+          "en": "You need not use every exchange. Tab to Finish exchanging and press Enter. Once all entitled players finish, the contract chooser takes the kitty and discards four cards."
+        },
+        {
+          "en": "Exchanges can be disabled before the match. In that case, each deal moves straight from contract selection to the kitty."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: browse cards or choose an exchange recipient."
+        },
+        {
+          "en": "Enter: confirm a contract, exchange or return a card, discard from the kitty, or play to a trick."
+        },
+        {
+          "en": "H: read your hand."
+        },
+        {
+          "en": "C: read the current trick."
+        },
+        {
+          "en": "Ctrl+C: inspect cards in the trick."
+        },
+        {
+          "en": "F: read the contract and trump suit."
+        },
+        {
+          "en": "V: read tricks, targets and deal number."
+        },
+        {
+          "en": "S: read scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "Z: find the next legal card; a sole unambiguous move may play automatically."
+        },
+        {
+          "en": "Shift+Z: find the previous legal card; a sole unambiguous move may play automatically."
+        },
+        {
+          "en": "Shift+C: sort by suit; repeat to reverse."
+        },
+        {
+          "en": "Shift+H: sort by rank; repeat to reverse."
+        },
+        {
+          "en": "Shift+M: restore received order."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "card_exchange": "exchange"
+  }
+}

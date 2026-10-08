@@ -1,0 +1,188 @@
+{
+  "source": "games/farkle.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "en": "Points and risk"
+      },
+      "paragraphs": [
+        {
+          "en": "Roll six dice, set aside dice that score, then decide whether to bank the points or risk another roll. A roll with no scoring dice loses everything from the current turn, but leaves earlier banked points safe."
+        },
+        {
+          "en": "Farkle is for two to eight players. The usual target is 1,000 points. The highest banked score wins after the final round of turns."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Choosing dice and rolling again"
+      },
+      "paragraphs": [
+        {
+          "en": "Press Enter to begin your turn with all six dice. After hearing the roll, you get a list of choices showing which dice to set aside and their total points. Choose with the arrows and confirm with Enter."
+        },
+        {
+          "en": "Choose all the dice you want to keep from that roll at once. They may form a single scoring combination or several, such as a lone 1 and three 5s. You do not have to keep every die that could score."
+        },
+        {
+          "en": "Then choose whether to roll again or bank. Select another roll and press Enter to roll the remaining dice. If you have reached the required minimum, you can bank instead, adding the turn's points to your total and ending your turn."
+        },
+        {
+          "en": "Each roll must score on its own. New dice cannot complete a combination with dice already set aside. If a roll scores nothing, it is a Farkle: your whole turn score is lost and the next player starts."
+        },
+        {
+          "en": "For example, from 1, 2, 4, 5, 5, 5 you can keep the 1 and three 5s for 60 points. Two dice remain. Bank 60 now, or risk those two dice. If they show 2 and 6, the full 60 is lost."
+        }
+      ]
+    },
+    {
+      "id": "banking",
+      "title": {
+        "en": "Banking minimums"
+      },
+      "paragraphs": [
+        {
+          "en": "Your first bank must be at least 50 points earned in one turn. While your bank is zero, keep rolling until you reach that minimum if you want to save any points."
+        },
+        {
+          "en": "After your first successful bank, later turns need at least 30 points. This is the new turn's score, not your total. C reads the turn score and minimum; S reads everyone's banked score."
+        }
+      ]
+    },
+    {
+      "id": "scores",
+      "title": {
+        "en": "Scoring combinations"
+      },
+      "paragraphs": [
+        {
+          "en": "These values apply to dice from a single roll. Separate scoring groups can be added together:"
+        },
+        {
+          "en": "- A single 1 scores 10."
+        },
+        {
+          "en": "- A single 5 scores 5. Other single dice score nothing."
+        },
+        {
+          "en": "- Three 1s score 75."
+        },
+        {
+          "en": "- Three matching dice of another value score ten times that value: three 2s give 20, three 6s give 60."
+        },
+        {
+          "en": "- Four matching dice score 100 plus ten times their value. Four 4s give 140."
+        },
+        {
+          "en": "- Five matching dice score 300 plus twenty times their value. Five 4s give 380."
+        },
+        {
+          "en": "- Six matching dice score 600 plus twenty-five times their value. Six 4s give 700."
+        },
+        {
+          "en": "- Five consecutive values, 1–5 or 2–6, score 100."
+        },
+        {
+          "en": "- All six values, 1–6, score 200."
+        },
+        {
+          "en": "- Three pairs of different values score 150."
+        },
+        {
+          "en": "- Two different triples score 250."
+        },
+        {
+          "en": "- Four of one value and a pair of another score 250 together."
+        },
+        {
+          "en": "If the chosen dice can be counted in different ways, you receive the highest possible score. The choice list already shows it."
+        }
+      ]
+    },
+    {
+      "id": "hot_dice",
+      "title": {
+        "en": "Using all six dice"
+      },
+      "paragraphs": [
+        {
+          "en": "Once you have set aside all six dice, whether in one roll or several, all six become available to roll again. The points already earned remain in your turn score."
+        },
+        {
+          "en": "You can roll all six or bank if you have reached the minimum. A later Farkle still loses the entire turn score, including points earned before reusing the dice."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "en": "The final round"
+      },
+      "paragraphs": [
+        {
+          "en": "When a player's bank reaches or passes 1,000, finish the current round of turns. Only players later in the established order still take a turn; those who have already played in this round do not get an extra one."
+        },
+        {
+          "en": "For example, if the second of four players reaches 1,000, the third and fourth finish their turns. The highest banked score wins, even if someone else was first to reach the target. Equal highest scores draw."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "en": "Targets and minimums"
+      },
+      "paragraphs": [
+        {
+          "en": "The host can change three numbers before play:"
+        },
+        {
+          "en": "- The target, normally 1,000, triggers the final round of turns."
+        },
+        {
+          "en": "- The opening minimum replaces 50. It applies to each player while their bank remains zero."
+        },
+        {
+          "en": "- The ordinary turn minimum replaces 30. It applies from the turn after a player's first successful bank."
+        },
+        {
+          "en": "The two minimums are independent. Zero removes that threshold, but you still need to earn some points during the turn before banking."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: choose dice to keep or the next action."
+        },
+        {
+          "en": "Enter: confirm a dice selection, roll or bank."
+        },
+        {
+          "en": "D: read the last roll."
+        },
+        {
+          "en": "C: read the current turn score and banking minimum."
+        },
+        {
+          "en": "S: read banked scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "options",
+    "turn_minimum": "options",
+    "entry_minimum": "options"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "source": "games/ninety_nine.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Noventa y nueve juegas cartas para cambiar una suma común y hacer perder fichas a tus rivales. Cada uno empieza con nueve fichas. Quedas eliminado cuando no puedes pagar una penalización; gana la única persona que siga en juego."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "es": "Jugar una carta"
+      },
+      "paragraphs": [
+        {
+          "es": "Juegan de dos a ocho personas. Recibes tres cartas y cada ronda empieza con la suma a cero. En tu turno, consulta la suma con C, recorre tu mano con las flechas y juega una carta con Enter."
+        },
+        {
+          "es": "La carta cambia la suma según su efecto. Si la ronda continúa, recibes otra para reponerla y pasa el turno."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "es": "Efectos de las cartas"
+      },
+      "paragraphs": [
+        {
+          "es": "Cada carta actúa sobre la suma de esta forma:"
+        },
+        {
+          "es": "- Del tres al ocho, se añade el valor de la carta: un siete lleva una suma de 20 a 27. El cuatro, además de sumar cuatro, invierte el sentido de juego si quedan al menos tres personas."
+        },
+        {
+          "es": "- La reina y el rey suman 10."
+        },
+        {
+          "es": "- La jota suma 10 y salta al siguiente jugador. Si solo sois dos, vuelves a jugar tú."
+        },
+        {
+          "es": "- El nueve no cambia la suma."
+        },
+        {
+          "es": "- El as permite sumar 1 u 11. Tras jugarlo con Enter, elige el valor con las flechas y confirma con Enter."
+        },
+        {
+          "es": "- El diez permite sumar o restar 10. Solo puedes restar si la suma es al menos 10. Elige el efecto con las flechas y confirma con Enter."
+        },
+        {
+          "es": "- El dos duplica la suma, salvo cuando es par y mayor de 49: entonces la divide entre dos. Así, 40 pasa a 80, pero 60 pasa a 30. No eliges el efecto del dos; lo determina la suma."
+        }
+      ]
+    },
+    {
+      "id": "tokens",
+      "title": {
+        "es": "Perder fichas"
+      },
+      "paragraphs": [
+        {
+          "es": "Al aumentar la suma, vigila los valores 33 y 66:"
+        },
+        {
+          "es": "- Si dejas la suma exactamente en 33 o 66, cada rival pierde una ficha. Con 32 puedes jugar un as como 1 para quitarles una a todos."
+        },
+        {
+          "es": "- Por cada umbral que sobrepases, 33 o 66, pierdes una ficha tú. Subir de 30 a 35 cruza el 33 y te cuesta una ficha."
+        },
+        {
+          "es": "La ronda termina al alcanzar o superar 99:"
+        },
+        {
+          "es": "- Llegar exactamente a 99 quita dos fichas a cada rival."
+        },
+        {
+          "es": "- Superar 99 te cuesta dos fichas. Si con esa jugada también cruzas el 66, pierdes tres en total."
+        },
+        {
+          "es": "La siguiente ronda vuelve a cero y se reparten cartas nuevas. S consulta las fichas de todos. Se puede seguir jugando con cero: solo quedas eliminado si no te alcanza para pagar la siguiente penalización. Con una ficha puedes perder una y continuar, pero una penalización de dos te elimina."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Ajustes de la partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes modificar estas opciones:"
+        },
+        {
+          "es": "- La cantidad inicial de fichas puede ser mayor o menor. La eliminación funciona igual."
+        },
+        {
+          "es": "- Los bots omniscientes conocen las cartas de todos. Si desactivas esta opción, no tienen esa ventaja."
+        },
+        {
+          "es": "- Con tiempo limitado, no jugar antes del plazo te hace perder una ficha y el turno. La suma y tu mano no cambian."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer las cartas."
+        },
+        {
+          "es": "Enter: jugar una carta o elegir el valor de un as o un diez."
+        },
+        {
+          "es": "Escape: cancelar la elección de valor sin jugar la carta."
+        },
+        {
+          "es": "H: leer tu mano."
+        },
+        {
+          "es": "C: consultar la suma común."
+        },
+        {
+          "es": "S: consultar las fichas de todos."
+        },
+        {
+          "es": "Z: ir a la siguiente carta legal; si exige elegir un valor, solo seleccionarla."
+        },
+        {
+          "es": "Shift+Z: ir a la carta legal anterior; si exige elegir un valor, solo seleccionarla."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "Shift+C: ordenar por palo; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+H: ordenar por valor; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+M: recuperar el orden de recepción de las cartas."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "thinking_time": "variants",
+    "starting_tokens": "variants",
+    "omniscient_bots": "variants"
+  }
+}

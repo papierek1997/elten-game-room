@@ -43,6 +43,10 @@ module GameRoomGames
       _("Battleship")
     end
 
+    def short_description
+      _("Place your fleet, work out where your opponent's ships are and sink them before you lose your own.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

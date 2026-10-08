@@ -34,6 +34,10 @@ module GameRoomGames
     end
 
     def name; _("Rummy"); end
+
+    def short_description
+      _("Make scoring combinations of cards and add to those on the table, trying to empty your hand first.")
+    end
     def maximum_players; 8; end
     def supports_bots?; true; end
     def thinking_time_range; 20..600; end

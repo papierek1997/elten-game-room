@@ -1,0 +1,370 @@
+{
+  "source": "games/poker.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "Aim of the game"
+      },
+      "paragraphs": [
+        {
+          "en": "The chips that players bet go into a shared pot. You win that pot either by showing the best hand or by making everyone else fold. That means a strong bet can win even when your cards are weak."
+        },
+        {
+          "en": "Two to eight people can play. Everyone starts with 1,000 chips, and the last player with chips wins the game. The default version is Texas Hold'em."
+        }
+      ]
+    },
+    {
+      "id": "holdem",
+      "title": {
+        "en": "Starting a hand"
+      },
+      "paragraphs": [
+        {
+          "en": "You receive two private cards; press D to hear them. Five shared cards will appear during the hand. Use any combination of your cards and the shared cards to make the best five-card hand: both private cards, one, or neither."
+        },
+        {
+          "en": "Before betting begins, two players pay forced bets called blinds. The player after the dealer pays the small blind of 5 chips, and the next player pays the big blind of 10. With two players, the dealer pays the small blind and the other player pays the big blind. These roles move on with each new hand."
+        },
+        {
+          "en": "The first player after the big blind acts first. Press V to hear how much you need to call, P for the pot, and S for your remaining chips."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "en": "Betting"
+      },
+      "paragraphs": [
+        {
+          "en": "When your turn comes, choose whether to stay in the hand and how much to bet:"
+        },
+        {
+          "en": "- Press C to check when you owe nothing. You keep your cards and pass the decision on without paying."
+        },
+        {
+          "en": "- When there is a bet to match, C calls it. You pay the difference and stay in the hand. If you cannot afford the full amount, you put in all your chips and remain eligible for the part of the pot you have covered."
+        },
+        {
+          "en": "- Press R to bet or raise. Enter how much to add to the current bet, then press Enter. Any amount you owe to call is paid as well. If you owe 10 and raise by 20, you pay 30 chips in total."
+        },
+        {
+          "en": "- Press A to go all-in, betting all your remaining chips. You still take part in the hand and can win with your cards."
+        },
+        {
+          "en": "- Press F to fold. You give up this hand and any chips you have already paid into its pot."
+        },
+        {
+          "en": "A full raise must be at least the big blind, or at least as large as the most recent full raise if that was larger. You may raise more, up to all your chips. The amount field tells you the available range."
+        },
+        {
+          "en": "An all-in may increase the bet by less than a full raise. Other players must still match that increase to stay in, but it does not give someone who has already acted another chance to raise."
+        },
+        {
+          "en": "A betting round ends once everyone still in has matched the bet or gone all-in. If nobody bets, everyone checks instead. If all but one player fold, the remaining player takes the pot immediately without showing a winning hand."
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "title": {
+        "en": "The shared cards"
+      },
+      "paragraphs": [
+        {
+          "en": "If at least two players remain after the opening bets, the shared cards are dealt. From this point on, the first player still in after the dealer starts each betting round."
+        },
+        {
+          "en": "The cards arrive in three stages:"
+        },
+        {
+          "en": "- The flop: three cards, followed by another betting round."
+        },
+        {
+          "en": "- The turn: a fourth card, followed by more betting."
+        },
+        {
+          "en": "- The river: the fifth and final card. After the last bets, the hands are compared."
+        },
+        {
+          "en": "Press E to hear the shared cards or G for your best current hand. The game chooses your best five cards for you. If no further betting is possible because the players have gone all-in, it deals the remaining shared cards and settles the hand."
+        }
+      ]
+    },
+    {
+      "id": "hands",
+      "title": {
+        "en": "Poker hands"
+      },
+      "paragraphs": [
+        {
+          "en": "Hands are ranked from weakest to strongest as follows:"
+        },
+        {
+          "en": "- High card: none of the combinations below; your highest card counts first."
+        },
+        {
+          "en": "- One pair: two cards of the same rank, such as two queens."
+        },
+        {
+          "en": "- Two pair: for example, two queens and two sevens."
+        },
+        {
+          "en": "- Three of a kind: three cards of the same rank."
+        },
+        {
+          "en": "- Straight: five consecutive ranks, such as 6, 7, 8, 9 and 10."
+        },
+        {
+          "en": "- Flush: five cards in the same suit, such as five hearts."
+        },
+        {
+          "en": "- Full house: three of a kind and a pair, such as three kings and two eights."
+        },
+        {
+          "en": "- Four of a kind: four cards of the same rank."
+        },
+        {
+          "en": "- Straight flush: a straight in one suit. The highest, from ten to ace, is a royal flush."
+        },
+        {
+          "en": "An ace is normally the highest card, but it can also come before a two in a straight. Ace–2–3–4–5 is the lowest straight."
+        }
+      ]
+    },
+    {
+      "id": "comparing_hands",
+      "title": {
+        "en": "Breaking ties"
+      },
+      "paragraphs": [
+        {
+          "en": "When players have the same kind of hand, compare the card ranks. A pair of queens beats a pair of tens, for example. Three and four of a kind work the same way. For a straight or straight flush, compare the highest card."
+        },
+        {
+          "en": "With two pair, compare the higher pairs first, then the lower pairs if needed. With a full house, compare the three of a kind first, then the pair."
+        },
+        {
+          "en": "If the combination itself is tied, compare the remaining cards from highest to lowest. For example, with equal pairs of queens, an ace beats a king. For a flush or high-card hand, compare all five cards in descending order."
+        },
+        {
+          "en": "If all five card ranks are equal, the players share the pot. Suits do not break ties."
+        }
+      ]
+    },
+    {
+      "id": "all_in",
+      "title": {
+        "en": "All-in and side pots"
+      },
+      "paragraphs": [
+        {
+          "en": "Once you are all-in, you make no more betting decisions but your hand remains in play. You can win no more from each opponent than you contributed yourself. Further bets from the other players go into a separate side pot that you cannot win."
+        },
+        {
+          "en": "Suppose you put in your last 40 chips and two opponents each put in 100. The main pot is 120 chips: 40 from each of you. Any of the three players can win it. The remaining 120 chips, 60 from each opponent, form a side pot for those two players alone."
+        },
+        {
+          "en": "Each pot is settled separately. Tied players divide it equally. Any odd chips are given to the tied players in order, starting with the first one after the dealer."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "Finishing the game"
+      },
+      "paragraphs": [
+        {
+          "en": "After the pots have been paid out, anyone with no chips is eliminated. The remaining players receive new cards for the next hand."
+        },
+        {
+          "en": "By default, the blinds double every five hands: 5 and 10 become 10 and 20, then 20 and 40. Press L for the current blinds. The game ends when one player has all the chips."
+        }
+      ]
+    },
+    {
+      "id": "draw",
+      "title": {
+        "en": "Five-card draw"
+      },
+      "paragraphs": [
+        {
+          "en": "You can choose five-card draw in the table settings instead of Hold'em. Everyone receives five private cards, with no shared cards. By default, each player pays a 5-chip ante before the hand. There is a betting round, then each remaining player may exchange up to three cards once, followed by a second betting round and the showdown. With an ante, the initial minimum full raise is 10 chips, not the ante amount."
+        },
+        {
+          "en": "To exchange cards, browse them with the arrows and mark each one with Shift+Enter. Leave the selection on one of the marked cards and press Enter to exchange them together. If you press Enter on an unmarked card, that card is included too. With no cards marked, Enter exchanges just the selected card."
+        },
+        {
+          "en": "To keep your entire hand, Tab to the button for keeping all cards and press Enter. Players who went all-in still get to exchange cards."
+        },
+        {
+          "en": "Five-card draw has these extra options:"
+        },
+        {
+          "en": "- Allow exchanging all five cards, instead of at most three."
+        },
+        {
+          "en": "- Jacks or better: you need at least a pair of jacks to make the first bet before the draw. Once someone opens, others may call or raise with weaker hands. If everyone checks, play moves to the draw. The requirement no longer applies after the exchange."
+        },
+        {
+          "en": "- Use small and big blinds instead of an ante. These count as an opening bet, so jacks or better does not restrict opening the betting in this case."
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "title": {
+        "en": "Betting limits"
+      },
+      "paragraphs": [
+        {
+          "en": "The default No Limit setting lets you raise up to all your chips. The alternatives are:"
+        },
+        {
+          "en": "- Pot Limit: you may raise by at most the size of the pot after your call. If the pot contains 40 and you owe 10, you can raise by up to 50, paying 60 in total."
+        },
+        {
+          "en": "- Half-pot Limit: the raise is limited to half the pot after your call, rounded down."
+        },
+        {
+          "en": "- Fixed Limit: a raise must be exactly the big blind. If you have fewer chips than that, you may put in all you have."
+        },
+        {
+          "en": "Pot Limit and Half-pot Limit always allow at least a full minimum raise if you can afford it. Going all-in does not bypass those limits."
+        },
+        {
+          "en": "You can also cap the number of full raises in one betting round. When enabled, the default cap is three, including the first full opening bet. After that, players can only check, call or fold. You may still go all-in to call if you cannot afford the full amount."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "en": "Chips, blinds and time"
+      },
+      "paragraphs": [
+        {
+          "en": "The table settings let you choose starting chips, the small and big blinds, and the ante. You can set how many hands or minutes pass between blind increases and how much they multiply, or turn increases off altogether. New blind levels take effect at the start of a hand."
+        },
+        {
+          "en": "There is no decision time limit by default. If you enable one, running out of time folds your hand, even if you could have checked. The exception is exchanging cards after going all-in: you keep all your cards and remain in the hand."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "C: check or call."
+        },
+        {
+          "en": "F: fold."
+        },
+        {
+          "en": "R: enter a raise above the amount needed to call."
+        },
+        {
+          "en": "A: go all-in."
+        },
+        {
+          "en": "S: read your chips."
+        },
+        {
+          "en": "Shift+S: read the other players' chips."
+        },
+        {
+          "en": "V: read the amount needed to call."
+        },
+        {
+          "en": "P: read the pot."
+        },
+        {
+          "en": "I: read your contribution to the hand."
+        },
+        {
+          "en": "H: read who is still in and who has folded."
+        },
+        {
+          "en": "L: read the blinds."
+        },
+        {
+          "en": "D: read your cards."
+        },
+        {
+          "en": "E: read the shared cards."
+        },
+        {
+          "en": "G: read your best current hand."
+        },
+        {
+          "en": "Arrow keys: choose a betting action or a card to exchange."
+        },
+        {
+          "en": "Shift+Enter: mark or unmark a card for exchange."
+        },
+        {
+          "en": "Enter: confirm an action; during the draw, exchange the marked cards together with the selected card."
+        },
+        {
+          "en": "Escape: cancel entering an amount or selecting cards."
+        },
+        {
+          "en": "T: announce whose turn it is."
+        },
+        {
+          "en": "Shift+C: during the draw, sort by suit; press again to reverse."
+        },
+        {
+          "en": "Shift+H: during the draw, sort by rank; press again to reverse."
+        },
+        {
+          "en": "Shift+M: during the draw, restore the order in which you received the cards."
+        },
+        {
+          "en": "1: read your first card."
+        },
+        {
+          "en": "2: read your second card."
+        },
+        {
+          "en": "3: read the first shared card in Hold'em, or your third card in draw poker."
+        },
+        {
+          "en": "4: read the second shared card in Hold'em, or your fourth card in draw poker."
+        },
+        {
+          "en": "5: read the third shared card in Hold'em, or your fifth card in draw poker."
+        },
+        {
+          "en": "6: read the fourth shared card in Hold'em."
+        },
+        {
+          "en": "7: read the fifth shared card in Hold'em."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "thinking_time": "settings",
+    "variant": "draw",
+    "starting_chips": "settings",
+    "small_blind": "settings",
+    "big_blind": "settings",
+    "ante": "settings",
+    "draw_uses_blinds": "draw",
+    "betting": "limits",
+    "raise_cap_enabled": "limits",
+    "raise_cap": "limits",
+    "blind_interval": "settings",
+    "blind_interval_value": "settings",
+    "blind_multiplier": "settings",
+    "draw_five": "draw",
+    "jacks_or_better": "draw"
+  }
+}

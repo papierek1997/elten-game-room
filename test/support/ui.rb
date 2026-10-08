@@ -275,6 +275,7 @@ class EditBox < FakeControl
   class Element < Struct.new(:from, :to, :type, :param)
     Header = 1
     Link = 2
+    ListItem = 4
     Frame = 14
   end
 

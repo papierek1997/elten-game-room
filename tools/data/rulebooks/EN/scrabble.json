@@ -1,0 +1,317 @@
+{
+  "source": "games/scrabble_ui.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "en": "Words and points"
+      },
+      "paragraphs": [
+        {
+          "en": "Build words from letter tiles on a shared crossword board. Every player scores their own words; the highest final score wins."
+        },
+        {
+          "en": "Two to four players receive seven tiles each. C reads your rack and the letters' values. After an accepted move, the game refills your rack to seven while tiles remain in the bag."
+        },
+        {
+          "en": "The board has fifteen columns, A to O, and fifteen rows, 1 to 15. Explore it with the arrows. A square is read as its letter, or empty, followed by its coordinates. Some empty squares also have bonuses that increase a move's score."
+        }
+      ]
+    },
+    {
+      "id": "placement",
+      "title": {
+        "en": "Where words can go"
+      },
+      "paragraphs": [
+        {
+          "en": "The first word must cover the centre square, H8. Later moves must connect to the crossword already on the board. Extend a word, cross it with another, or lay tiles alongside it to make several words."
+        },
+        {
+          "en": "Every move must satisfy these rules:"
+        },
+        {
+          "en": "- All tiles you add this turn go in one row or one column. Words read from left to right or from top to bottom."
+        },
+        {
+          "en": "- The completed word cannot have gaps. Existing letters can fill spaces between your new tiles."
+        },
+        {
+          "en": "- Every new word must have at least two letters and be in the game's dictionary. This includes short crossing words, not only the main word you intended."
+        },
+        {
+          "en": "Once a move is accepted, those letters stay in place. You cannot take them back or move them, but may use them in later words."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "en": "Laying and submitting tiles"
+      },
+      "paragraphs": [
+        {
+          "en": "Move to an empty square with the arrows and press Enter to open your available tiles. Choose a tile with the arrows and press Enter again. It appears on the square, but your turn is not yet submitted."
+        },
+        {
+          "en": "Place the rest of your letters in the same way. To correct a mistake, return to a tile added this turn and press Backspace to remove it. Z takes back the whole draft so you can start again."
+        },
+        {
+          "en": "Y reads the draft words and their estimated score without checking the dictionary. When ready, press F to submit. The words are checked, and an accepted move fixes the tiles in place, scores the words and ends your turn."
+        },
+        {
+          "en": "If a word is not recognised, you hear which one and the draft tiles return to your rack. Under the default rules you can try again in the same turn without losing points. Placement errors, such as a gap or no connection to existing tiles, must also be corrected."
+        }
+      ]
+    },
+    {
+      "id": "blanks",
+      "title": {
+        "en": "Blanks"
+      },
+      "paragraphs": [
+        {
+          "en": "A blank can stand for any letter. When placing one, choose its letter from the extra list with the arrows and confirm with Enter."
+        },
+        {
+          "en": "A blank is always worth zero, and keeps its assigned letter for the rest of the game once the move is accepted. There are two blanks in the set."
+        }
+      ]
+    },
+    {
+      "id": "points",
+      "title": {
+        "en": "Scoring a move"
+      },
+      "paragraphs": [
+        {
+          "en": "Score every word formed by your move, adding all its letter values, including tiles already on the board. A new tile used in both a horizontal and vertical word counts in both."
+        },
+        {
+          "en": "A bonus square applies only when a tile is first placed on it:"
+        },
+        {
+          "en": "- A letter bonus doubles or triples that tile's value before you add the other letters."
+        },
+        {
+          "en": "- A word bonus doubles or triples the whole word. Multiple word bonuses multiply together: two double-word squares make the word worth four times its normal score."
+        },
+        {
+          "en": "A blank on a letter bonus remains zero. On a word bonus it still doubles or triples the whole word. Extending a word later does not reactivate bonuses under old tiles."
+        },
+        {
+          "en": "Using all seven rack tiles in one turn adds 50 points after the words are scored. This bonus is not multiplied. Press S to hear scores."
+        }
+      ]
+    },
+    {
+      "id": "exchange",
+      "title": {
+        "en": "Exchanging or passing"
+      },
+      "paragraphs": [
+        {
+          "en": "Instead of making a word, you may spend your turn exchanging tiles. Press G, browse the tiles with the arrows and mark unwanted ones with Space. Enter confirms; Escape cancels."
+        },
+        {
+          "en": "You may exchange one to seven tiles if at least eight remain in the bag. Your returned tiles go into the bag before you draw, so you might receive one again. E reads the bag and rack counts."
+        },
+        {
+          "en": "P passes without playing or exchanging. If you already have a draft on the board, passing or exchanging asks you to confirm taking those tiles back."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "Ending the game"
+      },
+      "paragraphs": [
+        {
+          "en": "The game ends in either of these ways:"
+        },
+        {
+          "en": "- The bag is empty and someone uses every tile in their rack."
+        },
+        {
+          "en": "- Exchanges are no longer possible and nobody plays a word for three complete rounds of turns. A word interrupts this count even if it scores zero."
+        },
+        {
+          "en": "Subtract the value of each player's remaining rack from their score. If someone emptied their rack, they also receive the combined value left on everyone else's. There is no such award for a blocked game. Unplayed blanks count as zero."
+        },
+        {
+          "en": "Compare the adjusted totals. The highest wins; equal highest totals share victory."
+        }
+      ]
+    },
+    {
+      "id": "language",
+      "title": {
+        "en": "Tiles and dictionary"
+      },
+      "paragraphs": [
+        {
+          "en": "Before play, choose Polish or English tiles and dictionary. The letter distribution and values change, but both sets contain 100 tiles."
+        },
+        {
+          "en": "Polish uses the included SJP dictionary; English uses Wordnik. These may differ from tournament dictionaries. The selected dictionary decides which words are accepted."
+        }
+      ]
+    },
+    {
+      "id": "penalties",
+      "title": {
+        "en": "Rejected-word penalties"
+      },
+      "paragraphs": [
+        {
+          "en": "The table can change what happens when a submitted word is not in the dictionary:"
+        },
+        {
+          "en": "- Allow another attempt, as in the default game."
+        },
+        {
+          "en": "- End the turn instead, leaving the tiles in the player's rack."
+        },
+        {
+          "en": "Either approach can have no point penalty or a penalty of 5 or 10 points. A single press of F incurs at most one penalty, even if several words are invalid. Placement errors, such as a gap, do not incur this penalty."
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "title": {
+        "en": "Turn time"
+      },
+      "paragraphs": [
+        {
+          "en": "Turns are normally untimed. The host can set a time limit covering the whole turn, including blank choices and retries after a rejected word."
+        },
+        {
+          "en": "At timeout, draft tiles return to the rack and the turn ends as a pass. Timeout itself carries no extra point penalty."
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "title": {
+        "en": "Rack order and draft announcements"
+      },
+      "paragraphs": [
+        {
+          "en": "With no draft tiles placed, I changes rack order: as received, alphabetical, or vowels first. Number keys 1–7 read individual positions. Shift with a number places that rack tile straight onto the square at the cursor."
+        },
+        {
+          "en": "You can follow another player's draft on the board before they submit it. Ctrl+P turns spoken announcements of tiles being placed and removed on or off."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: move around the board or an open list."
+        },
+        {
+          "en": "Enter: choose and place a tile; confirm marked tiles in the exchange window."
+        },
+        {
+          "en": "Backspace: remove an unsubmitted tile at the cursor."
+        },
+        {
+          "en": "Z: take back the whole draft."
+        },
+        {
+          "en": "F: submit your words."
+        },
+        {
+          "en": "Y: read draft words and points without a dictionary check."
+        },
+        {
+          "en": "Escape: cancel tile selection or exchange."
+        },
+        {
+          "en": "C: read the rack."
+        },
+        {
+          "en": "I: change rack order when no draft is placed."
+        },
+        {
+          "en": "G: choose tiles to exchange."
+        },
+        {
+          "en": "Space in the exchange list: mark or unmark a tile."
+        },
+        {
+          "en": "P: pass."
+        },
+        {
+          "en": "E: read rack and bag counts."
+        },
+        {
+          "en": "L: review played words."
+        },
+        {
+          "en": "S: read scores."
+        },
+        {
+          "en": "T: check whose turn it is."
+        },
+        {
+          "en": "1: read rack tile 1."
+        },
+        {
+          "en": "2: read rack tile 2."
+        },
+        {
+          "en": "3: read rack tile 3."
+        },
+        {
+          "en": "4: read rack tile 4."
+        },
+        {
+          "en": "5: read rack tile 5."
+        },
+        {
+          "en": "6: read rack tile 6."
+        },
+        {
+          "en": "7: read rack tile 7."
+        },
+        {
+          "en": "Shift+1: place rack tile 1 at the cursor."
+        },
+        {
+          "en": "Shift+2: place rack tile 2 at the cursor."
+        },
+        {
+          "en": "Shift+3: place rack tile 3 at the cursor."
+        },
+        {
+          "en": "Shift+4: place rack tile 4 at the cursor."
+        },
+        {
+          "en": "Shift+5: place rack tile 5 at the cursor."
+        },
+        {
+          "en": "Shift+6: place rack tile 6 at the cursor."
+        },
+        {
+          "en": "Shift+7: place rack tile 7 at the cursor."
+        },
+        {
+          "en": "Ctrl+P: toggle tile-placement and removal announcements."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "content_language_id": "language",
+    "content_set_id": "language",
+    "invalid_word": "penalties",
+    "thinking_time": "time"
+  }
+}

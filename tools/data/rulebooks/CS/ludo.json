@@ -1,0 +1,174 @@
+{
+  "source": "games/ludo.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Člověče, nezlob se hrají dva až čtyři hráči. Každý má čtyři figurky v základně. Vyvedeš je na společnou dráhu, obejdeš s nimi desku a dovedeš je vlastní cestou až do cíle v domečku. První hráč se všemi čtyřmi figurkami v cíli vyhrává."
+        }
+      ]
+    },
+    {
+      "id": "track",
+      "title": {
+        "cs": "Dráha a poloha figurek"
+      },
+      "paragraphs": [
+        {
+          "cs": "Společná dráha má 52 polí. Figurky postupují ve směru rostoucích čísel a po poli 52 následuje opět 1. Jednotliví hráči nasazují na polích 1, 14, 27 a 40."
+        },
+        {
+          "cs": "Po oběhnutí desky vstoupí figurka na vlastní cestu do domečku. Tato cesta má šest polí, poslední je cíl. Soupeři na ni nesmějí."
+        },
+        {
+          "cs": "Klávesou V otevřeš přehled svých figurek, Shift+V přehled všech. Klávesa 1 přečte polohu tvých čtyř figurek."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "cs": "Hod kostkou a tah"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve svém tahu hoď Enterem. Jednička i šestka dovolí nasadit jednu figurku ze základny na tvé vstupní pole. Nasazená figurka už z tohoto hodu dál nepostupuje."
+        },
+        {
+          "cs": "Místo nasazení můžeš posunout figurku, která už vyšla, o celý hozený počet. Jeden hod patří jedné figurce, nelze ho rozdělit."
+        },
+        {
+          "cs": "Je-li možných tahů víc, zvol jeden šipkami z nabídky a potvrď Enterem. Jediný přípustný tah hra provede sama. Nemůže-li se pohnout žádná figurka, tah vynecháš."
+        },
+        {
+          "cs": "Po šestce házíš znovu, i když s ní nešlo táhnout. Třetí šestka za sebou však tah ukončí bez pohybu figurky. Předchozí dva pohyby zůstávají v platnosti."
+        }
+      ]
+    },
+    {
+      "id": "captures",
+      "title": {
+        "cs": "Vyhazování a blokády"
+      },
+      "paragraphs": [
+        {
+          "cs": "Dopadneš-li na běžné pole s jedinou soupeřovou figurkou, vyhodíš ji do základny. Soupeř ji bude muset znovu nasadit."
+        },
+        {
+          "cs": "Čtyři vstupní pole jsou bezpečná, figurky se na nich nevyhazují. Dvě či více figurek jednoho hráče na jednom poli tvoří blokádu: soupeř ji nesmí přejít ani na ní zastavit. To platí i na bezpečném poli."
+        },
+        {
+          "cs": "Vlastní figurky ti cestu neblokují. Výjimka platí také při nasazování: ze základny smíš vstoupit na své vstupní pole, i když na něm stojí soupeřova blokáda."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "cs": "Dovedení figurek do cíle"
+      },
+      "paragraphs": [
+        {
+          "cs": "Do cíle musíš dojít přesným hodem. Padne-li víc, než figurce zbývá, vyber jinou, která může táhnout. Figurka v cíli už se nepohybuje."
+        },
+        {
+          "cs": "Hra končí, jakmile jeden hráč dovede všechny čtyři figurky. Počty figurek v cíli u jednotlivých hráčů přečte S."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Volitelná pravidla"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze změnit tyto podmínky:"
+        },
+        {
+          "cs": "- Bez nasazování na jedničku potřebuješ k opuštění základny šestku."
+        },
+        {
+          "cs": "- Vypnutím omezení nasazení na šestku lze nasadit po libovolném hodu."
+        },
+        {
+          "cs": "- Lze zrušit další hod po šestce."
+        },
+        {
+          "cs": "- Samostatně lze vypnout ztrátu tahu po třech šestkách za sebou."
+        },
+        {
+          "cs": "- Bez požadavku přesného hodu figurka dojde do cíle i tehdy, když padne více, než jí zbývá."
+        },
+        {
+          "cs": "- Bez blokád skupina figurek soupeře nezastavuje. Na běžném poli lze potom jediným tahem vyhodit celou soupeřovu skupinu. Vstupní pole zůstávají bezpečná."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: vybrat dostupný tah figurkou."
+        },
+        {
+          "cs": "Enter: hodit kostkou nebo potvrdit tah."
+        },
+        {
+          "cs": "1: přečíst vlastní figurky, při sledování figurky prvního hráče."
+        },
+        {
+          "cs": "2: přečíst figurky následujícího hráče podle míst u stolu."
+        },
+        {
+          "cs": "3: přečíst figurky dalšího hráče, pokud hraje."
+        },
+        {
+          "cs": "4: přečíst figurky posledního hráče při hře ve čtyřech."
+        },
+        {
+          "cs": "C: přečíst barvy jednotlivých hráčů."
+        },
+        {
+          "cs": "Ctrl+C: přepnout mezi jmény hráčů a barvami v hlášeních."
+        },
+        {
+          "cs": "D: přečíst posledního házejícího a jeho hod."
+        },
+        {
+          "cs": "V: prohlédnout vlastní figurky."
+        },
+        {
+          "cs": "Shift+V: prohlédnout všechny figurky v pořadí polí dráhy, cest do domečků, základen a cíle."
+        },
+        {
+          "cs": "P: přečíst polohy vlastních figurek mimo cíl, včetně základny."
+        },
+        {
+          "cs": "Shift+P: přečíst polohy soupeřových figurek mimo cíl, včetně základen."
+        },
+        {
+          "cs": "S: přečíst počty figurek jednotlivých hráčů v cíli."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "enter_on_six": "variants",
+    "enter_on_one": "variants",
+    "extra_on_six": "variants",
+    "exact_finish": "variants",
+    "three_sixes": "variants",
+    "blockades": "variants"
+  }
+}

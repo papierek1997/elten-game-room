@@ -39,6 +39,10 @@ module GameRoomGames
       _("Chess")
     end
 
+    def short_description
+      _("Protect your king and plan an attack your opponent cannot escape.")
+    end
+
     def supports_bots?
       true
     end

@@ -68,6 +68,7 @@ class TranslationExtractorTest < Minitest::Test
   def test_changelog_translator_callback_is_a_known_inventory_consumer
     warnings = []
     extract('GameRoomChangelog.list_items(entries, translator: ->(text) { _(text) })', path: "__app.rb", warnings: warnings)
+    extract('GameRoomChangelog.markdown(entries, translator: ->(text) { _(text) })', path: "__app.rb", warnings: warnings)
     assert_empty warnings
     extract('Other.list_items(entries, translator: ->(text) { _(text) })', path: "__app.rb", warnings: warnings)
     assert_equal 1, warnings.size
@@ -156,7 +157,7 @@ class TranslationExtractorTest < Minitest::Test
     path = "lib/game_room_changelog.rb"
     actual = File.read(File.join(ROOT, path), encoding: "UTF-8")
     records = extract(actual, path: path, warnings: warnings = [])
-    expected = actual.lines.filter_map { |line| line.strip.start_with?('"') ? JSON.parse(line.strip.delete_suffix(",")) : nil }
+    expected = actual.scan(/changes: \[\s*(.*?)\s*\]\.freeze/m).flat_map { |block| JSON.parse("[#{block.first}]") }
     assert_equal expected.uniq.sort, records.map { |record| record[:msgid] }.reject { |text| text.start_with?("Version %{version}") }.sort
     assert_empty warnings
   end

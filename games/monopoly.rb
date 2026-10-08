@@ -38,6 +38,10 @@ module GameRoomGames
       _("Monopoly")
     end
 
+    def short_description
+      _("Buy properties, build houses and collect rent to drive your opponents into bankruptcy.")
+    end
+
     def minimum_players
       2
     end

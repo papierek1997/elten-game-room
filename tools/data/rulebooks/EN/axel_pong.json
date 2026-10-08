@@ -1,0 +1,249 @@
+{
+  "source": "games/axel_pong.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "en": "The game"
+      },
+      "paragraphs": [
+        {
+          "en": "In Axel Pong, move your paddle to protect your goal and hit the ball where your opponent cannot reach it. A ball in your goal gives them a point. Singles is played by two people, or by one person against a bot."
+        },
+        {
+          "en": "The ball sounds to the left or right according to its position relative to your paddle, and gets louder as it approaches. Headphones make both clues easier to follow."
+        }
+      ]
+    },
+    {
+      "id": "rally",
+      "title": {
+        "en": "Moving and hitting"
+      },
+      "paragraphs": [
+        {
+          "en": "Move your paddle with Left and Right arrow. Hold a key to keep moving."
+        },
+        {
+          "en": "Your movement sound is low near either side wall and rises as you approach the middle of the table. After you cross the middle, it falls again. Press C to hear your paddle's position."
+        },
+        {
+          "en": "When it is your serve, press Up arrow or Space. The ball leaves from your paddle's position. Hold Left or Right arrow as you serve to send it at an angle."
+        },
+        {
+          "en": "When the opponent returns the ball, move into its path and press Up arrow or Space once it is close enough to hit. Being in the right place is only half the task: the ball must also be within your paddle's reach when you hit."
+        },
+        {
+          "en": "The part of the paddle that meets the ball determines its direction:"
+        },
+        {
+          "en": "- The centre sends it straight ahead."
+        },
+        {
+          "en": "- The left side sends it diagonally left."
+        },
+        {
+          "en": "- The right side sends it diagonally right."
+        },
+        {
+          "en": "Use these angles to aim away from your opponent. The ball speeds up with each hit."
+        },
+        {
+          "en": "The ball can also bounce off the side walls. A wall bounce sounds higher when it happens closer to your goal, and lowest near your opponent's goal."
+        }
+      ]
+    },
+    {
+      "id": "points",
+      "title": {
+        "en": "Service and scoring"
+      },
+      "paragraphs": [
+        {
+          "en": "Against a bot, you serve first. In a match between people, the game announces the first server. Service changes sides after every two points. Press T to check who serves next."
+        },
+        {
+          "en": "The usual target is 11 points, with a two-point lead needed to win. Play continues at 11–10, but 12–10 wins the match. Press S for the current score."
+        },
+        {
+          "en": "In a match without bots, Ctrl+W hurries an opponent who is delaying their serve. They have ten seconds to serve or you get a point. You can hurry them again after fifteen seconds."
+        }
+      ]
+    },
+    {
+      "id": "doubles",
+      "title": {
+        "en": "Doubles"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose doubles in the table settings to play in two teams of two. You and your partner defend the same goal and share a score, but each of you controls a separate paddle."
+        },
+        {
+          "en": "Partners take turns hitting. If you serve, the rally follows this order:"
+        },
+        {
+          "en": "1. One opponent receives your serve."
+        },
+        {
+          "en": "2. Your partner takes the return."
+        },
+        {
+          "en": "3. The other opponent hits next."
+        },
+        {
+          "en": "4. The next ball is yours."
+        },
+        {
+          "en": "Repeat that order until the point ends. You cannot take your partner's ball, even if you are closer to it."
+        },
+        {
+          "en": "The opening serving team is chosen at random. The server and receiver change every two points. Their names are announced, and T repeats them. S reads the teams and score."
+        },
+        {
+          "en": "The two partners have different movement sounds. The first player on each team also has a lower-pitched serve and hit sound than the second."
+        }
+      ]
+    },
+    {
+      "id": "arcade",
+      "title": {
+        "en": "Arcade mode"
+      },
+      "paragraphs": [
+        {
+          "en": "Classic is the normal game. Arcade adds two possible effects to paddle hits: each hit has a 7% chance of a shield and a separate 7% chance of an invisible ball, so both can occur together. Serving does not trigger them."
+        },
+        {
+          "en": "- A shield protects your whole end for ten seconds of play. If you miss, it sends the ball straight back and remains active. Another shield renews the protection. In doubles it covers both partners. Waiting for a serve does not use up shield time, and any time left carries over to the next point."
+        },
+        {
+          "en": "- An invisible ball is silent. You must judge where it is going and put your paddle in its path. A paddle hit makes it audible again; a shield bounce does not. The effect also ends when the point is over."
+        },
+        {
+          "en": "Press E to check which effects are active."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "en": "Speed and match length"
+      },
+      "paragraphs": [
+        {
+          "en": "Set the difficulty before play. Normal is the default; easier levels start with a slower ball, and harder levels with a faster one. Bots also play better at higher difficulties."
+        },
+        {
+          "en": "You can choose a target of 7 or 21 points instead of 11, or enter your own under Custom. A two-point lead is still required."
+        },
+        {
+          "en": "Infinite keeps counting points without ending the match at a target score. The table host can end it with Ctrl+Q."
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "title": {
+        "en": "Mouse and sound settings"
+      },
+      "paragraphs": [
+        {
+          "en": "You can also play with a mouse or touchpad. Move it left and right to position the paddle; the left mouse button serves and hits. Mouse control is available immediately while the Pong playing field is focused."
+        },
+        {
+          "en": "Press Ctrl+P for your personal Pong settings:"
+        },
+        {
+          "en": "- Automatic hitting makes your paddle return a ball within reach. You still need to move it and serve. It is off by default."
+        },
+        {
+          "en": "- Your paddle volume adjusts your movement sound."
+        },
+        {
+          "en": "- Opponent paddle volume adjusts the other player's movement sound."
+        },
+        {
+          "en": "- Announcer volume adjusts the game's recorded announcements."
+        },
+        {
+          "en": "Shift+E cycles the side-wall cues through noise, tones and off. Each wall's cue becomes louder as your paddle approaches it."
+        }
+      ]
+    },
+    {
+      "id": "credits",
+      "title": {
+        "en": "Origins"
+      },
+      "paragraphs": [
+        {
+          "en": "Axel Pong is not an original game by papierek. It began as Dragon-Pong and was later improved by Axel and balteam. It was ported to ELTEN with their permission."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Left arrow: move the paddle left."
+        },
+        {
+          "en": "Right arrow: move the paddle right."
+        },
+        {
+          "en": "Up arrow: serve or hit."
+        },
+        {
+          "en": "Space: serve or hit."
+        },
+        {
+          "en": "Left mouse button: serve or hit."
+        },
+        {
+          "en": "C: read your paddle position, or the watched player's position."
+        },
+        {
+          "en": "S: read the score and, in doubles, the teams."
+        },
+        {
+          "en": "T: read the server and connection status; in doubles, also the receiver."
+        },
+        {
+          "en": "Ctrl+W: hurry the opponent before a serve."
+        },
+        {
+          "en": "E: read active Arcade effects."
+        },
+        {
+          "en": "Shift+E: change side-wall sounds."
+        },
+        {
+          "en": "Ctrl+P: open Pong settings."
+        },
+        {
+          "en": "1: as a spectator, listen from the first player's perspective."
+        },
+        {
+          "en": "2: as a spectator, listen from the second player's perspective."
+        },
+        {
+          "en": "3: in doubles, listen from the third player's perspective."
+        },
+        {
+          "en": "4: in doubles, listen from the fourth player's perspective."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "arcade": "arcade",
+    "team_size": "doubles",
+    "difficulty": "options",
+    "target": "options",
+    "custom_target": "options"
+  }
+}

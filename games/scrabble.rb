@@ -28,6 +28,10 @@ module GameRoomGames
 
     def id; "scrabble"; end
     def name; _("Scrabble"); end
+
+    def short_description
+      _("Build words on a shared board and make use of bonus squares.")
+    end
     def personal_settings_label; _("Toggle announcements of placed and removed letters"); end
     def personal_settings_action; :toggle_scrabble_draft_speech; end
     def background_client?; true; end

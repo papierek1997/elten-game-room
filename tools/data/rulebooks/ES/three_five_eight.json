@@ -1,0 +1,202 @@
+{
+  "source": "games/three_five_eight.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En 3-5-8 juegan tres personas. Cada una pone una carta y la más alta recoge las tres: ese conjunto es una baza. En la mayoría de las manos interesa ganar muchas, pero cada jugador tiene una meta distinta: tres, cinco u ocho. Superarla da puntos; no alcanzarla los resta."
+        },
+        {
+          "es": "La partida consta de dieciocho manos. En cada una, una persona distinta elige sus reglas. Al terminar gana quien haya sumado más puntos."
+        }
+      ]
+    },
+    {
+      "id": "contract",
+      "title": {
+        "es": "Elegir el tipo de mano"
+      },
+      "paragraphs": [
+        {
+          "es": "Primero recibes seis cartas. Recorre tu mano con las flechas o léela con H. Quien sigue al repartidor elige el tipo de mano conociendo solo esas seis. Si te toca elegir, llega con Tab al botón correspondiente y pulsa Enter."
+        },
+        {
+          "es": "Hay seis elecciones:"
+        },
+        {
+          "es": "- Corazones, picas, diamantes o tréboles: el palo elegido es triunfo y vence a los demás. Interesa ganar bazas."
+        },
+        {
+          "es": "- Sin triunfo: ningún palo vence a los otros por sí mismo. También interesa ganar bazas."
+        },
+        {
+          "es": "- Misère o sin bazas: no hay triunfo y buscas ganar pocas bazas. La puntuación se invierte."
+        },
+        {
+          "es": "A lo largo de la partida, cada persona debe elegir una vez cada palo, una vez sin triunfo y una vez misère. Una elección usada ya no está disponible para ella. F recuerda el tipo de mano y el triunfo actual."
+        }
+      ]
+    },
+    {
+      "id": "kitty",
+      "title": {
+        "es": "Las cuatro cartas de reserva"
+      },
+      "paragraphs": [
+        {
+          "es": "Después de elegir se completa el reparto hasta que todos tengan dieciséis cartas. Quien eligió recibe además las cuatro cartas de reserva. Todos conocen cuáles son esas cuatro."
+        },
+        {
+          "es": "Si recibes la reserva, tienes veinte cartas y debes apartar cuatro. Elige una con las flechas y pulsa Enter; repite hasta haber apartado las cuatro. No se juegan en esa mano y los demás no conocen tu descarte."
+        },
+        {
+          "es": "Desde la segunda mano puede haber un intercambio entre jugadores antes de tomar la reserva. Depende del resultado anterior y se explica después de la puntuación."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "es": "Jugar las bazas"
+      },
+      "paragraphs": [
+        {
+          "es": "Abre la primera baza quien eligió el tipo de mano. En tu turno, selecciona una carta con las flechas y pulsa Enter. Si ya hay una carta, debes seguir su palo si puedes. Si no tienes ese palo, puedes jugar cualquiera: se permite usar triunfo, pero no es obligatorio."
+        },
+        {
+          "es": "El orden de mayor a menor es as, rey, reina, jota y del diez al dos. Gana la mayor del palo de salida, salvo que se haya jugado triunfo; entonces gana el triunfo más alto."
+        },
+        {
+          "es": "Quien gana abre la siguiente baza. Se continúa hasta usar las dieciséis cartas de cada uno. Incluso en misère, el ganador debe recoger la baza y abrir la siguiente. C lee la baza actual; V consulta las bazas ganadas y la meta de cada persona."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "es": "Puntos y victoria"
+      },
+      "paragraphs": [
+        {
+          "es": "En una mano normal, con o sin triunfo, las metas son:"
+        },
+        {
+          "es": "- Quien elige el tipo de mano: ocho bazas."
+        },
+        {
+          "es": "- Quien reparte: tres bazas."
+        },
+        {
+          "es": "- La tercera persona: cinco bazas."
+        },
+        {
+          "es": "Ganas 1 por cada baza de más y pierdes 1 por cada una que falte. Con una meta de ocho, ganar diez da 2 puntos y ganar seis resta 2."
+        },
+        {
+          "es": "En misère cambian las metas:"
+        },
+        {
+          "es": "- Quien elige: tres bazas."
+        },
+        {
+          "es": "- Quien reparte: ocho bazas."
+        },
+        {
+          "es": "- La tercera persona: cinco bazas."
+        },
+        {
+          "es": "Ahora ganas 1 por cada baza por debajo de la meta y pierdes 1 por cada una de más. Con una meta de tres, no ganar ninguna da 3 puntos."
+        },
+        {
+          "es": "Los resultados se acumulan; S permite consultarlos. Tras la mano dieciocho gana la puntuación más alta. Si varios comparten el máximo, hay empate."
+        }
+      ]
+    },
+    {
+      "id": "exchange",
+      "title": {
+        "es": "Intercambiar cartas"
+      },
+      "paragraphs": [
+        {
+          "es": "A partir de la segunda mano, si la actual tiene triunfo, los puntos de la anterior dan derecho a intercambiar. Puedes entregar tantas cartas como puntos positivos hayas ganado a quienes terminaron en negativo. Cada receptor admite como máximo tantas entregas como puntos perdió. Solo cuenta la mano anterior, no la puntuación acumulada."
+        },
+        {
+          "es": "Se intercambia después de elegir triunfo y repartir las dieciséis cartas, pero antes de tomar la reserva. Si dos jugadores tienen derecho, empieza quien tenga la meta mayor en la mano actual. Selecciona una carta con las flechas y Enter; después elige al destinatario y confirma con Enter."
+        },
+        {
+          "es": "Lo que recibes depende de lo que entregues:"
+        },
+        {
+          "es": "- Por una carta que no sea triunfo, recibes automáticamente la carta más alta de ese palo que tenga el receptor. Si tu carta recién entregada es ahora la más alta, te la devuelve."
+        },
+        {
+          "es": "- Por un triunfo, el receptor elige qué devolver: cualquier carta de otro palo o su triunfo más alto. Si tú debes responder, selecciona la carta con las flechas y pulsa Enter."
+        },
+        {
+          "es": "No estás obligado a usar todos los intercambios. Ve con Tab al botón para terminarlos y pulsa Enter. Cuando todos los que tienen derecho hayan acabado, quien eligió la mano toma la reserva y aparta cuatro cartas."
+        },
+        {
+          "es": "Puedes desactivar el intercambio antes de jugar. Así se pasa directamente de elegir las reglas a resolver la reserva en cada mano."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer cartas o elegir destinatario del intercambio."
+        },
+        {
+          "es": "Enter: confirmar el tipo de mano, intercambiar, devolver o apartar una carta, o jugar en la baza."
+        },
+        {
+          "es": "H: leer tu mano."
+        },
+        {
+          "es": "C: leer las cartas de la baza."
+        },
+        {
+          "es": "Ctrl+C: recorrer las cartas de la baza."
+        },
+        {
+          "es": "F: consultar el tipo de mano y el triunfo."
+        },
+        {
+          "es": "V: consultar bazas, metas y número de mano."
+        },
+        {
+          "es": "S: consultar los resultados."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "Z: ir a la siguiente carta legal; una única jugada inequívoca puede ejecutarse automáticamente."
+        },
+        {
+          "es": "Shift+Z: ir a la carta legal anterior; una única jugada inequívoca puede ejecutarse automáticamente."
+        },
+        {
+          "es": "Shift+C: ordenar por palo; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+H: ordenar por valor; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+M: recuperar el orden de recepción."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "card_exchange": "exchange"
+  }
+}

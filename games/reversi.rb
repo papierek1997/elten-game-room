@@ -26,6 +26,10 @@ module GameRoomGames
       _("Reversi")
     end
 
+    def short_description
+      _("Trap your opponent's pieces between your own and turn them to your colour.")
+    end
+
     def option_definitions
       [
         OptionDefinition.new(key: "allow_passing", label: _("Allow passing even when a move exists"), kind: :boolean, default: true),

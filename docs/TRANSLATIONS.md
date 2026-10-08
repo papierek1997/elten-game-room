@@ -47,14 +47,43 @@ ruby tools/translations.rb check PL
 
 Compilation writes MO and refreshes Polish text in `tools/data/rulebooks/*.json`.
 Release notes come from `lib/game_room_changelog.rb` and their PO/MO translations;
-no separate Markdown copy is generated. The English structure stays authoritative;
-edit Polish wording in `PL.po`. `check` is read-only and fails on stale output.
+no separate Markdown copy is generated. For rules translated from the English
+structure, edit wording in PO. `check` is read-only and fails on stale output.
 Omitting the language processes every PO. Neither command edits PO or POT.
 
 The former locale JSON fragments, context sidecar and compatibility manifest
 have been removed. Commands do not recreate them. Existing wording regressions
 use one independent reference fixture under `test/fixtures/`, never an exporter
 that copies the current translation into its own expected result.
+
+## Independently authored rulebooks
+
+A complete rulebook may need a different chapter order in another language.
+These documents live in `tools/data/rulebooks/<LANG>/<game>.json`. All supported
+languages have complete editions: `EN/`, `PL/`, `CS/`, `ES/` and `RU/`.
+Each file owns its sections, titles, paragraphs and
+`option_chapters` mapping. Edit this source, not a second copy in PO or generated
+Ruby. It is a complete document, not an interface-translation fragment.
+
+Run `ruby tools/compile-rulebooks.rb` after editing these files. The compiler
+embeds them in the existing generated game modules. At runtime a complete
+localized book replaces the older English-based sections for its language,
+including English itself. The root-level books and PO-based path remain the
+fallback; they are not the editing source for a complete edition. Current table settings
+and the application's live shortcut reference are still generated normally.
+The installer needs only the generated Ruby, not these authoring JSON files.
+PO compilation leaves the independently authored documents unchanged.
+
+When changing chapter IDs, update that document's `option_chapters` mapping.
+Run `test/ui/localized_rulebooks_test.rb`, the rulebook generator tests and
+native navigation tests. Check every affected language, not just Polish.
+The coverage test requires a complete book for every registered game in each
+language declared by the manifest. Add those books when adding a language.
+Write commissioned editions naturally in their own language, following
+`docs/RULES_EDITORIAL.md`, regardless of who is credited as author. Preserve
+existing rules or translations supplied or selected by the creator as the text
+to use, unless editing is requested; report outdated passages separately.
+Material provided only as a reference is not a ready-to-use text to preserve.
 
 ## Adding a language
 

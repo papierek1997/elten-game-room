@@ -1,0 +1,247 @@
+{
+  "source": "games/yahtzee.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Yahtzee rzucasz pięcioma kośćmi i zapisujesz wyniki na karcie punktacji. Każde jej pole ma inny sposób liczenia punktów za rzut. W każdej turze wybierasz jedno wolne pole i zapisujesz w nim wynik. Tego pola nie wykorzystasz już ponownie, więc warto zostawić sobie szansę na lepsze wyniki w kolejnych turach."
+        },
+        {
+          "pl": "Gra od dwóch do ośmiu osób. Gdy wszyscy wypełnią swoje karty, wygrywa osoba z największą sumą punktów."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "pl": "Rzucanie i wybór wyniku"
+      },
+      "paragraphs": [
+        {
+          "pl": "Swoją turę zacznij Enterem: rzucisz wszystkimi pięcioma kośćmi. Możesz od razu zapisać wynik albo wykonać jeszcze jeden lub dwa rzuty. Do kolejnego rzutu wybierasz tylko te kości, które chcesz zmienić; pozostałe zachowują swoje wartości."
+        },
+        {
+          "pl": "Kości do przerzucenia wybierasz cyframi od 1 do 6. Cyfra oznacza liczbę oczek, a nie miejsce kości. Jeżeli wypadły dwie dwójki i chcesz przerzucić obie, naciśnij 2 dwa razy. Shift z tą samą cyfrą wycofuje jedną kość z wyboru. Spacja przypomina, które kości zostawiasz, a którymi rzucisz ponownie."
+        },
+        {
+          "pl": "Kiedy zaznaczysz kości, naciśnij Enter, żeby nimi rzucić. Przed każdym kolejnym rzutem ponownie wybierz kości, które chcesz przerzucić."
+        },
+        {
+          "pl": "Żeby zakończyć rzucanie, naciśnij Enter bez zaznaczonych kości. Otworzysz listę wolnych kategorii wraz z punktami, jakie otrzymasz za obecny wynik. Strzałkami wybierz kategorię i zatwierdź ją Enterem. Wpis kończy twoją turę; teraz gra następna osoba."
+        },
+        {
+          "pl": "Po trzecim rzucie lista kategorii otwiera się od razu. Jeśli żaden wynik ci nie odpowiada, nadal musisz wybrać pole — czasem oznacza to wpisanie zera i utratę tej kategorii do końca gry. Przed wykorzystaniem trzech rzutów Escape zamyka listę kategorii i pozwala wrócić do kości."
+        },
+        {
+          "pl": "Swoją kartę przejrzysz pod V, a karty pozostałych osób pod Shift+V. Przydaje się to, gdy decydujesz, które pole zachować na później."
+        }
+      ]
+    },
+    {
+      "id": "upper",
+      "title": {
+        "pl": "Pola od jedynek do szóstek"
+      },
+      "paragraphs": [
+        {
+          "pl": "Pierwsze sześć pól karty to Jedynki, Dwójki, Trójki, Czwórki, Piątki i Szóstki. W każdym z nich liczysz tylko oczka pasujących kości. Na przykład rzut 2, 2, 4, 4, 6 daje 8 punktów w Czwórkach albo 6 w Szóstkach. W Jedynkach ten sam rzut dałby zero."
+        },
+        {
+          "pl": "Gdy łączny wynik tych sześciu pól osiągnie co najmniej 63 punkty, dostajesz dodatkowe 35 punktów. Liczy się wspólna suma, więc lepszy wynik w jednym polu może wyrównać słabszy w innym."
+        }
+      ]
+    },
+    {
+      "id": "combinations",
+      "title": {
+        "pl": "Układy i pozostałe kategorie"
+      },
+      "paragraphs": [
+        {
+          "pl": "W pozostałych polach zapisujesz punkty za następujące układy i wyniki rzutu:"
+        },
+        {
+          "pl": "- Trójka wymaga co najmniej trzech jednakowych kości. Dostajesz sumę oczek ze wszystkich pięciu kości, również tych spoza trójki."
+        },
+        {
+          "pl": "- Kareta wymaga co najmniej czterech jednakowych kości. Dostajesz sumę oczek wszystkich pięciu kości."
+        },
+        {
+          "pl": "- Full to trzy kości jednej wartości i dwie innej. Dostajesz 25 punktów albo sumę oczek, jeżeli jest większa. Na przykład trzy szóstki i dwie czwórki dają 26 punktów."
+        },
+        {
+          "pl": "- Mały strit wymaga czterech kolejnych wartości, na przykład 2, 3, 4 i 5. Piąta kość może być dowolna. Taki układ daje 30 punktów."
+        },
+        {
+          "pl": "- Duży strit tworzy wszystkie pięć kolejnych wartości: od 1 do 5 albo od 2 do 6. Dostajesz 40 punktów."
+        },
+        {
+          "pl": "- Yahtzee, czyli pięć jednakowych kości, daje 50 punktów."
+        },
+        {
+          "pl": "- Szansa przyjmuje dowolny rzut i daje sumę oczek wszystkich pięciu kości."
+        },
+        {
+          "pl": "- Jedna para wymaga co najmniej dwóch jednakowych kości. Dostajesz sumę oczek wszystkich pięciu kości, nie tylko pary."
+        },
+        {
+          "pl": "- Dwie pary to na przykład dwie trójki i dwie piątki. Dostajesz sumę oczek wszystkich pięciu kości. Full też spełnia ten warunek, ale cztery jednakowe kości nie liczą się jako dwie różne pary."
+        },
+        {
+          "pl": "- Nędza nagradza małą liczbę oczek. Od 36 odejmujesz sumę wszystkich pięciu kości. Przy sumie 12 zapiszesz więc 24 punkty."
+        },
+        {
+          "pl": "Jeśli rzut nie spełnia warunku wybranego układu, zapisujesz w nim zero. Możesz w ten sposób poświęcić trudne do zdobycia pole."
+        }
+      ]
+    },
+    {
+      "id": "yahtzees",
+      "title": {
+        "pl": "Kolejne Yahtzee i zasada Jokera"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po zapisaniu 50 punktów w polu Yahtzee każde następne pięć jednakowych kości daje dodatkową premię 100 punktów. Sam rzut zapisujesz wtedy w innej kategorii, bo pole Yahtzee jest już zajęte. Jeżeli wcześniej wpisałeś w nim zero, kolejne pięć jednakowych kości nie daje tej premii."
+        },
+        {
+          "pl": "Przy kolejnym Yahtzee działa też Joker. Pozwala wykorzystać pięć jednakowych kości w niektórych układach, ale ustala kolejność wyboru pola:"
+        },
+        {
+          "pl": "- Najpierw musisz zająć pasujące pole od jedynek do szóstek, jeśli jest wolne. Pięć czwórek trafia więc do Czwórek i daje tam 20 punktów."
+        },
+        {
+          "pl": "- Jeśli pasujące pole jest już zajęte, wybierz dowolną wolną kategorię spoza pól od jedynek do szóstek. Joker pozwala wpisać pięć jednakowych kości jako Full, Mały strit albo Duży strit i dostać punkty przewidziane dla tych układów. Pozostałe kategorie liczą się zwyczajnie; na przykład Dwie pary nadal dają za taki rzut zero."
+        },
+        {
+          "pl": "- Dopiero gdy wszystkie pozostałe kategorie są zajęte, wybierasz inne wolne pole od jedynek do szóstek. Ponieważ wartość kości do niego nie pasuje, zapisujesz zero."
+        },
+        {
+          "pl": "Joker, podobnie jak premia 100 punktów, wymaga wcześniejszego wyniku 50 w polu Yahtzee. Samo wyrzucenie pięciu jednakowych kości po raz pierwszy nie uruchamia tej zasady."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "pl": "Koniec gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gracie po kolei, aż wszyscy wykorzystają wszystkie 16 pól. Do wyniku każdej osoby dodaje się zapisane punkty oraz zdobyte premie. Wygrywa osoba z najwyższą sumą punktów, a równe najwyższe wyniki oznaczają remis. Klawisz S pozwala porównać bieżące sumy."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "pl": "Zmiany zasad przed grą"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu możesz skrócić kartę lub zmienić premie. Zwykle wszystkie opisane wyżej zasady są włączone:"
+        },
+        {
+          "pl": "- Wyłączenie kategorii „Jedna para”, „Dwie pary” i „Nędza” usuwa te trzy pola. Każdy rozgrywa wtedy 13 tur zamiast 16."
+        },
+        {
+          "pl": "- Wyłączenie premii za pola od jedynek do szóstek usuwa dodatkowe 35 punktów. Same wyniki w tych polach nadal się liczą."
+        },
+        {
+          "pl": "- Wyłączenie premii za kolejne Yahtzee usuwa dodatkowe 100 punktów za następne pięć jednakowych kości."
+        },
+        {
+          "pl": "- Wyłączenie Jokera znosi zarówno obowiązek wyboru pasującego pola od jedynek do szóstek, jak i możliwość traktowania pięciu jednakowych kości jako Fulla lub strita. Wybierasz dowolne wolne pole i liczysz je zwykłym sposobem."
+        },
+        {
+          "pl": "Premię za kolejne Yahtzee i Jokera można wyłączać osobno. Bez Jokera nadal możesz dostać premię 100 punktów, jeśli pozostawisz ją włączoną."
+        },
+        {
+          "pl": "Liczba rozgrywek jest początkowo ustawiona na jedną. Możesz wybrać kilka: po każdej wypełnionej karcie zaczniecie następną z pustymi polami, zachowując punkty z poprzednich. Ostatecznie wygrywa osoba z najwyższą sumą ze wszystkich rozgrywek."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Enter: rzuć wybranymi kośćmi, otwórz kategorie bez zaznaczenia albo zatwierdź wybraną kategorię."
+        },
+        {
+          "pl": "Strzałki: wybierz kategorię."
+        },
+        {
+          "pl": "Escape na liście kategorii: wróć do kości."
+        },
+        {
+          "pl": "1: wybierz jedną jedynkę do ponownego rzutu."
+        },
+        {
+          "pl": "Shift+1: pozostaw jedną wybraną jedynkę."
+        },
+        {
+          "pl": "2: wybierz jedną dwójkę do ponownego rzutu."
+        },
+        {
+          "pl": "Shift+2: pozostaw jedną wybraną dwójkę."
+        },
+        {
+          "pl": "3: wybierz jedną trójkę do ponownego rzutu."
+        },
+        {
+          "pl": "Shift+3: pozostaw jedną wybraną trójkę."
+        },
+        {
+          "pl": "4: wybierz jedną czwórkę do ponownego rzutu."
+        },
+        {
+          "pl": "Shift+4: pozostaw jedną wybraną czwórkę."
+        },
+        {
+          "pl": "5: wybierz jedną piątkę do ponownego rzutu."
+        },
+        {
+          "pl": "Shift+5: pozostaw jedną wybraną piątkę."
+        },
+        {
+          "pl": "6: wybierz jedną szóstkę do ponownego rzutu."
+        },
+        {
+          "pl": "Shift+6: pozostaw jedną wybraną szóstkę."
+        },
+        {
+          "pl": "Spacja: odczytaj kości pozostawione i wybrane do rzutu."
+        },
+        {
+          "pl": "D: odczytaj ostatni rzut."
+        },
+        {
+          "pl": "V: przejrzyj swoją kartę punktacji."
+        },
+        {
+          "pl": "Shift+V: przejrzyj kartę innego gracza."
+        },
+        {
+          "pl": "S: odczytaj wyniki."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "matches": "options",
+    "extra_categories": "options",
+    "upper_bonus": "options",
+    "yahtzee_bonus": "options",
+    "joker_rule": "options"
+  }
+}

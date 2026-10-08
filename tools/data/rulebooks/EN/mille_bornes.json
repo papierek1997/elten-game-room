@@ -1,0 +1,363 @@
+{
+  "source": "games/mille_bornes.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Drive your car with cards in 1000 Miles. Distance cards move you towards the finish; hazards stop or slow your opponents. Try to reach exactly 1,000 miles in each round."
+        },
+        {
+          "en": "Miles travelled and bonuses add to a running score. At the end of a round, a player with at least 5,000 points and more points than anyone else wins the match. Two to eight people can play."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Taking a turn"
+      },
+      "paragraphs": [
+        {
+          "en": "You receive six cards at the start of a round. Browse them with the arrows or read your hand with H. On your turn, first draw with Space, then select a card and press Enter to play it."
+        },
+        {
+          "en": "You may discard instead of playing. Select the card and press J to discard it and end your turn."
+        }
+      ]
+    },
+    {
+      "id": "driving",
+      "title": {
+        "en": "Getting moving"
+      },
+      "paragraphs": [
+        {
+          "en": "Your car starts stopped. Play a green light to start it; from your next turn, you can play distance cards. Each brings you that many miles closer to the finish."
+        },
+        {
+          "en": "Distance cards are worth 25, 50, 75, 100 or 200 miles. You must finish on exactly 1,000: at 950, for example, you cannot play 75. You may use no more than two 200-mile cards in a round."
+        }
+      ]
+    },
+    {
+      "id": "hazards",
+      "title": {
+        "en": "Hazards and repairs"
+      },
+      "paragraphs": [
+        {
+          "en": "A red light stops a moving car. You need another green light before you can play distance cards again."
+        },
+        {
+          "en": "Three other hazards need a remedy before you can restart:"
+        },
+        {
+          "en": "- Out of gas: play a gas card to refuel."
+        },
+        {
+          "en": "- Flat tire: play a spare tire."
+        },
+        {
+          "en": "- Accident: play a repair card."
+        },
+        {
+          "en": "Fixing the problem does not start the car. On a later turn, play green, then you can drive again. After a flat tire, for instance, you need the spare tire first and green afterwards."
+        },
+        {
+          "en": "These attacks target moving cars. A speed limit can also target a stopped car: it does not prevent driving, but restricts distance plays to 25 or 50 miles. Play End of speed limit to use larger distances again."
+        }
+      ]
+    },
+    {
+      "id": "safeties",
+      "title": {
+        "en": "Safety cards"
+      },
+      "paragraphs": [
+        {
+          "en": "A safety protects your car from particular hazards for the rest of the round. Play it after drawing on your turn. It also removes a matching hazard already affecting you. A safety earns 100 points and another turn, beginning with a new draw."
+        },
+        {
+          "en": "There are four safeties:"
+        },
+        {
+          "en": "- Extra tank protects against running out of gas."
+        },
+        {
+          "en": "- Puncture-proof tires protect against flat tires."
+        },
+        {
+          "en": "- Driving ace protects against accidents and counterflow."
+        },
+        {
+          "en": "- Right of way protects against red lights and speed limits. It also lets you start without green, both at the beginning and after repairs."
+        },
+        {
+          "en": "The other three safeties do not themselves start the car. After removing a mechanical problem, you still need green unless you have Right of way."
+        },
+        {
+          "en": "I reads your mileage, hazards and safeties; Shift+I reads them for every car."
+        }
+      ]
+    },
+    {
+      "id": "counterattack",
+      "title": {
+        "en": "An immediate counter"
+      },
+      "paragraphs": [
+        {
+          "en": "If you hold the safety matching an attack you have just received, you may play it immediately, even out of turn. Select it and press Enter before anyone draws, plays or discards another card. This counter is called a coup fourré, or dirty trick."
+        },
+        {
+          "en": "It cancels the attack. If your car was moving beforehand, it remains able to move without a repair or another green light. You earn the usual 100 for the safety plus a 300-point bonus."
+        },
+        {
+          "en": "You receive a replacement for the safety if cards remain to draw, then take the next turn yourself. Draw normally with Space and play or discard. Play continues from your seat afterwards, skipping anyone between the attacker and you."
+        },
+        {
+          "en": "If you miss the immediate response, you can still play the safety on your own turn, but without the 300-point bonus."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "en": "Round end and points"
+      },
+      "paragraphs": [
+        {
+          "en": "A round ends when someone reaches exactly 1,000 miles. If the draw pile runs out first, keep playing the cards in your hands; the round also ends when any player plays or discards their final card."
+        },
+        {
+          "en": "Count these points at the end of the round:"
+        },
+        {
+          "en": "- 1 point per mile travelled."
+        },
+        {
+          "en": "- 100 for each safety played."
+        },
+        {
+          "en": "- An extra 300 for each immediate counter."
+        },
+        {
+          "en": "The player who reaches 1,000 also receives these bonuses, which can be combined:"
+        },
+        {
+          "en": "- 300 for finishing."
+        },
+        {
+          "en": "- Another 300 for finishing with an empty draw pile."
+        },
+        {
+          "en": "- Another 300 for finishing with all four safeties."
+        },
+        {
+          "en": "- Another 500 if no opponent has travelled even one mile."
+        },
+        {
+          "en": "A new round gives you new hands and resets the trip, but keeps your points. S reads the totals. After scoring, the player with the most points wins if they have at least 5,000. A tie for the lead means another round."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "en": "Team play"
+      },
+      "paragraphs": [
+        {
+          "en": "The host can choose teams instead of individual play:"
+        },
+        {
+          "en": "- Four players: two pairs."
+        },
+        {
+          "en": "- Six players: two teams of three or three pairs."
+        },
+        {
+          "en": "- Eight players: two teams of four or four pairs."
+        },
+        {
+          "en": "Each team shares a car and score. Everyone keeps their own hand and turn, but distance, hazards and safeties affect the team car. The two-card limit on 200-mile cards is also shared."
+        },
+        {
+          "en": "Attacks target an opposing team's car. Any member of the attacked team may counter with a safety from their hand and take the extra turn."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Rule options"
+      },
+      "paragraphs": [
+        {
+          "en": "Before play, the host can change the target score and these rules:"
+        },
+        {
+          "en": "- Hazard accumulation allows different mechanical problems to be played on an already stopped car. All must be removed before it can restart. An active hazard cannot be applied twice, and a red light still requires a moving car."
+        },
+        {
+          "en": "- Recycling discards returns discarded cards to the draw pile when it empties. Cards previously used for driving, repairs or attacks do not join that new pile."
+        },
+        {
+          "en": "- Removing safeties takes them out of the deck. There is then no permanent protection or immediate counter, but ordinary remedies and green lights still work."
+        }
+      ]
+    },
+    {
+      "id": "counterflow",
+      "title": {
+        "en": "Counterflow"
+      },
+      "paragraphs": [
+        {
+          "en": "The optional counterflow cards make a car drive backwards. By default, this option adds four Counterflow attacks and six End of counterflow cards."
+        },
+        {
+          "en": "An affected car subtracts the distance on a played card instead of adding it, never falling below zero. It must still be able to drive and obey any speed limit. A 200-mile card used backwards still counts towards the two-per-round limit."
+        },
+        {
+          "en": "Counterflow can be played on a stopped car or alongside other hazards, but not on a car already affected by it. End of counterflow restores the normal direction without removing other hazards or a speed limit."
+        },
+        {
+          "en": "Driving ace prevents counterflow, removes it when played on a normal turn, and can be used for an immediate counter and its bonus."
+        }
+      ]
+    },
+    {
+      "id": "instant_repair",
+      "title": {
+        "en": "Instant repair"
+      },
+      "paragraphs": [
+        {
+          "en": "A separate option adds Instant repair cards, with two in the standard deck. Each removes one chosen problem. After drawing on your turn, play it with Enter, choose the problem with the arrows and confirm."
+        },
+        {
+          "en": "Its effect depends on what you choose:"
+        },
+        {
+          "en": "- Removing a red light lets you move if nothing else blocks the car. It can also replace green when you have not yet started."
+        },
+        {
+          "en": "- After refuelling, fixing a flat tire or repairing accident damage, you still need a green light, unless you have Right of way."
+        },
+        {
+          "en": "- Removing a speed limit or counterflow ends only that effect; other problems remain."
+        },
+        {
+          "en": "Instant repair is not a safety. It gives no lasting protection, extra turn or bonus, and cannot be used as an immediate counter."
+        }
+      ]
+    },
+    {
+      "id": "custom_deck",
+      "title": {
+        "en": "A custom deck"
+      },
+      "paragraphs": [
+        {
+          "en": "Custom deck lets the host set the number of each card. Safeties, counterflow and instant repairs must still be enabled separately; entering card counts alone does not enable them."
+        },
+        {
+          "en": "Include enough cards to deal six to everyone and keep the game moving. You need ways to start and remove hazards as well as distance cards. Counterflow and End of counterflow counts can also be adjusted without creating a whole custom deck."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: browse your hand or choices."
+        },
+        {
+          "en": "Enter: play a card and, if needed, choose an opponent or problem to remove; confirm discarding an unplayable card."
+        },
+        {
+          "en": "Escape: cancel the current card, opponent or discard choice."
+        },
+        {
+          "en": "Space: draw."
+        },
+        {
+          "en": "J: discard the selected card without confirmation."
+        },
+        {
+          "en": "Delete: choose a card to discard."
+        },
+        {
+          "en": "H: read your hand."
+        },
+        {
+          "en": "I: read your mileage, hazards and safeties."
+        },
+        {
+          "en": "Shift+I: read mileage, hazards and safeties for all cars."
+        },
+        {
+          "en": "S: read scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "Z: find the next playable card on your turn; unavailable while you can make an immediate counter."
+        },
+        {
+          "en": "Shift+Z: find the previous playable card on your turn; unavailable while you can make an immediate counter."
+        },
+        {
+          "en": "Shift+C: sort by card type; repeat to reverse."
+        },
+        {
+          "en": "Shift+H: sort by distance or value; repeat to reverse."
+        },
+        {
+          "en": "Shift+M: restore received order."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "target_score": "variants",
+    "team_count": "teams",
+    "accumulate_hazards": "variants",
+    "recycle_discard": "variants",
+    "include_safeties": "variants",
+    "counterflow": "counterflow",
+    "counterflow_cards": "custom_deck",
+    "end_counterflow_cards": "custom_deck",
+    "custom_deck": "custom_deck",
+    "include_instant_repairs": "instant_repair",
+    "25_cards": "custom_deck",
+    "50_cards": "custom_deck",
+    "75_cards": "custom_deck",
+    "100_cards": "custom_deck",
+    "200_cards": "custom_deck",
+    "stop_cards": "custom_deck",
+    "speed_limit_cards": "custom_deck",
+    "out_of_gas_cards": "custom_deck",
+    "flat_tire_cards": "custom_deck",
+    "accident_cards": "custom_deck",
+    "go_cards": "custom_deck",
+    "end_limit_cards": "custom_deck",
+    "fuel_cards": "custom_deck",
+    "spare_tire_cards": "custom_deck",
+    "repairs_cards": "custom_deck",
+    "right_of_way_cards": "custom_deck",
+    "extra_tank_cards": "custom_deck",
+    "puncture_proof_cards": "custom_deck",
+    "driving_ace_cards": "custom_deck",
+    "instant_repair_cards": "custom_deck"
+  }
+}

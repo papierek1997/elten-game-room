@@ -1,0 +1,311 @@
+{
+  "source": "games/tysiac.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Mil ganas puntos por las cartas que captures y por anunciar parejas de rey y reina. Primero se subasta quién se compromete a reunir más puntos. El ganador debe cumplir su promesa; los demás intentan impedirlo y puntuar por su cuenta. La meta es alcanzar 1000 puntos."
+        },
+        {
+          "es": "La partida habitual es para tres personas. Cada una recibe siete cartas y el ganador de la subasta recoge tres más de una reserva. La baraja va del nueve al as."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "es": "Fuerza y puntos de las cartas"
+      },
+      "paragraphs": [
+        {
+          "es": "Después de la subasta se juega por turnos una carta por persona. Las tres forman una baza, que recoge un jugador y le da los puntos de sus cartas."
+        },
+        {
+          "es": "De mayor a menor fuerza van as, diez, rey, reina, jota y nueve. Sus puntos son:"
+        },
+        {
+          "es": "- As: 11."
+        },
+        {
+          "es": "- Diez: 10."
+        },
+        {
+          "es": "- Rey: 4."
+        },
+        {
+          "es": "- Reina: 3."
+        },
+        {
+          "es": "- Jota: 2."
+        },
+        {
+          "es": "- Nueve: 0."
+        },
+        {
+          "es": "Todas las cartas juntas valen 120 puntos. Puedes sumar más anunciando un matrimonio, la pareja de rey y reina del mismo palo. El apartado «Matrimonios» explica cómo hacerlo."
+        }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": {
+        "es": "La subasta"
+      },
+      "paragraphs": [
+        {
+          "es": "Revisa tu mano con las flechas o con H. Empieza quien sigue al repartidor. La primera oferta debe ser al menos 100; cada nueva oferta supera la anterior en al menos 5. Todas deben ser múltiplos de cinco."
+        },
+        {
+          "es": "Cuando te toque, pulsa Enter sobre cualquier carta para abrir la lista de ofertas. Elige cuántos puntos prometes reunir o elige pasar y confirma con Enter. Pasar te retira de esa subasta. Quien la abre debe hacer una oferta antes de poder pasar."
+        },
+        {
+          "es": "Sin matrimonios en la mano no puedes superar 120. Cada matrimonio aumenta ese máximo en su valor, pero ninguna oferta puede superar 400. La lista solo muestra lo permitido por tus cartas."
+        },
+        {
+          "es": "Cuando todos menos uno pasan, la última oferta del ganador se convierte en su contrato: los puntos que debe reunir en la mano. B consulta las ofertas actuales."
+        }
+      ]
+    },
+    {
+      "id": "talon",
+      "title": {
+        "es": "Reserva y contrato definitivo"
+      },
+      "paragraphs": [
+        {
+          "es": "El ganador recibe la reserva y todos conocen su contenido. Después entrega una carta a cada rival. Si has ganado tú, elige con las flechas una carta para la persona indicada y pulsa Enter; repite para la otra. Todos terminan con ocho cartas."
+        },
+        {
+          "es": "Ahora puedes mantener o aumentar el contrato. Pulsa B, elige la cantidad y confirma. El nuevo máximo depende de los matrimonios que conserves, pero nunca puedes rebajar lo que ya prometiste."
+        },
+        {
+          "es": "El ganador abre la primera baza. Si no quieres cambiar el contrato, selecciona una carta y juégala con Enter. Esa primera carta cierra definitivamente la posibilidad de aumentar el contrato."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "es": "Jugar las bazas"
+      },
+      "paragraphs": [
+        {
+          "es": "Selecciona tu carta con las flechas y pulsa Enter. Debes seguir el palo de la primera carta si tienes alguno. Si se salió con diamantes, juegas diamantes. No estás obligado a superar una carta más alta del rival."
+        },
+        {
+          "es": "Si no tienes el palo de salida, debes jugar triunfo si tienes. El triunfo vence a los otros palos; al empezar no hay ninguno y se establece al anunciar un matrimonio. Si tampoco tienes triunfo, puedes jugar cualquier carta."
+        },
+        {
+          "es": "Gana el triunfo más alto o, si no hay triunfos, la carta más alta del palo de salida. Su dueño recoge los puntos de las tres cartas y abre la siguiente baza. Se continúa hasta agotar las manos."
+        },
+        {
+          "es": "C lee la baza actual y F recuerda el triunfo."
+        }
+      ]
+    },
+    {
+      "id": "marriages",
+      "title": {
+        "es": "Matrimonios"
+      },
+      "paragraphs": [
+        {
+          "es": "Si tienes rey y reina del mismo palo, puedes anunciar el matrimonio al abrir una baza con una de esas cartas. No se permite en la primera baza de la mano ni al jugar después de otro. Selecciona el rey o la reina y pulsa Shift+Enter: juegas la carta y anuncias a la vez."
+        },
+        {
+          "es": "El anuncio da puntos inmediatamente y convierte ese palo en triunfo. Cada matrimonio posterior sustituye el triunfo anterior:"
+        },
+        {
+          "es": "- Corazones: 100 puntos."
+        },
+        {
+          "es": "- Diamantes: 80 puntos."
+        },
+        {
+          "es": "- Tréboles: 60 puntos."
+        },
+        {
+          "es": "- Picas: 40 puntos."
+        },
+        {
+          "es": "También puedes jugar el rey o la reina sin anunciar. Usa Enter y elige la jugada normal de la lista. Una vez separada la pareja ya no podrás anunciar ese matrimonio."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "es": "Recuento de la mano"
+      },
+      "paragraphs": [
+        {
+          "es": "Al terminar se suman cartas capturadas y matrimonios anunciados. La puntuación de la partida cambia así:"
+        },
+        {
+          "es": "- Si el ganador de la subasta cumple, añade el contrato, no los puntos sobrantes. Con contrato de 150 y 170 reunidos, suma 150."
+        },
+        {
+          "es": "- Si no cumple, resta el contrato completo. Prometer 150 y reunir 149 cuesta 150 puntos."
+        },
+        {
+          "es": "- Los demás añaden lo reunido, redondeado al múltiplo de cinco más próximo. Así, 42 se anota como 40 y 43 como 45."
+        },
+        {
+          "es": "Cada tres manos sin ganar ningún punto restan otros 120. No tienen que ser consecutivas. S consulta los resultados y Shift+S los contadores de manos sin puntos y manos abandonadas."
+        }
+      ]
+    },
+    {
+      "id": "surrender",
+      "title": {
+        "es": "Abandonar una mano"
+      },
+      "paragraphs": [
+        {
+          "es": "Después de ver la reserva, el ganador puede renunciar a jugar esa mano. Debe hacerlo antes de entregar la primera carta. Llega con Tab al botón para abandonar la mano y pulsa Enter."
+        },
+        {
+          "es": "Abandonar no resta el contrato. Cada rival recibe la mitad de su valor, con un mínimo de 60, redondeada hacia arriba a múltiplo de cinco. Cada tercer abandono tuyo te cuesta 120 puntos."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "El barril y la victoria"
+      },
+      "paragraphs": [
+        {
+          "es": "Si después del recuento alcanzas al menos 880 pero menos de 1000, tu resultado se fija en 880. Estás en el barril: tienes las tres siguientes manos jugadas para ganar una subasta y conseguir los puntos que faltan."
+        },
+        {
+          "es": "Para ganar desde el barril necesitas cumplir un contrato propio de al menos 120. Un contrato menor o los puntos de una mano cuya subasta ganó otro no aumentan tu resultado. Las manos sin puntos mientras estás en el barril no cuentan para la penalización de tres ceros."
+        },
+        {
+          "es": "Incumplir tu contrato resta su valor y te hace salir del barril inmediatamente. Si pasan tres manos jugadas sin que ganes, pierdes 120 y también sales. Shift+S indica cuántas oportunidades quedan."
+        },
+        {
+          "es": "Quien está en el barril no puede abandonar una mano. Tampoco recibe puntos cuando otro abandona, y esa mano no consume una oportunidad."
+        },
+        {
+          "es": "La partida termina al alcanzar alguien al menos 1000. También puedes hacerlo con un contrato alto antes de entrar en el barril. Si varios cruzan la meta en el mismo recuento, gana quien tenga más puntos."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Otros números de jugadores"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar se elige la modalidad. La de tres personas usa las reglas anteriores; las demás cambian el reparto así:"
+        },
+        {
+          "es": "- Dos jugadores: hay dos reservas, normalmente de tres cartas, y cada persona recibe nueve. El ganador de la subasta elige una reserva con las flechas y Enter sin conocer su contenido; después ambos la conocen. Aparta tres cartas de su mano, una a una con las flechas y Enter, sin entregarlas al rival. Puede abandonar antes de apartar la primera."
+        },
+        {
+          "es": "- Cuatro jugadores: el repartidor descansa y los otros tres juegan una mano normal. Quien descansa no gana puntos ni consume oportunidades del barril. En la siguiente mano descansa otra persona."
+        },
+        {
+          "es": "- Equipos: dos parejas comparten puntuación."
+        },
+        {
+          "es": "Con dos jugadores puedes elegir reservas de dos cartas. Cada uno empieza con diez y el ganador aparta dos tras recoger la reserva elegida."
+        },
+        {
+          "es": "Por defecto, en el juego de dos personas el ganador de la última baza recibe los puntos de la reserva no elegida y las cartas apartadas. Puedes desactivarlo; entonces esos puntos no los recibe nadie."
+        },
+        {
+          "es": "También puedes cambiar la meta. El barril siempre empieza 120 puntos antes de ella; sus demás reglas se mantienen."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "es": "Juego por parejas"
+      },
+      "paragraphs": [
+        {
+          "es": "Los compañeros reúnen puntos para cumplir juntos el contrato. Si ganas la subasta con 150, se suman tus puntos y los de tu compañero: entre ambos necesitáis al menos 150."
+        },
+        {
+          "es": "Cada uno recibe cinco cartas y la reserva tiene cuatro. El ganador la recoge y entrega una carta a cada una de las otras tres personas, incluido su compañero."
+        },
+        {
+          "es": "Se suman las cartas capturadas y los matrimonios de ambos. Sigues jugando tu propia mano y respetando el palo de salida o, si no lo tienes, el triunfo cuando sea posible. Esto también se exige cuando tu compañero ya está ganando la baza."
+        },
+        {
+          "es": "La pareja comparte resultado, barril, oportunidades y contadores de ceros y abandonos. El recuento es el mismo que en individual, aplicado a toda la pareja."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: elegir oferta, carta para entregar o carta para jugar."
+        },
+        {
+          "es": "Enter: confirmar; sobre una carta, jugarla o elegir anunciar un matrimonio."
+        },
+        {
+          "es": "Shift+Enter: anunciar directamente un matrimonio disponible; si no lo hay, no jugar la carta."
+        },
+        {
+          "es": "B: cambiar el contrato tras el reparto adicional y antes de la primera carta; en otros momentos, consultar ofertas."
+        },
+        {
+          "es": "H: leer tu mano."
+        },
+        {
+          "es": "C: leer la baza."
+        },
+        {
+          "es": "Ctrl+C: recorrer las cartas de la baza."
+        },
+        {
+          "es": "F: consultar el triunfo."
+        },
+        {
+          "es": "S: consultar resultados y barril."
+        },
+        {
+          "es": "Shift+S: consultar ceros, abandonos y oportunidades del barril."
+        },
+        {
+          "es": "Z: ir a la siguiente carta legal; si permite anunciar matrimonio, no se juega automáticamente."
+        },
+        {
+          "es": "Shift+Z: ir a la carta legal anterior; si permite anunciar matrimonio, no se juega automáticamente."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "Shift+C: ordenar por palo; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+H: ordenar por valor; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+M: recuperar el orden de recepción."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "talon_size": "variants",
+    "last_trick_talon": "variants",
+    "score_limit": "variants"
+  }
+}

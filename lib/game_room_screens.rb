@@ -54,18 +54,18 @@ module GameRoomScreens
   end
 
   class Changelog
-    def initialize(items, program: nil)
+    def initialize(text, program: nil)
       @program = program
-      @items = items.to_a.map(&:to_s)
+      @text = text
     end
 
     def wait
-      list = ListBox.new(@items, header: _("What's new"), index: 0, quiet: true)
-      close_button = Button.new(_("Close"))
-      form = GameRoomUI::Form.new([list, close_button], program: @program, quiet: true)
-      form.accept_button = close_button
+      document = EditBox.new(GameRoomContent.utf8(_("What's new")),
+        type: EditBox::Flags::ReadOnly | EditBox::Flags::MultiLine | EditBox::Flags::MarkDown,
+        text: GameRoomContent.utf8(@text), quiet: true)
+      close_button = Button.new(GameRoomContent.utf8(_("Close")))
+      form = GameRoomUI::Form.new([document, close_button], program: @program, quiet: true)
       form.cancel_button = close_button
-      form.hide(close_button)
       close_button.on(:press) { form.resume }
       form.wait
     end

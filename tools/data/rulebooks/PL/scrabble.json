@@ -1,0 +1,317 @@
+{
+  "source": "games/scrabble_ui.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "pl": "Cel gry i plansza"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Scrabble zdobywasz punkty, układając słowa z płytek z literami. Wspólnie z pozostałymi graczami rozbudowujesz jedną krzyżówkę, ale każdy zbiera punkty za własne słowa. Wygrywa osoba, która na koniec gry ma najwięcej punktów."
+        },
+        {
+          "pl": "Gra jest przeznaczona dla dwóch do czterech osób. Każdy dostaje siedem płytek na stojak. C odczytuje twoje litery razem z ich wartościami. Po przyjętym ruchu dobierasz płytki do siedmiu, dopóki są jeszcze w worku."
+        },
+        {
+          "pl": "Plansza ma piętnaście kolumn, od A do O, i piętnaście rzędów, od 1 do 15. Poruszasz się po niej strzałkami. Usłyszysz najpierw literę albo informację, że pole jest puste, a potem jego współrzędne. Niektóre puste pola mają też premię zwiększającą wynik ruchu."
+        }
+      ]
+    },
+    {
+      "id": "placement",
+      "title": {
+        "pl": "Gdzie można ułożyć słowo"
+      },
+      "paragraphs": [
+        {
+          "pl": "Pierwsze słowo musi przechodzić przez środkowe pole H8. Następne dołączasz do tego, co już leży na planszy: możesz przedłużyć wyraz, skrzyżować z nim nowy albo ułożyć litery obok i utworzyć w ten sposób kilka słów."
+        },
+        {
+          "pl": "Przy każdym ruchu obowiązują te warunki:"
+        },
+        {
+          "pl": "- Wszystkie dokładane w tej turze płytki muszą leżeć w jednym rzędzie albo jednej kolumnie. Słowa czyta się od lewej do prawej lub z góry na dół."
+        },
+        {
+          "pl": "- Między literami gotowego słowa nie może być pustych pól. Możesz za to wykorzystać w środku litery, które leżały tam wcześniej."
+        },
+        {
+          "pl": "- Każde nowe słowo musi mieć co najmniej dwie litery i należeć do słownika gry. Trzeba więc sprawdzić również krótsze słowa powstałe na skrzyżowaniach, nie tylko główny wyraz."
+        },
+        {
+          "pl": "Litery z przyjętych ruchów pozostają na planszy. Nie przesuwasz ich i nie zabierasz, lecz możesz używać ich w kolejnych słowach."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "pl": "Układanie i zatwierdzanie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przejdź strzałkami na puste pole, na którym chcesz zacząć dokładać litery, i naciśnij Enter. Otworzy się lista dostępnych płytek ze stojaka. Wybierz jedną strzałkami i zatwierdź Enterem. Płytka pojawi się na wybranym polu, ale twój ruch nie jest jeszcze zakończony."
+        },
+        {
+          "pl": "Tak samo połóż pozostałe litery. Jeśli się pomylisz, wróć na pole z dołożoną płytką i naciśnij Backspace, żeby ją zdjąć. Z usuwa wszystkie płytki dołożone w tej turze i pozwala zacząć układanie od nowa."
+        },
+        {
+          "pl": "Y odczytuje przygotowane słowa i ich przewidywaną punktację. Nie sprawdza jeszcze, czy słownik je uzna. Kiedy układ jest gotowy, zatwierdź go klawiszem F. Dopiero wtedy słowa są sprawdzane, płytki zostają na planszy, dostajesz punkty i kończysz turę."
+        },
+        {
+          "pl": "Jeśli słownik nie zna któregoś wyrazu, usłyszysz jego nazwę, a przygotowane płytki wrócą na stojak. Przy zwykłych zasadach możesz ułożyć coś innego w tej samej turze i nie tracisz punktów. Błąd ułożenia, na przykład luka albo brak połączenia z krzyżówką, również wymaga poprawy."
+        }
+      ]
+    },
+    {
+      "id": "blanks",
+      "title": {
+        "pl": "Blanki"
+      },
+      "paragraphs": [
+        {
+          "pl": "Blank jest płytką bez litery. Może zastąpić dowolną literę, więc przy jego układaniu pojawi się dodatkowy wybór. Wskaż literę strzałkami i potwierdź Enterem. Dalej używasz blanku w słowie tak jak zwykłej płytki."
+        },
+        {
+          "pl": "Blank jest zawsze wart zero punktów. Po zatwierdzeniu ruchu zachowuje wybraną literę do końca partii. W zestawie są dwa blanki."
+        }
+      ]
+    },
+    {
+      "id": "points",
+      "title": {
+        "pl": "Punktacja"
+      },
+      "paragraphs": [
+        {
+          "pl": "Dostajesz punkty za każde słowo utworzone w swoim ruchu. Sumujesz wartości wszystkich jego liter, także tych, które leżały na planszy wcześniej. Jeśli dołożona litera należy jednocześnie do nowego słowa poziomego i pionowego, liczysz ją w obu."
+        },
+        {
+          "pl": "Premie pola działają tylko przy pierwszym położeniu na nim płytki:"
+        },
+        {
+          "pl": "- Premia literowa podwaja albo potraja wartość płytki położonej na tym polu. Następnie dodajesz do niej wartości pozostałych liter słowa."
+        },
+        {
+          "pl": "- Premia słowna podwaja albo potraja wynik całego wyrazu. Jeśli jednym słowem zakryjesz kilka takich pól, mnożniki się łączą: dwa podwojenia dają czterokrotny wynik."
+        },
+        {
+          "pl": "Blank na polu z premią literową nadal jest wart zero. Jeśli jednak położysz go na premii słownej, podwoi lub potroi wartość całego wyrazu. Przy późniejszym przedłużaniu słowa nie liczysz ponownie premii z zajętych już pól."
+        },
+        {
+          "pl": "Za wyłożenie wszystkich siedmiu płytek w jednym ruchu dostajesz dodatkowe 50 punktów. Ta premia dochodzi po policzeniu słów i nie jest już mnożona. S pozwala sprawdzić wyniki."
+        }
+      ]
+    },
+    {
+      "id": "exchange",
+      "title": {
+        "pl": "Wymiana płytek i pas"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeżeli nie chcesz układać słowa, możesz poświęcić turę na wymianę płytek. Naciśnij G, wybierz na liście niepotrzebne płytki strzałkami i zaznaczaj je Spacją. Enter zatwierdza wymianę, a Escape z niej rezygnuje."
+        },
+        {
+          "pl": "Wymienić można od jednej do siedmiu płytek, o ile w worku zostało przynajmniej osiem. Oddane płytki wracają do worka przed dobraniem, więc któraś może do ciebie wrócić. Liczbę płytek w worku i na stojakach sprawdzisz przez E."
+        },
+        {
+          "pl": "Klawiszem P możesz spasować, czyli zakończyć turę bez układania słowa i bez wymiany płytek. Jeśli zacząłeś już układać słowo, przed pasem lub wymianą gra poprosi o zgodę na zdjęcie tych liter z planszy."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Koniec i rozliczenie partii"
+      },
+      "paragraphs": [
+        {
+          "pl": "Partia może zakończyć się na dwa sposoby:"
+        },
+        {
+          "pl": "- Worek jest pusty, a ktoś wykorzystuje wszystkie swoje płytki. Po jego ruchu gra się kończy."
+        },
+        {
+          "pl": "- Wymiana jest już niemożliwa, a przez trzy pełne kolejki nikt nie zagra słowa. Gra zostaje wtedy zablokowana. Zagranie słowa przerywa to odliczanie, nawet jeśli jest warte zero punktów."
+        },
+        {
+          "pl": "Na koniec każdemu odejmuje się wartość płytek pozostałych na stojaku. Gracz, który opróżnił swój stojak, dostaje dodatkowo sumę wartości płytek pozostałych osób. Przy zablokowaniu nie ma tej dodatkowej nagrody. Blank pozostały w ręce liczy się za zero."
+        },
+        {
+          "pl": "Po tych zmianach porównujecie wyniki. Wygrywa osoba z najwyższym wynikiem, a równe najwyższe wyniki dają wspólne zwycięstwo."
+        }
+      ]
+    },
+    {
+      "id": "language",
+      "title": {
+        "pl": "Język płytek i słownik"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed grą w ustawieniach stołu możesz wybrać polskie albo angielskie płytki i słownik. Zmienia się zestaw liter, ich liczba i wartości. W obu językach jest łącznie sto płytek."
+        },
+        {
+          "pl": "Polska gra korzysta z dołączonego słownika SJP, a angielska z Wordnik. Mogą one różnić się od słowników używanych na turniejach. O przyjęciu słowa decyduje słownik wybranego języka."
+        }
+      ]
+    },
+    {
+      "id": "penalties",
+      "title": {
+        "pl": "Kary za niepoprawne słowo"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu można zmienić to, co nastąpi po zgłoszeniu słowa nieznanego słownikowi:"
+        },
+        {
+          "pl": "- Można pozostawić możliwość poprawienia ruchu. Tak jest w grze podstawowej."
+        },
+        {
+          "pl": "- Można zamiast tego zakończyć turę po odrzuceniu słowa. Następna osoba zagra, a twoje płytki pozostaną na stojaku."
+        },
+        {
+          "pl": "Każda z tych zasad jest dostępna bez kary punktowej albo z odjęciem 5 lub 10 punktów. Za jedno naciśnięcie F nalicza się najwyżej jedną karę, nawet jeśli błędnych słów jest kilka. Błędy ułożenia, takie jak pozostawiona luka, nie podlegają tej karze."
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "title": {
+        "pl": "Czas na ruch"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zwykle nie ma limitu czasu na ruch. Można go włączyć w ustawieniach stołu przed grą. Limit obejmuje całą turę, łącznie z wybieraniem litery blanku i ewentualnym poprawianiem odrzuconego słowa."
+        },
+        {
+          "pl": "Po jego upływie przygotowane płytki wracają na stojak, a tura kończy się pasem. Nie dostajesz za sam upływ czasu dodatkowej kary punktowej."
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "title": {
+        "pl": "Stojak i odczyt układanych liter"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gdy nie masz żadnych przygotowanych płytek, klawisz I zmienia kolejność liter na stojaku. Możesz przeglądać je w kolejności otrzymania, alfabetycznie albo z samogłoskami na początku. Klawisze od 1 do 7 odczytują kolejne pozycje. Shift z daną cyfrą od razu kładzie tę płytkę na polu pod kursorem."
+        },
+        {
+          "pl": "Na planszy możesz śledzić litery układane przez drugą osobę jeszcze przed zatwierdzeniem jej słowa. Jeśli chcesz słyszeć komunikaty o dokładaniu i zdejmowaniu tych liter, włącz je przez Ctrl+P. Ponowne użycie skrótu je wyłącza."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: poruszaj się po planszy lub otwartej liście."
+        },
+        {
+          "pl": "Enter: wybierz płytkę i połóż ją; w oknie wymiany zatwierdź zaznaczone płytki."
+        },
+        {
+          "pl": "Backspace: zdejmij niezatwierdzoną płytkę z pola pod kursorem."
+        },
+        {
+          "pl": "Z: usuń wszystkie płytki przygotowanego ruchu."
+        },
+        {
+          "pl": "F: zatwierdź ułożone słowa."
+        },
+        {
+          "pl": "Y: odczytaj przygotowane słowa i punkty, bez sprawdzania słownika."
+        },
+        {
+          "pl": "Escape: anuluj wybór płytki lub wymianę."
+        },
+        {
+          "pl": "C: odczytaj stojak."
+        },
+        {
+          "pl": "I: zmień kolejność płytek, gdy niczego jeszcze nie układasz."
+        },
+        {
+          "pl": "G: wybierz płytki do wymiany."
+        },
+        {
+          "pl": "Spacja na liście wymiany: zaznacz lub odznacz płytkę."
+        },
+        {
+          "pl": "P: spasuj."
+        },
+        {
+          "pl": "E: odczytaj liczbę płytek na stojakach i w worku."
+        },
+        {
+          "pl": "L: przeglądaj zagrane słowa."
+        },
+        {
+          "pl": "S: odczytaj wyniki."
+        },
+        {
+          "pl": "T: sprawdź, czyja jest tura."
+        },
+        {
+          "pl": "1: odczytaj pierwszą płytkę stojaka."
+        },
+        {
+          "pl": "2: odczytaj drugą płytkę stojaka."
+        },
+        {
+          "pl": "3: odczytaj trzecią płytkę stojaka."
+        },
+        {
+          "pl": "4: odczytaj czwartą płytkę stojaka."
+        },
+        {
+          "pl": "5: odczytaj piątą płytkę stojaka."
+        },
+        {
+          "pl": "6: odczytaj szóstą płytkę stojaka."
+        },
+        {
+          "pl": "7: odczytaj siódmą płytkę stojaka."
+        },
+        {
+          "pl": "Shift+1: połóż pierwszą płytkę na polu pod kursorem."
+        },
+        {
+          "pl": "Shift+2: połóż drugą płytkę na polu pod kursorem."
+        },
+        {
+          "pl": "Shift+3: połóż trzecią płytkę na polu pod kursorem."
+        },
+        {
+          "pl": "Shift+4: połóż czwartą płytkę na polu pod kursorem."
+        },
+        {
+          "pl": "Shift+5: połóż piątą płytkę na polu pod kursorem."
+        },
+        {
+          "pl": "Shift+6: połóż szóstą płytkę na polu pod kursorem."
+        },
+        {
+          "pl": "Shift+7: połóż siódmą płytkę na polu pod kursorem."
+        },
+        {
+          "pl": "Ctrl+P: przełącz komunikaty o układaniu i zdejmowaniu liter."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "content_language_id": "language",
+    "content_set_id": "language",
+    "invalid_word": "penalties",
+    "thinking_time": "time"
+  }
+}

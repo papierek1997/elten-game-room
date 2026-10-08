@@ -51,6 +51,10 @@ module GameRoomGames
       _("Mancala")
     end
 
+    def short_description
+      _("Move stones between pits on the board, planning your moves to collect more than your opponent.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

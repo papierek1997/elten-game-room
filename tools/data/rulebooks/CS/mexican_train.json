@@ -1,0 +1,250 @@
+{
+  "source": "games/mexican_train.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Mexican Train je pro dva až osm hráčů. Přikládáte domino do několika řad zvaných vlaky. Snažíš se co nejrychleji zbavit kamenů, protože zbytek na konci kola přináší trestné body."
+        },
+        {
+          "cs": "Hraje se více kol. Kdo nasbírá alespoň sto bodů, vypadne; vítězí poslední hráč ve hře."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "cs": "Rozdání a stanice"
+      },
+      "paragraphs": [
+        {
+          "cs": "Používá se sada s čísly nula až dvanáct. V prvním kole tvoří společný začátek všech vlaků, stanici, kámen 12–12. Už je položený a nikdo ho nedostane do ruky."
+        },
+        {
+          "cs": "Počet rozdaných kamenů závisí na počtu dosud hrajících:"
+        },
+        {
+          "cs": "- Dva až pět hráčů dostane po patnácti."
+        },
+        {
+          "cs": "- Šest nebo sedm hráčů dostane po dvanácti."
+        },
+        {
+          "cs": "- Osm hráčů dostane po deseti."
+        },
+        {
+          "cs": "Zbytek tvoří zásobu. První začínající se losuje, v dalších kolech se začátek posouvá k následujícímu hráči."
+        },
+        {
+          "cs": "Stanice v dalších kolech klesá na 11–11, 10–10 a tak dál až po 0–0. Pokud hra pokračuje, vrátí se opět 12–12."
+        }
+      ]
+    },
+    {
+      "id": "trains",
+      "title": {
+        "cs": "Kam smíš přiložit"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ze stanice vychází osobní vlak každého hráče a společný mexický vlak. Osobní vlaky začínají uzavřené. Hrát smíš:"
+        },
+        {
+          "cs": "- Na svůj vlak, ať je otevřený nebo uzavřený."
+        },
+        {
+          "cs": "- Na mexický vlak, který je trvale otevřený všem."
+        },
+        {
+          "cs": "- Na soupeřův osobní vlak, pokud je otevřený."
+        },
+        {
+          "cs": "Klávesa C přečte koncová čísla všech vlaků i to, které jsou otevřené."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "cs": "Přiložení kamene"
+      },
+      "paragraphs": [
+        {
+          "cs": "Běžný tah přidá jeden kámen. Jedna jeho polovina musí pasovat k číslu na konci vlaku; druhá se stane novým koncem. U dosud prázdného vlaku se přikládá k číslu stanice."
+        },
+        {
+          "cs": "Vyber kámen šipkami a stiskni Enter. Ze seznamu vlaků šipkami zvol cíl a dalším Enterem kámen polož. Escape tě vrátí k ruce, pokud chceš vybrat jiný."
+        },
+        {
+          "cs": "Obyčejný kámen předává tah dalšímu hráči."
+        }
+      ]
+    },
+    {
+      "id": "drawing",
+      "title": {
+        "cs": "Dobírání a otevření vlaku"
+      },
+      "paragraphs": [
+        {
+          "cs": "Nemáš-li tah na žádném dostupném vlaku, mezerníkem dober jeden kámen. Pokud teď hrát můžeš, vyber kámen a vlak obvyklým způsobem."
+        },
+        {
+          "cs": "Když ani potom nic nepasuje, tvůj osobní vlak se otevře a hraje další. Je-li zásoba prázdná, nastane totéž rovnou bez dobrání."
+        },
+        {
+          "cs": "Soupeři mohou na tvůj otevřený vlak hrát, dokud na něj sám nepřiložíš. Tím ho opět uzavřeš. Můžeš ale hrát jinam a vlastní vlak nechat otevřený. Soupeřův kámen tvůj vlak neuzavírá."
+        }
+      ]
+    },
+    {
+      "id": "doubles",
+      "title": {
+        "cs": "Dubl a pokračování tahu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Dubl nese stejné číslo na obou stranách, například 7–7. Jeho přiložení dává další tah. Další dubl ho znovu prodlouží, takže můžeš vyložit několik za sebou."
+        },
+        {
+          "cs": "Obyčejným kamenem na konci vlaku s dublem tento dubl uzavřeš. Během své série ale smíš hrát i na jiný dostupný vlak. Obyčejný kámen pak tah ukončí, i když předchozí dubl zůstal neuzavřený."
+        },
+        {
+          "cs": "Dojdou-li ti během série možnosti, mezerníkem dober jeden kámen. Každý zahraný dubl ti při dalším nedostatku tahu dává novou možnost dobrání. Když ani po něm hrát nemůžeš, tvůj vlak se otevře a řada přejde dál."
+        }
+      ]
+    },
+    {
+      "id": "covering",
+      "title": {
+        "cs": "Povinné uzavření dublu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Začíná-li hráč tah s neuzavřeným dublem na stole, musí nejdřív přiložit právě na něj. Ostatní vlaky jsou do té doby nedostupné. Kvůli této povinnosti lze hrát i na uzavřený soupeřův vlak."
+        },
+        {
+          "cs": "Je-li neuzavřených dublů více, další hráči řeší nejprve poslední a potom dřívější. Klávesa T oznámí hráče na tahu a dubl, který potřebuje uzavřít."
+        },
+        {
+          "cs": "Například zahraješ 7–7 na svůj vlak a pak 9–9 na mexický. Během téhož tahu smíš přidat 7–3 ke svému vlaku. Uzavřeš tím starší dubl a ukončíš tah. Následující hráč už musí uzavřít 9–9 na mexickém vlaku."
+        },
+        {
+          "cs": "Nemáš-li pro povinný dubl kámen, jednou dober mezerníkem. Pokud ani nový nepasuje, tvůj vlak se otevře a tah skončí. Stejný dubl musí zkusit uzavřít další hráč."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "cs": "Konec kola a vyřazení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Poslední kámen v ruce ukončí kolo okamžitě, i když jde o dubl. Není třeba dalšího tahu ani uzavírání zbývajících dublů."
+        },
+        {
+          "cs": "Kolo končí i zablokováním: zásoba je prázdná, všichni postupně nemohli hrát a pořád neexistuje přípustný tah. Samotné otevření vlaku může někomu zpřístupnit novou možnost, takže řada vynechání ještě nemusí znamenat blokádu."
+        },
+        {
+          "cs": "Trestné body za kolo se počítají takto:"
+        },
+        {
+          "cs": "- Hráč bez kamenů dostane nulu."
+        },
+        {
+          "cs": "- Ostatní přičtou součet ok svých zbývajících kamenů. Při zablokování tak učiní všichni."
+        },
+        {
+          "cs": "- Kámen 0–0 má vždy hodnotu deset bodů."
+        },
+        {
+          "cs": "Po sečtení vypadnou hráči s alespoň sto body. Poslední zbývající vyhraje. Dosáhnou-li limitu současně všichni dosud hrající, rozhodne nejnižší skóre; při shodě se o vítězství dělí. Výsledky přečte S."
+        }
+      ]
+    },
+    {
+      "id": "draw_variant",
+      "title": {
+        "cs": "Dobírání při možném tahu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze povolit dobrání, i když máš čím hrát. Před přiložením pak smíš stisknout mezerník. Stále lze dobrat jen jeden kámen před dalším zahráním; dubl poskytne nový tah a novou možnost dobrání."
+        }
+      ]
+    },
+    {
+      "id": "limit",
+      "title": {
+        "cs": "Jiný bodový limit"
+      },
+      "paragraphs": [
+        {
+          "cs": "Výchozích sto trestných bodů lze před hrou změnit. Dosažení nebo překročení limitu pořád znamená vyřazení po vyhodnocení kola."
+        }
+      ]
+    },
+    {
+      "id": "clock",
+      "title": {
+        "cs": "Čas na tah"
+      },
+      "paragraphs": [
+        {
+          "cs": "Běžně není čas omezen. Před hrou lze stanovit počet sekund na celý tah včetně pokračování po dublech. Dubl ani dobrání odpočet neobnoví."
+        },
+        {
+          "cs": "Po vypršení času hra dobere jeden kámen, pokud zásoba není prázdná a od posledního zahrání jsi ještě nedobíral. Pak otevře tvůj vlak a předá tah bez přiložení. Případný neuzavřený dubl zůstává povinností pro dalšího hráče."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: vybrat kámen nebo vlak."
+        },
+        {
+          "cs": "Enter: otevřít výběr vlaku pro kámen a potom vlak potvrdit."
+        },
+        {
+          "cs": "Escape: zrušit výběr vlaku a vrátit se ke kameni."
+        },
+        {
+          "cs": "Mezerník: dobrat kámen."
+        },
+        {
+          "cs": "C: prohlédnout vlaky."
+        },
+        {
+          "cs": "E: přečíst počty kamenů hráčů a zásoby."
+        },
+        {
+          "cs": "Z: najít další hratelný kámen, bez zahrání."
+        },
+        {
+          "cs": "Shift+Z: najít předchozí hratelný kámen, bez zahrání."
+        },
+        {
+          "cs": "T: oznámit hráče na tahu a povinný dubl."
+        },
+        {
+          "cs": "S: přečíst skóre."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "allow_playable_draw": "draw_variant",
+    "score_limit": "limit",
+    "thinking_time": "clock"
+  }
+}

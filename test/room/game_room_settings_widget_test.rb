@@ -171,7 +171,8 @@ app.instance_variable_set(:@lobby, lobby)
 app.define_singleton_method(:game_name) { |id| id == "uno" ? "UNO" : "Makao" }
 available = WidgetSnapshot.new(table: { "__id" => 3, "owner" => "Bob", "game" => "uno" }, members: ["Bob"])
 assert(app.send(:table_join_label, available) == "Bob, 1/8, open", "the per-game join list lost occupancy/status")
-assert(app.send(:game_lobby_label, "uno") == "UNO", "the game picker still exposes an unreliable table count")
+assert(app.send(:game_lobby_label, "uno") == "UNO. #{app.send(:game_definition, 'uno').short_description}",
+  "the game picker must show only the name and description, without an unreliable table count")
 assert(app.send(:widget_table_label, available) == "UNO, Bob, 1/8, open", "the main-tab row lost occupancy/status")
 
 # Tab entry must use the same host task as before the asynchronous-widget

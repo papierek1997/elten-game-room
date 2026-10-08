@@ -1,0 +1,214 @@
+{
+  "source": "games/krowa_support/presentation.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "pl": "Na czym polega gra"
+      },
+      "paragraphs": [
+        {
+          "pl": "W grze Krowa Twoim zadaniem jest odgadnięcie polskiego rzeczownika. Na samym początku gry losuje się słowo i otrzymujesz informację, na ile jest liter. Wpisujesz swoje propozycje na taką samą liczbę liter, jak słowo do odgadnięcia i po każdej próbie słyszysz liczbę liter stojących na tych samych miejscach w obydwu słowach."
+        },
+        {
+          "pl": "Gdy rozwiązaniem jest kot, a wpiszesz sok, dostaniesz wynik 1 z 3: pasuje tylko środkowa litera. K nie jest uwzględnione, ponieważ w słowie kot jest na pierwszym miejscu, a w słowie sok — na trzecim. Porównując kolejne wskazówki, stopniowo zawężasz poszukiwania."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Graj samodzielnie albo z innymi"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli jesteś gospodarzem stołu, wybierasz wariant rozgrywki. W trybie solo masz do wyboru dwie opcje:"
+        },
+        {
+          "pl": "- Dzienną Krowę, czyli codziennie nowe słowo, które jest takie samo dla wszystkich graczy."
+        },
+        {
+          "pl": "- Losowe słowo, czyli grę ze słowami o konfigurowalnej liczbie liter."
+        },
+        {
+          "pl": "Z kolei gra z innymi osobami również może się odbywać na dwa sposoby:"
+        },
+        {
+          "pl": "- Wyścig, czyli gra przeciwko sobie z tym samym słowem do odgadnięcia. W zależności od ustawienia, wygrywa ta osoba, która ma na koncie mniej prób, lub która odgadła szybciej."
+        },
+        {
+          "pl": "- Wieża Słów, czyli gra kooperacyjna. Tutaj losują się słowa i zadaniem wszystkich osób jest wpisywać próby po kolei, widząc, co wpisali inni gracze."
+        },
+        {
+          "pl": "Dzienna Krowa jest prywatna: nie można do niej dołączyć ani jej obserwować. Byłoby wszak zbyt łatwo później ją odgadnąć!"
+        },
+        {
+          "pl": "Wszystkie pozostałe tryby można jednak obserwować, jeśli stół jest otwarty. Kiedy dołączysz do Krowy w trakcie zgadywania losowego słowa przez inną osobę, to możesz sprawdzać na ile liter jest słowo, a także listę oraz liczbę jej prób. Możesz również pisać na czacie: „p na czwartym! Serio p będzie na czwartym!” Ale nie zachęcam."
+        }
+      ]
+    },
+    {
+      "id": "vocabulary",
+      "title": {
+        "pl": "Dodawanie własnych słów"
+      },
+      "paragraphs": [
+        {
+          "pl": "W trybie Losowe słowo masz jedną supermoc. Możesz dodawać słowa do słownika, który lokalnie przechowuje Twoje rzeczowniki. Hmmm... jeśli napiszesz tam asdfasdfasdf to też zostanie to przechowane, ale jednak liczę na to, że ważniejszy jest fan, niż nabijanie wyników w rankingach."
+        },
+        {
+          "pl": "Jeśli więc chcesz móc wpisywać słowo smerfy jako próby, to po prostu użyj przycisku „Dodaj rzeczownik do słownika i sprawdź”. Nie będziesz jednak mógł używać tego słowa w Dziennej Krowie ani we wspólnych trybach. I to nie dlatego, że nie lubię smerfów, po prostu nie ma tego w bazie."
+        }
+      ]
+    },
+    {
+      "id": "guessing",
+      "title": {
+        "pl": "Jak grać"
+      },
+      "paragraphs": [
+        {
+          "pl": "Wpisz rzeczownik i naciśnij Enter. Każdy wpis po wysłaniu znika z pola edycyjnego. Zła długość, słowo spoza słownika, powtórka i próba poza turą nie zużywają próby, ale za to wydają śmieszny dźwięk."
+        }
+      ]
+    },
+    {
+      "id": "daily",
+      "title": {
+        "pl": "Dzienna Krowa"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Dziennej Krowie może się wylosować słowo o długości od trzech do dziewięciu liter. Jest ono wyznaczane na podstawie czasu serwerowego, więc jeśli potrzebujesz zmiany słowa, to musisz się włamać na serwer i zmienić datę."
+        },
+        {
+          "pl": "Dzienną Krowę możesz otworzyć tylko raz. Jeśli zgadniesz słowo, poddasz się, lub przerwiesz grę, pozostanie ona niedostępna dla Twojego konta aż do kolejnego dnia."
+        }
+      ]
+    },
+    {
+      "id": "race",
+      "title": {
+        "pl": "Wyścig"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Wyścigu każdy zgaduje samodzielnie. Można ustawić liczbę liter słowa lub zdać się na los. Niezależnie od wybranej opcji gospodarz może przelosować słowo i wtedy próby się zerują. Do ustawienia jest również wspomniane wyżej kryterium wygranej:"
+        },
+        {
+          "pl": "- Na czas wygrywa najkrótszy czas od początku słowa do zgłoszenia poprawnej odpowiedzi, mierzony zegarem zsynchronizowanym z serwerem."
+        },
+        {
+          "pl": "- Na liczbę prób wygrywa najmniejsza liczba przyjętych prób potrzebnych do odgadnięcia słowa."
+        },
+        {
+          "pl": "Równe wyniki oznaczają wspólne zwycięstwo."
+        },
+        {
+          "pl": "Jeśli pozostali skończyli zgadywać, a Ty nie masz już szans dorównać najlepszemu wynikowi, gra się kończy i poznajesz słowo."
+        }
+      ]
+    },
+    {
+      "id": "tower",
+      "title": {
+        "pl": "Wieża Słów"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Wieży gracie na zmianę, a odgadnięcie przez Was słowa rozpoczyna kolejną rundę. Słowa mają od 3 do 8 liter, a wspólny limit prób zależy od długości słowa:"
+        },
+        {
+          "pl": "- 3 litery: 15 prób."
+        },
+        {
+          "pl": "- 4 litery: 24 próby."
+        },
+        {
+          "pl": "- 5 liter: 30 prób."
+        },
+        {
+          "pl": "- 6 liter: 42 próby."
+        },
+        {
+          "pl": "- 7 liter: 49 prób."
+        },
+        {
+          "pl": "- 8 liter: 64 próby."
+        },
+        {
+          "pl": "Wieża kończy się po wyczerpaniu limitu lub poddaniu przez gospodarza. Wynik to liczba ukończonych rund. Lista rund znajdująca się w rankingu zawiera słowa i liczbę prób."
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "title": {
+        "pl": "Muzyka i efekty dźwiękowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Muzyka i efekty dźwiękowe Krowy są domyślnie wyłączone. Pod Ctrl+P znajdziesz ich przełączniki oraz osobną regulację głośności. Te dźwięki podlegają również wspólnemu wyciszeniu i głośności dźwięków gier w Power Games."
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "title": {
+        "pl": "Galeria, słownik i rankingi"
+      },
+      "paragraphs": [
+        {
+          "pl": "Galeria zapamiętuje słowa odgadnięte samodzielnie i najlepszą liczbę prób dla każdego z nich. Możesz ją otworzyć przed partią oraz po jej zakończeniu."
+        },
+        {
+          "pl": "Menu galerii pozwala sortować według daty, liczby prób lub długości, a wybranie słowa klawiszem Enter otwiera jego ranking. Po zakończeniu gry możesz zgodzić się na opublikowanie wyniku i wtedy również otworzy Ci się ranking dla tego słowa."
+        },
+        {
+          "pl": "Pozycja Rankingi w menu głównym udostępnia wyniki dla słów oraz liczbę rund Wieży Słów. Galeria i własny słownik są lokalne i oddzielne dla każdego konta. Aby usunąć własne słowa, otwórz Własny słownik w ustawieniach Krowy, zaznacz je Spacją i wybierz Usuń zaznaczone."
+        }
+      ]
+    },
+    {
+      "id": "saving",
+      "title": {
+        "pl": "Zapisywanie gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gospodarz może zapisać Wyścig lub Wieżę Słów podczas odgadywania słowa, gdy wszystkie zgłoszone próby zostały sprawdzone. Zapis na koncie pozwala na wznowienie partii z tymi samymi graczami przy nowym stole. Gier w trybie solo nie można zapisać na później."
+        }
+      ]
+    },
+    {
+      "id": "credits",
+      "title": {
+        "pl": "Autorka"
+      },
+      "paragraphs": [
+        {
+          "pl": "Autorką Krowy jest paulinux."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Enter w polu odpowiedzi: sprawdź wpisany rzeczownik."
+        },
+        {
+          "pl": "Ctrl+P: otwórz ustawienia dźwięków i własnego słownika Krowy."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "length": "variants",
+    "race_scoring": "race"
+  }
+}

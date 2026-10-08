@@ -1,0 +1,160 @@
+{
+  "source": "games/ninety_nine.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve hře Ninety-nine měníte kartami společný součet a připravujete soupeře o žetony. Každý začíná s devíti. Vypadneš až tehdy, když nemáš dost na zaplacení trestu; poslední zbývající hráč vyhrává."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "cs": "Tah s kartou"
+      },
+      "paragraphs": [
+        {
+          "cs": "Hrají dva až osm hráčů. Dostaneš tři karty a kolo začíná součtem nula. Na tahu si součet můžeš přečíst klávesou C, šipkami vyber kartu a Enterem ji zahraj."
+        },
+        {
+          "cs": "Karta změní součet podle svého účinku. Jestliže kolo nekončí, dostaneš za ni novou kartu a pokračuje další hráč."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "cs": "Účinky karet"
+      },
+      "paragraphs": [
+        {
+          "cs": "Jednotlivé karty působí takto:"
+        },
+        {
+          "cs": "- Trojka až osmička přidají svou hodnotu. Sedmička tedy změní 20 na 27. Čtyřka navíc obrátí směr hry, pokud zbývají alespoň tři hráči."
+        },
+        {
+          "cs": "- Dáma a král přidají 10."
+        },
+        {
+          "cs": "- Kluk přidá 10 a přeskočí dalšího hráče. Ve dvou tak hraješ hned znovu."
+        },
+        {
+          "cs": "- Devítka nechá součet beze změny."
+        },
+        {
+          "cs": "- Eso přidá 1 nebo 11. Po zahrání vyber hodnotu šipkami a potvrď Enterem."
+        },
+        {
+          "cs": "- Desítka přidá nebo odečte 10. Odečíst lze jen od součtu alespoň 10. Účinek vyber šipkami a potvrď Enterem."
+        },
+        {
+          "cs": "- Dvojka součet zdvojnásobí, ale sudé číslo větší než 49 místo toho rozpůlí. Ze 40 udělá 80, ze 60 udělá 30. Účinek závisí na součtu, nevybíráš si ho."
+        }
+      ]
+    },
+    {
+      "id": "tokens",
+      "title": {
+        "cs": "Kdy ubývají žetony"
+      },
+      "paragraphs": [
+        {
+          "cs": "Při zvyšování součtu sleduj hranice 33 a 66:"
+        },
+        {
+          "cs": "- Přesných 33 nebo 66 vezme každému soupeři jeden žeton. Při 32 tak můžeš esem za 1 potrestat všechny ostatní."
+        },
+        {
+          "cs": "- Za každou překročenou hranici 33 či 66 ztratíš žeton ty. Posunem z 30 na 35 například překročíš 33 a zaplatíš jeden."
+        },
+        {
+          "cs": "Dosažení nebo překročení 99 ukončí kolo:"
+        },
+        {
+          "cs": "- Přesných 99 vezme každému soupeři dva žetony."
+        },
+        {
+          "cs": "- Přes 99 platíš dva žetony ty. Překročíš-li stejným tahem i 66, zaplatíš dohromady tři."
+        },
+        {
+          "cs": "Další kolo začíná znovu od nuly s novými kartami. Žetony přečte S. I s nulou se hraje dál, vyřazuje až nezaplacený trest. Máš-li jeden žeton, jeho ztrátu ještě přežiješ; trest dvou žetonů už ne."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Nastavení pravidel"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze v nastavení stolu změnit:"
+        },
+        {
+          "cs": "- Počáteční počet žetonů. Podmínka vyřazení zůstává stejná."
+        },
+        {
+          "cs": "- Vševědoucí boty. Se zapnutou volbou znají karty všech hráčů, bez ní tuto výhodu nemají."
+        },
+        {
+          "cs": "- Čas na tah. Při zapnutém limitu ztratíš za jeho překročení žeton a tah; karty i společný součet zůstanou stejné."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházet karty."
+        },
+        {
+          "cs": "Enter: zahrát kartu nebo potvrdit účinek esa a desítky."
+        },
+        {
+          "cs": "Escape: zrušit výběr hodnoty bez zahrání karty."
+        },
+        {
+          "cs": "H: přečíst vlastní ruku."
+        },
+        {
+          "cs": "C: přečíst společný součet."
+        },
+        {
+          "cs": "S: přečíst žetony všech hráčů."
+        },
+        {
+          "cs": "Z: přejít na další přípustnou kartu; vyžaduje-li volbu hodnoty, pouze ji vybrat."
+        },
+        {
+          "cs": "Shift+Z: přejít na předchozí přípustnou kartu; vyžaduje-li volbu hodnoty, pouze ji vybrat."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        },
+        {
+          "cs": "Shift+C: seřadit podle barev; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+H: seřadit podle hodnot; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+M: obnovit pořadí přijatých karet."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "thinking_time": "variants",
+    "starting_tokens": "variants",
+    "omniscient_bots": "variants"
+  }
+}

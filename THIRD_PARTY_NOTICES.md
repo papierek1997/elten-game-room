@@ -36,6 +36,17 @@ a statement that the PRs have been merged on GitHub.
 
 ## Sounds
 
+### Farkle — banking points
+
+`Audio/farkle_bank.opus` uses “Save complete (PSX UI SFX Free)” by
+heyheytheree, supplied as the [Freesound HQ Ogg preview](https://freesound.org/s/873103/)
+under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+The full license is included in [LICENSES/CC-BY-4.0.txt](LICENSES/CC-BY-4.0.txt).
+The complete recording was converted with `tools/encode_audio.rb` to
+Ogg Opus, 144 kb/s VBR, 48 kHz, 20 ms frames, audio mode and complexity 10.
+Channels, level and metadata were preserved; there was no trimming,
+normalization or pitch change. The author does not endorse the application.
+
 ### 1000 miles (Mille Bornes)
 
 The twenty-three `Audio/mille_*.opus` effects use recordings of vehicles,

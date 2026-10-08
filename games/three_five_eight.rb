@@ -79,6 +79,10 @@ module GameRoomGames
       _("3-5-8")
     end
 
+    def short_description
+      _("A card game for three players, each with a different target, where a good result gives you an advantage in the next deal.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

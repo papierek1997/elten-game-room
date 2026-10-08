@@ -1,0 +1,227 @@
+{
+  "source": "games/mancala.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Mankalę grają dwie osoby. Przenosicie kamienie między dołkami, starając się zdobyć ich jak najwięcej. Zdobyte kamienie trafiają do Twojego magazynu i każdy jest wart jeden punkt."
+        },
+        {
+          "pl": "Poniżej opisano Oware, czyli grę wybraną w zwykłych ustawieniach. Zaczyna pierwszy gracz, a potem wykonujecie ruchy na zmianę."
+        }
+      ]
+    },
+    {
+      "id": "board",
+      "title": {
+        "pl": "Dołki i kamienie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Plansza ma dwa rzędy po sześć dołków. Twój rząd znajduje się na dole, od A1 do F1, a rząd przeciwnika na górze, od A2 do F2. Dołki w tej samej kolumnie leżą naprzeciw siebie."
+        },
+        {
+          "pl": "Na początku w każdym dołku są cztery kamienie, razem czterdzieści osiem. Oba magazyny są puste. Strzałkami w lewo i w prawo przechodzisz między dołkami, a strzałkami w górę i w dół między rzędami."
+        }
+      ]
+    },
+    {
+      "id": "sowing",
+      "title": {
+        "pl": "Wykonywanie ruchu"
+      },
+      "paragraphs": [
+        {
+          "pl": "W swojej turze wybierz strzałkami niepusty dołek we własnym rzędzie i naciśnij Enter. Gra zabierze z niego wszystkie kamienie i rozłoży po jednym w kolejnych dołkach. Nazywa się to rozsiewaniem."
+        },
+        {
+          "pl": "Kamienie wędrują przez Twój rząd od A1 do F1, następnie przez rząd przeciwnika od F2 do A2 i z powrotem do Twojego rzędu. W Oware omijają oba magazyny. Jeśli kamieni starczy na pełne okrążenie, omijają też dołek, z którego zostały zabrane."
+        }
+      ]
+    },
+    {
+      "id": "capture",
+      "title": {
+        "pl": "Zdobywanie kamieni w Oware"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli ostatni kamień trafi do dołka przeciwnika i będą w nim teraz dwa albo trzy kamienie, zabierasz je do swojego magazynu."
+        },
+        {
+          "pl": "Następnie sprawdzany jest wcześniejszy dołek przeciwnika, przeciwnie do kierunku rozsiewania. Jeśli także ma dwa albo trzy kamienie, je również zdobywasz. Zbieranie trwa przez kolejne takie dołki, aż pojawi się inna liczba kamieni albo skończy się rząd przeciwnika."
+        },
+        {
+          "pl": "Nie wolno jednak w ten sposób zabrać wszystkich kamieni przeciwnika. Jeśli cały zbiór opróżniłby jego rząd, nie zabierasz niczego z tego ruchu. Rozsiane kamienie pozostają na swoich miejscach."
+        }
+      ]
+    },
+    {
+      "id": "feeding",
+      "title": {
+        "pl": "Gdy przeciwnik ma pusty rząd"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli na początku Twojej tury przeciwnik nie ma kamieni, musisz wybrać ruch, który dostarczy mu przynajmniej jeden. Wybierz więc dołek zawierający wystarczająco dużo kamieni, by rozsiewanie dotarło do jego rzędu."
+        },
+        {
+          "pl": "Jeżeli żaden Twój ruch nie może tego zrobić, gra się kończy. Tak samo jest wtedy, gdy gracz, którego jest kolej, nie ma żadnych kamieni we własnych dołkach."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Wynik Oware"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zdobycie więcej niż połowy wszystkich kamieni daje zwycięstwo od razu. Przy zwykłych czterech kamieniach w każdym dołku wystarczy zebrać dwadzieścia pięć."
+        },
+        {
+          "pl": "Jeśli gra skończy się z powodu braku ruchu, każdy zabiera do swojego magazynu kamienie pozostałe we własnym rzędzie. Tak samo rozlicza się partię po stu dwudziestu kolejnych ruchach bez zdobycia kamieni."
+        },
+        {
+          "pl": "Po takim zakończeniu wygrywa osoba, która zebrała więcej kamieni, a równe wyniki oznaczają remis. Klawisz S odczytuje bieżące wyniki obu graczy."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Wybór odmiany"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach przed grą można wybrać jedną z trzech odmian:"
+        },
+        {
+          "pl": "- Oware to gra opisana powyżej: zdobywasz kamienie z kolejnych dołków przeciwnika, które zawierają po dwa albo trzy."
+        },
+        {
+          "pl": "- Ayoayo wydłuża ruch przez ponowne rozsiewanie kamieni z dołka, w którym skończyło się poprzednie rozsiewanie. Jej zasady są opisane w następnym rozdziale."
+        },
+        {
+          "pl": "- Kalah pozwala wrzucać kamienie do własnego magazynu podczas rozsiewania i zdobywać w ten sposób punkty. Może też dawać dodatkowy ruch."
+        }
+      ]
+    },
+    {
+      "id": "ayoayo",
+      "title": {
+        "pl": "Ayoayo"
+      },
+      "paragraphs": [
+        {
+          "pl": "Ruch zaczynasz tak samo jak w Oware: wybierz strzałkami własny dołek i naciśnij Enter. Kamienie omijają oba magazyny oraz dołek, z którego właśnie są rozsiewane."
+        },
+        {
+          "pl": "Jeśli ostatni kamień wpadnie do dołka, który już wcześniej zawierał kamienie, gra zabierze całą jego zawartość i będzie rozsiewać dalej. Dotyczy to również dołków przeciwnika. Rozsiewanie kończy się dopiero wtedy, gdy ostatni kamień trafi do wcześniej pustego dołka."
+        },
+        {
+          "pl": "Jeśli zakończysz taki ruch w swoim pustym dołku, a naprzeciw niego leżą kamienie przeciwnika, zdobędziesz je razem ze swoim ostatnim kamieniem. Trafią do Twojego magazynu. Jeśli dołek naprzeciw jest pusty lub kończysz po stronie przeciwnika, niczego nie zdobywasz."
+        },
+        {
+          "pl": "Gdy przeciwnik ma pusty rząd, nadal musisz mu dostarczyć kamienie, jeśli masz taką możliwość. Jeżeli w swojej turze nie możesz wykonać żadnego ruchu, gra się kończy, a przeciwnik dostaje wszystkie kamienie pozostałe na planszy. Wygrywa osoba, która zebrała więcej kamieni; równe wyniki dają remis. W odróżnieniu od Oware zdobycie ponad połowy kamieni nie kończy gry."
+        }
+      ]
+    },
+    {
+      "id": "kalah",
+      "title": {
+        "pl": "Kalah"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Kalah wybierasz dołek i zatwierdzasz Enterem tak jak wcześniej, ale kamienie przechodzą również przez Twój magazyn, znajdujący się za końcem Twojego rzędu. Każdy kamień, który do niego wpadnie, zostaje tam jako punkt. Magazyn przeciwnika jest pomijany. Podczas pełnego okrążenia nie omijasz dołka, z którego zaczęło się rozsiewanie."
+        },
+        {
+          "pl": "Jeśli ostatni kamień trafi do Twojego magazynu, dostajesz dodatkowy ruch. Wybierz kolejny własny dołek strzałkami i naciśnij Enter."
+        },
+        {
+          "pl": "Jeśli ostatni kamień trafi do wcześniej pustego dołka we własnym rzędzie, a naprzeciw leżą kamienie przeciwnika, zabierasz je razem z tym ostatnim kamieniem do magazynu. Zasadę tego przejmowania można wyłączyć w ustawieniach Kalah; pozostałe sposoby zdobywania punktów zostają."
+        },
+        {
+          "pl": "Gra kończy się, gdy po ruchu jeden rząd jest pusty, nawet jeśli graczowi przysługiwałby dodatkowy ruch. Kamienie z niepustego rzędu zabiera do magazynu jego właściciel. Wygrywa osoba, która zebrała więcej kamieni, a jednakowe wyniki oznaczają remis."
+        }
+      ]
+    },
+    {
+      "id": "stones",
+      "title": {
+        "pl": "Liczba kamieni"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach przed grą można wybrać od dwóch do ośmiu kamieni w każdym dołku zamiast zwykłych czterech. Dotyczy to wszystkich odmian. W Oware próg natychmiastowego zwycięstwa nadal oznacza więcej niż połowę wszystkich kamieni."
+        }
+      ]
+    },
+    {
+      "id": "computer",
+      "title": {
+        "pl": "Gra z komputerem"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przy grze z komputerem możesz wybrać jego siłę w ustawieniach przed rozpoczęciem:"
+        },
+        {
+          "pl": "- Spokojny jest najłatwiejszym przeciwnikiem."
+        },
+        {
+          "pl": "- Zrównoważony to zwykłe ustawienie."
+        },
+        {
+          "pl": "- Wnikliwy jest najsilniejszym przeciwnikiem."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałka w lewo: przejdź do dołka po lewej."
+        },
+        {
+          "pl": "Strzałka w prawo: przejdź do dołka po prawej."
+        },
+        {
+          "pl": "Strzałka w górę: przejdź do górnego rzędu."
+        },
+        {
+          "pl": "Strzałka w dół: przejdź do dolnego rzędu."
+        },
+        {
+          "pl": "Enter: rozsiej kamienie z wybranego dołka we własnym rzędzie."
+        },
+        {
+          "pl": "S: odczytaj oba magazyny, zaczynając od wyższego wyniku."
+        },
+        {
+          "pl": "P: odczytaj swoje dołki w kolejności rozsiewania."
+        },
+        {
+          "pl": "Shift+P: odczytaj dołki przeciwnika w jego kolejności rozsiewania."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "stones": "stones",
+    "skill": "computer",
+    "capture": "kalah"
+  }
+}

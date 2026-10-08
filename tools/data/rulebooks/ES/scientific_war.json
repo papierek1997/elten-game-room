@@ -1,0 +1,159 @@
+{
+  "source": "games/scientific_war.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Scientific War intentas quedarte con todas las cartas de tus rivales. Eliges qué carta jugar en cada enfrentamiento, y algunas permiten cambiar el resultado o preparar mejor la siguiente jugada."
+        },
+        {
+          "es": "Juegan de dos a ocho personas. Todos empiezan con los mismos valores: del dos al as y un comodín. Los palos no dan más ni menos fuerza."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "es": "Elegir cartas"
+      },
+      "paragraphs": [
+        {
+          "es": "Cada uno elige sin ver las decisiones ajenas. Recorre tu mano con las flechas y confirma una carta con Enter. T indica quién ha elegido ya. Cuando todos estén listos, se revelan las cartas."
+        },
+        {
+          "es": "Este enfrentamiento se llama baza. La carta más alta gana todas las cartas jugadas. De menor a mayor van el dos, los demás números, la jota, la reina, el rey y el as. V consulta el resultado de la última baza."
+        },
+        {
+          "es": "Las cartas ganadas se guardan aparte. Cuando agotas las de tu mano, recibes las capturadas y empiezas a elegir entre ellas. Si no te quedan ni cartas en la mano ni capturas, quedas eliminado."
+        }
+      ]
+    },
+    {
+      "id": "war",
+      "title": {
+        "es": "Empates"
+      },
+      "paragraphs": [
+        {
+          "es": "Si varios jugadores empatan con el valor ganador, hay guerra: las cartas quedan pendientes y todos los que sigan jugando eligen otra carta. Quien gane la siguiente baza recibe también las cartas del empate."
+        },
+        {
+          "es": "La guerra puede durar varias bazas. Cada empate aumenta lo que se llevará el primer ganador en solitario."
+        }
+      ]
+    },
+    {
+      "id": "powers",
+      "title": {
+        "es": "Poderes de las cartas"
+      },
+      "paragraphs": [
+        {
+          "es": "Los efectos especiales se activan al jugar la carta, aunque no ganes la baza:"
+        },
+        {
+          "es": "- La jota invierte la fuerza de las cartas, incluida la baza en que se juega: el dos pasa a ser el más fuerte y el as el más débil. El orden se mantiene hasta otra inversión. Las jotas de la misma baza se anulan por parejas: dos no cambian nada y tres invierten una vez."
+        },
+        {
+          "es": "- La reina permite elegir en último lugar en la baza siguiente, conociendo las cartas rivales. Espera a que elijan, léelas con C y escoge la tuya con las flechas y Enter. Si salen al menos dos reinas en una baza, nadie obtiene esta ventaja."
+        },
+        {
+          "es": "- El tres permite usar C en la baza siguiente para saber cuántas cartas tienen los rivales en la mano. E solo da la cantidad total, incluidas las capturas."
+        },
+        {
+          "es": "- El ocho permite cambiar toda tu mano por tus capturas en la baza siguiente. Usa C antes de elegir carta si quieres hacerlo; también puedes conservar tu mano. Necesitas al menos una carta capturada para intercambiar."
+        },
+        {
+          "es": "R recuerda si ganan las cartas altas o las bajas y qué poder tienes disponible."
+        }
+      ]
+    },
+    {
+      "id": "joker",
+      "title": {
+        "es": "El comodín"
+      },
+      "paragraphs": [
+        {
+          "es": "El efecto del comodín depende de las otras cartas:"
+        },
+        {
+          "es": "- Si las demás empatarían en el valor ganador, un solo comodín rompe la guerra y su dueño se lleva todas las cartas."
+        },
+        {
+          "es": "- Si las demás darían un único ganador, un solo comodín le quita la victoria y provoca una guerra. Las cartas quedan para la siguiente baza."
+        },
+        {
+          "es": "- Dos o más comodines anulan sus efectos. Deciden las otras cartas."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Final de partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Ganas si eres la única persona con cartas. Si una guerra agota las cartas de todos y nadie puede resolverla, hay empate."
+        },
+        {
+          "es": "La partida también termina tras 50 bazas. Se cuentan todas las cartas, tanto las de la mano como las capturadas. Gana quien tenga más; si varios comparten el máximo, hay empate."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Límite de bazas"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar puedes elegir un límite de entre 20 y 100 bazas. Al alcanzarlo se sigue decidiendo por la cantidad total de cartas."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: elegir una carta."
+        },
+        {
+          "es": "Enter: jugar la carta elegida."
+        },
+        {
+          "es": "Z: ir a la siguiente carta; si es la única, jugarla."
+        },
+        {
+          "es": "Shift+Z: ir a la carta anterior; si es la única, jugarla."
+        },
+        {
+          "es": "C: usar el poder disponible: ver elecciones tras una reina, contar las cartas en mano tras un tres o cambiar la mano por las capturas tras un ocho."
+        },
+        {
+          "es": "E: consultar el total de cartas de cada jugador."
+        },
+        {
+          "es": "T: consultar quién ha elegido."
+        },
+        {
+          "es": "R: consultar el orden de fuerza y los poderes disponibles."
+        },
+        {
+          "es": "V: consultar la última baza."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "trick_limit": "variants"
+  }
+}

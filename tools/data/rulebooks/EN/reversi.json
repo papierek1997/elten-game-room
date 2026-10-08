@@ -1,0 +1,108 @@
+{
+  "source": "games/reversi.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Reversi is played by two people on an eight-by-eight board. One plays Black, the other White. Finish with more discs of your colour to win."
+        },
+        {
+          "en": "Four discs begin in the centre, two of each colour. Black moves first, then players alternate."
+        }
+      ]
+    },
+    {
+      "id": "placing",
+      "title": {
+        "en": "Placing and flipping discs"
+      },
+      "paragraphs": [
+        {
+          "en": "On your turn, place one disc on an empty square so that it traps at least one enemy disc between the new disc and another of your own. The line may be horizontal, vertical or diagonal, with no gaps."
+        },
+        {
+          "en": "Find the empty square with the arrows and press Enter. All enemy discs trapped by that placement change to your colour. A move can close several lines at once and flips the discs in all of them."
+        },
+        {
+          "en": "For example, if two black discs lie between your white disc and an empty square, placing a white disc in that square turns both black discs white."
+        },
+        {
+          "en": "Only lines closed by the newly placed disc count. Flipped discs do not start a chain of further flips."
+        }
+      ]
+    },
+    {
+      "id": "passing",
+      "title": {
+        "en": "Passing"
+      },
+      "paragraphs": [
+        {
+          "en": "If you cannot place a disc that flips an opponent's disc, you pass automatically. The opponent then takes another turn if they have a legal move."
+        },
+        {
+          "en": "By default, you may also pass voluntarily with P. Both players passing does not end the game while legal moves still exist."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "The result"
+      },
+      "paragraphs": [
+        {
+          "en": "Play ends when the board is full or neither player can make a legal move. The player with more discs wins; equal counts are a draw. S reads the disc counts."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Rule options"
+      },
+      "paragraphs": [
+        {
+          "en": "Two settings can change play:"
+        },
+        {
+          "en": "- Disable voluntary passing to require a move whenever one is possible."
+        },
+        {
+          "en": "- Disable mandatory capture to allow placement on any empty square adjacent, along a side or corner, to an existing disc. A placement that traps enemy discs still flips them as usual."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: explore the board."
+        },
+        {
+          "en": "Enter: place a disc in the selected square."
+        },
+        {
+          "en": "P: pass, if the table rules allow it."
+        },
+        {
+          "en": "S: read both disc counts."
+        },
+        {
+          "en": "T: read whose turn it is."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "allow_passing": "variants",
+    "mandatory_capture": "variants"
+  }
+}

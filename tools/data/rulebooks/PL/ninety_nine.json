@@ -1,0 +1,160 @@
+{
+  "source": "games/ninety_nine.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W 99 zagrywasz karty, żeby zmieniać wspólną sumę i odbierać przeciwnikom żetony. Każdy zaczyna z dziewięcioma żetonami. Gdy nie wystarczy ci ich na zapłacenie kary, odpadasz. Jeśli w grze zostanie już tylko jedna osoba, wygrywa."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "pl": "Zagrywanie kart"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gra od dwóch do ośmiu osób. Dostajesz trzy karty, a suma na początku rundy wynosi zero. W swojej turze odczytaj ją klawiszem C, przejrzyj karty strzałkami i zagraj jedną Enterem."
+        },
+        {
+          "pl": "Po zagraniu suma zmienia się zgodnie z działaniem karty. Jeśli runda trwa dalej, dostajesz kartę na jej miejsce i kolejka przechodzi do następnej osoby."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "pl": "Działanie kart"
+      },
+      "paragraphs": [
+        {
+          "pl": "Karty zmieniają sumę w następujący sposób:"
+        },
+        {
+          "pl": "- Karty od trójki do ósemki dodają tyle, ile wynosi ich numer. Siódemka zagrana przy sumie 20 podnosi ją więc do 27. Czwórka oprócz dodania czterech odwraca kolejność gry, gdy zostały przynajmniej trzy osoby."
+        },
+        {
+          "pl": "- Dama i król dodają po 10."
+        },
+        {
+          "pl": "- Walet dodaje 10 i pomija następną osobę. Przy dwóch graczach po walecie zagrywasz więc kolejną kartę."
+        },
+        {
+          "pl": "- Dziewiątka pozostawia sumę bez zmiany."
+        },
+        {
+          "pl": "- As pozwala dodać 1 albo 11. Po naciśnięciu Enter wybierz działanie strzałkami i zatwierdź Enterem."
+        },
+        {
+          "pl": "- Dziesiątka pozwala dodać lub odjąć 10. Odejmowanie jest dostępne przy sumie co najmniej 10. Wybierz działanie strzałkami i potwierdź Enterem."
+        },
+        {
+          "pl": "- Dwójka podwaja sumę, ale parzystą liczbę większą niż 49 dzieli przez dwa. Przy 40 otrzymasz więc 80, a przy 60 suma spadnie do 30. Wynik zależy od sumy; nie wybierasz działania dwójki."
+        }
+      ]
+    },
+    {
+      "id": "tokens",
+      "title": {
+        "pl": "Utrata żetonów"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przy podnoszeniu sumy pilnuj progów 33 i 66:"
+        },
+        {
+          "pl": "- Jeśli po twoim zagraniu suma wyniesie dokładnie 33 lub 66, każdy przeciwnik straci żeton. Na przykład przy sumie 32 możesz zagrać asa jako 1, żeby odebrać żeton każdemu z nich."
+        },
+        {
+          "pl": "- Za każdy przekroczony próg, 33 lub 66, tracisz jeden żeton. Jeśli na przykład podniesiesz sumę z 30 do 35, przekroczysz 33 i stracisz jeden żeton."
+        },
+        {
+          "pl": "Runda kończy się, gdy suma osiągnie lub przekroczy 99:"
+        },
+        {
+          "pl": "- Osiągnięcie 99 odbiera każdemu przeciwnikowi po dwa żetony."
+        },
+        {
+          "pl": "- Jeśli przekroczysz 99, tracisz dwa żetony. Jeśli przy tym przekroczysz też 66, tracisz łącznie trzy żetony."
+        },
+        {
+          "pl": "Następna runda zaczyna się od zera, z nowymi kartami. Liczbę żetonów sprawdzisz przez S. Możesz grać dalej nawet bez żetonów — odpadasz dopiero wtedy, gdy nie wystarczy ci ich na kolejną karę. Na przykład mając jeden żeton, możesz go stracić i pozostać w grze, ale kara dwóch żetonów już cię eliminuje."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Ustawienia gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu przed grą można zmienić następujące zasady:"
+        },
+        {
+          "pl": "- Początkową liczbę żetonów można zwiększyć lub zmniejszyć. Sposób odpadania z gry pozostaje taki sam."
+        },
+        {
+          "pl": "- Wszechwiedzące boty znają karty wszystkich graczy. Przy wyłączonej opcji nie mają tego ułatwienia."
+        },
+        {
+          "pl": "- Włączenie limitu czasu dodaje karę za brak ruchu. Po jego przekroczeniu tracisz żeton i turę, a twoje karty oraz suma pozostają bez zmiany."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: przeglądaj karty."
+        },
+        {
+          "pl": "Enter: zagraj kartę lub wybierz wartość asa albo dziesiątki."
+        },
+        {
+          "pl": "Escape: anuluj wybór wartości bez zagrywania karty."
+        },
+        {
+          "pl": "H: odczytaj swoją rękę."
+        },
+        {
+          "pl": "C: odczytaj wspólną sumę."
+        },
+        {
+          "pl": "S: odczytaj żetony wszystkich graczy."
+        },
+        {
+          "pl": "Z: przejdź do następnej legalnej karty; jeśli wymaga wyboru wartości, tylko ją wskaż."
+        },
+        {
+          "pl": "Shift+Z: przejdź do poprzedniej legalnej karty; jeśli wymaga wyboru wartości, tylko ją wskaż."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "pl": "Shift+C: sortuj karty według koloru; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+H: sortuj karty według wartości; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+M: przywróć kolejność otrzymania kart."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "thinking_time": "variants",
+    "starting_tokens": "variants",
+    "omniscient_bots": "variants"
+  }
+}

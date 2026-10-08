@@ -4,7 +4,7 @@ root = File.expand_path("../..", __dir__)
 verify_notices = lambda do |read|
   notices = read.call("THIRD_PARTY_NOTICES.md").force_encoding("UTF-8")
   sections = [
-    "1000 miles (Mille Bornes)", "Audio Ball", "Audio Ball — Audiodisc pack and ball stop",
+    "Farkle — banking points", "1000 miles (Mille Bornes)", "Audio Ball", "Audio Ball — Audiodisc pack and ball stop",
     "Earlier assets", "New-table notification", "Cat, head, tail",
     "Domino and Mexican Train tile sounds", "Reshuffling cards",
     "Additional doubles footsteps and UNO buzzer", "New Battleship sounds", "Krowa — dictionary and recordings"
@@ -13,6 +13,8 @@ verify_notices = lambda do |read|
   sections.each do |section|
     raise "Missing or duplicated attribution section: #{section}" unless headings.count("### #{section}") == 1
   end
+  raise "Farkle bank recording has no attribution" unless notices.include?("Audio/farkle_bank.opus") &&
+    notices.include?("heyheytheree") && notices.include?("https://freesound.org/s/873103/")
   manifest = JSON.parse(read.call("manifest.json"))
   manifest.fetch("required_assets").fetch("sounds").grep(/\Amille_/).each do |name|
     raise "New sound has no attribution: #{name}" unless notices.include?("Audio/#{name}.opus")

@@ -1,0 +1,216 @@
+{
+  "source": "games/chess.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "El ajedrez enfrenta a dos personas. Tu objetivo es dar jaque mate: atacar al rey rival de modo que no exista ninguna defensa posible."
+        },
+        {
+          "es": "Empiezan las blancas y después se alternan los turnos. En cada turno mueves una de tus piezas."
+        }
+      ]
+    },
+    {
+      "id": "board",
+      "title": {
+        "es": "El tablero y los movimientos"
+      },
+      "paragraphs": [
+        {
+          "es": "El tablero tiene ocho columnas, de A a H, y ocho filas, del 1 al 8. Las piezas ya están colocadas. Recorre con las flechas las casillas para saber cuáles están ocupadas y por qué pieza."
+        },
+        {
+          "es": "C indica quién lleva las blancas y quién las negras. Ctrl+Shift+H gira la vista para examinar el tablero desde el otro lado."
+        },
+        {
+          "es": "Para mover, llega a una pieza tuya con las flechas y pulsa Enter. Elige después la casilla de destino y confirma con Enter. V enumera los movimientos permitidos de la pieza que estés examinando."
+        },
+        {
+          "es": "Si el destino está ocupado por una pieza rival, la capturas y ocupas su lugar. No puedes ocupar una casilla que contenga una pieza tuya. Salvo el caballo, las piezas no pueden saltar sobre otras que encuentren en el camino."
+        }
+      ]
+    },
+    {
+      "id": "pieces",
+      "title": {
+        "es": "Cómo se mueve cada pieza"
+      },
+      "paragraphs": [
+        {
+          "es": "Cada pieza tiene su propio movimiento:"
+        },
+        {
+          "es": "- La torre recorre cualquier número de casillas por una fila o columna."
+        },
+        {
+          "es": "- El alfil recorre cualquier número de casillas en diagonal."
+        },
+        {
+          "es": "- La dama combina los movimientos de torre y alfil: filas, columnas y diagonales."
+        },
+        {
+          "es": "- El caballo avanza dos casillas en una dirección y una en la perpendicular. Puede saltar sobre otras piezas y solo captura la que ocupe su casilla de llegada."
+        },
+        {
+          "es": "- El rey se mueve una casilla en cualquier dirección, pero nunca a una casilla atacada por el rival. E indica qué piezas rivales atacan la casilla que estás examinando."
+        }
+      ]
+    },
+    {
+      "id": "pawns",
+      "title": {
+        "es": "Peones y promoción"
+      },
+      "paragraphs": [
+        {
+          "es": "El peón avanza una casilla hacia el lado rival si está vacía. Desde su casilla inicial puede avanzar dos, siempre que ambas estén libres. No puede retroceder."
+        },
+        {
+          "es": "Para capturar, el peón avanza una casilla en diagonal. Selecciónalo con Enter y confirma con Enter la casilla ocupada por la pieza rival."
+        },
+        {
+          "es": "Al llegar a la última fila, el peón se convierte en dama, torre, alfil o caballo. Elige la nueva pieza con las flechas y confirma con Enter. Puedes elegir una pieza aunque todavía no hayas perdido ninguna de ese tipo."
+        }
+      ]
+    },
+    {
+      "id": "castling",
+      "title": {
+        "es": "Enroque"
+      },
+      "paragraphs": [
+        {
+          "es": "El enroque mueve el rey y una torre en un solo turno. Selecciona al rey con Enter y elige como destino la casilla situada dos lugares hacia la torre elegida. La torre pasa a la casilla por la que ha cruzado el rey. Hacia la columna H es enroque corto; hacia A, enroque largo."
+        },
+        {
+          "es": "Deben cumplirse todas estas condiciones:"
+        },
+        {
+          "es": "- Ni el rey ni esa torre se han movido antes."
+        },
+        {
+          "es": "- No hay piezas entre ambos."
+        },
+        {
+          "es": "- El rey no está en jaque, no cruza una casilla atacada y no termina en una casilla atacada."
+        }
+      ]
+    },
+    {
+      "id": "en_passant",
+      "title": {
+        "es": "Captura al paso"
+      },
+      "paragraphs": [
+        {
+          "es": "Si un peón rival avanza dos casillas desde su posición inicial y queda junto a uno tuyo, en tu siguiente turno puedes capturarlo como si solo hubiera avanzado una."
+        },
+        {
+          "es": "Selecciona tu peón y elige la casilla vacía en diagonal por la que acaba de pasar el rival. Tu peón ocupa esa casilla y se retira el peón rival contiguo. Esta oportunidad solo existe inmediatamente después de su avance: si haces otra jugada, la pierdes."
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "title": {
+        "es": "Jaque y jaque mate"
+      },
+      "paragraphs": [
+        {
+          "es": "Estar en jaque significa que tu rey está atacado. Debes resolverlo en tu siguiente jugada. Según la posición, puedes defenderte de estas formas:"
+        },
+        {
+          "es": "- Mover el rey a una casilla segura."
+        },
+        {
+          "es": "- Capturar la pieza que lo ataca."
+        },
+        {
+          "es": "- Interponer una pieza tuya entre el atacante y el rey, si eso bloquea el ataque."
+        },
+        {
+          "es": "Nunca se permite una jugada que deje a tu propio rey bajo ataque. Si no hay ninguna defensa legal ante un jaque, es jaque mate y gana el rival."
+        }
+      ]
+    },
+    {
+      "id": "draws",
+      "title": {
+        "es": "Tablas"
+      },
+      "paragraphs": [
+        {
+          "es": "La partida puede acabar sin ganador. El juego reconoce estas situaciones de tablas:"
+        },
+        {
+          "es": "- Ahogado: a un jugador le toca mover, no tiene ninguna jugada legal y su rey no está en jaque."
+        },
+        {
+          "es": "- Triple repetición: la misma posición aparece tres veces, con el mismo jugador al turno y las mismas posibilidades de enroque y captura al paso."
+        },
+        {
+          "es": "- Regla de los cincuenta movimientos: cada jugador ha hecho cincuenta movimientos sin ninguna captura ni movimiento de peón."
+        },
+        {
+          "es": "- Material insuficiente: solo quedan los reyes; los reyes y un alfil o un caballo; o los reyes y únicamente alfiles que se mueven por casillas del mismo color."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer las casillas."
+        },
+        {
+          "es": "Enter: elegir una pieza tuya y su destino; confirmar la pieza al promocionar un peón."
+        },
+        {
+          "es": "V: consultar las jugadas legales de la pieza examinada."
+        },
+        {
+          "es": "E: consultar qué piezas rivales atacan la casilla examinada."
+        },
+        {
+          "es": "C: consultar quién lleva blancas y negras."
+        },
+        {
+          "es": "S: consultar las piezas y peones restantes de ambos jugadores."
+        },
+        {
+          "es": "Ctrl+Shift+H: girar la vista del tablero."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "K: ir a tu rey."
+        },
+        {
+          "es": "D: ir a tu siguiente dama."
+        },
+        {
+          "es": "R: ir a tu siguiente torre."
+        },
+        {
+          "es": "B: ir a tu siguiente alfil."
+        },
+        {
+          "es": "N: ir a tu siguiente caballo."
+        },
+        {
+          "es": "P: ir a tu siguiente peón."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {}
+}

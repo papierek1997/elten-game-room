@@ -1,0 +1,160 @@
+{
+  "source": "games/ninety_nine.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Play cards to change a shared total and make opponents lose tokens. Everyone starts with nine. You are eliminated when you cannot pay a penalty; the last player left wins."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Playing"
+      },
+      "paragraphs": [
+        {
+          "en": "Two to eight players receive three cards each. A round starts at zero. On your turn, read the total with C, browse your hand with the arrows and play a card with Enter."
+        },
+        {
+          "en": "The card changes the total. If the round continues, you receive a replacement and play passes to the next person."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "en": "Card effects"
+      },
+      "paragraphs": [
+        {
+          "en": "Cards affect the total as follows:"
+        },
+        {
+          "en": "- A 3 through 8 adds its face value. Playing a 7 at 20 makes 27. A 4 also reverses play when at least three players remain."
+        },
+        {
+          "en": "- Queens and kings add 10."
+        },
+        {
+          "en": "- A jack adds 10 and skips the next player. With two players, you play again."
+        },
+        {
+          "en": "- A 9 leaves the total unchanged."
+        },
+        {
+          "en": "- An ace adds either 1 or 11. After playing it, choose with the arrows and Enter."
+        },
+        {
+          "en": "- A 10 adds or subtracts 10. Subtraction is available when the total is at least 10; choose with the arrows and Enter."
+        },
+        {
+          "en": "- A 2 doubles the total, except that it halves an even total above 49. At 40 it makes 80; at 60 it makes 30. The current total determines its effect, so there is no choice to make."
+        }
+      ]
+    },
+    {
+      "id": "tokens",
+      "title": {
+        "en": "Losing tokens"
+      },
+      "paragraphs": [
+        {
+          "en": "Watch the thresholds of 33 and 66 when raising the total:"
+        },
+        {
+          "en": "- Land exactly on 33 or 66 and every opponent loses one token. From 32, for example, play an ace as 1 to charge everyone else."
+        },
+        {
+          "en": "- Cross a threshold and you lose one token for each threshold crossed. Raising 30 to 35 crosses 33 and costs you one."
+        },
+        {
+          "en": "Reaching or passing 99 ends the round:"
+        },
+        {
+          "en": "- Exactly 99 costs every opponent two tokens."
+        },
+        {
+          "en": "- Exceeding 99 costs you two tokens. If the same play also crosses 66, it costs three in total."
+        },
+        {
+          "en": "The next round starts at zero with fresh hands. S reads tokens. Zero tokens does not itself eliminate you: you leave only when the next penalty exceeds what you can pay. With one token, paying one leaves you in the game, while a penalty of two eliminates you."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Table settings"
+      },
+      "paragraphs": [
+        {
+          "en": "Before play, the host can change these settings:"
+        },
+        {
+          "en": "- Starting tokens may be higher or lower. Elimination still works the same way."
+        },
+        {
+          "en": "- Omniscient bots know everyone's cards. Without the option, they do not have that advantage."
+        },
+        {
+          "en": "- A turn timer penalises timeout with the loss of one token and the turn. Your hand and the shared total stay unchanged."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: browse cards."
+        },
+        {
+          "en": "Enter: play a card or choose an ace or 10's effect."
+        },
+        {
+          "en": "Escape: cancel a value choice without playing."
+        },
+        {
+          "en": "H: read your hand."
+        },
+        {
+          "en": "C: read the shared total."
+        },
+        {
+          "en": "S: read everyone's tokens."
+        },
+        {
+          "en": "Z: find the next legal card; a card needing a value choice is only selected."
+        },
+        {
+          "en": "Shift+Z: find the previous legal card; a card needing a value choice is only selected."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "Shift+C: sort by suit; repeat to reverse."
+        },
+        {
+          "en": "Shift+H: sort by rank; repeat to reverse."
+        },
+        {
+          "en": "Shift+M: restore received order."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "thinking_time": "variants",
+    "starting_tokens": "variants",
+    "omniscient_bots": "variants"
+  }
+}

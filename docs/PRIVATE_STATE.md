@@ -52,6 +52,15 @@ write. An uncertain result keeps the freeze in place. Releasing the freeze
 requires the same game, the current table host and confirmation of the
 operation's own write boundary; it does not unfreeze a newer operation.
 
+The application consumes a saved game immediately after a confirmed restore,
+not when creating the waiting table and not at the end of the resumed game.
+The complete history and private data must be restored before deleting the
+account resource. Cancellation, missing players and an unconfirmed restore
+leave it intact. Storage/transport primitives remain non-consuming; this is
+the shared application's resume policy. A deletion failure must not undo or
+restart the accepted game: report it separately so the user can remove the
+remaining saved copy. The private-file adapter reconciles a lost delete reply.
+
 Regression tests for answer storage and archives are in `test/persistence/`;
 private-phase scenarios are also covered by the Quiz, Categories and Battleship
 tests.

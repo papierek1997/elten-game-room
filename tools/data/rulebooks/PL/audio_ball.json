@@ -1,0 +1,202 @@
+{
+  "source": "games/audio_ball.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "pl": "Na czym polega gra"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Audio Ballu posyłasz piłkę do przeciwnika, a gdy wraca, rozpoznajesz jej dźwięk i wybierasz obronę. Po udanej obronie piłka zatrzymuje się u ciebie i możesz przygotować następne uderzenie. Gdy przepuścisz piłkę, przeciwnik zdobywa punkt. Gracie we dwoje; zamiast drugiej osoby może grać bot."
+        },
+        {
+          "pl": "Do gry przydadzą się słuchawki. Przy zwykłym ustawieniu twoja strona znajduje się po prawej: piłkę przeciwnika słyszysz coraz bardziej z prawej, a po swoim uderzeniu słyszysz, jak oddala się w lewo."
+        }
+      ]
+    },
+    {
+      "id": "sounds",
+      "title": {
+        "pl": "Dźwięki piłki"
+      },
+      "paragraphs": [
+        {
+          "pl": "Masz do wyboru trzy rodzaje uderzeń. Każdy brzmi inaczej i ma własny klawisz:"
+        },
+        {
+          "pl": "- Strzałka w górę lub W."
+        },
+        {
+          "pl": "- Strzałka w lewo lub D."
+        },
+        {
+          "pl": "- Strzałka w dół lub S."
+        },
+        {
+          "pl": "Tych samych klawiszy używasz do obrony. Jeśli na przykład przeciwnik wykona uderzenie przypisane do W, zatrzymasz je klawiszem W lub strzałką w górę. Musisz rozpoznać rodzaj piłki po jej dźwięku."
+        },
+        {
+          "pl": "Przed pierwszym meczem warto poznać te dźwięki. Otwórz zasady przez Ctrl+F1 i wybierz „Audiotutorial”. Strzałkami wybierzesz nagranie, a Enterem lub Spacją je odtworzysz. Samouczek podaje klawisze i pozwala też usłyszeć przygotowanie uderzenia oraz zatrzymanie piłki."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "pl": "Serwis, obrona i następne uderzenie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Serwis to pierwsze uderzenie rozpoczynające wymianę. Gdy masz serwować, naciśnij strzałkę w prawo, żeby przygotować piłkę. Po dźwięku przygotowania naciśnij osobno jeden z klawiszy ataku: strzałkę w górę, w lewo albo w dół. Wtedy uderzysz piłkę i poślesz ją do przeciwnika. Zamiast strzałki w prawo możesz używać A."
+        },
+        {
+          "pl": "Kiedy przeciwnik uderzy, posłuchaj piłki i naciśnij albo przytrzymaj pasujący klawisz obrony. Możesz to zrobić od razu, nie czekając, aż piłka do ciebie doleci. Gra zapamięta wybraną obronę. Jeśli się pomylisz, możesz ją zmienić innym klawiszem, dopóki piłka cię nie minie."
+        },
+        {
+          "pl": "Po dźwięku zatrzymania piłka jest u ciebie. Naciśnij strzałkę w prawo, a potem wybrany klawisz ataku, tak samo jak przy serwisie. Możesz odpowiedzieć innym rodzajem uderzenia niż ten, przed którym się broniłeś. Każde kolejne uderzenie w wymianie trochę przyspiesza piłkę."
+        },
+        {
+          "pl": "Przy następnej piłce wybierz obronę nowym naciśnięciem, już po uderzeniu przeciwnika. Jeśli nadal trzymasz klawisz po poprzedniej piłce, najpierw go puść."
+        },
+        {
+          "pl": "Przed serwisem i po obronie nie ma od razu odliczania. Jeżeli jednak przeciwnik zbyt długo trzyma piłkę, możesz go ponaglić przez Ctrl+W. Ma wtedy dziesięć sekund na uderzenie, inaczej dostaniesz punkt. Przygotowanie piłki nie wystarcza: przed końcem czasu trzeba ją wysłać."
+        }
+      ]
+    },
+    {
+      "id": "score",
+      "title": {
+        "pl": "Punkty i koniec meczu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Set wygrywasz po zdobyciu co najmniej 7 punktów, z przewagą dwóch nad przeciwnikiem. Przy 7:6 set trwa dalej; 8:6 kończy set. W zwykłym meczu gracie jeden set, więc jego zwycięzca wygrywa całość."
+        },
+        {
+          "pl": "Pierwszy serwujący jest losowany. Potem zmieniacie się co dwa rozegrane punkty. Po punkcie usłyszysz wynik, a po krótkiej przerwie rozpoczniecie następną wymianę. Piłka znów będzie leciała z początkową prędkością."
+        },
+        {
+          "pl": "Skrótem Shift+S sprawdzisz wynik meczu, a klawiszem T — kto ma serwować."
+        }
+      ]
+    },
+    {
+      "id": "pace",
+      "title": {
+        "pl": "Poziom trudności"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed grą w ustawieniach stołu możesz zmienić trudność. Zwykle gracie na poziomie Normalnym. Trudność określa początkową szybkość piłki, a przy grze z botem także szybkość jego reakcji i częstość pomyłek."
+        },
+        {
+          "pl": "- Bardzo łatwy: pierwszy przelot piłki trwa 4 sekundy."
+        },
+        {
+          "pl": "- Łatwy: pierwszy przelot trwa 2,2 sekundy."
+        },
+        {
+          "pl": "- Normalny: pierwszy przelot trwa 1,5 sekundy."
+        },
+        {
+          "pl": "- Trudny: pierwszy przelot trwa 0,9 sekundy."
+        },
+        {
+          "pl": "- Bardzo trudny: pierwszy przelot trwa 0,6 sekundy."
+        },
+        {
+          "pl": "Na każdym poziomie następne uderzenie zwiększa prędkość o 5%. Początek nowego punktu przywraca prędkość wybranego poziomu."
+        }
+      ]
+    },
+    {
+      "id": "sets",
+      "title": {
+        "pl": "Mecz do kilku wygranych setów"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu można wybrać zwycięstwo po dwóch lub trzech wygranych setach zamiast po jednym. Każdy set nadal wymaga 7 punktów i dwóch punktów przewagi."
+        },
+        {
+          "pl": "Po zakończeniu seta punkty wracają do 0:0. Kolejny zaczyna się po pięciu sekundach, a pierwszy serwis przechodzi do drugiego gracza. Osoba rozpoczynająca pierwszy set zaczyna więc także trzeci, a jej przeciwnik drugi i czwarty. Mecz trwa, aż ktoś uzbiera wymaganą liczbę wygranych setów."
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "title": {
+        "pl": "Ustawienia odsłuchu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Ctrl+P otwiera ustawienia Audio Balla. Możesz tam zmienić stronę odsłuchu: po wybraniu lewej piłka będzie nadlatywała z prawej do lewej, a twoje uderzenia polecą w przeciwnym kierunku."
+        },
+        {
+          "pl": "W tym samym oknie wybierzesz zwykły pakiet dźwięków albo dźwięki z Audiodisca. Zmieniają się między innymi trzy rodzaje lotu, przygotowanie i zatrzymanie piłki. Audiotutorial korzysta z wybranego pakietu, więc możesz w nim poznać nowe brzmienie."
+        }
+      ]
+    },
+    {
+      "id": "credits",
+      "title": {
+        "pl": "Autor"
+      },
+      "paragraphs": [
+        {
+          "pl": "Audio Ball przygotował budyn1211, znany w ELTEN-ie jako balteam."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałka w górę: wybierz pierwszą obronę lub wykonaj pierwszy rodzaj ataku po przygotowaniu."
+        },
+        {
+          "pl": "W: wybierz pierwszą obronę lub wykonaj pierwszy rodzaj ataku po przygotowaniu."
+        },
+        {
+          "pl": "Strzałka w lewo: wybierz drugą obronę lub wykonaj drugi rodzaj ataku po przygotowaniu."
+        },
+        {
+          "pl": "D: wybierz drugą obronę lub wykonaj drugi rodzaj ataku po przygotowaniu."
+        },
+        {
+          "pl": "Strzałka w dół: wybierz trzecią obronę lub wykonaj trzeci rodzaj ataku po przygotowaniu."
+        },
+        {
+          "pl": "S: wybierz trzecią obronę lub wykonaj trzeci rodzaj ataku po przygotowaniu."
+        },
+        {
+          "pl": "Strzałka w prawo: przygotuj piłkę do uderzenia."
+        },
+        {
+          "pl": "A: przygotuj piłkę do uderzenia."
+        },
+        {
+          "pl": "Shift+S: odczytaj punkty i wygrane sety."
+        },
+        {
+          "pl": "T: odczytaj serwującego i stan połączenia."
+        },
+        {
+          "pl": "Ctrl+W: ponaglij przeciwnika trzymającego piłkę."
+        },
+        {
+          "pl": "Ctrl+P: otwórz ustawienia odsłuchu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "mode": "goal",
+    "difficulty": "pace",
+    "sets_to_win": "sets"
+  }
+}

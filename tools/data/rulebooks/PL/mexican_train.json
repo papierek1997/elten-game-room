@@ -1,0 +1,250 @@
+{
+  "source": "games/mexican_train.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Mexican Train jest grą dla dwóch do ośmiu osób. Dokładacie kostki domina do kilku łańcuchów nazywanych pociągami. Chcesz jak najszybciej pozbyć się swoich kostek, bo za te, które zostaną na koniec rundy, dostaniesz punkty karne."
+        },
+        {
+          "pl": "Rozgrywacie kolejne rundy. Gracz, który uzbiera co najmniej sto punktów, odpada, a wygrywa ostatnia osoba pozostająca w grze."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "pl": "Rozdanie i stacja"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gra używa kostek z liczbami od zera do dwunastu. W pierwszej rundzie wspólnym początkiem wszystkich pociągów, czyli stacją, jest kostka 12–12. Stacja jest już położona i nie trafia do niczyjej ręki."
+        },
+        {
+          "pl": "Liczba kostek w rozdaniu zależy od liczby osób, które nadal grają:"
+        },
+        {
+          "pl": "- Przy dwóch do pięciu graczy każdy dostaje piętnaście kostek."
+        },
+        {
+          "pl": "- Przy sześciu lub siedmiu graczach każdy dostaje dwanaście kostek."
+        },
+        {
+          "pl": "- Przy ośmiu graczach każdy dostaje dziesięć kostek."
+        },
+        {
+          "pl": "Pozostałe kostki tworzą stos do dobierania. Pierwszą rundę zaczyna losowo wybrany gracz. W następnej rundzie rozpoczynanie przechodzi na kolejną osobę."
+        },
+        {
+          "pl": "W kolejnych rundach stacją jest 11–11, potem 10–10 i tak dalej do 0–0. Jeśli gra nadal trwa, następną stacją znów jest 12–12."
+        }
+      ]
+    },
+    {
+      "id": "trains",
+      "title": {
+        "pl": "Na których pociągach można grać"
+      },
+      "paragraphs": [
+        {
+          "pl": "Od stacji odchodzi osobny pociąg każdego gracza oraz wspólny pociąg meksykański. Na początku osobiste pociągi są zamknięte. Możesz dokładać kostki w następujących miejscach:"
+        },
+        {
+          "pl": "- Na swoim pociągu możesz grać niezależnie od tego, czy jest otwarty, czy zamknięty."
+        },
+        {
+          "pl": "- Pociąg meksykański jest stale otwarty i dostępny dla wszystkich."
+        },
+        {
+          "pl": "- Na osobistym pociągu przeciwnika możesz grać, jeśli został otwarty."
+        },
+        {
+          "pl": "Naciśnij C, żeby sprawdzić, jaką liczbą kończy się każdy pociąg i czy jest otwarty."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "pl": "Dokładanie kostki"
+      },
+      "paragraphs": [
+        {
+          "pl": "W swojej turze zwykle dokładasz jedną kostkę. Musi ona mieć na jednej połówce tę samą liczbę, co koniec wybranego pociągu. Druga połówka stanie się jego nowym końcem. Jeśli pociąg jest jeszcze pusty, kostkę dopasowujesz do liczby na stacji."
+        },
+        {
+          "pl": "Strzałkami wybierz kostkę ze swojej ręki i naciśnij Enter. Pojawi się lista pociągów. Wybierz z niej pociąg strzałkami i ponownie naciśnij Enter, aby położyć kostkę. Escape pozwala wrócić do ręki i wybrać inną kostkę."
+        },
+        {
+          "pl": "Po dołożeniu zwykłej kostki ruch przechodzi na następną osobę."
+        }
+      ]
+    },
+    {
+      "id": "drawing",
+      "title": {
+        "pl": "Gdy nie masz pasującej kostki"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli nie możesz zagrać na żadnym dostępnym pociągu, naciśnij Spację. Dobierzesz jedną kostkę. Gdy po dobraniu możesz coś dołożyć, wybierz kostkę i pociąg tak jak przy zwykłym ruchu."
+        },
+        {
+          "pl": "Jeśli nadal nie masz czym zagrać, gra otwiera Twój osobisty pociąg i oddaje kolej następnej osobie. Kiedy stos jest pusty, ten sam skutek następuje od razu, bez dobierania."
+        },
+        {
+          "pl": "Otwarty pociąg pozostaje dostępny dla przeciwników, dopóki sam nie dołożysz na nim kostki. Taki ruch zamyka go ponownie. Możesz jednak zamiast tego zagrać na innym dostępnym pociągu i zostawić swój otwarty. Kostka dołożona przez przeciwnika nie zamyka Twojego pociągu."
+        }
+      ]
+    },
+    {
+      "id": "doubles",
+      "title": {
+        "pl": "Dublet i dodatkowy ruch"
+      },
+      "paragraphs": [
+        {
+          "pl": "Dublet ma tę samą liczbę po obu stronach, na przykład 7–7. Gdy go dołożysz, nadal jest Twoja kolej: możesz zagrać następną kostkę. Kolejny dublet znów daje dodatkowy ruch, więc możesz w ten sposób wyłożyć ich kilka."
+        },
+        {
+          "pl": "Dołożenie zwykłej kostki na końcu pociągu z dubletem domyka ten dublet. Podczas własnej serii możesz jednak zagrać także na innym dostępnym pociągu. Zwykła kostka kończy wtedy Twoją turę, nawet jeśli wcześniejszy dublet pozostał niedomknięty."
+        },
+        {
+          "pl": "Gdy zabraknie Ci ruchu w trakcie takiej serii, możesz dobrać jedną kostkę Spacją. Każdy dołożony dublet daje nową możliwość dobrania, jeśli znów nie masz czym zagrać. Jeżeli po dobraniu nadal nie masz ruchu, Twój pociąg otwiera się, a kolej przechodzi dalej."
+        }
+      ]
+    },
+    {
+      "id": "covering",
+      "title": {
+        "pl": "Obowiązek domknięcia dubletu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli na początku czyjejś tury pozostał niedomknięty dublet, trzeba najpierw dołożyć pasującą kostkę właśnie na nim. Do czasu jego domknięcia nie wolno grać na innych pociągach. Ten obowiązek pozwala zagrać nawet na zamkniętym pociągu przeciwnika."
+        },
+        {
+          "pl": "Przy kilku niedomkniętych dubletach następni gracze zaczynają od ostatniego z nich, a potem domykają wcześniejsze. Klawisz T mówi, czyja jest kolej i który dublet wymaga domknięcia."
+        },
+        {
+          "pl": "Załóżmy, że zagrywasz 7–7 na własnym pociągu, a potem 9–9 na meksykańskim. Wciąż trwa twoja tura, więc możesz dołożyć 7–3 do własnego pociągu. Domkniesz wcześniejszy dublet i zakończysz turę. Następny gracz będzie już musiał domknąć 9–9 na pociągu meksykańskim."
+        },
+        {
+          "pl": "Jeśli nie masz kostki do wymaganego dubletu, dobierz jedną Spacją. Gdy dobrana kostka również nie pasuje, twój pociąg zostaje otwarty i kończysz turę. Następny gracz musi spróbować domknąć ten sam dublet."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "pl": "Zakończenie rundy i punkty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Runda kończy się od razu, gdy ktoś wyłoży ostatnią kostkę, nawet jeśli jest to dublet. Nie trzeba wtedy wykonywać dodatkowego ruchu ani domykać pozostałych dubletów."
+        },
+        {
+          "pl": "Runda kończy się także po zablokowaniu gry: stos jest pusty, wszyscy kolejno nie mogli zagrać i nadal nikt nie ma legalnego ruchu. Samo otwarcie czyjegoś pociągu może dać innym nową możliwość, więc nie każdy ciąg pasów oznacza blokadę."
+        },
+        {
+          "pl": "Punkty za rundę nalicza się następująco:"
+        },
+        {
+          "pl": "- Gracz, który pozbył się kostek, dostaje zero punktów."
+        },
+        {
+          "pl": "- Pozostali gracze dodają do swoich wyników sumę oczek kostek, które zostały im w rękach. Przy zablokowanej rundzie robią to wszyscy."
+        },
+        {
+          "pl": "- Kostka 0–0 jest zawsze warta dziesięć punktów."
+        },
+        {
+          "pl": "Po podliczeniu rundy odpadają osoby, które mają co najmniej sto punktów. Wygrywa ostatni gracz, który pozostanie w grze. Jeśli wszyscy pozostali osiągną limit w tej samej rundzie, wygrywa osoba z najmniejszą liczbą punktów. Przy remisie na najniższym wyniku zwycięstwo jest wspólne. Wyniki sprawdzisz klawiszem S."
+        }
+      ]
+    },
+    {
+      "id": "draw_variant",
+      "title": {
+        "pl": "Dobieranie mimo możliwego ruchu"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach przed grą można pozwolić na dobieranie także wtedy, gdy masz pasującą kostkę. Możesz wówczas nacisnąć Spację przed zagraniem. Nadal dobierasz tylko jedną kostkę przed kolejnym wyłożeniem; dublet daje nowy ruch i nową możliwość dobrania."
+        }
+      ]
+    },
+    {
+      "id": "limit",
+      "title": {
+        "pl": "Inny limit punktów"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed grą można zmienić zwykły limit stu punktów. Nadal osiągnięcie lub przekroczenie limitu oznacza odpadnięcie po rozliczeniu rundy."
+        }
+      ]
+    },
+    {
+      "id": "clock",
+      "title": {
+        "pl": "Czas na ruch"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zwykle czas na ruch jest nieograniczony. W ustawieniach przed grą można określić liczbę sekund na turę. Czas obejmuje także dalsze zagrania po dubletach: ani dołożenie dubletu, ani dobranie kostki nie rozpoczyna go od nowa."
+        },
+        {
+          "pl": "Jeśli czas minie, gra dobiera jedną kostkę, o ile stos nie jest pusty i nie dobierałeś jeszcze przed bieżącym zagraniem. Potem otwiera Twój pociąg i oddaje kolej bez zagrania kostki. Niedomknięty dublet nadal musi domknąć następny gracz."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: wybierz kostkę lub pociąg."
+        },
+        {
+          "pl": "Enter: otwórz wybór pociągu dla kostki, a następnie zatwierdź pociąg."
+        },
+        {
+          "pl": "Escape: anuluj wybór pociągu i wróć do kostki."
+        },
+        {
+          "pl": "Spacja: dobierz kostkę."
+        },
+        {
+          "pl": "C: przejrzyj pociągi."
+        },
+        {
+          "pl": "E: odczytaj liczbę kostek u graczy i w stosie."
+        },
+        {
+          "pl": "Z: przejdź do następnej kostki, którą można zagrać, bez jej zagrywania."
+        },
+        {
+          "pl": "Shift+Z: przejdź do poprzedniej kostki, którą można zagrać, bez jej zagrywania."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura i który dublet trzeba domknąć."
+        },
+        {
+          "pl": "S: odczytaj wyniki."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "allow_playable_draw": "draw_variant",
+    "score_limit": "limit",
+    "thinking_time": "clock"
+  }
+}

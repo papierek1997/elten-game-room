@@ -1,0 +1,170 @@
+{
+  "source": "games/battleship.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Statkach grają dwie osoby. Każda rozmieszcza własną flotę, nie pokazując jej przeciwnikowi. Potem na zmianę wybieracie pola, w które chcecie strzelić. Wygrywa gracz, który pierwszy zatopi wszystkie statki drugiej osoby."
+        }
+      ]
+    },
+    {
+      "id": "fleet",
+      "title": {
+        "pl": "Plansza i flota"
+      },
+      "paragraphs": [
+        {
+          "pl": "Każdy gracz ma planszę 10 na 10 pól. Kolumny są oznaczone literami od A do J, a rzędy liczbami od 1 do 10. Statek zajmuje jedno lub kilka pól w prostej linii, poziomo albo pionowo."
+        },
+        {
+          "pl": "Zwykła flota składa się z dziesięciu statków:"
+        },
+        {
+          "pl": "- Jeden statek zajmuje cztery pola."
+        },
+        {
+          "pl": "- Dwa statki zajmują po trzy pola."
+        },
+        {
+          "pl": "- Trzy statki zajmują po dwa pola."
+        },
+        {
+          "pl": "- Cztery statki zajmują po jednym polu."
+        },
+        {
+          "pl": "Statki nie mogą nachodzić na siebie ani wystawać poza planszę. Między nimi musi zostać odstęp: nie mogą się stykać bokami ani rogami."
+        }
+      ]
+    },
+    {
+      "id": "placing",
+      "title": {
+        "pl": "Rozstawianie statków"
+      },
+      "paragraphs": [
+        {
+          "pl": "Na początku wybierz strzałkami losowe lub ręczne rozstawienie i zatwierdź Enterem. Jeśli wybierzesz losowe, gra rozmieści statki za ciebie i będziecie mogli zacząć, gdy przeciwnik również będzie gotowy."
+        },
+        {
+          "pl": "Przy ręcznym rozstawianiu poruszaj się po planszy strzałkami. Naciśnij Enter na jednym końcu statku, przejdź do jego drugiego końca i ponownie naciśnij Enter. Aby postawić statek jednopolowy, dwa razy wybierz to samo pole. Możesz ustawiać statki w dowolnej kolejności, o ile masz jeszcze statek danej długości."
+        },
+        {
+          "pl": "Jeśli pomylisz pierwszy koniec, Backspace usuwa jego zaznaczenie. Gdy żaden koniec nie jest zaznaczony, ten klawisz cofa ostatni postawiony statek."
+        },
+        {
+          "pl": "Po ustawieniu całej floty gra poprosi o potwierdzenie. Wybierz strzałkami „Tak” i naciśnij Enter, żeby zakończyć przygotowania. Jeśli wybierzesz „Nie”, możesz jeszcze raz ustawić ostatni statek. Po zatwierdzeniu floty nie można już przestawiać statków."
+        }
+      ]
+    },
+    {
+      "id": "shooting",
+      "title": {
+        "pl": "Oddawanie strzałów"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po przygotowaniu obu flot zaczyna pierwszy gracz. Na planszy przeciwnika wybierz strzałkami pole i naciśnij Enter, aby w nie strzelić. Nie można drugi raz ostrzelać tego samego pola."
+        },
+        {
+          "pl": "Po strzale usłyszysz jego wynik:"
+        },
+        {
+          "pl": "- Pudło oznacza, że na wybranym polu nie ma statku."
+        },
+        {
+          "pl": "- Trafienie odkrywa jedno pole statku przeciwnika."
+        },
+        {
+          "pl": "- Zatopienie oznacza, że zostały trafione wszystkie pola tego statku."
+        },
+        {
+          "pl": "Po każdym strzale kolej przechodzi na przeciwnika, także po trafieniu lub zatopieniu statku."
+        },
+        {
+          "pl": "Tabem przejdziesz na własną planszę, żeby sprawdzić trafienia przeciwnika i stan swojej floty. Skrótem Shift+Tab wrócisz do planszy, na której oddajesz strzały."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Zakończenie gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gra kończy się po zatopieniu ostatniego statku jednej ze stron. Wygrywa gracz, który go zatopił. Podczas partii klawisz F odczytuje liczbę jeszcze nietrafionych pól Twojej floty, a Shift+F taką samą liczbę u przeciwnika."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Inna flota i stykanie statków"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach przed grą można wybrać flotę pięciu statków zamiast zwykłych dziesięciu. Obejmuje ona następujące statki:"
+        },
+        {
+          "pl": "- Jeden statek zajmuje pięć pól."
+        },
+        {
+          "pl": "- Jeden statek zajmuje cztery pola."
+        },
+        {
+          "pl": "- Dwa statki zajmują po trzy pola."
+        },
+        {
+          "pl": "- Jeden statek zajmuje dwa pola."
+        },
+        {
+          "pl": "Osobno można pozwolić statkom stykać się bokami i rogami. Nadal muszą mieścić się na planszy i nie mogą zajmować tych samych pól."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: przeglądaj pola planszy."
+        },
+        {
+          "pl": "Enter: zatwierdź sposób rozstawienia; przy ręcznym ustawianiu wskaż koniec statku, a podczas gry strzel na planszy przeciwnika."
+        },
+        {
+          "pl": "Backspace: anuluj zaznaczenie pierwszego końca; jeśli nic nie jest zaznaczone, cofnij ostatni statek przed zatwierdzeniem floty."
+        },
+        {
+          "pl": "F: odczytaj liczbę nietrafionych pól swojej floty."
+        },
+        {
+          "pl": "Shift+F: odczytaj liczbę nietrafionych pól floty przeciwnika."
+        },
+        {
+          "pl": "L: odczytaj ostatni strzał, którego wynik jest już znany."
+        },
+        {
+          "pl": "M: odczytaj liczbę swoich strzałów, trafień i zatopionych statków."
+        },
+        {
+          "pl": "Ctrl+L: przejrzyj swoje strzały i ich wyniki."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "fleet": "variants",
+    "touching": "variants"
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "source": "games/domino.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Dominó formas una cadena común con tus fichas e intentas quedarte sin ninguna antes que los demás. Las fichas que conserves al acabar la ronda te dan puntos de penalización. Quien alcanza el límite queda eliminado; gana el último jugador que siga en la partida."
+        },
+        {
+          "es": "La partida habitual admite de dos a cuatro personas y usa las veintiocho fichas del doble seis. Cada mitad tiene de cero a seis puntos. Se reparten siete fichas a cada jugador; las restantes quedan disponibles para robar."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "es": "Abrir una ronda"
+      },
+      "paragraphs": [
+        {
+          "es": "Empieza quien tenga el doble más alto, es decir, la ficha con el mismo número en ambas mitades. Si nadie tiene un doble, empieza quien tenga la ficha cuya suma sea mayor. Si varias fichas empatan en esa suma, la prioridad entre sus dueños cambia de una ronda a otra."
+        },
+        {
+          "es": "Quien empieza puede poner cualquier ficha de su mano. Elígela con las flechas y pulsa Enter. Después se juega por turnos, añadiendo una ficha a uno de los dos extremos de la cadena."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "es": "Colocar una ficha"
+      },
+      "paragraphs": [
+        {
+          "es": "Una ficha encaja si una de sus mitades coincide con el número del extremo elegido. Su otra mitad se convierte en el nuevo extremo. Por ejemplo, al añadir 3–5 a un extremo de 3, ese extremo pasa a ser 5."
+        },
+        {
+          "es": "C lee los dos extremos. Selecciona una ficha que encaje con las flechas y juégala con Enter; entonces pasa el turno."
+        },
+        {
+          "es": "Si la ficha encaja en ambos extremos, se usa el lado que hayas elegido: G selecciona el izquierdo y D el derecho. La elección se conserva para las siguientes jugadas con dos destinos posibles. Al empezar está seleccionado el derecho."
+        }
+      ]
+    },
+    {
+      "id": "drawing",
+      "title": {
+        "es": "Robar fichas"
+      },
+      "paragraphs": [
+        {
+          "es": "Si no puedes colocar ninguna ficha, pulsa Espacio para robar una. Si después tienes una que encaje, selecciónala con las flechas y juégala con Enter. También puedes jugar una ficha que ya tenías antes del robo."
+        },
+        {
+          "es": "Con las reglas habituales se permite robar una ficha aunque ya tengas una jugada disponible. Robar es opcional en ese caso: puedes jugar directamente."
+        },
+        {
+          "es": "Si después de robar sigues sin poder jugar, el turno pasa. Cuando no quedan fichas para robar y ninguna de las tuyas encaja, se omite tu turno automáticamente."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "es": "Final de ronda y penalizaciones"
+      },
+      "paragraphs": [
+        {
+          "es": "La ronda termina cuando alguien coloca su última ficha. También termina si se bloquea: no quedan fichas para robar, todos han tenido oportunidad de jugar y nadie puede añadir ninguna."
+        },
+        {
+          "es": "Los puntos se calculan así:"
+        },
+        {
+          "es": "- Quien se queda sin fichas recibe cero puntos."
+        },
+        {
+          "es": "- Los demás suman los puntos de todas las fichas que conserven. En una ronda bloqueada lo hacen todos."
+        },
+        {
+          "es": "- El 0–0 vale diez puntos si es la única ficha que queda en la mano. Si está acompañado de otras, no añade nada."
+        },
+        {
+          "es": "Consulta los resultados con S. Después se reparten las fichas de otra ronda, salvo que ya haya terminado la partida."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Ganar la partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Al acabar cada ronda quedan eliminados quienes tengan al menos cien puntos. Los demás siguen jugando hasta que solo quede una persona, que gana."
+        },
+        {
+          "es": "Si todos los jugadores restantes alcanzan el límite en la misma ronda, gana quien tenga menos puntos. Si varios comparten ese mínimo, comparten la victoria."
+        }
+      ]
+    },
+    {
+      "id": "sets",
+      "title": {
+        "es": "Otros juegos de fichas"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar puedes cambiar el juego de fichas. El número del nombre indica el máximo de puntos de una mitad. Los juegos más grandes permiten reunir a más personas."
+        },
+        {
+          "es": "Estas son las posibilidades:"
+        },
+        {
+          "es": "- Doble seis habitual: hasta cuatro personas, con siete fichas cada una."
+        },
+        {
+          "es": "- Doble nueve, doce, quince o dieciocho: diez fichas por jugador."
+        },
+        {
+          "es": "- Dos o cuatro copias del doble seis, nueve o doce: hay fichas repetidas y se reparten diez a cada jugador."
+        },
+        {
+          "es": "El doble nueve y las dos copias del doble seis admiten hasta cinco personas. Los demás juegos grandes admiten hasta ocho."
+        }
+      ]
+    },
+    {
+      "id": "draw_variants",
+      "title": {
+        "es": "Variantes de robo"
+      },
+      "paragraphs": [
+        {
+          "es": "Los ajustes previos a la partida permiten cambiar cómo se roba:"
+        },
+        {
+          "es": "- Sin robo, solo juegas con las fichas del reparto. Si no tienes jugada, pasas automáticamente. Las otras opciones de robo no se aplican."
+        },
+        {
+          "es": "- Puedes prohibir el robo cuando ya haya una ficha que encaje. En ese caso debes jugarla; Espacio solo sirve para buscar una ficha cuando no tienes ninguna válida."
+        },
+        {
+          "es": "- Puedes activar el robo hasta encontrar una ficha válida. Una sola pulsación de Espacio roba sucesivamente hasta que la nueva ficha encaje o se agote la reserva. Después eliges cuál jugar y confirmas con Enter."
+        },
+        {
+          "es": "Si el robo está prohibido, la ronda puede bloquearse aunque todavía queden fichas en la reserva."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "es": "Juego por equipos"
+      },
+      "paragraphs": [
+        {
+          "es": "Los compañeros comparten puntuación, pero cada uno juega sus propias fichas. Después de tu turno juega alguien del siguiente equipo. Antes de empezar puedes elegir estas formaciones:"
+        },
+        {
+          "es": "- Cuatro personas: dos parejas."
+        },
+        {
+          "es": "- Seis personas: dos equipos de tres o tres parejas."
+        },
+        {
+          "es": "- Ocho personas: dos equipos de cuatro o cuatro parejas."
+        },
+        {
+          "es": "Normalmente basta con que un miembro del equipo se quede sin fichas para ganar la ronda. Su equipo recibe cero puntos. Cada equipo rival suma sus fichas restantes y, además, las que les queden a los compañeros del ganador."
+        },
+        {
+          "es": "Por ejemplo, el ganador ha vaciado su mano, pero su compañero conserva ocho puntos. Si tu equipo conserva once, recibe diecinueve puntos por la ronda. En una ronda bloqueada, cada equipo solo cuenta sus propias fichas."
+        },
+        {
+          "es": "La opción de terminar todo el equipo exige que todos sus miembros se queden sin fichas para cerrar la ronda. Se saltan los turnos de quienes ya no tienen ninguna."
+        },
+        {
+          "es": "El límite de puntos se aplica al equipo y elimina a todos sus miembros a la vez. Gana el último equipo que siga jugando. Si todos los que quedaban son eliminados juntos, decide la menor puntuación, igual que en la partida individual."
+        }
+      ]
+    },
+    {
+      "id": "limit",
+      "title": {
+        "es": "Cambiar el límite de puntos"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes elegir un límite distinto de cien. Quedas eliminado cuando, al acabar una ronda, tu puntuación alcanza o supera ese límite."
+        }
+      ]
+    },
+    {
+      "id": "clock",
+      "title": {
+        "es": "Tiempo para jugar"
+      },
+      "paragraphs": [
+        {
+          "es": "Por defecto no hay límite de tiempo. En los ajustes puedes fijar un número de segundos para el turno completo. Robar no reinicia el plazo."
+        },
+        {
+          "es": "Si se agota el tiempo, recibes una ficha si aún no habías robado en ese turno, quedan fichas y el robo no está prohibido. Después pasa el turno sin colocar ninguna. La penalización se aplica aunque tuvieras una jugada válida; la opción de robar hasta encontrar una ficha no aumenta esta penalización, que sigue siendo de una sola ficha."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: elegir una ficha."
+        },
+        {
+          "es": "Enter: jugar la ficha; si encaja en ambos extremos, usar el lado seleccionado."
+        },
+        {
+          "es": "G: seleccionar el extremo izquierdo para las fichas que encajen en ambos."
+        },
+        {
+          "es": "D: seleccionar el extremo derecho para las fichas que encajen en ambos."
+        },
+        {
+          "es": "Espacio: robar según las reglas de la mesa."
+        },
+        {
+          "es": "C: consultar los extremos de la cadena."
+        },
+        {
+          "es": "V: revisar la cadena completa."
+        },
+        {
+          "es": "E: consultar cuántas fichas tienen los jugadores y cuántas quedan para robar."
+        },
+        {
+          "es": "Z: ir a la siguiente ficha válida; jugarla automáticamente si solo hay una jugada inequívoca."
+        },
+        {
+          "es": "Shift+Z: ir a la ficha válida anterior; jugarla automáticamente si solo hay una jugada inequívoca."
+        },
+        {
+          "es": "S: consultar los resultados."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "tile_set": "sets",
+    "teams": "teams",
+    "team_count": "teams",
+    "forbid_draw": "draw_variants",
+    "allow_playable_draw": "draw_variants",
+    "draw_until": "draw_variants",
+    "whole_team": "teams",
+    "thinking_time": "clock",
+    "score_limit": "limit"
+  }
+}

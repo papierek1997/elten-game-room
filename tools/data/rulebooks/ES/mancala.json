@@ -1,0 +1,227 @@
+{
+  "source": "games/mancala.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "Mancala es un juego para dos personas en el que mueves piedras entre hoyos para capturar tantas como puedas. Las capturadas van a tu depósito y cada una vale un punto."
+        },
+        {
+          "es": "Primero se explica Oware, la variante elegida por defecto. Empieza el primer jugador y después se alternan los turnos."
+        }
+      ]
+    },
+    {
+      "id": "board",
+      "title": {
+        "es": "Hoyos y piedras"
+      },
+      "paragraphs": [
+        {
+          "es": "El tablero tiene dos filas de seis hoyos. Tu fila está abajo, de A1 a F1; la rival está arriba, de A2 a F2. Los hoyos de una misma columna están enfrentados."
+        },
+        {
+          "es": "Al empezar hay cuatro piedras por hoyo, cuarenta y ocho en total, y los dos depósitos están vacíos. Las flechas izquierda y derecha recorren los hoyos; arriba y abajo cambian de fila."
+        }
+      ]
+    },
+    {
+      "id": "sowing",
+      "title": {
+        "es": "Sembrar las piedras"
+      },
+      "paragraphs": [
+        {
+          "es": "En tu turno, elige con las flechas un hoyo no vacío de tu fila y pulsa Enter. Se recogen todas sus piedras y se reparte una en cada hoyo siguiente. Esta acción se llama sembrar."
+        },
+        {
+          "es": "El recorrido va de A1 a F1 por tu fila, después de F2 a A2 por la rival y vuelve a la tuya. En Oware se saltan los dos depósitos. Si hay piedras suficientes para dar una vuelta completa, también se salta el hoyo del que salieron."
+        }
+      ]
+    },
+    {
+      "id": "capture",
+      "title": {
+        "es": "Capturas en Oware"
+      },
+      "paragraphs": [
+        {
+          "es": "Si la última piedra cae en un hoyo rival y lo deja con dos o tres piedras, capturas todo su contenido y lo llevas a tu depósito."
+        },
+        {
+          "es": "Después se examina el hoyo rival anterior, en sentido contrario a la siembra. Si también tiene dos o tres piedras, capturas esas piedras. Se continúa hacia atrás por la fila rival hasta encontrar otra cantidad o alcanzar su extremo."
+        },
+        {
+          "es": "No está permitido vaciar así toda la fila rival. Si el conjunto de capturas dejaría al contrario sin piedras, no capturas ninguna en ese movimiento: las piedras sembradas se quedan donde están."
+        }
+      ]
+    },
+    {
+      "id": "feeding",
+      "title": {
+        "es": "Cuando el rival no tiene piedras"
+      },
+      "paragraphs": [
+        {
+          "es": "Si la fila rival está vacía al empezar tu turno, debes elegir una jugada que le entregue al menos una piedra. Busca un hoyo con piedras suficientes para que la siembra alcance su fila."
+        },
+        {
+          "es": "Si ninguna jugada puede hacerlo, la partida termina. También termina si quien debe jugar no tiene piedras en ninguno de sus hoyos."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Resultado de Oware"
+      },
+      "paragraphs": [
+        {
+          "es": "Capturar más de la mitad de las piedras da la victoria inmediata. Con las cuatro piedras habituales por hoyo basta con reunir veinticinco."
+        },
+        {
+          "es": "Si la partida termina por falta de jugadas, cada persona lleva a su depósito las piedras que queden en su propia fila. Se hace lo mismo después de ciento veinte movimientos consecutivos sin capturas."
+        },
+        {
+          "es": "Después de ese recuento gana quien tenga más piedras; si las cantidades son iguales, hay empate. S consulta la puntuación actual de ambos."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Elegir una variante"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes elegir entre tres variantes:"
+        },
+        {
+          "es": "- Oware, explicado arriba, captura piedras de hoyos rivales consecutivos que tengan dos o tres."
+        },
+        {
+          "es": "- Ayoayo alarga la jugada recogiendo y sembrando de nuevo desde el hoyo donde acabó la siembra anterior. Se explica en el siguiente apartado."
+        },
+        {
+          "es": "- Kalah incluye tu depósito en la siembra: las piedras que caen en él dan puntos y, en algunos casos, otro turno."
+        }
+      ]
+    },
+    {
+      "id": "ayoayo",
+      "title": {
+        "es": "Ayoayo"
+      },
+      "paragraphs": [
+        {
+          "es": "Comienza igual que en Oware: elige un hoyo propio con las flechas y pulsa Enter. La siembra salta ambos depósitos y el hoyo del que se están repartiendo las piedras."
+        },
+        {
+          "es": "Si la última piedra cae en un hoyo que ya tenía piedras, se recoge todo su contenido y se sigue sembrando desde allí. Puede ser también un hoyo rival. La cadena solo acaba cuando la última piedra cae en un hoyo que estaba vacío."
+        },
+        {
+          "es": "Si ese hoyo vacío es tuyo y enfrente hay piedras rivales, capturas esas piedras y la última que acabas de colocar. Todas pasan a tu depósito. No capturas nada si el hoyo de enfrente está vacío o si acabas en la fila rival."
+        },
+        {
+          "es": "Si el rival tiene su fila vacía, sigues obligado a darle piedras si es posible. Cuando te toca y no puedes hacer ninguna jugada, termina la partida y el rival recibe todas las piedras que queden en el tablero. Gana quien tenga más; con cantidades iguales hay empate. A diferencia de Oware, superar la mitad de las piedras no termina la partida."
+        }
+      ]
+    },
+    {
+      "id": "kalah",
+      "title": {
+        "es": "Kalah"
+      },
+      "paragraphs": [
+        {
+          "es": "Elige un hoyo y pulsa Enter como antes. En Kalah, la siembra pasa también por tu depósito, situado al final de tu fila. Cada piedra que cae en él se queda como punto. Se salta el depósito rival, pero al dar una vuelta completa no se salta el hoyo de salida."
+        },
+        {
+          "es": "Si la última piedra cae en tu depósito, juegas otra vez. Elige otro hoyo propio con las flechas y pulsa Enter."
+        },
+        {
+          "es": "Si termina en un hoyo tuyo que estaba vacío y enfrente hay piedras rivales, capturas esas piedras junto con la última que colocaste. Puedes desactivar esta captura en los ajustes de Kalah; las demás formas de puntuar se mantienen."
+        },
+        {
+          "es": "La partida termina cuando una fila queda vacía después de un movimiento, incluso si ese movimiento daría otro turno. El dueño de la fila que aún tiene piedras las lleva a su depósito. Gana quien haya reunido más; si hay igualdad, la partida acaba en empate."
+        }
+      ]
+    },
+    {
+      "id": "stones",
+      "title": {
+        "es": "Cantidad de piedras"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar puedes elegir entre dos y ocho piedras por hoyo en lugar de las cuatro habituales. Se aplica a todas las variantes. En Oware, la victoria inmediata sigue exigiendo más de la mitad de todas las piedras."
+        }
+      ]
+    },
+    {
+      "id": "computer",
+      "title": {
+        "es": "Jugar contra el ordenador"
+      },
+      "paragraphs": [
+        {
+          "es": "Puedes elegir la fuerza del ordenador antes de empezar:"
+        },
+        {
+          "es": "- Tranquilo es el rival más fácil."
+        },
+        {
+          "es": "- Equilibrado es el nivel habitual."
+        },
+        {
+          "es": "- Perspicaz es el rival más fuerte."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flecha izquierda: ir al hoyo de la izquierda."
+        },
+        {
+          "es": "Flecha derecha: ir al hoyo de la derecha."
+        },
+        {
+          "es": "Flecha arriba: ir a la fila superior."
+        },
+        {
+          "es": "Flecha abajo: ir a la fila inferior."
+        },
+        {
+          "es": "Enter: sembrar desde el hoyo elegido de tu fila."
+        },
+        {
+          "es": "S: consultar los depósitos, empezando por la puntuación mayor."
+        },
+        {
+          "es": "P: consultar tus hoyos en el orden de siembra."
+        },
+        {
+          "es": "Shift+P: consultar los hoyos rivales en su orden de siembra."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "stones": "stones",
+    "skill": "computer",
+    "capture": "kalah"
+  }
+}

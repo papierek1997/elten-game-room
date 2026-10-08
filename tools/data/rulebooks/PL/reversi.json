@@ -1,0 +1,108 @@
+{
+  "source": "games/reversi.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Reversi grają dwie osoby na planszy 8 na 8 pól. Jedna ma czarne pionki, druga białe. Wygrywa ten, kto na koniec będzie miał na planszy więcej pionków swojego koloru."
+        },
+        {
+          "pl": "Na początku pośrodku stoją cztery pionki, po dwa każdego koloru. Zaczynają czarne, a potem gracze wykonują ruchy na zmianę."
+        }
+      ]
+    },
+    {
+      "id": "placing",
+      "title": {
+        "pl": "Stawianie i odwracanie pionków"
+      },
+      "paragraphs": [
+        {
+          "pl": "W swojej turze stawiasz jeden pionek na pustym polu. Musisz przy tym zamknąć co najmniej jeden pionek przeciwnika między nowym pionkiem a innym swoim pionkiem. Ta linia może biec wzdłuż rzędu, kolumny albo przekątnej, ale nie może mieć przerw."
+        },
+        {
+          "pl": "Przejdź strzałkami do wybranego pustego pola i naciśnij Enter. Wszystkie pionki przeciwnika zamknięte w ten sposób zmienią kolor na Twój. Jeśli ruch zamyka kilka linii jednocześnie, odwracają się pionki w każdej z nich."
+        },
+        {
+          "pl": "Na przykład między Twoim pionkiem a pustym polem stoją dwa czarne pionki. Jeśli grasz białymi i postawisz pionek na tym pustym polu, oba czarne staną się białe."
+        },
+        {
+          "pl": "Odwrócone pionki nie wywołują dalszych odwróceń. Liczą się tylko linie zamknięte przez pionek, który właśnie postawiłeś."
+        }
+      ]
+    },
+    {
+      "id": "passing",
+      "title": {
+        "pl": "Pomijanie ruchu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli nie możesz wykonać ruchu odwracającego pionki przeciwnika, automatycznie pomijasz turę. Przeciwnik gra wtedy ponownie, o ile sam może wykonać ruch."
+        },
+        {
+          "pl": "Przy zwykłych ustawieniach możesz też dobrowolnie zrezygnować z ruchu, naciskając P. Samo pasowanie obu graczy nie kończy partii, jeśli nadal istnieją możliwe ruchy."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Koniec i wynik"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gra kończy się, gdy plansza zostanie zapełniona albo żaden z graczy nie może już wykonać ruchu. Wygrywa osoba, która ma więcej pionków na planszy. Jeśli oboje macie tyle samo, jest remis. Liczbę pionków sprawdzisz klawiszem S."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Zmiany zasad"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach przed grą można wprowadzić dwie zmiany:"
+        },
+        {
+          "pl": "- Można zabronić dobrowolnego pasowania. Wtedy pomijasz kolej tylko wtedy, gdy nie masz żadnego dozwolonego ruchu."
+        },
+        {
+          "pl": "- Można wyłączyć obowiązek odwrócenia pionka przy każdym ruchu. Wolno wtedy dostawić pionek na puste pole sąsiadujące bokiem lub rogiem z dowolnym pionkiem na planszy. Jeśli taki ruch zamknie pionki przeciwnika, nadal zmieniają kolor jak zwykle."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: przeglądaj pola planszy."
+        },
+        {
+          "pl": "Enter: postaw pionek na wybranym polu."
+        },
+        {
+          "pl": "P: spasuj, jeśli pozwalają na to zasady stołu."
+        },
+        {
+          "pl": "S: odczytaj liczbę pionków obu graczy."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "allow_passing": "variants",
+    "mandatory_capture": "variants"
+  }
+}

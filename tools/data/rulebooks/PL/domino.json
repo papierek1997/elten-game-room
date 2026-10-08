@@ -1,0 +1,268 @@
+{
+  "source": "games/domino.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Domino dokładasz kostki do wspólnego łańcucha i starasz się jako pierwszy opróżnić rękę. Kostki, z którymi zostaniesz na koniec rundy, przynoszą punkty karne. Po osiągnięciu limitu punktów odpadasz. Wygrywasz, gdy wszyscy przeciwnicy odpadną."
+        },
+        {
+          "pl": "Zwykła gra jest dla dwóch do czterech osób. Używa się dwudziestu ośmiu kostek, na których każda połówka ma od zera do sześciu oczek. Każdy dostaje siedem kostek, a pozostałe można później dobierać."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "pl": "Początek rundy"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zaczyna osoba z najwyższym dubletem, czyli kostką mającą tę samą liczbę oczek po obu stronach. Jeśli nikt nie ma dubletu, zaczyna posiadacz kostki z największą sumą oczek. Gdy kilka osób ma równie wysoką kostkę, pierwszeństwo zmienia się między rundami."
+        },
+        {
+          "pl": "Rozpoczynający może wyłożyć dowolną kostkę ze swojej ręki. Wybierz ją strzałkami i naciśnij Enter. Od tej chwili gracze na zmianę dokładają po jednej kostce do jednego z końców łańcucha."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "pl": "Dokładanie kostek"
+      },
+      "paragraphs": [
+        {
+          "pl": "Kostka pasuje, jeśli na jednej połówce ma tyle oczek, ile jest na wybranym końcu łańcucha. Po dołożeniu jej druga połówka staje się nowym końcem. Na przykład do końca z trzema oczkami można dołożyć 3–5; od tej strony łańcuch będzie się teraz kończył piątką."
+        },
+        {
+          "pl": "Klawisz C odczytuje liczby na obu końcach. Wybierz pasującą kostkę strzałkami i naciśnij Enter, żeby ją położyć. Po tym ruchu gra następna osoba."
+        },
+        {
+          "pl": "Jeśli kostka pasuje do obu końców, gra używa strony ustawionej klawiszami G i D. G wybiera lewy koniec, a D prawy; ten wybór obowiązuje również przy kolejnych takich zagraniach. Na początku wybrana jest prawa strona."
+        }
+      ]
+    },
+    {
+      "id": "drawing",
+      "title": {
+        "pl": "Dobieranie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gdy nie możesz nic dołożyć, naciśnij Spację, by dobrać jedną kostkę. Jeśli po dobraniu masz pasującą kostkę, wybierz ją strzałkami i zagraj Enterem. Możesz wyłożyć także kostkę, którą miałeś już wcześniej."
+        },
+        {
+          "pl": "Przy zwykłych ustawieniach wolno dobrać jedną kostkę również wtedy, gdy masz czym zagrać. Nie musisz jednak dobierać przed zwykłym wyłożeniem kostki."
+        },
+        {
+          "pl": "Jeśli po dobraniu nadal nie masz ruchu, kolej przechodzi dalej. Kiedy stos jest pusty i nie masz pasującej kostki, gra od razu pomija Twoją turę."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "pl": "Koniec rundy i punkty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Runda kończy się, gdy ktoś wyłoży swoją ostatnią kostkę. Może też zostać zablokowana: stos jest pusty, każdy miał już okazję ruszyć i nikt nie potrafi nic dołożyć."
+        },
+        {
+          "pl": "Punkty za rundę liczy się następująco:"
+        },
+        {
+          "pl": "- Gracz, który opróżnił rękę, dostaje zero punktów."
+        },
+        {
+          "pl": "- Pozostali dodają do swojego wyniku sumę oczek ze wszystkich kostek, które mają w ręce. Przy zablokowanej rundzie robią to wszyscy."
+        },
+        {
+          "pl": "- Kostka 0–0 jest warta dziesięć punktów, jeśli została jako jedyna w ręce. Gdy towarzyszą jej inne kostki, sama nie dodaje punktów."
+        },
+        {
+          "pl": "Klawisz S odczytuje wyniki. Po rozliczeniu rozdawane są kostki do następnej rundy, chyba że rozstrzygnęła się już cała gra."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Wygrana w całej grze"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po każdej rundzie odpadają gracze, którzy mają co najmniej sto punktów. Gra toczy się dalej między pozostałymi, aż zostanie jedna osoba — to ona wygrywa."
+        },
+        {
+          "pl": "Jeśli wszyscy pozostali gracze osiągną limit w tej samej rundzie, wygrywa osoba z najmniejszą liczbą punktów. Jeśli kilka osób ma taki sam najniższy wynik, wygrywają wspólnie."
+        }
+      ]
+    },
+    {
+      "id": "sets",
+      "title": {
+        "pl": "Inne zestawy kostek"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zestaw można zmienić w ustawieniach przed grą. Liczba w jego nazwie oznacza największą liczbę oczek na jednej połówce kostki. Większe zestawy pozwalają grać w więcej osób."
+        },
+        {
+          "pl": "Do wyboru są:"
+        },
+        {
+          "pl": "- Zwykły zestaw do sześciu oczek: grają najwyżej cztery osoby i każda dostaje po siedem kostek."
+        },
+        {
+          "pl": "- Większe zestawy, do dziewięciu, dwunastu, piętnastu lub osiemnastu oczek: każdy dostaje po dziesięć kostek."
+        },
+        {
+          "pl": "- Dwie albo cztery kopie zestawu do sześciu, dziewięciu lub dwunastu oczek: te same kostki występują kilka razy, a każdy gracz dostaje ich po dziesięć."
+        },
+        {
+          "pl": "Zestaw do dziewięciu oczek i dwie kopie zestawu do sześciu wystarczają dla pięciu osób. W pozostałych większych zestawach może grać do ośmiu osób."
+        }
+      ]
+    },
+    {
+      "id": "draw_variants",
+      "title": {
+        "pl": "Zmiany dobierania"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach przed grą można zmienić dobieranie:"
+        },
+        {
+          "pl": "- Zakaz dobierania sprawia, że przez całą rundę grasz tylko otrzymanymi kostkami. Jeśli nie masz ruchu, pasujesz automatycznie. Pozostałe zmiany dobierania nie mają wtedy zastosowania."
+        },
+        {
+          "pl": "- Można zabronić dobierania, gdy masz pasującą kostkę. Wtedy musisz ją zagrać, a Spacja służy tylko do szukania brakującej kostki."
+        },
+        {
+          "pl": "- Można włączyć dobieranie aż do znalezienia pasującej kostki. Jedno naciśnięcie Spacji dobiera kolejne kostki, aż nowo dobrana będzie pasować albo skończy się stos. Następnie wybierasz kostkę do zagrania i zatwierdzasz ją Enterem."
+        },
+        {
+          "pl": "Przy zakazie dobierania runda może zostać zablokowana także wtedy, gdy w stosie zostały jeszcze kostki."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "pl": "Gra w drużynach"
+      },
+      "paragraphs": [
+        {
+          "pl": "W grze drużynowej partnerzy mają wspólny wynik, ale każdy wykłada kostki ze swojej ręki. Po twoim ruchu gra osoba z następnej drużyny. W ustawieniach przed grą można wybrać następujący podział:"
+        },
+        {
+          "pl": "- Cztery osoby grają w dwóch parach."
+        },
+        {
+          "pl": "- Sześć osób może grać w dwóch drużynach po trzy osoby albo w trzech parach."
+        },
+        {
+          "pl": "- Osiem osób może grać w dwóch drużynach po cztery osoby albo w czterech parach."
+        },
+        {
+          "pl": "Zwykle wystarczy, że jeden członek drużyny pozbędzie się kostek. Jego drużyna wygrywa rundę i dostaje zero punktów. Pozostałe drużyny sumują punkty za kostki, które zostały im w rękach. Każda z nich dolicza też punkty za kostki partnerów zwycięzcy."
+        },
+        {
+          "pl": "Na przykład zwycięzca opróżnił rękę, ale jego partnerowi zostały kostki warte osiem punktów. Jeśli kostki twojej drużyny są warte jedenaście, za tę rundę dostaniecie dziewiętnaście punktów. Przy zablokowanej rundzie każda drużyna liczy punkty tylko za własne kostki."
+        },
+        {
+          "pl": "Można włączyć zasadę, że cała drużyna musi skończyć. Wtedy runda kończy się dopiero, gdy wszyscy jej członkowie opróżnią ręce. Osoby bez kostek są pomijane w kolejce."
+        },
+        {
+          "pl": "Limit punktów dotyczy całej drużyny. Osiągnięcie go eliminuje wszystkich jej członków, a wygrywa ostatnia drużyna, która pozostanie w grze. Jeśli wszystkie pozostałe drużyny odpadną jednocześnie, rozstrzyga najniższy wynik, tak jak w grze indywidualnej."
+        }
+      ]
+    },
+    {
+      "id": "limit",
+      "title": {
+        "pl": "Inny limit punktów"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed grą można ustawić inny limit niż sto punktów. Odpadasz, gdy po rundzie masz co najmniej tyle punktów, ile wynosi wybrany limit."
+        }
+      ]
+    },
+    {
+      "id": "clock",
+      "title": {
+        "pl": "Czas na ruch"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zwykle nie ma ograniczenia czasu. W ustawieniach przed grą można określić, ile sekund gracz ma na całą turę. Dobranie kostki nie uruchamia czasu od nowa."
+        },
+        {
+          "pl": "Po przekroczeniu czasu gra dobiera za Ciebie jedną kostkę, jeśli jeszcze nie dobierałeś w tej turze, stos nie jest pusty i dobieranie nie jest zabronione. Następnie oddaje kolej bez zagrania kostki. Ta kara działa również wtedy, gdy miałeś czym zagrać; zasada dobierania aż do pasującej kostki nie zwiększa jej do kilku kostek."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: wybierz kostkę."
+        },
+        {
+          "pl": "Enter: zagraj wybraną kostkę; jeśli pasuje na oba końce, użyj wybranego wcześniej końca."
+        },
+        {
+          "pl": "G: wybierz lewy koniec dla kolejnych zagrań pasujących na obie strony."
+        },
+        {
+          "pl": "D: wybierz prawy koniec dla kolejnych zagrań pasujących na obie strony."
+        },
+        {
+          "pl": "Spacja: dobierz zgodnie z zasadami stołu."
+        },
+        {
+          "pl": "C: odczytaj oba końce łańcucha."
+        },
+        {
+          "pl": "V: przejrzyj cały łańcuch."
+        },
+        {
+          "pl": "E: odczytaj liczbę kostek u graczy i w stosie."
+        },
+        {
+          "pl": "Z: przejdź do następnej pasującej kostki; zagraj automatycznie, jeśli istnieje tylko jeden jednoznaczny ruch."
+        },
+        {
+          "pl": "Shift+Z: przejdź do poprzedniej pasującej kostki; zagraj automatycznie, jeśli istnieje tylko jeden jednoznaczny ruch."
+        },
+        {
+          "pl": "S: odczytaj wyniki."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "tile_set": "sets",
+    "teams": "teams",
+    "team_count": "teams",
+    "forbid_draw": "draw_variants",
+    "allow_playable_draw": "draw_variants",
+    "draw_until": "draw_variants",
+    "whole_team": "teams",
+    "thinking_time": "clock",
+    "score_limit": "limit"
+  }
+}

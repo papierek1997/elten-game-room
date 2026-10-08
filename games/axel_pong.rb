@@ -18,6 +18,10 @@ module GameRoomGames
 
     def id; 'axel_pong'; end
     def name; _('Axel Pong'); end
+
+    def short_description
+      _("Move your paddle, defend your goal and hit the ball where your opponent cannot stop it.")
+    end
     def maximum_players; 4; end
     def supports_bots?; true; end
     def supports_bot_move_delay?; false; end

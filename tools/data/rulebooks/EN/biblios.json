@@ -1,0 +1,266 @@
+{
+  "source": "games/biblios.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "en": "Building a library"
+      },
+      "paragraphs": [
+        {
+          "en": "In Biblios, collect cards to lead in different library categories. Having many cards is not enough: only the winner of each category scores its victory points. Two to four players compete."
+        },
+        {
+          "en": "First, take turns distributing cards to yourself, other players and a future auction pile. Then bid on the auction cards to improve your library, obtain gold or change how many points a category is worth."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "en": "Cards and category values"
+      },
+      "paragraphs": [
+        {
+          "en": "There are three types of cards:"
+        },
+        {
+          "en": "- Library cards belong to one of five categories. Each adds its value to your total in that category and has a letter used to break ties. A Monks card worth 3 with letter B, for example, adds 3 to your Monks total."
+        },
+        {
+          "en": "- Gold cards are worth 1, 2 or 3. Keep them to pay for auction wins."
+        },
+        {
+          "en": "- Church cards change category values. Resolve them as soon as you acquire them instead of keeping them for later."
+        },
+        {
+          "en": "Each category has a die, initially showing 3. This is how many victory points that category's winner earns. Church cards can change it between 1 and 6. C reads the dice."
+        },
+        {
+          "en": "Your cards help you win a category; its die decides the reward. If your Monks total of 12 wins that category and its die shows 5, you earn 5 victory points."
+        },
+        {
+          "en": "L reads your library and Ctrl+L lets you inspect its categories. G reads your gold. Cards opponents kept for themselves during distribution are secret, so Shift+C compares only the known parts of their libraries."
+        }
+      ]
+    },
+    {
+      "id": "gifts",
+      "title": {
+        "en": "Distributing cards"
+      },
+      "paragraphs": [
+        {
+          "en": "On your distribution turn, cards are revealed one at a time. Choose what to do with each using the arrows and Enter before seeing the next."
+        },
+        {
+          "en": "You distribute one more card than the number of players: four cards in a three-player game, for example. Allocate them as follows:"
+        },
+        {
+          "en": "- Keep exactly one for yourself."
+        },
+        {
+          "en": "- Put exactly one aside for auction."
+        },
+        {
+          "en": "- Put the rest in the public pool for the other players."
+        },
+        {
+          "en": "You may allocate them in any order. Keeping the first card, for instance, means all later cards must go to the auction or pool. You cannot look ahead and compare the whole group first."
+        },
+        {
+          "en": "Once you have distributed them, each other player takes one from the pool, starting with the player after you. When it is your turn to choose, browse with the arrows and take a card with Enter. P reads what remains."
+        },
+        {
+          "en": "The next player then distributes. When the deck is exhausted, shuffle the auction pile and begin the auctions."
+        }
+      ]
+    },
+    {
+      "id": "church",
+      "title": {
+        "en": "Church cards"
+      },
+      "paragraphs": [
+        {
+          "en": "A church card takes effect when you acquire it, whether kept for yourself, chosen from the pool or bought at auction. Choose its effect before play continues. Setting one aside for auction does not activate it."
+        },
+        {
+          "en": "The card determines which change is available:"
+        },
+        {
+          "en": "- Raise one die by 1."
+        },
+        {
+          "en": "- Lower one die by 1."
+        },
+        {
+          "en": "- Raise two different dice by 1 each."
+        },
+        {
+          "en": "- Lower two different dice by 1 each."
+        },
+        {
+          "en": "- Choose to raise or lower one die by 1."
+        },
+        {
+          "en": "Browse available changes with the arrows and confirm with Enter. A two-die card asks for a pair of categories: you cannot change one die by 2 or use only half the effect."
+        },
+        {
+          "en": "Dice cannot go below 1 or above 6. Choose not to use the card if you do not want a change or no valid one is possible."
+        }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": {
+        "en": "Bidding"
+      },
+      "paragraphs": [
+        {
+          "en": "Each auction sells one card. The game announces it and who bids first. Players take turns raising or passing. B repeats the card, highest bidder and current bid."
+        },
+        {
+          "en": "On your turn, choose an amount or pass with the arrows and Enter. Opening bids must be at least 1, and each later bid must exceed the previous one. R lets you type your own amount and confirm it with Enter."
+        },
+        {
+          "en": "Passing withdraws you from this auction. The last bidder left wins and must pay. If everyone passes without bidding, the card is lost and the next auction begins."
+        },
+        {
+          "en": "Bid gold for library or church cards. When gold itself is for sale, your bid is the number of cards you will surrender instead. Check which kind of payment you are promising before raising."
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "title": {
+        "en": "Paying"
+      },
+      "paragraphs": [
+        {
+          "en": "After winning, browse your payment cards with the arrows and mark them with Shift+Enter. Enter confirms the whole payment; Escape clears the selection."
+        },
+        {
+          "en": "Payment is counted in two ways:"
+        },
+        {
+          "en": "- For a library or church card, pay gold whose combined value covers the bid. Overpaying is possible, but no change is given."
+        },
+        {
+          "en": "- For gold, give exactly the number of cards you bid, regardless of their values. Library cards may be used, but you lose their contribution to your final library."
+        },
+        {
+          "en": "A gold payment may not include unnecessary cards. Two 3s may pay a bid of 4, because removing either makes the payment too small. A 3 and a 1 cannot pay a bid of 3, because the 1 is unnecessary."
+        },
+        {
+          "en": "You may bid more gold than you hold in the hope of being outbid. If you win and cannot pay, choose not to pay and press Enter. You lose a random card and the same auction restarts without you. Players who merely passed may bid again."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "en": "Scoring the library"
+      },
+      "paragraphs": [
+        {
+          "en": "After the last auction is settled, compare each category. The highest combined card value wins it. Ties go to the best letter held in that category: A beats B, B beats C, and so on."
+        },
+        {
+          "en": "A category winner receives the victory points shown on its die. A category in which nobody has cards awards nothing."
+        },
+        {
+          "en": "Add the points for your won categories. The highest total wins, with remaining gold value breaking a tie."
+        },
+        {
+          "en": "If gold is also equal, compare library categories in the order below. In each, compare total value first and best letter second. Stop as soon as one player has the advantage:"
+        },
+        {
+          "en": "- Monks."
+        },
+        {
+          "en": "- Pigments."
+        },
+        {
+          "en": "- Forbidden Tomes."
+        },
+        {
+          "en": "- Holy Books."
+        },
+        {
+          "en": "- Manuscripts."
+        },
+        {
+          "en": "If all these comparisons remain tied, the game is a draw. S reads the final scores."
+        }
+      ]
+    },
+    {
+      "id": "penalty",
+      "title": {
+        "en": "Non-payment penalties"
+      },
+      "paragraphs": [
+        {
+          "en": "The normal Medieval bluff penalty loses one random card for failing to pay a winning bid. The host can change this before play."
+        },
+        {
+          "en": "With the full penalty, you give one random card to every other player, starting with the next seat. Stop when everyone has received a card or your hand is empty. The auction then restarts without you, as with the normal penalty."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: choose a card, destination, bid or church effect."
+        },
+        {
+          "en": "Enter: confirm a choice or pay with the marked cards."
+        },
+        {
+          "en": "Shift+Enter: mark or unmark a payment card."
+        },
+        {
+          "en": "Escape while paying: clear the payment selection."
+        },
+        {
+          "en": "R: enter a custom bid."
+        },
+        {
+          "en": "B: read the current auction."
+        },
+        {
+          "en": "L: read your library."
+        },
+        {
+          "en": "Ctrl+L: inspect your library categories."
+        },
+        {
+          "en": "C: read category dice."
+        },
+        {
+          "en": "Shift+C: compare players' known cards."
+        },
+        {
+          "en": "G: read your gold."
+        },
+        {
+          "en": "P: read the public pool."
+        },
+        {
+          "en": "S: read final scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "penalty": "penalty"
+  }
+}

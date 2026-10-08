@@ -1,0 +1,111 @@
+{
+  "source": "games/war.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Win the other players' cards. Two to eight people share a 24-card deck, from 9 up to ace. You play cards in the order received, using the next card each time."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "en": "Playing a battle"
+      },
+      "paragraphs": [
+        {
+          "en": "Press Enter on your turn. Once everyone has played one card, the highest wins the whole group. Ranks ascend from 9, 10, jack, queen and king to ace. Suits do not matter."
+        },
+        {
+          "en": "Won cards are put in random order beneath your remaining cards, ready for later battles. C reads cards currently on the table; V repeats the previous result."
+        }
+      ]
+    },
+    {
+      "id": "tie",
+      "title": {
+        "en": "War on a tie"
+      },
+      "paragraphs": [
+        {
+          "en": "A tie for the highest card starts a war. Only the tied players take part, but all cards from the battle remain at stake."
+        },
+        {
+          "en": "On your turn in a war, press Enter again to contribute one hidden card and one revealed card. The highest revealed card wins the entire pile, including hidden cards. Another tie starts another war."
+        },
+        {
+          "en": "With only one card left, play it as the revealed card without adding a hidden one. A player with no cards cannot continue. If only one player has enough to keep going, they take the pile immediately. If nobody can continue, the pile carries over to the next battle."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "Ending the game"
+      },
+      "paragraphs": [
+        {
+          "en": "After a battle is settled, players without cards are eliminated. The last player left wins. If nobody has cards left, the game is a draw."
+        },
+        {
+          "en": "A game lasts at most 20 battles. If nobody has won by then, the largest card count wins; equal largest counts draw. E reads everyone's card count, and Ctrl+T reads the battle number and limit."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Deck and length"
+      },
+      "paragraphs": [
+        {
+          "en": "The host can change these before starting:"
+        },
+        {
+          "en": "- Use a full 52-card deck, from 2 to ace. Number cards still ascend normally, followed by jack, queen, king and ace."
+        },
+        {
+          "en": "- Increase the battle limit from 20, up to 300. The largest card count still decides at the limit."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Enter: play your top card."
+        },
+        {
+          "en": "Space: play your top card."
+        },
+        {
+          "en": "C: read table cards, yours first."
+        },
+        {
+          "en": "E: read card counts."
+        },
+        {
+          "en": "V: read the last battle result."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "Ctrl+T: read the battle number and limit."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "deck": "variants",
+    "battle_limit": "variants"
+  }
+}

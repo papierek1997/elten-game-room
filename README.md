@@ -44,12 +44,16 @@ znaczenie.
 Nie musisz zakładać własnego stołu. „Dołącz do stołu” pozwala wybrać grę
 i przejrzeć istniejące stoły. Możesz też skorzystać z zaproszenia lub widgetu
 na ekranie głównym ELTEN-a.
+Na listach wyboru gry przy tworzeniu i dołączaniu do stołu po nazwie
+usłyszysz krótki opis tego, na czym polega gra.
 Ponowne uruchomienie Power Games w tej samej kopii ELTEN-a wraca do już
 otwartego okna programu, zamiast tworzyć drugą niezależną instancję.
 
 Przy uruchamianiu program może zaproponować pobranie nowszej wersji.
 Odmowa nie blokuje wejścia, ale przed wspólną grą warto zadbać o aktualną
 wersję u wszystkich uczestników. Opis zmian znajdziesz w „Co nowego”.
+Jest to tekst do odczytu z nagłówkiem przy każdej wersji. H przechodzi do
+następnego nagłówka, a Shift+H — do poprzedniego. Escape zamyka dokument.
 
 ## W co można zagrać
 
@@ -150,7 +154,7 @@ Na liście stołów oraz w widgecie możesz dowiedzieć się więcej przed wejś
 
 Przy stole Ctrl+I otwiera zapraszanie użytkowników będących online,
 a Ctrl+Shift+I pozwala wybrać osobę z kontaktów. Otrzymane zaproszenia
-przyjmiesz przez powiadomienie ELTEN-a, pozycję „Zaproszenia” albo Ctrl+J.
+przyjmiesz przez powiadomienie ELTEN-a, menu kontekstowe albo Ctrl+J.
 Ten ostatni skrót działa w całym Power Games, również w widgecie.
 
 W grach dopuszczających obserwatorów można śledzić partię bez zajmowania
@@ -206,6 +210,9 @@ Tab i Shift+Tab przełączają między częściami okna, takimi jak pole gry,
 czat, historia i lista użytkowników. Strzałki służą do poruszania się po
 listach lub planszy, a sposób wykonania ruchu zależy już od danej gry.
 
+W polu „Czat” wpisz wiadomość i wyślij ją Enterem. Jedna wiadomość może
+mieć do 2000 znaków, zarówno przed rozpoczęciem partii, jak i w jej trakcie.
+
 Nie trzeba uczyć się wszystkich skrótów naraz:
 
 - F1 pokazuje pomoc dla bieżącego miejsca i aktualnie dostępnych czynności.
@@ -232,6 +239,8 @@ Widget Power Games na ekranie głównym ELTEN-a pozwala przeglądać stoły
 bez wcześniejszego otwierania głównego menu programu. Wybierzesz w nim stół,
 sprawdzisz jego ustawienia lub obsadę i przyjmiesz zaproszenie.
 Ctrl+N przenosi od razu do wyboru gry przy tworzeniu nowego stołu.
+Ctrl+O odczytuje krótki opis gry zaznaczonego stołu. To samo robi
+„Opis gry” w menu kontekstowym widgetu.
 R odświeża listę ręcznie. Widget odświeża ją także przy wejściu i co pięć
 sekund, gdy z niego korzystasz.
 
@@ -328,6 +337,10 @@ Do wznowienia służy pozycja „Zapisane gry” w głównym menu. Odtworzenie
 tworzy stół, przy którym można ponownie zebrać uczestników i kontynuować
 rozgrywkę. Nie każdą grę można zapisać i nie każdy moment jest do tego
 odpowiedni — dostępność polecenia zależy od gry oraz bieżącego etapu.
+
+Po wznowieniu partii jej zapis znika z konta. Samo utworzenie stołu i oczekiwanie
+na graczy jeszcze go nie usuwa. Jeśli chcesz znów przerwać grę, zapisz jej
+aktualny stan skrótem Ctrl+S.
 
 ### Wróć do rozmowy lub wcześniejszego ruchu
 
@@ -455,6 +468,7 @@ do wskazanej listy lub pola gry, nie do wpisywania wiadomości.
 
 - Ctrl+R — ustawienia zaznaczonego stołu, jeszcze przed dołączeniem.
 - Ctrl+W — gracze i obserwatorzy zaznaczonego stołu.
+- Ctrl+O — krótki opis gry zaznaczonego stołu; w widgecie.
 - Ctrl+N — utworzenie nowego stołu; w widgecie.
 - R — ręczne odświeżenie widgetu.
 - Ctrl+1 do Ctrl+0 — pierwszych dziesięć własnych konfiguracji stołu; w widgecie.

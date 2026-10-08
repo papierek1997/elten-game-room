@@ -438,6 +438,47 @@ Procedure: `docs/BUILDING.md`. Preserve licensing and attribution.
   list, not the game field. Help checks current availability, and execution
   rechecks permissions and identity, not just the row index.
 
+## Writing game rules
+
+Before writing, importing, revising or translating a rulebook, read the
+[game rulebook editorial guidelines](docs/RULES_EDITORIAL.md) in full.
+They apply to every language and to contributions from PRs. Teach the game,
+not the implementation or release history. Natural, connected prose is the
+main requirement: avoid both overloaded sentences and strings of clipped
+commands, and do not impose identical wording or chapters on every game.
+Review complete paragraphs and the whole changed text separately from
+factual and format checks. Preserve exact rules, meaningful exceptions,
+required credits and user restrictions on changes. Teach essential game
+controls beside the action being explained: the actual key, button or short
+menu path, including how to open a described personal setting. The separate
+shortcut list is a quick reference, not a substitute for these instructions.
+Remove details that do not help someone understand or play the game, rather
+than just rephrasing them. Do not confuse that with compressing essential
+rules into card-effect formulas: preserve the actions, connections and
+sequence a beginner needs. Optimise for understanding a first turn, not a
+minimum word count. Use the guide's worked examples and a text-only first-turn
+walkthrough; format checks do not prove that someone can learn from the text.
+Use natural headings that name their subject, not slogans or metaphors;
+familiar titles may recur across games. Check the contents without the body.
+Keep shared application help separate. Do not rewrite unrelated rulebooks.
+
+All newly written rules, including AI-written rules created with a new game,
+must follow the editorial guide regardless of who is credited as author.
+A byline or approval of a working draft does not exempt them from the guide.
+Preserve rules or translations that a creator directly supplies or
+selects as the text to use, before creating the game or later. The creator need
+not know the guide or explicitly forbid rewriting. Do not rewrite or supplement
+that text without permission; report verified outdated passages separately.
+Material explicitly supplied only as a source or inspiration may instead be
+used to write new rules. If its intended role is unclear, ask before substantial
+rewriting; do not infer human or AI authorship from style. An explicit editing
+request permits changes within its scope. A request to translate permits a
+faithful, natural rendering, not added explanations.
+The maintainer has selected paulinux's supplied Polish Krowa rules to preserve;
+keep that text and retain its meaning and voice in other language editions.
+For commissioned new language editions, write from the verified game facts
+in natural target-language prose rather than translating sentence by sentence.
+
 ## Quiz question editing
 
 Before creating, importing, expanding, correcting or translating a set,
@@ -483,8 +524,15 @@ language-specific guidance to that document.
 
 Translations have one `locale/<LANG>.po` and a generated `locale/<LANG>.mo`
 per language, plus a shared POT. Do not recreate the old JSON fragments or
-their export manifest. PO is also the translation source for Polish rules
-and the application's changelog. Changelog entries are in
+their export manifest. PO supplies translations of English-based rules and
+the application's changelog. Independently authored full rulebooks with their
+own chapter layout live in `tools/data/rulebooks/<LANG>/<game>.json`. The current
+complete editions use `EN/`, `PL/`, `CS/`, `ES/` and `RU/`; edit each there,
+including its `option_chapters` mapping.
+Compile them with `tools/compile-rulebooks.rb`; do not duplicate their text in
+PO or hand-edit generated Ruby. Every supported language must cover all games;
+update all affected editions together, respecting creator-supplied texts.
+Changelog entries are in
 `lib/game_room_changelog.rb`; do not maintain separate Markdown copies.
 Preserve the flat MO paths required by ELTEN's runtime.
 `test/tooling/locale_build_contract_test.rb` checks both manifests, staging

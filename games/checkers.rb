@@ -53,6 +53,10 @@ module GameRoomGames
       _("Checkers")
     end
 
+    def short_description
+      _("Capture your opponent's pieces, crown your own and win by leaving your opponent with no legal moves.")
+    end
+
     def supports_bots?
       true
     end

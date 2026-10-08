@@ -62,6 +62,10 @@ module GameRoomGames
       _("Quiz Party")
     end
 
+    def short_description
+      _("Choose the correct answers to questions on a topic of your choice.")
+    end
+
     def minimum_players
       2
     end

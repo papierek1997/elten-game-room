@@ -1,0 +1,239 @@
+{
+  "source": "games/spades.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "V Pikách odhaduješ, kolikrát získáš vyložené karty. Po rozdání každý oznámí svůj odhad a potom hrajete po jedné kartě. Takové kolo karet je zdvih. Vezmeš-li alespoň slíbený počet zdvihů, získáš body; chybí-li byť jediný, za celou nabídku body ztratíš."
+        },
+        {
+          "cs": "Hrají tři až šest hráčů, běžně každý za sebe. Vyhraje ten, kdo po rozdání dosáhne alespoň 300 bodů a vede sám."
+        }
+      ]
+    },
+    {
+      "id": "bidding",
+      "title": {
+        "cs": "Ohlášení počtu zdvihů"
+      },
+      "paragraphs": [
+        {
+          "cs": "Karty procházej šipkami nebo celou ruku přečti pomocí H. Až budeš hlásit, stiskni B, napiš počet zdvihů a potvrď Enterem. Odhadni, kolik jich dokážeš získat; ani mnoho zdvihů navíc není bez rizika."
+        },
+        {
+          "cs": "Smíš ohlásit i nulu, nazývanou nil. Zavazuješ se tím nevzít jediný zdvih. Splnění přinese 100 bodů, první získaný zdvih už znamená ztrátu 100."
+        },
+        {
+          "cs": "Každý hlásí jednou. Začíná hráč po rozdávajícím a ten také vynese první kartu. Po skončení hlášení přečte B všechny závazky."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "cs": "Hraní zdvihů"
+      },
+      "paragraphs": [
+        {
+          "cs": "První karta určuje barvu, kterou ostatní musí přiznat, pokud ji mají. Po srdci tedy vyber šipkami srdcovou kartu a zahraj Enterem. Nemáš-li požadovanou barvu, smíš hrát cokoli. Vyložené karty přečte C."
+        },
+        {
+          "cs": "Zdvih získá nejvyšší karta vynesené barvy, ledaže někdo přihodí pik. Piky jsou trumfy a přebijí ostatní barvy; z více piků vítězí nejvyšší. V každé barvě je pořadí eso, král, dáma, kluk a desítka až dvojka. Vítěz vezme zdvih a vynáší další."
+        },
+        {
+          "cs": "Zpočátku se piky vynášet nesmějí. Otevřou se až prvním pikem přiloženým k jiné barvě. Jestliže už máš v ruce jen piky, smíš je vynést i dřív."
+        },
+        {
+          "cs": "Zvláštní výjimku má pikové eso. Vynese-li někdo piky a eso je tvůj jediný pik, smíš si ho nechat a zahrát jinou kartu. S dalším nižším pikem už musíš barvu normálně přiznat."
+        },
+        {
+          "cs": "Rozdání skončí po zahrání všech karet. Klávesa I připomene tvůj postup, V porovná ohlášené a získané zdvihy všech hráčů."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "cs": "Body a prémie"
+      },
+      "paragraphs": [
+        {
+          "cs": "Za rozdání se počítá:"
+        },
+        {
+          "cs": "- Splněný závazek: 10 bodů za každý ohlášený zdvih a 1 za každý navíc. Ohlášené čtyři a získaných šest znamenají 42 bodů."
+        },
+        {
+          "cs": "- Nesplněný závazek: ztráta 10 bodů za každý ohlášený zdvih. Ohlášené čtyři a získané tři znamenají minus 40."
+        },
+        {
+          "cs": "- Splněný nil: 100 bodů. Nesplněný nil: minus 100, ale každý získaný zdvih ještě přidá 1 bod a započítá se do přebytků."
+        },
+        {
+          "cs": "Zdvihy navíc, zvané pytle, se sčítají přes rozdání. Každých deset stojí 100 bodů. Když máš osm a přidáš tři, dostaneš trest a jeden pytel ti zůstane do další desítky. Skóre přečte S."
+        },
+        {
+          "cs": "Za některé splněné závazky jsou prémie:"
+        },
+        {
+          "cs": "- Ve třech nebo čtyřech hráčích přesné splnění jednoho či dvou ohlášených zdvihů přidá 20 bodů."
+        },
+        {
+          "cs": "- Velký splněný závazek přidá 10 bodů na první hranici prémie a dalších 10 za každý ohlášený zdvih nad ni."
+        },
+        {
+          "cs": "Hranice velkého závazku závisí na počtu hráčů:"
+        },
+        {
+          "cs": "- Ve třech začíná na deseti zdvizích."
+        },
+        {
+          "cs": "- Ve čtyřech na sedmi."
+        },
+        {
+          "cs": "- V pěti na šesti."
+        },
+        {
+          "cs": "- V šesti na pěti."
+        },
+        {
+          "cs": "Po sečtení pokračujete dalším rozdáním, dokud někdo nemá alespoň 300 bodů a samostatné vedení. Při shodě na prvním místě se hraje dál."
+        }
+      ]
+    },
+    {
+      "id": "deck",
+      "title": {
+        "cs": "Rozdání podle počtu hráčů"
+      },
+      "paragraphs": [
+        {
+          "cs": "Všichni dostanou stejně karet. Balíček se tomu přizpůsobí:"
+        },
+        {
+          "cs": "- Tři hráči: každý 17 karet, vyřadí se křížová dvojka."
+        },
+        {
+          "cs": "- Čtyři hráči: každý 13 karet z plného balíčku."
+        },
+        {
+          "cs": "- Pět hráčů: každý 10 karet, bez křížové a kárové dvojky."
+        },
+        {
+          "cs": "- Šest hráčů: každý 8 karet, bez všech dvojek."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "cs": "Týmová hra"
+      },
+      "paragraphs": [
+        {
+          "cs": "V týmu hlásí každý vlastní závazek a hraje vlastní karty, ale při jeho plnění si můžete pomáhat."
+        },
+        {
+          "cs": "Ohlásíš-li čtyři a partner tři, potřebujete společně sedm. Můžeš tedy získat pět a partner dvě. Skóre i pytle patří celému týmu."
+        },
+        {
+          "cs": "Nil se posuzuje zvlášť. Jeho hráč musí vynechat všechny zdvihy, i kdyby partner potřeboval pomoc. Zdvihy hráče s nilem se do společného závazku nepočítají. Neúspěšný nil stojí tým 100 bodů a každý při něm získaný zdvih přidá bod a pytel."
+        },
+        {
+          "cs": "Týmy se volí před hrou v nastavení stolu. Ve dvojicích mohou hrát čtyři nebo šest hráčů; v šesti lze zvolit také dvě trojice."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Další varianty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou můžeš změnit bodový cíl a zapnout následující pravidla:"
+        },
+        {
+          "cs": "- No Hell omezuje poslední hlášení: celkový součet závazků se nesmí rovnat počtu zdvihů v rozdání. Alespoň někdo tedy netrefí přesný počet."
+        },
+        {
+          "cs": "- Quicksand mění běžné závazky. Při neúspěchu odebere jen 10 za každý chybějící zdvih. Splnění dává 10 za každý ohlášený, ale zdvih navíc odebere 10. Pytle ani prémie za malé a velké závazky nejsou. Nil zůstává za plus či minus 100."
+        },
+        {
+          "cs": "- Suicide je hra dvojic. Každý musí zvolit nil nebo alespoň čtyři zdvihy a v každé dvojici musí být nejméně jeden nil. Ohlásil-li partner čtyři či víc, tobě zbývá nil. Nelze kombinovat s No Hell."
+        },
+        {
+          "cs": "- Vševědoucí boty znají všechny ruce. Při vypnuté volbě vycházejí jen z vlastních karet a známého průběhu hry."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházet karty."
+        },
+        {
+          "cs": "Enter: zahrát kartu."
+        },
+        {
+          "cs": "B: při hlášení zadat počet zdvihů, později přečíst závazky."
+        },
+        {
+          "cs": "H: přečíst vlastní ruku."
+        },
+        {
+          "cs": "C: přečíst karty ve zdvihu."
+        },
+        {
+          "cs": "Ctrl+C: prohlédnout karty ve zdvihu."
+        },
+        {
+          "cs": "F: přečíst vynesenou barvu."
+        },
+        {
+          "cs": "I: přečíst vlastní postup v rozdání."
+        },
+        {
+          "cs": "V: přečíst získané zdvihy a závazky všech hráčů."
+        },
+        {
+          "cs": "S: přečíst skóre."
+        },
+        {
+          "cs": "Z: najít další přípustnou kartu; jediný jednoznačný tah může provést rovnou."
+        },
+        {
+          "cs": "Shift+Z: najít předchozí přípustnou kartu; jediný jednoznačný tah může provést rovnou."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        },
+        {
+          "cs": "Shift+C: seřadit podle barev; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+H: seřadit podle hodnot; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+M: obnovit pořadí přijatých karet."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "variants",
+    "team_size": "teams",
+    "no_hell": "variants",
+    "quicksand": "variants",
+    "suicide": "variants",
+    "omniscient_bots": "variants"
+  }
+}

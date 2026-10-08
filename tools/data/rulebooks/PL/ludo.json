@@ -1,0 +1,174 @@
+{
+  "source": "games/ludo.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Chińczyka gra od dwóch do czterech osób. Każdy ma cztery pionki w swojej bazie. Trzeba wyprowadzić je na wspólny tor, okrążyć nim planszę, a potem doprowadzić wszystkie cztery do mety w swoim domu. Kto zrobi to pierwszy, wygrywa."
+        }
+      ]
+    },
+    {
+      "id": "track",
+      "title": {
+        "pl": "Tor i położenie pionków"
+      },
+      "paragraphs": [
+        {
+          "pl": "Wspólny tor ma pięćdziesiąt dwa pola. Pionki idą w stronę kolejnych numerów, a po polu 52 przechodzą na pole 1. Gracze wchodzą na tor w różnych miejscach: na polach 1, 14, 27 i 40."
+        },
+        {
+          "pl": "Po okrążeniu planszy pionek wchodzi na ścieżkę prowadzącą do twojego domu. Ma ona sześć pól, a ostatnie jest metą. Pionki przeciwników nie mogą na nią wejść."
+        },
+        {
+          "pl": "Klawisz V otwiera przegląd Twoich pionków, a Shift+V wszystkich pionków. Możesz też nacisnąć 1, by usłyszeć położenie swoich czterech pionków."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "pl": "Rzut i ruch"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gdy nadejdzie Twoja kolej, naciśnij Enter, żeby rzucić kością. Jedynka lub szóstka pozwala wyprowadzić jeden pionek z bazy na Twoje pole wejściowe. Ten pionek nie idzie już dalej w tym samym rzucie."
+        },
+        {
+          "pl": "Zamiast wychodzić z bazy możesz poruszyć pionek, który jest już na torze. Przesuwa się on o tyle pól, ile wypadło na kości. Cały wynik wykorzystujesz dla jednego pionka."
+        },
+        {
+          "pl": "Jeżeli możesz ruszyć kilkoma pionkami, wybierz strzałkami jeden z proponowanych ruchów i zatwierdź Enterem. Gdy dozwolony ruch jest tylko jeden, gra wykonuje go sama. Jeśli nie możesz ruszyć żadnym pionkiem, Twoja kolej zostaje pominięta."
+        },
+        {
+          "pl": "Po szóstce rzucasz ponownie, nawet jeśli nie udało się wykonać ruchu. Jeśli wyrzucisz trzecią szóstkę z rzędu, twoja tura się kończy i tym razem nie przesuwasz pionka. Nie cofasz ruchów wykonanych po dwóch poprzednich szóstkach."
+        }
+      ]
+    },
+    {
+      "id": "captures",
+      "title": {
+        "pl": "Zbijanie i bezpieczne pola"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeżeli zakończysz ruch na zwykłym polu zajętym przez pojedynczy pionek przeciwnika, zbijesz go. Wraca do swojej bazy i musi ponownie wyjść na tor."
+        },
+        {
+          "pl": "Cztery pola wejściowe są bezpieczne: stojących na nich pionków nie można zbić. Dwa lub więcej pionków jednego gracza na tym samym polu tworzy blokadę. Przeciwnicy nie mogą jej przekroczyć ani na niej stanąć, również na bezpiecznym polu."
+        },
+        {
+          "pl": "Własne pionki nie blokują Ci drogi. Jest też wyjątek przy wychodzeniu z bazy: możesz postawić pionek na swoim polu wejściowym, nawet jeśli stoi tam blokada przeciwnika."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "pl": "Dojście do mety"
+      },
+      "paragraphs": [
+        {
+          "pl": "Żeby dotrzeć do mety, trzeba wyrzucić dokładnie tyle oczek, ile pól pozostało pionkowi. Jeśli wynik jest za duży, wybierz inny pionek, którym da się ruszyć. Pionek na mecie nie wykonuje już ruchów."
+        },
+        {
+          "pl": "Partia kończy się, gdy jeden gracz doprowadzi do mety wszystkie cztery pionki. Klawiszem S sprawdzisz, ile pionków każdego gracza jest już na mecie."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Zmiany zasad"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach przed grą można zmienić następujące zasady:"
+        },
+        {
+          "pl": "- Można wyłączyć wychodzenie po jedynce. Wtedy do wyjścia z bazy potrzebujesz szóstki."
+        },
+        {
+          "pl": "- Wyłączenie opcji „Szóstka pozwala wyjść z bazy” usuwa ograniczenie wyniku: z bazy wolno wyjść po dowolnym rzucie."
+        },
+        {
+          "pl": "- Można zrezygnować z dodatkowego rzutu po szóstce."
+        },
+        {
+          "pl": "- Osobno można wyłączyć utratę kolejki po trzech kolejnych szóstkach."
+        },
+        {
+          "pl": "- Jeśli wyłączysz wymaganie dokładnego wyniku na mecie, pionek może zakończyć wędrówkę także po wyrzuceniu większej liczby oczek, niż potrzebuje."
+        },
+        {
+          "pl": "- Po wyłączeniu blokad grupa pionków jednego gracza nie zatrzymuje przeciwników. Na zwykłym polu można wtedy zbić całą stojącą tam grupę jednym ruchem. Pola wejściowe nadal pozostają bezpieczne."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: wybierz dostępny ruch pionkiem."
+        },
+        {
+          "pl": "Enter: rzuć kością lub zatwierdź ruch."
+        },
+        {
+          "pl": "1: odczytaj swoje pionki; jeśli obserwujesz grę, pionki pierwszego gracza."
+        },
+        {
+          "pl": "2: odczytaj pionki następnego gracza według miejsc przy stole."
+        },
+        {
+          "pl": "3: odczytaj pionki kolejnego gracza, jeśli uczestniczy w partii."
+        },
+        {
+          "pl": "4: odczytaj pionki ostatniego gracza przy czteroosobowym stole."
+        },
+        {
+          "pl": "C: odczytaj, jaki kolor ma każdy gracz."
+        },
+        {
+          "pl": "Ctrl+C: przełącz nazwy graczy i kolory w komunikatach gry."
+        },
+        {
+          "pl": "D: odczytaj, kto rzucał ostatnio i jaki miał wynik."
+        },
+        {
+          "pl": "V: przejrzyj swoje pionki."
+        },
+        {
+          "pl": "Shift+V: przejrzyj wszystkie pionki w kolejności pól toru, następnie ścieżek do domu, baz i mety."
+        },
+        {
+          "pl": "P: odczytaj pozycje swoich pionków, które nie dotarły do mety, także tych w bazie."
+        },
+        {
+          "pl": "Shift+P: odczytaj pozycje pionków przeciwników, które nie dotarły do mety, także tych w bazach."
+        },
+        {
+          "pl": "S: odczytaj, ile pionków każdy gracz doprowadził do mety."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "enter_on_six": "variants",
+    "enter_on_one": "variants",
+    "extra_on_six": "variants",
+    "exact_finish": "variants",
+    "three_sixes": "variants",
+    "blockades": "variants"
+  }
+}

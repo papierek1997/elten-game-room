@@ -36,6 +36,10 @@ module GameRoomGames
       _("1000 miles")
     end
 
+    def short_description
+      _("Race with cards, cover mile after mile and slow down your opponents.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

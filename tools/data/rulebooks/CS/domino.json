@@ -1,0 +1,268 @@
+{
+  "source": "games/domino.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "V dominu přikládáš kameny ke společné řadě a snažíš se jako první zbavit všech svých. Zbylé kameny přinášejí trestné body. Po dosažení limitu vypadneš; vyhraješ, pokud vypadnou všichni soupeři."
+        },
+        {
+          "cs": "Běžná hra je pro dva až čtyři hráče. Sada má 28 kamenů, na každé polovině nula až šest ok. Každý dostane sedm kamenů, zbytek zůstane k dobírání."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "cs": "První kámen"
+      },
+      "paragraphs": [
+        {
+          "cs": "Kolo zahajuje hráč s nejvyšším dublem, tedy kamenem se stejným číslem na obou polovinách. Nemá-li nikdo dubl, rozhoduje nejvyšší součet ok na jednom kameni. Při shodě se přednost mezi koly střídá."
+        },
+        {
+          "cs": "Začínající smí vyložit jakýkoli kámen. Vyber ho šipkami a potvrď Enterem. Potom se střídáte a přidáváte po jednom kameni na některý konec řady."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "cs": "Přikládání kamenů"
+      },
+      "paragraphs": [
+        {
+          "cs": "Přiložená polovina musí odpovídat číslu na zvoleném konci. Druhá polovina vytvoří nový konec. K trojce tak přiložíš 3–5 a řada tam bude nově končit pětkou."
+        },
+        {
+          "cs": "Oba konce přečte C. Vhodný kámen vyber šipkami a polož Enterem; pak hraje další hráč."
+        },
+        {
+          "cs": "Hodí-li se kámen na oba konce, použije se předem zvolená strana. G nastaví levou, D pravou. Volba zůstává i pro další nejednoznačné tahy; na začátku je nastavený pravý konec."
+        }
+      ]
+    },
+    {
+      "id": "drawing",
+      "title": {
+        "cs": "Dobírání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Když nemáš co přiložit, mezerníkem si vezmi jeden kámen. Máš-li po dobrání přípustný tah, vyber kámen šipkami a zahraj Enterem. Smíš použít i kámen, který jsi držel už dřív."
+        },
+        {
+          "cs": "Ve výchozím nastavení si smíš jeden dobrat, i když už hrát můžeš. Před běžným přiložením ale dobírat nemusíš."
+        },
+        {
+          "cs": "Pokud ani po dobrání nemáš tah, hraje další. Při prázdné zásobě a žádném vhodném kameni se tvůj tah přeskočí rovnou."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "cs": "Konec kola a trestné body"
+      },
+      "paragraphs": [
+        {
+          "cs": "Kolo skončí vyložením posledního kamene z něčí ruky. Může také uváznout: zásoba je prázdná, všichni už dostali možnost hrát a nikdo nemůže nic přiložit."
+        },
+        {
+          "cs": "Body se zapíší takto:"
+        },
+        {
+          "cs": "- Hráč bez kamenů dostane nulu."
+        },
+        {
+          "cs": "- Ostatní si přičtou součet ok zbývajících kamenů. Při zablokované hře ho započítají všichni."
+        },
+        {
+          "cs": "- Samotný kámen 0–0 je za deset bodů, pokud zůstal v ruce jako jediný. Vedle dalších kamenů nepřidává nic."
+        },
+        {
+          "cs": "Skóre přečte S. Po vyhodnocení se rozdá další kolo, pokud už nemáte celkového vítěze."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Celkové vítězství"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po kole vypadnou všichni se sto nebo více body. Ostatní pokračují, dokud nezůstane jediný vítěz."
+        },
+        {
+          "cs": "Překročí-li limit ve stejném kole všichni zbývající, vyhraje nejnižší skóre. O stejný nejnižší výsledek se lze dělit a zvítězit společně."
+        }
+      ]
+    },
+    {
+      "id": "sets",
+      "title": {
+        "cs": "Velikost sady"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze zvolit jinou sadu. Číslo v jejím názvu označuje nejvyšší počet ok na jedné polovině. Větší sady umožňují víc hráčů."
+        },
+        {
+          "cs": "K dispozici jsou:"
+        },
+        {
+          "cs": "- Běžná sada do šesti: nejvýš čtyři hráči, každý dostane sedm kamenů."
+        },
+        {
+          "cs": "- Sady do devíti, dvanácti, patnácti nebo osmnácti: každý dostane deset kamenů."
+        },
+        {
+          "cs": "- Dvě či čtyři kopie sady do šesti, devíti nebo dvanácti: kameny se opakují, každý dostane deset."
+        },
+        {
+          "cs": "Sada do devíti a dvojitá sada do šesti stačí pro pět hráčů. Ostatní větší sady podporují až osm."
+        }
+      ]
+    },
+    {
+      "id": "draw_variants",
+      "title": {
+        "cs": "Varianty dobírání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Dobírání lze před hrou upravit:"
+        },
+        {
+          "cs": "- Zákaz dobírání znamená, že celé kolo vystačíš s rozdanými kameny. Bez tahu automaticky vynecháš. Ostatní volby dobírání pak nemají účinek."
+        },
+        {
+          "cs": "- Zákaz dobírání při možném tahu nutí přiložit, pokud máš vhodný kámen. Mezerník lze použít jen při hledání chybějícího."
+        },
+        {
+          "cs": "- Dobírání do vhodného kamene vezme jedním mezerníkem tolik kamenů, až nově dobraný pasuje nebo dojde zásoba. Potom šipkami vyber kámen a potvrď zahrání Enterem."
+        },
+        {
+          "cs": "Při zákazu dobírání může kolo uváznout i s kameny zbývajícími v zásobě."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "cs": "Týmy"
+      },
+      "paragraphs": [
+        {
+          "cs": "Tým má společné skóre, ale každý hraje ze své ruky. Po tvém tahu přichází hráč jiného týmu. Před začátkem lze zvolit:"
+        },
+        {
+          "cs": "- Čtyři hráče ve dvou dvojicích."
+        },
+        {
+          "cs": "- Šest hráčů ve dvou trojicích nebo třech dvojicích."
+        },
+        {
+          "cs": "- Osm hráčů ve dvou čtveřicích nebo čtyřech dvojicích."
+        },
+        {
+          "cs": "Běžně stačí, aby se kamenů zbavil jeden člen. Jeho tým vyhraje kolo za nula bodů. Každý soupeřův tým si zapíše body za své kameny a navíc i za kameny, které zbyly spoluhráčům vítěze."
+        },
+        {
+          "cs": "Má-li například vítězův partner zbytek za osm a tvůj tým za jedenáct, dostanete devatenáct bodů. Při zablokovaném kole si každý tým počítá jen vlastní zbytek."
+        },
+        {
+          "cs": "Volba dokončení celým týmem vyžaduje prázdné ruce všech členů. Hráči, kteří už kameny nemají, se přeskakují."
+        },
+        {
+          "cs": "Limit platí pro tým jako celek. Jeho dosažení vyřadí všechny členy; vyhraje poslední tým ve hře. Pokud limitu současně dosáhnou všechny zbývající týmy, rozhoduje nejnižší skóre stejně jako u jednotlivců."
+        }
+      ]
+    },
+    {
+      "id": "limit",
+      "title": {
+        "cs": "Bodový limit"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou můžeš místo sta nastavit jiný limit. Vyřazení nastane, když ho po vyhodnocení kola dosáhneš nebo překročíš."
+        }
+      ]
+    },
+    {
+      "id": "clock",
+      "title": {
+        "cs": "Čas na tah"
+      },
+      "paragraphs": [
+        {
+          "cs": "Běžně není tah časově omezen. V nastavení lze zadat počet sekund na celý tah; dobrání čas nespouští znovu."
+        },
+        {
+          "cs": "Po vypršení času za tebe hra dobere jeden kámen, pokud jsi v tomto tahu ještě nedobíral, zásoba není prázdná a dobírání není zakázané. Pak předá tah bez přiložení. Trest platí i při dostupném tahu a vždy jde nejvýš o jeden kámen, i s dobíráním do vhodného."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: vybrat kámen."
+        },
+        {
+          "cs": "Enter: zahrát kámen; hodí-li se na oba konce, použít nastavenou stranu."
+        },
+        {
+          "cs": "G: nastavit levý konec pro tahy možné na obě strany."
+        },
+        {
+          "cs": "D: nastavit pravý konec pro tahy možné na obě strany."
+        },
+        {
+          "cs": "Mezerník: dobrat podle pravidel stolu."
+        },
+        {
+          "cs": "C: přečíst oba konce řady."
+        },
+        {
+          "cs": "V: prohlédnout celou řadu."
+        },
+        {
+          "cs": "E: přečíst počty kamenů hráčů a zásoby."
+        },
+        {
+          "cs": "Z: najít další vhodný kámen; jediný jednoznačný tah rovnou provést."
+        },
+        {
+          "cs": "Shift+Z: najít předchozí vhodný kámen; jediný jednoznačný tah rovnou provést."
+        },
+        {
+          "cs": "S: přečíst skóre."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "tile_set": "sets",
+    "teams": "teams",
+    "team_count": "teams",
+    "forbid_draw": "draw_variants",
+    "allow_playable_draw": "draw_variants",
+    "draw_until": "draw_variants",
+    "whole_team": "teams",
+    "thinking_time": "clock",
+    "score_limit": "limit"
+  }
+}

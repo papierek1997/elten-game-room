@@ -1,0 +1,174 @@
+{
+  "source": "games/ludo.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Ludo juegan de dos a cuatro personas, cada una con cuatro fichas en su base. Debes sacarlas al recorrido común, dar la vuelta al tablero y llevarlas por tu pasillo de llegada hasta la meta. Gana quien consiga llevar las cuatro primero."
+        }
+      ]
+    },
+    {
+      "id": "track",
+      "title": {
+        "es": "El recorrido"
+      },
+      "paragraphs": [
+        {
+          "es": "El recorrido común tiene cincuenta y dos casillas. Las fichas avanzan hacia los números siguientes y, después de la 52, pasan a la 1. Cada jugador sale por una casilla distinta: 1, 14, 27 o 40."
+        },
+        {
+          "es": "Tras completar la vuelta, la ficha entra en tu pasillo de llegada, de seis casillas. La última es la meta. Las fichas rivales no pueden entrar en tu pasillo."
+        },
+        {
+          "es": "V abre la lista de tus fichas y Shift+V la de todas. También puedes pulsar 1 para oír dónde están tus cuatro fichas."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "es": "Lanzar y mover"
+      },
+      "paragraphs": [
+        {
+          "es": "Cuando te toque, pulsa Enter para lanzar el dado. Con un 1 o un 6 puedes sacar una ficha de la base a tu casilla de salida. Esa ficha no avanza más con la misma tirada."
+        },
+        {
+          "es": "En lugar de sacar una ficha, puedes mover una que ya esté en el recorrido. Avanza tantas casillas como indique el dado. Toda la tirada se usa para una sola ficha."
+        },
+        {
+          "es": "Si hay varias jugadas posibles, elige una con las flechas y confirma con Enter. Si solo hay una, el juego la realiza automáticamente. Si no puedes mover ninguna ficha, se omite el turno."
+        },
+        {
+          "es": "Un 6 te permite volver a tirar, incluso si no has podido mover. El tercer 6 consecutivo termina tu turno sin mover con esa tirada. Se conservan los movimientos hechos con los dos seises anteriores."
+        }
+      ]
+    },
+    {
+      "id": "captures",
+      "title": {
+        "es": "Capturas, refugios y bloqueos"
+      },
+      "paragraphs": [
+        {
+          "es": "Si terminas el movimiento en una casilla normal ocupada por una sola ficha rival, la capturas. Vuelve a su base y tendrá que salir de nuevo."
+        },
+        {
+          "es": "Las cuatro casillas de salida son seguras: no se captura en ellas. Dos o más fichas del mismo jugador en una casilla forman un bloqueo. Los rivales no pueden atravesarlo ni detenerse en él, aunque esté en una casilla segura."
+        },
+        {
+          "es": "Tus propias fichas no te bloquean el paso. Además, hay una excepción al salir de la base: puedes colocar la ficha en tu casilla de salida aunque haya un bloqueo rival."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "es": "Llegar a la meta"
+      },
+      "paragraphs": [
+        {
+          "es": "Para alcanzar la meta necesitas el número exacto de casillas que le faltan a la ficha. Si sacas más, debes mover otra ficha que sí pueda usar la tirada. Una ficha que ya está en la meta no vuelve a moverse."
+        },
+        {
+          "es": "La partida termina en cuanto alguien lleva sus cuatro fichas a la meta. Con S puedes consultar cuántas ha llevado cada jugador."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Variantes"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes cambiar estas reglas:"
+        },
+        {
+          "es": "- Si desactivas la salida con un 1, hará falta un 6 para salir de la base."
+        },
+        {
+          "es": "- Desactivar la opción que exige un 6 para salir elimina la restricción del dado: se podrá salir con cualquier resultado."
+        },
+        {
+          "es": "- Puedes quitar la tirada adicional por sacar un 6."
+        },
+        {
+          "es": "- Por separado, puedes quitar la pérdida del turno por tres seises consecutivos."
+        },
+        {
+          "es": "- Sin llegada exacta, una ficha puede alcanzar la meta con una tirada mayor que la distancia que le queda."
+        },
+        {
+          "es": "- Sin bloqueos, un grupo de fichas no frena a los rivales. En una casilla normal se puede capturar todo el grupo con un solo movimiento. Las casillas de salida siguen siendo seguras."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: elegir una jugada disponible."
+        },
+        {
+          "es": "Enter: lanzar el dado o confirmar un movimiento."
+        },
+        {
+          "es": "1: consultar tus fichas o, como espectador, las del primer jugador."
+        },
+        {
+          "es": "2: consultar las fichas del siguiente jugador según los asientos de la mesa."
+        },
+        {
+          "es": "3: consultar las del siguiente jugador, si participa."
+        },
+        {
+          "es": "4: consultar las del último jugador en una mesa de cuatro."
+        },
+        {
+          "es": "C: consultar el color de cada jugador."
+        },
+        {
+          "es": "Ctrl+C: alternar nombres y colores en los mensajes del juego."
+        },
+        {
+          "es": "D: consultar quién lanzó por última vez y qué obtuvo."
+        },
+        {
+          "es": "V: revisar tus fichas."
+        },
+        {
+          "es": "Shift+V: revisar todas las fichas, por orden del recorrido, los pasillos de llegada, las bases y la meta."
+        },
+        {
+          "es": "P: consultar tus fichas que aún no han llegado, incluidas las de la base."
+        },
+        {
+          "es": "Shift+P: consultar las fichas rivales que aún no han llegado, incluidas las de sus bases."
+        },
+        {
+          "es": "S: consultar cuántas fichas ha llevado cada jugador a la meta."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "enter_on_six": "variants",
+    "enter_on_one": "variants",
+    "extra_on_six": "variants",
+    "exact_finish": "variants",
+    "three_sixes": "variants",
+    "blockades": "variants"
+  }
+}

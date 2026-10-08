@@ -1,0 +1,370 @@
+{
+  "source": "games/poker.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "V pokeru hraješ o žetony vložené do společného banku. Získáš je nejlepší kombinací při porovnání karet, nebo sázkou přiměješ všechny soupeře odstoupit. Nevyhrává tedy vždy skutečně nejsilnější ruka."
+        },
+        {
+          "cs": "Hrají dva až osm hráčů, každý s 1000 žetony. Celkově vítězí poslední hráč, kterému žetony zůstanou. Výchozí variantou je Texas Hold'em."
+        }
+      ]
+    },
+    {
+      "id": "holdem",
+      "title": {
+        "cs": "Začátek rozdání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Dostaneš dvě soukromé karty, které přečte D. Na stůl postupně přijde pět společných. Z těchto sedmi se vybere tvá nejlepší pětikaretní kombinace. Může obsahovat obě vlastní karty, jednu nebo žádnou."
+        },
+        {
+          "cs": "Před sázením dva hráči vloží povinné sázky naslepo: malý blind 5 a velký blind 10 žetonů. Platí je první dva za rozdávajícím. Ve dvou platí malý blind rozdávající a velký soupeř. V dalším rozdání se tyto pozice posunou."
+        },
+        {
+          "cs": "První sázkové kolo zahajuje hráč po velkém blindu. Klávesa V přečte částku k dorovnání, P bank a S tvé zbývající žetony."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "cs": "Možnosti při sázení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Hráči postupně rozhodují, zda v rozdání pokračují a kolik vsadí:"
+        },
+        {
+          "cs": "- C bez částky k dorovnání znamená check: ponecháš si karty a předáš řadu bez vkladu."
+        },
+        {
+          "cs": "- C proti sázce znamená dorovnání: doplatíš rozdíl. Máš-li málo žetonů, vložíš všechny a zůstaneš ve hře o pokrytou část banku."
+        },
+        {
+          "cs": "- R otevře sázku či navýšení. Napiš, o kolik zvyšuješ dosavadní sázku, a potvrď Enterem. Dorovnání se přidá zvlášť: chybí-li ti 10 a zvýšíš o 20, vložíš 30."
+        },
+        {
+          "cs": "- A vsadí všechny zbývající žetony, tedy all-in. Z rozdání tím nevypadáváš, karty dál mohou vyhrát."
+        },
+        {
+          "cs": "- F zahodí: opustíš toto rozdání a vzdáš se žetonů, které jsi do něj už vložil."
+        },
+        {
+          "cs": "Běžné navýšení musí být alespoň o velký blind, po větším navýšení alespoň o jeho poslední výši. Vsadit můžeš až všechny žetony; zadávací pole oznámí dostupné hranice."
+        },
+        {
+          "cs": "All-in menší než plné navýšení přesto vyžaduje od soupeřů doplatek, aby zůstali. Hráčům, kteří už jednali, ale takový doplatek sám nevrátí právo znovu zvýšit."
+        },
+        {
+          "cs": "Sázkové kolo skončí dorovnáním všech zbývajících hráčů nebo jejich all-inem. Bez sázek stačí, aby všichni dali check. Pokud všichni kromě jednoho zahodí, poslední hráč získá bank hned bez porovnání karet."
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "title": {
+        "cs": "Společné karty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Zůstanou-li po prvním sázení alespoň dva hráči, odkrývají se společné karty. Od této chvíle začíná sázet první dosud hrající za rozdávajícím."
+        },
+        {
+          "cs": "Společné karty přicházejí ve třech částech:"
+        },
+        {
+          "cs": "- Flop: první tři karty, po nichž následuje sázení."
+        },
+        {
+          "cs": "- Turn: čtvrtá karta a další sázení."
+        },
+        {
+          "cs": "- River: poslední, pátá karta. Po závěrečném sázení se porovnají kombinace."
+        },
+        {
+          "cs": "Společné karty přečte E, tvou nynější nejlepší kombinaci G. Pět karet ručně nevybíráš. Nemůže-li už nikdo dál sázet kvůli all-inům, zbylé společné karty se odkryjí a rovnou se vyhodnotí bank."
+        }
+      ]
+    },
+    {
+      "id": "hands",
+      "title": {
+        "cs": "Pořadí kombinací"
+      },
+      "paragraphs": [
+        {
+          "cs": "Porovnává se vždy pět karet. Od nejslabší kombinace k nejsilnější:"
+        },
+        {
+          "cs": "- Vysoká karta: nemáš žádnou níže uvedenou kombinaci, rozhoduje nejvyšší karta."
+        },
+        {
+          "cs": "- Pár: dvě stejné hodnoty, například dvě dámy."
+        },
+        {
+          "cs": "- Dva páry: například dvě dámy a dvě sedmičky."
+        },
+        {
+          "cs": "- Trojice: tři stejné hodnoty."
+        },
+        {
+          "cs": "- Postupka: pět sousedních hodnot, například 6, 7, 8, 9, 10."
+        },
+        {
+          "cs": "- Barva: pět karet stejné barvy, například pět srdcí."
+        },
+        {
+          "cs": "- Full house: trojice a pár, například tři králové a dvě osmičky."
+        },
+        {
+          "cs": "- Čtveřice: čtyři stejné hodnoty."
+        },
+        {
+          "cs": "- Postupka v barvě: pět sousedních hodnot stejné barvy. Nejvyšší, od desítky po eso, se nazývá královská postupka."
+        },
+        {
+          "cs": "Eso je nejvyšší karta, ale v postupce může být i před dvojkou. A, 2, 3, 4, 5 je tak nejnižší postupka."
+        }
+      ]
+    },
+    {
+      "id": "comparing_hands",
+      "title": {
+        "cs": "Porovnání stejného typu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Při stejném typu kombinace rozhodují hodnoty. Pár dam porazí pár desítek, podobně se porovnávají trojice a čtveřice. Postupky a postupky v barvě určuje nejvyšší karta."
+        },
+        {
+          "cs": "U dvou párů porovnej nejprve vyšší pár, pak nižší. U full housu nejdřív trojici a až potom pár."
+        },
+        {
+          "cs": "Pokud ani samotná kombinace nerozhodne, přijdou na řadu zbývající karty od nejvyšší. Ke shodnému páru dam je tedy eso lepší než král. U barvy a vysoké karty se postupně porovnává všech pět."
+        },
+        {
+          "cs": "Stejné hodnoty celé pětice znamenají rozdělení banku. Žádná barva nemá před jinou přednost."
+        }
+      ]
+    },
+    {
+      "id": "all_in",
+      "title": {
+        "cs": "All-in a vedlejší banky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po all-inu už o sázkách nerozhoduješ, čekáš na výsledek. Od každého soupeře můžeš vyhrát nejvýše tolik, kolik jsi sám vložil. Jejich další vklady tvoří vedlejší bank, o který už nehraješ."
+        },
+        {
+          "cs": "Například vložíš posledních 40 a dva soupeři po 100. Hlavní bank je 120, tedy po 40 od každého, a mohou ho vyhrát všichni tři. Dalších 120, po 60 od soupeřů, patří jen jejich souboji; může ho získat jeden nebo si ho při shodě rozdělí."
+        },
+        {
+          "cs": "Každý bank se řeší samostatně. Remizující si ho rozdělí rovným dílem. Nedělitelné žetony dostávají postupně od prvního remizujícího za rozdávajícím."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Další rozdání a konec partie"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po vyplacení banků vypadnou hráči bez žetonů. Ostatním se rozdají nové karty."
+        },
+        {
+          "cs": "Každých pět rozdání se blindy zdvojnásobí: z 5 a 10 na 10 a 20, potom 20 a 40. Aktuální blindy přečte L. Poslední hráč s žetony vyhrává."
+        }
+      ]
+    },
+    {
+      "id": "draw",
+      "title": {
+        "cs": "Poker s výměnou"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze místo Hold'emu vybrat poker s výměnou. Dostaneš pět vlastních karet, společné nejsou. Každý běžně vloží ante 5. Po prvním sázení si zbývající hráči jednou vymění nula až tři karty, potom znovu sázejí a porovnají ruce. Při ante je první plné navýšení nejméně 10, nikoli hodnota ante."
+        },
+        {
+          "cs": "Karty k výměně vybírej šipkami a označuj pomocí Shift+Enter. Po označení zůstaň na některé označené kartě a stiskni Enter; výměna proběhne hned. Enter na neoznačené ji do výměny také přidá. Bez označení vymění pouze vybranou kartu."
+        },
+        {
+          "cs": "Celou ruku ponecháš tlačítkem pro ponechání všech karet, na které přejdeš Tabem a potvrdíš Enterem. Výměna je dostupná i hráčům, kteří už šli all-in."
+        },
+        {
+          "cs": "Pro tuto variantu lze nastavit:"
+        },
+        {
+          "cs": "- Výměnu až pěti karet místo tří."
+        },
+        {
+          "cs": "- Kluky nebo lepší: první sázku před výměnou smí otevřít pouze ruka alespoň s párem kluků. Po otevření mohou ostatní dorovnávat a zvyšovat i s horší rukou. Pokud všichni dají check, následuje výměna a po ní podmínka neplatí."
+        },
+        {
+          "cs": "- Blindy místo ante, stejně jako v Hold'emu. Blindy už jsou otevřená sázka, takže podmínka páru kluků pak sázení neomezuje."
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "title": {
+        "cs": "Omezení sázek"
+      },
+      "paragraphs": [
+        {
+          "cs": "Výchozí No Limit lze v nastavení stolu nahradit:"
+        },
+        {
+          "cs": "- Pot Limit: navýšíš nejvýš o velikost banku po svém dorovnání. Je-li v banku 40 a chybí ti 10, smíš zvýšit o 50 a celkem vložit 60."
+        },
+        {
+          "cs": "- Half-pot Limit: stejně se vezme bank po dorovnání, ale navýšení smí být nejvýš jeho polovina zaokrouhlená dolů."
+        },
+        {
+          "cs": "- Fixed Limit: zvyšuje se přesně o velký blind. Nemáš-li dost, smíš přidat všechny zbývající žetony."
+        },
+        {
+          "cs": "Pot Limit i Half-pot Limit vždy dovolují alespoň minimální plné navýšení, pokud na něj máš. All-in v nich nesmí obejít horní limit."
+        },
+        {
+          "cs": "Samostatně lze omezit počet plných navýšení za sázkové kolo, po zapnutí běžně na tři. Počítá se i první plná sázka. Potom zbývá check, dorovnání nebo zahození; all-in smí stále dorovnat, pokud na celou částku nemáš."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "cs": "Žetony, povinné sázky a čas"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou nastavíš počáteční žetony, malý a velký blind i ante. Růst blindů lze řídit počtem rozdání nebo minut mezi zvýšeními a násobitelem, případně ho úplně vypnout. Nová úroveň začne vždy až novým rozdáním."
+        },
+        {
+          "cs": "Čas na rozhodnutí běžně omezený není. Se zapnutým limitem po vypršení automaticky zahodíš, i když by šlo dát check. Výjimkou je výměna po all-inu: ponecháš všechny karty a v rozdání zůstaneš."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "C: dát check nebo dorovnat."
+        },
+        {
+          "cs": "F: zahodit."
+        },
+        {
+          "cs": "R: zadat navýšení nad dorovnání."
+        },
+        {
+          "cs": "A: vsadit all-in."
+        },
+        {
+          "cs": "S: přečíst vlastní žetony."
+        },
+        {
+          "cs": "Shift+S: přečíst žetony ostatních."
+        },
+        {
+          "cs": "V: přečíst částku k dorovnání."
+        },
+        {
+          "cs": "P: přečíst celý bank."
+        },
+        {
+          "cs": "I: přečíst vlastní vklad do rozdání."
+        },
+        {
+          "cs": "H: oznámit, kdo hraje a kdo zahodil."
+        },
+        {
+          "cs": "L: přečíst blindy."
+        },
+        {
+          "cs": "D: přečíst vlastní karty."
+        },
+        {
+          "cs": "E: přečíst společné karty."
+        },
+        {
+          "cs": "G: přečíst nejlepší současnou kombinaci."
+        },
+        {
+          "cs": "Šipky: vybrat sázkovou akci nebo kartu k výměně."
+        },
+        {
+          "cs": "Shift+Enter: při výměně označit či odznačit kartu."
+        },
+        {
+          "cs": "Enter: potvrdit akci; při výměně vyměnit označené i právě vybranou kartu."
+        },
+        {
+          "cs": "Escape: zrušit zadávání částky nebo výběr karet."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        },
+        {
+          "cs": "Shift+C: při výměně seřadit podle barev; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+H: při výměně seřadit podle hodnot; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+M: při výměně obnovit pořadí přijatých karet."
+        },
+        {
+          "cs": "1: přečíst první vlastní kartu."
+        },
+        {
+          "cs": "2: přečíst druhou vlastní kartu."
+        },
+        {
+          "cs": "3: v Hold'emu přečíst první společnou, při výměně třetí vlastní kartu."
+        },
+        {
+          "cs": "4: v Hold'emu přečíst druhou společnou, při výměně čtvrtou vlastní kartu."
+        },
+        {
+          "cs": "5: v Hold'emu přečíst třetí společnou, při výměně pátou vlastní kartu."
+        },
+        {
+          "cs": "6: v Hold'emu přečíst čtvrtou společnou kartu."
+        },
+        {
+          "cs": "7: v Hold'emu přečíst pátou společnou kartu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "thinking_time": "settings",
+    "variant": "draw",
+    "starting_chips": "settings",
+    "small_blind": "settings",
+    "big_blind": "settings",
+    "ante": "settings",
+    "draw_uses_blinds": "draw",
+    "betting": "limits",
+    "raise_cap_enabled": "limits",
+    "raise_cap": "limits",
+    "blind_interval": "settings",
+    "blind_interval_value": "settings",
+    "blind_multiplier": "settings",
+    "draw_five": "draw",
+    "jacks_or_better": "draw"
+  }
+}

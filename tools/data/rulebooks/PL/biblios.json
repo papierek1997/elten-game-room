@@ -1,0 +1,266 @@
+{
+  "source": "games/biblios.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "pl": "Tworzenie biblioteki"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Biblios zbierasz karty do swojej biblioteki i starasz się wyprzedzić pozostałych graczy w wybranych kategoriach. Nie wystarczy jednak mieć dużo kart: na koniec punkty dostaje tylko zwycięzca danej kategorii. W grze uczestniczą od dwóch do czterech osób."
+        },
+        {
+          "pl": "Najpierw kolejno rozdzielacie dobierane karty między siebie, pozostałych graczy i przyszłe aukcje. Później licytujecie odłożone karty. W ten sposób możecie uzupełniać bibliotekę, zdobywać złoto albo zmieniać liczbę punktów, o które rywalizujecie."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "pl": "Karty i wartość kategorii"
+      },
+      "paragraphs": [
+        {
+          "pl": "Spotkasz trzy rodzaje kart:"
+        },
+        {
+          "pl": "- Karty biblioteki należą do jednej z pięciu kategorii. Każda ma wartość, którą dodajesz do swojej sumy w tej kategorii, oraz literę pomagającą rozstrzygać remisy. Na przykład karta „Mnisi 3, litera B” zwiększa twoją sumę Mnichów o 3."
+        },
+        {
+          "pl": "- Karty złota mają wartość 1, 2 albo 3. Zachowujesz je, żeby później płacić za wygrane aukcje."
+        },
+        {
+          "pl": "- Karty kościelne pozwalają zmieniać wartość kategorii. Rozpatrujesz je od razu po zdobyciu, zamiast zachowywać na później."
+        },
+        {
+          "pl": "Każdej kategorii odpowiada kość. Na początku wszystkie pokazują 3; właśnie tyle punktów zwycięstwa można zdobyć za wygranie danej kategorii. Karty kościelne zmieniają te liczby w granicach od 1 do 6. Bieżące wartości kości odczytasz klawiszem C."
+        },
+        {
+          "pl": "Wartość kart pomaga więc wygrać kategorię, a kość mówi, ile jest warta ta wygrana. Załóżmy, że na koniec wygrywasz kategorię Mnisi z kartami o łącznej wartości 12. Jeśli kość Mnichów pokazuje 5, dostajesz za tę kategorię 5 punktów zwycięstwa."
+        },
+        {
+          "pl": "Swoją bibliotekę odczytasz przez L, a przez Ctrl+L przejrzysz poszczególne kategorie. G podaje, ile masz złota. Karty, które przeciwnicy zachowali dla siebie podczas rozdzielania, są tajne. Shift+C porównuje więc tylko widoczną część bibliotek."
+        }
+      ]
+    },
+    {
+      "id": "gifts",
+      "title": {
+        "pl": "Rozdzielanie kart"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gdy rozdzielasz, poznajesz karty po jednej. Zanim zobaczysz następną, musisz zdecydować, co zrobić z obecną. Strzałkami wybierz jej przeznaczenie i zatwierdź Enterem."
+        },
+        {
+          "pl": "W swojej turze rozdzielasz o jedną kartę więcej, niż jest graczy. Przy trzech osobach będą to cztery karty. Obowiązuje następujący podział:"
+        },
+        {
+          "pl": "- Dokładnie jedną kartę zachowujesz dla siebie, wybierając „Zachowaj dla siebie”."
+        },
+        {
+          "pl": "- Dokładnie jedną odkładasz na później przez „Odłóż na aukcję”. Nie trafi od razu do żadnego gracza."
+        },
+        {
+          "pl": "- Wszystkie pozostałe przeznaczasz dla innych osób, wybierając „Wyłóż do wspólnej puli”."
+        },
+        {
+          "pl": "Możesz rozdzielać w dowolnej kolejności. Jeśli pierwszą kartę weźmiesz dla siebie, pozostałe będziesz już musiał przeznaczyć na aukcję i do wspólnej puli. Nie zobaczysz ich wcześniej, żeby porównać wszystkie i dopiero wtedy wybierać."
+        },
+        {
+          "pl": "Po rozdzieleniu kart każda z pozostałych osób bierze jedną ze wspólnej puli. Zaczyna gracz następny po rozdającym. Gdy nadejdzie twoja kolej, przejrzyj karty strzałkami i weź jedną Enterem. Klawiszem P sprawdzisz, co zostało w puli."
+        },
+        {
+          "pl": "Następnie karty rozdziela kolejna osoba. Ten etap trwa do wyczerpania talii. Odłożone na aukcje karty zostają wtedy potasowane i rozpoczyna się licytacja."
+        }
+      ]
+    },
+    {
+      "id": "church",
+      "title": {
+        "pl": "Używanie kart kościelnych"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zdobyta karta kościelna działa od razu: zarówno gdy zachowasz ją dla siebie, jak i wtedy, gdy weźmiesz ją ze wspólnej puli lub kupisz na aukcji. Najpierw wybierasz jej działanie, a dopiero potem gra toczy się dalej. Samo odłożenie karty na aukcję jeszcze jej nie uruchamia."
+        },
+        {
+          "pl": "Rodzaj karty określa, jaką zmianę możesz wykonać:"
+        },
+        {
+          "pl": "- Karta podnosząca jedną kość zwiększa wartość wybranej kategorii o jeden."
+        },
+        {
+          "pl": "- Karta obniżająca jedną kość zmniejsza wartość wybranej kategorii o jeden."
+        },
+        {
+          "pl": "- Karta podnosząca dwie kości zwiększa o jeden wartości dwóch różnych kategorii."
+        },
+        {
+          "pl": "- Karta obniżająca dwie kości zmniejsza o jeden wartości dwóch różnych kategorii."
+        },
+        {
+          "pl": "- Karta z wyborem kierunku pozwala podnieść albo obniżyć jedną wybraną kość o jeden."
+        },
+        {
+          "pl": "Strzałkami przejrzyj dostępne zmiany i zatwierdź wybraną Enterem. Przy karcie dotyczącej dwóch kości wybierasz od razu parę kategorii. Nie można zamiast tego zmienić jednej kości o dwa ani wykonać tylko połowy działania."
+        },
+        {
+          "pl": "Kość nie może spaść poniżej 1 ani wzrosnąć ponad 6. Jeśli nie chcesz zmieniać wartości albo karta nie ma możliwego działania, wybierz „Nie używaj karty”."
+        }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": {
+        "pl": "Licytowanie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Na każdej aukcji licytujecie jedną kartę. Gra podaje, co jest na sprzedaż i kto zaczyna. Każda osoba po kolei może podbić ofertę albo spasować. Klawiszem B sprawdzisz licytowaną kartę oraz kto złożył najwyższą ofertę i ile zaproponował."
+        },
+        {
+          "pl": "Kiedy nadejdzie twoja kolej, strzałkami wybierz kwotę albo pas i naciśnij Enter. Pierwsza oferta musi wynosić co najmniej 1, a każda następna musi być wyższa od poprzedniej. Możesz też nacisnąć R, wpisać własną kwotę i zatwierdzić ją Enterem."
+        },
+        {
+          "pl": "Pas wycofuje cię z bieżącej aukcji. Gdy pozostanie tylko jedna licytująca osoba, wygrywa kartę i musi za nią zapłacić. Jeśli wszyscy spasują bez złożenia oferty, karta przepada i licytujecie następną."
+        },
+        {
+          "pl": "Za kartę biblioteki lub kartę kościelną licytujesz złotem. Gdy przedmiotem aukcji jest złoto, oferta oznacza liczbę kart, które oddasz ze swojej ręki. Zwróć na to uwagę przed podbijaniem stawki."
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "title": {
+        "pl": "Płacenie za wygraną aukcję"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po wygranej aukcji wybierasz karty do zapłaty. Przeglądaj je strzałkami, a Shift+Enter zaznaczaj te, które chcesz oddać. Enter zatwierdza cały wybór. Jeśli chcesz przygotować go od nowa, Escape usuwa zaznaczenia."
+        },
+        {
+          "pl": "Sposób liczenia zapłaty zależy od kupionej karty:"
+        },
+        {
+          "pl": "- Za kartę biblioteki albo kartę kościelną płacisz wartością kart złota. Ich suma musi pokryć ofertę. Zapłata może być wyższa od oferty, ale nie dostajesz reszty."
+        },
+        {
+          "pl": "- Za złoto oddajesz dokładnie tyle dowolnych kart, ile wynosiła twoja oferta. Każda oddana karta liczy się jako jedna, bez względu na wartość. Możesz zapłacić również kartami biblioteki, tracąc ich udział w końcowym wyniku."
+        },
+        {
+          "pl": "Przy płaceniu złotem nie wolno dorzucać zbędnych kart. Za ofertę 4 możesz oddać dwie karty po 3: żadnej z nich nie da się usunąć bez zejścia poniżej ceny. Przy ofercie 3 zestaw 3 i 1 nie zostanie przyjęty, bo jedynka nie jest potrzebna."
+        },
+        {
+          "pl": "Możesz licytować więcej złota, niż posiadasz, licząc, że ktoś jeszcze cię przebije. Jeśli jednak wygrasz i nie zapłacisz, poniesiesz karę. Wybierz wtedy „Nie płać” i naciśnij Enter. Tracisz jedną losową kartę z ręki, a aukcja tej samej karty zaczyna się od nowa bez ciebie. Osoby, które tylko spasowały, znów mogą licytować."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "pl": "Punkty za bibliotekę"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po rozliczeniu ostatniej aukcji porównujecie biblioteki. W każdej kategorii wygrywa osoba z największą sumą wartości kart. Przy równej sumie zwycięża posiadacz najlepszej litery w tej kategorii: A jest lepsze od B, B od C i tak dalej."
+        },
+        {
+          "pl": "Za wygraną kategorię dostajesz tyle punktów zwycięstwa, ile pokazuje jej kość. Kategoria, w której nikt nie ma kart, nie daje punktów."
+        },
+        {
+          "pl": "Dodajesz punkty za wszystkie wygrane kategorie. Wygrywa osoba z najwyższą sumą punktów. Przy remisie pierwszeństwo ma osoba z większą wartością pozostałego złota."
+        },
+        {
+          "pl": "Jeśli macie również tyle samo złota, porównujecie kategorie biblioteki w poniższej kolejności. W każdej liczy się najpierw suma wartości kart, a przy równej sumie najlepsza litera. Gdy ktoś uzyska przewagę, wygrywa i nie porównujecie już dalszych kategorii:"
+        },
+        {
+          "pl": "- Najpierw porównujecie Mnichów."
+        },
+        {
+          "pl": "- Jeśli nadal jest remis, porównujecie Pigmenty."
+        },
+        {
+          "pl": "- Następnie, jeśli trzeba, porównujecie Księgi zakazane."
+        },
+        {
+          "pl": "- Kolejne porównanie dotyczy Ksiąg świętych."
+        },
+        {
+          "pl": "- Na końcu porównujecie Rękopisy."
+        },
+        {
+          "pl": "Jeżeli żadne z tych porównań nie wyłoni zwycięzcy, gra kończy się remisem. S odczytuje końcowe wyniki."
+        }
+      ]
+    },
+    {
+      "id": "penalty",
+      "title": {
+        "pl": "Inna kara za niezapłacenie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed rozpoczęciem możesz zmienić w ustawieniach stołu karę za wygraną aukcję bez zapłaty. Zwykły „Średniowieczny blef” oznacza utratę jednej losowej karty."
+        },
+        {
+          "pl": "W wariancie pełnej kary każda inna osoba otrzymuje od ciebie jedną losową kartę. Oddawanie zaczyna się od następnej osoby w kolejności i kończy, gdy wszyscy coś dostaną albo zabraknie ci kart. Potem aukcja zaczyna się od nowa bez twojego udziału, tak jak przy zwykłej karze."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: wybierz kartę, jej przeznaczenie, ofertę albo działanie karty kościelnej."
+        },
+        {
+          "pl": "Enter: zatwierdź wybór lub zapłać zaznaczonymi kartami."
+        },
+        {
+          "pl": "Shift+Enter: zaznacz lub odznacz kartę do zapłaty."
+        },
+        {
+          "pl": "Escape przy płaceniu: wyczyść przygotowany zestaw kart."
+        },
+        {
+          "pl": "R: wpisz własną ofertę podczas licytacji."
+        },
+        {
+          "pl": "B: odczytaj bieżącą aukcję."
+        },
+        {
+          "pl": "L: odczytaj swoją bibliotekę."
+        },
+        {
+          "pl": "Ctrl+L: przejrzyj kategorie swojej biblioteki."
+        },
+        {
+          "pl": "C: odczytaj kości określające wartość kategorii."
+        },
+        {
+          "pl": "Shift+C: porównaj znane karty poszczególnych graczy."
+        },
+        {
+          "pl": "G: odczytaj swoje złoto."
+        },
+        {
+          "pl": "P: odczytaj wspólną pulę."
+        },
+        {
+          "pl": "S: odczytaj wyniki po zakończeniu gry."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest kolej."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "penalty": "penalty"
+  }
+}

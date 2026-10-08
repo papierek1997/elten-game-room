@@ -1,0 +1,176 @@
+{
+  "source": "games/checkers.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Capture all your opponent's pieces, or block them so they cannot move. Checkers is played by two people, with White moving first."
+        },
+        {
+          "en": "The default board has eight rows and eight columns. Each player starts with twelve ordinary pieces, called men. Only the dark squares are used."
+        }
+      ]
+    },
+    {
+      "id": "moves",
+      "title": {
+        "en": "Moving"
+      },
+      "paragraphs": [
+        {
+          "en": "A man moves one square diagonally forwards into an empty square. Use the arrows to find your piece, press Enter to select it, then move to its destination and press Enter again. V reads the legal moves for the piece at the cursor."
+        },
+        {
+          "en": "A man that finishes its move on the opponent's back row becomes a king. Kings can travel any distance along an empty diagonal, forwards or backwards."
+        }
+      ]
+    },
+    {
+      "id": "captures",
+      "title": {
+        "en": "Capturing"
+      },
+      "paragraphs": [
+        {
+          "en": "To capture with a man, jump over a diagonally adjacent enemy piece into the empty square immediately beyond it. A man may capture forwards or backwards. Select it with Enter, then confirm the landing square with Enter."
+        },
+        {
+          "en": "Capturing is compulsory. If you have a choice of routes, you must choose one that captures the greatest number of pieces. Equally long routes are equally valid."
+        },
+        {
+          "en": "After each jump, you must keep capturing with the same piece if another jump is available. Select that piece again with Enter, then choose its next landing square. Repeat until the sequence is complete."
+        },
+        {
+          "en": "A king can approach an enemy piece from further along the diagonal and jump it. It may land on any empty square beyond that piece, up to the next occupied square. Each jump captures only one piece."
+        },
+        {
+          "en": "Captured pieces stay on their squares until the entire move ends. They still block the route and cannot be jumped a second time."
+        },
+        {
+          "en": "Promotion happens at the end of the whole move. A man that reaches the back row during a sequence but then jumps away from it remains a man."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "The result"
+      },
+      "paragraphs": [
+        {
+          "en": "You win when the opponent has no pieces left or no legal move."
+        },
+        {
+          "en": "A draw occurs when the same position appears for the third time, or after eighty consecutive turns without a capture or promotion. A whole sequence of jumps counts as one turn."
+        }
+      ]
+    },
+    {
+      "id": "board_variant",
+      "title": {
+        "en": "Board sizes"
+      },
+      "paragraphs": [
+        {
+          "en": "The table settings offer three sizes:"
+        },
+        {
+          "en": "- 8 by 8: twelve men per player, the default."
+        },
+        {
+          "en": "- 10 by 10: twenty men per player."
+        },
+        {
+          "en": "- 12 by 12: thirty men per player."
+        },
+        {
+          "en": "On every size, two empty rows separate the opposing pieces at the start."
+        }
+      ]
+    },
+    {
+      "id": "rule_variants",
+      "title": {
+        "en": "Movement and capture options"
+      },
+      "paragraphs": [
+        {
+          "en": "Movement rules can be changed separately in the table settings. Choosing a larger board does not automatically change them."
+        },
+        {
+          "en": "- Turn off backward captures to make men capture only forwards."
+        },
+        {
+          "en": "- Turn off flying kings to limit a king's ordinary move to one diagonal square and its capture to a jump over an adjacent piece."
+        },
+        {
+          "en": "- Turn off compulsory captures to allow an ordinary move even when a capture is available."
+        },
+        {
+          "en": "- Turn off multiple captures to end a turn after the first jump."
+        },
+        {
+          "en": "- Turn off the longest-capture requirement to choose any permitted route. Requiring the longest route is only available when captures are compulsory and multiple captures are enabled."
+        },
+        {
+          "en": "- Allow backward movement to let ordinary men move one empty diagonal square backwards. Normally they can go backwards only when capturing."
+        },
+        {
+          "en": "- King priority requires a king to be used when it can make a capture sequence as long as the best available one. It requires the longest-capture rule and is off by default."
+        },
+        {
+          "en": "- Immediate promotion crowns a man as soon as it reaches the back row during a capture. It continues the sequence as a king."
+        },
+        {
+          "en": "- Turn off delayed removal to remove each captured piece immediately after its jump. This can open a route for another capture in the same sequence."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: explore the board."
+        },
+        {
+          "en": "Enter: select a piece and its destination; confirm each jump separately during a capture sequence."
+        },
+        {
+          "en": "V: read the selected piece's legal moves."
+        },
+        {
+          "en": "K: move to your next king."
+        },
+        {
+          "en": "Shift+K: move to the opponent's next king."
+        },
+        {
+          "en": "C: read player colours."
+        },
+        {
+          "en": "S: read both players' remaining men and kings."
+        },
+        {
+          "en": "Ctrl+H: switch between square numbers and chess coordinates."
+        },
+        {
+          "en": "Ctrl+Shift+H: rotate the board view."
+        },
+        {
+          "en": "T: read whose turn it is."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "board_size": "board_variant",
+    "rules": "rule_variants"
+  }
+}

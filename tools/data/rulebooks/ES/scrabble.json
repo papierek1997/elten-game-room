@@ -1,0 +1,317 @@
+{
+  "source": "games/scrabble_ui.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "es": "Objetivo y tablero"
+      },
+      "paragraphs": [
+        {
+          "es": "En Scrabble formas palabras con fichas de letras para ganar puntos. Todos amplían el mismo crucigrama, pero cada jugador puntúa sus propias palabras. Gana quien tenga más puntos al terminar."
+        },
+        {
+          "es": "Juegan de dos a cuatro personas, con siete fichas cada una en su atril. C lee tus letras y sus valores. Tras una jugada aceptada, repones hasta siete mientras queden fichas en la bolsa."
+        },
+        {
+          "es": "El tablero tiene quince columnas, de A a O, y quince filas, del 1 al 15. Recorre las casillas con las flechas: oirás primero la letra o que está vacía, y después sus coordenadas. Algunas casillas vacías anuncian también una bonificación."
+        }
+      ]
+    },
+    {
+      "id": "placement",
+      "title": {
+        "es": "Dónde formar palabras"
+      },
+      "paragraphs": [
+        {
+          "es": "La primera palabra debe pasar por el centro, H8. Las siguientes deben conectarse con lo que ya esté colocado: puedes alargar una palabra, cruzar otra con ella o poner letras al lado y formar varias palabras."
+        },
+        {
+          "es": "Cada jugada debe cumplir estas condiciones:"
+        },
+        {
+          "es": "- Todas las fichas nuevas van en una misma fila o columna. Se lee de izquierda a derecha o de arriba abajo."
+        },
+        {
+          "es": "- La palabra terminada no puede tener huecos. Sí puede contener letras que ya estuvieran en el tablero entre las nuevas."
+        },
+        {
+          "es": "- Cada palabra nueva debe tener al menos dos letras y estar en el diccionario del juego. Esto incluye las palabras cortas que se formen al cruzar, no solo la principal."
+        },
+        {
+          "es": "Las letras de las jugadas aceptadas permanecen en su lugar. No se mueven ni se recogen, pero puedes usarlas en palabras posteriores."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "es": "Colocar letras y confirmar la jugada"
+      },
+      "paragraphs": [
+        {
+          "es": "Ve con las flechas a una casilla vacía donde quieras colocar una letra y pulsa Enter. Se abre tu atril: elige una ficha con las flechas y confirma con Enter. Queda preparada en esa casilla, pero aún no has terminado el turno."
+        },
+        {
+          "es": "Coloca las demás letras del mismo modo. Para corregir una, vuelve a su casilla y pulsa Retroceso. Z retira todas las fichas que hayas añadido en este turno para empezar de nuevo."
+        },
+        {
+          "es": "Y lee las palabras preparadas y su puntuación prevista, sin consultar aún el diccionario. Cuando esté todo listo, pulsa F. Entonces se comprueban las palabras; si se aceptan, las fichas quedan en el tablero, recibes los puntos y termina tu turno."
+        },
+        {
+          "es": "Si el diccionario rechaza una palabra, oirás cuál es y todas las fichas preparadas volverán al atril. Con las reglas habituales puedes intentar otra jugada en ese mismo turno sin perder puntos. También debes corregir una colocación ilegal, como dejar un hueco o no conectar con el crucigrama."
+        }
+      ]
+    },
+    {
+      "id": "blanks",
+      "title": {
+        "es": "Comodines"
+      },
+      "paragraphs": [
+        {
+          "es": "Una ficha en blanco puede representar cualquier letra. Al colocarla aparece una elección adicional: elige la letra con las flechas y confirma con Enter. Después forma palabras como cualquier otra ficha."
+        },
+        {
+          "es": "Siempre vale cero puntos. Una vez aceptada la jugada, conserva la letra elegida hasta el final. Hay dos fichas en blanco en el juego."
+        }
+      ]
+    },
+    {
+      "id": "points",
+      "title": {
+        "es": "Puntuación"
+      },
+      "paragraphs": [
+        {
+          "es": "Puntúas cada palabra formada en tu jugada. Suma todas sus letras, incluidas las que ya estaban en la mesa. Si una letra nueva pertenece a una palabra horizontal y a otra vertical, cuenta en ambas."
+        },
+        {
+          "es": "Las bonificaciones de una casilla solo se usan cuando se ocupa por primera vez:"
+        },
+        {
+          "es": "- Doble o triple letra multiplica el valor de la ficha colocada allí. Después se añaden las otras letras de la palabra."
+        },
+        {
+          "es": "- Doble o triple palabra multiplica el total de la palabra. Varias bonificaciones de palabra se multiplican entre sí: dos dobles dan cuatro veces el total."
+        },
+        {
+          "es": "Un comodín en doble o triple letra sigue valiendo cero. En una casilla de palabra sí multiplica el valor de toda la palabra. Si después alargas esa palabra, no vuelves a usar las bonificaciones ya ocupadas."
+        },
+        {
+          "es": "Usar tus siete fichas en una sola jugada da 50 puntos adicionales. Se añaden después de puntuar las palabras y no se multiplican. S consulta los resultados."
+        }
+      ]
+    },
+    {
+      "id": "exchange",
+      "title": {
+        "es": "Cambiar fichas o pasar"
+      },
+      "paragraphs": [
+        {
+          "es": "Puedes gastar el turno en cambiar fichas en vez de formar una palabra. Pulsa G, recorre las fichas con las flechas y marca las que entregas con Espacio. Enter confirma el cambio y Escape lo cancela."
+        },
+        {
+          "es": "Puedes cambiar entre una y siete fichas si quedan al menos ocho en la bolsa. Las devueltas entran antes de sacar las nuevas, así que podrías recuperar alguna. E cuenta las fichas de la bolsa y de los atriles."
+        },
+        {
+          "es": "P permite pasar sin jugar ni cambiar. Si ya habías preparado letras, antes de pasar o cambiar se pide confirmación para retirarlas del tablero."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Final y recuento"
+      },
+      "paragraphs": [
+        {
+          "es": "La partida termina de una de estas formas:"
+        },
+        {
+          "es": "- Con la bolsa vacía, alguien usa todas sus fichas. Su jugada termina la partida."
+        },
+        {
+          "es": "- Ya no es posible cambiar fichas y pasan tres rondas completas de turnos sin ninguna palabra jugada. La partida queda bloqueada. Una palabra interrumpe este recuento incluso si vale cero puntos."
+        },
+        {
+          "es": "Cada jugador resta el valor de las fichas que conserve. Quien haya vaciado el atril recibe además la suma de las fichas ajenas. Si la partida se bloqueó, no hay esa bonificación. Un comodín sin usar vale cero."
+        },
+        {
+          "es": "Después del ajuste gana quien tenga más puntos. Si varios comparten el máximo, comparten la victoria."
+        }
+      ]
+    },
+    {
+      "id": "language",
+      "title": {
+        "es": "Idioma y diccionario"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes elegir fichas y diccionario en polaco o inglés. Cambian las letras, sus cantidades y sus valores, aunque ambos juegos tienen cien fichas en total."
+        },
+        {
+          "es": "La edición polaca usa el diccionario SJP incluido; la inglesa, Wordnik. Pueden diferir de los diccionarios de torneo. La aceptación depende del diccionario del idioma elegido."
+        }
+      ]
+    },
+    {
+      "id": "penalties",
+      "title": {
+        "es": "Penalizaciones por palabras rechazadas"
+      },
+      "paragraphs": [
+        {
+          "es": "Puedes elegir qué ocurre cuando presentas una palabra que no figura en el diccionario:"
+        },
+        {
+          "es": "- Permitir que corrijas la jugada, como en las reglas habituales."
+        },
+        {
+          "es": "- Terminar el turno tras el rechazo. Juega la siguiente persona y tus fichas quedan en el atril."
+        },
+        {
+          "es": "Ambas opciones admiten cero, 5 o 10 puntos de penalización. Una pulsación de F solo puede producir una penalización, aunque haya varias palabras incorrectas. Los errores de colocación, como un hueco, no reciben esta penalización."
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "title": {
+        "es": "Tiempo por turno"
+      },
+      "paragraphs": [
+        {
+          "es": "Por defecto no hay límite. Puedes activarlo antes de jugar. Abarca todo el turno, incluida la elección de una letra para el comodín y la corrección de palabras rechazadas."
+        },
+        {
+          "es": "Al agotarse, las fichas preparadas regresan al atril y pasas el turno. Agotar el tiempo no añade por sí mismo una penalización de puntos."
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "title": {
+        "es": "Atril y anuncios de letras"
+      },
+      "paragraphs": [
+        {
+          "es": "Si no tienes fichas preparadas, I cambia el orden del atril entre recepción, alfabético y vocales primero. Las teclas del 1 al 7 leen cada posición. Shift con una de esas cifras coloca directamente esa ficha en la casilla del cursor."
+        },
+        {
+          "es": "Puedes seguir en el tablero las letras que otra persona está preparando antes de confirmar su palabra. Ctrl+P activa los anuncios al añadirlas o retirarlas; vuelve a pulsarlo para desactivarlos."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer el tablero o una lista."
+        },
+        {
+          "es": "Enter: elegir y colocar una ficha; confirmar las fichas marcadas para un cambio."
+        },
+        {
+          "es": "Retroceso: retirar la ficha sin confirmar de la casilla actual."
+        },
+        {
+          "es": "Z: retirar todas las fichas de la jugada preparada."
+        },
+        {
+          "es": "F: presentar las palabras."
+        },
+        {
+          "es": "Y: leer las palabras preparadas y sus puntos sin consultar el diccionario."
+        },
+        {
+          "es": "Escape: cancelar la elección de ficha o el cambio."
+        },
+        {
+          "es": "C: leer el atril."
+        },
+        {
+          "es": "I: cambiar el orden del atril si aún no has preparado letras."
+        },
+        {
+          "es": "G: elegir fichas para cambiar."
+        },
+        {
+          "es": "Espacio en la lista de cambio: marcar o desmarcar una ficha."
+        },
+        {
+          "es": "P: pasar."
+        },
+        {
+          "es": "E: contar las fichas de los atriles y de la bolsa."
+        },
+        {
+          "es": "L: revisar las palabras jugadas."
+        },
+        {
+          "es": "S: consultar los resultados."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "1: leer la primera ficha."
+        },
+        {
+          "es": "2: leer la segunda ficha."
+        },
+        {
+          "es": "3: leer la tercera ficha."
+        },
+        {
+          "es": "4: leer la cuarta ficha."
+        },
+        {
+          "es": "5: leer la quinta ficha."
+        },
+        {
+          "es": "6: leer la sexta ficha."
+        },
+        {
+          "es": "7: leer la séptima ficha."
+        },
+        {
+          "es": "Shift+1: colocar la primera ficha en la casilla del cursor."
+        },
+        {
+          "es": "Shift+2: colocar la segunda ficha en la casilla del cursor."
+        },
+        {
+          "es": "Shift+3: colocar la tercera ficha en la casilla del cursor."
+        },
+        {
+          "es": "Shift+4: colocar la cuarta ficha en la casilla del cursor."
+        },
+        {
+          "es": "Shift+5: colocar la quinta ficha en la casilla del cursor."
+        },
+        {
+          "es": "Shift+6: colocar la sexta ficha en la casilla del cursor."
+        },
+        {
+          "es": "Shift+7: colocar la séptima ficha en la casilla del cursor."
+        },
+        {
+          "es": "Ctrl+P: activar o desactivar anuncios de letras colocadas y retiradas."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "content_language_id": "language",
+    "content_set_id": "language",
+    "invalid_word": "penalties",
+    "thinking_time": "time"
+  }
+}

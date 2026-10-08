@@ -1,0 +1,108 @@
+{
+  "source": "games/reversi.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl a začátek hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Reversi hrají dva hráči na desce 8 × 8. Jeden má černé kameny, druhý bílé. Rozhoduje počet kamenů na konci hry: chceš, aby jich co nejvíc mělo tvou barvu."
+        },
+        {
+          "cs": "Uprostřed desky jsou na začátku čtyři kameny, dva od každé barvy. První táhne černý, pak se hráči střídají."
+        }
+      ]
+    },
+    {
+      "id": "placing",
+      "title": {
+        "cs": "Obklíčení a otáčení kamenů"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve svém tahu položíš kámen na prázdné pole tak, aby se mezi ním a některým tvým dřívějším kamenem ocitl alespoň jeden soupeřův kámen. Řada může vést vodorovně, svisle i šikmo, nesmí v ní ale být mezera."
+        },
+        {
+          "cs": "Vyber volné pole šipkami a potvrď Enterem. Všechny takto obklíčené soupeřovy kameny se obrátí na tvou barvu. Uzavřeš-li jedním tahem několik řad, otočí se kameny ve všech."
+        },
+        {
+          "cs": "Například hraješ bílými a mezi bílým kamenem a volným polem leží dva černé. Položením bílého na toto pole změníš oba černé na bílé."
+        },
+        {
+          "cs": "Otočené kameny samy další kameny neotáčejí. Počítají se jen řady, které uzavřel právě položený kámen."
+        }
+      ]
+    },
+    {
+      "id": "passing",
+      "title": {
+        "cs": "Vynechání tahu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Nemáš-li žádný tah, kterým bys otočil soupeřův kámen, automaticky vynecháš. Soupeř pak hraje znovu, pokud má kam táhnout."
+        },
+        {
+          "cs": "V základním nastavení se můžeš tahu vzdát i dobrovolně klávesou P. Dvě dobrovolná vynechání za sebou hru neukončí, jestliže ještě existují přípustné tahy."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Výsledek hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Hra skončí zaplněním desky nebo ve chvíli, kdy už nemůže táhnout ani jeden z vás. Vítězí barva s více kameny; při stejném počtu je remíza. Aktuální počty přečte S."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Volitelné změny"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze v nastavení stolu pravidla upravit:"
+        },
+        {
+          "cs": "- Zákaz dobrovolného vynechání znamená, že vynecháš pouze tehdy, když nemáš žádný přípustný tah."
+        },
+        {
+          "cs": "- Vypnutím povinného otáčení smíš položit kámen na každé volné pole sousedící stranou nebo rohem s libovolným kamenem. Pokud tím zároveň obklíčíš soupeřovy kameny, otočí se jako obvykle."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházet pole desky."
+        },
+        {
+          "cs": "Enter: položit kámen."
+        },
+        {
+          "cs": "P: vynechat tah, dovolují-li to pravidla stolu."
+        },
+        {
+          "cs": "S: přečíst počty kamenů obou hráčů."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "allow_passing": "variants",
+    "mandatory_capture": "variants"
+  }
+}

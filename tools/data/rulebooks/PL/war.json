@@ -1,0 +1,111 @@
+{
+  "source": "games/war.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W wojnie próbujesz zdobyć karty pozostałych graczy. Grają od dwóch do ośmiu osób, a każdy dostaje część talii 24 kart, od dziewiątki do asa. Grasz kartami w otrzymanej kolejności: przy każdym ruchu zagrasz następną."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "pl": "Przebieg gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W swojej turze naciśnij Enter. Gdy wszyscy zagrają po jednej karcie, osoba z najwyższą bierze wszystkie karty z tego starcia. Od najniższej są to dziewiątka, dziesiątka, walet, dama, król i as. Kolory nie wpływają na wynik."
+        },
+        {
+          "pl": "Zdobyte karty trafiają w losowej kolejności pod spód twoich pozostałych kart. Następnie rozgrywacie kolejne starcie. Klawiszem C sprawdzisz karty obecnie wyłożone na stole, a klawiszem V wynik poprzedniego starcia."
+        }
+      ]
+    },
+    {
+      "id": "tie",
+      "title": {
+        "pl": "Wojna po remisie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Remis na najwyższej karcie rozpoczyna wojnę. Uczestniczą w niej tylko osoby, które zagrały tę wartość, ale walczą o wszystkie karty z dotychczasowego starcia."
+        },
+        {
+          "pl": "Gdy podczas wojny przyjdzie twoja kolej, ponownie naciśnij Enter. Dołożysz jedną kartę zakrytą i jedną odkrytą. Gracz z najwyższą odkrytą kartą zabiera wszystkie karty z tego starcia, także zakryte. Kolejny remis oznacza następną wojnę."
+        },
+        {
+          "pl": "Jeśli została ci tylko jedna karta, zagrywasz ją do porównania, bez dokładania zakrytej. Kto nie ma już kart, nie może kontynuować. Gdy tylko jednej osobie wystarczy ich do dalszej gry, od razu zabiera całość. Jeśli nie wystarczy nikomu, zdobycz przechodzi do następnego starcia."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Koniec gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po rozstrzygnięciu starcia gracze bez kart odpadają. Jeśli został tylko jeden, wygrywa. Gdyby bez kart zostali wszyscy, gra kończy się remisem."
+        },
+        {
+          "pl": "Partia trwa najwyżej 20 starć. Jeżeli wcześniej nie zostanie wyłoniony zwycięzca, wygrywa gracz z największą liczbą kart; równa największa liczba oznacza remis. E podaje liczbę kart każdego gracza, a Ctrl+T numer starcia i limit."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Inna talia i długość gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu przed grą można zmienić talię oraz długość partii:"
+        },
+        {
+          "pl": "- Pełna talia zawiera 52 karty, od dwójki do asa. Wartości porównuje się tak samo: po kolejnych numerach następują walet, dama, król i as."
+        },
+        {
+          "pl": "- Limit starć można zwiększyć z 20 do najwyżej 300. Po jego osiągnięciu nadal wygrywa osoba z największą liczbą kart."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Enter: zagraj wierzchnią kartę."
+        },
+        {
+          "pl": "Spacja: zagraj wierzchnią kartę."
+        },
+        {
+          "pl": "C: odczytaj karty na stole, najpierw swoje, potem przeciwników."
+        },
+        {
+          "pl": "E: odczytaj liczby kart graczy."
+        },
+        {
+          "pl": "V: odczytaj wynik ostatniego starcia."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "pl": "Ctrl+T: odczytaj numer bieżącego starcia i limit starć."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "deck": "variants",
+    "battle_limit": "variants"
+  }
+}

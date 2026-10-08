@@ -1,0 +1,250 @@
+{
+  "source": "games/mexican_train.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Two to eight players build several domino chains, called trains. Try to empty your hand: tiles left over when a round ends give you penalty points."
+        },
+        {
+          "en": "Rounds continue until only one player remains. Anyone whose score reaches 100 is eliminated."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "en": "The station and deal"
+      },
+      "paragraphs": [
+        {
+          "en": "Mexican Train uses a double-twelve set, with numbers from zero to twelve. Every train begins at the same central tile, the station. The first round uses 12–12, which is placed for you and belongs to nobody's hand."
+        },
+        {
+          "en": "The deal depends on how many players remain in the game:"
+        },
+        {
+          "en": "- Two to five players receive fifteen tiles each."
+        },
+        {
+          "en": "- Six or seven players receive twelve each."
+        },
+        {
+          "en": "- Eight players receive ten each."
+        },
+        {
+          "en": "The remaining tiles form the draw pile. The first player is chosen at random in round one; in later rounds, the start passes to the next person."
+        },
+        {
+          "en": "The next station is 11–11, then 10–10, and so on down to 0–0. If the match continues, start the sequence again with 12–12."
+        }
+      ]
+    },
+    {
+      "id": "trains",
+      "title": {
+        "en": "Where you can play"
+      },
+      "paragraphs": [
+        {
+          "en": "Each player has a personal train, and there is one shared Mexican train. Personal trains start closed."
+        },
+        {
+          "en": "- You may always play on your own train, open or closed."
+        },
+        {
+          "en": "- The Mexican train is always open to everyone."
+        },
+        {
+          "en": "- You may play on an opponent's personal train only when it is open."
+        },
+        {
+          "en": "Press C to check train ends and whether the trains are open."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "en": "Adding a tile"
+      },
+      "paragraphs": [
+        {
+          "en": "Normally you play one tile per turn. One half must match the chosen train's end; the other becomes its new end. On an empty train, match the station instead."
+        },
+        {
+          "en": "Choose a tile with the arrows and press Enter to open the train list. Choose the train with the arrows and press Enter again to play. Escape returns to your hand so you can choose another tile."
+        },
+        {
+          "en": "Playing a non-double ends your turn."
+        }
+      ]
+    },
+    {
+      "id": "drawing",
+      "title": {
+        "en": "When you cannot play"
+      },
+      "paragraphs": [
+        {
+          "en": "If no tile fits an available train, press Space to draw one. If you can now play, choose a tile and train in the usual way."
+        },
+        {
+          "en": "If you still cannot play, your personal train opens and your turn ends. An empty draw pile causes the same result immediately, without drawing."
+        },
+        {
+          "en": "Your train stays open until you play on it yourself. You can choose to play elsewhere and leave it open. An opponent adding a tile to your train does not close it."
+        }
+      ]
+    },
+    {
+      "id": "doubles",
+      "title": {
+        "en": "Doubles and extra plays"
+      },
+      "paragraphs": [
+        {
+          "en": "A double shows the same number on both halves, such as 7–7. Playing one lets you play again. Further doubles each give another play, so you can build a sequence within one turn."
+        },
+        {
+          "en": "A non-double played directly after a double on that train covers the double. During your own sequence, however, you may play on another available train instead. A non-double there ends your turn even if a previous double remains uncovered."
+        },
+        {
+          "en": "If you run out of moves during the sequence, Space draws one tile. Each double you play gives a fresh opportunity to draw if you get stuck again. If drawing still leaves you unable to play, your train opens and the turn passes."
+        }
+      ]
+    },
+    {
+      "id": "covering",
+      "title": {
+        "en": "Uncovered doubles"
+      },
+      "paragraphs": [
+        {
+          "en": "At the start of a later player's turn, any outstanding double must be covered before play can go elsewhere. This requirement even allows play on an opponent's closed train."
+        },
+        {
+          "en": "If several doubles remain uncovered, later players must cover the most recent first, working backwards. T reads whose turn it is and which double needs covering."
+        },
+        {
+          "en": "Suppose you play 7–7 on your own train, then 9–9 on the Mexican train. It is still your turn, so you may play 7–3 on your own train, covering the earlier double and ending your turn. The next player must cover 9–9 on the Mexican train."
+        },
+        {
+          "en": "If you cannot cover the required double, draw once with Space. If you still cannot cover it, your train opens and your turn ends. The next player faces the same double."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "en": "Round end and scoring"
+      },
+      "paragraphs": [
+        {
+          "en": "Playing your last tile ends the round immediately, even if it is a double. You do not take an extra play or cover any remaining doubles."
+        },
+        {
+          "en": "A round also ends when play is blocked: the pile is empty, everyone has failed to play in turn, and nobody has a legal move. Opening a train can create a move for someone else, so a sequence of passes alone does not always establish a block."
+        },
+        {
+          "en": "Score the round as follows:"
+        },
+        {
+          "en": "- A player who emptied their hand scores zero."
+        },
+        {
+          "en": "- Others add the spots left in their hands to their scores. In a blocked round, everyone counts their tiles."
+        },
+        {
+          "en": "- The 0–0 tile is always worth ten points."
+        },
+        {
+          "en": "After scoring, players with at least 100 points are eliminated. The last survivor wins. If everyone remaining reaches the limit together, the lowest score wins; equal lowest scores share victory. Press S to hear the scores."
+        }
+      ]
+    },
+    {
+      "id": "draw_variant",
+      "title": {
+        "en": "Drawing when you could play"
+      },
+      "paragraphs": [
+        {
+          "en": "A table option allows drawing even with a playable tile. Press Space before playing to draw once. You still get only one draw before that play; a double gives another play and a new opportunity to draw."
+        }
+      ]
+    },
+    {
+      "id": "limit",
+      "title": {
+        "en": "Score limit"
+      },
+      "paragraphs": [
+        {
+          "en": "The host can change the usual 100-point limit. Reaching or exceeding it after a round still means elimination."
+        }
+      ]
+    },
+    {
+      "id": "clock",
+      "title": {
+        "en": "Turn time"
+      },
+      "paragraphs": [
+        {
+          "en": "Turns are normally untimed. The host can set a limit in seconds for the entire turn, including a sequence of doubles. Neither drawing nor playing a double restarts it."
+        },
+        {
+          "en": "At timeout, the game draws one tile if the pile is not empty and you have not already drawn before the current play. It then opens your train and passes the turn without playing a tile. Any outstanding double remains for the next player."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: choose a tile or train."
+        },
+        {
+          "en": "Enter: open the train choice for a tile, then confirm the train."
+        },
+        {
+          "en": "Escape: cancel the train choice and return to your tile."
+        },
+        {
+          "en": "Space: draw a tile."
+        },
+        {
+          "en": "C: inspect the trains."
+        },
+        {
+          "en": "E: read the tile counts in hands and the pile."
+        },
+        {
+          "en": "Z: find the next playable tile without playing it."
+        },
+        {
+          "en": "Shift+Z: find the previous playable tile without playing it."
+        },
+        {
+          "en": "T: read whose turn it is and which double needs covering."
+        },
+        {
+          "en": "S: read scores."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "allow_playable_draw": "draw_variant",
+    "score_limit": "limit",
+    "thinking_time": "clock"
+  }
+}

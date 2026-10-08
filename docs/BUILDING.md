@@ -42,12 +42,15 @@ ruby tools/generate-krowa-nouns.rb --check
 ruby test/code_quality_test.rb
 ```
 
-Rulebooks come from `tools/data/rulebooks/*.json`, and the list of owners and outputs from
+The complete rulebooks for EN, PL, CS, ES and RU come from
+`tools/data/rulebooks/<LANG>/*.json`. The older English-based fallback comes
+from `tools/data/rulebooks/*.json`.
+The list of owners and outputs comes from
 `tools/rulebook_sources.json`. The compiler writes only to
 `games/generated/rulebooks/`; it does not replace methods in maintained game code.
 Monopoly board profiles are still generated from the current board definitions.
-Gettext covers the generated rules. After changing text, update the catalogs
-as described in the translation instructions below.
+Gettext covers English-based rules; complete language editions are compiled
+directly. After changing translated text, follow `docs/TRANSLATIONS.md`.
 
 Both generators' `--check` mode fails on a mismatch
 without fixing any files.
@@ -75,7 +78,9 @@ definition: explanations are retrieved from SJP on demand through the existing p
 Edit one PO file per language, such as `locale/PL.po`. After editing, run
 `ruby tools/translations.rb compile PL`, followed by
 `ruby tools/translations.rb check PL`. MO and the Polish fields in rulebook documents
-are generated from PO. Edit changelog entries in `lib/game_room_changelog.rb`
+under the root `tools/data/rulebooks/` directory are generated from PO. Complete
+language editions in its `<LANG>/` subdirectories are authored separately.
+Edit changelog entries in `lib/game_room_changelog.rb`
 and their translations in PO; they are displayed directly by the application.
 Word dictionaries, questions and game cards remain separate resources.
 Full instructions: `docs/TRANSLATIONS.md`.

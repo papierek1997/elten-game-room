@@ -1,0 +1,247 @@
+{
+  "source": "games/yahtzee.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "V Yahtzee házíš pěti kostkami a výsledky zapisuješ do bodovací tabulky. Každá kategorie počítá body jinak. V jednom tahu vyplníš jedno dosud volné políčko a znovu už ho použít nesmíš. Při rozhodování tedy mysli i na to, které možnosti si ponecháš pro další hody."
+        },
+        {
+          "cs": "Hrají dva až osm hráčů. Až všichni vyplní tabulky, vyhraje nejvyšší součet bodů."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "cs": "Házení a zápis výsledku"
+      },
+      "paragraphs": [
+        {
+          "cs": "Enterem na začátku tahu hoď všemi pěti kostkami. Výsledek můžeš hned zapsat, nebo ještě jednou či dvakrát házet. Před opakováním vybereš jen kostky, které chceš přehodit; ostatní zůstanou."
+        },
+        {
+          "cs": "K výběru slouží čísla 1 až 6 podle hozené hodnoty, nikoli podle pořadí kostek. Chceš-li přehodit obě dvojky, stiskni 2 dvakrát. Shift se stejným číslem jednu vybranou kostku zase ponechá. Mezerník přečte, co zůstává a co se bude přehazovat."
+        },
+        {
+          "cs": "Vybranými kostkami hodíš Enterem. Před každým dalším hodem je nutné znovu označit, které přehodíš."
+        },
+        {
+          "cs": "Chceš-li výsledek zapsat, stiskni Enter bez vybraných kostek. Otevře se seznam volných kategorií s body za současný hod. Vyber šipkami a potvrď Enterem. Zápisem tah končí a hraje další hráč."
+        },
+        {
+          "cs": "Po třetím hodu se kategorie otevřou rovnou. Jednu vybrat musíš, i kdyby to znamenalo zapsat nulu a vzdát se jí pro zbytek hry. Pokud ještě zbývá hod, Escape tě ze seznamu vrátí ke kostkám."
+        },
+        {
+          "cs": "Vlastní tabulku prohlédneš klávesou V, tabulky ostatních pomocí Shift+V. Snáz se tak rozhodneš, co si nechat na později."
+        }
+      ]
+    },
+    {
+      "id": "upper",
+      "title": {
+        "cs": "Jedničky až šestky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Prvních šest kategorií tvoří jedničky, dvojky, trojky, čtyřky, pětky a šestky. Vždy se sčítají jen kostky dané hodnoty. Hod 2, 2, 4, 4, 6 tak dává 8 za čtyřky, 6 za šestky, ale nulu za jedničky."
+        },
+        {
+          "cs": "Za součet alespoň 63 bodů v těchto šesti kategoriích získáš prémii 35 bodů. Rozhoduje společný součet, takže lepší výsledek v jedné kategorii může vyrovnat slabší v jiné."
+        }
+      ]
+    },
+    {
+      "id": "combinations",
+      "title": {
+        "cs": "Další bodovací kategorie"
+      },
+      "paragraphs": [
+        {
+          "cs": "Zbývající políčka hodnotí tyto kombinace:"
+        },
+        {
+          "cs": "- Trojice vyžaduje nejméně tři stejné kostky. Boduje součet všech pěti, nejen trojice."
+        },
+        {
+          "cs": "- Čtveřice vyžaduje nejméně čtyři stejné kostky. Také dává součet všech pěti."
+        },
+        {
+          "cs": "- Full house tvoří trojice jedné hodnoty a dvojice jiné. Dává 25 bodů, nebo součet kostek, je-li vyšší. Tři šestky a dvě čtyřky tedy dávají 26."
+        },
+        {
+          "cs": "- Malá postupka vyžaduje čtyři po sobě jdoucí hodnoty, například 2, 3, 4 a 5. Pátá kostka je libovolná. Získáš 30 bodů."
+        },
+        {
+          "cs": "- Velká postupka je pět po sobě jdoucích hodnot, 1 až 5 nebo 2 až 6, za 40 bodů."
+        },
+        {
+          "cs": "- Yahtzee znamená pět stejných kostek a dává 50 bodů."
+        },
+        {
+          "cs": "- Šance přijme libovolný hod a zapíše součet všech kostek."
+        },
+        {
+          "cs": "- Jeden pár vyžaduje alespoň dvě stejné kostky, ale započítá součet všech pěti."
+        },
+        {
+          "cs": "- Dva páry jsou třeba dvě trojky a dvě pětky. Boduje součet všech pěti kostek. Podmínku splní i full house, nikoli však čtyři stejné kostky: ty netvoří dva různé páry."
+        },
+        {
+          "cs": "- Bída odměňuje nízká čísla. Od 36 se odečte součet všech pěti kostek, takže za součet 12 zapíšeš 24 bodů."
+        },
+        {
+          "cs": "Pokud hod podmínku vybrané kategorie nesplňuje, zapíšeš do ní nulu. Tak lze obětovat políčko, které se ti těžko získává."
+        }
+      ]
+    },
+    {
+      "id": "yahtzees",
+      "title": {
+        "cs": "Další Yahtzee a žolík"
+      },
+      "paragraphs": [
+        {
+          "cs": "Máš-li už v kategorii Yahtzee zapsáno 50, každých dalších pět stejných kostek přinese prémii 100 bodů. Samotný hod zapíšeš jinam, protože Yahtzee je obsazené. Dříve zapsaná nula tuto prémii neumožní."
+        },
+        {
+          "cs": "U dalšího Yahtzee platí také pravidlo žolíka. Dovoluje pět stejných kostek využít i jinde, ale určuje pořadí zápisu:"
+        },
+        {
+          "cs": "- Nejprve musíš vyplnit odpovídající kategorii jedniček až šestek, pokud je volná. Pět čtyřek tedy patří do čtyřek za 20 bodů."
+        },
+        {
+          "cs": "- Pokud už je tato kategorie obsazená, zvol jakoukoli volnou mimo jedničky až šestky. Žolík dovolí zapsat full house, malou či velkou postupku za jejich běžné body. Ostatní kategorie se hodnotí normálně: například dva páry jsou při tomto hodu pořád za nulu."
+        },
+        {
+          "cs": "- Teprve když jsou všechny ostatní kategorie plné, vyber jiné volné políčko mezi jedničkami a šestkami. Hodnota nesouhlasí, takže do něj zapíšeš nulu."
+        },
+        {
+          "cs": "Žolík i stobodová prémie vyžadují dřívější zápis 50 v Yahtzee. První hod pěti stejných kostek pravidlo žolíka sám nespustí."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "cs": "Konec hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Střídáte se, dokud každý nevyplní všech 16 kategorií. Sečtou se zápisy a prémie. Nejvyšší výsledek vítězí, shoda na prvním místě znamená remízu. Průběžné součty přečte S."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "cs": "Volitelné úpravy"
+      },
+      "paragraphs": [
+        {
+          "cs": "Nastavení stolu umožňuje zkrátit tabulku a měnit prémie. Všechna výše uvedená pravidla jsou běžně zapnutá."
+        },
+        {
+          "cs": "- Vypnutí kategorií Jeden pár, Dva páry a Bída je odstraní z tabulky. Hraje se pak 13 tahů místo 16."
+        },
+        {
+          "cs": "- Vypnutí prémie horní části zruší dodatečných 35 bodů. Body za jedničky až šestky se dál počítají."
+        },
+        {
+          "cs": "- Vypnutí prémie za další Yahtzee zruší dodatečných 100 bodů za opakovaný hod pěti stejných kostek."
+        },
+        {
+          "cs": "- Bez žolíka nemusíš přednostně vyplnit odpovídající číselnou kategorii, ale pět stejných kostek ani nesmíš vydávat za full house či postupku. Vybereš libovolné volné pole a oboduješ ho obvyklým způsobem."
+        },
+        {
+          "cs": "Žolíka a prémii za další Yahtzee lze vypínat zvlášť. Necháš-li prémii zapnutou, můžeš 100 bodů získat i bez žolíka."
+        },
+        {
+          "cs": "Standardně se vyplňuje jedna tabulka. Při více hrách po každé vyplněné začneš novou, prázdnou, ale body z předchozích zůstanou. Celkově vyhraje nejvyšší součet ze všech her."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Enter: hodit vybranými kostkami, bez výběru otevřít kategorie nebo potvrdit kategorii."
+        },
+        {
+          "cs": "Šipky: vybrat kategorii."
+        },
+        {
+          "cs": "Escape v kategoriích: vrátit se ke kostkám."
+        },
+        {
+          "cs": "1: vybrat jednu jedničku k přehození."
+        },
+        {
+          "cs": "Shift+1: jednu vybranou jedničku ponechat."
+        },
+        {
+          "cs": "2: vybrat jednu dvojku k přehození."
+        },
+        {
+          "cs": "Shift+2: jednu vybranou dvojku ponechat."
+        },
+        {
+          "cs": "3: vybrat jednu trojku k přehození."
+        },
+        {
+          "cs": "Shift+3: jednu vybranou trojku ponechat."
+        },
+        {
+          "cs": "4: vybrat jednu čtyřku k přehození."
+        },
+        {
+          "cs": "Shift+4: jednu vybranou čtyřku ponechat."
+        },
+        {
+          "cs": "5: vybrat jednu pětku k přehození."
+        },
+        {
+          "cs": "Shift+5: jednu vybranou pětku ponechat."
+        },
+        {
+          "cs": "6: vybrat jednu šestku k přehození."
+        },
+        {
+          "cs": "Shift+6: jednu vybranou šestku ponechat."
+        },
+        {
+          "cs": "Mezerník: přečíst ponechané a vybrané kostky."
+        },
+        {
+          "cs": "D: přečíst poslední hod."
+        },
+        {
+          "cs": "V: prohlédnout vlastní bodovací tabulku."
+        },
+        {
+          "cs": "Shift+V: prohlédnout tabulku jiného hráče."
+        },
+        {
+          "cs": "S: přečíst skóre."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "matches": "options",
+    "extra_categories": "options",
+    "upper_bonus": "options",
+    "yahtzee_bonus": "options",
+    "joker_rule": "options"
+  }
+}

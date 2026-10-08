@@ -1,0 +1,188 @@
+{
+  "source": "games/farkle.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "pl": "Punkty i ryzyko"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Farkle rzucasz sześcioma kośćmi i odkładasz te, które dają punkty. Potem decydujesz: zapisać zdobyty wynik czy rzucać dalej, próbując go powiększyć. Nieudany rzut zabiera wszystko, co uzbierałeś w tej turze, ale nie rusza punktów z wcześniejszych tur."
+        },
+        {
+          "pl": "Gra od dwóch do ośmiu osób. Zwykle dążycie do 1000 punktów. O zwycięstwie rozstrzyga najwyższy zapisany wynik po dokończeniu ostatniej kolejki."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "pl": "Odkładanie kości i dalsze rzuty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gdy nadejdzie twoja tura, naciśnij Enter, żeby rzucić wszystkimi sześcioma kośćmi. Usłyszysz wynik i dostaniesz listę możliwych wyborów. Każdy wybór podaje kości do odłożenia oraz ich łączną wartość punktową. Wskaż go strzałkami i zatwierdź Enterem."
+        },
+        {
+          "pl": "Wybierasz od razu cały zestaw kości z danego rzutu. Może to być jeden punktujący układ albo kilka naraz, na przykład jedynka razem z trzema piątkami. Nie musisz odkładać wszystkich kości, które mogłyby dać punkty."
+        },
+        {
+          "pl": "Po odłożeniu kości zdecyduj, czy rzucasz dalej, czy zapisujesz punkty. Strzałkami wybierz ponowny rzut i naciśnij Enter, żeby rzucić pozostałymi kośćmi. Jeżeli uzbierałeś wymagane minimum, możesz zamiast tego wybrać zapisanie punktów. Dodasz je do swojego wyniku i zakończysz turę."
+        },
+        {
+          "pl": "Nowe kości muszą utworzyć własny punktujący układ. Nie łączysz ich z kośćmi odłożonymi wcześniej. Jeżeli rzut nie daje żadnych punktów, następuje Farkle: tracisz wynik całej bieżącej tury i od razu gra następna osoba."
+        },
+        {
+          "pl": "Na przykład z rzutu 1, 2, 4, 5, 5, 5 możesz odłożyć jedynkę i trzy piątki za 60 punktów. Zostają dwie kości. Możesz zapisać 60 albo zaryzykować rzut tymi dwiema. Jeśli wypadną 2 i 6, nie dadzą punktów, a całe 60 przepadnie."
+        }
+      ]
+    },
+    {
+      "id": "banking",
+      "title": {
+        "pl": "Kiedy można zapisać punkty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Pierwszy zapis wymaga co najmniej 50 punktów zdobytych w jednej turze. Dopóki masz zapisane zero, musisz więc rzucać dalej, jeśli odłożone kości nie dały jeszcze 50."
+        },
+        {
+          "pl": "Po pierwszym udanym zapisie w kolejnych turach wystarcza 30 punktów. Chodzi o nowy wynik danej tury, nie o sumę z całej gry. Klawisz C przypomina bieżący wynik i wymagane minimum; S odczytuje zapisane wyniki wszystkich graczy."
+        }
+      ]
+    },
+    {
+      "id": "scores",
+      "title": {
+        "pl": "Co daje punkty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Poniższe wartości dotyczą kości pochodzących z jednego rzutu. Gdy odkładasz kilka niezależnych układów, ich punkty się dodają:"
+        },
+        {
+          "pl": "- Pojedyncza jedynka daje 10 punktów."
+        },
+        {
+          "pl": "- Pojedyncza piątka daje 5 punktów. Pozostałe pojedyncze kości nie punktują."
+        },
+        {
+          "pl": "- Trzy jedynki dają 75 punktów."
+        },
+        {
+          "pl": "- Trzy jednakowe kości o innej wartości dają dziesięć razy tyle punktów, ile oczek ma jedna z nich. Trzy dwójki są więc warte 20, a trzy szóstki 60 punktów."
+        },
+        {
+          "pl": "- Cztery jednakowe kości dają 100 punktów oraz dziesięć razy ich wartość. Cztery czwórki dają zatem 140 punktów."
+        },
+        {
+          "pl": "- Pięć jednakowych kości daje 300 punktów oraz dwadzieścia razy ich wartość. Pięć czwórek daje 380 punktów."
+        },
+        {
+          "pl": "- Sześć jednakowych kości daje 600 punktów oraz dwadzieścia pięć razy ich wartość. Sześć czwórek daje 700 punktów."
+        },
+        {
+          "pl": "- Pięć kolejnych wartości, od 1 do 5 albo od 2 do 6, daje 100 punktów."
+        },
+        {
+          "pl": "- Wszystkie sześć wartości, od 1 do 6, daje 200 punktów."
+        },
+        {
+          "pl": "- Trzy pary o różnych wartościach dają 150 punktów."
+        },
+        {
+          "pl": "- Dwie trójki o różnych wartościach dają 250 punktów."
+        },
+        {
+          "pl": "- Cztery jednakowe kości i para innej wartości dają razem 250 punktów."
+        },
+        {
+          "pl": "Gdy te same odłożone kości można policzyć na kilka sposobów, dostajesz najkorzystniejszy wynik. Na liście wyboru od razu widzisz należną liczbę punktów."
+        }
+      ]
+    },
+    {
+      "id": "hot_dice",
+      "title": {
+        "pl": "Gdy zapunktują wszystkie kości"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli odłożysz wszystkie sześć kości, odzyskujesz pełny zestaw do dalszego rzutu. Może się to zdarzyć w jednym rzucie albo po kilku kolejnych. Zebrane punkty pozostają w bieżącej turze."
+        },
+        {
+          "pl": "Możesz teraz rzucić znów sześcioma kośćmi albo zapisać punkty, jeśli uzbierałeś wymagane minimum. Nadal ryzykujesz utratę wszystkich punktów z tej tury, również tych zdobytych przed ponownym użyciem sześciu kości."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "pl": "Ostatnia kolejka i wygrana"
+      },
+      "paragraphs": [
+        {
+          "pl": "Kiedy ktoś zapisze tyle punktów, że jego suma osiągnie lub przekroczy 1000, dokańczacie obecną kolejkę. Grają jeszcze osoby siedzące po nim w ustalonej kolejności, aż do ostatniej osoby. Ci, którzy w tej kolejce już zagrali, nie dostają dodatkowej tury."
+        },
+        {
+          "pl": "Na przykład w grze czteroosobowej drugi gracz osiąga 1000. Swoje tury rozgrywają jeszcze trzeci i czwarty, a potem porównujecie wyniki. Wygrywa osoba z najwyższą zapisaną sumą, niekoniecznie osoba, która pierwsza osiągnęła cel. Równe najwyższe wyniki dają remis."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "pl": "Cel gry i minimalny zapis"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed rozpoczęciem w ustawieniach stołu możecie zmienić trzy liczby:"
+        },
+        {
+          "pl": "- Limit punktów domyślnie wynosi 1000. Gdy ktoś go osiągnie, dokańczacie bieżącą kolejkę i porównujecie wyniki."
+        },
+        {
+          "pl": "- Minimum pierwszego zapisu zastępuje próg 50 punktów. Obowiązuje każdego gracza tak długo, jak jego zapisany wynik wynosi zero."
+        },
+        {
+          "pl": "- Minimum zapisu tury zastępuje próg 30 punktów. Obowiązuje od następnej tury po pierwszym zapisaniu punktów."
+        },
+        {
+          "pl": "Oba minima ustala się osobno. Wartość zero znosi dany próg, ale przed zapisem nadal trzeba zdobyć w turze jakieś punkty."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: wybierz kości do odłożenia albo dalszą czynność."
+        },
+        {
+          "pl": "Enter: zatwierdź wybrany zestaw kości, rzut lub zapis punktów."
+        },
+        {
+          "pl": "D: odczytaj ostatni rzut."
+        },
+        {
+          "pl": "C: odczytaj wynik bieżącej tury i minimum potrzebne do zapisu."
+        },
+        {
+          "pl": "S: odczytaj zapisane wyniki."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "options",
+    "turn_minimum": "options",
+    "entry_minimum": "options"
+  }
+}

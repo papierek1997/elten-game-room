@@ -1,0 +1,247 @@
+{
+  "source": "games/yahtzee.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Roll five dice and choose where to score them on your scorecard. Each category counts the roll differently, and you must fill one unused category every turn. You cannot change a category once you have scored it, so consider which opportunities to keep for later."
+        },
+        {
+          "en": "Two to eight players take turns. When all cards are complete, the highest total wins."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Rolling and scoring"
+      },
+      "paragraphs": [
+        {
+          "en": "Press Enter to roll all five dice. You may score immediately or take up to two more rolls. Before a reroll, choose which dice to change; the others keep their values."
+        },
+        {
+          "en": "Use number keys 1–6 to select dice by value, not by position. To reroll two dice showing 2, press 2 twice. Shift with the same number removes one die from that selection. Space reads which dice you are keeping and which you will reroll."
+        },
+        {
+          "en": "Press Enter to reroll the selected dice. Make a fresh selection before another reroll."
+        },
+        {
+          "en": "To score, press Enter with no dice selected. This opens a list of unused categories and what each would score for the current roll. Choose with the arrows and confirm with Enter. Your turn ends."
+        },
+        {
+          "en": "After the third roll, the category list opens automatically. You must use a category even if none gives a result you like; sometimes you have to sacrifice one for zero. Before the third roll, Escape from the category list returns to the dice."
+        },
+        {
+          "en": "V opens your scorecard and Shift+V opens other players' cards, helping you decide which category to save."
+        }
+      ]
+    },
+    {
+      "id": "upper",
+      "title": {
+        "en": "Ones to Sixes"
+      },
+      "paragraphs": [
+        {
+          "en": "The first six categories count only matching dice: Ones, Twos, Threes, Fours, Fives and Sixes. A roll of 2, 2, 4, 4, 6 scores 8 in Fours, 6 in Sixes or zero in Ones."
+        },
+        {
+          "en": "Reach a combined 63 points across these six categories to earn a 35-point bonus. A strong score in one can make up for a weak score in another."
+        }
+      ]
+    },
+    {
+      "id": "combinations",
+      "title": {
+        "en": "Other categories"
+      },
+      "paragraphs": [
+        {
+          "en": "The remaining categories score combinations or the whole roll:"
+        },
+        {
+          "en": "- Three of a kind needs at least three equal dice and scores the sum of all five."
+        },
+        {
+          "en": "- Four of a kind needs at least four equal dice and scores the sum of all five."
+        },
+        {
+          "en": "- Full house needs three of one value and two of another. It scores 25 or the sum of the dice, whichever is higher. Three 6s and two 4s therefore score 26."
+        },
+        {
+          "en": "- Small straight needs four consecutive values, such as 2, 3, 4, 5; the fifth die can be anything. It scores 30."
+        },
+        {
+          "en": "- Large straight needs five consecutive values, 1–5 or 2–6, and scores 40."
+        },
+        {
+          "en": "- Yahtzee is five equal dice and scores 50."
+        },
+        {
+          "en": "- Chance accepts any roll and scores the sum of all five dice."
+        },
+        {
+          "en": "- One pair needs at least two equal dice and scores the sum of all five, not just the pair."
+        },
+        {
+          "en": "- Two pairs needs pairs of two different values, such as two 3s and two 5s, and scores the sum of all five dice. A full house qualifies, but four equal dice do not count as two different pairs."
+        },
+        {
+          "en": "- Misery rewards low rolls: subtract the sum of all five dice from 36. A total of 12 scores 24."
+        },
+        {
+          "en": "A roll that does not meet a category's condition scores zero there. You may choose this to give up a difficult category."
+        }
+      ]
+    },
+    {
+      "id": "yahtzees",
+      "title": {
+        "en": "More Yahtzees and the Joker rule"
+      },
+      "paragraphs": [
+        {
+          "en": "After scoring 50 in Yahtzee, each later roll of five equal dice earns a 100-point bonus. You must score that roll in another category because Yahtzee is already used. A zero previously entered in Yahtzee does not qualify for the bonus."
+        },
+        {
+          "en": "A later Yahtzee also invokes the Joker rule, which changes where you may score it:"
+        },
+        {
+          "en": "- Use the matching Ones-to-Sixes category first if it is empty. Five 4s must go into Fours for 20."
+        },
+        {
+          "en": "- If that category is filled, choose an unused category outside Ones to Sixes. The Joker lets five equal dice count as a full house, small straight or large straight for their usual points. Other categories score normally; Two pairs still gives zero for five equal dice."
+        },
+        {
+          "en": "- Only when every other category is filled may you use a different empty Ones-to-Sixes category, scoring zero because the dice do not match."
+        },
+        {
+          "en": "Like the 100-point bonus, the Joker requires an earlier score of 50 in Yahtzee. Your first roll of five equal dice does not activate it."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "en": "Finishing the game"
+      },
+      "paragraphs": [
+        {
+          "en": "Continue until everyone has used all 16 categories. Add each player's category scores and bonuses; the highest total wins, with equal highest totals drawing. S reads the running totals."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "en": "Scorecard options"
+      },
+      "paragraphs": [
+        {
+          "en": "The table settings can shorten the card or change bonuses. All rules described above are enabled by default."
+        },
+        {
+          "en": "- Disable One pair, Two pairs and Misery to remove those three categories and play 13 turns per card instead of 16."
+        },
+        {
+          "en": "- Disable the Ones-to-Sixes bonus to remove the extra 35 points. Scores in those categories still count."
+        },
+        {
+          "en": "- Disable the bonus for further Yahtzees to remove the extra 100 points."
+        },
+        {
+          "en": "- Disable the Joker to remove both the required matching category and the use of five equal dice as a full house or straight. You may then choose any unused category and score it normally."
+        },
+        {
+          "en": "The extra-Yahtzee bonus and Joker are independent. You can keep the 100-point bonus while playing without the Joker."
+        },
+        {
+          "en": "The default match uses one scorecard. Choose several games to play successive fresh cards while keeping earlier points. The highest combined total wins at the end."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Enter: roll selected dice, open categories when none are selected, or confirm a category."
+        },
+        {
+          "en": "Arrows: choose a category."
+        },
+        {
+          "en": "Escape in the category list: return to the dice."
+        },
+        {
+          "en": "1: select one die showing 1 to reroll."
+        },
+        {
+          "en": "Shift+1: keep one selected die showing 1."
+        },
+        {
+          "en": "2: select one die showing 2 to reroll."
+        },
+        {
+          "en": "Shift+2: keep one selected die showing 2."
+        },
+        {
+          "en": "3: select one die showing 3 to reroll."
+        },
+        {
+          "en": "Shift+3: keep one selected die showing 3."
+        },
+        {
+          "en": "4: select one die showing 4 to reroll."
+        },
+        {
+          "en": "Shift+4: keep one selected die showing 4."
+        },
+        {
+          "en": "5: select one die showing 5 to reroll."
+        },
+        {
+          "en": "Shift+5: keep one selected die showing 5."
+        },
+        {
+          "en": "6: select one die showing 6 to reroll."
+        },
+        {
+          "en": "Shift+6: keep one selected die showing 6."
+        },
+        {
+          "en": "Space: read kept and selected dice."
+        },
+        {
+          "en": "D: read the last roll."
+        },
+        {
+          "en": "V: inspect your scorecard."
+        },
+        {
+          "en": "Shift+V: inspect another player's scorecard."
+        },
+        {
+          "en": "S: read scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "matches": "options",
+    "extra_categories": "options",
+    "upper_bonus": "options",
+    "yahtzee_bonus": "options",
+    "joker_rule": "options"
+  }
+}

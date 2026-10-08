@@ -46,6 +46,15 @@ importing, extending or translating question sets. They cover natural language,
 sources, three plausible wrong answers, duplicates and a review of every item,
 with guidance for Polish, English, Czech, Spanish, Russian and future languages.
 
+The [game rulebook editorial guidelines](RULES_EDITORIAL.md) are mandatory
+when writing, importing, revising or translating rules. They provide an
+adaptable outline, worked editorial examples, professional references and a
+first-turn walkthrough, and teach essential controls beside the actions they
+perform. Remove irrelevant topics without compressing needed explanations
+into formulas. A separate shortcut reference helps players recall keys;
+general application help and
+implementation details remain outside the rules.
+
 [tools/data/rulebooks/](../tools/data/rulebooks/) contains rulebook sources for
 the `tools/compile-rulebooks.rb` compiler. The game loads generated Ruby from
 `games/generated/rulebooks/` and MO translations; JSON stays outside the package.

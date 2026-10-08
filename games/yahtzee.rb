@@ -35,6 +35,10 @@ module GameRoomGames
       _("Yahtzee")
     end
 
+    def short_description
+      _("Roll five dice and choose how to score them, remembering that each category can only be used once.")
+    end
+
     def minimum_players
       2
     end

@@ -26,6 +26,10 @@ module GameRoomGames
     end
     def name; _("Domino"); end
 
+    def short_description
+      _("Match the numbers on dominoes and play all your tiles before anyone else to avoid penalty points.")
+    end
+
     def option_definitions
       [
         OptionDefinition.new(key: "tile_set", label: _("Domino set"), kind: :choice, default: "d6", choices: SETS.map do |key, (max, copies, _, limit)|

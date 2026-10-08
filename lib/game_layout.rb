@@ -1,5 +1,6 @@
 require_relative "game_layout_spec"
 require_relative "context_help"
+require_relative "table_activity_repository"
 
 require_relative "game_room_localization"
 
@@ -128,7 +129,7 @@ module GameRoomLayout
       @history = GameRoomHistory::View.new
       @users = GameSurfaces::RefreshAwareListBox.new([], header: "", quiet: true)
       @chat = chat_control || GameSurfaces::RefreshAwareEditBox.new(
-        _("Chat"), text: chat_text.to_s, quiet: true, max_length: 400
+        _("Chat"), text: chat_text.to_s, quiet: true, max_length: TableActivityRepository::MESSAGE_MAX_LENGTH
       )
       @chat.restore_selection(index: chat_index, check: chat_check) if chat_control == nil
       @primary_button = Button.new(_("Start game"))

@@ -57,6 +57,10 @@ module GameRoomGames
       _("Poker")
     end
 
+    def short_description
+      _("Win chips with stronger cards or bluff your opponents into folding.")
+    end
+
     def minimum_players
       2
     end

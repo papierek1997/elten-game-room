@@ -1,0 +1,482 @@
+{
+  "source": "games/monopoly.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "Aim of the game"
+      },
+      "paragraphs": [
+        {
+          "en": "Buy properties and collect rent when other players land on them. Keep enough money for your own bills, too: the last player who has not gone bankrupt wins."
+        },
+        {
+          "en": "Two to eight people can play. The default Atlantic City board has forty spaces. Everyone begins on Go with $1,500."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Rolling and moving"
+      },
+      "paragraphs": [
+        {
+          "en": "At the start of your turn, choose Roll dice and press Enter. The game rolls two dice and moves your piece by their total. What happens next depends on where you land: you might buy a property or pay its owner rent."
+        },
+        {
+          "en": "Choose actions with the arrows and confirm them with Enter. Once you have dealt with the space, play passes to the next player."
+        },
+        {
+          "en": "Rolling the same number on both dice is a double. After moving and dealing with the space, you get another roll. A third double in a row sends you straight to jail without making that third move. Going to jail or falling into debt ends your extra rolls."
+        },
+        {
+          "en": "Press I for everyone's position, Shift+D to browse the board, or C for your cash."
+        }
+      ]
+    },
+    {
+      "id": "buying",
+      "title": {
+        "en": "Buying properties"
+      },
+      "paragraphs": [
+        {
+          "en": "When you land on an unowned property, you can buy it at the stated price. Choose Buy with the arrows and press Enter, or decline if you do not want it. If you cannot afford it, the purchase is skipped. A property that is not bought stays available."
+        },
+        {
+          "en": "There are three kinds of property:"
+        },
+        {
+          "en": "- Streets belong to colour groups. Owning a whole group raises its rent and lets you build houses."
+        },
+        {
+          "en": "- Railroads charge more rent when the same owner holds more of them."
+        },
+        {
+          "en": "- Utilities, such as the electric company and water works, charge rent based on the dice roll. The multiplier depends on how many utilities the owner holds."
+        },
+        {
+          "en": "Press F for the property card of the space you occupy. It gives the price, rent, building costs and mortgage value. V opens your properties, and Shift+V opens other players' properties. Browse with the arrows and press Enter for details."
+        }
+      ]
+    },
+    {
+      "id": "rent",
+      "title": {
+        "en": "Rent"
+      },
+      "paragraphs": [
+        {
+          "en": "Landing on someone else's property means paying its owner rent. By default, the game collects it automatically. You pay no rent on your own property or on a mortgaged property."
+        },
+        {
+          "en": "A street's property card lists its rent at each building level. Owning the complete colour group doubles the basic rent on its undeveloped streets. Houses and hotels raise the rent further."
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "title": {
+        "en": "Go, taxes and cards"
+      },
+      "paragraphs": [
+        {
+          "en": "Passing Go pays $200. Landing exactly on Go pays $400."
+        },
+        {
+          "en": "Some spaces cannot be bought:"
+        },
+        {
+          "en": "- Income Tax costs $200; Luxury Tax costs $100."
+        },
+        {
+          "en": "- Free Parking pays out its accumulated pot. Taxes and payments to the bank from cards or jail fees go into this pot. After a payout, it starts building up again from zero."
+        },
+        {
+          "en": "- Chance and Community Chest draw an event card. The game reads and carries out its effect."
+        },
+        {
+          "en": "An event card may:"
+        },
+        {
+          "en": "- Pay you money from the bank or make you pay."
+        },
+        {
+          "en": "- Have you pay other players or collect money from each of them."
+        },
+        {
+          "en": "- Charge for repairs according to the houses and hotels you own."
+        },
+        {
+          "en": "- Move you to another space. The normal purchase, rent or tax rules apply there unless the card says otherwise."
+        },
+        {
+          "en": "- Send you to jail."
+        },
+        {
+          "en": "- Give you a Get Out of Jail Free card to keep for later."
+        },
+        {
+          "en": "Two movement cards change the rent calculation:"
+        },
+        {
+          "en": "- Going to the nearest railroad doubles its rent."
+        },
+        {
+          "en": "- Going to the nearest utility makes the rent ten times a fresh roll of two dice."
+        },
+        {
+          "en": "Buying properties or buildings, mortgaging, and paying other players do not add money to Free Parking."
+        }
+      ]
+    },
+    {
+      "id": "building",
+      "title": {
+        "en": "Building houses and hotels"
+      },
+      "paragraphs": [
+        {
+          "en": "Manage your properties before rolling on your turn. To build on a street:"
+        },
+        {
+          "en": "- You must own every street in its colour group."
+        },
+        {
+          "en": "- None of the group's streets may be mortgaged."
+        },
+        {
+          "en": "- You must have enough cash for the building."
+        },
+        {
+          "en": "Press H to open the available building choices. Select a street with the arrows and press Enter. Each confirmation adds one building at the listed cost."
+        },
+        {
+          "en": "Build evenly across a colour group. Put one house on every street before adding second houses, and continue that way up to four houses per street. The next building replaces the four houses with a hotel."
+        },
+        {
+          "en": "The bank has 32 houses and 12 hotels. If it runs out of the buildings you need, wait for some to return. Building a hotel returns the four replaced houses to the bank."
+        }
+      ]
+    },
+    {
+      "id": "selling",
+      "title": {
+        "en": "Selling buildings"
+      },
+      "paragraphs": [
+        {
+          "en": "Press Shift+H, choose a building with the arrows and confirm with Enter to sell it for half its construction cost."
+        },
+        {
+          "en": "You must sell evenly as well, starting with the most developed streets in the group. Selling a hotel normally replaces it with four houses."
+        },
+        {
+          "en": "If the bank lacks those four houses, the list offers the sale of all buildings in that colour group. You receive half their construction costs."
+        }
+      ]
+    },
+    {
+      "id": "mortgages",
+      "title": {
+        "en": "Mortgages"
+      },
+      "paragraphs": [
+        {
+          "en": "Mortgaging a property gives you cash from the bank while you keep ownership. Press K, select a property and confirm with Enter. You receive its listed mortgage value, but it stops earning rent."
+        },
+        {
+          "en": "Before mortgaging a street, sell every building in its colour group."
+        },
+        {
+          "en": "To lift a mortgage, press Shift+K, choose the property and press Enter. You repay its mortgage value plus ten percent, rounded up to a whole unit. A $100 mortgage therefore costs $110 to repay. The property can then earn rent again."
+        }
+      ]
+    },
+    {
+      "id": "trading",
+      "title": {
+        "en": "Trading with another player"
+      },
+      "paragraphs": [
+        {
+          "en": "You can acquire properties by trading. Before rolling on your own turn, press E, choose another player with the arrows and confirm with Enter."
+        },
+        {
+          "en": "Enter the cash you offer and the cash you want in return. Tab to each player's property list, browse with the arrows, and use Space to mark the properties to include. A trade can combine several properties and cash."
+        },
+        {
+          "en": "When ready, Tab to the button for sending the offer and press Enter. The other player presses A to accept or R to reject it. Money and properties change hands only when the offer is accepted."
+        },
+        {
+          "en": "Trades have these restrictions:"
+        },
+        {
+          "en": "- Mortgaged properties cannot be traded."
+        },
+        {
+          "en": "- Streets cannot be traded while any buildings remain in their colour group. Sell all buildings in that group first."
+        },
+        {
+          "en": "- Both players must be able to pay their part. Cash received in the same trade counts towards what they can afford."
+        }
+      ]
+    },
+    {
+      "id": "jail",
+      "title": {
+        "en": "Jail"
+      },
+      "paragraphs": [
+        {
+          "en": "Simply landing on Jail means you are just visiting. You are jailed only when a board space or card sends you there, or you roll three doubles in a row. Being sent to jail ends your turn and does not pay you for Go."
+        },
+        {
+          "en": "At the start of a turn in jail, choose how to try to leave:"
+        },
+        {
+          "en": "- Press P to pay $50, then roll and move normally."
+        },
+        {
+          "en": "- Press J to use a Get Out of Jail Free card you hold, then roll normally."
+        },
+        {
+          "en": "- Roll with Enter and try for a double. You have three consecutive turns to try."
+        },
+        {
+          "en": "A double rolled in jail frees you and moves you by its total, but does not give an extra roll. If your third attempt is not a double, you pay $50 and move according to that roll."
+        },
+        {
+          "en": "You still collect rent while in jail and can manage your properties before rolling."
+        }
+      ]
+    },
+    {
+      "id": "debt",
+      "title": {
+        "en": "Debt and bankruptcy"
+      },
+      "paragraphs": [
+        {
+          "en": "If a payment exceeds your cash, you owe a debt. If this happens during your turn, that turn ends. Settle the debt on your next turn before rolling again."
+        },
+        {
+          "en": "To raise the money, sell buildings, mortgage properties or arrange a trade. Once the full debt is paid, you can roll."
+        },
+        {
+          "en": "You may give up by pressing B to declare bankruptcy. Bankruptcy happens automatically if, on your turn, you owe money and have no building left to sell or property left to mortgage."
+        },
+        {
+          "en": "A bankrupt player is eliminated. If they owe another player, that creditor receives their remaining properties and Get Out of Jail Free cards, with buildings settled at half price. If the debt is to the bank, the properties return to the bank."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "Winning"
+      },
+      "paragraphs": [
+        {
+          "en": "The last player who has not gone bankrupt wins. Press S during the game to compare everyone's finances."
+        }
+      ]
+    },
+    {
+      "id": "boards",
+      "title": {
+        "en": "Other boards"
+      },
+      "paragraphs": [
+        {
+          "en": "You can choose another board before play begins. Boards vary in their property names, number of spaces, currency, colour groups, starting cash and Go payment."
+        },
+        {
+          "en": "Larger boards also have more buildings in the bank. Check each property card for prices, rents and building costs, just as on the standard board."
+        },
+        {
+          "en": "Some charges are tied to the Go payment:"
+        },
+        {
+          "en": "- Income Tax costs one Go payment."
+        },
+        {
+          "en": "- Luxury Tax costs half a Go payment."
+        },
+        {
+          "en": "- Leaving jail costs a quarter of a Go payment."
+        },
+        {
+          "en": "The rules for colour groups, even building, mortgages and bankruptcy stay the same."
+        }
+      ]
+    },
+    {
+      "id": "auctions",
+      "title": {
+        "en": "Auctions"
+      },
+      "paragraphs": [
+        {
+          "en": "Normally, a declined property stays unowned. You can instead enable auctions before starting. All players still in the game take part in turn, including the person who declined the purchase."
+        },
+        {
+          "en": "On your auction turn, bid or pass. G places the suggested higher bid. To enter your own amount, press B, type it and confirm with Enter. This is your total bid, not the increase over the previous offer."
+        },
+        {
+          "en": "Your bid must exceed the current offer and fit within your available cash. To leave the auction, choose the pass action with the arrows and Enter. Once you pass, you cannot rejoin that auction."
+        },
+        {
+          "en": "When nobody raises the highest bid, its bidder buys the property at that price. If everyone passes without bidding, it stays with the bank."
+        },
+        {
+          "en": "You can set a time limit for each auction decision. Running out of time counts as passing. Every bidder gets the full time for their decision; zero means no limit."
+        }
+      ]
+    },
+    {
+      "id": "purchase_variant",
+      "title": {
+        "en": "Buying after one lap"
+      },
+      "paragraphs": [
+        {
+          "en": "An optional rule prevents purchases during your first trip around the board. You may buy unowned properties you land on only after you have passed Go for the first time."
+        }
+      ]
+    },
+    {
+      "id": "rent_variants",
+      "title": {
+        "en": "Rent options"
+      },
+      "paragraphs": [
+        {
+          "en": "The table settings offer two changes to rent:"
+        },
+        {
+          "en": "- Turn off automatic rent payments. The owner must press Space to collect rent, or choose to waive it with the arrows and Enter. The game waits for that decision."
+        },
+        {
+          "en": "- Stop jailed owners from collecting rent. Other players can then land on their properties without paying until the owner is released."
+        }
+      ]
+    },
+    {
+      "id": "event_variants",
+      "title": {
+        "en": "Payments and card options"
+      },
+      "paragraphs": [
+        {
+          "en": "You can also change these rules before starting:"
+        },
+        {
+          "en": "- Disable the Free Parking pot. The space pays nothing, and bank fees are no longer saved there."
+        },
+        {
+          "en": "- Disable double payment for landing on Go. Landing there then pays the same as passing it."
+        },
+        {
+          "en": "- Enable lucky snake eyes: rolling two ones earns an extra quarter of the Go payment, or $50 on Atlantic City. This rule is off by default."
+        },
+        {
+          "en": "- Disable the extra Chance and Community Chest cards. This removes Power Games' additional money events from both decks; the other cards remain in play."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrow keys: choose an action or property."
+        },
+        {
+          "en": "Enter: carry out the selected action."
+        },
+        {
+          "en": "Escape: close the current list."
+        },
+        {
+          "en": "I: read player positions and space numbers."
+        },
+        {
+          "en": "T: read whose turn it is and which decision is pending."
+        },
+        {
+          "en": "C: read your cash."
+        },
+        {
+          "en": "S: read everyone's finances."
+        },
+        {
+          "en": "F: read the property card for your current space."
+        },
+        {
+          "en": "D: browse unowned properties."
+        },
+        {
+          "en": "Shift+D: browse the whole board."
+        },
+        {
+          "en": "V: browse your properties."
+        },
+        {
+          "en": "Shift+V: browse other players' properties."
+        },
+        {
+          "en": "H: open available building choices."
+        },
+        {
+          "en": "Shift+H: open buildings available to sell."
+        },
+        {
+          "en": "K: open properties available to mortgage."
+        },
+        {
+          "en": "Shift+K: open mortgages you can repay."
+        },
+        {
+          "en": "E: choose a player and prepare a trade."
+        },
+        {
+          "en": "A: accept a trade offer."
+        },
+        {
+          "en": "R: reject a trade offer."
+        },
+        {
+          "en": "B: declare bankruptcy while settling your debt, or enter a bid during an auction."
+        },
+        {
+          "en": "G: place the suggested auction bid."
+        },
+        {
+          "en": "Space: collect rent when manual collection is enabled."
+        },
+        {
+          "en": "P: pay to leave jail."
+        },
+        {
+          "en": "J: use a Get Out of Jail Free card."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "board": "boards",
+    "free_parking_jackpot": "event_variants",
+    "double_salary_on_start": "event_variants",
+    "forbid_first_round_purchase": "purchase_variant",
+    "no_rent_in_jail": "rent_variants",
+    "lucky_double_one": "event_variants",
+    "supplementary_cards": "event_variants",
+    "automatic_rent": "rent_variants",
+    "auction_unsold": "auctions",
+    "auction_decision_time": "auctions"
+  }
+}

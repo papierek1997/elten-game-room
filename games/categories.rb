@@ -78,6 +78,10 @@ module GameRoomGames
       _("Countries and cities")
     end
 
+    def short_description
+      _("Think of answers that fit the chosen letter and categories.")
+    end
+
     def minimum_players
       2
     end

@@ -82,6 +82,10 @@ module GameRoomGames
       _("UNO")
     end
 
+    def short_description
+      _("Get rid of your cards by matching colours or numbers, and call \"uno\" when you have one card left.")
+    end
+
     def minimum_players
       2
     end

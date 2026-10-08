@@ -92,6 +92,18 @@ through the actual menu path.
 
 ## History and options
 
+The create-table game selector and the game list under Join a table append
+the game's localized `short_description` after its name. Other selectors and
+individual table rows keep their existing labels. The widget reads that same
+local description only on Ctrl+O or its Game description context action;
+this action neither joins a table nor fetches network data.
+
+The shared chat editor uses `TableActivityRepository::MESSAGE_MAX_LENGTH`
+(2000 characters) before, during and after a game. The repository normalizes
+and bounds the received text with the same limit. Keep room/chat messages in
+one ordinary LiveSessions record, within its 16 KiB payload limit, including
+Unicode and JSON escaping. Do not split messages or add requests for typing.
+
 History uses `GameRoomHistory::View` and `GameRoomHistory.bind`.
 `index`/`check` refer to character positions; `entry_index` identifies an entry.
 Shortcuts for previous tricks or battles read historical authors without

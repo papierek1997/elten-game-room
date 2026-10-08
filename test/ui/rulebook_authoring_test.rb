@@ -58,8 +58,7 @@ registry.ids.each do |id|
   options_count += local_keys.length
   book = game.rule_book(options: game.default_options)
   assert(book.documents.map(&:id) == [:rules, :controls, :current_options], "table rules changed their three-document structure for #{id}")
-  if keys.include?("bot_delay")
-    assert(book.documents.first.text.include?("Time to follow a bot's move"), "#{id} omitted shared bot-delay rules")
-  end
+  assert(!book.documents.first.sections.any? { |section| section.id == :bot_pacing },
+    "#{id}: generic bot pacing was appended to the complete authored edition")
 end
 puts "PASS authoring: #{books.length} bilingual books, #{paragraphs_count} paragraphs, #{options_count} actual options mapped to reviewed chapters; compiled rules and Polish catalogue agree"

@@ -1,0 +1,250 @@
+{
+  "source": "games/mexican_train.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Tren mexicano, de dos a ocho jugadores añaden fichas de dominó a varias cadenas llamadas trenes. Intenta vaciar tu mano cuanto antes: las fichas que te queden al terminar la ronda dan puntos de penalización."
+        },
+        {
+          "es": "La partida continúa por rondas. Quien acumula al menos cien puntos queda eliminado; gana la última persona que siga jugando."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "es": "Reparto y estación"
+      },
+      "paragraphs": [
+        {
+          "es": "Se usan fichas con valores del cero al doce. En la primera ronda, el 12–12 sirve de estación, el punto del que parten todos los trenes. Ya está colocado y no forma parte de ninguna mano."
+        },
+        {
+          "es": "El reparto depende de cuántas personas sigan en la partida:"
+        },
+        {
+          "es": "- De dos a cinco: quince fichas por persona."
+        },
+        {
+          "es": "- Seis o siete: doce fichas por persona."
+        },
+        {
+          "es": "- Ocho: diez fichas por persona."
+        },
+        {
+          "es": "Las demás quedan para robar. Se sortea quién abre la primera ronda; en cada ronda siguiente empieza la persona que le sigue."
+        },
+        {
+          "es": "La estación de la segunda ronda es el 11–11, después el 10–10, y así hasta el 0–0. Si la partida continúa, vuelve a usarse el 12–12."
+        }
+      ]
+    },
+    {
+      "id": "trains",
+      "title": {
+        "es": "Trenes disponibles"
+      },
+      "paragraphs": [
+        {
+          "es": "De la estación salen un tren personal por jugador y el tren mexicano común. Al empezar, todos los personales están cerrados. Puedes jugar en estos lugares:"
+        },
+        {
+          "es": "- Tu propio tren, esté abierto o cerrado."
+        },
+        {
+          "es": "- El tren mexicano, siempre abierto para todos."
+        },
+        {
+          "es": "- El tren personal de un rival, si está abierto."
+        },
+        {
+          "es": "C permite consultar el número del extremo de cada tren y si está abierto."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "es": "Colocar una ficha"
+      },
+      "paragraphs": [
+        {
+          "es": "En un turno normal colocas una ficha. Una de sus mitades debe coincidir con el extremo del tren elegido; la otra pasa a ser su nuevo extremo. Si el tren aún no tiene fichas, debe coincidir con la estación."
+        },
+        {
+          "es": "Elige una ficha de tu mano con las flechas y pulsa Enter. Se abre la lista de trenes: elige uno con las flechas y confirma con Enter. Escape permite volver a la mano y escoger otra ficha."
+        },
+        {
+          "es": "Después de colocar una ficha que no sea doble, pasa el turno."
+        }
+      ]
+    },
+    {
+      "id": "drawing",
+      "title": {
+        "es": "Robar y abrir tu tren"
+      },
+      "paragraphs": [
+        {
+          "es": "Si no puedes jugar en ninguno de los trenes disponibles, pulsa Espacio para robar una ficha. Si después tienes una jugada, elige la ficha y el tren como siempre."
+        },
+        {
+          "es": "Si sigues sin poder jugar, tu tren se abre y pasa el turno. Si no quedan fichas para robar, ocurre lo mismo directamente."
+        },
+        {
+          "es": "Tu tren permanece abierto a los rivales hasta que tú coloques una ficha en él; entonces vuelve a cerrarse. Puedes preferir jugar en otro tren y dejar el tuyo abierto. Una ficha colocada por un rival no cierra tu tren."
+        }
+      ]
+    },
+    {
+      "id": "doubles",
+      "title": {
+        "es": "Dobles y jugadas adicionales"
+      },
+      "paragraphs": [
+        {
+          "es": "Un doble tiene el mismo valor en ambas mitades, como 7–7. Al colocarlo conservas el turno y puedes jugar otra ficha. Cada nuevo doble da otra jugada, así que puedes encadenar varios."
+        },
+        {
+          "es": "Colocar una ficha normal tras un doble lo cierra. Pero, durante tu propia cadena de jugadas, puedes elegir otro tren disponible. Una ficha normal termina tu turno aunque quede algún doble anterior sin cerrar."
+        },
+        {
+          "es": "Si en esa cadena te quedas sin jugada, puedes robar una ficha con Espacio. Cada doble colocado renueva la posibilidad de robar si vuelve a hacer falta. Si después del robo no puedes jugar, tu tren se abre y pasa el turno."
+        }
+      ]
+    },
+    {
+      "id": "covering",
+      "title": {
+        "es": "Cerrar un doble pendiente"
+      },
+      "paragraphs": [
+        {
+          "es": "Si al empezar el turno de alguien queda un doble sin cerrar, es obligatorio jugar sobre él antes que en otro tren. Esta obligación permite entrar incluso en un tren rival cerrado."
+        },
+        {
+          "es": "Si hay varios dobles pendientes, los siguientes jugadores deben cerrar primero el más reciente y después los anteriores. T anuncia de quién es el turno y qué doble hay que cerrar."
+        },
+        {
+          "es": "Por ejemplo, colocas 7–7 en tu tren y luego 9–9 en el mexicano. Como sigues en tu propio turno, puedes jugar 7–3 en tu tren: cierras el primer doble y terminas el turno. El siguiente jugador tendrá que cerrar el 9–9 del tren mexicano."
+        },
+        {
+          "es": "Si no tienes una ficha para el doble obligatorio, roba una con Espacio. Si tampoco sirve, tu tren se abre y termina tu turno. El siguiente jugador deberá intentar cerrar ese mismo doble."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "es": "Final de ronda y puntuación"
+      },
+      "paragraphs": [
+        {
+          "es": "La ronda termina inmediatamente cuando alguien juega su última ficha, aunque sea un doble. No hace falta realizar otra jugada ni cerrar los dobles pendientes."
+        },
+        {
+          "es": "También termina por bloqueo si no quedan fichas para robar, todos han pasado consecutivamente y nadie dispone aún de una jugada legal. Abrir un tren puede dar una jugada a otro jugador, por lo que una serie de pases no siempre significa bloqueo."
+        },
+        {
+          "es": "Se anotan estas penalizaciones:"
+        },
+        {
+          "es": "- Quien vacía su mano recibe cero puntos."
+        },
+        {
+          "es": "- Los demás suman los puntos de las fichas que conservan. En una ronda bloqueada los suman todos."
+        },
+        {
+          "es": "- El 0–0 vale siempre diez puntos."
+        },
+        {
+          "es": "Tras el recuento quedan eliminados quienes tengan al menos cien puntos. Gana el último jugador que permanezca. Si todos los restantes alcanzan el límite a la vez, gana quien tenga menos puntos; varios mínimos iguales comparten la victoria. S consulta los resultados."
+        }
+      ]
+    },
+    {
+      "id": "draw_variant",
+      "title": {
+        "es": "Robar aunque puedas jugar"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar puedes permitir el robo aunque ya tengas una ficha válida. Así podrás pulsar Espacio antes de colocarla. Sigue siendo un solo robo antes de cada jugada; un doble da otra jugada y una nueva posibilidad de robar."
+        }
+      ]
+    },
+    {
+      "id": "limit",
+      "title": {
+        "es": "Otro límite de puntos"
+      },
+      "paragraphs": [
+        {
+          "es": "Los ajustes permiten sustituir el límite habitual de cien puntos. Alcanzarlo o superarlo sigue eliminando al jugador al terminar el recuento de la ronda."
+        }
+      ]
+    },
+    {
+      "id": "clock",
+      "title": {
+        "es": "Tiempo del turno"
+      },
+      "paragraphs": [
+        {
+          "es": "Normalmente el tiempo es ilimitado. Puedes fijar un número de segundos por turno en los ajustes. El plazo incluye las jugadas adicionales por dobles: ni colocar un doble ni robar reinician el tiempo."
+        },
+        {
+          "es": "Si se agota, recibes una ficha si quedan y aún no habías robado antes de la jugada actual. Después tu tren se abre y pasa el turno sin colocar ninguna ficha. El siguiente jugador sigue obligado a cerrar cualquier doble pendiente."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: elegir una ficha o un tren."
+        },
+        {
+          "es": "Enter: abrir la elección de tren para la ficha y confirmar el tren."
+        },
+        {
+          "es": "Escape: cancelar la elección del tren y volver a la ficha."
+        },
+        {
+          "es": "Espacio: robar una ficha."
+        },
+        {
+          "es": "C: consultar los trenes."
+        },
+        {
+          "es": "E: consultar las fichas de cada jugador y las que quedan para robar."
+        },
+        {
+          "es": "Z: ir a la siguiente ficha válida sin jugarla."
+        },
+        {
+          "es": "Shift+Z: ir a la ficha válida anterior sin jugarla."
+        },
+        {
+          "es": "T: consultar de quién es el turno y qué doble debe cerrarse."
+        },
+        {
+          "es": "S: consultar los resultados."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "allow_playable_draw": "draw_variant",
+    "score_limit": "limit",
+    "thinking_time": "clock"
+  }
+}

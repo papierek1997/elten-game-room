@@ -15,7 +15,7 @@ reusable component to the existing framework.
 
 Create `games/<id>.rb` and implement at least:
 
-- `id`, `name` and `rule_sections`;
+- `id`, `name`, `short_description` and `rule_sections`;
 - `minimum_players` and `maximum_players`;
 - `option_definitions` if the game has variants;
 - events that start a match;
@@ -101,6 +101,19 @@ detected at startup.
 
 ## Interface and rulebook translations
 
+Before drafting the rules, read the
+[game rulebook editorial guidelines](RULES_EDITORIAL.md) in full. Explain
+the aim, normal play and its consequences in natural, connected prose.
+Use their outline as a guide, not an identical template for every game.
+Explain how to perform each main action alongside the rule, using the
+actual key, button or short menu path; do not leave this only to the
+shortcut reference. Keep these controls consistent with F1 help, and leave
+shared application behaviour and implementation details out of the rules.
+Remove unnecessary topics, not the explanation needed to understand a legal
+move. Follow the guide's worked examples and walk through a first turn using
+only the text; terse card-effect formulas are not a substitute for teaching.
+Review the whole changed text in every affected language, not just a sample.
+
 Mark English messages with `_`, `n_`, `p_` or `np_`, and enable
 `using GameRoomLocalization::Translations` inside the file's root module. Rulebooks have a separate
 English structure in `tools/data/rulebooks` and an option-to-chapter mapping
@@ -108,7 +121,15 @@ in `tools/rulebook_option_chapters.json`; generate them with
 `ruby tools/compile-rulebooks.rb`. Then `ruby tools/translations.rb update`
 adds messages to the catalogs. Translators edit only `locale/PL.po`
 or another language's PO; `compile PL` creates MO and the Polish compatibility views.
-Do not add new manually maintained JSON translation fragments.
+Complete rulebooks with their own language-specific chapter layout belong in
+`tools/data/rulebooks/<LANG>/<game>.json`, including their `option_chapters`
+mapping. All current language editions (EN, PL, CS, ES and RU) use this path;
+edit them there, not in PO. A new game needs a complete book in every supported
+language. Write naturally for that language instead of copying another language's
+sentence patterns. New rules follow the editorial guide regardless of author
+credits. Preserve ready-to-use rules supplied or selected by the creator unless
+editing is requested; distinguish them from reference material as the guide explains.
+Do not add manually maintained interface JSON translation fragments.
 Details: `docs/TRANSLATIONS.md`.
 
 ## 6. Write tests

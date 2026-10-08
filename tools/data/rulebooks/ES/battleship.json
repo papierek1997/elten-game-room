@@ -1,0 +1,170 @@
+{
+  "source": "games/battleship.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Hundir la flota, dos jugadores esconden sus barcos y se turnan para disparar a casillas del tablero rival. Gana quien hunda primero todos los barcos del contrario."
+        }
+      ]
+    },
+    {
+      "id": "fleet",
+      "title": {
+        "es": "El tablero y los barcos"
+      },
+      "paragraphs": [
+        {
+          "es": "Cada jugador tiene un tablero de 10 por 10 casillas, con columnas de A a J y filas del 1 al 10. Los barcos ocupan una o varias casillas en línea recta, horizontal o vertical."
+        },
+        {
+          "es": "La flota habitual tiene diez barcos:"
+        },
+        {
+          "es": "- Uno de cuatro casillas."
+        },
+        {
+          "es": "- Dos de tres casillas."
+        },
+        {
+          "es": "- Tres de dos casillas."
+        },
+        {
+          "es": "- Cuatro de una casilla."
+        },
+        {
+          "es": "Todos deben quedar dentro del tablero, sin superponerse. Hay que dejar espacio entre ellos: no pueden tocarse ni por un lado ni por una esquina."
+        }
+      ]
+    },
+    {
+      "id": "placing",
+      "title": {
+        "es": "Colocar la flota"
+      },
+      "paragraphs": [
+        {
+          "es": "Al empezar, elige con las flechas si quieres una colocación aleatoria o manual y confirma con Enter. Con la aleatoria, el juego coloca todos los barcos por ti. La partida podrá empezar cuando ambos jugadores estén listos."
+        },
+        {
+          "es": "Para colocarlos a mano, recorre el tablero con las flechas. Pulsa Enter en un extremo del barco, ve al otro extremo y pulsa Enter de nuevo. Si el barco ocupa una sola casilla, elige esa casilla dos veces. Puedes colocar las distintas longitudes en el orden que quieras, siempre que aún te quede un barco de esa longitud."
+        },
+        {
+          "es": "Si has elegido mal el primer extremo, bórralo con Retroceso. Cuando no hay ningún extremo seleccionado, Retroceso retira el último barco colocado."
+        },
+        {
+          "es": "Tras colocar toda la flota tendrás que confirmarla. Elige «Sí» con las flechas y pulsa Enter para terminar. Si eliges «No», podrás volver a colocar el último barco. Una flota confirmada ya no se puede modificar."
+        }
+      ]
+    },
+    {
+      "id": "shooting",
+      "title": {
+        "es": "Disparar"
+      },
+      "paragraphs": [
+        {
+          "es": "Cuando ambas flotas estén preparadas, empieza el primer jugador. Recorre el tablero rival con las flechas y pulsa Enter sobre la casilla a la que quieras disparar. No se puede disparar dos veces a la misma casilla."
+        },
+        {
+          "es": "El juego anuncia el resultado:"
+        },
+        {
+          "es": "- Agua: no hay ningún barco en esa casilla."
+        },
+        {
+          "es": "- Tocado: has acertado en una casilla de un barco rival."
+        },
+        {
+          "es": "- Hundido: ya has acertado en todas las casillas de ese barco."
+        },
+        {
+          "es": "El turno cambia después de cada disparo, incluso si has tocado o hundido un barco."
+        },
+        {
+          "es": "Con Tab puedes pasar a tu tablero para consultar los disparos recibidos y tu flota. Shift+Tab te devuelve al tablero en el que disparas."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Final de la partida"
+      },
+      "paragraphs": [
+        {
+          "es": "La partida termina en cuanto alguien hunde el último barco rival; ese jugador gana. Durante el juego, F indica cuántas casillas intactas le quedan a tu flota y Shift+F cuántas le quedan a la del contrario."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Otras flotas y barcos contiguos"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar puedes elegir una flota de cinco barcos en lugar de la habitual:"
+        },
+        {
+          "es": "- Uno de cinco casillas."
+        },
+        {
+          "es": "- Uno de cuatro casillas."
+        },
+        {
+          "es": "- Dos de tres casillas."
+        },
+        {
+          "es": "- Uno de dos casillas."
+        },
+        {
+          "es": "Otra opción permite que los barcos se toquen por los lados o las esquinas. Aun así, deben caber enteros en el tablero y no pueden compartir casillas."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer las casillas."
+        },
+        {
+          "es": "Enter: confirmar el tipo de colocación, elegir un extremo al colocar un barco o disparar en el tablero rival."
+        },
+        {
+          "es": "Retroceso: cancelar el primer extremo seleccionado; si no hay ninguno, retirar el último barco antes de confirmar la flota."
+        },
+        {
+          "es": "F: consultar las casillas intactas de tu flota."
+        },
+        {
+          "es": "Shift+F: consultar las casillas intactas de la flota rival."
+        },
+        {
+          "es": "L: leer el último disparo cuyo resultado ya se conoce."
+        },
+        {
+          "es": "M: consultar tus disparos, aciertos y barcos hundidos."
+        },
+        {
+          "es": "Ctrl+L: revisar tus disparos y sus resultados."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "fleet": "variants",
+    "touching": "variants"
+  }
+}

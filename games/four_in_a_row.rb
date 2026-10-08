@@ -26,6 +26,10 @@ module GameRoomGames
       _("Four in a row")
     end
 
+    def short_description
+      _("Drop pieces into columns and be the first to line up four.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

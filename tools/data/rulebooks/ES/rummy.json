@@ -1,0 +1,438 @@
+{
+  "source": "games/rummy_ui.rb",
+  "sections": [
+    {
+      "id": "table",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Rummy reúnes cartas para formar combinaciones y bajarlas a la mesa. También puedes añadir cartas a las combinaciones ya jugadas. Cada carta que juegas da puntos; quedarte sin cartas gana la ronda. Los resultados se acumulan y, cuando alguien llega a 1000, gana la partida quien tenga más puntos."
+        },
+        {
+          "es": "Juegan de dos a ocho personas. Cada ronda empieza con catorce cartas por jugador."
+        },
+        {
+          "es": "Recorre la mano con las flechas. Shift+C ordena por palos y Shift+H por valores; repetir cualquiera invierte el orden. Shift+M recupera el orden en que recibiste las cartas."
+        }
+      ]
+    },
+    {
+      "id": "combinations",
+      "title": {
+        "es": "Combinaciones válidas"
+      },
+      "paragraphs": [
+        {
+          "es": "Una combinación necesita al menos tres cartas. Hay dos tipos:"
+        },
+        {
+          "es": "- Escalera: valores consecutivos del mismo palo, como 5, 6 y 7 de corazones. Después admite el 4 de corazones por un extremo o el 8 por el otro."
+        },
+        {
+          "es": "- Grupo: tres o cuatro cartas del mismo valor y palos distintos, como reina de corazones, de diamantes y de picas. A ese grupo se le puede añadir la reina de tréboles."
+        },
+        {
+          "es": "El as puede ir antes del dos o después del rey. Son válidas as, 2, 3 y reina, rey, as; no lo es rey, as, 2."
+        },
+        {
+          "es": "El comodín sustituye una carta que falte. Cada combinación admite solo uno y debe incluir al menos dos cartas normales. En una escalera, el orden de selección fija su valor: comodín, 3 de picas, 4 de picas empieza en el dos; 3 de picas, 4 de picas, comodín termina en el cinco."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "es": "Un turno completo"
+      },
+      "paragraphs": [
+        {
+          "es": "Empieza robando una carta con Espacio. Si ya has hecho tu primera bajada, puedes tomar en su lugar el último descarte de otro jugador: D lo lee y Shift+D lo recoge."
+        },
+        {
+          "es": "Después puedes bajar combinaciones. Si ya has hecho la primera bajada, también puedes añadir cartas a las tuyas o a las de otros. Puedes hacer varias jugadas en el mismo turno, pero no estás obligado a usar la carta robada ni a bajar nada."
+        },
+        {
+          "es": "Para terminar, selecciona una carta y descártala con Supr. Pasa el turno al siguiente jugador."
+        },
+        {
+          "es": "Si te quedas sin cartas al bajar una combinación o añadir cartas a otra, la ronda acaba al instante. No tienes que reservar una carta para descartarla."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "es": "La primera bajada"
+      },
+      "paragraphs": [
+        {
+          "es": "Tu primera bajada de cada ronda debe valer al menos 30 puntos. Puedes reunirlos con una combinación o varias presentadas juntas. A partir de esa bajada puedes añadir cartas a la mesa; desde tu turno siguiente también puedes tomar descartes."
+        },
+        {
+          "es": "Pulsa N para preparar una combinación. Busca cada carta con las flechas y márcala con Enter. En una escalera, selecciónalas de menor a mayor: para 5, 6, 7, marca primero el cinco, luego el seis y el siete. Enter sobre una carta ya marcada la retira de la preparación."
+        },
+        {
+          "es": "Si necesitas varias combinaciones para llegar al mínimo, termina de marcar una, pulsa N otra vez y prepara la siguiente. Aún no has bajado nada. P lee todas las combinaciones preparadas y su valor para comprobar el total."
+        },
+        {
+          "es": "Pulsa F para bajarlas juntas. Si falta algo o una combinación no es válida, oirás el motivo y podrás corregirla. Shift+P abre la lista de combinaciones preparadas; Enter sobre una permite editarla o quitarla. Escape durante la preparación cancela toda la bajada."
+        },
+        {
+          "es": "Una vez abierta tu mano con esa primera bajada, ya no hay mínimo de puntos para las siguientes. Se preparan con las mismas teclas. También puedes empezar a añadir cartas a la mesa en ese mismo turno."
+        }
+      ]
+    },
+    {
+      "id": "laying",
+      "title": {
+        "es": "Añadir cartas a la mesa"
+      },
+      "paragraphs": [
+        {
+          "es": "C abre las combinaciones de la mesa. Recórrelas con las flechas, escucha una con Enter y vuelve a tu mano con Escape."
+        },
+        {
+          "es": "Para añadir una carta, selecciónala en la mano y pulsa Enter sin haber iniciado una combinación con N. Aparecerán los lugares en que encaja; elige uno y confirma con Enter."
+        },
+        {
+          "es": "Z busca la siguiente carta que puedes añadir y Shift+Z la anterior. Si solo hay una posibilidad, el atajo puede añadirla directamente."
+        },
+        {
+          "es": "Las escaleras se amplían por cualquiera de sus extremos. Un grupo de tres admite el cuarto palo que le falta. Un comodín solo no sirve para ampliar: debes bajarlo en una combinación nueva con al menos dos cartas normales."
+        }
+      ]
+    },
+    {
+      "id": "joker",
+      "title": {
+        "es": "Recuperar un comodín"
+      },
+      "paragraphs": [
+        {
+          "es": "Después de tu primera bajada puedes sustituir un comodín de la mesa por la carta exacta que representa. En comodín, 3 de picas, 4 de picas necesitas el 2 de picas. Selecciónalo en tu mano, pulsa Enter y confirma la sustitución del comodín en esa combinación. El dos queda en la mesa y recibes el comodín."
+        },
+        {
+          "es": "En 7 de corazones, 7 de diamantes y comodín aún no se sabe si falta picas o tréboles. Para recuperarlo debes añadir primero una de esas cartas. Si añades el 7 de picas, el comodín solo puede representar el 7 de tréboles, y esa será la carta necesaria para sustituirlo."
+        },
+        {
+          "es": "Debes usar el comodín recuperado en una combinación nueva antes de terminar el turno. Si no lo haces, pierdes 300 puntos, incluso si lo descartas. La penalización se aplica una sola vez; en los turnos siguientes el comodín se trata como cualquier otra carta de tu mano."
+        }
+      ]
+    },
+    {
+      "id": "values",
+      "title": {
+        "es": "Valor de las cartas"
+      },
+      "paragraphs": [
+        {
+          "es": "Tanto para la primera bajada como para puntuar las cartas jugadas se usan estos valores:"
+        },
+        {
+          "es": "- Del dos al nueve: 5 puntos por carta."
+        },
+        {
+          "es": "- Diez, jota, reina y rey: 10 puntos cada uno."
+        },
+        {
+          "es": "- As: 15, salvo si inicia una escalera antes del dos, donde vale 5."
+        },
+        {
+          "es": "Un comodín jugado vale lo que representa. En 3, 4, comodín, representa un cinco y la escalera vale 15 en total. Al contar las cartas que quedan en la mano, el comodín vale 20 y el as 15."
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "title": {
+        "es": "Puntos y final de partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Ganas puntos por cada carta que bajes o añadas. Cuando alguien vacía su mano, termina la ronda. Los demás conservan sus puntos; el ganador recibe además el valor de todas las cartas que les queden en las manos."
+        },
+        {
+          "es": "Hay bonificaciones por cerrar la ronda:"
+        },
+        {
+          "es": "- Rummy: 200 puntos si haces tu primera bajada y te quedas sin cartas en el mismo turno."
+        },
+        {
+          "es": "- Rummy puro: 300 en vez de 200 si cierras con rummy solo con tu mano, sin añadir cartas a combinaciones existentes ni recuperar comodines."
+        },
+        {
+          "es": "- Otros 100 si terminas antes de que ningún rival haya hecho su primera bajada. Esta bonificación no exige cerrar con rummy."
+        },
+        {
+          "es": "Al acabar una ronda en la que alguien alcanza 1000 puntos, gana quien tenga más. Si el primer puesto está empatado, se juega otra ronda."
+        },
+        {
+          "es": "S lee los resultados, E cuenta las cartas de cada mano y las que quedan para robar, y T indica de quién es el turno."
+        }
+      ]
+    },
+    {
+      "id": "blocked",
+      "title": {
+        "es": "Si se agota el mazo"
+      },
+      "paragraphs": [
+        {
+          "es": "Cuando se agota el mazo, se barajan los descartes para volver a robar. El descarte más reciente queda disponible con Shift+D. Si ya no hay de dónde robar, puedes bajar y añadir cartas sin robar antes."
+        },
+        {
+          "es": "Si no se puede robar y transcurren dos rondas completas de turnos sin que nadie baje o añada una carta de su mano, termina la ronda. Todos conservan los puntos de sus jugadas, pero no hay ganador de ronda ni bonificaciones por terminar."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Variantes"
+      },
+      "paragraphs": [
+        {
+          "es": "Al crear la mesa puedes cambiar las reglas siguientes. El resto de la partida se mantiene igual."
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "title": {
+        "es": "Primera bajada y meta de puntos"
+      },
+      "paragraphs": [
+        {
+          "es": "Puedes cambiar el mínimo de 30 para la primera bajada. Debes alcanzar el mínimo elegido antes de añadir cartas a la mesa y de empezar a tomar descartes."
+        },
+        {
+          "es": "También puedes sustituir la meta de 1000 por otra cantidad. El resultado de la partida sigue decidiéndose al terminar una ronda."
+        }
+      ]
+    },
+    {
+      "id": "discard",
+      "title": {
+        "es": "Variantes de robo y descarte"
+      },
+      "paragraphs": [
+        {
+          "es": "En lugar de tomar solo el último descarte puedes elegir estas reglas:"
+        },
+        {
+          "es": "- Tomar descartes anteriores: D lee todos los disponibles y Shift+D abre la lista, empezando por el más reciente. Elige con las flechas y confirma con Enter. Recibes esa carta y todas las descartadas después: elegir la tercera recoge la tercera, segunda y primera. Si solo hay una, Shift+D la toma directamente."
+        },
+        {
+          "es": "- No tomar descartes: robas con Espacio y sigues terminando el turno con Supr para descartar."
+        },
+        {
+          "es": "- Jugar sin descartes: después de robar y jugar, termina el turno con Shift+F. Todas las cartas que no hayas bajado quedan en la mano."
+        }
+      ]
+    },
+    {
+      "id": "identities",
+      "title": {
+        "es": "Grupos de cartas idénticas"
+      },
+      "paragraphs": [
+        {
+          "es": "Esta opción permite grupos de tres o cuatro cartas idénticas, como tres nueves de tréboles. Cada carta de esos grupos vale 10 puntos más de lo habitual, también para alcanzar la primera bajada."
+        }
+      ]
+    },
+    {
+      "id": "rounding",
+      "title": {
+        "es": "Puntuación sin redondeo"
+      },
+      "paragraphs": [
+        {
+          "es": "Si desactivas el redondeo, los valores cambian así:"
+        },
+        {
+          "es": "- Del dos al nueve se cuenta el número de la carta, en lugar de 5."
+        },
+        {
+          "es": "- El as antes del dos vale 1; en otras combinaciones o en la mano vale 11."
+        },
+        {
+          "es": "- El diez y las figuras siguen valiendo 10."
+        },
+        {
+          "es": "- El comodín que queda en la mano sigue valiendo 20."
+        }
+      ]
+    },
+    {
+      "id": "manipulation",
+      "title": {
+        "es": "Reorganizar las combinaciones"
+      },
+      "paragraphs": [
+        {
+          "es": "Con esta opción puedes reorganizar la mesa. Antes debes haber robado y completado tu primera bajada. Pulsa C, selecciona una combinación y abre el menú contextual. Allí puedes unir combinaciones o recoger una combinación entera o cartas concretas."
+        },
+        {
+          "es": "Las cartas recogidas se pueden usar en otro lugar, con estas restricciones:"
+        },
+        {
+          "es": "- De una escalera puedes recoger una carta de cualquiera de sus extremos si quedan al menos tres consecutivas. De 4, 5, 6, 7 de corazones puedes tomar el cuatro o el siete."
+        },
+        {
+          "es": "- De un grupo de cuatro valores iguales puedes recoger una carta."
+        },
+        {
+          "es": "- Solo puedes recoger una combinación entera si no contiene comodín. Si lo tiene, primero debes recuperarlo sustituyéndolo por la carta adecuada."
+        },
+        {
+          "es": "Retirar otras cartas no puede cambiar el valor que representa un comodín."
+        },
+        {
+          "es": "Para unir, elige esa acción en el menú y después la segunda combinación. Juntas deben seguir siendo válidas. Puedes unir 4, 5, 6 de corazones con 7, 8, 9 de corazones, pero no dos escaleras separadas por una carta que falta."
+        },
+        {
+          "es": "Cada carta recogida que no vuelvas a jugar antes de terminar el turno cuesta 300 puntos de penalización. Lo mismo se aplica al comodín recuperado: dos cartas sin usar cuestan 600. Pueden quedarse en tu mano y, tras la penalización, se tratan como las demás. Descartarlas no cuenta como volver a jugarlas."
+        },
+        {
+          "es": "Recoger cartas de la mesa resta su valor de tus puntos; al volver a bajarlas los recuperas. Unir combinaciones no puntúa por sí solo. Recoger una sola carta de la mesa ya impide cerrar con rummy puro."
+        }
+      ]
+    },
+    {
+      "id": "elimination",
+      "title": {
+        "es": "Modo eliminación"
+      },
+      "paragraphs": [
+        {
+          "es": "Aquí intentas tener pocos puntos. Bajar, añadir o recoger cartas no suma ni resta, aunque la primera bajada sigue necesitando su mínimo. Quien termina la ronda no recibe puntos por cartas; los demás añaden el valor de las que conserven. Las penalizaciones se suman en vez de restarse."
+        },
+        {
+          "es": "En lugar de bonificaciones por rummy, se multiplica el valor de las cartas restantes de los rivales:"
+        },
+        {
+          "es": "- Si cierras con rummy, lo cuentan doble."
+        },
+        {
+          "es": "- Si cierras con rummy puro, lo cuentan triple."
+        },
+        {
+          "es": "- Si además de rummy puro ningún rival había hecho su primera bajada, lo cuentan cuádruple."
+        },
+        {
+          "es": "Estos multiplicadores no aumentan las penalizaciones."
+        },
+        {
+          "es": "Si la ronda se bloquea, todos añaden el valor de las cartas de sus manos."
+        },
+        {
+          "es": "Tras el recuento se elimina a quienes hayan alcanzado el límite, de 500 por defecto. Gana el último jugador. Si todos alcanzan el límite en la misma ronda, gana el menor resultado; varios mínimos iguales comparten la victoria."
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "title": {
+        "es": "Tiempo y penalizaciones"
+      },
+      "paragraphs": [
+        {
+          "es": "Con límite de tiempo debes terminar el turno antes del plazo. Si lo agotas, recibes 50 puntos de penalización y pasa el turno. Si aún no habías robado, recibes además una carta del mazo si hay alguna. Si ya habías robado, no tomas otra. No se descarta ninguna carta por agotar el tiempo."
+        },
+        {
+          "es": "Las penalizaciones se acumulan. Agotar el tiempo con un comodín recuperado sin usar cuesta 350 puntos. En la partida normal se restan; en eliminación se suman."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer la mano o una lista abierta."
+        },
+        {
+          "es": "Espacio: robar del mazo."
+        },
+        {
+          "es": "D: consultar los descartes disponibles."
+        },
+        {
+          "es": "Shift+D: tomar un descarte o abrir la lista para elegirlo."
+        },
+        {
+          "es": "N: preparar una combinación; pulsarlo otra vez inicia otra dentro de la misma bajada."
+        },
+        {
+          "es": "Enter al preparar: marcar o desmarcar una carta."
+        },
+        {
+          "es": "P: consultar las combinaciones preparadas y su valor."
+        },
+        {
+          "es": "Shift+P: elegir una combinación preparada para editarla o borrarla."
+        },
+        {
+          "es": "F: bajar las combinaciones preparadas."
+        },
+        {
+          "es": "Escape: cerrar una lista o cancelar la bajada preparada."
+        },
+        {
+          "es": "Enter fuera de la preparación: elegir dónde añadir la carta o recuperar un comodín; si no encaja, puedes descartarla."
+        },
+        {
+          "es": "Supr: descartar la carta y terminar el turno."
+        },
+        {
+          "es": "Shift+F: terminar el turno en la variante sin descartes."
+        },
+        {
+          "es": "C: abrir las combinaciones de la mesa."
+        },
+        {
+          "es": "E: contar las cartas de los jugadores y las que quedan para robar."
+        },
+        {
+          "es": "S: consultar los resultados."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "Menú contextual en las combinaciones: recoger cartas o unir combinaciones, si la variante lo permite."
+        },
+        {
+          "es": "Z: ir a la siguiente carta que encaje; con una sola posibilidad puede añadirla directamente."
+        },
+        {
+          "es": "Shift+Z: ir a la carta anterior que encaje; con una sola posibilidad puede añadirla directamente."
+        },
+        {
+          "es": "Shift+C: ordenar por palos; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+H: ordenar por valores; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+M: recuperar el orden de recepción."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "discard_mode": "discard",
+    "elimination": "elimination",
+    "rounded": "values",
+    "manipulation": "manipulation",
+    "identities": "combinations",
+    "first_meld": "opening",
+    "score_limit": "normal",
+    "thinking_time": "time"
+  }
+}

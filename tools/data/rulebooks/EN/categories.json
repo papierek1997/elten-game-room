@@ -1,0 +1,185 @@
+{
+  "source": "games/categories.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Find answers beginning with a chosen letter and belonging to the given categories. For B, you might use Brazil as a country, Berlin as a city and beaver as an animal. Accepted answers score points; an answer nobody else gave is worth more."
+        },
+        {
+          "en": "Two to eight players take part. Each round has one judge, while the others answer. The judge neither fills in a sheet nor scores that round, and the role moves to the next person each round."
+        }
+      ]
+    },
+    {
+      "id": "answering",
+      "title": {
+        "en": "Filling in your sheet"
+      },
+      "paragraphs": [
+        {
+          "en": "A round draws a letter and six categories. You have 90 seconds to answer. Tab moves to the next field and Shift+Tab back to the previous one; each field announces its category and the letter."
+        },
+        {
+          "en": "You may leave answers blank and return to them later. Everything remains editable until you submit."
+        },
+        {
+          "en": "When finished, Tab to Finish answering and press Enter. You cannot change a submitted sheet. Others see your answers only after everyone has finished."
+        },
+        {
+          "en": "Ctrl+T reads time left. At timeout, the answers currently in the fields are submitted, even if some are blank. If everyone submits early, judging begins immediately."
+        },
+        {
+          "en": "Later rounds draw new letters. A used letter does not return until the alphabet is exhausted."
+        }
+      ]
+    },
+    {
+      "id": "judging",
+      "title": {
+        "en": "Judging and scoring"
+      },
+      "paragraphs": [
+        {
+          "en": "The judge checks that each answer begins with the right letter and fits its category. Players can discuss doubtful answers."
+        },
+        {
+          "en": "As judge, move between answers with Tab, choose a judgement with the arrows and confirm with Enter. Identical answers in a category are grouped, so one decision applies to everyone who gave that answer."
+        },
+        {
+          "en": "Award points as follows:"
+        },
+        {
+          "en": "- A correct answer given by only one player earns 2 points."
+        },
+        {
+          "en": "- A correct answer shared by several players earns 1 point each."
+        },
+        {
+          "en": "- An answer given by one player may be accepted as partly correct for 1 point."
+        },
+        {
+          "en": "- A wrong answer or blank field scores zero."
+        },
+        {
+          "en": "After confirming every judgement, select Finish review and press Enter. The round's points are added and the next person becomes judge."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "en": "Winning and ties"
+      },
+      "paragraphs": [
+        {
+          "en": "The usual target is 100 points. Once someone reaches it, finish the current cycle of rounds so everyone has judged equally often. The highest total then wins."
+        },
+        {
+          "en": "Players tied for first continue in a tiebreak. Only they answer, with another player judging. If everyone is tied, the judge keeps rotating as before. Continue until one player leads after a complete cycle."
+        },
+        {
+          "en": "S reads scores and V reads round information. Use these outside answer-entry fields."
+        }
+      ]
+    },
+    {
+      "id": "pools",
+      "title": {
+        "en": "Language and categories"
+      },
+      "paragraphs": [
+        {
+          "en": "Table settings let you choose English answers instead of the default Polish. This also changes the alphabet used for drawing letters."
+        },
+        {
+          "en": "Choose a category pool:"
+        },
+        {
+          "en": "- Easy, the default, has nine categories, including country, city, first name and animal."
+        },
+        {
+          "en": "- Medium expands that to eighteen, adding subjects such as famous people, sport and books."
+        },
+        {
+          "en": "- Hard contains twenty-seven, including rivers, inventions and chemical elements."
+        },
+        {
+          "en": "- Custom lets you mark any categories from the full set for the draw."
+        },
+        {
+          "en": "You can separately choose one to nine categories per round instead of six, but no more than your selected pool contains."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "en": "Time, judge and ending options"
+      },
+      "paragraphs": [
+        {
+          "en": "The host can change these rules before play:"
+        },
+        {
+          "en": "- Answer time may be shorter or longer than 90 seconds. Zero removes the timer, so everyone must submit before judging begins."
+        },
+        {
+          "en": "- A fixed host judge replaces the rotating judge. The host judges every round and does not compete for points. Reaching the target is then resolved after a single round, without waiting for a judge cycle."
+        },
+        {
+          "en": "- The target may be changed from 100. Rotating-judge games still finish the whole cycle."
+        },
+        {
+          "en": "- Tied leaders may share victory instead of playing a tiebreak."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Tab: move to the next answer or judgement field."
+        },
+        {
+          "en": "Shift+Tab: move to the previous field."
+        },
+        {
+          "en": "Arrows during judging: choose a judgement."
+        },
+        {
+          "en": "Enter: confirm a judgement or a finish button."
+        },
+        {
+          "en": "Ctrl+T: read answer time remaining."
+        },
+        {
+          "en": "T outside text fields: read the letter and judge."
+        },
+        {
+          "en": "S outside text fields: read scores."
+        },
+        {
+          "en": "V outside text fields: read round information."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "judge_mode": "options",
+    "answer_language": "pools",
+    "category_set": "pools",
+    "custom_categories": "pools",
+    "round_category_count": "pools",
+    "round_time": "options",
+    "target_score": "options",
+    "tie_mode": "options"
+  }
+}

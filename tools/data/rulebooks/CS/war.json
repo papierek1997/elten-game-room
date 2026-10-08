@@ -1,0 +1,111 @@
+{
+  "source": "games/war.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve hře War se snažíš získat karty ostatních hráčů. Dva až osm hráčů si rozdělí 24 karet od devítek po esa. Pořadí karet si nevybíráš: vždy hraješ tu, která je zrovna na řadě."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "cs": "Porovnávání karet"
+      },
+      "paragraphs": [
+        {
+          "cs": "Až přijde tvůj tah, stiskni Enter. Jakmile každý vyloží jednu kartu, nejvyšší z nich vyhraje všechny karty tohoto souboje. Hodnoty od nejnižší jsou devítka, desítka, kluk, dáma, král a eso; barva nehraje roli."
+        },
+        {
+          "cs": "Získané karty se v náhodném pořadí zařadí pod karty, které ti ještě zbývají, a začíná nový souboj. Klávesa C přečte právě vyložené karty, V připomene výsledek předchozího souboje."
+        }
+      ]
+    },
+    {
+      "id": "tie",
+      "title": {
+        "cs": "Válka při shodě"
+      },
+      "paragraphs": [
+        {
+          "cs": "Když má nejvyšší hodnotu několik hráčů, začíná válka. Účastní se jí jen tito hráči, ale hrají o všechny karty, které se v souboji dosud sešly."
+        },
+        {
+          "cs": "Ve svém tahu znovu stiskni Enter. Přidáš jednu kartu skrytou a jednu odkrytou. Nejvyšší odkrytá karta získá celý souboj včetně skrytých karet; další shoda vyvolá další válku."
+        },
+        {
+          "cs": "Zbývá-li ti jediná karta, použiješ ji k porovnání bez skryté karty. Bez karet pokračovat nemůžeš. Jakmile může pokračovat už jen jeden hráč, bere vše. Nemá-li dost karet nikdo, kořist zůstane do příštího souboje."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Vyřazení a vítězství"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po vyhodnocení souboje vypadnou hráči bez karet. Poslední zbývající hráč vyhrává; kdyby nezbyly karty nikomu, je remíza."
+        },
+        {
+          "cs": "Základní hra má nejvýš 20 soubojů. Pokud se dřív nerozhodne, vyhraje ten, kdo má nejvíc karet. O nejvyšší počet se lze dělit, a tedy remizovat. Počty karet zjistíš klávesou E, číslo souboje a limit pomocí Ctrl+T."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Balíček a délka hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před začátkem lze v nastavení stolu vybrat jiný balíček a delší hru:"
+        },
+        {
+          "cs": "- Plný balíček má 52 karet od dvojek po esa. Hodnoty rostou podle čísla, za desítkou následují kluk, dáma, král a eso."
+        },
+        {
+          "cs": "- Limit lze zvýšit z 20 až na 300 soubojů. I po tomto limitu rozhoduje největší počet karet."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Enter: zahrát vrchní kartu."
+        },
+        {
+          "cs": "Mezerník: zahrát vrchní kartu."
+        },
+        {
+          "cs": "C: přečíst vyložené karty, nejdřív vlastní, pak soupeřovy."
+        },
+        {
+          "cs": "E: přečíst počty karet hráčů."
+        },
+        {
+          "cs": "V: přečíst výsledek minulého souboje."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        },
+        {
+          "cs": "Ctrl+T: přečíst číslo souboje a celkový limit."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "deck": "variants",
+    "battle_limit": "variants"
+  }
+}

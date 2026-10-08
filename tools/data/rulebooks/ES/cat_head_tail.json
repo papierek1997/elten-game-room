@@ -1,0 +1,127 @@
+{
+  "source": "games/cat_head_tail.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Cat, Head, Tail lanzas un dado de ocho caras y decides hasta dónde arriesgarte. Puedes seguir tirando para reunir puntos o guardarlos en tu banco y terminar el turno. Si sale un 1, el turno acaba y pierdes lo que aún no habías guardado."
+        },
+        {
+          "es": "Juegan de dos a ocho personas. Tu objetivo es alcanzar al menos 100 puntos en el banco y terminar con más que los demás."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "es": "Tirar o guardar los puntos"
+      },
+      "paragraphs": [
+        {
+          "es": "En tu turno, elige lanzar el dado con las flechas y pulsa Enter. Los resultados del 3 al 6 añaden su número a los puntos del turno. Después puedes volver a lanzar o elegir guardar los puntos y confirmar con Enter. Al guardarlos pasan al banco y juega la siguiente persona."
+        },
+        {
+          "es": "Por ejemplo, un 4 seguido de un 5 te deja 9 puntos pendientes. Si te plantas, guardas los 9. Si vuelves a tirar y sale un 1, pierdes esos 9, pero conservas todo lo que habías guardado en turnos anteriores."
+        },
+        {
+          "es": "C permite consultar los puntos del turno y S los bancos de todos los jugadores."
+        }
+      ]
+    },
+    {
+      "id": "dice",
+      "title": {
+        "es": "Las caras especiales"
+      },
+      "paragraphs": [
+        {
+          "es": "El 1, el 2, el 7 y el 8 tienen efectos distintos:"
+        },
+        {
+          "es": "- El 1 deja en cero los puntos del turno y lo termina inmediatamente. También lo hace si el turno tenía una puntuación negativa."
+        },
+        {
+          "es": "- El 2 añade dos puntos directamente al banco. No termina el turno y un 1 posterior no puede quitar esos puntos."
+        },
+        {
+          "es": "- El 7 es la cabeza del gato. No cambia ningún resultado: sigues pudiendo tirar o guardar."
+        },
+        {
+          "es": "- El 8 es la cola del gato. Al azar, suma 8 puntos al turno o resta 8. Después puedes seguir jugando."
+        },
+        {
+          "es": "La cola puede dejar el turno por debajo de cero. Si guardas ese resultado, restarás puntos del banco. Puedes intentar recuperarlos con más tiradas; un 1 también elimina por completo el resultado negativo de ese turno."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "es": "Final de la partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Si alguien termina su turno con al menos 100 puntos en el banco, se completa la ronda de turnos actual. Solo juegan quienes aún no habían tenido su turno en ella."
+        },
+        {
+          "es": "Por ejemplo, si el segundo de cuatro jugadores alcanza la meta, todavía juegan el tercero y el cuarto. Después gana quien tenga más puntos en el banco. Si varias personas comparten el máximo, hay empate."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "es": "Cambiar la meta"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar puedes sustituir la meta de 100 por cualquier otra cantidad positiva en los ajustes de la mesa. También con esa meta se completa la ronda de turnos antes de comparar los resultados."
+        }
+      ]
+    },
+    {
+      "id": "credits",
+      "title": {
+        "es": "Origen del juego"
+      },
+      "paragraphs": [
+        {
+          "es": "Cat, Head, Tail fue creado por TD Programs. Se basa en PIG de RS Games, con un dado de ocho caras y los efectos descritos en estas reglas."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: elegir entre lanzar y guardar los puntos."
+        },
+        {
+          "es": "Enter: realizar la acción elegida."
+        },
+        {
+          "es": "C: consultar los puntos del turno."
+        },
+        {
+          "es": "S: consultar los bancos de los jugadores."
+        },
+        {
+          "es": "D: consultar la última tirada."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "options"
+  }
+}

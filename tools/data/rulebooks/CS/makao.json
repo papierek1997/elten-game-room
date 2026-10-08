@@ -1,0 +1,242 @@
+{
+  "source": "games/makao.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "V Makau vyhraje ten, kdo jako první zahraje všechny své karty. Hrají dva až osm hráčů, každý dostane pět karet a začíná hráč po rozdávajícím."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "cs": "Zahrání a dobrání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Klávesou C zjisti vrchní kartu na stole. Přiložit smíš stejnou barvu nebo hodnotu: na pikovou devítku tedy jakýkoli pik či jinou devítku. Kartu vyber šipkami a zahraj Enterem. Po běžné kartě pokračuje další hráč."
+        },
+        {
+          "cs": "Když hrát nechceš nebo nemůžeš, mezerníkem dober jednu kartu. Hodí-li se nová karta, smíš ji hned zahrát Enterem. Chceš-li si ji nechat, druhý mezerník ukončí tah. Nehodící se dobraná karta tah ukončí automaticky."
+        },
+        {
+          "cs": "Po dobrání smíš zahrát pouze novou kartu, buď samotnou, nebo spolu s dalšími v sadě popsané níže."
+        },
+        {
+          "cs": "Dojde-li dobírací balíček, dříve zahrané karty se zamíchají a vrátí k dobírání."
+        }
+      ]
+    },
+    {
+      "id": "packets",
+      "title": {
+        "cs": "Více karet najednou"
+      },
+      "paragraphs": [
+        {
+          "cs": "Karty stejné hodnoty můžeš zahrát společně, třeba tři devítky. První musí pasovat na stůl, poslední určí, k čemu bude přikládat další hráč."
+        },
+        {
+          "cs": "První kartu vyber šipkami a označ pomocí Shift+Enter. Stejně přidej ostatní v pořadí, v němž je chceš zahrát. Potom stiskni Enter pro celou sadu. Klávesa P ji přečte, Shift+P všechna označení zruší."
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": {
+        "cs": "Esa a trestné karty"
+      },
+      "paragraphs": [
+        {
+          "cs": "V základním Makau mají zvláštní účinek esa, dvojky, trojky a čtyřky:"
+        },
+        {
+          "cs": "- Eso mění barvu. V běžném tahu ho smíš zahrát na libovolnou kartu; potom zvol barvu šipkami a potvrď Enterem. Trestné dobírání ani vynechání tahu ale změna barvy nezruší."
+        },
+        {
+          "cs": "- Dvojka ukládá dalšímu hráči dvě karty, trojka tři. Místo dobrání může odpovědět dvojkou, trojkou nebo sadou dvojek či trojek. Trest se přičte a přejde dál. Po dvojce a následné trojce tak další hráč dluží pět karet."
+        },
+        {
+          "cs": "- Čtyřka ukládá vynechání jednoho tahu. Vlastní čtyřkou je můžeš předat dál; dvě čtyřky znamenají dvě vynechání. Stejně funguje sada čtyřek."
+        },
+        {
+          "cs": "Dobírací trest přijmeš mezerníkem: vezmeš celý počet a tah skončí. Bez přípustné obrany se trest přijme automaticky. Čekající počet karet připomene G."
+        },
+        {
+          "cs": "Vynechání po čtyřkách přijmeš tlačítkem, na které přejdeš Tabem a potvrdíš Enterem. Současný tah je prvním vynechaným. Dostaneš-li během čekání dobírací trest, musíš ho přijmout bez obrany; dobrání spotřebuje jeden z vynechávaných tahů."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Hlášení makao a vítězství"
+      },
+      "paragraphs": [
+        {
+          "cs": "Zbude-li ti jedna karta, stiskni U a ohlas „makao“. Zapomnětlivého soupeře můžeš chytit pomocí Shift+U, než začne svůj další tah. Přistižený si dobere kartu."
+        },
+        {
+          "cs": "Zahráním poslední karty nebo sady okamžitě vyhraješ celou hru."
+        }
+      ]
+    },
+    {
+      "id": "profiles",
+      "title": {
+        "cs": "Volba varianty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Dosud popsaná pravidla platí pro jednoduché Makao. V nastavení stolu lze zvolit i další varianty:"
+        },
+        {
+          "cs": "- Rozšířené polské Makao přidává požadavky klukem, univerzální dámu a útočné krále."
+        },
+        {
+          "cs": "- Varianta se žolíky přidává dva žolíky a útočné krále. Kluci ani dámy zde zvláštní účinek nemají. Rozdává se po pěti kartách."
+        },
+        {
+          "cs": "- Vlastní pravidla umožní dodatky vybrat jednotlivě, upravit trest za neohlášené makao i počet počátečních karet."
+        },
+        {
+          "cs": "Trest za makao může být jedna až deset karet. Počáteční ruka může mít tři až patnáct, pokud balíček vystačí pro všechny. Hotová varianta se žolíky zůstává u pěti."
+        }
+      ]
+    },
+    {
+      "id": "extra_cards",
+      "title": {
+        "cs": "Kluci, dámy, králové a žolíci"
+      },
+      "paragraphs": [
+        {
+          "cs": "Doplňkové účinky jsou následující:"
+        },
+        {
+          "cs": "- Při zapnutých požadavcích klukem po jeho zahrání vybereš šipkami hodnotu od pětky po desítku a potvrdíš Enterem. Další hráč musí tuto hodnotu zahrát. Zapnuté eso se změnou barvy mu dovolí požadavek obejít."
+        },
+        {
+          "cs": "- Univerzální dáma také obchází požadavek. V běžném tahu pasuje na cokoli, nebrání však dobírání ani vynechání."
+        },
+        {
+          "cs": "- Útočný pikový král ukládá další osobě pět karet. Odpovědět může srdcovým králem, přidat pět a předat trest dál. Tento útok se nespojuje s dvojkami a trojkami."
+        },
+        {
+          "cs": "- Žolík zastoupí vybranou kartu. Zahraj ho Enterem, zvol zastupovanou kartu a potvrď. Její zvláštní schopnost má jen tehdy, pokud je zapnutá. Může obejít požadavek klukem. Ve společné sadě musí mít stejnou hodnotu jako ostatní karty. Proti trestu ho použiješ jako přípustnou obranu, například jako dvojku proti dobírání."
+        }
+      ]
+    },
+    {
+      "id": "other_rules",
+      "title": {
+        "cs": "Další úpravy"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve vlastních pravidlech lze změnit také následující:"
+        },
+        {
+          "cs": "- Zakázat míchání trestů dvojek a trojek. Pak odpovíš na dvojku jen dvojkou, na trojku jen trojkou."
+        },
+        {
+          "cs": "- Vypnout sčítání čtyřek. Čtyřka pak vezme jeden tah bez možnosti poslat čekání další čtyřkou dál."
+        },
+        {
+          "cs": "- Vypnout změnu barvy esem; eso se stane běžnou kartou."
+        },
+        {
+          "cs": "- Zakázat dobrání při dostupné hratelné kartě nebo zakázat okamžité zahrání dobrané karty."
+        },
+        {
+          "cs": "- Zapnout čas na tah. Po vypršení přijmeš čekající vynechání či dobírací trest; bez trestu si vezmeš jednu kartu. Ve všech případech tah přejde dál."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházet karty."
+        },
+        {
+          "cs": "Enter: zahrát kartu nebo připravenou sadu; případně vybrat barvu, požadavek či zastoupení žolíka."
+        },
+        {
+          "cs": "Shift+Enter: přidat kartu do sady nebo ji odebrat; pořadí označení určuje pořadí zahrání."
+        },
+        {
+          "cs": "P: přečíst připravenou sadu."
+        },
+        {
+          "cs": "Shift+P: zrušit připravenou sadu."
+        },
+        {
+          "cs": "Mezerník: dobrat nebo po dobrání ukončit tah bez další karty."
+        },
+        {
+          "cs": "U: ohlásit makao, i mimo vlastní tah."
+        },
+        {
+          "cs": "Shift+U: chytit hráče bez ohlášeného makaa."
+        },
+        {
+          "cs": "C: přečíst vrchní kartu a požadovanou barvu či hodnotu."
+        },
+        {
+          "cs": "G: přečíst čekající trest."
+        },
+        {
+          "cs": "D: přečíst vlastní ruku."
+        },
+        {
+          "cs": "E: přečíst počty karet hráčů."
+        },
+        {
+          "cs": "Z: najít další přípustnou kartu; automatické zahrání je možné jen bez dalších voleb a sady."
+        },
+        {
+          "cs": "Shift+Z: najít předchozí přípustnou kartu; automatické zahrání je možné jen bez dalších voleb a sady."
+        },
+        {
+          "cs": "S: přečíst skóre."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        },
+        {
+          "cs": "Shift+C: seřadit podle barev; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+H: seřadit podle hodnot; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+M: obnovit pořadí přijatých karet."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "allow_playable_draw": "other_rules",
+    "profile": "profiles",
+    "jokers": "extra_cards",
+    "hand_size": "profiles",
+    "mixed_draw_cards": "other_rules",
+    "stack_fours": "other_rules",
+    "ace_changes_suit": "other_rules",
+    "jack_requests_rank": "extra_cards",
+    "queen_universal": "extra_cards",
+    "attacking_kings": "extra_cards",
+    "draw_responses": "other_rules",
+    "makao_penalty": "profiles",
+    "thinking_time": "other_rules"
+  }
+}

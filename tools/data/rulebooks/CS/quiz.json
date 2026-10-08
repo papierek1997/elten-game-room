@@ -1,0 +1,110 @@
+{
+  "source": "games/quiz_party.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "cs": "Cíl kvízu"
+      },
+      "paragraphs": [
+        {
+          "cs": "V kvízu odpovídáte na otázky ze zvoleného oboru. U každé jsou čtyři možnosti a právě jedna správná. Správná odpověď přinese bod, chybná žádný neodebere, takže stojí za to zkusit odpovědět i při nejistotě."
+        },
+        {
+          "cs": "Hrát mohou dva až osm hráčů, včetně botů. Všichni dostanou stejnou otázku a odpovídají samostatně. Rychlejší stisknutí Enteru žádnou výhodu v bodování nedává."
+        }
+      ]
+    },
+    {
+      "id": "round",
+      "title": {
+        "cs": "Kategorie a odpovědi"
+      },
+      "paragraphs": [
+        {
+          "cs": "Na začátku kola jeden hráč vybírá ze tří náhodně nabídnutých kategorií. Jsi-li na řadě ty, vyber šipkami a potvrď Enterem. V tomto kole vás čekají tři otázky z vybrané kategorie; v příštím kole volí další hráč."
+        },
+        {
+          "cs": "Na každou otázku máš 20 sekund. Projdi odpovědi šipkami a svou volbu potvrď Enterem. Potvrzenou odpověď už nezměníš a ostatní ji neuvidí, dokud neodpovědí všichni nebo nevyprší čas."
+        },
+        {
+          "cs": "Otázku zopakuje T, zbývající čas přečte Ctrl+T. Pět sekund před koncem zazní varování. Bez včasné odpovědi dostaneš nulu."
+        },
+        {
+          "cs": "Po vypršení času nebo odeslání všech odpovědí se dozvíte řešení a kdo získal bod. Třetí otázkou kolo končí. Jeho souhrn připomene V, celkové výsledky přečte S."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "cs": "Vítězství a rozstřel"
+      },
+      "paragraphs": [
+        {
+          "cs": "Hraje se alespoň do 15 bodů. I když někdo cíle dosáhne už první otázkou kola, zodpovíte ještě zbývající otázky. Potom vyhrává hráč s nejvyšším součtem."
+        },
+        {
+          "cs": "Při shodě na prvním místě přijde další celé kolo tří otázek. Pokračujete, dokud po dokončeném kole nezůstane jediný vedoucí hráč."
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "title": {
+        "cs": "Jazyk a sada otázek"
+      },
+      "paragraphs": [
+        {
+          "cs": "V nastavení stolu vyber jazyk otázek a potom sadu, z níž chcete hrát. Dostupné kategorie závisejí na sadě."
+        },
+        {
+          "cs": "Sady o knihách a jiných příbězích mohou prozrazovat děj včetně konce."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "cs": "Čas a bodový cíl"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze v nastavení stolu změnit čas na odpověď i cílový počet bodů. Stále se dohrává celé rozehrané kolo, i když někdo cíle dosáhne dřív."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: vybrat kategorii nebo odpověď."
+        },
+        {
+          "cs": "Enter: potvrdit volbu."
+        },
+        {
+          "cs": "T: přečíst otázku a odpovědi."
+        },
+        {
+          "cs": "Ctrl+T: přečíst zbývající čas."
+        },
+        {
+          "cs": "V: přečíst souhrn kola."
+        },
+        {
+          "cs": "S: přečíst skóre."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "content_language_id": "content",
+    "content_set_id": "content",
+    "answer_time": "options",
+    "target_score": "options"
+  }
+}

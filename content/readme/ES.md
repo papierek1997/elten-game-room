@@ -31,9 +31,11 @@ Para los juegos de audio conviene usar auriculares estéreo: la dirección del s
 4. Selecciona «Iniciar partida». Si necesitas ayuda, pulsa F1 para conocer los atajos disponibles o Ctrl+F1 para leer las reglas.
 
 No hace falta crear tu propia mesa. «Unirse a una mesa» permite elegir un juego y consultar las mesas existentes. También puedes usar una invitación o el widget de la pantalla principal de ELTEN.
+Al elegir un juego para crear una mesa o unirte a una, escucharás una breve descripción después de su nombre.
 Si vuelves a abrir Power Games en la misma copia de ELTEN, regresarás a la ventana que ya está abierta, en lugar de iniciar otra instancia independiente.
 
 Al iniciarse, el programa puede ofrecerte descargar una versión más reciente. Rechazarla no impide entrar, pero conviene que todos los participantes tengan una versión actualizada antes de jugar juntos. Encontrarás la descripción de los cambios en «Novedades».
+Es un documento de solo lectura con un encabezado para cada versión. H pasa al siguiente encabezado y Shift+H al anterior. Escape cierra el documento.
 
 ## A qué puedes jugar
 
@@ -86,7 +88,7 @@ En la lista de mesas y en el widget puedes obtener más información antes de en
 
 ### Invitaciones y espectadores
 
-En una mesa, Ctrl+I abre la selección de usuarios conectados a los que invitar, y Ctrl+Shift+I permite elegir a alguien de tus contactos. Puedes aceptar invitaciones desde una notificación de ELTEN, desde «Invitaciones» o con Ctrl+J. Este último atajo funciona en todo Power Games, incluido el widget.
+En una mesa, Ctrl+I abre la selección de usuarios conectados a los que invitar, y Ctrl+Shift+I permite elegir a alguien de tus contactos. Puedes aceptar invitaciones desde una notificación de ELTEN, desde el menú contextual o con Ctrl+J. Este último atajo funciona en todo Power Games, incluido el widget.
 
 En los juegos que admiten espectadores puedes seguir una partida sin ocupar una plaza de jugador. Sirve tanto para animar como para aprender las reglas. En Axel Pong, los espectadores también pueden elegir la perspectiva de escucha.
 Ctrl+Shift+O permite solicitar el papel de jugador o espectador para la siguiente partida, si el juego ofrece esa posibilidad.
@@ -116,6 +118,8 @@ Salir de una mesa y cerrarla para todos son acciones distintas. La primera solo 
 
 Tab y Shift+Tab recorren las partes de la ventana, como el área de juego, el chat, el historial y la lista de usuarios. Las flechas permiten moverse por las listas o el tablero; la forma de realizar una jugada depende del juego.
 
+Escribe un mensaje en el campo Chat y pulsa Enter para enviarlo. Cada mensaje puede tener hasta 2000 caracteres, tanto antes de empezar la partida como durante ella.
+
 No necesitas aprender todos los atajos a la vez:
 
 - F1 muestra la ayuda del lugar actual y las acciones disponibles.
@@ -133,6 +137,7 @@ Algunos juegos también tienen ajustes personales bajo Ctrl+P, accesibles desde 
 
 El widget de Power Games en la pantalla principal de ELTEN permite consultar las mesas sin abrir primero el menú principal del programa. Puedes seleccionar una mesa, comprobar sus ajustes o participantes y aceptar una invitación.
 Ctrl+N lleva directamente a la selección del juego para crear una mesa. R actualiza la lista manualmente. El widget también se actualiza al entrar en él y cada cinco segundos mientras lo utilizas.
+Ctrl+O lee una breve descripción del juego de la mesa seleccionada. También puedes elegir «Descripción del juego» en el menú contextual del widget.
 
 En Ajustes → Widget puedes activar el widget, elegir los juegos visibles y limitar la lista a mesas creadas por tus contactos.
 
@@ -193,6 +198,8 @@ El idioma de la interfaz y el del contenido del juego son opciones distintas. El
 En los juegos que permiten guardar, el anfitrión puede usar Ctrl+S para guardar la partida y cerrar la mesa. El guardado pertenece a su cuenta y se almacena en el servidor, así que también puede retomarlo desde otro ordenador.
 
 Para continuar, usa «Partidas guardadas» en el menú principal. Restaurar un guardado crea una mesa donde podéis reuniros de nuevo y seguir jugando. No todos los juegos se pueden guardar ni cualquier momento es adecuado: la orden depende del juego y de su fase actual.
+
+Al reanudarse la partida, el guardado se elimina de tu cuenta. Crear la mesa y esperar a los jugadores todavía no lo elimina. Si quieres volver a interrumpir la partida, guarda el progreso actual con Ctrl+S.
 
 ### Volver a una conversación o jugada anterior
 
@@ -283,6 +290,7 @@ Esta lista cubre los controles comunes del programa. Para las órdenes de un jue
 
 - Ctrl+R — ajustes de la mesa seleccionada antes de entrar.
 - Ctrl+W — jugadores y espectadores de la mesa seleccionada.
+- Ctrl+O — breve descripción del juego de la mesa seleccionada; en el widget.
 - Ctrl+N — crear una mesa; en el widget.
 - R — actualizar el widget manualmente.
 - Ctrl+1 a Ctrl+0 — las diez primeras configuraciones propias de mesa; en el widget.

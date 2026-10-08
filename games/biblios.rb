@@ -47,6 +47,10 @@ module GameRoomGames
       _("Biblios")
     end
 
+    def short_description
+      _("Collect cards for your library and bid on those that will put you ahead of your rivals in the categories you choose.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

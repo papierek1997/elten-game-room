@@ -45,6 +45,10 @@ module GameRoomGames
       _("The current game contains private data that cannot be transferred at this stage.")
     end
     def name; _("Krowa"); end
+
+    def short_description
+      _("Guess the hidden Polish noun using clues about how many letters are in the right places.")
+    end
     def minimum_players; 1; end
     def maximum_players; 8; end
     def perfect_information?; false; end

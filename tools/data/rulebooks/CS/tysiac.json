@@ -1,0 +1,311 @@
+{
+  "source": "games/tysiac.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "V Tisíci získáváš body za sebrané karty a ohlášené dvojice krále s dámou. Po rozdání licitujete, kdo se zaváže získat nejvíce bodů. Vítěz licitace musí slib splnit, ostatní se mu v tom snaží zabránit a sami bodovat. Vyhrává dosažení 1000 bodů."
+        },
+        {
+          "cs": "Základní hra je pro tři hráče. Každý dostane sedm karet a vítěz licitace přibere tři z talónu. Hraje se kartami od devítky po eso."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "cs": "Síla karet a jejich body"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po licitaci každý postupně zahraje jednu kartu. Trojice vytvoří zdvih, který získá jeden hráč i s bodovou hodnotou těchto karet."
+        },
+        {
+          "cs": "Nejsilnější je eso, potom desítka, král, dáma, kluk a devítka. Za sebrané karty dostaneš:"
+        },
+        {
+          "cs": "- Eso: 11 bodů."
+        },
+        {
+          "cs": "- Desítka: 10 bodů."
+        },
+        {
+          "cs": "- Král: 4 body."
+        },
+        {
+          "cs": "- Dáma: 3 body."
+        },
+        {
+          "cs": "- Kluk: 2 body."
+        },
+        {
+          "cs": "- Devítka: žádný bod."
+        },
+        {
+          "cs": "V balíčku je celkem 120 bodů. Další přináší hláška, tedy oznámená dvojice krále a dámy stejné barvy. Jak ji oznámit, vysvětluje kapitola Hlášky."
+        }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": {
+        "cs": "Licitace"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ruku si prohlédni šipkami nebo přečti klávesou H. Začíná hráč po rozdávajícím. První nabídka je nejméně 100, další ji musí zvýšit alespoň o 5. Nabízí se jen násobky pěti."
+        },
+        {
+          "cs": "Na tahu stiskni Enter na libovolné kartě. V nabídce zvol šipkami bodový závazek nebo odstoupení a potvrď Enterem. Kdo odstoupí, do této licitace se už nevrátí. Začínající hráč nejprve musí něco nabídnout."
+        },
+        {
+          "cs": "Bez hlášky v ruce lze nabídnout nejvýš 120. Každá držená hláška zvyšuje tento strop o svou hodnotu, nikdy však nad 400. Seznam nabízí jen závazky přípustné pro tvé karty."
+        },
+        {
+          "cs": "Jakmile odstoupí všichni kromě jednoho, jeho poslední nabídka se stane závazkem pro toto rozdání. Současné nabídky přečte B."
+        }
+      ]
+    },
+    {
+      "id": "talon",
+      "title": {
+        "cs": "Talón a konečný závazek"
+      },
+      "paragraphs": [
+        {
+          "cs": "Vítěz licitace dostane talón a jeho obsah uslyší všichni. Pak předá každému soupeři jednu kartu. Vyber šipkami kartu pro oznámeného hráče a potvrď Enterem, potom totéž udělej pro druhého. Každý bude mít osm karet."
+        },
+        {
+          "cs": "Potom smíš závazek ponechat nebo zvýšit. Stiskni B, šipkami zvol hodnotu a potvrď Enterem. Nový strop určují hlášky, které ti zbyly, dřívější slib ale snížit nesmíš."
+        },
+        {
+          "cs": "Vítěz licitace také první vynáší. Nechceš-li závazek měnit, prostě vyber kartu šipkami a zahraj Enterem. První zahraná karta možnost zvýšení definitivně uzavře."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "cs": "Hraní zdvihů"
+      },
+      "paragraphs": [
+        {
+          "cs": "Kartu vybíráš šipkami a hraješ Enterem. Do rozehraného zdvihu musíš přiznat první vynesenou barvu, máš-li ji. Po káru tedy zahraješ káro. Vyšší soupeřovu kartu přebíjet nemusíš."
+        },
+        {
+          "cs": "Nemáš-li vynesenou barvu, musíš hrát trumf, pokud ho máš. Trumf přebíjí ostatní barvy. Na začátku ještě není určený, objeví se až první hláškou. Bez požadované barvy i bez trumfu smíš hrát cokoli."
+        },
+        {
+          "cs": "Zdvih vyhrává nejvyšší trumf, jinak nejvyšší karta vynesené barvy. Vítěz získá body ze tří karet a vynáší další. Pokračujete do vyprázdnění rukou."
+        },
+        {
+          "cs": "Karty aktuálního zdvihu přečte C, trumfovou barvu připomene F."
+        }
+      ]
+    },
+    {
+      "id": "marriages",
+      "title": {
+        "cs": "Hlášky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Král s dámou stejné barvy umožňují hlášku, pokud jednou z těchto karet vynášíš nový zdvih. Nesmí to být první zdvih rozdání ani přikládání po jiném hráči. Vyber krále nebo dámu a stiskni Shift+Enter: karta se zahraje spolu s hláškou."
+        },
+        {
+          "cs": "Ohlášení okamžitě přidá body a určí novou trumfovou barvu. Každá další hláška dosavadní trumf nahradí:"
+        },
+        {
+          "cs": "- Srdcová hláška dává 100 bodů."
+        },
+        {
+          "cs": "- Kárová 80 bodů."
+        },
+        {
+          "cs": "- Křížová 60 bodů."
+        },
+        {
+          "cs": "- Piková 40 bodů."
+        },
+        {
+          "cs": "Král či dáma se dají zahrát i bez hlášky. Použij Enter a vyber běžné zahrání. Jakmile dvojici rozdělíš, už ji ohlásit nemůžeš."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "cs": "Vyhodnocení rozdání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po posledním zdvihu se sečtou body z karet a hlášek. Do celkového skóre se zapíší takto:"
+        },
+        {
+          "cs": "- Vítěz licitace při splnění získá právě hodnotu závazku. Se slibem 150 a skutečnými 170 body si připíše 150."
+        },
+        {
+          "cs": "- Nesplněný závazek se celý odečte. Při slibu 150 a výsledku 149 tedy ztratíš 150 bodů."
+        },
+        {
+          "cs": "- Ostatní si připíší získané body zaokrouhlené na nejbližší násobek pěti. Výsledek 42 se zapíše jako 40, 43 jako 45."
+        },
+        {
+          "cs": "Každá tři rozdání bez získaného bodu znamenají navíc minus 120. Nemusí jít za sebou. Skóre přečte S, počet nulových a vzdaných rozdání Shift+S."
+        }
+      ]
+    },
+    {
+      "id": "surrender",
+      "title": {
+        "cs": "Vzdání rozdání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po prohlédnutí talónu smí vítěz licitace rozdání vzdát, ale ještě před předáním první karty soupeři. Tabem najdi tlačítko vzdání rozdání a potvrď Enterem."
+        },
+        {
+          "cs": "Za vzdání se závazek neodečítá. Každý soupeř dostane polovinu jeho hodnoty, nejméně však 60 bodů, se zaokrouhlením nahoru na násobek pěti. Každé třetí vlastní vzdání stojí 120 bodů."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Sud a vítězství"
+      },
+      "paragraphs": [
+        {
+          "cs": "Dosáhneš-li po vyhodnocení alespoň 880, ale méně než 1000, skóre se zastaví na 880. Jsi na takzvaném sudu. Máš následující tři odehraná rozdání, abys vyhrál licitaci a získal zbývající body."
+        },
+        {
+          "cs": "Ze sudu vyhraješ splněním vlastního závazku alespoň 120. Menší závazek ani body z cizího vítězství v licitaci tvé skóre nezvednou. Nulová rozdání na sudu se nepočítají do trestu za tři nuly."
+        },
+        {
+          "cs": "Vlastní nesplněný závazek se odečte a sud ihned opustíš. Nevyhraješ-li ani během tří odehraných rozdání, ztratíš 120 a rovněž ze sudu spadneš. Zbývající pokusy zjistíš pomocí Shift+S."
+        },
+        {
+          "cs": "Na sudu nesmíš rozdání vzdát. Za cizí vzdání také nedostaneš body, ale takové rozdání ti ani nespotřebuje pokus."
+        },
+        {
+          "cs": "Hra končí dosažením alespoň 1000 bodů. Silným závazkem lze vyhrát i bez předchozího sudu. Pokud hranici v jednom vyhodnocení překročí více hráčů, rozhoduje nejvyšší skóre."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Počet hráčů a další nastavení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou se v nastavení stolu vybírá varianta. Základ pro tři byl popsán výše; další mění rozdání takto:"
+        },
+        {
+          "cs": "- Ve dvou jsou dva talóny, běžně po třech kartách, a každý dostane devět. Vítěz licitace vybere talón šipkami a Enterem naslepo. Potom jeho obsah uvidí oba. Vítěz odloží tři vlastní karty postupně šipkami a Enterem; soupeři je nepředává. Před prvním odložením smí rozdání vzdát."
+        },
+        {
+          "cs": "- Ve čtyřech rozdávající odpočívá a ostatní tři hrají běžné rozdání. Odpočívající neboduje a neutrácí pokus na sudu. V dalším rozdání odpočívá následující hráč."
+        },
+        {
+          "cs": "- Týmová hra rozděluje čtyři hráče do dvou dvojic se společnými body."
+        },
+        {
+          "cs": "Ve dvou lze zvolit talóny po dvou kartách. Každý pak začíná s deseti a vítěz po převzetí talónu odloží dvě."
+        },
+        {
+          "cs": "Běžně ve dvou získá vítěz posledního zdvihu i body z nevybraného talónu a odložených karet. Tuto volbu lze vypnout; pak je nezíská nikdo."
+        },
+        {
+          "cs": "Změnit lze také bodový cíl. Sud je vždy 120 bodů před ním, ostatní jeho podmínky se nemění."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "cs": "Hra dvojic"
+      },
+      "paragraphs": [
+        {
+          "cs": "S partnerem plníte závazek společně. Vyhraješ-li licitaci na 150, k jeho splnění se sčítají tvoje i partnerovy získané body."
+        },
+        {
+          "cs": "Každý dostane pět karet a talón má čtyři. Vítěz licitace ho vezme a odevzdá po jedné kartě každému ze zbývajících tří hráčů, tedy i partnerovi."
+        },
+        {
+          "cs": "Společně počítáte karty i hlášky. Každý však hraje vlastní rukou podle běžných povinností: přiznat barvu, bez ní trumfovat. Platí to, i když ve zdvihu právě vede partner."
+        },
+        {
+          "cs": "Dvojice má společné skóre, společně vstupuje na sud a sdílí jeho pokusy i počty nul a vzdání. Běžné bodování se tak vztahuje na celý tým."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: vybrat nabídku nebo kartu k předání či zahrání."
+        },
+        {
+          "cs": "Enter: potvrdit volbu; na kartě ji zahrát nebo vybrat hlášku."
+        },
+        {
+          "cs": "Shift+Enter: okamžitě ohlásit dostupnou hlášku; bez ní se karta nezahraje."
+        },
+        {
+          "cs": "B: po výměně před první kartou změnit závazek, jinak přečíst nabídky."
+        },
+        {
+          "cs": "H: přečíst vlastní ruku."
+        },
+        {
+          "cs": "C: přečíst karty ve zdvihu."
+        },
+        {
+          "cs": "Ctrl+C: prohlédnout karty ve zdvihu."
+        },
+        {
+          "cs": "F: přečíst trumfovou barvu."
+        },
+        {
+          "cs": "S: přečíst skóre a stav sudu."
+        },
+        {
+          "cs": "Shift+S: přečíst nuly, vzdání a pokusy na sudu."
+        },
+        {
+          "cs": "Z: najít další přípustnou kartu; možnost hlášky brání automatickému zahrání."
+        },
+        {
+          "cs": "Shift+Z: najít předchozí přípustnou kartu; možnost hlášky brání automatickému zahrání."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        },
+        {
+          "cs": "Shift+C: seřadit podle barev; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+H: seřadit podle hodnot; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+M: obnovit pořadí přijatých karet."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "talon_size": "variants",
+    "last_trick_talon": "variants",
+    "score_limit": "variants"
+  }
+}

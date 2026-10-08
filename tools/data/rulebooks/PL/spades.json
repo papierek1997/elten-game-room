@@ -1,0 +1,239 @@
+{
+  "source": "games/spades.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Pikach starasz się przewidzieć, ile razy zbierzesz karty ze stołu. Po rozdaniu każdy zapowiada swój wynik, a potem rozgrywacie karty, po jednej od osoby. Taką grupę kart nazywa się lewą. Jeśli weźmiesz co najmniej tyle lew, ile obiecałeś, zdobywasz punkty. Jeśli zabraknie choć jednej, tracisz punkty za całą deklarację."
+        },
+        {
+          "pl": "Grają od trzech do sześciu osób. W zwykłej grze każdy zbiera punkty dla siebie. Wygrywa gracz, który po zakończeniu rozdania ma co najmniej 300 punktów i sam zajmuje pierwsze miejsce."
+        }
+      ]
+    },
+    {
+      "id": "bidding",
+      "title": {
+        "pl": "Zapowiadanie liczby lew"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przejrzyj otrzymane karty strzałkami albo odczytaj całą rękę klawiszem H. Kiedy przyjdzie twoja kolej na deklarację, naciśnij B, wpisz liczbę lew i potwierdź Enterem. Deklaruj tyle, ile spodziewasz się wygrać. Za zbyt wiele dodatkowych lew również grozi kara."
+        },
+        {
+          "pl": "Możesz wpisać zero. Taka deklaracja nazywa się nil: zobowiązujesz się nie wziąć ani jednej lewy. Udany nil daje 100 punktów, ale już pierwsza wzięta lewa oznacza stratę 100 punktów."
+        },
+        {
+          "pl": "Każdy deklaruje raz. Zaczyna osoba po rozdającym i ta sama osoba zagra pierwszą kartę. Po zakończeniu deklaracji klawisz B odczytuje zapowiedzi wszystkich graczy."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "pl": "Rozgrywanie kart"
+      },
+      "paragraphs": [
+        {
+          "pl": "Pierwsza karta w lewie wyznacza kolor, którego pozostali muszą się trzymać. Jeśli ktoś wyjdzie w kiery i masz kiera, wybierz jednego strzałkami i naciśnij Enter. Gdy nie masz tego koloru, możesz zagrać dowolną kartę. Klawiszem C odczytasz karty już zagrane w bieżącej lewie."
+        },
+        {
+          "pl": "Najwyższa karta w kolorze pierwszego zagrania wygrywa lewę, chyba że ktoś dołoży pika. Piki są atutami: przebijają pozostałe kolory, a gdy zagrano ich kilka, wygrywa najwyższy pik. W każdym kolorze najmocniejszy jest as, potem król, dama, walet i karty od dziesiątki do dwójki. Zwycięzca zbiera lewę i zaczyna następną."
+        },
+        {
+          "pl": "Na początku rozdania nie wolno wychodzić w piki. Można to robić od chwili, gdy ktoś dołoży pierwszego pika do innego koloru. Jeśli zostały ci już tylko piki, możesz wyjść w pika wcześniej."
+        },
+        {
+          "pl": "Jest jeszcze wyjątek dotyczący asa pik. Gdy ktoś wychodzi w piki, a as jest twoim jedynym pikiem, wolno ci zachować go i dołożyć inną kartę. Jeśli masz także niższego pika, obowiązuje zwykłe dokładanie do koloru."
+        },
+        {
+          "pl": "Rozdanie kończy się po zagraniu wszystkich kart. W trakcie gry klawisz I odczytuje twój postęp, a V porównuje deklaracje i zdobyte lewy wszystkich osób."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "pl": "Punktacja"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po każdym rozdaniu wynik zmienia się następująco:"
+        },
+        {
+          "pl": "- Za wykonaną deklarację dostajesz po 10 punktów za każdą zapowiedzianą lewę oraz po 1 punkcie za każdą dodatkową. Jeśli zapowiedziałeś cztery, a wziąłeś sześć, zyskujesz 42 punkty."
+        },
+        {
+          "pl": "- Jeśli nie wykonasz deklaracji, tracisz po 10 punktów za każdą zapowiedzianą lewę. Przy deklaracji czterech i wyniku trzech lew tracisz 40 punktów."
+        },
+        {
+          "pl": "- Za udany nil dostajesz 100 punktów. Za nieudany tracisz 100, ale każda wzięta przy nim lewa dodaje 1 punkt i liczy się do nadmiaru lew."
+        },
+        {
+          "pl": "Dodatkowe lewy, zwane workami, sumuje się przez kolejne rozdania. Za każde dziesięć worków tracisz 100 punktów. Jeśli miałeś osiem i zdobędziesz trzy, dostajesz karę, a jeden worek liczy się już do następnej dziesiątki. Wyniki odczytasz klawiszem S."
+        },
+        {
+          "pl": "Są również premie za niektóre wykonane deklaracje:"
+        },
+        {
+          "pl": "- Przy trzech lub czterech graczach dokładne wykonanie deklaracji jednej albo dwóch lew daje dodatkowe 20 punktów."
+        },
+        {
+          "pl": "- Za duże wykonane deklaracje dostajesz premię. Pierwszy próg daje dodatkowe 10 punktów, a każda zapowiedziana lewa ponad ten próg zwiększa premię o kolejne 10."
+        },
+        {
+          "pl": "Pierwszy próg premii za dużą deklarację zależy od liczby graczy:"
+        },
+        {
+          "pl": "- Przy trzech osobach premia zaczyna się od dziesięciu lew."
+        },
+        {
+          "pl": "- Przy czterech osobach zaczyna się od siedmiu lew."
+        },
+        {
+          "pl": "- Przy pięciu osobach zaczyna się od sześciu lew."
+        },
+        {
+          "pl": "- Przy sześciu osobach zaczyna się od pięciu lew."
+        },
+        {
+          "pl": "Po podliczeniu gracie następne rozdanie, chyba że jedna osoba ma już co najmniej 300 punktów i więcej niż wszyscy pozostali. Remis na prowadzeniu oznacza dalszą grę."
+        }
+      ]
+    },
+    {
+      "id": "deck",
+      "title": {
+        "pl": "Liczba kart w rozdaniu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Każdy dostaje tyle samo kart. Żeby było to możliwe przy różnej liczbie osób, talia zmienia się tak:"
+        },
+        {
+          "pl": "- Przy trzech graczach każdy otrzymuje 17 kart. W talii nie ma dwójki trefl."
+        },
+        {
+          "pl": "- Przy czterech graczach każdy otrzymuje 13 kart z pełnej talii."
+        },
+        {
+          "pl": "- Przy pięciu graczach każdy otrzymuje 10 kart. Nie ma dwójek trefl i karo."
+        },
+        {
+          "pl": "- Przy sześciu graczach każdy otrzymuje 8 kart. W grze nie występują dwójki."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "pl": "Gra w drużynach"
+      },
+      "paragraphs": [
+        {
+          "pl": "W grze drużynowej wspólnie pracujecie na wynik. Każdy deklaruje za siebie i gra swoimi kartami, ale możecie sobie pomóc w zdobyciu zapowiedzianej liczby lew."
+        },
+        {
+          "pl": "Jeśli zapowiesz cztery lewy, a twój partner trzy, potrzebujecie razem siedmiu. Możesz wziąć pięć, a partner dwie — drużyna wykona wtedy deklarację. Punkty i worki zapisuje się wam wspólnie."
+        },
+        {
+          "pl": "Wyjątkiem jest nil. Osoba, która go wybrała, musi unikać wszystkich lew, nawet jeśli partner potrzebuje pomocy. Jej lewy nie liczą się do wspólnej deklaracji. Za nieudany nil drużyna traci 100 punktów, a każda wzięta w nim lewa daje jej punkt i worek."
+        },
+        {
+          "pl": "Drużyny wybiera się w ustawieniach stołu przed grą. W parach mogą grać cztery albo sześć osób. Przy sześciu osobach można też utworzyć dwie drużyny trzyosobowe."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Pozostałe warianty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed rozpoczęciem gry w ustawieniach stołu można zmienić docelowy wynik i włączyć poniższe zasady:"
+        },
+        {
+          "pl": "- No Hell ogranicza ostatnią deklarację. Suma zapowiedzi nie może wtedy być równa liczbie lew dostępnych w rozdaniu, więc przynajmniej ktoś nie trafi dokładnie."
+        },
+        {
+          "pl": "- Quicksand zmienia rozliczenie zwykłych deklaracji. Jeśli zabraknie lew, tracisz po 10 punktów tylko za każdą brakującą. Gdy wykonasz deklarację, dostajesz po 10 punktów za zapowiedzianą lewę, lecz każda nadmiarowa odejmuje 10 punktów. Nie zbierasz worków i nie otrzymujesz premii za małe lub duże deklaracje. Nil pozostaje wart 100 punktów na plus albo na minus."
+        },
+        {
+          "pl": "- Suicide jest grą w parach. Każdy wybiera nil albo deklarację co najmniej czterech lew, a przynajmniej jedna osoba w każdej parze musi wybrać nil. Gdy partner zadeklarował cztery lub więcej, tobie pozostaje nil. Tego wariantu nie można łączyć z No Hell."
+        },
+        {
+          "pl": "- Wszechwiedzące boty znają wszystkie ręce. Przy wyłączonej opcji korzystają tylko z własnych kart i informacji dostępnych z przebiegu gry."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: przeglądaj karty."
+        },
+        {
+          "pl": "Enter: zagraj wybraną kartę."
+        },
+        {
+          "pl": "B: podczas deklaracji wpisz swoją liczbę lew; później odczytaj deklaracje."
+        },
+        {
+          "pl": "H: odczytaj swoją rękę."
+        },
+        {
+          "pl": "C: odczytaj karty w lewie."
+        },
+        {
+          "pl": "Ctrl+C: przeglądaj karty w lewie."
+        },
+        {
+          "pl": "F: odczytaj kolor pierwszej karty w lewie."
+        },
+        {
+          "pl": "I: odczytaj swój postęp w rozdaniu."
+        },
+        {
+          "pl": "V: odczytaj lewy i deklaracje wszystkich graczy."
+        },
+        {
+          "pl": "S: odczytaj wyniki."
+        },
+        {
+          "pl": "Z: przejdź do następnej legalnej karty; jedyna jednoznaczna możliwość może zostać zagrana automatycznie."
+        },
+        {
+          "pl": "Shift+Z: przejdź do poprzedniej legalnej karty; jedyna jednoznaczna możliwość może zostać zagrana automatycznie."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "pl": "Shift+C: sortuj karty według koloru; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+H: sortuj karty według wartości; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+M: przywróć kolejność otrzymania kart."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "variants",
+    "team_size": "teams",
+    "no_hell": "variants",
+    "quicksand": "variants",
+    "suicide": "variants",
+    "omniscient_bots": "variants"
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "source": "games/uno.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En UNO intentas quedarte sin cartas antes que nadie. Al acabar cada ronda, las que conserves te dan puntos de penalización. Quien alcanza el límite queda eliminado; la última persona que siga jugando gana la partida."
+        },
+        {
+          "es": "Juegan de dos a ocho personas. Cada una recibe siete cartas y empieza quien sigue al repartidor."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "es": "Jugar y robar"
+      },
+      "paragraphs": [
+        {
+          "es": "Consulta la carta de la mesa con C. Debes coincidir con su color, número o símbolo. Sobre un seis azul puedes jugar otra azul o un seis de otro color. Recorre tu mano con las flechas y pulsa Enter para jugar."
+        },
+        {
+          "es": "Una jugada normal pasa el turno. Si no puedes jugar, roba con Espacio. Después puedes usar cualquier carta válida de tu mano, incluso una que ya tuvieras. Si tras robar ninguna carta encaja, tu turno termina automáticamente."
+        },
+        {
+          "es": "También puedes robar en lugar de jugar una carta válida, hasta tres veces en un turno. Tras el tercer robo debes jugar si puedes."
+        },
+        {
+          "es": "Si se agotan las cartas para robar, se barajan las jugadas anteriormente y vuelven a usarse."
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": {
+        "es": "Cartas especiales"
+      },
+      "paragraphs": [
+        {
+          "es": "Además de números, hay cartas con estos efectos:"
+        },
+        {
+          "es": "- Salta turno: el siguiente jugador pierde el turno."
+        },
+        {
+          "es": "- Cambio de sentido: invierte el orden. Con dos personas actúa como Salta turno, así que vuelve a jugar quien la puso."
+        },
+        {
+          "es": "- Comodín: permite elegir color sin tener que coincidir con el anterior. Después de jugarlo, elige con las flechas y confirma con Enter. V recuerda el color elegido."
+        },
+        {
+          "es": "- Roba dos: el siguiente debe robar dos o responder con otro Roba dos. Si responde, la penalización sube a cuatro y pasa al siguiente. Las respuestas posteriores la siguen aumentando."
+        },
+        {
+          "es": "- Comodín Roba cuatro: permite elegir color y obliga a robar cuatro. Se responde con otro comodín Roba cuatro. Roba dos y Roba cuatro no se acumulan entre sí."
+        },
+        {
+          "es": "Para aceptar la penalización, pulsa Espacio: robas todas las cartas exigidas. Puedes consultar la cantidad antes con G. Después aún puedes jugar una carta válida; si no tienes ninguna, termina tu turno."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Decir uno y puntuar"
+      },
+      "paragraphs": [
+        {
+          "es": "Cuando te quede una carta, pulsa U para decir «uno». Si alguien lo olvida, un rival puede pillarlo con esa misma tecla antes de la siguiente carta jugada o robada. El infractor recibe dos cartas."
+        },
+        {
+          "es": "Jugar la última carta gana la ronda. Si obliga a robar, primero se resuelve esa penalización. El ganador recibe cero puntos; los demás cuentan sus cartas restantes:"
+        },
+        {
+          "es": "- Cada carta numérica vale su número en puntos de penalización."
+        },
+        {
+          "es": "- Cada carta especial de color vale 20."
+        },
+        {
+          "es": "- Cada comodín vale 50."
+        },
+        {
+          "es": "Después de la ronda queda eliminado quien tenga al menos 500 puntos. Los demás reciben cartas nuevas para otra ronda. Gana la última persona que permanezca. S consulta los resultados."
+        }
+      ]
+    },
+    {
+      "id": "drawing_options",
+      "title": {
+        "es": "Variantes de robo y penalización"
+      },
+      "paragraphs": [
+        {
+          "es": "Los apartados siguientes describen opciones que se eligen antes de jugar. El robo y la puntuación admiten estos cambios:"
+        },
+        {
+          "es": "- Un límite de puntos distinto de 500. Alcanzarlo elimina al jugador después de la ronda."
+        },
+        {
+          "es": "- Prohibir robar si ya tienes una carta válida o cambiar el máximo de robos normales por turno."
+        },
+        {
+          "es": "- Robar hasta poder jugar: una pulsación de Espacio sigue robando hasta encontrar una carta válida o agotar las disponibles. No cambia las cantidades de las penalizaciones."
+        },
+        {
+          "es": "- Sin respuestas a penalizaciones, el jugador atacado debe robar; no puede pasar el ataque con otra carta."
+        },
+        {
+          "es": "- Puedes hacer que aceptar una penalización quite siempre el resto del turno."
+        },
+        {
+          "es": "- Las respuestas avanzadas permiten que Salta turno o un comodín normal pasen la penalización sin aumentarla. Cambio de sentido la devuelve en sentido contrario. Requiere permitir respuestas a penalizaciones."
+        }
+      ]
+    },
+    {
+      "id": "challenge",
+      "title": {
+        "es": "Desafiar un Roba cuatro"
+      },
+      "paragraphs": [
+        {
+          "es": "En UNO clásico puedes activar el desafío de faroles. Entonces solo puedes jugar un comodín Roba cuatro sin consecuencias si no tienes otra carta del color anterior."
+        },
+        {
+          "es": "Si recibes ese ataque, pulsa F para comprobar la mano de quien lo jugó. Si tenía ese color, él roba cuatro. Si no lo tenía, tú robas seis y pierdes el turno."
+        }
+      ]
+    },
+    {
+      "id": "decks",
+      "title": {
+        "es": "Elegir baraja"
+      },
+      "paragraphs": [
+        {
+          "es": "Hay tres barajas disponibles en los ajustes:"
+        },
+        {
+          "es": "- Clásica: usa las reglas explicadas al principio."
+        },
+        {
+          "es": "- No Mercy: añade ataques más fuertes y eliminación de la ronda por exceso de cartas. Se explica a continuación."
+        },
+        {
+          "es": "- Flip: cada carta tiene dos caras y una carta Flip cambia la cara con la que se juega. Se explica después de No Mercy."
+        }
+      ]
+    },
+    {
+      "id": "no_mercy",
+      "title": {
+        "es": "No Mercy"
+      },
+      "paragraphs": [
+        {
+          "es": "No Mercy conserva la forma de emparejar y puntuar de UNO clásico, y añade estas cartas:"
+        },
+        {
+          "es": "- Roba cuatro de color: obliga al siguiente a robar cuatro."
+        },
+        {
+          "es": "- Comodines Roba seis y Roba diez: cambian el color y añaden esa cantidad de cartas."
+        },
+        {
+          "es": "- Comodín Cambio de sentido y Roba cuatro: invierte el orden y aplica cuatro cartas a quien tenga ahora el turno. Con dos personas, la penalización vuelve a quien lo jugó."
+        },
+        {
+          "es": "- Salta a todos: vuelves a jugar inmediatamente."
+        },
+        {
+          "es": "- Descarta todas: elimina también de tu mano las demás cartas de su color."
+        },
+        {
+          "es": "- Comodín Ruleta de colores: el siguiente roba hasta encontrar la primera carta no comodín del color que elijas. Después termina su turno."
+        },
+        {
+          "es": "Para responder a un robo de cantidad fija, la carta debe ser del mismo grupo que el ataque: de color contra una de color, o comodín contra comodín. Además debe ser al menos tan fuerte como la última carta jugada. No puedes responder a un Roba cuatro de color con Roba dos."
+        },
+        {
+          "es": "Con respuestas avanzadas, Salta a todos y Descarta todas anulan por completo una penalización de robo de cantidad fija."
+        },
+        {
+          "es": "Llegar a 25 cartas te elimina de la ronda y da 250 puntos de penalización. Vuelves en la siguiente ronda salvo que ya hayas alcanzado el límite de eliminación de la partida. Puedes cambiar el límite de 25 cartas o ponerlo a cero para desactivarlo."
+        }
+      ]
+    },
+    {
+      "id": "flip",
+      "title": {
+        "es": "Flip"
+      },
+      "paragraphs": [
+        {
+          "es": "Las cartas tienen una cara clara y otra oscura. Se empieza por la clara. Una carta Voltea da la vuelta a todas las manos y a ambos montones; sus fondos pasan a quedar arriba. Desde entonces se juega según la nueva cara."
+        },
+        {
+          "es": "Cada cara tiene cartas especiales distintas:"
+        },
+        {
+          "es": "- La clara incluye Roba uno de color y comodines Roba dos."
+        },
+        {
+          "es": "- La oscura tiene otros colores y Roba cinco de color. Salta a todos da otra jugada a quien lo usa."
+        },
+        {
+          "es": "- El comodín oscuro Roba hasta el color obliga al siguiente a robar hasta la primera carta no comodín del color indicado. Después pierde el resto del turno."
+        },
+        {
+          "es": "Las cartas especiales siguen valiendo 20 si son de color y 50 si son comodines."
+        }
+      ]
+    },
+    {
+      "id": "extra_rules",
+      "title": {
+        "es": "Intercepciones y otros añadidos"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes activar también estas reglas:"
+        },
+        {
+          "es": "- Intercepción: puedes jugar fuera de turno una carta no comodín idéntica a la última. Elígela y pulsa Enter. Tomas el turno y su efecto se aplica al siguiente jugador. Fallar una intercepción cuesta tres puntos de penalización. La superintercepción solo exige igual número o símbolo, no color; requiere tener activadas las intercepciones."
+        },
+        {
+          "es": "- Escaleras: después de una carta tuya puedes encadenar números consecutivos del mismo color, en orden ascendente o descendente. Tras un cinco verde puedes jugar deprisa seis y siete. Selecciona y juega cada una por separado con Enter, manteniendo la dirección elegida y antes de que juegue otro."
+        },
+        {
+          "es": "- Intercambio de manos: el siete permite elegir un rival con las flechas y Enter e intercambiar todas las cartas. El cero pasa cada mano al siguiente jugador en el sentido de juego. Si era tu última carta, entregas una mano vacía: quien la recibe gana la ronda."
+        },
+        {
+          "es": "- Cartas de pulsador: se añaden ocho al mazo clásico o al de No Mercy. Cuando se juega una, todos pulsan B y el último roba dos cartas. Después se puede jugar cualquier carta. Si era la última carta de alguien, la ronda espera a que todos reaccionen antes de terminar. Flip no admite estas cartas."
+        },
+        {
+          "es": "- Tiempo de turno: quien agote el plazo roba la penalización pendiente o, si no hay ninguna, una carta, y pierde el turno. Elegir color y responder a un pulsador detienen la cuenta atrás."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer cartas o colores."
+        },
+        {
+          "es": "Enter: jugar una carta o confirmar color o jugador."
+        },
+        {
+          "es": "Espacio: robar o aceptar una penalización de robo."
+        },
+        {
+          "es": "U: decir uno o denunciar a quien lo olvidó."
+        },
+        {
+          "es": "B: responder al pulsador."
+        },
+        {
+          "es": "F: desafiar un comodín Roba cuatro."
+        },
+        {
+          "es": "C: consultar la carta de la mesa."
+        },
+        {
+          "es": "V: consultar el color actual."
+        },
+        {
+          "es": "E: contar las cartas de los jugadores."
+        },
+        {
+          "es": "G: consultar la penalización pendiente."
+        },
+        {
+          "es": "Z: ir a la siguiente carta legal en tu turno; no está disponible con escaleras, intercepciones o cartas de pulsador."
+        },
+        {
+          "es": "Shift+Z: ir a la carta legal anterior en tu turno; no está disponible con escaleras, intercepciones o cartas de pulsador."
+        },
+        {
+          "es": "S: consultar los resultados."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "Shift+C: ordenar por color; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+H: ordenar por valor; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+D: recuperar el orden de recepción."
+        },
+        {
+          "es": "Shift+M: recuperar el orden de recepción."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "deck": "decks",
+    "score_limit": "drawing_options",
+    "draw_responses": "drawing_options",
+    "advanced_responses": "drawing_options",
+    "bluff_challenge": "challenge",
+    "skip_after_penalty": "drawing_options",
+    "allow_optional_draw": "drawing_options",
+    "maximum_optional_draws": "drawing_options",
+    "straights": "extra_rules",
+    "interceptions": "extra_rules",
+    "super_interceptions": "extra_rules",
+    "zero_seven": "extra_rules",
+    "buzzers": "extra_rules",
+    "draw_until_playable": "drawing_options",
+    "no_mercy_limit": "no_mercy",
+    "thinking_time": "extra_rules"
+  }
+}

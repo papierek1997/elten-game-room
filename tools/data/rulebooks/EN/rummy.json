@@ -1,0 +1,438 @@
+{
+  "source": "games/rummy_ui.rb",
+  "sections": [
+    {
+      "id": "table",
+      "title": {
+        "en": "Aim of the game"
+      },
+      "paragraphs": [
+        {
+          "en": "In Rummy, you collect cards that go together and lay them on the table. You can also add cards to combinations already in play. Each card you play earns points, and emptying your hand wins the round. Scores carry over between rounds. At the end of a round, if anyone has at least 1,000 points, the highest score wins."
+        },
+        {
+          "en": "Two to eight people can play. Each round begins with fourteen cards in your hand."
+        },
+        {
+          "en": "Use the arrow keys to browse your hand. Shift+C sorts it by suit and Shift+H by rank; press either shortcut again to reverse that order. Shift+M restores the order in which you received the cards."
+        }
+      ]
+    },
+    {
+      "id": "combinations",
+      "title": {
+        "en": "Runs and sets"
+      },
+      "paragraphs": [
+        {
+          "en": "A combination must contain at least three cards. There are two kinds:"
+        },
+        {
+          "en": "- A run consists of consecutive cards in one suit, such as the 5, 6 and 7 of hearts. You could later extend it with the 4 or 8 of hearts."
+        },
+        {
+          "en": "- A set consists of three or four cards of the same rank in different suits. For example, the queens of hearts, diamonds and spades form a set, to which you can add the queen of clubs."
+        },
+        {
+          "en": "An ace can come before a two or after a king. Ace–2–3 and queen–king–ace are valid runs; king–ace–2 is not."
+        },
+        {
+          "en": "A joker stands for one missing card. Each combination may contain one joker and must have at least two ordinary cards. In a run, the order in which you select the cards determines what the joker represents. Joker, 3 of spades, 4 of spades starts at two; 3 of spades, 4 of spades, joker ends at five."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Your turn"
+      },
+      "paragraphs": [
+        {
+          "en": "Start by pressing Space to draw one card. Once you have made your opening meld, you may instead take the last card another player discarded. Press D to hear that card or Shift+D to take it."
+        },
+        {
+          "en": "After drawing, you can lay down combinations. Once you have made your opening meld, you can also add to anyone's combinations on the table. You may make several plays in a turn, or keep your cards and wait. You do not have to use the card you just drew."
+        },
+        {
+          "en": "To end your turn, select a card and press Delete to discard it. Play then passes to the next person."
+        },
+        {
+          "en": "If laying down or adding cards empties your hand, the round ends immediately. You do not need to keep a card for a final discard."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "en": "Your opening meld"
+      },
+      "paragraphs": [
+        {
+          "en": "The first cards you lay down in each round must be worth at least 30 points. This opening meld can contain one combination or several laid down together. It lets you add cards to combinations on the table, and from your next turn onwards, draw discarded cards."
+        },
+        {
+          "en": "Press N to prepare a combination. Find each card with the arrow keys and select it with Enter. Select a run from lowest to highest: for 5–6–7, choose the five first, then the six and seven. Pressing Enter on a selected card removes it from your selection."
+        },
+        {
+          "en": "If you need another combination to reach 30 points, press N again and select its cards. Nothing has been played yet. Press P to hear your prepared combinations and their total value."
+        },
+        {
+          "en": "Press F to lay down all the prepared combinations together. If one is invalid or you have not reached the opening value, the game explains why so you can change your selection. Shift+P opens your prepared combinations; select one and press Enter to edit or remove it. Escape cancels the entire prepared meld."
+        },
+        {
+          "en": "After your opening meld, there is no minimum point value for new combinations. Prepare and play them with the same keys. You can also add to combinations already on the table, including during the turn in which you opened."
+        }
+      ]
+    },
+    {
+      "id": "laying",
+      "title": {
+        "en": "Adding cards"
+      },
+      "paragraphs": [
+        {
+          "en": "Press C to browse the combinations on the table. Use the arrow keys, press Enter to hear the selected combination, and Escape to return to your hand."
+        },
+        {
+          "en": "To add a card, select it in your hand and press Enter without first pressing N. Choose one of the places where it fits and confirm with Enter."
+        },
+        {
+          "en": "Z finds the next card that can be added, and Shift+Z finds the previous one. If there is only one suitable card, the shortcut may play it straight away."
+        },
+        {
+          "en": "You can extend a run at either end, or add the missing suit to a three-card set. You cannot extend a combination with a joker alone: play the joker in a new combination with at least two ordinary cards."
+        }
+      ]
+    },
+    {
+      "id": "joker",
+      "title": {
+        "en": "Taking back a joker"
+      },
+      "paragraphs": [
+        {
+          "en": "After your opening meld, you can take a joker from the table by replacing it with the card it represents. For a run of joker, 3 of spades, 4 of spades, you need the 2 of spades. Select that card, press Enter and choose the joker replacement for that combination. Your two stays on the table and the joker joins your hand."
+        },
+        {
+          "en": "A set containing the 7 of hearts, 7 of diamonds and a joker leaves two possibilities: the joker could be the 7 of spades or the 7 of clubs. First add one of those cards. If you add the 7 of spades, the joker now represents the 7 of clubs, and that is the card you need to replace it."
+        },
+        {
+          "en": "You must use the recovered joker in a new combination before your turn ends. Otherwise, you lose 300 points, even if you discarded it. This penalty is charged only once; on later turns, you can use the joker like any other card in your hand."
+        }
+      ]
+    },
+    {
+      "id": "values",
+      "title": {
+        "en": "Card values"
+      },
+      "paragraphs": [
+        {
+          "en": "These values apply both to your opening meld and to points earned by playing cards:"
+        },
+        {
+          "en": "- Cards from two to nine are worth 5 points each."
+        },
+        {
+          "en": "- Tens, jacks, queens and kings are worth 10 points each."
+        },
+        {
+          "en": "- An ace is worth 15 points, or 5 when it starts a run before a two."
+        },
+        {
+          "en": "A played joker is worth as much as the card it represents. In 3–4–joker, it stands for a five, so the run is worth 15 points. When counting cards left in a hand, a joker is worth 20 points and an ace 15."
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "title": {
+        "en": "Scoring and winning"
+      },
+      "paragraphs": [
+        {
+          "en": "You earn points for each card you lay down or add to a combination. When someone empties their hand, everyone keeps the points they have earned. The round winner also receives the combined value of all cards left in the other players' hands."
+        },
+        {
+          "en": "You can earn these bonuses for finishing a round:"
+        },
+        {
+          "en": "- Rummy: 200 points for making your opening meld and emptying your hand in the same turn."
+        },
+        {
+          "en": "- Pure rummy: 300 points instead of 200 if you finish with rummy using only cards from your own hand, without adding to existing combinations or recovering jokers."
+        },
+        {
+          "en": "- An extra 100 points for finishing before any opponent has made an opening meld. You can earn this even without finishing with rummy."
+        },
+        {
+          "en": "Once someone reaches 1,000 points, finish the round and compare the scores. The highest score wins. If the lead is tied, play another round."
+        },
+        {
+          "en": "S reads the scores. E gives the number of cards in each hand and the number available to draw. T tells you whose turn it is."
+        }
+      ]
+    },
+    {
+      "id": "blocked",
+      "title": {
+        "en": "When the draw pile runs out"
+      },
+      "paragraphs": [
+        {
+          "en": "Discarded cards are shuffled to make a new draw pile. The latest discard remains available through Shift+D. If there is nowhere left to draw from, you can lay down and add cards without drawing."
+        },
+        {
+          "en": "If nobody lays down or adds a card from their hand for two complete rounds of turns while no cards are available to draw, the round ends. Everyone keeps their points from playing cards, but there is no round winner or finishing bonus."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Variants"
+      },
+      "paragraphs": [
+        {
+          "en": "The table settings let you change the following rules. Everything else is played as described above."
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "title": {
+        "en": "Opening value and score limit"
+      },
+      "paragraphs": [
+        {
+          "en": "You can set an opening value other than 30. You must lay down combinations worth at least that amount before you can add to existing combinations or draw discarded cards."
+        },
+        {
+          "en": "You can also replace the 1,000-point score limit. Reaching the chosen limit still ends the game only after the round has been scored."
+        }
+      ]
+    },
+    {
+      "id": "discard",
+      "title": {
+        "en": "Drawing and discarding options"
+      },
+      "paragraphs": [
+        {
+          "en": "Instead of allowing players to draw only the latest discard, you can choose one of these rules:"
+        },
+        {
+          "en": "- Allow earlier discards. D reads all available discards, and Shift+D opens a list with the newest first. Choose a card and press Enter to take it and every card discarded after it. Choosing the third card therefore gives you cards three, two and one. If only one card is available, Shift+D takes it immediately."
+        },
+        {
+          "en": "- Do not allow drawing discards. Draw with Space and still discard with Delete at the end of your turn."
+        },
+        {
+          "en": "- Do not discard cards. After drawing and making your plays, press Shift+F to end your turn. All unplayed cards stay in your hand."
+        }
+      ]
+    },
+    {
+      "id": "identities",
+      "title": {
+        "en": "Identical-card combinations"
+      },
+      "paragraphs": [
+        {
+          "en": "This option allows a combination of three or four identical cards, such as three nines of clubs. Each card in such a combination is worth 10 points more than usual. The extra points also count towards your opening meld."
+        }
+      ]
+    },
+    {
+      "id": "rounding",
+      "title": {
+        "en": "Unrounded scoring"
+      },
+      "paragraphs": [
+        {
+          "en": "Turning off rounded scoring changes these card values:"
+        },
+        {
+          "en": "- Cards from two to nine are worth their printed number rather than 5 points."
+        },
+        {
+          "en": "- An ace before a two is worth 1 point. In other combinations, or left in your hand, it is worth 11."
+        },
+        {
+          "en": "- Tens and face cards are still worth 10 points."
+        },
+        {
+          "en": "- A joker left in your hand is worth 20 points."
+        }
+      ]
+    },
+    {
+      "id": "manipulation",
+      "title": {
+        "en": "Rearranging combinations"
+      },
+      "paragraphs": [
+        {
+          "en": "With manipulation enabled, you can take cards from the table and rearrange its combinations. You must have made your opening meld and drawn for the current turn. Press C, choose a combination and open its context menu. The menu lets you merge combinations or take whole combinations or individual cards."
+        },
+        {
+          "en": "The cards you can take depend on the combination:"
+        },
+        {
+          "en": "- From a run, you may take an end card if at least three consecutive cards remain. For example, from 4–5–6–7 of hearts you may take the four or the seven."
+        },
+        {
+          "en": "- From a four-card set, you may take one card."
+        },
+        {
+          "en": "- You may take an entire combination only if it contains no joker. To take one with a joker, first recover the joker by replacing it with the correct card."
+        },
+        {
+          "en": "Taking other cards must not change which card a joker represents."
+        },
+        {
+          "en": "To join combinations, choose Merge and then the other combination. Together they must form a valid whole. Runs of 4–5–6 and 7–8–9 of hearts can be merged; runs separated by a missing card cannot."
+        },
+        {
+          "en": "Each card taken from the table and not played again by the end of your turn costs you 300 points. This also applies to a recovered joker, so two unused cards cost 600 points. They can stay in your hand and, after the penalty, be used normally on later turns. Discarding a taken card does not count as playing it again."
+        },
+        {
+          "en": "Taking cards from the table removes their value from your score. Playing them again earns those points back. Merging combinations earns no points. Taking even one card from the table prevents you from finishing with pure rummy."
+        }
+      ]
+    },
+    {
+      "id": "elimination",
+      "title": {
+        "en": "Elimination mode"
+      },
+      "paragraphs": [
+        {
+          "en": "In this mode, aim for the lowest score. Playing cards or taking them from the table does not change your score, but you still need to meet the opening value. The round winner scores no points for cards; everyone else adds the value of the cards left in their hand. Penalties are added rather than subtracted."
+        },
+        {
+          "en": "Instead of earning rummy bonuses, you increase the other players' points for their remaining cards:"
+        },
+        {
+          "en": "- Finish with rummy, and they count those cards twice."
+        },
+        {
+          "en": "- Finish with pure rummy, and they count them three times."
+        },
+        {
+          "en": "- Finish with pure rummy before anyone else has opened, and they count them four times."
+        },
+        {
+          "en": "These multipliers do not increase penalties."
+        },
+        {
+          "en": "If a round is blocked, everyone adds the value of the cards left in their hand."
+        },
+        {
+          "en": "Players who reach the score limit, 500 by default, are eliminated after the round. The last player remaining wins. If everyone reaches the limit in the same round, the lowest score wins; a tie for lowest score is a shared win."
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "title": {
+        "en": "Time limit and penalties"
+      },
+      "paragraphs": [
+        {
+          "en": "If a turn time limit is enabled, you must finish your turn before it expires. Running out of time costs 50 points and passes the turn to the next player. If you have not drawn yet, you also receive one card from the draw pile if one is available. You do not draw a second card if you have already drawn. Running out of time does not make you discard a card."
+        },
+        {
+          "en": "Penalties add up. Running out of time with one unused joker recovered from the table costs 350 points in total. Penalties are subtracted in normal play and added in elimination mode."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrow keys: browse your hand or an open list."
+        },
+        {
+          "en": "Space: draw from the draw pile."
+        },
+        {
+          "en": "D: read the available discards."
+        },
+        {
+          "en": "Shift+D: take the discard or open the discard list."
+        },
+        {
+          "en": "N: prepare a combination; press again to start another combination in the same meld."
+        },
+        {
+          "en": "Enter while preparing a combination: select or deselect a card."
+        },
+        {
+          "en": "P: read your prepared combinations and their value."
+        },
+        {
+          "en": "Shift+P: choose a prepared combination to edit or remove."
+        },
+        {
+          "en": "F: lay down your prepared combinations."
+        },
+        {
+          "en": "Escape: close a list or cancel the prepared meld."
+        },
+        {
+          "en": "Enter on a card when not preparing a combination: choose where to add it or replace a joker; if it fits nowhere, you can discard it."
+        },
+        {
+          "en": "Delete: discard the selected card and end your turn."
+        },
+        {
+          "en": "Shift+F: end your turn when discarding is disabled."
+        },
+        {
+          "en": "C: open the combinations on the table."
+        },
+        {
+          "en": "E: read card counts."
+        },
+        {
+          "en": "S: read the scores."
+        },
+        {
+          "en": "T: announce whose turn it is."
+        },
+        {
+          "en": "Context menu key on a table combination: take cards or merge combinations when manipulation is enabled."
+        },
+        {
+          "en": "Z: find the next card you can add; may play it immediately if there is only one."
+        },
+        {
+          "en": "Shift+Z: find the previous card you can add; may play it immediately if there is only one."
+        },
+        {
+          "en": "Shift+C: sort by suit; press again to reverse."
+        },
+        {
+          "en": "Shift+H: sort by rank; press again to reverse."
+        },
+        {
+          "en": "Shift+M: restore the order in which you received the cards."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "discard_mode": "discard",
+    "elimination": "elimination",
+    "rounded": "values",
+    "manipulation": "manipulation",
+    "identities": "combinations",
+    "first_meld": "opening",
+    "score_limit": "normal",
+    "thinking_time": "time"
+  }
+}

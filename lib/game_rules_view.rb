@@ -36,10 +36,21 @@ module GameRoomRules
       end
       headings = document.sections.map do |section|
         heading = add_element(section.title, offset, Element::Header, 2)
+        add_list_items(section, offset + section.title.delete("\r").length + 1)
         offset += "#{section.title}\n#{section.text}".delete("\r").length + 2
         heading
       end
       @contents_targets = links.zip(headings).to_h
+    end
+
+    def add_list_items(section, offset)
+      section.text.delete("\r").each_line do |line|
+        text = line.chomp
+        if text.match?(/\A(?:- |\d+[.)] )\S/)
+          add_element(text, offset, Element::ListItem, nil)
+        end
+        offset += line.length
+      end
     end
 
     def add_element(text, offset, type, parameter)

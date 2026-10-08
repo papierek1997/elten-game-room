@@ -1,0 +1,170 @@
+{
+  "source": "games/battleship.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Hide your fleet and find your opponent's. Battleship is a two-player game: place your ships in secret, then take turns firing at squares on the other player's board. Sink their whole fleet before they sink yours."
+        }
+      ]
+    },
+    {
+      "id": "fleet",
+      "title": {
+        "en": "The board and fleet"
+      },
+      "paragraphs": [
+        {
+          "en": "Each player has a 10-by-10 board, with columns A to J and rows 1 to 10. A ship occupies a straight line of squares, horizontally or vertically."
+        },
+        {
+          "en": "The standard fleet has ten ships:"
+        },
+        {
+          "en": "- One four-square ship."
+        },
+        {
+          "en": "- Two three-square ships."
+        },
+        {
+          "en": "- Three two-square ships."
+        },
+        {
+          "en": "- Four single-square ships."
+        },
+        {
+          "en": "Ships must fit on the board without overlapping. Leave a gap between them: they may not touch, even at a corner."
+        }
+      ]
+    },
+    {
+      "id": "placing",
+      "title": {
+        "en": "Placing your ships"
+      },
+      "paragraphs": [
+        {
+          "en": "At the start, use the arrows to choose random or manual placement and confirm with Enter. Random placement sets up your whole fleet; play can begin once the opponent is ready too."
+        },
+        {
+          "en": "For manual placement, move around the board with the arrows. Press Enter at one end of a ship, move to its other end and press Enter again. Select the same square twice for a single-square ship. Place ships in any order, provided you still have one of the chosen length."
+        },
+        {
+          "en": "Backspace cancels a selected first endpoint. If no endpoint is selected, it takes back the last ship you placed."
+        },
+        {
+          "en": "Once the whole fleet is in place, confirm it by choosing Yes and pressing Enter. Choose No to change the last ship. You cannot move ships after confirming the fleet."
+        }
+      ]
+    },
+    {
+      "id": "shooting",
+      "title": {
+        "en": "Taking a shot"
+      },
+      "paragraphs": [
+        {
+          "en": "When both fleets are ready, the first player opens fire. On the opponent's board, select a square with the arrows and press Enter. You cannot fire at the same square twice."
+        },
+        {
+          "en": "You will hear one of these results:"
+        },
+        {
+          "en": "- A miss means there is no ship on that square."
+        },
+        {
+          "en": "- A hit reveals one square of an enemy ship."
+        },
+        {
+          "en": "- Sunk means you have hit every square of that ship."
+        },
+        {
+          "en": "Every shot ends your turn, including a hit or a sinking."
+        },
+        {
+          "en": "Press Tab to inspect your own board, including the opponent's hits and your surviving ships. Shift+Tab returns to the board where you fire."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "Winning"
+      },
+      "paragraphs": [
+        {
+          "en": "The shot that sinks the opponent's final ship wins the game. During play, F reads how many of your fleet's squares remain unhit; Shift+F gives the same count for the enemy fleet."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Other fleet settings"
+      },
+      "paragraphs": [
+        {
+          "en": "Before play, you can choose a five-ship fleet instead of the standard ten:"
+        },
+        {
+          "en": "- One five-square ship."
+        },
+        {
+          "en": "- One four-square ship."
+        },
+        {
+          "en": "- Two three-square ships."
+        },
+        {
+          "en": "- One two-square ship."
+        },
+        {
+          "en": "A separate option allows ships to touch along their sides or corners. They must still fit on the board and cannot overlap."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: explore the board."
+        },
+        {
+          "en": "Enter: confirm a placement method, select a ship endpoint during setup, or fire at an enemy square during play."
+        },
+        {
+          "en": "Backspace: cancel the first endpoint; if none is selected, undo the last ship before confirming the fleet."
+        },
+        {
+          "en": "F: read your fleet's unhit square count."
+        },
+        {
+          "en": "Shift+F: read the enemy fleet's unhit square count."
+        },
+        {
+          "en": "L: read the latest shot whose result is known."
+        },
+        {
+          "en": "M: read your shots, hits and ships sunk."
+        },
+        {
+          "en": "Ctrl+L: review your shots and their results."
+        },
+        {
+          "en": "T: read whose turn it is."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "fleet": "variants",
+    "touching": "variants"
+  }
+}

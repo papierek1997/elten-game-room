@@ -42,6 +42,10 @@ module GameRoomGames
       _("Farkle")
     end
 
+    def short_description
+      _("Roll the dice, set aside scoring dice and decide whether to bank your points or risk another roll.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

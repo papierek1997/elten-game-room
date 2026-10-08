@@ -31,9 +31,11 @@ Pro zvukové hry doporučujeme stereofonní sluchátka — směr zvuku je v nich
 4. Vyberte „Spusťte hru“. Pokud si nejste jistí, F1 zobrazí dostupné zkratky a Ctrl+F1 otevře pravidla.
 
 Vlastní stůl zakládat nemusíte. Položka „Připojte se ke stolu“ umožňuje vybrat hru a procházet existující stoly. Můžete také přijmout pozvánku nebo použít widget na hlavní obrazovce ELTENu.
+Při výběru hry pro vytvoření stolu nebo připojení uslyšíte za jejím názvem krátký popis.
 Opětovné spuštění Power Games ve stejné kopii ELTENu vás vrátí do již otevřeného okna místo vytvoření další nezávislé instance.
 
 Při spuštění může program nabídnout stažení novější verze. Odmítnutí vám nebrání pokračovat, ale před společným hraním je dobré ověřit, že všichni mají aktuální verzi. Popis změn najdete v „Co je nového“.
+Jde o dokument pouze ke čtení s nadpisem pro každou verzi. H přejde na další nadpis a Shift+H na předchozí. Escape dokument zavře.
 
 ## Co si můžete zahrát
 
@@ -86,7 +88,7 @@ V seznamu stolů i ve widgetu můžete zjistit více ještě před připojením:
 
 ### Pozvánky a sledování hry
 
-U stolu otevře Ctrl+I pozvání uživatelů, kteří jsou online, a Ctrl+Shift+I umožní vybrat někoho z kontaktů. Přijaté pozvánky otevřete přes oznámení ELTENu, položku „Pozvánky“ nebo Ctrl+J. Poslední zkratka funguje v celém Power Games, včetně widgetu.
+U stolu otevře Ctrl+I pozvání uživatelů, kteří jsou online, a Ctrl+Shift+I umožní vybrat někoho z kontaktů. Přijaté pozvánky otevřete přes oznámení ELTENu, kontextovou nabídku nebo Ctrl+J. Poslední zkratka funguje v celém Power Games, včetně widgetu.
 
 Ve hrách podporujících diváky můžete sledovat partii, aniž byste zabrali místo hráče. Hodí se to k fandění i k učení pravidel. V Axel Pongu si divák může vybrat také poslechovou perspektivu.
 Ctrl+Shift+O umožní přihlásit se do další partie jako hráč nebo divák, pokud hra takovou volbu nabízí.
@@ -116,6 +118,8 @@ Opuštění stolu a uzavření stolu pro všechny jsou dvě různé věci. Prvn�
 
 Tab a Shift+Tab přepínají mezi částmi okna, například herním polem, chatem, historií a seznamem uživatelů. Šipky slouží k pohybu v seznamech nebo na desce; způsob provedení tahu závisí na hře.
 
+Do pole Chat napište zprávu a odešlete ji Enterem. Jedna zpráva může mít až 2000 znaků, před zahájením hry i během ní.
+
 Všechny zkratky se nemusíte učit najednou:
 
 - F1 zobrazí nápovědu k aktuálnímu místu a dostupným akcím.
@@ -133,6 +137,7 @@ Některé hry mají i osobní nastavení pod Ctrl+P, dostupné z menu stolu. Pat
 
 Widget Power Games na hlavní obrazovce ELTENu umožňuje procházet stoly bez předchozího otevření hlavního menu programu. Můžete v něm vybrat stůl, zjistit jeho nastavení či účastníky a přijmout pozvánku.
 Ctrl+N vás rovnou přenese k výběru hry při vytváření nového stolu. R obnoví seznam ručně. Widget jej obnovuje také při vstupu a každých pět sekund, dokud jej používáte.
+Ctrl+O přečte krátký popis hry u vybraného stolu. Totéž nabízí položka „Popis hry“ v kontextovém menu widgetu.
 
 V Nastavení → Widget můžete widget zapnout, vybrat zobrazované hry a omezit seznam na stoly vytvořené vašimi kontakty.
 
@@ -193,6 +198,8 @@ Jazyk rozhraní a jazyk obsahu hry jsou dvě odlišné věci. Jazyk otázek, kar
 Ve hrách podporujících ukládání může hostitel pomocí Ctrl+S uložit partii a zavřít stůl. Uložená partie patří k jeho účtu a je na serveru, takže se k ní lze vrátit i z jiného počítače.
 
 K pokračování slouží „Uložené hry“ v hlavním menu. Obnovení vytvoří stůl, u kterého můžete znovu shromáždit účastníky a pokračovat. Ne každou hru lze uložit a ne každý okamžik je k tomu vhodný — dostupnost příkazu závisí na hře a aktuální fázi.
+
+Po obnovení partie se její uložená kopie z účtu odstraní. Samotné vytvoření stolu a čekání na hráče ji ještě nesmaže. Chcete-li hru znovu přerušit, uložte její aktuální stav pomocí Ctrl+S.
 
 ### Návrat k rozhovoru nebo dřívějšímu tahu
 
@@ -283,6 +290,7 @@ Následující přehled se týká společného ovládání programu. Příkazy k
 
 - Ctrl+R — nastavení vybraného stolu ještě před připojením.
 - Ctrl+W — hráči a diváci vybraného stolu.
+- Ctrl+O — krátký popis hry u vybraného stolu; ve widgetu.
 - Ctrl+N — vytvoření nového stolu; ve widgetu.
 - R — ruční obnovení widgetu.
 - Ctrl+1 až Ctrl+0 — prvních deset vlastních nastavení stolu; ve widgetu.

@@ -1,0 +1,363 @@
+{
+  "source": "games/mille_bornes.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W 1000 mil każdy prowadzi samochód za pomocą kart. Karty dystansu pozwalają jechać dalej, a karty przeszkód zatrzymują lub spowalniają przeciwników. W rundzie starasz się dojechać dokładnie do 1000 mil."
+        },
+        {
+          "pl": "Przejechane mile i premie dają punkty, które sumują się przez kolejne rundy. Całą grę wygrywa osoba, która po zakończeniu rundy ma co najmniej 5000 punktów i więcej niż pozostali. Grają od dwóch do ośmiu osób."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "pl": "Przebieg tury"
+      },
+      "paragraphs": [
+        {
+          "pl": "Na początku rundy dostajesz sześć kart. Obejrzyj je strzałkami albo odczytaj całą rękę klawiszem H. W swojej turze najpierw dobierz kartę Spacją, a następnie zagraj jedną z kart w ręce: wybierz ją strzałkami i naciśnij Enter."
+        },
+        {
+          "pl": "Zamiast zagrywać kartę możesz odrzucić jedną z ręki. Wybierz ją strzałkami i naciśnij J. Odrzucenie kończy twoją turę."
+        }
+      ]
+    },
+    {
+      "id": "driving",
+      "title": {
+        "pl": "Rozpoczęcie jazdy i dystans"
+      },
+      "paragraphs": [
+        {
+          "pl": "Twój samochód zaczyna rundę zatrzymany. Żeby ruszyć, zagraj zielone światło. Od następnej tury możesz zagrywać karty dystansu i pokonywać kolejne mile. Każda taka karta przybliża cię do mety o daną liczbę mil."
+        },
+        {
+          "pl": "Karty dystansu mają wartości 25, 50, 75, 100 lub 200 mil. Trzeba dojechać dokładnie do 1000: mając 950 mil, nie możesz zagrać karty 75. W jednej rundzie wolno wykorzystać najwyżej dwie karty po 200 mil."
+        }
+      ]
+    },
+    {
+      "id": "hazards",
+      "title": {
+        "pl": "Przeszkody i dalsza jazda"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przeciwnik może zatrzymać jadący samochód czerwonym światłem. Wtedy potrzebujesz kolejnego zielonego, żeby ruszyć. Dopóki stoisz, nie możesz zagrywać kart dystansu."
+        },
+        {
+          "pl": "Nie każdą przeszkodę usuniesz jednak zielonym światłem. Trzy ataki wymagają najpierw odpowiedniej karty naprawczej:"
+        },
+        {
+          "pl": "- Po zagraniu „Spuszczenia paliwa” samochód nie ma paliwa. Zagraj kartę „Zatankowanie”, żeby je uzupełnić."
+        },
+        {
+          "pl": "- „Przedziurawienie opon” wymaga koła zapasowego. Zagraj je, żeby wymienić uszkodzoną oponę."
+        },
+        {
+          "pl": "- Po wypadku potrzebujesz karty „Naprawa”, która usuwa jego skutki."
+        },
+        {
+          "pl": "Usunięcie takiej przeszkody jeszcze nie rozpoczyna jazdy. W następnej turze zagraj zielone światło, a dopiero później znów karty dystansu. Na przykład po przedziurawieniu opon najpierw używasz koła zapasowego, potem zielonego światła."
+        },
+        {
+          "pl": "Te ataki można zagrać na jadący samochód. Inaczej działa ograniczenie prędkości: można je nałożyć także na kogoś, kto już stoi. Nie zatrzymuje samochodu, ale pozwala mu zagrywać tylko karty 25 i 50 mil. Żeby znów korzystać z większych dystansów, zagraj „Koniec ograniczenia prędkości”."
+        }
+      ]
+    },
+    {
+      "id": "safeties",
+      "title": {
+        "pl": "Zabezpieczenia"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zabezpieczenie chroni samochód przed określonymi atakami przez resztę rundy. Możesz zagrać je w swojej turze, po dobraniu karty. Usuwa też przeszkodę, przed którą chroni, jeśli przeciwnik już ci ją zagrał. Za wyłożone zabezpieczenie dostajesz 100 punktów i kolejną turę, którą zaczynasz od dobrania karty."
+        },
+        {
+          "pl": "Są cztery zabezpieczenia:"
+        },
+        {
+          "pl": "- „Dodatkowy zbiornik” chroni przed spuszczeniem paliwa."
+        },
+        {
+          "pl": "- „Opony odporne na przebicie” chronią przed przedziurawieniem opon."
+        },
+        {
+          "pl": "- „As drogi” chroni przed wypadkiem i jazdą pod prąd."
+        },
+        {
+          "pl": "- „Pierwszeństwo przejazdu” chroni przed czerwonym światłem i ograniczeniem prędkości. Pozwala też ruszyć bez zielonego światła, zarówno na początku rundy, jak i po naprawieniu samochodu."
+        },
+        {
+          "pl": "Pozostałe trzy zabezpieczenia same nie pozwalają ruszyć. Po usunięciu awarii zagraj zielone światło, chyba że masz już pierwszeństwo przejazdu."
+        },
+        {
+          "pl": "Naciśnij I, żeby sprawdzić swój dystans, przeszkody i zabezpieczenia, albo Shift+I, żeby sprawdzić je u wszystkich graczy."
+        }
+      ]
+    },
+    {
+      "id": "counterattack",
+      "title": {
+        "pl": "Odparcie ataku"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli masz w ręce zabezpieczenie pasujące do właśnie otrzymanego ataku, możesz zagrać je natychmiast, nawet poza swoją turą. Wybierz je strzałkami i naciśnij Enter, zanim ktokolwiek dobierze, zagra lub odrzuci kolejną kartę. Takie odparcie ataku nazywa się coup fourré."
+        },
+        {
+          "pl": "Atak zostaje cofnięty. Jeśli przed nim jechałeś, nadal możesz jechać bez naprawy i ponownego zielonego światła. Oprócz zwykłych 100 punktów za zabezpieczenie dostajesz 300 punktów premii."
+        },
+        {
+          "pl": "Po odparciu ataku otrzymujesz kartę w miejsce zagranego zabezpieczenia, jeśli są jeszcze karty do dobrania. Następnie przejmujesz turę: zaczynasz ją zwykłym dobraniem Spacją i grasz lub odrzucasz kartę. Kolejka pójdzie dalej od ciebie, więc osoby pomiędzy atakującym a tobą zostaną pominięte."
+        },
+        {
+          "pl": "Jeśli nie zdążysz odeprzeć ataku, możesz zagrać zabezpieczenie w swojej turze, ale bez premii 300 punktów."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "pl": "Koniec rundy i punktacja"
+      },
+      "paragraphs": [
+        {
+          "pl": "Runda kończy się, gdy ktoś dojedzie dokładnie do 1000 mil. Jeśli zabraknie kart do dobierania, gracie tymi, które zostały wam w rękach. Runda skończy się również wtedy, gdy jeden z graczy zagra lub odrzuci swoją ostatnią kartę."
+        },
+        {
+          "pl": "Na koniec rundy liczycie punkty:"
+        },
+        {
+          "pl": "- Każda przejechana mila daje 1 punkt."
+        },
+        {
+          "pl": "- Każde wyłożone zabezpieczenie daje 100 punktów."
+        },
+        {
+          "pl": "- Każde natychmiastowe odparcie ataku daje dodatkowe 300 punktów."
+        },
+        {
+          "pl": "Gracz, który dojechał do 1000 mil, dostaje jeszcze premie. Mogą się one łączyć:"
+        },
+        {
+          "pl": "- Ukończenie trasy daje 300 punktów."
+        },
+        {
+          "pl": "- Ukończenie trasy przy pustej talii do dobierania daje kolejne 300 punktów."
+        },
+        {
+          "pl": "- Ukończenie trasy z wszystkimi czterema zabezpieczeniami daje kolejne 300 punktów."
+        },
+        {
+          "pl": "- Jeśli żaden przeciwnik nie przejechał ani jednej mili, ukończenie trasy daje dodatkowe 500 punktów."
+        },
+        {
+          "pl": "W następnej rundzie dostajecie nowe karty i zaczynacie trasę od początku, ale zachowujecie zdobyte punkty. Wyniki sprawdzisz klawiszem S. Całą grę wygrywa osoba, która po podliczeniu rundy ma co najmniej 5000 punktów i więcej niż pozostali. Przy remisie na pierwszym miejscu rozgrywacie kolejną rundę."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "pl": "Gra w drużynach"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed rozpoczęciem gry w ustawieniach stołu można wybrać drużyny zamiast gry każdy na każdego. Dostępne są równe składy:"
+        },
+        {
+          "pl": "- Cztery osoby mogą grać w dwóch parach."
+        },
+        {
+          "pl": "- Sześć osób może grać w dwóch drużynach po trzy osoby albo w trzech parach."
+        },
+        {
+          "pl": "- Osiem osób może grać w dwóch drużynach po cztery osoby albo w czterech parach."
+        },
+        {
+          "pl": "Drużyna prowadzi jeden samochód i wspólnie zbiera punkty. Każdy ma własne karty oraz swoją turę, ale zagrany dystans, przeszkody i zabezpieczenia dotyczą całej drużyny. Limit dwóch kart po 200 mil także jest wspólny."
+        },
+        {
+          "pl": "Atak wymierza się w samochód przeciwnej drużyny. Dowolna osoba z zaatakowanej drużyny może odpowiedzieć zabezpieczeniem z własnej ręki i przejąć dodatkową turę."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Zmiany zasad"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu przed grą można zmienić docelową liczbę punktów oraz włączyć poniższe zasady:"
+        },
+        {
+          "pl": "- Kumulowanie przeszkód pozwala nakładać różne usterki na samochód, który już stoi. Trzeba wtedy usunąć wszystkie, zanim będzie można ruszyć. Nie można nałożyć ponownie tej samej aktywnej usterki, a czerwone światło nadal wymaga jadącego samochodu."
+        },
+        {
+          "pl": "- Ponowne używanie odrzuconych kart sprawia, że po wyczerpaniu talii wracają one do dobierania. Karty wcześniej wykorzystane do jazdy, naprawy lub ataku nie trafiają do tej nowej talii."
+        },
+        {
+          "pl": "- Można usunąć z talii zabezpieczenia. Wtedy nie ma trwałej ochrony ani możliwości natychmiastowego odparcia ataku. Zwykłe naprawy i zielone światło działają jak wcześniej."
+        }
+      ]
+    },
+    {
+      "id": "counterflow",
+      "title": {
+        "pl": "Jazda pod prąd"
+      },
+      "paragraphs": [
+        {
+          "pl": "Opcja jazdy pod prąd dodaje do talii karty ataku i jego zakończenia. Domyślnie są cztery karty „Jazda pod prąd” i sześć kart „Koniec jazdy pod prąd”."
+        },
+        {
+          "pl": "Samochód zaatakowany jazdą pod prąd cofa się zamiast jechać do przodu: zagrana karta dystansu odejmuje mile, nie pozwalając zejść poniżej zera. Nadal trzeba mieć możliwość jazdy i przestrzegać ograniczenia prędkości. Użyta do cofania karta 200 mil wlicza się do zwykłego limitu dwóch takich kart."
+        },
+        {
+          "pl": "Ten atak można nałożyć także na zatrzymany samochód i obok innych przeszkód, ale nie drugi raz, jeśli już działa. Żeby znów jechać we właściwą stronę, zagraj „Koniec jazdy pod prąd”. Nie usuwa to innych usterek ani ograniczenia prędkości."
+        },
+        {
+          "pl": "„As drogi” chroni również przed jazdą pod prąd i usuwa ją po zwykłym zagraniu. Można nim też natychmiast odeprzeć taki atak i dostać premię."
+        }
+      ]
+    },
+    {
+      "id": "instant_repair",
+      "title": {
+        "pl": "Błyskawiczna naprawa"
+      },
+      "paragraphs": [
+        {
+          "pl": "Osobna opcja dodaje karty błyskawicznej naprawy; w zwykłym składzie talii są dwie. Taka karta usuwa jeden wybrany problem. Zagraj ją Enterem w swojej turze po dobraniu karty, wybierz problem strzałkami i zatwierdź Enterem."
+        },
+        {
+          "pl": "Działanie zależy od wybranego problemu:"
+        },
+        {
+          "pl": "- Usunięcie czerwonego światła pozwala ruszyć, jeśli nie zatrzymuje cię inna przeszkoda. Karta może też zastąpić zielone światło, gdy samochód dopiero czeka na ruszenie."
+        },
+        {
+          "pl": "- Naprawienie problemu z paliwem, oponą lub wypadkiem nadal wymaga potem zielonego światła, chyba że masz pierwszeństwo przejazdu."
+        },
+        {
+          "pl": "- Usunięcie ograniczenia prędkości lub jazdy pod prąd kończy tylko wybrane utrudnienie. Pozostałe przeszkody zostają."
+        },
+        {
+          "pl": "Błyskawiczna naprawa nie jest zabezpieczeniem. Nie chroni przed kolejnymi atakami, nie daje dodatkowej tury ani premii i nie służy do natychmiastowego odparcia ataku."
+        }
+      ]
+    },
+    {
+      "id": "custom_deck",
+      "title": {
+        "pl": "Własna talia"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu można włączyć własną talię i ustalić liczbę kart każdego rodzaju. Jazdę pod prąd, błyskawiczne naprawy i zabezpieczenia włącza się osobno: samo wpisanie liczby ich kart nie dodaje ich do gry."
+        },
+        {
+          "pl": "Przy układaniu talii zostaw dość kart na rozdanie po sześć każdej osobie oraz na dalszą jazdę. Potrzebne są nie tylko dystanse, lecz także możliwości ruszania i usuwania przeszkód. Liczbę kart jazdy pod prąd i jej zakończenia można dostosować również bez układania całej własnej talii."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: przeglądaj rękę lub dostępne wybory."
+        },
+        {
+          "pl": "Enter: zagraj kartę i w razie potrzeby wybierz przeciwnika lub problem do usunięcia; przy karcie niemożliwej do zagrania potwierdź jej odrzucenie."
+        },
+        {
+          "pl": "Escape: anuluj bieżący wybór karty, przeciwnika lub odrzucenia."
+        },
+        {
+          "pl": "Spacja: dobierz kartę."
+        },
+        {
+          "pl": "J: odrzuć wskazaną kartę bez dodatkowego potwierdzenia."
+        },
+        {
+          "pl": "Delete: wybierz kartę do odrzucenia."
+        },
+        {
+          "pl": "H: odczytaj swoją rękę."
+        },
+        {
+          "pl": "I: odczytaj swój dystans, przeszkody i zabezpieczenia."
+        },
+        {
+          "pl": "Shift+I: odczytaj dystans, przeszkody i zabezpieczenia wszystkich samochodów."
+        },
+        {
+          "pl": "S: odczytaj wyniki."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "pl": "Z: znajdź następną grywalną kartę we własnej turze; niedostępne, gdy możesz natychmiast odeprzeć atak."
+        },
+        {
+          "pl": "Shift+Z: znajdź poprzednią grywalną kartę we własnej turze; niedostępne, gdy możesz natychmiast odeprzeć atak."
+        },
+        {
+          "pl": "Shift+C: sortuj karty według rodzaju; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+H: sortuj karty według dystansu lub wartości; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+M: przywróć kolejność otrzymania kart."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "target_score": "variants",
+    "team_count": "teams",
+    "accumulate_hazards": "variants",
+    "recycle_discard": "variants",
+    "include_safeties": "variants",
+    "counterflow": "counterflow",
+    "counterflow_cards": "custom_deck",
+    "end_counterflow_cards": "custom_deck",
+    "custom_deck": "custom_deck",
+    "include_instant_repairs": "instant_repair",
+    "25_cards": "custom_deck",
+    "50_cards": "custom_deck",
+    "75_cards": "custom_deck",
+    "100_cards": "custom_deck",
+    "200_cards": "custom_deck",
+    "stop_cards": "custom_deck",
+    "speed_limit_cards": "custom_deck",
+    "out_of_gas_cards": "custom_deck",
+    "flat_tire_cards": "custom_deck",
+    "accident_cards": "custom_deck",
+    "go_cards": "custom_deck",
+    "end_limit_cards": "custom_deck",
+    "fuel_cards": "custom_deck",
+    "spare_tire_cards": "custom_deck",
+    "repairs_cards": "custom_deck",
+    "right_of_way_cards": "custom_deck",
+    "extra_tank_cards": "custom_deck",
+    "puncture_proof_cards": "custom_deck",
+    "driving_ace_cards": "custom_deck",
+    "instant_repair_cards": "custom_deck"
+  }
+}

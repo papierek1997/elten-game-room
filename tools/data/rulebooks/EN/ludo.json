@@ -1,0 +1,174 @@
+{
+  "source": "games/ludo.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "In Ludo, two to four players race four counters each around a shared track. Bring every counter out of your base, around the board and into the finish at the end of your own home lane. The first player to finish all four wins."
+        }
+      ]
+    },
+    {
+      "id": "track",
+      "title": {
+        "en": "Finding your counters"
+      },
+      "paragraphs": [
+        {
+          "en": "The shared track has 52 numbered spaces. Counters move towards higher numbers, passing from 52 back to 1. The four starting spaces are 1, 14, 27 and 40."
+        },
+        {
+          "en": "After going around the track, a counter turns into its owner's six-space home lane. The last space is the finish, and opponents cannot enter your lane."
+        },
+        {
+          "en": "V opens a view of your counters; Shift+V shows everyone's. Press 1 to hear the positions of your four counters."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Rolling and moving"
+      },
+      "paragraphs": [
+        {
+          "en": "Press Enter on your turn to roll. A 1 or 6 lets you take one counter from your base to your starting space. That uses the whole roll; the counter does not move any further."
+        },
+        {
+          "en": "You may instead move a counter already on the board by the number rolled. Use the entire roll on one counter."
+        },
+        {
+          "en": "If several moves are possible, choose one with the arrows and confirm with Enter. The game makes a sole legal move automatically. With no legal move, you pass."
+        },
+        {
+          "en": "A 6 gives another roll even when you could not move. A third consecutive 6 ends your turn without a move for that roll. Moves made for the first two sixes remain."
+        }
+      ]
+    },
+    {
+      "id": "captures",
+      "title": {
+        "en": "Captures and blockades"
+      },
+      "paragraphs": [
+        {
+          "en": "Landing on a normal track space occupied by one enemy counter sends it back to its base. It must leave the base again before continuing."
+        },
+        {
+          "en": "The four starting spaces are safe: counters on them cannot be captured. Two or more counters of one player on the same space form a blockade. Opponents cannot pass or land on a blockade, even on a safe space."
+        },
+        {
+          "en": "Your own counters do not block you. Leaving the base is also an exception: you may place a counter on your own starting space even if an enemy blockade is there."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "en": "Reaching the finish"
+      },
+      "paragraphs": [
+        {
+          "en": "A counter needs an exact roll to finish. If you roll too many, move another counter if possible. Finished counters take no further moves."
+        },
+        {
+          "en": "The game ends when one player has all four counters home. S reads how many each player has finished."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Rule options"
+      },
+      "paragraphs": [
+        {
+          "en": "Before play, the host can change these rules:"
+        },
+        {
+          "en": "- Disable leaving on a 1 to require a 6 instead."
+        },
+        {
+          "en": "- Disable the option that requires a 6 to leave the base to allow leaving on any roll."
+        },
+        {
+          "en": "- Turn off the extra roll for a 6."
+        },
+        {
+          "en": "- Separately, turn off losing the rest of the turn after three consecutive sixes."
+        },
+        {
+          "en": "- Disable an exact finish to let a counter finish on a roll larger than the remaining distance."
+        },
+        {
+          "en": "- Disable blockades so groups no longer stop opponents. On an ordinary space, a single landing can then capture the whole enemy group. Starting spaces remain safe."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: choose an available move."
+        },
+        {
+          "en": "Enter: roll or confirm a move."
+        },
+        {
+          "en": "1: read your counters, or the first player's when spectating."
+        },
+        {
+          "en": "2: read the next player's counters in seating order."
+        },
+        {
+          "en": "3: read the following player's counters, if present."
+        },
+        {
+          "en": "4: read the last player's counters at a four-player table."
+        },
+        {
+          "en": "C: read each player's colour."
+        },
+        {
+          "en": "Ctrl+C: switch game announcements between player names and colours."
+        },
+        {
+          "en": "D: read who rolled last and their result."
+        },
+        {
+          "en": "V: inspect your counters."
+        },
+        {
+          "en": "Shift+V: inspect all counters in track order, then home lanes, bases and finished counters."
+        },
+        {
+          "en": "P: read your unfinished counters, including those in base."
+        },
+        {
+          "en": "Shift+P: read opponents' unfinished counters, including those in base."
+        },
+        {
+          "en": "S: read how many counters each player has finished."
+        },
+        {
+          "en": "T: read whose turn it is."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "enter_on_six": "variants",
+    "enter_on_one": "variants",
+    "extra_on_six": "variants",
+    "exact_finish": "variants",
+    "three_sixes": "variants",
+    "blockades": "variants"
+  }
+}

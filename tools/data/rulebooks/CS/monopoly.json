@@ -1,0 +1,482 @@
+{
+  "source": "games/monopoly.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "V Monopoly kupuješ nemovitosti a vybíráš nájemné od hráčů, kteří na nich zastaví. Zároveň si potřebuješ nechat peníze na vlastní platby. Vyhraje poslední hráč, který nezbankrotuje."
+        },
+        {
+          "cs": "Hrají dva až osm hráčů. Základní deska Atlantic City má čtyřicet polí. Všichni začínají na Startu s 1500 dolary."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "cs": "Hod kostkami a pohyb"
+      },
+      "paragraphs": [
+        {
+          "cs": "Na začátku tahu vyber hod kostkami a potvrď Enterem. Dvě kostky určí počet polí, o který postoupíš. Další akce záleží na cílovém poli: například koupíš nemovitost nebo zaplatíš majiteli nájemné."
+        },
+        {
+          "cs": "Dostupné akce vybíráš šipkami a potvrzuješ Enterem. Po vyřízení pole přijde na řadu další hráč."
+        },
+        {
+          "cs": "Dvojice stejných čísel dává po pohybu a vyřízení pole další hod. Třetí dvojice za sebou tě však pošle do vězení bez třetího pohybu. Vězení i vznik dluhu další hody ukončí."
+        },
+        {
+          "cs": "Polohy hráčů přečte I, desku prohlédneš pomocí Shift+D a vlastní hotovost zjistíš klávesou C."
+        }
+      ]
+    },
+    {
+      "id": "buying",
+      "title": {
+        "cs": "Nákup nemovitostí"
+      },
+      "paragraphs": [
+        {
+          "cs": "Na volné nemovitosti si můžeš vybrat nákup za uvedenou cenu. Zvol nákup šipkami a potvrď Enterem, nebo vyber odmítnutí. Bez dostatečné hotovosti se nákup přeskočí. Nekoupená nemovitost zůstane volná."
+        },
+        {
+          "cs": "Nemovitosti jsou tří druhů:"
+        },
+        {
+          "cs": "- Ulice tvoří barevné skupiny. Celá skupina umožní vyšší nájemné a stavbu domů."
+        },
+        {
+          "cs": "- Nádraží vybírají vyšší nájemné, čím více jich má stejný majitel."
+        },
+        {
+          "cs": "- Podniky, například elektrárna a vodárna, odvozují nájemné od hodu kostkami. Násobitel záleží na počtu podniků majitele."
+        },
+        {
+          "cs": "Kartu nemovitosti pod figurkou přečte F. Uvádí cenu, nájemné, stavbu i zástavu. Vlastní nemovitosti prohlédneš pomocí V, cizí pomocí Shift+V. V seznamu vyber šipkami a Enterem otevři podrobnosti."
+        }
+      ]
+    },
+    {
+      "id": "rent",
+      "title": {
+        "cs": "Nájemné"
+      },
+      "paragraphs": [
+        {
+          "cs": "Za zastavení na cizí nemovitosti platíš majiteli nájemné, běžně automaticky. Na vlastním ani zastaveném pozemku se neplatí."
+        },
+        {
+          "cs": "U ulic určuje nájemné karta a počet budov. Vlastní-li hráč celou barvu, nezastavěná ulice má dvojnásobné základní nájemné. Domy a hotely ho pak zvyšují podle dalších sazeb."
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "title": {
+        "cs": "Start, daně a karty událostí"
+      },
+      "paragraphs": [
+        {
+          "cs": "Za průchod Startem dostaneš 200 dolarů. Přesné zastavení na něm přinese 400."
+        },
+        {
+          "cs": "Některá pole nelze koupit:"
+        },
+        {
+          "cs": "- Daň z příjmu stojí 200 dolarů, daň z luxusu 100."
+        },
+        {
+          "cs": "- Bezplatné parkování vyplatí celý naspořený bank. Přitékají do něj daně a poplatky bance z karet nebo za opuštění vězení. Po vyplacení začíná znovu od nuly."
+        },
+        {
+          "cs": "- Šance a Pokladna spustí kartu události. Hra její účinek přečte a hned provede."
+        },
+        {
+          "cs": "Karty mohou mít tyto účinky:"
+        },
+        {
+          "cs": "- Přidají peníze z banky nebo uloží platbu."
+        },
+        {
+          "cs": "- Nechají tě platit ostatním hráčům nebo od každého něco vybrat."
+        },
+        {
+          "cs": "- Opravy účtují podle tvých domů a hotelů."
+        },
+        {
+          "cs": "- Přesunou tě na jiné pole. Tam běžně platí nákup, nájemné či daň, ledaže karta říká něco jiného."
+        },
+        {
+          "cs": "- Pošlou tě do vězení."
+        },
+        {
+          "cs": "- Kartu pro opuštění vězení si necháš na později."
+        },
+        {
+          "cs": "Některé přesuny upravují i nájemné:"
+        },
+        {
+          "cs": "- Cesta na nejbližší nádraží zdvojnásobí jeho nájemné."
+        },
+        {
+          "cs": "- U nejbližšího podniku zaplatíš desetinásobek nového hodu dvěma kostkami."
+        },
+        {
+          "cs": "Nákupy nemovitostí a budov, zástavy ani platby mezi hráči bank parkování nezvětšují."
+        }
+      ]
+    },
+    {
+      "id": "building",
+      "title": {
+        "cs": "Stavba domů a hotelů"
+      },
+      "paragraphs": [
+        {
+          "cs": "Majetek spravuješ ve svém tahu před hodem. Stavět se dá jen na ulicích a musíš splnit všechny podmínky:"
+        },
+        {
+          "cs": "- Vlastnit celou barevnou skupinu."
+        },
+        {
+          "cs": "- Nemít v této skupině žádnou zastavenou ulici."
+        },
+        {
+          "cs": "- Mít hotovost na stavbu."
+        },
+        {
+          "cs": "Pomocí H otevři možné stavby, šipkami vyber ulici a potvrď Enterem. Každé potvrzení přidá jednu budovu za uvedenou cenu."
+        },
+        {
+          "cs": "Staví se rovnoměrně: nejprve jeden dům na každé ulici skupiny, pak druhé domy a tak dále až do čtyř. Další stavba nahradí čtyři domy hotelem."
+        },
+        {
+          "cs": "Banka má 32 domů a 12 hotelů. Pokud potřebné budovy dojdou, musíš počkat na jejich návrat. Při stavbě hotelu se nahrazené čtyři domy vrátí do zásoby."
+        }
+      ]
+    },
+    {
+      "id": "selling",
+      "title": {
+        "cs": "Prodej budov"
+      },
+      "paragraphs": [
+        {
+          "cs": "Část peněz získáš zpět pomocí Shift+H. Ze seznamu vyber budovu šipkami a potvrď Enterem. Prodej vrací polovinu stavební ceny."
+        },
+        {
+          "cs": "I prodávat musíš rovnoměrně, od ulic s největším počtem budov. Prodaný hotel se běžně změní na čtyři domy."
+        },
+        {
+          "cs": "Nemá-li banka potřebné čtyři domy, můžeš místo toho zvolit prodej všech budov celé barvy. Dostaneš polovinu jejich stavebních nákladů."
+        }
+      ]
+    },
+    {
+      "id": "mortgages",
+      "title": {
+        "cs": "Zástavy"
+      },
+      "paragraphs": [
+        {
+          "cs": "Zástava přinese peníze z banky, aniž ztratíš vlastnictví. Stiskni K, vyber nemovitost a potvrď Enterem. Dostaneš její zástavní hodnotu, ale přestane vynášet nájemné."
+        },
+        {
+          "cs": "Před zastavením ulice musíš prodat všechny budovy celé její barevné skupiny."
+        },
+        {
+          "cs": "Zástavu vyplatíš pomocí Shift+K: vyber nemovitost a potvrď Enterem. Zaplatíš zástavní hodnotu plus deset procent, zaokrouhleno nahoru na celou jednotku. Zástava 100 tedy stojí 110. Potom nemovitost znovu vynáší nájemné."
+        }
+      ]
+    },
+    {
+      "id": "trading",
+      "title": {
+        "cs": "Obchodování mezi hráči"
+      },
+      "paragraphs": [
+        {
+          "cs": "Nemovitost lze získat i obchodem. Ve svém tahu před hodem stiskni E, vyber partnera šipkami a potvrď Enterem."
+        },
+        {
+          "cs": "V nabídce vyplníš, kolik peněz dáváš a požaduješ. Tabem přejdeš na seznamy nemovitostí obou stran. Procházej je šipkami a mezerníkem označ ty, které do obchodu patří. Vyměnit lze více nemovitostí i s doplatkem."
+        },
+        {
+          "cs": "Hotovou nabídku odešli tlačítkem pro odeslání návrhu: přejdi na něj Tabem a potvrď Enterem. Partner přijme pomocí A nebo odmítne pomocí R. Peníze a vlastnictví přejdou až přijetím."
+        },
+        {
+          "cs": "Obchod má tato omezení:"
+        },
+        {
+          "cs": "- Nelze převést zastavenou nemovitost."
+        },
+        {
+          "cs": "- Nelze převést ulici ze skupiny, na které ještě stojí byť jediná budova. Nejdřív musí zmizet zástavba celé barvy."
+        },
+        {
+          "cs": "- Obě strany musí být schopné zaplatit svou část. Započítají se i peníze přijaté v témže obchodu."
+        }
+      ]
+    },
+    {
+      "id": "jail",
+      "title": {
+        "cs": "Vězení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Běžné zastavení na vězení je jen návštěva. Trest nastane až odesláním z pole, kartou nebo třetí dvojicí za sebou. Odeslání ukončí tah a nepřinese výplatu za Start."
+        },
+        {
+          "cs": "Na začátku tahu ve vězení máš tři možnosti:"
+        },
+        {
+          "cs": "- P zaplatí 50 dolarů; potom normálně hodíš a postoupíš."
+        },
+        {
+          "cs": "- J použije drženou kartu pro opuštění vězení; potom také normálně hodíš."
+        },
+        {
+          "cs": "- Enterem rovnou zkusíš hodit dvojici. Máš na to tři po sobě jdoucí tahy."
+        },
+        {
+          "cs": "Dvojice tě osvobodí a posune o součet, nedává ale další hod. Třetí neúspěšný pokus vyžaduje zaplatit 50 a potom postoupit podle právě hozeného výsledku."
+        },
+        {
+          "cs": "Ve vězení běžně dál vybíráš nájemné a před hodem smíš spravovat majetek."
+        }
+      ]
+    },
+    {
+      "id": "debt",
+      "title": {
+        "cs": "Dluh a bankrot"
+      },
+      "paragraphs": [
+        {
+          "cs": "Platba vyšší než hotovost vytvoří dluh. Stane-li se to při tvém pohybu, tah skončí. Dluh řešíš v příštím vlastním tahu před dalším hodem."
+        },
+        {
+          "cs": "Na splacení můžeš prodat budovy, zastavit nemovitosti nebo získat peníze obchodem. Po úplném zaplacení smíš zase házet."
+        },
+        {
+          "cs": "Klávesou B můžeš při dluhu sám vyhlásit bankrot. Automaticky zbankrotuješ, pokud na svém tahu dlužíš a už nemáš žádnou budovu k prodeji ani nemovitost k zastavení."
+        },
+        {
+          "cs": "Bankrot tě vyřadí. Dlužíš-li hráči, dostane zbývající nemovitosti a karty pro opuštění vězení, budovy se vypořádají za polovinu ceny. Při dluhu bance se nemovitosti vrátí bance."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Konec hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Poslední hráč bez bankrotu vítězí. Průběžné finance všech porovnáš klávesou S."
+        }
+      ]
+    },
+    {
+      "id": "boards",
+      "title": {
+        "cs": "Jiné desky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou můžeš místo Atlantic City zvolit jinou desku. Liší se názvy a počty polí, měna, barevné skupiny, počáteční hotovost i výplata za Start."
+        },
+        {
+          "cs": "Větší desky mají také více budov v bance. Ceny, nájemné a stavební náklady zjistíš z karet nemovitostí stejně jako běžně."
+        },
+        {
+          "cs": "Některé platby se odvozují od výplaty za Start:"
+        },
+        {
+          "cs": "- Daň z příjmu činí jednu výplatu."
+        },
+        {
+          "cs": "- Daň z luxusu polovinu."
+        },
+        {
+          "cs": "- Opuštění vězení čtvrtinu."
+        },
+        {
+          "cs": "Kompletní barvy, rovnoměrná stavba, zástavy a bankrot mají stejná pravidla."
+        }
+      ]
+    },
+    {
+      "id": "auctions",
+      "title": {
+        "cs": "Dražby"
+      },
+      "paragraphs": [
+        {
+          "cs": "Běžně nekoupená nemovitost zůstává volná. Před hrou můžeš zapnout její dražbu. Přihazovat postupně smějí všichni dosud hrající, včetně hráče, který nákup odmítl."
+        },
+        {
+          "cs": "Na řadě můžeš zvýšit nebo odstoupit. G podá navrženou vyšší nabídku. Vlastní částku zadáš přes B a potvrdíš Enterem. Zadáváš celkovou cenu, nikoli rozdíl oproti předchozí nabídce."
+        },
+        {
+          "cs": "Nabídka musí přesáhnout současnou a vejít se do hotovosti. Odstoupení vyber šipkami ze seznamu akcí a potvrď Enterem. Do stejné dražby se pak už nevrátíš."
+        },
+        {
+          "cs": "Jakmile nejvyšší nabídku nikdo nezvýší, její autor koupí nemovitost za tuto částku. Bez jediné nabídky zůstane bance."
+        },
+        {
+          "cs": "Pro každé rozhodnutí lze nastavit čas. Bez odpovědi odstoupíš; každý další dražitel dostává svůj plný čas. Nula omezení vypíná."
+        }
+      ]
+    },
+    {
+      "id": "purchase_variant",
+      "title": {
+        "cs": "Nákup až po prvním okruhu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Lze zakázat nákupy během prvního okruhu. Pak smíš kupovat volná pole, na která vstoupíš, teprve po svém prvním průchodu Startem."
+        }
+      ]
+    },
+    {
+      "id": "rent_variants",
+      "title": {
+        "cs": "Varianty nájemného"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze změnit dvě pravidla:"
+        },
+        {
+          "cs": "- Bez automatického výběru musí nájemné požadovat majitel mezerníkem. Může se ho také vzdát volbou šipkami a Enterem. Hra na jeho rozhodnutí čeká."
+        },
+        {
+          "cs": "- Lze zakázat vybírání nájemného uvězněným majitelem. Ostatní pak jeho nemovitosti navštěvují zdarma až do jeho propuštění."
+        }
+      ]
+    },
+    {
+      "id": "event_variants",
+      "title": {
+        "cs": "Varianty výplat a událostí"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před začátkem lze upravit také následující:"
+        },
+        {
+          "cs": "- Vypnuté spoření na parkování znamená, že pole nic nevyplatí a bankovní poplatky se do něj neodkládají."
+        },
+        {
+          "cs": "- Bez dvojité výplaty dostaneš za přesný Start stejně jako za průchod."
+        },
+        {
+          "cs": "- Šťastná dvojice jedniček přidá prémii ve výši čtvrtiny výplaty za Start, na Atlantic City 50 dolarů. Běžně je vypnutá."
+        },
+        {
+          "cs": "- Vypnutí doplňkových karet odstraní z obou balíčků peněžní události přidané v Power Games. Ostatní karty Šance a Pokladny zůstanou."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: vybrat akci nebo nemovitost."
+        },
+        {
+          "cs": "Enter: provést vybranou akci."
+        },
+        {
+          "cs": "Escape: zavřít seznam."
+        },
+        {
+          "cs": "I: přečíst polohy hráčů a čísla polí."
+        },
+        {
+          "cs": "T: oznámit hráče na řadě a čekající rozhodnutí."
+        },
+        {
+          "cs": "C: přečíst vlastní hotovost."
+        },
+        {
+          "cs": "S: přečíst finance hráčů."
+        },
+        {
+          "cs": "F: přečíst kartu nemovitosti pod figurkou."
+        },
+        {
+          "cs": "D: prohlédnout volné nemovitosti."
+        },
+        {
+          "cs": "Shift+D: prohlédnout celou desku."
+        },
+        {
+          "cs": "V: prohlédnout vlastní nemovitosti."
+        },
+        {
+          "cs": "Shift+V: prohlédnout cizí nemovitosti."
+        },
+        {
+          "cs": "H: otevřít možné stavby."
+        },
+        {
+          "cs": "Shift+H: otevřít budovy k prodeji."
+        },
+        {
+          "cs": "K: otevřít nemovitosti k zastavení."
+        },
+        {
+          "cs": "Shift+K: otevřít zástavy k vyplacení."
+        },
+        {
+          "cs": "E: vybrat hráče a připravit obchod."
+        },
+        {
+          "cs": "A: přijmout nabídku obchodu."
+        },
+        {
+          "cs": "R: odmítnout nabídku obchodu."
+        },
+        {
+          "cs": "B: při vlastním dluhu vyhlásit bankrot, při dražbě zadat vlastní nabídku."
+        },
+        {
+          "cs": "G: při dražbě podat navrženou nabídku."
+        },
+        {
+          "cs": "Mezerník: vybrat nájemné při ručním výběru."
+        },
+        {
+          "cs": "P: zaplatit za opuštění vězení."
+        },
+        {
+          "cs": "J: použít kartu pro opuštění vězení."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "board": "boards",
+    "free_parking_jackpot": "event_variants",
+    "double_salary_on_start": "event_variants",
+    "forbid_first_round_purchase": "purchase_variant",
+    "no_rent_in_jail": "rent_variants",
+    "lucky_double_one": "event_variants",
+    "supplementary_cards": "event_variants",
+    "automatic_rent": "rent_variants",
+    "auction_unsold": "auctions",
+    "auction_decision_time": "auctions"
+  }
+}

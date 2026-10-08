@@ -13,6 +13,8 @@ assert(source.gsub(/\s+/, " ").include?(taboo_intro), "Polish Taboo introduction
 levels = source.lines.filter_map { |line| line[/\A(#+) /, 1]&.length }
 bullets = source.lines.count { |line| line.start_with?("- ") }
 menu = EltenGameRoom::MAIN_OPTIONS
+settings_index = menu.index(GameRoomLocalization.translate("Settings"))
+assert(settings_index, "Settings is missing from the initial menu language")
 assert(menu[-2] == "README", "README is not immediately before What's new")
 
 app = EltenGameRoom.allocate
@@ -87,7 +89,7 @@ targets = field.instance_variable_get(:@contents_targets).values
 assert(targets.none?(&:nil?) && targets.uniq.length == 2, "Duplicate Unicode headings share an anchor")
 
 %i[show_settings show_changelog].each { |method| app.define_singleton_method(method) { @selected_action = method } }
-app.send(:open_main_option, menu.length - 3)
+app.send(:open_main_option, settings_index)
 assert(app.instance_variable_get(:@selected_action) == :show_settings, "Settings menu route changed")
 app.send(:open_main_option, menu.length - 1)
 assert(app.instance_variable_get(:@selected_action) == :show_changelog, "What's new menu route changed")

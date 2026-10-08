@@ -36,6 +36,10 @@ module GameRoomGames
       "Cat, head, tail"
     end
 
+    def short_description
+      _("Roll the die and decide when to bank your points before an unlucky one wipes out your turn's score.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

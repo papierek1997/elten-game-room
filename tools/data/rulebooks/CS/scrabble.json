@@ -1,0 +1,317 @@
+{
+  "source": "games/scrabble_ui.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "cs": "Cíl hry a hrací deska"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve Scrabble získáváš body skládáním slov z písmen. Všichni společně rozšiřujete jednu křížovku, ale každý boduje za vlastní tahy. Na konci vyhraje nejvyšší skóre."
+        },
+        {
+          "cs": "Hrají dva až čtyři hráči. Každý má sedm kamenů v zásobníku; C je přečte i s bodovými hodnotami. Po přijatém tahu si doplníš zásobník do sedmi, dokud jsou kameny v sáčku."
+        },
+        {
+          "cs": "Deska má patnáct sloupců A až O a patnáct řad 1 až 15. Procházíš ji šipkami. Nejprve uslyšíš písmeno nebo prázdné pole, potom souřadnice. Některá volná pole navíc nesou bodovou prémii."
+        }
+      ]
+    },
+    {
+      "id": "placement",
+      "title": {
+        "cs": "Kam smíš položit slovo"
+      },
+      "paragraphs": [
+        {
+          "cs": "První slovo musí projít středem H8. Další navazují na dosavadní křížovku: můžeš slovo prodloužit, překřížit novým nebo přiložit písmena vedle a vytvořit několik slov současně."
+        },
+        {
+          "cs": "Každý tah musí splnit tyto podmínky:"
+        },
+        {
+          "cs": "- Všechny nově položené kameny leží v jedné řadě nebo sloupci. Čte se zleva doprava nebo shora dolů."
+        },
+        {
+          "cs": "- Hotové slovo nemá mezi písmeny mezery. Může ale uvnitř využívat dříve položená písmena."
+        },
+        {
+          "cs": "- Každé nové slovo má alespoň dvě písmena a musí být ve slovníku. To platí i pro krátká slova vzniklá napříč, nejen pro hlavní slovo."
+        },
+        {
+          "cs": "Kameny z přijatých tahů zůstávají na desce. Nesmíš je přesouvat ani brát zpět, můžeš je však zapojit do dalších slov."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "cs": "Skládání a potvrzení tahu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipkami najdi volné pole a stiskni Enter. Ze seznamu kamenů v zásobníku vyber písmeno šipkami a potvrď Enterem. Kámen se položí, ale tah tím ještě není odevzdaný."
+        },
+        {
+          "cs": "Stejně přidej další písmena. Chybný kámen vezmeš zpět klávesou Backspace na jeho poli. Z odstraní všechny kameny připravené v tomto tahu a umožní začít znovu."
+        },
+        {
+          "cs": "Klávesa Y přečte připravená slova a předběžné body, nikoli jejich platnost ve slovníku. Hotový tah odešli pomocí F. Teprve pak se slova ověří, kameny zůstanou na desce, dostaneš body a tah skončí."
+        },
+        {
+          "cs": "Neznámé slovo se oznámí a připravené kameny se vrátí do zásobníku. Běžně smíš ve stejném tahu zkusit něco jiného bez ztráty bodů. Také nesprávné umístění, například mezera nebo chybějící spojení s křížovkou, vyžaduje opravu."
+        }
+      ]
+    },
+    {
+      "id": "blanks",
+      "title": {
+        "cs": "Prázdné kameny"
+      },
+      "paragraphs": [
+        {
+          "cs": "Prázdný kámen zastoupí libovolné písmeno. Při položení se otevře volba: šipkami urči písmeno a potvrď Enterem. Pak ho zapojíš do slova jako běžný kámen."
+        },
+        {
+          "cs": "Bodová hodnota je vždy nula a po přijetí tahu vybrané písmeno zůstane do konce partie. V sadě jsou dva prázdné kameny."
+        }
+      ]
+    },
+    {
+      "id": "points",
+      "title": {
+        "cs": "Bodování"
+      },
+      "paragraphs": [
+        {
+          "cs": "Boduje každé slovo vzniklé v tahu. Sečtou se hodnoty všech jeho písmen, včetně starších na desce. Patří-li nové písmeno zároveň do vodorovného a svislého slova, započítá se v obou."
+        },
+        {
+          "cs": "Prémiové pole se uplatní pouze při prvním položení kamene:"
+        },
+        {
+          "cs": "- Písmenná prémie zdvojnásobí či ztrojnásobí tento kámen, potom se přičtou ostatní písmena."
+        },
+        {
+          "cs": "- Slovní prémie násobí celý výsledek slova dvěma či třemi. Více násobičů se násobí navzájem: dvě dvojnásobné prémie znamenají čtyřnásobek."
+        },
+        {
+          "cs": "Prázdný kámen zůstane na písmenné prémii za nulu, slovní prémii ale spustí. Při pozdějším prodlužování slova se již zakrytá prémiová pole znovu nepočítají."
+        },
+        {
+          "cs": "Za použití všech sedmi kamenů v jednom tahu přidáš 50 bodů. Přičtou se až po vyhodnocení slov a dál se nenásobí. Skóre přečte S."
+        }
+      ]
+    },
+    {
+      "id": "exchange",
+      "title": {
+        "cs": "Výměna a vynechání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Místo skládání můžeš obětovat tah výměně. Stiskni G, procházej kameny šipkami a mezerníkem označ ty k výměně. Enter ji potvrdí, Escape zruší."
+        },
+        {
+          "cs": "Vyměnit lze jeden až sedm kamenů, pokud v sáčku zbývá nejméně osm. Odevzdané se vracejí před dobráním, takže můžeš některý znovu dostat. Počty v sáčku a zásobnících přečte E."
+        },
+        {
+          "cs": "Klávesa P vynechá tah bez slova i bez výměny. Máš-li už na desce připravené kameny, hra se před vynecháním či výměnou zeptá, zda je smí vzít zpět."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Konec a konečné skóre"
+      },
+      "paragraphs": [
+        {
+          "cs": "Partie může skončit dvěma způsoby:"
+        },
+        {
+          "cs": "- Sáček je prázdný a někdo zahraje všechny své kameny. Hra končí po tomto tahu."
+        },
+        {
+          "cs": "- Výměna už není možná a tři celá kola tahů nikdo nezahraje slovo. Každé přijaté slovo toto počítání přeruší, i kdyby bylo za nula bodů."
+        },
+        {
+          "cs": "Na konci se každému odečte hodnota zbylých kamenů. Hráč, který vyprázdnil zásobník, si navíc přičte součet zbytků ostatních. Při zablokování tento bonus není. Prázdný kámen má i v ruce nulu."
+        },
+        {
+          "cs": "Po těchto úpravách vyhraje nejvyšší skóre. Při shodě se o vítězství dělíte."
+        }
+      ]
+    },
+    {
+      "id": "language",
+      "title": {
+        "cs": "Jazyk a slovník"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou můžeš zvolit polská nebo anglická písmena a slovník. Liší se zastoupení písmen i jejich hodnoty, v obou sadách je ale sto kamenů."
+        },
+        {
+          "cs": "Polská hra používá přiložený slovník SJP, anglická Wordnik. Mohou se lišit od turnajových slovníků. O přijetí rozhoduje slovník vybraného jazyka."
+        }
+      ]
+    },
+    {
+      "id": "penalties",
+      "title": {
+        "cs": "Neplatná slova"
+      },
+      "paragraphs": [
+        {
+          "cs": "V nastavení stolu zvolíš, co udělá odmítnutí slova slovníkem:"
+        },
+        {
+          "cs": "- Povolí opravu ve stejném tahu, jako v základní hře."
+        },
+        {
+          "cs": "- Ukončí tah; další hráč pokračuje a tvoje kameny zůstanou v zásobníku."
+        },
+        {
+          "cs": "Obě možnosti jsou bez bodového trestu nebo s odečtem 5 či 10 bodů. Za jedno potvrzení F vznikne nejvýš jeden trest, i když je neplatných slov více. Chyby umístění, třeba mezera, se tímto trestem nepostihují."
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "title": {
+        "cs": "Čas na tah"
+      },
+      "paragraphs": [
+        {
+          "cs": "Běžně není čas omezen. Volitelný limit před hrou platí pro celý tah včetně volby písmene prázdného kamene a oprav odmítnutých slov."
+        },
+        {
+          "cs": "Po vypršení se připravené kameny vrátí do zásobníku a tah skončí vynecháním. Samotné vypršení času další bodový trest nemá."
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "title": {
+        "cs": "Zásobník a hlášení pokládaných písmen"
+      },
+      "paragraphs": [
+        {
+          "cs": "Když nemáš nic připraveného na desce, I mění řazení zásobníku: pořadí přijetí, abecedně nebo samohlásky napřed. Čísla 1 až 7 přečtou jednotlivé pozice. Shift s číslem daný kámen rovnou položí na pole pod kurzorem."
+        },
+        {
+          "cs": "Na desce můžeš sledovat i rozpracovaný tah druhého hráče. Chceš-li slyšet hlášení přidaných a odebraných písmen, zapni je pomocí Ctrl+P. Opakováním je vypneš."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházet desku nebo otevřený seznam."
+        },
+        {
+          "cs": "Enter: vybrat a položit kámen; při výměně potvrdit označené."
+        },
+        {
+          "cs": "Backspace: vzít zpět nepotvrzený kámen pod kurzorem."
+        },
+        {
+          "cs": "Z: odstranit všechny kameny připraveného tahu."
+        },
+        {
+          "cs": "F: potvrdit složená slova."
+        },
+        {
+          "cs": "Y: přečíst připravená slova a body bez ověření slovníkem."
+        },
+        {
+          "cs": "Escape: zrušit výběr kamene nebo výměnu."
+        },
+        {
+          "cs": "C: přečíst zásobník."
+        },
+        {
+          "cs": "I: změnit řazení, pokud ještě nic neskládáš."
+        },
+        {
+          "cs": "G: vybrat kameny k výměně."
+        },
+        {
+          "cs": "Mezerník v seznamu výměny: označit či odznačit kámen."
+        },
+        {
+          "cs": "P: vynechat tah."
+        },
+        {
+          "cs": "E: přečíst počty kamenů v zásobnících a sáčku."
+        },
+        {
+          "cs": "L: prohlédnout zahraná slova."
+        },
+        {
+          "cs": "S: přečíst skóre."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        },
+        {
+          "cs": "1: přečíst první kámen zásobníku."
+        },
+        {
+          "cs": "2: přečíst druhý kámen zásobníku."
+        },
+        {
+          "cs": "3: přečíst třetí kámen zásobníku."
+        },
+        {
+          "cs": "4: přečíst čtvrtý kámen zásobníku."
+        },
+        {
+          "cs": "5: přečíst pátý kámen zásobníku."
+        },
+        {
+          "cs": "6: přečíst šestý kámen zásobníku."
+        },
+        {
+          "cs": "7: přečíst sedmý kámen zásobníku."
+        },
+        {
+          "cs": "Shift+1: položit první kámen na pole pod kurzorem."
+        },
+        {
+          "cs": "Shift+2: položit druhý kámen na pole pod kurzorem."
+        },
+        {
+          "cs": "Shift+3: položit třetí kámen na pole pod kurzorem."
+        },
+        {
+          "cs": "Shift+4: položit čtvrtý kámen na pole pod kurzorem."
+        },
+        {
+          "cs": "Shift+5: položit pátý kámen na pole pod kurzorem."
+        },
+        {
+          "cs": "Shift+6: položit šestý kámen na pole pod kurzorem."
+        },
+        {
+          "cs": "Shift+7: položit sedmý kámen na pole pod kurzorem."
+        },
+        {
+          "cs": "Ctrl+P: přepnout hlášení pokládaných a odebíraných písmen."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "content_language_id": "language",
+    "content_set_id": "language",
+    "invalid_word": "penalties",
+    "thinking_time": "time"
+  }
+}

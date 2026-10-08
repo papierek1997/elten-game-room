@@ -1,0 +1,176 @@
+{
+  "source": "games/checkers.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "V dámě chceš soupeři sebrat všechny kameny včetně dam, nebo je zablokovat tak, aby neměl žádný tah. Hrají dva hráči a začíná bílý."
+        },
+        {
+          "cs": "Základní deska má 8 × 8 polí. Každý dostane dvanáct kamenů; hraje se jen na tmavých polích."
+        }
+      ]
+    },
+    {
+      "id": "moves",
+      "title": {
+        "cs": "Pohyb kamenů a dam"
+      },
+      "paragraphs": [
+        {
+          "cs": "Obyčejný kámen jde o jedno volné pole šikmo dopředu. Šipkami na něj přejdi, Enterem ho vyber, pak najdi cílové pole a potvrď druhým Enterem. Klávesa V na poli s kamenem nebo dámou přečte možné tahy."
+        },
+        {
+          "cs": "Kámen, který dokončí tah v poslední řadě na soupeřově straně, se změní v dámu. Ta se smí pohybovat po úhlopříčce o libovolný počet volných polí vpřed i vzad."
+        }
+      ]
+    },
+    {
+      "id": "captures",
+      "title": {
+        "cs": "Braní a vícenásobné skoky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Stojí-li šikmo vedle tebe soupeřův kámen či dáma a hned za ním je volno, přeskočením ho vezmeš. Obyčejný kámen smí brát dopředu i dozadu. Enterem vyber svůj kámen a dalším Enterem potvrď pole za přeskakovaným soupeřovým kamenem."
+        },
+        {
+          "cs": "Braní je povinné. Máš-li na výběr, musíš zvolit takovou sérii skoků, která vezme nejvíce kamenů. Mezi stejně dlouhými sériemi si můžeš vybrat."
+        },
+        {
+          "cs": "Po každém skoku pokračuj stejným kamenem nebo dámou, pokud s nimi lze znovu brát. Znovu je označ Enterem a potvrď další pole dopadu. Takto provedeš jednotlivé skoky až do konce série."
+        },
+        {
+          "cs": "Dáma dosáhne po volné úhlopříčce i ke vzdálenému soupeřovu kameni a přeskočí ho. Za ním smí dopadnout na kterékoli volné pole až po další kámen. Jedním skokem bere vždy jen jeden."
+        },
+        {
+          "cs": "Sebrané kameny a dámy se odstraní až po dokončení celé série. Do té doby blokují cestu a nesmíš je přeskočit znovu."
+        },
+        {
+          "cs": "Také proměna v dámu nastane až na konci celého tahu. Jestliže kámen při skákání dosáhne poslední řady, ale dalším skokem ji opustí, zůstane obyčejným kamenem."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Vítězství a remíza"
+      },
+      "paragraphs": [
+        {
+          "cs": "Vyhraješ, když soupeři nezbude žádný kámen nebo žádný přípustný tah."
+        },
+        {
+          "cs": "Remíza nastává při třetím opakování stejné pozice nebo po osmdesáti tazích za sebou bez braní a bez proměny kamene v dámu. Celá série skoků se počítá jako jediný tah."
+        }
+      ]
+    },
+    {
+      "id": "board_variant",
+      "title": {
+        "cs": "Velikost desky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze vybrat jednu ze tří velikostí:"
+        },
+        {
+          "cs": "- 8 × 8: každý má dvanáct kamenů; výchozí velikost."
+        },
+        {
+          "cs": "- 10 × 10: každý má dvacet kamenů."
+        },
+        {
+          "cs": "- 12 × 12: každý má třicet kamenů."
+        },
+        {
+          "cs": "Na všech deskách jsou mezi oběma stranami na začátku dvě prázdné řady."
+        }
+      ]
+    },
+    {
+      "id": "rule_variants",
+      "title": {
+        "cs": "Úpravy pohybu a braní"
+      },
+      "paragraphs": [
+        {
+          "cs": "Pravidla pohybu a braní lze před hrou upravit samostatně. Výběr velikosti desky je sám nemění."
+        },
+        {
+          "cs": "- Vypnutím braní dozadu smějí obyčejné kameny brát jen vpřed."
+        },
+        {
+          "cs": "- Krátká dáma místo dlouhé se běžně posune jen o jedno šikmé pole a bere pouze přeskokem bezprostředně sousedícího kamene."
+        },
+        {
+          "cs": "- Bez povinného braní smíš zahrát běžný tah, i když bys mohl brát."
+        },
+        {
+          "cs": "- Bez pokračování v braní skončí tah hned po prvním skoku."
+        },
+        {
+          "cs": "- Bez povinnosti nejdelšího braní lze zvolit libovolnou přípustnou sérii. Nejdelší braní lze naopak vyžadovat jen společně s povinným braním a pokračováním série."
+        },
+        {
+          "cs": "- Obyčejným kamenům lze povolit i běžný pohyb o jedno volné pole šikmo vzad. Normálně se vracejí jen při braní."
+        },
+        {
+          "cs": "- Přednost dámy rozhoduje mezi stejně dlouhými sériemi: pokud jednu z nich může provést dáma, musíš hrát dámou. Volba vyžaduje nejdelší braní a běžně je vypnutá."
+        },
+        {
+          "cs": "- Okamžitá proměna při braní udělá z kamene dámu už v okamžiku dosažení poslední řady. Ve zbývajících skocích pak pokračuje jako dáma."
+        },
+        {
+          "cs": "- Vypnutím ponechávání sebraných kamenů na desce se každý odstraní hned po skoku. Tím se může otevřít cesta pro další skok téže série."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházet desku."
+        },
+        {
+          "cs": "Enter: vybrat kámen nebo dámu a potom cílové pole; při braní potvrdit každý skok zvlášť."
+        },
+        {
+          "cs": "V: přečíst možné tahy kamene na vybraném poli."
+        },
+        {
+          "cs": "K: přejít na další vlastní dámu."
+        },
+        {
+          "cs": "Shift+K: přejít na další soupeřovu dámu."
+        },
+        {
+          "cs": "C: přečíst barvy hráčů."
+        },
+        {
+          "cs": "S: přečíst zbývající kameny a dámy obou hráčů."
+        },
+        {
+          "cs": "Ctrl+H: přepnout mezi čísly polí a šachovými souřadnicemi."
+        },
+        {
+          "cs": "Ctrl+Shift+H: otočit pohled na desku."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "board_size": "board_variant",
+    "rules": "rule_variants"
+  }
+}

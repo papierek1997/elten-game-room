@@ -3,8 +3,8 @@
   "id": "c24d98cc-9ccd-4d50-b801-459da324ff60",
   "name": "Power Games",
   "description": "Accessible multiplayer games for ELTEN users.",
-  "version": "2.0.4.7",
-  "build_id": "246",
+  "version": "2.0.4.8",
+  "build_id": "247",
   "EltenAPIVersion": "3.0.4",
   "main_language": "en",
   "supported_languages": ["en", "pl", "cs", "es", "ru"],
@@ -184,8 +184,8 @@ class EltenGameRoom < Program
   extend GameRoomTableWatchRuntime
   extend GameRoomContactFiltersRuntime
   extend GameRoomAnalyticsRuntime
-  GAME_ROOM_VERSION = "2.0.4.7".freeze
-  GAME_ROOM_BUILD_ID = 246
+  GAME_ROOM_VERSION = "2.0.4.8".freeze
+  GAME_ROOM_BUILD_ID = 247
   GAME_ROOM_CAPABILITIES = ["invitations", "live_sessions", "live_session_stack"].freeze
   LOBBY_ACTIVITY_POLL_INTERVAL = 5.0
 
@@ -224,12 +224,11 @@ class EltenGameRoom < Program
   MAIN_OPTIONS = [
     _("Create a new table"),
     _("Join a table"),
-    _("Game rules"),
-    _("Invitations"),
     _("Saved games"),
     _("Leaderboards"),
     _("Statistics"),
     _("Settings"),
+    _("Game rules"),
     _("README"),
     _("What's new")
   ].freeze
@@ -713,20 +712,18 @@ class EltenGameRoom < Program
     when 1
       show_join_table
     when 2
-      show_rules_library
-    when 3
-      switch_to_invited_table
-    when 4
       show_saved_games
-    when 5
+    when 3
       show_leaderboards
-    when 6
+    when 4
       show_statistics
-    when 7
+    when 5
       show_settings
-    when 8
+    when 6
+      show_rules_library
+    when 7
       show_readme
-    when 9
+    when 8
       show_changelog
     end
   end
@@ -853,8 +850,8 @@ class EltenGameRoom < Program
   end
 
   def show_changelog_entries(entries)
-    items = GameRoomChangelog.list_items(entries, translator: ->(text) { _(text) })
-    GameRoomScreens::Changelog.new(items, program: self).wait
+    text = GameRoomChangelog.markdown(entries, translator: ->(text) { _(text) })
+    GameRoomScreens::Changelog.new(text, program: self).wait
   end
 
   def last_seen_changelog_build
@@ -901,7 +898,7 @@ class EltenGameRoom < Program
   end
 
   def show_create_table
-    game_id = select_game(_("Create a new table"), GAME_REGISTRY.ids)
+    game_id = select_game(_("Create a new table"), GAME_REGISTRY.ids, descriptions: true)
     return if game_id == nil
 
     game = game_definition(game_id)
@@ -1103,11 +1100,27 @@ class EltenGameRoom < Program
       alert(_("Waiting for these players: %{players}.") % { players: missing.map { |player| GameRoomParticipants.display_name(player) }.join(", ") })
       return nil
     end
-    run_network_task(_("Resuming game")) do
-      started = @games.restore_session(table: row, game: game.id, players: restoration[:players], options: saved["options"], restore: restoration)
-      @lobby.set_game_active(row, true) if started != nil
-      started
+    started = run_network_task(_("Resuming game")) do
+      @games.restore_session(table: row, game: game.id, players: restoration[:players], options: saved["options"], restore: restoration)
     end
+    return nil if started == nil
+
+    # The server has accepted the complete archive, including private-state
+    # restoration. Consume only this save, not while merely preparing its room.
+    removed = run_network_task(_("Deleting saved game"), silent: true) do
+      saved_games.delete(saved["id"])
+      true # Already absent is also a successful cleanup.
+    rescue IOError, SystemCallError => error
+      Log.warning("Power Games resumed save cleanup failed: #{error.class}: #{error.message}") if defined?(Log)
+      false
+    end
+    unless removed
+      alert(_("The game was resumed, but its saved copy could not be deleted. Remove it from Saved games."))
+    end
+    # A cleanup or table-status error must not report the confirmed restoration
+    # as failed or start a second game. The original save is not a rollback point.
+    run_network_task(_("Updating table"), ui: :none) { @lobby.set_game_active(row, true) }
+    started
   rescue ArgumentError, IOError, SystemCallError => error
     Log.warning("ELTEN Game Room restore failed: #{error.class}") if defined?(Log)
     alert(_("This saved game is not compatible with this version or is damaged."))
@@ -1304,11 +1317,11 @@ class EltenGameRoom < Program
     revoke_table_invitation_notifications(@lobby.table_id(row), live_session_id: row["__live_session_id"])
   end
 
-  def select_game(header, game_ids)
+  def select_game(header, game_ids, descriptions: false)
     selected_index = 0
     action = nil
     games = ListBox.new(
-      game_ids.map { |game_id| game_name(game_id) },
+      game_ids.map { |game_id| descriptions ? game_lobby_label(game_id) : game_name(game_id) },
       header: header,
       index: selected_index,
       quiet: true
@@ -2293,6 +2306,7 @@ class EltenGameRoom < Program
       invitations: -> { launch_game_room_entry(:accept_invitation_from_widget) },
       roster: ->(snapshot) { @lobby.discovered_roster(snapshot) },
       table_options: ->(snapshot) { @lobby.discovered_options(snapshot) },
+      description: ->(snapshot) { game_lobby_label(snapshot.table["game"]) },
       game_for: ->(id) { game_definition(id) },
       labeler: ->(snapshot) { widget_table_label(snapshot) },
       manual_refresh: lambda {
@@ -2629,7 +2643,9 @@ class EltenGameRoom < Program
   end
 
   def game_lobby_label(game_id)
-    game_name(game_id)
+    name = GameRoomContent.utf8(game_name(game_id))
+    description = GameRoomContent.utf8(game_definition(game_id)&.short_description.to_s)
+    description.empty? ? name : "#{name}. #{description}"
   end
 
   def table_join_label(snapshot)

@@ -51,6 +51,10 @@ module GameRoomGames
       _("Makao")
     end
 
+    def short_description
+      _("Match the last card played, make your opponents draw cards and be the first to empty your hand.")
+    end
+
     def minimum_players
       2
     end

@@ -9,13 +9,15 @@ app = EltenGameRoom.new
 opened = []
 app.define_singleton_method(:show_statistics) { opened << :statistics }
 app.define_singleton_method(:show_settings) { opened << :settings }
+app.define_singleton_method(:show_rules_library) { opened << :rules }
 app.define_singleton_method(:show_readme) { opened << :readme }
 app.define_singleton_method(:show_changelog) { opened << :changelog }
 app.send(:open_main_option, statistics)
 app.send(:open_main_option, statistics + 1)
 app.send(:open_main_option, statistics + 2)
 app.send(:open_main_option, statistics + 3)
-assert(opened == [:statistics, :settings, :readme, :changelog], "Adding statistics shifted another menu action")
+app.send(:open_main_option, statistics + 4)
+assert(opened == [:statistics, :settings, :rules, :readme, :changelog], "Adding statistics shifted another menu action")
 GameRoomStatistics::Schema::TABLES.each do |name, schema|
   assert(EltenGameRoom::SERVER_TABLES[name] == schema, "Statistics schema missing from application declaration")
 end

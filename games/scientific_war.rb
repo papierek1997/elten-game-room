@@ -36,6 +36,10 @@ module GameRoomGames
       _("Scientific War")
     end
 
+    def short_description
+      _("Choose which cards to play and use their special abilities to take all your opponents' cards.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

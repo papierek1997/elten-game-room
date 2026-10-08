@@ -1,0 +1,127 @@
+{
+  "source": "games/cat_head_tail.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "V Cat, Head, Tail házíš osmistěnnou kostkou a volíš, jak dlouho budeš riskovat. Body z tahu můžeš uložit do banku nebo pokračovat v házení. Když ale padne jednička, tah končí a neuložené body ztratíš."
+        },
+        {
+          "cs": "Hra je pro dva až osm hráčů. K vítězství potřebuješ mít v banku nejméně 100 bodů a překonat ostatní."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "cs": "Hody a ukládání bodů"
+      },
+      "paragraphs": [
+        {
+          "cs": "Na začátku tahu vyber šipkami hod kostkou a potvrď Enterem. Čísla od 3 do 6 přidají právě tolik bodů do tohoto tahu. Pak se rozhodni, jestli hodíš znovu, nebo vybereš uložení bodů. Uložení potvrzené Enterem přičte výsledek tahu do banku a předá řadu dalšímu hráči."
+        },
+        {
+          "cs": "Když padne 4 a potom 5, máš připravených 9 bodů. Zastavíš-li se, uložíš je. Pokud místo toho hodíš jedničku, těchto 9 ztratíš; dříve uložených bodů se ztráta netýká."
+        },
+        {
+          "cs": "Klávesa C přečte body právě probíhajícího tahu, S uložené výsledky všech hráčů."
+        }
+      ]
+    },
+    {
+      "id": "dice",
+      "title": {
+        "cs": "Zvláštní výsledky hodu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Další čtyři stěny kostky mají vlastní účinky:"
+        },
+        {
+          "cs": "- Jednička vynuluje body tohoto tahu a ukončí ho. Vynuluje i záporný výsledek."
+        },
+        {
+          "cs": "- Dvojka přidá 2 body přímo do banku a dovolí pokračovat. Pozdější jednička tyto body nevezme."
+        },
+        {
+          "cs": "- Sedmička je kočičí hlava. Body nijak nezmění; dál se rozhoduješ mezi hodem a uložením."
+        },
+        {
+          "cs": "- Osmička je kočičí ocas. Náhodně přidá 8 bodů do tahu, nebo z něj 8 odebere. Ani tím tah nekončí."
+        },
+        {
+          "cs": "Kočičí ocas může srazit výsledek tahu pod nulu. Když ho takto uložíš, ubereš si body z banku. Dalšími hody se můžeš pokusit ztrátu dohnat; jednička by celý záporný výsledek tahu vymazala."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "cs": "Dohra a vítězství"
+      },
+      "paragraphs": [
+        {
+          "cs": "Jakmile má někdo na konci svého tahu v banku aspoň 100 bodů, dohrajete aktuální kolo tahů. Na řadu ještě přijdou ti, kdo v něm dosud nehráli."
+        },
+        {
+          "cs": "Ve čtyřech hráčích tedy po dosažení cíle druhým hráčem hraje ještě třetí a čtvrtý. Potom se porovnají banky: nejvyšší výsledek vyhrává, při shodě nejvyšších výsledků je remíza."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "cs": "Jiný bodový cíl"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou můžeš v nastavení stolu nahradit 100 bodů jiným kladným cílem. Před konečným porovnáním se i tak dohraje celé rozehrané kolo tahů."
+        }
+      ]
+    },
+    {
+      "id": "credits",
+      "title": {
+        "cs": "Původ hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Cat, Head, Tail vytvořilo TD Programs. Vychází z PIG od RS Games, používá však osmistěnnou kostku a účinky popsané v těchto pravidlech."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: zvolit hod nebo uložení bodů."
+        },
+        {
+          "cs": "Enter: provést vybranou akci."
+        },
+        {
+          "cs": "C: přečíst body aktuálního tahu."
+        },
+        {
+          "cs": "S: přečíst body v banku."
+        },
+        {
+          "cs": "D: přečíst poslední hod."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "options"
+  }
+}

@@ -24,6 +24,10 @@ module GameRoomGames
 
     def id; 'audio_ball'; end
     def name; _('Audio Ball'); end
+
+    def short_description
+      _("Listen to the incoming ball, choose the right defence and return it with a shot of your own.")
+    end
     def audio_game?; true; end
     def supports_bots?; true; end
     def supports_bot_move_delay?; false; end

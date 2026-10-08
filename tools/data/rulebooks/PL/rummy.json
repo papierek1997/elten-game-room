@@ -1,0 +1,438 @@
+{
+  "source": "games/rummy_ui.rb",
+  "sections": [
+    {
+      "id": "table",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Remiku zbierasz pasujące do siebie karty i wykładasz je na stół. Możesz też dokładać karty do układów, które już tam leżą. Za zagrane karty zdobywasz punkty, a gdy pozbędziesz się całej ręki, wygrywasz rundę. Wyniki kolejnych rund się sumują. Całą partię wygrywa osoba z największą liczbą punktów, gdy ktoś osiągnie 1000."
+        },
+        {
+          "pl": "Gra jest przeznaczona dla dwóch do ośmiu osób. Na początku każdej rundy dostajesz czternaście kart."
+        },
+        {
+          "pl": "W ręce poruszasz się strzałkami. Shift+C układa karty według kolorów, a Shift+H według wartości. Ponowne użycie tych skrótów odwraca kolejność. Jeśli wolisz kolejność, w której dostawałeś karty, przywrócisz ją przez Shift+M."
+        }
+      ]
+    },
+    {
+      "id": "combinations",
+      "title": {
+        "pl": "Jakie karty do siebie pasują"
+      },
+      "paragraphs": [
+        {
+          "pl": "Na stół wykładasz układy złożone z co najmniej trzech kart. Są dwa rodzaje układów:"
+        },
+        {
+          "pl": "- Seria to kolejne karty w jednym kolorze, na przykład 5, 6 i 7 kier. Do takiej serii pasuje potem 4 kier z jednej strony lub 8 kier z drugiej."
+        },
+        {
+          "pl": "- Zestaw tworzą trzy albo cztery karty tej samej wartości w różnych kolorach. Mogą to być na przykład dama kier, dama karo i dama pik. Do nich da się dołożyć damę trefl."
+        },
+        {
+          "pl": "As może stać przed dwójką lub po królu. Pasują więc as, 2, 3 oraz dama, król, as. Nie można połączyć w ten sposób króla, asa i dwójki."
+        },
+        {
+          "pl": "Joker zastępuje jedną brakującą kartę. W każdym układzie może być tylko jeden joker i muszą mu towarzyszyć przynajmniej dwie zwykłe karty. W serii jego znaczenie zależy od kolejności, w której wybierzesz karty: joker, 3 pik, 4 pik daje serię od dwójki, a 3 pik, 4 pik, joker — serię kończącą się piątką."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "pl": "Przebieg tury"
+      },
+      "paragraphs": [
+        {
+          "pl": "Na początku tury dobierz jedną kartę Spacją. Gdy masz już za sobą pierwsze wyłożenie, możesz zamiast tego wziąć ostatnią kartę odrzuconą przez innego gracza. D pozwala ją odczytać, a Shift+D ją dobiera."
+        },
+        {
+          "pl": "Po dobraniu możesz wykładać układy. Jeżeli masz już za sobą pierwsze wyłożenie, wolno ci również dokładać karty do układów własnych i pozostałych graczy. W jednej turze możesz zrobić to kilka razy. Nie musisz od razu używać dobranej karty ani wykładać czegokolwiek, jeśli wolisz poczekać."
+        },
+        {
+          "pl": "Na koniec wybierz kartę do odrzucenia i naciśnij Delete. Odrzucenie kończy twoją turę; teraz gra następna osoba."
+        },
+        {
+          "pl": "Jeśli pozbędziesz się wszystkich kart przez wyłożenie lub dołożenie, runda kończy się od razu. Nie trzeba zostawiać sobie ostatniej karty do odrzucenia."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "pl": "Pierwsze wyłożenie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Twoje pierwsze wyłożenie w każdej rundzie musi być warte przynajmniej 30 punktów. Może to być jeden układ albo kilka wyłożonych razem. Dopiero po tym wyłożeniu możesz dokładać karty do układów na stole, a od następnej tury także dobierać karty odrzucone."
+        },
+        {
+          "pl": "Żeby przygotować układ, naciśnij N. Odszukaj pierwszą kartę strzałkami i zaznacz ją Enterem, potem wybierz w ten sam sposób kolejne. Serię zaznaczaj od najniższej do najwyższej karty: dla układu 5, 6, 7 najpierw piątkę, potem szóstkę i siódemkę. Ponowny Enter na zaznaczonej karcie usuwa ją z przygotowywanego układu."
+        },
+        {
+          "pl": "Jeśli potrzebujesz kilku układów do osiągnięcia progu, po zaznaczeniu pierwszego naciśnij ponownie N i wybierz karty następnego. Niczego jeszcze nie wykładasz. P odczytuje przygotowane układy i ich wartość, więc możesz sprawdzić, czy masz już wystarczająco dużo punktów."
+        },
+        {
+          "pl": "Gotowe układy wykładasz razem klawiszem F. Gdy czegoś brakuje lub któryś układ jest niepoprawny, usłyszysz przyczynę i możesz zmienić wybór. Shift+P otwiera listę przygotowanych układów; Enter przy wybranym pozwala go poprawić albo usunąć. Escape podczas przygotowywania rezygnuje z całego wyłożenia."
+        },
+        {
+          "pl": "Po pierwszym wyłożeniu nie obowiązuje już minimalna liczba punktów. Kolejne układy tworzysz tymi samymi klawiszami. Możesz też od razu dokładać do kart na stole, jeszcze w tej samej turze."
+        }
+      ]
+    },
+    {
+      "id": "laying",
+      "title": {
+        "pl": "Dokładanie do układów"
+      },
+      "paragraphs": [
+        {
+          "pl": "C otwiera listę układów na stole. Przeglądaj ją strzałkami; Enter odczytuje wybrany układ, a Escape wraca do ręki."
+        },
+        {
+          "pl": "Żeby dołożyć kartę, wybierz ją w ręce i naciśnij Enter, nie rozpoczynając nowego układu przez N. Zobaczysz miejsca, do których karta pasuje. Wybierz jedno z nich i zatwierdź Enterem."
+        },
+        {
+          "pl": "Z wyszukuje następną kartę, którą można dołożyć, a Shift+Z poprzednią. Przy jednej pasującej karcie skrót może też od razu ją dołożyć."
+        },
+        {
+          "pl": "Serie można przedłużać na obu końcach. Do trzech kart tej samej wartości można dołożyć czwarty, brakujący kolor. Sam joker nie służy do przedłużania układu: trzeba wyłożyć go w nowym układzie z co najmniej dwiema zwykłymi kartami."
+        }
+      ]
+    },
+    {
+      "id": "joker",
+      "title": {
+        "pl": "Jak odzyskać jokera"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po pierwszym wyłożeniu możesz zabrać jokera ze stołu, kładąc w jego miejsce kartę, którą zastępuje. Na przykład do serii joker, 3 pik, 4 pik potrzebujesz dwójki pik. Wybierz ją w ręce, naciśnij Enter, a potem zatwierdź pozycję „Zastąp jokera” przy tym układzie. Dwójka zostanie na stole, a joker trafi do twojej ręki."
+        },
+        {
+          "pl": "Jeśli na stole leżą 7 kier, 7 karo i joker, nie wiadomo jeszcze, czy joker zastępuje 7 pik, czy 7 trefl. Żeby go odzyskać, trzeba najpierw dołożyć jedną z tych kart. Gdy dołożysz 7 pik, joker będzie zastępował już tylko 7 trefl — i właśnie tą kartą możesz go zastąpić."
+        },
+        {
+          "pl": "Jeśli do końca tury nie wyłożysz odzyskanego jokera w nowym układzie, stracisz 300 punktów. Kara obowiązuje również wtedy, gdy go odrzucisz. Dostajesz ją tylko raz; w następnych turach możesz korzystać z jokera tak jak z pozostałych kart."
+        }
+      ]
+    },
+    {
+      "id": "values",
+      "title": {
+        "pl": "Ile warte są karty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przy liczeniu pierwszego wyłożenia i punktów za zagrane karty obowiązują następujące wartości:"
+        },
+        {
+          "pl": "- Każda karta od dwójki do dziewiątki jest warta 5 punktów."
+        },
+        {
+          "pl": "- Dziesiątka, walet, dama i król dają po 10 punktów."
+        },
+        {
+          "pl": "- As jest wart 15 punktów, chyba że rozpoczyna serię przed dwójką — wtedy daje 5 punktów."
+        },
+        {
+          "pl": "Wyłożony joker daje tyle punktów, co karta, którą zastępuje. W serii 3, 4, joker zastępuje piątkę, więc cały układ jest wart 15 punktów. Przy liczeniu kart pozostałych w ręce joker jest wart 20 punktów, a as 15."
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "title": {
+        "pl": "Punktacja i koniec gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zbierasz punkty za każdą wyłożoną i dołożoną kartę. Gdy ktoś opróżni rękę, runda się kończy. Pozostali zachowują zdobyte punkty, a zwycięzca dostaje dodatkowo sumę wartości wszystkich kart, które zostały im w rękach."
+        },
+        {
+          "pl": "Za zakończenie rundy możesz dostać premie:"
+        },
+        {
+          "pl": "- Remik daje 200 punktów. Kończysz w ten sposób, jeśli twoje pierwsze wyłożenie i pozbycie się ostatniej karty nastąpią w tej samej turze."
+        },
+        {
+          "pl": "- Czysty remik daje 300 punktów zamiast 200. Musisz skończyć remikiem wyłącznie z własnej ręki, bez dokładania do istniejących układów i bez odzyskiwania jokerów."
+        },
+        {
+          "pl": "- Dodatkowe 100 punktów dostajesz, jeśli kończysz rundę, zanim ktokolwiek z przeciwników wyłoży swoje pierwsze karty. Ta premia przysługuje także wtedy, gdy nie kończysz remikiem."
+        },
+        {
+          "pl": "Po rundzie, w której ktoś osiągnie 1000 punktów, wygrywa osoba z największą liczbą punktów. Przy remisie na pierwszym miejscu rozgrywacie następną rundę."
+        },
+        {
+          "pl": "S odczytuje punktację. Pod E sprawdzisz liczbę kart w rękach graczy i liczbę kart do dobrania, a pod T — czyja jest tura."
+        }
+      ]
+    },
+    {
+      "id": "blocked",
+      "title": {
+        "pl": "Gdy zabraknie kart do dobierania"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po wyczerpaniu talii wcześniej odrzucone karty są tasowane i ponownie służą do dobierania. Ostatnia odrzucona karta nadal pozostaje dostępna pod Shift+D. Jeśli nie ma już skąd dobrać karty, możesz wykładać i dokładać bez dobierania."
+        },
+        {
+          "pl": "Jeśli nie ma skąd dobrać kart i przez dwie pełne kolejki nikt nie wyłoży ani nie dołoży karty z ręki, runda się kończy. Każdy zachowuje punkty zdobyte za wyłożenia, lecz nie ma zwycięzcy rundy ani premii za jej zakończenie."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Warianty gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przy tworzeniu stołu możesz zmienić poniższe zasady. Pozostała część gry przebiega tak samo."
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "title": {
+        "pl": "Próg pierwszego wyłożenia i limit punktów"
+      },
+      "paragraphs": [
+        {
+          "pl": "Możesz ustalić inną wartość pierwszego wyłożenia niż 30 punktów. Zanim zaczniesz dokładać karty do układów na stole i dobierać karty odrzucone, musisz wyłożyć układy warte co najmniej tyle, ile wynosi wybrany próg."
+        },
+        {
+          "pl": "Limit punktów określa, kiedy kończy się cała partia. Możesz zmienić go z 1000 na inną liczbę; wynik nadal rozstrzyga się dopiero po zakończeniu rundy."
+        }
+      ]
+    },
+    {
+      "id": "discard",
+      "title": {
+        "pl": "Inne sposoby dobierania i odrzucania"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zamiast dobierania tylko ostatniej odrzuconej karty możesz wybrać jedną z poniższych zasad:"
+        },
+        {
+          "pl": "- Dobieranie także wcześniejszych odrzutów. D odczytuje wszystkie dostępne karty, a Shift+D otwiera ich listę. Najnowsza karta jest pierwsza. Wybierz kartę strzałkami i naciśnij Enter: dostaniesz ją razem ze wszystkimi odrzuconymi później. Wybór trzeciej karty oznacza więc dobranie trzeciej, drugiej i pierwszej. Jeśli dostępna jest tylko jedna karta, Shift+D bierze ją od razu."
+        },
+        {
+          "pl": "- Bez dobierania odrzutów. Dobierasz Spacją, a na koniec tury nadal odrzucasz kartę przez Delete."
+        },
+        {
+          "pl": "- Bez odrzucania kart. Po dobraniu i swoich zagraniach kończysz turę skrótem Shift+F. Wszystkie niewyłożone karty zostają w ręce."
+        }
+      ]
+    },
+    {
+      "id": "identities",
+      "title": {
+        "pl": "Układy z identycznych kart"
+      },
+      "paragraphs": [
+        {
+          "pl": "Ta opcja pozwala ułożyć trzy lub cztery jednakowe karty, na przykład trzy dziewiątki trefl. Każda karta w takim układzie jest warta o 10 punktów więcej niż zwykle. Ten dodatek liczy się również przy pierwszym wyłożeniu."
+        }
+      ]
+    },
+    {
+      "id": "rounding",
+      "title": {
+        "pl": "Punktacja bez zaokrąglania"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po wyłączeniu zaokrąglania obowiązują inne wartości kart:"
+        },
+        {
+          "pl": "- Karty od dwójki do dziewiątki liczą się zgodnie z liczbą na karcie, zamiast po 5 punktów."
+        },
+        {
+          "pl": "- As przed dwójką jest wart 1 punkt, a w pozostałych układach i w ręce 11."
+        },
+        {
+          "pl": "- Dziesiątki i figury nadal dają po 10 punktów."
+        },
+        {
+          "pl": "- Joker pozostały w ręce jest wart 20 punktów."
+        }
+      ]
+    },
+    {
+      "id": "manipulation",
+      "title": {
+        "pl": "Zabieranie i łączenie układów"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po włączeniu manipulacji układami możesz przebudowywać to, co leży na stole. Najpierw musisz dobrać kartę i mieć za sobą własne pierwsze wyłożenie. Otwórz stół klawiszem C, wybierz układ i naciśnij klawisz menu kontekstowego. Znajdziesz tam łączenie układów oraz zabieranie całego układu lub konkretnych kart."
+        },
+        {
+          "pl": "Zabrane karty możesz wykorzystać w innym miejscu. To, co wolno zabrać, zależy od układu:"
+        },
+        {
+          "pl": "- Z serii możesz zabrać kartę z początku albo końca, jeśli zostaną przynajmniej trzy kolejne karty. Przykładowo z serii 4, 5, 6, 7 kier możesz wziąć czwórkę lub siódemkę."
+        },
+        {
+          "pl": "- Z zestawu czterech kart tej samej wartości możesz zabrać jedną kartę."
+        },
+        {
+          "pl": "- Cały układ wolno zabrać tylko wtedy, gdy nie ma w nim jokera. Jeśli chcesz zabrać układ z jokerem, najpierw odzyskaj go przez podmianę odpowiednią kartą."
+        },
+        {
+          "pl": "Zabieranie innych kart nie może zmieniać tego, co joker zastępuje."
+        },
+        {
+          "pl": "Aby połączyć układy, wybierz w menu „Połącz”, a następnie drugi układ. Muszą razem tworzyć poprawną całość. Dwie serie 4, 5, 6 kier oraz 7, 8, 9 kier można połączyć, ale serii rozdzielonych brakującą kartą już nie."
+        },
+        {
+          "pl": "Za każdą zabraną kartę, której nie wykorzystasz ponownie do końca tury, dostajesz 300 punktów kary. Tak samo rozliczany jest odzyskany joker. Dwie niewykorzystane karty oznaczają więc 600 punktów kary. Karty mogą zostać w ręce; po naliczeniu kary traktujesz je już jak pozostałe. Samo odrzucenie zabranej karty nie zastępuje jej ponownego wyłożenia."
+        },
+        {
+          "pl": "Zabranie kart ze stołu odbiera ci tyle punktów, ile są warte. Po ponownym wyłożeniu znów je zdobywasz. Łączenie układów samo w sobie nie daje punktów. Zabranie choćby jednej karty ze stołu wyklucza zakończenie rundy czystym remikiem."
+        }
+      ]
+    },
+    {
+      "id": "elimination",
+      "title": {
+        "pl": "Tryb eliminacyjny"
+      },
+      "paragraphs": [
+        {
+          "pl": "W tym wariancie starasz się mieć jak najmniej punktów. Za wykładanie, dokładanie i zabieranie kart ze stołu nie dostajesz ani nie tracisz punktów. Nadal obowiązuje próg pierwszego wyłożenia. Osoba kończąca rundę nie dostaje punktów za karty, a pozostali dopisują sobie wartość tego, co zostało im w rękach. Kary dodaje się do wyniku, zamiast je odejmować."
+        },
+        {
+          "pl": "Zamiast premii za remika zwiększa się punkty, które przeciwnicy dostają za karty pozostałe w rękach:"
+        },
+        {
+          "pl": "- Gdy kończysz remikiem, przeciwnicy liczą te punkty podwójnie."
+        },
+        {
+          "pl": "- Gdy kończysz czystym remikiem, liczą je potrójnie."
+        },
+        {
+          "pl": "- Jeśli przy czystym remiku nikt inny nie zdążył zrobić pierwszego wyłożenia, przeciwnicy liczą swoje karty poczwórnie."
+        },
+        {
+          "pl": "Te mnożniki nie powiększają kar."
+        },
+        {
+          "pl": "Gdy runda zostanie zablokowana, wszyscy doliczają wartość kart, które zostały im w rękach."
+        },
+        {
+          "pl": "Po rozliczeniu rundy odpadają gracze, którzy osiągnęli limit punktów; domyślnie jest to 500. Wygrywa ostatnia pozostała osoba. Jeśli w jednej rundzie wszyscy osiągną limit, zwycięża ten, kto ma najmniej punktów. Równe najniższe wyniki oznaczają wspólne zwycięstwo."
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "title": {
+        "pl": "Czas na ruch i kary"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po włączeniu limitu czasu trzeba zdążyć zakończyć turę. Po jego przekroczeniu dostajesz 50 punktów kary, a kolej przechodzi do następnej osoby. Jeśli jeszcze nie dobierałeś, dostajesz także jedną kartę z talii, o ile jest dostępna. Gdy karta była już dobrana, nie dobierasz drugiej. Nie odrzucasz karty za przekroczony czas."
+        },
+        {
+          "pl": "Kary się sumują. Przekroczenie czasu z jednym niewykorzystanym jokerem zabranym ze stołu oznacza łącznie 350 punktów kary. W zwykłej grze odejmuje się je od wyniku, a w eliminacyjnej dodaje."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: przeglądaj karty w ręce lub pozycje otwartej listy."
+        },
+        {
+          "pl": "Spacja: dobierz kartę z talii."
+        },
+        {
+          "pl": "D: odczytaj dostępne karty odrzucone."
+        },
+        {
+          "pl": "Shift+D: dobierz odrzut albo otwórz listę odrzutów do wyboru."
+        },
+        {
+          "pl": "N: zacznij przygotowywać układ; ponownie naciśnięte rozpoczyna następny układ w tym samym wyłożeniu."
+        },
+        {
+          "pl": "Enter podczas przygotowywania układu: zaznacz lub odznacz kartę."
+        },
+        {
+          "pl": "P: odczytaj przygotowane układy i ich wartość."
+        },
+        {
+          "pl": "Shift+P: wybierz przygotowany układ do poprawienia lub usunięcia."
+        },
+        {
+          "pl": "F: wyłóż przygotowane układy."
+        },
+        {
+          "pl": "Escape: zamknij otwartą listę lub anuluj przygotowywane wyłożenie."
+        },
+        {
+          "pl": "Enter na karcie poza przygotowywaniem układu: wybierz dołożenie lub odzyskanie jokera; jeśli karta nigdzie nie pasuje, możesz ją odrzucić."
+        },
+        {
+          "pl": "Delete: odrzuć wybraną kartę i zakończ turę."
+        },
+        {
+          "pl": "Shift+F: zakończ turę w wariancie bez odrzucania."
+        },
+        {
+          "pl": "C: otwórz listę układów na stole."
+        },
+        {
+          "pl": "E: odczytaj liczbę kart graczy oraz kart do dobrania."
+        },
+        {
+          "pl": "S: odczytaj wyniki."
+        },
+        {
+          "pl": "T: sprawdź, czyja jest tura."
+        },
+        {
+          "pl": "Klawisz menu kontekstowego na liście układów: wybierz zabranie kart lub połączenie układów, jeśli ten wariant jest włączony."
+        },
+        {
+          "pl": "Z: przejdź do następnej pasującej karty; przy jednej możliwości skrót może od razu ją dołożyć."
+        },
+        {
+          "pl": "Shift+Z: przejdź do poprzedniej pasującej karty; przy jednej możliwości skrót może od razu ją dołożyć."
+        },
+        {
+          "pl": "Shift+C: sortuj karty według kolorów; ponownie — w odwrotnej kolejności."
+        },
+        {
+          "pl": "Shift+H: sortuj karty według wartości; ponownie — w odwrotnej kolejności."
+        },
+        {
+          "pl": "Shift+M: przywróć kolejność otrzymywania kart."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "discard_mode": "discard",
+    "elimination": "elimination",
+    "rounded": "values",
+    "manipulation": "manipulation",
+    "identities": "combinations",
+    "first_meld": "opening",
+    "score_limit": "normal",
+    "thinking_time": "time"
+  }
+}

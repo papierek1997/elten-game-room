@@ -1,0 +1,127 @@
+{
+  "source": "games/cat_head_tail.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "en": "The game"
+      },
+      "paragraphs": [
+        {
+          "en": "Cat, head, tail is a dice game about deciding when to stop. Roll an eight-sided die to build a turn score, then bank it before a 1 wipes it out."
+        },
+        {
+          "en": "Two to eight players compete to bank at least 100 points and finish with the highest score."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Rolling and banking"
+      },
+      "paragraphs": [
+        {
+          "en": "On your turn, use the arrows to choose Roll the die and press Enter. Rolls from 3 to 6 add that many points to your turn score. After a roll, you can roll again or choose to bank your points and confirm with Enter. Banking adds the turn score to your bank and passes play to the next person."
+        },
+        {
+          "en": "For example, a 4 followed by a 5 leaves 9 points waiting to be banked. Stop now and you keep them. Risk another roll and get a 1, and you lose those 9 points, but not anything banked on earlier turns."
+        },
+        {
+          "en": "C reads your current turn score; S reads everyone's banked scores."
+        }
+      ]
+    },
+    {
+      "id": "dice",
+      "title": {
+        "en": "Special rolls"
+      },
+      "paragraphs": [
+        {
+          "en": "The other four faces work differently:"
+        },
+        {
+          "en": "- A 1 clears the turn score and ends your turn immediately. This also clears a negative turn score."
+        },
+        {
+          "en": "- A 2 goes straight into your bank. You can keep playing, and a later 1 cannot take those 2 points away."
+        },
+        {
+          "en": "- A 7 is the cat's head. It changes no score, leaving you free to roll again or bank."
+        },
+        {
+          "en": "- An 8 is the cat's tail. It randomly adds 8 to your turn score or subtracts 8. You can keep playing afterwards."
+        },
+        {
+          "en": "The tail can leave you below zero for the turn. Banking a negative score reduces your bank. You can try to recover with more rolls; a 1 wipes out the negative turn score instead."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "en": "Ending the game"
+      },
+      "paragraphs": [
+        {
+          "en": "When someone ends a turn with at least 100 banked points, finish the current round of turns. Anyone who has not yet had their turn in that round still gets to play."
+        },
+        {
+          "en": "With four players, for instance, if the second reaches the target, the third and fourth take their turns. Then compare banked scores: the highest wins, and a tie for the lead means a draw."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "en": "Changing the target"
+      },
+      "paragraphs": [
+        {
+          "en": "Before starting, the host can change the target from 100 to another positive number. The current round of turns is still completed before deciding the result."
+        }
+      ]
+    },
+    {
+      "id": "credits",
+      "title": {
+        "en": "Origins"
+      },
+      "paragraphs": [
+        {
+          "en": "Cat, head, tail was created by TD Programs. It is based on PIG from RS Games, with an eight-sided die and the effects described here."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: choose rolling or banking."
+        },
+        {
+          "en": "Enter: carry out the selected action."
+        },
+        {
+          "en": "C: read the turn score."
+        },
+        {
+          "en": "S: read banked scores."
+        },
+        {
+          "en": "D: read the last roll."
+        },
+        {
+          "en": "T: check whose turn it is."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "options"
+  }
+}

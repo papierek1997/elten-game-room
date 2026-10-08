@@ -1,0 +1,438 @@
+{
+  "source": "games/rummy_ui.rb",
+  "sections": [
+    {
+      "id": "table",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "V Rummy sbíráš karty do kombinací a vykládáš je na stůl. Další karty můžeš přidávat k tomu, co už je vyložené. Zahrané karty přinášejí body a prázdná ruka vyhraje kolo. Skóre z kol se sčítá; jakmile někdo dosáhne 1000, partii vyhraje hráč s nejvyšším výsledkem."
+        },
+        {
+          "cs": "Hrají dva až osm hráčů. Na začátku každého kola dostaneš čtrnáct karet."
+        },
+        {
+          "cs": "Ruku procházíš šipkami. Shift+C ji seřadí podle barev, Shift+H podle hodnot; opakováním pořadí obrátíš. Původní pořadí přijatých karet vrátí Shift+M."
+        }
+      ]
+    },
+    {
+      "id": "combinations",
+      "title": {
+        "cs": "Postupky a skupiny"
+      },
+      "paragraphs": [
+        {
+          "cs": "Vykládají se kombinace nejméně tří karet. Základní jsou dvě:"
+        },
+        {
+          "cs": "- Postupka: sousední hodnoty stejné barvy, třeba srdcová 5, 6 a 7. Později k ní pasuje srdcová 4 z jedné strany nebo 8 z druhé."
+        },
+        {
+          "cs": "- Skupina: tři či čtyři stejné hodnoty různých barev, třeba srdcová, kárová a piková dáma. Doplnit ji může ještě křížová dáma."
+        },
+        {
+          "cs": "Eso může stát před dvojkou nebo za králem. Platí tedy A, 2, 3 i dáma, král, eso; král, eso, dvojka platná postupka není."
+        },
+        {
+          "cs": "Žolík nahradí jednu chybějící kartu. V kombinaci smí být jen jeden a musí mít nejméně dvě běžné karty. U postupky rozhoduje pořadí výběru: žolík, piková 3, piková 4 začíná dvojkou, zatímco piková 3, piková 4, žolík končí pětkou."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "cs": "Od dobrání k odhození"
+      },
+      "paragraphs": [
+        {
+          "cs": "Tah začni dobráním jedné karty mezerníkem. Pokud už máš za sebou první vyložení, můžeš místo balíčku vzít poslední odhozenou kartu. D ji přečte a Shift+D vezme."
+        },
+        {
+          "cs": "Po dobrání smíš vykládat kombinace. S dokončeným prvním vyložením také přidáváš k vlastním i cizím kombinacím na stole, klidně několikrát za tah. Dobranou kartu nemusíš hned použít a smíš se rozhodnout nevykládat nic."
+        },
+        {
+          "cs": "Na konci vyber jednu kartu a odhoď ji klávesou Delete. Tím předáš tah dalšímu hráči."
+        },
+        {
+          "cs": "Vyprázdníš-li ruku vyložením či přiložením, kolo skončí rovnou. Poslední kartu si na odhození schovávat nemusíš."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "cs": "První vyložení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Poprvé v každém kole musíš najednou vyložit alespoň 30 bodů. Může to být jedna kombinace nebo více společně. Teprve potom smíš přikládat na stůl a od příštího tahu také dobírat odhozené karty."
+        },
+        {
+          "cs": "Přípravu nové kombinace začne N. Šipkami vyber první kartu a Enterem ji označ, potom stejně další. Postupku vybírej od nejnižší po nejvyšší: u 5, 6, 7 nejdřív pětku. Další Enter na označené kartě ji z výběru odstraní."
+        },
+        {
+          "cs": "Potřebuješ-li k dosažení minima víc kombinací, po označení první znovu stiskni N a připrav druhou. Zatím nic nevykládáš. Klávesa P přečte připravené kombinace i jejich součet."
+        },
+        {
+          "cs": "Vše vylož najednou klávesou F. Pokud něco chybí nebo kombinace neplatí, uslyšíš důvod a můžeš výběr upravit. Shift+P otevře připravené kombinace, Enter na vybrané dovolí opravu či odstranění. Escape při přípravě zruší celé připravované vyložení."
+        },
+        {
+          "cs": "Po prvním vyložení už bodové minimum neplatí. Nové kombinace tvoříš stejně a ještě v témže tahu smíš rovnou přikládat ke stolu."
+        }
+      ]
+    },
+    {
+      "id": "laying",
+      "title": {
+        "cs": "Přikládání na stůl"
+      },
+      "paragraphs": [
+        {
+          "cs": "Klávesa C otevře seznam vyložených kombinací. Procházej je šipkami, Enter je přečte a Escape vrátí do ruky."
+        },
+        {
+          "cs": "Pro přiložení vyber kartu v ruce a stiskni Enter, aniž bys předtím začal přípravu pomocí N. Z nabídky vhodných míst vyber jedno a potvrď Enterem."
+        },
+        {
+          "cs": "Z najde další kartu vhodnou k přiložení, Shift+Z předchozí. Při jediné vhodné kartě ji zkratka může rovnou přiložit."
+        },
+        {
+          "cs": "Postupku prodloužíš na obou koncích. Ke třem stejným hodnotám lze přidat chybějící čtvrtou barvu. Samotný žolík kombinaci neprodlužuje: patří do nové s alespoň dvěma běžnými kartami."
+        }
+      ]
+    },
+    {
+      "id": "joker",
+      "title": {
+        "cs": "Výměna žolíka"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po prvním vyložení smíš získat žolíka ze stolu výměnou za kartu, kterou představuje. Do postupky žolík, piková 3, piková 4 tedy potřebuješ pikovou dvojku. Vyber ji, stiskni Enter a u dané kombinace potvrď nahrazení žolíka. Dvojka zůstane na stole a žolík přijde do ruky."
+        },
+        {
+          "cs": "Ve skupině srdcová 7, kárová 7 a žolík jeho barva ještě není určena: může být pikový nebo křížový. Nejdřív musíš jednu z těchto sedmiček přiložit. Po pikové už žolík představuje jen křížovou a právě tou ho lze vyměnit."
+        },
+        {
+          "cs": "Nevyložíš-li získaného žolíka do konce tahu v nové kombinaci, ztratíš 300 bodů. Ani odhození před trestem neochrání. Trest přijde jen jednou; v dalších tazích už je žolík běžnou součástí ruky."
+        }
+      ]
+    },
+    {
+      "id": "values",
+      "title": {
+        "cs": "Hodnoty karet"
+      },
+      "paragraphs": [
+        {
+          "cs": "Pro první vyložení i body za hrané karty platí:"
+        },
+        {
+          "cs": "- Dvojky až devítky po 5 bodech."
+        },
+        {
+          "cs": "- Desítka, kluk, dáma a král po 10."
+        },
+        {
+          "cs": "- Eso za 15, ale na začátku postupky před dvojkou za 5."
+        },
+        {
+          "cs": "Vyložený žolík má hodnotu zastupované karty. V postupce 3, 4, žolík zastoupí pětku a kombinace dává 15 bodů. Ve zbývající ruce je žolík za 20 a eso za 15."
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "title": {
+        "cs": "Bodování a vítězství"
+      },
+      "paragraphs": [
+        {
+          "cs": "Body získáváš za každou vyloženou i přiloženou kartu. Prázdná ruka ukončí kolo. Ostatním dosavadní body zůstanou a vítěz navíc získá součet hodnot všech jejich zbývajících karet."
+        },
+        {
+          "cs": "Za dokončení kola lze dostat prémie:"
+        },
+        {
+          "cs": "- Rummy dává 200 bodů, pokud první vyložení i zbavení se poslední karty proběhly ve stejném tahu."
+        },
+        {
+          "cs": "- Čisté rummy dává místo toho 300. Musíš takto skončit jen z vlastní ruky, bez přikládání ke starším kombinacím a bez výměny žolíků."
+        },
+        {
+          "cs": "- Dalších 100 dostaneš za konec kola dřív, než kdokoli ze soupeřů poprvé vyloží. Tato prémie platí i bez rummy."
+        },
+        {
+          "cs": "Po kole, v němž někdo dosáhne 1000, vyhraje nejvyšší skóre. Při shodě na prvním místě se hraje další kolo."
+        },
+        {
+          "cs": "Skóre přečte S, počty karet hráčů a dobírací zásoby E, hráče na tahu T."
+        }
+      ]
+    },
+    {
+      "id": "blocked",
+      "title": {
+        "cs": "Prázdný dobírací balíček"
+      },
+      "paragraphs": [
+        {
+          "cs": "Když balíček dojde, odhozené karty se zamíchají k novému dobírání. Poslední odhozená zůstane dostupná pomocí Shift+D. Není-li už odkud vzít kartu, smíš vykládat a přikládat bez dobrání."
+        },
+        {
+          "cs": "Pokud není odkud dobírat a dvě celá kola tahů nikdo nevyloží ani nepřiloží kartu z ruky, kolo skončí. Každý si ponechá body za své vyložení, ale není vítěz kola ani závěrečné prémie."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Volitelné varianty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Při zakládání stolu lze zvolit následující změny. Co varianta nemění, platí jako v základní hře."
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "title": {
+        "cs": "První vyložení a bodový cíl"
+      },
+      "paragraphs": [
+        {
+          "cs": "První vyložení může mít jiné minimum než 30. Než začneš přikládat na stůl a dobírat odhozené karty, musíš vyloženými kombinacemi této hranice dosáhnout."
+        },
+        {
+          "cs": "Také celkový cíl lze změnit z 1000. Vítěz se pořád určuje až po dokončení kola."
+        }
+      ]
+    },
+    {
+      "id": "discard",
+      "title": {
+        "cs": "Další pravidla odhazování"
+      },
+      "paragraphs": [
+        {
+          "cs": "Místo běžného braní poslední odhozené karty lze zvolit:"
+        },
+        {
+          "cs": "- Braní i starších odhozených karet. D přečte všechny, Shift+D otevře seznam od nejnovější. Vyber šipkami a potvrď Enterem: získáš vybranou i všechny novější nad ní. Třetí položka tedy vezme třetí, druhou a první kartu. Jedinou dostupnou vezme Shift+D rovnou."
+        },
+        {
+          "cs": "- Zákaz dobírání odhozených karet. Dobíráš mezerníkem, tah nadále končí odhozením pomocí Delete."
+        },
+        {
+          "cs": "- Hru bez odhazování. Po dobrání a hraní ukončíš tah pomocí Shift+F. Nevyložené karty zůstanou v ruce."
+        }
+      ]
+    },
+    {
+      "id": "identities",
+      "title": {
+        "cs": "Kombinace totožných karet"
+      },
+      "paragraphs": [
+        {
+          "cs": "Tato volba povolí tři či čtyři úplně stejné karty, například tři křížové devítky. Každá v takové kombinaci má o 10 bodů více než běžně. Zvýšení platí i pro minimum prvního vyložení."
+        }
+      ]
+    },
+    {
+      "id": "rounding",
+      "title": {
+        "cs": "Přesné hodnoty bez zaokrouhlení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Vypnutím zaokrouhlování se hodnoty změní:"
+        },
+        {
+          "cs": "- Dvojky až devítky dávají své číslo místo pěti bodů."
+        },
+        {
+          "cs": "- Eso před dvojkou dává 1, v ostatních kombinacích a v ruce 11."
+        },
+        {
+          "cs": "- Desítky a figury zůstávají po 10."
+        },
+        {
+          "cs": "- Žolík v ruce zůstává za 20."
+        }
+      ]
+    },
+    {
+      "id": "manipulation",
+      "title": {
+        "cs": "Přestavování kombinací"
+      },
+      "paragraphs": [
+        {
+          "cs": "S povoleným přestavováním smíš měnit kombinace na stole. Nejprve musíš mít splněné první vyložení a v tomto tahu dobrat. Pomocí C otevři stůl, vyber kombinaci a stiskni klávesu místní nabídky. Nabízí spojování i odebrání celé kombinace nebo jednotlivých karet."
+        },
+        {
+          "cs": "Odebrané karty můžeš použít jinde. Co smíš vzít, závisí na kombinaci:"
+        },
+        {
+          "cs": "- Z postupky první nebo poslední kartu, pokud zůstanou alespoň tři sousední. Ze srdcových 4, 5, 6, 7 tedy čtyřku nebo sedmičku."
+        },
+        {
+          "cs": "- Ze skupiny čtyř stejných hodnot jednu kartu."
+        },
+        {
+          "cs": "- Celou kombinaci jen bez žolíka. Žolíka musíš nejprve získat výměnou za správnou kartu."
+        },
+        {
+          "cs": "Odebírání ostatních karet nesmí změnit význam zbývajícího žolíka."
+        },
+        {
+          "cs": "Pro spojení zvol v nabídce spojování a pak druhou kombinaci. Dohromady musí být platné: srdcové 4, 5, 6 a 7, 8, 9 spojit lze, dvě postupky s chybějící kartou mezi nimi ne."
+        },
+        {
+          "cs": "Za každou odebranou kartu, kterou do konce tahu znovu nevyužiješ, dostaneš trest 300 bodů. Stejně se posuzuje získaný žolík. Dvě nevyužité karty tedy stojí 600. Mohou zůstat v ruce a po trestu se chovají běžně; odhození ale nové vyložení nenahrazuje."
+        },
+        {
+          "cs": "Odebráním ze stolu ztratíš bodovou hodnotu karet, opětovným vyložením ji získáš zpět. Samotné spojení nic neboduje. Odebrání byť jediné karty vyloučí čisté rummy."
+        }
+      ]
+    },
+    {
+      "id": "elimination",
+      "title": {
+        "cs": "Vyřazovací režim"
+      },
+      "paragraphs": [
+        {
+          "cs": "Zde chceš co nejméně bodů. Vyložení, přiložení a odebrání ze stolu skóre nemění, minimum prvního vyložení ale platí. Vítěz kola nedostává body za karty, ostatní si přičtou hodnotu své ruky. Tresty se přičítají místo odečítání."
+        },
+        {
+          "cs": "Prémie za rummy nahradí násobení soupeřových zbývajících karet:"
+        },
+        {
+          "cs": "- Při rummy je soupeři počítají dvakrát."
+        },
+        {
+          "cs": "- Při čistém rummy třikrát."
+        },
+        {
+          "cs": "- Při čistém rummy dřív, než kdokoli jiný poprvé vyloží, čtyřikrát."
+        },
+        {
+          "cs": "Tyto násobiče nezvyšují tresty."
+        },
+        {
+          "cs": "Při zablokovaném kole si zbývající ruku započítají všichni."
+        },
+        {
+          "cs": "Po kole vypadnou ti, kdo dosáhli limitu, výchozího 500 bodů. Poslední hráč vyhraje. Dosáhnou-li limitu všichni současně, vítězí nejnižší skóre; při shodě je vítězství společné."
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "title": {
+        "cs": "Čas a souběžné tresty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Se zapnutým časovým limitem musíš tah včas dokončit. Překročení stojí 50 bodů a předá řadu dál. Pokud jsi ještě nedobral, dostaneš navíc jednu kartu z balíčku, je-li dostupná. Už proběhlé dobrání se neopakuje. Za vypršení času se karta neodhazuje."
+        },
+        {
+          "cs": "Tresty se sčítají. Vypršení času s jedním nevyužitým žolíkem ze stolu znamená 350 bodů. V základní hře se odečtou, ve vyřazovací přičtou."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházet ruku nebo otevřený seznam."
+        },
+        {
+          "cs": "Mezerník: dobrat z balíčku."
+        },
+        {
+          "cs": "D: přečíst dostupné odhozené karty."
+        },
+        {
+          "cs": "Shift+D: vzít odhozenou kartu nebo otevřít jejich výběr."
+        },
+        {
+          "cs": "N: začít přípravu kombinace; opakováním připravit další do stejného vyložení."
+        },
+        {
+          "cs": "Enter při přípravě: označit či odznačit kartu."
+        },
+        {
+          "cs": "P: přečíst připravené kombinace a hodnotu."
+        },
+        {
+          "cs": "Shift+P: vybrat připravenou kombinaci k opravě či odstranění."
+        },
+        {
+          "cs": "F: vyložit připravené kombinace."
+        },
+        {
+          "cs": "Escape: zavřít seznam nebo zrušit přípravu vyložení."
+        },
+        {
+          "cs": "Enter na kartě mimo přípravu: vybrat přiložení či výměnu žolíka; nehodící se kartu lze odhodit."
+        },
+        {
+          "cs": "Delete: odhodit kartu a ukončit tah."
+        },
+        {
+          "cs": "Shift+F: ukončit tah při hře bez odhazování."
+        },
+        {
+          "cs": "C: otevřít kombinace na stole."
+        },
+        {
+          "cs": "E: přečíst počty karet hráčů a dobírací zásoby."
+        },
+        {
+          "cs": "S: přečíst skóre."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        },
+        {
+          "cs": "Klávesa místní nabídky v seznamu kombinací: vybrat odebírání či spojování při zapnuté variantě."
+        },
+        {
+          "cs": "Z: najít další vhodnou kartu; při jediné možnosti ji může rovnou přiložit."
+        },
+        {
+          "cs": "Shift+Z: najít předchozí vhodnou kartu; při jediné možnosti ji může rovnou přiložit."
+        },
+        {
+          "cs": "Shift+C: seřadit podle barev; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+H: seřadit podle hodnot; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+M: obnovit pořadí přijatých karet."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "discard_mode": "discard",
+    "elimination": "elimination",
+    "rounded": "values",
+    "manipulation": "manipulation",
+    "identities": "combinations",
+    "first_meld": "opening",
+    "score_limit": "normal",
+    "thinking_time": "time"
+  }
+}

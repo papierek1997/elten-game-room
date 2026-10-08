@@ -1,0 +1,159 @@
+{
+  "source": "games/scientific_war.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Scientific War lets you choose each card instead of always playing the next one. Win all the opponents' cards, using special powers to change a contest or prepare an advantage for the next."
+        },
+        {
+          "en": "Two to eight players begin with equal sets of ranks: 2 through ace and one joker each. Suits do not affect strength."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "en": "Choosing a card"
+      },
+      "paragraphs": [
+        {
+          "en": "Everyone chooses privately. Browse your hand with the arrows and submit a card with Enter. T tells you who has chosen; the cards are revealed once all players are ready."
+        },
+        {
+          "en": "Each group of played cards is a trick. The highest card normally wins them all. Ranks rise from 2 through the number cards, then jack, queen, king and ace. V reads the last trick's result."
+        },
+        {
+          "en": "Your winnings wait separately from your hand. Only after playing every card in your current hand do you pick up the captured cards to use again. Having neither a hand nor captured cards eliminates you."
+        }
+      ]
+    },
+    {
+      "id": "war",
+      "title": {
+        "en": "Tied tricks"
+      },
+      "paragraphs": [
+        {
+          "en": "A tie for the strongest card begins a war: nobody collects the pile, and all players still in the game choose another card. The next outright winner takes that trick and the earlier unclaimed cards."
+        },
+        {
+          "en": "Further ties keep building the pile until someone wins it alone."
+        }
+      ]
+    },
+    {
+      "id": "powers",
+      "title": {
+        "en": "Special powers"
+      },
+      "paragraphs": [
+        {
+          "en": "These cards act when played, even if they do not win:"
+        },
+        {
+          "en": "- A jack reverses rank strength in the very trick where it is played. A 2 becomes strongest and an ace weakest, until a later reversal. Jacks in the same trick cancel in pairs: two leave the order unchanged, three reverse it once."
+        },
+        {
+          "en": "- A queen lets you choose last on the next trick, after seeing the opponents' cards. Wait for their choices, press C to read them, then choose yours with the arrows and Enter. Two or more queens in one trick give nobody this privilege."
+        },
+        {
+          "en": "- A 3 lets C read opponents' hand sizes on the next trick. Ordinary E reads total card counts, including captured piles."
+        },
+        {
+          "en": "- An 8 offers a hand swap on the next trick. Press C before choosing a card to exchange your whole hand with your captured pile, or keep the hand you have. You need at least one captured card to swap."
+        },
+        {
+          "en": "R reads whether high or low cards currently win and which power you can use."
+        }
+      ]
+    },
+    {
+      "id": "joker",
+      "title": {
+        "en": "Jokers"
+      },
+      "paragraphs": [
+        {
+          "en": "A joker changes the result according to the other cards:"
+        },
+        {
+          "en": "- If the other cards would tie for strongest, a single joker breaks the war and its player takes everything."
+        },
+        {
+          "en": "- If the other cards would produce one winner, a single joker denies that win and starts a war. The pile stays for the next trick."
+        },
+        {
+          "en": "- Two or more jokers cancel their effect, leaving the other cards to decide."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "The result"
+      },
+      "paragraphs": [
+        {
+          "en": "You win when nobody else has cards. If a war exhausts everyone's cards and nobody can finish it, the game is a draw."
+        },
+        {
+          "en": "Play also ends after 50 tricks. Count both hands and captured piles; the largest combined count wins, with equal largest counts drawing."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Trick limit"
+      },
+      "paragraphs": [
+        {
+          "en": "The host can set a different limit from 20 to 100 tricks. Card counts decide the result at that limit in the same way."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: choose a card."
+        },
+        {
+          "en": "Enter: play the selected card."
+        },
+        {
+          "en": "Z: select the next card, or play it if it is your only card."
+        },
+        {
+          "en": "Shift+Z: select the previous card, or play it if it is your only card."
+        },
+        {
+          "en": "C: use your power: inspect choices after a queen, hand sizes after a 3, or swap hand and pile after an 8."
+        },
+        {
+          "en": "E: read total card counts."
+        },
+        {
+          "en": "T: read who has chosen."
+        },
+        {
+          "en": "R: read rank order and available powers."
+        },
+        {
+          "en": "V: read the last trick's result."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "trick_limit": "variants"
+  }
+}

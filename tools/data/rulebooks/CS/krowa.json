@@ -1,0 +1,214 @@
+{
+  "source": "games/krowa_support/presentation.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "cs": "O co ve hře jde"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve hře Krowa máš za úkol uhodnout polské podstatné jméno. Na začátku se vylosuje slovo a dozvíš se, kolik má písmen. Zadáváš své tipy se stejným počtem písmen a po každém pokusu uslyšíš, kolik písmen stojí v obou slovech na stejných místech."
+        },
+        {
+          "cs": "Když je řešením kot a zadáš sok, dostaneš výsledek 1 ze 3: shoduje se jen prostřední písmeno. K se nepočítá, protože ve slově kot je první, kdežto ve slově sok třetí. Porovnáváním dalších nápověd postupně zužuješ okruh možností."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Hraj sám nebo s ostatními"
+      },
+      "paragraphs": [
+        {
+          "cs": "Jako hostitel stolu vybíráš variantu hry. Pro samostatné hraní máš dvě možnosti:"
+        },
+        {
+          "cs": "- Denní Krowa: každý den nové slovo, stejné pro všechny hráče."
+        },
+        {
+          "cs": "- Náhodné slovo: hra se slovy, jejichž délku si můžeš nastavit."
+        },
+        {
+          "cs": "Také s ostatními lze hrát dvěma způsoby:"
+        },
+        {
+          "cs": "- Závod: soupeříte v hádání stejného slova. Podle nastavení vyhraje ten, kdo potřebuje méně pokusů, nebo ten, kdo slovo uhodne rychleji."
+        },
+        {
+          "cs": "- Věž slov: spolupracujete. Losují se slova a všichni postupně zadávají tipy, přičemž vidí, co zadali ostatní."
+        },
+        {
+          "cs": "Denní Krowa je soukromá: nelze se k ní připojit ani ji sledovat. To by se pak přece hádala až moc snadno!"
+        },
+        {
+          "cs": "Všechny ostatní režimy ale sledovat můžeš, pokud je stůl otevřený. Když se připojíš ke Krowě, zatímco někdo hádá náhodné slovo, můžeš zjistit délku slova, seznam jeho pokusů i jejich počet. Můžeš taky napsat do chatu: „p na čtvrtém! Fakt, na čtvrtém bude p!“ Ale nenabádám tě k tomu."
+        }
+      ]
+    },
+    {
+      "id": "vocabulary",
+      "title": {
+        "cs": "Přidávání vlastních slov"
+      },
+      "paragraphs": [
+        {
+          "cs": "V režimu Náhodné slovo máš jednu superschopnost. Můžeš přidávat slova do slovníku, který si místně uchovává tvoje podstatná jména. Hmm... když tam napíšeš asdfasdfasdf, uloží se to taky, ale spoléhám na to, že zábava je důležitější než nahánění výsledků v žebříčcích."
+        },
+        {
+          "cs": "Pokud tedy chceš zadávat jako tip slovo smerfy, prostě použij tlačítko „Přidat podstatné jméno do slovníku a zkontrolovat“. V Denní Krowě ani ve společných režimech ho však používat nepůjde. Ne proto, že nemám ráda šmouly; jednoduše to není v databázi."
+        }
+      ]
+    },
+    {
+      "id": "guessing",
+      "title": {
+        "cs": "Jak hrát"
+      },
+      "paragraphs": [
+        {
+          "cs": "Napiš podstatné jméno a stiskni Enter. Po odeslání se textové pole vždy vyprázdní. Nesprávná délka, slovo mimo slovník, opakovaný tip ani pokus mimo tvůj tah se do pokusů nepočítají, zato vydají legrační zvuk."
+        }
+      ]
+    },
+    {
+      "id": "daily",
+      "title": {
+        "cs": "Denní Krowa"
+      },
+      "paragraphs": [
+        {
+          "cs": "Denní Krowa může vylosovat slovo dlouhé tři až devět písmen. Určuje se podle času na serveru, takže pokud potřebuješ jiné slovo, musíš se nabourat na server a změnit datum."
+        },
+        {
+          "cs": "Denní Krowu smíš otevřít jen jednou. Když slovo uhodneš, vzdáš se nebo hru přerušíš, pro tvůj účet zůstane nedostupná až do dalšího dne."
+        }
+      ]
+    },
+    {
+      "id": "race",
+      "title": {
+        "cs": "Závod"
+      },
+      "paragraphs": [
+        {
+          "cs": "V Závodě hádá každý sám. Délku slova lze nastavit nebo nechat na náhodě. V obou případech může hostitel vylosovat nové slovo; tehdy se pokusy vynulují. Nastavit lze i už zmíněné kritérium vítězství:"
+        },
+        {
+          "cs": "- Při hře na čas vítězí nejkratší doba od začátku slova po odeslání správné odpovědi, měřená hodinami synchronizovanými se serverem."
+        },
+        {
+          "cs": "- Při hře na počet pokusů vítězí nejnižší počet přijatých tipů potřebných k uhodnutí slova."
+        },
+        {
+          "cs": "Stejné výsledky znamenají společné vítězství."
+        },
+        {
+          "cs": "Jestliže už ostatní dohádali a ty nemáš šanci vyrovnat nejlepší výsledek, hra končí a dozvíš se hledané slovo."
+        }
+      ]
+    },
+    {
+      "id": "tower",
+      "title": {
+        "cs": "Věž slov"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve Věži hrajete na střídačku a každé společně uhodnuté slovo zahájí další kolo. Slova mají 3 až 8 písmen a společný limit pokusů závisí na jejich délce:"
+        },
+        {
+          "cs": "- 3 písmena: 15 pokusů."
+        },
+        {
+          "cs": "- 4 písmena: 24 pokusů."
+        },
+        {
+          "cs": "- 5 písmen: 30 pokusů."
+        },
+        {
+          "cs": "- 6 písmen: 42 pokusů."
+        },
+        {
+          "cs": "- 7 písmen: 49 pokusů."
+        },
+        {
+          "cs": "- 8 písmen: 64 pokusů."
+        },
+        {
+          "cs": "Věž končí vyčerpáním limitu nebo tím, že ji hostitel vzdá. Výsledkem je počet dokončených kol. Seznam kol v žebříčku obsahuje slova a počty pokusů."
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "title": {
+        "cs": "Hudba a zvukové efekty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Hudba a zvukové efekty Krowy jsou ve výchozím nastavení vypnuté. Pod Ctrl+P najdeš jejich přepínače i samostatné ovládání hlasitosti. Vztahuje se na ně také společné ztlumení a hlasitost herních zvuků v Power Games."
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "title": {
+        "cs": "Galerie, slovník a žebříčky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Galerie si pamatuje slova, která jsi uhodl samostatně, a nejlepší počet pokusů u každého z nich. Otevřít ji můžeš před hrou i po jejím skončení."
+        },
+        {
+          "cs": "V nabídce galerie lze řadit podle data, počtu pokusů nebo délky. Enterem na vybraném slově otevřeš jeho žebříček. Po skončení hry můžeš souhlasit se zveřejněním výsledku; i tehdy se otevře žebříček daného slova."
+        },
+        {
+          "cs": "Položka Žebříčky v hlavní nabídce zpřístupňuje výsledky pro jednotlivá slova i počty kol Věže slov. Galerie a vlastní slovník jsou místní a každý účet je má oddělené. Chceš-li vlastní slova smazat, otevři v nastavení Krowy vlastní slovník, označ slova mezerníkem a vyber „Odstranit označené“."
+        }
+      ]
+    },
+    {
+      "id": "saving",
+      "title": {
+        "cs": "Uložení hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Hostitel může během hádání uložit Závod nebo Věž slov, pokud jsou všechny odeslané tipy už zkontrolované. Uložení na účet dovolí pokračovat se stejnými hráči u nového stolu. Samostatné hry na později uložit nelze."
+        }
+      ]
+    },
+    {
+      "id": "credits",
+      "title": {
+        "cs": "Autorka"
+      },
+      "paragraphs": [
+        {
+          "cs": "Autorkou Krowy je paulinux."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Enter v poli odpovědi: zkontrolovat zadané podstatné jméno."
+        },
+        {
+          "cs": "Ctrl+P: otevřít nastavení zvuků a vlastního slovníku Krowy."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "length": "variants",
+    "race_scoring": "race"
+  }
+}

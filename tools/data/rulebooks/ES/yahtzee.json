@@ -1,0 +1,247 @@
+{
+  "source": "games/yahtzee.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Yahtzee lanzas cinco dados y anotas sus resultados en una hoja. Cada casilla puntúa de una forma distinta. En cada turno debes ocupar una casilla libre y ya no podrás volver a usarla; por eso conviene decidir cuáles reservar para mejores tiradas."
+        },
+        {
+          "es": "Juegan de dos a ocho personas. Cuando todos han completado su hoja, gana quien tenga más puntos."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "es": "Tirar y anotar"
+      },
+      "paragraphs": [
+        {
+          "es": "Empieza tu turno con Enter para lanzar los cinco dados. Puedes anotar inmediatamente o hacer una o dos tiradas más. En cada repetición eliges qué dados volver a tirar; los demás conservan sus valores."
+        },
+        {
+          "es": "Selecciona los dados con las cifras del 1 al 6. La cifra indica el valor, no la posición: para volver a lanzar dos dados que muestran un 2, pulsa 2 dos veces. Shift con la misma cifra retira un dado de la selección. Espacio recuerda cuáles conservas y cuáles lanzarás."
+        },
+        {
+          "es": "Pulsa Enter para lanzar los seleccionados. Antes de cada nueva tirada debes volver a elegir qué dados repites."
+        },
+        {
+          "es": "Para dejar de tirar, pulsa Enter sin dados seleccionados. Se abre la lista de categorías libres con los puntos que daría tu resultado en cada una. Elige con las flechas y confirma con Enter. La anotación termina tu turno."
+        },
+        {
+          "es": "Tras la tercera tirada, la lista se abre automáticamente. Debes elegir una casilla aunque ninguna te convenga: a veces tendrás que anotar cero y perder esa categoría. Si aún no has usado las tres tiradas, Escape cierra la lista y permite volver a los dados."
+        },
+        {
+          "es": "V permite revisar tu hoja y Shift+V las ajenas, por ejemplo para decidir qué categoría reservar."
+        }
+      ]
+    },
+    {
+      "id": "upper",
+      "title": {
+        "es": "Del uno al seis"
+      },
+      "paragraphs": [
+        {
+          "es": "Las primeras seis categorías son Unos, Doses, Treses, Cuatros, Cincos y Seises. Solo sumas los dados del valor correspondiente. Una tirada de 2, 2, 4, 4, 6 da 8 en Cuatros, 6 en Seises o cero en Unos."
+        },
+        {
+          "es": "Si la suma de esas seis casillas llega al menos a 63, recibes 35 puntos extra. Cuenta el total conjunto, así que un buen resultado en una casilla puede compensar otro peor."
+        }
+      ]
+    },
+    {
+      "id": "combinations",
+      "title": {
+        "es": "Las demás categorías"
+      },
+      "paragraphs": [
+        {
+          "es": "El resto de la hoja permite puntuar estas combinaciones y resultados:"
+        },
+        {
+          "es": "- Trío: al menos tres dados iguales. Sumas los cinco dados, no solo el trío."
+        },
+        {
+          "es": "- Póquer: al menos cuatro iguales. Sumas los cinco dados."
+        },
+        {
+          "es": "- Full: tres iguales y una pareja de otro valor. Da 25 o la suma de los dados si es mayor; tres seises y dos cuatros valen 26."
+        },
+        {
+          "es": "- Escalera corta: cuatro valores consecutivos, como 2, 3, 4, 5. El quinto dado puede ser cualquiera. Da 30 puntos."
+        },
+        {
+          "es": "- Escalera larga: los cinco valores consecutivos del 1 al 5 o del 2 al 6. Da 40."
+        },
+        {
+          "es": "- Yahtzee: cinco dados iguales, por 50 puntos."
+        },
+        {
+          "es": "- Suerte: cualquier tirada, sumando los cinco dados."
+        },
+        {
+          "es": "- Una pareja: al menos dos iguales. Sumas los cinco dados, no solo la pareja."
+        },
+        {
+          "es": "- Doble pareja: dos dados de un valor y dos de otro, como dos treses y dos cincos. Sumas los cinco dados. Un full sirve, pero cuatro iguales no cuentan como dos parejas distintas."
+        },
+        {
+          "es": "- Miseria: resta de 36 la suma de los cinco dados. Una suma de 12 da 24 puntos."
+        },
+        {
+          "es": "Si la tirada no cumple lo que exige una categoría, puedes anotarla allí con cero. Así puedes sacrificar una casilla difícil."
+        }
+      ]
+    },
+    {
+      "id": "yahtzees",
+      "title": {
+        "es": "Más Yahtzees y regla del comodín"
+      },
+      "paragraphs": [
+        {
+          "es": "Después de anotar 50 en Yahtzee, cada nueva tirada de cinco iguales da 100 puntos extra. La tirada se anota en otra categoría porque Yahtzee ya está ocupado. Si anotaste cero en Yahtzee, no recibes esa bonificación."
+        },
+        {
+          "es": "Un Yahtzee posterior también activa la regla del comodín. Permite usar cinco iguales en otras combinaciones, pero exige elegir en este orden:"
+        },
+        {
+          "es": "- Primero, la casilla numérica correspondiente si está libre. Cinco cuatros deben ir a Cuatros, por 20 puntos."
+        },
+        {
+          "es": "- Si esa casilla está ocupada, elige cualquier categoría libre fuera de Unos a Seises. El comodín permite tratar la tirada como Full, Escalera corta o Escalera larga y obtener sus puntos. Las demás se calculan normalmente: Doble pareja, por ejemplo, sigue dando cero con cinco iguales."
+        },
+        {
+          "es": "- Solo cuando todas las demás categorías estén ocupadas puedes elegir otra casilla numérica libre. Como no coincide con los dados, anotas cero."
+        },
+        {
+          "es": "Tanto el comodín como los 100 puntos extra requieren tener ya 50 anotados en Yahtzee. Sacar cinco iguales por primera vez no activa esta regla."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "es": "Final de partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Se alternan los turnos hasta que todos han usado las 16 casillas. Se suman sus puntos y bonificaciones. Gana el total mayor; varios máximos iguales empatan. S compara las sumas actuales."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "es": "Opciones de la partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Puedes acortar la hoja o cambiar las bonificaciones antes de empezar. Por defecto están activadas todas las reglas anteriores:"
+        },
+        {
+          "es": "- Quitar Una pareja, Doble pareja y Miseria deja 13 turnos por jugador en vez de 16."
+        },
+        {
+          "es": "- Quitar la bonificación de las casillas numéricas elimina los 35 puntos extra. Los puntos de esas casillas siguen contando."
+        },
+        {
+          "es": "- Quitar la bonificación de Yahtzees posteriores elimina los 100 puntos extra por nuevas tiradas de cinco iguales."
+        },
+        {
+          "es": "- Quitar el comodín elimina tanto la obligación de usar la casilla numérica correspondiente como la posibilidad de tratar cinco iguales como full o escalera. Puedes elegir cualquier casilla libre y puntuarla normalmente."
+        },
+        {
+          "es": "El comodín y la bonificación por nuevos Yahtzees son independientes. Puedes desactivar el primero y conservar los 100 puntos extra."
+        },
+        {
+          "es": "Por defecto se juega una hoja. Puedes elegir varias: al completar una se empieza otra vacía, manteniendo los puntos anteriores. Gana la suma total más alta de todas las hojas."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Enter: lanzar los dados seleccionados, abrir las categorías si no hay selección o confirmar una categoría."
+        },
+        {
+          "es": "Flechas: elegir categoría."
+        },
+        {
+          "es": "Escape en categorías: volver a los dados."
+        },
+        {
+          "es": "1: seleccionar un uno para repetirlo."
+        },
+        {
+          "es": "Shift+1: retirar un uno de la selección."
+        },
+        {
+          "es": "2: seleccionar un dos para repetirlo."
+        },
+        {
+          "es": "Shift+2: retirar un dos de la selección."
+        },
+        {
+          "es": "3: seleccionar un tres para repetirlo."
+        },
+        {
+          "es": "Shift+3: retirar un tres de la selección."
+        },
+        {
+          "es": "4: seleccionar un cuatro para repetirlo."
+        },
+        {
+          "es": "Shift+4: retirar un cuatro de la selección."
+        },
+        {
+          "es": "5: seleccionar un cinco para repetirlo."
+        },
+        {
+          "es": "Shift+5: retirar un cinco de la selección."
+        },
+        {
+          "es": "6: seleccionar un seis para repetirlo."
+        },
+        {
+          "es": "Shift+6: retirar un seis de la selección."
+        },
+        {
+          "es": "Espacio: consultar los dados conservados y los elegidos para lanzar."
+        },
+        {
+          "es": "D: consultar la última tirada."
+        },
+        {
+          "es": "V: revisar tu hoja de puntuación."
+        },
+        {
+          "es": "Shift+V: revisar la hoja de otro jugador."
+        },
+        {
+          "es": "S: consultar los resultados."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "matches": "options",
+    "extra_categories": "options",
+    "upper_bonus": "options",
+    "yahtzee_bonus": "options",
+    "joker_rule": "options"
+  }
+}

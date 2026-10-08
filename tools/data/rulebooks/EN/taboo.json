@@ -1,0 +1,184 @@
+{
+  "source": "games/taboo_ui.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "en": "Getting ready"
+      },
+      "paragraphs": [
+        {
+          "en": "Taboo requires voice communication with the other players. Use an ELTEN conference, another voice app, or play together in person."
+        },
+        {
+          "en": "Four, six or eight players form two equal teams. One player describes a word while their teammates try to guess it. Correct guesses earn points. Teams alternate turns, with each teammate taking a turn as clue-giver."
+        },
+        {
+          "en": "The clue-giver sees a card containing the answer and five forbidden words. Opponents can see it too, so they can watch for rule breaks. Your teammates cannot see the card: they guess aloud from your clues. Make sure they cannot hear your computer reading the secret card."
+        }
+      ]
+    },
+    {
+      "id": "clues",
+      "title": {
+        "en": "Giving clues"
+      },
+      "paragraphs": [
+        {
+          "en": "Describe what the word means, what it is used for, or a situation associated with it, without saying the words on the card. Teammates may guess as often as they like; wrong guesses have no penalty."
+        },
+        {
+          "en": "These clues are not allowed:"
+        },
+        {
+          "en": "- The answer, any of the five forbidden words, their inflected forms or meaningful parts."
+        },
+        {
+          "en": "- Spelling the word, giving its initials or abbreviations, or translating it into another language."
+        },
+        {
+          "en": "- Giving a rhyme, using gestures or imitating a sound."
+        },
+        {
+          "en": "Judge the meaning of a clue, not coincidental letters shared by unrelated words. Before play, agree on what counts as a correct answer, such as whether you accept another grammatical form."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "A turn"
+      },
+      "paragraphs": [
+        {
+          "en": "When it is your turn to give clues and everyone is ready, press Enter. After three seconds, a signal starts your turn and the first card appears. You have 60 seconds to get as many answers as possible."
+        },
+        {
+          "en": "C reads the whole card. You can also browse it with the arrows: the answer comes first, followed by the five forbidden words. Give your clues aloud and let teammates call out guesses."
+        },
+        {
+          "en": "Each card can end in one of three ways:"
+        },
+        {
+          "en": "- Correct guess: the clue-giver presses Enter. Your team gets a point and the next card appears immediately."
+        },
+        {
+          "en": "- Skip: the clue-giver presses P for a difficult card. The other team gets a point and you receive a new card."
+        },
+        {
+          "en": "- Rule break: an opponent presses B. Their team gets a point and you move on to the next card."
+        },
+        {
+          "en": "The minute covers all cards in that turn. R reads the time left. A card still being described at timeout earns neither team a point."
+        }
+      ]
+    },
+    {
+      "id": "review",
+      "title": {
+        "en": "Reviewing a turn"
+      },
+      "paragraphs": [
+        {
+          "en": "After a turn, everyone can inspect the cards and their results. Discuss any disputed decision before continuing."
+        },
+        {
+          "en": "The host can correct a result by selecting the card with the arrows, pressing Enter, choosing the proper outcome and confirming again. A card may also be left unresolved, giving neither team a point."
+        },
+        {
+          "en": "Once you agree, the host uses Tab to reach Approve this turn and presses Enter. The points are added and the other team's turn begins. A confirmed turn cannot later be edited."
+        },
+        {
+          "en": "If a technical problem disrupted the whole turn, the host can choose Repeat this turn because of a technical problem. This button is available with Tab during preparation, clue-giving and review. After confirmation, the same person starts a fresh turn with new cards, and the abandoned turn's points are cancelled. Settle an individual disputed clue by editing that card's result instead."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "en": "Winning"
+      },
+      "paragraphs": [
+        {
+          "en": "Each person gives clues twice. After all those turns, the team with more points wins. If tied, each team gets one additional turn. Repeat these pairs of turns until the tie is broken."
+        },
+        {
+          "en": "S reads team scores. Cards do not repeat until the deck has been exhausted; they then return to play."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "en": "Card pack and game length"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose a card language and available pack before play. Two settings control game length:"
+        },
+        {
+          "en": "- Clue-giving time can make each turn shorter or longer than one minute."
+        },
+        {
+          "en": "- Turns per person changes how often everyone gives clues instead of the usual two. Both teams still receive equal numbers of turns."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: browse a card or turn review."
+        },
+        {
+          "en": "Enter: start a turn, mark a correct guess, or open a card's result for review."
+        },
+        {
+          "en": "P: skip a card as clue-giver."
+        },
+        {
+          "en": "B: report a rule break as an opponent."
+        },
+        {
+          "en": "C: read the whole card, if it is visible to you."
+        },
+        {
+          "en": "R: read time remaining."
+        },
+        {
+          "en": "S: read team scores."
+        },
+        {
+          "en": "T: read the clue-giver and their team."
+        },
+        {
+          "en": "1: read the answer."
+        },
+        {
+          "en": "2: read the first forbidden word."
+        },
+        {
+          "en": "3: read the second forbidden word."
+        },
+        {
+          "en": "4: read the third forbidden word."
+        },
+        {
+          "en": "5: read the fourth forbidden word."
+        },
+        {
+          "en": "6: read the fifth forbidden word."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "content_language_id": "options",
+    "content_set_id": "options",
+    "turn_seconds": "options",
+    "turns_each": "options"
+  }
+}

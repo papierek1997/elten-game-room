@@ -1,0 +1,242 @@
+{
+  "source": "games/makao.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Be the first to play every card in your hand. Makao is for two to eight players, who receive five cards each. The player after the dealer starts."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Playing and drawing"
+      },
+      "paragraphs": [
+        {
+          "en": "C reads the last played card. Match either its suit or its rank: on a 9 of spades, you may play any spade or another 9. Select a card with the arrows and press Enter. An ordinary card passes the turn on."
+        },
+        {
+          "en": "If you cannot or do not want to play, press Space to draw one card. If it fits, you can play it with Enter. To keep it instead, press Space again to end your turn. An unplayable draw ends the turn automatically."
+        },
+        {
+          "en": "After drawing, only the newly drawn card may be played, either on its own or as part of a packet described below."
+        },
+        {
+          "en": "When the draw pile empties, earlier played cards are shuffled back into use."
+        }
+      ]
+    },
+    {
+      "id": "packets",
+      "title": {
+        "en": "Playing several cards"
+      },
+      "paragraphs": [
+        {
+          "en": "You can play cards of the same rank together as a packet, such as three 9s. The first must fit the table card; the last sets what the next player must match."
+        },
+        {
+          "en": "Select the first card with Shift+Enter, then select the others in the order you want to play them. Press Enter after selecting the last to play the packet. P reads it; Shift+P clears the selection so you can start again."
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": {
+        "en": "Aces and penalties"
+      },
+      "paragraphs": [
+        {
+          "en": "Basic Makao gives special effects to aces, 2s, 3s and 4s:"
+        },
+        {
+          "en": "- An ace changes the suit. On an ordinary turn, it can be played on any card. After Enter, choose the suit with the arrows and confirm. Changing suit does not remove a drawing or missed-turn penalty."
+        },
+        {
+          "en": "- A 2 makes the next player draw two cards; a 3 makes them draw three. They may instead respond with a 2, a 3, or a packet of either rank. The penalty adds up and passes on: a 2 followed by a 3 leaves five cards for the next player."
+        },
+        {
+          "en": "- A 4 makes the next player miss one turn. Another 4 passes it on and adds a turn; two 4s mean two missed turns. Packets of 4s work the same way."
+        },
+        {
+          "en": "Press Space to accept a drawing penalty, taking all required cards and ending your turn. With no legal response, you accept it automatically. G reads the pending amount."
+        },
+        {
+          "en": "To accept a penalty from 4s, Tab to the button for accepting the missed turns and press Enter. Your current turn counts as the first missed turn. If a drawing penalty reaches you while you are stopped, you must draw without defending; drawing uses one of those missed turns."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "Calling Makao and winning"
+      },
+      "paragraphs": [
+        {
+          "en": "With one card left, press U to call “Makao”. If an opponent forgets, catch them with Shift+U before their next turn begins. They draw one penalty card."
+        },
+        {
+          "en": "Playing your final card or packet wins immediately."
+        }
+      ]
+    },
+    {
+      "id": "profiles",
+      "title": {
+        "en": "Choosing a ruleset"
+      },
+      "paragraphs": [
+        {
+          "en": "The rules above describe Basic Makao. Other table profiles add these features:"
+        },
+        {
+          "en": "- Extended Polish Makao adds jack requests, universal queens and attacking kings."
+        },
+        {
+          "en": "- The joker variant adds two jokers and attacking kings. Jacks and queens have no special effect there, and everyone starts with five cards."
+        },
+        {
+          "en": "- Custom rules let you choose additions individually and change the starting hand or penalty for failing to call Makao."
+        },
+        {
+          "en": "The missed-Makao penalty can be one to ten cards. Starting hands may be three to fifteen if there are enough cards for everyone; the preset joker variant keeps five."
+        }
+      ]
+    },
+    {
+      "id": "extra_cards",
+      "title": {
+        "en": "Jacks, queens, kings and jokers"
+      },
+      "paragraphs": [
+        {
+          "en": "These cards add further possibilities when enabled:"
+        },
+        {
+          "en": "- A requesting jack asks the next player for a rank from 5 to 10. After playing it, choose the rank with the arrows and Enter. An ace can bypass the request if suit-changing aces are enabled."
+        },
+        {
+          "en": "- A universal queen can also bypass a request. On an ordinary turn it fits any card, but cannot answer a drawing or missed-turn penalty."
+        },
+        {
+          "en": "- The attacking king of spades makes the next player draw five. A king of hearts can answer it, adding five and passing the penalty on. This attack does not combine with 2s or 3s."
+        },
+        {
+          "en": "- A joker represents a card you choose. Press Enter on it, choose the represented card and confirm. Its special effect applies only if that effect is enabled. A joker may bypass a jack request; in a packet it must have the same rank as the other cards. It can answer a penalty by representing a legal response, such as a 2 against a drawing penalty."
+        }
+      ]
+    },
+    {
+      "id": "other_rules",
+      "title": {
+        "en": "Other custom rules"
+      },
+      "paragraphs": [
+        {
+          "en": "Custom settings can also change these behaviours:"
+        },
+        {
+          "en": "- Forbid mixing 2 and 3 penalties, so a 2 must be answered by a 2 and a 3 by a 3."
+        },
+        {
+          "en": "- Disable stacking 4s, making the penalty one missed turn without passing it on with another 4."
+        },
+        {
+          "en": "- Disable suit-changing aces, making them ordinary cards."
+        },
+        {
+          "en": "- Forbid drawing when you can play, or disable playing a card immediately after drawing it."
+        },
+        {
+          "en": "- Set a turn timer. Timeout accepts a pending stop or drawing penalty; with neither pending, you draw one card. The turn then passes on."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: browse cards."
+        },
+        {
+          "en": "Enter: play a card or packet, then choose a suit, requested rank or joker identity when needed."
+        },
+        {
+          "en": "Shift+Enter: add or remove a card from the packet; selection order is play order."
+        },
+        {
+          "en": "P: read the prepared packet."
+        },
+        {
+          "en": "Shift+P: clear the packet."
+        },
+        {
+          "en": "Space: draw, or end the turn after drawing without taking another card."
+        },
+        {
+          "en": "U: call Makao, including outside your turn."
+        },
+        {
+          "en": "Shift+U: catch someone who did not call Makao."
+        },
+        {
+          "en": "C: read the table card and required suit or rank."
+        },
+        {
+          "en": "G: read the pending penalty."
+        },
+        {
+          "en": "D: read your hand."
+        },
+        {
+          "en": "E: read hand sizes."
+        },
+        {
+          "en": "Z: find the next legal card; automatic play is possible only without a packet or extra choice."
+        },
+        {
+          "en": "Shift+Z: find the previous legal card; automatic play is possible only without a packet or extra choice."
+        },
+        {
+          "en": "S: read scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "Shift+C: sort by suit; repeat to reverse."
+        },
+        {
+          "en": "Shift+H: sort by rank; repeat to reverse."
+        },
+        {
+          "en": "Shift+M: restore received order."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "allow_playable_draw": "other_rules",
+    "profile": "profiles",
+    "jokers": "extra_cards",
+    "hand_size": "profiles",
+    "mixed_draw_cards": "other_rules",
+    "stack_fours": "other_rules",
+    "ace_changes_suit": "other_rules",
+    "jack_requests_rank": "extra_cards",
+    "queen_universal": "extra_cards",
+    "attacking_kings": "extra_cards",
+    "draw_responses": "other_rules",
+    "makao_penalty": "profiles",
+    "thinking_time": "other_rules"
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "source": "games/mancala.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Mancalu hrají dva hráči. Přesouváš kamínky mezi jamkami a snažíš se jich co nejvíc získat do své zásobárny. Každý získaný kamínek znamená jeden bod."
+        },
+        {
+          "cs": "Nejdřív se seznámíš s variantou Oware, která je nastavená jako výchozí. Začíná první hráč a potom se střídáte."
+        }
+      ]
+    },
+    {
+      "id": "board",
+      "title": {
+        "cs": "Deska a kamínky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Deska má dvě řady po šesti jamkách. Tvoje řada je dole, od A1 do F1, soupeřova nahoře, od A2 do F2. Jamky stejného sloupce leží proti sobě."
+        },
+        {
+          "cs": "Na začátku jsou v každé jamce čtyři kamínky, celkem 48. Obě zásobárny jsou prázdné. Vlevo a vpravo procházíš jamky, nahoru a dolů přepínáš řady."
+        }
+      ]
+    },
+    {
+      "id": "sowing",
+      "title": {
+        "cs": "Rozsévání kamínků"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve svém tahu vyber šipkami neprázdnou jamku ve své řadě a stiskni Enter. Všechny její kamínky se postupně rozdají po jednom do dalších jamek. Tomu se říká rozsévání."
+        },
+        {
+          "cs": "Směr vede tvou řadou od A1 k F1, pak soupeřovou od F2 k A2 a zpět k tobě. V Oware se zásobárny přeskakují. Pokud kamínky stačí na celý okruh, přeskočí se také výchozí jamka."
+        }
+      ]
+    },
+    {
+      "id": "capture",
+      "title": {
+        "cs": "Získávání kamínků v Oware"
+      },
+      "paragraphs": [
+        {
+          "cs": "Dopadne-li poslední kamínek do soupeřovy jamky a ta teď obsahuje dva nebo tři, získáš je do své zásobárny."
+        },
+        {
+          "cs": "Potom se postupuje zpátky proti směru rozsévání. Má-li předchozí soupeřova jamka také dva či tři kamínky, získáš i je. Takto sbíráš, dokud nenarazíš na jiný počet nebo na konec soupeřovy řady."
+        },
+        {
+          "cs": "Celou soupeřovu řadu však vybrat nesmíš. Pokud by ji tento zisk úplně vyprázdnil, nevezmeš v daném tahu vůbec nic a rozeseté kamínky zůstanou na místě."
+        }
+      ]
+    },
+    {
+      "id": "feeding",
+      "title": {
+        "cs": "Prázdná soupeřova řada"
+      },
+      "paragraphs": [
+        {
+          "cs": "Začínáš-li tah proti soupeři bez kamínků, musíš mu alespoň jeden dodat. Vyber proto jamku s dostatečným počtem, aby rozsévání došlo až k němu."
+        },
+        {
+          "cs": "Nemáš-li žádný takový tah, hra končí. Končí i tehdy, když hráč na tahu nemá ve svých jamkách žádné kamínky."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Výsledek Oware"
+      },
+      "paragraphs": [
+        {
+          "cs": "Více než polovina všech kamínků v zásobárně znamená okamžité vítězství. Při běžných čtyřech v každé jamce jich tedy stačí 25."
+        },
+        {
+          "cs": "Při konci z nedostatku tahů si každý přidá do zásobárny kamínky ze své řady. Stejně se hra uzavře po 120 tazích za sebou bez získaného kamínku."
+        },
+        {
+          "cs": "Pak rozhodne větší počet získaných kamínků, při shodě je remíza. Průběžná skóre přečte S."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Volba varianty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze vybrat ze tří variant:"
+        },
+        {
+          "cs": "- Oware je právě popsaná hra: získáváš sousedící soupeřovy jamky se dvěma či třemi kamínky."
+        },
+        {
+          "cs": "- Ayoayo pokračuje v rozsévání z jamky, kde předchozí rozsévání skončilo. Podrobnosti najdeš v další kapitole."
+        },
+        {
+          "cs": "- Kalah přidává kamínky do vlastní zásobárny už při rozsévání a umožňuje další tahy."
+        }
+      ]
+    },
+    {
+      "id": "ayoayo",
+      "title": {
+        "cs": "Ayoayo"
+      },
+      "paragraphs": [
+        {
+          "cs": "Vyber vlastní jamku šipkami a potvrď Enterem jako v Oware. Přeskakují se obě zásobárny i jamka, z níž se právě rozsévá."
+        },
+        {
+          "cs": "Pokud poslední kamínek dopadne do jamky, která už byla obsazená, vezme se celý její obsah a rozsévání pokračuje. Platí to i na soupeřově straně. Tah se zastaví teprve posledním kamínkem v původně prázdné jamce."
+        },
+        {
+          "cs": "Jestliže tím skončíš ve své původně prázdné jamce a naproti jsou soupeřovy kamínky, získáš je i s posledním vlastním kamínkem do zásobárny. Prázdná protější jamka ani konec na soupeřově straně nic nepřinesou."
+        },
+        {
+          "cs": "Prázdnou soupeřovu řadu musíš stále zásobit, pokud to jde. Když na tahu nemůžeš provést žádný pohyb, hra končí a soupeř získá všechny kamínky, které zbyly na desce. Vítězí vyšší počet, stejný znamená remízu. Na rozdíl od Oware samotné získání nadpoloviční většiny hru neukončuje."
+        }
+      ]
+    },
+    {
+      "id": "kalah",
+      "title": {
+        "cs": "Kalah"
+      },
+      "paragraphs": [
+        {
+          "cs": "Jamku volíš a potvrzuješ stejně jako dřív. Kamínky ale procházejí i tvou zásobárnou za koncem vlastní řady a každý v ní zůstane jako bod. Soupeřova zásobárna se přeskočí. Při celém okruhu se naopak nepřeskakuje výchozí jamka."
+        },
+        {
+          "cs": "Poslední kamínek ve vlastní zásobárně přinese další tah. Šipkami zvol další svou jamku a potvrď Enterem."
+        },
+        {
+          "cs": "Když poslední kamínek padne do původně prázdné vlastní jamky a naproti leží soupeřovy kamínky, získáš je i s ním do zásobárny. Toto braní lze v nastavení Kalah vypnout; ostatní způsoby získávání bodů zůstanou."
+        },
+        {
+          "cs": "Hra končí, je-li po tahu jedna řada prázdná, i kdyby právě vznikl nárok na další tah. Majitel neprázdné řady získá její zbytek do zásobárny. Vyšší počet vítězí, stejný znamená remízu."
+        }
+      ]
+    },
+    {
+      "id": "stones",
+      "title": {
+        "cs": "Počet kamínků"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze místo čtyř zvolit dva až osm kamínků v každé jamce. Platí to pro všechny varianty. Okamžité vítězství v Oware dál vyžaduje více než polovinu celkového počtu."
+        }
+      ]
+    },
+    {
+      "id": "computer",
+      "title": {
+        "cs": "Síla počítače"
+      },
+      "paragraphs": [
+        {
+          "cs": "Pokud hraješ s počítačem, před začátkem zvolíš jeho sílu:"
+        },
+        {
+          "cs": "- Klidný je nejsnazší soupeř."
+        },
+        {
+          "cs": "- Vyrovnaný je běžné nastavení."
+        },
+        {
+          "cs": "- Bystrý je nejsilnější soupeř."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipka vlevo: přejít do levé jamky."
+        },
+        {
+          "cs": "Šipka vpravo: přejít do pravé jamky."
+        },
+        {
+          "cs": "Šipka nahoru: přejít do horní řady."
+        },
+        {
+          "cs": "Šipka dolů: přejít do dolní řady."
+        },
+        {
+          "cs": "Enter: rozesít kamínky z vybrané vlastní jamky."
+        },
+        {
+          "cs": "S: přečíst zásobárny, od vyššího skóre."
+        },
+        {
+          "cs": "P: přečíst vlastní jamky ve směru rozsévání."
+        },
+        {
+          "cs": "Shift+P: přečíst soupeřovy jamky v jeho směru rozsévání."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "stones": "stones",
+    "skill": "computer",
+    "capture": "kalah"
+  }
+}

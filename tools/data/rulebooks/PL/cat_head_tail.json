@@ -1,0 +1,127 @@
+{
+  "source": "games/cat_head_tail.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Cat, head, tail rzucasz ośmiościenną kością i decydujesz, kiedy zapisać zdobyte punkty. Możesz ryzykować kolejne rzuty albo przenieść wynik tury do banku. Jedynka kończy turę i kasuje to, czego jeszcze nie zapisałeś."
+        },
+        {
+          "pl": "Gra jest dla dwóch do ośmiu osób. Starasz się zgromadzić co najmniej 100 punktów w banku i mieć ich więcej niż pozostali."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "pl": "Rzucanie i zapisywanie punktów"
+      },
+      "paragraphs": [
+        {
+          "pl": "W swojej turze wybierz strzałkami „Rzuć kością” i naciśnij Enter. Wyniki od 3 do 6 zwiększają punkty bieżącej tury o wyrzuconą liczbę. Po rzucie możesz zagrać ponownie lub wybrać zapis punktów i potwierdzić go Enterem. Zapis dodaje wynik tury do banku, po czym kolej przechodzi do następnej osoby."
+        },
+        {
+          "pl": "Załóżmy, że wypada 4, a potem 5. Masz teraz 9 punktów do zapisania. Jeżeli się zatrzymasz, trafią do banku. Jeśli zaryzykujesz i wypadnie 1, stracisz te 9, ale zachowasz punkty zapisane w poprzednich turach."
+        },
+        {
+          "pl": "Klawiszem C sprawdzisz punkty zdobyte w tej turze, a klawiszem S — zapisane wyniki graczy."
+        }
+      ]
+    },
+    {
+      "id": "dice",
+      "title": {
+        "pl": "Pozostałe wyniki kości"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jedynka, dwójka, siódemka i ósemka działają inaczej:"
+        },
+        {
+          "pl": "- Jedynka zeruje punkty bieżącej tury i od razu ją kończy. Działa tak również wtedy, gdy wynik tury jest ujemny."
+        },
+        {
+          "pl": "- Dwójka dopisuje 2 punkty bezpośrednio do banku. Nie kończy tury, a jej punktów nie odbierze późniejsza jedynka."
+        },
+        {
+          "pl": "- Siódemka to głowa kota. Nie zmienia żadnego wyniku, więc nadal decydujesz, czy rzucać, czy zapisywać."
+        },
+        {
+          "pl": "- Ósemka to ogon kota. Losowo dodaje 8 punktów do wyniku tury albo odejmuje 8. Po niej także możesz grać dalej."
+        },
+        {
+          "pl": "Przez ogon kota wynik tury może spaść poniżej zera. Jeżeli zapiszesz taki wynik, zmniejszysz liczbę punktów w banku. Możesz próbować odrobić stratę następnymi rzutami; jedynka usunie cały ujemny wynik tej tury."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "pl": "Koniec gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gdy na koniec swojej tury ktoś ma w banku co najmniej 100 punktów, dokańczacie bieżącą kolejkę. Grają jeszcze osoby, które nie miały w niej swojej tury."
+        },
+        {
+          "pl": "Jeżeli spośród czterech graczy druga osoba osiągnie cel, zagrają jeszcze trzecia i czwarta. Następnie wygrywa osoba z najwyższym wynikiem w banku. Przy równych najwyższych wynikach jest remis."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "pl": "Inny cel punktowy"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu przed grą można zmienić cel ze 100 na inną dodatnią liczbę punktów. Nadal kończycie bieżącą kolejkę tur przed porównaniem wyników."
+        }
+      ]
+    },
+    {
+      "id": "credits",
+      "title": {
+        "pl": "Pochodzenie gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Cat, head, tail stworzyło TD Programs. Gra opiera się na PIG z RS Games, ale używa ośmiościennej kości i opisanych tutaj efektów."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: wybierz rzut albo zapis punktów."
+        },
+        {
+          "pl": "Enter: wykonaj wybraną czynność."
+        },
+        {
+          "pl": "C: odczytaj punkty bieżącej tury."
+        },
+        {
+          "pl": "S: odczytaj wyniki w bankach."
+        },
+        {
+          "pl": "D: odczytaj ostatni rzut."
+        },
+        {
+          "pl": "T: sprawdź, czyja jest tura."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "options"
+  }
+}

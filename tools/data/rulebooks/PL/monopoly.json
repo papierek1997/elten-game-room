@@ -1,0 +1,482 @@
+{
+  "source": "games/monopoly.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Monopoly kupujesz nieruchomości i pobierasz czynsz od graczy, którzy na nich staną. Musisz jednocześnie zachować pieniądze na własne opłaty. Wygrywa ostatnia osoba, która nie zbankrutuje."
+        },
+        {
+          "pl": "Gra jest dla dwóch do ośmiu osób. Przy zwykłych ustawieniach używa się planszy Atlantic City z czterdziestoma polami. Wszyscy zaczynają na Starcie i mają po 1500 dolarów."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "pl": "Rzut kośćmi i ruch"
+      },
+      "paragraphs": [
+        {
+          "pl": "Na początku swojej kolejki wybierz „Rzuć kośćmi” i naciśnij Enter. Gra rzuci dwiema kośćmi i przesunie twój pionek o sumę oczek. Dalszy przebieg tury zależy od pola, na którym staniesz: możesz na przykład kupić nieruchomość albo zapłacić czynsz jej właścicielowi."
+        },
+        {
+          "pl": "Dostępne czynności wybierasz strzałkami i zatwierdzasz Enterem. Gdy zakończysz wszystkie czynności na danym polu, turę rozpoczyna następny gracz."
+        },
+        {
+          "pl": "Dwie jednakowe liczby na kościach to dublet. Po wykonaniu ruchu i rozliczeniu pola dostajesz za niego kolejny rzut. Trzeci dublet z rzędu wysyła Cię jednak do więzienia, bez wykonywania trzeciego ruchu. Trafienie do więzienia lub powstanie długu kończy dodatkowe rzuty."
+        },
+        {
+          "pl": "Klawisz I odczytuje, gdzie stoją gracze. Shift+D pozwala przejrzeć planszę, a C sprawdzić własną gotówkę."
+        }
+      ]
+    },
+    {
+      "id": "buying",
+      "title": {
+        "pl": "Kupowanie nieruchomości"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli staniesz na nieruchomości bez właściciela, możesz kupić ją za podaną cenę. Wybierz strzałkami „Kup” i naciśnij Enter. Jeśli nie chcesz kupować, wybierz „Nie kupuj”. Gdy nie masz dość pieniędzy, zakup zostaje pominięty. Niekupiona nieruchomość pozostaje wolna."
+        },
+        {
+          "pl": "Nieruchomości dzielą się na trzy rodzaje:"
+        },
+        {
+          "pl": "- Ulice należą do grup oznaczonych kolorami. Zebranie całej grupy pozwala pobierać większy czynsz i budować na niej domy."
+        },
+        {
+          "pl": "- Dworce przynoszą tym wyższy czynsz, im więcej dworców ma ten sam właściciel."
+        },
+        {
+          "pl": "- Zakłady, takie jak elektrownia i wodociągi, naliczają czynsz według wyniku rzutu kośćmi. Mnożnik zależy od tego, ile zakładów ma właściciel."
+        },
+        {
+          "pl": "Klawisz F odczytuje kartę nieruchomości, na której stoisz. Znajdziesz tam cenę, czynsz i koszty związane z zabudową lub zastawem. Swoje nieruchomości przeglądasz klawiszem V, a cudze przez Shift+V. Na liście wybierz pozycję strzałkami i naciśnij Enter, by poznać szczegóły."
+        }
+      ]
+    },
+    {
+      "id": "rent",
+      "title": {
+        "pl": "Płacenie czynszu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po wejściu na cudzą nieruchomość płacisz jej właścicielowi czynsz. Przy zwykłych ustawieniach gra pobiera go sama. Nie płacisz za własne pole ani za nieruchomość, która jest zastawiona."
+        },
+        {
+          "pl": "Czynsz za ulicę wynika z jej karty i liczby budynków. Jeśli właściciel zebrał cały kolor, ale na danej ulicy nie ma jeszcze budynków, podstawowy czynsz za tę ulicę jest podwojony. Domy i hotele pozwalają pobierać kolejne, wyższe stawki."
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "title": {
+        "pl": "Start, podatki i karty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Za przejście przez Start otrzymujesz 200 dolarów. Jeśli skończysz ruch dokładnie na Starcie, dostajesz 400 dolarów."
+        },
+        {
+          "pl": "Na planszy spotkasz także pola, których nie kupujesz:"
+        },
+        {
+          "pl": "- Podatek dochodowy kosztuje 200 dolarów, a podatek od luksusu 100."
+        },
+        {
+          "pl": "- Bezpłatny parking wypłaca całą zgromadzoną pulę. Trafiają do niej podatki i opłaty dla banku z kart lub za wyjście z więzienia. Po wypłacie pula zaczyna zbierać się od zera."
+        },
+        {
+          "pl": "- Szansa i Kasa Społeczna uruchamiają kartę zdarzenia. Gra odczytuje jej działanie i od razu je wykonuje."
+        },
+        {
+          "pl": "Działanie kart zależy od tego, która zostanie dobrana:"
+        },
+        {
+          "pl": "- Karta może dać Ci pieniądze z banku albo nakazać zapłatę."
+        },
+        {
+          "pl": "- Niektóre karty każą wpłacać pieniądze innym graczom lub odebrać należność od każdego z nich."
+        },
+        {
+          "pl": "- Karty remontów naliczają opłatę zależną od posiadanych domów i hoteli."
+        },
+        {
+          "pl": "- Karta może przenieść twój pionek na inne pole. Obowiązują tam zwykłe zasady zakupu nieruchomości, płacenia czynszu czy podatku, chyba że karta mówi inaczej."
+        },
+        {
+          "pl": "- Możesz trafić na kartę wysyłającą do więzienia."
+        },
+        {
+          "pl": "- Kartę wyjścia z więzienia zachowujesz do późniejszego użycia."
+        },
+        {
+          "pl": "Niektóre karty przenoszące pionek zmieniają sposób naliczania czynszu:"
+        },
+        {
+          "pl": "- Karta prowadząca do najbliższego dworca podwaja należny za niego czynsz."
+        },
+        {
+          "pl": "- Przy przeniesieniu do najbliższego zakładu należny czynsz wynosi dziesięciokrotność nowego rzutu dwiema kośćmi."
+        },
+        {
+          "pl": "Zakupy nieruchomości i budynków, zastawy oraz płatności między graczami nie zasilają puli bezpłatnego parkingu."
+        }
+      ]
+    },
+    {
+      "id": "building",
+      "title": {
+        "pl": "Budowanie domów i hoteli"
+      },
+      "paragraphs": [
+        {
+          "pl": "Nieruchomościami zarządzasz w swojej turze przed rzutem. Budować można tylko na ulicach, po spełnieniu następujących warunków:"
+        },
+        {
+          "pl": "- Musisz mieć wszystkie ulice należące do danego koloru."
+        },
+        {
+          "pl": "- Żadna ulica w tej grupie nie może być zastawiona."
+        },
+        {
+          "pl": "- Musisz mieć pieniądze na opłacenie budowy."
+        },
+        {
+          "pl": "Naciśnij H, żeby otworzyć listę możliwych budów. Wybierz ulicę strzałkami i zatwierdź Enterem. Każde zatwierdzenie dodaje jeden budynek za cenę podaną na liście."
+        },
+        {
+          "pl": "Domy buduje się równomiernie w całej grupie. Najpierw postaw po jednym na każdej ulicy, zanim zaczniesz dodawać drugie. W ten sam sposób dochodzisz do czterech domów na ulicy. Następna budowa zamienia te cztery domy w hotel."
+        },
+        {
+          "pl": "Bank ma trzydzieści dwa domy i dwanaście hoteli. Gdy zabraknie potrzebnych budynków, trzeba poczekać, aż wrócą do banku. Przy stawianiu hotelu cztery zastąpione domy wracają do zapasu."
+        }
+      ]
+    },
+    {
+      "id": "selling",
+      "title": {
+        "pl": "Sprzedawanie budynków"
+      },
+      "paragraphs": [
+        {
+          "pl": "Aby odzyskać część pieniędzy, naciśnij Shift+H. Na liście wybierz strzałkami budynek do sprzedania i zatwierdź Enterem. Otrzymasz połowę jego ceny budowy."
+        },
+        {
+          "pl": "Sprzedaż również musi być równomierna: zaczynasz od ulic, które mają najwięcej budynków w grupie. Sprzedany hotel zwykle zamienia się z powrotem w cztery domy."
+        },
+        {
+          "pl": "Jeśli bank nie ma czterech domów potrzebnych do zastąpienia hotelu, możesz wybrać z listy sprzedaż wszystkich budynków w tym kolorze. Otrzymasz połowę kosztów ich budowy."
+        }
+      ]
+    },
+    {
+      "id": "mortgages",
+      "title": {
+        "pl": "Zastawianie nieruchomości"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zastaw pozwala dostać pieniądze z banku bez oddawania własności. Naciśnij K, wybierz nieruchomość strzałkami i zatwierdź Enterem. Dostaniesz kwotę zastawu z jej karty, ale przestaniesz pobierać z niej czynsz."
+        },
+        {
+          "pl": "Zanim zastawisz ulicę, musisz sprzedać wszystkie budynki w całej jej grupie kolorystycznej."
+        },
+        {
+          "pl": "Aby wykupić zastaw, naciśnij Shift+K, wybierz nieruchomość i zatwierdź Enterem. Płacisz kwotę zastawu powiększoną o dziesięć procent, z zaokrągleniem w górę do pełnej jednostki. Na przykład zastaw za 100 wykupujesz za 110. Potem nieruchomość znów przynosi czynsz."
+        }
+      ]
+    },
+    {
+      "id": "trading",
+      "title": {
+        "pl": "Wymiana z innym graczem"
+      },
+      "paragraphs": [
+        {
+          "pl": "Nieruchomości możesz też zdobywać przez wymianę. We własnej turze przed rzutem naciśnij E, wybierz drugiego gracza strzałkami i zatwierdź Enterem."
+        },
+        {
+          "pl": "W propozycji wpisujesz, ile pieniędzy dajesz i ile chcesz otrzymać. Tabem przechodzisz do list nieruchomości obu stron. Na każdej liście wybierasz pozycje strzałkami, a Spacją zaznaczasz te, które mają wejść do wymiany. Możesz połączyć kilka nieruchomości z dopłatą."
+        },
+        {
+          "pl": "Gdy oferta jest gotowa, przejdź Tabem do „Wyślij propozycję” i naciśnij Enter. Druga osoba przyjmuje ją klawiszem A albo odrzuca klawiszem R. Dopiero przyjęcie oferty przenosi pieniądze i nieruchomości."
+        },
+        {
+          "pl": "Wymiana ma następujące ograniczenia:"
+        },
+        {
+          "pl": "- Nie można przekazywać zastawionych nieruchomości."
+        },
+        {
+          "pl": "- Nie można przekazywać ulic z grupy, na której stoją jeszcze jakiekolwiek budynki. Najpierw trzeba sprzedać zabudowę całego koloru."
+        },
+        {
+          "pl": "- Obie strony muszą móc opłacić swoją część. Gra uwzględnia także pieniądze otrzymywane w tej samej wymianie."
+        }
+      ]
+    },
+    {
+      "id": "jail",
+      "title": {
+        "pl": "Więzienie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zatrzymanie się na polu więzienia to tylko odwiedziny. Odbywasz karę dopiero wtedy, gdy skieruje cię tam pole planszy lub karta albo wyrzucisz trzy dublety z rzędu. Wysłanie do więzienia kończy turę i nie daje wypłaty za Start."
+        },
+        {
+          "pl": "Na początku tury w więzieniu możesz wybrać jeden z trzech sposobów wyjścia:"
+        },
+        {
+          "pl": "- Naciśnij P, aby zapłacić 50 dolarów. Potem rzucasz kośćmi i ruszasz normalnie."
+        },
+        {
+          "pl": "- Jeśli masz kartę wyjścia z więzienia, naciśnij J, aby ją wykorzystać. Potem również wykonujesz zwykły rzut."
+        },
+        {
+          "pl": "- Możesz od razu rzucić Enterem i spróbować uzyskać dublet. Masz na to trzy kolejne tury."
+        },
+        {
+          "pl": "Dublet wyrzucony w więzieniu uwalnia Cię i pozwala przesunąć pionek o jego sumę, ale nie daje dodatkowego rzutu. Jeśli trzecia próba też nie przyniesie dubletu, płacisz 50 dolarów i wykonujesz ruch zgodnie z tym ostatnim rzutem."
+        },
+        {
+          "pl": "Podczas pobytu w więzieniu nadal pobierasz czynsz i możesz zarządzać swoim majątkiem przed rzutem."
+        }
+      ]
+    },
+    {
+      "id": "debt",
+      "title": {
+        "pl": "Dług i bankructwo"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli należność jest większa niż Twoja gotówka, powstaje dług. Gdy zdarzy się to podczas Twojego ruchu, Twoja tura się kończy. Dług spłacasz we własnej następnej turze, zanim znów rzucisz kośćmi."
+        },
+        {
+          "pl": "Żeby spłacić dług, możesz sprzedawać budynki, zastawiać nieruchomości lub zdobyć pieniądze przez wymianę. Gdy spłacisz całą należność, możesz znów rzucić kośćmi."
+        },
+        {
+          "pl": "Możesz też zrezygnować z dalszej gry, naciskając B, żeby ogłosić bankructwo. Bankrutujesz automatycznie, gdy w swojej turze masz dług, a nie możesz już sprzedać żadnego budynku ani zastawić nieruchomości."
+        },
+        {
+          "pl": "Bankrut odpada. Jeśli jest winien pieniądze innemu graczowi, ten otrzymuje jego pozostałe nieruchomości i karty wyjścia z więzienia, a budynki są rozliczane za połowę ceny. Przy długu wobec banku nieruchomości wracają do banku."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Koniec gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Wygrywa ostatni gracz, który nie zbankrutował. Klawisz S pozwala podczas gry porównać finanse graczy."
+        }
+      ]
+    },
+    {
+      "id": "boards",
+      "title": {
+        "pl": "Inne plansze"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed grą można wybrać inną planszę niż Atlantic City. Plansze różnią się nazwami i liczbą pól, walutą, grupami nieruchomości, początkową gotówką oraz wypłatą za Start."
+        },
+        {
+          "pl": "Na większych planszach jest też więcej budynków w banku. Ceny, czynsze i koszty zabudowy odczytuj z kart nieruchomości, tak samo jak w zwykłej grze."
+        },
+        {
+          "pl": "Niektóre opłaty są powiązane z wypłatą za Start:"
+        },
+        {
+          "pl": "- Podatek dochodowy kosztuje jedną taką wypłatę."
+        },
+        {
+          "pl": "- Podatek od luksusu kosztuje połowę wypłaty."
+        },
+        {
+          "pl": "- Wyjście z więzienia kosztuje jedną czwartą wypłaty."
+        },
+        {
+          "pl": "Zasady zbierania kolorów, równomiernej zabudowy, zastawów i bankructwa pozostają takie same."
+        }
+      ]
+    },
+    {
+      "id": "auctions",
+      "title": {
+        "pl": "Aukcje"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zwykle nieruchomość, której gracz nie kupił, pozostaje wolna. Przed grą można włączyć aukcje takich nieruchomości. W licytacji uczestniczą kolejno wszyscy pozostali w grze, także osoba, która wcześniej odmówiła zakupu."
+        },
+        {
+          "pl": "Gdy nadejdzie Twoja kolej, możesz przebić ofertę albo spasować. Klawisz G składa podpowiadaną wyższą ofertę. Jeśli chcesz zaproponować własną kwotę, naciśnij B, wpisz ją i zatwierdź Enterem. Jest to cała kwota, którą oferujesz, nie sama dopłata do poprzedniej oferty."
+        },
+        {
+          "pl": "Twoja oferta musi być wyższa od obecnej i mieścić się w dostępnej gotówce. Aby wycofać się z tej aukcji, wybierz strzałkami „Wycofaj się z aukcji” i zatwierdź Enterem. Po spasowaniu nie wracasz do tej samej licytacji."
+        },
+        {
+          "pl": "Gdy nikt już nie przebije najwyższej oferty, jej autor kupuje nieruchomość za zaoferowaną cenę. Jeśli wszyscy spasują bez żadnej oferty, nieruchomość pozostaje w banku."
+        },
+        {
+          "pl": "Dla aukcji można ustawić liczbę sekund na każdą decyzję. Brak odpowiedzi w tym czasie oznacza pas. Każdy następny licytujący dostaje własny pełny czas; wartość zero oznacza brak ograniczenia."
+        }
+      ]
+    },
+    {
+      "id": "purchase_variant",
+      "title": {
+        "pl": "Zakupy dopiero po okrążeniu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Można zabronić kupowania w pierwszym okrążeniu planszy. Wtedy dopiero po swoim pierwszym przejściu przez Start możesz kupować wolne nieruchomości, na których staniesz."
+        }
+      ]
+    },
+    {
+      "id": "rent_variants",
+      "title": {
+        "pl": "Zmiany pobierania czynszu"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach przed grą można zmienić dwie zasady związane z czynszem:"
+        },
+        {
+          "pl": "- Po wyłączeniu automatycznych płatności o czynsz musi upomnieć się właściciel nieruchomości. Naciska Spację, by go pobrać, albo wybiera strzałkami rezygnację z czynszu i zatwierdza Enterem. Gra czeka na tę decyzję."
+        },
+        {
+          "pl": "- Można wyłączyć pobieranie czynszu przez osoby siedzące w więzieniu. Wtedy inni gracze odwiedzają ich nieruchomości bez tej opłaty aż do uwolnienia właściciela."
+        }
+      ]
+    },
+    {
+      "id": "event_variants",
+      "title": {
+        "pl": "Zmiany wypłat i kart"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed grą można też zmienić następujące zasady:"
+        },
+        {
+          "pl": "- Wyłączenie puli bezpłatnego parkingu sprawia, że to pole nic nie wypłaca, a opłaty przeznaczone dla banku nie są odkładane do puli."
+        },
+        {
+          "pl": "- Po wyłączeniu podwójnej wypłaty dokładne zatrzymanie na Starcie daje tyle samo pieniędzy, co zwykłe przejście przez niego."
+        },
+        {
+          "pl": "- Szczęśliwa podwójna jedynka daje dodatkową premię za wyrzucenie dwóch jedynek. Wynosi ona jedną czwartą wypłaty za Start, czyli 50 dolarów na planszy Atlantic City. Ta zasada jest zwykle wyłączona."
+        },
+        {
+          "pl": "- Można wyłączyć dodatkowe karty Szansy i Kasy Społecznej. Z obu talii znikają wtedy dodatkowe zdarzenia pieniężne Power Games; pozostałe karty nadal działają."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: wybierz czynność lub nieruchomość."
+        },
+        {
+          "pl": "Enter: wykonaj wybraną czynność."
+        },
+        {
+          "pl": "Escape: zamknij bieżącą listę."
+        },
+        {
+          "pl": "I: odczytaj pozycje graczy i numery pól."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest kolej i na jaką decyzję czeka gra."
+        },
+        {
+          "pl": "C: odczytaj swoją gotówkę."
+        },
+        {
+          "pl": "S: odczytaj finanse graczy."
+        },
+        {
+          "pl": "F: odczytaj kartę nieruchomości, na której stoisz."
+        },
+        {
+          "pl": "D: przejrzyj nieruchomości bez właściciela."
+        },
+        {
+          "pl": "Shift+D: przejrzyj całą planszę."
+        },
+        {
+          "pl": "V: przejrzyj własne nieruchomości."
+        },
+        {
+          "pl": "Shift+V: przejrzyj nieruchomości innych graczy."
+        },
+        {
+          "pl": "H: otwórz listę nieruchomości, na których możesz budować."
+        },
+        {
+          "pl": "Shift+H: otwórz listę budynków do sprzedania."
+        },
+        {
+          "pl": "K: otwórz listę nieruchomości do zastawienia."
+        },
+        {
+          "pl": "Shift+K: otwórz listę zastawów do wykupienia."
+        },
+        {
+          "pl": "E: wybierz gracza i przygotuj propozycję wymiany."
+        },
+        {
+          "pl": "A: przyjmij otrzymaną propozycję wymiany."
+        },
+        {
+          "pl": "R: odrzuć otrzymaną propozycję wymiany."
+        },
+        {
+          "pl": "B: podczas rozliczania własnego długu ogłoś bankructwo; podczas aukcji wpisz własną kwotę oferty."
+        },
+        {
+          "pl": "G: podczas aukcji złóż podpowiadaną ofertę."
+        },
+        {
+          "pl": "Spacja: zażądaj czynszu przy ręcznym pobieraniu."
+        },
+        {
+          "pl": "P: zapłać za wyjście z więzienia."
+        },
+        {
+          "pl": "J: użyj posiadanej karty wyjścia z więzienia."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "board": "boards",
+    "free_parking_jackpot": "event_variants",
+    "double_salary_on_start": "event_variants",
+    "forbid_first_round_purchase": "purchase_variant",
+    "no_rent_in_jail": "rent_variants",
+    "lucky_double_one": "event_variants",
+    "supplementary_cards": "event_variants",
+    "automatic_rent": "rent_variants",
+    "auction_unsold": "auctions",
+    "auction_decision_time": "auctions"
+  }
+}

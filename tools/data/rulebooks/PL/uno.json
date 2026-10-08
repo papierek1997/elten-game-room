@@ -1,0 +1,327 @@
+{
+  "source": "games/uno.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W UNO starasz się jako pierwszy pozbyć wszystkich kart. Za karty, które zostaną ci na koniec rundy, dostajesz punkty karne. Po osiągnięciu limitu punktów odpadasz. Jeśli w grze zostanie już tylko jedna osoba, wygrywa całą partię."
+        },
+        {
+          "pl": "Gra od dwóch do ośmiu osób. Każdy zaczyna z siedmioma kartami, a pierwsza tura należy do osoby po rozdającym."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "pl": "Przebieg tury"
+      },
+      "paragraphs": [
+        {
+          "pl": "Na początku sprawdź przez C ostatnią zagraną kartę. Musisz dopasować do niej kolor, numer albo symbol. Jeżeli leży niebieska szóstka, możesz zagrać niebieską kartę lub szóstkę innego koloru. Przejrzyj rękę strzałkami i naciśnij Enter na wybranej karcie."
+        },
+        {
+          "pl": "Po zwykłym zagraniu ruch przechodzi dalej. Jeżeli nie masz czym zagrać, dobierz kartę Spacją. Potem możesz wykorzystać dowolną pasującą kartę z ręki, także taką, którą miałeś wcześniej. Jeśli po dobraniu w całej ręce nadal nie ma legalnego zagrania, tura kończy się od razu."
+        },
+        {
+          "pl": "Możesz też dobierać zamiast zagrywać pasującą kartę, ale najwyżej trzy razy w jednej turze. Po trzecim dobraniu musisz zagrać, jeśli masz czym."
+        },
+        {
+          "pl": "Gdy skończą się karty do dobierania, wcześniej zagrane karty zostają przetasowane i można je dobierać ponownie."
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": {
+        "pl": "Karty specjalne"
+      },
+      "paragraphs": [
+        {
+          "pl": "Oprócz kart z numerami spotkasz karty specjalne:"
+        },
+        {
+          "pl": "- „Pomiń” odbiera ruch następnej osobie."
+        },
+        {
+          "pl": "- „Zmiana kierunku” sprawia, że gracie dalej w przeciwną stronę. Przy dwóch osobach działa jak pominięcie: zagrywający dostaje następną turę."
+        },
+        {
+          "pl": "- Dzika karta pozwala wybrać nowy kolor. Po jej zagraniu wybierz go strzałkami i zatwierdź Enterem. Nie musisz dopasowywać dzikiej karty do poprzedniego koloru. Wybrany kolor przypomina klawisz V."
+        },
+        {
+          "pl": "- „Dobierz dwie”, czyli plus dwa, atakuje następną osobę. Musi ona dobrać dwie karty albo odpowiedzieć własnym plus dwa. Po odpowiedzi kara rośnie do czterech i przechodzi na kolejnego gracza. Następne odpowiedzi zwiększają ją w ten sam sposób."
+        },
+        {
+          "pl": "- Dzika plus cztery łączy wybór koloru z karą czterech kart. Na nią można odpowiedzieć kolejną dziką plus cztery. Plus dwa i plus cztery nie łączą się ze sobą."
+        },
+        {
+          "pl": "Żeby przyjąć karę, naciśnij Spację. Dobierzesz wszystkie wymagane karty; ich liczbę możesz wcześniej sprawdzić klawiszem G. Potem możesz jeszcze zagrać pasującą kartę. Jeśli żadnej nie masz, twoja tura się kończy."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Uno i punktacja"
+      },
+      "paragraphs": [
+        {
+          "pl": "Kiedy zostanie ci jedna karta, naciśnij U, żeby powiedzieć „uno”. Jeśli ktoś o tym zapomni, przeciwnik może złapać go tym samym klawiszem, zanim nastąpi kolejne zagranie lub dobranie. Przyłapany gracz dostaje dwie dodatkowe karty."
+        },
+        {
+          "pl": "Wyłożenie ostatniej karty daje wygraną w rundzie. Jeśli była to karta nakazująca dobieranie, najpierw trzeba rozliczyć jej karę. Zwycięzca nie dostaje punktów, a pozostali liczą karty w swoich rękach:"
+        },
+        {
+          "pl": "- Karta z numerem daje tyle punktów karnych, ile wskazuje jej wartość."
+        },
+        {
+          "pl": "- Kolorowa karta specjalna daje 20 punktów karnych."
+        },
+        {
+          "pl": "- Dzika karta daje 50 punktów karnych."
+        },
+        {
+          "pl": "Po rundzie odpada każdy, kto ma co najmniej 500 punktów. Pozostali rozpoczynają kolejną z nowymi kartami. Kiedy zostanie tylko jedna osoba, wygrywa całą partię. S odczytuje wyniki."
+        }
+      ]
+    },
+    {
+      "id": "drawing_options",
+      "title": {
+        "pl": "Warianty dobierania i kar"
+      },
+      "paragraphs": [
+        {
+          "pl": "Dalsze rozdziały opisują dodatki wybierane w ustawieniach stołu przed grą. Dobieranie i punktację można zmienić na kilka sposobów:"
+        },
+        {
+          "pl": "- Można ustalić inny limit punktów karnych niż 500. Po jego osiągnięciu gracz odpada po zakończeniu rundy."
+        },
+        {
+          "pl": "- Można zabronić dobierania z pasującą kartą albo zmienić maksymalną liczbę zwykłych dobrań w turze."
+        },
+        {
+          "pl": "- Dobieranie do skutku zastępuje pojedyncze dobranie szukaniem pasującej karty. Naciskasz Spację raz i dobierasz do chwili, gdy pojawi się karta do zagrania lub skończą się dostępne karty. Wielkość kar pozostaje bez zmiany."
+        },
+        {
+          "pl": "- Wyłączenie odpowiadania na kary oznacza, że zaatakowany gracz musi dobrać. Nie przekaże kary własną kartą."
+        },
+        {
+          "pl": "- Można ustalić, że przyjęcie kary zawsze odbiera resztę tury."
+        },
+        {
+          "pl": "- Odpowiedzi zaawansowane pozwalają karcie pominięcia lub zwykłej dzikiej przekazać karę dalej bez zwiększania jej. Zmiana kierunku odsyła karę w drugą stronę. Ten dodatek wymaga włączonego odpowiadania na kary."
+        }
+      ]
+    },
+    {
+      "id": "challenge",
+      "title": {
+        "pl": "Sprawdzanie dzikiej plus cztery"
+      },
+      "paragraphs": [
+        {
+          "pl": "W klasycznym UNO możecie włączyć sprawdzanie blefu. Dziką plus cztery wolno wtedy zagrać bez konsekwencji tylko wtedy, gdy nie masz innej karty w dotychczasowym kolorze."
+        },
+        {
+          "pl": "Jeśli ktoś zaatakuje cię taką kartą, możesz nacisnąć F, żeby sprawdzić jego rękę. Gdy miał pasujący kolor, sam dobiera cztery. Gdy go nie miał, ty dobierasz sześć i tracisz turę."
+        }
+      ]
+    },
+    {
+      "id": "decks",
+      "title": {
+        "pl": "Wybór talii"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu można wybrać jedną z trzech talii:"
+        },
+        {
+          "pl": "- Klasyczna talia służy do gry opisanej na początku tych zasad."
+        },
+        {
+          "pl": "- No Mercy dodaje silniejsze ataki i odpadanie z rundy za zbyt dużą liczbę kart w ręce. Szczegóły znajdziesz w następnym rozdziale."
+        },
+        {
+          "pl": "- Flip ma karty z dwiema różnymi stronami. Zagranie karty Flip zmienia stronę, którą gracie; ten wariant opisano po No Mercy."
+        }
+      ]
+    },
+    {
+      "id": "no_mercy",
+      "title": {
+        "pl": "Talia No Mercy"
+      },
+      "paragraphs": [
+        {
+          "pl": "No Mercy zachowuje dopasowywanie kart i punktację klasycznego UNO, ale dodaje następujące karty:"
+        },
+        {
+          "pl": "- Kolorowe plus cztery nakazuje następnemu graczowi dobrać cztery karty."
+        },
+        {
+          "pl": "- Dzikie plus sześć i plus dziesięć łączą wybór koloru z odpowiednią karą dobierania."
+        },
+        {
+          "pl": "- Dzika zmiana kierunku z plus cztery zmienia kierunek gry i nakłada karę czterech kart na gracza, który ma teraz turę. Przy dwóch osobach kara wraca do zagrywającego."
+        },
+        {
+          "pl": "- Po karcie „Pomiń wszystkich” od razu grasz ponownie."
+        },
+        {
+          "pl": "- „Odrzuć wszystkie” usuwa z ręki również pozostałe karty swojego koloru."
+        },
+        {
+          "pl": "- „Ruletka kolorów” każe następnemu graczowi dobierać aż do pierwszej niedzikiej karty wybranego przez ciebie koloru. Po tym dobieraniu jego tura się kończy."
+        },
+        {
+          "pl": "Odpowiedź na karę określonej liczby kart musi należeć do tej samej grupy co atak: kolorowa na kolorową, dzika na dziką. Musi też być co najmniej tak silna jak ostatnio zagrana karta. Na przykład na kolorowe plus cztery nie można odpowiedzieć plus dwa."
+        },
+        {
+          "pl": "Jeśli włączono odpowiedzi zaawansowane, „Pomiń wszystkich” i „Odrzuć wszystkie” pozwalają całkiem anulować karę dobrania określonej liczby kart."
+        },
+        {
+          "pl": "Gdy uzbierasz w ręce 25 kart, odpadasz z bieżącej rundy i otrzymujesz 250 punktów karnych. Wracasz w następnej rundzie, chyba że osiągnąłeś już limit punktów oznaczający przegraną w całej partii. W ustawieniach można zmienić limit 25 kart lub wyłączyć go wartością zero."
+        }
+      ]
+    },
+    {
+      "id": "flip",
+      "title": {
+        "pl": "Talia Flip"
+      },
+      "paragraphs": [
+        {
+          "pl": "W UNO Flip karty mają dwie strony: jasną i ciemną. Gra zaczyna się po jasnej. Karta Flip odwraca wszystkie ręce i obie talie; dotychczasowe spody stosów stają się ich wierzchami. Od tej chwili dopasowujecie karty według nowej strony."
+        },
+        {
+          "pl": "Obie strony mają inne karty specjalne:"
+        },
+        {
+          "pl": "- Po jasnej stronie są między innymi kolorowe plus jeden oraz dzikie plus dwa."
+        },
+        {
+          "pl": "- Po ciemnej stronie pojawiają się inne kolory i kolorowe plus pięć. Pominięcie wszystkich daje zagrywającemu kolejną turę."
+        },
+        {
+          "pl": "- Ciemna dzika karta dobierania do koloru każe następnemu graczowi dobierać do pierwszej niedzikiej karty wskazanego koloru. Po tym traci resztę tury."
+        },
+        {
+          "pl": "Punktacja kart specjalnych pozostaje taka sama: kolorowe są warte 20, a dzikie 50 punktów."
+        }
+      ]
+    },
+    {
+      "id": "extra_rules",
+      "title": {
+        "pl": "Przechwytywanie i inne dodatki"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed grą można też włączyć poniższe dodatki:"
+        },
+        {
+          "pl": "- Przechwytywanie pozwala zagrać podczas cudzej tury identyczną niedziką kartę jak ostatnia na stole. Wybierz ją i naciśnij Enter. Przejmujesz kolejkę, a działanie tej karty obowiązuje następnego gracza. Nieudana próba przechwycenia kosztuje trzy punkty karne. Przy superprzechwytywaniu wystarczy ten sam numer lub symbol; kolor nie musi się zgadzać. Superprzechwytywanie wymaga zwykłego przechwytywania."
+        },
+        {
+          "pl": "- Strity pozwalają po własnym zagraniu dokładać kolejne numery w tym samym kolorze, rosnąco albo malejąco. Na przykład po zielonej piątce możesz szybko zagrać szóstkę i siódemkę. Każdą kartę wybierasz i zagrywasz osobno Enterem. Zachowaj wybrany kierunek i zdąż, zanim zagra ktoś inny."
+        },
+        {
+          "pl": "- Przy zamianach rąk siódemka pozwala wskazać przeciwnika strzałkami i Enterem, a następnie wymienić z nim wszystkie karty. Po zerze każdy oddaje rękę następnej osobie zgodnie z kierunkiem gry. Gdy zero lub siódemka były twoją ostatnią kartą, oddajesz komuś pustą rękę: to ta osoba wygrywa rundę."
+        },
+        {
+          "pl": "- Brzęczyki dodają osiem kart do talii klasycznej albo No Mercy. Po zagraniu brzęczyka wszyscy naciskają B. Ostatni gracz dobiera dwie karty. Dalej można zagrać dowolną kartę; jeżeli brzęczyk był ostatnią kartą gracza, dopiero po reakcji wszystkich kończy się runda. We Flip nie ma brzęczyków."
+        },
+        {
+          "pl": "- Możecie włączyć czas na turę. Kto nie zdąży, dobiera oczekującą karę, a jeśli jej nie ma — jedną kartę, i traci turę. Wybieranie koloru oraz reakcja na brzęczyk zatrzymują odliczanie."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: przeglądaj karty lub kolory do wyboru."
+        },
+        {
+          "pl": "Enter: zagraj kartę albo potwierdź wybór koloru lub gracza."
+        },
+        {
+          "pl": "Spacja: dobierz kartę lub przyjmij karę dobierania."
+        },
+        {
+          "pl": "U: powiedz uno lub złap gracza, który go nie powiedział."
+        },
+        {
+          "pl": "B: zareaguj na brzęczyk."
+        },
+        {
+          "pl": "F: zakwestionuj zagranie dzikiej karty plus cztery."
+        },
+        {
+          "pl": "C: odczytaj kartę na stole."
+        },
+        {
+          "pl": "V: odczytaj obecny kolor."
+        },
+        {
+          "pl": "E: odczytaj liczby kart graczy."
+        },
+        {
+          "pl": "G: odczytaj oczekującą karę."
+        },
+        {
+          "pl": "Z: przejdź do następnej legalnej karty we własnej turze; niedostępne przy stritach, przechwytywaniu lub brzęczykach."
+        },
+        {
+          "pl": "Shift+Z: przejdź do poprzedniej legalnej karty we własnej turze; niedostępne przy stritach, przechwytywaniu lub brzęczykach."
+        },
+        {
+          "pl": "S: odczytaj wyniki."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "pl": "Shift+C: sortuj karty według koloru; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+H: sortuj karty według wartości; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+D: przywróć kolejność otrzymania kart."
+        },
+        {
+          "pl": "Shift+M: przywróć kolejność otrzymania kart."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "deck": "decks",
+    "score_limit": "drawing_options",
+    "draw_responses": "drawing_options",
+    "advanced_responses": "drawing_options",
+    "bluff_challenge": "challenge",
+    "skip_after_penalty": "drawing_options",
+    "allow_optional_draw": "drawing_options",
+    "maximum_optional_draws": "drawing_options",
+    "straights": "extra_rules",
+    "interceptions": "extra_rules",
+    "super_interceptions": "extra_rules",
+    "zero_seven": "extra_rules",
+    "buzzers": "extra_rules",
+    "draw_until_playable": "drawing_options",
+    "no_mercy_limit": "no_mercy",
+    "thinking_time": "extra_rules"
+  }
+}

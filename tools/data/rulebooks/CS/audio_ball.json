@@ -1,0 +1,202 @@
+{
+  "source": "games/audio_ball.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "cs": "Jak se hraje Audio Ball"
+      },
+      "paragraphs": [
+        {
+          "cs": "V Audio Ballu posíláš míč soupeři a podle zvuku vracejícího se míče volíš obranu. Úspěšně zachycený míč se u tebe zastaví, takže můžeš připravit vlastní úder. Když ho pustíš, získá soupeř bod. Hrají dva hráči; druhého člověka může nahradit bot."
+        },
+        {
+          "cs": "Hodí se sluchátka. Ve výchozím nastavení jsi na pravé straně: soupeřův míč slyšíš stále více vpravo, vlastní úder se vzdaluje doleva."
+        }
+      ]
+    },
+    {
+      "id": "sounds",
+      "title": {
+        "cs": "Rozpoznávání míče"
+      },
+      "paragraphs": [
+        {
+          "cs": "Existují tři údery s různými zvuky. Každý má svou klávesu:"
+        },
+        {
+          "cs": "- Šipka nahoru nebo W."
+        },
+        {
+          "cs": "- Šipka vlevo nebo D."
+        },
+        {
+          "cs": "- Šipka dolů nebo S."
+        },
+        {
+          "cs": "Stejné klávesy slouží k obraně. Proti míči odpovídajícímu úderu W použij W nebo šipku nahoru. Proto potřebuješ po sluchu poznat, který druh míče přilétá."
+        },
+        {
+          "cs": "Před prvním zápasem si zvuky vyzkoušej: pomocí Ctrl+F1 otevři pravidla a vyber „Zvukový průvodce“. Šipkami vybírej nahrávky, Enterem nebo mezerníkem je přehrávej. Průvodce vysvětlí klávesy a předvede také přípravu úderu a zachycení míče."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "cs": "Podání, obrana a další úder"
+      },
+      "paragraphs": [
+        {
+          "cs": "Výměna začíná podáním. Když podáváš, stiskni šipku vpravo a připrav míč. Po zvuku přípravy stiskni samostatně jednu z kláves pro úder: šipku nahoru, vlevo nebo dolů. Tím míč odešleš. Přípravu lze místo šipky vpravo provést i klávesou A."
+        },
+        {
+          "cs": "Po soupeřově úderu poslouchej míč a stiskni či podrž odpovídající obranu. Nemusíš čekat na přílet, zvolit ji lze hned a hra si ji zapamatuje. Chybnou volbu ještě můžeš změnit jinou klávesou, dokud tě míč nemine."
+        },
+        {
+          "cs": "Zvuk zachycení znamená, že máš míč. Připrav ho šipkou vpravo a pak zvol útok jako při podání. Nemusí být stejného druhu jako předchozí obrana. Každý další úder v této výměně míč trochu zrychlí."
+        },
+        {
+          "cs": "Na další míč vyber obranu novým stisknutím až po soupeřově úderu. Pokud klávesu ještě držíš z předchozího míče, nejdřív ji pusť."
+        },
+        {
+          "cs": "Před podáním ani po obraně se časový limit nespouští sám. Drží-li však soupeř míč příliš dlouho, můžeš ho vyzvat pomocí Ctrl+W. Dostane deset sekund na úder, jinak získáš bod. Pouhá příprava nestačí: musí míč včas odeslat."
+        }
+      ]
+    },
+    {
+      "id": "score",
+      "title": {
+        "cs": "Body a vítězství"
+      },
+      "paragraphs": [
+        {
+          "cs": "K vítězství v setu potřebuješ nejméně 7 bodů a náskok dvou. Stav 7:6 tedy ještě nestačí, 8:6 už ano. Běžný zápas tvoří jeden set a jeho vítěz vyhrává celý zápas."
+        },
+        {
+          "cs": "První podávající se losuje, pak se podání střídá po dvou odehraných bodech. Po bodu uslyšíš stav a po krátké přestávce začne nová výměna. Míč se vrátí k počáteční rychlosti."
+        },
+        {
+          "cs": "Shift+S přečte stav zápasu, T oznámí podávajícího."
+        }
+      ]
+    },
+    {
+      "id": "pace",
+      "title": {
+        "cs": "Obtížnost"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před zápasem lze v nastavení stolu změnit obtížnost. Výchozí je Normální. Obtížnost určuje počáteční rychlost míče; u bota také rychlost reakcí a četnost chyb."
+        },
+        {
+          "cs": "- Velmi snadná: první přelet trvá 4 sekundy."
+        },
+        {
+          "cs": "- Snadná: první přelet trvá 2,2 sekundy."
+        },
+        {
+          "cs": "- Normální: první přelet trvá 1,5 sekundy."
+        },
+        {
+          "cs": "- Těžká: první přelet trvá 0,9 sekundy."
+        },
+        {
+          "cs": "- Velmi těžká: první přelet trvá 0,6 sekundy."
+        },
+        {
+          "cs": "Na všech úrovních zrychlí každý další úder míč o 5 %. Nový bod vždy začíná rychlostí zvolené úrovně."
+        }
+      ]
+    },
+    {
+      "id": "sets",
+      "title": {
+        "cs": "Zápas na více setů"
+      },
+      "paragraphs": [
+        {
+          "cs": "V nastavení stolu můžeš místo jednoho setu zvolit hru na dva nebo tři vítězné sety. Každý se dál hraje nejméně do 7 bodů s dvoubodovým rozdílem."
+        },
+        {
+          "cs": "Po skončení setu se body vynulují na 0:0. Za pět sekund začne další set a první podání přejde na druhého hráče. Kdo začínal první set, začíná tedy i třetí; soupeř začíná druhý a čtvrtý. Hraje se do potřebného počtu vyhraných setů."
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "title": {
+        "cs": "Nastavení poslechu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Osobní nastavení Audio Ballu otevřeš pomocí Ctrl+P. Změnou strany poslechu na levou bude soupeřův míč přilétat zprava doleva a tvoje údery poletí opačným směrem."
+        },
+        {
+          "cs": "Ve stejném okně lze zvolit běžné zvuky nebo sadu z Audiodiscu. Liší se mimo jiné zvuky tří druhů letu, přípravy a zachycení. Zvukový průvodce používá zvolenou sadu, takže si v něm můžeš nové zvuky poslechnout."
+        }
+      ]
+    },
+    {
+      "id": "credits",
+      "title": {
+        "cs": "Autor"
+      },
+      "paragraphs": [
+        {
+          "cs": "Audio Ball vytvořil budyn1211, v ELTENu známý jako balteam."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipka nahoru: první obrana nebo první útok po přípravě."
+        },
+        {
+          "cs": "W: první obrana nebo první útok po přípravě."
+        },
+        {
+          "cs": "Šipka vlevo: druhá obrana nebo druhý útok po přípravě."
+        },
+        {
+          "cs": "D: druhá obrana nebo druhý útok po přípravě."
+        },
+        {
+          "cs": "Šipka dolů: třetí obrana nebo třetí útok po přípravě."
+        },
+        {
+          "cs": "S: třetí obrana nebo třetí útok po přípravě."
+        },
+        {
+          "cs": "Šipka vpravo: připravit míč k úderu."
+        },
+        {
+          "cs": "A: připravit míč k úderu."
+        },
+        {
+          "cs": "Shift+S: přečíst body a vyhrané sety."
+        },
+        {
+          "cs": "T: oznámit podávajícího a stav připojení."
+        },
+        {
+          "cs": "Ctrl+W: vyzvat soupeře, který drží míč, k úderu."
+        },
+        {
+          "cs": "Ctrl+P: otevřít nastavení poslechu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "mode": "goal",
+    "difficulty": "pace",
+    "sets_to_win": "sets"
+  }
+}

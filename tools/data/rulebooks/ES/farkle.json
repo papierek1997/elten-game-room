@@ -1,0 +1,188 @@
+{
+  "source": "games/farkle.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "es": "Puntos y riesgo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Farkle lanzas seis dados y apartas los que puntúan. Después decides si guardas los puntos o vuelves a tirar para conseguir más. Una tirada sin puntos te hace perder todo lo acumulado en ese turno, pero no lo que guardaste en turnos anteriores."
+        },
+        {
+          "es": "Juegan de dos a ocho personas. La meta habitual es 1000 puntos; gana quien tenga más puntos guardados después de completar la última ronda de turnos."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "es": "Apartar dados y seguir tirando"
+      },
+      "paragraphs": [
+        {
+          "es": "Al llegar tu turno, pulsa Enter para lanzar los seis dados. Oirás el resultado y aparecerá una lista de elecciones, cada una con los dados que aparta y sus puntos totales. Recorre la lista con las flechas y confirma con Enter."
+        },
+        {
+          "es": "Eliges de una vez todos los dados que quieres apartar de esa tirada. Pueden formar una sola combinación o varias, como un uno junto a tres cincos. No estás obligado a apartar todos los dados que podrían puntuar."
+        },
+        {
+          "es": "Después elige entre seguir tirando y guardar. Para lanzar los dados restantes, selecciona esa opción con las flechas y pulsa Enter. Si has alcanzado el mínimo necesario, también puedes guardar los puntos: se suman a tu marcador y termina el turno."
+        },
+        {
+          "es": "Los dados de la nueva tirada deben puntuar por sí mismos; no se juntan con los apartados antes. Si ninguno puntúa, haces Farkle: pierdes todos los puntos de ese turno y juega la siguiente persona."
+        },
+        {
+          "es": "Con 1, 2, 4, 5, 5, 5 puedes apartar el uno y los tres cincos por 60 puntos. Quedan dos dados. Puedes guardar esos 60 o arriesgarlos al lanzar los dos dados restantes. Si salen 2 y 6, no puntúan y pierdes los 60."
+        }
+      ]
+    },
+    {
+      "id": "banking",
+      "title": {
+        "es": "Mínimos para guardar puntos"
+      },
+      "paragraphs": [
+        {
+          "es": "La primera vez necesitas reunir al menos 50 puntos en un mismo turno para guardarlos. Mientras tu marcador siga a cero, tendrás que seguir tirando si aún no has llegado a 50."
+        },
+        {
+          "es": "Después de guardar por primera vez, el mínimo de los turnos siguientes baja a 30. Se cuenta lo ganado en ese turno, no el total de la partida. C recuerda los puntos del turno y el mínimo exigido; S consulta los puntos guardados por todos."
+        }
+      ]
+    },
+    {
+      "id": "scores",
+      "title": {
+        "es": "Combinaciones que puntúan"
+      },
+      "paragraphs": [
+        {
+          "es": "Estas combinaciones deben salir en una misma tirada. Si apartas varias combinaciones independientes, sumas sus puntos:"
+        },
+        {
+          "es": "- Un uno suelto vale 10 puntos."
+        },
+        {
+          "es": "- Un cinco suelto vale 5. Los demás dados sueltos no puntúan."
+        },
+        {
+          "es": "- Tres unos valen 75 puntos."
+        },
+        {
+          "es": "- Tres dados iguales de otro valor dan diez veces ese valor: tres doses valen 20 y tres seises, 60."
+        },
+        {
+          "es": "- Cuatro iguales dan 100 más diez veces su valor. Cuatro cuatros valen 140."
+        },
+        {
+          "es": "- Cinco iguales dan 300 más veinte veces su valor. Cinco cuatros valen 380."
+        },
+        {
+          "es": "- Seis iguales dan 600 más veinticinco veces su valor. Seis cuatros valen 700."
+        },
+        {
+          "es": "- Cinco valores consecutivos, del 1 al 5 o del 2 al 6, valen 100."
+        },
+        {
+          "es": "- Los seis valores, del 1 al 6, valen 200."
+        },
+        {
+          "es": "- Tres parejas de valores distintos valen 150."
+        },
+        {
+          "es": "- Dos tríos de valores distintos valen 250."
+        },
+        {
+          "es": "- Cuatro iguales y una pareja de otro valor valen 250 en conjunto."
+        },
+        {
+          "es": "Si los dados apartados admiten varios cálculos, recibes el que más puntos dé. La lista de elecciones ya muestra esa puntuación."
+        }
+      ]
+    },
+    {
+      "id": "hot_dice",
+      "title": {
+        "es": "Volver a usar los seis dados"
+      },
+      "paragraphs": [
+        {
+          "es": "Si consigues apartar los seis dados, recuperas el juego completo para volver a lanzar. Puede ocurrir en una sola tirada o a lo largo de varias. Los puntos reunidos siguen acumulados en el turno."
+        },
+        {
+          "es": "Ahora puedes tirar los seis dados o guardar, si alcanzas el mínimo. Si continúas, arriesgas todos los puntos del turno, incluidos los que ganaste antes de recuperar los seis dados."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "es": "Últimos turnos y victoria"
+      },
+      "paragraphs": [
+        {
+          "es": "Cuando alguien guarda puntos y alcanza o supera 1000 en total, se completa la ronda de turnos actual. Juegan los que van después de esa persona en el orden establecido, hasta el último. Quienes ya habían jugado no reciben otro turno."
+        },
+        {
+          "es": "Por ejemplo, si el segundo de cuatro jugadores alcanza 1000, aún juegan el tercero y el cuarto. Después gana quien tenga el mayor total guardado, aunque no fuera quien llegó primero a la meta. Los máximos iguales dan un empate."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "es": "Cambiar la meta y los mínimos"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar puedes ajustar tres cantidades:"
+        },
+        {
+          "es": "- La meta de puntos sustituye los 1000 habituales. Al alcanzarla alguien, se completa la ronda de turnos y se comparan los resultados."
+        },
+        {
+          "es": "- El mínimo del primer ingreso sustituye los 50 puntos. Se aplica a cada jugador mientras su marcador sea cero."
+        },
+        {
+          "es": "- El mínimo por turno sustituye los 30 puntos. Se aplica desde el turno siguiente al primer ingreso."
+        },
+        {
+          "es": "Los dos mínimos son independientes. Poner uno a cero elimina ese umbral, pero para guardar sigue haciendo falta haber ganado algún punto en el turno."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: elegir los dados que apartar o la siguiente acción."
+        },
+        {
+          "es": "Enter: confirmar los dados, lanzar o guardar puntos."
+        },
+        {
+          "es": "D: consultar la última tirada."
+        },
+        {
+          "es": "C: consultar los puntos del turno y el mínimo para guardarlos."
+        },
+        {
+          "es": "S: consultar los puntos guardados."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "options",
+    "turn_minimum": "options",
+    "entry_minimum": "options"
+  }
+}

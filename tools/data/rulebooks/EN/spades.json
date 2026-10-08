@@ -1,0 +1,239 @@
+{
+  "source": "games/spades.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Predict how often you will win the cards played to the table. After the deal, everyone announces a target. Players then put down one card each; that group is called a trick. Win at least your promised number of tricks to score, or lose points for the whole promise if you fall short."
+        },
+        {
+          "en": "Spades is for three to six players. The default game is individual: a player who finishes a deal with at least 300 points and a clear lead wins."
+        }
+      ]
+    },
+    {
+      "id": "bidding",
+      "title": {
+        "en": "Making your bid"
+      },
+      "paragraphs": [
+        {
+          "en": "Browse your hand with the arrows or read it with H. When it is your turn to bid, press B, type the number of tricks you expect to win and confirm with Enter. Too many extra tricks can also lead to a penalty."
+        },
+        {
+          "en": "A bid of zero is called nil: you promise to win no tricks at all. Success earns 100 points, but even one trick turns it into a 100-point loss."
+        },
+        {
+          "en": "Everyone bids once, beginning with the player after the dealer. That player also leads the first card. After bidding, B reads everyone's promises."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "en": "Playing tricks"
+      },
+      "paragraphs": [
+        {
+          "en": "The opening card sets the suit. Follow it if you can: if someone leads hearts and you have a heart, choose one with the arrows and play it with Enter. Without that suit, you may play anything. C reads cards already in the trick."
+        },
+        {
+          "en": "The highest card of the opening suit wins unless a spade is played. Spades are trumps: they beat every other suit, and the highest spade wins if there are several. Within a suit, ranks descend from ace, king, queen and jack through 10 to 2. The winner collects the trick and leads the next."
+        },
+        {
+          "en": "You cannot lead spades at the beginning of a deal. They must first be played on a trick led in another suit. If your hand contains only spades, you may lead one earlier."
+        },
+        {
+          "en": "There is an exception for the ace of spades: when spades are led and the ace is your only spade, you may keep it and play another suit. With a lower spade too, you must follow suit normally."
+        },
+        {
+          "en": "Play until all hands are empty. I reads your progress; V compares everyone's tricks and bids."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "en": "Scoring"
+      },
+      "paragraphs": [
+        {
+          "en": "After each deal:"
+        },
+        {
+          "en": "- Making your bid earns 10 points per promised trick, plus 1 per extra trick. Bidding four and winning six scores 42."
+        },
+        {
+          "en": "- Falling short loses 10 per promised trick. Bidding four and winning three loses 40."
+        },
+        {
+          "en": "- A successful nil earns 100. A failed nil loses 100, but each trick taken adds 1 point and counts as an extra trick."
+        },
+        {
+          "en": "Extra tricks are bags, which accumulate across deals. Every ten bags cost 100 points. Having eight and taking three more incurs the penalty and leaves one bag towards the next ten. S reads scores."
+        },
+        {
+          "en": "Some successful bids earn bonuses:"
+        },
+        {
+          "en": "- With three or four players, making a bid of one or two exactly adds 20 points."
+        },
+        {
+          "en": "- A successful large bid adds 10 points at its first qualifying size, with another 10 for each promised trick above that threshold."
+        },
+        {
+          "en": "The large-bid threshold depends on the number of players:"
+        },
+        {
+          "en": "- Three players: ten tricks."
+        },
+        {
+          "en": "- Four players: seven tricks."
+        },
+        {
+          "en": "- Five players: six tricks."
+        },
+        {
+          "en": "- Six players: five tricks."
+        },
+        {
+          "en": "Keep dealing until one player has at least 300 points and more than everyone else. A tie for the lead continues the game."
+        }
+      ]
+    },
+    {
+      "id": "deck",
+      "title": {
+        "en": "Cards per player"
+      },
+      "paragraphs": [
+        {
+          "en": "Everyone receives the same number of cards. The deck adjusts to make that possible:"
+        },
+        {
+          "en": "- Three players get 17 each; remove the 2 of clubs."
+        },
+        {
+          "en": "- Four players get 13 each from the full deck."
+        },
+        {
+          "en": "- Five players get 10 each; remove the 2s of clubs and diamonds."
+        },
+        {
+          "en": "- Six players get 8 each; remove all 2s."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "en": "Teams"
+      },
+      "paragraphs": [
+        {
+          "en": "Partners share a target and score, while bidding individually and playing their own hands."
+        },
+        {
+          "en": "If you bid four and your partner three, you need seven between you. Taking five yourself while your partner takes two still fulfils the team bid. Points and bags belong to the team."
+        },
+        {
+          "en": "Nil remains personal. The nil bidder must avoid every trick, even when the partner needs help, and their tricks do not count towards the shared ordinary bid. A failed nil costs the team 100; each trick taken on it adds a point and a bag."
+        },
+        {
+          "en": "Teams are chosen before play. Four or six players can form pairs; six may also form two teams of three."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Other variants"
+      },
+      "paragraphs": [
+        {
+          "en": "Table settings let you change the target and enable these rules:"
+        },
+        {
+          "en": "- No Hell restricts the final bid so the sum of all bids cannot equal the number of available tricks. At least one player must therefore miss their exact prediction."
+        },
+        {
+          "en": "- Quicksand changes ordinary bids: a failed bid loses 10 for each missing trick, not for the whole bid. Success earns 10 per promised trick but loses 10 per extra. There are no bags or small- and large-bid bonuses. Nil still scores plus or minus 100."
+        },
+        {
+          "en": "- Suicide is played in pairs. Everyone bids nil or at least four, and each pair must include a nil bidder. If your partner bids four or more, you must choose nil. Suicide cannot be combined with No Hell."
+        },
+        {
+          "en": "- Omniscient bots know all hands. Without this, they use only their own cards and information revealed by play."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: browse cards."
+        },
+        {
+          "en": "Enter: play the selected card."
+        },
+        {
+          "en": "B: enter your bid during bidding; read bids afterwards."
+        },
+        {
+          "en": "H: read your hand."
+        },
+        {
+          "en": "C: read the current trick."
+        },
+        {
+          "en": "Ctrl+C: inspect cards in the trick."
+        },
+        {
+          "en": "F: read the opening suit."
+        },
+        {
+          "en": "I: read your progress."
+        },
+        {
+          "en": "V: read everyone's tricks and bids."
+        },
+        {
+          "en": "S: read scores."
+        },
+        {
+          "en": "Z: find the next legal card; a sole unambiguous move may play automatically."
+        },
+        {
+          "en": "Shift+Z: find the previous legal card; a sole unambiguous move may play automatically."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "Shift+C: sort by suit; repeat to reverse."
+        },
+        {
+          "en": "Shift+H: sort by rank; repeat to reverse."
+        },
+        {
+          "en": "Shift+M: restore received order."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "variants",
+    "team_size": "teams",
+    "no_hell": "variants",
+    "quicksand": "variants",
+    "suicide": "variants",
+    "omniscient_bots": "variants"
+  }
+}

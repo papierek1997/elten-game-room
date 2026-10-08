@@ -1,0 +1,216 @@
+{
+  "source": "games/chess.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W szachach grają dwie osoby. Twoim celem jest zamatowanie króla przeciwnika: zaatakowanie go tak, żeby nie miał żadnego sposobu obrony."
+        },
+        {
+          "pl": "Białe wykonują pierwszy ruch, potem gracze ruszają na zmianę. W jednej turze przesuwasz jedną swoją figurę albo pion."
+        }
+      ]
+    },
+    {
+      "id": "board",
+      "title": {
+        "pl": "Plansza i wykonywanie ruchów"
+      },
+      "paragraphs": [
+        {
+          "pl": "Plansza ma osiem rzędów i osiem kolumn. Kolumny oznaczono literami od A do H, a rzędy liczbami od 1 do 8. Bierki, czyli figury i piony, są już ustawione do gry; strzałkami możesz obejrzeć zajęte i puste pola."
+        },
+        {
+          "pl": "Klawisz C odczytuje, kto gra białymi, a kto czarnymi. Skrótem Ctrl+Shift+H możesz obrócić widok planszy, by oglądać ją od drugiej strony."
+        },
+        {
+          "pl": "Aby wykonać ruch, przejdź strzałkami do swojej figury lub piona i naciśnij Enter. Następnie wybierz pole docelowe i ponownie naciśnij Enter. Klawisz V odczytuje dozwolone ruchy bierki na oglądanym polu."
+        },
+        {
+          "pl": "Jeżeli na polu docelowym stoi figura lub pion przeciwnika, zbijasz tę bierkę i zajmujesz jej miejsce. Nie wolno zajmować pola z własną bierką. Z wyjątkiem skoczka figury nie przeskakują przez bierki stojące po drodze."
+        }
+      ]
+    },
+    {
+      "id": "pieces",
+      "title": {
+        "pl": "Ruchy figur"
+      },
+      "paragraphs": [
+        {
+          "pl": "Każda figura ma własny sposób poruszania się:"
+        },
+        {
+          "pl": "- Wieża porusza się o dowolną liczbę pól wzdłuż rzędu albo kolumny."
+        },
+        {
+          "pl": "- Goniec porusza się o dowolną liczbę pól po przekątnej."
+        },
+        {
+          "pl": "- Hetman łączy ruchy wieży i gońca: może przesuwać się wzdłuż rzędów, kolumn i przekątnych."
+        },
+        {
+          "pl": "- Skoczek przesuwa się o dwa pola w pionie i jedno w poziomie albo odwrotnie. Może przy tym przeskakiwać przez inne bierki. Bije tylko tę, która stoi na polu, gdzie kończy ruch."
+        },
+        {
+          "pl": "- Król przesuwa się o jedno pole w dowolnym kierunku. Nie może wejść na pole atakowane przez przeciwnika. Klawiszem E sprawdzisz, które bierki przeciwnika atakują wskazane pole."
+        }
+      ]
+    },
+    {
+      "id": "pawns",
+      "title": {
+        "pl": "Ruchy pionów i przemiana"
+      },
+      "paragraphs": [
+        {
+          "pl": "Pion idzie o jedno pole do przodu, w stronę przeciwnika, pod warunkiem że to pole jest puste. Ze swojego początkowego miejsca może przejść od razu o dwa pola, jeśli oba są wolne. Nie może się cofać."
+        },
+        {
+          "pl": "Pion zbija po przekątnej, o jedno pole do przodu. Wybierz go Enterem, a potem wskaż pole z bierką przeciwnika i ponownie naciśnij Enter."
+        },
+        {
+          "pl": "Po dojściu do ostatniego rzędu pion zamienia się w hetmana, wieżę, gońca albo skoczka. Wybierz figurę strzałkami z wyświetlonej listy i zatwierdź Enterem. Możesz wybrać także figurę, której dotąd nie straciłeś."
+        }
+      ]
+    },
+    {
+      "id": "castling",
+      "title": {
+        "pl": "Roszada"
+      },
+      "paragraphs": [
+        {
+          "pl": "Roszada pozwala w jednym ruchu przestawić króla i wieżę. Wybierz króla Enterem, a następnie zatwierdź pole oddalone o dwa miejsca w stronę wybranej wieży. Wieża przeskoczy na pole, przez które przeszedł król. Roszada w stronę kolumny H jest krótka, a w stronę kolumny A długa."
+        },
+        {
+          "pl": "Żeby wykonać roszadę, muszą być spełnione wszystkie warunki:"
+        },
+        {
+          "pl": "- Król i wybrana wieża nie ruszali się wcześniej."
+        },
+        {
+          "pl": "- Między królem a wieżą nie stoi żadna bierka."
+        },
+        {
+          "pl": "- Król nie jest szachowany. Nie może też przejść przez atakowane pole ani zakończyć na nim ruchu."
+        }
+      ]
+    },
+    {
+      "id": "en_passant",
+      "title": {
+        "pl": "Bicie w przelocie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Może się zdarzyć, że przeciwnik przesunie pion z początkowego pola o dwa miejsca i stanie nim tuż obok Twojego piona. W najbliższej turze możesz zbić go tak, jakby przeszedł tylko o jedno pole."
+        },
+        {
+          "pl": "Wybierz swojego piona, a potem puste pole po przekątnej, przez które właśnie przeszedł pion przeciwnika. Twój pion stanie na tym polu, a sąsiedni pion przeciwnika zostanie usunięty. Takie bicie jest możliwe tylko od razu; po innym ruchu okazja przepada."
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "title": {
+        "pl": "Szach i mat"
+      },
+      "paragraphs": [
+        {
+          "pl": "Szach oznacza, że król jest atakowany. W najbliższym ruchu musisz go obronić. Zależnie od położenia możesz skorzystać z jednego z tych sposobów:"
+        },
+        {
+          "pl": "- Odejdź królem na bezpieczne pole."
+        },
+        {
+          "pl": "- Zbij bierkę, która atakuje króla."
+        },
+        {
+          "pl": "- Ustaw własną bierkę między królem a atakującą figurą, jeśli może ona w ten sposób zasłonić króla."
+        },
+        {
+          "pl": "Nie wolno wykonać ruchu, po którym własny król pozostaje pod atakiem. Jeśli nie istnieje żadna obrona przed szachem, jest mat i wygrywa przeciwnik."
+        }
+      ]
+    },
+    {
+      "id": "draws",
+      "title": {
+        "pl": "Remisy"
+      },
+      "paragraphs": [
+        {
+          "pl": "Partia może zakończyć się bez zwycięzcy. Gra rozpoznaje następujące remisy:"
+        },
+        {
+          "pl": "- Pat: gracz nie ma żadnego dozwolonego ruchu, ale jego król nie jest szachowany."
+        },
+        {
+          "pl": "- Trzykrotne powtórzenie pozycji: ten sam układ pojawił się trzy razy, z kolejką tego samego gracza i tymi samymi możliwościami roszady oraz bicia w przelocie."
+        },
+        {
+          "pl": "- Pięćdziesiąt ruchów: każdy gracz wykonał pięćdziesiąt ruchów bez bicia i bez ruchu pionem."
+        },
+        {
+          "pl": "- Brak materiału do mata: pozostały same króle, króle i jeden goniec lub skoczek, albo króle oraz wyłącznie gońce poruszające się po polach tego samego koloru."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: przeglądaj pola planszy."
+        },
+        {
+          "pl": "Enter: wybierz swoją figurę lub pion, a następnie pole docelowe; przy przemianie zatwierdź nową figurę."
+        },
+        {
+          "pl": "V: odczytaj dozwolone ruchy bierki na oglądanym polu."
+        },
+        {
+          "pl": "E: odczytaj bierki przeciwnika atakujące oglądane pole."
+        },
+        {
+          "pl": "C: odczytaj, kto gra białymi, a kto czarnymi."
+        },
+        {
+          "pl": "S: odczytaj pozostałe figury i piony obu graczy."
+        },
+        {
+          "pl": "Ctrl+Shift+H: obróć widok planszy."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "pl": "K: przejdź do swojego króla."
+        },
+        {
+          "pl": "D: przejdź do kolejnego swojego hetmana."
+        },
+        {
+          "pl": "R: przejdź do kolejnej swojej wieży."
+        },
+        {
+          "pl": "B: przejdź do kolejnego swojego gońca."
+        },
+        {
+          "pl": "N: przejdź do kolejnego swojego skoczka."
+        },
+        {
+          "pl": "P: przejdź do kolejnego swojego piona."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {}
+}

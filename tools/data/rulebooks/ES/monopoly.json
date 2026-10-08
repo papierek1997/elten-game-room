@@ -1,0 +1,482 @@
+{
+  "source": "games/monopoly.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Monopoly compras propiedades y cobras alquiler a quienes caen en ellas. Al mismo tiempo, necesitas efectivo para pagar tus propios gastos. Gana la última persona que no haya quebrado."
+        },
+        {
+          "es": "Juegan de dos a ocho personas. El tablero habitual es Atlantic City, con cuarenta casillas. Todos empiezan en Salida con 1500 dólares."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "es": "Dados y movimiento"
+      },
+      "paragraphs": [
+        {
+          "es": "Al comenzar tu turno, elige lanzar los dados y pulsa Enter. Se lanzan dos dados y tu ficha avanza su suma. La casilla de llegada determina lo que ocurre después: por ejemplo, comprar una propiedad o pagar alquiler."
+        },
+        {
+          "es": "Elige las acciones disponibles con las flechas y confírmalas con Enter. Cuando hayas resuelto la casilla y terminado tus acciones, juega la siguiente persona."
+        },
+        {
+          "es": "Dos dados iguales son dobles y te dan otra tirada después de resolver la casilla. Pero el tercer doble consecutivo te envía a la cárcel sin realizar ese tercer movimiento. Ir a la cárcel o contraer una deuda pone fin a las tiradas adicionales."
+        },
+        {
+          "es": "I consulta dónde están las fichas, Shift+D permite recorrer el tablero y C lee tu efectivo."
+        }
+      ]
+    },
+    {
+      "id": "buying",
+      "title": {
+        "es": "Comprar propiedades"
+      },
+      "paragraphs": [
+        {
+          "es": "Si caes en una propiedad sin dueño, puedes comprarla al precio indicado: elige «Comprar» y pulsa Enter. Si no la quieres, elige «No comprar». Si no te alcanza el dinero, se omite la compra. Una propiedad no comprada sigue disponible."
+        },
+        {
+          "es": "Hay tres clases de propiedades:"
+        },
+        {
+          "es": "- Las calles pertenecen a grupos de colores. Completar un grupo permite cobrar más y construir casas."
+        },
+        {
+          "es": "- Las estaciones cobran más alquiler cuantas más tenga el mismo propietario."
+        },
+        {
+          "es": "- Los servicios, como la compañía eléctrica y la de aguas, calculan el alquiler a partir de los dados. El multiplicador depende de cuántos servicios posea el dueño."
+        },
+        {
+          "es": "F lee la tarjeta de la propiedad donde estás, con precio, alquiler y costes de construcción o hipoteca. V abre tus propiedades y Shift+V las ajenas. Elige una con las flechas y pulsa Enter para consultar sus detalles."
+        }
+      ]
+    },
+    {
+      "id": "rent",
+      "title": {
+        "es": "Alquileres"
+      },
+      "paragraphs": [
+        {
+          "es": "Al caer en una propiedad ajena pagas alquiler a su dueño. Por defecto se cobra automáticamente. No pagas por tus propias casillas ni por propiedades hipotecadas."
+        },
+        {
+          "es": "En las calles, la tarjeta indica el alquiler según sus edificios. Si el propietario tiene todo el grupo de color, una calle de ese grupo sin edificios cobra el doble de su alquiler básico. Las casas y hoteles aplican las tarifas superiores de la tarjeta."
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "title": {
+        "es": "Salida, impuestos y cartas"
+      },
+      "paragraphs": [
+        {
+          "es": "Pasar por Salida da 200 dólares. Si terminas exactamente en ella, recibes 400."
+        },
+        {
+          "es": "Además de propiedades hay casillas que no se compran:"
+        },
+        {
+          "es": "- El impuesto sobre la renta cuesta 200 dólares y el de lujo, 100."
+        },
+        {
+          "es": "- Aparcamiento gratuito entrega el fondo acumulado. Lo alimentan los impuestos y los pagos al banco por cartas o por salir de la cárcel. Tras cobrarlo, vuelve a empezar desde cero."
+        },
+        {
+          "es": "- Suerte y Caja de Comunidad sacan una carta de evento. Se anuncia y se aplica inmediatamente."
+        },
+        {
+          "es": "Según la carta, puede ocurrir lo siguiente:"
+        },
+        {
+          "es": "- Recibes dinero del banco o debes pagarle."
+        },
+        {
+          "es": "- Pagas a los otros jugadores o cobras una cantidad de cada uno."
+        },
+        {
+          "es": "- Pagas reparaciones según las casas y hoteles que tengas."
+        },
+        {
+          "es": "- Tu ficha se traslada a otra casilla, donde se aplican las compras, alquileres o impuestos normales, salvo que la carta indique otra cosa."
+        },
+        {
+          "es": "- Vas a la cárcel."
+        },
+        {
+          "es": "- Recibes una carta para salir de la cárcel que puedes guardar hasta usarla."
+        },
+        {
+          "es": "Dos desplazamientos por carta cambian el alquiler:"
+        },
+        {
+          "es": "- Ir a la estación más cercana obliga a pagar el doble del alquiler correspondiente."
+        },
+        {
+          "es": "- Ir al servicio más cercano obliga a pagar diez veces el resultado de una nueva tirada de dos dados."
+        },
+        {
+          "es": "Las compras de propiedades y edificios, las hipotecas y los pagos entre jugadores no añaden dinero al fondo de aparcamiento gratuito."
+        }
+      ]
+    },
+    {
+      "id": "building",
+      "title": {
+        "es": "Construir casas y hoteles"
+      },
+      "paragraphs": [
+        {
+          "es": "Administras tus propiedades en tu turno, antes de lanzar. Solo se construye en calles, y deben cumplirse estas condiciones:"
+        },
+        {
+          "es": "- Tienes todas las calles del grupo de color."
+        },
+        {
+          "es": "- Ninguna calle del grupo está hipotecada."
+        },
+        {
+          "es": "- Puedes pagar la construcción."
+        },
+        {
+          "es": "Pulsa H para abrir las construcciones posibles. Elige una calle con las flechas y confirma con Enter. Cada confirmación añade un edificio al precio indicado."
+        },
+        {
+          "es": "Debes construir de manera uniforme: pon una casa en cada calle antes de empezar la segunda, y sigue igual hasta llegar a cuatro por calle. La siguiente construcción sustituye las cuatro casas por un hotel."
+        },
+        {
+          "es": "El banco dispone de treinta y dos casas y doce hoteles. Si se agotan los que necesitas, hay que esperar a que vuelvan al banco. Al construir un hotel, las cuatro casas sustituidas regresan a la reserva."
+        }
+      ]
+    },
+    {
+      "id": "selling",
+      "title": {
+        "es": "Vender edificios"
+      },
+      "paragraphs": [
+        {
+          "es": "Para recuperar efectivo, pulsa Shift+H, elige el edificio con las flechas y confirma con Enter. Recibes la mitad de su coste de construcción."
+        },
+        {
+          "es": "También debes vender de manera uniforme, empezando por las calles más edificadas del grupo. Normalmente, al vender un hotel vuelve a haber cuatro casas en esa calle."
+        },
+        {
+          "es": "Si el banco no tiene las cuatro casas necesarias, puedes elegir vender todos los edificios de ese color. Recibes la mitad de sus costes de construcción."
+        }
+      ]
+    },
+    {
+      "id": "mortgages",
+      "title": {
+        "es": "Hipotecas"
+      },
+      "paragraphs": [
+        {
+          "es": "Una hipoteca te da dinero del banco sin perder la propiedad. Pulsa K, elige la propiedad y confirma con Enter. Recibes el importe de hipoteca de su tarjeta, pero deja de generar alquiler."
+        },
+        {
+          "es": "Antes de hipotecar una calle debes vender todos los edificios de su grupo de color."
+        },
+        {
+          "es": "Para levantar una hipoteca, pulsa Shift+K, elige la propiedad y confirma. Pagas el importe hipotecado más un diez por ciento, redondeado hacia arriba a una unidad entera. Por ejemplo, una hipoteca de 100 se levanta por 110. La propiedad vuelve a cobrar alquiler."
+        }
+      ]
+    },
+    {
+      "id": "trading",
+      "title": {
+        "es": "Intercambios"
+      },
+      "paragraphs": [
+        {
+          "es": "Puedes conseguir propiedades negociando con otro jugador. Antes de tirar en tu turno, pulsa E, elige a la otra persona con las flechas y confirma con Enter."
+        },
+        {
+          "es": "Escribe cuánto dinero ofreces y cuánto pides. Con Tab pasa a las listas de propiedades de ambos: recórrelas con las flechas y marca con Espacio las incluidas en el acuerdo. Puedes combinar varias propiedades y dinero."
+        },
+        {
+          "es": "Cuando esté listo, ve con Tab al botón para enviar la propuesta y pulsa Enter. El destinatario la acepta con A o la rechaza con R. El dinero y las propiedades solo cambian de manos si la acepta."
+        },
+        {
+          "es": "Se aplican estas restricciones:"
+        },
+        {
+          "es": "- No puedes intercambiar propiedades hipotecadas."
+        },
+        {
+          "es": "- No puedes intercambiar una calle mientras quede algún edificio en su grupo. Primero debes vender toda la construcción de ese color."
+        },
+        {
+          "es": "- Ambas partes deben poder pagar su aportación. También se cuenta el dinero que recibirán en el mismo intercambio."
+        }
+      ]
+    },
+    {
+      "id": "jail",
+      "title": {
+        "es": "La cárcel"
+      },
+      "paragraphs": [
+        {
+          "es": "Caer normalmente en la casilla de cárcel es solo una visita. Quedas encarcelado si te envía allí una casilla, una carta o tu tercer doble consecutivo. El traslado termina el turno y no da dinero por Salida."
+        },
+        {
+          "es": "Al empezar un turno encarcelado tienes tres opciones:"
+        },
+        {
+          "es": "- Pulsa P para pagar 50 dólares; después tiras y avanzas normalmente."
+        },
+        {
+          "es": "- Si tienes una carta para salir, úsala con J; después haces una tirada normal."
+        },
+        {
+          "es": "- Pulsa Enter para intentar sacar dobles. Tienes tres turnos consecutivos para conseguirlo."
+        },
+        {
+          "es": "Un doble te libera y avanzas su suma, pero no te da otra tirada. Si el tercer intento tampoco da dobles, pagas 50 dólares y avanzas el resultado de esa última tirada."
+        },
+        {
+          "es": "En la cárcel sigues cobrando alquileres y puedes administrar tus bienes antes de tirar."
+        }
+      ]
+    },
+    {
+      "id": "debt",
+      "title": {
+        "es": "Deudas y bancarrota"
+      },
+      "paragraphs": [
+        {
+          "es": "Si debes pagar más efectivo del que tienes, contraes una deuda. Si ocurre durante tu movimiento, termina tu turno. Tendrás que pagarla en tu siguiente turno antes de volver a tirar."
+        },
+        {
+          "es": "Puedes vender edificios, hipotecar propiedades o conseguir dinero mediante un intercambio. Una vez saldada toda la deuda, puedes volver a lanzar los dados."
+        },
+        {
+          "es": "También puedes abandonar declarando la bancarrota con B. La bancarrota es automática si tienes una deuda en tu turno y ya no puedes vender ningún edificio ni hipotecar ninguna propiedad."
+        },
+        {
+          "es": "Quien quiebra queda eliminado. Si la deuda era con otro jugador, ese acreedor recibe las propiedades restantes y las cartas para salir de la cárcel; los edificios se liquidan a mitad de precio. Si se debía al banco, las propiedades regresan al banco."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Final de partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Gana el último jugador que no haya quebrado. S permite comparar las finanzas de los jugadores durante la partida."
+        }
+      ]
+    },
+    {
+      "id": "boards",
+      "title": {
+        "es": "Otros tableros"
+      },
+      "paragraphs": [
+        {
+          "es": "Puedes elegir otro tablero antes de jugar. Cambian los nombres y la cantidad de casillas, la moneda, los grupos de propiedades, el efectivo inicial y el pago por pasar por Salida."
+        },
+        {
+          "es": "Los tableros mayores también tienen más edificios en el banco. Consulta precios, alquileres y costes de construcción en las tarjetas de propiedad, igual que en el tablero habitual."
+        },
+        {
+          "es": "Algunos pagos se calculan a partir del ingreso de Salida:"
+        },
+        {
+          "es": "- El impuesto sobre la renta equivale a un ingreso de Salida."
+        },
+        {
+          "es": "- El impuesto de lujo equivale a la mitad."
+        },
+        {
+          "es": "- Salir de la cárcel cuesta la cuarta parte."
+        },
+        {
+          "es": "Se conservan las reglas de grupos de color, construcción uniforme, hipotecas y bancarrota."
+        }
+      ]
+    },
+    {
+      "id": "auctions",
+      "title": {
+        "es": "Subastas"
+      },
+      "paragraphs": [
+        {
+          "es": "Normalmente una propiedad no comprada queda libre. Puedes activar su subasta antes de jugar. Participan por turnos todos los jugadores que sigan en la partida, incluido quien rechazó comprarla."
+        },
+        {
+          "es": "Cuando te toque, puedes subir o pasar. G presenta la oferta superior sugerida. Con B puedes escribir tu propia cantidad y confirmarla con Enter: es la oferta total, no lo que añades a la anterior."
+        },
+        {
+          "es": "La oferta debe superar la actual y no exceder tu efectivo. Para pasar, elige retirarte de la subasta con las flechas y confirma con Enter. No puedes volver a entrar en esa misma subasta."
+        },
+        {
+          "es": "Cuando nadie supera la oferta más alta, su autor compra al precio ofrecido. Si todos pasan sin ofertar, la propiedad sigue en el banco."
+        },
+        {
+          "es": "Puedes fijar un plazo para cada decisión. No responder a tiempo equivale a pasar. Cada nuevo postor recibe el plazo completo; cero significa tiempo ilimitado."
+        }
+      ]
+    },
+    {
+      "id": "purchase_variant",
+      "title": {
+        "es": "Comprar tras la primera vuelta"
+      },
+      "paragraphs": [
+        {
+          "es": "Puedes prohibir las compras durante la primera vuelta. En ese caso solo podrás comprar propiedades libres al caer en ellas después de haber pasado por Salida por primera vez."
+        }
+      ]
+    },
+    {
+      "id": "rent_variants",
+      "title": {
+        "es": "Variantes del alquiler"
+      },
+      "paragraphs": [
+        {
+          "es": "Hay dos ajustes relativos a los alquileres:"
+        },
+        {
+          "es": "- Sin pagos automáticos, el propietario debe reclamar el alquiler con Espacio o renunciar a él eligiendo esa opción y confirmando con Enter. La partida espera su decisión."
+        },
+        {
+          "es": "- Puedes impedir que los encarcelados cobren alquiler. Sus propiedades se visitan gratis mientras sigan presos."
+        }
+      ]
+    },
+    {
+      "id": "event_variants",
+      "title": {
+        "es": "Variantes de pagos y cartas"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar también puedes cambiar estas reglas:"
+        },
+        {
+          "es": "- Sin fondo de aparcamiento gratuito, la casilla no paga nada y no se reservan los pagos al banco."
+        },
+        {
+          "es": "- Sin pago doble por llegar a Salida, caer exactamente en ella da lo mismo que pasar."
+        },
+        {
+          "es": "- La suerte del doble uno da una bonificación al sacar dos unos: la cuarta parte del pago de Salida, o 50 dólares en Atlantic City. Está desactivada por defecto."
+        },
+        {
+          "es": "- Puedes retirar las cartas adicionales de Suerte y Caja de Comunidad. Desaparecen los eventos de dinero añadidos por Power Games; las demás cartas siguen en juego."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: elegir una acción o propiedad."
+        },
+        {
+          "es": "Enter: realizar la acción elegida."
+        },
+        {
+          "es": "Escape: cerrar la lista actual."
+        },
+        {
+          "es": "I: consultar las posiciones y números de casilla de los jugadores."
+        },
+        {
+          "es": "T: consultar de quién es el turno y qué decisión falta."
+        },
+        {
+          "es": "C: consultar tu efectivo."
+        },
+        {
+          "es": "S: consultar las finanzas de todos."
+        },
+        {
+          "es": "F: leer la tarjeta de la propiedad donde estás."
+        },
+        {
+          "es": "D: revisar las propiedades sin dueño."
+        },
+        {
+          "es": "Shift+D: recorrer todo el tablero."
+        },
+        {
+          "es": "V: revisar tus propiedades."
+        },
+        {
+          "es": "Shift+V: revisar las propiedades ajenas."
+        },
+        {
+          "es": "H: abrir las propiedades donde puedes construir."
+        },
+        {
+          "es": "Shift+H: abrir los edificios que puedes vender."
+        },
+        {
+          "es": "K: abrir las propiedades que puedes hipotecar."
+        },
+        {
+          "es": "Shift+K: abrir las hipotecas que puedes levantar."
+        },
+        {
+          "es": "E: elegir jugador y preparar un intercambio."
+        },
+        {
+          "es": "A: aceptar una propuesta de intercambio."
+        },
+        {
+          "es": "R: rechazar una propuesta de intercambio."
+        },
+        {
+          "es": "B: declarar la bancarrota al resolver tu deuda o escribir una oferta durante una subasta."
+        },
+        {
+          "es": "G: presentar la oferta sugerida en una subasta."
+        },
+        {
+          "es": "Espacio: reclamar alquiler si el cobro es manual."
+        },
+        {
+          "es": "P: pagar para salir de la cárcel."
+        },
+        {
+          "es": "J: usar tu carta para salir de la cárcel."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "board": "boards",
+    "free_parking_jackpot": "event_variants",
+    "double_salary_on_start": "event_variants",
+    "forbid_first_round_purchase": "purchase_variant",
+    "no_rent_in_jail": "rent_variants",
+    "lucky_double_one": "event_variants",
+    "supplementary_cards": "event_variants",
+    "automatic_rent": "rent_variants",
+    "auction_unsold": "auctions",
+    "auction_decision_time": "auctions"
+  }
+}

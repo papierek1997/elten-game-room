@@ -1,0 +1,242 @@
+{
+  "source": "games/makao.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Makao gana quien se queda sin cartas primero. Juegan de dos a ocho personas, con cinco cartas cada una al empezar. Abre la partida quien va después del repartidor."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "es": "Jugar o robar"
+      },
+      "paragraphs": [
+        {
+          "es": "Consulta con C la última carta jugada. Puedes cubrirla con otra del mismo palo o valor: sobre un nueve de picas encaja cualquier pica o cualquier nueve. Elige tu carta con las flechas y pulsa Enter. Después de una carta normal, pasa el turno."
+        },
+        {
+          "es": "Si no puedes o no quieres jugar, roba una carta con Espacio. Si encaja, puedes jugarla enseguida con Enter. Para conservarla y terminar el turno, pulsa Espacio otra vez. Si no encaja, el turno acaba automáticamente."
+        },
+        {
+          "es": "Después de robar solo puedes jugar la carta nueva, sola o como parte de un grupo de cartas, como se explica a continuación."
+        },
+        {
+          "es": "Si se agota el mazo, se barajan las cartas jugadas anteriormente para volver a robar de ellas."
+        }
+      ]
+    },
+    {
+      "id": "packets",
+      "title": {
+        "es": "Jugar varias cartas juntas"
+      },
+      "paragraphs": [
+        {
+          "es": "Puedes jugar juntas varias cartas del mismo valor, por ejemplo tres nueves. La primera debe encajar sobre la carta de la mesa; la última determina qué tendrá que seguir el próximo jugador."
+        },
+        {
+          "es": "Llega a la primera carta con las flechas y márcala con Shift+Enter. Marca las demás en el orden en que quieras jugarlas. Cuando estén todas, pulsa Enter para jugar el grupo completo. P lee las cartas marcadas y Shift+P borra la selección para prepararla de nuevo."
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": {
+        "es": "Ases y penalizaciones"
+      },
+      "paragraphs": [
+        {
+          "es": "En Makao sencillo, los ases, doses, treses y cuatros tienen efectos especiales:"
+        },
+        {
+          "es": "- El as permite cambiar de palo. En un turno normal puedes jugarlo sobre cualquier carta. Después de Enter, elige el palo con las flechas y confirma con Enter. Cambiar de palo no te libra de una penalización de robo o de turnos perdidos."
+        },
+        {
+          "es": "- Un dos obliga al siguiente jugador a robar dos cartas; un tres, a robar tres. Puede defenderse con otro dos, otro tres o un grupo de doses o treses. Las penalizaciones se suman y pasan al siguiente: un dos seguido de un tres obliga a robar cinco."
+        },
+        {
+          "es": "- Un cuatro hace perder un turno. Otro cuatro pasa la penalización al siguiente jugador y la aumenta: después de dos cuatros deberá perder dos turnos. Un grupo de cuatros funciona del mismo modo."
+        },
+        {
+          "es": "Para aceptar una penalización de robo, pulsa Espacio. Robas todas las cartas exigidas y termina el turno. Si no tienes ninguna defensa legal, la aceptas automáticamente. G recuerda cuántas cartas debes robar."
+        },
+        {
+          "es": "Para aceptar los turnos perdidos por cuatros, ve con Tab al botón correspondiente y pulsa Enter. El turno actual cuenta como el primero que pierdes. Si recibes una penalización de robo mientras estás sin jugar, debes robar sin poder defenderte; ese robo consume uno de los turnos que debías perder."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Decir Makao y ganar"
+      },
+      "paragraphs": [
+        {
+          "es": "Cuando te quede una carta, pulsa U para decir «makao». Si un rival se olvida, puedes denunciarlo con Shift+U antes de que empiece su siguiente turno. Si lo pillas, roba una carta."
+        },
+        {
+          "es": "Jugar tu última carta, o tu último grupo de cartas, te da la victoria inmediatamente."
+        }
+      ]
+    },
+    {
+      "id": "profiles",
+      "title": {
+        "es": "Elegir una variante"
+      },
+      "paragraphs": [
+        {
+          "es": "Las reglas anteriores son las de Makao sencillo. Los ajustes de la mesa ofrecen otras variantes:"
+        },
+        {
+          "es": "- Makao polaco ampliado añade peticiones con las jotas, reinas universales y reyes de ataque."
+        },
+        {
+          "es": "- La variante con comodines incorpora dos comodines y reyes de ataque. Las jotas y reinas no tienen efecto especial. Se reparten cinco cartas por persona."
+        },
+        {
+          "es": "- Las reglas personalizadas permiten elegir cada añadido por separado, además de cambiar la penalización por no decir makao y el tamaño de la mano inicial."
+        },
+        {
+          "es": "La penalización por olvidar makao puede ser de una a diez cartas. La mano inicial puede tener de tres a quince, siempre que haya cartas suficientes para todos. La variante preparada con comodines mantiene las cinco."
+        }
+      ]
+    },
+    {
+      "id": "extra_cards",
+      "title": {
+        "es": "Jotas, reinas, reyes y comodines"
+      },
+      "paragraphs": [
+        {
+          "es": "Los efectos adicionales son estos:"
+        },
+        {
+          "es": "- Con las peticiones de jota activadas, al jugarla eliges con las flechas un valor del cinco al diez y confirmas con Enter. El siguiente jugador debe jugar ese valor. Si está activo el cambio de palo con as, puede usarlo para eludir la petición."
+        },
+        {
+          "es": "- La reina universal también elude una petición. En un turno normal encaja sobre cualquier carta, pero no defiende contra penalizaciones de robo ni de turnos perdidos."
+        },
+        {
+          "es": "- El rey de picas de ataque obliga al siguiente a robar cinco cartas. El rey de corazones puede responderle, añadir cinco a la penalización y pasarla al siguiente. Este ataque no se combina con doses ni treses."
+        },
+        {
+          "es": "- Un comodín representa la carta que elijas. Pulsa Enter sobre él, elige la carta y confirma con Enter. Solo aplica el efecto especial de esa carta si está activado. También puede eludir una petición de jota. En un grupo debe representar el mismo valor que las demás cartas. Puede defenderte de una penalización si representa una respuesta válida, por ejemplo un dos frente a un robo acumulado."
+        }
+      ]
+    },
+    {
+      "id": "other_rules",
+      "title": {
+        "es": "Otras reglas personalizadas"
+      },
+      "paragraphs": [
+        {
+          "es": "También puedes modificar el funcionamiento de algunas cartas y del robo:"
+        },
+        {
+          "es": "- Sin mezcla de doses y treses, un dos solo se responde con un dos y un tres con un tres."
+        },
+        {
+          "es": "- Sin acumulación de cuatros, se pierde un turno y no se puede pasar la penalización jugando otro cuatro."
+        },
+        {
+          "es": "- Sin cambio de palo con as, el as se comporta como una carta normal."
+        },
+        {
+          "es": "- Puedes prohibir robar si tienes una jugada válida o impedir jugar inmediatamente la carta recién robada."
+        },
+        {
+          "es": "- Si activas un límite de tiempo, agotarlo hace aceptar la penalización pendiente, ya sea de turnos perdidos o de robo. Si no hay ninguna, robas una carta. En todos los casos pasa el turno."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer las cartas."
+        },
+        {
+          "es": "Enter: jugar la carta o el grupo preparado; elegir el palo, la petición o la carta representada por el comodín cuando corresponda."
+        },
+        {
+          "es": "Shift+Enter: añadir o quitar una carta del grupo; el orden de selección es el de juego."
+        },
+        {
+          "es": "P: consultar el grupo preparado."
+        },
+        {
+          "es": "Shift+P: borrar el grupo preparado."
+        },
+        {
+          "es": "Espacio: robar o terminar el turno después de robar, sin tomar otra carta."
+        },
+        {
+          "es": "U: decir makao, incluso fuera de tu turno."
+        },
+        {
+          "es": "Shift+U: denunciar a quien no haya dicho makao."
+        },
+        {
+          "es": "C: consultar la carta de la mesa y el palo o valor requerido."
+        },
+        {
+          "es": "G: consultar la penalización pendiente."
+        },
+        {
+          "es": "D: leer tu mano."
+        },
+        {
+          "es": "E: consultar cuántas cartas tiene cada jugador."
+        },
+        {
+          "es": "Z: ir a la siguiente carta legal; solo puede jugarse automáticamente si no necesita otra elección ni forma un grupo."
+        },
+        {
+          "es": "Shift+Z: ir a la carta legal anterior; solo puede jugarse automáticamente si no necesita otra elección ni forma un grupo."
+        },
+        {
+          "es": "S: consultar los resultados."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "Shift+C: ordenar por palo; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+H: ordenar por valor; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+M: recuperar el orden en que recibiste las cartas."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "allow_playable_draw": "other_rules",
+    "profile": "profiles",
+    "jokers": "extra_cards",
+    "hand_size": "profiles",
+    "mixed_draw_cards": "other_rules",
+    "stack_fours": "other_rules",
+    "ace_changes_suit": "other_rules",
+    "jack_requests_rank": "extra_cards",
+    "queen_universal": "extra_cards",
+    "attacking_kings": "extra_cards",
+    "draw_responses": "other_rules",
+    "makao_penalty": "profiles",
+    "thinking_time": "other_rules"
+  }
+}

@@ -38,6 +38,10 @@ module GameRoomGames
       _("Ludo")
     end
 
+    def short_description
+      _("Race your four pieces to the finish, sending your opponents' pieces back to base along the way.")
+    end
+
     def minimum_players
       2
     end

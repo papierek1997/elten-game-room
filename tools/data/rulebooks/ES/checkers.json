@@ -1,0 +1,176 @@
+{
+  "source": "games/checkers.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo y tablero"
+      },
+      "paragraphs": [
+        {
+          "es": "En Damas intentas capturar todas las piezas rivales o dejarlas sin ningún movimiento permitido. Juegan dos personas y empiezan las blancas."
+        },
+        {
+          "es": "El tablero habitual tiene ocho filas y ocho columnas. Cada jugador empieza con doce fichas, y solo se usan las casillas oscuras."
+        }
+      ]
+    },
+    {
+      "id": "moves",
+      "title": {
+        "es": "Mover y coronar"
+      },
+      "paragraphs": [
+        {
+          "es": "Una ficha avanza una casilla en diagonal, siempre que esté vacía. Llega hasta la ficha con las flechas, selecciónala con Enter y confirma también con Enter la casilla de destino. Sobre cualquier ficha o dama, V permite consultar sus movimientos posibles."
+        },
+        {
+          "es": "Si una ficha termina su movimiento en la última fila del lado rival, se convierte en dama. Una dama puede recorrer cualquier número de casillas vacías en diagonal, tanto hacia delante como hacia atrás."
+        }
+      ]
+    },
+    {
+      "id": "captures",
+      "title": {
+        "es": "Capturar piezas"
+      },
+      "paragraphs": [
+        {
+          "es": "Para capturar, salta sobre una pieza rival que esté en la casilla diagonal contigua y aterriza en la casilla vacía inmediatamente posterior. Las fichas pueden capturar hacia delante y hacia atrás. Selecciona tu ficha con Enter y confirma con otro Enter la casilla en la que aterrizará."
+        },
+        {
+          "es": "Capturar es obligatorio. Si hay varias secuencias posibles, debes elegir una que capture el mayor número de piezas. Si varias capturan el mismo máximo, puedes escoger cualquiera."
+        },
+        {
+          "es": "Después de un salto, si esa misma ficha o dama puede seguir capturando, debe hacerlo. Vuelve a seleccionar la pieza con Enter y elige su siguiente casilla de llegada. Confirma así cada salto hasta completar la secuencia."
+        },
+        {
+          "es": "Una dama puede acercarse en diagonal a una pieza rival distante, saltarla y aterrizar en cualquiera de las casillas vacías posteriores, hasta encontrar otra pieza. Cada salto captura una sola pieza."
+        },
+        {
+          "es": "Las piezas capturadas no se retiran hasta terminar toda la secuencia. Mientras tanto siguen bloqueando sus casillas y no se pueden saltar una segunda vez."
+        },
+        {
+          "es": "La coronación ocurre al finalizar el movimiento completo. Si una ficha llega a la última fila durante una captura múltiple, pero debe salir de ella con otro salto, no se convierte en dama."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Victoria y empate"
+      },
+      "paragraphs": [
+        {
+          "es": "Ganas cuando el rival pierde todas sus piezas o se queda sin movimientos permitidos."
+        },
+        {
+          "es": "Hay empate cuando una posición se repite tres veces, o tras ochenta turnos seguidos sin capturas ni coronaciones. Una secuencia completa de saltos cuenta como un solo turno."
+        }
+      ]
+    },
+    {
+      "id": "board_variant",
+      "title": {
+        "es": "Tamaños de tablero"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes elegir el tamaño del tablero:"
+        },
+        {
+          "es": "- 8 por 8: doce fichas por jugador. Es el tamaño habitual."
+        },
+        {
+          "es": "- 10 por 10: veinte fichas por jugador."
+        },
+        {
+          "es": "- 12 por 12: treinta fichas por jugador."
+        },
+        {
+          "es": "En todos ellos, al empezar hay dos filas vacías entre ambos bandos."
+        }
+      ]
+    },
+    {
+      "id": "rule_variants",
+      "title": {
+        "es": "Otras reglas de movimiento y captura"
+      },
+      "paragraphs": [
+        {
+          "es": "Estas opciones se cambian por separado antes de empezar. Elegir un tablero mayor no las activa por sí solo."
+        },
+        {
+          "es": "- Si desactivas la captura hacia atrás de las fichas, solo podrán capturar hacia delante."
+        },
+        {
+          "es": "- Si desactivas el largo alcance de la dama, su movimiento normal se limita a una casilla diagonal y solo puede capturar saltando sobre una pieza contigua."
+        },
+        {
+          "es": "- Si la captura deja de ser obligatoria, puedes hacer un movimiento normal aunque tengas una captura disponible."
+        },
+        {
+          "es": "- Si desactivas las capturas sucesivas, el turno termina tras el primer salto."
+        },
+        {
+          "es": "- Sin la obligación de capturar el máximo, puedes elegir cualquier secuencia legal. La captura máxima solo puede exigirse si también son obligatorias la captura y su continuación."
+        },
+        {
+          "es": "- Puedes permitir que las fichas se muevan una casilla vacía en diagonal hacia atrás. Normalmente solo retroceden al capturar."
+        },
+        {
+          "es": "- La prioridad de la dama obliga a usar una dama si puede realizar una de las secuencias empatadas en longitud máxima. Requiere activar la captura máxima y está desactivada por defecto."
+        },
+        {
+          "es": "- La coronación inmediata durante una captura convierte la ficha en dama en cuanto alcanza la última fila. Los saltos restantes se realizan como dama."
+        },
+        {
+          "es": "- Si desactivas la permanencia de las piezas capturadas, cada una se retira justo después del salto. Esto puede abrir paso a otra captura de la misma secuencia."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer el tablero."
+        },
+        {
+          "es": "Enter: elegir una ficha o dama y luego su destino; en una captura múltiple, confirmar cada salto por separado."
+        },
+        {
+          "es": "V: consultar los movimientos de la pieza seleccionada en el tablero."
+        },
+        {
+          "es": "K: ir a tu siguiente dama."
+        },
+        {
+          "es": "Shift+K: ir a la siguiente dama rival."
+        },
+        {
+          "es": "C: consultar los colores de los jugadores."
+        },
+        {
+          "es": "S: contar las fichas y damas que le quedan a cada jugador."
+        },
+        {
+          "es": "Ctrl+H: alternar números de casilla y coordenadas de ajedrez."
+        },
+        {
+          "es": "Ctrl+Shift+H: girar la vista del tablero."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "board_size": "board_variant",
+    "rules": "rule_variants"
+  }
+}

@@ -1,0 +1,266 @@
+{
+  "source": "games/biblios.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "cs": "Budování knihovny"
+      },
+      "paragraphs": [
+        {
+          "cs": "V Biblios sbíráš karty knihovny a soupeříš o převahu v jednotlivých kategoriích. Nestačí nasbírat hodně karet: body na konci dostane jen vítěz každé kategorie. Hra je pro dva až čtyři hráče."
+        },
+        {
+          "cs": "V první části se střídáte v rozdělování karet sobě, ostatním a do budoucích dražeb. Ve druhé části tyto odložené karty dražíte. Získáváš tak knihovnu, zlato nebo možnost změnit hodnotu kategorií."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "cs": "Karty a hodnota kategorií"
+      },
+      "paragraphs": [
+        {
+          "cs": "Setkáš se se třemi druhy karet:"
+        },
+        {
+          "cs": "- Karta knihovny patří do jedné z pěti kategorií. Má číselnou hodnotu pro součet v této kategorii a písmeno pro rozhodování shod. Například Mniši 3 s písmenem B přidají tři k tvému součtu mnichů."
+        },
+        {
+          "cs": "- Zlato má hodnotu 1, 2 nebo 3. Uchováš ho na placení za vyhrané dražby."
+        },
+        {
+          "cs": "- Církevní karta mění hodnotu kategorií. Použije se hned po získání, neodkládáš si ji na později."
+        },
+        {
+          "cs": "Každá kategorie má kostku, zpočátku s číslem 3. Právě tolik vítězných bodů získá ten, kdo kategorii vyhraje. Církevní karty mění kostky v rozmezí 1 až 6. Jejich stav přečte C."
+        },
+        {
+          "cs": "Hodnoty karet tedy určují, kdo kategorii vyhraje; kostka určuje odměnu. Vyhraješ-li například mnichy součtem 12 a jejich kostka ukazuje 5, získáš za tuto kategorii 5 vítězných bodů."
+        },
+        {
+          "cs": "Vlastní knihovnu přečte L, jednotlivé kategorie si prohlédneš pomocí Ctrl+L. Zlato oznámí G. Karty, které si soupeři při rozdělování nechali pro sebe, jsou tajné; Shift+C proto porovnává jen známé části knihoven."
+        }
+      ]
+    },
+    {
+      "id": "gifts",
+      "title": {
+        "cs": "Rozdělování karet"
+      },
+      "paragraphs": [
+        {
+          "cs": "Jako rozdělující odhaluješ karty po jedné. Než uvidíš další, musíš rozhodnout o současné: šipkami vyber její určení a potvrď Enterem."
+        },
+        {
+          "cs": "Rozděluješ o jednu kartu více, než je hráčů, tedy například čtyři při hře ve třech. Rozdělení musí být následující:"
+        },
+        {
+          "cs": "- Právě jednu si necháš pro sebe."
+        },
+        {
+          "cs": "- Právě jednu odložíš do dražby. Zatím ji nikdo nezíská."
+        },
+        {
+          "cs": "- Všechny zbývající dáš do společné nabídky pro ostatní."
+        },
+        {
+          "cs": "Pořadí je libovolné. Vezmeš-li si první kartu, ostatní už musí jít do dražby a společné nabídky. Nesmíš si předem prohlédnout všechny a rozhodnout se až potom."
+        },
+        {
+          "cs": "Po rozdělení si ostatní berou po jedné ze společné nabídky, počínaje hráčem za rozdělujícím. Až přijde řada na tebe, vyber šipkami a vezmi Enterem. Klávesa P přečte, co v nabídce zbývá."
+        },
+        {
+          "cs": "Potom rozděluje další hráč. Takto se vyčerpá celý balíček, odložené dražební karty se zamíchají a začne druhá část hry."
+        }
+      ]
+    },
+    {
+      "id": "church",
+      "title": {
+        "cs": "Církevní karty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Církevní kartu použiješ ihned, ať sis ji nechal, vzal ze společné nabídky nebo vydražil. Než hra pokračuje, rozhodneš o jejím účinku. Odložením do dražby se ještě nespouští."
+        },
+        {
+          "cs": "Druh karty dovoluje jednu z těchto změn:"
+        },
+        {
+          "cs": "- Zvýšit jednu zvolenou kostku o jeden."
+        },
+        {
+          "cs": "- Snížit jednu zvolenou kostku o jeden."
+        },
+        {
+          "cs": "- Zvýšit dvě různé kostky každou o jeden."
+        },
+        {
+          "cs": "- Snížit dvě různé kostky každou o jeden."
+        },
+        {
+          "cs": "- Zvolit zvýšení nebo snížení jedné kostky o jeden."
+        },
+        {
+          "cs": "Dostupnou změnu vyber šipkami a potvrď Enterem. U dvou kostek vybíráš rovnou dvojici kategorií. Nesmíš místo toho změnit jednu o dva ani využít jen polovinu účinku."
+        },
+        {
+          "cs": "Kostky nikdy neklesnou pod 1 ani nepřesáhnou 6. Nechceš-li účinek využít nebo nemá-li karta přípustnou změnu, zvol nepoužití karty."
+        }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": {
+        "cs": "Dražby"
+      },
+      "paragraphs": [
+        {
+          "cs": "Draží se vždy jedna karta. Hlášení ji představí a oznámí začínajícího hráče. Postupně buď zvýšíš nabídku, nebo odstoupíš. Klávesa B připomene kartu, nejvyšší nabídku a jejího autora."
+        },
+        {
+          "cs": "Na tahu vyber šipkami částku nebo odstoupení a potvrď Enterem. První nabídka je nejméně 1, další musí být vyšší než dosavadní. Pomocí R lze napsat vlastní částku a potvrdit ji Enterem."
+        },
+        {
+          "cs": "Odstoupení platí pro celou aktuální dražbu. Poslední zbývající zájemce vyhraje a musí zaplatit. Když odstoupí všichni bez jediné nabídky, karta propadne a draží se další."
+        },
+        {
+          "cs": "Za knihovní a církevní karty nabízíš zlato. Při dražbě zlata ale nabízíš počet karet, které odevzdáš z ruky. Před přihazováním si proto ověř, co částka znamená."
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "title": {
+        "cs": "Zaplacení vydražené karty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po vítězství v dražbě vyber platbu. Karty procházej šipkami, označuj pomocí Shift+Enter a celý výběr potvrď Enterem. Escape zruší označení a dovolí začít znovu."
+        },
+        {
+          "cs": "Způsob platby záleží na předmětu dražby:"
+        },
+        {
+          "cs": "- Za knihovní či církevní kartu zaplatíš hodnotou zlatých karet alespoň ve výši nabídky. Přeplatit smíš, ale nedostaneš nazpět."
+        },
+        {
+          "cs": "- Za zlato odevzdáš přesně nabízený počet libovolných karet. Každá se počítá za jednu bez ohledu na hodnotu. Zaplatit lze i knihovními kartami, ztratíš však jejich příspěvek do konečného výsledku."
+        },
+        {
+          "cs": "Při placení zlatem nesmíš přidat zbytečnou kartu. Za cenu 4 lze dát dvě trojky: odebráním kterékoli bys nezaplatil dost. Za cenu 3 ale trojka s jedničkou neprojde, protože jednička není potřeba."
+        },
+        {
+          "cs": "Nabídnout smíš víc zlata, než máš, a doufat, že tě někdo přehodí. Vyhraješ-li bez možnosti zaplatit, zvol nezaplacení a potvrď Enterem. Přijdeš o jednu náhodnou kartu a stejná dražba začne znovu bez tebe. Ti, kdo předtím jen odstoupili, se vracejí."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "cs": "Vyhodnocení knihoven"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po zaplacení poslední dražby se porovnají knihovny. V každé kategorii vítězí nejvyšší součet hodnot. Shodu rozhodne nejlepší písmeno držené v kategorii: A před B, B před C a tak dál."
+        },
+        {
+          "cs": "Vítěz kategorie dostane počet vítězných bodů z její kostky. Za kategorii, v níž nikdo nemá kartu, body nejsou."
+        },
+        {
+          "cs": "Body za vyhrané kategorie se sečtou. Nejvyšší součet vyhrává; shodu rozhodne větší hodnota zbývajícího zlata."
+        },
+        {
+          "cs": "Při shodě i ve zlatě porovnáte následující kategorie v daném pořadí. V každé rozhoduje nejdřív součet hodnot a potom nejlepší písmeno. Jakmile má někdo převahu, vyhrává a dál se neporovnává:"
+        },
+        {
+          "cs": "- Nejprve Mniši."
+        },
+        {
+          "cs": "- Potom Pigmenty."
+        },
+        {
+          "cs": "- Dále Zakázané knihy."
+        },
+        {
+          "cs": "- Potom Posvátné knihy."
+        },
+        {
+          "cs": "- Nakonec Rukopisy."
+        },
+        {
+          "cs": "Pokud nerozhodne ani to, je remíza. Konečné výsledky přečte S."
+        }
+      ]
+    },
+    {
+      "id": "penalty",
+      "title": {
+        "cs": "Jiný trest za nezaplacení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze změnit trest za vítěznou, ale nezaplacenou dražbu. Běžný středověký bluf odebírá jednu náhodnou kartu."
+        },
+        {
+          "cs": "Při plném trestu od tebe každý soupeř dostane náhodnou kartu. Začíná další hráč v pořadí a pokračuje se, dokud všichni něco nedostanou nebo ti nedojdou karty. Pak se dražba opakuje bez tebe jako při běžném trestu."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: vybrat kartu, její určení, nabídku nebo účinek církevní karty."
+        },
+        {
+          "cs": "Enter: potvrdit volbu nebo zaplatit označenými kartami."
+        },
+        {
+          "cs": "Shift+Enter: označit či odznačit kartu k platbě."
+        },
+        {
+          "cs": "Escape při placení: zrušit všechna označení."
+        },
+        {
+          "cs": "R: zadat vlastní dražební nabídku."
+        },
+        {
+          "cs": "B: přečíst probíhající dražbu."
+        },
+        {
+          "cs": "L: přečíst vlastní knihovnu."
+        },
+        {
+          "cs": "Ctrl+L: prohlédnout její kategorie."
+        },
+        {
+          "cs": "C: přečíst kostky s hodnotami kategorií."
+        },
+        {
+          "cs": "Shift+C: porovnat známé karty hráčů."
+        },
+        {
+          "cs": "G: přečíst vlastní zlato."
+        },
+        {
+          "cs": "P: přečíst společnou nabídku."
+        },
+        {
+          "cs": "S: přečíst výsledky po konci hry."
+        },
+        {
+          "cs": "T: oznámit, kdo je na řadě."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "penalty": "penalty"
+  }
+}

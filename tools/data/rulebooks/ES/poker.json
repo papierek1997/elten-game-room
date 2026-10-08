@@ -1,0 +1,370 @@
+{
+  "source": "games/poker.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Póquer compites por las fichas apostadas en el bote. Puedes ganarlo con la mejor combinación de cartas al mostrarlas o haciendo que todos los rivales se retiren ante tus apuestas. Por eso no siempre gana quien tiene las cartas más fuertes."
+        },
+        {
+          "es": "Juegan de dos a ocho personas, con 1000 fichas cada una al empezar. Gana la última que conserve fichas. La modalidad habitual es Texas Hold'em."
+        }
+      ]
+    },
+    {
+      "id": "holdem",
+      "title": {
+        "es": "Comienzo de una mano"
+      },
+      "paragraphs": [
+        {
+          "es": "Recibes dos cartas privadas, que puedes consultar con D. Durante la mano aparecerán cinco cartas comunitarias. Con ellas y las tuyas se forma la mejor combinación de cinco: puedes usar tus dos cartas, solo una o únicamente las cinco de la mesa."
+        },
+        {
+          "es": "Antes de las decisiones se pagan dos apuestas obligatorias: la ciega pequeña de 5 y la grande de 10. Las ponen los dos jugadores posteriores al repartidor. Si solo sois dos, el repartidor paga la pequeña y el otro la grande. Estas posiciones avanzan en cada nueva mano."
+        },
+        {
+          "es": "Empieza a apostar quien va después de la ciega grande. V indica cuánto te falta para igualar, P consulta el bote y S tus fichas restantes."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "es": "Decidir una apuesta"
+      },
+      "paragraphs": [
+        {
+          "es": "En cada ronda de apuestas se decide por turnos si continuar y cuánto pagar. Estas son tus opciones:"
+        },
+        {
+          "es": "- Con C pasas sin apostar si no hay nada que igualar. Conservas las cartas y cedes el turno sin pagar."
+        },
+        {
+          "es": "- Si debes igualar, C paga la diferencia para seguir. Si no tienes suficiente, pones todas tus fichas y sigues compitiendo por la parte del bote que has cubierto."
+        },
+        {
+          "es": "- Con R apuestas o subes. Escribe cuánto quieres aumentar la apuesta actual y confirma con Enter. La cantidad necesaria para igualar se añade aparte: si te faltan 10 y subes 20, pagas 30 en total."
+        },
+        {
+          "es": "- Con A vas all-in: apuestas todas tus fichas restantes. No te retiras de la mano; tus cartas todavía pueden ganar."
+        },
+        {
+          "es": "- Con F te retiras. Renuncias a esa mano y a las fichas que ya habías puesto en ella."
+        },
+        {
+          "es": "Una subida normal debe ser al menos de una ciega grande o, si la última subida fue mayor, al menos de ese último aumento. Puedes subir más, hasta agotar tus fichas. El campo de subida indica los límites disponibles."
+        },
+        {
+          "es": "Si un all-in no alcanza una subida completa, los demás deben pagar la diferencia para continuar. Pero ese aumento incompleto no permite volver a subir a quienes ya habían actuado."
+        },
+        {
+          "es": "La ronda de apuestas acaba cuando quienes siguen han igualado o están all-in. Si nadie apuesta, basta con que todos pasen sin apostar. Si todos menos uno se retiran, quien queda cobra inmediatamente el bote sin comparar cartas."
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "title": {
+        "es": "Cartas comunitarias"
+      },
+      "paragraphs": [
+        {
+          "es": "Si quedan al menos dos jugadores después de la primera ronda de apuestas, se descubren las cartas de la mesa. Desde entonces abre cada ronda de apuestas el primer jugador que siga activo después del repartidor."
+        },
+        {
+          "es": "Se descubren en tres etapas:"
+        },
+        {
+          "es": "- Flop: las tres primeras cartas, seguidas de otra ronda de apuestas."
+        },
+        {
+          "es": "- Turn: la cuarta carta, seguida de nuevas apuestas."
+        },
+        {
+          "es": "- River: la quinta y última. Tras las últimas apuestas se comparan las combinaciones."
+        },
+        {
+          "es": "E lee las cartas comunitarias y G tu mejor combinación actual. No tienes que seleccionar las cinco cartas a comparar. Si ya no puede haber más apuestas porque los jugadores están all-in, se descubren las comunitarias restantes y se resuelve la mano."
+        }
+      ]
+    },
+    {
+      "id": "hands",
+      "title": {
+        "es": "Orden de las combinaciones"
+      },
+      "paragraphs": [
+        {
+          "es": "Se comparan cinco cartas. De menor a mayor fuerza, las combinaciones son:"
+        },
+        {
+          "es": "- Carta alta: ninguna de las combinaciones siguientes. Cuenta primero tu carta más alta."
+        },
+        {
+          "es": "- Pareja: dos cartas del mismo valor, como dos reinas."
+        },
+        {
+          "es": "- Doble pareja: por ejemplo, dos reinas y dos sietes."
+        },
+        {
+          "es": "- Trío: tres cartas del mismo valor."
+        },
+        {
+          "es": "- Escalera: cinco valores consecutivos, como 6, 7, 8, 9 y 10."
+        },
+        {
+          "es": "- Color: cinco cartas del mismo palo, como cinco corazones."
+        },
+        {
+          "es": "- Full: un trío y una pareja, como tres reyes y dos ochos."
+        },
+        {
+          "es": "- Póquer: cuatro cartas del mismo valor."
+        },
+        {
+          "es": "- Escalera de color: cinco valores consecutivos del mismo palo. La mayor, del diez al as, es la escalera real."
+        },
+        {
+          "es": "El as es la carta más alta, pero en una escalera también puede ir antes del dos. A, 2, 3, 4, 5 es la escalera más baja."
+        }
+      ]
+    },
+    {
+      "id": "comparing_hands",
+      "title": {
+        "es": "Desempatar combinaciones"
+      },
+      "paragraphs": [
+        {
+          "es": "Si hay combinaciones del mismo tipo, decide su valor. Una pareja de reinas supera a una de dieces; se comparan igual los tríos y póqueres. En una escalera o escalera de color decide la carta más alta."
+        },
+        {
+          "es": "En la doble pareja se compara primero la pareja mayor y después la menor. En un full se compara primero el trío y, si es igual, la pareja."
+        },
+        {
+          "es": "Si persiste el empate, cuentan las otras cartas de mayor a menor. Con parejas iguales de reinas, por ejemplo, un as supera a un rey. En color y carta alta se comparan las cinco cartas en ese orden."
+        },
+        {
+          "es": "Si coinciden los valores de las cinco cartas, se reparte el bote. Ningún palo tiene preferencia sobre otro."
+        }
+      ]
+    },
+    {
+      "id": "all_in",
+      "title": {
+        "es": "All-in y botes separados"
+      },
+      "paragraphs": [
+        {
+          "es": "Quien está all-in no toma más decisiones de apuestas, pero espera el resultado. Solo puede ganar de cada rival tanto como haya aportado él mismo. Lo que apuesten de más los otros forma un bote aparte en el que no participa."
+        },
+        {
+          "es": "Por ejemplo, pones tus últimas 40 fichas y dos rivales ponen 100 cada uno. El bote principal tiene 120, con 40 de cada persona, y cualquiera de los tres puede ganarlo. Las otras 120, con 60 de cada rival, se disputan solo entre ellos."
+        },
+        {
+          "es": "Cada bote se resuelve por separado. Si hay empate se divide en partes iguales. Las fichas sueltas que sobren se entregan a los empatados por orden, empezando por el primero después del repartidor."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Nuevas manos y final de partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Después de repartir los botes, quienes no tienen fichas quedan eliminados. Los demás reciben cartas nuevas para la siguiente mano."
+        },
+        {
+          "es": "Cada cinco manos se duplican ambas ciegas: de 5 y 10 pasan a 10 y 20, después a 20 y 40. L consulta las ciegas actuales. La partida termina cuando solo una persona conserva fichas."
+        }
+      ]
+    },
+    {
+      "id": "draw",
+      "title": {
+        "es": "Póquer con descarte"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar puedes elegir esta modalidad en lugar de Texas Hold'em. Recibes cinco cartas privadas y no hay comunitarias. Por defecto todos pagan un ante de 5 al inicio. Tras la primera ronda de apuestas, cada jugador que siga puede cambiar una vez entre cero y tres cartas. Después hay otra ronda de apuestas y se comparan las manos. Con ante, la subida completa mínima empieza en 10, no en el valor del ante."
+        },
+        {
+          "es": "Para cambiar cartas, recórrelas con las flechas y márcalas con Shift+Enter. Cuando estén elegidas, sitúate sobre una de las marcadas y pulsa Enter: se cambian inmediatamente. Enter sobre una no marcada la añade al cambio; si no habías marcado ninguna, cambia solo esa carta."
+        },
+        {
+          "es": "Para quedarte con toda la mano, ve con Tab al botón para conservar todas las cartas y pulsa Enter. Quienes ya estén all-in también tienen derecho al cambio."
+        },
+        {
+          "es": "Esta modalidad tiene opciones propias:"
+        },
+        {
+          "es": "- Permitir cambiar las cinco cartas eleva el máximo de tres a cinco."
+        },
+        {
+          "es": "- «Jotas o mejor» exige al menos pareja de jotas para abrir las apuestas antes del cambio. Una vez abiertas, los demás pueden igualar o subir con menos. Si todos pasan sin apostar, se va al cambio. La condición deja de aplicarse después del cambio."
+        },
+        {
+          "es": "- Puedes usar ciega pequeña y grande en vez de ante, como en Hold'em. Las ciegas ya constituyen una apuesta, por lo que la condición de pareja de jotas no impide empezar a apostar."
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "title": {
+        "es": "Límites de apuestas"
+      },
+      "paragraphs": [
+        {
+          "es": "La modalidad habitual es Sin límite. Puedes sustituirla por una de estas:"
+        },
+        {
+          "es": "- Límite del bote: la subida máxima es el bote calculado después de igualar. Con un bote de 40 y 10 por igualar, puedes subir como máximo 50 y pagar 60 en total."
+        },
+        {
+          "es": "- Límite de medio bote: la subida máxima es la mitad del bote después de igualar, redondeada hacia abajo."
+        },
+        {
+          "es": "- Límite fijo: se sube exactamente una ciega grande. Si no te alcanza, puedes poner todas las fichas restantes."
+        },
+        {
+          "es": "Con Límite del bote y Límite de medio bote siempre se admite al menos una subida mínima completa si tienes fichas para ella. Un all-in no permite saltarse esos límites."
+        },
+        {
+          "es": "Por separado puedes limitar el número de subidas completas por ronda de apuestas. Al activarlo, el límite inicial es tres. La primera apuesta completa también cuenta. Una vez alcanzado, solo quedan pasar sin apostar, igualar o retirarse; si no te alcanza para igualar, aún puedes hacerlo con un all-in."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "es": "Fichas, ciegas y tiempo"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes cambiar las fichas iniciales, las dos ciegas y el ante. También puedes elegir cada cuántas manos o minutos suben las ciegas y por qué factor, o desactivar su aumento. Un nuevo nivel se aplica al empezar una mano."
+        },
+        {
+          "es": "Por defecto no hay plazo para decidir. Si lo activas, agotar el tiempo te retira automáticamente, incluso cuando podías pasar sin pagar. La excepción es el cambio de cartas tras un all-in: conservas todas tus cartas y sigues en la mano."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "C: pasar sin apostar o igualar."
+        },
+        {
+          "es": "F: retirarte de la mano."
+        },
+        {
+          "es": "R: escribir la subida, sin incluir lo necesario para igualar."
+        },
+        {
+          "es": "A: ir all-in."
+        },
+        {
+          "es": "S: consultar tus fichas."
+        },
+        {
+          "es": "Shift+S: consultar las fichas de los demás."
+        },
+        {
+          "es": "V: consultar cuánto falta para igualar."
+        },
+        {
+          "es": "P: consultar el bote total."
+        },
+        {
+          "es": "I: consultar tu aportación a la mano."
+        },
+        {
+          "es": "H: consultar quién sigue y quién se ha retirado."
+        },
+        {
+          "es": "L: consultar las ciegas."
+        },
+        {
+          "es": "D: leer tus cartas."
+        },
+        {
+          "es": "E: leer las comunitarias."
+        },
+        {
+          "es": "G: consultar tu mejor combinación actual."
+        },
+        {
+          "es": "Flechas: elegir una decisión de apuesta o una carta para el cambio."
+        },
+        {
+          "es": "Shift+Enter: marcar o desmarcar una carta durante el cambio."
+        },
+        {
+          "es": "Enter: confirmar una decisión; al cambiar, entregar las cartas marcadas junto con la carta seleccionada."
+        },
+        {
+          "es": "Escape: cancelar la cantidad o la selección de cartas."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "Shift+C durante el cambio: ordenar por palo; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+H durante el cambio: ordenar por valor; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+M durante el cambio: recuperar el orden de recepción."
+        },
+        {
+          "es": "1: leer tu primera carta."
+        },
+        {
+          "es": "2: leer tu segunda carta."
+        },
+        {
+          "es": "3: leer la primera comunitaria en Hold'em o tu tercera carta en póquer con descarte."
+        },
+        {
+          "es": "4: leer la segunda comunitaria en Hold'em o tu cuarta carta en póquer con descarte."
+        },
+        {
+          "es": "5: leer la tercera comunitaria en Hold'em o tu quinta carta en póquer con descarte."
+        },
+        {
+          "es": "6: leer la cuarta comunitaria en Hold'em."
+        },
+        {
+          "es": "7: leer la quinta comunitaria en Hold'em."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "thinking_time": "settings",
+    "variant": "draw",
+    "starting_chips": "settings",
+    "small_blind": "settings",
+    "big_blind": "settings",
+    "ante": "settings",
+    "draw_uses_blinds": "draw",
+    "betting": "limits",
+    "raise_cap_enabled": "limits",
+    "raise_cap": "limits",
+    "blind_interval": "settings",
+    "blind_interval_value": "settings",
+    "blind_multiplier": "settings",
+    "draw_five": "draw",
+    "jacks_or_better": "draw"
+  }
+}

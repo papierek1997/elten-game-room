@@ -1,0 +1,330 @@
+{
+  "source": "games/uno.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "Aim of the game"
+      },
+      "paragraphs": [
+        {
+          "en": "Be the first to play all your cards. Cards left in your hand at the end of a round become penalty points. Reaching the score limit eliminates you from the game; the last player remaining wins."
+        },
+        {
+          "en": "Two to eight people can play. Everyone starts with seven cards, and the player after the dealer takes the first turn."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Your turn"
+      },
+      "paragraphs": [
+        {
+          "en": "Press C to hear the last card played. Your card must match its colour, number or symbol. On a blue six, for example, you can play any blue card or a six of another colour. Browse your hand with the arrows and press Enter to play."
+        },
+        {
+          "en": "After an ordinary play, the turn moves on. If you cannot play, draw with Space. You may then play any suitable card in your hand, not just the one you drew. If you still have no legal play, your turn ends automatically."
+        },
+        {
+          "en": "You may choose to draw even when you could play, up to three times in one turn. After the third draw, you must play if you can."
+        },
+        {
+          "en": "When the draw pile runs out, previously played cards are shuffled and become available to draw again."
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": {
+        "en": "Special cards"
+      },
+      "paragraphs": [
+        {
+          "en": "Alongside the number cards, you will find:"
+        },
+        {
+          "en": "- Skip: the next player misses a turn."
+        },
+        {
+          "en": "- Reverse: play changes direction. With two players, it works like Skip, giving you another turn."
+        },
+        {
+          "en": "- Wild: choose a new colour with the arrows and Enter. A wild does not have to match the previous colour. Press V to hear the chosen colour."
+        },
+        {
+          "en": "- Draw Two: the next player must draw two cards or respond with another Draw Two. A response passes a four-card penalty to the following player. Each further Draw Two adds another two."
+        },
+        {
+          "en": "- Wild Draw Four: choose a colour and give the next player a four-card penalty. They can respond with another Wild Draw Four. Draw Two and Wild Draw Four cannot be stacked together."
+        },
+        {
+          "en": "Press Space to take a draw penalty. You receive all the required cards; G tells you how many are pending. After drawing, you can still play a suitable card. If you have none, your turn ends."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "Calling uno and scoring"
+      },
+      "paragraphs": [
+        {
+          "en": "When you have one card left, press U to call uno. If another player forgets, press U to catch them before the next card is played or drawn. A player caught this way receives two extra cards."
+        },
+        {
+          "en": "Playing your last card wins the round. If it carries a draw penalty, that penalty is settled first. The winner scores no penalty points; everyone else counts their remaining cards:"
+        },
+        {
+          "en": "- Number cards are worth their printed value."
+        },
+        {
+          "en": "- Coloured special cards are worth 20 points."
+        },
+        {
+          "en": "- Wild cards are worth 50 points."
+        },
+        {
+          "en": "After each round, players with at least 500 points are eliminated. The others receive new hands and play on until only one player remains. Press S for the scores."
+        }
+      ]
+    },
+    {
+      "id": "drawing_options",
+      "title": {
+        "en": "Drawing and penalty options"
+      },
+      "paragraphs": [
+        {
+          "en": "The following sections describe optional table settings. You can change drawing and scoring in these ways:"
+        },
+        {
+          "en": "- Set a score limit other than 500. Players are still eliminated after the round in which they reach it."
+        },
+        {
+          "en": "- Forbid drawing when a playable card is available, or change the maximum number of ordinary draws per turn."
+        },
+        {
+          "en": "- Draw until playable: one press of Space keeps drawing until you receive a playable card or the cards run out. It does not change the size of draw penalties."
+        },
+        {
+          "en": "- Disable penalty responses, so an attacked player must draw instead of passing the penalty on."
+        },
+        {
+          "en": "- Make accepting a draw penalty always end the player's turn."
+        },
+        {
+          "en": "- Enable advanced responses: a Skip or ordinary Wild passes the penalty on without increasing it, while Reverse sends it back the other way. Penalty responses must also be enabled."
+        }
+      ]
+    },
+    {
+      "id": "challenge",
+      "title": {
+        "en": "Challenging Wild Draw Four"
+      },
+      "paragraphs": [
+        {
+          "en": "In classic UNO, you can enable challenges. With this rule, playing Wild Draw Four is safe only when you have no other card in the colour that was in play."
+        },
+        {
+          "en": "If someone attacks you with it, press F to challenge their hand. If they did have that colour, they draw four instead. If they did not, you draw six and lose your turn."
+        }
+      ]
+    },
+    {
+      "id": "decks",
+      "title": {
+        "en": "Choosing a deck"
+      },
+      "paragraphs": [
+        {
+          "en": "The table settings offer three decks:"
+        },
+        {
+          "en": "- Classic uses the cards described in the opening sections."
+        },
+        {
+          "en": "- No Mercy adds stronger attacks and a hand-size limit that can knock players out of a round."
+        },
+        {
+          "en": "- Flip gives every card two different sides. Playing a Flip card changes which side everyone uses."
+        },
+        {
+          "en": "The next two sections explain No Mercy and Flip."
+        }
+      ]
+    },
+    {
+      "id": "no_mercy",
+      "title": {
+        "en": "No Mercy"
+      },
+      "paragraphs": [
+        {
+          "en": "No Mercy keeps classic UNO's matching rules and scoring, with these additional cards:"
+        },
+        {
+          "en": "- A coloured Draw Four makes the next player draw four cards."
+        },
+        {
+          "en": "- Wild Draw Six and Wild Draw Ten combine a colour choice with the named draw penalty."
+        },
+        {
+          "en": "- Wild Reverse Draw Four reverses play and gives four cards to the player whose turn it now is. With two players, the penalty comes back to the person who played it."
+        },
+        {
+          "en": "- Skip Everyone gives you another turn immediately."
+        },
+        {
+          "en": "- Discard All removes the other cards of its colour from your hand as well."
+        },
+        {
+          "en": "- Colour Roulette makes the next player draw until they get a non-wild card of the colour you chose. Their turn then ends."
+        },
+        {
+          "en": "A response to a fixed-number draw penalty must be in the same group as the attack: coloured cards respond to coloured cards, and wilds to wilds. Its penalty must be at least as large as that of the last card played. A coloured Draw Two cannot answer a coloured Draw Four, for example."
+        },
+        {
+          "en": "With advanced responses enabled, Skip Everyone and Discard All cancel a fixed-number draw penalty completely."
+        },
+        {
+          "en": "Reaching 25 cards in your hand eliminates you from the current round and gives you 250 penalty points. You return for the next round unless those points take you to the game's elimination limit. The hand-size limit can be changed, or disabled by setting it to zero."
+        }
+      ]
+    },
+    {
+      "id": "flip",
+      "title": {
+        "en": "Flip"
+      },
+      "paragraphs": [
+        {
+          "en": "UNO Flip cards have a light side and a dark side. Play starts on the light side. A Flip card turns over everyone's hand and both piles, so the bottom cards of the piles become the top cards. From then on, match the new sides."
+        },
+        {
+          "en": "The sides have different special cards:"
+        },
+        {
+          "en": "- The light side includes coloured Draw One cards and Wild Draw Two cards."
+        },
+        {
+          "en": "- The dark side uses different colours and includes coloured Draw Five cards. Skip Everyone gives the player another turn."
+        },
+        {
+          "en": "- The dark Wild Draw Colour makes the next player draw until they receive a non-wild card of the chosen colour, then ends their turn."
+        },
+        {
+          "en": "Special-card scoring stays the same: 20 points for coloured cards and 50 for wilds."
+        }
+      ]
+    },
+    {
+      "id": "extra_rules",
+      "title": {
+        "en": "Interceptions and other options"
+      },
+      "paragraphs": [
+        {
+          "en": "You can also enable these rules before starting:"
+        },
+        {
+          "en": "- Interception lets you play out of turn when you have an identical non-wild copy of the top card. Select it and press Enter. You take over the turn, and the card's effect applies to the next player. An unsuccessful attempt costs three penalty points. Super interception allows the same number or symbol in a different colour; it requires ordinary interception to be enabled too."
+        },
+        {
+          "en": "- Straights let you follow your own play with consecutive numbers of the same colour, moving up or down. After a green five, for example, quickly play a six and seven. Select and play each card separately with Enter. Keep the same direction and finish before someone else plays."
+        },
+        {
+          "en": "- Hand swapping makes a seven swap your whole hand with an opponent chosen using the arrows and Enter. A zero passes everyone's hand to the next player in the current direction. If the zero or seven was your last card, the person receiving your empty hand wins the round."
+        },
+        {
+          "en": "- Buzzers add eight cards to the Classic or No Mercy deck. When one is played, everyone presses B. The last player to respond draws two cards, and any card may be played next. If the buzzer was someone's last card, the round ends after everyone has responded. Flip has no buzzer cards."
+        },
+        {
+          "en": "- A turn time limit makes a player who runs out of time draw the pending penalty, or one card if there is none, and lose their turn. Choosing a colour and responding to a buzzer pause the timer."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrow keys: browse cards or choose a colour."
+        },
+        {
+          "en": "Enter: play a card or confirm a colour or player."
+        },
+        {
+          "en": "Space: draw a card or accept a draw penalty."
+        },
+        {
+          "en": "U: call uno or catch someone who did not."
+        },
+        {
+          "en": "B: respond to a buzzer."
+        },
+        {
+          "en": "F: challenge Wild Draw Four."
+        },
+        {
+          "en": "C: read the top card."
+        },
+        {
+          "en": "V: read the current colour."
+        },
+        {
+          "en": "E: read players' card counts."
+        },
+        {
+          "en": "G: read the pending penalty."
+        },
+        {
+          "en": "Z: find the next legal card on your turn; unavailable with straights, interceptions or buzzers."
+        },
+        {
+          "en": "Shift+Z: find the previous legal card on your turn; unavailable with straights, interceptions or buzzers."
+        },
+        {
+          "en": "S: read the scores."
+        },
+        {
+          "en": "T: announce whose turn it is."
+        },
+        {
+          "en": "Shift+C: sort by colour; press again to reverse."
+        },
+        {
+          "en": "Shift+H: sort by value; press again to reverse."
+        },
+        {
+          "en": "Shift+D: restore the order in which you received the cards."
+        },
+        {
+          "en": "Shift+M: restore the order in which you received the cards."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "deck": "decks",
+    "score_limit": "drawing_options",
+    "draw_responses": "drawing_options",
+    "advanced_responses": "drawing_options",
+    "bluff_challenge": "challenge",
+    "skip_after_penalty": "drawing_options",
+    "allow_optional_draw": "drawing_options",
+    "maximum_optional_draws": "drawing_options",
+    "straights": "extra_rules",
+    "interceptions": "extra_rules",
+    "super_interceptions": "extra_rules",
+    "zero_seven": "extra_rules",
+    "buzzers": "extra_rules",
+    "draw_until_playable": "drawing_options",
+    "no_mercy_limit": "no_mercy",
+    "thinking_time": "extra_rules"
+  }
+}

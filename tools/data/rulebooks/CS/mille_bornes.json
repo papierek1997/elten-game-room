@@ -1,0 +1,363 @@
+{
+  "source": "games/mille_bornes.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve hře 1000 mil řídíš auto pomocí karet. S kartami vzdálenosti postupuješ k cíli, zatímco soupeřům můžeš cestu znepříjemnit překážkami. K dokončení jízdy potřebuješ ujet přesně 1000 mil."
+        },
+        {
+          "cs": "Za ujeté míle a prémie získáváš body, které se sčítají z jednotlivých kol. Vyhraje ten, kdo má na konci kola alespoň 5000 bodů a zároveň víc než ostatní. Hrát mohou dva až osm hráčů."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "cs": "Co uděláš v tahu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Do každého kola dostaneš šest karet. Procházej je šipkami; klávesa H přečte celou ruku. Až budeš na řadě, nejprve si mezerníkem vezmi kartu. Potom šipkami vyber kartu, kterou chceš zahrát, a potvrď ji Enterem."
+        },
+        {
+          "cs": "Kartu nemusíš zahrát: místo toho můžeš jednu odhodit. Vyber ji a stiskni J. Tím tvůj tah končí."
+        }
+      ]
+    },
+    {
+      "id": "driving",
+      "title": {
+        "cs": "Rozjezd a ujeté míle"
+      },
+      "paragraphs": [
+        {
+          "cs": "Na začátku kola auto stojí. Rozjedeš se zahráním zelené a od příštího tahu už můžeš přidávat karty vzdálenosti. Každá tě přiblíží k cíli o uvedený počet mil."
+        },
+        {
+          "cs": "Na kartách je 25, 50, 75, 100 nebo 200 mil. Musíš dojet přesně na 1000 mil: při 950 mílích tedy nelze zahrát 75. Za jedno kolo smíš použít nejvýš dvě karty po 200 mílích."
+        }
+      ]
+    },
+    {
+      "id": "hazards",
+      "title": {
+        "cs": "Překážky a návrat na cestu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Jedoucí auto může soupeř zastavit červenou. Dokud stojíš, nesmíš hrát karty vzdálenosti; k dalšímu rozjezdu potřebuješ novou zelenou."
+        },
+        {
+          "cs": "Některé překážky ale samotná zelená nevyřeší. Nejdřív musíš zahrát kartu, která odstraní příčinu zastavení:"
+        },
+        {
+          "cs": "- Při nedostatku paliva je třeba doplnit palivo příslušnou kartou."
+        },
+        {
+          "cs": "- Po defektu zahraj rezervní kolo a vyměň tak poškozenou pneumatiku."
+        },
+        {
+          "cs": "- Následky nehody odstraníš kartou Opravy."
+        },
+        {
+          "cs": "Opravené auto ještě nejede. V dalším tahu zahraj zelenou a teprve potom pokračuj kartami vzdálenosti. Po defektu tedy přijde nejdřív rezervní kolo, pak zelená a až poté další míle."
+        },
+        {
+          "cs": "Těmito útoky lze zasáhnout jen jedoucí auto. Omezení rychlosti se liší: smíš ho uložit i stojícímu autu. Nezastaví ho, ale dovolí mu hrát pouze 25 a 50 mil. Větší vzdálenosti znovu zpřístupní karta Konec omezení rychlosti."
+        }
+      ]
+    },
+    {
+      "id": "safeties",
+      "title": {
+        "cs": "Ochranné karty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ochranná karta platí až do konce kola. Brání určitému útoku a odstraní i odpovídající překážku, která už na autě je. Zahraješ ji ve svém tahu po dobrání. Dostaneš za ni 100 bodů a další tah, na jehož začátku si znovu vezmeš kartu."
+        },
+        {
+          "cs": "Ve hře jsou čtyři ochranné karty:"
+        },
+        {
+          "cs": "- Přídavná nádrž chrání před nedostatkem paliva."
+        },
+        {
+          "cs": "- Pneumatiky odolné proti propíchnutí chrání před defektem."
+        },
+        {
+          "cs": "- Řidičské eso chrání před nehodou i jízdou proti směru."
+        },
+        {
+          "cs": "- Přednost v jízdě chrání před červenou a omezením rychlosti. Navíc umožňuje rozjezd bez zelené, a to na začátku kola i po opravě auta."
+        },
+        {
+          "cs": "Ostatní tři ochranné karty rozjezd nenahrazují. Po odstranění závady pořád potřebuješ zelenou, pokud už nemáš vyloženou Přednost v jízdě."
+        },
+        {
+          "cs": "Klávesou I zjistíš své ujeté míle, překážky a ochranu. Shift+I přečte tyto údaje u všech hráčů."
+        }
+      ]
+    },
+    {
+      "id": "counterattack",
+      "title": {
+        "cs": "Okamžitá obrana"
+      },
+      "paragraphs": [
+        {
+          "cs": "Máš-li v ruce ochranu proti útoku, který právě přišel, můžeš ji zahrát hned, i když nejsi na řadě. Vyber ji šipkami a stiskni Enter dřív, než někdo dobere, zahraje či odhodí další kartu. Této obraně se říká coup fourré."
+        },
+        {
+          "cs": "Útok se zruší. Jestliže auto před útokem jelo, může pokračovat bez opravy i bez nové zelené. K obvyklým 100 bodům za ochranu dostaneš prémii 300 bodů."
+        },
+        {
+          "cs": "Pokud v balíčku ještě něco zbývá, dostaneš za zahranou ochranu náhradní kartu. Potom přebíráš tah: mezerníkem normálně dobereš a kartu zahraješ nebo odhodíš. Dál se pokračuje od tebe, takže hráči mezi útočníkem a tebou přijdou o tah."
+        },
+        {
+          "cs": "Nestihneš-li tuto okamžitou obranu, ochranu můžeš vyložit později ve svém tahu. Prémie 300 bodů už k ní ale nebude."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "cs": "Konec kola a body"
+      },
+      "paragraphs": [
+        {
+          "cs": "Kolo končí dojezdem některého auta přesně na 1000 mil. Dojde-li dobírací balíček dřív, hrajete dál kartami v ruce. V takovém případě kolo skončí také ve chvíli, kdy někdo zahraje nebo odhodí svou poslední kartu."
+        },
+        {
+          "cs": "Na konci kola dostane každý body za svou jízdu:"
+        },
+        {
+          "cs": "- Za každou ujetou míli 1 bod."
+        },
+        {
+          "cs": "- Za každou vyloženou ochrannou kartu 100 bodů."
+        },
+        {
+          "cs": "- Za každou okamžitou obranu dalších 300 bodů."
+        },
+        {
+          "cs": "Auto, které dokončilo 1000 mil, může získat i následující prémie. Splní-li několik podmínek, prémie se sčítají:"
+        },
+        {
+          "cs": "- Za dokončení jízdy 300 bodů."
+        },
+        {
+          "cs": "- Za dojezd při prázdném dobíracím balíčku dalších 300 bodů."
+        },
+        {
+          "cs": "- Za dojezd se všemi čtyřmi ochrannými kartami dalších 300 bodů."
+        },
+        {
+          "cs": "- Pokud žádný soupeř neujel ani míli, za dojezd navíc 500 bodů."
+        },
+        {
+          "cs": "Příští kolo začíná novým rozdáním a jízdou od nuly, dosavadní body ti ale zůstanou. Výsledky přečte S. Celkový vítěz musí mít po sečtení kola nejméně 5000 bodů a vést sám. Při děleném prvním místě se hraje další kolo."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "cs": "Týmová hra"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před začátkem lze v nastavení stolu zvolit stejně velké týmy místo hry jednotlivců:"
+        },
+        {
+          "cs": "- Čtyři hráči vytvoří dvě dvojice."
+        },
+        {
+          "cs": "- Šest hráčů vytvoří dvě trojice nebo tři dvojice."
+        },
+        {
+          "cs": "- Osm hráčů vytvoří dva čtyřčlenné týmy nebo čtyři dvojice."
+        },
+        {
+          "cs": "Tým má společné auto i skóre. Každý hráč drží vlastní karty a hraje ve svém tahu, ale vzdálenost, překážky i ochrana patří celému týmu. Společný je také limit dvou karet po 200 mílích."
+        },
+        {
+          "cs": "Útočí se na auto soupeřova týmu. Na zásah může okamžitě odpovědět ochrannou kartou kterýkoli člen napadeného týmu; právě on pak získá další tah."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Volitelné úpravy pravidel"
+      },
+      "paragraphs": [
+        {
+          "cs": "V nastavení stolu před hrou můžeš změnit cílový počet bodů a zapnout tyto úpravy:"
+        },
+        {
+          "cs": "- Hromadění překážek dovolí napadat stojící auto různými závadami. Před rozjezdem je pak nutné odstranit všechny. Tutéž aktivní závadu nelze přidat podruhé a červenou lze i nadále zahrát jen na jedoucí auto."
+        },
+        {
+          "cs": "- Opětovné použití odhozených karet z nich po vyčerpání balíčku vytvoří nový dobírací balíček. Karty dříve zahrané pro jízdu, opravu či útok se do něj nevracejí."
+        },
+        {
+          "cs": "- Ochranné karty lze z balíčku vyřadit. Pak není k dispozici trvalá ochrana ani okamžitá obrana; běžné opravy a zelená fungují stejně jako dosud."
+        }
+      ]
+    },
+    {
+      "id": "counterflow",
+      "title": {
+        "cs": "Jízda proti směru"
+      },
+      "paragraphs": [
+        {
+          "cs": "Volba Proti směru přidává karty tohoto útoku i jeho ukončení. V běžném složení jsou čtyři karty Proti směru a šest karet Konec jízdy proti směru."
+        },
+        {
+          "cs": "Zasažené auto se při hraní karet vzdálenosti vrací: míle se odečítají, nejníže však k nule. Auto musí mít povolenou jízdu a dál pro něj platí omezení rychlosti. Takto použitých 200 mil se počítá do obvyklého limitu dvou těchto karet."
+        },
+        {
+          "cs": "Útok lze zahrát i na stojící auto nebo vedle jiné překážky, ne však na auto, které už proti směru jede. Správný směr obnovíš kartou Konec jízdy proti směru. Ostatní závady ani omezení rychlosti tím nezmizí."
+        },
+        {
+          "cs": "Před tímto útokem chrání také Řidičské eso. Běžným vyložením probíhající jízdu proti směru odstraní; při okamžité obraně útok zruší a přinese i prémii."
+        }
+      ]
+    },
+    {
+      "id": "instant_repair",
+      "title": {
+        "cs": "Okamžitá oprava"
+      },
+      "paragraphs": [
+        {
+          "cs": "Samostatnou volbou přidáš karty Okamžitá oprava; standardně jsou v balíčku dvě. Každá vyřeší jeden vybraný problém. Po dobrání ji ve svém tahu zahraj Enterem, šipkami vyber problém a Enterem volbu potvrď."
+        },
+        {
+          "cs": "Výsledek záleží na tom, co opravuješ:"
+        },
+        {
+          "cs": "- Odstranění červené dovolí rozjezd, pokud autu nebrání jiná překážka. Karta zastoupí zelenou i tehdy, když auto na svůj první rozjezd teprve čeká."
+        },
+        {
+          "cs": "- Po opravě paliva, pneumatiky či nehody je stále potřeba zelená, nemáš-li Přednost v jízdě."
+        },
+        {
+          "cs": "- Zrušení omezení rychlosti nebo jízdy proti směru odstraní jen vybranou překážku. Ostatní zůstávají."
+        },
+        {
+          "cs": "Okamžitá oprava neposkytuje ochranu před dalšími útoky. Nedává další tah ani prémii a nelze ji použít jako okamžitou obranu."
+        }
+      ]
+    },
+    {
+      "id": "custom_deck",
+      "title": {
+        "cs": "Vlastní složení balíčku"
+      },
+      "paragraphs": [
+        {
+          "cs": "V nastavení stolu lze povolit vlastní balíček a zadat počty jednotlivých druhů karet. Jízda proti směru, okamžité opravy a ochranné karty mají vlastní přepínače: samotný počet je do hry nezařadí."
+        },
+        {
+          "cs": "Balíček musí stačit na šest karet pro každého i na další hru. Kromě vzdáleností nezapomeň na karty pro rozjezd a odstraňování překážek. Počet karet Proti směru a Konec jízdy proti směru lze upravit i bez vlastního složení celého balíčku."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházet karty a dostupné volby."
+        },
+        {
+          "cs": "Enter: zahrát kartu a případně vybrat soupeře nebo problém k odstranění; u nehratelné karty potvrdit odhození."
+        },
+        {
+          "cs": "Escape: zrušit výběr karty, soupeře nebo odhození."
+        },
+        {
+          "cs": "Mezerník: dobrat kartu."
+        },
+        {
+          "cs": "J: odhodit vybranou kartu bez dalšího potvrzení."
+        },
+        {
+          "cs": "Delete: vybrat kartu k odhození."
+        },
+        {
+          "cs": "H: přečíst karty v ruce."
+        },
+        {
+          "cs": "I: přečíst vlastní vzdálenost, překážky a ochranu."
+        },
+        {
+          "cs": "Shift+I: přečíst vzdálenost, překážky a ochranu všech aut."
+        },
+        {
+          "cs": "S: přečíst skóre."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        },
+        {
+          "cs": "Z: najít další hratelnou kartu ve vlastním tahu; nefunguje během možnosti okamžité obrany."
+        },
+        {
+          "cs": "Shift+Z: najít předchozí hratelnou kartu ve vlastním tahu; nefunguje během možnosti okamžité obrany."
+        },
+        {
+          "cs": "Shift+C: seřadit karty podle druhu; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+H: seřadit karty podle vzdálenosti nebo hodnoty; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+M: vrátit karty do pořadí, v němž přišly."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "target_score": "variants",
+    "team_count": "teams",
+    "accumulate_hazards": "variants",
+    "recycle_discard": "variants",
+    "include_safeties": "variants",
+    "counterflow": "counterflow",
+    "counterflow_cards": "custom_deck",
+    "end_counterflow_cards": "custom_deck",
+    "custom_deck": "custom_deck",
+    "include_instant_repairs": "instant_repair",
+    "25_cards": "custom_deck",
+    "50_cards": "custom_deck",
+    "75_cards": "custom_deck",
+    "100_cards": "custom_deck",
+    "200_cards": "custom_deck",
+    "stop_cards": "custom_deck",
+    "speed_limit_cards": "custom_deck",
+    "out_of_gas_cards": "custom_deck",
+    "flat_tire_cards": "custom_deck",
+    "accident_cards": "custom_deck",
+    "go_cards": "custom_deck",
+    "end_limit_cards": "custom_deck",
+    "fuel_cards": "custom_deck",
+    "spare_tire_cards": "custom_deck",
+    "repairs_cards": "custom_deck",
+    "right_of_way_cards": "custom_deck",
+    "extra_tank_cards": "custom_deck",
+    "puncture_proof_cards": "custom_deck",
+    "driving_ace_cards": "custom_deck",
+    "instant_repair_cards": "custom_deck"
+  }
+}

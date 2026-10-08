@@ -1,0 +1,110 @@
+{
+  "source": "games/quiz_party.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Answer questions from your chosen subject. Each has four choices and one correct answer. A correct answer earns a point; a wrong one loses nothing, so it is worth trying even when unsure."
+        },
+        {
+          "en": "Two to eight players, including bots, can play. Everyone answers the same question independently. Being the first to press Enter earns no extra points."
+        }
+      ]
+    },
+    {
+      "id": "round",
+      "title": {
+        "en": "Choosing and answering"
+      },
+      "paragraphs": [
+        {
+          "en": "Each round, one player chooses from three randomly offered categories. When it is your choice, use the arrows and confirm with Enter. The round contains three questions from that category; the next player chooses in the next round."
+        },
+        {
+          "en": "For each question, you have 20 seconds. Browse the four answers with the arrows and press Enter to submit one. You cannot change it afterwards, and your choice stays secret until everyone answers or time runs out."
+        },
+        {
+          "en": "T repeats the question; Ctrl+T reads the remaining time. A warning sounds with five seconds left. Missing the deadline scores zero."
+        },
+        {
+          "en": "When everyone has answered or the timer expires, the correct answer and point winners are announced. The third question ends the round. V reads its summary and S reads scores."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "en": "Winning"
+      },
+      "paragraphs": [
+        {
+          "en": "The target is at least 15 points, but always finish the current three-question round before deciding the winner. The player with the highest total wins."
+        },
+        {
+          "en": "If the lead is tied, play another three-question round. Keep going until one player has the highest score at the end of a round."
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "title": {
+        "en": "Question language and pack"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose the question language, then a question pack in the table settings. The pack determines which categories are available."
+        },
+        {
+          "en": "Packs about books and other stories may contain spoilers, including endings."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "en": "Time and target"
+      },
+      "paragraphs": [
+        {
+          "en": "The host can change answer time and the target score before play. The current round is still completed even if someone reaches the target sooner."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: choose a category or answer."
+        },
+        {
+          "en": "Enter: confirm your choice."
+        },
+        {
+          "en": "T: read the question and choices."
+        },
+        {
+          "en": "Ctrl+T: read answer time remaining."
+        },
+        {
+          "en": "V: read the round summary."
+        },
+        {
+          "en": "S: read scores."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "content_language_id": "content",
+    "content_set_id": "content",
+    "answer_time": "options",
+    "target_score": "options"
+  }
+}

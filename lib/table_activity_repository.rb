@@ -33,7 +33,7 @@ class TableActivityRepository
   BOT_KINDS = %w[bot_added bot_removed].freeze
   TABLE_LIMIT = 2_000
   GLOBAL_LIMIT = 200
-  MESSAGE_MAX_LENGTH = 400
+  MESSAGE_MAX_LENGTH = 2_000
   PROJECTION_CACHE_LIMIT = 4_096
 
   def initialize(server_tables:, transport: nil)

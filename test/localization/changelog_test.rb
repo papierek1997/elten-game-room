@@ -74,15 +74,17 @@ Form.class_eval do
   alias_method :changelog_original_wait, :wait
   define_method(:wait) do
     captured_form = self
-    accept_button.trigger(:press)
+    cancel_button.trigger(:press)
   end
 end
-GameRoomScreens::Changelog.new(["Change one", "Change two"]).wait
-assert(captured_form.fields.length == 2, "the changelog is not a single list with a hidden close action")
-assert(captured_form.fields.first.options == ["Change one", "Change two"], "the changelog changed its rows")
-assert(captured_form.accept_button.equal?(captured_form.cancel_button), "Enter and Escape do not close the same list")
-assert(captured_form.hidden_controls.include?(captured_form.accept_button), "the close action became an extra visible field")
-assert(resumes == 1, "Enter on the changelog list did not close it")
+document_text = GameRoomChangelog.markdown(first_install)
+GameRoomScreens::Changelog.new(document_text).wait
+assert(captured_form.fields.length == 2, "the changelog needs one document and a close button")
+field = captured_form.fields.first
+assert(field.is_a?(EditBox) && field.text == document_text, "the changelog is not a text document")
+assert(field.flags & EditBox::Flags::ReadOnly != 0 && field.flags & EditBox::Flags::MarkDown != 0, "the document is editable or has no headings")
+assert(captured_form.accept_button.nil?, "Enter closes the document instead of following a link")
+assert(captured_form.cancel_button == captured_form.fields.last && resumes == 1, "Escape does not close the document")
 Form.class_eval do
   alias_method :wait, :changelog_original_wait
   remove_method :changelog_original_wait
@@ -107,8 +109,8 @@ entry_224 = entries.find { |entry| entry.build == 224 }
 entry_225 = entries.find { |entry| entry.build == 225 }
 assert(entry_225.changes.take(3) == entry_224.changes.take(3), "build 225 dropped the agreed previous changelog")
 assert(entry_225.changes.last.include?("announced during a bot's turn"), "build 225 does not explicitly mention Makao during bot turns")
-expected_current_rows = current_entry.changes.length + 1
-assert(shown.length == 1 && shown.first.length == expected_current_rows, "the current changelog was not shown on first launch")
+expected_current_text = GameRoomChangelog.markdown([current_entry])
+assert(shown.length == 1 && shown.first == expected_current_text, "the current changelog was not shown on first launch")
 assert(state[GameRoomChangelog::LAST_SEEN_BUILD_KEY] == EltenGameRoom::GAME_ROOM_BUILD_ID, "closing the changelog did not mark the build as read")
 reopened_app = EltenGameRoom.new
 reopened_app.send(:show_update_changelog)
@@ -310,6 +312,8 @@ assert(GameRoomChangelog.pending_entries(240, 240).empty?, 'build 240 reopens af
 assert(GameRoomChangelog.list_items([entry_240]).first == 'Version 2.0.4.1, build 240', 'build 240 heading differs')
 # Exact release wording is pinned independently of runtime and catalog;
 # rebuilding translations must never rewrite these expected checksums.
+# Build 247's approved terminology change replaces paletka with rakietka,
+# including the single occurrence in the Polish build 240 note.
 release_checksums = JSON.parse(File.read(File.expand_path('../fixtures/changelog_checksums.json', __dir__), encoding: 'UTF-8'))
 release_checksums.each do |build, expected|
   entry = entries.find { |item| item.build == build.to_i }
@@ -338,4 +342,11 @@ assert(GameRoomChangelog.pending_entries(241, 241).empty?, 'build 241 reopens af
 assert(GameRoomChangelog.list_items([entry_241]).first == 'Version 2.0.4.2, build 241', 'build 241 heading differs')
 # The runtime changelog and the compiled catalogue are the release sources;
 # PR 28 deliberately removes duplicated release documents.
-puts "Changelog tests passed: first launch, updates, downgrade, Enter, storage, old notes preserved and bilingual build 241 notes"
+entry_247 = entries.find { |entry| entry.build == 247 }
+assert(entry_247.version == '2.0.4.8' && entry_247.changes.length == 9, 'build 247 has incorrect release metadata')
+assert(entry_247.changes.all? { |text| !catalog[text].to_s.empty? }, 'build 247 has an untranslated change')
+assert(GameRoomChangelog.pending_entries(246, 247).map(&:build) == [247], 'build 247 repeats older notes')
+assert(GameRoomChangelog.pending_entries(nil, 247).map(&:build) == [247], 'first build 247 launch repeats history')
+assert(GameRoomChangelog.pending_entries(247, 247).empty?, 'build 247 reopens after being read')
+assert(GameRoomChangelog.list_items([entry_247]).first == 'Version 2.0.4.8, build 247', 'build 247 heading differs')
+puts "Changelog tests passed: first launch, updates, downgrade, Enter, storage, old notes preserved and bilingual build 247 notes"

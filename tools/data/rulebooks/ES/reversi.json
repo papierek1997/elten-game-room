@@ -1,0 +1,108 @@
+{
+  "source": "games/reversi.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "Reversi enfrenta a dos personas en un tablero de 8 por 8. Una juega con negras y otra con blancas. Gana quien termine con más fichas de su color."
+        },
+        {
+          "es": "Al empezar hay cuatro fichas en el centro, dos de cada color. Las negras hacen el primer movimiento y después se alternan los turnos."
+        }
+      ]
+    },
+    {
+      "id": "placing",
+      "title": {
+        "es": "Colocar y voltear fichas"
+      },
+      "paragraphs": [
+        {
+          "es": "En cada turno colocas una ficha en una casilla vacía. Debe encerrar al menos una ficha rival entre la nueva y otra de tu color. La línea puede ser horizontal, vertical o diagonal, pero no tener huecos."
+        },
+        {
+          "es": "Llega a la casilla con las flechas y pulsa Enter. Todas las fichas rivales encerradas cambian a tu color. Si cierras varias líneas a la vez, se voltean las fichas de todas ellas."
+        },
+        {
+          "es": "Por ejemplo, juegas con blancas y hay dos negras entre una ficha blanca tuya y una casilla vacía. Al poner una blanca en esa casilla, las dos negras pasan a ser blancas."
+        },
+        {
+          "es": "Las fichas recién volteadas no provocan más cambios en cadena. Solo cuentan las líneas que cierra la ficha que acabas de colocar."
+        }
+      ]
+    },
+    {
+      "id": "passing",
+      "title": {
+        "es": "Pasar el turno"
+      },
+      "paragraphs": [
+        {
+          "es": "Si no tienes ninguna jugada que voltee fichas rivales, pasas automáticamente. El rival vuelve a jugar, si puede."
+        },
+        {
+          "es": "Con las reglas habituales también puedes pasar voluntariamente pulsando P. Que ambos pasen no termina por sí solo la partida si aún hay jugadas posibles."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Final y resultado"
+      },
+      "paragraphs": [
+        {
+          "es": "La partida termina cuando el tablero está lleno o ninguno de los dos puede jugar. Gana quien tenga más fichas; con la misma cantidad hay empate. S consulta cuántas tiene cada uno."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Variantes"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes cambiar dos reglas:"
+        },
+        {
+          "es": "- Prohibir el pase voluntario: solo pasas si no tienes ninguna jugada legal."
+        },
+        {
+          "es": "- Quitar la obligación de voltear: puedes colocar una ficha en cualquier casilla vacía contigua por un lado o una esquina a una ficha del tablero. Si la jugada encierra fichas rivales, se voltean normalmente."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer el tablero."
+        },
+        {
+          "es": "Enter: colocar una ficha."
+        },
+        {
+          "es": "P: pasar, si lo permiten las reglas de la mesa."
+        },
+        {
+          "es": "S: contar las fichas de ambos jugadores."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "allow_passing": "variants",
+    "mandatory_capture": "variants"
+  }
+}

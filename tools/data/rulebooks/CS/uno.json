@@ -1,0 +1,327 @@
+{
+  "source": "games/uno.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "V UNO chceš jako první vyložit všechny své karty. Zbytek v ruce na konci kola přináší trestné body. Dosažení bodového limitu tě vyřadí; poslední zbývající hráč vyhraje celou partii."
+        },
+        {
+          "cs": "Hrají dva až osm hráčů, každý dostane sedm karet. Začíná hráč po rozdávajícím."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "cs": "Běžný tah"
+      },
+      "paragraphs": [
+        {
+          "cs": "Pomocí C si přečti vrchní kartu na stole. Tvoje karta musí odpovídat barvou, číslem nebo symbolem. Na modrou šestku tedy pasuje modrá karta nebo šestka jiné barvy. Vyber šipkami a zahraj Enterem."
+        },
+        {
+          "cs": "Po běžné kartě hraje další. Nemáš-li vhodnou, dober mezerníkem. Potom smíš zahrát kteroukoli přípustnou kartu v ruce, i dříve drženou. Pokud po dobrání stále nemáš jediný tah, končíš automaticky."
+        },
+        {
+          "cs": "Dobírat smíš i místo zahrání vhodné karty, nejvýš však třikrát během tahu. Po třetím dobrání už musíš zahrát, máš-li čím."
+        },
+        {
+          "cs": "Po vyčerpání dobíracího balíčku se dříve zahrané karty zamíchají a znovu použijí."
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": {
+        "cs": "Zvláštní karty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Vedle číselných karet se používají tyto účinky:"
+        },
+        {
+          "cs": "- Přeskočení vezme následujícímu hráči tah."
+        },
+        {
+          "cs": "- Změna směru obrátí pořadí hry. Ve dvou funguje jako přeskočení, takže hraješ znovu."
+        },
+        {
+          "cs": "- Karta „Změna barvy“, tedy divoká karta, dovolí zvolit novou barvu bez přizpůsobení předchozí kartě. Po zahrání barvu vyber šipkami a potvrď Enterem. Platnou barvu připomene V."
+        },
+        {
+          "cs": "- Karta „Dobrat dvě“, zkráceně plus dva, ukládá dalšímu hráči dobrat dvě karty. Může odpovědět vlastním plus dva, zvýšit trest na čtyři a poslat ho dál. Další odpovědi trest dál sčítají."
+        },
+        {
+          "cs": "- Karta „Změna barvy a dobrat čtyři“, zkráceně divoká plus čtyři, mění barvu a ukládá čtyři karty. Odpovědět lze další divokou plus čtyři. Tresty plus dva a plus čtyři se mezi sebou nemíchají."
+        },
+        {
+          "cs": "Trest přijmeš mezerníkem a vezmeš celý počet karet; jeho výši přečte G. Pak ještě smíš zahrát vhodnou kartu. Nemáš-li žádnou, tah skončí."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Uno a konec kola"
+      },
+      "paragraphs": [
+        {
+          "cs": "S jedinou kartou stiskni U a ohlas „uno“. Zapomene-li někdo, soupeř ho chytí stejnou klávesou, dokud nenastane další zahrání nebo dobrání. Přistižený dostane dvě karty."
+        },
+        {
+          "cs": "Poslední vyložená karta vyhraje kolo. Je-li trestná, nejdřív se vyřeší dobírání. Vítěz má nula bodů, ostatní zapíší zbylé karty:"
+        },
+        {
+          "cs": "- Číselná karta dává tolik trestných bodů, kolik je na ní uvedeno."
+        },
+        {
+          "cs": "- Barevná zvláštní karta dává 20."
+        },
+        {
+          "cs": "- Divoká karta dává 50."
+        },
+        {
+          "cs": "Po kole vypadnou hráči s alespoň 500 body. Ostatní dostanou nové karty. Poslední hráč ve hře vyhraje celou partii. Skóre přečte S."
+        }
+      ]
+    },
+    {
+      "id": "drawing_options",
+      "title": {
+        "cs": "Úpravy dobírání a trestů"
+      },
+      "paragraphs": [
+        {
+          "cs": "Následující varianty se volí před hrou v nastavení stolu. Dobírání a bodování lze upravit takto:"
+        },
+        {
+          "cs": "- Změnit limit trestných bodů z 500. Vyřazení po jeho dosažení se stále vyhodnocuje na konci kola."
+        },
+        {
+          "cs": "- Zakázat dobrovolné dobírání s vhodnou kartou nebo změnit nejvyšší počet běžných dobrání za tah."
+        },
+        {
+          "cs": "- Dobírat do hratelné karty: jednou stiskneš mezerník a bereš, dokud lze hrát nebo dojdou dostupné karty. Výše trestů se tím nemění."
+        },
+        {
+          "cs": "- Zakázat odpovědi na trestné karty. Napadený pak musí dobrat, nemůže poslat trest dál."
+        },
+        {
+          "cs": "- Nechat přijetí trestu vždy ukončit tah."
+        },
+        {
+          "cs": "- Pokročilé odpovědi dovolí přeskočením nebo běžnou divokou kartou poslat trest dál bez zvýšení. Změna směru ho vrátí opačným směrem. Tento doplněk vyžaduje povolené odpovědi na tresty."
+        }
+      ]
+    },
+    {
+      "id": "challenge",
+      "title": {
+        "cs": "Zpochybnění divoké plus čtyři"
+      },
+      "paragraphs": [
+        {
+          "cs": "U klasického balíčku lze zapnout kontrolu blufování. Divokou plus čtyři pak smíš bez postihu zahrát jen tehdy, když nemáš jinou kartu dosavadní barvy."
+        },
+        {
+          "cs": "Po takovém útoku můžeš pomocí F zkontrolovat soupeřovu ruku. Pokud odpovídající barvu měl, dobere čtyři on. Pokud ji neměl, vezmeš šest ty a ztratíš tah."
+        }
+      ]
+    },
+    {
+      "id": "decks",
+      "title": {
+        "cs": "Volba balíčku"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze vybrat tři balíčky:"
+        },
+        {
+          "cs": "- Klasický odpovídá základním pravidlům výše."
+        },
+        {
+          "cs": "- No Mercy přidává silnější útoky a vyřazení z kola za příliš velkou ruku."
+        },
+        {
+          "cs": "- Flip má oboustranné karty; zahrání Flipu změní používanou stranu. Podrobnosti následují za No Mercy."
+        }
+      ]
+    },
+    {
+      "id": "no_mercy",
+      "title": {
+        "cs": "No Mercy"
+      },
+      "paragraphs": [
+        {
+          "cs": "No Mercy zachovává přikládání i bodování klasického UNO a přidává další karty:"
+        },
+        {
+          "cs": "- Barevná karta „Dobrat čtyři“, tedy plus čtyři, ukládá následujícímu hráči čtyři karty."
+        },
+        {
+          "cs": "- „Změna barvy a dobrat šest“ a „Změna barvy a dobrání deseti karet“ jsou divoké plus šest a plus deset: dovolují změnit barvu a ukládají příslušný počet karet."
+        },
+        {
+          "cs": "- „Divoká karta: změna směru a dobrání čtyř“ obrátí hru a napadne nově následujícího hráče. Ve dvou se trest vrátí na toho, kdo ji zahrál."
+        },
+        {
+          "cs": "- Karta „Vynechat všechny“ ti dává okamžitě další tah."
+        },
+        {
+          "cs": "- Karta „Odhodit všechny“ odstraní z ruky i ostatní karty stejné barvy."
+        },
+        {
+          "cs": "- Divoká barevná ruleta nutí dalšího hráče dobírat až po první nedivokou kartu barvy, kterou určíš. Potom jeho tah končí."
+        },
+        {
+          "cs": "Proti trestu s určitým počtem musí obrana patřit do stejné skupiny: barevná proti barevné, divoká proti divoké. Zároveň nesmí být slabší než poslední útok. Na barevnou plus čtyři tedy nelze dát plus dva."
+        },
+        {
+          "cs": "S pokročilými odpověďmi lze kartou „Vynechat všechny“ nebo „Odhodit všechny“ úplně zrušit trest za určitý počet karet."
+        },
+        {
+          "cs": "Jakmile máš v ruce 25 karet, vypadneš z aktuálního kola a dostaneš 250 trestných bodů. V dalším kole se vrátíš, pokud už body nezpůsobily celkové vyřazení. Hranici 25 lze změnit nebo nulou vypnout."
+        }
+      ]
+    },
+    {
+      "id": "flip",
+      "title": {
+        "cs": "Flip"
+      },
+      "paragraphs": [
+        {
+          "cs": "Flip má světlou a tmavou stranu karet. Začíná se světlou. Karta Flip, v seznamu nazvaná „Otočit karty“, obrátí všechny ruce i oba balíčky, takže jejich dosavadní spodní karty budou nahoře. Od té chvíle se hraje podle nově odhalené strany."
+        },
+        {
+          "cs": "Strany mají odlišné zvláštní karty:"
+        },
+        {
+          "cs": "- Světlá obsahuje mimo jiné barevné plus jedna („Doberte jednu“) a divoké plus dva („Změna barvy a dobrání dvou karet“)."
+        },
+        {
+          "cs": "- Tmavá přináší jiné barvy a barevné plus pět („Dobrat pět“). Karta „Vynechat všechny“ dává další tah tomu, kdo ji zahrál."
+        },
+        {
+          "cs": "- Tmavá „Divoká karta s dobíráním do zvolené barvy“ nutí dalšího hráče brát až po první nedivokou kartu požadované barvy. Tím jeho tah končí."
+        },
+        {
+          "cs": "Bodování zvláštních karet se nemění: barevné jsou za 20, divoké za 50."
+        }
+      ]
+    },
+    {
+      "id": "extra_rules",
+      "title": {
+        "cs": "Přebírání tahu a další dodatky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze zapnout také tyto možnosti:"
+        },
+        {
+          "cs": "- Přebírání tahu dovolí mimo vlastní pořadí zahrát totožnou nedivokou kartu s vrchní kartou na stole. Vyber ji a stiskni Enter. Převezmeš tah a účinek míří na následujícího hráče. Neplatný pokus stojí tři trestné body. Při zapnutém superpřebírání tahu podle hodnoty stačí shodné číslo či symbol bez shodné barvy. Tato volba vyžaduje zapnuté běžné přebírání tahu."
+        },
+        {
+          "cs": "- Postupky dovolí po vlastním zahrání rychle přidávat sousední čísla stejné barvy jedním směrem. Po zelené pětce tak můžeš přidat šestku a sedmičku. Každou vyber a zahraj Enterem zvlášť, dodrž rostoucí či klesající směr a stihni to před cizím zahráním."
+        },
+        {
+          "cs": "- Výměny rukou: sedmička dovolí vybrat soupeře šipkami a Enterem a vyměnit si celé ruce. Nula předá každou ruku následujícímu hráči ve směru hry. Byla-li nula nebo sedmička tvou poslední kartou, předáš prázdnou ruku jinému hráči a kolo vyhraje on."
+        },
+        {
+          "cs": "- Bzučáky přidají osm karet do klasického balíčku či No Mercy. Po bzučáku všichni stisknou B, poslední si vezme dvě karty. Pak lze zahrát cokoli. Byl-li bzučák poslední kartou, kolo skončí až po reakcích všech. Ve Flipu bzučáky nejsou."
+        },
+        {
+          "cs": "- Čas na tah: kdo ho překročí, přijme čekající trest, nebo bez trestu jednu kartu, a ztratí tah. Volba barvy a reakce na bzučák odpočet zastaví."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházet karty či barvy."
+        },
+        {
+          "cs": "Enter: zahrát kartu nebo potvrdit barvu či hráče."
+        },
+        {
+          "cs": "Mezerník: dobrat nebo přijmout trest."
+        },
+        {
+          "cs": "U: ohlásit uno nebo chytit hráče, který ho neohlásil."
+        },
+        {
+          "cs": "B: reagovat na bzučák."
+        },
+        {
+          "cs": "F: zpochybnit divokou plus čtyři."
+        },
+        {
+          "cs": "C: přečíst vrchní kartu."
+        },
+        {
+          "cs": "V: přečíst platnou barvu."
+        },
+        {
+          "cs": "E: přečíst počty karet hráčů."
+        },
+        {
+          "cs": "G: přečíst čekající trest."
+        },
+        {
+          "cs": "Z: najít další přípustnou kartu ve vlastním tahu; nedostupné s postupkami, přebíráním tahu či bzučáky."
+        },
+        {
+          "cs": "Shift+Z: najít předchozí přípustnou kartu ve vlastním tahu; nedostupné s postupkami, přebíráním tahu či bzučáky."
+        },
+        {
+          "cs": "S: přečíst skóre."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        },
+        {
+          "cs": "Shift+C: seřadit podle barev; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+H: seřadit podle hodnot; opakováním obrátit pořadí."
+        },
+        {
+          "cs": "Shift+D: obnovit pořadí přijatých karet."
+        },
+        {
+          "cs": "Shift+M: obnovit pořadí přijatých karet."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "deck": "decks",
+    "score_limit": "drawing_options",
+    "draw_responses": "drawing_options",
+    "advanced_responses": "drawing_options",
+    "bluff_challenge": "challenge",
+    "skip_after_penalty": "drawing_options",
+    "allow_optional_draw": "drawing_options",
+    "maximum_optional_draws": "drawing_options",
+    "straights": "extra_rules",
+    "interceptions": "extra_rules",
+    "super_interceptions": "extra_rules",
+    "zero_seven": "extra_rules",
+    "buzzers": "extra_rules",
+    "draw_until_playable": "drawing_options",
+    "no_mercy_limit": "no_mercy",
+    "thinking_time": "extra_rules"
+  }
+}

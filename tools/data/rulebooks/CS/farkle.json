@@ -1,0 +1,188 @@
+{
+  "source": "games/farkle.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "cs": "Body a riziko"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve Farkle házíš šesti kostkami a odkládáš bodující kombinace. Pak se rozhoduješ, zda body uložit, nebo zkusit dalším hodem získat víc. Neúspěšný hod smaže celý výsledek právě hraného tahu, dříve uložených bodů se však nedotkne."
+        },
+        {
+          "cs": "Hrají dva až osm hráčů, běžně do 1000 bodů. Vítězí nejvyšší uložené skóre po dohrání posledního kola tahů."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "cs": "Hody a odkládání kostek"
+      },
+      "paragraphs": [
+        {
+          "cs": "Svůj tah začni Enterem, který hodí všemi šesti kostkami. Po přečtení hodu se objeví nabídka možností: každá uvádí kostky k odložení a jejich společnou bodovou hodnotu. Vyber šipkami a potvrď Enterem."
+        },
+        {
+          "cs": "Najednou volíš všechny kostky, které z tohoto hodu odložíš. Může jít o jedinou kombinaci i několik kombinací současně, třeba jedničku a tři pětky. Nemusíš využít všechny bodující kostky."
+        },
+        {
+          "cs": "Potom zvol další hod, nebo uložení. Další hod potvrzený Enterem použije jen zbývající kostky. Pokud už splňuješ potřebné minimum, můžeš místo něj uložit body do celkového skóre a předat tah dalšímu hráči."
+        },
+        {
+          "cs": "Každý nový hod musí bodovat sám o sobě. Nelze ho spojovat s dříve odloženými kostkami. Hod bez bodů znamená Farkle: ztratíš všechny body tohoto tahu a ihned hraje další hráč."
+        },
+        {
+          "cs": "Z hodu 1, 2, 4, 5, 5, 5 můžeš například odložit jedničku a tři pětky za 60 bodů. Zbydou dvě kostky. Buď uložíš 60, nebo jimi hodíš; pokud padne 2 a 6, nic neboduje a všech 60 ztratíš."
+        }
+      ]
+    },
+    {
+      "id": "banking",
+      "title": {
+        "cs": "Minimum pro uložení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Poprvé musíš v jediném tahu získat alespoň 50 bodů. Dokud je tvé uložené skóre nulové, menší výsledek uložit nesmíš a pokračuješ v házení."
+        },
+        {
+          "cs": "Od tahu následujícího po prvním uložení stačí 30 bodů. Počítají se nové body z tohoto tahu, nikoli celkový součet. Klávesa C připomene současný výsledek a minimum, S přečte uložená skóre všech hráčů."
+        }
+      ]
+    },
+    {
+      "id": "scores",
+      "title": {
+        "cs": "Bodující kombinace"
+      },
+      "paragraphs": [
+        {
+          "cs": "Kombinace musí pocházet z jediného hodu. Za více nezávislých kombinací se body sečtou:"
+        },
+        {
+          "cs": "- Samostatná jednička dává 10 bodů."
+        },
+        {
+          "cs": "- Samostatná pětka dává 5 bodů; ostatní jednotlivé kostky nebodují."
+        },
+        {
+          "cs": "- Tři jedničky dávají 75 bodů."
+        },
+        {
+          "cs": "- Tři stejné kostky jiné hodnoty dávají desetinásobek této hodnoty: tři dvojky 20, tři šestky 60 bodů."
+        },
+        {
+          "cs": "- Čtyři stejné kostky dávají 100 bodů plus desetinásobek hodnoty. Čtyři čtyřky jsou tedy za 140."
+        },
+        {
+          "cs": "- Pět stejných kostek dává 300 bodů plus dvacetinásobek hodnoty. Pět čtyřek je za 380."
+        },
+        {
+          "cs": "- Šest stejných kostek dává 600 bodů plus pětadvacetinásobek hodnoty. Šest čtyřek je za 700."
+        },
+        {
+          "cs": "- Pět po sobě jdoucích hodnot, 1 až 5 nebo 2 až 6, dává 100 bodů."
+        },
+        {
+          "cs": "- Všech šest hodnot od 1 do 6 dává 200 bodů."
+        },
+        {
+          "cs": "- Tři dvojice různých hodnot dávají 150 bodů."
+        },
+        {
+          "cs": "- Dvě trojice různých hodnot dávají 250 bodů."
+        },
+        {
+          "cs": "- Čtveřice a dvojice jiné hodnoty dávají dohromady 250 bodů."
+        },
+        {
+          "cs": "Pokud lze vybrané kostky vyhodnotit několika způsoby, získáš nejvýhodnější výsledek. Nabídka už ukazuje právě tento počet bodů."
+        }
+      ]
+    },
+    {
+      "id": "hot_dice",
+      "title": {
+        "cs": "Když odložíš všech šest"
+      },
+      "paragraphs": [
+        {
+          "cs": "Jakmile bodovaly všechny kostky, můžeš znovu házet celou šesticí. Můžeš jich odložit šest v jediném hodu nebo postupně v několika; dosud získané body zůstávají součástí tahu."
+        },
+        {
+          "cs": "Buď hodíš všemi šesti znovu, nebo body uložíš, pokud splňují minimum. Další neúspěch by stále smazal celý tah, i body získané před obnovením šestice."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "cs": "Poslední kolo a vítězství"
+      },
+      "paragraphs": [
+        {
+          "cs": "Když někdo uložením dosáhne alespoň 1000 bodů, dohraje se právě probíhající kolo tahů. Na řadu přijdou ještě hráči za ním až po poslední místo. Kdo už v tomto kole hrál, další tah nedostane."
+        },
+        {
+          "cs": "Dosáhne-li ve čtyřech cíle druhý hráč, hrají ještě třetí a čtvrtý. Pak vítězí nejvyšší uložený součet, ne nutně hráč, který dosáhl cíle první. Stejné nejvyšší skóre znamená remízu."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "cs": "Bodový cíl a minima"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou lze v nastavení stolu upravit tři hodnoty:"
+        },
+        {
+          "cs": "- Bodový cíl je běžně 1000. Po jeho dosažení se vždy dohraje současné kolo a porovnají výsledky."
+        },
+        {
+          "cs": "- Minimum prvního uložení nahrazuje hranici 50. Pro každého platí, dokud má uloženou nulu."
+        },
+        {
+          "cs": "- Minimum běžného tahu nahrazuje hranici 30. Začne platit od dalšího tahu po prvním uložení."
+        },
+        {
+          "cs": "Obě minima jsou nezávislá. Nula příslušnou hranici zruší, před uložením však musíš v tahu nějaké body získat."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: vybrat kostky k odložení nebo další akci."
+        },
+        {
+          "cs": "Enter: potvrdit kostky, hod nebo uložení bodů."
+        },
+        {
+          "cs": "D: přečíst poslední hod."
+        },
+        {
+          "cs": "C: přečíst body tohoto tahu a minimum k uložení."
+        },
+        {
+          "cs": "S: přečíst uložená skóre."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "options",
+    "turn_minimum": "options",
+    "entry_minimum": "options"
+  }
+}

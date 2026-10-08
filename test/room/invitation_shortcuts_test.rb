@@ -31,7 +31,7 @@ end
     options.context(menu, false)
     menu.options.find { |option| option[2] == key }[3].call
   end
-  result = GameRoomScreens::MainMenu.new(options: %w[Create Join Invitations], invitations: true).wait
+  result = GameRoomScreens::MainMenu.new(options: %w[Create Join Saved], invitations: true).wait
   assert(result.action == expected && result.index == 2, "main-menu invitation action or list position was lost")
 end
 
@@ -51,17 +51,17 @@ program.define_singleton_method(:switch_to_invited_table) { accepted << :shared_
   ensure
     $activecontrols = []
   end
-  GameRoomScreens::MainMenu.new(options: %w[Create Join Invitations], invitations: true, program: program).wait
+  GameRoomScreens::MainMenu.new(options: %w[Create Join Saved], invitations: true, program: program).wait
 end
 assert(accepted == [:shared_picker, :shared_picker], 'Options/history do not use the same invitation route')
 
-# The visible Invitations item keeps the ordinary Open path.
+# Ordinary entries still open; accepting invitations needs no list entry.
 Form.driver = lambda do |form|
   form.fields.first.index = 2
   form.accept_button.trigger(:press)
 end
-result = GameRoomScreens::MainMenu.new(options: %w[Create Join Invitations], invitations: true).wait
-assert(result.action == :open && result.index == 2, "the Invitations item no longer opens normally")
+result = GameRoomScreens::MainMenu.new(options: %w[Create Join Saved], invitations: true).wait
+assert(result.action == :open && result.index == 2, "the selected menu item no longer opens normally")
 
 Form.driver = lambda do |form|
   assert_invitation_menu_scope(form, list: form.fields.first, keys: [])

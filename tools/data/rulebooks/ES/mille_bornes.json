@@ -1,0 +1,363 @@
+{
+  "source": "games/mille_bornes.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En 1000 millas conduces con cartas. Las de distancia te acercan a la meta; las de peligro frenan o detienen a los rivales. En cada ronda intentas recorrer exactamente 1000 millas."
+        },
+        {
+          "es": "Las millas y las bonificaciones se convierten en puntos, que se acumulan entre rondas. Gana quien, al terminar una ronda, tenga al menos 5000 puntos y más que cualquier rival. Pueden jugar de dos a ocho personas."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "es": "Tu turno"
+      },
+      "paragraphs": [
+        {
+          "es": "Empiezas la ronda con seis cartas. Recórrelas con las flechas o escucha la mano completa con H. En cada turno, roba primero una carta con Espacio. Después elige una carta de tu mano con las flechas y juégala con Enter."
+        },
+        {
+          "es": "En vez de jugar puedes descartar una carta. Selecciónala y pulsa J; con eso termina tu turno."
+        }
+      ]
+    },
+    {
+      "id": "driving",
+      "title": {
+        "es": "Arrancar y recorrer millas"
+      },
+      "paragraphs": [
+        {
+          "es": "Tu coche empieza detenido. Juega «Semáforo verde» para arrancar; a partir del turno siguiente podrás jugar cartas de distancia. Cada una te acerca a la meta las millas que indica."
+        },
+        {
+          "es": "Hay cartas de 25, 50, 75, 100 y 200 millas. Debes llegar exactamente a 1000: con 950 no puedes jugar 75. En una misma ronda puedes usar como máximo dos cartas de 200."
+        }
+      ]
+    },
+    {
+      "id": "hazards",
+      "title": {
+        "es": "Peligros y cómo volver a circular"
+      },
+      "paragraphs": [
+        {
+          "es": "Un rival puede detener un coche en marcha con «Semáforo rojo». Necesitarás otro verde para arrancar. Mientras estés detenido no puedes jugar cartas de distancia."
+        },
+        {
+          "es": "Otros ataques requieren resolver primero el problema con una carta adecuada:"
+        },
+        {
+          "es": "- «Sin combustible» deja el depósito vacío. Juega una carta de combustible para llenarlo."
+        },
+        {
+          "es": "- «Pinchazo» exige una «Rueda de repuesto» para cambiar el neumático."
+        },
+        {
+          "es": "- Tras un «Accidente», juega «Reparaciones»."
+        },
+        {
+          "es": "Resolver el problema no pone el coche en marcha. En un turno posterior necesitas jugar verde antes de volver a usar distancia. Tras un pinchazo, por ejemplo, primero juegas la rueda de repuesto y después el semáforo verde."
+        },
+        {
+          "es": "Esos ataques solo se lanzan contra coches en marcha. «Límite de velocidad» es distinto: también puede afectar a uno detenido. No obliga a parar, pero solo deja jugar distancias de 25 y 50. Juega «Fin del límite de velocidad» para volver a usar las mayores."
+        }
+      ]
+    },
+    {
+      "id": "safeties",
+      "title": {
+        "es": "Protecciones permanentes"
+      },
+      "paragraphs": [
+        {
+          "es": "Una protección evita ciertos ataques durante el resto de la ronda. Puedes jugarla en tu turno después de robar. También elimina el peligro correspondiente si ya lo sufres. Cada protección jugada vale 100 puntos y te da otro turno, que empiezas robando una carta."
+        },
+        {
+          "es": "Hay cuatro protecciones:"
+        },
+        {
+          "es": "- «Depósito adicional» protege contra «Sin combustible»."
+        },
+        {
+          "es": "- «Neumáticos antipinchazos» protege contra «Pinchazo»."
+        },
+        {
+          "es": "- «As del volante» protege contra accidentes y circulación en sentido contrario."
+        },
+        {
+          "es": "- «Prioridad de paso» protege contra el semáforo rojo y el límite de velocidad. Además permite arrancar sin verde, tanto al principio de la ronda como después de reparar el coche."
+        },
+        {
+          "es": "Las otras tres protecciones no permiten arrancar por sí solas. Tras solucionar la avería sigue haciendo falta un verde, salvo que ya tengas prioridad de paso."
+        },
+        {
+          "es": "I consulta tu distancia, peligros y protecciones; Shift+I consulta los de todos los coches."
+        }
+      ]
+    },
+    {
+      "id": "counterattack",
+      "title": {
+        "es": "Responder a un ataque al instante"
+      },
+      "paragraphs": [
+        {
+          "es": "Si tienes en la mano la protección contra un ataque que acabas de recibir, puedes jugarla inmediatamente, incluso fuera de turno. Selecciónala con las flechas y pulsa Enter antes de que alguien robe, juegue o descarte otra carta. Esta respuesta se llama coup fourré."
+        },
+        {
+          "es": "El ataque queda anulado. Si ibas en marcha, sigues circulando sin reparar ni volver a jugar verde. Además de los 100 puntos de la protección, ganas una bonificación de 300."
+        },
+        {
+          "es": "Recibes una carta para reponer la protección jugada, si aún queda mazo. Después tomas el turno: roba normalmente con Espacio y juega o descarta. El orden continúa desde ti, saltándose a quienes estuvieran entre el atacante y tú."
+        },
+        {
+          "es": "Si no respondes a tiempo, puedes usar la protección en tu turno, pero ya no obtienes los 300 puntos de bonificación."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "es": "Fin de ronda y puntos"
+      },
+      "paragraphs": [
+        {
+          "es": "La ronda termina cuando alguien llega exactamente a 1000 millas. Si se agota el mazo, se sigue con las cartas que queden en las manos; la ronda también termina cuando un jugador juega o descarta su última carta."
+        },
+        {
+          "es": "Cada jugador recibe estos puntos:"
+        },
+        {
+          "es": "- 1 por cada milla recorrida."
+        },
+        {
+          "es": "- 100 por cada protección jugada."
+        },
+        {
+          "es": "- 300 adicionales por cada coup fourré."
+        },
+        {
+          "es": "Quien llega a 1000 millas recibe además estas bonificaciones, que pueden acumularse:"
+        },
+        {
+          "es": "- 300 por completar el recorrido."
+        },
+        {
+          "es": "- Otros 300 por terminar cuando el mazo ya está vacío."
+        },
+        {
+          "es": "- Otros 300 por terminar con las cuatro protecciones."
+        },
+        {
+          "es": "- Otros 500 si ningún rival ha recorrido una sola milla."
+        },
+        {
+          "es": "En la ronda siguiente se reparten cartas nuevas y todos vuelven al inicio de la ruta, conservando los puntos. S consulta los resultados. Para ganar la partida debes terminar una ronda con al menos 5000 puntos y en solitario a la cabeza. Si hay empate en el primer puesto, se juega otra ronda."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "es": "Juego por equipos"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes elegir equipos de igual tamaño:"
+        },
+        {
+          "es": "- Cuatro personas: dos parejas."
+        },
+        {
+          "es": "- Seis personas: dos equipos de tres o tres parejas."
+        },
+        {
+          "es": "- Ocho personas: dos equipos de cuatro o cuatro parejas."
+        },
+        {
+          "es": "Cada equipo conduce un solo coche y comparte puntuación. Cada miembro conserva su mano y su turno, pero las distancias, los peligros y las protecciones afectan al coche común. El máximo de dos cartas de 200 millas también se comparte."
+        },
+        {
+          "es": "Los ataques se dirigen al coche de otro equipo. Cualquier miembro del equipo atacado puede responder con una protección de su mano y tomar el turno adicional."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Variantes"
+      },
+      "paragraphs": [
+        {
+          "es": "Los ajustes de la mesa permiten cambiar la meta de puntos y activar estas reglas:"
+        },
+        {
+          "es": "- Acumular peligros permite añadir distintas averías a un coche ya detenido. Debe resolverlas todas antes de arrancar. No puede repetirse una avería que siga activa, y el rojo sigue requiriendo un coche en marcha."
+        },
+        {
+          "es": "- Reutilizar descartes crea un nuevo mazo con las cartas descartadas cuando se acaba el anterior. No recupera las cartas que se usaron para avanzar, reparar o atacar."
+        },
+        {
+          "es": "- Puedes quitar las protecciones del mazo. No habrá protección permanente ni coup fourré; las reparaciones normales y el verde seguirán funcionando igual."
+        }
+      ]
+    },
+    {
+      "id": "counterflow",
+      "title": {
+        "es": "Sentido contrario"
+      },
+      "paragraphs": [
+        {
+          "es": "Esta opción añade cartas de ataque «Sentido contrario» y cartas «Fin del sentido contrario». Las cantidades iniciales son cuatro y seis, respectivamente."
+        },
+        {
+          "es": "Un coche afectado retrocede: sus cartas de distancia restan millas, sin bajar de cero. Para jugarlas sigue necesitando estar en condiciones de circular y respetar el límite de velocidad. Una carta de 200 usada para retroceder cuenta dentro del máximo habitual de dos."
+        },
+        {
+          "es": "El ataque puede aplicarse a un coche detenido y coexistir con otros peligros, pero no repetirse mientras siga activo. «Fin del sentido contrario» permite volver a avanzar; no quita las otras averías ni el límite de velocidad."
+        },
+        {
+          "es": "«As del volante» protege también contra este ataque y lo elimina al jugarse normalmente. Puede usarse de inmediato como coup fourré, con su bonificación."
+        }
+      ]
+    },
+    {
+      "id": "instant_repair",
+      "title": {
+        "es": "Reparación instantánea"
+      },
+      "paragraphs": [
+        {
+          "es": "Otra opción añade cartas de «Reparación instantánea»; su cantidad habitual es dos. Cada una resuelve un problema a tu elección. Después de robar en tu turno, juégala con Enter, elige el problema con las flechas y confirma con Enter."
+        },
+        {
+          "es": "El resultado depende de lo que repares:"
+        },
+        {
+          "es": "- Quitar un rojo permite arrancar si ningún otro peligro te detiene. También puede sustituir al verde cuando el coche aún espera para arrancar."
+        },
+        {
+          "es": "- Resolver la falta de combustible, un pinchazo o un accidente sigue exigiendo un verde después, salvo que tengas prioridad de paso."
+        },
+        {
+          "es": "- Quitar el límite de velocidad o el sentido contrario solo termina ese efecto. Los demás peligros permanecen."
+        },
+        {
+          "es": "No es una protección: no evita ataques futuros, no da un turno adicional ni bonificaciones y no sirve para hacer un coup fourré."
+        }
+      ]
+    },
+    {
+      "id": "custom_deck",
+      "title": {
+        "es": "Personalizar el mazo"
+      },
+      "paragraphs": [
+        {
+          "es": "Puedes activar un mazo personalizado y elegir cuántas cartas habrá de cada tipo. Las protecciones, el sentido contrario y las reparaciones instantáneas se activan por separado: introducir su cantidad no basta para incluirlas."
+        },
+        {
+          "es": "Deja suficientes cartas para repartir seis a cada persona y continuar la carrera. No bastan las distancias: hacen falta cartas para arrancar y resolver peligros. Las cantidades de sentido contrario y de su final también se pueden ajustar sin personalizar todo el mazo."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer la mano o las opciones disponibles."
+        },
+        {
+          "es": "Enter: jugar una carta y elegir rival o problema cuando corresponda; si no se puede jugar, confirmar su descarte."
+        },
+        {
+          "es": "Escape: cancelar la elección actual de carta, rival o descarte."
+        },
+        {
+          "es": "Espacio: robar una carta."
+        },
+        {
+          "es": "J: descartar la carta seleccionada sin otra confirmación."
+        },
+        {
+          "es": "Supr: elegir una carta para descartar."
+        },
+        {
+          "es": "H: leer tu mano."
+        },
+        {
+          "es": "I: consultar tu distancia, peligros y protecciones."
+        },
+        {
+          "es": "Shift+I: consultar la distancia, peligros y protecciones de todos los coches."
+        },
+        {
+          "es": "S: consultar los resultados."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "Z: buscar la siguiente carta jugable en tu turno; no está disponible durante una oportunidad de coup fourré."
+        },
+        {
+          "es": "Shift+Z: buscar la carta jugable anterior en tu turno; no está disponible durante una oportunidad de coup fourré."
+        },
+        {
+          "es": "Shift+C: ordenar por tipo; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+H: ordenar por distancia o valor; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+M: recuperar el orden de recepción de las cartas."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "target_score": "variants",
+    "team_count": "teams",
+    "accumulate_hazards": "variants",
+    "recycle_discard": "variants",
+    "include_safeties": "variants",
+    "counterflow": "counterflow",
+    "counterflow_cards": "custom_deck",
+    "end_counterflow_cards": "custom_deck",
+    "custom_deck": "custom_deck",
+    "include_instant_repairs": "instant_repair",
+    "25_cards": "custom_deck",
+    "50_cards": "custom_deck",
+    "75_cards": "custom_deck",
+    "100_cards": "custom_deck",
+    "200_cards": "custom_deck",
+    "stop_cards": "custom_deck",
+    "speed_limit_cards": "custom_deck",
+    "out_of_gas_cards": "custom_deck",
+    "flat_tire_cards": "custom_deck",
+    "accident_cards": "custom_deck",
+    "go_cards": "custom_deck",
+    "end_limit_cards": "custom_deck",
+    "fuel_cards": "custom_deck",
+    "spare_tire_cards": "custom_deck",
+    "repairs_cards": "custom_deck",
+    "right_of_way_cards": "custom_deck",
+    "extra_tank_cards": "custom_deck",
+    "puncture_proof_cards": "custom_deck",
+    "driving_ace_cards": "custom_deck",
+    "instant_repair_cards": "custom_deck"
+  }
+}

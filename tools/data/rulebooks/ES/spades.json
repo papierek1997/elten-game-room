@@ -1,0 +1,239 @@
+{
+  "source": "games/spades.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Picas debes prever cuántas veces recogerás las cartas de la mesa. Cada jugador anuncia una cantidad y después se juega una carta por persona; ese conjunto es una baza. Cumplir o superar lo anunciado da puntos. Quedarte a una sola baza del objetivo hace perder los puntos de toda la declaración."
+        },
+        {
+          "es": "Juegan de tres a seis personas, normalmente cada una por su cuenta. Gana quien termine una mano con al menos 300 puntos y en solitario en el primer puesto."
+        }
+      ]
+    },
+    {
+      "id": "bidding",
+      "title": {
+        "es": "Anunciar las bazas"
+      },
+      "paragraphs": [
+        {
+          "es": "Revisa tus cartas con las flechas o escúchalas con H. Cuando te toque declarar, pulsa B, escribe cuántas bazas esperas ganar y confirma con Enter. Conviene ajustar la previsión: acumular demasiadas bazas de más también se penaliza."
+        },
+        {
+          "es": "Puedes declarar cero, llamado nil. Te comprometes a no ganar ninguna baza. Lograrlo da 100 puntos; ganar una sola ya supone perder 100."
+        },
+        {
+          "es": "Cada uno declara una vez, empezando por quien va después del repartidor. Esa misma persona abrirá la primera baza. Terminadas las declaraciones, B permite consultarlas todas."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "es": "Jugar las bazas"
+      },
+      "paragraphs": [
+        {
+          "es": "La primera carta fija el palo que hay que seguir. Si se sale con corazones y tienes alguno, elige un corazón con las flechas y juégalo con Enter. Si no tienes ese palo, puedes jugar cualquier carta. C lee las ya jugadas en la baza."
+        },
+        {
+          "es": "Gana la carta más alta del palo de salida, salvo que haya picas. Las picas son triunfo y vencen a los demás palos; si hay varias, gana la pica más alta. En cada palo el orden es as, rey, reina, jota y del diez al dos. Quien gana recoge la baza y abre la siguiente."
+        },
+        {
+          "es": "Al principio no se puede salir con picas. Quedan habilitadas cuando alguien juega la primera pica sobre otro palo. Si solo te quedan picas, puedes salir con una antes de que eso ocurra."
+        },
+        {
+          "es": "Hay una excepción para el as de picas: si se sale con picas y el as es la única que tienes, puedes conservarlo y jugar otra carta. Si también tienes una pica menor, debes seguir el palo normalmente."
+        },
+        {
+          "es": "La mano termina cuando se juegan todas las cartas. I consulta tu progreso; V compara las declaraciones y bazas ganadas de todos."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "es": "Puntuación"
+      },
+      "paragraphs": [
+        {
+          "es": "Después de cada mano se calcula así:"
+        },
+        {
+          "es": "- Si cumples, ganas 10 por baza anunciada y 1 por cada baza de más. Anunciar cuatro y ganar seis da 42 puntos."
+        },
+        {
+          "es": "- Si no cumples, pierdes 10 por cada baza anunciada. Con cuatro anunciadas y tres ganadas pierdes 40."
+        },
+        {
+          "es": "- Nil cumplido da 100; nil fallado resta 100, aunque cada baza ganada añade 1 punto y cuenta como exceso."
+        },
+        {
+          "es": "Las bazas de más se llaman bolsas y se acumulan entre manos. Cada diez bolsas cuestan 100 puntos. Si tenías ocho y sumas tres, recibes la penalización y conservas una hacia el siguiente grupo de diez. S lee los resultados."
+        },
+        {
+          "es": "También hay premios por ciertas declaraciones cumplidas:"
+        },
+        {
+          "es": "- Con tres o cuatro jugadores, acertar exactamente una declaración de una o dos bazas da 20 puntos adicionales."
+        },
+        {
+          "es": "- Una declaración alta cumplida da una bonificación: 10 al llegar al primer umbral y otros 10 por cada baza anunciada por encima."
+        },
+        {
+          "es": "El primer umbral de declaración alta depende del número de jugadores:"
+        },
+        {
+          "es": "- Tres personas: diez bazas."
+        },
+        {
+          "es": "- Cuatro personas: siete bazas."
+        },
+        {
+          "es": "- Cinco personas: seis bazas."
+        },
+        {
+          "es": "- Seis personas: cinco bazas."
+        },
+        {
+          "es": "Después del recuento se juega otra mano, salvo que alguien tenga al menos 300 puntos y más que todos los demás. Si hay empate en cabeza, se continúa."
+        }
+      ]
+    },
+    {
+      "id": "deck",
+      "title": {
+        "es": "Cartas por jugador"
+      },
+      "paragraphs": [
+        {
+          "es": "Todos reciben la misma cantidad; para lograrlo se adapta el mazo:"
+        },
+        {
+          "es": "- Tres jugadores: 17 cartas cada uno, sin el dos de tréboles."
+        },
+        {
+          "es": "- Cuatro jugadores: 13 cada uno, con la baraja completa."
+        },
+        {
+          "es": "- Cinco jugadores: 10 cada uno, sin los doses de tréboles y diamantes."
+        },
+        {
+          "es": "- Seis jugadores: 8 cada uno, sin ningún dos."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "es": "Juego por equipos"
+      },
+      "paragraphs": [
+        {
+          "es": "Los compañeros trabajan para un resultado común. Cada uno declara y juega sus cartas, pero pueden ayudarse a reunir las bazas prometidas."
+        },
+        {
+          "es": "Si anuncias cuatro y tu compañero tres, necesitáis siete en total. Puedes ganar cinco y él dos: el equipo cumple. Tanto los puntos como las bolsas son compartidos."
+        },
+        {
+          "es": "Nil es la excepción. Quien lo declara debe evitar todas las bazas, aunque el compañero necesite ayuda. Sus bazas no cubren la declaración del equipo. Un nil fallado resta 100 al equipo, y cada baza de ese nil añade un punto y una bolsa."
+        },
+        {
+          "es": "Los equipos se eligen antes de empezar. Pueden jugar cuatro o seis personas por parejas. Con seis también se admiten dos equipos de tres."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Otras variantes"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes cambiar la meta de puntos y activar estas opciones:"
+        },
+        {
+          "es": "- Sin infierno restringe la última declaración: la suma de todas no puede igualar el total de bazas disponibles. Alguien tendrá que desviarse de su previsión."
+        },
+        {
+          "es": "- Arenas movedizas cambia las declaraciones normales. Si no cumples, pierdes 10 solo por cada baza que falte. Si cumples, ganas 10 por baza anunciada, pero cada exceso resta 10. No hay bolsas ni bonificaciones por declaraciones pequeñas o altas. Nil sigue valiendo 100 a favor o en contra."
+        },
+        {
+          "es": "- Suicidio se juega por parejas. Solo se puede declarar nil o al menos cuatro bazas, y cada pareja debe tener al menos un nil. Si tu compañero ya ha anunciado cuatro o más, debes elegir nil. No se puede combinar con Sin infierno."
+        },
+        {
+          "es": "- Los bots omniscientes conocen todas las manos. Con la opción desactivada solo conocen sus cartas y lo que permite deducir el juego público."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: recorrer las cartas."
+        },
+        {
+          "es": "Enter: jugar la carta elegida."
+        },
+        {
+          "es": "B: escribir tu declaración o, después, consultar todas."
+        },
+        {
+          "es": "H: leer tu mano."
+        },
+        {
+          "es": "C: leer las cartas de la baza."
+        },
+        {
+          "es": "Ctrl+C: recorrer las cartas de la baza."
+        },
+        {
+          "es": "F: consultar el palo de salida."
+        },
+        {
+          "es": "I: consultar tu progreso en la mano."
+        },
+        {
+          "es": "V: consultar bazas y declaraciones de todos."
+        },
+        {
+          "es": "S: consultar los resultados."
+        },
+        {
+          "es": "Z: ir a la siguiente carta legal; una única jugada inequívoca puede ejecutarse automáticamente."
+        },
+        {
+          "es": "Shift+Z: ir a la carta legal anterior; una única jugada inequívoca puede ejecutarse automáticamente."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "Shift+C: ordenar por palo; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+H: ordenar por valor; repetir para invertir el orden."
+        },
+        {
+          "es": "Shift+M: recuperar el orden de recepción."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "score_limit": "variants",
+    "team_size": "teams",
+    "no_hell": "variants",
+    "quicksand": "variants",
+    "suicide": "variants",
+    "omniscient_bots": "variants"
+  }
+}

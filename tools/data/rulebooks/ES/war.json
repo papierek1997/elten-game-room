@@ -1,0 +1,111 @@
+{
+  "source": "games/war.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En War intentas capturar las cartas de los otros jugadores. Juegan de dos a ocho personas, repartiéndose una baraja de 24 cartas, del nueve al as. No eliges qué carta jugar: las usas en el orden recibido, una tras otra."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "es": "Los enfrentamientos"
+      },
+      "paragraphs": [
+        {
+          "es": "Pulsa Enter cuando te toque. Una vez que todos han puesto una carta, la más alta se lleva todas las de ese enfrentamiento. De menor a mayor van nueve, diez, jota, reina, rey y as. Los palos no influyen."
+        },
+        {
+          "es": "Las cartas capturadas se colocan en orden aleatorio debajo de las que aún tenías. Después empieza otro enfrentamiento. C consulta las cartas actuales de la mesa y V el resultado del anterior."
+        }
+      ]
+    },
+    {
+      "id": "tie",
+      "title": {
+        "es": "Guerra tras un empate"
+      },
+      "paragraphs": [
+        {
+          "es": "Un empate en la carta más alta inicia una guerra. Solo participan quienes jugaron ese valor, pero se disputan todas las cartas del enfrentamiento."
+        },
+        {
+          "es": "Cuando te toque en una guerra, pulsa Enter de nuevo. Añades una carta boca abajo y otra descubierta. La descubierta más alta gana todo, incluidas las cartas ocultas. Otro empate provoca otra guerra."
+        },
+        {
+          "es": "Si solo te queda una carta, se usa descubierta, sin añadir una oculta. Quien no tenga cartas no puede continuar. Si solo a una persona le quedan suficientes para seguir, gana todo inmediatamente. Si nadie puede, las cartas pendientes pasan al siguiente enfrentamiento."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Final de partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Al resolverse un enfrentamiento se elimina a quienes no tienen cartas. Si solo queda una persona, gana. Si todos se quedan sin cartas, hay empate."
+        },
+        {
+          "es": "La partida dura como máximo 20 enfrentamientos. Si no se ha decidido antes, gana quien tenga más cartas; varios máximos iguales empatan. E cuenta las cartas y Ctrl+T consulta el número de enfrentamiento y el límite."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Baraja y duración"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar puedes cambiar estas opciones:"
+        },
+        {
+          "es": "- Baraja completa: 52 cartas, del dos al as. El orden sigue siendo los números, jota, reina, rey y as."
+        },
+        {
+          "es": "- Límite de enfrentamientos: puedes aumentarlo desde 20 hasta 300. Al alcanzarlo gana quien tenga más cartas."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Enter: jugar la carta superior."
+        },
+        {
+          "es": "Espacio: jugar la carta superior."
+        },
+        {
+          "es": "C: leer las cartas de la mesa, primero las tuyas y después las rivales."
+        },
+        {
+          "es": "E: contar las cartas de los jugadores."
+        },
+        {
+          "es": "V: consultar el último enfrentamiento."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        },
+        {
+          "es": "Ctrl+T: consultar el enfrentamiento actual y su límite."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "deck": "variants",
+    "battle_limit": "variants"
+  }
+}

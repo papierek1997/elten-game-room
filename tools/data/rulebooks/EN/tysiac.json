@@ -1,0 +1,311 @@
+{
+  "source": "games/tysiac.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "Aim of the game"
+      },
+      "paragraphs": [
+        {
+          "en": "In Tysiąc, you score points by winning cards and announcing a king and queen of the same suit. After the deal, players bid for the right to take extra cards. The highest bidder promises to score at least the amount they bid. The others try to stop them while earning points of their own. Reach 1,000 points to win."
+        },
+        {
+          "en": "The standard game is for three players, with seven cards each. Three extra cards, called the talon, go to the winner of the bidding. The deck contains only nines, tens, jacks, queens, kings and aces."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "en": "Card strength and points"
+      },
+      "paragraphs": [
+        {
+          "en": "After the bidding, each player plays one card in turn. These three cards form a trick, which one player wins and collects. Their values count towards that player's points for the deal."
+        },
+        {
+          "en": "From strongest to weakest, the cards are ace, ten, king, queen, jack and nine. They are worth:"
+        },
+        {
+          "en": "- Ace: 11 points."
+        },
+        {
+          "en": "- Ten: 10 points."
+        },
+        {
+          "en": "- King: 4 points."
+        },
+        {
+          "en": "- Queen: 3 points."
+        },
+        {
+          "en": "- Jack: 2 points."
+        },
+        {
+          "en": "- Nine: no points."
+        },
+        {
+          "en": "Together, the cards are worth 120 points. You can score more by announcing a marriage: a king and queen of the same suit. The Marriages section explains when and how to do this."
+        }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": {
+        "en": "Bidding"
+      },
+      "paragraphs": [
+        {
+          "en": "Browse your hand with the arrow keys or press H to hear it. The player after the dealer makes the first bid, which must be at least 100. Each later bid must be at least 5 higher, and all bids must be multiples of five."
+        },
+        {
+          "en": "On your bidding turn, press Enter on any card to open the bids. Choose an amount you believe you can score, or pass, with the arrows and confirm with Enter. Passing withdraws you from this auction. The opening player must make a bid first."
+        },
+        {
+          "en": "Without a marriage in your hand, your highest bid is 120. Each marriage raises that ceiling by its value, up to an absolute maximum of 400. The list offers only bids your cards allow."
+        },
+        {
+          "en": "When everyone else has passed, the last bidder wins. Their final bid becomes their contract: the number of points they must score in this deal. Press B to hear the bids."
+        }
+      ]
+    },
+    {
+      "id": "talon",
+      "title": {
+        "en": "The talon and your contract"
+      },
+      "paragraphs": [
+        {
+          "en": "The highest bidder receives the talon, whose cards are revealed to everyone. They then give one card to each opponent. If you won the bidding, select a card for the named player with the arrows and press Enter, then do the same for the other player. Everyone now has eight cards."
+        },
+        {
+          "en": "You may keep your contract or raise it. Press B, choose the new amount and confirm with Enter. Your remaining marriages determine how high you can go, but you cannot lower the bid you already made."
+        },
+        {
+          "en": "The highest bidder leads the first card. If you are keeping your contract, just select a card and press Enter. Playing that first card ends your chance to raise the contract."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "en": "Playing the cards"
+      },
+      "paragraphs": [
+        {
+          "en": "On your turn, select a card with the arrows and play it with Enter. If someone has already led a card, you must follow its suit if you can. For example, when diamonds are led, you must play a diamond if you have one. You do not have to beat a higher card already played."
+        },
+        {
+          "en": "If you cannot follow suit, you must play a trump if you have one. Trump is a suit that beats all the others. There is no trump at the start of a deal; announcing a marriage establishes it. If you have neither the led suit nor a trump, play any card."
+        },
+        {
+          "en": "The highest trump wins the trick. If no trump was played, the highest card of the led suit wins. The winner scores the value of the three cards and leads the next trick. Continue until all hands are empty."
+        },
+        {
+          "en": "Press C to hear the current trick and F to check the trump suit."
+        }
+      ]
+    },
+    {
+      "id": "marriages",
+      "title": {
+        "en": "Marriages"
+      },
+      "paragraphs": [
+        {
+          "en": "To announce a marriage, you need both the king and queen of one suit and must lead one of them to a new trick. You cannot announce in the first trick of a deal or when following someone else's lead. Select the king or queen and press Shift+Enter to play it and announce the marriage together."
+        },
+        {
+          "en": "The marriage immediately earns points and makes its suit trump. A later marriage replaces the previous trump suit. The values are:"
+        },
+        {
+          "en": "- Hearts: 100 points."
+        },
+        {
+          "en": "- Diamonds: 80 points."
+        },
+        {
+          "en": "- Clubs: 60 points."
+        },
+        {
+          "en": "- Spades: 40 points."
+        },
+        {
+          "en": "You can play the king or queen without announcing. Press Enter and choose the ordinary play instead. Once you have separated the pair, you can no longer announce that marriage."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "en": "Scoring a deal"
+      },
+      "paragraphs": [
+        {
+          "en": "After the last trick, add the points from captured cards and announced marriages. They affect your overall score as follows:"
+        },
+        {
+          "en": "- If the highest bidder meets or exceeds their contract, they add the contract amount. A contract of 150 with 170 points collected still earns 150."
+        },
+        {
+          "en": "- If they fall short, they lose the contract amount. Scoring 149 against a contract of 150 therefore costs 150 points."
+        },
+        {
+          "en": "- Everyone else adds the points they collected, rounded to the nearest five. A total of 42 rounds to 40; 43 rounds to 45."
+        },
+        {
+          "en": "Every third deal in which you collect no points costs another 120 points. These deals do not have to be consecutive. Press S for scores or Shift+S to check the counts of scoreless and surrendered deals."
+        }
+      ]
+    },
+    {
+      "id": "surrender",
+      "title": {
+        "en": "Surrendering a deal"
+      },
+      "paragraphs": [
+        {
+          "en": "After seeing the talon, the highest bidder may surrender instead of playing the deal. Decide before giving away the first card. Tab to Surrender deal and press Enter."
+        },
+        {
+          "en": "Surrendering does not subtract your contract. Each opponent receives half its value, with a minimum of 60 points, rounded up to the next multiple of five. Every third time you surrender costs you 120 points."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "The barrel and winning"
+      },
+      "paragraphs": [
+        {
+          "en": "If a deal brings your score to at least 880 but below 1,000, it is set to 880. This is called being on the barrel. You have the next three played deals to win the bidding and score the points you need."
+        },
+        {
+          "en": "While on the barrel, you can win only by fulfilling your own contract of at least 120. Smaller contracts and points earned when someone else won the bidding do not increase your score. Scoreless deals on the barrel do not count towards the penalty for three zeroes."
+        },
+        {
+          "en": "If you fail your own contract, you lose its value and leave the barrel immediately. If your three chances run out without a win, you lose 120 points and leave it. Shift+S tells you how many chances remain."
+        },
+        {
+          "en": "A player on the barrel cannot surrender. They receive no points when someone else surrenders, and that deal does not use up one of their chances."
+        },
+        {
+          "en": "The game ends when someone reaches at least 1,000 points. A large enough contract can take you straight to a win without going onto the barrel. If several players cross the target in the same deal, the highest score wins."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Player counts and variants"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose the player count and variant in the table settings. Three-player Tysiąc follows the rules above. The other versions change the deal:"
+        },
+        {
+          "en": "- Two players: there are two talons, normally with three cards each, and each player starts with nine cards. The highest bidder chooses a talon with the arrows and Enter without seeing its contents. Its cards are then revealed to both players. The bidder discards three cards, selecting each with the arrows and Enter, rather than giving cards to the opponent. They may surrender before discarding the first card."
+        },
+        {
+          "en": "- Four players: the dealer sits out while the other three play a normal deal. The dealer scores nothing and does not use a chance on the barrel. A different player sits out next time."
+        },
+        {
+          "en": "- Teams: two pairs play together, sharing their points."
+        },
+        {
+          "en": "In the two-player version, you can choose two-card talons instead. Players then start with ten cards each, and the bidder discards two after taking a talon."
+        },
+        {
+          "en": "By default, the winner of the last trick in a two-player deal also gets the points from the unused talon and the bidder's discards. You can turn this off, in which case nobody scores those cards."
+        },
+        {
+          "en": "You can change the winning score. The barrel always starts 120 points below that target; its other rules stay the same."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "en": "Team play"
+      },
+      "paragraphs": [
+        {
+          "en": "Partners work together to fulfil the contract. If you bid 150, your points and your partner's are added together: between you, you need at least 150."
+        },
+        {
+          "en": "Each player receives five cards and the talon holds four. The highest bidder takes it, then gives one card to each of the other three players, including their partner."
+        },
+        {
+          "en": "Your team shares points from cards and marriages, but you still follow the usual rules when playing. Follow suit if you can; otherwise, play a trump if you have one. This applies even when your partner is already winning the trick."
+        },
+        {
+          "en": "The pair has one score and goes onto the barrel together. Chances on the barrel, scoreless deals and surrenders are counted for the whole team. Scoring follows the individual rules, applied to the pair."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrow keys: choose a bid or a card to give away or play."
+        },
+        {
+          "en": "Enter: confirm your choice; play a card or choose to announce a marriage."
+        },
+        {
+          "en": "Shift+Enter: announce an available marriage immediately; do not play if none is available."
+        },
+        {
+          "en": "B: after exchanging cards and before the opening lead, change your contract; otherwise, read the bids."
+        },
+        {
+          "en": "H: read your hand."
+        },
+        {
+          "en": "C: read the current trick."
+        },
+        {
+          "en": "Ctrl+C: browse the cards in the trick."
+        },
+        {
+          "en": "F: read the trump suit."
+        },
+        {
+          "en": "S: read scores and who is on the barrel."
+        },
+        {
+          "en": "Shift+S: read scoreless deals, surrenders and remaining barrel chances."
+        },
+        {
+          "en": "Z: find the next legal card; automatic play is disabled when a marriage can be announced."
+        },
+        {
+          "en": "Shift+Z: find the previous legal card; automatic play is disabled when a marriage can be announced."
+        },
+        {
+          "en": "T: announce whose turn it is."
+        },
+        {
+          "en": "Shift+C: sort by suit; press again to reverse."
+        },
+        {
+          "en": "Shift+H: sort by rank; press again to reverse."
+        },
+        {
+          "en": "Shift+M: restore the order in which you received the cards."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "talon_size": "variants",
+    "last_trick_talon": "variants",
+    "score_limit": "variants"
+  }
+}

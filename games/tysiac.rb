@@ -80,6 +80,10 @@ module GameRoomGames
       _("1000 card game")
     end
 
+    def short_description
+      _("Bid how many points you will score, then collect valuable cards and announce king-and-queen pairs to keep your promise.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

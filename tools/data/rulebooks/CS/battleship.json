@@ -1,0 +1,170 @@
+{
+  "source": "games/battleship.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Lodě jsou hra pro dva. Nejdřív každý tajně rozmístí svou flotilu, potom se střídáte ve střelbě na soupeřovu plochu. Vyhraješ, když jako první potopíš všechny jeho lodě."
+        }
+      ]
+    },
+    {
+      "id": "fleet",
+      "title": {
+        "cs": "Hrací plocha a lodě"
+      },
+      "paragraphs": [
+        {
+          "cs": "Každý má vlastní plochu 10 × 10. Sloupce nesou písmena A až J, řádky čísla 1 až 10. Loď zabírá jedno nebo několik polí v přímce, vždy vodorovně či svisle."
+        },
+        {
+          "cs": "Běžná flotila má deset lodí:"
+        },
+        {
+          "cs": "- Jednu dlouhou čtyři pole."
+        },
+        {
+          "cs": "- Dvě dlouhé tři pole."
+        },
+        {
+          "cs": "- Tři dlouhé dvě pole."
+        },
+        {
+          "cs": "- Čtyři jednopolové."
+        },
+        {
+          "cs": "Lodě se nesmějí překrývat ani přesahovat okraj. Mezi nimi musí být mezera: nesmějí se dotýkat stranou ani rohem."
+        }
+      ]
+    },
+    {
+      "id": "placing",
+      "title": {
+        "cs": "Rozmístění flotily"
+      },
+      "paragraphs": [
+        {
+          "cs": "Na začátku šipkami zvol náhodné nebo ruční rozmístění a potvrď Enterem. Při náhodném rozmístění postaví flotilu hra; jakmile bude připraven i soupeř, můžete střílet."
+        },
+        {
+          "cs": "Při ručním rozmístění najdi šipkami jeden konec lodě a označ ho Enterem. Přejdi na druhý konec a znovu stiskni Enter. Jednopolovou loď umístíš dvojím potvrzením stejného pole. Pořadí lodí je na tobě, dokud máš danou délku ještě k dispozici."
+        },
+        {
+          "cs": "Chybně označený první konec zruší Backspace. Není-li žádný konec označený, Backspace vezme zpět poslední umístěnou loď."
+        },
+        {
+          "cs": "Po rozmístění všech lodí přichází potvrzení. Vyber „Ano“ a stiskni Enter; po tomto kroku už lodě nepřesuneš. Volba „Ne“ ti umožní znovu umístit poslední loď."
+        }
+      ]
+    },
+    {
+      "id": "shooting",
+      "title": {
+        "cs": "Střelba"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po přípravě obou flotil začíná první hráč. Na soupeřově ploše vyber pole šipkami a Enterem vystřel. Na stejné pole nelze střílet podruhé."
+        },
+        {
+          "cs": "Po výstřelu se dozvíš výsledek:"
+        },
+        {
+          "cs": "- Vedle: na poli není loď."
+        },
+        {
+          "cs": "- Zásah: odhalil jsi jedno pole soupeřovy lodě."
+        },
+        {
+          "cs": "- Potopení: jsou zasažena už všechna pole dané lodě."
+        },
+        {
+          "cs": "Po každém výstřelu hraje soupeř, i když jsi zasáhl nebo potopil loď."
+        },
+        {
+          "cs": "Tabem přejdeš na svou plochu, kde zkontroluješ soupeřovy zásahy a stav flotily. Shift+Tab tě vrátí na plochu, na kterou střílíš."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Konec hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Potopením poslední soupeřovy lodě vítězíš. Během hry přečte F počet dosud nezasažených polí tvé flotily, Shift+F totéž u soupeře."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Jiná flotila a dotýkání lodí"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou můžeš místo deseti lodí zvolit pět následujících:"
+        },
+        {
+          "cs": "- Jednu dlouhou pět polí."
+        },
+        {
+          "cs": "- Jednu dlouhou čtyři pole."
+        },
+        {
+          "cs": "- Dvě dlouhé tři pole."
+        },
+        {
+          "cs": "- Jednu dlouhou dvě pole."
+        },
+        {
+          "cs": "Samostatná volba dovolí lodím dotýkat se stranou i rohem. Ani tehdy se nesmějí překrývat nebo přesahovat hrací plochu."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházet hrací plochu."
+        },
+        {
+          "cs": "Enter: potvrdit způsob rozmístění, označit konec lodě při ručním rozmístění nebo vystřelit na soupeřovu plochu."
+        },
+        {
+          "cs": "Backspace: zrušit první označený konec; bez označení vzít zpět poslední loď před potvrzením flotily."
+        },
+        {
+          "cs": "F: přečíst počet nezasažených polí vlastní flotily."
+        },
+        {
+          "cs": "Shift+F: přečíst počet nezasažených polí soupeřovy flotily."
+        },
+        {
+          "cs": "L: přečíst poslední výstřel se známým výsledkem."
+        },
+        {
+          "cs": "M: přečíst vlastní počty výstřelů, zásahů a potopených lodí."
+        },
+        {
+          "cs": "Ctrl+L: prohlédnout vlastní výstřely a výsledky."
+        },
+        {
+          "cs": "T: oznámit, kdo je na tahu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "fleet": "variants",
+    "touching": "variants"
+  }
+}

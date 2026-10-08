@@ -28,6 +28,10 @@ module GameRoomGames
       _("War")
     end
 
+    def short_description
+      _("Turn over cards and take your opponents' cards whenever yours is the highest.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

@@ -214,6 +214,10 @@ module GameRoomGames
       _("Spades")
     end
 
+    def short_description
+      _("Predict how many times you will collect the cards from the table, then play to fulfil your bid.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

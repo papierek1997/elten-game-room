@@ -1,0 +1,266 @@
+{
+  "source": "games/biblios.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "es": "Objetivo"
+      },
+      "paragraphs": [
+        {
+          "es": "En Biblios, de dos a cuatro jugadores reúnen cartas para sus bibliotecas. La meta no es tener más cartas que nadie, sino superar a los demás en las categorías elegidas: al final, solo el ganador de cada categoría recibe puntos por ella."
+        },
+        {
+          "es": "La partida tiene dos etapas. Primero se reparten las cartas que van saliendo entre el jugador activo, los demás y una reserva para subastar. Después se puja por las cartas reservadas. Durante ambas etapas puedes ampliar la biblioteca, conseguir oro o cambiar los puntos que vale cada categoría."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "es": "Cartas y categorías"
+      },
+      "paragraphs": [
+        {
+          "es": "Hay tres tipos de cartas:"
+        },
+        {
+          "es": "- Las cartas de biblioteca pertenecen a una de cinco categorías. Su valor se suma al que ya tengas en esa categoría; además llevan una letra para desempatar. Por ejemplo, «Monjes 3, letra B» añade 3 a tu total de Monjes."
+        },
+        {
+          "es": "- Las cartas de oro valen 1, 2 o 3. Se guardan para pagar las subastas."
+        },
+        {
+          "es": "- Las cartas de iglesia cambian el valor de las categorías. Se resuelven en cuanto las consigues, no se guardan para después."
+        },
+        {
+          "es": "Cada categoría tiene un dado que indica cuántos puntos de victoria otorga. Todos empiezan en 3; las cartas de iglesia pueden moverlos entre 1 y 6. Consulta los dados con C."
+        },
+        {
+          "es": "No confundas el valor de tus cartas con los puntos de victoria. Las cartas sirven para ganar la categoría; el dado determina el premio. Si ganas Monjes con cartas que suman 12 y su dado marca 5, recibes 5 puntos de victoria."
+        },
+        {
+          "es": "L resume tu biblioteca y Ctrl+L permite consultar sus categorías. G indica cuánto oro tienes. Las cartas que un rival se queda durante el reparto son secretas: Shift+C solo compara la parte conocida de las bibliotecas."
+        }
+      ]
+    },
+    {
+      "id": "gifts",
+      "title": {
+        "es": "Repartir las cartas"
+      },
+      "paragraphs": [
+        {
+          "es": "Cuando te toque repartir, verás las cartas una a una. Debes decidir el destino de cada carta antes de conocer la siguiente. Elige con las flechas y confirma con Enter."
+        },
+        {
+          "es": "En ese turno repartes una carta más que el número de jugadores: con tres jugadores, por ejemplo, repartes cuatro. El reparto debe quedar así:"
+        },
+        {
+          "es": "- Te quedas exactamente una carta mediante «Quedártela»."
+        },
+        {
+          "es": "- Reservas exactamente una para la subasta. Esa carta no se entrega aún a nadie."
+        },
+        {
+          "es": "- Colocas todas las demás en el fondo común para los otros jugadores."
+        },
+        {
+          "es": "Tú decides en qué orden asignarlas. Si te quedas la primera, todas las que salgan después deberán ir a la subasta o al fondo común. No puedes verlas todas antes de decidir."
+        },
+        {
+          "es": "Terminado el reparto, los demás eligen una carta del fondo común, empezando por quien sigue al repartidor. Cuando te corresponda elegir, recorre las cartas con las flechas y toma una con Enter. P permite consultar las que quedan."
+        },
+        {
+          "es": "El siguiente jugador pasa a repartir. Se repite este proceso hasta agotar el mazo; entonces se barajan las cartas reservadas y comienza la etapa de subastas."
+        }
+      ]
+    },
+    {
+      "id": "church",
+      "title": {
+        "es": "Cartas de iglesia"
+      },
+      "paragraphs": [
+        {
+          "es": "Resuelve una carta de iglesia nada más obtenerla, ya sea porque te la quedas al repartir, la tomas del fondo común o la compras. El juego espera a que elijas su efecto. Reservarla para una subasta no la activa todavía."
+        },
+        {
+          "es": "El tipo de carta determina qué cambio permite:"
+        },
+        {
+          "es": "- Subir un dado: aumenta en uno el valor de una categoría."
+        },
+        {
+          "es": "- Bajar un dado: reduce en uno el valor de una categoría."
+        },
+        {
+          "es": "- Subir dos dados: aumenta en uno los valores de dos categorías distintas."
+        },
+        {
+          "es": "- Bajar dos dados: reduce en uno los valores de dos categorías distintas."
+        },
+        {
+          "es": "- Elegir la dirección: sube o baja en uno un dado de tu elección."
+        },
+        {
+          "es": "Recorre los cambios posibles con las flechas y confirma con Enter. Para una carta que afecta a dos dados eliges una pareja de categorías. No puedes cambiar un solo dado en dos puntos ni aplicar únicamente la mitad del efecto."
+        },
+        {
+          "es": "Ningún dado puede bajar de 1 ni superar 6. Si no quieres usar la carta, o no hay ningún cambio permitido, elige la opción de no usarla."
+        }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": {
+        "es": "Pujar"
+      },
+      "paragraphs": [
+        {
+          "es": "En cada subasta se ofrece una carta. El juego anuncia cuál es y quién empieza. Por turnos, cada jugador sube la oferta o pasa. Con B puedes consultar la carta y la oferta más alta, junto con su autor."
+        },
+        {
+          "es": "En tu turno elige una cantidad o pasar con las flechas y confirma con Enter. La primera oferta debe ser al menos 1; las siguientes deben superar la anterior. También puedes pulsar R, escribir una cantidad y confirmarla con Enter."
+        },
+        {
+          "es": "Pasar te retira de esa subasta. Cuando solo queda una persona pujando, gana la carta y debe pagarla. Si todos pasan sin hacer ninguna oferta, la carta se pierde y empieza la siguiente subasta."
+        },
+        {
+          "es": "Por las cartas de biblioteca y de iglesia se puja en oro. Si se subasta oro, en cambio, la oferta indica cuántas cartas de tu mano entregarás. Comprueba qué se está subastando antes de subir la apuesta."
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "title": {
+        "es": "Pagar una subasta"
+      },
+      "paragraphs": [
+        {
+          "es": "Tras ganar, elige las cartas con las que pagarás. Recorre la mano con las flechas y marca o desmarca cartas con Shift+Enter. Enter confirma el conjunto elegido; Escape borra todas las marcas para empezar de nuevo."
+        },
+        {
+          "es": "El pago depende de lo que hayas comprado:"
+        },
+        {
+          "es": "- Una carta de biblioteca o de iglesia se paga con cartas de oro que sumen al menos la oferta. Puedes pagar de más, pero no recibes cambio."
+        },
+        {
+          "es": "- Por una carta de oro entregas exactamente tantas cartas como hayas ofrecido, de cualquier tipo y valor. Cada carta cuenta como una. Puedes entregar cartas de biblioteca, pero dejarán de contribuir a tu resultado final."
+        },
+        {
+          "es": "Al pagar con oro no puedes incluir cartas innecesarias. Para pagar 4 se admiten dos cartas de 3, porque quitar cualquiera dejaría el pago por debajo de 4. Para pagar 3 no se admite una carta de 3 más otra de 1: esa última sobra."
+        },
+        {
+          "es": "Se permite pujar más oro del que tienes, esperando que otro te supere. Pero si ganas y no pagas, recibes una penalización. Elige «No pagar» y confirma con Enter: pierdes una carta aleatoria de la mano y se repite la subasta de esa misma carta sin ti. Quienes solo habían pasado pueden volver a pujar."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "es": "Puntuación final"
+      },
+      "paragraphs": [
+        {
+          "es": "Al terminar la última subasta se comparan las bibliotecas. Cada categoría la gana quien tenga la mayor suma de valores. Si hay empate, gana quien posea la mejor letra de esa categoría: A supera a B, B a C, y así sucesivamente."
+        },
+        {
+          "es": "El ganador recibe los puntos de victoria que marque el dado de la categoría. Si nadie tiene cartas de una categoría, esta no da puntos."
+        },
+        {
+          "es": "Suma los puntos de todas las categorías que hayas ganado. La mayor puntuación gana la partida; si se empata, gana quien conserve más valor en oro."
+        },
+        {
+          "es": "Si también hay empate en oro, se comparan las categorías en este orden. En cada una se mira primero la suma de cartas y, si sigue igualada, la mejor letra. La primera diferencia decide el ganador:"
+        },
+        {
+          "es": "- Monjes."
+        },
+        {
+          "es": "- Pigmentos."
+        },
+        {
+          "es": "- Tomos prohibidos."
+        },
+        {
+          "es": "- Libros sagrados."
+        },
+        {
+          "es": "- Manuscritos."
+        },
+        {
+          "es": "Si todas esas comparaciones siguen empatadas, la partida termina en empate. S lee los resultados finales."
+        }
+      ]
+    },
+    {
+      "id": "penalty",
+      "title": {
+        "es": "Otra penalización por impago"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar puedes cambiar la penalización en los ajustes de la mesa. La habitual, el farol medieval, hace perder una carta aleatoria."
+        },
+        {
+          "es": "Con la penalización completa, entregas una carta aleatoria a cada rival, empezando por el siguiente jugador. El reparto termina cuando todos han recibido una o te quedas sin cartas. Después se repite la subasta sin ti, igual que con la penalización habitual."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Teclas de referencia"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas: elegir carta, destino, oferta o efecto de iglesia."
+        },
+        {
+          "es": "Enter: confirmar una elección o pagar con las cartas marcadas."
+        },
+        {
+          "es": "Shift+Enter: marcar o desmarcar una carta para pagar."
+        },
+        {
+          "es": "Escape al pagar: borrar la selección de cartas."
+        },
+        {
+          "es": "R: escribir una oferta durante la subasta."
+        },
+        {
+          "es": "B: consultar la subasta actual."
+        },
+        {
+          "es": "L: consultar tu biblioteca."
+        },
+        {
+          "es": "Ctrl+L: recorrer las categorías de tu biblioteca."
+        },
+        {
+          "es": "C: consultar los dados de las categorías."
+        },
+        {
+          "es": "Shift+C: comparar las cartas conocidas de los jugadores."
+        },
+        {
+          "es": "G: consultar tu oro."
+        },
+        {
+          "es": "P: consultar el fondo común."
+        },
+        {
+          "es": "S: consultar los resultados al terminar la partida."
+        },
+        {
+          "es": "T: consultar de quién es el turno."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "penalty": "penalty"
+  }
+}

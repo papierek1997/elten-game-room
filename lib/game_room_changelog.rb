@@ -1,3 +1,5 @@
+require_relative "game_content"
+
 module GameRoomChangelog
   STORAGE_FILE = "changelog.json".freeze
   LAST_SEEN_BUILD_KEY = "last_seen_build".freeze
@@ -404,6 +406,21 @@ module GameRoomChangelog
         "Added 1000 miles (Mille Bornes), by Patryk (Pates2004): a card race for 2 to 8 players, with bots and team play. Reach 1000 miles, obstruct your opponents and protect your car. You can also change the deck and enable additional card types. Bots wait one second by default.",
         "The widget context menu now shows command shortcuts, including Ctrl+W for table participants and Ctrl+J for invitations. Assigned table presets appear by name with their shortcuts; unassigned presets are hidden."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.4.8",
+      build: 247,
+      changes: [
+        "Rewritten the Polish rules for all games. The explanations guide you through play and introduce the relevant keys alongside each action. Optional variants are described separately.",
+        "Card effects, combinations and other lists in the rules now appear as separate items, making them easier to read and navigate.",
+        "New English, Czech, Spanish and Russian rulebooks for every game.",
+        "Game selection lists now include a short description of each game. In the tables widget, press Ctrl+O or choose Game description from the context menu to hear it.",
+        "Table chat messages can now contain up to 2000 characters instead of 400.",
+        "The main menu has a new order, with Saved games directly after Join a table. Invitations remain available through Ctrl+J and the context menu.",
+        "What's new is now a read-only document with a heading for each release. Press H or Shift+H to move between releases.",
+        "A saved game is removed from your account once it has been successfully resumed. Save it again with Ctrl+S if you want to continue it later.",
+        "Changed the sound played when banking points in Farkle."
+      ].freeze
     ).freeze
   ].freeze
 
@@ -434,5 +451,12 @@ module GameRoomChangelog
       }
       [heading] + entry.changes.map { |change| translate.call(change) }
     end
+  end
+
+  def markdown(entries, translator: nil)
+    entries.map do |entry|
+      heading, *changes = list_items([entry], translator: translator).map { |text| GameRoomContent.utf8(text) }
+      "## #{heading}\n\n" + changes.map { |change| "- #{change}" }.join("\n\n")
+    end.join("\n\n")
   end
 end

@@ -44,6 +44,6 @@ assert(bob.establish_membership(table_id: new_table["__id"], owner: "Alice", cap
 resumed = app.send(:resume_saved_game_at_table, new_table, app.room_state(new_table))
 assert(resumed && app.games.players_for(resumed) == %w[Alice Bob] + GameRoomParticipants.bots_for(new_table["__id"], 1, names: ["pl20"]), "continuation changed original seats")
 assert(game.replay(resumed, app.games.snapshot_for(resumed).events, app.games).accepted_events.length == saved["events"].length, "UI continuation did not replay all saved events")
-assert(app.send(:saved_games).fetch(saved['id']) == saved, "resume deleted the only archive")
+assert(app.send(:saved_games).fetch(saved['id']).nil?, "confirmed resume left its old archive reusable")
 assert(app.send(:start_new_game, new_table, state: app.room_state(new_table))["__id"] == resumed["__id"], "active continuation restarted instead of opening")
 puts "Save UI: private upload/close failures, original seats, bots, invitations, missing players and duplicate prevention OK"

@@ -1,0 +1,311 @@
+{
+  "source": "games/tysiac.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "W Tysiącu zdobywasz punkty za zebrane karty i ogłoszone pary króla z damą. Po otrzymaniu kart licytujecie: wybieracie, kto zobowiąże się zebrać największą liczbę punktów. Ta osoba musi wykonać swoją obietnicę, a pozostali próbują jej w tym przeszkodzić i sami coś zdobyć. Wygrywa gracz, który osiągnie 1000 punktów."
+        },
+        {
+          "pl": "Podstawowa gra jest przeznaczona dla trzech osób. Każdy dostaje siedem kart, a zwycięzca licytacji otrzyma jeszcze trzy dodatkowe karty, zwane musikiem. Gra się od dziewiątek do asów."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": {
+        "pl": "Siła i wartość kart"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po licytacji będziecie kolejno zagrywać po jednej karcie. Trzy zagrane karty tworzą lewę, którą zbierze jedna osoba. Zdobędzie tyle punktów, ile warte są te karty."
+        },
+        {
+          "pl": "Najsilniejszy jest as, po nim dziesiątka, król, dama, walet i dziewiątka. Te same karty mają następujące wartości punktowe:"
+        },
+        {
+          "pl": "- As daje 11 punktów."
+        },
+        {
+          "pl": "- Dziesiątka daje 10 punktów."
+        },
+        {
+          "pl": "- Król daje 4 punkty."
+        },
+        {
+          "pl": "- Dama daje 3 punkty."
+        },
+        {
+          "pl": "- Walet daje 2 punkty."
+        },
+        {
+          "pl": "- Dziewiątka nie daje punktów."
+        },
+        {
+          "pl": "Wszystkie karty razem są warte 120 punktów. Dodatkowe punkty zdobywasz za zgłoszenie mariażu, czyli pary króla i damy tego samego koloru. Dowiesz się, jak to zrobić, w rozdziale „Mariaże”."
+        }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": {
+        "pl": "Licytacja"
+      },
+      "paragraphs": [
+        {
+          "pl": "Sprawdź swoją rękę strzałkami lub odczytaj ją klawiszem H. Zaczyna osoba po rozdającym. Pierwsza oferta musi wynosić co najmniej 100 punktów, a kolejne muszą przewyższać poprzednią o co najmniej 5. Wszystkie oferty są wielokrotnościami pięciu."
+        },
+        {
+          "pl": "W swojej kolejce naciśnij Enter na dowolnej karcie. Otworzy się lista ofert: wybierz strzałkami liczbę punktów, którą zobowiązujesz się zdobyć, albo pas, i zatwierdź Enterem. Pas oznacza wycofanie się z tej licytacji. Osoba rozpoczynająca musi najpierw podać ofertę."
+        },
+        {
+          "pl": "Bez mariażu w ręce wolno licytować najwyżej 120. Każdy posiadany mariaż zwiększa ten pułap o swoją wartość, jednak żadna oferta nie może przekroczyć 400. Lista pokazuje tylko oferty dostępne z twoimi kartami."
+        },
+        {
+          "pl": "Kiedy wszyscy poza jedną osobą spasują, ta osoba wygrywa licytację. Jej ostatnia oferta staje się kontraktem — liczbą punktów, którą ma zebrać w tym rozdaniu. Klawisz B odczytuje bieżące oferty."
+        }
+      ]
+    },
+    {
+      "id": "talon",
+      "title": {
+        "pl": "Musik i ostateczny kontrakt"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zwycięzca licytacji otrzymuje musik, którego zawartość poznają wszyscy. Następnie oddaje po jednej karcie każdemu przeciwnikowi. Jeśli to ty wygrałeś, wybierz strzałkami kartę dla wskazanej osoby i naciśnij Enter. Powtórz to dla drugiej osoby. Po wymianie każdy ma osiem kart."
+        },
+        {
+          "pl": "Teraz możesz zostawić dotychczasowy kontrakt albo go podnieść. Naciśnij B, wybierz strzałkami wartość i zatwierdź Enterem. Nowy pułap zależy od mariaży, które zostały ci w ręce, ale wcześniejszej obietnicy nie wolno już obniżyć."
+        },
+        {
+          "pl": "Pierwszą kartę zagrywa zwycięzca licytacji. Jeśli nie zmieniasz kontraktu, wystarczy wybrać kartę strzałkami i nacisnąć Enter. Zagranie pierwszej karty ostatecznie zamyka możliwość podnoszenia kontraktu."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "pl": "Rozgrywanie lew"
+      },
+      "paragraphs": [
+        {
+          "pl": "W swojej kolejce wybierz kartę strzałkami i zagraj Enterem. Jeśli w lewie leżą już karty, musisz dołożyć do koloru pierwszej z nich. Na przykład po wyjściu w karo zagrywasz karo, o ile je masz. Nie musisz przebijać wyższej karty przeciwnika."
+        },
+        {
+          "pl": "Bez karty wymaganego koloru musisz dołożyć atut, jeśli masz go w ręce. Atut to kolor, który przebija pozostałe; na początku rozdania jeszcze go nie ma, a pojawia się po zgłoszeniu mariażu. Jeśli nie masz ani wymaganego koloru, ani atutu, wybierasz dowolną kartę."
+        },
+        {
+          "pl": "Lewę bierze najwyższy atut, a jeśli nikt go nie dołożył — najwyższa karta w kolorze pierwszego zagrania. Zwycięzca dostaje punkty z trzech kart i zaczyna następną lewę. W ten sposób gracie do opróżnienia rąk."
+        },
+        {
+          "pl": "Klawisz C odczytuje karty w bieżącej lewie, a F przypomina aktualny kolor atutowy."
+        }
+      ]
+    },
+    {
+      "id": "marriages",
+      "title": {
+        "pl": "Mariaże"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli masz króla i damę tego samego koloru, możesz zgłosić mariaż, rozpoczynając lewę jedną z tych kart. Nie wolno tego zrobić w pierwszej lewie rozdania ani wtedy, gdy dokładasz kartę po kimś. Wybierz króla lub damę strzałkami i naciśnij Shift+Enter. Karta zostanie zagrana razem ze zgłoszeniem."
+        },
+        {
+          "pl": "Zgłoszenie od razu daje punkty i ustanawia nowy kolor atutowy. Kolejny mariaż zastępuje poprzedni atut. Wartość zależy od koloru:"
+        },
+        {
+          "pl": "- Mariaż kier daje 100 punktów."
+        },
+        {
+          "pl": "- Mariaż karo daje 80 punktów."
+        },
+        {
+          "pl": "- Mariaż trefl daje 60 punktów."
+        },
+        {
+          "pl": "- Mariaż pik daje 40 punktów."
+        },
+        {
+          "pl": "Możesz też zagrać króla lub damę bez zgłaszania pary. Wtedy użyj Entera i wybierz zwykłe zagranie z listy. Po rozdzieleniu pary nie da się już zgłosić tego mariażu."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "pl": "Rozliczenie rozdania"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po ostatniej lewie sumuje się punkty z kart i zgłoszonych mariaży. Do łącznego wyniku gry trafiają one według następujących zasad:"
+        },
+        {
+          "pl": "- Zwycięzca licytacji, który zebrał co najmniej tyle punktów, ile obiecał, dostaje punkty równe wartości kontraktu. Na przykład przy kontrakcie 150 i zdobytych 170 punktach dopisuje do wyniku 150."
+        },
+        {
+          "pl": "- Jeśli zwycięzcy licytacji zabraknie punktów, odejmuje wartość kontraktu. Przy obietnicy 150 i wyniku 149 traci więc 150 punktów."
+        },
+        {
+          "pl": "- Pozostali dopisują zebrane punkty, zaokrąglone do najbliższej wielokrotności pięciu. Na przykład 42 punkty dają zapis 40, a 43 — zapis 45."
+        },
+        {
+          "pl": "Za każde trzy rozdania bez zdobytego punktu tracisz dodatkowe 120 punktów. Nie muszą to być rozdania po kolei. Wyniki odczytasz klawiszem S, a liczbę bezpunktowych i poddanych rozdań skrótem Shift+S."
+        }
+      ]
+    },
+    {
+      "id": "surrender",
+      "title": {
+        "pl": "Poddanie rozdania"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po obejrzeniu musiku zwycięzca licytacji może zrezygnować z rozgrywania kart. Trzeba zdecydować przed oddaniem pierwszej karty przeciwnikowi. Przejdź Tabem do przycisku „Poddaj rozdanie” i naciśnij Enter."
+        },
+        {
+          "pl": "Za poddanie nie odejmuje się kontraktu. Pozostali dostają po połowie jego wartości, jednak nie mniej niż 60 punktów; wynik zaokrągla się w górę do wielokrotności pięciu. Co trzecie twoje poddanie kosztuje cię 120 punktów."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Beczka i koniec gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gdy po rozliczeniu osiągniesz co najmniej 880 punktów, ale jeszcze nie 1000, twój wynik zostaje na 880. To tak zwana beczka. Masz trzy następne rozegrane rozdania, żeby wygrać licytację i zdobyć brakujące punkty."
+        },
+        {
+          "pl": "Żeby wygrać na beczce, musisz wykonać własny kontrakt wart co najmniej 120 punktów. Mniejszy kontrakt ani punkty z rozdania, w którym licytację wygrał ktoś inny, nie zwiększą twojego wyniku. Bezpunktowe rozdania na beczce nie wliczają się do kary za trzy zera."
+        },
+        {
+          "pl": "Jeśli nie wykonasz własnego kontraktu, tracisz jego wartość i spadasz z beczki od razu. Jeśli przez trzy rozegrane rozdania nie uda ci się wygrać, tracisz 120 punktów i również schodzisz z beczki. Pod Shift+S sprawdzisz, ile szans zostało."
+        },
+        {
+          "pl": "Osoba na beczce nie może poddać rozdania. Nie dostaje też punktów za cudze poddanie, a takie rozdanie nie zużywa jej szansy na wygraną."
+        },
+        {
+          "pl": "Gra kończy się, kiedy ktoś osiągnie co najmniej 1000 punktów. Można to zrobić również dużym kontraktem jeszcze przed wejściem na beczkę. Jeśli próg przekroczy kilka osób w tym samym rozliczeniu, wygrywa osoba z najwyższym wynikiem."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Liczba graczy i warianty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed rozpoczęciem gry w ustawieniach stołu wybiera się liczbę graczy i sposób gry. Wariant trzyosobowy działa tak, jak opisano wcześniej. Pozostałe zmieniają rozdanie w następujący sposób:"
+        },
+        {
+          "pl": "- W grze dwuosobowej są dwa musiki. Zwykle każdy zawiera trzy karty, a gracze dostają po dziewięć. Zwycięzca licytacji wybiera musik strzałkami i Enterem, nie znając jego zawartości. Wybrane karty poznają potem obie osoby. Zwycięzca odkłada trzy karty z ręki: każdą wybiera strzałkami i zatwierdza Enterem. Nie oddaje ich przeciwnikowi. Przed odłożeniem pierwszej może poddać rozdanie."
+        },
+        {
+          "pl": "- W wariancie dla czterech osób rozdający odpoczywa, a pozostała trójka rozgrywa zwykłe rozdanie. Osoba odpoczywająca nie zdobywa w nim punktów i nie zużywa szansy na beczce. W następnym rozdaniu odpoczywa kolejna osoba."
+        },
+        {
+          "pl": "- W grze drużynowej grają dwie pary. Punkty zdobywasz wspólnie z partnerem."
+        },
+        {
+          "pl": "W wariancie dwuosobowym można wybrać musiki po dwie karty. Wtedy każdy zaczyna z dziesięcioma kartami, a zwycięzca licytacji odkłada dwie po zabraniu wybranego musiku."
+        },
+        {
+          "pl": "Domyślnie w grze we dwoje punkty z niewybranego musiku i odłożonych kart dostaje zdobywca ostatniej lewy. Można wyłączyć tę zasadę; wtedy nikt nie dostaje tych punktów."
+        },
+        {
+          "pl": "Można również zmienić docelowy wynik. Beczka zawsze zaczyna się 120 punktów przed tym celem; pozostałe zasady jej działania zostają takie same."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "pl": "Gra w drużynach"
+      },
+      "paragraphs": [
+        {
+          "pl": "W tym wariancie partnerzy pomagają sobie zdobywać punkty. Jeśli wygrasz licytację i zobowiążesz się do zebrania 150 punktów, liczą się zarówno twoje punkty, jak i partnera. Wspólnie musicie uzbierać co najmniej 150, żeby wykonać kontrakt."
+        },
+        {
+          "pl": "Każdy dostaje pięć kart, a w musiku są cztery. Zwycięzca licytacji zabiera musik i oddaje po jednej karcie każdej z pozostałych trzech osób, również partnerowi."
+        },
+        {
+          "pl": "Podczas gry zbieracie razem punkty z kart i mariaży. Nadal zagrywasz swoje karty według zwykłych zasad: dokładasz do koloru, a jeśli go nie masz, zagrywasz atut, o ile masz go w ręce. Dotyczy to także sytuacji, gdy lewę wygrywa już twój partner."
+        },
+        {
+          "pl": "Drużyna ma wspólny wynik i razem trafia na beczkę. Wspólne są też szanse na beczce oraz liczniki zer i poddań. Rozliczenie przebiega tak jak w grze pojedynczej, ale dotyczy całej pary."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki: wybierz ofertę, kartę do oddania lub kartę do zagrania."
+        },
+        {
+          "pl": "Enter: potwierdź wybór; na karcie zagraj ją lub wybierz zgłoszenie mariażu."
+        },
+        {
+          "pl": "Shift+Enter: zgłoś dostępny mariaż od razu; jeśli nie ma mariażu, nie zagrywaj karty."
+        },
+        {
+          "pl": "B: po wymianie, przed pierwszą kartą, zmień kontrakt; poza tym odczytaj oferty."
+        },
+        {
+          "pl": "H: odczytaj swoją rękę."
+        },
+        {
+          "pl": "C: odczytaj karty w lewie."
+        },
+        {
+          "pl": "Ctrl+C: przeglądaj karty w lewie."
+        },
+        {
+          "pl": "F: odczytaj kolor atutowy."
+        },
+        {
+          "pl": "S: odczytaj wyniki i informację o beczce."
+        },
+        {
+          "pl": "Shift+S: odczytaj zera, poddania i pozostałe szanse na beczce."
+        },
+        {
+          "pl": "Z: przejdź do następnej legalnej karty; możliwość zgłoszenia mariażu wyłącza automatyczne zagranie."
+        },
+        {
+          "pl": "Shift+Z: przejdź do poprzedniej legalnej karty; możliwość zgłoszenia mariażu wyłącza automatyczne zagranie."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "pl": "Shift+C: sortuj karty według koloru; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+H: sortuj karty według wartości; ponowne użycie odwraca kolejność."
+        },
+        {
+          "pl": "Shift+M: przywróć kolejność otrzymania kart."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "talon_size": "variants",
+    "last_trick_talon": "variants",
+    "score_limit": "variants"
+  }
+}

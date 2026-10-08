@@ -188,7 +188,7 @@ module GameRoomTranslationExtractor
   end
 
   def self.changelog_callback(node)
-    return [] unless node.is_a?(Prism::CallNode) && node.name == :list_items && constant_name(node.receiver) == "GameRoomChangelog"
+    return [] unless node.is_a?(Prism::CallNode) && [:list_items, :markdown].include?(node.name) && constant_name(node.receiver) == "GameRoomChangelog"
     keywords = node.arguments&.arguments&.last
     return [] unless keywords.is_a?(Prism::KeywordHashNode)
     pair = keywords.elements.find { |item| item.is_a?(Prism::AssocNode) && item.key.is_a?(Prism::SymbolNode) && item.key.unescaped == "translator" }

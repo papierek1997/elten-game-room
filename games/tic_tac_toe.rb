@@ -25,6 +25,10 @@ module GameRoomGames
       _("Tic-tac-toe")
     end
 
+    def short_description
+      _("Place three of your marks in a line before your opponent does.")
+    end
+
     def rule_sections
       generated_rule_sections
     end

@@ -1,0 +1,268 @@
+{
+  "source": "games/domino.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Build a shared chain of dominoes and try to empty your hand first. Tiles left in your hand at the end of a round add penalty points. Reach the score limit and you are eliminated; outlast all your opponents to win."
+        },
+        {
+          "en": "The standard game is for two to four players with a double-six set: 28 tiles, each half showing zero to six spots. Everyone receives seven tiles. Any left over are available to draw."
+        }
+      ]
+    },
+    {
+      "id": "opening",
+      "title": {
+        "en": "Starting a round"
+      },
+      "paragraphs": [
+        {
+          "en": "The player holding the highest double starts. A double has the same number on both halves. If nobody has one, the tile with the highest total starts instead. Ties for the opening player are rotated between rounds."
+        },
+        {
+          "en": "The opening player may play any tile, not just the one that gave them the start. Select it with the arrows and press Enter. Players then take turns adding a tile to either end of the chain."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "en": "Playing a tile"
+      },
+      "paragraphs": [
+        {
+          "en": "One half of your tile must match the end you play on; the other half becomes the new end. For example, adding 3–5 to an end showing 3 leaves a 5."
+        },
+        {
+          "en": "C reads both ends. Select a matching tile with the arrows and press Enter to play it, ending your turn."
+        },
+        {
+          "en": "If a tile fits both ends, your current side preference decides where it goes. G selects the left end and D the right. The choice remains in effect for later ambiguous plays; the initial preference is right."
+        }
+      ]
+    },
+    {
+      "id": "drawing",
+      "title": {
+        "en": "Drawing"
+      },
+      "paragraphs": [
+        {
+          "en": "If you cannot play, press Space to draw one tile. If you now have a legal play, choose a tile and press Enter. You may play a tile you already held, not only the new one."
+        },
+        {
+          "en": "By default, you may also draw one tile when you already have a playable tile. Drawing is not a prerequisite for an ordinary play."
+        },
+        {
+          "en": "If you still cannot play after drawing, your turn ends. With an empty draw pile and no legal move, you pass automatically."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "en": "Ending and scoring a round"
+      },
+      "paragraphs": [
+        {
+          "en": "A round ends when someone plays their last tile. It can also end blocked: the draw pile is empty and everyone has had a turn without being able to play."
+        },
+        {
+          "en": "Score the round as follows:"
+        },
+        {
+          "en": "- The player who emptied their hand scores zero."
+        },
+        {
+          "en": "- Everyone else adds the spots on their remaining tiles to their score. In a blocked round, all players do this."
+        },
+        {
+          "en": "- The 0–0 tile is worth ten points only when it is the sole tile left in your hand. With other tiles, it adds nothing."
+        },
+        {
+          "en": "S reads the scores. Unless the match is over, a new round is dealt."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "Winning the match"
+      },
+      "paragraphs": [
+        {
+          "en": "After each round, players with 100 points or more are eliminated. Keep playing until one person remains; that player wins."
+        },
+        {
+          "en": "If all remaining players reach the limit in the same round, the lowest score wins. Equal lowest scores share the victory."
+        }
+      ]
+    },
+    {
+      "id": "sets",
+      "title": {
+        "en": "Other domino sets"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose the set before play. The number in its name is the highest number on a tile half; larger sets let more people play."
+        },
+        {
+          "en": "The available sets are:"
+        },
+        {
+          "en": "- Double-six: up to four players, with seven tiles each."
+        },
+        {
+          "en": "- Double-nine, double-twelve, double-fifteen or double-eighteen: ten tiles each."
+        },
+        {
+          "en": "- Two or four copies of a double-six, double-nine or double-twelve set: identical tiles can appear more than once, and everyone receives ten."
+        },
+        {
+          "en": "Double-nine and two double-six sets accommodate five players. Other larger sets allow up to eight."
+        }
+      ]
+    },
+    {
+      "id": "draw_variants",
+      "title": {
+        "en": "Drawing options"
+      },
+      "paragraphs": [
+        {
+          "en": "The host can change drawing rules before play:"
+        },
+        {
+          "en": "- Forbid drawing: play only the tiles you were dealt and pass automatically when stuck. The other drawing options then have no effect."
+        },
+        {
+          "en": "- Disallow drawing when a tile is playable: you must play from your hand; Space is available only when no tile fits."
+        },
+        {
+          "en": "- Draw until playable: one press of Space draws until the newly drawn tile fits or the pile runs out. Then choose a tile and play it with Enter."
+        },
+        {
+          "en": "When drawing is forbidden, a blocked round can end even if unused tiles remain in the pile."
+        }
+      ]
+    },
+    {
+      "id": "teams",
+      "title": {
+        "en": "Team play"
+      },
+      "paragraphs": [
+        {
+          "en": "Partners share a score but play their own hands. Turns alternate between teams. Choose one of these arrangements before starting:"
+        },
+        {
+          "en": "- Four players: two pairs."
+        },
+        {
+          "en": "- Six players: two teams of three, or three pairs."
+        },
+        {
+          "en": "- Eight players: two teams of four, or four pairs."
+        },
+        {
+          "en": "Normally, a single teammate going out wins the round for their team, which scores zero. Each opposing team counts its own remaining tiles and also adds the value of the tiles left with the winner's partners."
+        },
+        {
+          "en": "For example, if the winner's partner has eight points left and your team has eleven, your team scores nineteen. In a blocked round, each team counts only its own tiles."
+        },
+        {
+          "en": "Whole-team finish requires every member of a team to go out before that team wins the round. Players with empty hands are skipped."
+        },
+        {
+          "en": "The score limit applies to the whole team. Reaching it eliminates all its members. The last surviving team wins, or the lowest score decides if all remaining teams are eliminated together, as in individual play."
+        }
+      ]
+    },
+    {
+      "id": "limit",
+      "title": {
+        "en": "Score limit"
+      },
+      "paragraphs": [
+        {
+          "en": "The host can replace the usual 100-point limit before play. Reaching or exceeding the chosen limit after a round eliminates you."
+        }
+      ]
+    },
+    {
+      "id": "clock",
+      "title": {
+        "en": "Turn time"
+      },
+      "paragraphs": [
+        {
+          "en": "There is normally no time limit. A table can instead allow a fixed number of seconds for the whole turn. Drawing does not restart that time."
+        },
+        {
+          "en": "When time runs out, the game draws one tile for you if you have not yet drawn, drawing is allowed and the pile is not empty. It then ends your turn without playing a tile. This penalty can apply even if you had a legal play; draw-until-playable does not increase it beyond one tile."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows: choose a tile."
+        },
+        {
+          "en": "Enter: play the tile, using your preferred end if it fits both."
+        },
+        {
+          "en": "G: prefer the left end for tiles fitting both ends."
+        },
+        {
+          "en": "D: prefer the right end for tiles fitting both ends."
+        },
+        {
+          "en": "Space: draw according to the table rules."
+        },
+        {
+          "en": "C: read both ends."
+        },
+        {
+          "en": "V: inspect the whole chain."
+        },
+        {
+          "en": "E: read the number of tiles in each hand and the draw pile."
+        },
+        {
+          "en": "Z: find the next playable tile; play automatically if there is only one unambiguous move."
+        },
+        {
+          "en": "Shift+Z: find the previous playable tile; play automatically if there is only one unambiguous move."
+        },
+        {
+          "en": "S: read scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "tile_set": "sets",
+    "teams": "teams",
+    "team_count": "teams",
+    "forbid_draw": "draw_variants",
+    "allow_playable_draw": "draw_variants",
+    "draw_until": "draw_variants",
+    "whole_team": "teams",
+    "thinking_time": "clock",
+    "score_limit": "limit"
+  }
+}

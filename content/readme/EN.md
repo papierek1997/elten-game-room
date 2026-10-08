@@ -31,9 +31,11 @@ Stereo headphones are recommended for audio games, where the direction of sound 
 4. Select “Start game”. If you need help, press F1 for the available shortcuts or Ctrl+F1 to read the rules.
 
 You do not have to create your own table. “Join a table” lets you choose a game and browse existing tables. You can also use an invitation or the widget on ELTEN's main screen.
+When choosing a game to create or join a table, you will hear a short description after its name.
 Opening Power Games again in the same copy of ELTEN takes you back to its existing window instead of starting a second independent instance.
 
 On startup, the program may offer to download a newer version. Declining does not stop you from opening it, but it is worth making sure everyone has an up-to-date version before playing together. You can read about changes in “What's new”.
+This is a read-only document with a heading for each version. H moves to the next heading and Shift+H to the previous one. Escape closes the document.
 
 ## What you can play
 
@@ -86,7 +88,7 @@ In the table list and widget, you can find out more before joining:
 
 ### Inviting and watching
 
-At a table, Ctrl+I opens invitations to online users, while Ctrl+Shift+I lets you choose someone from your contacts. You can accept invitations through an ELTEN notification, “Invitations” or Ctrl+J. The last shortcut works throughout Power Games, including the widget.
+At a table, Ctrl+I opens invitations to online users, while Ctrl+Shift+I lets you choose someone from your contacts. You can accept invitations through an ELTEN notification, the context menu or Ctrl+J. The last shortcut works throughout Power Games, including the widget.
 
 In games that allow spectators, you can follow a game without taking a player's seat. This is useful both for cheering people on and for learning the rules. Axel Pong spectators can also choose their listening perspective.
 Ctrl+Shift+O lets you ask to play or spectate in the next game, where that choice is available.
@@ -116,6 +118,8 @@ Many games let you set a turn time limit and a delay for bot moves. The bot dela
 
 Tab and Shift+Tab move between parts of the window, such as the game area, chat, history and user list. Arrow keys navigate lists or the board; how you make a move depends on the game.
 
+Type a message in the Chat field and press Enter to send it. Each message can contain up to 2000 characters, both before and during a game.
+
 You do not need to learn every shortcut at once:
 
 - F1 shows help for your current location and the actions available there.
@@ -133,6 +137,7 @@ Some games also have personal settings under Ctrl+P, available in the table menu
 
 The Power Games widget on ELTEN's main screen lets you browse tables without opening the program's main menu first. You can select a table, check its settings or participants and accept an invitation.
 Ctrl+N goes straight to the game picker for a new table. R refreshes the list manually. The widget also refreshes when you enter it and every five seconds while you are using it.
+Ctrl+O reads a short description of the game at the selected table. You can also choose “Game description” from the widget's context menu.
 
 In Settings → Widget, you can enable the widget, choose which games it shows and restrict the list to tables created by your contacts.
 
@@ -193,6 +198,8 @@ The interface language and a game's content language are separate choices. The l
 In games that support saving, the host can use Ctrl+S to save the game and close the table. The save belongs to the host's account and is stored on the server, so it can also be resumed on another computer.
 
 Use “Saved games” in the main menu to resume. Restoring a save creates a table where you can gather the participants again and continue playing. Not every game can be saved, and not every moment is suitable: the command depends on the game and its current stage.
+
+Once the game resumes, its save is removed from your account. Creating the table and waiting for players does not remove it yet. To stop again, save your current progress with Ctrl+S.
 
 ### Revisit a conversation or an earlier move
 
@@ -283,6 +290,7 @@ This list covers the program's common controls. Use F1 for a specific game's com
 
 - Ctrl+R — selected table settings before joining.
 - Ctrl+W — players and spectators at the selected table.
+- Ctrl+O — short description of the selected table's game; in the widget.
 - Ctrl+N — create a new table; in the widget.
 - R — refresh the widget manually.
 - Ctrl+1 through Ctrl+0 — the first ten saved table configurations; in the widget.
