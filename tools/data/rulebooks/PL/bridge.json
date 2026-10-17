@@ -1,0 +1,146 @@
+{
+  "source": "games/bridge.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": { "pl": "Na czym polega gra" },
+      "paragraphs": [
+        { "pl": "Brydż to gra karciana dla czterech osób grających w dwóch parach. Ty i twój partner gracie razem przeciwko drugiej parze. Każde rozdanie ma dwie części: najpierw licytację, w której pary rywalizują o kontrakt, a potem rozgrywkę, w której para, która wylicytowała kontrakt, próbuje wziąć co najmniej tyle lew, ile zapowiedziała." },
+        { "pl": "Punkty zdobywa się za wypełnione kontrakty i za obłożenie kontraktów przeciwników. Wygrywa para, która na koniec meczu ma więcej punktów." }
+      ]
+    },
+    {
+      "id": "deal",
+      "title": { "pl": "Pary i rozdanie" },
+      "paragraphs": [
+        { "pl": "Miejsca przy stole nazywa się jak strony świata. Północ gra w parze z Południem, a Wschód z Zachodem; partnerzy siedzą naprzeciw siebie. Jeśli przy stole wybrano drużyny, dwie osoby z jednej drużyny są partnerami. Gra zawsze toczy się zgodnie z ruchem wskazówek zegara: Północ, Wschód, Południe, Zachód." },
+        { "pl": "Rozdaje się wszystkie 52 karty, więc każdy dostaje 13. Klawiszem H odczytasz swoją rękę kolor po kolorze, od najstarszej karty, a na końcu liczbę punktów honorowych: as to 4 punkty, król 3, dama 2, a walet 1. Tych punktów nie wpisuje się do zapisu, ale pomagają ocenić siłę ręki w licytacji. W całej talii jest ich 40, więc przeciętna ręka ma 10 punktów, a 12 lub więcej zwykle wystarcza do otwarcia licytacji." },
+        { "pl": "W każdym kolorze najstarszy jest as, potem król, dama, walet, dziesiątka i kolejne blotki aż do dwójki." }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": { "pl": "Licytacja" },
+      "paragraphs": [
+        { "pl": "Licytację zaczyna rozdający, a pozostali mówią po kolei zgodnie z ruchem wskazówek zegara. Gdy przyjdzie twoja kolej, w polu gry pojawi się lista dozwolonych zapowiedzi. Wybierz zapowiedź strzałkami i naciśnij Enter. Tę samą listę otworzysz też klawiszem B." },
+        { "pl": "Odzywka określa liczbę lew i kolor atutowy albo grę bez atu. Do podanej liczby dodaje się sześć: odzywka 1 kier zapowiada 7 z 13 lew z kierami w atucie, a 4 piki — 10 lew z pikami w atucie. Każda odzywka musi być wyższa od poprzedniej. Wyższa liczba zawsze przebija niższą, a przy tej samej liczbie kolory są uporządkowane od najmłodszego: trefle, kara, kiery, piki i bez atu. Po 1 piku możesz powiedzieć 1 bez atu albo dowolną odzywkę na wysokości 2, ale nie 1 kier." },
+        { "pl": "Zamiast odzywki możesz zgłosić jedną z tych zapowiedzi:" },
+        { "pl": "- Pas: nie chcesz teraz licytować. Pas nie przeszkadza ci odezwać się później w tej samej licytacji." },
+        { "pl": "- Kontra: dozwolona tylko po odzywce przeciwnika, także wtedy, gdy po niej padły pasy. Jeśli ta odzywka zostanie kontraktem, obie strony zdobywają więcej: rozgrywający za jego wypełnienie, a obrońcy za wpadkę." },
+        { "pl": "- Rekontra: dozwolona tylko wtedy, gdy przeciwnik skontrował odzywkę twojej pary. Jeszcze raz podnosi stawkę." },
+        { "pl": "Licytacja kończy się, gdy po odzywce trzech graczy z rzędu spasuje. Ostatnia odzywka staje się kontraktem. Jeśli na początku spasują wszyscy czterej, nikt nie dostaje punktów, a karty rozdaje od nowa następny gracz." },
+        { "pl": "Klawisz L odczytuje całą licytację, a Ctrl+L pozwala przejrzeć ją zapowiedź po zapowiedzi." }
+      ]
+    },
+    {
+      "id": "contract",
+      "title": { "pl": "Kontrakt, rozgrywający i dziadek" },
+      "paragraphs": [
+        { "pl": "Para, która zgłosiła ostatnią odzywkę, musi wziąć zapowiedzianą liczbę lew, a druga para się broni. Rozgrywającym zostaje ten z graczy tej pary, który jako pierwszy wymienił kolor kontraktu albo bez atu. Jeśli na przykład Północ otworzy 1 kier, Południe podniesie do 4 kierów, a wszyscy spasują, rozgrywa Północ, choć ostatnią odzywkę zgłosiło Południe." },
+        { "pl": "Pierwszą kartę, czyli wist, wychodzi gracz siedzący na lewo od rozgrywającego. Wtedy partner rozgrywającego zostaje dziadkiem: jego karty leżą odkryte dla wszystkich, a rozgrywający gra nimi tak samo jak własnymi. Dziadek nie bierze już udziału w tym rozdaniu." },
+        { "pl": "Klawisz K podaje kontrakt, rozgrywającego i liczbę lew, które rozgrywający już wziął." }
+      ]
+    },
+    {
+      "id": "play",
+      "title": { "pl": "Rozgrywka" },
+      "paragraphs": [
+        { "pl": "Każda lewa składa się z czterech kart, po jednej od każdego gracza zgodnie z ruchem wskazówek zegara. Żeby zagrać, przejdź strzałkami do karty w swojej ręce i naciśnij Enter. Klawisz Z przenosi cię do następnej karty, którą wolno ci zagrać, a Shift+Z do poprzedniej; jeśli możesz zagrać tylko jedną kartę, Z od razu ją zagrywa." },
+        { "pl": "Jeśli masz karty koloru wyjścia, musisz dołożyć do koloru. Gdy go nie masz, możesz zagrać dowolną kartę, także atut, ale nigdy nie musisz przebijać. Lewę bierze najwyższy atut, a jeśli nikt nie zagrał atutu — najwyższa karta koloru wyjścia. Karty innych kolorów nie mogą wziąć lewy. Gracz, który wziął lewę, wychodzi do następnej." },
+        { "pl": "Jako rozgrywający grasz też kartami dziadka. Gdy przyjdzie kolej dziadka, naciśnij Tab, żeby przejść do listy jego kart, albo Z, które od razu ustawia cię na kartach, jakie dziadek może zagrać, i wybierz kartę Enterem. Rękę dziadka może w każdej chwili odczytać każdy gracz klawiszem D." },
+        { "pl": "Klawisz C odczytuje karty bieżącej lewy, a F kolor wyjścia. P powtarza poprzednią lewę razem z tym, kto ją wziął." },
+        { "pl": "Po rozegraniu wszystkich 13 lew rozdanie zostaje policzone, a następne rozdaje kolejny gracz zgodnie z ruchem wskazówek zegara." }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": { "pl": "Punkty za kontrakt" },
+      "paragraphs": [
+        { "pl": "Liczą się tylko lewy ponad pierwsze sześć. Gdy rozgrywający wypełni kontrakt, każda zakontraktowana lewa jest warta:" },
+        { "pl": "- 20 punktów w treflach lub karach;" },
+        { "pl": "- 30 punktów w kierach lub pikach;" },
+        { "pl": "- 40 punktów za pierwszą lewę w bez atu i po 30 za każdą następną." },
+        { "pl": "Te punkty za kontrakt podwaja się, jeśli kontrakt był skontrowany, i mnoży przez cztery po rekontrze. Kontrakt warty co najmniej 100 takich punktów to końcówka: najniższe końcówki to 3 bez atu, 4 kiery, 4 piki, 5 trefli i 5 kar. Mniejszy kontrakt to częściówka." },
+        { "pl": "Gra po partii podnosi zarówno premie, jak i kary. Na początku każdego rozdania słychać, kto jest po partii, a kto przed partią; klawisz V powtarza tę informację razem z numerem rozdania, rozdającym, kontraktem i lewami." },
+        { "pl": "Lewy ponad kontrakt to nadróbki. Bez kontry każda jest warta tyle co zakontraktowana lewa w tym kolorze. Po kontrze każda nadróbka daje 100 punktów, a po partii 200; po rekontrze 200 albo 400. Za wypełnienie skontrowanego kontraktu dochodzi 50 punktów, a zrekontrowanego — 100." },
+        { "pl": "Szlemik, czyli kontrakt na wysokości 6, daje premię 500, a po partii 750. Szlem, czyli kontrakt na wysokości 7, daje 1000, a po partii 1500." },
+        { "pl": "Jeśli rozgrywający weźmie za mało lew, obrońcy dostają punkty za każdą brakującą lewę, czyli wpadkę:" },
+        { "pl": "- bez kontry: po 50 za lewę, a po partii po 100;" },
+        { "pl": "- z kontrą przed partią: 100 za pierwszą wpadkę, po 200 za drugą i trzecią i po 300 za każdą następną;" },
+        { "pl": "- z kontrą po partii: 200 za pierwszą wpadkę i po 300 za każdą następną;" },
+        { "pl": "- z rekontrą: dwa razy więcej niż z kontrą." },
+        { "pl": "Na przykład 2 piki z kontrą przed partią wypełnione z nadróbką dają 120 za kontrakt, 50 za wypełnienie skontrowanego kontraktu i 100 za nadróbkę. Ten sam kontrakt z dwiema wpadkami daje obrońcom 300." }
+      ]
+    },
+    {
+      "id": "rubber",
+      "title": { "pl": "Gra na robra" },
+      "paragraphs": [
+        { "pl": "Domyślnie przy stole gra się na robra. Robr kończy się, gdy jedna para wygra dwie partie, a mecz wygrywa para z większą łączną liczbą punktów. Zwykle jest to para, która wygrała robra, ale nie zawsze; przy równych sumach jest remis." },
+        { "pl": "Punkty za kontrakt zapisuje się pod kreską, a wszystkie pozostałe nad kreską. Partię wygrywa para, której punkty pod kreską osiągną 100 — w jednym rozdaniu albo z kilku częściówek. Po wygranej partii obie pary zaczynają następną od zera pod kreską; częściówki, które przeciwnicy mieli w poprzedniej partii, już im nie pomagają." },
+        { "pl": "Para, która wygrała partię, jest po partii do końca robra. Za wygranie robra dostaje się 700 punktów, jeśli przeciwnicy nie wygrali żadnej partii, i 500, jeśli wygrali jedną." },
+        { "pl": "Nad kreską zapisuje się też honory, niezależnie od tego, kto je ma, nawet obrońca. Cztery z pięciu najstarszych atutów (as, król, dama, walet, dziesiątka) w jednej ręce dają 100, a wszystkie pięć — 150. W bez atu wszystkie cztery asy w jednej ręce dają 150. Liczenie honorów można wyłączyć w ustawieniach stołu." },
+        { "pl": "Klawisz S odczytuje punkty pod kreską i nad kreską, wygrane partie i sumę każdej pary, a potem stan bieżącej partii." }
+      ]
+    },
+    {
+      "id": "duplicate",
+      "title": { "pl": "Brydż sportowy" },
+      "paragraphs": [
+        { "pl": "W ustawieniach stołu możesz zamiast tego wybrać brydż sportowy. Mecz trwa wtedy ustaloną liczbę rozdań: 4, 8, 12, 16 albo 24, domyślnie 8. Numer rozdania wyznacza rozdającego i założenia, w takim samym cyklu jak w klubach brydżowych. Rozdanie 1 rozdaje Północ i obie pary są przed partią, rozdanie 2 Wschód przy założeniach po partii dla Północy i Południa, rozdanie 3 Południe przy założeniach po partii dla Wschodu i Zachodu, a rozdanie 4 Zachód, gdy obie pary są po partii." },
+        { "pl": "Każde rozdanie liczy się osobno. Końcówka daje premię 300, a po partii 500, a częściówka 50. Wszystko inne liczy się tak, jak opisano wyżej. Nie ma honorów ani robra." },
+        { "pl": "W klubie te same rozdania gra się przy wielu stołach i pary porównują swoje wyniki. Tu jest tylko jeden stół, więc twój wynik porównuje się z wynikiem odniesienia: szacunkiem, ile zwykle przynoszą takie karty, liczonym z sumy punktów honorowych silniejszej pary. Gdy obie pary mają po 20 punktów, wynik odniesienia wynosi zero. Przy 23 punktach silniejsza para powinna zdobyć 110, przy 26 punktach 400, a po partii 600, a przy 33 punktach — szlemika za 980, a po partii 1430. Szacunek nie uwzględnia układu kart, więc dobry fit albo nietypowy rozkład może być wart dużo więcej." },
+        { "pl": "Sposób porównania zależy od zapisu wybranego przy stole:" },
+        { "pl": "- IMP-y (domyślnie): różnicę względem wyniku odniesienia przelicza się na międzynarodowe punkty meczowe. Różnica do 10 punktów nic nie daje, od 20 do 40 to 1 IMP, od 50 do 80 to 2, a od 90 do 120 to 3. Większe różnice dają coraz więcej, ale wolniej: 420 to 9 IMP-ów, a 4000 lub więcej to maksymalne 24. IMP-y dostaje para, która wypadła lepiej od wyniku odniesienia." },
+        { "pl": "- Zapis maksymalny: w każdym rozdaniu para, która wypadła lepiej od wyniku odniesienia, dostaje 2 punkty, a druga 0; przy równym wyniku każda para dostaje 1. Wynikiem końcowym jest procent możliwych do zdobycia punktów." },
+        { "pl": "Rozdanie, w którym wszyscy czterej spasowali, też się liczy: ma wynik zero i porównuje się je z wynikiem odniesienia, więc spasowanie z silnymi kartami kosztuje punkty. Po ostatnim rozdaniu wygrywa para z większą liczbą IMP-ów lub punktów; przy równej sumie jest remis. Klawisz S odczytuje dotychczasowy wynik." }
+      ]
+    },
+    {
+      "id": "bots",
+      "title": { "pl": "Licytacja z komputerowym partnerem" },
+      "paragraphs": [
+        { "pl": "Gracze komputerowi widzą tylko własne karty, dziadka oraz zapowiedzi i karty, które widzą wszyscy. Licytują prostym naturalnym systemem, dzięki czemu łatwiej zrozumieć ich zapowiedzi:" },
+        { "pl": "- 1 bez atu oznacza od 15 do 17 punktów i rękę zrównoważoną, a 2 bez atu — 20 lub 21 punktów." },
+        { "pl": "- Otwarcie 1 kier albo 1 pik obiecuje co najmniej pięć kart w tym kolorze i zwykle 12 punktów lub więcej. Bez piątki w kolorze starszym bot otwiera 1 karo albo 1 trefl." },
+        { "pl": "- Otwarcie 2 kara, 2 kiery albo 2 piki jest słabe: to sześciokartowy kolor i od 6 do 10 punktów." },
+        { "pl": "- Podniesienie twojego koloru oznacza fit. Podniesienie na wysokość 2 jest słabe, na 3 zaprasza do końcówki, a skok od razu do końcówki pokazuje silną rękę." },
+        { "pl": "Boty nigdy nie kontrują. Grają też według prostych zasad: drugi gracz w lewie dokłada nisko, chyba że ma pewną lewę, dalsi gracze próbują wziąć lewę jak najniższą kartą, a obrońca wychodzi w kolor partnera albo w swój długi kolor." }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": { "pl": "Skróty klawiszowe" },
+      "paragraphs": [
+        { "pl": "Enter na liście zapowiedzi: zgłoś wybraną zapowiedź." },
+        { "pl": "B: wybierz zapowiedź w swojej kolejce, a w innej chwili odczytaj licytację." },
+        { "pl": "L: odczytaj licytację." },
+        { "pl": "Ctrl+L: przeglądaj licytację." },
+        { "pl": "K: odczytaj kontrakt i lewy rozgrywającego." },
+        { "pl": "Enter na karcie: zagraj ją." },
+        { "pl": "Tab: przejdź między swoją ręką a dziadkiem." },
+        { "pl": "Z: przejdź do następnej karty, którą można zagrać z ręki będącej na ruchu; jeśli jest tylko jedna, zagraj ją." },
+        { "pl": "Shift+Z: przejdź do poprzedniej karty, którą można zagrać." },
+        { "pl": "H: odczytaj swoją rękę." },
+        { "pl": "D: odczytaj rękę dziadka." },
+        { "pl": "C: odczytaj bieżącą lewę." },
+        { "pl": "Ctrl+C: przeglądaj bieżącą lewę." },
+        { "pl": "F: odczytaj kolor wyjścia." },
+        { "pl": "P: odczytaj poprzednią lewę." },
+        { "pl": "V: odczytaj rozdanie, założenia, kontrakt i lewy." },
+        { "pl": "I: odczytaj swoje miejsce, partnera i rolę w tym rozdaniu." },
+        { "pl": "S: odczytaj wynik." },
+        { "pl": "T: odczytaj, czyja jest tura." },
+        { "pl": "Shift+C: posortuj karty według koloru." },
+        { "pl": "Shift+H: posortuj karty według wartości." },
+        { "pl": "Shift+M: przywróć pierwotną kolejność kart." }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "duplicate",
+    "honors": "rubber",
+    "boards": "duplicate",
+    "scoring": "duplicate"
+  }
+}

@@ -8,6 +8,10 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 |"
 "| n%100>14) ? 1 : 2);\n"
 
+#: games/bridge/presentation.rb:172
+msgid " and "
+msgstr " i "
+
 msgid "!, @, #, $, %, ^: keep one selected die of value 1, 2, 3, 4, 5 or 6. These are Shift with the corresponding number. Space: repeat what is kept and what will be rerolled."
 msgstr "!, @, #, $, %, ^: zachowanie jednej zaznaczonej kości o wartości 1, 2, 3, 4, 5 lub 6. To Shift z odpowiednią cyfrą. Spacja: powtórzenie, które kości zachowujesz, a które przerzucisz."
 
@@ -197,6 +201,18 @@ msgstr "%{challenge}: %{players}."
 #: games/uno.rb:1117
 msgid "%{colour} %{value}"
 msgstr "%{colour} %{value}"
+
+#: games/bridge/presentation.rb:363
+msgid "%{contract} by %{declarer} %{result}"
+msgstr "%{contract}, rozgrywa %{declarer}: %{result}"
+
+#: games/bridge/presentation.rb:216
+msgid "%{contract} doubled"
+msgstr "%{contract} z kontrą"
+
+#: games/bridge/presentation.rb:217
+msgid "%{contract} redoubled"
+msgstr "%{contract} z rekontrą"
 
 msgid "%{copies} × %{set}"
 msgstr "%{copies} × %{set}"
@@ -429,6 +445,10 @@ msgstr "%{judge}; odpowiedzi w języku %{language}; %{pool}; %{categories} kateg
 msgid "%{judge}; answers in %{language}; %{time}; target: %{target} points"
 msgstr "%{judge}; język odpowiedzi: %{language}; %{time}; cel: %{target} punktów"
 
+#: games/bridge/presentation.rb:540
+msgid "%{label} after %{boards} of %{total} boards: %{scores}."
+msgstr "%{label} po %{boards} z %{total} rozdań: %{scores}."
+
 #: games/duck_racing.rb:144
 msgid "%{laps} lap"
 msgid_plural "%{laps} laps"
@@ -467,6 +487,38 @@ msgstr "%{letter}, %{field}, %{points} punktów"
 #: lib/game_surfaces/word_board.rb:141
 msgid "%{letter}, %{points} points"
 msgstr "%{letter}, %{points} punktów"
+
+#: games/bridge/presentation.rb:206
+msgid "%{level} club"
+msgid_plural "%{level} clubs"
+msgstr[0] "%{level} trefl"
+msgstr[1] "%{level} trefle"
+msgstr[2] "%{level} trefli"
+
+#: games/bridge/presentation.rb:207
+msgid "%{level} diamond"
+msgid_plural "%{level} diamonds"
+msgstr[0] "%{level} karo"
+msgstr[1] "%{level} kara"
+msgstr[2] "%{level} kar"
+
+#: games/bridge/presentation.rb:208
+msgid "%{level} heart"
+msgid_plural "%{level} hearts"
+msgstr[0] "%{level} kier"
+msgstr[1] "%{level} kiery"
+msgstr[2] "%{level} kierów"
+
+#: games/bridge/presentation.rb:210
+msgid "%{level} no trump"
+msgstr "%{level} bez atu"
+
+#: games/bridge/presentation.rb:209
+msgid "%{level} spade"
+msgid_plural "%{level} spades"
+msgstr[0] "%{level} pik"
+msgstr[1] "%{level} piki"
+msgstr[2] "%{level} pików"
 
 msgid "%{mark}, %{player}'s mark"
 msgstr "%{mark}, znak gracza %{player}"
@@ -639,6 +691,10 @@ msgstr "%{player} %{score}%{barrel}"
 
 msgid "%{player} %{score}, zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "%{player} %{score}, zera %{zeros}/3, poddania %{surrenders}/3%{barrel}"
+
+#: games/bridge/presentation.rb:36 games/bridge/presentation.rb:61
+msgid "%{player} (%{seat}) is bidding."
+msgstr "Licytuje %{player} (%{seat})."
 
 msgid "%{player} accepted the trade."
 msgstr "%{player} akceptuje wymianę."
@@ -1477,6 +1533,10 @@ msgstr "%{player} zagrywa %{tile} na swój pociąg."
 #: games/scrabble.rb:206
 msgid "%{player} plays %{words}: %{points} points."
 msgstr "%{player} układa %{words}: %{points} punktów."
+
+#: games/bridge/presentation.rb:41 games/bridge/presentation.rb:63
+msgid "%{player} plays from dummy (%{seat})."
+msgstr "%{player} gra z dziadka (%{seat})."
 
 #: games/chess.rb:476
 msgid "%{player} promoted the pawn to %{piece}."
@@ -2412,6 +2472,10 @@ msgstr "%{player}: zdobyte lewy %{tricks}, cel %{target}, punkty za rozdanie %{p
 msgid "%{player}: zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "%{player}: zera %{zeros}/3, poddania %{surrenders}/3%{barrel}"
 
+#: games/bridge/presentation.rb:374
+msgid "%{points} for %{side}"
+msgstr "%{points} dla pary %{side}"
+
 #: lib/room_presentation.rb:39
 msgid "%{points} points"
 msgstr "%{points} punktów"
@@ -2472,6 +2536,34 @@ msgstr "%{result} %{stores}"
 msgid "%{round}. %{word}: %{attempts} attempts"
 msgstr "%{round}. %{word}: %{attempts} prób"
 
+#: games/bridge/presentation.rb:457 games/bridge/presentation.rb:478
+msgid "%{seat} %{card}"
+msgstr "%{seat} %{card}"
+
+#: games/bridge/presentation.rb:163
+msgid "%{seat} (%{player})"
+msgstr "%{seat} (%{player})"
+
+#: games/bridge/presentation.rb:343
+msgid "%{seat} won the trick. Tricks: %{tricks}."
+msgstr "Lewę bierze %{seat}. Lewy: %{tricks}."
+
+#: games/bridge/presentation.rb:483
+msgid "%{seat}: %{call}"
+msgstr "%{seat}: %{call}"
+
+#: games/bridge/presentation.rb:320
+msgid "%{seat}: %{call}."
+msgstr "%{seat}: %{call}."
+
+#: games/bridge/presentation.rb:462
+msgid "%{seat}: %{card}"
+msgstr "%{seat}: %{card}"
+
+#: games/bridge/presentation.rb:334
+msgid "%{seat}: %{card}."
+msgstr "%{seat}: %{card}."
+
 #: games/categories.rb:205 games/uno.rb:184 lib/game_option_values.rb:60
 msgid "%{seconds} seconds"
 msgstr "%{seconds} sekund"
@@ -2512,6 +2604,61 @@ msgstr "%{server} będzie serwować do %{receiver}."
 msgid "%{set}, %{count} tiles, up to %{players} players"
 msgstr "%{set}, %{count} kostek, do %{players} graczy"
 
+#: games/bridge/presentation.rb:421
+msgid "%{side} %{percent}%%"
+msgstr "%{side} %{percent}%%"
+
+#: games/bridge/presentation.rb:406
+msgid "%{side} %{score}"
+msgstr "%{side} %{score}"
+
+#: games/bridge/presentation.rb:172
+msgid "%{side} (%{players})"
+msgstr "%{side} (%{players})"
+
+#: games/bridge/presentation.rb:385
+msgid "%{side} gains %{count} IMP."
+msgid_plural "%{side} gains %{count} IMPs."
+msgstr[0] "%{side} zyskuje %{count} IMP."
+msgstr[1] "%{side} zyskuje %{count} IMP-y."
+msgstr[2] "%{side} zyskuje %{count} IMP-ów."
+
+#: games/bridge/presentation.rb:393
+msgid "%{side} score %{points} below the line."
+msgstr "%{side}: %{points} pod kreską."
+
+#: games/bridge/presentation.rb:398
+msgid "%{side} score %{points} for honours."
+msgstr "%{side}: %{points} za honory."
+
+#: games/bridge/presentation.rb:395
+msgid "%{side} score %{points} for making a doubled contract."
+msgstr "%{side}: %{points} za wypełnienie skontrowanego kontraktu."
+
+#: games/bridge/presentation.rb:394
+msgid "%{side} score %{points} for overtricks."
+msgstr "%{side}: %{points} za nadróbki."
+
+#: games/bridge/presentation.rb:396
+msgid "%{side} score %{points} for the slam."
+msgstr "%{side}: %{points} za szlema."
+
+#: games/bridge/presentation.rb:397
+msgid "%{side} score %{points} for undertricks."
+msgstr "%{side}: %{points} za wpadki."
+
+#: games/bridge/presentation.rb:399
+msgid "%{side} won a game."
+msgstr "%{side} wygrywa partię."
+
+#: games/bridge/presentation.rb:400
+msgid "%{side} won the rubber and score %{points}."
+msgstr "%{side} wygrywa robra: %{points} punktów premii."
+
+#: games/bridge/presentation.rb:547
+msgid "%{side}: %{games} games, %{below} below and %{above} above the line, %{total} in total"
+msgstr "%{side}: wygrane partie %{games}, pod kreską %{below}, nad kreską %{above}, razem %{total}"
+
 #: games/checkers.rb:75
 msgid "%{size} by %{size} (%{fields} fields)"
 msgstr "%{size} na %{size} (%{fields} pola)"
@@ -2538,6 +2685,10 @@ msgstr "%{status}; %{name}; prowadzący: %{owner}; użytkownicy: %{users}; %{cou
 #: games/three_five_eight.rb:1012
 msgid "%{suit} as trump"
 msgstr "%{suit} jako atut"
+
+#: games/bridge/presentation.rb:235
+msgid "%{suit}: %{cards}"
+msgstr "%{suit}: %{cards}"
 
 #: __app.rb:2660
 msgid "%{table}, unavailable"
@@ -2672,6 +2823,10 @@ msgstr "%{variant}; 3–9 liter"
 msgid "%{winner} won the game."
 msgstr "%{winner} wygrywa grę."
 
+#: games/bridge/presentation.rb:429
+msgid "%{winner} won the match: %{scores}."
+msgstr "Mecz wygrywa para %{winner}: %{scores}."
+
 #: lib/game_surfaces/word_board.rb:97
 msgid "%{words}: %{points} potential points."
 msgstr "%{words}: %{points} możliwych punktów."
@@ -2725,6 +2880,10 @@ msgstr ", na beczce, pozostało rozdań: %{deals}"
 msgid "- 0–9 squares ahead: miss one turn."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:66
+msgid "- 1 no trump shows 15 to 17 points and a balanced hand; 2 no trump shows 20 or 21."
+msgstr "- 1 bez atu oznacza od 15 do 17 punktów i rękę zrównoważoną, a 2 bez atu — 20 lub 21 punktów."
+
 #: games/generated/rulebooks/duck_racing.rb:39
 msgid "- 10–19 squares ahead: miss two turns."
 msgstr ""
@@ -2732,6 +2891,10 @@ msgstr ""
 #: games/generated/rulebooks/duck_racing.rb:36
 msgid "- 10–19 squares ahead: two turns."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:37
+msgid "- 20 points in clubs or diamonds;"
+msgstr "- 20 punktów w treflach lub karach;"
 
 #: games/generated/rulebooks/duck_racing.rb:40
 msgid "- 20–29 squares ahead: miss three turns."
@@ -2745,6 +2908,18 @@ msgstr ""
 msgid "- 30 or more squares ahead: miss four turns."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:38
+msgid "- 30 points in hearts or spades;"
+msgstr "- 30 punktów w kierach lub pikach;"
+
+#: games/generated/rulebooks/bridge.rb:39
+msgid "- 40 points for the first trick in no trump and 30 for each further trick."
+msgstr "- 40 punktów za pierwszą lewę w bez atu i po 30 za każdą następną."
+
+#: games/generated/rulebooks/bridge.rb:69
+msgid "- A raise of your suit shows support. A raise to the level of 2 is weak, a raise to 3 invites game, and a jump to game is a strong hand."
+msgstr "- Podniesienie twojego koloru oznacza fit. Podniesienie na wysokość 2 jest słabe, na 3 zaprasza do końcówki, a skok od razu do końcówki pokazuje silną rękę."
+
 #: games/generated/rulebooks/duck_racing.rb:51
 msgid "- Accuracy: the higher percentage wins. Every ten percentage points of difference costs one feather, rounded up. A result of 90% against 60% is worth three feathers; 83% against 79% is worth one."
 msgstr ""
@@ -2752,6 +2927,14 @@ msgstr ""
 #: games/generated/rulebooks/duck_racing.rb:55
 msgid "- An ace is worth eleven unless that would take you over 21, in which case it is worth one. Its value then stays fixed."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:67
+msgid "- An opening bid of 1 heart or 1 spade promises at least five cards in that suit and usually 12 or more points. Without a five-card major, a bot opens 1 diamond or 1 club."
+msgstr "- Otwarcie 1 kier albo 1 pik obiecuje co najmniej pięć kart w tym kolorze i zwykle 12 punktów lub więcej. Bez piątki w kolorze starszym bot otwiera 1 karo albo 1 trefl."
+
+#: games/generated/rulebooks/bridge.rb:68
+msgid "- An opening bid of 2 diamonds, 2 hearts or 2 spades is weak: a six-card suit with 6 to 10 points."
+msgstr "- Otwarcie 2 kara, 2 kiery albo 2 piki jest słabe: to sześciokartowy kolor i od 6 do 10 punktów."
 
 #: games/generated/rulebooks/duck_racing.rb:129
 msgid "- Arrow keys and Enter: play a card or select Roll the die at the end of the list."
@@ -2813,9 +2996,17 @@ msgstr ""
 msgid "- D: describe the selected card."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:21
+msgid "- Double: possible only right after an opponent's bid, or after an opponent's bid followed by passes. If that bid becomes the contract, it scores more for both sides: more for making it and more for defeating it."
+msgstr "- Kontra: dozwolona tylko po odzywce przeciwnika, także wtedy, gdy po niej padły pasy. Jeśli ta odzywka zostanie kontraktem, obie strony zdobywają więcej: rozgrywający za jego wypełnienie, a obrońcy za wpadkę."
+
 #: games/generated/rulebooks/duck_racing.rb:107
 msgid "- Exact hit: 100%."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:61
+msgid "- IMPs (the default): the difference from the reference score is converted into international match points. A difference of 10 or less is worth nothing, 20 to 40 is 1 IMP, 50 to 80 is 2 and 90 to 120 is 3. Larger swings earn more but more slowly: 420 is 9 IMPs and 4000 or more is the maximum of 24. The pair that did better than the reference gains the IMPs."
+msgstr "- IMP-y (domyślnie): różnicę względem wyniku odniesienia przelicza się na międzynarodowe punkty meczowe. Różnica do 10 punktów nic nie daje, od 20 do 40 to 1 IMP, od 50 do 80 to 2, a od 90 do 120 to 3. Większe różnice dają coraz więcej, ale wolniej: 420 to 9 IMP-ów, a 4000 lub więcej to maksymalne 24. IMP-y dostaje para, która wypadła lepiej od wyniku odniesienia."
 
 #: games/generated/rulebooks/duck_racing.rb:54
 msgid "- Jacks, queens and kings are worth ten."
@@ -2824,6 +3015,10 @@ msgstr ""
 #: games/generated/rulebooks/duck_racing.rb:132
 msgid "- Laps: one to ten, with three as the default."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:62
+msgid "- Matchpoints: on each board the pair that did better than the reference earns 2 points and the other pair 0; an equal result gives each pair 1. The final score is the percentage of the available points."
+msgstr "- Zapis maksymalny: w każdym rozdaniu para, która wypadła lepiej od wyniku odniesienia, dostaje 2 punkty, a druga 0; przy równym wyniku każda para dostaje 1. Wynikiem końcowym jest procent możliwych do zdobycia punktów."
 
 #: games/generated/rulebooks/duck_racing.rb:108
 msgid "- One position away: 75%."
@@ -2849,9 +3044,17 @@ msgstr ""
 msgid "- P: repeat the question, number or task. In Guess the number, it repeats only the public clues."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:20
+msgid "- Pass: you do not want to bid now. Passing does not stop you from bidding later in the same auction."
+msgstr "- Pas: nie chcesz teraz licytować. Pas nie przeszkadza ci odezwać się później w tej samej licytacji."
+
 #: games/generated/rulebooks/duck_racing.rb:134
 msgid "- Questions: choose the language and question sets. The general set is selected by default. Each selected set has an equal chance of being drawn, for all questions in the race."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:22
+msgid "- Redouble: possible only after an opponent has doubled your side's bid. It raises the stakes once more."
+msgstr "- Rekontra: dozwolona tylko wtedy, gdy przeciwnik skontrował odzywkę twojej pary. Jeszcze raz podnosi stawkę."
 
 #: games/generated/rulebooks/duck_racing.rb:49
 msgid "- Result difference: pay one feather for each point by which the winner beat you. For example, results of 16, 10 and 8 give the winner six feathers from one opponent and eight from the other."
@@ -2928,6 +3131,22 @@ msgstr "- Na liczbę prób wygrywa najmniejsza liczba poprawnych zgłoszeń. Ró
 #: games/generated/rulebooks/krowa.rb:25
 msgid "- With time scoring, the shortest time from the start of the word to the submission of the correct answer wins, measured by a clock synchronized with the server;"
 msgstr "- Na czas wygrywa najkrótszy czas od początku słowa do zgłoszenia poprawnej odpowiedzi, mierzony zegarem zsynchronizowanym z serwerem;"
+
+#: games/generated/rulebooks/bridge.rb:46
+msgid "- doubled and not vulnerable: 100 for the first trick, 200 each for the second and third, and 300 for each further trick;"
+msgstr "- z kontrą przed partią: 100 za pierwszą wpadkę, po 200 za drugą i trzecią i po 300 za każdą następną;"
+
+#: games/generated/rulebooks/bridge.rb:47
+msgid "- doubled and vulnerable: 200 for the first trick and 300 for each further trick;"
+msgstr "- z kontrą po partii: 200 za pierwszą wpadkę i po 300 za każdą następną;"
+
+#: games/generated/rulebooks/bridge.rb:45
+msgid "- not doubled: 50 per trick, or 100 when vulnerable;"
+msgstr "- bez kontry: po 50 za lewę, a po partii po 100;"
+
+#: games/generated/rulebooks/bridge.rb:48
+msgid "- redoubled: twice the doubled amount."
+msgstr "- z rekontrą: dwa razy więcej niż z kontrą."
 
 msgid "1 clears only the current turn total and ends your turn. It does not take away any banked points. If the turn total was negative, it is cleared to zero too, so a 1 can sometimes help you."
 msgstr "1 zeruje tylko punkty bieżącej tury i ją kończy. Nie odbiera punktów już zapisanych. Ujemny wynik tury także zostaje wyzerowany, więc czasem jedynka może ci pomóc."
@@ -3241,12 +3460,20 @@ msgstr "Lista Co nowego pojawia się raz po aktualizacji i pozostaje dostępna z
 msgid "A bankrupt player leaves the active game. The last solvent player wins."
 msgstr "Bankrut odpada z aktywnej gry. Wygrywa ostatni wypłacalny gracz."
 
+#: games/generated/rulebooks/bridge.rb:18
+msgid "A bid names a number of tricks and a trump suit, or no trump. The number is added to six: a bid of 1 heart promises 7 of the 13 tricks with hearts as trumps, and 4 spades promises 10 tricks with spades as trumps. Each bid must be higher than the previous one. A higher number always wins, and at the same number the suits rank from the lowest: clubs, diamonds, hearts, spades and no trump. After 1 spade you may bid 1 no trump or anything at the level of 2, but not 1 heart."
+msgstr "Odzywka określa liczbę lew i kolor atutowy albo grę bez atu. Do podanej liczby dodaje się sześć: odzywka 1 kier zapowiada 7 z 13 lew z kierami w atucie, a 4 piki — 10 lew z pikami w atucie. Każda odzywka musi być wyższa od poprzedniej. Wyższa liczba zawsze przebija niższą, a przy tej samej liczbie kolory są uporządkowane od najmłodszego: trefle, kara, kiery, piki i bez atu. Po 1 piku możesz powiedzieć 1 bez atu albo dowolną odzywkę na wysokości 2, ale nie 1 kier."
+
 msgid "A bidder who collects at least the exact contracted number receives the contract value; otherwise the same value is subtracted. Each defender receives the exact points collected and then rounded to the nearest 5. A rounded result is never used to decide whether the bidder fulfilled the contract."
 msgstr "Zwycięzca licytacji, który zdobędzie co najmniej dokładną wartość kontraktu, otrzymuje tyle punktów; w przeciwnym razie ta sama wartość jest odejmowana. Każdy obrońca otrzymuje zdobyte punkty zaokrąglone do najbliższej wielokrotności 5. Zaokrąglenie nigdy nie służy do oceny, czy kontrakt został zrealizowany."
 
 #: games/generated/rulebooks/mancala.rb:9
 msgid "A board full of seeds"
 msgstr "Plansza pełna kamieni"
+
+#: games/generated/rulebooks/bridge.rb:63
+msgid "A board passed out by all four players also counts: it scores zero and is compared with the reference, so passing with strong cards loses points. After the last board, the pair with more IMPs or matchpoints wins; an equal total is a draw. S reads the totals so far."
+msgstr "Rozdanie, w którym wszyscy czterej spasowali, też się liczy: ma wynik zero i porównuje się je z wynikiem odniesienia, więc spasowanie z silnymi kartami kosztuje punkty. Po ostatnim rozdaniu wygrywa para z większą liczbą IMP-ów lub punktów; przy równej sumie jest remis. Klawisz S odczytuje dotychczasowy wynik."
 
 #: games/duck_racing_support/presentation.rb:475
 msgid "A breeze blows across the north bank."
@@ -3441,6 +3668,10 @@ msgstr "Dostępna jest nowa wersja Power Games (%{version}, build %{build}). Czy
 msgid "A pair has one shared score. Add both partners' trick points and declared marriages before checking the contract. A fulfilled contract of 150 earns the pair 150, even if they collected 170; collecting only 140 loses 150. The other pair adds its combined points, rounded once to five. Barrel chances, zeroes and surrenders also belong to the pair. A marriage must be held by one player: a king in your hand and a queen in your partner's hand do not form one."
 msgstr "Para ma jeden wspólny wynik. Przed sprawdzeniem kontraktu sumuje się punkty z lew i meldunków obu partnerów. Wykonany kontrakt 150 daje parze 150 punktów, nawet jeśli zebrała 170; zebranie tylko 140 oznacza stratę 150. Przeciwna para dopisuje sumę swoich punktów, zaokrągloną raz do piątki. Próby na beczce, zera i poddania też są wspólne dla pary. Meldunek musi należeć do jednej osoby: król w twojej ręce i dama u partnera nie tworzą meldunku."
 
+#: games/generated/rulebooks/bridge.rb:53
+msgid "A pair that has won a game is vulnerable for the rest of the rubber. Winning the rubber earns 700 if the opponents won no game and 500 if they won one."
+msgstr "Para, która wygrała partię, jest po partii do końca robra. Za wygranie robra dostaje się 700 punktów, jeśli przeciwnicy nie wygrali żadnej partii, i 500, jeśli wygrali jedną."
+
 #: lib/tournaments/local_dispatch_screen.rb:113
 msgid "A participant is already assigned to another match."
 msgstr "Uczestnik jest już przydzielony do innego meczu."
@@ -3594,6 +3825,10 @@ msgstr "Niewielki all-in może wygrać tylko pieniądze pokryte wkładem tego gr
 #: games/generated/rulebooks/tic_tac_toe.rb:9
 msgid "A small board, three marks to win"
 msgstr "Mała plansza, trzy znaki do zwycięstwa"
+
+#: games/generated/rulebooks/bridge.rb:43
+msgid "A small slam (a contract of 6) earns a bonus of 500, or 750 when vulnerable. A grand slam (a contract of 7) earns 1000, or 1500 when vulnerable."
+msgstr "Szlemik, czyli kontrakt na wysokości 6, daje premię 500, a po partii 750. Szlem, czyli kontrakt na wysokości 7, daje 1000, a po partii 1500."
 
 msgid "A small straight scores 100, a large straight 200, three pairs 150, and a full house or two sets of three of a kind score 250. The program lists every legal scoring interpretation and automatically uses the points belonging to the selected combination."
 msgstr "Mały strit daje 100 punktów, duży strit 200, trzy pary 150, a full lub dwa zestawy po trzy jednakowe kości dają 250. Program wyświetla wszystkie prawidłowe sposoby punktowania i automatycznie przyznaje punkty za wybraną kombinację."
@@ -3999,6 +4234,10 @@ msgstr "Dodano Axel Ponga: śledź piłkę po dźwięku, przesuwaj rakietkę i o
 msgid "Added Battleship by Dawid Pieper: two fleets, manual placement, a computer opponent, spectator boards and a final fleet check. Saving this game for later is not yet available."
 msgstr "Dodano Statki autorstwa Dawida Piepera: dwa zestawy floty, ręczne rozstawianie, grę z komputerem, plansze obserwatora i końcową kontrolę flot. Zapisywanie tej gry na później nie jest jeszcze dostępne."
 
+#: lib/game_room_changelog.rb:486
+msgid "Added Bridge for four players in two partnerships: social rubber bridge, or duplicate bridge at one table scored in IMPs or matchpoints. Declarer plays dummy's cards, every call and card is announced, and bots can take any seat."
+msgstr "Dodano brydża dla czterech osób w dwóch parach: towarzyskiego, czyli grę na robra, albo sportowego przy jednym stole z zapisem na IMP-y lub maksymalnym. Rozgrywający gra kartami dziadka, każda zapowiedź i karta są odczytywane, a boty mogą zająć dowolne miejsce."
+
 #: lib/game_room_changelog.rb:204
 msgid "Added Cat, head, tail by TD Programs: a dice game for 2–8 players. Roll an eight-sided die and decide when to bank your points. Includes bots and Polish and English rules."
 msgstr "Dodano Cat, head, tail od TD Programs: grę kościaną dla 2–8 osób. Rzucaj ośmiościenną kością i decyduj, kiedy zapisać zdobyte punkty. Gra ma boty oraz zasady po polsku i angielsku."
@@ -4149,6 +4388,10 @@ msgstr "Po drugim przeglądzie przywrócono 284 dobrze potwierdzone pytania Quiz
 msgid "After a word ends, the solution is revealed. The Word definition button opens its SJP description; a missing description also remains readable."
 msgstr "Po zakończeniu słowa ujawniane jest rozwiązanie. Przycisk Znaczenie słowa otwiera opis z SJP; brak opisu również pozostaje dostępny do przeczytania."
 
+#: games/generated/rulebooks/bridge.rb:34
+msgid "After all 13 tricks the deal is scored, and the next deal starts with the next player clockwise as dealer."
+msgstr "Po rozegraniu wszystkich 13 lew rozdanie zostaje policzone, a następne rozdaje kolejny gracz zgodnie z ruchem wskazówek zegara."
+
 #: games/generated/rulebooks/three_five_eight.rb:12
 msgid "After any exchanges, the chooser reveals the four-card kitty, adds it to their hand and discards four cards face down. The chooser leads the first trick. The winner of every trick leads the next one."
 msgstr "Po ewentualnych wymianach wybierający odkrywa czterokartowy musik, dodaje go do ręki i odkłada cztery karty zakryte. Wybierający rozpoczyna pierwszą lewę, a zdobywca każdej lewy wychodzi do następnej."
@@ -4292,6 +4535,10 @@ msgstr "Dworzec w Agrze"
 msgid "All"
 msgstr "Wszystko"
 
+#: games/generated/rulebooks/bridge.rb:14
+msgid "All 52 cards are dealt, so everyone gets 13. Press H to hear your hand suit by suit, from the highest card down, followed by your high card points: an ace counts 4, a king 3, a queen 2 and a jack 1. These points are not scored; they help you judge the strength of your hand during the auction. A whole deck holds 40 such points, so 10 is an average hand and 12 or more is usually enough to start the bidding."
+msgstr "Rozdaje się wszystkie 52 karty, więc każdy dostaje 13. Klawiszem H odczytasz swoją rękę kolor po kolorze, od najstarszej karty, a na końcu liczbę punktów honorowych: as to 4 punkty, król 3, dama 2, a walet 1. Tych punktów nie wpisuje się do zapisu, ale pomagają ocenić siłę ręki w licytacji. W całej talii jest ich 40, więc przeciętna ręka ma 10 punktów, a 12 lub więcej zwykle wystarcza do otwarcia licytacji."
+
 #: lib/game_room_ui.rb:26
 msgid "All Game Room sounds"
 msgstr "Wszystkie dźwięki Game Roomu"
@@ -4318,6 +4565,10 @@ msgstr ""
 #: lib/quiz_contributions/model.rb:61
 msgid "All four answers must be different."
 msgstr "Wszystkie cztery odpowiedzi muszą się różnić."
+
+#: games/bridge.rb:519
+msgid "All four players passed. The deal is thrown in."
+msgstr "Wszyscy czterej gracze spasowali. Rozdanie zostaje przepasowane."
 
 #: lib/game_room_screens.rb:333
 msgid "All games"
@@ -4933,6 +5184,10 @@ msgstr "Jako obserwator naciśnij 1 w polu gry Ponga, aby słuchać od strony pi
 msgid "As an observer, use the number keys in the Pong playfield to choose a player's perspective: 1 selects the first player, 2 the second, and in Doubles 3 the third and 4 the fourth. The numbers follow the player order in the match, not the teams. The game confirms the player's name. This changes only your listening perspective and the order of the spoken score after a point; it does not let you move any paddle. The choice stays in place between points. The keys do not select a perspective while you are typing in chat or reading history."
 msgstr "Jako obserwator wybierasz perspektywę cyframi w polu gry Ponga: 1 to pierwszy gracz, 2 drugi, a w deblu 3 trzeci i 4 czwarty. Cyfry odpowiadają kolejności graczy w partii, nie drużynom. Gra potwierdzi nazwę wybranej osoby. Zmienia się tylko Twój odsłuch i kolejność wyniku odczytywanego po zdobyciu punktu; nie możesz sterować żadną z rakietek. Wybór pozostaje między punktami. Cyfry nie zmieniają perspektywy podczas pisania na czacie ani czytania historii."
 
+#: games/generated/rulebooks/bridge.rb:32
+msgid "As declarer you also play dummy's cards. When it is dummy's turn, press Tab to move to the list of dummy's cards, or press Z, which goes straight to the cards dummy may play, and choose a card with Enter. Everyone can press D to hear dummy's hand."
+msgstr "Jako rozgrywający grasz też kartami dziadka. Gdy przyjdzie kolej dziadka, naciśnij Tab, żeby przejść do listy jego kart, albo Z, które od razu ustawia cię na kartach, jakie dziadek może zagrać, i wybierz kartę Enterem. Rękę dziadka może w każdej chwili odczytać każdy gracz klawiszem D."
+
 msgid "As soon as a player acquires a Church card, the game is put on hold while the card is played and then discarded. A Church card is acquired when the active player keeps it for himself, when another player takes it from the public space, or when it is won at auction. A Church card placed in the Auction pile is not played at that point."
 msgstr "Otrzymaną kartę kościelną rozpatrujesz od razu, a potem odrzucasz. Na ten czas zwykły przebieg gry zostaje wstrzymany. Dotyczy to karty zachowanej dla siebie, zabranej ze wspólnej puli lub kupionej na aukcji. Samo odłożenie jej na stos aukcyjny nie wywołuje efektu."
 
@@ -5027,6 +5282,10 @@ msgstr "Próby: %{count} z 3."
 msgid "Attempts: %{count}. %{status}"
 msgstr "Próby: %{count}. %{status}"
 
+#: games/bridge/presentation.rb:144
+msgid "Auction"
+msgstr "Licytacja"
+
 #: games/monopoly/property_management.rb:42
 msgid "Auction begins: %{property}."
 msgstr "Rozpoczyna się aukcja: %{property}."
@@ -5060,6 +5319,10 @@ msgstr "Klawisze licytacji, przekazywania i gry"
 #: games/tysiac.rb:1629
 msgid "Auction: %{bids}."
 msgstr "Licytacja: %{bids}."
+
+#: games/bridge/presentation.rb:489
+msgid "Auction: %{calls}."
+msgstr "Licytacja: %{calls}."
 
 #: games/biblios.rb:1264
 msgid "Auctioned: %{card}. %{bid}"
@@ -5224,6 +5487,10 @@ msgstr "B: przeglądaj swoje gońce."
 #: games/generated/rulebooks/tysiac.rb:43
 msgid "B: change the final contract before playing the first card."
 msgstr "B: zmień ostateczny kontrakt przed zagraniem pierwszej karty."
+
+#: games/generated/rulebooks/bridge.rb:73
+msgid "B: choose a call when it is your turn, otherwise read the auction."
+msgstr "B: wybierz zapowiedź w swojej kolejce, a w innej chwili odczytaj licytację."
 
 #: games/generated/rulebooks/monopoly.rb:64
 msgid "B: during an auction, enter your own total bid."
@@ -5411,6 +5678,10 @@ msgstr "Turę zaczynasz jednym dobraniem. Potem możesz wielokrotnie wykładać,
 msgid "Begins lap %{lap}."
 msgstr "Rozpoczyna okrążenie %{lap}."
 
+#: games/generated/rulebooks/bridge.rb:41
+msgid "Being vulnerable raises both the rewards and the penalties. Who is vulnerable is announced at the start of each deal; V repeats it together with the deal number, the dealer, the contract and the tricks."
+msgstr "Gra po partii podnosi zarówno premie, jak i kary. Na początku każdego rozdania słychać, kto jest po partii, a kto przed partią; klawisz V powtarza tę informację razem z numerem rozdania, rozdającym, kontraktem i lewami."
+
 #: games/krowa_support/leaderboards.rb:235
 msgid "Best result"
 msgstr "Najlepszy wynik"
@@ -5482,6 +5753,10 @@ msgstr "Licytuj, ile punktów zdobędziesz, a potem zbieraj cenne karty i ogłas
 msgid "Bid in gold, or bid with cards for gold"
 msgstr "Licytuj złotem, a złoto kupuj za karty"
 
+#: games/bridge.rb:27
+msgid "Bid with your partner for a contract, then take the tricks you promised while declarer plays both hands."
+msgstr "Razem z partnerem wylicytuj kontrakt, a potem weź zapowiedziane lewy; rozgrywający gra własną ręką i kartami dziadka."
+
 #: lib/tournaments/local_fixed_team_execution_screen.rb:616
 msgid "Bidding"
 msgstr "Licytacja"
@@ -5494,6 +5769,10 @@ msgstr "Deklarowanie i rozgrywanie"
 
 msgid "Bidding and playing tricks"
 msgstr "Licytacja i rozgrywanie lew"
+
+#: games/generated/rulebooks/bridge.rb:64
+msgid "Bidding with a computer partner"
+msgstr "Licytacja z komputerowym partnerem"
 
 msgid "Bidding, following suit and trump"
 msgstr "Licytacja, dokładanie do koloru i atut"
@@ -5532,6 +5811,10 @@ msgstr "Ciemne: %{small} i %{big}."
 #: games/monopoly/presentation.rb:58
 msgid "Board"
 msgstr "Plansza"
+
+#: games/bridge/presentation.rb:302
+msgid "Board %{board} of %{boards}. Dealer: %{dealer}. %{vulnerability}."
+msgstr "Rozdanie %{board} z %{boards}. Rozdaje %{dealer}. %{vulnerability}."
 
 msgid "Board commands"
 msgstr "Obsługa planszy"
@@ -5631,6 +5914,10 @@ msgstr "Obie floty i odpowiedzi są zgodne z zatwierdzonymi ustawieniami."
 msgid "Both players press Enter or Space when ready. When you have the ball, press A or Right arrow to prepare, then one of the three shot keys to send it."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:70
+msgid "Bots never double. They play by simple rules too: the second player to a trick plays low unless it holds a sure winner, later players try to win the trick as cheaply as possible, and a defender leads partner's suit or a long suit."
+msgstr "Boty nigdy nie kontrują. Grają też według prostych zasad: drugi gracz w lewie dokłada nisko, chyba że ma pewną lewę, dalsi gracze próbują wziąć lewę jak najniższą kartą, a obrońca wychodzi w kolor partnera albo w swój długi kolor."
+
 #: games/battleship.rb:634
 msgid "Bow cleared."
 msgstr "Anulowano zaznaczenie dziobu."
@@ -5646,6 +5933,26 @@ msgstr "Przerwa między punktami."
 #: lib/audio_ball/client.rb:623
 msgid "Break between sets."
 msgstr "Przerwa między setami."
+
+#: games/bridge.rb:23
+msgid "Bridge"
+msgstr "Brydż"
+
+#: games/generated/rulebooks/bridge.rb:10
+msgid "Bridge is a card game for four players in two partnerships. You and your partner work together against the other pair. Each deal has two parts: first an auction, in which the pairs compete to name a contract, and then the play, in which the pair that won the contract tries to take at least as many tricks as it promised."
+msgstr "Brydż to gra karciana dla czterech osób grających w dwóch parach. Ty i twój partner gracie razem przeciwko drugiej parze. Każde rozdanie ma dwie części: najpierw licytację, w której pary rywalizują o kontrakt, a potem rozgrywkę, w której para, która wylicytowała kontrakt, próbuje wziąć co najmniej tyle lew, ile zapowiedziała."
+
+#: games/bridge.rb:141
+msgid "Bridge requires exactly four players."
+msgstr "W brydża gra dokładnie czterech graczy."
+
+#: games/bridge/presentation.rb:296
+msgid "Bridge started: %{seats}."
+msgstr "Początek gry w brydża: %{seats}."
+
+#: games/bridge.rb:99
+msgid "Bridge variant"
+msgstr "Odmiana brydża"
 
 #: games/generated/rulebooks/ludo.rb:9
 msgid "Bring all four pawns home"
@@ -5771,6 +6078,10 @@ msgstr "Porównując kolejne wskazówki, stopniowo zawężasz poszukiwania."
 msgid "By default the game uses the classic 8 by 8 board with 12 pieces per player. The first player moves upward from the bottom of the board."
 msgstr "Domyślnie gra używa klasycznej planszy 8 na 8 i 12 pionków dla każdego gracza. Pierwszy gracz porusza się w górę od dolnej części planszy."
 
+#: games/generated/rulebooks/bridge.rb:51
+msgid "By default the table plays rubber bridge. A rubber ends when one pair has won two games, and the pair with more points in total wins the match. This is usually, but not always, the pair that won the rubber; equal totals are a draw."
+msgstr "Domyślnie przy stole gra się na robra. Robr kończy się, gdy jedna para wygra dwie partie, a mecz wygrywa para z większą łączną liczbą punktów. Zwykle jest to para, która wygrała robra, ale nie zawsze; przy równych sumach jest remis."
+
 #: games/generated/rulebooks/ludo.rb:16
 msgid "By default, a 6 or a 1 lets you bring a pawn out of the base onto its entry square, with no further movement. A 1 does not grant another roll. Turn off the option for a 1 to require a 6; turn off the restriction on leaving the base to allow any roll. These choices never force you to leave the base if another pawn can move."
 msgstr "Domyślnie po szóstce lub jedynce możesz wyprowadzić pionek z bazy na pole wejściowe, bez dodatkowego przesuwania. Jedynka nie daje kolejnego rzutu. Wyłącz opcję wyjścia po jedynce, jeśli chcesz wychodzić tylko po szóstce. Wyłączenie ograniczenia wyników pozwala wychodzić po dowolnym rzucie. Nie musisz wyprowadzać pionka z bazy, jeżeli masz inny legalny ruch."
@@ -5787,6 +6098,10 @@ msgstr "C czeka lub wyrównuje, F pasuje, A stawia all-in. R otwiera pole własn
 
 msgid "C checks or calls, F folds, R raises, A goes all in, S reads your stack, Shift+S the other stacks, V the call amount, D your cards, E visible table cards, 1 through 7 individual cards, T the turn, P the pot, I your investment, H active players, G your best combination and L the blinds."
 msgstr "C czeka lub sprawdza, F pasuje, R podbija, A wchodzi za wszystko, S podaje twój stos, Shift+S pozostałe stosy, V kwotę do sprawdzenia, D twoje karty, E widoczne karty stołu, cyfry od 1 do 7 pojedyncze karty, T kolejkę, P pulę, I twój wkład, H aktywnych graczy, G najlepszy układ, a L ciemne."
+
+#: games/generated/rulebooks/bridge.rb:33
+msgid "C reads the cards in the current trick and F the suit that was led. P repeats the previous trick, including who won it."
+msgstr "Klawisz C odczytuje karty bieżącej lewy, a F kolor wyjścia. P powtarza poprzednią lewę razem z tym, kto ją wziął."
 
 #: games/generated/rulebooks/axel_pong.rb:44
 msgid "C reads the name and paddle position of the player you are watching. S, T and E also work for observers: check the score, server and active effects without controlling the game. At the end of the match, you hear victory or defeat for the selected player or their team."
@@ -5842,6 +6157,10 @@ msgstr "C: odczytaj kartę, jeśli Twoja rola może ją widzieć."
 #: games/generated/rulebooks/war.rb:23
 msgid "C: read the cards on the table, your own first, then each opponent's."
 msgstr "C: odczytaj karty na stole, najpierw swoje, potem każdego przeciwnika."
+
+#: games/generated/rulebooks/bridge.rb:83
+msgid "C: read the current trick."
+msgstr "C: odczytaj bieżącą lewę."
 
 msgid "C: read the current turn total."
 msgstr "C: odczytaj punkty bieżącej tury."
@@ -6092,7 +6411,7 @@ msgstr "Liczba kart w każdym musiku"
 msgid "Cards in hand: %{counts}."
 msgstr "Karty w rękach: %{counts}."
 
-#: games/base/shortcuts.rb:59
+#: games/base/shortcuts.rb:59 games/bridge/presentation.rb:465
 msgid "Cards on the table"
 msgstr "Karty na stole"
 
@@ -6608,6 +6927,10 @@ msgstr "Podczas tworzenia stołu wybierz Classic albo Arcade z listy Tryb gry. D
 msgid "Choose Classic or Arcade in the Game mode list when creating the table. Classic is the default and follows the normal rules above. In Arcade, every paddle return has two independent chances of 7 percent: a shield for the player who returned the ball and an invisible ball. Both may happen on the same hit. A serve alone does not trigger these effects."
 msgstr "Podczas tworzenia stołu wybierz Classic albo Arcade z listy Tryb gry. Domyślny Classic korzysta ze zwykłych zasad opisanych powyżej. W Arcade każde odbicie rakietką ma dwie niezależne szanse po 7 procent: na tarczę dla odbijającego i na niewidzialną piłkę. Oba efekty mogą wystąpić przy jednym odbiciu. Sam serwis ich nie losuje."
 
+#: games/bridge.rb:140
+msgid "Choose IMP or matchpoint scoring."
+msgstr "Wybierz zapis na IMP-y albo zapis maksymalny."
+
 #: lib/tournaments/public_text.rb:73
 msgid "Choose Join tournament to take part."
 msgstr "Aby wziąć udział, wybierz Dołącz do turnieju."
@@ -6802,6 +7125,10 @@ msgstr "Aby strzelić, wybierz pole na planszy przeciwnika."
 msgid "Choose a suit"
 msgstr "Wybierz kolor"
 
+#: games/bridge.rb:139
+msgid "Choose a supported number of boards."
+msgstr "Wybierz jedną z dostępnych liczb rozdań."
+
 #: games/tysiac.rb:436
 msgid "Choose a talon"
 msgstr "Wybierz musik"
@@ -6959,6 +7286,10 @@ msgstr "Wybierz swoją figurę i naciśnij Enter, następnie wybierz oznaczone p
 msgid "Choose round-robin play or a group stage followed by a knockout stage. Tournaments support rematches and knockout matches played to a chosen number of wins. The program arranges matches, records game results and determines who advances."
 msgstr "Do wyboru są rozgrywki każdy z każdym oraz grupy z późniejszą fazą pucharową. Można włączyć rewanże, a w pucharze grać do ustalonej liczby zwycięstw. Program układa spotkania, zapisuje wyniki partii i ustala awans."
 
+#: games/bridge.rb:138
+msgid "Choose rubber or duplicate bridge."
+msgstr "Wybierz brydża robrowego albo sportowego."
+
 #: __app.rb:3152 lib/participant_menu.rb:26
 msgid "Choose teams"
 msgstr "Wybierz drużyny"
@@ -7103,6 +7434,10 @@ msgstr "Wybierz strzałkami i zatwierdź Enterem."
 #: games/tysiac.rb:1432 games/tysiac.rb:1566
 msgid "Choose your bid"
 msgstr "Wybierz swoją ofertę"
+
+#: games/bridge/presentation.rb:119
+msgid "Choose your call. %{auction}"
+msgstr "Wybierz zapowiedź. %{auction}"
 
 #: games/duck_racing_support/presentation.rb:118
 msgid "Choose yourself or another player."
@@ -7377,6 +7712,10 @@ msgstr "Komputery czasem znają poprawną odpowiedź, a w pozostałych przypadka
 msgid "Computer players now receive randomly selected names from Polish or English lists."
 msgstr "Dodano losowane imiona dla botów, z polskiej lub angielskiej listy."
 
+#: games/generated/rulebooks/bridge.rb:65
+msgid "Computer players see only their own cards, dummy and the calls and cards everyone else can see. They bid a simple natural system, which helps you understand their calls:"
+msgstr "Gracze komputerowi widzą tylko własne karty, dziadka oraz zapowiedzi i karty, które widzą wszyscy. Licytują prostym naturalnym systemem, dzięki czemu łatwiej zrozumieć ich zapowiedzi:"
+
 msgid "Computers"
 msgstr "Komputery"
 
@@ -7466,6 +7805,22 @@ msgstr "Kontynuuj edycję"
 
 msgid "Continue without drawing"
 msgstr "Kontynuuj bez dobierania"
+
+#: games/generated/rulebooks/bridge.rb:52
+msgid "Contract points are written below the line and everything else above it. A game is won when a pair's points below the line reach 100, either in one deal or from several part scores. After a game, both pairs start the next game from zero below the line; part scores the opponents had towards that game no longer help them."
+msgstr "Punkty za kontrakt zapisuje się pod kreską, a wszystkie pozostałe nad kreską. Partię wygrywa para, której punkty pod kreską osiągną 100 — w jednym rozdaniu albo z kilku częściówek. Po wygranej partii obie pary zaczynają następną od zera pod kreską; częściówki, które przeciwnicy mieli w poprzedniej partii, już im nie pomagają."
+
+#: games/generated/rulebooks/bridge.rb:25
+msgid "Contract, declarer and dummy"
+msgstr "Kontrakt, rozgrywający i dziadek"
+
+#: games/bridge/presentation.rb:502
+msgid "Contract: %{contract} by %{declarer}. Declarer needs %{needed} tricks and has %{won}."
+msgstr "Kontrakt: %{contract}, rozgrywa %{declarer}. Rozgrywający potrzebuje %{needed} lew, ma %{won}."
+
+#: games/bridge/presentation.rb:324
+msgid "Contract: %{contract}, declarer %{declarer}. %{leader} makes the opening lead."
+msgstr "Kontrakt: %{contract}, rozgrywa %{declarer}. Wist: %{leader}."
 
 #: games/three_five_eight.rb:1005
 msgid "Contract: %{contract}."
@@ -7798,6 +8153,10 @@ msgstr ""
 msgid "Ctrl+B: mark the current question for reporting."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:84
+msgid "Ctrl+C: browse the current trick."
+msgstr "Ctrl+C: przeglądaj bieżącą lewę."
+
 #: games/generated/rulebooks/spades.rb:33 games/generated/rulebooks/three_five_eight.rb:29 games/generated/rulebooks/tysiac.rb:46
 msgid "Ctrl+C: browse the trick cards."
 msgstr "Ctrl+C: przeglądaj karty w lewie."
@@ -7861,6 +8220,10 @@ msgstr "Ctrl+Home: odczytaj pierwszy wpis w wybranej kategorii historii."
 #: lib/game_room_changelog.rb:248
 msgid "Ctrl+J on the Game Room widget now lets you accept invitations. Joining clears the related notification just as it does inside the app."
 msgstr "Na widgecie Game Roomu dodano Ctrl+J do przyjmowania zaproszeń. Po dołączeniu powiązane powiadomienie jest usuwane tak samo jak w aplikacji."
+
+#: games/generated/rulebooks/bridge.rb:75
+msgid "Ctrl+L: browse the auction."
+msgstr "Ctrl+L: przeglądaj licytację."
 
 #: games/generated/rulebooks/biblios.rb:36
 msgid "Ctrl+L: browse your library by category."
@@ -7999,6 +8362,10 @@ msgstr "Bieżący kontrakt: %{contract}, licytujący: %{player}."
 msgid "Current game history"
 msgstr "Historia bieżącej gry"
 
+#: games/bridge/presentation.rb:552
+msgid "Current game: North-South %{ns}, East-West %{ew}."
+msgstr "Bieżąca partia: Północ–Południe %{ns}, Wschód–Zachód %{ew}."
+
 #: lib/tournaments/operations_screen.rb:169 lib/tournaments/public_text.rb:57 lib/tournaments/server_trial_hub.rb:22
 msgid "Current identity: %{actor}"
 msgstr "Bieżąca tożsamość: %{actor}"
@@ -8014,6 +8381,10 @@ msgstr "Obecnie w pokojach"
 #: lib/game_rules.rb:92
 msgid "Current table options"
 msgstr "Ustawienia tego stołu"
+
+#: games/bridge/presentation.rb:457
+msgid "Current trick: %{cards}."
+msgstr "Bieżąca lewa: %{cards}."
 
 #: games/cat_head_tail.rb:190 games/farkle.rb:733
 msgid "Current turn: %{points} points."
@@ -8116,6 +8487,10 @@ msgstr "D: wykonaj drugi rodzaj uderzenia lub obroń odpowiadającą mu piłkę.
 #: games/generated/rulebooks/domino.rb:32
 msgid "D: prefer the right end for subsequent plays."
 msgstr "D: wybierz prawy koniec dla kolejnych zagrań."
+
+#: games/generated/rulebooks/bridge.rb:82
+msgid "D: read dummy's hand."
+msgstr "D: odczytaj rękę dziadka."
 
 msgid "D: read the current die result without rolling again."
 msgstr "D: odczytanie bieżącego wyniku kości bez ponownego rzutu."
@@ -8267,6 +8642,10 @@ msgstr "Rozdanie %{round} z 18. Rozdaje %{dealer}; %{chooser} wybiera rodzaj roz
 #: games/three_five_eight.rb:1000
 msgid "Deal %{round} of 18. %{details}."
 msgstr "Rozdanie %{round} z 18. %{details}."
+
+#: games/bridge/presentation.rb:308
+msgid "Deal %{round}. Dealer: %{dealer}. %{vulnerability}."
+msgstr "Rozdanie %{round}. Rozdaje %{dealer}. %{vulnerability}."
 
 #: lib/tournaments/local_fixed_team_execution_screen.rb:630
 msgid "Deal cards"
@@ -8923,6 +9302,42 @@ msgstr "Gniazdo kaczątek"
 msgid "Ducks: %{players}."
 msgstr "Kaczki: %{players}."
 
+#: games/bridge/presentation.rb:448
+msgid "Dummy is not on the table yet. It is shown after the opening lead."
+msgstr "Dziadka jeszcze nie wyłożono. Jego karty będą widoczne po wiście."
+
+#: games/bridge/presentation.rb:339
+msgid "Dummy is on the table, %{seat}: %{cards}."
+msgstr "Dziadek na stole, %{seat}: %{cards}."
+
+#: games/bridge/presentation.rb:252
+msgid "Dummy, %{seat}, %{count} cards"
+msgstr "Dziadek, %{seat}, kart: %{count}"
+
+#: games/bridge/presentation.rb:451
+msgid "Dummy, %{seat}: %{cards}."
+msgstr "Dziadek, %{seat}: %{cards}."
+
+#: games/bridge/presentation.rb:331
+msgid "Dummy, %{seat}: %{card}."
+msgstr "Dziadek, %{seat}: %{card}."
+
+#: games/generated/rulebooks/bridge.rb:56
+msgid "Duplicate bridge"
+msgstr "Brydż sportowy"
+
+#: games/bridge.rb:104
+msgid "Duplicate bridge (sport)"
+msgstr "Brydż sportowy"
+
+#: games/bridge.rb:124
+msgid "Duplicate scoring"
+msgstr "Zapis w brydżu sportowym"
+
+#: games/bridge.rb:89
+msgid "Duplicate, %{boards} boards, %{scoring}"
+msgstr "Sportowy, rozdań: %{boards}, %{scoring}"
+
 msgid "Duplicate, 5 points"
 msgstr "Powtórzona, 5 punktów"
 
@@ -9013,6 +9428,10 @@ msgstr "ELTEN Game Room"
 msgid "ELTEN Game Room is now called Power Games. This is the same application: your settings, saved games, statistics and subscriptions remain unchanged."
 msgstr "ELTEN Game Room zmienia nazwę na Power Games. To nadal ten sam program: ustawienia, zapisane partie, statystyki i subskrypcje pozostają bez zmian."
 
+#: games/generated/rulebooks/bridge.rb:58
+msgid "Each board is scored on its own. A game earns a bonus of 300, or 500 when vulnerable, and a part score earns 50. Everything else is scored as described above. There are no honours and no rubber."
+msgstr "Każde rozdanie liczy się osobno. Końcówka daje premię 300, a po partii 500, a częściówka 50. Wszystko inne liczy się tak, jak opisano wyżej. Nie ma honorów ani robra."
+
 #: games/generated/rulebooks/duck_racing.rb:136
 msgid "Each challenge's controls are described in its chapter and announced when it begins."
 msgstr ""
@@ -9087,6 +9506,10 @@ msgstr "Każdy rzuca kością raz. Wygrywa najwyższy wynik."
 msgid "Each player's closest guess counts. The winner takes three feathers from each opponent; equally close guesses tie."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:30
+msgid "Each trick has four cards, one from each player in clockwise order. To play, go to a card in your hand with the arrow keys and press Enter. Z moves to the next card you are allowed to play and Shift+Z to the previous one; if you have only one playable card, Z plays it."
+msgstr "Każda lewa składa się z czterech kart, po jednej od każdego gracza zgodnie z ruchem wskazówek zegara. Żeby zagrać, przejdź strzałkami do karty w swojej ręce i naciśnij Enter. Klawisz Z przenosi cię do następnej karty, którą wolno ci zagrać, a Shift+Z do poprzedniej; jeśli możesz zagrać tylko jedną kartę, Z od razu ją zagrywa."
+
 #: games/generated/rulebooks/four_in_a_row.rb:11
 msgid "Each turn consists of choosing one column. Your piece falls to the lowest empty square in that column. You cannot leave it suspended higher up: if the column is empty, it lands at the bottom; if it already holds two pieces, yours rests on top of them. A full column cannot accept another piece."
 msgstr "Ruch polega na wybraniu jednej kolumny. Pionek spada na jej najniższe wolne pole. Nie można zatrzymać go wyżej: w pustej kolumnie trafi na sam dół, a gdy leżą w niej już dwa pionki, stanie na nich. Do pełnej kolumny nie da się wrzucić kolejnego pionka."
@@ -9096,6 +9519,18 @@ msgstr "Każda dwójka dodaje dwie karne karty, trójka trzy. Odpowiadanie dwój
 
 msgid "Each two adds two penalty cards and each three adds three. Twos and threes may answer each other is on in the ready-made profiles: the debt accumulates, for example two plus three means five. With this option off, only another card of the same attacking rank answers. A player with no legal defence automatically draws the full debt and ends the turn."
 msgstr "Każda dwójka dodaje dwie karty kary, a każda trójka dodaje trzy. W gotowych profilach dwójki i trójki mogą odpowiadać na siebie: kara się sumuje, na przykład dwójka i trójka oznaczają pięć kart. Po wyłączeniu tej opcji można odpowiedzieć tylko kolejną kartą o tej samej atakującej wartości. Gracz bez legalnej obrony automatycznie dobiera całą karę i kończy kolejkę."
+
+#: games/bridge/presentation.rb:155
+msgid "East"
+msgstr "Wschód"
+
+#: games/bridge/presentation.rb:167
+msgid "East-West"
+msgstr "Wschód–Zachód"
+
+#: games/bridge/presentation.rb:224
+msgid "East-West vulnerable"
+msgstr "Wschód–Zachód po partii"
 
 #: games/axel_pong.rb:41
 msgid "Easy"
@@ -9436,6 +9871,10 @@ msgstr "Enter w czacie: wysłanie wpisanej wiadomości. W grach na siatce /a1 mo
 msgid "Enter in the answer field: submit the typed noun and clear the field for the next attempt."
 msgstr "Enter w polu odpowiedzi: zgłoś wpisany rzeczownik i wyczyść pole na następną próbę."
 
+#: games/generated/rulebooks/bridge.rb:72
+msgid "Enter in the list of calls: make the selected call."
+msgstr "Enter na liście zapowiedzi: zgłoś wybraną zapowiedź."
+
 #: lib/tournaments/publication_editor.rb:91
 msgid "Enter in the rules inserts a new line. Only the Publish in local test button submits. Escape cancels."
 msgstr "Enter w regulaminie wstawia nowy wiersz. Wysyłanie uruchamia wyłącznie przycisk Opublikuj w lokalnym trybie testowym. Escape anuluje."
@@ -9443,6 +9882,10 @@ msgstr "Enter w regulaminie wstawia nowy wiersz. Wysyłanie uruchamia wyłączni
 #: lib/tournaments/publication_editor.rb:259
 msgid "Enter nonblank tournament rules (up to 16384 UTF-8 bytes; only line breaks and tabs may be control characters)."
 msgstr "Wpisz niepusty regulamin turnieju (do 16384 bajtów UTF-8; spośród znaków sterujących dozwolone są tylko końce wiersza i tabulatory)."
+
+#: games/generated/rulebooks/bridge.rb:77
+msgid "Enter on a card: play it."
+msgstr "Enter na karcie: zagraj ją."
 
 msgid "Enter on a card: play, or choose whether to declare an available marriage. Shift+Enter: declare the marriage directly when legal. Without a marriage it reports that fact and does not play the card."
 msgstr "Enter na karcie: zagranie albo wybór, czy zgłosić dostępny meldunek. Shift+Enter: bezpośrednie zgłoszenie poprawnego meldunku. Gdy go nie ma, usłyszysz informację, a karta nie zostanie zagrana."
@@ -9888,6 +10331,10 @@ msgstr "Dodatkowy zbiornik"
 msgid "Extra tricks are called bags. They are already included in the score, but accumulate between deals: each set of ten also costs 100 points. A successful nil gives 100. Taking even one trick after declaring nil costs 100; in normal scoring its tricks also become bags. A failed nil's tricks do not help a partner fulfil an ordinary contract."
 msgstr "Nadmiarowe lewy to bagsy. Są już uwzględnione w wyniku, ale zbierają się między rozdaniami: każde dziesięć kosztuje dodatkowe 100 punktów. Udane zero daje 100. Wzięcie choć jednej lewy po zadeklarowaniu zera kosztuje 100, a przy zwykłej punktacji te lewy stają się również bagsami. Lewy nieudanego zera nie pomagają partnerowi zrobić zwykłego kontraktu."
 
+#: games/generated/rulebooks/bridge.rb:42
+msgid "Extra tricks are called overtricks. Without a double each one is worth the same as a contracted trick of that suit. Doubled, each overtrick earns 100, or 200 when vulnerable; redoubled, 200 or 400. Making a doubled contract adds 50 points, and a redoubled one 100."
+msgstr "Lewy ponad kontrakt to nadróbki. Bez kontry każda jest warta tyle co zakontraktowana lewa w tym kolorze. Po kontrze każda nadróbka daje 100 punktów, a po partii 200; po rekontrze 200 albo 400. Za wypełnienie skontrowanego kontraktu dochodzi 50 punktów, a zrekontrowanego — 100."
+
 #: lib/game_room_changelog.rb:42 lib/game_room_changelog.rb:52
 msgid "F1 opens an arrow-key shortcuts list: current game actions first, room and screen actions next, and general controls last. Enter or Escape closes the list. Native ELTEN help remains unchanged outside Game Room."
 msgstr "F1 otwiera listę skrótów przeglądaną strzałkami: najpierw czynności w grze, następnie czynności pokoju i ekranu, a na końcu funkcje ogólne. Enter lub Escape zamyka listę. Poza Game Roomem pomoc ELTEN-a pozostaje bez zmian."
@@ -9940,7 +10387,7 @@ msgstr "F: odczytaj bieżący rodzaj rozgrywki i kolor atutowy."
 msgid "F: read the current property's deed."
 msgstr "F: odczytaj informacje o bieżącej nieruchomości."
 
-#: games/generated/rulebooks/spades.rb:34
+#: games/generated/rulebooks/bridge.rb:85 games/generated/rulebooks/spades.rb:34
 msgid "F: read the led suit."
 msgstr "F: odczytaj kolor wyjścia."
 
@@ -10404,6 +10851,10 @@ msgstr "Za kartę nieatutową odbiorca automatycznie oddaje swoją najwyższą k
 #: games/generated/rulebooks/scrabble.rb:18
 msgid "For each new word, add the values of all its letters, including letters already on the board. A newly covered letter bonus doubles or triples that tile's value. After letter bonuses, apply the word bonuses to the whole word. Several word multipliers multiply together. For example, two double-word fields make the word worth four times its letter total."
 msgstr "Dla każdego nowego słowa sumujesz wartości wszystkich liter, również tych leżących wcześniej. Nowo zakryta premia literowa podwaja lub potraja wartość danej płytki. Po premiach literowych stosuje się premie słowne do całego wyrazu. Kilka mnożników słowa mnoży się ze sobą: dwa pola podwójnego słowa dają czterokrotność sumy liter."
+
+#: games/generated/rulebooks/bridge.rb:49
+msgid "For example, 2 spades doubled, not vulnerable, made with an overtrick earns 120 for the contract, 50 for making a doubled contract and 100 for the overtrick. The same contract two tricks short gives the defenders 300."
+msgstr "Na przykład 2 piki z kontrą przed partią wypełnione z nadróbką dają 120 za kontrakt, 50 za wypełnienie skontrowanego kontraktu i 100 za nadróbkę. Ten sam kontrakt z dwiema wpadkami daje obrońcom 300."
 
 msgid "For example, rolling 4 and then 6 gives you ten turn points. Banking saves those ten and ends your turn. Rolling 1 instead loses the ten. If you roll 2 before that 1, you still lose the ten turn points, but keep the two points that went straight into your bank."
 msgstr "Na przykład po wyrzuceniu 4, a potem 6 masz dziesięć punktów tury. Zapisujesz je i kończysz turę albo rzucasz dalej. Jedynka odbierze te dziesięć punktów. Jeśli przed jedynką wyrzucisz jeszcze 2, nadal stracisz dziesięć punktów tury, ale zachowasz dwa punkty, które od razu trafiły do zapisanego wyniku."
@@ -11050,7 +11501,7 @@ msgstr "H: ręka. C: karty lewy. Ctrl+C: ich lista. F: atut. S: wyniki. Shift+S:
 msgid "H: read who is still in and who has folded."
 msgstr "H: odczytaj, kto gra, a kto spasował."
 
-#: games/generated/rulebooks/mille_bornes.rb:49 games/generated/rulebooks/ninety_nine.rb:29 games/generated/rulebooks/three_five_eight.rb:27 games/generated/rulebooks/tysiac.rb:44
+#: games/generated/rulebooks/bridge.rb:81 games/generated/rulebooks/mille_bornes.rb:49 games/generated/rulebooks/ninety_nine.rb:29 games/generated/rulebooks/three_five_eight.rb:27 games/generated/rulebooks/tysiac.rb:44
 msgid "H: read your hand."
 msgstr "H: odczytaj swoją rękę."
 
@@ -11157,6 +11608,10 @@ msgstr "Księgi święte"
 msgid "Home made bomb"
 msgstr "Domowa bomba"
 
+#: games/generated/rulebooks/bridge.rb:54
+msgid "Honours are also scored above the line, whoever holds them, even a defender. Four of the five top trumps (ace, king, queen, jack, ten) in one hand earn 100 and all five earn 150. In no trump, all four aces in one hand earn 150. The table settings can turn honours off."
+msgstr "Nad kreską zapisuje się też honory, niezależnie od tego, kto je ma, nawet obrońca. Cztery z pięciu najstarszych atutów (as, król, dama, walet, dziesiątka) w jednej ręce dają 100, a wszystkie pięć — 150. W bez atu wszystkie cztery asy w jednej ręce dają 150. Liczenie honorów można wyłączyć w ustawieniach stołu."
+
 #: lib/tournaments/tournament_datetime_field.rb:20
 msgid "Hour"
 msgstr "Godzina"
@@ -11197,6 +11652,10 @@ msgstr "Jak rozsiewać kamienie"
 
 msgid "How the cards change the total"
 msgstr "Jak karty zmieniają stos"
+
+#: games/generated/rulebooks/bridge.rb:60
+msgid "How the comparison is counted depends on the table's scoring choice:"
+msgstr "Sposób porównania zależy od zapisu wybranego przy stole:"
 
 #: games/generated/rulebooks/krowa.rb:20
 msgid "How to play"
@@ -11245,6 +11704,14 @@ msgstr "I: odczytaj swój dystans, przeszkody i zabezpieczenia."
 msgid "I: read your progress in the round."
 msgstr "I: odczytaj swój postęp w rozdaniu."
 
+#: games/generated/rulebooks/bridge.rb:88
+msgid "I: read your seat, partner and role in this deal."
+msgstr "I: odczytaj swoje miejsce, partnera i rolę w tym rozdaniu."
+
+#: games/bridge.rb:128 games/bridge.rb:151 games/bridge.rb:91 games/bridge/presentation.rb:539
+msgid "IMPs"
+msgstr "IMP-y"
+
 msgid "Identical answers in the same category are grouped and shown with all their authors. The judge, not the program, decides whether a group is unique, duplicated or incorrect."
 msgstr "Identyczne odpowiedzi w tej samej kategorii są grupowane i wyświetlane wraz ze wszystkimi autorami. To sędzia, a nie program, decyduje, czy grupa jest unikalna, powtórzona czy niepoprawna."
 
@@ -11291,6 +11758,10 @@ msgstr "Jeśli inny gracz weźmie kontrakt i podda się przed rozegraniem, szans
 #: games/generated/rulebooks/duck_racing.rb:129
 msgid "If automatic hitting is enabled in your settings, positioning the paddle is enough to defend. You still serve manually."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:44
+msgid "If declarer falls short, the defenders score for each missing trick:"
+msgstr "Jeśli rozgrywający weźmie za mało lew, obrońcy dostają punkty za każdą brakującą lewę, czyli wpadkę:"
 
 #: games/generated/rulebooks/mancala.rb:23
 msgid "If that final empty pit is yours and the opposite pit contains seeds, capture all the seeds opposite together with your own last seed. Both pits become empty. For example, three seeds opposite plus your last seed give you four points. Landing on the opposing side or opposite an empty pit gives no capture."
@@ -11585,6 +12056,10 @@ msgstr "W Yahtzee D odczytuje same wartości kości. Uproszczono zasady i opis p
 msgid "In Yahtzee, D reads only the dice values. The bonus for reaching 63 points in Ones through Sixes has a clearer name and explanation, without referring to the upper part of a sheet. The Polish Misery category is now called Nedza, and the opening rules are clearer."
 msgstr "W Yahtzee D odczytuje same wartości kości. Premia za zdobycie 63 punktów w Jedynkach–Szóstkach ma czytelniejszą nazwę i opis, bez odwoływania się do górnej części kartki. Kategoria Misery nazywa się teraz po polsku Nędza; uproszczono też początek zasad."
 
+#: games/generated/rulebooks/bridge.rb:59
+msgid "In a club, the same boards are played at many tables and pairs compare their results. Here there is only one table, so your result is compared with a reference score: an estimate of what these cards usually earn, based on the combined high card points of the stronger pair. A pair with 20 points each scores nothing on average. With 23 points the stronger pair is expected to score 110, with 26 points 400, or 600 vulnerable, and with 33 points a slam of 980, or 1430 vulnerable. The estimate ignores the shape of the hands, so a good fit or an unusual distribution can be worth much more."
+msgstr "W klubie te same rozdania gra się przy wielu stołach i pary porównują swoje wyniki. Tu jest tylko jeden stół, więc twój wynik porównuje się z wynikiem odniesienia: szacunkiem, ile zwykle przynoszą takie karty, liczonym z sumy punktów honorowych silniejszej pary. Gdy obie pary mają po 20 punktów, wynik odniesienia wynosi zero. Przy 23 punktach silniejsza para powinna zdobyć 110, przy 26 punktach 400, a po partii 600, a przy 33 punktach — szlemika za 980, a po partii 1430. Szacunek nie uwzględnia układu kart, więc dobry fit albo nietypowy rozkład może być wart dużo więcej."
+
 #: games/generated/rulebooks/duck_racing.rb:111
 msgid "In a duel, only the two opponents answer; in a group challenge, all unfrozen ducks answer. A question square or Curiosity includes everyone, even frozen ducks. All these questions come from the sets selected for the table."
 msgstr ""
@@ -11638,6 +12113,10 @@ msgstr "W każdej lewie wszyscy wybierają kartę jednocześnie. Nikt nie widzi 
 msgid "In either scoring mode, the score limit can be any whole number from 1 to 100000. Changing it alters when the match ends, not the values of cards or penalties."
 msgstr "W obu trybach punktacji limit może być dowolną liczbą całkowitą od 1 do 100000. Jego zmiana wpływa na moment zakończenia partii, nie na wartości kart ani kar."
 
+#: games/generated/rulebooks/bridge.rb:15
+msgid "In every suit the ace is the highest card, followed by the king, queen, jack and ten down to the two."
+msgstr "W każdym kolorze najstarszy jest as, potem król, dama, walet, dziesiątka i kolejne blotki aż do dwójki."
+
 #: lib/game_room_changelog.rb:293
 msgid "In games that support bots, a player who leaves is automatically replaced by a bot. They return as an observer, and the table master can give them a seat again."
 msgstr "W grach obsługujących boty wychodzący gracz jest automatycznie zastępowany komputerem. Po powrocie dołącza jako obserwator; gospodarz może ponownie przekazać mu miejsce."
@@ -11687,6 +12166,10 @@ msgstr "W kreatorze Ctrl+N tworzy zestaw na liście zestawów lub dodaje pytanie
 #: lib/game_room_changelog.rb:481
 msgid "In the quiz question creator, the first answer is now always the correct one, followed by the three incorrect answers. When editing an older draft, its correct answer moves to the first field."
 msgstr "W kreatorze pytań do quizu pierwsza odpowiedź jest zawsze poprawna, a trzy kolejne błędne. Przy edycji starszego szkicu jego poprawna odpowiedź zostaje przeniesiona do pierwszego pola."
+
+#: games/generated/rulebooks/bridge.rb:57
+msgid "In the table settings you can choose duplicate bridge instead. The match then lasts a set number of deals, called boards: 4, 8, 12, 16 or 24, with 8 by default. The board number decides the dealer and vulnerability, in the cycle used at bridge clubs. Board 1 is dealt by North with neither side vulnerable, board 2 by East with North-South vulnerable, board 3 by South with East-West vulnerable and board 4 by West with both sides vulnerable."
+msgstr "W ustawieniach stołu możesz zamiast tego wybrać brydż sportowy. Mecz trwa wtedy ustaloną liczbę rozdań: 4, 8, 12, 16 albo 24, domyślnie 8. Numer rozdania wyznacza rozdającego i założenia, w takim samym cyklu jak w klubach brydżowych. Rozdanie 1 rozdaje Północ i obie pary są przed partią, rozdanie 2 Wschód przy założeniach po partii dla Północy i Południa, rozdanie 3 Południe przy założeniach po partii dla Wschodu i Zachodu, a rozdanie 4 Zachód, gdy obie pary są po partii."
 
 #: games/generated/rulebooks/tysiac.rb:21
 msgid "In the team variant, first choose two pairs at the table. Partners sit alternately, and all four play every deal. Each receives five cards; four more form the talon. The auction winner takes the talon and gives one card to each other player, including their partner. Everyone then has six cards for six tricks. You see only your own hand. You may outbid your partner, but your bidding limit still depends only on marriages in your own hand."
@@ -11798,6 +12281,10 @@ msgstr "Szalony"
 #: games/generated/rulebooks/mille_bornes.rb:35 games/mille_bornes/presentation.rb:202
 msgid "Instant repair"
 msgstr "Błyskawiczna naprawa"
+
+#: games/generated/rulebooks/bridge.rb:19
+msgid "Instead of bidding you can make one of these calls:"
+msgstr "Zamiast odzywki możesz zgłosić jedną z tych zapowiedzi:"
 
 #: games/uno.rb:123
 msgid "Interceptions"
@@ -11919,6 +12406,10 @@ msgstr "Zaproś osobę z kontaktów"
 msgid "Island"
 msgstr "Wyspa"
 
+#: games/bridge/presentation.rb:45 games/bridge/presentation.rb:65
+msgid "It is %{player}'s turn (%{seat})."
+msgstr "Kolej: %{player} (%{seat})."
+
 #: games/base.rb:326 games/base.rb:353 games/board_game.rb:235 games/spades.rb:880
 msgid "It is %{player}'s turn."
 msgstr "Kolej gracza %{player}."
@@ -11958,7 +12449,7 @@ msgstr "To nie twoja kolej."
 msgid "It is your birthday: collect 25 from every other player."
 msgstr "Masz urodziny: otrzymujesz po 25 od każdego innego gracza."
 
-#: games/base.rb:324 games/ludo.rb:181
+#: games/base.rb:324 games/bridge/presentation.rb:43 games/ludo.rb:181
 msgid "It is your turn."
 msgstr "Twoja kolej."
 
@@ -12068,6 +12559,10 @@ msgstr "K: przeglądaj swoje króle."
 msgid "K: mortgage properties."
 msgstr "K: zastawiaj nieruchomości."
 
+#: games/generated/rulebooks/bridge.rb:76
+msgid "K: read the contract and declarer's tricks."
+msgstr "K: odczytaj kontrakt i lewy rozgrywającego."
+
 #: games/mancala.rb:47
 msgid "Kalah"
 msgstr ""
@@ -12143,7 +12638,7 @@ msgstr "Sterowanie klawiaturą"
 msgid "Keyboard help in the rules lists each game-field shortcut separately, without chat controls or global shortcuts."
 msgstr "W sekcji skrótów w zasadach każdy skrót pola gry ma osobny wiersz. Nie ma tam już obsługi czatu ani skrótów globalnych."
 
-#: lib/game_room_ui.rb:306
+#: games/generated/rulebooks/bridge.rb:71 lib/game_room_ui.rb:306
 msgid "Keyboard shortcuts"
 msgstr "Skróty klawiszowe"
 
@@ -12299,6 +12794,10 @@ msgstr "Międzynarodowe lotnisko Kuala Lumpur"
 #: games/generated/rulebooks/scrabble.rb:38
 msgid "L: browse played words."
 msgstr "L: przeglądaj zagrane słowa."
+
+#: games/generated/rulebooks/bridge.rb:74
+msgid "L: read the auction."
+msgstr "L: odczytaj licytację."
 
 #: games/generated/rulebooks/poker.rb:46
 msgid "L: read the blinds."
@@ -13240,6 +13739,14 @@ msgstr "Dopasowanie kart i zagrywanie pakietów"
 msgid "Matching cards and winning rounds"
 msgstr "Dopasowywanie kart i wygrywanie rozdań"
 
+#: games/bridge.rb:129 games/bridge/presentation.rb:539
+msgid "Matchpoints"
+msgstr "Zapis maksymalny"
+
+#: games/bridge/presentation.rb:379
+msgid "Matchpoints: North-South %{ns}, East-West %{ew}."
+msgstr "Punkty: Północ–Południe %{ns}, Wschód–Zachód %{ew}."
+
 #: games/checkers.rb:107
 msgid "Maximum capture requires completing capture sequences."
 msgstr "Zasada największej liczby bić wymaga dokończenia sekwencji bić."
@@ -13832,6 +14339,10 @@ msgstr "No Hell, Quicksand i Suicide"
 msgid "No Hell, Quicksand and Suicide are off by default. Quicksand takes precedence over standard contract bonuses and bag scoring when enabled. The score limit must be positive and defaults to 300. Team arrangement is Individual by default; team membership is chosen before the game and partners share a score."
 msgstr "No Hell, Quicksand i Suicide są domyślnie wyłączone. Włączone Quicksand zastępuje standardowe premie kontraktowe i punktację nadróbek. Limit punktów musi być dodatni, domyślnie wynosi 300. Domyślny układ to gra indywidualna; przynależność do drużyn ustala się przed partią, a partnerzy mają wspólny wynik."
 
+#: games/bridge/presentation.rb:381
+msgid "No IMPs change hands."
+msgstr "Nikt nie zyskuje IMP-ów."
+
 msgid "No Mercy adds Draw Four, Draw Six, Draw Ten, Reverse Draw Four, Skip Everyone, Discard All and Colour Roulette. Flip uses a double-sided deck; a Flip card changes every hand and both piles between the light and dark sides. The table creator may also enable interceptions, zero and seven hand changes, buzzer cards, drawing until a playable card and a thinking-time limit."
 msgstr "No Mercy dodaje karty Dobierz cztery, Dobierz sześć, Dobierz dziesięć, Zmień kierunek i dobierz cztery, Pomiń wszystkich, Odrzuć wszystkie oraz Ruletkę kolorów. Flip używa dwustronnej talii; karta Flip zmienia ręce i oba stosy między stroną jasną a ciemną. Twórca stołu może też włączyć przechwycenia, zamiany rąk zerem i siódemką, karty buzzera, dobieranie do karty możliwej do zagrania oraz limit czasu na ruch."
 
@@ -13925,6 +14436,10 @@ msgstr "Żadna bitwa nie została jeszcze rozstrzygnięta."
 msgid "No bids yet."
 msgstr "Nie ma jeszcze ofert."
 
+#: games/bridge/presentation.rb:487 games/bridge/presentation.rb:494
+msgid "No calls have been made yet."
+msgstr "Nikt jeszcze nie zgłosił zapowiedzi."
+
 #: games/makao.rb:968
 msgid "No card has been dealt yet."
 msgstr "Nie rozdano jeszcze kart."
@@ -13936,7 +14451,7 @@ msgstr "Brak karty na pozycji %{number}."
 msgid "No card in this packet can legally begin the move."
 msgstr "Żadna karta z tej paczki nie może legalnie rozpocząć ruchu."
 
-#: games/poker.rb:289
+#: games/bridge/presentation.rb:264 games/poker.rb:289
 msgid "No cards"
 msgstr "Brak kart"
 
@@ -13944,7 +14459,7 @@ msgstr "Brak kart"
 msgid "No cards are on the table."
 msgstr "Na stole nie ma kart."
 
-#: games/base/shortcuts.rb:43
+#: games/base/shortcuts.rb:43 games/bridge/presentation.rb:464
 msgid "No cards have been played in this trick"
 msgstr "W tej lewie nie zagrano jeszcze żadnej karty"
 
@@ -13986,6 +14501,10 @@ msgstr "Brak poprawnej odpowiedzi"
 #: games/krowa_support/leaderboards.rb:153
 msgid "No daily results"
 msgstr "Brak wyników dziennych"
+
+#: games/bridge/presentation.rb:509
+msgid "No deal has been played yet."
+msgstr "Nie rozegrano jeszcze żadnego rozdania."
 
 #: games/krowa_support/client.rb:251
 msgid "No definition in SJP."
@@ -14237,7 +14756,7 @@ msgstr "Pole bez dodatkowego działania."
 msgid "No statistics were collected for this period."
 msgstr "W tym okresie nie zbierano statystyk."
 
-#: games/spades.rb:927
+#: games/bridge/presentation.rb:469 games/spades.rb:927
 msgid "No suit has been led."
 msgstr "Nie wyłożono jeszcze koloru."
 
@@ -14259,6 +14778,10 @@ msgstr "Brak ogłoszeń turniejów."
 #: lib/tournaments/public_screen.rb:63
 msgid "No tournaments in this view."
 msgstr "Brak turniejów w tym widoku."
+
+#: games/bridge/presentation.rb:476
+msgid "No trick has been completed in this deal."
+msgstr "W tym rozdaniu nie zakończono jeszcze żadnej lewy."
 
 #: games/scientific_war.rb:373
 msgid "No trick has been decided yet."
@@ -14334,6 +14857,10 @@ msgstr "Zwykle stawiasz pionek na pustym polu tak, aby między nim a jednym z tw
 msgid "Normally, Space draws one tile. You may start drawing only once in a turn. If a legal play is available afterwards, you can make it; if none is available, your turn ends. Without any playable tile and with an empty boneyard, the game passes automatically. Having drawn is not permission to keep pressing Space for more tiles."
 msgstr "Zwykle Spacja dobiera jedną kostkę. Dobieranie można uruchomić tylko raz w turze. Jeśli potem jest dostępny legalny ruch, możesz go wykonać; gdy żadnego nie ma, tura się kończy. Przy braku pasującej kostki i pustym stosie gra sama pasuje. Dobranie nie pozwala naciskać Spacji w nieskończoność po kolejne kostki."
 
+#: games/bridge/presentation.rb:154
+msgid "North"
+msgstr "Północ"
+
 #: games/duck_racing_support/presentation.rb:31
 msgid "North bank"
 msgstr "Północny brzeg"
@@ -14341,6 +14868,18 @@ msgstr "Północny brzeg"
 #: content/monopoly_boards.rb:72
 msgid "North station"
 msgstr "Dworzec Północny"
+
+#: games/bridge/presentation.rb:167
+msgid "North-South"
+msgstr "Północ–Południe"
+
+#: games/bridge/presentation.rb:347
+msgid "North-South %{ns}, East-West %{ew}"
+msgstr "Północ–Południe %{ns}, Wschód–Zachód %{ew}"
+
+#: games/bridge/presentation.rb:223
+msgid "North-South vulnerable"
+msgstr "Północ–Południe po partii"
 
 #: lib/game_surfaces/review_surface.rb:73
 msgid "Not assessed"
@@ -14401,6 +14940,10 @@ msgstr "Liczba od 1 do 999."
 #: games/krowa.rb:132 games/krowa_support/client.rb:170
 msgid "Number of attempts"
 msgstr "Liczba prób"
+
+#: games/bridge.rb:116
+msgid "Number of boards"
+msgstr "Liczba rozdań"
 
 #: lib/tournaments/draft_editor.rb:34 lib/tournaments/draft_preview.rb:184 lib/tournaments/public_text.rb:116
 msgid "Number of groups"
@@ -14679,6 +15222,10 @@ msgstr "Tylko organizator turnieju może zmieniać jego uczestników."
 #: lib/tournaments/local_fixed_team_execution_screen.rb:477
 msgid "Only the tournament organizer may accept knockout pairings."
 msgstr "Pary pucharowe może przyjąć tylko organizator turnieju."
+
+#: games/generated/rulebooks/bridge.rb:36
+msgid "Only the tricks beyond the first six count. When declarer makes the contract, each contracted trick earns:"
+msgstr "Liczą się tylko lewy ponad pierwsze sześć. Gdy rozgrywający wypełni kontrakt, każda zakontraktowana lewa jest warta:"
 
 #: __app.rb:1243 __app.rb:1407 games/krowa_support/leaderboards.rb:287 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:111 lib/game_room_screens.rb:616 lib/quiz_contributions/views.rb:141
 msgid "Open"
@@ -14964,6 +15511,10 @@ msgstr "P: odczytaj szkic."
 msgid "P: read the prepared packet."
 msgstr "P: odczytaj przygotowaną paczkę."
 
+#: games/generated/rulebooks/bridge.rb:86
+msgid "P: read the previous trick."
+msgstr "P: odczytaj poprzednią lewę."
+
 #: games/generated/rulebooks/biblios.rb:40
 msgid "P: read the public space."
 msgstr "P: odczytaj wspólną przestrzeń."
@@ -15075,6 +15626,10 @@ msgstr "Partner"
 #: lib/tournaments/public_preview.rb:360
 msgid "Partner choice saved."
 msgstr "Zapisano wybór partnera."
+
+#: games/generated/rulebooks/bridge.rb:12
+msgid "Partners and the deal"
+msgstr "Pary i rozdanie"
 
 #: games/biblios.rb:1077 games/tysiac.rb:1423 games/tysiac.rb:1560
 msgid "Pass"
@@ -15334,6 +15889,14 @@ msgstr "Roślina"
 msgid "Play"
 msgstr "Zagraj"
 
+#: games/bridge/presentation.rb:39
+msgid "Play a card from dummy."
+msgstr "Zagraj kartę z dziadka."
+
+#: games/bridge.rb:282
+msgid "Play a card from the hand whose turn it is."
+msgstr "Zagraj kartę z ręki, która jest na ruchu."
+
 msgid "Play a card matching the colour or value, or play a wild card. Space draws a card. Drawing is allowed even with a playable card by default, up to the configured limit. If no card can be played after a voluntary draw, the turn ends automatically; otherwise the player may play or keep drawing until the limit."
 msgstr "Zagraj kartę pasującą kolorem albo wartością lub zagraj dziką kartę. Spacja dobiera kartę. Domyślnie można dobierać nawet wtedy, gdy ma się kartę do zagrania, aż do ustawionego limitu. Jeśli po dobrowolnym dobraniu nie można nic zagrać, tura kończy się automatycznie; w przeciwnym razie można zagrać albo dobierać dalej do limitu."
 
@@ -15503,6 +16066,10 @@ msgstr "Zagrywanie karty"
 msgid "Playing a double, such as 9/9, gives you another play. During your own series you may choose any accessible train, and each further double lets you continue. A double left at a train's end is unfinished until a matching tile is put after it. You can close an earlier double in your own series while leaving a later one on another train unfinished."
 msgstr "Zagranie dubletu, na przykład 9/9, daje kolejny ruch. Podczas własnej serii możesz wybrać dowolny dostępny pociąg, a każdy następny dublet pozwala kontynuować. Dublet pozostawiony na końcu pociągu jest niedomknięty, dopóki nie dołożysz za nim pasującej kostki. W swojej serii możesz domknąć wcześniejszy dublet, pozostawiając późniejszy na innym pociągu."
 
+#: games/generated/rulebooks/bridge.rb:50
+msgid "Playing a rubber"
+msgstr "Gra na robra"
+
 #: games/generated/rulebooks/mille_bornes.rb:17
 msgid "Playing a safety earns 100 points and gives you another turn. Teammates share protection but keep separate hands."
 msgstr "Zagranie zabezpieczenia daje 100 punktów i dodatkową turę. Członkowie drużyny mają wspólną ochronę, ale osobne ręce kart."
@@ -15532,6 +16099,10 @@ msgstr "Obsługa planszy"
 msgid "Playing on your own train closes it again. Playing on another open train does not close that train, and playing on the Mexican train never closes it. You may choose those other trains even while your own is open; that choice simply leaves yours open for now."
 msgstr "Zagranie na swoim pociągu zamyka go z powrotem. Ruch na cudzym otwartym pociągu nie zamyka tamtego, a pociąg meksykański nie zamyka się nigdy. Możesz wybrać inne pociągi również wtedy, gdy Twój jest otwarty; po prostu pozostanie na razie otwarty."
 
+#: games/generated/rulebooks/bridge.rb:29
+msgid "Playing the cards"
+msgstr "Rozgrywka"
+
 #: lib/tournaments/draft_details_editor.rb:26 lib/tournaments/draft_preview.rb:194 lib/tournaments/tournament_dates_editor.rb:42
 msgid "Playing windows"
 msgstr "Okna rozgrywek"
@@ -15556,6 +16127,14 @@ msgstr "Dworzec Główny w Pilźnie"
 
 msgid "Podolská vodárna"
 msgstr "Wodociągi Podolí"
+
+#: games/generated/rulebooks/bridge.rb:11
+msgid "Points come from making contracts and from defeating the opponents' contracts. The pair with more points when the match ends wins."
+msgstr "Punkty zdobywa się za wypełnione kontrakty i za obłożenie kontraktów przeciwników. Wygrywa para, która na koniec meczu ma więcej punktów."
+
+#: games/generated/rulebooks/bridge.rb:35
+msgid "Points for the contract"
+msgstr "Punkty za kontrakt"
 
 #: games/generated/rulebooks/tysiac.rb:28
 msgid "Points in cards are not the same as the score you receive"
@@ -15940,6 +16519,14 @@ msgstr ""
 msgid "Press F2 to lower and F3 to raise the selected Game Room sound volume."
 msgstr "F2 zmniejsza, a F3 zwiększa głośność wybranej grupy dźwięków Game Roomu."
 
+#: games/generated/rulebooks/bridge.rb:28
+msgid "Press K to hear the contract, who declares it and how many tricks declarer has taken so far."
+msgstr "Klawisz K podaje kontrakt, rozgrywającego i liczbę lew, które rozgrywający już wziął."
+
+#: games/generated/rulebooks/bridge.rb:24
+msgid "Press L to hear the whole auction, or Ctrl+L to go through it call by call."
+msgstr "Klawisz L odczytuje całą licytację, a Ctrl+L pozwala przejrzeć ją zapowiedź po zapowiedzi."
+
 #: lib/game_surfaces/packet_cards.rb:155
 msgid "Press Shift+Enter to add or remove the current card from the prepared packet."
 msgstr "Naciśnij Shift+Enter, aby dodać kartę do paczki lub usunąć ją z paczki."
@@ -16043,6 +16630,10 @@ msgstr "Poprzednia faza turnieju"
 #: lib/tournaments/server_schedule_overview.rb:234
 msgid "Previous tournament phase results"
 msgstr "Wyniki poprzedniej fazy turnieju"
+
+#: games/bridge/presentation.rb:479
+msgid "Previous trick: %{cards}. Won by %{seat}."
+msgstr "Poprzednia lewa: %{cards}. Lewa dla: %{seat}."
 
 #: lib/game_room_screens.rb:340
 msgid "Primary interface language"
@@ -17622,6 +18213,14 @@ msgstr "Zaokrąglanie do piątek jest domyślnie włączone: karty od dwójki do
 msgid "Rounds"
 msgstr "Rundy"
 
+#: games/bridge.rb:87
+msgid "Rubber"
+msgstr "Robrowy"
+
+#: games/bridge.rb:103
+msgid "Rubber bridge (social)"
+msgstr "Brydż robrowy (towarzyski)"
+
 #: games/makao.rb:81
 msgid "Rule profile"
 msgstr "Profil zasad"
@@ -17697,6 +18296,10 @@ msgstr "S odczytuje aktualną liczbę króli, hetmanów, wież, gońców, skoczk
 msgid "S reads the current number of men and kings belonging to each player."
 msgstr "S odczytuje aktualną liczbę pionów i damek każdego gracza."
 
+#: games/generated/rulebooks/bridge.rb:55
+msgid "S reads the points below and above the line, the games won and the total for each pair, followed by the score towards the current game."
+msgstr "Klawisz S odczytuje punkty pod kreską i nad kreską, wygrane partie i sumę każdej pary, a potem stan bieżącej partii."
+
 msgid "S reads your stack, Shift+S the others, V the amount to call, P the total pot, I your investment in this hand, H active and folded players, L the blinds and T the turn. D reads your cards, E community cards and G your best currently visible combination, including a pair before the flop. Keys 1 and 2 read the first two private cards, 3–7 the five community positions; in draw poker use D for the whole hand."
 msgstr "S podaje Twoje żetony, Shift+S pozostałych, V kwotę do wyrównania, P całą pulę, I Twój wkład w rozdanie, H graczy aktywnych i pasujących, L ciemne, T kolejkę. D czyta Twoje karty, E wspólne, G najlepszy obecnie dostępny układ, także parę przed flopem. Cyfry 1 i 2 czytają pierwsze dwie własne karty, 3–7 pięć pozycji wspólnych; w dobieranym użyj D do całej ręki."
 
@@ -17764,6 +18367,10 @@ msgstr "S: odczytaj wyniki."
 #: games/generated/rulebooks/taboo.rb:31
 msgid "S: read team scores."
 msgstr "S: odczytaj wyniki drużyn."
+
+#: games/generated/rulebooks/bridge.rb:89
+msgid "S: read the scores."
+msgstr "S: odczytaj wynik."
 
 #: games/generated/rulebooks/poker.rb:40
 msgid "S: read your stack."
@@ -17991,12 +18598,20 @@ msgstr "Wojna naukowa to gra karciana dla dwóch do ośmiu osób."
 msgid "Scissors"
 msgstr "Nożyce"
 
+#: games/bridge/presentation.rb:387
+msgid "Score %{result}, compared with %{reference}. %{comparison}"
+msgstr "Wynik: %{result}, wynik odniesienia: %{reference}. %{comparison}"
+
 #: lib/game_room_changelog.rb:142
 msgid "Score announcements under S are ordered from highest to lowest, with eliminated players or teams last. Their actual scores are preserved."
 msgstr "Punktacja pod S jest odczytywana od najwyższego wyniku do najniższego, a wyeliminowani gracze lub drużyny na końcu. Ich rzeczywiste wyniki pozostają bez zmian."
 
 msgid "Score every word formed in the move. New letter bonuses apply first, then word multipliers; multiple word multipliers multiply. A shared letter scores in each word. Covered bonuses never apply again. A blank can activate a word bonus. Using seven rack tiles in one move adds 50 points after the other calculations."
 msgstr "Punkty przyznawane są za każde słowo utworzone w ruchu. Najpierw liczone są nowe premie literowe, potem mnożniki słowa; kilka mnożników słowa mnoży się przez siebie. Wspólna litera punktuje w każdym słowie. Zajęte wcześniej pola premiowe nie działają ponownie. Blank może uruchomić premię słowną. Wykorzystanie siedmiu płytek ze stojaka w jednym ruchu daje dodatkowe 50 punktów, doliczane na końcu."
+
+#: games/bridge.rb:109
+msgid "Score honours"
+msgstr "Licz honory"
 
 #: games/cat_head_tail.rb:67 games/domino.rb:57 games/farkle.rb:129 games/mexican_train.rb:19 games/rummy.rb:53 games/spades.rb:266
 msgid "Score limit"
@@ -18528,6 +19143,10 @@ msgstr "Shift+C: sortuj według koloru; naciśnij ponownie, aby odwrócić kolej
 msgid "Shift+C: sort by suit; Shift+H: sort by rank. Press the same shortcut again to reverse that order. Shift+M restores receipt order. Sorting changes only your view and keeps the selected physical card; it does not alter card strength or select a move."
 msgstr "Shift+C: sortowanie według koloru; Shift+H: według wartości. Ponowne użycie tego samego skrótu odwraca porządek. Shift+M przywraca kolejność otrzymania. Sortowanie zmienia tylko widok i zachowuje wskazaną fizyczną kartę; nie zmienia siły kart ani nie wybiera ruchu."
 
+#: games/generated/rulebooks/bridge.rb:91
+msgid "Shift+C: sort your cards by suit."
+msgstr "Shift+C: posortuj karty według koloru."
+
 msgid "Shift+C: toggle colour order. Shift+H: toggle value order. Shift+D or Shift+M: acquisition order. These only change your own view."
 msgstr "Shift+C: zmiana kierunku sortowania kolorami. Shift+H: zmiana kierunku sortowania wartościami. Shift+D lub Shift+M: kolejność otrzymania kart. Zmienia to tylko własny widok."
 
@@ -18616,6 +19235,10 @@ msgstr "Shift+H: sortuj według dystansu lub wartości karty; naciśnij ponownie
 msgid "Shift+H: sort by rank or value; press again to reverse the order."
 msgstr "Shift+H: sortuj według wartości; naciśnij ponownie, aby odwrócić kolejność."
 
+#: games/generated/rulebooks/bridge.rb:92
+msgid "Shift+H: sort your cards by rank."
+msgstr "Shift+H: posortuj karty według wartości."
+
 #: games/generated/rulebooks/mille_bornes.rb:51
 msgid "Shift+I: read every car's mileage, hazards and safeties."
 msgstr "Shift+I: odczytaj dystans, przeszkody i zabezpieczenia wszystkich samochodów."
@@ -18639,6 +19262,10 @@ msgstr "Shift+M: podczas wymiany przywróć kolejność otrzymania kart."
 #: games/generated/rulebooks/makao.rb:49 games/generated/rulebooks/mille_bornes.rb:58 games/generated/rulebooks/ninety_nine.rb:37 games/generated/rulebooks/rummy.rb:63 games/generated/rulebooks/spades.rb:43 games/generated/rulebooks/three_five_eight.rb:38 games/generated/rulebooks/tysiac.rb:55 games/generated/rulebooks/uno.rb:53
 msgid "Shift+M: restore the order in which cards were received."
 msgstr "Shift+M: przywróć kolejność otrzymania kart."
+
+#: games/generated/rulebooks/bridge.rb:93
+msgid "Shift+M: restore the order in which you received your cards."
+msgstr "Shift+M: przywróć pierwotną kolejność kart."
 
 #: games/generated/rulebooks/chess.rb:41
 msgid "Shift+N: browse the opponent's knights."
@@ -18713,6 +19340,10 @@ msgstr "Shift+V: otwórz kartę punktacji przeciwnika."
 #: games/generated/rulebooks/mille_bornes.rb:55
 msgid "Shift+Z: find the previous playable card on your turn, outside the dirty-trick window."
 msgstr "Shift+Z: znajdź poprzednią kartę możliwą do zagrania we własnej turze, poza czasem na nieczystą zagrywkę."
+
+#: games/generated/rulebooks/bridge.rb:80
+msgid "Shift+Z: go to the previous playable card."
+msgstr "Shift+Z: przejdź do poprzedniej karty, którą można zagrać."
 
 #: games/generated/rulebooks/scientific_war.rb:31
 msgid "Shift+Z: move to the previous card in your hand; if it is your only card, play it."
@@ -19044,6 +19675,10 @@ msgstr "Źródło (opcjonalnie)"
 #: lib/quiz_contributions/delivery.rb:92
 msgid "Source: %{source}"
 msgstr "Źródło: %{source}"
+
+#: games/bridge/presentation.rb:156
+msgid "South"
+msgstr "Południe"
 
 #: games/duck_racing_support/presentation.rb:19
 msgid "South bank"
@@ -19564,7 +20199,7 @@ msgstr "T: odczytaj, kto już wybrał kartę."
 msgid "T: read whose turn it is and any double that must be covered."
 msgstr "T: odczytaj turę i ewentualny dublet do zamknięcia."
 
-#: games/generated/rulebooks/battleship.rb:37 games/generated/rulebooks/biblios.rb:45 games/generated/rulebooks/checkers.rb:35 games/generated/rulebooks/chess.rb:31 games/generated/rulebooks/domino.rb:40 games/generated/rulebooks/farkle.rb:28 games/generated/rulebooks/four_in_a_row.rb:17 games/generated/rulebooks/ludo.rb:38 games/generated/rulebooks/makao.rb:46 games/generated/rulebooks/mancala.rb:40 games/generated/rulebooks/mille_bornes.rb:53 games/generated/rulebooks/ninety_nine.rb:34 games/generated/rulebooks/poker.rb:54 games/generated/rulebooks/reversi.rb:22 games/generated/rulebooks/rummy.rb:60 games/generated/rulebooks/scrabble.rb:43 games/generated/rulebooks/spades.rb:40 games/generated/rulebooks/three_five_eight.rb:33 games/generated/rulebooks/tic_tac_toe.rb:17 games/generated/rulebooks/tysiac.rb:52 games/generated/rulebooks/uno.rb:50 games/generated/rulebooks/war.rb:26 games/generated/rulebooks/yahtzee.rb:35
+#: games/generated/rulebooks/battleship.rb:37 games/generated/rulebooks/biblios.rb:45 games/generated/rulebooks/bridge.rb:90 games/generated/rulebooks/checkers.rb:35 games/generated/rulebooks/chess.rb:31 games/generated/rulebooks/domino.rb:40 games/generated/rulebooks/farkle.rb:28 games/generated/rulebooks/four_in_a_row.rb:17 games/generated/rulebooks/ludo.rb:38 games/generated/rulebooks/makao.rb:46 games/generated/rulebooks/mancala.rb:40 games/generated/rulebooks/mille_bornes.rb:53 games/generated/rulebooks/ninety_nine.rb:34 games/generated/rulebooks/poker.rb:54 games/generated/rulebooks/reversi.rb:22 games/generated/rulebooks/rummy.rb:60 games/generated/rulebooks/scrabble.rb:43 games/generated/rulebooks/spades.rb:40 games/generated/rulebooks/three_five_eight.rb:33 games/generated/rulebooks/tic_tac_toe.rb:17 games/generated/rulebooks/tysiac.rb:52 games/generated/rulebooks/uno.rb:50 games/generated/rulebooks/war.rb:26 games/generated/rulebooks/yahtzee.rb:35
 msgid "T: read whose turn it is."
 msgstr "T: odczytaj, czyja jest tura."
 
@@ -19594,6 +20229,10 @@ msgstr "Tabulator przechodzi między ręką, pozostałymi polami gry, historią 
 #: lib/tournaments/public_preview.rb:127
 msgid "Tab moves to the available actions. Choose an action with the arrows and press Enter. Escape returns without leaving the tournament."
 msgstr "Tab przechodzi do dostępnych działań. Wybierz działanie strzałkami i naciśnij Enter. Escape wraca do poprzedniego okna bez wypisywania z turnieju."
+
+#: games/generated/rulebooks/bridge.rb:78
+msgid "Tab: move between your hand and dummy."
+msgstr "Tab: przejdź między swoją ręką a dziadkiem."
 
 #: games/generated/rulebooks/krowa.rb:45
 msgid "Tab: move to the next field. In table settings, fields unrelated to the selected variant are hidden, so you do not need to skip them."
@@ -20152,8 +20791,16 @@ msgstr "Załącznik przekracza 4 MB. Podziel propozycję na mniejsze szkice."
 msgid "The attempt is waiting to be checked."
 msgstr "Próba czeka na sprawdzenie."
 
+#: games/generated/rulebooks/bridge.rb:16
+msgid "The auction"
+msgstr "Licytacja"
+
 msgid "The auction and talon"
 msgstr "Licytacja i musik"
+
+#: games/generated/rulebooks/bridge.rb:23
+msgid "The auction ends when three players pass in a row after a bid. The last bid becomes the contract. If all four players pass at the start, nobody scores and the cards are dealt again by the next dealer."
+msgstr "Licytacja kończy się, gdy po odzywce trzech graczy z rzędu spasuje. Ostatnia odzywka staje się kontraktem. Jeśli na początku spasują wszyscy czterej, nikt nie dostaje punktów, a karty rozdaje od nowa następny gracz."
 
 #: games/tysiac.rb:1622
 msgid "The auction has not started."
@@ -20374,6 +21021,10 @@ msgstr "Rozdający zmienia się między rundami, a zaczyna następny aktywny gra
 
 msgid "The dealer changes every round. The player to the dealer's left begins both bidding and the first trick. For team games, the table master may accept the alternating seat arrangement or assign every human and computer to a valid team before starting."
 msgstr "Rozdający zmienia się w każdej rundzie. Gracz po lewej stronie rozdającego rozpoczyna zarówno licytację, jak i pierwszą lewę. W grze drużynowej założyciel stołu może zaakceptować naprzemienny układ miejsc albo przed rozpoczęciem przydzielić każdego człowieka i komputer do prawidłowej drużyny."
+
+#: games/generated/rulebooks/bridge.rb:17
+msgid "The dealer makes the first call and the others follow clockwise. When it is your turn, the game field shows a list of the calls you may make. Choose one with the arrow keys and press Enter. You can also press B to open the same list."
+msgstr "Licytację zaczyna rozdający, a pozostali mówią po kolei zgodnie z ruchem wskazówek zegara. Gdy przyjdzie twoja kolej, w polu gry pojawi się lista dozwolonych zapowiedzi. Wybierz zapowiedź strzałkami i naciśnij Enter. Tę samą listę otworzysz też klawiszem B."
 
 #: lib/quiz_contributions/controller.rb:193
 msgid "The decision was not confirmed. Retry the same decision?"
@@ -20937,7 +21588,7 @@ msgstr "Na prowadzeniu jest remis. Zostanie rozegrany kolejny pełny cykl sędzi
 msgid "The lead is tied. Another round will be played: %{players}."
 msgstr "Remis na prowadzeniu. Rozegramy kolejną rundę. Prowadzą: %{players}."
 
-#: games/spades.rb:930
+#: games/bridge/presentation.rb:471 games/spades.rb:930
 msgid "The led suit is %{suit}."
 msgstr "Wyłożony kolor to %{suit}."
 
@@ -21021,6 +21672,10 @@ msgstr "Pozycja Rankingi w menu głównym udostępnia wyniki dla słów oraz wyn
 
 msgid "The match authorization changed. Automatic dispatch stopped; saved history and player reservations are retained."
 msgstr "Uprawnienie do meczu uległo zmianie. Automat został zatrzymany; zapisana historia i rezerwacje graczy pozostają zachowane."
+
+#: games/bridge/presentation.rb:426
+msgid "The match ended in a draw: %{scores}."
+msgstr "Mecz zakończył się remisem: %{scores}."
 
 msgid "The match ends after the round in which at least one player reaches the target score. The highest score wins."
 msgstr "Partia kończy się po rundzie, w której przynajmniej jeden gracz osiągnie docelową liczbę punktów. Wygrywa osoba z najwyższym wynikiem."
@@ -21159,6 +21814,10 @@ msgstr "Pozostałe możliwości to Double 12 (91 kostek), 2× Double 9 (110), 2�
 msgid "The other row: %{values}."
 msgstr "Drugi rząd: %{values}."
 
+#: games/generated/rulebooks/bridge.rb:26
+msgid "The pair that made the last bid must take the promised number of tricks; the other pair defends. The declarer is the player of the contracting pair who first bid the suit, or no trump, of the final contract. For example, if North opens 1 heart, South raises to 4 hearts and everyone passes, North is declarer even though South made the last bid."
+msgstr "Para, która zgłosiła ostatnią odzywkę, musi wziąć zapowiedzianą liczbę lew, a druga para się broni. Rozgrywającym zostaje ten z graczy tej pary, który jako pierwszy wymienił kolor kontraktu albo bez atu. Jeśli na przykład Północ otworzy 1 kier, Południe podniesie do 4 kierów, a wszyscy spasują, rozgrywa Północ, choć ostatnią odzywkę zgłosiło Południe."
+
 #: lib/tournaments/local_dispatch_screen.rb:110
 msgid "The participant has already entered the match."
 msgstr "Uczestnik już wszedł do meczu."
@@ -21204,6 +21863,10 @@ msgstr "Gracz po rozdającym rozpoczyna licytację i musi zalicytować co najmni
 msgid "The player holding the highest dealt double starts. A double is a tile with equal numbers, such as 6/6. If no hand has a double, the highest total decides; ties use the round's rotating priority. The starter may play any tile, not necessarily the double that gave them the start. A normal round ends as soon as someone uses their last tile."
 msgstr "Zaczyna posiadacz najwyższego rozdanego dubletu. Dublet to kostka z jednakowymi liczbami, na przykład 6/6. Gdy nikt nie dostał dubletu, decyduje najwyższa suma oczek; remisy rozstrzyga zmieniające się co rundę pierwszeństwo. Rozpoczynający może zagrać dowolną kostkę, niekoniecznie dublet, który dał mu początek. Zwykła runda kończy się, gdy ktoś pozbędzie się ostatniej kostki."
 
+#: games/generated/rulebooks/bridge.rb:27
+msgid "The player to the left of declarer leads the first card. Then declarer's partner becomes dummy: dummy's cards are laid face up for everyone, and declarer plays them as well as their own. Dummy takes no further part in the deal."
+msgstr "Pierwszą kartę, czyli wist, wychodzi gracz siedzący na lewo od rozgrywającego. Wtedy partner rozgrywającego zostaje dziadkiem: jego karty leżą odkryte dla wszystkich, a rozgrywający gra nimi tak samo jak własnymi. Dziadek nie bierze już udziału w tym rozdaniu."
+
 #: games/generated/rulebooks/domino.rb:20
 msgid "The player who empties their hand scores zero. Others add the numbers on their remaining tiles. For instance, 3/5 is worth 8. The 0/0 is a special case: it is worth 10 if it is the only tile left in your hand, but zero if you also have other tiles. If a whole circuit passes with no possible play and no usable draw pile, the round is blocked and everyone counts their remaining hand."
 msgstr "Osoba, która opróżni rękę, dostaje zero. Pozostali sumują oczka na swoich kostkach: 3/5 jest warte 8. Szczególnym przypadkiem jest 0/0. Liczy się za 10, gdy jest jedyną pozostałą kostką w ręce, ale za zero, jeśli masz też inne. Gdy przez pełny obieg stołu nikt nie może zagrać i nie ma dostępnego dobierania, runda zostaje zablokowana. Wtedy każdy liczy pozostałą rękę."
@@ -21218,6 +21881,10 @@ msgstr ""
 #: games/generated/rulebooks/scientific_war.rb:14
 msgid "The player with the strongest card wins the trick and puts all its cards on their pile. Normally the ace is the strongest card and the two the weakest. Suits do not matter."
 msgstr "Osoba z najsilniejszą kartą wygrywa lewę i odkłada wszystkie jej karty na swój stos. Zwykle najsilniejszy jest as, a najsłabsza dwójka. Kolory nie mają znaczenia."
+
+#: games/generated/rulebooks/bridge.rb:13
+msgid "The players are named after the points of the compass. North and South are partners, and so are East and West; partners sit opposite each other. When the table chooses teams, the two members of each team become partners. Play always moves clockwise: North, East, South, West."
+msgstr "Miejsca przy stole nazywa się jak strony świata. Północ gra w parze z Południem, a Wschód z Zachodem; partnerzy siedzą naprzeciw siebie. Jeśli przy stole wybrano drużyny, dwie osoby z jednej drużyny są partnerami. Gra zawsze toczy się zgodnie z ruchem wskazówek zegara: Północ, Wschód, Południe, Zachód."
 
 msgid "The players then add the numbers on their dice, and the player with the most Victory Points wins. The numbers on the cards are not Victory Points; they only determine who wins each category."
 msgstr "Punkty zwycięstwa to suma wartości zdobytych kości. Wygrywa osoba z największą sumą. Same wartości na kartach nie są punktami zwycięstwa: służą tylko do ustalenia przewagi w kategoriach."
@@ -21945,6 +22612,10 @@ msgstr "Kategorie to pigmenty, mnisi, księgi zakazane, księgi święte i ręko
 msgid "There are no available moves from %{field}."
 msgstr "Nie ma dostępnych ruchów z pola %{field}."
 
+#: games/bridge/presentation.rb:455
+msgid "There are no cards in the current trick."
+msgstr "W bieżącej lewie nie ma jeszcze kart."
+
 #: games/spades.rb:905 games/three_five_eight.rb:986
 msgid "There are no cards on the table."
 msgstr "Na stole nie ma kart."
@@ -22045,6 +22716,10 @@ msgstr "Na stosie nie ma żadnej karty."
 msgid "There is no computer to remove."
 msgstr "Nie ma komputera, którego można usunąć."
 
+#: games/bridge/presentation.rb:500
+msgid "There is no contract yet."
+msgstr "Nie ma jeszcze kontraktu."
+
 #: games/uno.rb:1335
 msgid "There is no current colour."
 msgstr "Nie ma aktualnego koloru."
@@ -22111,6 +22786,10 @@ msgstr "To terminy zapisów, a nie okna rozgrywek zapisane w szkicu."
 #: lib/game_surfaces/meld_cards.rb:235 lib/game_surfaces/meld_cards.rb:250
 msgid "These cards do not form valid ordered melds."
 msgstr "Te karty w podanej kolejności nie tworzą poprawnych układów."
+
+#: games/generated/rulebooks/bridge.rb:40
+msgid "These contract points are doubled if the contract was doubled and multiplied by four if it was redoubled. A contract worth at least 100 of them is a game: 3 no trump, 4 hearts, 4 spades, 5 clubs and 5 diamonds are the lowest games. A smaller contract is a part score."
+msgstr "Te punkty za kontrakt podwaja się, jeśli kontrakt był skontrowany, i mnoży przez cztery po rekontrze. Kontrakt warty co najmniej 100 takich punktów to końcówka: najniższe końcówki to 3 bez atu, 4 kiery, 4 piki, 5 trefli i 5 kar. Mniejszy kontrakt to częściówka."
 
 #: lib/game_room_presence_screen.rb:42
 msgid "These counts come from recent reports by updated clients. Reports expire after about five to six minutes; rooms without an updated client reporting them may be missing."
@@ -22258,6 +22937,10 @@ msgstr "Ta akcja jest teraz niedostępna."
 msgid "This bid is not allowed with the selected Spades rules."
 msgstr "Ta deklaracja jest niedozwolona przy wybranych zasadach Pików."
 
+#: games/bridge.rb:278
+msgid "This call is not allowed now. A bid must be higher than the last bid, and you may only double or redouble your opponents."
+msgstr "Ta zapowiedź jest teraz niedozwolona. Odzywka musi być wyższa od poprzedniej, a kontrować i rekontrować można tylko przeciwników."
+
 #: games/duck_racing_support/presentation.rb:119
 msgid "This card affects you."
 msgstr "Ta karta działa na ciebie."
@@ -22289,6 +22972,10 @@ msgstr "Ta karta nie spełnia żądania wartości."
 #: games/three_five_eight.rb:389
 msgid "This card exchange is not available."
 msgstr "Ta wymiana kart nie jest dostępna."
+
+#: games/bridge.rb:280
+msgid "This card is not in the hand that is to play."
+msgstr "Tej karty nie ma w ręce, która jest na ruchu."
 
 #: games/makao.rb:453 games/ninety_nine.rb:400 games/spades.rb:537 games/three_five_eight.rb:390 games/tysiac.rb:510
 msgid "This card is not in your hand."
@@ -22929,6 +23616,10 @@ msgstr "Karta na stole: %{card}; zadeklarowany kolor: %{suit}%{request}."
 msgid "Total across matches: %{points}."
 msgstr "Suma wszystkich partii: %{points}."
 
+#: games/bridge/presentation.rb:369
+msgid "Total: %{scores}."
+msgstr "Razem: %{scores}."
+
 #: lib/tournaments/tournament_start_runtime.rb:50 lib/tournaments/tournament_start_runtime.rb:64
 msgid "Tournament"
 msgstr "Turniej"
@@ -23191,6 +23882,10 @@ msgstr "Limit lew (od 20 do 100)"
 
 msgid "Tricks and marriages"
 msgstr "Lewy i meldunki"
+
+#: games/bridge/presentation.rb:513
+msgid "Tricks: %{tricks}."
+msgstr "Lewy: %{tricks}."
 
 #: games/tysiac.rb:488
 msgid "Trump: %{suit}."
@@ -23905,6 +24600,10 @@ msgstr "V: odczytaj kwotę do wyrównania."
 msgid "V: read the current colour."
 msgstr "V: odczytaj obecny kolor."
 
+#: games/generated/rulebooks/bridge.rb:87
+msgid "V: read the deal, vulnerability, contract and tricks."
+msgstr "V: odczytaj rozdanie, założenia, kontrakt i lewy."
+
 #: games/generated/rulebooks/war.rb:25
 msgid "V: read the result of the last battle."
 msgstr "V: odczytaj wynik ostatniej bitwy."
@@ -24262,6 +24961,10 @@ msgstr "Wodociągi"
 msgid "Welcome to the audio tutorial. Here you will learn the sounds used in this game. Use the arrow keys to browse. Press Space or Enter to play a sound."
 msgstr "Witaj w tutorialu. Tu poznasz dźwięki używane w tej grze. Poruszaj się strzałkami. Aby odtworzyć dźwięk, wciśnij Spację lub Enter."
 
+#: games/bridge/presentation.rb:157
+msgid "West"
+msgstr "Zachód"
+
 #: content/monopoly_boards.rb:72
 msgid "West station"
 msgstr "Dworzec Zachodni"
@@ -24298,6 +25001,10 @@ msgstr "Ile warte są poszczególne układy"
 #: games/ludo.rb:74
 msgid "What the five checkboxes change"
 msgstr "Co zmienia pięć opcji"
+
+#: games/generated/rulebooks/bridge.rb:9
+msgid "What the game is about"
+msgstr "Na czym polega gra"
 
 #: games/generated/rulebooks/ludo.rb:15
 msgid "What the table options change"
@@ -24860,9 +25567,25 @@ msgstr "Jesteś już przy innym stole."
 msgid "You are already at this table."
 msgstr "Jesteś już przy tym stole."
 
-#: games/base.rb:304
+#: games/base.rb:304 games/bridge/presentation.rb:34
 msgid "You are bidding."
 msgstr "Licytujesz."
+
+#: games/bridge/presentation.rb:527
+msgid "You are declarer and also play dummy's cards."
+msgstr "Rozgrywasz i grasz także kartami dziadka."
+
+#: games/bridge/presentation.rb:531
+msgid "You are defending; your side needs %{count} tricks to defeat the contract."
+msgstr "Bronisz się; żeby obłożyć kontrakt, twoja para potrzebuje %{count} lew."
+
+#: games/bridge/presentation.rb:529
+msgid "You are dummy."
+msgstr "Jesteś dziadkiem."
+
+#: games/bridge/presentation.rb:449
+msgid "You are dummy. Your partner plays your cards."
+msgstr "Jesteś dziadkiem. Twoimi kartami gra partner."
 
 #: games/generated/rulebooks/monopoly.rb:35
 msgid "You are imprisoned only when a field, a card or three consecutive doubles sends you there. Simply stopping on the jail field is a visit. Before a prison roll, you may pay the exit fee or use a held jail card. Otherwise you have up to three turns to roll doubles. Successful doubles release you and move you by the roll, without an extra turn. After the third failed attempt, you pay and move by that roll."
@@ -24871,6 +25594,10 @@ msgstr "Do więzienia trafiasz na polecenie pola, karty albo po trzech dubletach
 #: games/ludo.rb:459 games/ludo.rb:504
 msgid "You are not a player in this game."
 msgstr "Nie jesteś graczem w tej partii."
+
+#: games/bridge/presentation.rb:438
+msgid "You are not playing at this table."
+msgstr "Nie grasz przy tym stole."
 
 #: games/spades.rb:951
 msgid "You are not playing in this round."
@@ -24923,6 +25650,10 @@ msgstr "Jesteś szpiegiem. Zobaczysz wybrane karty, gdy wszyscy pozostali wybior
 #: games/duck_racing_support/challenge_presentation.rb:131
 msgid "You are watching this challenge."
 msgstr "Obserwujesz to wyzwanie."
+
+#: games/bridge/presentation.rb:519
+msgid "You are watching this table."
+msgstr "Obserwujesz ten stół."
 
 #: games/duck_racing_support/challenge_presentation.rb:109 games/duck_racing_support/challenge_presentation.rb:246 games/duck_racing_support/challenge_presentation.rb:320
 msgid "You are watching."
@@ -25320,7 +26051,11 @@ msgstr "Musisz dołożyć do koloru, przebić wygrywającą kartę albo zagrać 
 msgid "You must follow the led suit whenever possible. If you cannot follow and a trump suit has been established, you must play a trump if you have one. Otherwise you may discard any card. Cards rank from strongest to weakest: ace, 10, king, queen, jack and 9."
 msgstr "Jeśli to możliwe, musisz dołożyć kartę w wyłożonym kolorze. Jeśli nie masz tego koloru, a ustanowiono atut, musisz zagrać atutem, jeżeli go posiadasz. W przeciwnym razie możesz odrzucić dowolną kartę. Siła kart od najwyższej do najniższej: as, 10, król, dama, walet i 9."
 
-#: games/spades.rb:539
+#: games/generated/rulebooks/bridge.rb:31
+msgid "You must follow the suit that was led if you can. If you have no card of that suit, you may play any card, including a trump, but you never have to trump. The highest trump in the trick wins it. If no trump was played, the highest card of the led suit wins. Cards of other suits cannot win the trick. The player who wins a trick leads to the next one."
+msgstr "Jeśli masz karty koloru wyjścia, musisz dołożyć do koloru. Gdy go nie masz, możesz zagrać dowolną kartę, także atut, ale nigdy nie musisz przebijać. Lewę bierze najwyższy atut, a jeśli nikt nie zagrał atutu — najwyższa karta koloru wyjścia. Karty innych kolorów nie mogą wziąć lewy. Gracz, który wziął lewę, wychodzi do następnej."
+
+#: games/bridge.rb:284 games/spades.rb:539
 msgid "You must follow the suit that was led."
 msgstr "Musisz dołożyć kartę w wyłożonym kolorze."
 
@@ -25384,6 +26119,10 @@ msgstr "Wyrzuciłeś %{value}. Wybierz pionek do ruchu"
 #: games/tysiac.rb:528
 msgid "You set aside %{card}."
 msgstr "Odkładasz: %{card}."
+
+#: games/bridge/presentation.rb:522
+msgid "You sit %{seat}; your partner is %{partner}."
+msgstr "Twoje miejsce: %{seat}; partner: %{partner}."
 
 #: games/tysiac.rb:1468 games/tysiac.rb:1575
 msgid "You sit out this deal."
@@ -25512,6 +26251,14 @@ msgstr "Twoja oferta aukcyjna:"
 msgid "Your availability changed in another client. Enable it again if you want to participate."
 msgstr "Twoja dostępność zmieniła się w innym kliencie. Włącz ją ponownie, jeśli chcesz uczestniczyć."
 
+#: games/bridge/presentation.rb:287
+msgid "Your call. No bid has been made yet."
+msgstr "Twoja zapowiedź. Nie padła jeszcze żadna odzywka."
+
+#: games/bridge/presentation.rb:289
+msgid "Your call. The last bid is %{call} by %{seat}."
+msgstr "Twoja zapowiedź. Ostatnia odzywka: %{call}, %{seat}."
+
 #: games/duck_racing_support/presentation.rb:210
 msgid "Your cards"
 msgstr "Twoje karty"
@@ -25610,9 +26357,21 @@ msgstr[0] "Masz pustą rękę, więc bierzesz do niej %{count} kartę ze swojego
 msgstr[1] "Masz pustą rękę, więc bierzesz do niej %{count} karty ze swojego stosu."
 msgstr[2] "Masz pustą rękę, więc bierzesz do niej %{count} kart ze swojego stosu."
 
-#: games/makao.rb:940 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:883 games/spades.rb:919 games/three_five_eight.rb:981 games/tysiac.rb:1577
+#: games/bridge/presentation.rb:439 games/makao.rb:940 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:883 games/spades.rb:919 games/three_five_eight.rb:981 games/tysiac.rb:1577
 msgid "Your hand is empty."
 msgstr "Twoja ręka jest pusta."
+
+#: games/bridge/presentation.rb:441
+msgid "Your hand, %{count} cards: %{cards}. %{points} high card points."
+msgstr "Twoja ręka, kart: %{count}: %{cards}. Punkty honorowe: %{points}."
+
+#: games/bridge/presentation.rb:272
+msgid "Your hand, %{seat}, %{points} high card points"
+msgstr "Twoja ręka, %{seat}, punkty honorowe: %{points}"
+
+#: games/bridge/presentation.rb:269
+msgid "Your hand, %{seat}: you are dummy and your partner plays these cards"
+msgstr "Twoja ręka, %{seat}: jesteś dziadkiem, tymi kartami gra partner"
 
 #: games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:885 games/spades.rb:921 games/three_five_eight.rb:982 games/tysiac.rb:1578
 msgid "Your hand: %{cards}."
@@ -25834,6 +26593,10 @@ msgstr "Z: wyczyść cały szkic."
 msgid "Z: find the next playable card on your turn, outside the dirty-trick window."
 msgstr "Z: znajdź następną kartę możliwą do zagrania we własnej turze, poza czasem na nieczystą zagrywkę."
 
+#: games/generated/rulebooks/bridge.rb:79
+msgid "Z: go to the next playable card in the hand that is to play; play it if it is the only one."
+msgstr "Z: przejdź do następnej karty, którą można zagrać z ręki będącej na ruchu; jeśli jest tylko jedna, zagraj ją."
+
 #: games/generated/rulebooks/scientific_war.rb:30
 msgid "Z: move to the next card in your hand; if it is your only card, play it."
 msgstr "Z: przejdź do następnej karty w ręce; jeśli to twoja jedyna karta, zagraj ją."
@@ -25929,17 +26692,25 @@ msgstr "karta kościelna zwiększająca dwie kości"
 msgid "a card"
 msgstr "karta"
 
+#: games/bridge/presentation.rb:375
+msgid "a reference of %{points} for %{side}"
+msgstr "%{points} dla pary %{side}"
+
 #: games/monopoly/presentation.rb:97
 msgid "accept the trade"
 msgstr "zaakceptuj wymianę"
 
-#: games/card_game.rb:55 games/makao.rb:27 games/ninety_nine.rb:37 games/poker.rb:34 games/spades.rb:43 games/three_five_eight.rb:37 games/tysiac.rb:29
+#: games/bridge/presentation.rb:192 games/card_game.rb:55 games/makao.rb:27 games/ninety_nine.rb:37 games/poker.rb:34 games/spades.rb:43 games/three_five_eight.rb:37 games/tysiac.rb:29
 msgid "ace"
 msgstr "as"
 
 #: games/poker.rb:317
 msgid "all in"
 msgstr "all-in"
+
+#: games/bridge/presentation.rb:375
+msgid "an even reference"
+msgstr "zero"
 
 msgid "answer revealed"
 msgstr "odpowiedź ujawniona"
@@ -26032,6 +26803,10 @@ msgstr "zablokowana"
 msgid "blue"
 msgstr "niebieski"
 
+#: games/bridge/presentation.rb:225
+msgid "both sides vulnerable"
+msgstr "obie pary po partii"
+
 #: games/battleship.rb:632
 msgid "bow"
 msgstr "dziób"
@@ -26055,6 +26830,10 @@ msgstr "przeglądaj posiadłości innych graczy"
 #: games/scrabble_ui.rb:42
 msgid "browse played words"
 msgstr "przeglądanie ułożonych słów"
+
+#: games/bridge/presentation.rb:144
+msgid "browse the auction"
+msgstr "przeglądaj licytację"
 
 #: games/monopoly/presentation.rb:58
 msgid "browse the board"
@@ -26221,7 +27000,7 @@ msgstr[2] "najbliższa odpowiedź %{number}, %{attempts} prób"
 msgid "closest answer %{number}, %{attempts} attempts"
 msgstr "najbliższa odpowiedź: %{number}, próby: %{attempts}"
 
-#: games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:19 games/poker.rb:33 games/spades.rb:25 games/three_five_eight.rb:32 games/tysiac.rb:18
+#: games/bridge/presentation.rb:188 games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:19 games/poker.rb:33 games/spades.rb:25 games/three_five_eight.rb:32 games/tysiac.rb:18
 msgid "clubs"
 msgstr "trefl"
 
@@ -26295,7 +27074,7 @@ msgstr "zgłoś UNO albo wyłap jego brak"
 msgid "describe the selected card"
 msgstr "opis wybranej karty"
 
-#: games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:20 games/poker.rb:33 games/spades.rb:26 games/three_five_eight.rb:32 games/tysiac.rb:19
+#: games/bridge/presentation.rb:188 games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:20 games/poker.rb:33 games/spades.rb:26 games/three_five_eight.rb:32 games/tysiac.rb:19
 msgid "diamonds"
 msgstr "karo"
 
@@ -26327,6 +27106,10 @@ msgstr "rozłączony"
 msgid "dollars"
 msgstr "dolary"
 
+#: games/bridge/presentation.rb:198
+msgid "double"
+msgstr "kontra"
+
 #: lib/game_surfaces/word_board.rb:189
 msgid "double letter"
 msgstr "podwójna premia literowa"
@@ -26334,6 +27117,13 @@ msgstr "podwójna premia literowa"
 #: lib/game_surfaces/word_board.rb:189
 msgid "double word"
 msgstr "podwójna premia słowna"
+
+#: games/bridge/presentation.rb:358
+msgid "down %{count} trick"
+msgid_plural "down %{count} tricks"
+msgstr[0] "%{count} wpadka"
+msgstr[1] "%{count} wpadki"
+msgstr[2] "%{count} wpadek"
 
 #: lib/game_surfaces/word_board.rb:198
 msgid "draft"
@@ -26370,6 +27160,10 @@ msgstr "dobieranie kostek"
 #: games/uno.rb:20
 msgid "draw two"
 msgstr "dobierz dwie"
+
+#: games/bridge.rb:149
+msgid "duplicate, %{boards} boards, %{scoring}"
+msgstr "sportowy, rozdań: %{boards}, %{scoring}"
 
 msgid "duplicate, 5 points"
 msgstr "powtórzona, 5 punktów"
@@ -26521,7 +27315,7 @@ msgstr "odgadnięto"
 msgid "hard category pool"
 msgstr "trudna pula kategorii"
 
-#: games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:21 games/poker.rb:33 games/spades.rb:27 games/three_five_eight.rb:33 games/tysiac.rb:20
+#: games/bridge/presentation.rb:188 games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:21 games/poker.rb:33 games/spades.rb:27 games/three_five_eight.rb:33 games/tysiac.rb:20
 msgid "hearts"
 msgstr "kier"
 
@@ -26583,7 +27377,7 @@ msgstr "niepoprawna, 0 punktów"
 msgid "individual play"
 msgstr "gra indywidualna"
 
-#: games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:34 games/poker.rb:34 games/spades.rb:40 games/three_five_eight.rb:36 games/tysiac.rb:25
+#: games/bridge/presentation.rb:192 games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:34 games/poker.rb:34 games/spades.rb:40 games/three_five_eight.rb:36 games/tysiac.rb:25
 msgid "jack"
 msgstr "walet"
 
@@ -26616,7 +27410,7 @@ msgstr "zachowaj kość %{number}"
 msgid "kept"
 msgstr "zachowana"
 
-#: games/card_game.rb:55 games/chess.rb:280 games/chess.rb:870 games/makao.rb:27 games/ninety_nine.rb:36 games/poker.rb:34 games/spades.rb:42 games/three_five_eight.rb:37 games/tysiac.rb:27
+#: games/bridge/presentation.rb:192 games/card_game.rb:55 games/chess.rb:280 games/chess.rb:870 games/makao.rb:27 games/ninety_nine.rb:36 games/poker.rb:34 games/spades.rb:42 games/three_five_eight.rb:37 games/tysiac.rb:27
 msgid "king"
 msgstr "król"
 
@@ -26664,6 +27458,17 @@ msgstr "słuchaj z perspektywy drugiego gracza"
 msgid "listen from the third player's perspective"
 msgstr "słuchaj z perspektywy trzeciego gracza"
 
+#: games/bridge/presentation.rb:351
+msgid "made exactly"
+msgstr "wypełniony bez nadróbek"
+
+#: games/bridge/presentation.rb:354
+msgid "made with %{count} overtrick"
+msgid_plural "made with %{count} overtricks"
+msgstr[0] "wypełniony z %{count} nadróbką"
+msgstr[1] "wypełniony z %{count} nadróbkami"
+msgstr[2] "wypełniony z %{count} nadróbkami"
+
 #: games/monopoly/presentation.rb:317
 msgid "magenta group"
 msgstr "grupa purpurowa"
@@ -26675,6 +27480,14 @@ msgstr "pula główna"
 #: games/spades.rb:599 games/tysiac.rb:1565
 msgid "make a bid"
 msgstr "złożyć deklarację"
+
+#: games/bridge/presentation.rb:118
+msgid "make a call"
+msgstr "zgłoś zapowiedź"
+
+#: games/bridge.rb:151 games/bridge.rb:91
+msgid "matchpoints"
+msgstr "zapis maksymalny"
 
 #: games/categories.rb:1163
 msgid "medium category pool"
@@ -26705,6 +27518,10 @@ msgstr "zastawiona"
 
 msgid "navigate the board"
 msgstr "przeglądanie planszy"
+
+#: games/bridge/presentation.rb:226
+msgid "neither side vulnerable"
+msgstr "obie pary przed partią"
 
 #: games/base/shortcuts.rb:165
 msgid "next playable card"
@@ -26737,6 +27554,10 @@ msgstr "żadnych kości"
 msgid "no pawns on the board"
 msgstr "brak pionków na planszy"
 
+#: games/bridge/presentation.rb:374
+msgid "no score"
+msgstr "brak zapisu"
+
 #: games/categories.rb:205
 msgid "no time limit"
 msgstr "bez limitu czasu"
@@ -26745,7 +27566,7 @@ msgstr "bez limitu czasu"
 msgid "no trump"
 msgstr "bez atu"
 
-#: games/makao.rb:971 games/mille_bornes/presentation.rb:250 games/monopoly/presentation.rb:279
+#: games/bridge/presentation.rb:234 games/makao.rb:971 games/mille_bornes/presentation.rb:250 games/monopoly/presentation.rb:279
 msgid "none"
 msgstr "brak"
 
@@ -26820,7 +27641,7 @@ msgstr "częściowo poprawna, 1 punkt"
 msgid "partially correct, 5 points"
 msgstr "częściowo poprawna, 5 punktów"
 
-#: games/scrabble_ui.rb:25
+#: games/bridge/presentation.rb:197 games/scrabble_ui.rb:25
 msgid "pass"
 msgstr "pas"
 
@@ -26927,7 +27748,7 @@ msgstr "fioletowy"
 msgid "purple group"
 msgstr "grupa fioletowa"
 
-#: games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:35 games/poker.rb:34 games/spades.rb:41 games/three_five_eight.rb:36 games/tysiac.rb:26
+#: games/bridge/presentation.rb:192 games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:35 games/poker.rb:34 games/spades.rb:41 games/three_five_eight.rb:36 games/tysiac.rb:26
 msgid "queen"
 msgstr "dama"
 
@@ -26975,6 +27796,10 @@ msgstr "odczytaj kartę %{number}"
 #: games/makao.rb:390 games/uno.rb:474 games/war.rb:188
 msgid "read card counts"
 msgstr "odczytaj liczbę kart"
+
+#: games/bridge/presentation.rb:141
+msgid "read dummy's hand"
+msgstr "odczytaj rękę dziadka"
 
 #: games/mille_bornes/presentation.rb:94
 msgid "read every player's mileage, hazards and safeties"
@@ -27028,6 +27853,10 @@ msgstr "odczytaj wyniki"
 msgid "read the Scriptorium"
 msgstr "odczytuje skryptorium"
 
+#: games/bridge/presentation.rb:143
+msgid "read the auction"
+msgstr "odczytaj licytację"
+
 #: games/checkers.rb:369 games/chess.rb:264
 msgid "read the available moves of the current piece"
 msgstr "odczytaj dostępne ruchy bieżącej figury"
@@ -27051,6 +27880,10 @@ msgstr "odczytaj kwotę do sprawdzenia"
 #: lib/game_shortcuts.rb:12
 msgid "read the cards on the table"
 msgstr "odczytać karty na stole"
+
+#: games/bridge/presentation.rb:142
+msgid "read the contract"
+msgstr "odczytaj kontrakt"
 
 #: games/uno.rb:473
 msgid "read the current colour"
@@ -27130,6 +27963,10 @@ msgstr "odczytaj pulę"
 #: games/makao.rb:386
 msgid "read the prepared packet"
 msgstr "odczytaj przygotowaną paczkę"
+
+#: games/bridge/presentation.rb:146
+msgid "read the previous trick"
+msgstr "odczytaj poprzednią lewę"
 
 #: games/biblios.rb:298
 msgid "read the public space"
@@ -27299,6 +28136,10 @@ msgstr "czerwony"
 msgid "red group"
 msgstr "grupa czerwona"
 
+#: games/bridge/presentation.rb:199
+msgid "redouble"
+msgstr "rekontra"
+
 #: lib/tournaments/local_readiness_screen.rb:156
 msgid "refused"
 msgstr "odmowa"
@@ -27366,6 +28207,14 @@ msgstr "sędzia rotacyjny"
 #: games/categories.rb:1237
 msgid "round completed"
 msgstr "runda zakończona"
+
+#: games/bridge.rb:155
+msgid "rubber, honours scored"
+msgstr "robrowy, z honorami"
+
+#: games/bridge.rb:155
+msgid "rubber, without honours"
+msgstr "robrowy, bez honorów"
 
 #: content/monopoly_boards.rb:39
 msgid "rubles"
@@ -27447,7 +28296,7 @@ msgstr "sortuj karty według koloru"
 msgid "sort cards by value"
 msgstr "sortuj karty według wartości"
 
-#: games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:22 games/poker.rb:33 games/spades.rb:28 games/three_five_eight.rb:33 games/tysiac.rb:21
+#: games/bridge/presentation.rb:188 games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:22 games/poker.rb:33 games/spades.rb:28 games/three_five_eight.rb:33 games/tysiac.rb:21
 msgid "spades"
 msgstr "pik"
 

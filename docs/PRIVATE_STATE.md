@@ -31,6 +31,16 @@ one process. Separate ELTEN processes writing to one profile are not a supported
 multi-writer setup. The local storage format does not change the commit/reveal
 protocol or game outcomes.
 
+## Card hands dealt from a public seed
+
+Spades, Thousand and Bridge deal every hand from the seed recorded in the
+public `deal` event, and each client shows only the viewer's own hand (and,
+in Bridge, dummy after the opening lead). This hides the cards in the ordinary
+view, not from a modified client that recomputes the deal. It is acceptable
+for social play but is a known limitation for duplicate Bridge as a
+competition. A tamper-resistant deal would need per-seat commitments built on
+`lib/hidden_submissions.rb`; it is not implemented.
+
 ## Boundaries for changing tables and participants
 
 Transferring the table host role, replacing a player and leaving a table recheck

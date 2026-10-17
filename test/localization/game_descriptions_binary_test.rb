@@ -15,4 +15,4 @@ app = EltenGameRoom.allocate
     assert(game.short_description == expected.fetch(id), "#{id}: binary load changed approved Polish text") if language == 'pl'
   end
 end
-puts 'PASS binary-source descriptions: all 33 games in PL/EN/CS/ES/RU'
+puts 'PASS binary-source descriptions: all 35 games in PL/EN/CS/ES/RU'

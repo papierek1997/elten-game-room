@@ -1,0 +1,146 @@
+{
+  "source": "games/bridge.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": { "cs": "O čem hra je" },
+      "paragraphs": [
+        { "cs": "Bridž je karetní hra pro čtyři hráče ve dvou dvojicích. Ty a tvůj partner hrajete společně proti druhé dvojici. Každé rozdání má dvě části: nejprve dražbu, ve které dvojice soupeří o závazek, a potom sehrávku, ve které se dvojice, která závazek vydražila, snaží uhrát alespoň tolik zdvihů, kolik slíbila." },
+        { "cs": "Body se získávají za splněné závazky a za poražení závazků soupeřů. Vyhrává dvojice, která má na konci zápasu více bodů." }
+      ]
+    },
+    {
+      "id": "deal",
+      "title": { "cs": "Dvojice a rozdání" },
+      "paragraphs": [
+        { "cs": "Hráči se jmenují podle světových stran. Sever hraje s Jihem a Východ se Západem; partneři sedí proti sobě. Pokud si stůl zvolí týmy, dva členové jednoho týmu jsou partneři. Hraje se vždy po směru hodinových ručiček: Sever, Východ, Jih, Západ." },
+        { "cs": "Rozdá se všech 52 karet, takže každý dostane 13. Klávesou H si poslechneš svůj list barvu po barvě od nejvyšší karty a nakonec počet figurových bodů: eso má 4 body, král 3, dáma 2 a kluk 1. Tyto body se nezapisují, pomáhají ale odhadnout sílu listu v dražbě. Celý balíček jich má 40, takže průměrný list má 10 bodů a 12 nebo více obvykle stačí k zahájení dražby." },
+        { "cs": "V každé barvě je nejvyšší eso, potom král, dáma, kluk, desítka a další karty až po dvojku." }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": { "cs": "Dražba" },
+      "paragraphs": [
+        { "cs": "Dražbu zahajuje rozdávající a ostatní pokračují po směru hodinových ručiček. Když jsi na řadě, v herním poli se objeví seznam hlášek, které můžeš použít. Vyber hlášku šipkami a stiskni Enter. Stejný seznam otevře i klávesa B." },
+        { "cs": "Licitace určuje počet zdvihů a trumfovou barvu, nebo hru bez trumfů. K uvedenému číslu se přičítá šest: 1 srdce slibuje 7 ze 13 zdvihů se srdci jako trumfy a 4 piky slibují 10 zdvihů s piky jako trumfy. Každá licitace musí být vyšší než předchozí. Vyšší číslo vždy přebíjí nižší a při stejném čísle jsou barvy seřazeny od nejnižší: kříže, kára, srdce, piky a bez trumfů. Po 1 piku můžeš licitovat 1 bez trumfů nebo cokoli na úrovni 2, ale ne 1 srdce." },
+        { "cs": "Místo licitace můžeš použít jednu z těchto hlášek:" },
+        { "cs": "- Pas: teď nechceš licitovat. Pas ti nebrání ozvat se později ve stejné dražbě." },
+        { "cs": "- Kontra: je možná jen po licitaci soupeře, i když po ní následovaly pasy. Pokud se tato licitace stane závazkem, obě strany získají víc: hlavní hráč za splnění a obránci za pád." },
+        { "cs": "- Rekontra: je možná jen tehdy, když soupeř kontroval licitaci tvé dvojice. Ještě jednou zvyšuje sázky." },
+        { "cs": "Dražba končí, když po licitaci tři hráči za sebou pasují. Poslední licitace se stává závazkem. Pokud hned na začátku pasují všichni čtyři, nikdo nezíská body a karty znovu rozdá další hráč." },
+        { "cs": "Klávesa L přečte celou dražbu a Ctrl+L umožní procházet ji hlášku po hlášce." }
+      ]
+    },
+    {
+      "id": "contract",
+      "title": { "cs": "Závazek, hlavní hráč a stůl" },
+      "paragraphs": [
+        { "cs": "Dvojice, která dala poslední licitaci, musí uhrát slíbený počet zdvihů a druhá dvojice se brání. Hlavním hráčem se stane ten hráč této dvojice, který jako první jmenoval barvu závazku, nebo bez trumfů. Když například Sever zahájí 1 srdce, Jih zvýší na 4 srdce a všichni pasují, hlavním hráčem je Sever, přestože poslední licitaci dal Jih." },
+        { "cs": "První kartu, výnos, zahraje hráč vlevo od hlavního hráče. Potom se partner hlavního hráče stane stolem: jeho karty leží otevřeně pro všechny a hlavní hráč jimi hraje stejně jako svými. Stůl se dál rozdání neúčastní." },
+        { "cs": "Klávesa K řekne závazek, hlavního hráče a kolik zdvihů už hlavní hráč uhrál." }
+      ]
+    },
+    {
+      "id": "play",
+      "title": { "cs": "Sehrávka" },
+      "paragraphs": [
+        { "cs": "Každý zdvih tvoří čtyři karty, jedna od každého hráče po směru hodinových ručiček. Chceš-li zahrát, přejdi šipkami na kartu ve svém listu a stiskni Enter. Klávesa Z tě přesune na další kartu, kterou smíš zahrát, a Shift+Z na předchozí; pokud můžeš zahrát jen jednu kartu, Z ji rovnou zahraje." },
+        { "cs": "Máš-li kartu vynesené barvy, musíš ji přiznat. Když ji nemáš, smíš zahrát jakoukoli kartu včetně trumfu, ale přebíjet nikdy nemusíš. Zdvih bere nejvyšší trumf, a pokud nikdo trumf nezahrál, nejvyšší karta vynesené barvy. Karty ostatních barev zdvih vzít nemohou. Kdo zdvih vzal, vynáší do dalšího." },
+        { "cs": "Jako hlavní hráč hraješ i kartami stolu. Když je na řadě stůl, stiskni Tab a přejdi na seznam jeho karet, nebo stiskni Z, které tě rovnou přesune na karty, jež stůl smí zahrát, a kartu vyber Enterem. List stolu si klávesou D kdykoli přečte kdokoli." },
+        { "cs": "Klávesa C přečte karty v aktuálním zdvihu a F vynesenou barvu. P zopakuje předchozí zdvih i s tím, kdo ho vzal." },
+        { "cs": "Po všech 13 zdvizích se rozdání spočítá a další rozdává následující hráč po směru hodinových ručiček." }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": { "cs": "Body za závazek" },
+      "paragraphs": [
+        { "cs": "Počítají se jen zdvihy nad prvních šest. Když hlavní hráč závazek splní, každý zdvih závazku má hodnotu:" },
+        { "cs": "- 20 bodů v křížích nebo kárech;" },
+        { "cs": "- 30 bodů v srdcích nebo picích;" },
+        { "cs": "- 40 bodů za první zdvih bez trumfů a 30 za každý další." },
+        { "cs": "Tyto body za závazek se po kontře zdvojnásobí a po rekontře zečtyřnásobí. Závazek za alespoň 100 takových bodů je hra: nejnižší hry jsou 3 bez trumfů, 4 srdce, 4 piky, 5 křížů a 5 kár. Menší závazek je částečný závazek." },
+        { "cs": "Hra v manši zvyšuje odměny i tresty. Na začátku každého rozdání zazní, kdo je v manši a kdo před manší; klávesa V to zopakuje spolu s číslem rozdání, rozdávajícím, závazkem a zdvihy." },
+        { "cs": "Zdvihy navíc jsou přezdvihy. Bez kontry má každý hodnotu zdvihu závazku v dané barvě. Po kontře přináší každý přezdvih 100 bodů, v manši 200; po rekontře 200 nebo 400. Za splnění kontrovaného závazku se přidává 50 bodů, za splnění rekontrovaného 100." },
+        { "cs": "Malý slem, tedy závazek na úrovni 6, přináší prémii 500, v manši 750. Velký slem, závazek na úrovni 7, přináší 1000, v manši 1500." },
+        { "cs": "Pokud hlavní hráč uhraje málo zdvihů, obránci získají body za každý chybějící zdvih, tedy pád:" },
+        { "cs": "- bez kontry: 50 za zdvih, v manši 100;" },
+        { "cs": "- s kontrou před manší: 100 za první pád, po 200 za druhý a třetí a po 300 za každý další;" },
+        { "cs": "- s kontrou v manši: 200 za první pád a po 300 za každý další;" },
+        { "cs": "- s rekontrou: dvojnásobek hodnoty s kontrou." },
+        { "cs": "Například 2 piky s kontrou před manší splněné s jedním přezdvihem přinesou 120 za závazek, 50 za splnění kontrovaného závazku a 100 za přezdvih. Stejný závazek se dvěma pády dá obráncům 300." }
+      ]
+    },
+    {
+      "id": "rubber",
+      "title": { "cs": "Hra na robr" },
+      "paragraphs": [
+        { "cs": "Ve výchozím nastavení se u stolu hraje na robr. Robr končí, když jedna dvojice vyhraje dvě hry, a zápas vyhrává dvojice s vyšším celkovým počtem bodů. Obvykle je to dvojice, která vyhrála robr, ale ne vždy; při stejném součtu je remíza." },
+        { "cs": "Body za závazek se zapisují pod čáru a všechny ostatní nad čáru. Hru vyhraje dvojice, jejíž body pod čarou dosáhnou 100, ať už v jednom rozdání, nebo z několika částečných závazků. Po vyhrané hře začínají obě dvojice další hru od nuly pod čarou; částečné závazky, které soupeři měli k předchozí hře, jim už nepomohou." },
+        { "cs": "Dvojice, která vyhrála hru, je do konce robru v manši. Za vyhraný robr se získá 700 bodů, pokud soupeři nevyhráli žádnou hru, a 500, pokud vyhráli jednu." },
+        { "cs": "Nad čáru se zapisují i honéry, ať je drží kdokoli, i obránce. Čtyři z pěti nejvyšších trumfů (eso, král, dáma, kluk, desítka) v jednom listu přinášejí 100 a všech pět 150. Bez trumfů přinášejí všechna čtyři esa v jednom listu 150. Počítání honérů lze vypnout v nastavení stolu." },
+        { "cs": "Klávesa S přečte body pod čarou a nad čarou, vyhrané hry a součet každé dvojice a potom stav rozehrané hry." }
+      ]
+    },
+    {
+      "id": "duplicate",
+      "title": { "cs": "Sportovní bridž" },
+      "paragraphs": [
+        { "cs": "V nastavení stolu můžeš místo toho zvolit sportovní bridž. Zápas pak trvá stanovený počet rozdání: 4, 8, 12, 16 nebo 24, výchozí je 8. Číslo rozdání určuje rozdávajícího a manše ve stejném cyklu jako v bridžových klubech. Rozdání 1 rozdává Sever a obě dvojice jsou před manší, rozdání 2 Východ s Severem a Jihem v manši, rozdání 3 Jih s Východem a Západem v manši a rozdání 4 Západ s oběma dvojicemi v manši." },
+        { "cs": "Každé rozdání se počítá zvlášť. Hra přináší prémii 300, v manši 500, a částečný závazek 50. Vše ostatní se počítá, jak je popsáno výše. Nejsou zde honéry ani robr." },
+        { "cs": "V klubu se stejná rozdání hrají u mnoha stolů a dvojice porovnávají své výsledky. Tady je jen jeden stůl, takže tvůj výsledek se porovnává s referenčním výsledkem: odhadem, kolik takové karty obvykle přinesou, podle součtu figurových bodů silnější dvojice. Když mají obě dvojice po 20 bodech, referenční výsledek je nula. S 23 body by silnější dvojice měla získat 110, s 26 body 400, v manši 600, a s 33 body malý slem za 980, v manši 1430. Odhad nebere ohled na rozložení karet, takže dobrý fit nebo neobvyklé rozložení může mít mnohem větší hodnotu." },
+        { "cs": "Způsob porovnání závisí na zápisu zvoleném u stolu:" },
+        { "cs": "- IMPy (výchozí): rozdíl od referenčního výsledku se převede na mezinárodní zápasové body. Rozdíl do 10 bodů nic nepřinese, 20 až 40 je 1 IMP, 50 až 80 jsou 2 a 90 až 120 jsou 3. Větší rozdíly přinášejí víc, ale pomaleji: 420 je 9 IMPů a 4000 nebo více je maximálních 24. IMPy získá dvojice, která dopadla lépe než referenční výsledek." },
+        { "cs": "- Maxima: v každém rozdání získá dvojice, která dopadla lépe než referenční výsledek, 2 body a druhá 0; při stejném výsledku dostane každá dvojice 1. Konečný výsledek je procento z bodů, které bylo možné získat." },
+        { "cs": "Rozdání, ve kterém všichni čtyři pasovali, se také počítá: má výsledek nula a porovná se s referenčním výsledkem, takže pas se silnými kartami stojí body. Po posledním rozdání vyhrává dvojice s více IMPy nebo body; při stejném součtu je remíza. Klávesa S přečte dosavadní výsledek." }
+      ]
+    },
+    {
+      "id": "bots",
+      "title": { "cs": "Dražba s počítačovým partnerem" },
+      "paragraphs": [
+        { "cs": "Počítačoví hráči vidí jen své karty, stůl a hlášky a karty, které vidí všichni. Dražují jednoduchým přirozeným systémem, díky kterému jejich hláškám snadno porozumíš:" },
+        { "cs": "- 1 bez trumfů znamená 15 až 17 bodů a vyrovnaný list, 2 bez trumfů 20 nebo 21 bodů." },
+        { "cs": "- Zahájení 1 srdce nebo 1 pik slibuje alespoň pět karet v této barvě a obvykle 12 nebo více bodů. Bez pětilisté drahé barvy zahájí bot 1 káro nebo 1 kříž." },
+        { "cs": "- Zahájení 2 kára, 2 srdce nebo 2 piky je slabé: šestilistá barva a 6 až 10 bodů." },
+        { "cs": "- Zvýšení tvé barvy ukazuje podporu. Zvýšení na úroveň 2 je slabé, na 3 zve do hry a skok rovnou do hry ukazuje silný list." },
+        { "cs": "Boti nikdy nekontrují. Také hrají podle jednoduchých pravidel: druhý hráč ve zdvihu přidá nízkou kartu, pokud nemá jistý zdvih, další hráči se snaží vzít zdvih co nejnižší kartou a obránce vynáší v barvě partnera nebo ve své dlouhé barvě." }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": { "cs": "Klávesové zkratky" },
+      "paragraphs": [
+        { "cs": "Enter v seznamu hlášek: použij vybranou hlášku." },
+        { "cs": "B: vyber hlášku, když jsi na řadě, jinak přečti dražbu." },
+        { "cs": "L: přečti dražbu." },
+        { "cs": "Ctrl+L: procházej dražbu." },
+        { "cs": "K: přečti závazek a zdvihy hlavního hráče." },
+        { "cs": "Enter na kartě: zahraj ji." },
+        { "cs": "Tab: přejdi mezi svým listem a stolem." },
+        { "cs": "Z: přejdi na další kartu, kterou lze zahrát z listu, který je na řadě; je-li jediná, zahraj ji." },
+        { "cs": "Shift+Z: přejdi na předchozí kartu, kterou lze zahrát." },
+        { "cs": "H: přečti svůj list." },
+        { "cs": "D: přečti list stolu." },
+        { "cs": "C: přečti aktuální zdvih." },
+        { "cs": "Ctrl+C: procházej aktuální zdvih." },
+        { "cs": "F: přečti vynesenou barvu." },
+        { "cs": "P: přečti předchozí zdvih." },
+        { "cs": "V: přečti rozdání, manše, závazek a zdvihy." },
+        { "cs": "I: přečti své místo, partnera a roli v tomto rozdání." },
+        { "cs": "S: přečti výsledky." },
+        { "cs": "T: přečti, kdo je na řadě." },
+        { "cs": "Shift+C: seřaď karty podle barvy." },
+        { "cs": "Shift+H: seřaď karty podle hodnoty." },
+        { "cs": "Shift+M: obnov původní pořadí karet." }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "duplicate",
+    "honors": "rubber",
+    "boards": "duplicate",
+    "scoring": "duplicate"
+  }
+}

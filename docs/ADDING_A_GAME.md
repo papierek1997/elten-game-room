@@ -71,6 +71,16 @@ when several cards can be played together or a declaration must be chosen; an or
 sole playable card without these alternatives can be played automatically.
 Z/Shift+Z navigation reads only the selected card, without the hand heading.
 
+### One player acting for another seat
+
+When a rule lets one participant decide for another seat, as Bridge's declarer
+plays dummy's cards, keep the seat to play in the game state and set
+`current_player` to the participant who controls it. The screen always submits
+actions as the local participant, the session runner asks `active_actors` for
+the bot to run, and `action_for` checks the controller against the state, so no
+framework change or second executor is needed. Name the seat in turn
+announcements and include it in `required_decision_key`.
+
 ## 4. Optionally add a bot
 
 Set `supports_bots?`, expose the full list of legal actions and register a

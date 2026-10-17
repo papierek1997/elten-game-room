@@ -14,11 +14,12 @@ GameRoomBotNames::NAMES.each do |token, name|
     raise "Binary lobby bot announcement lost name" unless global.valid_encoding? && global.include?(name) && !global.include?("komputer")
   end
 end
-raise "Lost games during binary loading" unless registry.ids.length == 34
+raise "Lost games during binary loading" unless registry.ids.length == 35
 raise "Audio Ball was not loaded from binary sources" unless registry.ids.include?("audio_ball")
 raise "Quiz Party was not loaded from binary sources" unless registry.ids.include?("quiz")
 raise "Mille Bornes was not loaded from binary sources" unless registry.ids.include?("mille_bornes")
 raise "Duck Racing was not loaded from binary sources" unless registry.ids.include?("duck_racing")
+raise "Bridge was not loaded from binary sources" unless registry.ids.include?("bridge")
 %w[quiz.general.en quiz.general.ru quiz.wikidata.pl quiz.witcher.books.pl].each do |id|
   pack = GameRoomContent.registry.pack(id)
   raise "Question data loaded eagerly" if pack.verified?
@@ -72,9 +73,10 @@ end
 # second ordinary require of the checkout. No network or host UI is used.
 raise "Missing binary save engine" unless defined?(GameRoomSavedGameArchive) && GameRoomSavedGameArchive::FORMAT == 1
 raise "Missing binary saved games menu" unless EltenGameRoom::MAIN_OPTIONS.include?(RULES_CATALOG.fetch("Saved games"))
-raise "Wrong number of saveable games" unless registry.ids.count { |id| registry.build(id).supports_saved_games? } == 29
+raise "Wrong number of saveable games" unless registry.ids.count { |id| registry.build(id).supports_saved_games? } == 30
 raise "Mille Bornes saves were lost during binary loading" unless registry.build("mille_bornes").supports_saved_games?
 raise "Duck Racing saves were lost during binary loading" unless registry.build("duck_racing").supports_saved_games?
+raise "Bridge saves were lost during binary loading" unless registry.build("bridge").supports_saved_games?
 %w[reversi checkers chess].each do |id|
   game = registry.build(id)
   session = { "__players" => %w[Alice Bob], "options" => JSON.generate(game.default_options) }

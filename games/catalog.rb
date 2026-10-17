@@ -35,6 +35,7 @@ require_relative "audio_ball"
 require_relative "war"
 require_relative "scientific_war"
 require_relative "duck_racing"
+require_relative "bridge"
 require_relative "registry"
 
 module GameRoomGames
@@ -72,6 +73,7 @@ module GameRoomGames
     GameRoomGames::AudioBall,
     GameRoomGames::War,
     GameRoomGames::ScientificWar,
-    GameRoomGames::DuckRacing
+    GameRoomGames::DuckRacing,
+    GameRoomGames::Bridge
   ])
 end

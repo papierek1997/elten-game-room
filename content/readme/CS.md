@@ -41,15 +41,17 @@ Jde o dokument pouze ke čtení s nadpisem pro každou verzi. H přejde na dalš
 
 ## Co si můžete zahrát
 
-Power Games v současnosti obsahuje 34 her:
+Power Games v současnosti obsahuje 35 her:
 
-- Karetní hry: 3-5-8, 99, 1000 mil, Biblios, Makao, Piky, Poker, Rummy, Tisíc, UNO, War a Scientific War.
+- Karetní hry: 3-5-8, 99, 1000 mil, Biblios, Bridž, Makao, Piky, Poker, Rummy, Tisíc, UNO, War a Scientific War.
 - Deskové a strategické hry: Člověče, nezlob se, Čtyři v řadě, Piškvorky, Mankala, Monopoly, Reversi, Lodě, Šachy, Dáma a Závody kachen.
 - Kostky a domino: Cat, head, tail, Domino, Farkle, Mexican Train a Yahtzee.
 - Slova a vědomosti: Krowa, Kategorie, Quiz Party, Scrabble a Taboo.
 - Zvukové akční hry: Axel Pong a Audio Ball.
 
 Mnoho her nabízí několik variant. Jejich výběr, počet účastníků, dostupnost botů a další nastavení závisejí na konkrétní hře. Podrobná pravidla, bodování a ovládání popisuje část „Pravidla hry“ v programu.
+
+Bridž má dvě varianty: společenský robrový bridž a sportovní bridž, který trvá stanovený počet rozdání a každé rozdání porovnává s referenčním výsledkem v IMPech nebo na maxima. U jediného stolu je referenční výsledek odhad podle figurových bodů, nikoli výsledek jiných dvojic. Když jste na řadě, vyberte hlášku ze seznamu v herním poli šipkami a Enterem, nebo stiskněte B. Hlavní hráč hraje i kartami stolu: Tab přejde na seznam karet stolu a D přečte list stolu. L přečte dražbu, K závazek a P předchozí zdvih.
 
 Ve hře Taboo potřebujete komunikovat s ostatními hráči. Můžete k tomu využít konferenci v ELTENu, jiný komunikační program nebo hrát osobně.
 

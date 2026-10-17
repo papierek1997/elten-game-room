@@ -482,7 +482,8 @@ module GameRoomChangelog
         "When adding questions to an existing set, choose the language first, then press Enter to choose a set in a separate window. Set names no longer repeat the language code. Delete removes a selected draft after confirmation. The main-menu entry is now called Create your own quiz question sets.",
         "Question reporting with Ctrl+B and Ctrl+Shift+B now also works in Duck Racing. After leaving the table, the report form shows the question, its answers and the answer marked as correct in the set.",
         "Added seven questions to the Polish general-knowledge set, based on suggestions from bratczyk96.",
-        "Thank you to Zuzler for reporting problems with quiz questions!"
+        "Thank you to Zuzler for reporting problems with quiz questions!",
+        "Added Bridge for four players in two partnerships: social rubber bridge, or duplicate bridge at one table scored in IMPs or matchpoints. Declarer plays dummy's cards, every call and card is announced, and bots can take any seat."
       ].freeze
     ).freeze
   ].freeze

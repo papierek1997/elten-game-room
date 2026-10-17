@@ -71,8 +71,11 @@ shared mechanism only positions the cursor. UNO disables this feature entirely
 for Straights, Interceptions, Super interceptions and Buzzer cards. Poker's
 exchange-card selection and Monopoly do not use legal-play navigation.
 
-The annotations exist in UNO, Ninety-Nine, Spades, Thousand, Makao and Poker's
-exchange hand. Poker still advances to the next phase after exchange
+The annotations exist in UNO, Ninety-Nine, Spades, Thousand, Makao, Bridge and
+Poker's exchange hand. Bridge marks two hands at once: the viewer's own hand and,
+after the opening lead, dummy. Each has its own `hand_epoch`, and
+`playable_card_navigation` names whichever of the two is to play, so declarer's
+Z moves into dummy on dummy's turn. Poker still advances to the next phase after exchange
 confirmation: no new hand list was added to betting, nor automatic card
 announcements in the betting menu. The final view is not overridden by hand
 announcements either.

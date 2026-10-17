@@ -8,6 +8,10 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
 "X-Language-Name: čeština\n"
 
+#: games/bridge/presentation.rb:172
+msgid " and "
+msgstr " a "
+
 msgid "!, @, #, $, %, ^: keep one selected die of value 1, 2, 3, 4, 5 or 6. These are Shift with the corresponding number. Space: repeat what is kept and what will be rerolled."
 msgstr "!, @, #, $, %, ^: ponechat jednu vybranou kostku s hodnotou 1, 2, 3, 4, 5 nebo 6. Jde o Shift s příslušnou číslicí. Space: zopakovat, které kostky ponecháte a kterými budete házet znovu."
 
@@ -197,6 +201,18 @@ msgstr "%{challenge}: %{players}."
 #: games/uno.rb:1117
 msgid "%{colour} %{value}"
 msgstr "%{colour} %{value}"
+
+#: games/bridge/presentation.rb:363
+msgid "%{contract} by %{declarer} %{result}"
+msgstr "%{contract}, hraje %{declarer}: %{result}"
+
+#: games/bridge/presentation.rb:216
+msgid "%{contract} doubled"
+msgstr "%{contract} s kontrou"
+
+#: games/bridge/presentation.rb:217
+msgid "%{contract} redoubled"
+msgstr "%{contract} s rekontrou"
 
 msgid "%{copies} × %{set}"
 msgstr "%{copies} × %{set}"
@@ -421,6 +437,10 @@ msgstr "%{judge}; jazyk odpovědí: %{language}; %{pool}; počet kategorií na k
 msgid "%{judge}; answers in %{language}; %{time}; target: %{target} points"
 msgstr "%{judge}; jazyk odpovědí: %{language}; %{time}; cíl: %{target} bodů"
 
+#: games/bridge/presentation.rb:540
+msgid "%{label} after %{boards} of %{total} boards: %{scores}."
+msgstr "%{label} po %{boards} z %{total} rozdání: %{scores}."
+
 #: games/duck_racing.rb:144
 msgid "%{laps} lap"
 msgid_plural "%{laps} laps"
@@ -455,6 +475,38 @@ msgstr ""
 #: lib/game_surfaces/word_board.rb:141
 msgid "%{letter}, %{points} points"
 msgstr "%{letter}, body: %{points}"
+
+#: games/bridge/presentation.rb:206
+msgid "%{level} club"
+msgid_plural "%{level} clubs"
+msgstr[0] "%{level} kříž"
+msgstr[1] "%{level} kříže"
+msgstr[2] "%{level} křížů"
+
+#: games/bridge/presentation.rb:207
+msgid "%{level} diamond"
+msgid_plural "%{level} diamonds"
+msgstr[0] "%{level} káro"
+msgstr[1] "%{level} kára"
+msgstr[2] "%{level} kár"
+
+#: games/bridge/presentation.rb:208
+msgid "%{level} heart"
+msgid_plural "%{level} hearts"
+msgstr[0] "%{level} srdce"
+msgstr[1] "%{level} srdce"
+msgstr[2] "%{level} srdcí"
+
+#: games/bridge/presentation.rb:210
+msgid "%{level} no trump"
+msgstr "%{level} bez trumfů"
+
+#: games/bridge/presentation.rb:209
+msgid "%{level} spade"
+msgid_plural "%{level} spades"
+msgstr[0] "%{level} pik"
+msgstr[1] "%{level} piky"
+msgstr[2] "%{level} piků"
 
 msgid "%{mark}, %{player}'s mark"
 msgstr "%{mark}, značka hráče %{player}"
@@ -627,6 +679,10 @@ msgstr "%{player} %{score}%{barrel}"
 
 msgid "%{player} %{score}, zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "%{player} %{score}, nuly %{zeros}/3, vzdání se %{surrenders}/3%{barrel}"
+
+#: games/bridge/presentation.rb:36 games/bridge/presentation.rb:61
+msgid "%{player} (%{seat}) is bidding."
+msgstr "Dražbu má %{player} (%{seat})."
 
 msgid "%{player} accepted the trade."
 msgstr "%{player} přijímá výměnu."
@@ -1449,6 +1505,10 @@ msgstr "Hráč %{player} přikládá kámen %{tile} ke svému vlaku."
 #: games/scrabble.rb:206
 msgid "%{player} plays %{words}: %{points} points."
 msgstr "Hráč %{player} skládá %{words}; počet bodů: %{points}."
+
+#: games/bridge/presentation.rb:41 games/bridge/presentation.rb:63
+msgid "%{player} plays from dummy (%{seat})."
+msgstr "%{player} hraje ze stolu (%{seat})."
 
 #: games/chess.rb:476
 msgid "%{player} promoted the pawn to %{piece}."
@@ -2360,6 +2420,10 @@ msgstr ""
 msgid "%{player}: zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "Hráč %{player}: nuly %{zeros}/3, vzdání %{surrenders}/3%{barrel}"
 
+#: games/bridge/presentation.rb:374
+msgid "%{points} for %{side}"
+msgstr "%{points} pro %{side}"
+
 #: lib/room_presentation.rb:39
 msgid "%{points} points"
 msgstr "Počet bodů: %{points}"
@@ -2420,6 +2484,34 @@ msgstr "%{result} %{stores}"
 msgid "%{round}. %{word}: %{attempts} attempts"
 msgstr "%{round}. %{word}: počet pokusů %{attempts}"
 
+#: games/bridge/presentation.rb:457 games/bridge/presentation.rb:478
+msgid "%{seat} %{card}"
+msgstr "%{seat} %{card}"
+
+#: games/bridge/presentation.rb:163
+msgid "%{seat} (%{player})"
+msgstr "%{seat} (%{player})"
+
+#: games/bridge/presentation.rb:343
+msgid "%{seat} won the trick. Tricks: %{tricks}."
+msgstr "Zdvih bere %{seat}. Zdvihy: %{tricks}."
+
+#: games/bridge/presentation.rb:483
+msgid "%{seat}: %{call}"
+msgstr "%{seat}: %{call}"
+
+#: games/bridge/presentation.rb:320
+msgid "%{seat}: %{call}."
+msgstr "%{seat}: %{call}."
+
+#: games/bridge/presentation.rb:462
+msgid "%{seat}: %{card}"
+msgstr "%{seat}: %{card}"
+
+#: games/bridge/presentation.rb:334
+msgid "%{seat}: %{card}."
+msgstr "%{seat}: %{card}."
+
 #: games/categories.rb:205 games/uno.rb:184 lib/game_option_values.rb:60
 msgid "%{seconds} seconds"
 msgstr "%{seconds} s"
@@ -2460,6 +2552,61 @@ msgstr "Hráč %{server} bude podávat proti hráči %{receiver}."
 msgid "%{set}, %{count} tiles, up to %{players} players"
 msgstr "%{set}, počet kamenů: %{count}, maximální počet hráčů: %{players}"
 
+#: games/bridge/presentation.rb:421
+msgid "%{side} %{percent}%%"
+msgstr "%{side} %{percent} %%"
+
+#: games/bridge/presentation.rb:406
+msgid "%{side} %{score}"
+msgstr "%{side} %{score}"
+
+#: games/bridge/presentation.rb:172
+msgid "%{side} (%{players})"
+msgstr "%{side} (%{players})"
+
+#: games/bridge/presentation.rb:385
+msgid "%{side} gains %{count} IMP."
+msgid_plural "%{side} gains %{count} IMPs."
+msgstr[0] "%{side} získává %{count} IMP."
+msgstr[1] "%{side} získává %{count} IMPy."
+msgstr[2] "%{side} získává %{count} IMPů."
+
+#: games/bridge/presentation.rb:393
+msgid "%{side} score %{points} below the line."
+msgstr "%{side}: %{points} pod čarou."
+
+#: games/bridge/presentation.rb:398
+msgid "%{side} score %{points} for honours."
+msgstr "%{side}: %{points} za honéry."
+
+#: games/bridge/presentation.rb:395
+msgid "%{side} score %{points} for making a doubled contract."
+msgstr "%{side}: %{points} za splnění kontrovaného závazku."
+
+#: games/bridge/presentation.rb:394
+msgid "%{side} score %{points} for overtricks."
+msgstr "%{side}: %{points} za přezdvihy."
+
+#: games/bridge/presentation.rb:396
+msgid "%{side} score %{points} for the slam."
+msgstr "%{side}: %{points} za slem."
+
+#: games/bridge/presentation.rb:397
+msgid "%{side} score %{points} for undertricks."
+msgstr "%{side}: %{points} za pády."
+
+#: games/bridge/presentation.rb:399
+msgid "%{side} won a game."
+msgstr "%{side} vyhrává hru."
+
+#: games/bridge/presentation.rb:400
+msgid "%{side} won the rubber and score %{points}."
+msgstr "%{side} vyhrává robr: prémie %{points} bodů."
+
+#: games/bridge/presentation.rb:547
+msgid "%{side}: %{games} games, %{below} below and %{above} above the line, %{total} in total"
+msgstr "%{side}: vyhrané hry %{games}, pod čarou %{below}, nad čarou %{above}, celkem %{total}"
+
 #: games/checkers.rb:75
 msgid "%{size} by %{size} (%{fields} fields)"
 msgstr "%{size} krát %{size} (počet polí: %{fields})"
@@ -2486,6 +2633,10 @@ msgstr "%{status}; %{name}; hostitel stolu: %{owner}; uživatelé: %{users}; %{c
 #: games/three_five_eight.rb:1012
 msgid "%{suit} as trump"
 msgstr ""
+
+#: games/bridge/presentation.rb:235
+msgid "%{suit}: %{cards}"
+msgstr "%{suit}: %{cards}"
 
 #: __app.rb:2660
 msgid "%{table}, unavailable"
@@ -2620,6 +2771,10 @@ msgstr "%{variant}; 3 až 9 písmen"
 msgid "%{winner} won the game."
 msgstr "Vítěz hry: %{winner}."
 
+#: games/bridge/presentation.rb:429
+msgid "%{winner} won the match: %{scores}."
+msgstr "Zápas vyhrává dvojice %{winner}: %{scores}."
+
 #: lib/game_surfaces/word_board.rb:97
 msgid "%{words}: %{points} potential points."
 msgstr "%{words}: možný počet bodů: %{points}."
@@ -2669,6 +2824,10 @@ msgstr ", na sudu, zbývající rozdání: %{deals}"
 msgid "- 0–9 squares ahead: miss one turn."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:66
+msgid "- 1 no trump shows 15 to 17 points and a balanced hand; 2 no trump shows 20 or 21."
+msgstr "- 1 bez trumfů znamená 15 až 17 bodů a vyrovnaný list, 2 bez trumfů 20 nebo 21 bodů."
+
 #: games/generated/rulebooks/duck_racing.rb:39
 msgid "- 10–19 squares ahead: miss two turns."
 msgstr ""
@@ -2676,6 +2835,10 @@ msgstr ""
 #: games/generated/rulebooks/duck_racing.rb:36
 msgid "- 10–19 squares ahead: two turns."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:37
+msgid "- 20 points in clubs or diamonds;"
+msgstr "- 20 bodů v křížích nebo kárech;"
 
 #: games/generated/rulebooks/duck_racing.rb:40
 msgid "- 20–29 squares ahead: miss three turns."
@@ -2689,6 +2852,18 @@ msgstr ""
 msgid "- 30 or more squares ahead: miss four turns."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:38
+msgid "- 30 points in hearts or spades;"
+msgstr "- 30 bodů v srdcích nebo picích;"
+
+#: games/generated/rulebooks/bridge.rb:39
+msgid "- 40 points for the first trick in no trump and 30 for each further trick."
+msgstr "- 40 bodů za první zdvih bez trumfů a 30 za každý další."
+
+#: games/generated/rulebooks/bridge.rb:69
+msgid "- A raise of your suit shows support. A raise to the level of 2 is weak, a raise to 3 invites game, and a jump to game is a strong hand."
+msgstr "- Zvýšení tvé barvy ukazuje podporu. Zvýšení na úroveň 2 je slabé, na 3 zve do hry a skok rovnou do hry ukazuje silný list."
+
 #: games/generated/rulebooks/duck_racing.rb:51
 msgid "- Accuracy: the higher percentage wins. Every ten percentage points of difference costs one feather, rounded up. A result of 90% against 60% is worth three feathers; 83% against 79% is worth one."
 msgstr ""
@@ -2696,6 +2871,14 @@ msgstr ""
 #: games/generated/rulebooks/duck_racing.rb:55
 msgid "- An ace is worth eleven unless that would take you over 21, in which case it is worth one. Its value then stays fixed."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:67
+msgid "- An opening bid of 1 heart or 1 spade promises at least five cards in that suit and usually 12 or more points. Without a five-card major, a bot opens 1 diamond or 1 club."
+msgstr "- Zahájení 1 srdce nebo 1 pik slibuje alespoň pět karet v této barvě a obvykle 12 nebo více bodů. Bez pětilisté drahé barvy zahájí bot 1 káro nebo 1 kříž."
+
+#: games/generated/rulebooks/bridge.rb:68
+msgid "- An opening bid of 2 diamonds, 2 hearts or 2 spades is weak: a six-card suit with 6 to 10 points."
+msgstr "- Zahájení 2 kára, 2 srdce nebo 2 piky je slabé: šestilistá barva a 6 až 10 bodů."
 
 #: games/generated/rulebooks/duck_racing.rb:129
 msgid "- Arrow keys and Enter: play a card or select Roll the die at the end of the list."
@@ -2757,9 +2940,17 @@ msgstr ""
 msgid "- D: describe the selected card."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:21
+msgid "- Double: possible only right after an opponent's bid, or after an opponent's bid followed by passes. If that bid becomes the contract, it scores more for both sides: more for making it and more for defeating it."
+msgstr "- Kontra: je možná jen po licitaci soupeře, i když po ní následovaly pasy. Pokud se tato licitace stane závazkem, obě strany získají víc: hlavní hráč za splnění a obránci za pád."
+
 #: games/generated/rulebooks/duck_racing.rb:107
 msgid "- Exact hit: 100%."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:61
+msgid "- IMPs (the default): the difference from the reference score is converted into international match points. A difference of 10 or less is worth nothing, 20 to 40 is 1 IMP, 50 to 80 is 2 and 90 to 120 is 3. Larger swings earn more but more slowly: 420 is 9 IMPs and 4000 or more is the maximum of 24. The pair that did better than the reference gains the IMPs."
+msgstr "- IMPy (výchozí): rozdíl od referenčního výsledku se převede na mezinárodní zápasové body. Rozdíl do 10 bodů nic nepřinese, 20 až 40 je 1 IMP, 50 až 80 jsou 2 a 90 až 120 jsou 3. Větší rozdíly přinášejí víc, ale pomaleji: 420 je 9 IMPů a 4000 nebo více je maximálních 24. IMPy získá dvojice, která dopadla lépe než referenční výsledek."
 
 #: games/generated/rulebooks/duck_racing.rb:54
 msgid "- Jacks, queens and kings are worth ten."
@@ -2768,6 +2959,10 @@ msgstr ""
 #: games/generated/rulebooks/duck_racing.rb:132
 msgid "- Laps: one to ten, with three as the default."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:62
+msgid "- Matchpoints: on each board the pair that did better than the reference earns 2 points and the other pair 0; an equal result gives each pair 1. The final score is the percentage of the available points."
+msgstr "- Maxima: v každém rozdání získá dvojice, která dopadla lépe než referenční výsledek, 2 body a druhá 0; při stejném výsledku dostane každá dvojice 1. Konečný výsledek je procento z bodů, které bylo možné získat."
 
 #: games/generated/rulebooks/duck_racing.rb:108
 msgid "- One position away: 75%."
@@ -2793,9 +2988,17 @@ msgstr ""
 msgid "- P: repeat the question, number or task. In Guess the number, it repeats only the public clues."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:20
+msgid "- Pass: you do not want to bid now. Passing does not stop you from bidding later in the same auction."
+msgstr "- Pas: teď nechceš licitovat. Pas ti nebrání ozvat se později ve stejné dražbě."
+
 #: games/generated/rulebooks/duck_racing.rb:134
 msgid "- Questions: choose the language and question sets. The general set is selected by default. Each selected set has an equal chance of being drawn, for all questions in the race."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:22
+msgid "- Redouble: possible only after an opponent has doubled your side's bid. It raises the stakes once more."
+msgstr "- Rekontra: je možná jen tehdy, když soupeř kontroval licitaci tvé dvojice. Ještě jednou zvyšuje sázky."
 
 #: games/generated/rulebooks/duck_racing.rb:49
 msgid "- Result difference: pay one feather for each point by which the winner beat you. For example, results of 16, 10 and 8 give the winner six feathers from one opponent and eight from the other."
@@ -2872,6 +3075,22 @@ msgstr ""
 #: games/generated/rulebooks/krowa.rb:25
 msgid "- With time scoring, the shortest time from the start of the word to the submission of the correct answer wins, measured by a clock synchronized with the server;"
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:46
+msgid "- doubled and not vulnerable: 100 for the first trick, 200 each for the second and third, and 300 for each further trick;"
+msgstr "- s kontrou před manší: 100 za první pád, po 200 za druhý a třetí a po 300 za každý další;"
+
+#: games/generated/rulebooks/bridge.rb:47
+msgid "- doubled and vulnerable: 200 for the first trick and 300 for each further trick;"
+msgstr "- s kontrou v manši: 200 za první pád a po 300 za každý další;"
+
+#: games/generated/rulebooks/bridge.rb:45
+msgid "- not doubled: 50 per trick, or 100 when vulnerable;"
+msgstr "- bez kontry: 50 za zdvih, v manši 100;"
+
+#: games/generated/rulebooks/bridge.rb:48
+msgid "- redoubled: twice the doubled amount."
+msgstr "- s rekontrou: dvojnásobek hodnoty s kontrou."
 
 msgid "1 clears only the current turn total and ends your turn. It does not take away any banked points. If the turn total was negative, it is cleared to zero too, so a 1 can sometimes help you."
 msgstr ""
@@ -3187,12 +3406,20 @@ msgstr "Seznam Co je nového se zobrazí jednou po aktualizaci a zůstává dost
 msgid "A bankrupt player leaves the active game. The last solvent player wins."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:18
+msgid "A bid names a number of tricks and a trump suit, or no trump. The number is added to six: a bid of 1 heart promises 7 of the 13 tricks with hearts as trumps, and 4 spades promises 10 tricks with spades as trumps. Each bid must be higher than the previous one. A higher number always wins, and at the same number the suits rank from the lowest: clubs, diamonds, hearts, spades and no trump. After 1 spade you may bid 1 no trump or anything at the level of 2, but not 1 heart."
+msgstr "Licitace určuje počet zdvihů a trumfovou barvu, nebo hru bez trumfů. K uvedenému číslu se přičítá šest: 1 srdce slibuje 7 ze 13 zdvihů se srdci jako trumfy a 4 piky slibují 10 zdvihů s piky jako trumfy. Každá licitace musí být vyšší než předchozí. Vyšší číslo vždy přebíjí nižší a při stejném čísle jsou barvy seřazeny od nejnižší: kříže, kára, srdce, piky a bez trumfů. Po 1 piku můžeš licitovat 1 bez trumfů nebo cokoli na úrovni 2, ale ne 1 srdce."
+
 msgid "A bidder who collects at least the exact contracted number receives the contract value; otherwise the same value is subtracted. Each defender receives the exact points collected and then rounded to the nearest 5. A rounded result is never used to decide whether the bidder fulfilled the contract."
 msgstr ""
 
 #: games/generated/rulebooks/mancala.rb:9
 msgid "A board full of seeds"
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:63
+msgid "A board passed out by all four players also counts: it scores zero and is compared with the reference, so passing with strong cards loses points. After the last board, the pair with more IMPs or matchpoints wins; an equal total is a draw. S reads the totals so far."
+msgstr "Rozdání, ve kterém všichni čtyři pasovali, se také počítá: má výsledek nula a porovná se s referenčním výsledkem, takže pas se silnými kartami stojí body. Po posledním rozdání vyhrává dvojice s více IMPy nebo body; při stejném součtu je remíza. Klávesa S přečte dosavadní výsledek."
 
 #: games/duck_racing_support/presentation.rb:475
 msgid "A breeze blows across the north bank."
@@ -3387,6 +3614,10 @@ msgstr ""
 msgid "A pair has one shared score. Add both partners' trick points and declared marriages before checking the contract. A fulfilled contract of 150 earns the pair 150, even if they collected 170; collecting only 140 loses 150. The other pair adds its combined points, rounded once to five. Barrel chances, zeroes and surrenders also belong to the pair. A marriage must be held by one player: a king in your hand and a queen in your partner's hand do not form one."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:53
+msgid "A pair that has won a game is vulnerable for the rest of the rubber. Winning the rubber earns 700 if the opponents won no game and 500 if they won one."
+msgstr "Dvojice, která vyhrála hru, je do konce robru v manši. Za vyhraný robr se získá 700 bodů, pokud soupeři nevyhráli žádnou hru, a 500, pokud vyhráli jednu."
+
 #: lib/tournaments/local_dispatch_screen.rb:113
 msgid "A participant is already assigned to another match."
 msgstr ""
@@ -3540,6 +3771,10 @@ msgstr ""
 #: games/generated/rulebooks/tic_tac_toe.rb:9
 msgid "A small board, three marks to win"
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:43
+msgid "A small slam (a contract of 6) earns a bonus of 500, or 750 when vulnerable. A grand slam (a contract of 7) earns 1000, or 1500 when vulnerable."
+msgstr "Malý slem, tedy závazek na úrovni 6, přináší prémii 500, v manši 750. Velký slem, závazek na úrovni 7, přináší 1000, v manši 1500."
 
 msgid "A small straight scores 100, a large straight 200, three pairs 150, and a full house or two sets of three of a kind score 250. The program lists every legal scoring interpretation and automatically uses the points belonging to the selected combination."
 msgstr ""
@@ -3939,6 +4174,10 @@ msgstr "Přidána hra Axel Pong: sledujte míček podle zvuku, pohybujte pálkou
 msgid "Added Battleship by Dawid Pieper: two fleets, manual placement, a computer opponent, spectator boards and a final fleet check. Saving this game for later is not yet available."
 msgstr "Přidána hra Lodě od Dawida Piepera: dvě flotily, ruční rozmístění, počítačový soupeř, desky pro diváky a závěrečná kontrola flotil. Uložení této hry na později zatím není k dispozici."
 
+#: lib/game_room_changelog.rb:486
+msgid "Added Bridge for four players in two partnerships: social rubber bridge, or duplicate bridge at one table scored in IMPs or matchpoints. Declarer plays dummy's cards, every call and card is announced, and bots can take any seat."
+msgstr "Přidán bridž pro čtyři hráče ve dvou dvojicích: společenský robrový bridž, nebo sportovní bridž u jednoho stolu se zápisem na IMPy nebo na maxima. Hlavní hráč hraje kartami stolu, každá hláška a karta se oznamuje a boti mohou obsadit libovolné místo."
+
 #: lib/game_room_changelog.rb:204
 msgid "Added Cat, head, tail by TD Programs: a dice game for 2–8 players. Roll an eight-sided die and decide when to bank your points. Includes bots and Polish and English rules."
 msgstr "Přidána hra Kočka, hlava, ocas od TD Programs: kostková hra pro 2–8 hráčů. Házejte osmistěnnou kostkou a rozhodujte se, kdy uložit své body. Obsahuje boty a pravidla v polštině a angličtině."
@@ -4089,6 +4328,10 @@ msgstr "Po druhé kontrole bylo obnoveno 284 otázek Quiz Party s dobře dolože
 msgid "After a word ends, the solution is revealed. The Word definition button opens its SJP description; a missing description also remains readable."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:34
+msgid "After all 13 tricks the deal is scored, and the next deal starts with the next player clockwise as dealer."
+msgstr "Po všech 13 zdvizích se rozdání spočítá a další rozdává následující hráč po směru hodinových ručiček."
+
 #: games/generated/rulebooks/three_five_eight.rb:12
 msgid "After any exchanges, the chooser reveals the four-card kitty, adds it to their hand and discards four cards face down. The chooser leads the first trick. The winner of every trick leads the next one."
 msgstr ""
@@ -4232,6 +4475,10 @@ msgstr "Nádraží v Ágře"
 msgid "All"
 msgstr "Vše"
 
+#: games/generated/rulebooks/bridge.rb:14
+msgid "All 52 cards are dealt, so everyone gets 13. Press H to hear your hand suit by suit, from the highest card down, followed by your high card points: an ace counts 4, a king 3, a queen 2 and a jack 1. These points are not scored; they help you judge the strength of your hand during the auction. A whole deck holds 40 such points, so 10 is an average hand and 12 or more is usually enough to start the bidding."
+msgstr "Rozdá se všech 52 karet, takže každý dostane 13. Klávesou H si poslechneš svůj list barvu po barvě od nejvyšší karty a nakonec počet figurových bodů: eso má 4 body, král 3, dáma 2 a kluk 1. Tyto body se nezapisují, pomáhají ale odhadnout sílu listu v dražbě. Celý balíček jich má 40, takže průměrný list má 10 bodů a 12 nebo více obvykle stačí k zahájení dražby."
+
 #: lib/game_room_ui.rb:26
 msgid "All Game Room sounds"
 msgstr "Všechny zvuky Game Room"
@@ -4258,6 +4505,10 @@ msgstr ""
 #: lib/quiz_contributions/model.rb:61
 msgid "All four answers must be different."
 msgstr "Všechny čtyři odpovědi musí být různé."
+
+#: games/bridge.rb:519
+msgid "All four players passed. The deal is thrown in."
+msgstr "Všichni čtyři hráči pasovali. Rozdání se nehraje."
 
 #: lib/game_room_screens.rb:333
 msgid "All games"
@@ -4873,6 +5124,10 @@ msgstr "Jako pozorovatel stiskněte v herním poli Pongu 1 pro poslech ze strany
 msgid "As an observer, use the number keys in the Pong playfield to choose a player's perspective: 1 selects the first player, 2 the second, and in Doubles 3 the third and 4 the fourth. The numbers follow the player order in the match, not the teams. The game confirms the player's name. This changes only your listening perspective and the order of the spoken score after a point; it does not let you move any paddle. The choice stays in place between points. The keys do not select a perspective while you are typing in chat or reading history."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:32
+msgid "As declarer you also play dummy's cards. When it is dummy's turn, press Tab to move to the list of dummy's cards, or press Z, which goes straight to the cards dummy may play, and choose a card with Enter. Everyone can press D to hear dummy's hand."
+msgstr "Jako hlavní hráč hraješ i kartami stolu. Když je na řadě stůl, stiskni Tab a přejdi na seznam jeho karet, nebo stiskni Z, které tě rovnou přesune na karty, jež stůl smí zahrát, a kartu vyber Enterem. List stolu si klávesou D kdykoli přečte kdokoli."
+
 msgid "As soon as a player acquires a Church card, the game is put on hold while the card is played and then discarded. A Church card is acquired when the active player keeps it for himself, when another player takes it from the public space, or when it is won at auction. A Church card placed in the Auction pile is not played at that point."
 msgstr ""
 
@@ -4967,6 +5222,10 @@ msgstr "Pokusy: %{count} ze 3."
 msgid "Attempts: %{count}. %{status}"
 msgstr "Pokusy: %{count}. %{status}"
 
+#: games/bridge/presentation.rb:144
+msgid "Auction"
+msgstr "Dražba"
+
 #: games/monopoly/property_management.rb:42
 msgid "Auction begins: %{property}."
 msgstr "Začíná dražba: %{property}."
@@ -5000,6 +5259,10 @@ msgstr "Klávesy pro licitaci, předávání a hraní"
 #: games/tysiac.rb:1629
 msgid "Auction: %{bids}."
 msgstr "Licitace: %{bids}."
+
+#: games/bridge/presentation.rb:489
+msgid "Auction: %{calls}."
+msgstr "Dražba: %{calls}."
 
 #: games/biblios.rb:1264
 msgid "Auctioned: %{card}. %{bid}"
@@ -5164,6 +5427,10 @@ msgstr "B: procházejte své střelce."
 #: games/generated/rulebooks/tysiac.rb:43
 msgid "B: change the final contract before playing the first card."
 msgstr "B: změňte konečný závazek před zahráním první karty."
+
+#: games/generated/rulebooks/bridge.rb:73
+msgid "B: choose a call when it is your turn, otherwise read the auction."
+msgstr "B: vyber hlášku, když jsi na řadě, jinak přečti dražbu."
 
 #: games/generated/rulebooks/monopoly.rb:64
 msgid "B: during an auction, enter your own total bid."
@@ -5351,6 +5618,10 @@ msgstr ""
 msgid "Begins lap %{lap}."
 msgstr "Začíná %{lap}. kolo."
 
+#: games/generated/rulebooks/bridge.rb:41
+msgid "Being vulnerable raises both the rewards and the penalties. Who is vulnerable is announced at the start of each deal; V repeats it together with the deal number, the dealer, the contract and the tricks."
+msgstr "Hra v manši zvyšuje odměny i tresty. Na začátku každého rozdání zazní, kdo je v manši a kdo před manší; klávesa V to zopakuje spolu s číslem rozdání, rozdávajícím, závazkem a zdvihy."
+
 #: games/krowa_support/leaderboards.rb:235
 msgid "Best result"
 msgstr "Nejlepší výsledek"
@@ -5422,6 +5693,10 @@ msgstr "Draž počet bodů, které získáš, a pak sbírej cenné karty a hlaš
 msgid "Bid in gold, or bid with cards for gold"
 msgstr ""
 
+#: games/bridge.rb:27
+msgid "Bid with your partner for a contract, then take the tricks you promised while declarer plays both hands."
+msgstr "S partnerem vydražte závazek a pak uhrajte slíbené zdvihy; hlavní hráč hraje svými kartami i kartami stolu."
+
 #: lib/tournaments/local_fixed_team_execution_screen.rb:616
 msgid "Bidding"
 msgstr ""
@@ -5434,6 +5709,10 @@ msgstr "Licitace a hraní"
 
 msgid "Bidding and playing tricks"
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:64
+msgid "Bidding with a computer partner"
+msgstr "Dražba s počítačovým partnerem"
 
 msgid "Bidding, following suit and trump"
 msgstr ""
@@ -5472,6 +5751,10 @@ msgstr "Povinné sázky: %{small} a %{big}."
 #: games/monopoly/presentation.rb:58
 msgid "Board"
 msgstr "Hrací deska"
+
+#: games/bridge/presentation.rb:302
+msgid "Board %{board} of %{boards}. Dealer: %{dealer}. %{vulnerability}."
+msgstr "Rozdání %{board} z %{boards}. Rozdává %{dealer}. %{vulnerability}."
 
 msgid "Board commands"
 msgstr "Příkazy pro hrací desku"
@@ -5571,6 +5854,10 @@ msgstr "Obě flotily odpovídají potvrzenému rozmístění."
 msgid "Both players press Enter or Space when ready. When you have the ball, press A or Right arrow to prepare, then one of the three shot keys to send it."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:70
+msgid "Bots never double. They play by simple rules too: the second player to a trick plays low unless it holds a sure winner, later players try to win the trick as cheaply as possible, and a defender leads partner's suit or a long suit."
+msgstr "Boti nikdy nekontrují. Také hrají podle jednoduchých pravidel: druhý hráč ve zdvihu přidá nízkou kartu, pokud nemá jistý zdvih, další hráči se snaží vzít zdvih co nejnižší kartou a obránce vynáší v barvě partnera nebo ve své dlouhé barvě."
+
 #: games/battleship.rb:634
 msgid "Bow cleared."
 msgstr "Označení přídě zrušeno."
@@ -5586,6 +5873,26 @@ msgstr ""
 #: lib/audio_ball/client.rb:623
 msgid "Break between sets."
 msgstr ""
+
+#: games/bridge.rb:23
+msgid "Bridge"
+msgstr "Bridž"
+
+#: games/generated/rulebooks/bridge.rb:10
+msgid "Bridge is a card game for four players in two partnerships. You and your partner work together against the other pair. Each deal has two parts: first an auction, in which the pairs compete to name a contract, and then the play, in which the pair that won the contract tries to take at least as many tricks as it promised."
+msgstr "Bridž je karetní hra pro čtyři hráče ve dvou dvojicích. Ty a tvůj partner hrajete společně proti druhé dvojici. Každé rozdání má dvě části: nejprve dražbu, ve které dvojice soupeří o závazek, a potom sehrávku, ve které se dvojice, která závazek vydražila, snaží uhrát alespoň tolik zdvihů, kolik slíbila."
+
+#: games/bridge.rb:141
+msgid "Bridge requires exactly four players."
+msgstr "Bridž hrají přesně čtyři hráči."
+
+#: games/bridge/presentation.rb:296
+msgid "Bridge started: %{seats}."
+msgstr "Začíná bridž: %{seats}."
+
+#: games/bridge.rb:99
+msgid "Bridge variant"
+msgstr "Varianta bridže"
 
 #: games/generated/rulebooks/ludo.rb:9
 msgid "Bring all four pawns home"
@@ -5711,6 +6018,10 @@ msgstr ""
 msgid "By default the game uses the classic 8 by 8 board with 12 pieces per player. The first player moves upward from the bottom of the board."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:51
+msgid "By default the table plays rubber bridge. A rubber ends when one pair has won two games, and the pair with more points in total wins the match. This is usually, but not always, the pair that won the rubber; equal totals are a draw."
+msgstr "Ve výchozím nastavení se u stolu hraje na robr. Robr končí, když jedna dvojice vyhraje dvě hry, a zápas vyhrává dvojice s vyšším celkovým počtem bodů. Obvykle je to dvojice, která vyhrála robr, ale ne vždy; při stejném součtu je remíza."
+
 #: games/generated/rulebooks/ludo.rb:16
 msgid "By default, a 6 or a 1 lets you bring a pawn out of the base onto its entry square, with no further movement. A 1 does not grant another roll. Turn off the option for a 1 to require a 6; turn off the restriction on leaving the base to allow any roll. These choices never force you to leave the base if another pawn can move."
 msgstr ""
@@ -5727,6 +6038,10 @@ msgstr "C provede check nebo dorovná, F složí karty, A vsadí vše. R v obou 
 
 msgid "C checks or calls, F folds, R raises, A goes all in, S reads your stack, Shift+S the other stacks, V the call amount, D your cards, E visible table cards, 1 through 7 individual cards, T the turn, P the pot, I your investment, H active players, G your best combination and L the blinds."
 msgstr "C čeká nebo dorovná, F položí karty, R zvýší sázku, A vsadí vše, S přečte vaše žetony, Shift+S žetony ostatních, V částku k dorovnání, D vaše karty, E viditelné karty na stole, 1 až 7 jednotlivé karty, T oznámí, kdo je na tahu, P přečte bank, I váš vklad, H aktivní hráče, G vaši nejlepší kombinaci a L povinné sázky."
+
+#: games/generated/rulebooks/bridge.rb:33
+msgid "C reads the cards in the current trick and F the suit that was led. P repeats the previous trick, including who won it."
+msgstr "Klávesa C přečte karty v aktuálním zdvihu a F vynesenou barvu. P zopakuje předchozí zdvih i s tím, kdo ho vzal."
 
 #: games/generated/rulebooks/axel_pong.rb:44
 msgid "C reads the name and paddle position of the player you are watching. S, T and E also work for observers: check the score, server and active effects without controlling the game. At the end of the match, you hear victory or defeat for the selected player or their team."
@@ -5782,6 +6097,10 @@ msgstr "C: přečtěte kartu, pokud ji vaše role smí vidět."
 #: games/generated/rulebooks/war.rb:23
 msgid "C: read the cards on the table, your own first, then each opponent's."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:83
+msgid "C: read the current trick."
+msgstr "C: přečti aktuální zdvih."
 
 msgid "C: read the current turn total."
 msgstr "C: přečtení celkového počtu bodů v aktuálním tahu."
@@ -6032,7 +6351,7 @@ msgstr "Počet karet v každém talonu"
 msgid "Cards in hand: %{counts}."
 msgstr ""
 
-#: games/base/shortcuts.rb:59
+#: games/base/shortcuts.rb:59 games/bridge/presentation.rb:465
 msgid "Cards on the table"
 msgstr "Karty na stole"
 
@@ -6544,6 +6863,10 @@ msgstr ""
 msgid "Choose Classic or Arcade in the Game mode list when creating the table. Classic is the default and follows the normal rules above. In Arcade, every paddle return has two independent chances of 7 percent: a shield for the player who returned the ball and an invisible ball. Both may happen on the same hit. A serve alone does not trigger these effects."
 msgstr ""
 
+#: games/bridge.rb:140
+msgid "Choose IMP or matchpoint scoring."
+msgstr "Vyber zápis na IMPy nebo na maxima."
+
 #: lib/tournaments/public_text.rb:73
 msgid "Choose Join tournament to take part."
 msgstr "Chcete-li se zúčastnit, zvolte Přihlásit se do turnaje."
@@ -6738,6 +7061,10 @@ msgstr "Vyberte pole na soupeřově desce, na které chcete vystřelit."
 msgid "Choose a suit"
 msgstr "Vyberte barvu"
 
+#: games/bridge.rb:139
+msgid "Choose a supported number of boards."
+msgstr "Vyber jeden z nabízených počtů rozdání."
+
 #: games/tysiac.rb:436
 msgid "Choose a talon"
 msgstr "Vyberte talon"
@@ -6895,6 +7222,10 @@ msgstr "Vyberte jednu ze svých figur a stiskněte Enter, poté vyberte označen
 msgid "Choose round-robin play or a group stage followed by a knockout stage. Tournaments support rematches and knockout matches played to a chosen number of wins. The program arranges matches, records game results and determines who advances."
 msgstr "Na výběr je hra každý s každým nebo skupinová fáze následovaná vyřazovací částí. Lze zapnout odvety a ve vyřazovací části hrát do stanoveného počtu výher. Program sestaví zápasy, zaznamená výsledky her a určí postupující."
 
+#: games/bridge.rb:138
+msgid "Choose rubber or duplicate bridge."
+msgstr "Vyber robrový nebo sportovní bridž."
+
 #: __app.rb:3152 lib/participant_menu.rb:26
 msgid "Choose teams"
 msgstr "Vybrat týmy"
@@ -7031,6 +7362,10 @@ msgstr "Vyberte šipkami a potvrďte Enterem."
 #: games/tysiac.rb:1432 games/tysiac.rb:1566
 msgid "Choose your bid"
 msgstr "Vyberte svou nabídku"
+
+#: games/bridge/presentation.rb:119
+msgid "Choose your call. %{auction}"
+msgstr "Vyber hlášku. %{auction}"
 
 #: games/duck_racing_support/presentation.rb:118
 msgid "Choose yourself or another player."
@@ -7305,6 +7640,10 @@ msgstr ""
 msgid "Computer players now receive randomly selected names from Polish or English lists."
 msgstr "Počítačoví hráči nyní dostávají náhodně vybraná jména z polských nebo anglických seznamů."
 
+#: games/generated/rulebooks/bridge.rb:65
+msgid "Computer players see only their own cards, dummy and the calls and cards everyone else can see. They bid a simple natural system, which helps you understand their calls:"
+msgstr "Počítačoví hráči vidí jen své karty, stůl a hlášky a karty, které vidí všichni. Dražují jednoduchým přirozeným systémem, díky kterému jejich hláškám snadno porozumíš:"
+
 msgid "Computers"
 msgstr "Počítače"
 
@@ -7394,6 +7733,22 @@ msgstr "Pokračovat v úpravách"
 
 msgid "Continue without drawing"
 msgstr "Pokračovat bez dobrání"
+
+#: games/generated/rulebooks/bridge.rb:52
+msgid "Contract points are written below the line and everything else above it. A game is won when a pair's points below the line reach 100, either in one deal or from several part scores. After a game, both pairs start the next game from zero below the line; part scores the opponents had towards that game no longer help them."
+msgstr "Body za závazek se zapisují pod čáru a všechny ostatní nad čáru. Hru vyhraje dvojice, jejíž body pod čarou dosáhnou 100, ať už v jednom rozdání, nebo z několika částečných závazků. Po vyhrané hře začínají obě dvojice další hru od nuly pod čarou; částečné závazky, které soupeři měli k předchozí hře, jim už nepomohou."
+
+#: games/generated/rulebooks/bridge.rb:25
+msgid "Contract, declarer and dummy"
+msgstr "Závazek, hlavní hráč a stůl"
+
+#: games/bridge/presentation.rb:502
+msgid "Contract: %{contract} by %{declarer}. Declarer needs %{needed} tricks and has %{won}."
+msgstr "Závazek: %{contract}, hraje %{declarer}. Hlavní hráč potřebuje %{needed} zdvihů a má %{won}."
+
+#: games/bridge/presentation.rb:324
+msgid "Contract: %{contract}, declarer %{declarer}. %{leader} makes the opening lead."
+msgstr "Závazek: %{contract}, hlavní hráč %{declarer}. Vynáší %{leader}."
 
 #: games/three_five_eight.rb:1005
 msgid "Contract: %{contract}."
@@ -7719,6 +8074,10 @@ msgstr ""
 msgid "Ctrl+B: mark the current question for reporting."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:84
+msgid "Ctrl+C: browse the current trick."
+msgstr "Ctrl+C: procházej aktuální zdvih."
+
 #: games/generated/rulebooks/spades.rb:33 games/generated/rulebooks/three_five_eight.rb:29 games/generated/rulebooks/tysiac.rb:46
 msgid "Ctrl+C: browse the trick cards."
 msgstr "Ctrl+C: procházejte karty ve zdvihu."
@@ -7782,6 +8141,10 @@ msgstr "Ctrl+Home: přečtěte první záznam ve vybrané kategorii historie."
 #: lib/game_room_changelog.rb:248
 msgid "Ctrl+J on the Game Room widget now lets you accept invitations. Joining clears the related notification just as it does inside the app."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:75
+msgid "Ctrl+L: browse the auction."
+msgstr "Ctrl+L: procházej dražbu."
 
 #: games/generated/rulebooks/biblios.rb:36
 msgid "Ctrl+L: browse your library by category."
@@ -7920,6 +8283,10 @@ msgstr "Aktuální závazek: %{contract}, licitující hráč: %{player}."
 msgid "Current game history"
 msgstr "Historie aktuální hry"
 
+#: games/bridge/presentation.rb:552
+msgid "Current game: North-South %{ns}, East-West %{ew}."
+msgstr "Rozehraná hra: Sever–Jih %{ns}, Východ–Západ %{ew}."
+
 #: lib/tournaments/operations_screen.rb:169 lib/tournaments/public_text.rb:57 lib/tournaments/server_trial_hub.rb:22
 msgid "Current identity: %{actor}"
 msgstr "Aktuální účet: %{actor}"
@@ -7935,6 +8302,10 @@ msgstr ""
 #: lib/game_rules.rb:92
 msgid "Current table options"
 msgstr "Aktuální nastavení stolu"
+
+#: games/bridge/presentation.rb:457
+msgid "Current trick: %{cards}."
+msgstr "Aktuální zdvih: %{cards}."
 
 #: games/cat_head_tail.rb:190 games/farkle.rb:733
 msgid "Current turn: %{points} points."
@@ -8037,6 +8408,10 @@ msgstr "D: proveďte druhý typ úderu nebo braňte odpovídající příchozí 
 #: games/generated/rulebooks/domino.rb:32
 msgid "D: prefer the right end for subsequent plays."
 msgstr "D: zvolte pravý konec pro následující tahy."
+
+#: games/generated/rulebooks/bridge.rb:82
+msgid "D: read dummy's hand."
+msgstr "D: přečti list stolu."
 
 msgid "D: read the current die result without rolling again."
 msgstr "D: přečtení aktuálního výsledku kostky bez dalšího hodu."
@@ -8188,6 +8563,10 @@ msgstr ""
 #: games/three_five_eight.rb:1000
 msgid "Deal %{round} of 18. %{details}."
 msgstr ""
+
+#: games/bridge/presentation.rb:308
+msgid "Deal %{round}. Dealer: %{dealer}. %{vulnerability}."
+msgstr "Rozdání %{round}. Rozdává %{dealer}. %{vulnerability}."
 
 #: lib/tournaments/local_fixed_team_execution_screen.rb:630
 msgid "Deal cards"
@@ -8836,6 +9215,42 @@ msgstr "Hnízdo kachňat"
 msgid "Ducks: %{players}."
 msgstr "Kachny: %{players}."
 
+#: games/bridge/presentation.rb:448
+msgid "Dummy is not on the table yet. It is shown after the opening lead."
+msgstr "Stůl ještě není vyložen. Jeho karty uvidíš po výnosu."
+
+#: games/bridge/presentation.rb:339
+msgid "Dummy is on the table, %{seat}: %{cards}."
+msgstr "Stůl je vyložen, %{seat}: %{cards}."
+
+#: games/bridge/presentation.rb:252
+msgid "Dummy, %{seat}, %{count} cards"
+msgstr "Stůl, %{seat}, počet karet: %{count}"
+
+#: games/bridge/presentation.rb:451
+msgid "Dummy, %{seat}: %{cards}."
+msgstr "Stůl, %{seat}: %{cards}."
+
+#: games/bridge/presentation.rb:331
+msgid "Dummy, %{seat}: %{card}."
+msgstr "Stůl, %{seat}: %{card}."
+
+#: games/generated/rulebooks/bridge.rb:56
+msgid "Duplicate bridge"
+msgstr "Sportovní bridž"
+
+#: games/bridge.rb:104
+msgid "Duplicate bridge (sport)"
+msgstr "Sportovní bridž"
+
+#: games/bridge.rb:124
+msgid "Duplicate scoring"
+msgstr "Zápis sportovního bridže"
+
+#: games/bridge.rb:89
+msgid "Duplicate, %{boards} boards, %{scoring}"
+msgstr "Sportovní, rozdání: %{boards}, %{scoring}"
+
 msgid "Duplicate, 5 points"
 msgstr "Duplicitní odpověď, 5 bodů"
 
@@ -8926,6 +9341,10 @@ msgstr "ELTEN Game Room"
 msgid "ELTEN Game Room is now called Power Games. This is the same application: your settings, saved games, statistics and subscriptions remain unchanged."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:58
+msgid "Each board is scored on its own. A game earns a bonus of 300, or 500 when vulnerable, and a part score earns 50. Everything else is scored as described above. There are no honours and no rubber."
+msgstr "Každé rozdání se počítá zvlášť. Hra přináší prémii 300, v manši 500, a částečný závazek 50. Vše ostatní se počítá, jak je popsáno výše. Nejsou zde honéry ani robr."
+
 #: games/generated/rulebooks/duck_racing.rb:136
 msgid "Each challenge's controls are described in its chapter and announced when it begins."
 msgstr ""
@@ -9000,6 +9419,10 @@ msgstr "Každý hráč jednou hodí kostkou. Vyhrává nejvyšší hod."
 msgid "Each player's closest guess counts. The winner takes three feathers from each opponent; equally close guesses tie."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:30
+msgid "Each trick has four cards, one from each player in clockwise order. To play, go to a card in your hand with the arrow keys and press Enter. Z moves to the next card you are allowed to play and Shift+Z to the previous one; if you have only one playable card, Z plays it."
+msgstr "Každý zdvih tvoří čtyři karty, jedna od každého hráče po směru hodinových ručiček. Chceš-li zahrát, přejdi šipkami na kartu ve svém listu a stiskni Enter. Klávesa Z tě přesune na další kartu, kterou smíš zahrát, a Shift+Z na předchozí; pokud můžeš zahrát jen jednu kartu, Z ji rovnou zahraje."
+
 #: games/generated/rulebooks/four_in_a_row.rb:11
 msgid "Each turn consists of choosing one column. Your piece falls to the lowest empty square in that column. You cannot leave it suspended higher up: if the column is empty, it lands at the bottom; if it already holds two pieces, yours rests on top of them. A full column cannot accept another piece."
 msgstr ""
@@ -9009,6 +9432,18 @@ msgstr ""
 
 msgid "Each two adds two penalty cards and each three adds three. Twos and threes may answer each other is on in the ready-made profiles: the debt accumulates, for example two plus three means five. With this option off, only another card of the same attacking rank answers. A player with no legal defence automatically draws the full debt and ends the turn."
 msgstr ""
+
+#: games/bridge/presentation.rb:155
+msgid "East"
+msgstr "Východ"
+
+#: games/bridge/presentation.rb:167
+msgid "East-West"
+msgstr "Východ–Západ"
+
+#: games/bridge/presentation.rb:224
+msgid "East-West vulnerable"
+msgstr "Východ–Západ v manši"
 
 #: games/axel_pong.rb:41
 msgid "Easy"
@@ -9346,6 +9781,10 @@ msgstr "Enter v chatu: odešlete napsanou zprávu. Ve hrách na mřížce lze p�
 msgid "Enter in the answer field: submit the typed noun and clear the field for the next attempt."
 msgstr "Enter v poli odpovědi: odešlete zadané podstatné jméno a vymažte pole pro další pokus."
 
+#: games/generated/rulebooks/bridge.rb:72
+msgid "Enter in the list of calls: make the selected call."
+msgstr "Enter v seznamu hlášek: použij vybranou hlášku."
+
 #: lib/tournaments/publication_editor.rb:91
 msgid "Enter in the rules inserts a new line. Only the Publish in local test button submits. Escape cancels."
 msgstr ""
@@ -9353,6 +9792,10 @@ msgstr ""
 #: lib/tournaments/publication_editor.rb:259
 msgid "Enter nonblank tournament rules (up to 16384 UTF-8 bytes; only line breaks and tabs may be control characters)."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:77
+msgid "Enter on a card: play it."
+msgstr "Enter na kartě: zahraj ji."
 
 msgid "Enter on a card: play, or choose whether to declare an available marriage. Shift+Enter: declare the marriage directly when legal. Without a marriage it reports that fact and does not play the card."
 msgstr "Enter na kartě: zahrání karty nebo výběr, zda ohlásit dostupnou hlášku. Shift+Enter: přímé ohlášení hlášky, pokud je povolena. Není-li hláška dostupná, hra to oznámí a kartu nezahraje."
@@ -9787,6 +10230,10 @@ msgstr "Přídavná nádrž"
 msgid "Extra tricks are called bags. They are already included in the score, but accumulate between deals: each set of ten also costs 100 points. A successful nil gives 100. Taking even one trick after declaring nil costs 100; in normal scoring its tricks also become bags. A failed nil's tricks do not help a partner fulfil an ordinary contract."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:42
+msgid "Extra tricks are called overtricks. Without a double each one is worth the same as a contracted trick of that suit. Doubled, each overtrick earns 100, or 200 when vulnerable; redoubled, 200 or 400. Making a doubled contract adds 50 points, and a redoubled one 100."
+msgstr "Zdvihy navíc jsou přezdvihy. Bez kontry má každý hodnotu zdvihu závazku v dané barvě. Po kontře přináší každý přezdvih 100 bodů, v manši 200; po rekontře 200 nebo 400. Za splnění kontrovaného závazku se přidává 50 bodů, za splnění rekontrovaného 100."
+
 #: lib/game_room_changelog.rb:42 lib/game_room_changelog.rb:52
 msgid "F1 opens an arrow-key shortcuts list: current game actions first, room and screen actions next, and general controls last. Enter or Escape closes the list. Native ELTEN help remains unchanged outside Game Room."
 msgstr "F1 otevře seznam klávesových zkratek, který lze procházet šipkami: nejprve akce aktuální hry, pak akce místnosti a obrazovky a nakonec obecné ovládání. Enter nebo Escape seznam zavře. Původní nápověda ELTEN zůstává mimo Game Room beze změny."
@@ -9839,7 +10286,7 @@ msgstr ""
 msgid "F: read the current property's deed."
 msgstr "F: přečtěte vlastnickou kartu aktuální nemovitosti."
 
-#: games/generated/rulebooks/spades.rb:34
+#: games/generated/rulebooks/bridge.rb:85 games/generated/rulebooks/spades.rb:34
 msgid "F: read the led suit."
 msgstr "F: přečtěte vynesenou barvu."
 
@@ -10299,6 +10746,10 @@ msgstr ""
 #: games/generated/rulebooks/scrabble.rb:18
 msgid "For each new word, add the values of all its letters, including letters already on the board. A newly covered letter bonus doubles or triples that tile's value. After letter bonuses, apply the word bonuses to the whole word. Several word multipliers multiply together. For example, two double-word fields make the word worth four times its letter total."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:49
+msgid "For example, 2 spades doubled, not vulnerable, made with an overtrick earns 120 for the contract, 50 for making a doubled contract and 100 for the overtrick. The same contract two tricks short gives the defenders 300."
+msgstr "Například 2 piky s kontrou před manší splněné s jedním přezdvihem přinesou 120 za závazek, 50 za splnění kontrovaného závazku a 100 za přezdvih. Stejný závazek se dvěma pády dá obráncům 300."
 
 msgid "For example, rolling 4 and then 6 gives you ten turn points. Banking saves those ten and ends your turn. Rolling 1 instead loses the ten. If you roll 2 before that 1, you still lose the ten turn points, but keep the two points that went straight into your bank."
 msgstr ""
@@ -10941,7 +11392,7 @@ msgstr "H: karty v ruce. C: karty ve zdvihu. Ctrl+C: jejich procházení. F: tru
 msgid "H: read who is still in and who has folded."
 msgstr "H: přečtěte, kdo ještě hraje a kdo složil karty."
 
-#: games/generated/rulebooks/mille_bornes.rb:49 games/generated/rulebooks/ninety_nine.rb:29 games/generated/rulebooks/three_five_eight.rb:27 games/generated/rulebooks/tysiac.rb:44
+#: games/generated/rulebooks/bridge.rb:81 games/generated/rulebooks/mille_bornes.rb:49 games/generated/rulebooks/ninety_nine.rb:29 games/generated/rulebooks/three_five_eight.rb:27 games/generated/rulebooks/tysiac.rb:44
 msgid "H: read your hand."
 msgstr "H: přečtěte karty v ruce."
 
@@ -11048,6 +11499,10 @@ msgstr "Posvátné knihy"
 msgid "Home made bomb"
 msgstr "Podomácku vyrobená bomba"
 
+#: games/generated/rulebooks/bridge.rb:54
+msgid "Honours are also scored above the line, whoever holds them, even a defender. Four of the five top trumps (ace, king, queen, jack, ten) in one hand earn 100 and all five earn 150. In no trump, all four aces in one hand earn 150. The table settings can turn honours off."
+msgstr "Nad čáru se zapisují i honéry, ať je drží kdokoli, i obránce. Čtyři z pěti nejvyšších trumfů (eso, král, dáma, kluk, desítka) v jednom listu přinášejí 100 a všech pět 150. Bez trumfů přinášejí všechna čtyři esa v jednom listu 150. Počítání honérů lze vypnout v nastavení stolu."
+
 #: lib/tournaments/tournament_datetime_field.rb:20
 msgid "Hour"
 msgstr "Hodina"
@@ -11088,6 +11543,10 @@ msgstr ""
 
 msgid "How the cards change the total"
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:60
+msgid "How the comparison is counted depends on the table's scoring choice:"
+msgstr "Způsob porovnání závisí na zápisu zvoleném u stolu:"
 
 #: games/generated/rulebooks/krowa.rb:20
 msgid "How to play"
@@ -11136,6 +11595,14 @@ msgstr "I: přečtěte svou ujetou vzdálenost, překážky a ochrany."
 msgid "I: read your progress in the round."
 msgstr "I: přečtěte svůj průběžný výsledek v kole."
 
+#: games/generated/rulebooks/bridge.rb:88
+msgid "I: read your seat, partner and role in this deal."
+msgstr "I: přečti své místo, partnera a roli v tomto rozdání."
+
+#: games/bridge.rb:128 games/bridge.rb:151 games/bridge.rb:91 games/bridge/presentation.rb:539
+msgid "IMPs"
+msgstr "IMPy"
+
 msgid "Identical answers in the same category are grouped and shown with all their authors. The judge, not the program, decides whether a group is unique, duplicated or incorrect."
 msgstr ""
 
@@ -11182,6 +11649,10 @@ msgstr ""
 #: games/generated/rulebooks/duck_racing.rb:129
 msgid "If automatic hitting is enabled in your settings, positioning the paddle is enough to defend. You still serve manually."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:44
+msgid "If declarer falls short, the defenders score for each missing trick:"
+msgstr "Pokud hlavní hráč uhraje málo zdvihů, obránci získají body za každý chybějící zdvih, tedy pád:"
 
 #: games/generated/rulebooks/mancala.rb:23
 msgid "If that final empty pit is yours and the opposite pit contains seeds, capture all the seeds opposite together with your own last seed. Both pits become empty. For example, three seeds opposite plus your last seed give you four points. Landing on the opposing side or opposite an empty pit gives no capture."
@@ -11472,6 +11943,10 @@ msgstr "Ve hře Yahtzee klávesa D přečte pouze hodnoty kostek. Byla upřesně
 msgid "In Yahtzee, D reads only the dice values. The bonus for reaching 63 points in Ones through Sixes has a clearer name and explanation, without referring to the upper part of a sheet. The Polish Misery category is now called Nedza, and the opening rules are clearer."
 msgstr "V Yahtzee nyní D přečte pouze hodnoty kostek. Bonus za dosažení 63 bodů v kategoriích Jedničky až Šestky má srozumitelnější název a vysvětlení bez odkazu na horní část tabulky. Polská kategorie Misery se nyní jmenuje Nedza a úvod pravidel je srozumitelnější."
 
+#: games/generated/rulebooks/bridge.rb:59
+msgid "In a club, the same boards are played at many tables and pairs compare their results. Here there is only one table, so your result is compared with a reference score: an estimate of what these cards usually earn, based on the combined high card points of the stronger pair. A pair with 20 points each scores nothing on average. With 23 points the stronger pair is expected to score 110, with 26 points 400, or 600 vulnerable, and with 33 points a slam of 980, or 1430 vulnerable. The estimate ignores the shape of the hands, so a good fit or an unusual distribution can be worth much more."
+msgstr "V klubu se stejná rozdání hrají u mnoha stolů a dvojice porovnávají své výsledky. Tady je jen jeden stůl, takže tvůj výsledek se porovnává s referenčním výsledkem: odhadem, kolik takové karty obvykle přinesou, podle součtu figurových bodů silnější dvojice. Když mají obě dvojice po 20 bodech, referenční výsledek je nula. S 23 body by silnější dvojice měla získat 110, s 26 body 400, v manši 600, a s 33 body malý slem za 980, v manši 1430. Odhad nebere ohled na rozložení karet, takže dobrý fit nebo neobvyklé rozložení může mít mnohem větší hodnotu."
+
 #: games/generated/rulebooks/duck_racing.rb:111
 msgid "In a duel, only the two opponents answer; in a group challenge, all unfrozen ducks answer. A question square or Curiosity includes everyone, even frozen ducks. All these questions come from the sets selected for the table."
 msgstr ""
@@ -11525,6 +12000,10 @@ msgstr ""
 msgid "In either scoring mode, the score limit can be any whole number from 1 to 100000. Changing it alters when the match ends, not the values of cards or penalties."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:15
+msgid "In every suit the ace is the highest card, followed by the king, queen, jack and ten down to the two."
+msgstr "V každé barvě je nejvyšší eso, potom král, dáma, kluk, desítka a další karty až po dvojku."
+
 #: lib/game_room_changelog.rb:293
 msgid "In games that support bots, a player who leaves is automatically replaced by a bot. They return as an observer, and the table master can give them a seat again."
 msgstr ""
@@ -11574,6 +12053,10 @@ msgstr "V editoru Ctrl+N vytvoří sadu v seznamu sad nebo přidá otázku v sez
 #: lib/game_room_changelog.rb:481
 msgid "In the quiz question creator, the first answer is now always the correct one, followed by the three incorrect answers. When editing an older draft, its correct answer moves to the first field."
 msgstr "V editoru kvízových otázek je první odpověď vždy správná a další tři nesprávné. Při úpravě staršího konceptu se jeho správná odpověď přesune do prvního pole."
+
+#: games/generated/rulebooks/bridge.rb:57
+msgid "In the table settings you can choose duplicate bridge instead. The match then lasts a set number of deals, called boards: 4, 8, 12, 16 or 24, with 8 by default. The board number decides the dealer and vulnerability, in the cycle used at bridge clubs. Board 1 is dealt by North with neither side vulnerable, board 2 by East with North-South vulnerable, board 3 by South with East-West vulnerable and board 4 by West with both sides vulnerable."
+msgstr "V nastavení stolu můžeš místo toho zvolit sportovní bridž. Zápas pak trvá stanovený počet rozdání: 4, 8, 12, 16 nebo 24, výchozí je 8. Číslo rozdání určuje rozdávajícího a manše ve stejném cyklu jako v bridžových klubech. Rozdání 1 rozdává Sever a obě dvojice jsou před manší, rozdání 2 Východ s Severem a Jihem v manši, rozdání 3 Jih s Východem a Západem v manši a rozdání 4 Západ s oběma dvojicemi v manši."
 
 #: games/generated/rulebooks/tysiac.rb:21
 msgid "In the team variant, first choose two pairs at the table. Partners sit alternately, and all four play every deal. Each receives five cards; four more form the talon. The auction winner takes the talon and gives one card to each other player, including their partner. Everyone then has six cards for six tricks. You see only your own hand. You may outbid your partner, but your bidding limit still depends only on marriages in your own hand."
@@ -11685,6 +12168,10 @@ msgstr "Šílená"
 #: games/generated/rulebooks/mille_bornes.rb:35 games/mille_bornes/presentation.rb:202
 msgid "Instant repair"
 msgstr "Okamžitá oprava"
+
+#: games/generated/rulebooks/bridge.rb:19
+msgid "Instead of bidding you can make one of these calls:"
+msgstr "Místo licitace můžeš použít jednu z těchto hlášek:"
 
 #: games/uno.rb:123
 msgid "Interceptions"
@@ -11806,6 +12293,10 @@ msgstr "Pozvat někoho ze svých kontaktů"
 msgid "Island"
 msgstr "Ostrov"
 
+#: games/bridge/presentation.rb:45 games/bridge/presentation.rb:65
+msgid "It is %{player}'s turn (%{seat})."
+msgstr "Na řadě je %{player} (%{seat})."
+
 #: games/base.rb:326 games/base.rb:353 games/board_game.rb:235 games/spades.rb:880
 msgid "It is %{player}'s turn."
 msgstr "Na tahu je hráč %{player}."
@@ -11837,7 +12328,7 @@ msgstr "Nejste na tahu."
 msgid "It is your birthday: collect 25 from every other player."
 msgstr "Máte narozeniny: získejte 25 od každého dalšího hráče."
 
-#: games/base.rb:324 games/ludo.rb:181
+#: games/base.rb:324 games/bridge/presentation.rb:43 games/ludo.rb:181
 msgid "It is your turn."
 msgstr "Jste na tahu."
 
@@ -11947,6 +12438,10 @@ msgstr "K: procházejte své krále."
 msgid "K: mortgage properties."
 msgstr "K: zastavujte nemovitosti."
 
+#: games/generated/rulebooks/bridge.rb:76
+msgid "K: read the contract and declarer's tricks."
+msgstr "K: přečti závazek a zdvihy hlavního hráče."
+
 #: games/mancala.rb:47
 msgid "Kalah"
 msgstr ""
@@ -12022,7 +12517,7 @@ msgstr "Ovládání klávesnicí"
 msgid "Keyboard help in the rules lists each game-field shortcut separately, without chat controls or global shortcuts."
 msgstr "Nápověda ke klávesnici v pravidlech uvádí každou zkratku herního pole samostatně, bez ovládání chatu a globálních zkratek."
 
-#: lib/game_room_ui.rb:306
+#: games/generated/rulebooks/bridge.rb:71 lib/game_room_ui.rb:306
 msgid "Keyboard shortcuts"
 msgstr "Klávesové zkratky"
 
@@ -12172,6 +12667,10 @@ msgstr "Mezinárodní letiště Kuala Lumpur"
 #: games/generated/rulebooks/scrabble.rb:38
 msgid "L: browse played words."
 msgstr "L: procházejte zahraná slova."
+
+#: games/generated/rulebooks/bridge.rb:74
+msgid "L: read the auction."
+msgstr "L: přečti dražbu."
 
 #: games/generated/rulebooks/poker.rb:46
 msgid "L: read the blinds."
@@ -13095,6 +13594,14 @@ msgstr ""
 msgid "Matching cards and winning rounds"
 msgstr ""
 
+#: games/bridge.rb:129 games/bridge/presentation.rb:539
+msgid "Matchpoints"
+msgstr "Maxima"
+
+#: games/bridge/presentation.rb:379
+msgid "Matchpoints: North-South %{ns}, East-West %{ew}."
+msgstr "Body: Sever–Jih %{ns}, Východ–Západ %{ew}."
+
 #: games/checkers.rb:107
 msgid "Maximum capture requires completing capture sequences."
 msgstr "Pravidlo největšího počtu braných kamenů vyžaduje dokončení celé série braní."
@@ -13679,6 +14186,10 @@ msgstr ""
 msgid "No Hell, Quicksand and Suicide are off by default. Quicksand takes precedence over standard contract bonuses and bag scoring when enabled. The score limit must be positive and defaults to 300. Team arrangement is Individual by default; team membership is chosen before the game and partners share a score."
 msgstr ""
 
+#: games/bridge/presentation.rb:381
+msgid "No IMPs change hands."
+msgstr "Nikdo nezískává IMPy."
+
 msgid "No Mercy adds Draw Four, Draw Six, Draw Ten, Reverse Draw Four, Skip Everyone, Discard All and Colour Roulette. Flip uses a double-sided deck; a Flip card changes every hand and both piles between the light and dark sides. The table creator may also enable interceptions, zero and seven hand changes, buzzer cards, drawing until a playable card and a thinking-time limit."
 msgstr ""
 
@@ -13772,6 +14283,10 @@ msgstr ""
 msgid "No bids yet."
 msgstr "Zatím nejsou žádné nabídky."
 
+#: games/bridge/presentation.rb:487 games/bridge/presentation.rb:494
+msgid "No calls have been made yet."
+msgstr "Zatím nikdo nic nehlásil."
+
 #: games/makao.rb:968
 msgid "No card has been dealt yet."
 msgstr "Zatím nebyla rozdána žádná karta."
@@ -13783,7 +14298,7 @@ msgstr "Na pozici %{number} není žádná karta."
 msgid "No card in this packet can legally begin the move."
 msgstr "Žádnou kartou z tohoto balíčku nelze podle pravidel zahájit tah."
 
-#: games/poker.rb:289
+#: games/bridge/presentation.rb:264 games/poker.rb:289
 msgid "No cards"
 msgstr "Žádné karty"
 
@@ -13791,7 +14306,7 @@ msgstr "Žádné karty"
 msgid "No cards are on the table."
 msgstr ""
 
-#: games/base/shortcuts.rb:43
+#: games/base/shortcuts.rb:43 games/bridge/presentation.rb:464
 msgid "No cards have been played in this trick"
 msgstr "V tomto zdvihu zatím nebyla zahrána žádná karta"
 
@@ -13833,6 +14348,10 @@ msgstr "Žádná správná odpověď"
 #: games/krowa_support/leaderboards.rb:153
 msgid "No daily results"
 msgstr ""
+
+#: games/bridge/presentation.rb:509
+msgid "No deal has been played yet."
+msgstr "Zatím se nehrálo žádné rozdání."
 
 #: games/krowa_support/client.rb:251
 msgid "No definition in SJP."
@@ -14084,7 +14603,7 @@ msgstr "Políčko nemá zvláštní účinek."
 msgid "No statistics were collected for this period."
 msgstr ""
 
-#: games/spades.rb:927
+#: games/bridge/presentation.rb:469 games/spades.rb:927
 msgid "No suit has been led."
 msgstr "Zatím nebyla vynesena žádná barva."
 
@@ -14106,6 +14625,10 @@ msgstr "Žádná oznámení turnajů."
 #: lib/tournaments/public_screen.rb:63
 msgid "No tournaments in this view."
 msgstr "V tomto zobrazení nejsou žádné turnaje."
+
+#: games/bridge/presentation.rb:476
+msgid "No trick has been completed in this deal."
+msgstr "V tomto rozdání ještě nebyl dokončen žádný zdvih."
 
 #: games/scientific_war.rb:373
 msgid "No trick has been decided yet."
@@ -14181,6 +14704,10 @@ msgstr ""
 msgid "Normally, Space draws one tile. You may start drawing only once in a turn. If a legal play is available afterwards, you can make it; if none is available, your turn ends. Without any playable tile and with an empty boneyard, the game passes automatically. Having drawn is not permission to keep pressing Space for more tiles."
 msgstr ""
 
+#: games/bridge/presentation.rb:154
+msgid "North"
+msgstr "Sever"
+
 #: games/duck_racing_support/presentation.rb:31
 msgid "North bank"
 msgstr "Severní břeh"
@@ -14188,6 +14715,18 @@ msgstr "Severní břeh"
 #: content/monopoly_boards.rb:72
 msgid "North station"
 msgstr "Severní nádraží"
+
+#: games/bridge/presentation.rb:167
+msgid "North-South"
+msgstr "Sever–Jih"
+
+#: games/bridge/presentation.rb:347
+msgid "North-South %{ns}, East-West %{ew}"
+msgstr "Sever–Jih %{ns}, Východ–Západ %{ew}"
+
+#: games/bridge/presentation.rb:223
+msgid "North-South vulnerable"
+msgstr "Sever–Jih v manši"
 
 #: lib/game_surfaces/review_surface.rb:73
 msgid "Not assessed"
@@ -14248,6 +14787,10 @@ msgstr "Číslo od 1 do 999."
 #: games/krowa.rb:132 games/krowa_support/client.rb:170
 msgid "Number of attempts"
 msgstr "Počet pokusů"
+
+#: games/bridge.rb:116
+msgid "Number of boards"
+msgstr "Počet rozdání"
 
 #: lib/tournaments/draft_editor.rb:34 lib/tournaments/draft_preview.rb:184 lib/tournaments/public_text.rb:116
 msgid "Number of groups"
@@ -14526,6 +15069,10 @@ msgstr ""
 #: lib/tournaments/local_fixed_team_execution_screen.rb:477
 msgid "Only the tournament organizer may accept knockout pairings."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:36
+msgid "Only the tricks beyond the first six count. When declarer makes the contract, each contracted trick earns:"
+msgstr "Počítají se jen zdvihy nad prvních šest. Když hlavní hráč závazek splní, každý zdvih závazku má hodnotu:"
 
 #: __app.rb:1243 __app.rb:1407 games/krowa_support/leaderboards.rb:287 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:111 lib/game_room_screens.rb:616 lib/quiz_contributions/views.rb:141
 msgid "Open"
@@ -14811,6 +15358,10 @@ msgstr "P: přečtěte rozpracovaný návrh."
 msgid "P: read the prepared packet."
 msgstr "P: přečtěte připravenou skupinu karet."
 
+#: games/generated/rulebooks/bridge.rb:86
+msgid "P: read the previous trick."
+msgstr "P: přečti předchozí zdvih."
+
 #: games/generated/rulebooks/biblios.rb:40
 msgid "P: read the public space."
 msgstr "P: přečtěte společný prostor."
@@ -14922,6 +15473,10 @@ msgstr "Partner"
 #: lib/tournaments/public_preview.rb:360
 msgid "Partner choice saved."
 msgstr "Výběr spoluhráče byl uložen."
+
+#: games/generated/rulebooks/bridge.rb:12
+msgid "Partners and the deal"
+msgstr "Dvojice a rozdání"
 
 #: games/biblios.rb:1077 games/tysiac.rb:1423 games/tysiac.rb:1560
 msgid "Pass"
@@ -15181,6 +15736,14 @@ msgstr "Rostlina"
 msgid "Play"
 msgstr "Hrát"
 
+#: games/bridge/presentation.rb:39
+msgid "Play a card from dummy."
+msgstr "Zahraj kartu ze stolu."
+
+#: games/bridge.rb:282
+msgid "Play a card from the hand whose turn it is."
+msgstr "Zahraj kartu z listu, který je na řadě."
+
 msgid "Play a card matching the colour or value, or play a wild card. Space draws a card. Drawing is allowed even with a playable card by default, up to the configured limit. If no card can be played after a voluntary draw, the turn ends automatically; otherwise the player may play or keep drawing until the limit."
 msgstr ""
 
@@ -15347,6 +15910,10 @@ msgstr "Zahrání karty"
 msgid "Playing a double, such as 9/9, gives you another play. During your own series you may choose any accessible train, and each further double lets you continue. A double left at a train's end is unfinished until a matching tile is put after it. You can close an earlier double in your own series while leaving a later one on another train unfinished."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:50
+msgid "Playing a rubber"
+msgstr "Hra na robr"
+
 #: games/generated/rulebooks/mille_bornes.rb:17
 msgid "Playing a safety earns 100 points and gives you another turn. Teammates share protection but keep separate hands."
 msgstr "Zahrání ochrany přináší 100 bodů a další tah. Spoluhráči sdílejí ochranu, ale každý má vlastní karty v ruce."
@@ -15376,6 +15943,10 @@ msgstr "Hra na hrací desce"
 msgid "Playing on your own train closes it again. Playing on another open train does not close that train, and playing on the Mexican train never closes it. You may choose those other trains even while your own is open; that choice simply leaves yours open for now."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:29
+msgid "Playing the cards"
+msgstr "Sehrávka"
+
 #: lib/tournaments/draft_details_editor.rb:26 lib/tournaments/draft_preview.rb:194 lib/tournaments/tournament_dates_editor.rb:42
 msgid "Playing windows"
 msgstr "Časová okna pro hraní"
@@ -15400,6 +15971,14 @@ msgstr "Plzeň hlavní nádraží"
 
 msgid "Podolská vodárna"
 msgstr "Podolská vodárna"
+
+#: games/generated/rulebooks/bridge.rb:11
+msgid "Points come from making contracts and from defeating the opponents' contracts. The pair with more points when the match ends wins."
+msgstr "Body se získávají za splněné závazky a za poražení závazků soupeřů. Vyhrává dvojice, která má na konci zápasu více bodů."
+
+#: games/generated/rulebooks/bridge.rb:35
+msgid "Points for the contract"
+msgstr "Body za závazek"
 
 #: games/generated/rulebooks/tysiac.rb:28
 msgid "Points in cards are not the same as the score you receive"
@@ -15784,6 +16363,14 @@ msgstr ""
 msgid "Press F2 to lower and F3 to raise the selected Game Room sound volume."
 msgstr "Stisknutím F2 snížíte a F3 zvýšíte hlasitost vybraného zvuku Game Room."
 
+#: games/generated/rulebooks/bridge.rb:28
+msgid "Press K to hear the contract, who declares it and how many tricks declarer has taken so far."
+msgstr "Klávesa K řekne závazek, hlavního hráče a kolik zdvihů už hlavní hráč uhrál."
+
+#: games/generated/rulebooks/bridge.rb:24
+msgid "Press L to hear the whole auction, or Ctrl+L to go through it call by call."
+msgstr "Klávesa L přečte celou dražbu a Ctrl+L umožní procházet ji hlášku po hlášce."
+
 #: lib/game_surfaces/packet_cards.rb:155
 msgid "Press Shift+Enter to add or remove the current card from the prepared packet."
 msgstr "Stisknutím Shift+Enter přidáte aktuální kartu do připravené skupiny karet nebo ji z ní odeberete."
@@ -15887,6 +16474,10 @@ msgstr "Předchozí fáze turnaje"
 #: lib/tournaments/server_schedule_overview.rb:234
 msgid "Previous tournament phase results"
 msgstr "Výsledky předchozí fáze turnaje"
+
+#: games/bridge/presentation.rb:479
+msgid "Previous trick: %{cards}. Won by %{seat}."
+msgstr "Předchozí zdvih: %{cards}. Zdvih vzal %{seat}."
 
 #: lib/game_room_screens.rb:340
 msgid "Primary interface language"
@@ -17412,6 +18003,14 @@ msgstr ""
 msgid "Rounds"
 msgstr "Kola"
 
+#: games/bridge.rb:87
+msgid "Rubber"
+msgstr "Robrový"
+
+#: games/bridge.rb:103
+msgid "Rubber bridge (social)"
+msgstr "Robrový bridž (společenský)"
+
 #: games/makao.rb:81
 msgid "Rule profile"
 msgstr "Profil pravidel"
@@ -17487,6 +18086,10 @@ msgstr "S přečte aktuální počet králů, dam, věží, střelců, jezdců a
 msgid "S reads the current number of men and kings belonging to each player."
 msgstr "S přečte aktuální počet kamenů a dam každého hráče."
 
+#: games/generated/rulebooks/bridge.rb:55
+msgid "S reads the points below and above the line, the games won and the total for each pair, followed by the score towards the current game."
+msgstr "Klávesa S přečte body pod čarou a nad čarou, vyhrané hry a součet každé dvojice a potom stav rozehrané hry."
+
 msgid "S reads your stack, Shift+S the others, V the amount to call, P the total pot, I your investment in this hand, H active and folded players, L the blinds and T the turn. D reads your cards, E community cards and G your best currently visible combination, including a pair before the flop. Keys 1 and 2 read the first two private cards, 3–7 the five community positions; in draw poker use D for the whole hand."
 msgstr "S přečte vaše žetony, Shift+S žetony ostatních, V částku k dorovnání, P celý bank, I váš vklad v tomto rozdání, H aktivní hráče i ty, kteří položili karty, L povinné sázky a T oznámí, kdo je na tahu. D přečte vaše karty, E společné karty a G vaši nejlepší kombinaci z aktuálně viditelných karet, včetně páru před flopem. Klávesy 1 a 2 přečtou první dvě vlastní karty, 3–7 pět pozic společných karet; v draw pokeru použijte D pro celou ruku."
 
@@ -17554,6 +18157,10 @@ msgstr "S: přečtěte skóre."
 #: games/generated/rulebooks/taboo.rb:31
 msgid "S: read team scores."
 msgstr "S: přečtěte skóre týmů."
+
+#: games/generated/rulebooks/bridge.rb:89
+msgid "S: read the scores."
+msgstr "S: přečti výsledky."
 
 #: games/generated/rulebooks/poker.rb:40
 msgid "S: read your stack."
@@ -17781,12 +18388,20 @@ msgstr ""
 msgid "Scissors"
 msgstr "Nůžky"
 
+#: games/bridge/presentation.rb:387
+msgid "Score %{result}, compared with %{reference}. %{comparison}"
+msgstr "Výsledek: %{result}, referenční výsledek: %{reference}. %{comparison}"
+
 #: lib/game_room_changelog.rb:142
 msgid "Score announcements under S are ordered from highest to lowest, with eliminated players or teams last. Their actual scores are preserved."
 msgstr "Skóre se pod klávesou S čte od nejvyššího po nejnižší, vyřazení hráči nebo týmy jsou na konci. Jejich skutečné skóre zůstává zachováno."
 
 msgid "Score every word formed in the move. New letter bonuses apply first, then word multipliers; multiple word multipliers multiply. A shared letter scores in each word. Covered bonuses never apply again. A blank can activate a word bonus. Using seven rack tiles in one move adds 50 points after the other calculations."
 msgstr ""
+
+#: games/bridge.rb:109
+msgid "Score honours"
+msgstr "Počítat honéry"
 
 #: games/cat_head_tail.rb:67 games/domino.rb:57 games/farkle.rb:129 games/mexican_train.rb:19 games/rummy.rb:53 games/spades.rb:266
 msgid "Score limit"
@@ -18315,6 +18930,10 @@ msgstr "Shift+C: seřaďte podle barvy; opětovným stisknutím pořadí obrát�
 msgid "Shift+C: sort by suit; Shift+H: sort by rank. Press the same shortcut again to reverse that order. Shift+M restores receipt order. Sorting changes only your view and keeps the selected physical card; it does not alter card strength or select a move."
 msgstr "Shift+C: řazení podle barvy; Shift+H: řazení podle hodnoty. Opětovným stisknutím stejné zkratky obrátíte toto pořadí. Shift+M obnoví pořadí získání. Řazení mění pouze váš pohled a zachovává výběr téže konkrétní karty; nemění sílu karet ani nevybírá tah."
 
+#: games/generated/rulebooks/bridge.rb:91
+msgid "Shift+C: sort your cards by suit."
+msgstr "Shift+C: seřaď karty podle barvy."
+
 msgid "Shift+C: toggle colour order. Shift+H: toggle value order. Shift+D or Shift+M: acquisition order. These only change your own view."
 msgstr "Shift+C: přepnutí směru řazení podle barvy. Shift+H: přepnutí směru řazení podle hodnoty. Shift+D nebo Shift+M: pořadí získání karet. Tyto volby mění pouze vaše zobrazení."
 
@@ -18403,6 +19022,10 @@ msgstr "Shift+H: seřaďte karty podle vzdálenosti nebo hodnoty; dalším stisk
 msgid "Shift+H: sort by rank or value; press again to reverse the order."
 msgstr "Shift+H: seřaďte podle hodnoty; dalším stisknutím obrátíte pořadí."
 
+#: games/generated/rulebooks/bridge.rb:92
+msgid "Shift+H: sort your cards by rank."
+msgstr "Shift+H: seřaď karty podle hodnoty."
+
 #: games/generated/rulebooks/mille_bornes.rb:51
 msgid "Shift+I: read every car's mileage, hazards and safeties."
 msgstr "Shift+I: přečtěte ujetou vzdálenost, překážky a ochrany všech aut."
@@ -18426,6 +19049,10 @@ msgstr "Shift+M: během výměny obnovte pořadí, v němž jste karty dostali."
 #: games/generated/rulebooks/makao.rb:49 games/generated/rulebooks/mille_bornes.rb:58 games/generated/rulebooks/ninety_nine.rb:37 games/generated/rulebooks/rummy.rb:63 games/generated/rulebooks/spades.rb:43 games/generated/rulebooks/three_five_eight.rb:38 games/generated/rulebooks/tysiac.rb:55 games/generated/rulebooks/uno.rb:53
 msgid "Shift+M: restore the order in which cards were received."
 msgstr "Shift+M: obnovte pořadí, v němž jste karty dostali."
+
+#: games/generated/rulebooks/bridge.rb:93
+msgid "Shift+M: restore the order in which you received your cards."
+msgstr "Shift+M: obnov původní pořadí karet."
 
 #: games/generated/rulebooks/chess.rb:41
 msgid "Shift+N: browse the opponent's knights."
@@ -18500,6 +19127,10 @@ msgstr "Shift+V: otevřete soupeřův bodovací list."
 #: games/generated/rulebooks/mille_bornes.rb:55
 msgid "Shift+Z: find the previous playable card on your turn, outside the dirty-trick window."
 msgstr "Shift+Z: najděte předchozí hratelnou kartu ve svém tahu, mimo dobu pro protiútok."
+
+#: games/generated/rulebooks/bridge.rb:80
+msgid "Shift+Z: go to the previous playable card."
+msgstr "Shift+Z: přejdi na předchozí kartu, kterou lze zahrát."
 
 #: games/generated/rulebooks/scientific_war.rb:31
 msgid "Shift+Z: move to the previous card in your hand; if it is your only card, play it."
@@ -18823,6 +19454,10 @@ msgstr "Zdroj (nepovinné)"
 #: lib/quiz_contributions/delivery.rb:92
 msgid "Source: %{source}"
 msgstr "Zdroj: %{source}"
+
+#: games/bridge/presentation.rb:156
+msgid "South"
+msgstr "Jih"
 
 #: games/duck_racing_support/presentation.rb:19
 msgid "South bank"
@@ -19343,7 +19978,7 @@ msgstr ""
 msgid "T: read whose turn it is and any double that must be covered."
 msgstr "T: přečtěte, kdo je na tahu, a případný dvojitý kámen, který je třeba pokrýt."
 
-#: games/generated/rulebooks/battleship.rb:37 games/generated/rulebooks/biblios.rb:45 games/generated/rulebooks/checkers.rb:35 games/generated/rulebooks/chess.rb:31 games/generated/rulebooks/domino.rb:40 games/generated/rulebooks/farkle.rb:28 games/generated/rulebooks/four_in_a_row.rb:17 games/generated/rulebooks/ludo.rb:38 games/generated/rulebooks/makao.rb:46 games/generated/rulebooks/mancala.rb:40 games/generated/rulebooks/mille_bornes.rb:53 games/generated/rulebooks/ninety_nine.rb:34 games/generated/rulebooks/poker.rb:54 games/generated/rulebooks/reversi.rb:22 games/generated/rulebooks/rummy.rb:60 games/generated/rulebooks/scrabble.rb:43 games/generated/rulebooks/spades.rb:40 games/generated/rulebooks/three_five_eight.rb:33 games/generated/rulebooks/tic_tac_toe.rb:17 games/generated/rulebooks/tysiac.rb:52 games/generated/rulebooks/uno.rb:50 games/generated/rulebooks/war.rb:26 games/generated/rulebooks/yahtzee.rb:35
+#: games/generated/rulebooks/battleship.rb:37 games/generated/rulebooks/biblios.rb:45 games/generated/rulebooks/bridge.rb:90 games/generated/rulebooks/checkers.rb:35 games/generated/rulebooks/chess.rb:31 games/generated/rulebooks/domino.rb:40 games/generated/rulebooks/farkle.rb:28 games/generated/rulebooks/four_in_a_row.rb:17 games/generated/rulebooks/ludo.rb:38 games/generated/rulebooks/makao.rb:46 games/generated/rulebooks/mancala.rb:40 games/generated/rulebooks/mille_bornes.rb:53 games/generated/rulebooks/ninety_nine.rb:34 games/generated/rulebooks/poker.rb:54 games/generated/rulebooks/reversi.rb:22 games/generated/rulebooks/rummy.rb:60 games/generated/rulebooks/scrabble.rb:43 games/generated/rulebooks/spades.rb:40 games/generated/rulebooks/three_five_eight.rb:33 games/generated/rulebooks/tic_tac_toe.rb:17 games/generated/rulebooks/tysiac.rb:52 games/generated/rulebooks/uno.rb:50 games/generated/rulebooks/war.rb:26 games/generated/rulebooks/yahtzee.rb:35
 msgid "T: read whose turn it is."
 msgstr "T: přečtěte, kdo je na tahu."
 
@@ -19373,6 +20008,10 @@ msgstr "Tab přechází mezi vaší rukou, dalšími herními poli, historií a 
 #: lib/tournaments/public_preview.rb:127
 msgid "Tab moves to the available actions. Choose an action with the arrows and press Enter. Escape returns without leaving the tournament."
 msgstr "Tab přejde na dostupné akce. Vyberte akci šipkami a stiskněte Enter. Escape se vrátí zpět, aniž by vás odhlásil z turnaje."
+
+#: games/generated/rulebooks/bridge.rb:78
+msgid "Tab: move between your hand and dummy."
+msgstr "Tab: přejdi mezi svým listem a stolem."
 
 #: games/generated/rulebooks/krowa.rb:45
 msgid "Tab: move to the next field. In table settings, fields unrelated to the selected variant are hidden, so you do not need to skip them."
@@ -19925,8 +20564,16 @@ msgstr "Příloha přesahuje 4 MB. Rozděl návrh na menší koncepty."
 msgid "The attempt is waiting to be checked."
 msgstr "Pokus čeká na kontrolu."
 
+#: games/generated/rulebooks/bridge.rb:16
+msgid "The auction"
+msgstr "Dražba"
+
 msgid "The auction and talon"
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:23
+msgid "The auction ends when three players pass in a row after a bid. The last bid becomes the contract. If all four players pass at the start, nobody scores and the cards are dealt again by the next dealer."
+msgstr "Dražba končí, když po licitaci tři hráči za sebou pasují. Poslední licitace se stává závazkem. Pokud hned na začátku pasují všichni čtyři, nikdo nezíská body a karty znovu rozdá další hráč."
 
 #: games/tysiac.rb:1622
 msgid "The auction has not started."
@@ -20143,6 +20790,10 @@ msgstr ""
 
 msgid "The dealer changes every round. The player to the dealer's left begins both bidding and the first trick. For team games, the table master may accept the alternating seat arrangement or assign every human and computer to a valid team before starting."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:17
+msgid "The dealer makes the first call and the others follow clockwise. When it is your turn, the game field shows a list of the calls you may make. Choose one with the arrow keys and press Enter. You can also press B to open the same list."
+msgstr "Dražbu zahajuje rozdávající a ostatní pokračují po směru hodinových ručiček. Když jsi na řadě, v herním poli se objeví seznam hlášek, které můžeš použít. Vyber hlášku šipkami a stiskni Enter. Stejný seznam otevře i klávesa B."
 
 #: lib/quiz_contributions/controller.rb:193
 msgid "The decision was not confirmed. Retry the same decision?"
@@ -20706,7 +21357,7 @@ msgstr "Na prvním místě je remíza. Odehraje se další úplný cyklus rozhod
 msgid "The lead is tied. Another round will be played: %{players}."
 msgstr "Na prvním místě je remíza. Odehraje se další kolo: %{players}."
 
-#: games/spades.rb:930
+#: games/bridge/presentation.rb:471 games/spades.rb:930
 msgid "The led suit is %{suit}."
 msgstr "Vynesená barva je %{suit}."
 
@@ -20787,6 +21438,10 @@ msgstr "Hlavní menu má nové pořadí: uložené hry jsou hned za připojením
 #: games/krowa_support/presentation.rb:35
 msgid "The main menu's Leaderboards entry gives access to Krowa word results and Word Tower results, including round details. Your gallery and custom dictionary are local and separate for each account. To remove custom words, open My dictionary in Krowa settings, select them with Space and use Remove selected. Removing a word does not rewrite attempts already made in a game."
 msgstr ""
+
+#: games/bridge/presentation.rb:426
+msgid "The match ended in a draw: %{scores}."
+msgstr "Zápas skončil remízou: %{scores}."
 
 msgid "The match ends after the round in which at least one player reaches the target score. The highest score wins."
 msgstr ""
@@ -20925,6 +21580,10 @@ msgstr ""
 msgid "The other row: %{values}."
 msgstr "Druhý řádek: %{values}."
 
+#: games/generated/rulebooks/bridge.rb:26
+msgid "The pair that made the last bid must take the promised number of tricks; the other pair defends. The declarer is the player of the contracting pair who first bid the suit, or no trump, of the final contract. For example, if North opens 1 heart, South raises to 4 hearts and everyone passes, North is declarer even though South made the last bid."
+msgstr "Dvojice, která dala poslední licitaci, musí uhrát slíbený počet zdvihů a druhá dvojice se brání. Hlavním hráčem se stane ten hráč této dvojice, který jako první jmenoval barvu závazku, nebo bez trumfů. Když například Sever zahájí 1 srdce, Jih zvýší na 4 srdce a všichni pasují, hlavním hráčem je Sever, přestože poslední licitaci dal Jih."
+
 #: lib/tournaments/local_dispatch_screen.rb:110
 msgid "The participant has already entered the match."
 msgstr ""
@@ -20970,6 +21629,10 @@ msgstr ""
 msgid "The player holding the highest dealt double starts. A double is a tile with equal numbers, such as 6/6. If no hand has a double, the highest total decides; ties use the round's rotating priority. The starter may play any tile, not necessarily the double that gave them the start. A normal round ends as soon as someone uses their last tile."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:27
+msgid "The player to the left of declarer leads the first card. Then declarer's partner becomes dummy: dummy's cards are laid face up for everyone, and declarer plays them as well as their own. Dummy takes no further part in the deal."
+msgstr "První kartu, výnos, zahraje hráč vlevo od hlavního hráče. Potom se partner hlavního hráče stane stolem: jeho karty leží otevřeně pro všechny a hlavní hráč jimi hraje stejně jako svými. Stůl se dál rozdání neúčastní."
+
 #: games/generated/rulebooks/domino.rb:20
 msgid "The player who empties their hand scores zero. Others add the numbers on their remaining tiles. For instance, 3/5 is worth 8. The 0/0 is a special case: it is worth 10 if it is the only tile left in your hand, but zero if you also have other tiles. If a whole circuit passes with no possible play and no usable draw pile, the round is blocked and everyone counts their remaining hand."
 msgstr ""
@@ -20984,6 +21647,10 @@ msgstr ""
 #: games/generated/rulebooks/scientific_war.rb:14
 msgid "The player with the strongest card wins the trick and puts all its cards on their pile. Normally the ace is the strongest card and the two the weakest. Suits do not matter."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:13
+msgid "The players are named after the points of the compass. North and South are partners, and so are East and West; partners sit opposite each other. When the table chooses teams, the two members of each team become partners. Play always moves clockwise: North, East, South, West."
+msgstr "Hráči se jmenují podle světových stran. Sever hraje s Jihem a Východ se Západem; partneři sedí proti sobě. Pokud si stůl zvolí týmy, dva členové jednoho týmu jsou partneři. Hraje se vždy po směru hodinových ručiček: Sever, Východ, Jih, Západ."
 
 msgid "The players then add the numbers on their dice, and the player with the most Victory Points wins. The numbers on the cards are not Victory Points; they only determine who wins each category."
 msgstr ""
@@ -21708,6 +22375,10 @@ msgstr ""
 msgid "There are no available moves from %{field}."
 msgstr "Z pole %{field} nelze provést žádný tah."
 
+#: games/bridge/presentation.rb:455
+msgid "There are no cards in the current trick."
+msgstr "V aktuálním zdvihu zatím nejsou žádné karty."
+
 #: games/spades.rb:905 games/three_five_eight.rb:986
 msgid "There are no cards on the table."
 msgstr "Na stole nejsou žádné karty."
@@ -21808,6 +22479,10 @@ msgstr "V odhazovacím balíčku není žádná karta."
 msgid "There is no computer to remove."
 msgstr "Není zde žádný počítačový hráč k odebrání."
 
+#: games/bridge/presentation.rb:500
+msgid "There is no contract yet."
+msgstr "Zatím není žádný závazek."
+
 #: games/uno.rb:1335
 msgid "There is no current colour."
 msgstr "Není určena aktuální barva."
@@ -21867,6 +22542,10 @@ msgstr "Tepelná elektrárna"
 #: lib/game_surfaces/meld_cards.rb:235 lib/game_surfaces/meld_cards.rb:250
 msgid "These cards do not form valid ordered melds."
 msgstr "Tyto karty v uvedeném pořadí netvoří platné kombinace."
+
+#: games/generated/rulebooks/bridge.rb:40
+msgid "These contract points are doubled if the contract was doubled and multiplied by four if it was redoubled. A contract worth at least 100 of them is a game: 3 no trump, 4 hearts, 4 spades, 5 clubs and 5 diamonds are the lowest games. A smaller contract is a part score."
+msgstr "Tyto body za závazek se po kontře zdvojnásobí a po rekontře zečtyřnásobí. Závazek za alespoň 100 takových bodů je hra: nejnižší hry jsou 3 bez trumfů, 4 srdce, 4 piky, 5 křížů a 5 kár. Menší závazek je částečný závazek."
 
 #: lib/game_room_presence_screen.rb:42
 msgid "These counts come from recent reports by updated clients. Reports expire after about five to six minutes; rooms without an updated client reporting them may be missing."
@@ -22014,6 +22693,10 @@ msgstr "Tato akce nyní není dostupná."
 msgid "This bid is not allowed with the selected Spades rules."
 msgstr "Toto hlášení není při zvolených pravidlech hry Piky povoleno."
 
+#: games/bridge.rb:278
+msgid "This call is not allowed now. A bid must be higher than the last bid, and you may only double or redouble your opponents."
+msgstr "Tuto hlášku teď nelze použít. Licitace musí být vyšší než poslední a kontrovat i rekontrovat lze jen soupeře."
+
 #: games/duck_racing_support/presentation.rb:119
 msgid "This card affects you."
 msgstr "Tato karta působí na vás."
@@ -22045,6 +22728,10 @@ msgstr "Tato karta nemá požadovanou hodnotu."
 #: games/three_five_eight.rb:389
 msgid "This card exchange is not available."
 msgstr ""
+
+#: games/bridge.rb:280
+msgid "This card is not in the hand that is to play."
+msgstr "Tato karta není v listu, který je na řadě."
 
 #: games/makao.rb:453 games/ninety_nine.rb:400 games/spades.rb:537 games/three_five_eight.rb:390 games/tysiac.rb:510
 msgid "This card is not in your hand."
@@ -22685,6 +23372,10 @@ msgstr "Vrchní karta: %{card}; nahlášená barva: %{suit}%{request}."
 msgid "Total across matches: %{points}."
 msgstr "Součet bodů ze všech partií: %{points}."
 
+#: games/bridge/presentation.rb:369
+msgid "Total: %{scores}."
+msgstr "Celkem: %{scores}."
+
 #: lib/tournaments/tournament_start_runtime.rb:50 lib/tournaments/tournament_start_runtime.rb:64
 msgid "Tournament"
 msgstr "Turnaj"
@@ -22947,6 +23638,10 @@ msgstr ""
 
 msgid "Tricks and marriages"
 msgstr ""
+
+#: games/bridge/presentation.rb:513
+msgid "Tricks: %{tricks}."
+msgstr "Zdvihy: %{tricks}."
 
 #: games/tysiac.rb:488
 msgid "Trump: %{suit}."
@@ -23657,6 +24352,10 @@ msgstr "V: přečtěte částku potřebnou k dorovnání."
 msgid "V: read the current colour."
 msgstr "V: přečtěte aktuální barvu."
 
+#: games/generated/rulebooks/bridge.rb:87
+msgid "V: read the deal, vulnerability, contract and tricks."
+msgstr "V: přečti rozdání, manše, závazek a zdvihy."
+
 #: games/generated/rulebooks/war.rb:25
 msgid "V: read the result of the last battle."
 msgstr ""
@@ -24008,6 +24707,10 @@ msgstr "Vodárna"
 msgid "Welcome to the audio tutorial. Here you will learn the sounds used in this game. Use the arrow keys to browse. Press Space or Enter to play a sound."
 msgstr "Vítejte ve zvukovém průvodci. Zde se seznámíte se zvuky používanými v této hře. K procházení použijte šipky. Zvuk přehrajete stisknutím mezerníku nebo Enter."
 
+#: games/bridge/presentation.rb:157
+msgid "West"
+msgstr "Západ"
+
 #: content/monopoly_boards.rb:72
 msgid "West station"
 msgstr "Západní nádraží"
@@ -24044,6 +24747,10 @@ msgstr ""
 #: games/ludo.rb:74
 msgid "What the five checkboxes change"
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:9
+msgid "What the game is about"
+msgstr "O čem hra je"
 
 #: games/generated/rulebooks/ludo.rb:15
 msgid "What the table options change"
@@ -24606,9 +25313,25 @@ msgstr "Už jste u jiného stolu."
 msgid "You are already at this table."
 msgstr "U tohoto stolu již jste."
 
-#: games/base.rb:304
+#: games/base.rb:304 games/bridge/presentation.rb:34
 msgid "You are bidding."
 msgstr "Jste na řadě s nabídkou."
+
+#: games/bridge/presentation.rb:527
+msgid "You are declarer and also play dummy's cards."
+msgstr "Jsi hlavní hráč a hraješ i kartami stolu."
+
+#: games/bridge/presentation.rb:531
+msgid "You are defending; your side needs %{count} tricks to defeat the contract."
+msgstr "Bráníš; k poražení závazku potřebuje tvá dvojice %{count} zdvihů."
+
+#: games/bridge/presentation.rb:529
+msgid "You are dummy."
+msgstr "Jsi stůl."
+
+#: games/bridge/presentation.rb:449
+msgid "You are dummy. Your partner plays your cards."
+msgstr "Jsi stůl. Tvými kartami hraje partner."
 
 #: games/generated/rulebooks/monopoly.rb:35
 msgid "You are imprisoned only when a field, a card or three consecutive doubles sends you there. Simply stopping on the jail field is a visit. Before a prison roll, you may pay the exit fee or use a held jail card. Otherwise you have up to three turns to roll doubles. Successful doubles release you and move you by the roll, without an extra turn. After the third failed attempt, you pay and move by that roll."
@@ -24617,6 +25340,10 @@ msgstr ""
 #: games/ludo.rb:459 games/ludo.rb:504
 msgid "You are not a player in this game."
 msgstr "Nejste hráčem v této hře."
+
+#: games/bridge/presentation.rb:438
+msgid "You are not playing at this table."
+msgstr "U tohoto stolu nehraješ."
 
 #: games/spades.rb:951
 msgid "You are not playing in this round."
@@ -24669,6 +25396,10 @@ msgstr ""
 #: games/duck_racing_support/challenge_presentation.rb:131
 msgid "You are watching this challenge."
 msgstr "Sledujete tuto výzvu."
+
+#: games/bridge/presentation.rb:519
+msgid "You are watching this table."
+msgstr "Sleduješ tento stůl."
 
 #: games/duck_racing_support/challenge_presentation.rb:109 games/duck_racing_support/challenge_presentation.rb:246 games/duck_racing_support/challenge_presentation.rb:320
 msgid "You are watching."
@@ -25062,7 +25793,11 @@ msgstr ""
 msgid "You must follow the led suit whenever possible. If you cannot follow and a trump suit has been established, you must play a trump if you have one. Otherwise you may discard any card. Cards rank from strongest to weakest: ace, 10, king, queen, jack and 9."
 msgstr ""
 
-#: games/spades.rb:539
+#: games/generated/rulebooks/bridge.rb:31
+msgid "You must follow the suit that was led if you can. If you have no card of that suit, you may play any card, including a trump, but you never have to trump. The highest trump in the trick wins it. If no trump was played, the highest card of the led suit wins. Cards of other suits cannot win the trick. The player who wins a trick leads to the next one."
+msgstr "Máš-li kartu vynesené barvy, musíš ji přiznat. Když ji nemáš, smíš zahrát jakoukoli kartu včetně trumfu, ale přebíjet nikdy nemusíš. Zdvih bere nejvyšší trumf, a pokud nikdo trumf nezahrál, nejvyšší karta vynesené barvy. Karty ostatních barev zdvih vzít nemohou. Kdo zdvih vzal, vynáší do dalšího."
+
+#: games/bridge.rb:284 games/spades.rb:539
 msgid "You must follow the suit that was led."
 msgstr "Musíte přiznat vynesenou barvu."
 
@@ -25122,6 +25857,10 @@ msgstr "Váš hod: %{value}. Vyberte figurku, kterou chcete posunout"
 #: games/tysiac.rb:528
 msgid "You set aside %{card}."
 msgstr "Odložili jste: %{card}."
+
+#: games/bridge/presentation.rb:522
+msgid "You sit %{seat}; your partner is %{partner}."
+msgstr "Tvé místo: %{seat}; partner: %{partner}."
 
 #: games/tysiac.rb:1468 games/tysiac.rb:1575
 msgid "You sit out this deal."
@@ -25250,6 +25989,14 @@ msgstr "Vaše nabídka v aukci:"
 msgid "Your availability changed in another client. Enable it again if you want to participate."
 msgstr ""
 
+#: games/bridge/presentation.rb:287
+msgid "Your call. No bid has been made yet."
+msgstr "Tvoje hláška. Zatím nezazněla žádná licitace."
+
+#: games/bridge/presentation.rb:289
+msgid "Your call. The last bid is %{call} by %{seat}."
+msgstr "Tvoje hláška. Poslední licitace: %{call}, %{seat}."
+
 #: games/duck_racing_support/presentation.rb:210
 msgid "Your cards"
 msgstr "Vaše karty"
@@ -25348,9 +26095,21 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: games/makao.rb:940 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:883 games/spades.rb:919 games/three_five_eight.rb:981 games/tysiac.rb:1577
+#: games/bridge/presentation.rb:439 games/makao.rb:940 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:883 games/spades.rb:919 games/three_five_eight.rb:981 games/tysiac.rb:1577
 msgid "Your hand is empty."
 msgstr "Ruka je prázdná."
+
+#: games/bridge/presentation.rb:441
+msgid "Your hand, %{count} cards: %{cards}. %{points} high card points."
+msgstr "Tvůj list, počet karet: %{count}: %{cards}. Figurové body: %{points}."
+
+#: games/bridge/presentation.rb:272
+msgid "Your hand, %{seat}, %{points} high card points"
+msgstr "Tvůj list, %{seat}, figurové body: %{points}"
+
+#: games/bridge/presentation.rb:269
+msgid "Your hand, %{seat}: you are dummy and your partner plays these cards"
+msgstr "Tvůj list, %{seat}: jsi stůl a těmito kartami hraje partner"
 
 #: games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:885 games/spades.rb:921 games/three_five_eight.rb:982 games/tysiac.rb:1578
 msgid "Your hand: %{cards}."
@@ -25568,6 +26327,10 @@ msgstr "Z: smažte celý návrh."
 msgid "Z: find the next playable card on your turn, outside the dirty-trick window."
 msgstr "Z: najděte další hratelnou kartu ve svém tahu, mimo dobu pro protiútok."
 
+#: games/generated/rulebooks/bridge.rb:79
+msgid "Z: go to the next playable card in the hand that is to play; play it if it is the only one."
+msgstr "Z: přejdi na další kartu, kterou lze zahrát z listu, který je na řadě; je-li jediná, zahraj ji."
+
 #: games/generated/rulebooks/scientific_war.rb:30
 msgid "Z: move to the next card in your hand; if it is your only card, play it."
 msgstr ""
@@ -25663,17 +26426,25 @@ msgstr "církevní karta zvyšující hodnotu dvou kostek"
 msgid "a card"
 msgstr "karta"
 
+#: games/bridge/presentation.rb:375
+msgid "a reference of %{points} for %{side}"
+msgstr "%{points} pro %{side}"
+
 #: games/monopoly/presentation.rb:97
 msgid "accept the trade"
 msgstr "přijmout výměnu"
 
-#: games/card_game.rb:55 games/makao.rb:27 games/ninety_nine.rb:37 games/poker.rb:34 games/spades.rb:43 games/three_five_eight.rb:37 games/tysiac.rb:29
+#: games/bridge/presentation.rb:192 games/card_game.rb:55 games/makao.rb:27 games/ninety_nine.rb:37 games/poker.rb:34 games/spades.rb:43 games/three_five_eight.rb:37 games/tysiac.rb:29
 msgid "ace"
 msgstr "eso"
 
 #: games/poker.rb:317
 msgid "all in"
 msgstr "vše vsazeno"
+
+#: games/bridge/presentation.rb:375
+msgid "an even reference"
+msgstr "nula"
 
 msgid "answer revealed"
 msgstr "odpověď odhalena"
@@ -25766,6 +26537,10 @@ msgstr ""
 msgid "blue"
 msgstr "modrá"
 
+#: games/bridge/presentation.rb:225
+msgid "both sides vulnerable"
+msgstr "obě dvojice v manši"
+
 #: games/battleship.rb:632
 msgid "bow"
 msgstr "příď"
@@ -25789,6 +26564,10 @@ msgstr "procházet majetek ostatních hráčů"
 #: games/scrabble_ui.rb:42
 msgid "browse played words"
 msgstr "prohlížejte zahraná slova"
+
+#: games/bridge/presentation.rb:144
+msgid "browse the auction"
+msgstr "procházet dražbu"
 
 #: games/monopoly/presentation.rb:58
 msgid "browse the board"
@@ -25951,7 +26730,7 @@ msgstr[0] "nejbližší odpověď %{number}, %{attempts} pokus"
 msgstr[1] "nejbližší odpověď %{number}, %{attempts} pokusy"
 msgstr[2] "nejbližší odpověď %{number}, %{attempts} pokusů"
 
-#: games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:19 games/poker.rb:33 games/spades.rb:25 games/three_five_eight.rb:32 games/tysiac.rb:18
+#: games/bridge/presentation.rb:188 games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:19 games/poker.rb:33 games/spades.rb:25 games/three_five_eight.rb:32 games/tysiac.rb:18
 msgid "clubs"
 msgstr "trefy"
 
@@ -26021,7 +26800,7 @@ msgstr "ohlásit UNO nebo přistihnout hráče, který ho neohlásil"
 msgid "describe the selected card"
 msgstr "popsat vybranou kartu"
 
-#: games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:20 games/poker.rb:33 games/spades.rb:26 games/three_five_eight.rb:32 games/tysiac.rb:19
+#: games/bridge/presentation.rb:188 games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:20 games/poker.rb:33 games/spades.rb:26 games/three_five_eight.rb:32 games/tysiac.rb:19
 msgid "diamonds"
 msgstr "káry"
 
@@ -26053,6 +26832,10 @@ msgstr "odpojen"
 msgid "dollars"
 msgstr "dolary"
 
+#: games/bridge/presentation.rb:198
+msgid "double"
+msgstr "kontra"
+
 #: lib/game_surfaces/word_board.rb:189
 msgid "double letter"
 msgstr "dvojnásobná hodnota písmene"
@@ -26060,6 +26843,13 @@ msgstr "dvojnásobná hodnota písmene"
 #: lib/game_surfaces/word_board.rb:189
 msgid "double word"
 msgstr "dvojnásobek hodnoty slova"
+
+#: games/bridge/presentation.rb:358
+msgid "down %{count} trick"
+msgid_plural "down %{count} tricks"
+msgstr[0] "%{count} pád"
+msgstr[1] "%{count} pády"
+msgstr[2] "%{count} pádů"
 
 #: lib/game_surfaces/word_board.rb:198
 msgid "draft"
@@ -26096,6 +26886,10 @@ msgstr "dobrat kameny"
 #: games/uno.rb:20
 msgid "draw two"
 msgstr "dobrat dvě"
+
+#: games/bridge.rb:149
+msgid "duplicate, %{boards} boards, %{scoring}"
+msgstr "sportovní, rozdání: %{boards}, %{scoring}"
 
 msgid "duplicate, 5 points"
 msgstr "duplicitní odpověď, 5 bodů"
@@ -26243,7 +27037,7 @@ msgstr "uhodnuto"
 msgid "hard category pool"
 msgstr "sada těžkých kategorií"
 
-#: games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:21 games/poker.rb:33 games/spades.rb:27 games/three_five_eight.rb:33 games/tysiac.rb:20
+#: games/bridge/presentation.rb:188 games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:21 games/poker.rb:33 games/spades.rb:27 games/three_five_eight.rb:33 games/tysiac.rb:20
 msgid "hearts"
 msgstr "srdce"
 
@@ -26305,7 +27099,7 @@ msgstr "nesprávně, 0 bodů"
 msgid "individual play"
 msgstr "hra jednotlivců"
 
-#: games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:34 games/poker.rb:34 games/spades.rb:40 games/three_five_eight.rb:36 games/tysiac.rb:25
+#: games/bridge/presentation.rb:192 games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:34 games/poker.rb:34 games/spades.rb:40 games/three_five_eight.rb:36 games/tysiac.rb:25
 msgid "jack"
 msgstr "kluk"
 
@@ -26338,7 +27132,7 @@ msgstr "ponechat kostku %{number}"
 msgid "kept"
 msgstr "ponechána"
 
-#: games/card_game.rb:55 games/chess.rb:280 games/chess.rb:870 games/makao.rb:27 games/ninety_nine.rb:36 games/poker.rb:34 games/spades.rb:42 games/three_five_eight.rb:37 games/tysiac.rb:27
+#: games/bridge/presentation.rb:192 games/card_game.rb:55 games/chess.rb:280 games/chess.rb:870 games/makao.rb:27 games/ninety_nine.rb:36 games/poker.rb:34 games/spades.rb:42 games/three_five_eight.rb:37 games/tysiac.rb:27
 msgid "king"
 msgstr "král"
 
@@ -26386,6 +27180,17 @@ msgstr "poslouchat z pohledu druhého hráče"
 msgid "listen from the third player's perspective"
 msgstr "poslouchat z pohledu třetího hráče"
 
+#: games/bridge/presentation.rb:351
+msgid "made exactly"
+msgstr "splněno bez přezdvihu"
+
+#: games/bridge/presentation.rb:354
+msgid "made with %{count} overtrick"
+msgid_plural "made with %{count} overtricks"
+msgstr[0] "splněno s %{count} přezdvihem"
+msgstr[1] "splněno s %{count} přezdvihy"
+msgstr[2] "splněno s %{count} přezdvihy"
+
 #: games/monopoly/presentation.rb:317
 msgid "magenta group"
 msgstr "purpurová skupina"
@@ -26397,6 +27202,14 @@ msgstr "hlavní bank"
 #: games/spades.rb:599 games/tysiac.rb:1565
 msgid "make a bid"
 msgstr "učinit nabídku"
+
+#: games/bridge/presentation.rb:118
+msgid "make a call"
+msgstr "použít hlášku"
+
+#: games/bridge.rb:151 games/bridge.rb:91
+msgid "matchpoints"
+msgstr "maxima"
 
 #: games/categories.rb:1163
 msgid "medium category pool"
@@ -26427,6 +27240,10 @@ msgstr "zastavená"
 
 msgid "navigate the board"
 msgstr "procházet herní plán"
+
+#: games/bridge/presentation.rb:226
+msgid "neither side vulnerable"
+msgstr "obě dvojice před manší"
 
 #: games/base/shortcuts.rb:165
 msgid "next playable card"
@@ -26459,6 +27276,10 @@ msgstr "žádné kostky"
 msgid "no pawns on the board"
 msgstr "na hrací desce nejsou žádné figurky"
 
+#: games/bridge/presentation.rb:374
+msgid "no score"
+msgstr "bez zápisu"
+
 #: games/categories.rb:205
 msgid "no time limit"
 msgstr "bez časového limitu"
@@ -26467,7 +27288,7 @@ msgstr "bez časového limitu"
 msgid "no trump"
 msgstr ""
 
-#: games/makao.rb:971 games/mille_bornes/presentation.rb:250 games/monopoly/presentation.rb:279
+#: games/bridge/presentation.rb:234 games/makao.rb:971 games/mille_bornes/presentation.rb:250 games/monopoly/presentation.rb:279
 msgid "none"
 msgstr "žádné"
 
@@ -26542,7 +27363,7 @@ msgstr "částečně správná, 1 bod"
 msgid "partially correct, 5 points"
 msgstr "částečně správná odpověď, 5 bodů"
 
-#: games/scrabble_ui.rb:25
+#: games/bridge/presentation.rb:197 games/scrabble_ui.rb:25
 msgid "pass"
 msgstr "vynechat tah"
 
@@ -26649,7 +27470,7 @@ msgstr "fialová"
 msgid "purple group"
 msgstr "fialová skupina"
 
-#: games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:35 games/poker.rb:34 games/spades.rb:41 games/three_five_eight.rb:36 games/tysiac.rb:26
+#: games/bridge/presentation.rb:192 games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:35 games/poker.rb:34 games/spades.rb:41 games/three_five_eight.rb:36 games/tysiac.rb:26
 msgid "queen"
 msgstr "dáma"
 
@@ -26697,6 +27518,10 @@ msgstr "přečíst kartu %{number}"
 #: games/makao.rb:390 games/uno.rb:474 games/war.rb:188
 msgid "read card counts"
 msgstr "přečíst počty karet"
+
+#: games/bridge/presentation.rb:141
+msgid "read dummy's hand"
+msgstr "přečíst list stolu"
 
 #: games/mille_bornes/presentation.rb:94
 msgid "read every player's mileage, hazards and safeties"
@@ -26750,6 +27575,10 @@ msgstr "přečíst skóre"
 msgid "read the Scriptorium"
 msgstr "přečíst skriptorium"
 
+#: games/bridge/presentation.rb:143
+msgid "read the auction"
+msgstr "přečíst dražbu"
+
 #: games/checkers.rb:369 games/chess.rb:264
 msgid "read the available moves of the current piece"
 msgstr "přečíst dostupné tahy aktuální figury"
@@ -26773,6 +27602,10 @@ msgstr "přečtěte částku k dorovnání"
 #: lib/game_shortcuts.rb:12
 msgid "read the cards on the table"
 msgstr "přečíst karty na stole"
+
+#: games/bridge/presentation.rb:142
+msgid "read the contract"
+msgstr "přečíst závazek"
 
 #: games/uno.rb:473
 msgid "read the current colour"
@@ -26852,6 +27685,10 @@ msgstr "přečtěte bank"
 #: games/makao.rb:386
 msgid "read the prepared packet"
 msgstr "přečtěte připravenou skupinu karet"
+
+#: games/bridge/presentation.rb:146
+msgid "read the previous trick"
+msgstr "přečíst předchozí zdvih"
 
 #: games/biblios.rb:298
 msgid "read the public space"
@@ -27021,6 +27858,10 @@ msgstr "červená"
 msgid "red group"
 msgstr "červená skupina"
 
+#: games/bridge/presentation.rb:199
+msgid "redouble"
+msgstr "rekontra"
+
 #: lib/tournaments/local_readiness_screen.rb:156
 msgid "refused"
 msgstr ""
@@ -27088,6 +27929,14 @@ msgstr "střídající se rozhodčí"
 #: games/categories.rb:1237
 msgid "round completed"
 msgstr "kolo dokončeno"
+
+#: games/bridge.rb:155
+msgid "rubber, honours scored"
+msgstr "robrový, s honéry"
+
+#: games/bridge.rb:155
+msgid "rubber, without honours"
+msgstr "robrový, bez honérů"
 
 #: content/monopoly_boards.rb:39
 msgid "rubles"
@@ -27169,7 +28018,7 @@ msgstr "seřaďte karty podle barvy"
 msgid "sort cards by value"
 msgstr "seřadit karty podle hodnoty"
 
-#: games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:22 games/poker.rb:33 games/spades.rb:28 games/three_five_eight.rb:33 games/tysiac.rb:21
+#: games/bridge/presentation.rb:188 games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:22 games/poker.rb:33 games/spades.rb:28 games/three_five_eight.rb:33 games/tysiac.rb:21
 msgid "spades"
 msgstr "piky"
 

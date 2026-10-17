@@ -41,15 +41,17 @@ Es un documento de solo lectura con un encabezado para cada versión. H pasa al 
 
 ## A qué puedes jugar
 
-Power Games incluye actualmente 34 juegos:
+Power Games incluye actualmente 35 juegos:
 
-- Cartas: 3-5-8, 99, 1000 millas, Biblios, Makao, Picas, Póker, Rummy, Mil, UNO, War y Scientific War.
+- Cartas: 3-5-8, 99, 1000 millas, Biblios, Bridge, Makao, Picas, Póker, Rummy, Mil, UNO, War y Scientific War.
 - Tablero y estrategia: Ludo, Cuatro en raya, Tres en raya, Mancala, Monopoly, Reversi, Batalla naval, Ajedrez, Damas y Carrera de patos.
 - Dados y dominó: Cat, head, tail, Dominó, Farkle, Mexican Train y Yahtzee.
 - Palabras y conocimientos: Krowa, Categorías, Quiz Party, Scrabble y Taboo.
 - Acción con audio: Axel Pong y Audio Ball.
 
 Muchos juegos tienen varias variantes. Las opciones, el número de participantes, la disponibilidad de bots y otros ajustes dependen del título. La sección «Reglas del juego» explica las reglas, la puntuación y los controles en detalle.
+
+El bridge tiene dos modalidades: el bridge de robber, más social, y el bridge duplicado, que dura un número fijo de manos y compara cada mano con un resultado de referencia en IMP o por porcentaje. Con una sola mesa, la referencia es una estimación basada en los puntos de honor, no el resultado de otras parejas. Cuando te toque, elige una voz de la lista del campo de juego con las flechas y Enter, o pulsa B. El declarante también juega las cartas del muerto: Tab pasa a la lista del muerto y D lee su mano. L lee la subasta, K el contrato y P la baza anterior.
 
 En Taboo necesitas comunicarte con los demás jugadores. Puedes usar una conferencia de ELTEN, otra aplicación de mensajería o jugar en persona.
 

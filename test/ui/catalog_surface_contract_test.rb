@@ -46,7 +46,7 @@ assert_equal(%w[audio_ball axel_pong duck_racing krowa scrabble], client_ids.sor
 
 cases = JSON.parse(File.read(File.join(__dir__, '../fixtures/contracts/v1/histories.json'), encoding: 'UTF-8')).fetch('cases')
 cases.reject! { |item| item.fetch('game') == 'tysiac' }
-%w[v2/tysiac v1/mille_bornes].each do |name|
+%w[v2/tysiac v1/mille_bornes v1/bridge].each do |name|
   cases << JSON.parse(File.read(File.join(__dir__, "../fixtures/contracts/#{name}.json"), encoding: 'UTF-8'))
 end
 

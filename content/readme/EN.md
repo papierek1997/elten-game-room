@@ -41,15 +41,17 @@ This is a read-only document with a heading for each version. H moves to the nex
 
 ## What you can play
 
-Power Games currently includes 34 games:
+Power Games currently includes 35 games:
 
-- Card games: 3-5-8, 99, 1000 miles, Biblios, Makao, Spades, Poker, Rummy, Thousand, UNO, War and Scientific War.
+- Card games: 3-5-8, 99, 1000 miles, Biblios, Bridge, Makao, Spades, Poker, Rummy, Thousand, UNO, War and Scientific War.
 - Board and strategy games: Ludo, Four in a Row, Tic Tac Toe, Mancala, Monopoly, Reversi, Battleships, Chess, Checkers and Duck Racing.
 - Dice and dominoes: Cat, head, tail, Dominos, Farkle, Mexican Train and Yahtzee.
 - Words and knowledge: Krowa, Categories, Quiz Party, Scrabble and Taboo.
 - Audio action games: Axel Pong and Audio Ball.
 
 Many games have several variants. The choices, player counts, bot support and additional settings depend on the game. Detailed rules, scoring and controls are described in the program's “Game rules” section.
+
+Bridge has two variants: social rubber bridge, and duplicate bridge, which lasts a set number of boards and compares each board with a reference score in IMPs or matchpoints. With a single table, the reference is an estimate based on high card points, not other pairs' results. On your turn, choose a call from the list in the game field with the arrow keys and Enter, or press B. Declarer also plays dummy's cards: Tab moves to dummy's list and D reads dummy's hand. L reads the auction, K the contract and P the previous trick.
 
 In Taboo, you need to communicate with the other players. You can use an ELTEN conference, another messaging app or play in person.
 

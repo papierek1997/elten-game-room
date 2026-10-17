@@ -60,9 +60,9 @@ następnego nagłówka, a Shift+H — do poprzedniego. Escape zamyka dokument.
 
 ## W co można zagrać
 
-Obecnie Power Games zawiera 34 gry:
+Obecnie Power Games zawiera 35 gier:
 
-- Karcianki: 3-5-8, 99, 1000 mil, Biblios, Makao, Piki, Poker, Remik, Tysiąc,
+- Karcianki: 3-5-8, 99, 1000 mil, Biblios, Brydż, Makao, Piki, Poker, Remik, Tysiąc,
   UNO, Wojna i Wojna naukowa.
 - Gry planszowe i strategiczne: Chińczyk, Cztery w rzędzie,
   Kółko i krzyżyk, Mankala, Monopoly, Reversi, Statki, Szachy, Warcaby
@@ -74,6 +74,14 @@ Obecnie Power Games zawiera 34 gry:
 Wiele gier ma kilka wariantów. Ich wybór, liczba uczestników, dostępność botów
 i dodatkowe ustawienia zależą od konkretnego tytułu. Szczegółowe reguły,
 punktację i sterowanie opisuje dostępna w programie sekcja „Zasady gry”.
+
+Brydż ma dwie odmiany: towarzyską, czyli grę na robra, oraz sportową, w której
+gra się ustaloną liczbę rozdań, a każde porównuje z wynikiem odniesienia w IMP-ach
+albo zapisem maksymalnym. Przy jednym stole wynik odniesienia jest szacunkiem
+liczonym z punktów honorowych, a nie wynikiem innych par. W swojej kolejce
+licytujesz z listy zapowiedzi w polu gry strzałkami i Enterem albo klawiszem B.
+Rozgrywający gra też kartami dziadka: Tab przechodzi do listy jego kart,
+a D odczytuje jego rękę. L odczytuje licytację, K kontrakt, a P poprzednią lewę.
 
 W grze taboo potrzebujesz komunikacji z innymi graczami. Możesz użyć do tego
 konferencji w eltenie, innego komunikatora lub grać na żywo.

@@ -113,6 +113,9 @@ are checked against their pattern and normalized to SHA-256 only for comparison.
 Battleships, Categories, Krowa, Scrabble and Taboo have only an initial
 checkpoint; they also require dedicated choice and data tests. The corpus
 does not replace tests of UI, networking, realtime, complete matches or all options.
+Games added after that capture have their own case file beside it, recorded from
+the change that introduced the game with the same seed, roster and step limit:
+`contracts/v1/mille_bornes.json` and `contracts/v1/bridge.json`.
 
 `fixtures/polish_messages.json` contains independent expected text for
 translation regressions, grouped by the behavior being checked. It comes

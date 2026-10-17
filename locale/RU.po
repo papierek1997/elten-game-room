@@ -16,6 +16,10 @@ msgstr ""
 "4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.9\n"
 
+#: games/bridge/presentation.rb:172
+msgid " and "
+msgstr " и "
+
 msgid "!, @, #, $, %, ^: keep one selected die of value 1, 2, 3, 4, 5 or 6. These are Shift with the corresponding number. Space: repeat what is kept and what will be rerolled."
 msgstr "!, @, #, $, %, ^: отложить один выбранный кубик со значением 1, 2, 3, 4, 5 или 6. Это Shift с соответствующей цифрой. Пробел: повторить, какие кубики отложены, а какие будут переброшены."
 
@@ -205,6 +209,18 @@ msgstr "%{challenge}: %{players}."
 #: games/uno.rb:1117
 msgid "%{colour} %{value}"
 msgstr "%{colour} %{value}"
+
+#: games/bridge/presentation.rb:363
+msgid "%{contract} by %{declarer} %{result}"
+msgstr "%{contract}, разыгрывает %{declarer}: %{result}"
+
+#: games/bridge/presentation.rb:216
+msgid "%{contract} doubled"
+msgstr "%{contract} с контрой"
+
+#: games/bridge/presentation.rb:217
+msgid "%{contract} redoubled"
+msgstr "%{contract} с реконтрой"
 
 msgid "%{copies} × %{set}"
 msgstr "%{copies} × %{set}"
@@ -429,6 +445,10 @@ msgstr "%{judge}; язык ответов: %{language}; %{pool}; категор�
 msgid "%{judge}; answers in %{language}; %{time}; target: %{target} points"
 msgstr "%{judge}; язык ответов: %{language}; %{time}; цель: %{target} очков"
 
+#: games/bridge/presentation.rb:540
+msgid "%{label} after %{boards} of %{total} boards: %{scores}."
+msgstr "%{label} после %{boards} из %{total} сдач: %{scores}."
+
 #: games/duck_racing.rb:144
 msgid "%{laps} lap"
 msgid_plural "%{laps} laps"
@@ -463,6 +483,38 @@ msgstr "%{letter}, %{field}, %{points} очков"
 #: lib/game_surfaces/word_board.rb:141
 msgid "%{letter}, %{points} points"
 msgstr "%{letter}, %{points} очков"
+
+#: games/bridge/presentation.rb:206
+msgid "%{level} club"
+msgid_plural "%{level} clubs"
+msgstr[0] "%{level} трефа"
+msgstr[1] "%{level} трефы"
+msgstr[2] "%{level} треф"
+
+#: games/bridge/presentation.rb:207
+msgid "%{level} diamond"
+msgid_plural "%{level} diamonds"
+msgstr[0] "%{level} бубна"
+msgstr[1] "%{level} бубны"
+msgstr[2] "%{level} бубен"
+
+#: games/bridge/presentation.rb:208
+msgid "%{level} heart"
+msgid_plural "%{level} hearts"
+msgstr[0] "%{level} черва"
+msgstr[1] "%{level} червы"
+msgstr[2] "%{level} черв"
+
+#: games/bridge/presentation.rb:210
+msgid "%{level} no trump"
+msgstr "%{level} без козыря"
+
+#: games/bridge/presentation.rb:209
+msgid "%{level} spade"
+msgid_plural "%{level} spades"
+msgstr[0] "%{level} пика"
+msgstr[1] "%{level} пики"
+msgstr[2] "%{level} пик"
 
 msgid "%{mark}, %{player}'s mark"
 msgstr "%{mark}, знак игрока %{player}"
@@ -635,6 +687,10 @@ msgstr "%{player} %{score}%{barrel}"
 
 msgid "%{player} %{score}, zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "%{player} %{score}, болтов %{zeros}/3, росписей %{surrenders}/3%{barrel}"
+
+#: games/bridge/presentation.rb:36 games/bridge/presentation.rb:61
+msgid "%{player} (%{seat}) is bidding."
+msgstr "Торгуется %{player} (%{seat})."
 
 msgid "%{player} accepted the trade."
 msgstr "%{player} принял обмен."
@@ -1457,6 +1513,10 @@ msgstr "%{player} кладёт %{tile} в свой поезд."
 #: games/scrabble.rb:206
 msgid "%{player} plays %{words}: %{points} points."
 msgstr "%{player} разыгрывает %{words}: %{points} очков."
+
+#: games/bridge/presentation.rb:41 games/bridge/presentation.rb:63
+msgid "%{player} plays from dummy (%{seat})."
+msgstr "%{player} играет с болвана (%{seat})."
 
 #: games/chess.rb:476
 msgid "%{player} promoted the pawn to %{piece}."
@@ -2372,6 +2432,10 @@ msgstr "%{player}: взяток — %{tricks}, цель — %{target}, очко�
 msgid "%{player}: zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "%{player}: болтов %{zeros}/3, росписей %{surrenders}/3%{barrel}"
 
+#: games/bridge/presentation.rb:374
+msgid "%{points} for %{side}"
+msgstr "%{points} в пользу пары %{side}"
+
 #: lib/room_presentation.rb:39
 msgid "%{points} points"
 msgstr "%{points} очков"
@@ -2432,6 +2496,34 @@ msgstr "%{result} %{stores}"
 msgid "%{round}. %{word}: %{attempts} attempts"
 msgstr "%{round}. %{word}: %{attempts} попытки"
 
+#: games/bridge/presentation.rb:457 games/bridge/presentation.rb:478
+msgid "%{seat} %{card}"
+msgstr "%{seat} %{card}"
+
+#: games/bridge/presentation.rb:163
+msgid "%{seat} (%{player})"
+msgstr "%{seat} (%{player})"
+
+#: games/bridge/presentation.rb:343
+msgid "%{seat} won the trick. Tricks: %{tricks}."
+msgstr "Взятку берёт %{seat}. Взятки: %{tricks}."
+
+#: games/bridge/presentation.rb:483
+msgid "%{seat}: %{call}"
+msgstr "%{seat}: %{call}"
+
+#: games/bridge/presentation.rb:320
+msgid "%{seat}: %{call}."
+msgstr "%{seat}: %{call}."
+
+#: games/bridge/presentation.rb:462
+msgid "%{seat}: %{card}"
+msgstr "%{seat}: %{card}"
+
+#: games/bridge/presentation.rb:334
+msgid "%{seat}: %{card}."
+msgstr "%{seat}: %{card}."
+
 #: games/categories.rb:205 games/uno.rb:184 lib/game_option_values.rb:60
 msgid "%{seconds} seconds"
 msgstr "%{seconds} секунд"
@@ -2472,6 +2564,61 @@ msgstr "%{server} подаст против %{receiver}."
 msgid "%{set}, %{count} tiles, up to %{players} players"
 msgstr "%{set}, %{count} фишек, до %{players} игроков"
 
+#: games/bridge/presentation.rb:421
+msgid "%{side} %{percent}%%"
+msgstr "%{side} %{percent} %%"
+
+#: games/bridge/presentation.rb:406
+msgid "%{side} %{score}"
+msgstr "%{side} %{score}"
+
+#: games/bridge/presentation.rb:172
+msgid "%{side} (%{players})"
+msgstr "%{side} (%{players})"
+
+#: games/bridge/presentation.rb:385
+msgid "%{side} gains %{count} IMP."
+msgid_plural "%{side} gains %{count} IMPs."
+msgstr[0] "%{side} получает %{count} IMP."
+msgstr[1] "%{side} получает %{count} IMP."
+msgstr[2] "%{side} получает %{count} IMP."
+
+#: games/bridge/presentation.rb:393
+msgid "%{side} score %{points} below the line."
+msgstr "%{side}: %{points} под чертой."
+
+#: games/bridge/presentation.rb:398
+msgid "%{side} score %{points} for honours."
+msgstr "%{side}: %{points} за онёры."
+
+#: games/bridge/presentation.rb:395
+msgid "%{side} score %{points} for making a doubled contract."
+msgstr "%{side}: %{points} за выполнение законтренного контракта."
+
+#: games/bridge/presentation.rb:394
+msgid "%{side} score %{points} for overtricks."
+msgstr "%{side}: %{points} за лишние взятки."
+
+#: games/bridge/presentation.rb:396
+msgid "%{side} score %{points} for the slam."
+msgstr "%{side}: %{points} за шлем."
+
+#: games/bridge/presentation.rb:397
+msgid "%{side} score %{points} for undertricks."
+msgstr "%{side}: %{points} за недобор."
+
+#: games/bridge/presentation.rb:399
+msgid "%{side} won a game."
+msgstr "%{side} выигрывает гейм."
+
+#: games/bridge/presentation.rb:400
+msgid "%{side} won the rubber and score %{points}."
+msgstr "%{side} выигрывает роббер: премия %{points} очков."
+
+#: games/bridge/presentation.rb:547
+msgid "%{side}: %{games} games, %{below} below and %{above} above the line, %{total} in total"
+msgstr "%{side}: выиграно геймов %{games}, под чертой %{below}, над чертой %{above}, всего %{total}"
+
 #: games/checkers.rb:75
 msgid "%{size} by %{size} (%{fields} fields)"
 msgstr "%{size} на %{size} (полей: %{fields})"
@@ -2498,6 +2645,10 @@ msgstr "%{status}; %{name}; ведущий: %{owner}; пользователи: 
 #: games/three_five_eight.rb:1012
 msgid "%{suit} as trump"
 msgstr "%{suit} как козырь"
+
+#: games/bridge/presentation.rb:235
+msgid "%{suit}: %{cards}"
+msgstr "%{suit}: %{cards}"
 
 #: __app.rb:2660
 msgid "%{table}, unavailable"
@@ -2632,6 +2783,10 @@ msgstr "%{variant}; 3–9 букв"
 msgid "%{winner} won the game."
 msgstr "%{winner} выиграл партию."
 
+#: games/bridge/presentation.rb:429
+msgid "%{winner} won the match: %{scores}."
+msgstr "Матч выигрывает пара %{winner}: %{scores}."
+
 #: lib/game_surfaces/word_board.rb:97
 msgid "%{words}: %{points} potential points."
 msgstr "%{words}: %{points} потенциальные очки."
@@ -2681,6 +2836,10 @@ msgstr ", на бочке, осталось раздач: %{deals}"
 msgid "- 0–9 squares ahead: miss one turn."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:66
+msgid "- 1 no trump shows 15 to 17 points and a balanced hand; 2 no trump shows 20 or 21."
+msgstr "- 1 без козыря означает от 15 до 17 очков и равномерную руку, 2 без козыря — 20 или 21."
+
 #: games/generated/rulebooks/duck_racing.rb:39
 msgid "- 10–19 squares ahead: miss two turns."
 msgstr ""
@@ -2688,6 +2847,10 @@ msgstr ""
 #: games/generated/rulebooks/duck_racing.rb:36
 msgid "- 10–19 squares ahead: two turns."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:37
+msgid "- 20 points in clubs or diamonds;"
+msgstr "- 20 очков в трефах или бубнах;"
 
 #: games/generated/rulebooks/duck_racing.rb:40
 msgid "- 20–29 squares ahead: miss three turns."
@@ -2701,6 +2864,18 @@ msgstr ""
 msgid "- 30 or more squares ahead: miss four turns."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:38
+msgid "- 30 points in hearts or spades;"
+msgstr "- 30 очков в червах или пиках;"
+
+#: games/generated/rulebooks/bridge.rb:39
+msgid "- 40 points for the first trick in no trump and 30 for each further trick."
+msgstr "- 40 очков за первую взятку в без козыря и по 30 за каждую следующую."
+
+#: games/generated/rulebooks/bridge.rb:69
+msgid "- A raise of your suit shows support. A raise to the level of 2 is weak, a raise to 3 invites game, and a jump to game is a strong hand."
+msgstr "- Повышение вашей масти означает фит. Повышение до уровня 2 слабое, до 3 приглашает в гейм, а прыжок сразу в гейм показывает сильную руку."
+
 #: games/generated/rulebooks/duck_racing.rb:51
 msgid "- Accuracy: the higher percentage wins. Every ten percentage points of difference costs one feather, rounded up. A result of 90% against 60% is worth three feathers; 83% against 79% is worth one."
 msgstr ""
@@ -2708,6 +2883,14 @@ msgstr ""
 #: games/generated/rulebooks/duck_racing.rb:55
 msgid "- An ace is worth eleven unless that would take you over 21, in which case it is worth one. Its value then stays fixed."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:67
+msgid "- An opening bid of 1 heart or 1 spade promises at least five cards in that suit and usually 12 or more points. Without a five-card major, a bot opens 1 diamond or 1 club."
+msgstr "- Открытие 1 черва или 1 пика обещает не меньше пяти карт в этой масти и обычно 12 очков или больше. Без пятикарточной старшей масти бот открывает торговлю заявкой 1 бубна или 1 трефа."
+
+#: games/generated/rulebooks/bridge.rb:68
+msgid "- An opening bid of 2 diamonds, 2 hearts or 2 spades is weak: a six-card suit with 6 to 10 points."
+msgstr "- Открытие 2 бубны, 2 червы или 2 пики слабое: шестикарточная масть и от 6 до 10 очков."
 
 #: games/generated/rulebooks/duck_racing.rb:129
 msgid "- Arrow keys and Enter: play a card or select Roll the die at the end of the list."
@@ -2769,9 +2952,17 @@ msgstr ""
 msgid "- D: describe the selected card."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:21
+msgid "- Double: possible only right after an opponent's bid, or after an opponent's bid followed by passes. If that bid becomes the contract, it scores more for both sides: more for making it and more for defeating it."
+msgstr "- Контра: возможна только после заявки соперника, даже если за ней последовали пасы. Если эта заявка станет контрактом, обе стороны получают больше: разыгрывающий — за выполнение, защитники — за подсад."
+
 #: games/generated/rulebooks/duck_racing.rb:107
 msgid "- Exact hit: 100%."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:61
+msgid "- IMPs (the default): the difference from the reference score is converted into international match points. A difference of 10 or less is worth nothing, 20 to 40 is 1 IMP, 50 to 80 is 2 and 90 to 120 is 3. Larger swings earn more but more slowly: 420 is 9 IMPs and 4000 or more is the maximum of 24. The pair that did better than the reference gains the IMPs."
+msgstr "- IMP (по умолчанию): разница с эталоном переводится в международные матчевые очки. Разница до 10 очков ничего не даёт, от 20 до 40 — это 1 IMP, от 50 до 80 — 2, от 90 до 120 — 3. Большие разницы дают больше, но всё медленнее: 420 — это 9 IMP, а 4000 и больше — максимальные 24. IMP получает пара, сыгравшая лучше эталона."
 
 #: games/generated/rulebooks/duck_racing.rb:54
 msgid "- Jacks, queens and kings are worth ten."
@@ -2780,6 +2971,10 @@ msgstr ""
 #: games/generated/rulebooks/duck_racing.rb:132
 msgid "- Laps: one to ten, with three as the default."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:62
+msgid "- Matchpoints: on each board the pair that did better than the reference earns 2 points and the other pair 0; an equal result gives each pair 1. The final score is the percentage of the available points."
+msgstr "- Матчпойнты: в каждой сдаче пара, сыгравшая лучше эталона, получает 2 очка, а другая 0; при равном результате каждая пара получает 1. Итоговый результат — процент от возможных очков."
 
 #: games/generated/rulebooks/duck_racing.rb:108
 msgid "- One position away: 75%."
@@ -2805,9 +3000,17 @@ msgstr ""
 msgid "- P: repeat the question, number or task. In Guess the number, it repeats only the public clues."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:20
+msgid "- Pass: you do not want to bid now. Passing does not stop you from bidding later in the same auction."
+msgstr "- Пас: вы не хотите сейчас торговаться. Пас не мешает вам сделать заявку позже в той же торговле."
+
 #: games/generated/rulebooks/duck_racing.rb:134
 msgid "- Questions: choose the language and question sets. The general set is selected by default. Each selected set has an equal chance of being drawn, for all questions in the race."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:22
+msgid "- Redouble: possible only after an opponent has doubled your side's bid. It raises the stakes once more."
+msgstr "- Реконтра: возможна только тогда, когда соперник законтрил заявку вашей пары. Она ещё раз повышает ставки."
 
 #: games/generated/rulebooks/duck_racing.rb:49
 msgid "- Result difference: pay one feather for each point by which the winner beat you. For example, results of 16, 10 and 8 give the winner six feathers from one opponent and eight from the other."
@@ -2884,6 +3087,22 @@ msgstr "- При подсчёте попыток побеждает тот, кт
 #: games/generated/rulebooks/krowa.rb:25
 msgid "- With time scoring, the shortest time from the start of the word to the submission of the correct answer wins, measured by a clock synchronized with the server;"
 msgstr "- При подсчёте по времени побеждает игрок с наименьшим временем от начала раунда до отправки правильного ответа; время измеряется по часам, синхронизированным с сервером;"
+
+#: games/generated/rulebooks/bridge.rb:46
+msgid "- doubled and not vulnerable: 100 for the first trick, 200 each for the second and third, and 300 for each further trick;"
+msgstr "- с контрой до зоны: 100 за первую взятку, по 200 за вторую и третью и по 300 за каждую следующую;"
+
+#: games/generated/rulebooks/bridge.rb:47
+msgid "- doubled and vulnerable: 200 for the first trick and 300 for each further trick;"
+msgstr "- с контрой в зоне: 200 за первую взятку и по 300 за каждую следующую;"
+
+#: games/generated/rulebooks/bridge.rb:45
+msgid "- not doubled: 50 per trick, or 100 when vulnerable;"
+msgstr "- без контры: по 50 за взятку, а в зоне по 100;"
+
+#: games/generated/rulebooks/bridge.rb:48
+msgid "- redoubled: twice the doubled amount."
+msgstr "- с реконтрой: вдвое больше, чем с контрой."
 
 msgid "1 clears only the current turn total and ends your turn. It does not take away any banked points. If the turn total was negative, it is cleared to zero too, so a 1 can sometimes help you."
 msgstr "1 очищает только текущий итог хода и заканчивает ваш ход. Он не отнимает накопленные очки. Если сумма хода была отрицательной, она тоже сбрасывается до нуля, так что 1 иногда может помочь."
@@ -3197,12 +3416,20 @@ msgstr "Список изменений показывается один раз
 msgid "A bankrupt player leaves the active game. The last solvent player wins."
 msgstr "Банкрот выбывает из активной игры. Побеждает последний платёжеспособный игрок."
 
+#: games/generated/rulebooks/bridge.rb:18
+msgid "A bid names a number of tricks and a trump suit, or no trump. The number is added to six: a bid of 1 heart promises 7 of the 13 tricks with hearts as trumps, and 4 spades promises 10 tricks with spades as trumps. Each bid must be higher than the previous one. A higher number always wins, and at the same number the suits rank from the lowest: clubs, diamonds, hearts, spades and no trump. After 1 spade you may bid 1 no trump or anything at the level of 2, but not 1 heart."
+msgstr "Заявка называет число взяток и козырную масть или игру без козыря. К названному числу прибавляется шесть: 1 черва обещает 7 из 13 взяток с козырем в червах, а 4 пики — 10 взяток с козырем в пиках. Каждая заявка должна быть выше предыдущей. Большее число всегда перебивает меньшее, а при одинаковом числе масти идут от младшей: трефы, бубны, червы, пики и без козыря. После 1 пики можно заявить 1 без козыря или любую заявку на уровне 2, но не 1 черва."
+
 msgid "A bidder who collects at least the exact contracted number receives the contract value; otherwise the same value is subtracted. Each defender receives the exact points collected and then rounded to the nearest 5. A rounded result is never used to decide whether the bidder fulfilled the contract."
 msgstr "Заказавший игру получает стоимость контракта, если набрал не меньше заказанного числа очков; иначе эта стоимость вычитается. Каждый защитник получает набранные очки с округлением до ближайшего числа, кратного 5. При проверке выполнения контракта округление не применяется."
 
 #: games/generated/rulebooks/mancala.rb:9
 msgid "A board full of seeds"
 msgstr "Доска, полная камней"
+
+#: games/generated/rulebooks/bridge.rb:63
+msgid "A board passed out by all four players also counts: it scores zero and is compared with the reference, so passing with strong cards loses points. After the last board, the pair with more IMPs or matchpoints wins; an equal total is a draw. S reads the totals so far."
+msgstr "Сдача, в которой все четверо спасовали, тоже учитывается: её результат равен нулю и сравнивается с эталоном, так что пас с сильными картами стоит очков. После последней сдачи побеждает пара с большим числом IMP или очков; при равной сумме — ничья. Клавиша S зачитывает текущий счёт."
 
 #: games/duck_racing_support/presentation.rb:475
 msgid "A breeze blows across the north bank."
@@ -3397,6 +3624,10 @@ msgstr "Доступна новая версия Power Games (%{version}, сбо
 msgid "A pair has one shared score. Add both partners' trick points and declared marriages before checking the contract. A fulfilled contract of 150 earns the pair 150, even if they collected 170; collecting only 140 loses 150. The other pair adds its combined points, rounded once to five. Barrel chances, zeroes and surrenders also belong to the pair. A marriage must be held by one player: a king in your hand and a queen in your partner's hand do not form one."
 msgstr "У пары общий счёт. Прежде чем проверять выполнение заказа, сложите очки обоих партнёров за взятки и объявленные марьяжи. Выполненный заказ на 150 приносит паре 150 очков, даже если она набрала 170; при результате всего 140 пара теряет 150 очков. Другая пара прибавляет свои суммарные очки, округлив их один раз до пяти. Попытки на бочке, нули и сдачи также считаются для всей пары. Обе карты марьяжа должны быть у одного игрока: король у вас и дама у партнёра марьяж не образуют."
 
+#: games/generated/rulebooks/bridge.rb:53
+msgid "A pair that has won a game is vulnerable for the rest of the rubber. Winning the rubber earns 700 if the opponents won no game and 500 if they won one."
+msgstr "Пара, выигравшая гейм, остаётся в зоне до конца роббера. За выигранный роббер начисляется 700 очков, если соперники не выиграли ни одного гейма, и 500, если выиграли один."
+
 #: lib/tournaments/local_dispatch_screen.rb:113
 msgid "A participant is already assigned to another match."
 msgstr ""
@@ -3550,6 +3781,10 @@ msgstr "Игрок с небольшим олл-ином может выигра
 #: games/generated/rulebooks/tic_tac_toe.rb:9
 msgid "A small board, three marks to win"
 msgstr "Малое поле, три отметки для победы"
+
+#: games/generated/rulebooks/bridge.rb:43
+msgid "A small slam (a contract of 6) earns a bonus of 500, or 750 when vulnerable. A grand slam (a contract of 7) earns 1000, or 1500 when vulnerable."
+msgstr "Малый шлем, то есть контракт на уровне 6, приносит премию 500, а в зоне 750. Большой шлем, контракт на уровне 7, приносит 1000, а в зоне 1500."
 
 msgid "A small straight scores 100, a large straight 200, three pairs 150, and a full house or two sets of three of a kind score 250. The program lists every legal scoring interpretation and automatically uses the points belonging to the selected combination."
 msgstr "Малый стрит даёт 100 очков, большой — 200, три пары — 150, фулл-хаус или две тройки — 250. Программа перечисляет все допустимые варианты подсчёта и автоматически использует очки выбранной комбинации."
@@ -3952,6 +4187,10 @@ msgstr "Добавлен Axel Pong: следите за мячом по звук
 msgid "Added Battleship by Dawid Pieper: two fleets, manual placement, a computer opponent, spectator boards and a final fleet check. Saving this game for later is not yet available."
 msgstr "Добавлена игра Battleship от Dawid Pieper: два флота, ручное размещение, боты в качестве противников, доски зрителей и финальная проверка флота. Сохранение этой игры для дальнейшей игры пока недоступно."
 
+#: lib/game_room_changelog.rb:486
+msgid "Added Bridge for four players in two partnerships: social rubber bridge, or duplicate bridge at one table scored in IMPs or matchpoints. Declarer plays dummy's cards, every call and card is announced, and bots can take any seat."
+msgstr "Добавлен бридж для четырёх игроков в двух парах: дружеский роббер или спортивный бридж за одним столом с подсчётом в IMP или матчпойнтах. Разыгрывающий играет картами болвана, все заявки и карты озвучиваются, а боты могут занять любое место."
+
 #: lib/game_room_changelog.rb:204
 msgid "Added Cat, head, tail by TD Programs: a dice game for 2–8 players. Roll an eight-sided die and decide when to bank your points. Includes bots and Polish and English rules."
 msgstr "Добавлена игра Cat, head, tail от TD Programs: игра в кости для 2–8 игроков. Бросайте восьмигранный кубик и решайте, когда сохранить очки. Включает ботов и правила на польском и английском."
@@ -4102,6 +4341,10 @@ msgstr "После повторной проверки восстановлен�
 msgid "After a word ends, the solution is revealed. The Word definition button opens its SJP description; a missing description also remains readable."
 msgstr "После окончания слова решение раскрывается. Кнопка определения слова открывает его описание в SJP; отсутствующее описание также остаётся доступным для чтения."
 
+#: games/generated/rulebooks/bridge.rb:34
+msgid "After all 13 tricks the deal is scored, and the next deal starts with the next player clockwise as dealer."
+msgstr "Когда сыграны все 13 взяток, сдача подсчитывается, а следующую сдаёт следующий игрок по часовой стрелке."
+
 #: games/generated/rulebooks/three_five_eight.rb:12
 msgid "After any exchanges, the chooser reveals the four-card kitty, adds it to their hand and discards four cards face down. The chooser leads the first trick. The winner of every trick leads the next one."
 msgstr "После любых обменов выбирающий открывает четыре карты из прикупа, добавляет их к своей руке и сбрасывает четыре карты лицевой стороной вниз. Выбирающий начинает первый взяток. Победитель каждого взятка начинает следующий."
@@ -4245,6 +4488,10 @@ msgstr "Станция Агра"
 msgid "All"
 msgstr "Все"
 
+#: games/generated/rulebooks/bridge.rb:14
+msgid "All 52 cards are dealt, so everyone gets 13. Press H to hear your hand suit by suit, from the highest card down, followed by your high card points: an ace counts 4, a king 3, a queen 2 and a jack 1. These points are not scored; they help you judge the strength of your hand during the auction. A whole deck holds 40 such points, so 10 is an average hand and 12 or more is usually enough to start the bidding."
+msgstr "Сдаются все 52 карты, так что каждый получает 13. Нажмите H, чтобы услышать свою руку масть за мастью от старшей карты, а в конце — число очков за фигуры: туз стоит 4 очка, король 3, дама 2, валет 1. Эти очки не записываются в счёт, но помогают оценить силу руки в торговле. Во всей колоде их 40, поэтому средняя рука — 10 очков, а 12 и больше обычно достаточно, чтобы открыть торговлю."
+
 #: lib/game_room_ui.rb:26
 msgid "All Game Room sounds"
 msgstr "Все звуки Game Room"
@@ -4271,6 +4518,10 @@ msgstr ""
 #: lib/quiz_contributions/model.rb:61
 msgid "All four answers must be different."
 msgstr "Все четыре ответа должны различаться."
+
+#: games/bridge.rb:519
+msgid "All four players passed. The deal is thrown in."
+msgstr "Все четверо спасовали. Сдача не разыгрывается."
 
 #: lib/game_room_screens.rb:333
 msgid "All games"
@@ -4886,6 +5137,10 @@ msgstr "В качестве наблюдателя нажмите 1 в игро�
 msgid "As an observer, use the number keys in the Pong playfield to choose a player's perspective: 1 selects the first player, 2 the second, and in Doubles 3 the third and 4 the fourth. The numbers follow the player order in the match, not the teams. The game confirms the player's name. This changes only your listening perspective and the order of the spoken score after a point; it does not let you move any paddle. The choice stays in place between points. The keys do not select a perspective while you are typing in chat or reading history."
 msgstr "В качестве наблюдателя используйте числовые клавиши в игровом поле Pong, чтобы выбрать точку зрения игрока: 1 выбирает первого игрока, 2 второго, а в Doubles 3 — третьего, 4 — четвёртого. Числа соответствуют порядку игрока в матче, а не команд. Игра подтверждает имя игрока. Это меняет только вашу точку зрения слушания и порядок голосового счёта после определённого очка; не даёт вам двигать ракетку. Выбор остаётся на месте между очками. Клавиши не выбирают перспективу во время ввода в чате или чтения истории."
 
+#: games/generated/rulebooks/bridge.rb:32
+msgid "As declarer you also play dummy's cards. When it is dummy's turn, press Tab to move to the list of dummy's cards, or press Z, which goes straight to the cards dummy may play, and choose a card with Enter. Everyone can press D to hear dummy's hand."
+msgstr "Как разыгрывающий вы играете и картами болвана. Когда наступает очередь болвана, нажмите Tab, чтобы перейти к списку его карт, или Z, чтобы сразу оказаться на картах, которые болван может сыграть, и выберите карту клавишей Enter. Руку болвана любой игрок может услышать клавишей D."
+
 msgid "As soon as a player acquires a Church card, the game is put on hold while the card is played and then discarded. A Church card is acquired when the active player keeps it for himself, when another player takes it from the public space, or when it is won at auction. A Church card placed in the Auction pile is not played at that point."
 msgstr "Как только игрок получает карту Чёрча, игра ставится на паузу во время игры и затем сбрасывается. Карта Черча получается, когда активный игрок оставляет её себе, когда другой игрок забирает её из общественного пространства или выигрывает на аукционе. Карта Черча, помещённая в стопку аукциона, в этот момент не играется."
 
@@ -4980,6 +5235,10 @@ msgstr "Попытки: %{count} из 3."
 msgid "Attempts: %{count}. %{status}"
 msgstr "Попытки: %{count}. %{status}"
 
+#: games/bridge/presentation.rb:144
+msgid "Auction"
+msgstr "Торговля"
+
 #: games/monopoly/property_management.rb:42
 msgid "Auction begins: %{property}."
 msgstr "Начинается аукцион: %{property}."
@@ -5013,6 +5272,10 @@ msgstr "Клавиши аукциона, обмена и игры"
 #: games/tysiac.rb:1629
 msgid "Auction: %{bids}."
 msgstr "Аукцион: %{bids}."
+
+#: games/bridge/presentation.rb:489
+msgid "Auction: %{calls}."
+msgstr "Торговля: %{calls}."
 
 #: games/biblios.rb:1264
 msgid "Auctioned: %{card}. %{bid}"
@@ -5177,6 +5440,10 @@ msgstr "B: просмотреть своих слонов."
 #: games/generated/rulebooks/tysiac.rb:43
 msgid "B: change the final contract before playing the first card."
 msgstr "B: изменить окончательный контракт перед игрой первой карты."
+
+#: games/generated/rulebooks/bridge.rb:73
+msgid "B: choose a call when it is your turn, otherwise read the auction."
+msgstr "B: выбрать заявку в свою очередь, а в другое время прочитать торговлю."
 
 #: games/generated/rulebooks/monopoly.rb:64
 msgid "B: during an auction, enter your own total bid."
@@ -5364,6 +5631,10 @@ msgstr "Начните свой ход с того, чтобы взять одн
 msgid "Begins lap %{lap}."
 msgstr "Начинает круг %{lap}."
 
+#: games/generated/rulebooks/bridge.rb:41
+msgid "Being vulnerable raises both the rewards and the penalties. Who is vulnerable is announced at the start of each deal; V repeats it together with the deal number, the dealer, the contract and the tricks."
+msgstr "Игра в зоне повышает и премии, и штрафы. В начале каждой сдачи объявляется, кто в зоне, а кто до зоны; клавиша V повторяет это вместе с номером сдачи, сдающим, контрактом и взятками."
+
 #: games/krowa_support/leaderboards.rb:235
 msgid "Best result"
 msgstr "Лучший результат"
@@ -5435,6 +5706,10 @@ msgstr "Объяви, сколько очков наберёшь, а затем 
 msgid "Bid in gold, or bid with cards for gold"
 msgstr "Делайте ставку золотом или ставьте картами на золото"
 
+#: games/bridge.rb:27
+msgid "Bid with your partner for a contract, then take the tricks you promised while declarer plays both hands."
+msgstr "Вместе с партнёром назначьте контракт, а затем возьмите обещанные взятки; разыгрывающий играет своей рукой и картами болвана."
+
 #: lib/tournaments/local_fixed_team_execution_screen.rb:616
 msgid "Bidding"
 msgstr ""
@@ -5447,6 +5722,10 @@ msgstr "Ставки и игра"
 
 msgid "Bidding and playing tricks"
 msgstr "Торги и розыгрыш взяток"
+
+#: games/generated/rulebooks/bridge.rb:64
+msgid "Bidding with a computer partner"
+msgstr "Торговля с компьютерным партнёром"
 
 msgid "Bidding, following suit and trump"
 msgstr "Торги, ход в масть и козырь"
@@ -5485,6 +5764,10 @@ msgstr "Блайнды: %{small} и %{big}."
 #: games/monopoly/presentation.rb:58
 msgid "Board"
 msgstr "Доска"
+
+#: games/bridge/presentation.rb:302
+msgid "Board %{board} of %{boards}. Dealer: %{dealer}. %{vulnerability}."
+msgstr "Сдача %{board} из %{boards}. Сдаёт %{dealer}. %{vulnerability}."
 
 msgid "Board commands"
 msgstr "Команды доски"
@@ -5584,6 +5867,10 @@ msgstr "Оба флота совпадают со своими печатями.
 msgid "Both players press Enter or Space when ready. When you have the ball, press A or Right arrow to prepare, then one of the three shot keys to send it."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:70
+msgid "Bots never double. They play by simple rules too: the second player to a trick plays low unless it holds a sure winner, later players try to win the trick as cheaply as possible, and a defender leads partner's suit or a long suit."
+msgstr "Боты никогда не контрят. Играют они тоже по простым правилам: второй игрок во взятке кладёт младшую карту, если у него нет верной взятки, следующие стараются взять взятку как можно более младшей картой, а защитник ходит в масть партнёра или в свою длинную масть."
+
 #: games/battleship.rb:634
 msgid "Bow cleared."
 msgstr "Нос очищен."
@@ -5599,6 +5886,26 @@ msgstr "Перерыв между точками."
 #: lib/audio_ball/client.rb:623
 msgid "Break between sets."
 msgstr "Перерыв между сетами."
+
+#: games/bridge.rb:23
+msgid "Bridge"
+msgstr "Бридж"
+
+#: games/generated/rulebooks/bridge.rb:10
+msgid "Bridge is a card game for four players in two partnerships. You and your partner work together against the other pair. Each deal has two parts: first an auction, in which the pairs compete to name a contract, and then the play, in which the pair that won the contract tries to take at least as many tricks as it promised."
+msgstr "Бридж — карточная игра для четырёх человек, которые играют двумя парами. Вы и ваш партнёр играете вместе против другой пары. Каждая сдача состоит из двух частей: сначала торговли, в которой пары соревнуются за контракт, а затем розыгрыша, в котором пара, получившая контракт, старается взять не меньше взяток, чем обещала."
+
+#: games/bridge.rb:141
+msgid "Bridge requires exactly four players."
+msgstr "В бридж играют ровно четыре игрока."
+
+#: games/bridge/presentation.rb:296
+msgid "Bridge started: %{seats}."
+msgstr "Начинается бридж: %{seats}."
+
+#: games/bridge.rb:99
+msgid "Bridge variant"
+msgstr "Вариант бриджа"
 
 #: games/generated/rulebooks/ludo.rb:9
 msgid "Bring all four pawns home"
@@ -5724,6 +6031,10 @@ msgstr "Сопоставляя результаты последовательн
 msgid "By default the game uses the classic 8 by 8 board with 12 pieces per player. The first player moves upward from the bottom of the board."
 msgstr "По умолчанию используется классическая доска 8 на 8 с 12 шашками у каждого игрока. Первый игрок движется снизу вверх."
 
+#: games/generated/rulebooks/bridge.rb:51
+msgid "By default the table plays rubber bridge. A rubber ends when one pair has won two games, and the pair with more points in total wins the match. This is usually, but not always, the pair that won the rubber; equal totals are a draw."
+msgstr "По умолчанию за столом играют роббер. Роббер заканчивается, когда одна пара выиграет два гейма, а матч выигрывает пара с большей общей суммой очков. Обычно это пара, выигравшая роббер, но не всегда; при равных суммах объявляется ничья."
+
 #: games/generated/rulebooks/ludo.rb:16
 msgid "By default, a 6 or a 1 lets you bring a pawn out of the base onto its entry square, with no further movement. A 1 does not grant another roll. Turn off the option for a 1 to require a 6; turn off the restriction on leaving the base to allow any roll. These choices never force you to leave the base if another pawn can move."
 msgstr "По умолчанию шестёрка или единица позволяют вывести фишку из базы на её входную клетку без дальнейшего перемещения. Единица не даёт повторного броска. Можно отключить выход по единице, оставив только шестёрку, или снять всё ограничение, чтобы разрешить выход при любом броске. Ни один из этих вариантов не заставляет выводить фишку из базы, если может ходить другая."
@@ -5740,6 +6051,10 @@ msgstr "C делает чек или колл, F — пас, A — ва-банк
 
 msgid "C checks or calls, F folds, R raises, A goes all in, S reads your stack, Shift+S the other stacks, V the call amount, D your cards, E visible table cards, 1 through 7 individual cards, T the turn, P the pot, I your investment, H active players, G your best combination and L the blinds."
 msgstr "C делает чек или колл, F — пас, R — повышение, A — ва-банк; S читает ваш стек, Shift+S — остальные стеки, V — сумму колла, D — ваши карты, E — открытые карты стола, клавиши 1–7 — отдельные карты, T — очередь хода, P — банк, I — ваш вклад, H — активных игроков, G — вашу лучшую комбинацию, L — блайнды."
+
+#: games/generated/rulebooks/bridge.rb:33
+msgid "C reads the cards in the current trick and F the suit that was led. P repeats the previous trick, including who won it."
+msgstr "Клавиша C зачитывает карты текущей взятки, а F — масть первого хода. P повторяет предыдущую взятку и того, кто её взял."
 
 #: games/generated/rulebooks/axel_pong.rb:44
 msgid "C reads the name and paddle position of the player you are watching. S, T and E also work for observers: check the score, server and active effects without controlling the game. At the end of the match, you hear victory or defeat for the selected player or their team."
@@ -5795,6 +6110,10 @@ msgstr "C: прочитайте карточку, если ваша роль м�
 #: games/generated/rulebooks/war.rb:23
 msgid "C: read the cards on the table, your own first, then each opponent's."
 msgstr "C: сначала читайте карты на столе, сначала свои, потом карты каждого соперника."
+
+#: games/generated/rulebooks/bridge.rb:83
+msgid "C: read the current trick."
+msgstr "C: прочитать текущую взятку."
 
 msgid "C: read the current turn total."
 msgstr "C: прочитать текущий общий счёт хода."
@@ -6045,7 +6364,7 @@ msgstr "Карты в каждом прикупе"
 msgid "Cards in hand: %{counts}."
 msgstr "Карты на руках: %{counts}."
 
-#: games/base/shortcuts.rb:59
+#: games/base/shortcuts.rb:59 games/bridge/presentation.rb:465
 msgid "Cards on the table"
 msgstr "Карты на столе"
 
@@ -6561,6 +6880,10 @@ msgstr "Выберите Classic или Arcade в списке режимов и
 msgid "Choose Classic or Arcade in the Game mode list when creating the table. Classic is the default and follows the normal rules above. In Arcade, every paddle return has two independent chances of 7 percent: a shield for the player who returned the ball and an invisible ball. Both may happen on the same hit. A serve alone does not trigger these effects."
 msgstr "Выберите Classic или Arcade в списке режимов игры при создании стола. Classic — по умолчанию и соблюдает обычные правила выше. В Arcade каждый возврат ракеткой имеет два независимых шанса по 7 процентов: щит для игрока, который отбил мяч, и невидимый мяч. Оба могут произойти при одном ударе. Только подача не вызывает этих эффектов."
 
+#: games/bridge.rb:140
+msgid "Choose IMP or matchpoint scoring."
+msgstr "Выберите подсчёт в IMP или в матчпойнтах."
+
 #: lib/tournaments/public_text.rb:73
 msgid "Choose Join tournament to take part."
 msgstr "Чтобы принять участие, выберите «Присоединиться к турниру»."
@@ -6755,6 +7078,10 @@ msgstr "Выберите клетку на вражеской доске для 
 msgid "Choose a suit"
 msgstr "Выберите масть"
 
+#: games/bridge.rb:139
+msgid "Choose a supported number of boards."
+msgstr "Выберите одно из доступных чисел сдач."
+
 #: games/tysiac.rb:436
 msgid "Choose a talon"
 msgstr "Выберите прикуп"
@@ -6912,6 +7239,10 @@ msgstr "Выберите свою фигуру и нажмите Enter, зате
 msgid "Choose round-robin play or a group stage followed by a knockout stage. Tournaments support rematches and knockout matches played to a chosen number of wins. The program arranges matches, records game results and determines who advances."
 msgstr "Доступны круговой формат и групповой этап с последующей игрой на выбывание. Можно включить ответные матчи, а на этапе выбывания играть до заданного числа побед. Программа составляет расписание матчей, записывает результаты и определяет, кто проходит дальше."
 
+#: games/bridge.rb:138
+msgid "Choose rubber or duplicate bridge."
+msgstr "Выберите роббер или спортивный бридж."
+
 #: __app.rb:3152 lib/participant_menu.rb:26
 msgid "Choose teams"
 msgstr "Выберите команды"
@@ -7056,6 +7387,10 @@ msgstr "Выберите стрелками и нажмите Enter."
 #: games/tysiac.rb:1432 games/tysiac.rb:1566
 msgid "Choose your bid"
 msgstr "Выберите свою заявку"
+
+#: games/bridge/presentation.rb:119
+msgid "Choose your call. %{auction}"
+msgstr "Выберите заявку. %{auction}"
 
 #: games/duck_racing_support/presentation.rb:118
 msgid "Choose yourself or another player."
@@ -7330,6 +7665,10 @@ msgstr "Компьютерные игроки иногда отвечают пр
 msgid "Computer players now receive randomly selected names from Polish or English lists."
 msgstr "Компьютерные игроки теперь получают случайно выбранные имена из польского или английского списков."
 
+#: games/generated/rulebooks/bridge.rb:65
+msgid "Computer players see only their own cards, dummy and the calls and cards everyone else can see. They bid a simple natural system, which helps you understand their calls:"
+msgstr "Компьютерные игроки видят только свои карты, болвана и те заявки и карты, которые видят все. Они торгуются по простой естественной системе, поэтому их заявки легко понять:"
+
 msgid "Computers"
 msgstr "Компьютеры"
 
@@ -7419,6 +7758,22 @@ msgstr "Продолжить редактирование"
 
 msgid "Continue without drawing"
 msgstr "Продолжить без добора"
+
+#: games/generated/rulebooks/bridge.rb:52
+msgid "Contract points are written below the line and everything else above it. A game is won when a pair's points below the line reach 100, either in one deal or from several part scores. After a game, both pairs start the next game from zero below the line; part scores the opponents had towards that game no longer help them."
+msgstr "Очки за контракт записываются под чертой, а все остальные — над чертой. Пара выигрывает гейм, когда её очки под чертой достигают 100, за одну сдачу или из нескольких частичных записей. После гейма обе пары начинают следующий с нуля под чертой; частичные записи, которые соперники набрали к прошлому гейму, им больше не помогают."
+
+#: games/generated/rulebooks/bridge.rb:25
+msgid "Contract, declarer and dummy"
+msgstr "Контракт, разыгрывающий и болван"
+
+#: games/bridge/presentation.rb:502
+msgid "Contract: %{contract} by %{declarer}. Declarer needs %{needed} tricks and has %{won}."
+msgstr "Контракт: %{contract}, разыгрывает %{declarer}. Разыгрывающему нужно %{needed} взяток, взято %{won}."
+
+#: games/bridge/presentation.rb:324
+msgid "Contract: %{contract}, declarer %{declarer}. %{leader} makes the opening lead."
+msgstr "Контракт: %{contract}, разыгрывающий %{declarer}. Первый ход: %{leader}."
 
 #: games/three_five_eight.rb:1005
 msgid "Contract: %{contract}."
@@ -7744,6 +8099,10 @@ msgstr ""
 msgid "Ctrl+B: mark the current question for reporting."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:84
+msgid "Ctrl+C: browse the current trick."
+msgstr "Ctrl+C: просмотреть текущую взятку."
+
 #: games/generated/rulebooks/spades.rb:33 games/generated/rulebooks/three_five_eight.rb:29 games/generated/rulebooks/tysiac.rb:46
 msgid "Ctrl+C: browse the trick cards."
 msgstr "Ctrl+C: просмотр карточек взяток."
@@ -7807,6 +8166,10 @@ msgstr "Ctrl+Home: прочитать первую запись в выбран�
 #: lib/game_room_changelog.rb:248
 msgid "Ctrl+J on the Game Room widget now lets you accept invitations. Joining clears the related notification just as it does inside the app."
 msgstr "Ctrl+J в виджете игровой комнаты теперь позволяет принять приглашения. Присоединение очищает соответствующее уведомление так же, как и в приложении."
+
+#: games/generated/rulebooks/bridge.rb:75
+msgid "Ctrl+L: browse the auction."
+msgstr "Ctrl+L: просмотреть торговлю."
 
 #: games/generated/rulebooks/biblios.rb:36
 msgid "Ctrl+L: browse your library by category."
@@ -7945,6 +8308,10 @@ msgstr "Текущий контракт: %{contract}; заявитель: %{play
 msgid "Current game history"
 msgstr "История текущей партии"
 
+#: games/bridge/presentation.rb:552
+msgid "Current game: North-South %{ns}, East-West %{ew}."
+msgstr "Текущий гейм: Север–Юг %{ns}, Восток–Запад %{ew}."
+
 #: lib/tournaments/operations_screen.rb:169 lib/tournaments/public_text.rb:57 lib/tournaments/server_trial_hub.rb:22
 msgid "Current identity: %{actor}"
 msgstr "Текущая учётная запись: %{actor}"
@@ -7960,6 +8327,10 @@ msgstr "Текущая активность в комнате"
 #: lib/game_rules.rb:92
 msgid "Current table options"
 msgstr "Настройки текущего стола"
+
+#: games/bridge/presentation.rb:457
+msgid "Current trick: %{cards}."
+msgstr "Текущая взятка: %{cards}."
 
 #: games/cat_head_tail.rb:190 games/farkle.rb:733
 msgid "Current turn: %{points} points."
@@ -8062,6 +8433,10 @@ msgstr "D: сделать второй выстрел или защитить п
 #: games/generated/rulebooks/domino.rb:32
 msgid "D: prefer the right end for subsequent plays."
 msgstr "D: предпочитают правый конец для последующих розыгрышей."
+
+#: games/generated/rulebooks/bridge.rb:82
+msgid "D: read dummy's hand."
+msgstr "D: прочитать руку болвана."
 
 msgid "D: read the current die result without rolling again."
 msgstr "D: читать текущий результат кубика, не бросая снова."
@@ -8213,6 +8588,10 @@ msgstr "Раздавай %{round} из 18. %{dealer} раздаёт; %{chooser} 
 #: games/three_five_eight.rb:1000
 msgid "Deal %{round} of 18. %{details}."
 msgstr "Раздавай %{round} от 18. %{details}."
+
+#: games/bridge/presentation.rb:308
+msgid "Deal %{round}. Dealer: %{dealer}. %{vulnerability}."
+msgstr "Сдача %{round}. Сдаёт %{dealer}. %{vulnerability}."
 
 #: lib/tournaments/local_fixed_team_execution_screen.rb:630
 msgid "Deal cards"
@@ -8861,6 +9240,42 @@ msgstr "Гнездо утят"
 msgid "Ducks: %{players}."
 msgstr "Утки: %{players}."
 
+#: games/bridge/presentation.rb:448
+msgid "Dummy is not on the table yet. It is shown after the opening lead."
+msgstr "Болван ещё не выложен. Его карты откроются после первого хода."
+
+#: games/bridge/presentation.rb:339
+msgid "Dummy is on the table, %{seat}: %{cards}."
+msgstr "Болван выложен, %{seat}: %{cards}."
+
+#: games/bridge/presentation.rb:252
+msgid "Dummy, %{seat}, %{count} cards"
+msgstr "Болван, %{seat}, карт: %{count}"
+
+#: games/bridge/presentation.rb:451
+msgid "Dummy, %{seat}: %{cards}."
+msgstr "Болван, %{seat}: %{cards}."
+
+#: games/bridge/presentation.rb:331
+msgid "Dummy, %{seat}: %{card}."
+msgstr "Болван, %{seat}: %{card}."
+
+#: games/generated/rulebooks/bridge.rb:56
+msgid "Duplicate bridge"
+msgstr "Спортивный бридж"
+
+#: games/bridge.rb:104
+msgid "Duplicate bridge (sport)"
+msgstr "Спортивный бридж"
+
+#: games/bridge.rb:124
+msgid "Duplicate scoring"
+msgstr "Подсчёт в спортивном бридже"
+
+#: games/bridge.rb:89
+msgid "Duplicate, %{boards} boards, %{scoring}"
+msgstr "Спортивный, сдач: %{boards}, %{scoring}"
+
 msgid "Duplicate, 5 points"
 msgstr "Совпавший, 5 очков"
 
@@ -8951,6 +9366,10 @@ msgstr "ELTEN Game Room"
 msgid "ELTEN Game Room is now called Power Games. This is the same application: your settings, saved games, statistics and subscriptions remain unchanged."
 msgstr "ELTEN Game Room теперь называется Power Games. Это то же приложение: ваши настройки, сохранённые партии, статистика и подписки остаются без изменений."
 
+#: games/generated/rulebooks/bridge.rb:58
+msgid "Each board is scored on its own. A game earns a bonus of 300, or 500 when vulnerable, and a part score earns 50. Everything else is scored as described above. There are no honours and no rubber."
+msgstr "Каждая сдача считается отдельно. Гейм приносит премию 300, а в зоне 500, частичная запись — 50. Всё остальное считается так, как описано выше. Онёров и роббера здесь нет."
+
 #: games/generated/rulebooks/duck_racing.rb:136
 msgid "Each challenge's controls are described in its chapter and announced when it begins."
 msgstr ""
@@ -9025,6 +9444,10 @@ msgstr "Каждый игрок один раз бросает кубик. По�
 msgid "Each player's closest guess counts. The winner takes three feathers from each opponent; equally close guesses tie."
 msgstr ""
 
+#: games/generated/rulebooks/bridge.rb:30
+msgid "Each trick has four cards, one from each player in clockwise order. To play, go to a card in your hand with the arrow keys and press Enter. Z moves to the next card you are allowed to play and Shift+Z to the previous one; if you have only one playable card, Z plays it."
+msgstr "Каждая взятка состоит из четырёх карт, по одной от каждого игрока по часовой стрелке. Чтобы сыграть, перейдите стрелками к карте в своей руке и нажмите Enter. Клавиша Z переводит к следующей карте, которую можно сыграть, а Shift+Z — к предыдущей; если сыграть можно только одну карту, Z сразу её разыгрывает."
+
 #: games/generated/rulebooks/four_in_a_row.rb:11
 msgid "Each turn consists of choosing one column. Your piece falls to the lowest empty square in that column. You cannot leave it suspended higher up: if the column is empty, it lands at the bottom; if it already holds two pieces, yours rests on top of them. A full column cannot accept another piece."
 msgstr "Каждый ход состоит из выбора одной колонки. Ваша фигура падает на самую низкую пустую клетку в этой колонке. Вы не можете оставить её подвешенной выше: если столбец пуст, он падает внизу; если в ней уже две фигуры, ваша фигура лежит сверху. Полная колонна не может принять другую фигуру."
@@ -9034,6 +9457,18 @@ msgstr "Каждая двойка добавляет две штрафные к�
 
 msgid "Each two adds two penalty cards and each three adds three. Twos and threes may answer each other is on in the ready-made profiles: the debt accumulates, for example two plus three means five. With this option off, only another card of the same attacking rank answers. A player with no legal defence automatically draws the full debt and ends the turn."
 msgstr "Каждая двойка добавляет две штрафные карты, тройка — три. В готовых профилях двойки и тройки могут отвечать друг на друга: долг складывается, например двойка плюс тройка дают пять. Если отключено, отвечает только карта того же атакующего достоинства. Игрок без допустимой защиты автоматически берёт весь долг и завершает ход."
+
+#: games/bridge/presentation.rb:155
+msgid "East"
+msgstr "Восток"
+
+#: games/bridge/presentation.rb:167
+msgid "East-West"
+msgstr "Восток–Запад"
+
+#: games/bridge/presentation.rb:224
+msgid "East-West vulnerable"
+msgstr "Восток–Запад в зоне"
 
 #: games/axel_pong.rb:41
 msgid "Easy"
@@ -9371,6 +9806,10 @@ msgstr "Введите в чате: отправить набранное соо
 msgid "Enter in the answer field: submit the typed noun and clear the field for the next attempt."
 msgstr "Enter в поле ответа: отправить введённое существительное и очистить поле для следующей попытки."
 
+#: games/generated/rulebooks/bridge.rb:72
+msgid "Enter in the list of calls: make the selected call."
+msgstr "Enter в списке заявок: сделать выбранную заявку."
+
 #: lib/tournaments/publication_editor.rb:91
 msgid "Enter in the rules inserts a new line. Only the Publish in local test button submits. Escape cancels."
 msgstr ""
@@ -9378,6 +9817,10 @@ msgstr ""
 #: lib/tournaments/publication_editor.rb:259
 msgid "Enter nonblank tournament rules (up to 16384 UTF-8 bytes; only line breaks and tabs may be control characters)."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:77
+msgid "Enter on a card: play it."
+msgstr "Enter на карте: сыграть её."
 
 msgid "Enter on a card: play, or choose whether to declare an available marriage. Shift+Enter: declare the marriage directly when legal. Without a marriage it reports that fact and does not play the card."
 msgstr "Введите на карте: сыграть, или выбрать, объявлять ли доступный марьяж. Shift+Enter: сразу объявить марьяж, когда это законно. Без марьяжа программа сообщает об этом и не играет карту."
@@ -9812,6 +10255,10 @@ msgstr "Дополнительный бак"
 msgid "Extra tricks are called bags. They are already included in the score, but accumulate between deals: each set of ten also costs 100 points. A successful nil gives 100. Taking even one trick after declaring nil costs 100; in normal scoring its tricks also become bags. A failed nil's tricks do not help a partner fulfil an ordinary contract."
 msgstr "Дополнительные взятки называются мешками. Они уже включены в счёт, но накапливаются между раздачами: каждая десятка также стоит 100 очков. Успешный ниль даёт 100. Взятие даже одной взятки после объявления ниль стоит 100; при обычном подсчёте взятки также становятся мешками. Взятки неудачного нилля не помогают партнёру выполнить обычный контракт."
 
+#: games/generated/rulebooks/bridge.rb:42
+msgid "Extra tricks are called overtricks. Without a double each one is worth the same as a contracted trick of that suit. Doubled, each overtrick earns 100, or 200 when vulnerable; redoubled, 200 or 400. Making a doubled contract adds 50 points, and a redoubled one 100."
+msgstr "Взятки сверх контракта называются лишними. Без контры каждая стоит столько же, сколько заказанная взятка в этой масти. После контры каждая лишняя взятка приносит 100 очков, а в зоне 200; после реконтры 200 или 400. За выполнение законтренного контракта добавляется 50 очков, реконтренного — 100."
+
 #: lib/game_room_changelog.rb:42 lib/game_room_changelog.rb:52
 msgid "F1 opens an arrow-key shortcuts list: current game actions first, room and screen actions next, and general controls last. Enter or Escape closes the list. Native ELTEN help remains unchanged outside Game Room."
 msgstr "F1 открывает список сочетаний клавиш с навигацией стрелками: сначала действия игры, затем комнаты и экрана, в конце общие команды. Enter или Escape закрывает список. За пределами Game Room стандартная справка ELTEN не меняется."
@@ -9864,7 +10311,7 @@ msgstr "F: прочитать текущий контракт и козырну�
 msgid "F: read the current property's deed."
 msgstr "F: прочитать карточку текущей недвижимости."
 
-#: games/generated/rulebooks/spades.rb:34
+#: games/generated/rulebooks/bridge.rb:85 games/generated/rulebooks/spades.rb:34
 msgid "F: read the led suit."
 msgstr "F: прочитать выбранную масть."
 
@@ -10328,6 +10775,10 @@ msgstr "Для карты без козыря получатель автома�
 #: games/generated/rulebooks/scrabble.rb:18
 msgid "For each new word, add the values of all its letters, including letters already on the board. A newly covered letter bonus doubles or triples that tile's value. After letter bonuses, apply the word bonuses to the whole word. Several word multipliers multiply together. For example, two double-word fields make the word worth four times its letter total."
 msgstr "К каждому новому слову добавляйте значения всех его букв, включая уже имеющиеся на доске. Бонус за новые покрытые буквы удваивает или утрояет значение этой кости. После бонусов букв применяйте бонусы к слову ко всему слову. Несколько множителей слов умножаются вместе. Например, два поля с двойным словом делают слово четырёхкратным по сумме букв."
+
+#: games/generated/rulebooks/bridge.rb:49
+msgid "For example, 2 spades doubled, not vulnerable, made with an overtrick earns 120 for the contract, 50 for making a doubled contract and 100 for the overtrick. The same contract two tricks short gives the defenders 300."
+msgstr "Например, 2 пики с контрой до зоны, сыгранные с лишней взяткой, приносят 120 за контракт, 50 за выполнение законтренного контракта и 100 за лишнюю взятку. Тот же контракт без двух даёт защитникам 300."
 
 msgid "For example, rolling 4 and then 6 gives you ten turn points. Banking saves those ten and ends your turn. Rolling 1 instead loses the ten. If you roll 2 before that 1, you still lose the ten turn points, but keep the two points that went straight into your bank."
 msgstr "Например, бросок 4, а затем 6 даёт десять очков хода. Банкинг экономит эти десять и заканчивает ход. Бросок 1 — значит потерять десятку. Если выбросить 2 раньше этой 1, вы всё равно теряете десять очков хода, но сохраняете те два очка, которые пошли прямо в банк."
@@ -10970,7 +11421,7 @@ msgstr "H: рука. C: карты взяток. Ctrl+C: просмотр их. 
 msgid "H: read who is still in and who has folded."
 msgstr "H: прочитать, кто продолжает раздачу, а кто спасовал."
 
-#: games/generated/rulebooks/mille_bornes.rb:49 games/generated/rulebooks/ninety_nine.rb:29 games/generated/rulebooks/three_five_eight.rb:27 games/generated/rulebooks/tysiac.rb:44
+#: games/generated/rulebooks/bridge.rb:81 games/generated/rulebooks/mille_bornes.rb:49 games/generated/rulebooks/ninety_nine.rb:29 games/generated/rulebooks/three_five_eight.rb:27 games/generated/rulebooks/tysiac.rb:44
 msgid "H: read your hand."
 msgstr "H: прочитать свои карты."
 
@@ -11077,6 +11528,10 @@ msgstr "Священные книги"
 msgid "Home made bomb"
 msgstr "Самодельная бомба"
 
+#: games/generated/rulebooks/bridge.rb:54
+msgid "Honours are also scored above the line, whoever holds them, even a defender. Four of the five top trumps (ace, king, queen, jack, ten) in one hand earn 100 and all five earn 150. In no trump, all four aces in one hand earn 150. The table settings can turn honours off."
+msgstr "Над чертой записываются и онёры, у кого бы они ни были, даже у защитника. Четыре из пяти старших козырей (туз, король, дама, валет, десятка) в одной руке приносят 100, а все пять — 150. В без козыря все четыре туза в одной руке приносят 150. Подсчёт онёров можно отключить в настройках стола."
+
 #: lib/tournaments/tournament_datetime_field.rb:20
 msgid "Hour"
 msgstr "Час"
@@ -11117,6 +11572,10 @@ msgstr "Как работает посев"
 
 msgid "How the cards change the total"
 msgstr "Как карты меняют сумму"
+
+#: games/generated/rulebooks/bridge.rb:60
+msgid "How the comparison is counted depends on the table's scoring choice:"
+msgstr "Способ сравнения зависит от выбранного за столом подсчёта:"
 
 #: games/generated/rulebooks/krowa.rb:20
 msgid "How to play"
@@ -11165,6 +11624,14 @@ msgstr "I: прочитать своё расстояние, помехи и з�
 msgid "I: read your progress in the round."
 msgstr "Я: читал ваш прогресс в раунде."
 
+#: games/generated/rulebooks/bridge.rb:88
+msgid "I: read your seat, partner and role in this deal."
+msgstr "I: прочитать своё место, партнёра и роль в этой сдаче."
+
+#: games/bridge.rb:128 games/bridge.rb:151 games/bridge.rb:91 games/bridge/presentation.rb:539
+msgid "IMPs"
+msgstr "IMP"
+
 msgid "Identical answers in the same category are grouped and shown with all their authors. The judge, not the program, decides whether a group is unique, duplicated or incorrect."
 msgstr "Одинаковые ответы одной категории объединяются и показываются со всеми авторами. Судья, а не программа, решает, считать ли группу уникальной, совпавшей или неправильной."
 
@@ -11211,6 +11678,10 @@ msgstr "Если другой игрок заказывает игру и рас
 #: games/generated/rulebooks/duck_racing.rb:129
 msgid "If automatic hitting is enabled in your settings, positioning the paddle is enough to defend. You still serve manually."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:44
+msgid "If declarer falls short, the defenders score for each missing trick:"
+msgstr "Если разыгрывающий взял меньше взяток, защитники получают очки за каждую недостающую взятку:"
 
 #: games/generated/rulebooks/mancala.rb:23
 msgid "If that final empty pit is yours and the opposite pit contains seeds, capture all the seeds opposite together with your own last seed. Both pits become empty. For example, three seeds opposite plus your last seed give you four points. Landing on the opposing side or opposite an empty pit gives no capture."
@@ -11505,6 +11976,10 @@ msgstr "В Yahtzee D читает только значения кубиков. 
 msgid "In Yahtzee, D reads only the dice values. The bonus for reaching 63 points in Ones through Sixes has a clearer name and explanation, without referring to the upper part of a sheet. The Polish Misery category is now called Nedza, and the opening rules are clearer."
 msgstr "В Yahtzee D читает только значения кубиков. Бонус за достижение 63 очков в разделе от единиц до шестерок имеет более ясное название и объяснение, без упоминания верхней части листа. Польская категория Misery теперь называется Nedza, а правила начальной раздачи стали яснее."
 
+#: games/generated/rulebooks/bridge.rb:59
+msgid "In a club, the same boards are played at many tables and pairs compare their results. Here there is only one table, so your result is compared with a reference score: an estimate of what these cards usually earn, based on the combined high card points of the stronger pair. A pair with 20 points each scores nothing on average. With 23 points the stronger pair is expected to score 110, with 26 points 400, or 600 vulnerable, and with 33 points a slam of 980, or 1430 vulnerable. The estimate ignores the shape of the hands, so a good fit or an unusual distribution can be worth much more."
+msgstr "В клубе одни и те же сдачи играются за многими столами, и пары сравнивают свои результаты. Здесь стол только один, поэтому ваш результат сравнивается с эталонным: оценкой того, сколько обычно приносят такие карты, по сумме очков за фигуры у более сильной пары. Если у каждой пары по 20 очков, эталон равен нулю. При 23 очках более сильная пара должна записать 110, при 26 очках — 400, а в зоне 600, при 33 очках — малый шлем за 980, а в зоне 1430. Оценка не учитывает расклад, поэтому хороший фит или необычное распределение может стоить гораздо больше."
+
 #: games/generated/rulebooks/duck_racing.rb:111
 msgid "In a duel, only the two opponents answer; in a group challenge, all unfrozen ducks answer. A question square or Curiosity includes everyone, even frozen ducks. All these questions come from the sets selected for the table."
 msgstr ""
@@ -11558,6 +12033,10 @@ msgstr "В каждой взятке все выбирают карту одно
 msgid "In either scoring mode, the score limit can be any whole number from 1 to 100000. Changing it alters when the match ends, not the values of cards or penalties."
 msgstr "В любом режиме подсчёта очков лимит очков может быть любым целым числом от 1 до 100000. Его изменение изменяет момент окончания матча, а не значения карт или штрафов."
 
+#: games/generated/rulebooks/bridge.rb:15
+msgid "In every suit the ace is the highest card, followed by the king, queen, jack and ten down to the two."
+msgstr "В каждой масти старший — туз, затем король, дама, валет, десятка и остальные карты до двойки."
+
 #: lib/game_room_changelog.rb:293
 msgid "In games that support bots, a player who leaves is automatically replaced by a bot. They return as an observer, and the table master can give them a seat again."
 msgstr "В играх с ботами вышедший игрок автоматически заменяется ботом. Вернувшись, человек становится наблюдателем, а ведущий стола может снова предоставить ему место игрока."
@@ -11607,6 +12086,10 @@ msgstr "В редакторе Ctrl+N создаёт набор из списка
 #: lib/game_room_changelog.rb:481
 msgid "In the quiz question creator, the first answer is now always the correct one, followed by the three incorrect answers. When editing an older draft, its correct answer moves to the first field."
 msgstr "В редакторе вопросов для викторины первый ответ теперь всегда правильный, а остальные три — неправильные. При редактировании старого черновика его правильный ответ переносится в первое поле."
+
+#: games/generated/rulebooks/bridge.rb:57
+msgid "In the table settings you can choose duplicate bridge instead. The match then lasts a set number of deals, called boards: 4, 8, 12, 16 or 24, with 8 by default. The board number decides the dealer and vulnerability, in the cycle used at bridge clubs. Board 1 is dealt by North with neither side vulnerable, board 2 by East with North-South vulnerable, board 3 by South with East-West vulnerable and board 4 by West with both sides vulnerable."
+msgstr "В настройках стола вместо этого можно выбрать спортивный бридж. Тогда матч длится заданное число сдач: 4, 8, 12, 16 или 24, по умолчанию 8. Номер сдачи определяет сдающего и зоны по тому же циклу, что и в бриджевых клубах. Сдачу 1 сдаёт Север, и обе пары до зоны; сдачу 2 — Восток при зоне Севера и Юга; сдачу 3 — Юг при зоне Востока и Запада; сдачу 4 — Запад, когда в зоне обе пары."
 
 #: games/generated/rulebooks/tysiac.rb:21
 msgid "In the team variant, first choose two pairs at the table. Partners sit alternately, and all four play every deal. Each receives five cards; four more form the talon. The auction winner takes the talon and gives one card to each other player, including their partner. Everyone then has six cards for six tricks. You see only your own hand. You may outbid your partner, but your bidding limit still depends only on marriages in your own hand."
@@ -11718,6 +12201,10 @@ msgstr "Безумие"
 #: games/generated/rulebooks/mille_bornes.rb:35 games/mille_bornes/presentation.rb:202
 msgid "Instant repair"
 msgstr "Мгновенный ремонт"
+
+#: games/generated/rulebooks/bridge.rb:19
+msgid "Instead of bidding you can make one of these calls:"
+msgstr "Вместо заявки можно сделать один из таких ходов:"
 
 #: games/uno.rb:123
 msgid "Interceptions"
@@ -11839,6 +12326,10 @@ msgstr "Пригласить кого-нибудь из контактов"
 msgid "Island"
 msgstr "Остров"
 
+#: games/bridge/presentation.rb:45 games/bridge/presentation.rb:65
+msgid "It is %{player}'s turn (%{seat})."
+msgstr "Ходит %{player} (%{seat})."
+
 #: games/base.rb:326 games/base.rb:353 games/board_game.rb:235 games/spades.rb:880
 msgid "It is %{player}'s turn."
 msgstr "Ходит %{player}."
@@ -11878,7 +12369,7 @@ msgstr "Сейчас не ваш ход."
 msgid "It is your birthday: collect 25 from every other player."
 msgstr "У вас день рождения: получите 25 от каждого другого игрока."
 
-#: games/base.rb:324 games/ludo.rb:181
+#: games/base.rb:324 games/bridge/presentation.rb:43 games/ludo.rb:181
 msgid "It is your turn."
 msgstr "Ваш ход."
 
@@ -11988,6 +12479,10 @@ msgstr "K: просматривайте своих королей."
 msgid "K: mortgage properties."
 msgstr "Залоговые объекты недвижимости."
 
+#: games/generated/rulebooks/bridge.rb:76
+msgid "K: read the contract and declarer's tricks."
+msgstr "K: прочитать контракт и взятки разыгрывающего."
+
 #: games/mancala.rb:47
 msgid "Kalah"
 msgstr "Калах"
@@ -12063,7 +12558,7 @@ msgstr "Управление с помощью клавиатуры"
 msgid "Keyboard help in the rules lists each game-field shortcut separately, without chat controls or global shortcuts."
 msgstr "В справке по управлению внутри правил каждое сочетание игрового поля указано отдельно, без команд чата и глобальных сочетаний клавиш."
 
-#: lib/game_room_ui.rb:306
+#: games/generated/rulebooks/bridge.rb:71 lib/game_room_ui.rb:306
 msgid "Keyboard shortcuts"
 msgstr "Сочетания клавиш"
 
@@ -12213,6 +12708,10 @@ msgstr "Международный аэропорт Куала-Лумпур"
 #: games/generated/rulebooks/scrabble.rb:38
 msgid "L: browse played words."
 msgstr "L: просматривать сыгранные слова."
+
+#: games/generated/rulebooks/bridge.rb:74
+msgid "L: read the auction."
+msgstr "L: прочитать торговлю."
 
 #: games/generated/rulebooks/poker.rb:46
 msgid "L: read the blinds."
@@ -13136,6 +13635,14 @@ msgstr "Подбор карт и розыгрыш пакетов"
 msgid "Matching cards and winning rounds"
 msgstr "Подбор карт и победа в раундах"
 
+#: games/bridge.rb:129 games/bridge/presentation.rb:539
+msgid "Matchpoints"
+msgstr "Матчпойнты"
+
+#: games/bridge/presentation.rb:379
+msgid "Matchpoints: North-South %{ns}, East-West %{ew}."
+msgstr "Очки: Север–Юг %{ns}, Восток–Запад %{ew}."
+
 #: games/checkers.rb:107
 msgid "Maximum capture requires completing capture sequences."
 msgstr "Максимальное взятие требует завершёния серий взятий."
@@ -13720,6 +14227,10 @@ msgstr "«Без ада», «Зыбучие пески» и «Самоубийс
 msgid "No Hell, Quicksand and Suicide are off by default. Quicksand takes precedence over standard contract bonuses and bag scoring when enabled. The score limit must be positive and defaults to 300. Team arrangement is Individual by default; team membership is chosen before the game and partners share a score."
 msgstr "«Без ада», «Зыбучие пески» и «Самоубийство» отключены по умолчанию. Включённые «Зыбучие пески» заменяют стандартные бонусы контрактов и подсчёт мешков. Предел очков положительный, по умолчанию 300. По умолчанию игра индивидуальная; команды выбираются до начала, партнёры имеют общий счёт."
 
+#: games/bridge/presentation.rb:381
+msgid "No IMPs change hands."
+msgstr "Никто не получает IMP."
+
 msgid "No Mercy adds Draw Four, Draw Six, Draw Ten, Reverse Draw Four, Skip Everyone, Discard All and Colour Roulette. Flip uses a double-sided deck; a Flip card changes every hand and both piles between the light and dark sides. The table creator may also enable interceptions, zero and seven hand changes, buzzer cards, drawing until a playable card and a thinking-time limit."
 msgstr "«Без пощады» добавляет «+4», «+6», «+10», смену направления с «+4», пропуск всех, сброс всех и цветовую рулетку. «Флип» использует двустороннюю колоду; карта переворота меняет сторону всех рук и обеих стопок. Создатель стола также может включить перехваты, обмены руками по нулю и семёрке, карты с кнопкой, добор до подходящей карты и ограничение времени на ход."
 
@@ -13813,6 +14324,10 @@ msgstr "Битва ещё не определена."
 msgid "No bids yet."
 msgstr "Ставок ещё нет."
 
+#: games/bridge/presentation.rb:487 games/bridge/presentation.rb:494
+msgid "No calls have been made yet."
+msgstr "Заявок пока не было."
+
 #: games/makao.rb:968
 msgid "No card has been dealt yet."
 msgstr "Карты ещё не розданы."
@@ -13824,7 +14339,7 @@ msgstr "На позиции %{number} нет карты."
 msgid "No card in this packet can legally begin the move."
 msgstr "Ни одна карта этого пакета не может законно начать ход."
 
-#: games/poker.rb:289
+#: games/bridge/presentation.rb:264 games/poker.rb:289
 msgid "No cards"
 msgstr "Нет карт"
 
@@ -13832,7 +14347,7 @@ msgstr "Нет карт"
 msgid "No cards are on the table."
 msgstr "На столе нет карт."
 
-#: games/base/shortcuts.rb:43
+#: games/base/shortcuts.rb:43 games/bridge/presentation.rb:464
 msgid "No cards have been played in this trick"
 msgstr "В этой взятке ещё не сыграно ни одной карты"
 
@@ -13874,6 +14389,10 @@ msgstr "Нет правильного ответа"
 #: games/krowa_support/leaderboards.rb:153
 msgid "No daily results"
 msgstr "Нет ежедневных результатов"
+
+#: games/bridge/presentation.rb:509
+msgid "No deal has been played yet."
+msgstr "Ни одной сдачи ещё не сыграно."
 
 #: games/krowa_support/client.rb:251
 msgid "No definition in SJP."
@@ -14125,7 +14644,7 @@ msgstr "Клетка без особого эффекта."
 msgid "No statistics were collected for this period."
 msgstr "За этот период статистика не собиралась."
 
-#: games/spades.rb:927
+#: games/bridge/presentation.rb:469 games/spades.rb:927
 msgid "No suit has been led."
 msgstr "Захода в масть ещё не было."
 
@@ -14147,6 +14666,10 @@ msgstr "Нет объявлений о турнирах."
 #: lib/tournaments/public_screen.rb:63
 msgid "No tournaments in this view."
 msgstr "В этом списке нет турниров."
+
+#: games/bridge/presentation.rb:476
+msgid "No trick has been completed in this deal."
+msgstr "В этой сдаче ещё не закончено ни одной взятки."
 
 #: games/scientific_war.rb:373
 msgid "No trick has been decided yet."
@@ -14222,6 +14745,10 @@ msgstr "Обычно один диск размещается на пустой 
 msgid "Normally, Space draws one tile. You may start drawing only once in a turn. If a legal play is available afterwards, you can make it; if none is available, your turn ends. Without any playable tile and with an empty boneyard, the game passes automatically. Having drawn is not permission to keep pressing Space for more tiles."
 msgstr "Обычно Space берёт одну кость. Вы можете начать дотягивание только один раз за ход. Если после этого доступен допустимый ход, вы можете её сделать; если её нет, ваш ход заканчивается. Без игровой кости и с пустым двором игра проходит автоматически. Если достать — это не разрешение продолжать нажимать Space для получения дополнительных фишек."
 
+#: games/bridge/presentation.rb:154
+msgid "North"
+msgstr "Север"
+
 #: games/duck_racing_support/presentation.rb:31
 msgid "North bank"
 msgstr "Северный берег"
@@ -14229,6 +14756,18 @@ msgstr "Северный берег"
 #: content/monopoly_boards.rb:72
 msgid "North station"
 msgstr "Северный вокзал"
+
+#: games/bridge/presentation.rb:167
+msgid "North-South"
+msgstr "Север–Юг"
+
+#: games/bridge/presentation.rb:347
+msgid "North-South %{ns}, East-West %{ew}"
+msgstr "Север–Юг %{ns}, Восток–Запад %{ew}"
+
+#: games/bridge/presentation.rb:223
+msgid "North-South vulnerable"
+msgstr "Север–Юг в зоне"
 
 #: lib/game_surfaces/review_surface.rb:73
 msgid "Not assessed"
@@ -14289,6 +14828,10 @@ msgstr "Число от 1 до 999."
 #: games/krowa.rb:132 games/krowa_support/client.rb:170
 msgid "Number of attempts"
 msgstr "Количество попыток"
+
+#: games/bridge.rb:116
+msgid "Number of boards"
+msgstr "Число сдач"
 
 #: lib/tournaments/draft_editor.rb:34 lib/tournaments/draft_preview.rb:184 lib/tournaments/public_text.rb:116
 msgid "Number of groups"
@@ -14567,6 +15110,10 @@ msgstr ""
 #: lib/tournaments/local_fixed_team_execution_screen.rb:477
 msgid "Only the tournament organizer may accept knockout pairings."
 msgstr ""
+
+#: games/generated/rulebooks/bridge.rb:36
+msgid "Only the tricks beyond the first six count. When declarer makes the contract, each contracted trick earns:"
+msgstr "Считаются только взятки сверх первых шести. Если разыгрывающий выполнил контракт, каждая заказанная взятка стоит:"
 
 #: __app.rb:1243 __app.rb:1407 games/krowa_support/leaderboards.rb:287 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:111 lib/game_room_screens.rb:616 lib/quiz_contributions/views.rb:141
 msgid "Open"
@@ -14852,6 +15399,10 @@ msgstr "P: прочитать проект."
 msgid "P: read the prepared packet."
 msgstr "P: прочитать подготовленный набор карт."
 
+#: games/generated/rulebooks/bridge.rb:86
+msgid "P: read the previous trick."
+msgstr "P: прочитать предыдущую взятку."
+
 #: games/generated/rulebooks/biblios.rb:40
 msgid "P: read the public space."
 msgstr "P: прочитать открытую область."
@@ -14963,6 +15514,10 @@ msgstr "Партнёр"
 #: lib/tournaments/public_preview.rb:360
 msgid "Partner choice saved."
 msgstr "Выбор напарника сохранён."
+
+#: games/generated/rulebooks/bridge.rb:12
+msgid "Partners and the deal"
+msgstr "Пары и сдача"
 
 #: games/biblios.rb:1077 games/tysiac.rb:1423 games/tysiac.rb:1560
 msgid "Pass"
@@ -15222,6 +15777,14 @@ msgstr "Растение"
 msgid "Play"
 msgstr "Играть"
 
+#: games/bridge/presentation.rb:39
+msgid "Play a card from dummy."
+msgstr "Сыграйте карту с болвана."
+
+#: games/bridge.rb:282
+msgid "Play a card from the hand whose turn it is."
+msgstr "Сыграйте карту из руки, чья очередь."
+
 msgid "Play a card matching the colour or value, or play a wild card. Space draws a card. Drawing is allowed even with a playable card by default, up to the configured limit. If no card can be played after a voluntary draw, the turn ends automatically; otherwise the player may play or keep drawing until the limit."
 msgstr "Сыграйте карту того же цвета или значения либо дикую карту. Пробел берёт карту. По умолчанию добор разрешён даже с подходящей картой до заданного предела. Если после добровольного добора сыграть нечего, ход заканчивается автоматически; иначе можно сыграть или продолжить добор до предела."
 
@@ -15388,6 +15951,10 @@ msgstr "Игра в карту"
 msgid "Playing a double, such as 9/9, gives you another play. During your own series you may choose any accessible train, and each further double lets you continue. A double left at a train's end is unfinished until a matching tile is put after it. You can close an earlier double in your own series while leaving a later one on another train unfinished."
 msgstr "Играя двойной поезд, например 9/9, вы получаете ещё один ход. Во время собственной серии вы можете выбрать любой доступный поезд, и каждый следующий дубль позволяет продолжить движение. Двойной поворот налево в конце поезда остаётся незавершённым, пока после него не поставят соответствующую кость. Вы можете закрыть более ранний двойник в своей серии, оставив следующий на другом поезде незавершённым."
 
+#: games/generated/rulebooks/bridge.rb:50
+msgid "Playing a rubber"
+msgstr "Игра на роббер"
+
 #: games/generated/rulebooks/mille_bornes.rb:17
 msgid "Playing a safety earns 100 points and gives you another turn. Teammates share protection but keep separate hands."
 msgstr "Розыгрыш защиты приносит 100 очков и дополнительный ход. У товарищей по команде общая защита, но отдельные карты на руках."
@@ -15417,6 +15984,10 @@ msgstr "Игра на доске"
 msgid "Playing on your own train closes it again. Playing on another open train does not close that train, and playing on the Mexican train never closes it. You may choose those other trains even while your own is open; that choice simply leaves yours open for now."
 msgstr "Игра на собственном поезде снова закрывает его. Игра на другом открытом поезде не закрывает этот поезд, а игра на мексиканском поезде его никогда не закрывает. Вы можете выбрать другие поезда, даже когда ваш собственный открыт; этот выбор просто оставляет ваш свободный пока что."
 
+#: games/generated/rulebooks/bridge.rb:29
+msgid "Playing the cards"
+msgstr "Розыгрыш"
+
 #: lib/tournaments/draft_details_editor.rb:26 lib/tournaments/draft_preview.rb:194 lib/tournaments/tournament_dates_editor.rb:42
 msgid "Playing windows"
 msgstr "Игровые интервалы"
@@ -15441,6 +16012,14 @@ msgstr "Главный вокзал Пльзеня"
 
 msgid "Podolská vodárna"
 msgstr "Подольская водопроводная станция"
+
+#: games/generated/rulebooks/bridge.rb:11
+msgid "Points come from making contracts and from defeating the opponents' contracts. The pair with more points when the match ends wins."
+msgstr "Очки начисляются за выполненные контракты и за подсад контрактов соперников. Побеждает пара, у которой к концу матча больше очков."
+
+#: games/generated/rulebooks/bridge.rb:35
+msgid "Points for the contract"
+msgstr "Очки за контракт"
 
 #: games/generated/rulebooks/tysiac.rb:28
 msgid "Points in cards are not the same as the score you receive"
@@ -15825,6 +16404,14 @@ msgstr ""
 msgid "Press F2 to lower and F3 to raise the selected Game Room sound volume."
 msgstr "F2 уменьшает, F3 увеличивает выбранную громкость Game Room."
 
+#: games/generated/rulebooks/bridge.rb:28
+msgid "Press K to hear the contract, who declares it and how many tricks declarer has taken so far."
+msgstr "Клавиша K сообщает контракт, разыгрывающего и сколько взяток он уже взял."
+
+#: games/generated/rulebooks/bridge.rb:24
+msgid "Press L to hear the whole auction, or Ctrl+L to go through it call by call."
+msgstr "Клавиша L зачитывает всю торговлю, а Ctrl+L позволяет просмотреть её заявку за заявкой."
+
 #: lib/game_surfaces/packet_cards.rb:155
 msgid "Press Shift+Enter to add or remove the current card from the prepared packet."
 msgstr "Нажмите Shift+Enter, чтобы добавить или удалить текущую карту из подготовленного пакета."
@@ -15928,6 +16515,10 @@ msgstr "Предыдущий этап турнира"
 #: lib/tournaments/server_schedule_overview.rb:234
 msgid "Previous tournament phase results"
 msgstr "Результаты предыдущего этапа турнира"
+
+#: games/bridge/presentation.rb:479
+msgid "Previous trick: %{cards}. Won by %{seat}."
+msgstr "Предыдущая взятка: %{cards}. Взятку взял %{seat}."
 
 #: lib/game_room_screens.rb:340
 msgid "Primary interface language"
@@ -17465,6 +18056,14 @@ msgstr "По умолчанию очки округляются до пятёр�
 msgid "Rounds"
 msgstr "Раунды"
 
+#: games/bridge.rb:87
+msgid "Rubber"
+msgstr "Роббер"
+
+#: games/bridge.rb:103
+msgid "Rubber bridge (social)"
+msgstr "Роббер (дружеская игра)"
+
 #: games/makao.rb:81
 msgid "Rule profile"
 msgstr "Профиль правил"
@@ -17540,6 +18139,10 @@ msgstr "S читает текущее число королей, ферзей, �
 msgid "S reads the current number of men and kings belonging to each player."
 msgstr "S читает текущее число простых шашек и дамок каждого игрока."
 
+#: games/generated/rulebooks/bridge.rb:55
+msgid "S reads the points below and above the line, the games won and the total for each pair, followed by the score towards the current game."
+msgstr "Клавиша S зачитывает очки под чертой и над чертой, выигранные геймы и сумму каждой пары, а затем счёт текущего гейма."
+
 msgid "S reads your stack, Shift+S the others, V the amount to call, P the total pot, I your investment in this hand, H active and folded players, L the blinds and T the turn. D reads your cards, E community cards and G your best currently visible combination, including a pair before the flop. Keys 1 and 2 read the first two private cards, 3–7 the five community positions; in draw poker use D for the whole hand."
 msgstr "S читает ваш стек, Shift+S — чужие, V — сумму колла, P — общий банк, I — ваш вклад в раздачу, H — активных и спасовавших, L — блайнды, T — очередь хода. D читает ваши карты, E — общие, G — лучшую видимую комбинацию, включая пару до флопа. 1 и 2 читают первые две личные карты, 3–7 — пять общих позиций; в дро-покере D читает всю руку."
 
@@ -17607,6 +18210,10 @@ msgstr "S: прочитать счёт."
 #: games/generated/rulebooks/taboo.rb:31
 msgid "S: read team scores."
 msgstr "S: прочитайте очки команды."
+
+#: games/generated/rulebooks/bridge.rb:89
+msgid "S: read the scores."
+msgstr "S: прочитать счёт."
 
 #: games/generated/rulebooks/poker.rb:40
 msgid "S: read your stack."
@@ -17834,12 +18441,20 @@ msgstr "Научная война — это карточная игра для 
 msgid "Scissors"
 msgstr "Ножницы"
 
+#: games/bridge/presentation.rb:387
+msgid "Score %{result}, compared with %{reference}. %{comparison}"
+msgstr "Результат: %{result}; эталон: %{reference}. %{comparison}"
+
 #: lib/game_room_changelog.rb:142
 msgid "Score announcements under S are ordered from highest to lowest, with eliminated players or teams last. Their actual scores are preserved."
 msgstr "При нажатии S результаты объявляются от наибольшего к наименьшему; выбывшие игроки и команды перечисляются последними. Их фактический счёт сохраняется."
 
 msgid "Score every word formed in the move. New letter bonuses apply first, then word multipliers; multiple word multipliers multiply. A shared letter scores in each word. Covered bonuses never apply again. A blank can activate a word bonus. Using seven rack tiles in one move adds 50 points after the other calculations."
 msgstr "Засчитывайте очки за каждое слово, составленное в ходе хода. Сначала применяются бонусы за новые буквы, затем множители слова; несколько множителей умножаются друг на друга. Общая буква засчитывается для каждого слова. Покрытые бонусы больше не применяются. Пустая клетка может активировать бонус слова. Использование всех семи плиток одной раздачи добавляет 50 очков после остальных расчетов."
+
+#: games/bridge.rb:109
+msgid "Score honours"
+msgstr "Считать онёры"
 
 #: games/cat_head_tail.rb:67 games/domino.rb:57 games/farkle.rb:129 games/mexican_train.rb:19 games/rummy.rb:53 games/spades.rb:266
 msgid "Score limit"
@@ -18368,6 +18983,10 @@ msgstr "Shift+C: сортировать по масти или цвету; на�
 msgid "Shift+C: sort by suit; Shift+H: sort by rank. Press the same shortcut again to reverse that order. Shift+M restores receipt order. Sorting changes only your view and keeps the selected physical card; it does not alter card strength or select a move."
 msgstr "Shift+C: сортировать по масти; Shift+H: сортировать по рангу. Нажмите тот же сочетание клавиш, чтобы перевёрнуть этот порядок. Shift+M восстанавливает порядок чека. Сортировка меняет только ваш вид и сохраняет выбранную физическую карту; она не меняет силу карты и не выбирает ход."
 
+#: games/generated/rulebooks/bridge.rb:91
+msgid "Shift+C: sort your cards by suit."
+msgstr "Shift+C: отсортировать карты по масти."
+
 msgid "Shift+C: toggle colour order. Shift+H: toggle value order. Shift+D or Shift+M: acquisition order. These only change your own view."
 msgstr "Shift+C: переключать порядок цвета. Shift+H: переключать порядок значений. Shift+D или Shift+M: порядок приобретения. Они меняют только ваш собственный вид."
 
@@ -18456,6 +19075,10 @@ msgstr "Shift+H: сортировать по расстоянию или зна�
 msgid "Shift+H: sort by rank or value; press again to reverse the order."
 msgstr "Shift+H: сортировать по рангу или значению; нажмите ещё раз, чтобы поменять порядок."
 
+#: games/generated/rulebooks/bridge.rb:92
+msgid "Shift+H: sort your cards by rank."
+msgstr "Shift+H: отсортировать карты по достоинству."
+
 #: games/generated/rulebooks/mille_bornes.rb:51
 msgid "Shift+I: read every car's mileage, hazards and safeties."
 msgstr "Shift+I: прочитать расстояние, помехи и защиты всех машин."
@@ -18479,6 +19102,10 @@ msgstr "Shift+M: во время обмена восстановить поря�
 #: games/generated/rulebooks/makao.rb:49 games/generated/rulebooks/mille_bornes.rb:58 games/generated/rulebooks/ninety_nine.rb:37 games/generated/rulebooks/rummy.rb:63 games/generated/rulebooks/spades.rb:43 games/generated/rulebooks/three_five_eight.rb:38 games/generated/rulebooks/tysiac.rb:55 games/generated/rulebooks/uno.rb:53
 msgid "Shift+M: restore the order in which cards were received."
 msgstr "Shift+M: восстановить порядок получения карт."
+
+#: games/generated/rulebooks/bridge.rb:93
+msgid "Shift+M: restore the order in which you received your cards."
+msgstr "Shift+M: вернуть исходный порядок карт."
 
 #: games/generated/rulebooks/chess.rb:41
 msgid "Shift+N: browse the opponent's knights."
@@ -18553,6 +19180,10 @@ msgstr "Shift+V: открыть таблицу соперника."
 #: games/generated/rulebooks/mille_bornes.rb:55
 msgid "Shift+Z: find the previous playable card on your turn, outside the dirty-trick window."
 msgstr "Shift+Z: найти предыдущую доступную для розыгрыша карту в свой ход, вне периода контратаки."
+
+#: games/generated/rulebooks/bridge.rb:80
+msgid "Shift+Z: go to the previous playable card."
+msgstr "Shift+Z: перейти к предыдущей карте, которую можно сыграть."
 
 #: games/generated/rulebooks/scientific_war.rb:31
 msgid "Shift+Z: move to the previous card in your hand; if it is your only card, play it."
@@ -18876,6 +19507,10 @@ msgstr "Источник (необязательно)"
 #: lib/quiz_contributions/delivery.rb:92
 msgid "Source: %{source}"
 msgstr "Источник: %{source}"
+
+#: games/bridge/presentation.rb:156
+msgid "South"
+msgstr "Юг"
 
 #: games/duck_racing_support/presentation.rb:19
 msgid "South bank"
@@ -19396,7 +20031,7 @@ msgstr "T: прочитайте, кто уже выбрал карту."
 msgid "T: read whose turn it is and any double that must be covered."
 msgstr "T: прочитайте, чей ход и какой дубль необходимо закрыть."
 
-#: games/generated/rulebooks/battleship.rb:37 games/generated/rulebooks/biblios.rb:45 games/generated/rulebooks/checkers.rb:35 games/generated/rulebooks/chess.rb:31 games/generated/rulebooks/domino.rb:40 games/generated/rulebooks/farkle.rb:28 games/generated/rulebooks/four_in_a_row.rb:17 games/generated/rulebooks/ludo.rb:38 games/generated/rulebooks/makao.rb:46 games/generated/rulebooks/mancala.rb:40 games/generated/rulebooks/mille_bornes.rb:53 games/generated/rulebooks/ninety_nine.rb:34 games/generated/rulebooks/poker.rb:54 games/generated/rulebooks/reversi.rb:22 games/generated/rulebooks/rummy.rb:60 games/generated/rulebooks/scrabble.rb:43 games/generated/rulebooks/spades.rb:40 games/generated/rulebooks/three_five_eight.rb:33 games/generated/rulebooks/tic_tac_toe.rb:17 games/generated/rulebooks/tysiac.rb:52 games/generated/rulebooks/uno.rb:50 games/generated/rulebooks/war.rb:26 games/generated/rulebooks/yahtzee.rb:35
+#: games/generated/rulebooks/battleship.rb:37 games/generated/rulebooks/biblios.rb:45 games/generated/rulebooks/bridge.rb:90 games/generated/rulebooks/checkers.rb:35 games/generated/rulebooks/chess.rb:31 games/generated/rulebooks/domino.rb:40 games/generated/rulebooks/farkle.rb:28 games/generated/rulebooks/four_in_a_row.rb:17 games/generated/rulebooks/ludo.rb:38 games/generated/rulebooks/makao.rb:46 games/generated/rulebooks/mancala.rb:40 games/generated/rulebooks/mille_bornes.rb:53 games/generated/rulebooks/ninety_nine.rb:34 games/generated/rulebooks/poker.rb:54 games/generated/rulebooks/reversi.rb:22 games/generated/rulebooks/rummy.rb:60 games/generated/rulebooks/scrabble.rb:43 games/generated/rulebooks/spades.rb:40 games/generated/rulebooks/three_five_eight.rb:33 games/generated/rulebooks/tic_tac_toe.rb:17 games/generated/rulebooks/tysiac.rb:52 games/generated/rulebooks/uno.rb:50 games/generated/rulebooks/war.rb:26 games/generated/rulebooks/yahtzee.rb:35
 msgid "T: read whose turn it is."
 msgstr "T: прочитать, чей сейчас ход."
 
@@ -19426,6 +20061,10 @@ msgstr "Tab переключает руку, другие игровые пол�
 #: lib/tournaments/public_preview.rb:127
 msgid "Tab moves to the available actions. Choose an action with the arrows and press Enter. Escape returns without leaving the tournament."
 msgstr "Tab переходит к доступным действиям. Выберите действие стрелками и нажмите Enter. Escape возвращает назад, не отменяя участия в турнире."
+
+#: games/generated/rulebooks/bridge.rb:78
+msgid "Tab: move between your hand and dummy."
+msgstr "Tab: перейти между своей рукой и болваном."
 
 #: games/generated/rulebooks/krowa.rb:45
 msgid "Tab: move to the next field. In table settings, fields unrelated to the selected variant are hidden, so you do not need to skip them."
@@ -19978,8 +20617,16 @@ msgstr "Вложение превышает 4 МБ. Раздели предло�
 msgid "The attempt is waiting to be checked."
 msgstr "Попытка ожидает проверки."
 
+#: games/generated/rulebooks/bridge.rb:16
+msgid "The auction"
+msgstr "Торговля"
+
 msgid "The auction and talon"
 msgstr "Торги и прикуп"
+
+#: games/generated/rulebooks/bridge.rb:23
+msgid "The auction ends when three players pass in a row after a bid. The last bid becomes the contract. If all four players pass at the start, nobody scores and the cards are dealt again by the next dealer."
+msgstr "Торговля заканчивается, когда после заявки трое игроков подряд пасуют. Последняя заявка становится контрактом. Если в самом начале пасуют все четверо, никто не получает очков, а карты заново сдаёт следующий игрок."
 
 #: games/tysiac.rb:1622
 msgid "The auction has not started."
@@ -20196,6 +20843,10 @@ msgstr "Сдающий меняется между раундами, и след
 
 msgid "The dealer changes every round. The player to the dealer's left begins both bidding and the first trick. For team games, the table master may accept the alternating seat arrangement or assign every human and computer to a valid team before starting."
 msgstr "Сдающий меняется каждый раунд. Игрок слева начинает торги и первую взятку. В командной игре ведущий может принять чередующийся порядок мест или назначить каждого человека и компьютер в допустимую команду до начала."
+
+#: games/generated/rulebooks/bridge.rb:17
+msgid "The dealer makes the first call and the others follow clockwise. When it is your turn, the game field shows a list of the calls you may make. Choose one with the arrow keys and press Enter. You can also press B to open the same list."
+msgstr "Торговлю начинает сдающий, остальные говорят по очереди по часовой стрелке. Когда наступает ваша очередь, в игровом поле появляется список допустимых заявок. Выберите заявку стрелками и нажмите Enter. Тот же список открывает клавиша B."
 
 #: lib/quiz_contributions/controller.rb:193
 msgid "The decision was not confirmed. Retry the same decision?"
@@ -20759,7 +21410,7 @@ msgstr "Лидеры равны. Будет сыгран ещё полный ц�
 msgid "The lead is tied. Another round will be played: %{players}."
 msgstr "Лидеры равны. Следующий раунд сыграют: %{players}."
 
-#: games/spades.rb:930
+#: games/bridge/presentation.rb:471 games/spades.rb:930
 msgid "The led suit is %{suit}."
 msgstr "Масть захода: %{suit}."
 
@@ -20840,6 +21491,10 @@ msgstr "Изменён порядок главного меню: сохранё�
 #: games/krowa_support/presentation.rb:35
 msgid "The main menu's Leaderboards entry gives access to Krowa word results and Word Tower results, including round details. Your gallery and custom dictionary are local and separate for each account. To remove custom words, open My dictionary in Krowa settings, select them with Space and use Remove selected. Removing a word does not rewrite attempts already made in a game."
 msgstr "Пункт «Таблицы лидеров» в главном меню позволяет получить доступ к результатам Krowa и Word Tower, включая детали раундов. Ваша галерея и пользовательский словарь локальны и раздельны для каждого аккаунта. Чтобы удалить пользовательские слова, откройте «Мой словарь» в настройках Krowa, выберите их с помощью пробела и используйте «Удалить выбранные». Удаление слова не переписывает попытки, уже совершенные в игре."
+
+#: games/bridge/presentation.rb:426
+msgid "The match ended in a draw: %{scores}."
+msgstr "Матч закончился вничью: %{scores}."
 
 msgid "The match ends after the round in which at least one player reaches the target score. The highest score wins."
 msgstr "Матч заканчивается после раунда, в котором хотя бы один игрок достиг цели. Побеждает наибольший счёт."
@@ -20978,6 +21633,10 @@ msgstr "Другие варианты: «дубль-12» (91 фишка), 2× «
 msgid "The other row: %{values}."
 msgstr "Другая строка: %{values}."
 
+#: games/generated/rulebooks/bridge.rb:26
+msgid "The pair that made the last bid must take the promised number of tricks; the other pair defends. The declarer is the player of the contracting pair who first bid the suit, or no trump, of the final contract. For example, if North opens 1 heart, South raises to 4 hearts and everyone passes, North is declarer even though South made the last bid."
+msgstr "Пара, сделавшая последнюю заявку, должна взять обещанное число взяток, а другая пара защищается. Разыгрывающим становится тот игрок этой пары, который первым назвал масть контракта или без козыря. Например, если Север открывает торговлю заявкой 1 черва, Юг повышает до 4 черв и все пасуют, разыгрывает Север, хотя последнюю заявку сделал Юг."
+
 #: lib/tournaments/local_dispatch_screen.rb:110
 msgid "The participant has already entered the match."
 msgstr ""
@@ -21023,6 +21682,10 @@ msgstr "Игрок после сдающего начинает торги с о
 msgid "The player holding the highest dealt double starts. A double is a tile with equal numbers, such as 6/6. If no hand has a double, the highest total decides; ties use the round's rotating priority. The starter may play any tile, not necessarily the double that gave them the start. A normal round ends as soon as someone uses their last tile."
 msgstr "Начинает игрок, у которого на руках самая высокая раздача двойки. Двойка — это фишка с одинаковыми числами, например 6/6. Если ни у кого нет двойки, решение принимает наибольшая сумма; при равенстве учитывается очередность раунда. Начинающий может сыграть любую фишку, не обязательно двойку, которая дала ему начало. Обычный раунд заканчивается сразу, как только кто-то использует последнюю фишку."
 
+#: games/generated/rulebooks/bridge.rb:27
+msgid "The player to the left of declarer leads the first card. Then declarer's partner becomes dummy: dummy's cards are laid face up for everyone, and declarer plays them as well as their own. Dummy takes no further part in the deal."
+msgstr "Первую карту, атаку, кладёт игрок слева от разыгрывающего. После этого партнёр разыгрывающего становится болваном: его карты открыты для всех, и разыгрывающий играет ими так же, как своими. Болван больше не участвует в этой сдаче."
+
 #: games/generated/rulebooks/domino.rb:20
 msgid "The player who empties their hand scores zero. Others add the numbers on their remaining tiles. For instance, 3/5 is worth 8. The 0/0 is a special case: it is worth 10 if it is the only tile left in your hand, but zero if you also have other tiles. If a whole circuit passes with no possible play and no usable draw pile, the round is blocked and everyone counts their remaining hand."
 msgstr "Игрок, который опустошает свою руку, получает ноль очков. Остальные добавляют числа на своих оставшихся фишках. Например, 3/5 стоит 8. 0/0 — особый случай: оно стоит 10, если это единственная оставшаяся фишка в вашей руке, но ноль, если у вас есть и другие фишки. Если весь круг проходит без возможного хода и без доступной стопки для взятия, раунд считается заблокированным, и все считают оставшиеся фишки."
@@ -21037,6 +21700,10 @@ msgstr ""
 #: games/generated/rulebooks/scientific_war.rb:14
 msgid "The player with the strongest card wins the trick and puts all its cards on their pile. Normally the ace is the strongest card and the two the weakest. Suits do not matter."
 msgstr "Игрок с самой сильной картой выигрывает взятку и кладет все карты в свою стопку. Обычно туз — самая сильная карта, а двойка — самая слабая. Масти не имеют значения."
+
+#: games/generated/rulebooks/bridge.rb:13
+msgid "The players are named after the points of the compass. North and South are partners, and so are East and West; partners sit opposite each other. When the table chooses teams, the two members of each team become partners. Play always moves clockwise: North, East, South, West."
+msgstr "Места за столом называются по сторонам света. Север играет в паре с Югом, а Восток — с Западом; партнёры сидят друг напротив друга. Если за столом выбраны команды, два игрока одной команды становятся партнёрами. Ход всегда передаётся по часовой стрелке: Север, Восток, Юг, Запад."
 
 msgid "The players then add the numbers on their dice, and the player with the most Victory Points wins. The numbers on the cards are not Victory Points; they only determine who wins each category."
 msgstr "Игроки затем складывают числа на своих кубиках, и игрок с наибольшим количеством победных очков выигрывает. Числа на картах не являются победными очками; они только определяют, кто выигрывает в каждой категории."
@@ -21761,6 +22428,10 @@ msgstr "Существует пять категорий: Пигменты, Мо
 msgid "There are no available moves from %{field}."
 msgstr "С поля %{field} нет доступных ходов."
 
+#: games/bridge/presentation.rb:455
+msgid "There are no cards in the current trick."
+msgstr "В текущей взятке пока нет карт."
+
 #: games/spades.rb:905 games/three_five_eight.rb:986
 msgid "There are no cards on the table."
 msgstr "На столе нет карт."
@@ -21861,6 +22532,10 @@ msgstr "В стопке сброса нет карты."
 msgid "There is no computer to remove."
 msgstr "Нет бота."
 
+#: games/bridge/presentation.rb:500
+msgid "There is no contract yet."
+msgstr "Контракта пока нет."
+
 #: games/uno.rb:1335
 msgid "There is no current colour."
 msgstr "Текущий цвет не задан."
@@ -21920,6 +22595,10 @@ msgstr "Тепловая электростанция"
 #: lib/game_surfaces/meld_cards.rb:235 lib/game_surfaces/meld_cards.rb:250
 msgid "These cards do not form valid ordered melds."
 msgstr "Эти карты не образуют действительные упорядоченные комбинации."
+
+#: games/generated/rulebooks/bridge.rb:40
+msgid "These contract points are doubled if the contract was doubled and multiplied by four if it was redoubled. A contract worth at least 100 of them is a game: 3 no trump, 4 hearts, 4 spades, 5 clubs and 5 diamonds are the lowest games. A smaller contract is a part score."
+msgstr "Эти очки за контракт удваиваются после контры и учетверяются после реконтры. Контракт, который стоит не меньше 100 таких очков, — это гейм: самые низкие геймы — 3 без козыря, 4 червы, 4 пики, 5 треф и 5 бубен. Контракт поменьше — это частичная запись."
 
 #: lib/game_room_presence_screen.rb:42
 msgid "These counts come from recent reports by updated clients. Reports expire after about five to six minutes; rooms without an updated client reporting them may be missing."
@@ -22067,6 +22746,10 @@ msgstr "Это действие сейчас недоступно."
 msgid "This bid is not allowed with the selected Spades rules."
 msgstr "Эта заявка недопустима по выбранным правилам «Пик»."
 
+#: games/bridge.rb:278
+msgid "This call is not allowed now. A bid must be higher than the last bid, and you may only double or redouble your opponents."
+msgstr "Сейчас эта заявка недопустима. Заявка должна быть выше предыдущей, а контрить и реконтрить можно только соперников."
+
 #: games/duck_racing_support/presentation.rb:119
 msgid "This card affects you."
 msgstr "Эта карта действует на вас."
@@ -22098,6 +22781,10 @@ msgstr "Эта карта не соответствует заказанному
 #: games/three_five_eight.rb:389
 msgid "This card exchange is not available."
 msgstr "Эта замена карт недоступна."
+
+#: games/bridge.rb:280
+msgid "This card is not in the hand that is to play."
+msgstr "Этой карты нет в руке, чья очередь."
 
 #: games/makao.rb:453 games/ninety_nine.rb:400 games/spades.rb:537 games/three_five_eight.rb:390 games/tysiac.rb:510
 msgid "This card is not in your hand."
@@ -22738,6 +23425,10 @@ msgstr "Верхняя карта: %{card}; объявленная масть: %
 msgid "Total across matches: %{points}."
 msgstr "Всего за все матчи: %{points}."
 
+#: games/bridge/presentation.rb:369
+msgid "Total: %{scores}."
+msgstr "Всего: %{scores}."
+
 #: lib/tournaments/tournament_start_runtime.rb:50 lib/tournaments/tournament_start_runtime.rb:64
 msgid "Tournament"
 msgstr "Турнир"
@@ -23000,6 +23691,10 @@ msgstr "Лимит взяток (от 20 до 100)"
 
 msgid "Tricks and marriages"
 msgstr "Взятки и марьяжи"
+
+#: games/bridge/presentation.rb:513
+msgid "Tricks: %{tricks}."
+msgstr "Взятки: %{tricks}."
 
 #: games/tysiac.rb:488
 msgid "Trump: %{suit}."
@@ -23710,6 +24405,10 @@ msgstr "V: прочитать сумму, необходимую для колл
 msgid "V: read the current colour."
 msgstr "V: прочитайте текущий цвет."
 
+#: games/generated/rulebooks/bridge.rb:87
+msgid "V: read the deal, vulnerability, contract and tricks."
+msgstr "V: прочитать сдачу, зоны, контракт и взятки."
+
 #: games/generated/rulebooks/war.rb:25
 msgid "V: read the result of the last battle."
 msgstr "V: прочитай результат последней битвы."
@@ -24067,6 +24766,10 @@ msgstr "Водопроводная компания"
 msgid "Welcome to the audio tutorial. Here you will learn the sounds used in this game. Use the arrow keys to browse. Press Space or Enter to play a sound."
 msgstr "Добро пожаловать в аудиоурок. Здесь вы узнаете звуки, используемые в этой игре. Используйте стрелки для просмотра. Нажмите пробел или Enter, чтобы воспроизвести звук."
 
+#: games/bridge/presentation.rb:157
+msgid "West"
+msgstr "Запад"
+
 #: content/monopoly_boards.rb:72
 msgid "West station"
 msgstr "Западный вокзал"
@@ -24103,6 +24806,10 @@ msgstr "Сколько стоят кости здесь"
 #: games/ludo.rb:74
 msgid "What the five checkboxes change"
 msgstr "Что изменяют пять параметров"
+
+#: games/generated/rulebooks/bridge.rb:9
+msgid "What the game is about"
+msgstr "Суть игры"
 
 #: games/generated/rulebooks/ludo.rb:15
 msgid "What the table options change"
@@ -24665,9 +25372,25 @@ msgstr "Вы уже за другим столом."
 msgid "You are already at this table."
 msgstr "Вы уже за этим столом."
 
-#: games/base.rb:304
+#: games/base.rb:304 games/bridge/presentation.rb:34
 msgid "You are bidding."
 msgstr "Вы делаете заявку."
+
+#: games/bridge/presentation.rb:527
+msgid "You are declarer and also play dummy's cards."
+msgstr "Вы разыгрывающий и играете также картами болвана."
+
+#: games/bridge/presentation.rb:531
+msgid "You are defending; your side needs %{count} tricks to defeat the contract."
+msgstr "Вы защищаетесь; чтобы подсадить контракт, вашей паре нужно %{count} взяток."
+
+#: games/bridge/presentation.rb:529
+msgid "You are dummy."
+msgstr "Вы болван."
+
+#: games/bridge/presentation.rb:449
+msgid "You are dummy. Your partner plays your cards."
+msgstr "Вы болван. Вашими картами играет партнёр."
 
 #: games/generated/rulebooks/monopoly.rb:35
 msgid "You are imprisoned only when a field, a card or three consecutive doubles sends you there. Simply stopping on the jail field is a visit. Before a prison roll, you may pay the exit fee or use a held jail card. Otherwise you have up to three turns to roll doubles. Successful doubles release you and move you by the roll, without an extra turn. After the third failed attempt, you pay and move by that roll."
@@ -24676,6 +25399,10 @@ msgstr "Вы заключены в тюрьму только тогда, ког�
 #: games/ludo.rb:459 games/ludo.rb:504
 msgid "You are not a player in this game."
 msgstr "Вы не игрок в этой партии."
+
+#: games/bridge/presentation.rb:438
+msgid "You are not playing at this table."
+msgstr "Вы не играете за этим столом."
 
 #: games/spades.rb:951
 msgid "You are not playing in this round."
@@ -24728,6 +25455,10 @@ msgstr "Вы шпион. Вы увидите выбранные карты, ко
 #: games/duck_racing_support/challenge_presentation.rb:131
 msgid "You are watching this challenge."
 msgstr "Вы наблюдаете за этим испытанием."
+
+#: games/bridge/presentation.rb:519
+msgid "You are watching this table."
+msgstr "Вы наблюдаете за этим столом."
 
 #: games/duck_racing_support/challenge_presentation.rb:109 games/duck_racing_support/challenge_presentation.rb:246 games/duck_racing_support/challenge_presentation.rb:320
 msgid "You are watching."
@@ -25125,7 +25856,11 @@ msgstr "Вы должны следовать масти, перебить кар
 msgid "You must follow the led suit whenever possible. If you cannot follow and a trump suit has been established, you must play a trump if you have one. Otherwise you may discard any card. Cards rank from strongest to weakest: ace, 10, king, queen, jack and 9."
 msgstr "По возможности ходите в масть захода. Если её нет и назначен козырь, вы обязаны сыграть имеющийся козырь. Иначе сбрасывайте любую карту. Старшинство: туз, 10, король, дама, валет, 9."
 
-#: games/spades.rb:539
+#: games/generated/rulebooks/bridge.rb:31
+msgid "You must follow the suit that was led if you can. If you have no card of that suit, you may play any card, including a trump, but you never have to trump. The highest trump in the trick wins it. If no trump was played, the highest card of the led suit wins. Cards of other suits cannot win the trick. The player who wins a trick leads to the next one."
+msgstr "Если у вас есть карты масти первого хода, нужно ходить в масть. Если такой масти нет, можно сыграть любую карту, в том числе козырь, но бить козырем никогда не обязательно. Взятку берёт старший козырь, а если козырей не было — старшая карта масти первого хода. Карты других мастей взятку взять не могут. Взявший взятку делает первый ход в следующей."
+
+#: games/bridge.rb:284 games/spades.rb:539
 msgid "You must follow the suit that was led."
 msgstr "Вы обязаны ходить в масть захода."
 
@@ -25185,6 +25920,10 @@ msgstr "Вы выбросили %{value}. Выберите фишку для х�
 #: games/tysiac.rb:528
 msgid "You set aside %{card}."
 msgstr "Вы откладываете %{card}."
+
+#: games/bridge/presentation.rb:522
+msgid "You sit %{seat}; your partner is %{partner}."
+msgstr "Ваше место: %{seat}; партнёр: %{partner}."
 
 #: games/tysiac.rb:1468 games/tysiac.rb:1575
 msgid "You sit out this deal."
@@ -25313,6 +26052,14 @@ msgstr "Ваша ставка на аукционе:"
 msgid "Your availability changed in another client. Enable it again if you want to participate."
 msgstr ""
 
+#: games/bridge/presentation.rb:287
+msgid "Your call. No bid has been made yet."
+msgstr "Ваша заявка. Торговля ещё не открыта."
+
+#: games/bridge/presentation.rb:289
+msgid "Your call. The last bid is %{call} by %{seat}."
+msgstr "Ваша заявка. Последняя заявка: %{call}, %{seat}."
+
 #: games/duck_racing_support/presentation.rb:210
 msgid "Your cards"
 msgstr "Ваши карты"
@@ -25411,9 +26158,21 @@ msgstr[0] "Ваша рука пуста, поэтому вы берёте %{coun
 msgstr[1] "Ваша рука пуста, поэтому вы берёте %{count} карт из вашей стопки в руку."
 msgstr[2] "Ваша рука пуста, поэтому вы берёте %{count} карт из вашей стопки в руку."
 
-#: games/makao.rb:940 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:883 games/spades.rb:919 games/three_five_eight.rb:981 games/tysiac.rb:1577
+#: games/bridge/presentation.rb:439 games/makao.rb:940 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:883 games/spades.rb:919 games/three_five_eight.rb:981 games/tysiac.rb:1577
 msgid "Your hand is empty."
 msgstr "Ваша рука пуста."
+
+#: games/bridge/presentation.rb:441
+msgid "Your hand, %{count} cards: %{cards}. %{points} high card points."
+msgstr "Ваша рука, карт: %{count}: %{cards}. Очков за фигуры: %{points}."
+
+#: games/bridge/presentation.rb:272
+msgid "Your hand, %{seat}, %{points} high card points"
+msgstr "Ваша рука, %{seat}, очков за фигуры: %{points}"
+
+#: games/bridge/presentation.rb:269
+msgid "Your hand, %{seat}: you are dummy and your partner plays these cards"
+msgstr "Ваша рука, %{seat}: вы болван, этими картами играет партнёр"
 
 #: games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:885 games/spades.rb:921 games/three_five_eight.rb:982 games/tysiac.rb:1578
 msgid "Your hand: %{cards}."
@@ -25635,6 +26394,10 @@ msgstr "Z: очистить весь чёрновик."
 msgid "Z: find the next playable card on your turn, outside the dirty-trick window."
 msgstr "Z: найти следующую доступную для розыгрыша карту в свой ход, вне периода контратаки."
 
+#: games/generated/rulebooks/bridge.rb:79
+msgid "Z: go to the next playable card in the hand that is to play; play it if it is the only one."
+msgstr "Z: перейти к следующей карте, которую можно сыграть из руки, чья очередь; если она единственная, сыграть её."
+
 #: games/generated/rulebooks/scientific_war.rb:30
 msgid "Z: move to the next card in your hand; if it is your only card, play it."
 msgstr "Z: переходите к следующей карте в руке; если это ваша единственная карта — сыграйте её."
@@ -25730,17 +26493,25 @@ msgstr "карта Церкви, повышающая два кубика"
 msgid "a card"
 msgstr "карта"
 
+#: games/bridge/presentation.rb:375
+msgid "a reference of %{points} for %{side}"
+msgstr "%{points} в пользу пары %{side}"
+
 #: games/monopoly/presentation.rb:97
 msgid "accept the trade"
 msgstr "принять обмен"
 
-#: games/card_game.rb:55 games/makao.rb:27 games/ninety_nine.rb:37 games/poker.rb:34 games/spades.rb:43 games/three_five_eight.rb:37 games/tysiac.rb:29
+#: games/bridge/presentation.rb:192 games/card_game.rb:55 games/makao.rb:27 games/ninety_nine.rb:37 games/poker.rb:34 games/spades.rb:43 games/three_five_eight.rb:37 games/tysiac.rb:29
 msgid "ace"
 msgstr "туз"
 
 #: games/poker.rb:317
 msgid "all in"
 msgstr "ва-банк"
+
+#: games/bridge/presentation.rb:375
+msgid "an even reference"
+msgstr "ноль"
 
 msgid "answer revealed"
 msgstr "ответ раскрыт"
@@ -25833,6 +26604,10 @@ msgstr ""
 msgid "blue"
 msgstr "синий"
 
+#: games/bridge/presentation.rb:225
+msgid "both sides vulnerable"
+msgstr "обе пары в зоне"
+
 #: games/battleship.rb:632
 msgid "bow"
 msgstr "лук"
@@ -25856,6 +26631,10 @@ msgstr "просмотреть чужие владения"
 #: games/scrabble_ui.rb:42
 msgid "browse played words"
 msgstr "просматривать сыгранные слова"
+
+#: games/bridge/presentation.rb:144
+msgid "browse the auction"
+msgstr "просмотреть торговлю"
 
 #: games/monopoly/presentation.rb:58
 msgid "browse the board"
@@ -26018,7 +26797,7 @@ msgstr[0] "ближайший ответ %{number}, %{attempts} попытка"
 msgstr[1] "ближайший ответ %{number}, %{attempts} попытки"
 msgstr[2] "ближайший ответ %{number}, %{attempts} попыток"
 
-#: games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:19 games/poker.rb:33 games/spades.rb:25 games/three_five_eight.rb:32 games/tysiac.rb:18
+#: games/bridge/presentation.rb:188 games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:19 games/poker.rb:33 games/spades.rb:25 games/three_five_eight.rb:32 games/tysiac.rb:18
 msgid "clubs"
 msgstr "трефы"
 
@@ -26092,7 +26871,7 @@ msgstr "объявить УНО или поймать нарушение"
 msgid "describe the selected card"
 msgstr "описание выбранной карты"
 
-#: games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:20 games/poker.rb:33 games/spades.rb:26 games/three_five_eight.rb:32 games/tysiac.rb:19
+#: games/bridge/presentation.rb:188 games/card_game.rb:58 games/makao.rb:26 games/ninety_nine.rb:20 games/poker.rb:33 games/spades.rb:26 games/three_five_eight.rb:32 games/tysiac.rb:19
 msgid "diamonds"
 msgstr "бубны"
 
@@ -26124,6 +26903,10 @@ msgstr "отключён"
 msgid "dollars"
 msgstr "доллары"
 
+#: games/bridge/presentation.rb:198
+msgid "double"
+msgstr "контра"
+
 #: lib/game_surfaces/word_board.rb:189
 msgid "double letter"
 msgstr "двойная буква"
@@ -26131,6 +26914,13 @@ msgstr "двойная буква"
 #: lib/game_surfaces/word_board.rb:189
 msgid "double word"
 msgstr "двойное слово"
+
+#: games/bridge/presentation.rb:358
+msgid "down %{count} trick"
+msgid_plural "down %{count} tricks"
+msgstr[0] "без %{count} взятки"
+msgstr[1] "без %{count} взяток"
+msgstr[2] "без %{count} взяток"
 
 #: lib/game_surfaces/word_board.rb:198
 msgid "draft"
@@ -26167,6 +26957,10 @@ msgstr "взять кости"
 #: games/uno.rb:20
 msgid "draw two"
 msgstr "взять две"
+
+#: games/bridge.rb:149
+msgid "duplicate, %{boards} boards, %{scoring}"
+msgstr "спортивный, сдач: %{boards}, %{scoring}"
 
 msgid "duplicate, 5 points"
 msgstr "совпавший, 5 очков"
@@ -26318,7 +27112,7 @@ msgstr "угадал"
 msgid "hard category pool"
 msgstr "сложный набор категорий"
 
-#: games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:21 games/poker.rb:33 games/spades.rb:27 games/three_five_eight.rb:33 games/tysiac.rb:20
+#: games/bridge/presentation.rb:188 games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:21 games/poker.rb:33 games/spades.rb:27 games/three_five_eight.rb:33 games/tysiac.rb:20
 msgid "hearts"
 msgstr "червы"
 
@@ -26380,7 +27174,7 @@ msgstr "неправильный, 0 очков"
 msgid "individual play"
 msgstr "индивидуальная игра"
 
-#: games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:34 games/poker.rb:34 games/spades.rb:40 games/three_five_eight.rb:36 games/tysiac.rb:25
+#: games/bridge/presentation.rb:192 games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:34 games/poker.rb:34 games/spades.rb:40 games/three_five_eight.rb:36 games/tysiac.rb:25
 msgid "jack"
 msgstr "валет"
 
@@ -26413,7 +27207,7 @@ msgstr "оставить кубик %{number}"
 msgid "kept"
 msgstr "отложен"
 
-#: games/card_game.rb:55 games/chess.rb:280 games/chess.rb:870 games/makao.rb:27 games/ninety_nine.rb:36 games/poker.rb:34 games/spades.rb:42 games/three_five_eight.rb:37 games/tysiac.rb:27
+#: games/bridge/presentation.rb:192 games/card_game.rb:55 games/chess.rb:280 games/chess.rb:870 games/makao.rb:27 games/ninety_nine.rb:36 games/poker.rb:34 games/spades.rb:42 games/three_five_eight.rb:37 games/tysiac.rb:27
 msgid "king"
 msgstr "король"
 
@@ -26461,6 +27255,17 @@ msgstr "слушать с точки зрения второго игрока"
 msgid "listen from the third player's perspective"
 msgstr "слушайте с точки зрения третьего игрока"
 
+#: games/bridge/presentation.rb:351
+msgid "made exactly"
+msgstr "контракт выполнен ровно"
+
+#: games/bridge/presentation.rb:354
+msgid "made with %{count} overtrick"
+msgid_plural "made with %{count} overtricks"
+msgstr[0] "выполнен с %{count} лишней взяткой"
+msgstr[1] "выполнен с %{count} лишними взятками"
+msgstr[2] "выполнен с %{count} лишними взятками"
+
 #: games/monopoly/presentation.rb:317
 msgid "magenta group"
 msgstr "пурпурная группа"
@@ -26472,6 +27277,14 @@ msgstr "основной банк"
 #: games/spades.rb:599 games/tysiac.rb:1565
 msgid "make a bid"
 msgstr "сделать заявку"
+
+#: games/bridge/presentation.rb:118
+msgid "make a call"
+msgstr "сделать заявку"
+
+#: games/bridge.rb:151 games/bridge.rb:91
+msgid "matchpoints"
+msgstr "матчпойнты"
 
 #: games/categories.rb:1163
 msgid "medium category pool"
@@ -26502,6 +27315,10 @@ msgstr "в залоге"
 
 msgid "navigate the board"
 msgstr "навигация по доске"
+
+#: games/bridge/presentation.rb:226
+msgid "neither side vulnerable"
+msgstr "обе пары до зоны"
 
 #: games/base/shortcuts.rb:165
 msgid "next playable card"
@@ -26534,6 +27351,10 @@ msgstr "нет кубиков"
 msgid "no pawns on the board"
 msgstr "нет фишек на доске"
 
+#: games/bridge/presentation.rb:374
+msgid "no score"
+msgstr "без записи"
+
 #: games/categories.rb:205
 msgid "no time limit"
 msgstr "без ограничения времени"
@@ -26542,7 +27363,7 @@ msgstr "без ограничения времени"
 msgid "no trump"
 msgstr "без козыря"
 
-#: games/makao.rb:971 games/mille_bornes/presentation.rb:250 games/monopoly/presentation.rb:279
+#: games/bridge/presentation.rb:234 games/makao.rb:971 games/mille_bornes/presentation.rb:250 games/monopoly/presentation.rb:279
 msgid "none"
 msgstr "нет"
 
@@ -26617,7 +27438,7 @@ msgstr "частично правильный, 1 очко"
 msgid "partially correct, 5 points"
 msgstr "частично правильный, 5 очков"
 
-#: games/scrabble_ui.rb:25
+#: games/bridge/presentation.rb:197 games/scrabble_ui.rb:25
 msgid "pass"
 msgstr "пас"
 
@@ -26724,7 +27545,7 @@ msgstr "фиолетовый"
 msgid "purple group"
 msgstr "фиолетовая группа"
 
-#: games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:35 games/poker.rb:34 games/spades.rb:41 games/three_five_eight.rb:36 games/tysiac.rb:26
+#: games/bridge/presentation.rb:192 games/card_game.rb:54 games/makao.rb:27 games/ninety_nine.rb:35 games/poker.rb:34 games/spades.rb:41 games/three_five_eight.rb:36 games/tysiac.rb:26
 msgid "queen"
 msgstr "дама"
 
@@ -26772,6 +27593,10 @@ msgstr "прочитать карту %{number}"
 #: games/makao.rb:390 games/uno.rb:474 games/war.rb:188
 msgid "read card counts"
 msgstr "прочитать количество карт"
+
+#: games/bridge/presentation.rb:141
+msgid "read dummy's hand"
+msgstr "прочитать руку болвана"
 
 #: games/mille_bornes/presentation.rb:94
 msgid "read every player's mileage, hazards and safeties"
@@ -26825,6 +27650,10 @@ msgstr "чтение партитур"
 msgid "read the Scriptorium"
 msgstr "прочитать Скрипторий"
 
+#: games/bridge/presentation.rb:143
+msgid "read the auction"
+msgstr "прочитать торговлю"
+
 #: games/checkers.rb:369 games/chess.rb:264
 msgid "read the available moves of the current piece"
 msgstr "прочитать доступные ходы текущей фигуры"
@@ -26848,6 +27677,10 @@ msgstr "прочитать сумму колла"
 #: lib/game_shortcuts.rb:12
 msgid "read the cards on the table"
 msgstr "прочитать карты стола"
+
+#: games/bridge/presentation.rb:142
+msgid "read the contract"
+msgstr "прочитать контракт"
 
 #: games/uno.rb:473
 msgid "read the current colour"
@@ -26927,6 +27760,10 @@ msgstr "прочитать банк"
 #: games/makao.rb:386
 msgid "read the prepared packet"
 msgstr "прочитать подготовленный набор карт"
+
+#: games/bridge/presentation.rb:146
+msgid "read the previous trick"
+msgstr "прочитать предыдущую взятку"
 
 #: games/biblios.rb:298
 msgid "read the public space"
@@ -27096,6 +27933,10 @@ msgstr "красный"
 msgid "red group"
 msgstr "красная группа"
 
+#: games/bridge/presentation.rb:199
+msgid "redouble"
+msgstr "реконтра"
+
 #: lib/tournaments/local_readiness_screen.rb:156
 msgid "refused"
 msgstr ""
@@ -27163,6 +28004,14 @@ msgstr "сменный судья"
 #: games/categories.rb:1237
 msgid "round completed"
 msgstr "раунд завершён"
+
+#: games/bridge.rb:155
+msgid "rubber, honours scored"
+msgstr "роббер, с онёрами"
+
+#: games/bridge.rb:155
+msgid "rubber, without honours"
+msgstr "роббер, без онёров"
 
 #: content/monopoly_boards.rb:39
 msgid "rubles"
@@ -27244,7 +28093,7 @@ msgstr "сортировать карты по масти"
 msgid "sort cards by value"
 msgstr "сортировать карты по достоинству"
 
-#: games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:22 games/poker.rb:33 games/spades.rb:28 games/three_five_eight.rb:33 games/tysiac.rb:21
+#: games/bridge/presentation.rb:188 games/card_game.rb:59 games/makao.rb:26 games/ninety_nine.rb:22 games/poker.rb:33 games/spades.rb:28 games/three_five_eight.rb:33 games/tysiac.rb:21
 msgid "spades"
 msgstr "пики"
 

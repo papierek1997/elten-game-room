@@ -1,0 +1,146 @@
+{
+  "source": "games/bridge.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": { "es": "En qué consiste el juego" },
+      "paragraphs": [
+        { "es": "El bridge es un juego de cartas para cuatro personas que juegan en dos parejas. Juegas junto a tu compañero contra la otra pareja. Cada mano tiene dos partes: primero la subasta, en la que las parejas compiten por fijar un contrato, y después el carteo, en el que la pareja que ganó el contrato intenta hacer al menos las bazas que prometió." },
+        { "es": "Se consiguen puntos cumpliendo contratos y haciendo fallar los contratos de los rivales. Gana la pareja que tenga más puntos al terminar el encuentro." }
+      ]
+    },
+    {
+      "id": "deal",
+      "title": { "es": "Parejas y reparto" },
+      "paragraphs": [
+        { "es": "Los puestos se llaman como los puntos cardinales. Norte juega con Sur y Este con Oeste; los compañeros se sientan uno frente al otro. Si en la mesa se eligen equipos, los dos miembros de cada equipo son compañeros. El juego siempre avanza en el sentido de las agujas del reloj: Norte, Este, Sur, Oeste." },
+        { "es": "Se reparten las 52 cartas, así que cada uno recibe 13. Pulsa H para escuchar tu mano palo por palo, de la carta más alta a la más baja, y al final tus puntos de honor: el as vale 4, el rey 3, la dama 2 y la jota 1. Estos puntos no se anotan, pero te ayudan a valorar la fuerza de tu mano durante la subasta. La baraja entera tiene 40, de modo que una mano media tiene 10 y con 12 o más suele bastar para abrir." },
+        { "es": "En cada palo la carta más alta es el as, seguido del rey, la dama, la jota, el diez y las demás hasta el dos." }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": { "es": "La subasta" },
+      "paragraphs": [
+        { "es": "Empieza a hablar quien reparte y los demás siguen en el sentido de las agujas del reloj. Cuando te toca, en el campo de juego aparece la lista de voces que puedes dar. Elige una con las flechas y pulsa Enter. También puedes abrir la misma lista con la tecla B." },
+        { "es": "Una declaración indica un número de bazas y un palo de triunfo, o sin triunfo. Al número se le suman seis: 1 corazón promete 7 de las 13 bazas con corazones como triunfo y 4 picas promete 10 bazas con picas como triunfo. Cada declaración tiene que ser más alta que la anterior. Un número mayor siempre supera a uno menor y, con el mismo número, los palos van de menor a mayor: tréboles, diamantes, corazones, picas y sin triunfo. Después de 1 pica puedes declarar 1 sin triunfo o cualquier voz de nivel 2, pero no 1 corazón." },
+        { "es": "En lugar de declarar puedes dar una de estas voces:" },
+        { "es": "- Paso: no quieres declarar ahora. Pasar no te impide declarar más tarde en la misma subasta." },
+        { "es": "- Doblo: solo es posible después de una declaración de un rival, aunque detrás hayan venido pasos. Si esa declaración se convierte en el contrato, ambas partes ganan más: el declarante por cumplirlo y los defensores por hacerlo fallar." },
+        { "es": "- Redoblo: solo es posible cuando un rival ha doblado una declaración de tu pareja. Vuelve a subir lo que está en juego." },
+        { "es": "La subasta termina cuando, después de una declaración, pasan tres jugadores seguidos. La última declaración es el contrato. Si al principio pasan los cuatro, nadie puntúa y el siguiente jugador vuelve a repartir." },
+        { "es": "Pulsa L para escuchar toda la subasta o Ctrl+L para recorrerla voz por voz." }
+      ]
+    },
+    {
+      "id": "contract",
+      "title": { "es": "Contrato, declarante y muerto" },
+      "paragraphs": [
+        { "es": "La pareja que dio la última declaración tiene que hacer las bazas prometidas y la otra defiende. El declarante es el jugador de esa pareja que nombró primero el palo del contrato, o el sin triunfo. Por ejemplo, si Norte abre 1 corazón, Sur sube a 4 corazones y todos pasan, juega Norte, aunque la última declaración la dio Sur." },
+        { "es": "La primera carta, la salida, la juega quien está a la izquierda del declarante. Entonces el compañero del declarante pasa a ser el muerto: sus cartas quedan boca arriba para todos y el declarante las juega igual que las suyas. El muerto ya no participa en esa mano." },
+        { "es": "Pulsa K para saber el contrato, quién lo juega y cuántas bazas lleva ya el declarante." }
+      ]
+    },
+    {
+      "id": "play",
+      "title": { "es": "El carteo" },
+      "paragraphs": [
+        { "es": "Cada baza tiene cuatro cartas, una de cada jugador en el sentido de las agujas del reloj. Para jugar, ve con las flechas a una carta de tu mano y pulsa Enter. Z te lleva a la siguiente carta que puedes jugar y Shift+Z a la anterior; si solo puedes jugar una carta, Z la juega directamente." },
+        { "es": "Si tienes cartas del palo de salida, tienes que servir ese palo. Si no tienes, puedes jugar cualquier carta, también un triunfo, pero nunca estás obligado a fallar. Gana la baza el triunfo más alto y, si nadie ha jugado triunfo, la carta más alta del palo de salida. Las cartas de otros palos no pueden ganar la baza. Quien gana una baza sale en la siguiente." },
+        { "es": "Como declarante también juegas las cartas del muerto. Cuando le toca al muerto, pulsa Tab para pasar a la lista de sus cartas, o pulsa Z, que te lleva directamente a las cartas que puede jugar el muerto, y elige una con Enter. Cualquiera puede escuchar la mano del muerto con D." },
+        { "es": "C lee las cartas de la baza actual y F el palo de salida. P repite la baza anterior y quién la ganó." },
+        { "es": "Cuando se han jugado las 13 bazas se puntúa la mano, y la siguiente la reparte el jugador siguiente en el sentido de las agujas del reloj." }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": { "es": "Puntos del contrato" },
+      "paragraphs": [
+        { "es": "Solo cuentan las bazas que pasan de las seis primeras. Cuando el declarante cumple el contrato, cada baza contratada vale:" },
+        { "es": "- 20 puntos en tréboles o diamantes;" },
+        { "es": "- 30 puntos en corazones o picas;" },
+        { "es": "- 40 puntos la primera baza a sin triunfo y 30 cada una de las siguientes." },
+        { "es": "Estos puntos del contrato se duplican si el contrato estaba doblado y se multiplican por cuatro si estaba redoblado. Un contrato que vale al menos 100 de estos puntos es una manga: las mangas más bajas son 3 sin triunfo, 4 corazones, 4 picas, 5 tréboles y 5 diamantes. Un contrato menor es un parcial." },
+        { "es": "Ser vulnerable aumenta tanto los premios como las penalizaciones. Al empezar cada mano se anuncia quién es vulnerable; V lo repite junto con el número de mano, quién reparte, el contrato y las bazas." },
+        { "es": "Las bazas de más se llaman sobrebazas. Sin doblo, cada una vale lo mismo que una baza contratada de ese palo. Doblada, cada sobrebaza vale 100, o 200 si se es vulnerable; redoblada, 200 o 400. Cumplir un contrato doblado añade 50 puntos, y uno redoblado, 100." },
+        { "es": "Un pequeño slam, un contrato de nivel 6, da un premio de 500, o 750 vulnerable. Un gran slam, un contrato de nivel 7, da 1000, o 1500 vulnerable." },
+        { "es": "Si el declarante se queda corto, los defensores puntúan por cada baza que falta, es decir, por cada multa:" },
+        { "es": "- sin doblo: 50 por baza, o 100 si el declarante es vulnerable;" },
+        { "es": "- doblado y no vulnerable: 100 por la primera baza, 200 por la segunda y la tercera y 300 por cada una de las siguientes;" },
+        { "es": "- doblado y vulnerable: 200 por la primera baza y 300 por cada una de las siguientes;" },
+        { "es": "- redoblado: el doble que con doblo." },
+        { "es": "Por ejemplo, 2 picas dobladas, no vulnerable, cumplidas con una sobrebaza dan 120 por el contrato, 50 por cumplir un contrato doblado y 100 por la sobrebaza. El mismo contrato con dos multas da 300 a los defensores." }
+      ]
+    },
+    {
+      "id": "rubber",
+      "title": { "es": "Jugar un robber" },
+      "paragraphs": [
+        { "es": "Por defecto, en la mesa se juega al bridge de robber. El robber termina cuando una pareja gana dos mangas, y gana el encuentro la pareja con más puntos en total. Normalmente es la que ganó el robber, pero no siempre; con totales iguales hay empate." },
+        { "es": "Los puntos del contrato se anotan debajo de la raya y todos los demás encima. Una pareja gana una manga cuando sus puntos debajo de la raya llegan a 100, en una sola mano o sumando varios parciales. Después de una manga, las dos parejas empiezan la siguiente desde cero debajo de la raya; los parciales que los rivales tenían hacia esa manga ya no les sirven." },
+        { "es": "La pareja que ha ganado una manga es vulnerable hasta el final del robber. Ganar el robber da 700 puntos si los rivales no ganaron ninguna manga y 500 si ganaron una." },
+        { "es": "Los honores también se anotan encima de la raya, los tenga quien los tenga, aunque sea un defensor. Cuatro de los cinco triunfos más altos (as, rey, dama, jota y diez) en una misma mano dan 100, y los cinco, 150. A sin triunfo, los cuatro ases en una misma mano dan 150. Los honores se pueden desactivar en los ajustes de la mesa." },
+        { "es": "S lee los puntos debajo y encima de la raya, las mangas ganadas y el total de cada pareja, y después cómo va la manga en curso." }
+      ]
+    },
+    {
+      "id": "duplicate",
+      "title": { "es": "Bridge duplicado" },
+      "paragraphs": [
+        { "es": "En los ajustes de la mesa puedes elegir en su lugar el bridge duplicado. El encuentro dura entonces un número fijo de manos: 4, 8, 12, 16 o 24, con 8 por defecto. El número de mano fija quién reparte y la vulnerabilidad, con el mismo ciclo que en los clubes. La mano 1 la reparte Norte sin nadie vulnerable, la 2 Este con Norte-Sur vulnerables, la 3 Sur con Este-Oeste vulnerables y la 4 Oeste con todos vulnerables." },
+        { "es": "Cada mano se puntúa por separado. Una manga da un premio de 300, o 500 vulnerable, y un parcial 50. Todo lo demás se cuenta como se ha explicado antes. No hay honores ni robber." },
+        { "es": "En un club, las mismas manos se juegan en muchas mesas y las parejas comparan sus resultados. Aquí solo hay una mesa, así que tu resultado se compara con un resultado de referencia: una estimación de lo que suelen dar esas cartas, según la suma de puntos de honor de la pareja más fuerte. Si cada pareja tiene 20 puntos, la referencia es cero. Con 23 puntos la pareja más fuerte debería anotar 110, con 26 puntos 400, o 600 vulnerable, y con 33 puntos un pequeño slam de 980, o 1430 vulnerable. La estimación no tiene en cuenta la distribución, así que un buen fit o un reparto poco habitual pueden valer mucho más." },
+        { "es": "La comparación depende de la puntuación elegida en la mesa:" },
+        { "es": "- IMP (por defecto): la diferencia con el resultado de referencia se convierte en puntos internacionales de match. Una diferencia de 10 o menos no vale nada, de 20 a 40 es 1 IMP, de 50 a 80 son 2 y de 90 a 120 son 3. Las diferencias mayores dan más, pero cada vez más despacio: 420 son 9 IMP y 4000 o más es el máximo de 24. Gana los IMP la pareja que mejoró el resultado de referencia." },
+        { "es": "- Por porcentaje: en cada mano, la pareja que mejoró el resultado de referencia recibe 2 puntos y la otra 0; con el mismo resultado, cada pareja recibe 1. El resultado final es el porcentaje de los puntos posibles." },
+        { "es": "Una mano en la que pasan los cuatro también cuenta: vale cero y se compara con la referencia, así que pasar con cartas fuertes cuesta puntos. Después de la última mano gana la pareja con más IMP o puntos; con el mismo total hay empate. S lee el resultado hasta el momento." }
+      ]
+    },
+    {
+      "id": "bots",
+      "title": { "es": "Subastar con un compañero del ordenador" },
+      "paragraphs": [
+        { "es": "Los jugadores del ordenador solo ven sus cartas, el muerto y las voces y cartas que ve todo el mundo. Subastan con un sistema natural sencillo, lo que te ayuda a entender sus voces:" },
+        { "es": "- 1 sin triunfo indica de 15 a 17 puntos y una mano equilibrada; 2 sin triunfo, 20 o 21." },
+        { "es": "- Una apertura de 1 corazón o 1 pica promete al menos cinco cartas de ese palo y normalmente 12 puntos o más. Sin un palo mayor de cinco cartas, el bot abre de 1 diamante o 1 trébol." },
+        { "es": "- Una apertura de 2 diamantes, 2 corazones o 2 picas es débil: un palo de seis cartas y de 6 a 10 puntos." },
+        { "es": "- Subir tu palo muestra apoyo. Subir a nivel 2 es débil, a 3 invita a manga y saltar directamente a manga indica una mano fuerte." },
+        { "es": "Los bots nunca doblan. También juegan con reglas sencillas: el segundo jugador de la baza juega bajo salvo que tenga una baza segura, los siguientes intentan ganar la baza con la carta más baja posible y un defensor sale del palo de su compañero o de su palo largo." }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": { "es": "Atajos de teclado" },
+      "paragraphs": [
+        { "es": "Enter en la lista de voces: dar la voz elegida." },
+        { "es": "B: elegir una voz cuando te toca; en otro momento, leer la subasta." },
+        { "es": "L: leer la subasta." },
+        { "es": "Ctrl+L: recorrer la subasta." },
+        { "es": "K: leer el contrato y las bazas del declarante." },
+        { "es": "Enter sobre una carta: jugarla." },
+        { "es": "Tab: pasar entre tu mano y el muerto." },
+        { "es": "Z: ir a la siguiente carta jugable de la mano a la que le toca; si es la única, jugarla." },
+        { "es": "Shift+Z: ir a la carta jugable anterior." },
+        { "es": "H: leer tu mano." },
+        { "es": "D: leer la mano del muerto." },
+        { "es": "C: leer la baza actual." },
+        { "es": "Ctrl+C: recorrer la baza actual." },
+        { "es": "F: leer el palo de salida." },
+        { "es": "P: leer la baza anterior." },
+        { "es": "V: leer la mano, la vulnerabilidad, el contrato y las bazas." },
+        { "es": "I: leer tu puesto, tu compañero y tu papel en esta mano." },
+        { "es": "S: leer la puntuación." },
+        { "es": "T: leer a quién le toca." },
+        { "es": "Shift+C: ordenar las cartas por palo." },
+        { "es": "Shift+H: ordenar las cartas por valor." },
+        { "es": "Shift+M: recuperar el orden original de las cartas." }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "duplicate",
+    "honors": "rubber",
+    "boards": "duplicate",
+    "scoring": "duplicate"
+  }
+}

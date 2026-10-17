@@ -1,0 +1,146 @@
+{
+  "source": "games/bridge.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": { "en": "What the game is about" },
+      "paragraphs": [
+        { "en": "Bridge is a card game for four players in two partnerships. You and your partner work together against the other pair. Each deal has two parts: first an auction, in which the pairs compete to name a contract, and then the play, in which the pair that won the contract tries to take at least as many tricks as it promised." },
+        { "en": "Points come from making contracts and from defeating the opponents' contracts. The pair with more points when the match ends wins." }
+      ]
+    },
+    {
+      "id": "deal",
+      "title": { "en": "Partners and the deal" },
+      "paragraphs": [
+        { "en": "The players are named after the points of the compass. North and South are partners, and so are East and West; partners sit opposite each other. When the table chooses teams, the two members of each team become partners. Play always moves clockwise: North, East, South, West." },
+        { "en": "All 52 cards are dealt, so everyone gets 13. Press H to hear your hand suit by suit, from the highest card down, followed by your high card points: an ace counts 4, a king 3, a queen 2 and a jack 1. These points are not scored; they help you judge the strength of your hand during the auction. A whole deck holds 40 such points, so 10 is an average hand and 12 or more is usually enough to start the bidding." },
+        { "en": "In every suit the ace is the highest card, followed by the king, queen, jack and ten down to the two." }
+      ]
+    },
+    {
+      "id": "auction",
+      "title": { "en": "The auction" },
+      "paragraphs": [
+        { "en": "The dealer makes the first call and the others follow clockwise. When it is your turn, the game field shows a list of the calls you may make. Choose one with the arrow keys and press Enter. You can also press B to open the same list." },
+        { "en": "A bid names a number of tricks and a trump suit, or no trump. The number is added to six: a bid of 1 heart promises 7 of the 13 tricks with hearts as trumps, and 4 spades promises 10 tricks with spades as trumps. Each bid must be higher than the previous one. A higher number always wins, and at the same number the suits rank from the lowest: clubs, diamonds, hearts, spades and no trump. After 1 spade you may bid 1 no trump or anything at the level of 2, but not 1 heart." },
+        { "en": "Instead of bidding you can make one of these calls:" },
+        { "en": "- Pass: you do not want to bid now. Passing does not stop you from bidding later in the same auction." },
+        { "en": "- Double: possible only right after an opponent's bid, or after an opponent's bid followed by passes. If that bid becomes the contract, it scores more for both sides: more for making it and more for defeating it." },
+        { "en": "- Redouble: possible only after an opponent has doubled your side's bid. It raises the stakes once more." },
+        { "en": "The auction ends when three players pass in a row after a bid. The last bid becomes the contract. If all four players pass at the start, nobody scores and the cards are dealt again by the next dealer." },
+        { "en": "Press L to hear the whole auction, or Ctrl+L to go through it call by call." }
+      ]
+    },
+    {
+      "id": "contract",
+      "title": { "en": "Contract, declarer and dummy" },
+      "paragraphs": [
+        { "en": "The pair that made the last bid must take the promised number of tricks; the other pair defends. The declarer is the player of the contracting pair who first bid the suit, or no trump, of the final contract. For example, if North opens 1 heart, South raises to 4 hearts and everyone passes, North is declarer even though South made the last bid." },
+        { "en": "The player to the left of declarer leads the first card. Then declarer's partner becomes dummy: dummy's cards are laid face up for everyone, and declarer plays them as well as their own. Dummy takes no further part in the deal." },
+        { "en": "Press K to hear the contract, who declares it and how many tricks declarer has taken so far." }
+      ]
+    },
+    {
+      "id": "play",
+      "title": { "en": "Playing the cards" },
+      "paragraphs": [
+        { "en": "Each trick has four cards, one from each player in clockwise order. To play, go to a card in your hand with the arrow keys and press Enter. Z moves to the next card you are allowed to play and Shift+Z to the previous one; if you have only one playable card, Z plays it." },
+        { "en": "You must follow the suit that was led if you can. If you have no card of that suit, you may play any card, including a trump, but you never have to trump. The highest trump in the trick wins it. If no trump was played, the highest card of the led suit wins. Cards of other suits cannot win the trick. The player who wins a trick leads to the next one." },
+        { "en": "As declarer you also play dummy's cards. When it is dummy's turn, press Tab to move to the list of dummy's cards, or press Z, which goes straight to the cards dummy may play, and choose a card with Enter. Everyone can press D to hear dummy's hand." },
+        { "en": "C reads the cards in the current trick and F the suit that was led. P repeats the previous trick, including who won it." },
+        { "en": "After all 13 tricks the deal is scored, and the next deal starts with the next player clockwise as dealer." }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": { "en": "Points for the contract" },
+      "paragraphs": [
+        { "en": "Only the tricks beyond the first six count. When declarer makes the contract, each contracted trick earns:" },
+        { "en": "- 20 points in clubs or diamonds;" },
+        { "en": "- 30 points in hearts or spades;" },
+        { "en": "- 40 points for the first trick in no trump and 30 for each further trick." },
+        { "en": "These contract points are doubled if the contract was doubled and multiplied by four if it was redoubled. A contract worth at least 100 of them is a game: 3 no trump, 4 hearts, 4 spades, 5 clubs and 5 diamonds are the lowest games. A smaller contract is a part score." },
+        { "en": "Being vulnerable raises both the rewards and the penalties. Who is vulnerable is announced at the start of each deal; V repeats it together with the deal number, the dealer, the contract and the tricks." },
+        { "en": "Extra tricks are called overtricks. Without a double each one is worth the same as a contracted trick of that suit. Doubled, each overtrick earns 100, or 200 when vulnerable; redoubled, 200 or 400. Making a doubled contract adds 50 points, and a redoubled one 100." },
+        { "en": "A small slam (a contract of 6) earns a bonus of 500, or 750 when vulnerable. A grand slam (a contract of 7) earns 1000, or 1500 when vulnerable." },
+        { "en": "If declarer falls short, the defenders score for each missing trick:" },
+        { "en": "- not doubled: 50 per trick, or 100 when vulnerable;" },
+        { "en": "- doubled and not vulnerable: 100 for the first trick, 200 each for the second and third, and 300 for each further trick;" },
+        { "en": "- doubled and vulnerable: 200 for the first trick and 300 for each further trick;" },
+        { "en": "- redoubled: twice the doubled amount." },
+        { "en": "For example, 2 spades doubled, not vulnerable, made with an overtrick earns 120 for the contract, 50 for making a doubled contract and 100 for the overtrick. The same contract two tricks short gives the defenders 300." }
+      ]
+    },
+    {
+      "id": "rubber",
+      "title": { "en": "Playing a rubber" },
+      "paragraphs": [
+        { "en": "By default the table plays rubber bridge. A rubber ends when one pair has won two games, and the pair with more points in total wins the match. This is usually, but not always, the pair that won the rubber; equal totals are a draw." },
+        { "en": "Contract points are written below the line and everything else above it. A game is won when a pair's points below the line reach 100, either in one deal or from several part scores. After a game, both pairs start the next game from zero below the line; part scores the opponents had towards that game no longer help them." },
+        { "en": "A pair that has won a game is vulnerable for the rest of the rubber. Winning the rubber earns 700 if the opponents won no game and 500 if they won one." },
+        { "en": "Honours are also scored above the line, whoever holds them, even a defender. Four of the five top trumps (ace, king, queen, jack, ten) in one hand earn 100 and all five earn 150. In no trump, all four aces in one hand earn 150. The table settings can turn honours off." },
+        { "en": "S reads the points below and above the line, the games won and the total for each pair, followed by the score towards the current game." }
+      ]
+    },
+    {
+      "id": "duplicate",
+      "title": { "en": "Duplicate bridge" },
+      "paragraphs": [
+        { "en": "In the table settings you can choose duplicate bridge instead. The match then lasts a set number of deals, called boards: 4, 8, 12, 16 or 24, with 8 by default. The board number decides the dealer and vulnerability, in the cycle used at bridge clubs. Board 1 is dealt by North with neither side vulnerable, board 2 by East with North-South vulnerable, board 3 by South with East-West vulnerable and board 4 by West with both sides vulnerable." },
+        { "en": "Each board is scored on its own. A game earns a bonus of 300, or 500 when vulnerable, and a part score earns 50. Everything else is scored as described above. There are no honours and no rubber." },
+        { "en": "In a club, the same boards are played at many tables and pairs compare their results. Here there is only one table, so your result is compared with a reference score: an estimate of what these cards usually earn, based on the combined high card points of the stronger pair. A pair with 20 points each scores nothing on average. With 23 points the stronger pair is expected to score 110, with 26 points 400, or 600 vulnerable, and with 33 points a slam of 980, or 1430 vulnerable. The estimate ignores the shape of the hands, so a good fit or an unusual distribution can be worth much more." },
+        { "en": "How the comparison is counted depends on the table's scoring choice:" },
+        { "en": "- IMPs (the default): the difference from the reference score is converted into international match points. A difference of 10 or less is worth nothing, 20 to 40 is 1 IMP, 50 to 80 is 2 and 90 to 120 is 3. Larger swings earn more but more slowly: 420 is 9 IMPs and 4000 or more is the maximum of 24. The pair that did better than the reference gains the IMPs." },
+        { "en": "- Matchpoints: on each board the pair that did better than the reference earns 2 points and the other pair 0; an equal result gives each pair 1. The final score is the percentage of the available points." },
+        { "en": "A board passed out by all four players also counts: it scores zero and is compared with the reference, so passing with strong cards loses points. After the last board, the pair with more IMPs or matchpoints wins; an equal total is a draw. S reads the totals so far." }
+      ]
+    },
+    {
+      "id": "bots",
+      "title": { "en": "Bidding with a computer partner" },
+      "paragraphs": [
+        { "en": "Computer players see only their own cards, dummy and the calls and cards everyone else can see. They bid a simple natural system, which helps you understand their calls:" },
+        { "en": "- 1 no trump shows 15 to 17 points and a balanced hand; 2 no trump shows 20 or 21." },
+        { "en": "- An opening bid of 1 heart or 1 spade promises at least five cards in that suit and usually 12 or more points. Without a five-card major, a bot opens 1 diamond or 1 club." },
+        { "en": "- An opening bid of 2 diamonds, 2 hearts or 2 spades is weak: a six-card suit with 6 to 10 points." },
+        { "en": "- A raise of your suit shows support. A raise to the level of 2 is weak, a raise to 3 invites game, and a jump to game is a strong hand." },
+        { "en": "Bots never double. They play by simple rules too: the second player to a trick plays low unless it holds a sure winner, later players try to win the trick as cheaply as possible, and a defender leads partner's suit or a long suit." }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": { "en": "Keyboard shortcuts" },
+      "paragraphs": [
+        { "en": "Enter in the list of calls: make the selected call." },
+        { "en": "B: choose a call when it is your turn, otherwise read the auction." },
+        { "en": "L: read the auction." },
+        { "en": "Ctrl+L: browse the auction." },
+        { "en": "K: read the contract and declarer's tricks." },
+        { "en": "Enter on a card: play it." },
+        { "en": "Tab: move between your hand and dummy." },
+        { "en": "Z: go to the next playable card in the hand that is to play; play it if it is the only one." },
+        { "en": "Shift+Z: go to the previous playable card." },
+        { "en": "H: read your hand." },
+        { "en": "D: read dummy's hand." },
+        { "en": "C: read the current trick." },
+        { "en": "Ctrl+C: browse the current trick." },
+        { "en": "F: read the led suit." },
+        { "en": "P: read the previous trick." },
+        { "en": "V: read the deal, vulnerability, contract and tricks." },
+        { "en": "I: read your seat, partner and role in this deal." },
+        { "en": "S: read the scores." },
+        { "en": "T: read whose turn it is." },
+        { "en": "Shift+C: sort your cards by suit." },
+        { "en": "Shift+H: sort your cards by rank." },
+        { "en": "Shift+M: restore the order in which you received your cards." }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "duplicate",
+    "honors": "rubber",
+    "boards": "duplicate",
+    "scoring": "duplicate"
+  }
+}
