@@ -1,5 +1,6 @@
 require 'thread'
 require_relative 'result'
+require_relative 'personal'
 require_relative '../game_room_analytics_client'
 
 module GameRoomSportsRankings
@@ -56,59 +57,93 @@ module GameRoomSportsRankings
     def report(game:, mode:, from_day: nil, to_day:, cancellation_token: nil, fresh: false)
       raise ArgumentError, 'Invalid leaderboard scope' unless Result::GAMES.include?(game) && %w[singles doubles].include?(mode)
       raise ArgumentError, 'Invalid leaderboard dates' unless to_day.is_a?(Integer) && (from_day.nil? || from_day.is_a?(Integer) && from_day <= to_day)
-      @lock.synchronize do
-        @cache = nil if fresh
-        token = cancellation_token
-        table = table_for(token)
-        scope = [game, mode, from_day, to_day]
-        return Marshal.load(Marshal.dump(@cache[:value])) if @cache && @cache[:scope] == scope && @cache[:at] + CACHE_SECONDS > @monotonic.call
-        high = table.select(columns: ['__id'], order: [['__id', 'desc']], limit: 1)
-        check!(token)
-        unless high.is_a?(Array) && high.size <= 1 && high.all? { |row| positive_id?(row['__id']) }
-          raise Unavailable, 'Invalid leaderboard snapshot'
-        end
-        snapshot = high.empty? ? 0 : high.first.fetch('__id')
-        cursor, totals, count = 0, {}, 0
-        while cursor < snapshot
-          where = {'game'=>game, 'mode'=>mode, '__id'=>{'gte'=>cursor + 1}}
-          where['day_key'] = day_scope(from_day,to_day)
-          # Dates are inclusive in Europe/Warsaw; use server-backed match time.
-          rows = table.select(where: where, columns: Result::FIELDS + ['__id'], order: [['__id', 'asc']], limit: @limit)
-          check!(token)
-          validate_rows!(rows, limit: @limit)
-          break if rows.empty?
-          raise Unavailable, 'Leaderboard pagination did not advance' unless rows.map { |row| row['__id'] }.each_cons(2).all? { |a, z| z > a } &&
-            rows.first['__id'] > cursor
-          rows = rows.take_while { |row| row['__id'] <= snapshot }
-          break if rows.empty?
-          # Canonical IDs are looked up in batches, never once per player.
-          first_ids = canonical_ids(table, rows.map { |row| row.fetch('match_key') }.uniq, token, snapshot)
-          rows.each do |row|
-            next unless row['__id'] == first_ids.fetch(row['match_key'])
-            day = Result.day(row.fetch('finished_at'))
-            next if day > to_day || from_day && day < from_day
-            outcome = Result.parse(row)
-            outcome.fetch('sides').each_with_index do |side, index|
-              scored, conceded = side.fetch('goals'), outcome.fetch('sides').fetch(1 - index).fetch('goals')
-              won = outcome.fetch('winner') == index
-              side.fetch('players').each do |name|
-                total = totals[name.downcase] ||= {'user'=>name, 'won'=>0, 'lost'=>0, 'scored'=>0, 'conceded'=>0}
-                total[won ? 'won' : 'lost'] += 1
-                total['scored'] += scored
-                total['conceded'] += conceded
-              end
+      cached([:report, game, mode, from_day, to_day], cancellation_token, fresh) do |table|
+        totals, count = {}, 0
+        each_match(table, game, mode, from_day, to_day, cancellation_token) do |outcome|
+          outcome.fetch('sides').each_with_index do |side, index|
+            scored, conceded = side.fetch('goals'), outcome.fetch('sides').fetch(1 - index).fetch('goals')
+            won = outcome.fetch('winner') == index
+            side.fetch('players').each do |name|
+              total = totals[name.downcase] ||= {'user'=>name, 'won'=>0, 'lost'=>0, 'scored'=>0, 'conceded'=>0}
+              total[won ? 'won' : 'lost'] += 1
+              total['scored'] += scored
+              total['conceded'] += conceded
             end
-            count += 1
           end
-          cursor = rows.last.fetch('__id')
+          count += 1
         end
-        value = totals.values.sort_by { |row| row.fetch('user').downcase }
-        @cache = {scope: scope, at: @monotonic.call, value: Marshal.load(Marshal.dump(value))} if count <= MAX_CACHED_MATCHES
-        value
+        [totals.values.sort_by { |row| row.fetch('user').downcase }, count]
+      end
+    end
+
+    # A player's own counts and head-to-head counts per period (see Personal).
+    def personal(game:, mode:, today:, player: @user, cancellation_token: nil, fresh: false)
+      raise ArgumentError, 'Invalid leaderboard scope' unless Result::GAMES.include?(game) && %w[singles doubles].include?(mode)
+      to_day = today.strftime('%Y%m%d').to_i
+      cached([:personal, game, mode, to_day, player.to_s.downcase], cancellation_token, fresh) do |table|
+        matches = []
+        each_match(table, game, mode, nil, to_day, cancellation_token) do |outcome, day|
+          matches << outcome.merge('day_key'=>day)
+        end
+        [Personal.summary(matches, user: player.to_s, today: today), matches.size]
       end
     end
 
     private
+
+    # The block returns [value, match count]; large reads are not cached. A few
+    # scopes are kept, so the report and its head-to-head list do not evict each other.
+    CACHED_SCOPES = 4
+    def cached(scope, token, fresh)
+      @lock.synchronize do
+        @cache = nil if fresh
+        table = table_for(token)
+        entry = @cache&.[](scope)
+        return Marshal.load(Marshal.dump(entry[:value])) if entry && entry[:at] + CACHE_SECONDS > @monotonic.call
+        value, count = yield table
+        if count <= MAX_CACHED_MATCHES
+          @cache ||= {}
+          @cache.delete(scope)
+          @cache.shift while @cache.size >= CACHED_SCOPES
+          @cache[scope] = {at: @monotonic.call, value: Marshal.load(Marshal.dump(value))}
+        end
+        value
+      end
+    end
+
+    # Yields each canonical match in the period once, with its Warsaw day, from
+    # a snapshot bounded by the highest server ID at the start of the read.
+    def each_match(table, game, mode, from_day, to_day, token)
+      high = table.select(columns: ['__id'], order: [['__id', 'desc']], limit: 1)
+      check!(token)
+      unless high.is_a?(Array) && high.size <= 1 && high.all? { |row| positive_id?(row['__id']) }
+        raise Unavailable, 'Invalid leaderboard snapshot'
+      end
+      snapshot = high.empty? ? 0 : high.first.fetch('__id')
+      cursor = 0
+      while cursor < snapshot
+        where = {'game'=>game, 'mode'=>mode, '__id'=>{'gte'=>cursor + 1}}
+        where['day_key'] = day_scope(from_day,to_day)
+        # Dates are inclusive in Europe/Warsaw; use server-backed match time.
+        rows = table.select(where: where, columns: Result::FIELDS + ['__id'], order: [['__id', 'asc']], limit: @limit)
+        check!(token)
+        validate_rows!(rows, limit: @limit)
+        break if rows.empty?
+        raise Unavailable, 'Leaderboard pagination did not advance' unless rows.map { |row| row['__id'] }.each_cons(2).all? { |a, z| z > a } &&
+          rows.first['__id'] > cursor
+        rows = rows.take_while { |row| row['__id'] <= snapshot }
+        break if rows.empty?
+        # Canonical IDs are looked up in batches, never once per player.
+        first_ids = canonical_ids(table, rows.map { |row| row.fetch('match_key') }.uniq, token, snapshot)
+        rows.each do |row|
+          next unless row['__id'] == first_ids.fetch(row['match_key'])
+          day = Result.day(row.fetch('finished_at'))
+          next if day > to_day || from_day && day < from_day
+          yield Result.parse(row), day
+        end
+        cursor = rows.last.fetch('__id')
+      end
+    end
 
     def positive_id?(value); value.is_a?(Integer) && value.positive?; end
 

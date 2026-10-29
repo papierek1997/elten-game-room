@@ -1,3 +1,4 @@
+require 'date'
 require 'monitor'
 require_relative '../support/statistics_tables'
 require_relative '../../lib/sports_rankings/service'
@@ -81,6 +82,20 @@ store.report(game:'axel_pong',mode:'singles',from_day:nil,to_day:20261024)
 assert(api.table_object.queries.size==calls,'The bounded report cache did not reuse its snapshot')
 store.report(game:'axel_pong',mode:'singles',from_day:nil,to_day:20261024,fresh:true)
 assert(api.table_object.queries.size>calls,'Explicit Refresh reused a cached snapshot')
+
+# Head-to-head reads the same canonical history; the report keeps its own cache entry.
+today=Date.new(2026,10,24)
+mine=store.personal(game:'axel_pong',mode:'singles',today:today)
+assert(mine.map { |r| r['players'] }==[['Alice'],['Bob']] && mine[1]['periods']['all']=={'won'=>3,'lost'=>0} &&
+  mine[1]['periods']['month']=={'won'=>2,'lost'=>0},"Head-to-head counted duplicates or the wrong period: #{mine.inspect}")
+bob=store.personal(game:'axel_pong',mode:'singles',today:today,player:'bob')
+assert(bob.map { |r| r['players'] }==[['bob'],['Alice']] && bob[1]['periods']['all']=={'won'=>0,'lost'=>3},'A chosen player did not get their own opponents')
+pair=store.personal(game:'axel_pong',mode:'doubles',today:today)
+assert(pair.map { |r| r['players'] }==[['Alice'],%w[Bob Dave]],'Doubles head-to-head did not use the opposing pair')
+calls=api.table_object.queries.size
+store.report(game:'axel_pong',mode:'singles',from_day:nil,to_day:20261024)
+store.personal(game:'axel_pong',mode:'singles',today:today)
+assert(api.table_object.queries.size==calls,'Alternating report and head-to-head reads evicted each other')
 
 batch=(1..30).map { |index| build.call("batch-#{index}") }
 assert(store.write_batch(batch)==25,'A sports upload exceeded the bounded pass')

@@ -261,9 +261,11 @@ En el menú principal de Power Games, Ctrl+W abre el resumen de personas present
 
 ### Axel Pong y Audio Ball
 
-Elige individuales o dobles. Al principio se muestran tus resultados de todos los partidos registrados: victorias, derrotas, balance de partidos, goles a favor, goles en contra y diferencia de goles.
+Elige individuales o dobles. Al principio se muestran tus resultados de todos los partidos registrados: partidos jugados, victorias, derrotas, balance de partidos, goles a favor, goles en contra y diferencia de goles.
 
-Con Tab llegas al selector de período. Puedes consultar los últimos 7 días, 30 días, seis meses, un año o todo el período. Elegir jugador abre las estadísticas de otra persona; Mis estadísticas vuelve a las tuyas. Actualizar obtiene los datos más recientes.
+Debajo está la lista de rivales: todas las personas contra las que ha jugado el jugador mostrado o, en dobles, las parejas rivales. Cada entrada muestra los partidos jugados, ganados y perdidos en el período elegido. Pulsa Intro sobre un rival para ver las victorias y derrotas contra él en cada período.
+
+Con otro Tab llegas al selector de período. Puedes consultar los últimos 7 días, 30 días, seis meses, un año o todo el período. Elegir jugador abre las estadísticas de otra persona; Mis estadísticas vuelve a las tuyas. Actualizar obtiene los datos más recientes.
 
 En Audio Ball se suman los goles de todos los sets. En dobles, cada compañero recibe el resultado completo del equipo. Los resultados se guardan automáticamente al terminar un partido si ambos bandos están formados únicamente por personas en ese momento. También cuentan los partidos de torneo, incluidos los goles asignados por incomparecencia.
 

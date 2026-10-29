@@ -1,4 +1,5 @@
 require_relative 'result'
+require_relative 'personal'
 require_relative '../game_room_ui'
 require_relative '../game_room_background'
 
@@ -88,11 +89,22 @@ module GameRoomSportsRankings
       @period = ListBox.new(period_labels.map { |label| text(label) }, header: text(_('Period')), quiet: true)
       control = EditBox.new(text(_('Player statistics')), type: EditBox::Flags::ReadOnly | EditBox::Flags::MultiLine,
         text: text(_('Loading statistics')), quiet: true)
+      # Everyone the shown player met, below the counters; Enter opens head-to-head.
+      @opponents = []
+      opponents = TableBox.new([_('Opponent'), _('Played'), _('Won'), _('Lost')].map { |label| text(label) }, [],
+        header: text(_('Opponents')), empty_label: text(_('Loading statistics')), quiet: true)
+      @opponents_control = opponents
+      head_to_head = Button.new(text(_('Matches against this opponent')))
       choose_player, own = Button.new(text(_('Choose player'))), Button.new(text(_('My statistics')))
       refresh, back = Button.new(text(_('Refresh'))), Button.new(text(_('Back')))
-      @form = Form.new([control, @period, choose_player, own, refresh, back], program: @program, quiet: true)
-      @form.cancel_button = back
+      @form = Form.new([control, opponents, @period, choose_player, own, refresh, head_to_head, back], program: @program, quiet: true)
+      @form.cancel_button, @form.accept_button = back, head_to_head
+      @form.hide(head_to_head)
       back.on(:press) { @form.resume }
+      head_to_head.on(:press) do
+        next unless @form.fields[@form.index].equal?(opponents) && @opponents[opponents.index]
+        show_head_to_head(@opponents.fetch(opponents.index))
+      end
       choose_player.on(:press) do
         selected = input_user(text(_('Player')))
         next unless current? && selected && !selected.strip.empty?
@@ -109,7 +121,7 @@ module GameRoomSportsRankings
     ensure
       @token&.cancel
       @work&.close
-      @work = @token = @pending_request = @active_request = nil
+      @work = @token = @pending_request = @active_request = @opponents_control = nil
       @form.statistics_update = nil if @form
     end
 
@@ -120,6 +132,7 @@ module GameRoomSportsRankings
         mode: @mode, period: @period.index, fresh: fresh}.freeze
       control.header = text(_('%{player}: %{period}')) % {player: text(@player), period: text(period_labels.fetch(@period.index))}
       control.set_text(text(_('Loading statistics')))
+      show_opponents(nil, text(_('Loading statistics')))
       start_pending
     end
 
@@ -131,9 +144,12 @@ module GameRoomSportsRankings
         token.raise_if_cancelled!
         raise Unavailable, 'Statistics account changed' unless current?
         GameRoomClock.synchronize
-        from, to = range(request.fetch(:period), @today.call)
-        @service.store.report(game: @game.id, mode: request.fetch(:mode), from_day: from, to_day: to,
+        today = @today.call
+        from, to = range(request.fetch(:period), today)
+        report = @service.store.report(game: @game.id, mode: request.fetch(:mode), from_day: from, to_day: to,
           cancellation_token: token, fresh: request.fetch(:fresh))
+        [report, @service.store.personal(game: @game.id, mode: request.fetch(:mode), today: today,
+          player: request.fetch(:player), cancellation_token: token)]
       end
       @active_request, @token, @pending_request = request, token, nil
     end
@@ -142,11 +158,13 @@ module GameRoomSportsRankings
       return @form.resume unless current?
       if (outcome = @work.take)
         request, @active_request, @token = @active_request, nil, nil
-        rows, error = outcome
+        value, error = outcome
+        rows, personal = value if value.is_a?(Array)
         if request && request.fetch(:generation) == @generation
-          if rows.is_a?(Array) && !error
-            row = rows.find { |value| GameRoomParticipants.same?(value.fetch('user'), request.fetch(:player)) }
+          if rows.is_a?(Array) && personal.is_a?(Array) && !error
+            row = rows.find { |entry| GameRoomParticipants.same?(entry.fetch('user'), request.fetch(:player)) }
             control.set_text(statistics_text(row || empty_statistics(request.fetch(:player))))
+            show_opponents(personal.reject { |entry| entry.fetch('own') }, text(_('No matches against other players')), period: request.fetch(:period))
           else
             show_error(control, error || Unavailable.new('Missing statistics response'))
           end
@@ -159,6 +177,45 @@ module GameRoomSportsRankings
     def show_error(control, error)
       Log.warning("Player statistics read failed: #{error.class}") if defined?(Log)
       control.set_text(text(_('Player statistics are unavailable. Try Refresh.')))
+      show_opponents(nil, text(_('Player statistics are unavailable. Try Refresh.')))
+    end
+
+    # Rows count the selected period and omit opponents not met in it; the
+    # selection stays on the same opponent.
+    def show_opponents(entries, empty, period: 0)
+      control = @opponents_control
+      return unless control
+      selected = @opponents[control.index]&.fetch('players')
+      key = Personal::PERIODS.fetch(period)
+      @opponents = (entries || []).select { |entry| entry.fetch('periods').fetch(key).values.sum.positive? }
+      control.rows = @opponents.map do |entry|
+        counts = entry.fetch('periods').fetch(key)
+        [entry_name(entry), (counts.fetch('won') + counts.fetch('lost')).to_s, counts.fetch('won').to_s, counts.fetch('lost').to_s]
+      end
+      control.empty_label = empty
+      control.reload
+      control.index = @opponents.index { |entry| entry['players'] == selected } || 0
+    end
+
+    # A doubles opponent is a pair, named by both members.
+    def entry_name(entry)
+      first, second = entry.fetch('players').map { |name| text(name) }
+      second ? text(_('%{first} and %{second}')) % {first: first, second: second} : first
+    end
+
+    def show_head_to_head(entry)
+      lines = Personal::PERIODS.each_with_index.map do |period, index|
+        counts = entry.fetch('periods').fetch(period)
+        text(_('%{period}: won %{won}, lost %{lost}, played %{played}')) % {period: text(period_labels.fetch(index)),
+          won: counts.fetch('won'), lost: counts.fetch('lost'), played: counts.fetch('won') + counts.fetch('lost')}
+      end
+      header = text(_('%{player} against %{opponent}')) % {player: text(@player), opponent: entry_name(entry)}
+      field = EditBox.new(header, type: EditBox::Flags::ReadOnly | EditBox::Flags::MultiLine, text: lines.join("\n"), quiet: true)
+      back = Button.new(text(_('Back')))
+      form = GameRoomUI::Form.new([field, back], program: @program, quiet: true)
+      form.cancel_button = back
+      back.on(:press) { form.resume }
+      form.wait
     end
 
     def empty_statistics(user)
@@ -166,7 +223,8 @@ module GameRoomSportsRankings
     end
 
     def statistics_text(row)
-      [text(_('Matches won: %{count}')) % {count: row.fetch('won')},
+      [text(_('Matches played: %{count}')) % {count: row.fetch('won') + row.fetch('lost')},
+        text(_('Matches won: %{count}')) % {count: row.fetch('won')},
         text(_('Matches lost: %{count}')) % {count: row.fetch('lost')},
         text(_('Match balance: %{count}')) % {count: row.fetch('won') - row.fetch('lost')},
         text(_('Goals scored: %{count}')) % {count: row.fetch('scored')},

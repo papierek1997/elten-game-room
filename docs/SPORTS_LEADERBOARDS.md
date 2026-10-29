@@ -44,15 +44,24 @@ These games do not opt into leaderboards. The shared Statistics menu offers
 General for the existing application activity screen, followed by games with
 `supports_player_statistics?`. Each game supplies its own client through
 `build_player_statistics_client`; there is no game-ID branch in the menu.
-The sports client offers singles/doubles and six read-only counters: wins,
-losses, match balance, goals scored, goals conceded and goal balance. There
-are no ranking points, weights or places. The store returns unweighted totals
-in username order, not sporting order.
+The sports client offers singles/doubles and seven read-only counters: matches
+played, wins, losses, match balance, goals scored, goals conceded and goal
+balance. There are no ranking points, weights or places. The store returns
+unweighted totals in username order, not sporting order.
+
+Below the counters, an opponents table lists everyone the shown player met
+(an opposing pair in doubles; partners are not opponents), alphabetically,
+with matches played, won and lost in the selected period; opponents not met
+in that period are omitted. Enter opens that head-to-head for every period.
+`Store#personal` replays the same canonical history through the pure
+`GameRoomSportsRankings::Personal`, whose periods follow the screen's order.
+The report and head-to-head reads share the bounded cache as separate scopes.
 
 Dates use Europe/Warsaw. Seven- and thirty-day periods include today; the
 half-year and year are calendar-month intervals ending today. The initial
 view shows the signed-in player's whole recorded history. Period selection,
-Choose player, My statistics and Refresh update that same text view.
+Choose player, My statistics and Refresh update the same text view and
+opponents table.
 
 Native background tasks keep reads and Refresh off the UI thread. Each read
 rechecks the schema. Snapshots are bounded by a highest server ID; data and

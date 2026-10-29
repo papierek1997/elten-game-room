@@ -367,7 +367,7 @@ msgstr "%{field}: agua."
 msgid "%{field}: the selected day is not available in this month. Choose the day again."
 msgstr "%{field}: el día elegido no existe en este mes. Elige otro día."
 
-#: games/axel_pong.rb:111 games/duck_racing_support/presentation.rb:622 games/duck_racing_support/presentation.rb:627 games/ninety_nine.rb:925
+#: games/axel_pong.rb:111 games/duck_racing_support/presentation.rb:622 games/duck_racing_support/presentation.rb:627 games/ninety_nine.rb:925 lib/sports_rankings/screen.rb:203
 msgid "%{first} and %{second}"
 msgstr "%{first} y %{second}"
 
@@ -644,6 +644,10 @@ msgstr "Parejas retiradas: %{pairs}; fichas restantes: %{tiles}."
 msgid "%{pawn}: %{position}"
 msgstr "%{pawn}: %{position}"
 
+#: lib/sports_rankings/screen.rb:209
+msgid "%{period}: won %{won}, lost %{lost}, played %{played}"
+msgstr "%{period}: victorias %{won}, derrotas %{lost}, partidos jugados %{played}"
+
 #: games/chess.rb:800
 msgid "%{piece} castles %{side}."
 msgstr "%{piece} realiza el enroque %{side}."
@@ -758,6 +762,10 @@ msgstr "%{player} ha añadido un ordenador."
 #: games/krowa.rb:450
 msgid "%{player} adds a noun: %{word}."
 msgstr "%{player} añade un sustantivo: %{word}."
+
+#: lib/sports_rankings/screen.rb:212
+msgid "%{player} against %{opponent}"
+msgstr "%{player} contra %{opponent}"
 
 #: games/uno/play_reduction.rb:113
 msgid "%{player} also discards %{count} %{colour} card."
@@ -2395,7 +2403,7 @@ msgstr "%{player}: %{message}"
 msgid "%{player}: %{miles} miles; %{status}; safeties: %{safeties}; 200-mile cards: %{count} of 2."
 msgstr "%{player}: %{miles} millas; %{status}; protecciones: %{safeties}; cartas de 200 millas: %{count} de 2."
 
-#: lib/sports_rankings/screen.rb:121
+#: lib/sports_rankings/screen.rb:133
 msgid "%{player}: %{period}"
 msgstr "%{player}: %{period}"
 
@@ -6085,7 +6093,7 @@ msgstr "Todas las combinaciones posibles"
 msgid "All six dice scored; hot dice."
 msgstr "Los seis dados han puntuado; dados calientes."
 
-#: lib/game_statistics_periods.rb:43 lib/sports_rankings/screen.rb:70
+#: lib/game_statistics_periods.rb:43 lib/sports_rankings/screen.rb:71
 msgid "All time"
 msgstr "Todo el período"
 
@@ -7048,7 +7056,7 @@ msgstr "B: leer la subasta actual."
 msgid "B: respond to the buzzer."
 msgstr "B: responde al pulsador."
 
-#: __app.rb:1383 __app.rb:1650 __app.rb:1694 __app.rb:1843 __app.rb:2513 __app.rb:2630 __app.rb:2822 games/krowa_support/leaderboards.rb:39 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:767 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/sports_rankings/screen.rb:57 lib/sports_rankings/screen.rb:92 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
+#: __app.rb:1383 __app.rb:1650 __app.rb:1694 __app.rb:1843 __app.rb:2513 __app.rb:2630 __app.rb:2822 games/krowa_support/leaderboards.rb:39 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:767 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/sports_rankings/screen.rb:214 lib/sports_rankings/screen.rb:58 lib/sports_rankings/screen.rb:99 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
 msgid "Back"
 msgstr "Volver"
 
@@ -8995,7 +9003,7 @@ msgstr "Elige una de tus piezas y pulsa Enter; después, elige una casilla de de
 msgid "Choose or change partner"
 msgstr "Elegir o cambiar compañero"
 
-#: lib/sports_rankings/screen.rb:91
+#: lib/sports_rankings/screen.rb:98
 msgid "Choose player"
 msgstr "Elegir jugador"
 
@@ -11033,7 +11041,7 @@ msgstr "Doble riichi"
 msgid "Double salary when landing on Start"
 msgstr "Doble sueldo al caer en la casilla de Salida"
 
-#: games/audio_ball.rb:31 games/audio_ball.rb:81 games/axel_pong.rb:45 games/generated/rulebooks/axel_pong.rb:20 lib/sports_rankings/screen.rb:33
+#: games/audio_ball.rb:31 games/audio_ball.rb:81 games/axel_pong.rb:45 games/generated/rulebooks/axel_pong.rb:20 lib/sports_rankings/screen.rb:34
 msgid "Doubles"
 msgstr "Dobles"
 
@@ -13651,15 +13659,15 @@ msgstr "Ve a la cárcel"
 msgid "Goal"
 msgstr "Objetivo"
 
-#: lib/sports_rankings/screen.rb:174
+#: lib/sports_rankings/screen.rb:232
 msgid "Goal balance: %{count}"
 msgstr "Diferencia de goles: %{count}"
 
-#: lib/sports_rankings/screen.rb:173
+#: lib/sports_rankings/screen.rb:231
 msgid "Goals conceded: %{count}"
 msgstr "Goles en contra: %{count}"
 
-#: lib/sports_rankings/screen.rb:172
+#: lib/sports_rankings/screen.rb:230
 msgid "Goals scored: %{count}"
 msgstr "Goles a favor: %{count}"
 
@@ -15491,11 +15499,11 @@ msgstr "Escalera larga"
 msgid "Last %{days} days (including today)"
 msgstr ""
 
-#: lib/sports_rankings/screen.rb:70
+#: lib/sports_rankings/screen.rb:71
 msgid "Last 30 days"
 msgstr "Últimos 30 días"
 
-#: lib/sports_rankings/screen.rb:70
+#: lib/sports_rankings/screen.rb:71
 msgid "Last 7 days"
 msgstr "Últimos 7 días"
 
@@ -15514,7 +15522,7 @@ msgstr "Última tirada"
 msgid "Last roll: %{dice}."
 msgstr "Última tirada: %{dice}."
 
-#: lib/sports_rankings/screen.rb:70
+#: lib/sports_rankings/screen.rb:71
 msgid "Last six months"
 msgstr "Últimos seis meses"
 
@@ -15526,7 +15534,7 @@ msgstr "Último día del torneo"
 msgid "Last update"
 msgstr "Última actualización"
 
-#: lib/sports_rankings/screen.rb:70
+#: lib/sports_rankings/screen.rb:71
 msgid "Last year"
 msgstr "Último año"
 
@@ -15924,7 +15932,7 @@ msgstr "Cargando partidas guardadas"
 msgid "Loading server time"
 msgstr "Obteniendo la hora del servidor"
 
-#: __app.rb:1088 lib/game_statistics_screen.rb:149 lib/game_statistics_screen.rb:152 lib/sports_rankings/screen.rb:122 lib/sports_rankings/screen.rb:90
+#: __app.rb:1088 lib/game_statistics_screen.rb:149 lib/game_statistics_screen.rb:152 lib/sports_rankings/screen.rb:134 lib/sports_rankings/screen.rb:135 lib/sports_rankings/screen.rb:91 lib/sports_rankings/screen.rb:95
 msgid "Loading statistics"
 msgstr "Cargando estadísticas"
 
@@ -16061,6 +16069,10 @@ msgstr[1] "Pierde %{count} plumas."
 #: lib/tournaments/server_forfeit_screen.rb:82
 msgid "Loses by forfeit"
 msgstr "Pierde por incomparecencia"
+
+#: lib/sports_rankings/screen.rb:94
+msgid "Lost"
+msgstr "Perdidos"
 
 #: lib/game_room_changelog.rb:454
 msgid "Lowered the challenge announcement sound and clarified the Polish messages about cards that make a duck wait for several turns."
@@ -16429,7 +16441,7 @@ msgstr ""
 msgid "Match awaiting play"
 msgstr ""
 
-#: lib/sports_rankings/screen.rb:171
+#: lib/sports_rankings/screen.rb:229
 msgid "Match balance: %{count}"
 msgstr "Balance de partidos: %{count}"
 
@@ -16519,11 +16531,15 @@ msgstr "Posiciones de las parejas encontradas: %{positions}."
 msgid "Matches"
 msgstr "Encuentros"
 
+#: lib/sports_rankings/screen.rb:97
+msgid "Matches against this opponent"
+msgstr "Partidos contra este rival"
+
 #: lib/tournaments/local_tournament_overview.rb:60
 msgid "Matches are created after registration closes. Open the tournament as its test organizer to prepare them automatically."
 msgstr ""
 
-#: lib/sports_rankings/screen.rb:170
+#: lib/sports_rankings/screen.rb:228
 msgid "Matches lost: %{count}"
 msgstr "Derrotas: %{count}"
 
@@ -16531,7 +16547,11 @@ msgstr "Derrotas: %{count}"
 msgid "Matches may be played at any time after the tournament starts."
 msgstr "Las partidas pueden jugarse a cualquier hora una vez iniciado el torneo."
 
-#: lib/sports_rankings/screen.rb:169
+#: lib/sports_rankings/screen.rb:226
+msgid "Matches played: %{count}"
+msgstr "Partidos jugados: %{count}"
+
+#: lib/sports_rankings/screen.rb:227
 msgid "Matches won: %{count}"
 msgstr "Victorias: %{count}"
 
@@ -17044,7 +17064,7 @@ msgstr "Mi compañero"
 msgid "My question proposals"
 msgstr "Mis propuestas de preguntas"
 
-#: lib/sports_rankings/screen.rb:91
+#: lib/sports_rankings/screen.rb:98
 msgid "My statistics"
 msgstr "Mis estadísticas"
 
@@ -17499,6 +17519,10 @@ msgstr ""
 #: lib/tournaments/draft_screen.rb:18
 msgid "No local tournament drafts."
 msgstr ""
+
+#: lib/sports_rankings/screen.rb:167
+msgid "No matches against other players"
+msgstr "No hay partidos contra otros jugadores"
 
 #: lib/game_room_widget.rb:278
 msgid "No matching Game Room tables"
@@ -18195,7 +18219,7 @@ msgstr ""
 msgid "Only the tricks promised beyond the first six earn contract points. If you make your contract, they are worth:"
 msgstr "Si cumples el contrato, recibes puntos por las bazas prometidas por encima de las seis primeras:"
 
-#: __app.rb:1382 __app.rb:1649 games/krowa_support/leaderboards.rb:292 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:111 lib/game_room_screens.rb:685 lib/game_statistics_screen.rb:17 lib/quiz_contributions/views.rb:142 lib/sports_rankings/screen.rb:57
+#: __app.rb:1382 __app.rb:1649 games/krowa_support/leaderboards.rb:292 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:111 lib/game_room_screens.rb:685 lib/game_statistics_screen.rb:17 lib/quiz_contributions/views.rb:142 lib/sports_rankings/screen.rb:58
 msgid "Open"
 msgstr "Abrir"
 
@@ -18294,9 +18318,17 @@ msgstr "Estado de la operación: %{status}."
 msgid "Operations"
 msgstr "Operaciones"
 
+#: lib/sports_rankings/screen.rb:94
+msgid "Opponent"
+msgstr "Rival"
+
 #: lib/axel_pong/settings.rb:16
 msgid "Opponent paddle volume"
 msgstr "Volumen de la pala del rival"
+
+#: lib/sports_rankings/screen.rb:95
+msgid "Opponents"
+msgstr "Rivales"
 
 #: games/war.rb:464
 msgid "Opponents' hidden cards: %{cards}."
@@ -18777,7 +18809,7 @@ msgstr ""
 msgid "Perfect!"
 msgstr "¡Perfecto!"
 
-#: lib/game_statistics_screen.rb:67 lib/sports_rankings/screen.rb:88
+#: lib/game_statistics_screen.rb:67 lib/sports_rankings/screen.rb:89
 msgid "Period"
 msgstr ""
 
@@ -19041,11 +19073,15 @@ msgstr "Jugar sin realizar un anuncio"
 msgid "Play your top card"
 msgstr ""
 
+#: lib/sports_rankings/screen.rb:94
+msgid "Played"
+msgstr "Jugados"
+
 #: games/scrabble_ui.rb:42
 msgid "Played words"
 msgstr "Palabras jugadas"
 
-#: lib/sports_rankings/screen.rb:97
+#: lib/sports_rankings/screen.rb:109
 msgid "Player"
 msgstr "Jugador"
 
@@ -19077,15 +19113,15 @@ msgstr ""
 msgid "Player sounds in doubles"
 msgstr "Sonidos de jugadores en dobles"
 
-#: lib/sports_rankings/screen.rb:89
+#: lib/sports_rankings/screen.rb:90
 msgid "Player statistics"
 msgstr "Estadísticas del jugador"
 
-#: lib/sports_rankings/screen.rb:27
+#: lib/sports_rankings/screen.rb:28
 msgid "Player statistics are temporarily unavailable."
 msgstr "Las estadísticas de jugadores no están disponibles por el momento."
 
-#: lib/sports_rankings/screen.rb:161
+#: lib/sports_rankings/screen.rb:179 lib/sports_rankings/screen.rb:180
 msgid "Player statistics are unavailable. Try Refresh."
 msgstr "Las estadísticas de jugadores no están disponibles. Prueba a actualizar."
 
@@ -20464,7 +20500,7 @@ msgstr "Se ha reducido la espera durante los desafíos de Carreras de patos, esp
 msgid "Reed path"
 msgstr "Sendero entre juncos"
 
-#: lib/game_room_presence_screen.rb:15 lib/game_statistics_screen.rb:76 lib/quiz_contributions/views.rb:46 lib/sports_rankings/screen.rb:92 lib/tournaments/draft_screen.rb:25 lib/tournaments/local_participant_manager.rb:15 lib/tournaments/local_tournament_overview.rb:17 lib/tournaments/operations_screen.rb:58 lib/tournaments/participant_manager.rb:32 lib/tournaments/participant_manager.rb:83 lib/tournaments/public_preview.rb:361 lib/tournaments/public_screen.rb:199 lib/tournaments/public_screen.rb:74 lib/tournaments/server_proposal_screen.rb:30 lib/tournaments/server_schedule_overview.rb:21 lib/tournaments/tournament_invitation_screen.rb:20
+#: lib/game_room_presence_screen.rb:15 lib/game_statistics_screen.rb:76 lib/quiz_contributions/views.rb:46 lib/sports_rankings/screen.rb:99 lib/tournaments/draft_screen.rb:25 lib/tournaments/local_participant_manager.rb:15 lib/tournaments/local_tournament_overview.rb:17 lib/tournaments/operations_screen.rb:58 lib/tournaments/participant_manager.rb:32 lib/tournaments/participant_manager.rb:83 lib/tournaments/public_preview.rb:361 lib/tournaments/public_screen.rb:199 lib/tournaments/public_screen.rb:74 lib/tournaments/server_proposal_screen.rb:30 lib/tournaments/server_schedule_overview.rb:21 lib/tournaments/tournament_invitation_screen.rb:20
 msgid "Refresh"
 msgstr "Actualizar"
 
@@ -22807,7 +22843,7 @@ msgstr ""
 msgid "Simplified tournament menus and removed duplicate actions. The main views are now Tournament matches, Standings, and Information and rules. Your tournaments appear first in the current list, and context menus show the available keyboard shortcuts."
 msgstr "Se han simplificado los menús de los torneos y eliminado las opciones duplicadas. Las vistas principales son ahora Partidas del torneo, Clasificación e Información y reglas. Tus torneos aparecen primero en la lista de torneos actuales, y los menús contextuales muestran los atajos disponibles."
 
-#: games/audio_ball.rb:81 games/axel_pong.rb:45 lib/sports_rankings/screen.rb:33
+#: games/audio_ball.rb:81 games/axel_pong.rb:45 lib/sports_rankings/screen.rb:34
 msgid "Single"
 msgstr "Individual"
 
@@ -29399,6 +29435,10 @@ msgstr "Aún sin compañero"
 #: games/bouillabaisse.rb:29
 msgid "Without all or nothing"
 msgstr "Sin todo o nada"
+
+#: lib/sports_rankings/screen.rb:94
+msgid "Won"
+msgstr "Ganados"
 
 #: games/duck_racing_support/presentation.rb:37
 msgid "Wooden zone"

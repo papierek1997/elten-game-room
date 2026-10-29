@@ -261,9 +261,11 @@ V hlavním menu Power Games otevře Ctrl+W přehled lidí právě přítomných 
 
 ### Axel Pong a Audio Ball
 
-Zvolte dvouhru nebo čtyřhru. Nejprve se zobrazí vaše výsledky ze všech zaznamenaných zápasů: výhry, prohry, bilance zápasů, vstřelené a obdržené góly a rozdíl gólů.
+Zvolte dvouhru nebo čtyřhru. Nejprve se zobrazí vaše výsledky ze všech zaznamenaných zápasů: odehrané zápasy, výhry, prohry, bilance zápasů, vstřelené a obdržené góly a rozdíl gólů.
 
-Tabem přejdete na výběr období. Můžete zvolit posledních 7 dní, 30 dní, půl roku, rok nebo celé období. Tlačítkem Vybrat hráče otevřete statistiky jiné osoby; Moje statistiky vás vrátí k vlastním výsledkům. Obnovit načte aktuální údaje.
+Pod nimi je seznam soupeřů: všech, se kterými zobrazený hráč hrál, ve čtyřhře soupeřících dvojic. U každého je počet odehraných, vyhraných a prohraných zápasů ve zvoleném období. Enter na soupeři ukáže výhry a prohry proti němu v každém období.
+
+Dalším Tabem přejdete na výběr období. Můžete zvolit posledních 7 dní, 30 dní, půl roku, rok nebo celé období. Tlačítkem Vybrat hráče otevřete statistiky jiné osoby; Moje statistiky vás vrátí k vlastním výsledkům. Obnovit načte aktuální údaje.
 
 Audio Ball sčítá góly ze všech setů. Ve čtyřhře se každému spoluhráči započítá celý výsledek týmu. Výsledky se ukládají automaticky po skončení zápasu, pokud obě strany v tu chvíli tvoří pouze lidé. Počítají se i turnajové zápasy včetně gólů přidělených při kontumaci.
 

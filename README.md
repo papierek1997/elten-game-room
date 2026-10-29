@@ -411,9 +411,11 @@ obsadę.
 
 ### Axel Pong i Audio Ball
 
-Wybierz singiel lub debel. Domyślnie zobaczysz własne wyniki ze wszystkich zapisanych meczów: wygrane, przegrane, bilans meczów, strzelone i stracone bramki oraz bilans bramek.
+Wybierz singiel lub debel. Domyślnie zobaczysz własne wyniki ze wszystkich zapisanych meczów: rozegrane mecze, wygrane, przegrane, bilans meczów, strzelone i stracone bramki oraz bilans bramek.
 
-Tabem przejdziesz do wyboru okresu. Możesz sprawdzić ostatnie 7 dni, 30 dni, pół roku, rok albo cały okres. Przycisk „Wybierz gracza” pozwala wskazać inną osobę, a „Moje statystyki” wraca do Twoich wyników. „Odśwież” pobiera aktualne dane.
+Pod wynikami jest lista przeciwników: osób, z którymi grał wyświetlany gracz, a w deblu par przeciwników. Przy każdej pozycji widać liczbę rozegranych, wygranych i przegranych meczów w wybranym okresie. Enter na przeciwniku pokazuje wygrane i przegrane mecze z nim w każdym okresie.
+
+Kolejnym Tabem przejdziesz do wyboru okresu. Możesz sprawdzić ostatnie 7 dni, 30 dni, pół roku, rok albo cały okres. Przycisk „Wybierz gracza” pozwala wskazać inną osobę, a „Moje statystyki” wraca do Twoich wyników. „Odśwież” pobiera aktualne dane.
 
 W Audio Ballu sumują się bramki ze wszystkich setów. W deblu każdy gracz otrzymuje pełny wynik swojej drużyny. Wyniki zapisują się automatycznie po zakończeniu meczu, jeżeli obie strony składają się wtedy wyłącznie z ludzi. Liczą się także mecze turniejowe, a walkowery uwzględniają bramki przyznane w turnieju.
 

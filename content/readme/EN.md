@@ -261,9 +261,11 @@ In Power Games' main menu, Ctrl+W opens the overview of people currently at tabl
 
 ### Axel Pong and Audio Ball
 
-Choose Single or Doubles. Your statistics initially cover all recorded matches: wins, losses, match balance, goals scored, goals conceded and goal balance.
+Choose Single or Doubles. Your statistics initially cover all recorded matches: matches played, wins, losses, match balance, goals scored, goals conceded and goal balance.
 
-Press Tab to reach the period selector. Choose the last 7 days, 30 days, six months, year or all time. Choose player opens another person's statistics; My statistics returns to your own. Refresh retrieves the latest data.
+Below them is the list of opponents: everyone the shown player has played against, or opposing pairs in doubles. Each entry shows matches played, won and lost in the selected period. Press Enter on an opponent to see the wins and losses against them in every period.
+
+Press Tab again to reach the period selector. Choose the last 7 days, 30 days, six months, year or all time. Choose player opens another person's statistics; My statistics returns to your own. Refresh retrieves the latest data.
 
 Audio Ball counts goals from every set. In doubles, each teammate receives the team's full result. Results are saved automatically after a match if both sides consist entirely of people at the end. Tournament matches count too, including the technical goal scores awarded for forfeits.
 
