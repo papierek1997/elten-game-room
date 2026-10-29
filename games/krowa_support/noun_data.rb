@@ -84906,10 +84906,6 @@ module GameRoomKrowa
       świrusy
       świruska
       świruski
-      cytacik
-      cytaciki
-      owocek
-      owocki
       token
       tokeny
       geomancje
@@ -85131,6 +85127,18 @@ module GameRoomKrowa
       spektrogramy
       tomogram
       tomogramy
+      alias
+      aliasy
+      podolog
+      podolodzy
+      podolożka
+      podolożki
+      wibrys
+      wibrysy
+      kodek
+      kodeki
+      polik
+      poliki
     KROWA_NOUNS
     WORDS.freeze
   end

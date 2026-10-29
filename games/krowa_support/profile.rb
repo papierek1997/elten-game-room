@@ -1,5 +1,6 @@
 require "digest"
 require "json"
+require_relative 'attempt_history'
 
 module GameRoomGames
   # Separate account-scoped local profile. The Game Room event stack remains
@@ -39,7 +40,12 @@ module GameRoomGames
             if trial
               word = trial[:word]
               old = @data["gallery"][word]
-              @data["gallery"][word] = {"attempts" => result[:attempts], "at" => state[:started_ms]} if old.nil? || result[:attempts] < old["attempts"]
+              if old.nil? || result[:attempts] < old["attempts"] ||
+                  (result[:attempts] == old['attempts'] && old['words'].nil?)
+                words = state[:attempts].select { |item| item[:player] == own.first }.map { |item| item[:word] }
+                @data["gallery"][word] = {"attempts" => result[:attempts], "at" => state[:started_ms],
+                  "words" => KrowaAttemptHistory.words(words, count: result[:attempts], solution: word, solved: true)}
+              end
             end
           end
         end

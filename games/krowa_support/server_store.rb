@@ -2,6 +2,7 @@
 
 require "json"
 require "date"
+require_relative 'attempt_archive'
 
 module GameRoomGames
   # Persistent, account-aware Krowa data. Match state still belongs exclusively
@@ -19,15 +20,40 @@ module GameRoomGames
     MAX_WORD_RESULTS = 2_000
     MAX_TOWER_RESULTS = 500
 
-    def initialize(server_tables:, bank:, user:)
+    def initialize(server_tables:, bank:, user:, program: nil, schema_reader: nil)
       @server_tables = server_tables
       @bank = bank
       @user = user.to_s.strip
       raise ArgumentError, "Krowa server store requires a user" if @user.empty?
+      @schema_reader = schema_reader
+      if !@schema_reader && program&.respond_to?(:server_app_uuid)
+        uuid = program.server_app_uuid
+        @schema_reader = -> { EltenLink::Apps.schema(EltenLink::Client.new, uuid) }
+      end
     end
 
     def available?
       @server_tables.respond_to?(:available?) && @server_tables.available?
+    end
+
+    # Read once per services instance, on its existing Tasks worker. Old
+    # servers can still accept scores without optional history columns.
+    def attempt_histories_available?
+      return true unless @schema_reader
+      return @attempt_schema_ready if defined?(@attempt_schema_ready)
+      schema = @schema_reader.call
+      data = schema['data']
+      data = JSON.parse(data) if data.is_a?(String)
+      tables = schema['tables'] || (data.is_a?(Hash) && data['tables']) || {}
+      required = {
+        KrowaAttemptArchive::TABLE => %w[list_key part parts nonce payload],
+        WORD_TABLE => ['history_key'], DAILY_SCORES_TABLE => ['history_key'],
+        TOWER_ROUNDS_TABLE => ['history_key'], TOWER_TABLE => ['histories_shared']
+      }
+      @attempt_schema_ready = required.all? do |name, fields|
+        columns = tables.fetch(name, {}).fetch('columns', {})
+        fields.all? { |field| columns.key?(field) }
+      end
     end
 
     def synchronize_daily(date_ids)
@@ -101,10 +127,11 @@ module GameRoomGames
 
     # Daily results are separate from per-word scores: today's solution must
     # never be present in a public leaderboard record.
-    def publish_daily(date_id, attempts)
+    def publish_daily(date_id, attempts, words: nil)
       date = normalized_date(date_id)
       count = attempts.to_i
       return :unavailable if date == nil || count <= 0 || !available? || !daily_completed?(date)
+      return :history_unavailable if words && !attempt_histories_available?
 
       own = daily_scores_table.select(
         where: {"day_key" => date_key(date), "__insertion_user" => @user},
@@ -112,8 +139,13 @@ module GameRoomGames
       ).to_a.first
       return :unchanged if own && own["attempts"].to_i <= count
 
-      inserted = daily_scores_table.insert("day_key" => date_key(date), "attempts" => count)
-      inserted == nil ? :unavailable : :published
+      values = {"day_key" => date_key(date), "attempts" => count}
+      if words
+        list = KrowaAttemptHistory.words(words, count: count)
+        values['history_key'] = attempt_archive.publish("daily:#{date}", list)
+        return :unavailable unless values['history_key']
+      end
+      insert_score(daily_scores_table, values)
     end
 
     def daily_ranking(date_id, limit: nil)
@@ -220,10 +252,11 @@ module GameRoomGames
     end
 
     # Returns :published, :unchanged or :unavailable.
-    def publish_word(word, attempts)
+    def publish_word(word, attempts, words: nil)
       normalized = normalized_ranked_word(word)
       count = attempts.to_i
       return :unavailable if normalized == nil || count <= 0 || !available?
+      return :history_unavailable if words && !attempt_histories_available?
 
       own = word_table.select(
         where: {"word" => normalized, "__insertion_user" => @user},
@@ -231,8 +264,39 @@ module GameRoomGames
       ).to_a.first
       return :unchanged if own && own["attempts"].to_i <= count
 
-      inserted = word_table.insert("word" => normalized, "attempts" => count)
-      inserted == nil ? :unavailable : :published
+      values = {"word" => normalized, "attempts" => count}
+      if words
+        list = KrowaAttemptHistory.words(words, count: count, solution: normalized, solved: true)
+        values['history_key'] = attempt_archive.publish("word:#{normalized}", list)
+        return :unavailable unless values['history_key']
+      end
+      insert_score(word_table, values)
+    end
+
+    def word_attempt_list(word, user:, attempts:)
+      normalized = normalized_ranked_word(word)
+      return nil unless normalized && available?
+      score_attempt_list(word_table, {'word' => normalized, '__insertion_user' => user, 'attempts' => attempts.to_i},
+        "word:#{normalized}", normalized)
+    end
+
+    def daily_attempt_list(date_id, user:, attempts:, today:)
+      date, current = normalized_date(date_id), normalized_date(today)
+      return :hidden unless date && current && date < current
+      return nil unless available?
+      word = daily_word(date, today: current)
+      return nil unless word
+      score_attempt_list(daily_scores_table, {'day_key' => date_key(date), '__insertion_user' => user, 'attempts' => attempts.to_i},
+        "daily:#{date}", word)
+    end
+
+    def tower_attempt_list(row)
+      return nil unless available? && row['history_key'] && !row['history_key'].empty?
+      scope = "tower:#{row.fetch('run_code')}:#{row.fetch('round')}"
+      list = attempt_archive.fetch(scope, row['history_key'], user: row.fetch('__insertion_user'))
+      raise IOError, 'Incomplete attempt history' unless list
+      {word: row.fetch('word'), words: KrowaAttemptHistory.words(list, count: row.fetch('attempts'),
+        solution: row.fetch('word'), solved: row['solved'] == 1)}
     end
 
     def word_ranking(word, limit: 25)
@@ -322,6 +386,8 @@ module GameRoomGames
     def publish_tower(run_code:, participants:, rounds:)
       code = normalized_run_code(run_code)
       return :unavailable if code == nil || !available?
+      sharing = Array(rounds).any? { |round| round[:words] || round['words'] }
+      return :history_unavailable if sharing && !attempt_histories_available?
       identity = {"run_code" => code, "__insertion_user" => @user}
       return :unchanged unless tower_table.select(where: identity, limit: 1).to_a.empty?
 
@@ -333,8 +399,15 @@ module GameRoomGames
         attempts = (round[:attempts] || round["attempts"]).to_i
         solved = round.key?(:solved) ? round[:solved] : round["solved"]
         return :unavailable if word == nil || attempts.negative?
-        {"run_code" => code, "round" => index + 1, "word" => word,
+        values = {"run_code" => code, "round" => index + 1, "word" => word,
           "attempts" => attempts, "solved" => solved == false ? 0 : 1}
+        words = round[:words] || round['words']
+        if words
+          list = KrowaAttemptHistory.words(words, count: attempts, solution: word, solved: solved != false)
+          values['history_key'] = attempt_archive.publish("tower:#{code}:#{index + 1}", list)
+          return :unavailable unless values['history_key']
+        end
+        values
       end
       present = tower_rounds(code, user: @user)
       return :unavailable unless present.all? do |row|
@@ -358,6 +431,7 @@ module GameRoomGames
         "rounds" => completed,
         "participants" => JSON.generate(names)
       }
+      values['histories_shared'] = sharing ? 1 : 0 if attempt_histories_available?
       begin
         inserted = tower_table.insert(values)
         return :published if inserted
@@ -398,7 +472,37 @@ module GameRoomGames
       []
     end
 
+    def published_tower_rounds(result)
+      rows = tower_rounds(result.fetch('run_code'), user: result.fetch('__insertion_user'))
+      return rows if result['histories_shared'] == 1
+      # A failed earlier upload may have written some optional details.
+      # The final publication choice controls what the ordinary UI exposes.
+      rows.map { |row| row.reject { |field, _| field == 'history_key' } }
+    end
+
     private
+
+    def attempt_archive; @attempt_archive ||= KrowaAttemptArchive.new(@server_tables, user: @user); end
+
+    def score_attempt_list(table, where, scope, word)
+      # The earliest row for this exact best score is authoritative; do not
+      # attach attempts from a different playthrough with the same count.
+      row = table.select(where: where, order: [['__id', 'asc']], limit: 1).to_a.first
+      return nil unless row && !row['history_key'].to_s.empty?
+      list = attempt_archive.fetch(scope, row['history_key'], user: row.fetch('__insertion_user'))
+      raise IOError, 'Incomplete attempt history' unless list
+      {word: word, words: KrowaAttemptHistory.words(list, count: row.fetch('attempts'), solution: word, solved: true)}
+    end
+
+    def insert_score(table, values)
+      inserted = table.insert(values)
+      inserted == nil ? :unavailable : :published
+    rescue StandardError => error
+      raise unless error.is_a?(IOError) || (defined?(EltenLink::Error) && error.is_a?(EltenLink::Error))
+      # Only a read can resolve a lost acknowledgement, not a second insert.
+      found = table.select(where: values.merge('__insertion_user' => @user), limit: 1).to_a.first
+      found ? :published : :unavailable
+    end
 
     def normalized_run_code(value)
       text = value.to_s

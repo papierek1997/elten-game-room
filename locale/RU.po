@@ -272,7 +272,7 @@ msgstr[0] "%{count} закрытая карта"
 msgstr[1] "%{count} закрытые карты"
 msgstr[2] "%{count} закрытых карт"
 
-#: games/krowa.rb:196 games/krowa.rb:43
+#: games/krowa.rb:197 games/krowa.rb:44
 msgid "%{count} letters"
 msgstr "%{count} букв"
 
@@ -508,7 +508,7 @@ msgstr "%{left} плюс %{right}."
 msgid "%{left} times %{right}."
 msgstr "%{left} умножить на %{right}."
 
-#: games/krowa.rb:466
+#: games/krowa.rb:467
 msgid "%{length} letters."
 msgstr "%{length} букв."
 
@@ -781,7 +781,7 @@ msgstr "%{player} добавил бота за стол игрока %{owner} в
 msgid "%{player} added a computer."
 msgstr "%{player} добавил бота."
 
-#: games/krowa.rb:450
+#: games/krowa.rb:451
 msgid "%{player} adds a noun: %{word}."
 msgstr "%{player} добавляет существительное: %{word}."
 
@@ -1174,7 +1174,7 @@ msgstr "%{player} набирает больше 21."
 msgid "%{player} goes to jail."
 msgstr "%{player} отправляется в тюрьму."
 
-#: games/krowa.rb:490
+#: games/krowa.rb:491
 msgid "%{player} guesses the word in %{count} attempts."
 msgstr "%{player} угадывает слово за %{count} попыток."
 
@@ -2056,7 +2056,7 @@ msgstr "%{player} отправил ответы."
 msgid "%{player} surrendered the deal at a contract of %{contract}."
 msgstr "%{player} расписал раздачу при контракте %{contract}."
 
-#: games/krowa.rb:513
+#: games/krowa.rb:514
 msgid "%{player} surrenders."
 msgstr "%{player} сдаётся."
 
@@ -2543,7 +2543,7 @@ msgstr "%{player}: %{tricks}/%{bid}"
 msgid "%{player}: %{tricks}/%{target}"
 msgstr "%{player}: %{tricks}/%{target}"
 
-#: games/krowa.rb:485
+#: games/krowa.rb:486
 msgid "%{player}: %{word}, %{matches} of %{length}."
 msgstr "%{player}: %{word}, совпадений: %{matches} из %{length}."
 
@@ -3028,11 +3028,11 @@ msgstr "%{variant}; камней в каждой лунке: %{seeds}"
 msgid "%{variant}; 3 to 8 letters; %{count} attempts per letter"
 msgstr "%{variant}; 3–8 букв; %{count} попыток на букву"
 
-#: games/krowa.rb:199
+#: games/krowa.rb:200
 msgid "%{variant}; 3 to 8 letters; attempt limit depends on word length"
 msgstr "%{variant}; от 3 до 8 букв; лимит попыток зависит от длины слова"
 
-#: games/krowa.rb:198
+#: games/krowa.rb:199
 msgid "%{variant}; 3 to 9 letters"
 msgstr "%{variant}; 3–9 букв"
 
@@ -3048,7 +3048,7 @@ msgstr "Матч выигрывает пара %{winner}: %{scores}."
 msgid "%{words}: %{points} potential points."
 msgstr "%{words}: предварительно %{points} очков."
 
-#: games/krowa_support/client.rb:258
+#: games/krowa_support/client.rb:264
 msgid ""
 "%{word}\r\n"
 "\r\n"
@@ -3073,7 +3073,15 @@ msgstr[2] "%{word}, %{count} букв"
 msgid "%{word}, %{matches} of %{length}"
 msgstr "%{word}, совпадений: %{matches} из %{length}"
 
-#: games/krowa_support/client.rb:163
+#: games/krowa_support/attempt_list_view.rb:24
+msgid "%{word}. %{matches}"
+msgstr "%{word}. %{matches}"
+
+#: games/krowa_support/client.rb:165
+msgid "%{word}: %{attempts} attempts"
+msgstr "%{word}: %{attempts} попыток"
+
+#: games/krowa_support/client.rb:165
 msgid "%{word}: %{attempts} attempts, %{length} letters"
 msgstr "%{word}: %{attempts} попытки, %{length} букв"
 
@@ -6294,7 +6302,7 @@ msgstr "Дополнительный бак защищает от нехватк
 msgid "An invitation to this table is already pending for this user."
 msgstr "У этого пользователя уже есть действующее приглашение за этот стол."
 
-#: games/krowa.rb:314
+#: games/krowa.rb:315
 msgid "An observer does not take part in the game."
 msgstr "Наблюдатель не участвует в игре."
 
@@ -6376,7 +6384,7 @@ msgstr "Объявления о размещении и снятии букв в
 msgid "Announcer volume"
 msgstr "Громкость диктора"
 
-#: games/krowa.rb:313
+#: games/krowa.rb:314
 msgid "Another person is playing now."
 msgstr "Сейчас ходит другой игрок."
 
@@ -6384,7 +6392,7 @@ msgstr "Сейчас ходит другой игрок."
 msgid "Another player is creating this match's table. Accept their invitation or try again shortly."
 msgstr "Другой игрок сейчас создаёт стол для этого матча. Примите его приглашение или попробуйте чуть позже."
 
-#: games/krowa.rb:317
+#: games/krowa.rb:318
 msgid "Another word has already started."
 msgstr "Другое слово уже началось."
 
@@ -6824,7 +6832,15 @@ msgstr "Атакующие короли"
 msgid "Attacking kings introduces a separate five-card attack. The king of spades starts it; the king of hearts can answer it and add five more. Thus spades followed by hearts makes the next player draw ten, unless they defend again. It does not reverse play. The other kings are ordinary cards, and a king attack is not combined with a two-or-three attack."
 msgstr "Атака королями вводит отдельную атаку из пяти карт. Король пик начинает её; король червей может ответить и добавить ещё пять карт. Таким образом, пики, за которыми следуют черви, заставляют следующего игрока взять десять карт, если он снова не защитится. Это не меняет порядок игры. Остальные короли — обычные карты, и атака королями не комбинируется с атакой из двоек или троек."
 
-#: games/krowa_support/leaderboards.rb:186 games/krowa_support/leaderboards.rb:282 games/krowa_support/leaderboards.rb:74 games/krowa_support/presentation.rb:40
+#: games/krowa_support/attempt_list_view.rb:12
+msgid "Attempt list"
+msgstr "Список попыток"
+
+#: games/krowa_support/leaderboards.rb:112 games/krowa_support/leaderboards.rb:134 games/krowa_support/leaderboards.rb:92
+msgid "Attempt lists are not enabled on the server yet. You can publish the result without the list."
+msgstr "Сервер пока не поддерживает списки попыток. Можно опубликовать результат без списка."
+
+#: games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:308 games/krowa_support/leaderboards.rb:76 games/krowa_support/presentation.rb:40
 msgid "Attempts"
 msgstr "Попытки"
 
@@ -7110,7 +7126,7 @@ msgstr "B: прочитать текущий аукцион."
 msgid "B: respond to the buzzer."
 msgstr "B: ответить на сигнальную карту."
 
-#: __app.rb:1383 __app.rb:1650 __app.rb:1694 __app.rb:1843 __app.rb:2513 __app.rb:2630 __app.rb:2822 games/krowa_support/leaderboards.rb:39 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:767 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/sports_rankings/screen.rb:57 lib/sports_rankings/screen.rb:92 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
+#: __app.rb:1383 __app.rb:1650 __app.rb:1694 __app.rb:1843 __app.rb:2513 __app.rb:2630 __app.rb:2822 games/krowa_support/leaderboards.rb:41 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:767 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/sports_rankings/screen.rb:57 lib/sports_rankings/screen.rb:92 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
 msgid "Back"
 msgstr "Назад"
 
@@ -7308,7 +7324,7 @@ msgstr "Начинает круг %{lap}."
 msgid "Being vulnerable raises both the rewards and the penalties. Who is vulnerable is announced at the start of each deal; V repeats it together with the deal number, the dealer, the contract and the tricks."
 msgstr "Зональность увеличивает и награды, и штрафы. Стороны в зоне объявляются в начале сдачи; V повторяет это вместе с номером сдачи, сдающим, контрактом и взятками."
 
-#: games/krowa_support/leaderboards.rb:240
+#: games/krowa_support/leaderboards.rb:266
 msgid "Best result"
 msgstr "Лучший результат"
 
@@ -7924,7 +7940,7 @@ msgstr "Уравнять %{amount}"
 msgid "Calm (short search)"
 msgstr "Спокойный (короткий поиск)"
 
-#: __app.rb:2429 __app.rb:3575 __app.rb:3633 games/krowa_support/client.rb:190 games/krowa_support/leaderboards.rb:209 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_option_editor.rb:117 lib/game_room_screens.rb:361 lib/game_screen.rb:676 lib/game_screen.rb:720 lib/game_surfaces/card_actions.rb:52 lib/game_surfaces/word_board.rb:208 lib/quiz_contributions/views.rb:143 lib/quiz_contributions/views.rb:164 lib/table_voice_screen.rb:180 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:29
+#: __app.rb:2429 __app.rb:3575 __app.rb:3633 games/krowa_support/client.rb:196 games/krowa_support/client.rb:357 games/krowa_support/leaderboards.rb:235 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_option_editor.rb:117 lib/game_room_screens.rb:361 lib/game_screen.rb:676 lib/game_screen.rb:720 lib/game_surfaces/card_actions.rb:52 lib/game_surfaces/word_board.rb:208 lib/quiz_contributions/views.rb:143 lib/quiz_contributions/views.rb:164 lib/table_voice_screen.rb:180 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:29
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -8602,7 +8618,7 @@ msgstr "Проверка вопросов"
 msgid "Checking saved tournament match"
 msgstr "Проверка сохранённого матча турнира"
 
-#: games/krowa_support/leaderboards.rb:140
+#: games/krowa_support/leaderboards.rb:155
 msgid "Checking server date"
 msgstr "Проверка даты сервера"
 
@@ -8661,6 +8677,10 @@ msgstr "Шахматы"
 #: games/generated/rulebooks/chess.rb:10
 msgid "Chess is a game for two players. White moves first, then the players alternate one move at a time. Each begins with a king, queen, two rooks, two bishops, two knights and eight pawns on an 8 by 8 board. Your aim is to attack the opposing king in a way your opponent cannot escape: this is checkmate. You do not actually capture the king."
 msgstr "Шахматы — игра для двух игроков. Белые ходят первыми, затем игроки делают ходы по очереди. Каждый начинает с короля, ферзя, двух ладей, двух слонов, двух коней и восьми пешек на доске 8 на 8. Ваша цель — атаковать короля противника так, чтобы он не мог спастись: это шах и мат. Короля фактически не берут."
+
+#: games/krowa_support/client.rb:357
+msgid "Choose"
+msgstr "Выбрать"
 
 msgid "Choose Classic or Arcade Classic with temporary shields and an invisible ball. Automatic returns are an optional table setting shared by both players. Left and Right move the paddle; Up or Space serves and hits the ball."
 msgstr "Выберите Classic или Arcade Classic с временными щитами и невидимым мячом. Автоматические возвраты — это опциональная настройка стола, общая для обоих игроков. Левая и правая кнопки перемещают ракетку; Вверх или Пробел выполняют подачу и отбивают мяч."
@@ -9358,7 +9378,7 @@ msgstr "Очистка раскладки"
 msgid "Clearing the table with your play earns a scopa worth 1 point, including on the last play of the round. Receiving leftover cards at the end is not a scopa."
 msgstr ""
 
-#: games/krowa_support/client.rb:175 games/krowa_support/client.rb:219 games/krowa_support/client.rb:261 games/krowa_support/leaderboards.rb:292 games/krowa_support/leaderboards.rb:293 lib/game_room_screens.rb:66 lib/game_room_screens.rb:82 lib/game_room_ui.rb:338 lib/quiz_contributions/views.rb:119
+#: games/krowa_support/client.rb:177 games/krowa_support/client.rb:225 games/krowa_support/client.rb:267 games/krowa_support/leaderboards.rb:325 games/krowa_support/leaderboards.rb:326 lib/game_room_screens.rb:66 lib/game_room_screens.rb:82 lib/game_room_ui.rb:338 lib/quiz_contributions/views.rb:119
 msgid "Close"
 msgstr "Закрыть"
 
@@ -9791,7 +9811,7 @@ msgstr[2] "Стоимость: %{count} перьев."
 msgid "Cosy nest"
 msgstr "Уютное гнездо"
 
-#: games/krowa_support/leaderboards.rb:322
+#: games/krowa_support/leaderboards.rb:359
 msgid "Could not connect to the Krowa leaderboard."
 msgstr "Не удалось подключиться к таблице лидеров Krowa."
 
@@ -9799,23 +9819,27 @@ msgstr "Не удалось подключиться к таблице лиде�
 msgid "Could not disconnect the voice conversation. Open Conferences to leave it."
 msgstr "Не удалось отключиться от комнаты голосового чата. Откройте Голосовой чат в Elten, чтобы выйти."
 
-#: games/krowa_support/client.rb:35
+#: games/krowa_support/client.rb:36
 msgid "Could not load Krowa settings. Please try again."
 msgstr "Не удалось загрузить настройки Krowa. Пожалуйста, попробуйте снова."
+
+#: games/krowa_support/attempt_list_view.rb:32
+msgid "Could not load the attempt list. Return to the result and try again."
+msgstr "Не удалось загрузить список попыток. Вернитесь к результату и повторите попытку."
 
 #: __app.rb:1178
 msgid "Could not open the README."
 msgstr "Не удалось открыть README."
 
-#: games/krowa_support/leaderboards.rb:111
+#: games/krowa_support/leaderboards.rb:123
 msgid "Could not publish the Daily Krowa result."
 msgstr "Не удалось опубликовать результат Daily Krowa."
 
-#: games/krowa_support/leaderboards.rb:130
+#: games/krowa_support/leaderboards.rb:145
 msgid "Could not publish the Word Tower result."
 msgstr "Не удалось опубликовать результат Word Tower."
 
-#: games/krowa_support/leaderboards.rb:94
+#: games/krowa_support/leaderboards.rb:103
 msgid "Could not publish the result."
 msgstr "Не удалось опубликовать результат."
 
@@ -9823,26 +9847,26 @@ msgstr "Не удалось опубликовать результат."
 msgid "Could not record opening Daily Krowa on the server. Please try again."
 msgstr "Не удалось записать открытие Daily Krowa на сервере. Пожалуйста, попробуйте снова."
 
-#: games/krowa_support/client.rb:253
+#: games/krowa_support/client.rb:259
 msgid "Could not retrieve the definition from SJP."
 msgstr "Не удалось получить определение из SJP."
 
-#: games/krowa.rb:317
+#: games/krowa.rb:318
 msgid "Could not retrieve the server time."
 msgstr "Не удалось получить время сервера."
 
 msgid "Could not retrieve the server time. Please try again."
 msgstr "Не удалось восстановить время сервера. Пожалуйста, попробуйте снова."
 
-#: games/krowa_support/client.rb:288 games/krowa_support/client.rb:293
+#: games/krowa_support/client.rb:294 games/krowa_support/client.rb:299
 msgid "Could not save Daily Krowa completion on the server. The program will try again when the game is reopened."
 msgstr "Не удалось сохранить выполнение Daily Krowa на сервере. Программа попытается снова при следующем открытии игры."
 
-#: games/krowa_support/client.rb:240
+#: games/krowa_support/client.rb:246
 msgid "Could not save changes to your dictionary."
 msgstr "Не удалось сохранить изменения в вашем словаре."
 
-#: games/krowa_support/client.rb:81
+#: games/krowa_support/client.rb:83
 msgid "Could not save the local gallery or dictionary."
 msgstr "Не удалось сохранить локальную галерею или словарь."
 
@@ -10360,7 +10384,7 @@ msgstr "Собственные правила открывают все опис
 msgid "Custom words can be added only in a single-player Daily Krowa or Random word game."
 msgstr "Собственные слова можно добавлять только в одиночной Daily Krowa или в режиме «Случайное слово»."
 
-#: games/krowa.rb:318
+#: games/krowa.rb:319
 msgid "Custom words can be added only in a single-player Random word game."
 msgstr "Свои слова можно добавлять только в одиночном режиме «Случайное слово»."
 
@@ -10468,7 +10492,7 @@ msgstr "D: непринадлежащая недвижимость. Shift+D: с�
 msgid "D: your cards. E: community cards. G: your best current combination. In Hold'em, 1–2 read private cards and 3–7 the board; in draw poker, 1–5 read your own cards."
 msgstr "D: ваши карты. E: общие карты. G: ваша лучшая текущая комбинация. В Холдеме 1–2 читают приватные карты и 3–7 на доске; в дро-покере 1–5 читают свои карты."
 
-#: games/krowa.rb:133
+#: games/krowa.rb:134
 msgid "Daily Krowa"
 msgstr "Daily Krowa"
 
@@ -10484,7 +10508,7 @@ msgstr "Не удалось проверить на сервере доступ�
 msgid "Daily Krowa can draw a word between three and nine letters long. The word is determined using server time, so if you need a different one, you would have to hack into the server and change the date. You can open Daily Krowa only once. If you guess the word, give up or leave the game, it remains unavailable to your account until the next day."
 msgstr "В Daily Krowa выбирается слово длиной от трёх до девяти букв. Оно определяется по серверному времени, поэтому для замены слова пришлось бы взломать сервер и изменить дату. Daily Krowa можно открыть только один раз. Если вы угадаете слово, сдадитесь или выйдете из игры, она останется недоступной для вашего аккаунта до следующего дня."
 
-#: games/krowa.rb:94
+#: games/krowa.rb:95
 msgid "Daily Krowa cannot be observed or played at another person's table."
 msgstr "Daily Krowa нельзя наблюдать или играть за столом другого человека."
 
@@ -10504,7 +10528,7 @@ msgstr "Daily Krowa — закрытая игра: никто не может п
 msgid "Daily Krowa keeps one word assigned to each day, so dictionary updates no longer change that day's puzzle or its recorded solution. New words can be drawn from the next day. Old ranking entries without a confirmed solution no longer show a guessed word."
 msgstr "В Daily Krowa за каждым днём закреплено одно слово, поэтому обновления словаря больше не меняют ни загадку этого дня, ни записанное решение. Новые слова могут выпасть со следующего дня. Старые записи рейтинга без подтверждённого решения больше не показывают предположительное слово."
 
-#: games/krowa_support/leaderboards.rb:154 games/krowa_support/leaderboards.rb:32
+#: games/krowa_support/leaderboards.rb:169 games/krowa_support/leaderboards.rb:34
 msgid "Daily Krowa leaderboard"
 msgstr "Рейтинг Daily Krowa"
 
@@ -10512,15 +10536,15 @@ msgstr "Рейтинг Daily Krowa"
 msgid "Daily Krowa requires a private table. Create a new private table for this variant."
 msgstr "Для Daily Krowa требуется закрытый стол. Создайте новый закрытый стол для этого варианта."
 
-#: games/krowa_support/leaderboards.rb:103
+#: games/krowa_support/leaderboards.rb:115
 msgid "Daily Krowa result published."
 msgstr "Результат Daily Krowa опубликован."
 
-#: games/krowa_support/leaderboards.rb:199 games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:235
+#: games/krowa_support/leaderboards.rb:225 games/krowa_support/leaderboards.rb:227 games/krowa_support/leaderboards.rb:261
 msgid "Daily Krowa: %{date}"
 msgstr "Daily Krowa: %{date}"
 
-#: games/krowa_support/leaderboards.rb:199
+#: games/krowa_support/leaderboards.rb:225
 msgid "Daily Krowa: %{date}, %{word}"
 msgstr "Daily Krowa: %{date}, %{word}"
 
@@ -10555,7 +10579,7 @@ msgstr "Тёмные поля, простые шашки и дамки"
 msgid "Data stays on this computer. Test names do not authenticate network accounts. No invitations or matches are started."
 msgstr "Данные остаются на этом компьютере. Тестовые имена не подтверждают подлинность сетевых аккаунтов. Приглашения не отправляются, матчи не начинаются."
 
-#: games/krowa_support/leaderboards.rb:154 games/krowa_support/leaderboards.rb:264
+#: games/krowa_support/leaderboards.rb:169 games/krowa_support/leaderboards.rb:290
 msgid "Date"
 msgstr "Дата"
 
@@ -10986,6 +11010,10 @@ msgstr "Не отключать"
 msgid "Do not pay"
 msgstr "Не платить"
 
+#: games/krowa_support/client.rb:355
+msgid "Do not publish"
+msgstr "Не публиковать"
+
 #: games/monopoly/presentation.rb:179
 msgid "Do not request this rent"
 msgstr "Не запрашивать эту арендную плату"
@@ -11295,7 +11323,7 @@ msgstr "Вытягивание и пропуск"
 msgid "Drawing and responses to penalties"
 msgstr "Добор и ответы на штрафы"
 
-#: games/krowa.rb:520
+#: games/krowa.rb:521
 msgid "Drawing another word. Attempts start over."
 msgstr "Выбирается другое слово. Счётчик попыток сброшен."
 
@@ -11988,7 +12016,7 @@ msgstr "Введите имя виртуального игрока."
 msgid "Enter a whole number of points from 2 to 999."
 msgstr "Введите целое число очков от 2 до 999."
 
-#: games/krowa_support/leaderboards.rb:220
+#: games/krowa_support/leaderboards.rb:246
 msgid "Enter a word or word fragment."
 msgstr "Введите слово или фрагмент слова."
 
@@ -12875,7 +12903,7 @@ msgstr "Минимум очков для первого выкладывания
 msgid "First meld: %{points} points; %{missing} more required."
 msgstr "Первое выкладывание: %{points} очков; требуется ещё %{missing}."
 
-#: games/krowa_support/leaderboards.rb:74
+#: games/krowa_support/leaderboards.rb:76
 msgid "First result"
 msgstr "Первый результат"
 
@@ -13850,7 +13878,7 @@ msgstr "Угадайте польское существительное. Поп
 msgid "Guess aloud. The card is hidden."
 msgstr "Отгадывайте вслух. Карточка скрыта."
 
-#: games/krowa.rb:52
+#: games/krowa.rb:53
 msgid "Guess the hidden Polish noun using clues about how many letters are in the right places."
 msgstr "Угадай скрытое польское существительное по подсказкам о числе букв на правильных местах."
 
@@ -13878,7 +13906,7 @@ msgstr "Угадано"
 msgid "Guessed."
 msgstr "Угадал."
 
-#: games/krowa.rb:140
+#: games/krowa.rb:141
 msgid "Guessing time"
 msgstr "Время угадывания"
 
@@ -14363,7 +14391,7 @@ msgstr "Если допустимого хода нет, игра объявля
 msgid "If you have no legal move, your turn is passed automatically. The game ends when neither player can move."
 msgstr "Если допустимого хода нет, очередь пропускается автоматически. Игра заканчивается, когда ходов нет у обоих игроков."
 
-#: games/krowa.rb:126
+#: games/krowa.rb:127
 msgid "If you leave the table, today's Daily Krowa will remain unavailable even if you have not guessed the word or surrendered. Are you sure you want to leave?"
 msgstr "Если вы покинете стол, сегодняшняя Daily Krowa останется недоступной, даже если вы не угадали слово или не сдались. Вы уверены, что хотите уйти?"
 
@@ -15426,7 +15454,7 @@ msgstr "Конг"
 msgid "Kongs and replacement tiles"
 msgstr "Конги и замещающие кости"
 
-#: games/krowa.rb:49 games/krowa_support/presentation.rb:36
+#: games/krowa.rb:50 games/krowa_support/presentation.rb:36
 msgid "Krowa"
 msgstr "Крова"
 
@@ -15434,7 +15462,7 @@ msgstr "Крова"
 msgid "Krowa explanations from SJP now choose the appropriate base noun and meaning more accurately when looking up inflected words."
 msgstr "При поиске изменённых форм слов в Krowa толкования из SJP теперь точнее выбирают начальную форму существительного и его значение."
 
-#: games/krowa.rb:331 games/krowa_support/client.rb:152
+#: games/krowa.rb:332 games/krowa_support/client.rb:154
 msgid "Krowa gallery"
 msgstr "Галерея Krowa"
 
@@ -15446,11 +15474,11 @@ msgstr "В Krowa сокращены названия параметров и о�
 msgid "Krowa leaderboard search now also finds words from past Daily Krowa games and opens the ranking for the matching day. Today's answer remains hidden."
 msgstr "Поиск в таблицах лидеров Krowa теперь находит и слова из прошлых игр Daily Krowa, открывая рейтинг за соответствующий день. Сегодняшний ответ остаётся скрытым."
 
-#: games/krowa_support/leaderboards.rb:37
+#: games/krowa_support/leaderboards.rb:39
 msgid "Krowa leaderboards"
 msgstr "Таблицы лидеров Krowa"
 
-#: games/krowa_support/leaderboards.rb:25
+#: games/krowa_support/leaderboards.rb:27
 msgid "Krowa leaderboards are temporarily unavailable."
 msgstr "Таблицы лидеров Krowa временно недоступны."
 
@@ -15458,7 +15486,7 @@ msgstr "Таблицы лидеров Krowa временно недоступн�
 msgid "Krowa now clears the answer field after rejecting a word with the wrong length or one missing from the dictionary."
 msgstr "В Krowa поле ответа теперь очищается после отклонения слова неверной длины или отсутствующего в словаре."
 
-#: games/krowa.rb:68
+#: games/krowa.rb:69
 msgid "Krowa settings"
 msgstr "Настройки Krowa"
 
@@ -15474,7 +15502,7 @@ msgstr "Настройки Krowa доступны по Ctrl+P и в меню с�
 msgid "Krowa sound effects are enabled by default. Your saved personal settings are preserved."
 msgstr "Звуковые эффекты Krowa включены по умолчанию. Сохранённые личные настройки не меняются."
 
-#: games/krowa.rb:132
+#: games/krowa.rb:133
 msgid "Krowa variant"
 msgstr "Вариант Krowa"
 
@@ -15620,7 +15648,7 @@ msgstr "Последние полгода"
 msgid "Last tournament day"
 msgstr "Последний день турнира"
 
-#: games/krowa_support/leaderboards.rb:240
+#: games/krowa_support/leaderboards.rb:266
 msgid "Last update"
 msgstr "Последнее обновление"
 
@@ -15648,11 +15676,11 @@ msgstr "Слой %{layer}: %{tile}"
 msgid "Layout choice"
 msgstr "Выбор раскладки"
 
-#: games/krowa_support/leaderboards.rb:240
+#: games/krowa_support/leaderboards.rb:266
 msgid "Leaderboard"
 msgstr "Таблица лидеров"
 
-#: games/krowa_support/leaderboards.rb:76
+#: games/krowa_support/leaderboards.rb:78
 msgid "Leaderboard: %{word}"
 msgstr "Таблица лидеров: %{word}"
 
@@ -15935,11 +15963,11 @@ msgstr "Вокзал Ливерпуль-стрит"
 msgid "Ljubljana Railway Station"
 msgstr "Вокзал Любляны"
 
-#: games/krowa_support/leaderboards.rb:147
+#: games/krowa_support/leaderboards.rb:162
 msgid "Loading Daily Krowa dates"
 msgstr "Загрузка дат Daily Krowa"
 
-#: games/krowa_support/leaderboards.rb:162
+#: games/krowa_support/leaderboards.rb:177
 msgid "Loading Daily Krowa leaderboard"
 msgstr "Загрузка рейтинга Daily Krowa"
 
@@ -15955,13 +15983,17 @@ msgstr "Загрузка столов Game Room"
 msgid "Loading Power Games tables"
 msgstr "Загрузка столов Power Games"
 
-#: games/krowa_support/leaderboards.rb:249
+#: games/krowa_support/leaderboards.rb:275
 msgid "Loading Word Tower leaderboard"
 msgstr "Загрузка таблицы лидеров Word Tower"
 
-#: games/krowa_support/leaderboards.rb:271
+#: games/krowa_support/leaderboards.rb:297
 msgid "Loading Word Tower rounds"
 msgstr "Загрузка раундов «Башни слов»"
+
+#: games/krowa_support/leaderboards.rb:318
+msgid "Loading attempt list"
+msgstr "Загрузка списка попыток"
 
 #: __app.rb:1631
 msgid "Loading available tables"
@@ -16038,7 +16070,7 @@ msgstr "Загрузка черновиков турниров"
 msgid "Loading users"
 msgstr "Загрузка пользователей"
 
-#: games/krowa_support/leaderboards.rb:60
+#: games/krowa_support/leaderboards.rb:62
 msgid "Loading word leaderboard"
 msgstr "Загрузка таблицы лидеров слов"
 
@@ -17070,7 +17102,7 @@ msgstr "Составы многопользовательских матчей"
 msgid "Multiple discard shows the pile with the newest card first. Choosing a card also takes every newer card above it: the third item takes the third, second and first cards. You may retain discarded cards in your hand; drawing one does not require immediate use. When the stock runs out, older discards can be shuffled into it while the top discard remains on the table."
 msgstr "В режиме взятия нескольких карт сброс показывается начиная с самой новой карты. Выбрав карту, вы забираете также все карты над ней: при выборе третьей получите третью, вторую и первую. Эти карты можно оставить на руках, сразу использовать их необязательно. Когда колода заканчивается, более старые карты сброса перетасовываются в новую колоду, а верхняя остаётся на столе."
 
-#: games/krowa_support/client.rb:185
+#: games/krowa_support/client.rb:191
 msgid "Music"
 msgstr "Музыка"
 
@@ -17085,7 +17117,7 @@ msgstr "Музыка и звуковые эффекты по умолчанию 
 msgid "Music group"
 msgstr "Музыкальная группа"
 
-#: games/krowa_support/client.rb:186
+#: games/krowa_support/client.rb:192
 msgid "Music volume"
 msgstr "Громкость музыки"
 
@@ -17105,11 +17137,11 @@ msgstr "Выключить микрофон"
 msgid "Mute or unmute the conference microphone"
 msgstr "Выключить или включить микрофон конференции"
 
-#: games/krowa_support/client.rb:189
+#: games/krowa_support/client.rb:195
 msgid "My dictionary"
 msgstr "Мой словарь"
 
-#: games/krowa_support/client.rb:216
+#: games/krowa_support/client.rb:222
 msgid "My dictionary - select words to remove with Space"
 msgstr "Мой словарь — выберите слова для удаления с помощью пробела"
 
@@ -17264,7 +17296,7 @@ msgstr "Уведомления о новых столах теперь испо�
 msgid "New-table subscriptions are unavailable without access to server settings. Other settings can still be changed."
 msgstr "Подписки на новые столы недоступны без доступа к настройкам сервера. Остальные настройки по-прежнему можно изменять."
 
-#: games/krowa_support/client.rb:170
+#: games/krowa_support/client.rb:172
 msgid "Newest"
 msgstr "Сначала новые"
 
@@ -17492,7 +17524,7 @@ msgstr "Нет правильного ответа"
 msgid "No current tournaments."
 msgstr "Нет текущих турниров."
 
-#: games/krowa_support/leaderboards.rb:155
+#: games/krowa_support/leaderboards.rb:170
 msgid "No daily results"
 msgstr "Нет ежедневных результатов"
 
@@ -17500,11 +17532,11 @@ msgstr "Нет ежедневных результатов"
 msgid "No deal has been played yet."
 msgstr "Ни одной сдачи ещё не сыграно."
 
-#: games/krowa_support/client.rb:251
+#: games/krowa_support/client.rb:257
 msgid "No definition in SJP."
 msgstr "Определение отсутствует в SJP."
 
-#: games/krowa_support/client.rb:256
+#: games/krowa_support/client.rb:262
 msgid "No definition was retrieved."
 msgstr "Определение не получено."
 
@@ -17552,7 +17584,7 @@ msgstr "Партии ещё не сыграны"
 msgid "No green light"
 msgstr "Нет зелёного света"
 
-#: games/krowa_support/client.rb:152
+#: games/krowa_support/client.rb:154
 msgid "No guessed words"
 msgstr "Нет угаданных слов"
 
@@ -17621,7 +17653,7 @@ msgstr "Подходящих фигур не найдено."
 msgid "No matching property."
 msgstr "Нет подходящего участка."
 
-#: games/krowa_support/leaderboards.rb:241
+#: games/krowa_support/leaderboards.rb:267
 msgid "No matching words"
 msgstr "Нет совпадающих слов"
 
@@ -17703,7 +17735,7 @@ msgstr "Не заданы интервалы для игры."
 msgid "No points"
 msgstr "Нет очков"
 
-#: games/krowa_support/leaderboards.rb:187 games/krowa_support/leaderboards.rb:77
+#: games/krowa_support/leaderboards.rb:202 games/krowa_support/leaderboards.rb:79
 msgid "No published results"
 msgstr "Нет опубликованных результатов"
 
@@ -17714,6 +17746,10 @@ msgstr "Сейчас нет вопроса, об ошибке в котором 
 #: lib/quiz_contributions/views.rb:45
 msgid "No questions."
 msgstr "Вопросов пока нет."
+
+#: games/krowa_support/attempt_list_view.rb:13 games/krowa_support/attempt_list_view.rb:33
+msgid "No recorded attempts"
+msgstr "Попытки не записаны"
 
 #: games/monopoly/presentation.rb:350
 msgid "No rent: %{owner} is in jail."
@@ -17727,7 +17763,7 @@ msgstr "Арендная плата не взимается: у этой нед�
 msgid "No rent: this property is mortgaged."
 msgstr "Арендная плата не взимается: эта недвижимость заложена."
 
-#: games/krowa_support/leaderboards.rb:265
+#: games/krowa_support/leaderboards.rb:291
 msgid "No results"
 msgstr "Ничего не найдено"
 
@@ -17735,7 +17771,7 @@ msgstr "Ничего не найдено"
 msgid "No round was completed. The remaining participants share first place."
 msgstr "Ни один раунд не завершён. Остальные участники делят первое место."
 
-#: games/krowa_support/leaderboards.rb:285
+#: games/krowa_support/leaderboards.rb:311
 msgid "No saved rounds"
 msgstr "Нет сохранённых раундов"
 
@@ -17971,7 +18007,7 @@ msgstr "Число от 1 до 100."
 msgid "Number from 1 to 999."
 msgstr "Число от 1 до 999."
 
-#: games/krowa.rb:140 games/krowa_support/client.rb:170
+#: games/krowa.rb:141 games/krowa_support/client.rb:172
 msgid "Number of attempts"
 msgstr "Количество попыток"
 
@@ -17983,7 +18019,7 @@ msgstr "Число сдач"
 msgid "Number of groups"
 msgstr "Число групп"
 
-#: games/krowa.rb:136 games/krowa_support/client.rb:170
+#: games/krowa.rb:137 games/krowa_support/client.rb:172
 msgid "Number of letters"
 msgstr "Количество букв"
 
@@ -18265,7 +18301,7 @@ msgstr "Здесь планируются только групповые мат
 msgid "Only the application owner can review submissions."
 msgstr "Рассматривать предложения может только владелец приложения."
 
-#: games/krowa.rb:314
+#: games/krowa.rb:315
 msgid "Only the host can do this."
 msgstr "Только ведущий может это сделать."
 
@@ -18297,7 +18333,7 @@ msgstr "Учитываются только взятки сверх первых
 msgid "Only the tricks promised beyond the first six earn contract points. If you make your contract, they are worth:"
 msgstr "Выполненный контракт приносит очки за обещанные взятки сверх первых шести:"
 
-#: __app.rb:1382 __app.rb:1649 games/krowa_support/leaderboards.rb:292 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:111 lib/game_room_screens.rb:685 lib/game_statistics_screen.rb:17 lib/quiz_contributions/views.rb:142 lib/sports_rankings/screen.rb:57
+#: __app.rb:1382 __app.rb:1649 games/krowa_support/leaderboards.rb:325 games/krowa_support/leaderboards.rb:40 lib/game_room_screens.rb:111 lib/game_room_screens.rb:685 lib/game_statistics_screen.rb:17 lib/quiz_contributions/views.rb:142 lib/sports_rankings/screen.rb:57
 msgid "Open"
 msgstr "Открыть"
 
@@ -18709,7 +18745,7 @@ msgstr "Исключение участника подтверждено."
 msgid "Participant removal not confirmed. Check Operations before trying again."
 msgstr "Исключение участника не подтверждено. Перед новой попыткой откройте Операции."
 
-#: games/krowa_support/leaderboards.rb:264 lib/tournaments/participant_manager.rb:19 lib/tournaments/public_preview.rb:355 lib/tournaments/public_text.rb:67
+#: games/krowa_support/leaderboards.rb:290 lib/tournaments/participant_manager.rb:19 lib/tournaments/public_preview.rb:355 lib/tournaments/public_text.rb:67
 msgid "Participants"
 msgstr "Участники"
 
@@ -18920,7 +18956,7 @@ msgstr "Пигменты"
 msgid "Pile: %{total}."
 msgstr "Сумма стопки: %{total}."
 
-#: games/krowa_support/leaderboards.rb:186 games/krowa_support/leaderboards.rb:264 games/krowa_support/leaderboards.rb:74 lib/tournaments/server_forfeit_screen.rb:81
+#: games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:290 games/krowa_support/leaderboards.rb:76 lib/tournaments/server_forfeit_screen.rb:81
 msgid "Place"
 msgstr "Место"
 
@@ -19963,7 +19999,7 @@ msgstr "Публикации и регистрации используют от
 msgid "Publications, registrations and candidate match plans use the separate server test application. Invitations and results are not shared yet. No virtual players are available here."
 msgstr "Публикации, регистрации и предварительные планы матчей используют отдельное тестовое приложение сервера. Приглашения и результаты пока не общие. Виртуальных игроков здесь нет."
 
-#: lib/tournaments/local_test_dialogs.rb:181
+#: games/krowa_support/client.rb:355 lib/tournaments/local_test_dialogs.rb:181
 msgid "Publish"
 msgstr "Опубликовать"
 
@@ -19983,11 +20019,11 @@ msgstr "Опубликовать в локальном тесте"
 msgid "Publish in server test"
 msgstr "Опубликовать в серверном тесте"
 
-#: games/krowa_support/client.rb:321
+#: games/krowa_support/client.rb:330
 msgid "Publish the Word Tower result: %{rounds} completed rounds?"
 msgstr "Опубликовать результат Word Tower: %{rounds} сыгранных раундов?"
 
-#: games/krowa_support/client.rb:309
+#: games/krowa_support/client.rb:313
 msgid "Publish the result for %{word}: %{attempts} attempts?"
 msgstr "Опубликовать результат для %{word}: %{attempts} попыток?"
 
@@ -19995,7 +20031,11 @@ msgstr "Опубликовать результат для %{word}: %{attempts} 
 msgid "Publish tournament"
 msgstr "Опубликовать турнир"
 
-#: games/krowa_support/client.rb:306
+#: games/krowa_support/client.rb:355
+msgid "Publish without attempt list"
+msgstr "Опубликовать без списка попыток"
+
+#: games/krowa_support/client.rb:312
 msgid "Publish your Daily Krowa result: %{attempts} attempts?"
 msgstr "Опубликовать ваш результат Daily Krowa: %{attempts} попыток?"
 
@@ -20007,11 +20047,11 @@ msgstr "Опубликовано"
 msgid "Published build number (only for a published proposal)"
 msgstr "Номер сборки (только для опубликованного предложения)"
 
-#: games/krowa_support/leaderboards.rb:100
+#: games/krowa_support/leaderboards.rb:109
 msgid "Publishing Daily Krowa result"
 msgstr "Публикация результата Daily Krowa"
 
-#: games/krowa_support/leaderboards.rb:117
+#: games/krowa_support/leaderboards.rb:129
 msgid "Publishing Word Tower result"
 msgstr "Публикация результата Word Tower"
 
@@ -20023,7 +20063,7 @@ msgstr "Публикация локального тестового турни�
 msgid "Publishing also enrolls you as a participant. You can withdraw before the tournament starts."
 msgstr "После публикации турнира вы тоже станете участником. До начала можно отказаться от участия."
 
-#: games/krowa_support/leaderboards.rb:83
+#: games/krowa_support/leaderboards.rb:89
 msgid "Publishing result"
 msgstr "Публикация результата"
 
@@ -20289,7 +20329,7 @@ msgstr "README"
 msgid "README now includes a detailed tournament guide in all interface languages, covering controls, formats, scoring, partners and organizer options. Thank you to guliwer for the idea and implementation of tournaments!"
 msgstr "В README появилось подробное руководство по турнирам на всех языках интерфейса: управление, сочетания клавиш, форматы, подсчёт очков, выбор партнёра и возможности организатора. Спасибо guliwer за идею и реализацию турниров!"
 
-#: games/krowa.rb:134
+#: games/krowa.rb:135
 msgid "Race"
 msgstr "Гонка"
 
@@ -20348,11 +20388,11 @@ msgstr "Повысить на:"
 msgid "Raise; total payment %{amount}"
 msgstr "Повысить; полный платёж %{amount}"
 
-#: games/krowa.rb:137
+#: games/krowa.rb:138
 msgid "Random"
 msgstr "Случайный"
 
-#: games/krowa.rb:133
+#: games/krowa.rb:134
 msgid "Random word"
 msgstr "Случайное слово"
 
@@ -20515,7 +20555,7 @@ msgstr "Ты получаешь 7 перьев и оставляешь карт�
 msgid "Receiving new-table notifications no longer waits for disk writes, removing one source of temporary interface stalls. The occasional record of a handled table is saved in the background."
 msgstr "Получение уведомлений о новых столах больше не ожидает записи на диск, что устраняет одну из причин временного подвисания интерфейса. Служебная отметка об обработанном столе сохраняется в фоне."
 
-#: games/krowa_support/client.rb:118
+#: games/krowa_support/client.rb:120
 msgid "Receiving the private solution"
 msgstr "Получение скрытого загаданного слова"
 
@@ -20757,7 +20797,7 @@ msgstr "Исключить участника %{player}?"
 msgid "Remove question"
 msgstr "Удалить вопрос"
 
-#: games/krowa_support/client.rb:218
+#: games/krowa_support/client.rb:224
 msgid "Remove selected"
 msgstr "Удалить выбранное"
 
@@ -20765,7 +20805,7 @@ msgstr "Удалить выбранное"
 msgid "Remove selected participant"
 msgstr "Исключить выбранного участника"
 
-#: games/krowa_support/client.rb:233
+#: games/krowa_support/client.rb:239
 msgid "Remove the selected words from your dictionary?"
 msgstr "Удалить выбранные слова из вашего словаря?"
 
@@ -20813,7 +20853,7 @@ msgstr "Убрана лишняя трёхсекундная задержка в
 msgid "Removed the rustling sound at the start of Audio Ball's standard high-ball sound. The Audiodisc sound pack is unchanged."
 msgstr "Убран начальный шорох из стандартного звука высокого мяча в Audio Ball. Набор звуков Audiodisc не изменён."
 
-#: games/krowa_support/client.rb:236
+#: games/krowa_support/client.rb:242
 msgid "Removed words: %{words}."
 msgstr "Удалённые слова: %{words}."
 
@@ -20994,7 +21034,7 @@ msgstr "Возвращена предыдущая пара костей."
 msgid "Restrict rolls that allow leaving the base"
 msgstr "Ограничить результаты, позволяющие выйти с базы"
 
-#: games/krowa_support/leaderboards.rb:282
+#: games/krowa_support/leaderboards.rb:308
 msgid "Result"
 msgstr "Результат"
 
@@ -21006,7 +21046,7 @@ msgstr "Результат уже записан. Перезаписать ег�
 msgid "Result details"
 msgstr "Подробности результата"
 
-#: games/krowa_support/leaderboards.rb:86
+#: games/krowa_support/leaderboards.rb:95
 msgid "Result published."
 msgstr "Результат опубликован."
 
@@ -21014,7 +21054,7 @@ msgstr "Результат опубликован."
 msgid "Result saved"
 msgstr "Результат сохранён"
 
-#: games/krowa_support/leaderboards.rb:240 games/krowa_support/presentation.rb:41
+#: games/krowa_support/leaderboards.rb:266 games/krowa_support/presentation.rb:41
 msgid "Results"
 msgstr "Результаты"
 
@@ -21448,7 +21488,7 @@ msgstr "По умолчанию судья меняется: участники 
 msgid "Rotating judge is the default: the role moves around the seating order, so everyone sometimes judges instead of scoring. Table master judges every round makes the creator the permanent judge and removes that person from the scoring competition. With two participants, that setting leaves one answering player and one permanent judge."
 msgstr "По умолчанию судья сменяется по порядку мест за столом, поэтому каждый участник иногда судит вместо того, чтобы набирать очки. Если ведущий стола судит каждый раунд, создатель стола становится постоянным судьёй и не участвует в борьбе за очки. При двух участниках один отвечает, а другой постоянно судит."
 
-#: games/krowa_support/leaderboards.rb:282
+#: games/krowa_support/leaderboards.rb:308
 msgid "Round"
 msgstr "Раунд"
 
@@ -21487,7 +21527,7 @@ msgstr "Раунд %{round}, сдавал %{dealer}. Сумма стопки р�
 msgid "Round %{round} was dealt. %{dealer} is the dealer."
 msgstr "Карты на раунд %{round} сданы. Сдающий: %{dealer}."
 
-#: games/krowa.rb:466
+#: games/krowa.rb:467
 msgid "Round %{round}. %{length} letters."
 msgstr "Раунд %{round}. %{length} букв."
 
@@ -21576,7 +21616,7 @@ msgstr "По умолчанию включён подсчёт значениям
 msgid "Rounding to five-point units is on by default: ranks two through nine are worth 5, ten and faces 10, a low ace 5, a high or set ace 15. With rounding off they are face value, faces 10, low ace 1 and high or set ace 11. An ace left in hand is always worth the high value. A hand joker is worth 20; a melded joker takes the represented value. An identity meld adds 10 per card."
 msgstr "По умолчанию очки округляются до пятёрок: карты от двойки до девятки стоят 5, десятка и картинки — 10, младший туз — 5, старший или туз в группе — 15. Без округления цифровые карты стоят по номиналу, картинки и десятка — 10, младший туз — 1, старший или туз в группе — 11. Туз, оставшийся в руке, всегда считается старшим. Джокер в руке стоит 20; в комбинации он принимает значение заменяемой карты. Группа карт одного достоинства даёт ещё по 10 очков за каждую карту."
 
-#: games/krowa_support/leaderboards.rb:264
+#: games/krowa_support/leaderboards.rb:290
 msgid "Rounds"
 msgstr "Раунды"
 
@@ -21777,7 +21817,7 @@ msgstr "Бутерброд"
 msgid "Sarajevo Railway Station"
 msgstr "Вокзал Сараево"
 
-#: games/krowa_support/client.rb:190 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_room_screens.rb:360 lib/quiz_contributions/controller.rb:185 lib/quiz_contributions/views.rb:163
+#: games/krowa_support/client.rb:196 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_room_screens.rb:360 lib/quiz_contributions/controller.rb:185 lib/quiz_contributions/views.rb:163
 msgid "Save"
 msgstr "Сохранить"
 
@@ -21882,7 +21922,7 @@ msgstr "Сохранённый матч %{match}, встреча %{leg}; рез�
 msgid "Saved match %{match}, leg %{leg}; winner: %{winner}"
 msgstr "Сохранённый матч %{match}, встреча %{leg}; победитель: %{winner}"
 
-#: games/krowa_support/client.rb:281
+#: games/krowa_support/client.rb:287
 msgid "Saving Daily Krowa"
 msgstr "Сохранение Daily Krowa"
 
@@ -21910,7 +21950,7 @@ msgstr "Сохранение решения редактора"
 msgid "Saving game"
 msgstr "Сохранение партии"
 
-#: games/krowa.rb:151
+#: games/krowa.rb:152
 msgid "Saving is available only in Race and Word Tower."
 msgstr "Сохранение доступно только в Рейсе и Башне Слов."
 
@@ -22062,7 +22102,7 @@ msgstr "Зачётные комбинации последнего броска:
 msgid "Scoring combinations in this implementation"
 msgstr "Зачётные комбинации в этой реализации"
 
-#: games/krowa.rb:139
+#: games/krowa.rb:140
 msgid "Scoring criterion"
 msgstr "Критерий подсчёта очков"
 
@@ -22092,19 +22132,19 @@ msgstr "Для скрэббла нужны от двух до четырёх и�
 msgid "Scriptorium: %{values}."
 msgstr "Скрипториум: %{values}."
 
-#: games/krowa_support/leaderboards.rb:208
+#: games/krowa_support/leaderboards.rb:234
 msgid "Search"
 msgstr "Поиск"
 
-#: games/krowa_support/leaderboards.rb:31
+#: games/krowa_support/leaderboards.rb:33
 msgid "Search for a word"
 msgstr "Найти слово"
 
-#: games/krowa_support/leaderboards.rb:230
+#: games/krowa_support/leaderboards.rb:256
 msgid "Search results: %{query}"
 msgstr "Результаты поиска: %{query}"
 
-#: games/krowa_support/leaderboards.rb:223
+#: games/krowa_support/leaderboards.rb:249
 msgid "Searching words"
 msgstr "Поиск слов"
 
@@ -22168,7 +22208,7 @@ msgstr "Выберите хотя бы один кубик для перебро
 msgid "Select at least one person."
 msgstr "Отметьте хотя бы одного человека."
 
-#: games/krowa_support/client.rb:230
+#: games/krowa_support/client.rb:236
 msgid "Select at least one word."
 msgstr "Выберите хотя бы одно слово."
 
@@ -23072,11 +23112,11 @@ msgstr "Пасьянс: отмена ходов, счёт и завершени�
 msgid "Solo"
 msgstr "Соло"
 
-#: games/krowa_support/client.rb:257
+#: games/krowa_support/client.rb:263
 msgid "Solution"
 msgstr "Решение"
 
-#: games/krowa.rb:532 games/krowa_support/client.rb:125
+#: games/krowa.rb:533 games/krowa_support/client.rb:127
 msgid "Solution: %{word}."
 msgstr "Решение: %{word}."
 
@@ -23116,11 +23156,11 @@ msgstr "Снотворная таблетка"
 msgid "Sound %{position}"
 msgstr "Звук %{position}"
 
-#: games/krowa_support/client.rb:187
+#: games/krowa_support/client.rb:193
 msgid "Sound effects"
 msgstr "Звуковые эффекты"
 
-#: games/krowa_support/client.rb:188
+#: games/krowa_support/client.rb:194
 msgid "Sound effects volume"
 msgstr "Громкость звуковых эффектов"
 
@@ -24365,7 +24405,7 @@ msgstr "Во вложении находятся вопросы в формат�
 msgid "The attachment exceeds 4 MB. Split the proposal into smaller drafts."
 msgstr "Вложение превышает 4 МБ. Разделите предложение на несколько черновиков."
 
-#: games/krowa.rb:312
+#: games/krowa.rb:313
 msgid "The attempt is waiting to be checked."
 msgstr "Попытка ожидает проверки."
 
@@ -24581,7 +24621,7 @@ msgstr "Создатель может начать одну локальную �
 msgid "The creator can start one local game after every participant confirms entry."
 msgstr "Создатель может начать одну локальную партию после подтверждения входа каждым участником."
 
-#: games/battleship.rb:43 games/categories.rb:88 games/krowa.rb:47 games/quiz_party.rb:58 games/scientific_war.rb:78
+#: games/battleship.rb:43 games/categories.rb:88 games/krowa.rb:48 games/quiz_party.rb:58 games/scientific_war.rb:78
 msgid "The current game contains private data that cannot be transferred at this stage."
 msgstr "Текущая партия содержит скрытые данные, которые нельзя передать на этом этапе."
 
@@ -24943,7 +24983,7 @@ msgstr "Чем больше ваш отрыв от последней утки, 
 msgid "The further ahead you are of the last duck, the longer you freeze. The distance includes complete laps and is checked when you freeze:"
 msgstr "Чем больше ваш отрыв от последней утки, тем дольше заморозка. Расстояние включает полные круги и проверяется в момент замораживания:"
 
-#: games/krowa_support/client.rb:145
+#: games/krowa_support/client.rb:147
 msgid "The gallery is available before the game starts and after it ends."
 msgstr "Галерея доступна до начала игры и после её окончания."
 
@@ -25103,7 +25143,7 @@ msgstr "Побеждает наибольшая сумма до 21 включи�
 msgid "The host can save Race or Word Tower after the current word is ready and all submitted attempts have been checked. The local save includes the private solution and can be resumed with the same players in a new table. The table closes only after the save is verified. Daily Krowa and Random word cannot be saved for later."
 msgstr "Ведущий может сохранить гонку или Word Tower, когда текущее слово готово и все отправленные попытки проверены. Локальное сохранение включает секретное слово, и игру можно продолжить с теми же игроками за новым столом. Стол закрывается только после подтверждения сохранения. Daily Krowa и вариант «Случайное слово» нельзя сохранить для продолжения позже."
 
-#: games/krowa.rb:520
+#: games/krowa.rb:521
 msgid "The host changes the word. Race attempts and time start over."
 msgstr "Ведущий меняет слово. Попытки и время в «Гонке» отсчитываются заново."
 
@@ -25760,7 +25800,7 @@ msgstr "Сохранение больше недоступно."
 msgid "The saved game storage is damaged or incompatible."
 msgstr "Хранилище сохранённых партий повреждено или несовместимо."
 
-#: games/krowa.rb:315
+#: games/krowa.rb:316
 msgid "The saved secret is unavailable. The game cannot check attempts until it is restored."
 msgstr "Сохранённое загаданное слово недоступно. Игра не сможет проверять попытки, пока оно не будет восстановлено."
 
@@ -25817,7 +25857,7 @@ msgstr "Ветер места зависит от текущего сдающе�
 msgid "The second player's pieces are at the bottom."
 msgstr "Фигуры второго игрока внизу."
 
-#: games/krowa.rb:316
+#: games/krowa.rb:317
 msgid "The secret could not be saved locally. The word has not been started; please try again."
 msgstr "Не удалось сохранить загаданное слово локально. Раунд не начат; повторите попытку."
 
@@ -25899,7 +25939,7 @@ msgstr "Не удалось удалить отправленное сообще
 msgid "The separate server test shares tournaments and supports automatic results for matches between two individual players at ordinary public tables. Automatic invitations are not available yet."
 msgstr "Отдельный серверный тест публикует турниры и поддерживает автоматические результаты матчей двух отдельных игроков за обычными публичными столами. Автоматические приглашения пока недоступны."
 
-#: games/krowa_support/leaderboards.rb:107 games/krowa_support/leaderboards.rb:90
+#: games/krowa_support/leaderboards.rb:119 games/krowa_support/leaderboards.rb:99
 msgid "The server already has the same or a better result."
 msgstr "Сервер уже показывает тот же результат или даже лучше."
 
@@ -26095,7 +26135,7 @@ msgstr "Список участников стола сейчас недосту
 msgid "The table settings let you combine these variants:"
 msgstr ""
 
-#: games/krowa.rb:127
+#: games/krowa.rb:128
 msgid "The table will be closed."
 msgstr "Стол будет закрыт."
 
@@ -26694,7 +26734,7 @@ msgstr "Для этого варианта маджонга требуется %
 msgid "This Tysiac variant requires exactly %{count} players."
 msgstr "Этот вариант Tysiac требует ровно %{count} игроков."
 
-#: games/krowa_support/leaderboards.rb:126
+#: games/krowa_support/leaderboards.rb:141
 msgid "This Word Tower result has already been published."
 msgstr "Этот результат Word Tower уже опубликован."
 
@@ -26974,7 +27014,7 @@ msgstr "Этот ход недопустим в текущей позиции."
 msgid "This move would leave your king in check."
 msgstr "Этот ход оставит вашего короля под шахом."
 
-#: games/krowa.rb:311
+#: games/krowa.rb:312
 msgid "This noun is not in the dictionary."
 msgstr "Этого существительного нет в словаре."
 
@@ -27165,11 +27205,11 @@ msgstr "Это значение недопустимо."
 msgid "This variant deals five private cards and has no community cards. The first betting round is followed by one exchange phase, a second betting round and showdown. Keep all five or exchange up to three selected cards. Allow exchanging all five cards is off by default; enabling it raises the exchange limit to five, not the number of exchange phases. Folded players do not exchange; all-in players still do."
 msgstr "В этом варианте пять личных карт и нет общих. За первым кругом торговли следуют один обмен, второй круг и вскрытие. Можно оставить все пять или обменять до трёх выбранных. Обмен всех пяти отключён по умолчанию; включение повышает предел карт до пяти, но не число обменов. Спасовавшие не меняют карты, пошедшие ва-банк — меняют."
 
-#: games/krowa.rb:186
+#: games/krowa.rb:187
 msgid "This variant is for exactly one player. Other people may only observe Random word."
 msgstr "Этот вариант предназначен ровно для одного игрока. Другие могут только наблюдать за случайным словом."
 
-#: games/krowa.rb:191
+#: games/krowa.rb:192
 msgid "This variant requires %{minimum} to %{maximum} players."
 msgstr "Для этого варианта требуется от %{minimum} до %{maximum} игроков."
 
@@ -27190,7 +27230,7 @@ msgstr "В этой версии классические шахматы без 
 msgid "This version uses the classic 8 by 8 rules without additional variants."
 msgstr "В этой версии классические правила 8 на 8 без дополнительных вариантов."
 
-#: games/krowa.rb:312
+#: games/krowa.rb:313
 msgid "This word has already been tried."
 msgstr "Это слово уже было опробовано."
 
@@ -27425,6 +27465,10 @@ msgstr "Общественный туалет"
 #: lib/game_statistics_periods.rb:33
 msgid "Today"
 msgstr "Сегодня"
+
+#: games/krowa_support/attempt_list_view.rb:31
+msgid "Today's Daily Krowa attempts are hidden until the next day."
+msgstr "Попытки сегодняшней ежедневной Krowa будут доступны на следующий день."
 
 #: games/krowa_support/daily_access.rb:131
 msgid "Today's Daily Krowa is no longer available. Come back tomorrow for a new word."
@@ -28497,7 +28541,7 @@ msgstr "Использовать два джокера"
 msgid "Use two jokers adds two cards that can represent an ordinary or special card. You choose what the joker represents when playing it. It only defends a penalty if the represented card would be a legal defence. Representing an ace, jack or king uses its special effect only when that effect is enabled at the table."
 msgstr "Параметр добавляет два джокера, каждый из которых может обозначать обычную или особую карту. При розыгрыше вы выбираете, какую карту представляет джокер. Он защищает от штрафа, только если выбранная карта сама была бы допустимой защитой. Особое действие туза, валета или короля применяется лишь тогда, когда оно включено в правилах стола."
 
-#: games/krowa_support/leaderboards.rb:186 games/krowa_support/leaderboards.rb:74
+#: games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:76
 msgid "User"
 msgstr "Пользователь"
 
@@ -28730,7 +28774,7 @@ msgstr "W: выберите первую полосу или сделайте п
 msgid "WARNING: local trial only, not a server seal. Acceptance saves an immutable full local plan. It does not assign game roles, teams, starting seats or scoring and cannot start a match."
 msgstr "ВНИМАНИЕ: только локальный тест, а не подтверждение сервера. Принятие сохраняет полный неизменяемый локальный план. Оно не назначает игровые роли, команды, начальные места или подсчёт и не может начать матч."
 
-#: games/krowa.rb:313
+#: games/krowa.rb:314
 msgid "Wait for the round to start."
 msgstr "Дождитесь начала раунда."
 
@@ -28742,7 +28786,7 @@ msgstr "Дождитесь окончания аукциона перед сох
 msgid "Wait until the current game has finished before changing its controller."
 msgstr "Подождите, пока текущая игра закончится, прежде чем менять контроллер."
 
-#: games/krowa.rb:152
+#: games/krowa.rb:153
 msgid "Wait until the current word and all attempts have been checked before saving."
 msgstr "Перед сохранением дождитесь готовности текущего слова и проверки всех отправленных попыток."
 
@@ -28919,7 +28963,7 @@ msgstr "Ожидание завершения ввода ответов игро
 msgid "Waiting for the point to be saved."
 msgstr "Ожидание сохранения очка."
 
-#: games/krowa_support/client.rb:89
+#: games/krowa_support/client.rb:91
 msgid "Waiting for the private solution."
 msgstr "Ожидание скрытого загаданного слова."
 
@@ -29528,11 +29572,11 @@ msgstr "Без варианта «всё или ничего»"
 msgid "Wooden zone"
 msgstr "Лесной участок"
 
-#: games/krowa_support/leaderboards.rb:154 games/krowa_support/leaderboards.rb:240 games/krowa_support/leaderboards.rb:282
+#: games/krowa_support/leaderboards.rb:169 games/krowa_support/leaderboards.rb:266 games/krowa_support/leaderboards.rb:308
 msgid "Word"
 msgstr "Слово"
 
-#: games/krowa.rb:134
+#: games/krowa.rb:135
 msgid "Word Tower"
 msgstr "Башня слов"
 
@@ -29544,15 +29588,15 @@ msgstr "Башня слов завершена. Завершено раундо�
 msgid "Word Tower ends when the limit is exhausted or the host surrenders. Its score is the number of completed rounds; the round list contains words and attempt counts."
 msgstr "«Башня слов» заканчивается, когда попытки исчерпаны или ведущий сдаётся. Результат равен числу завершённых раундов; в списке раундов указаны слова и количество попыток."
 
-#: games/krowa_support/leaderboards.rb:265 games/krowa_support/leaderboards.rb:33
+#: games/krowa_support/leaderboards.rb:291 games/krowa_support/leaderboards.rb:35
 msgid "Word Tower leaderboard"
 msgstr "Таблица лидеров Башни слов"
 
-#: games/krowa_support/leaderboards.rb:122
+#: games/krowa_support/leaderboards.rb:137
 msgid "Word Tower result published."
 msgstr "Результат Башни слов опубликован."
 
-#: games/krowa_support/leaderboards.rb:284
+#: games/krowa_support/leaderboards.rb:310
 msgid "Word Tower: %{participants}"
 msgstr "Башня слов: %{participants}"
 
@@ -29564,11 +29608,11 @@ msgstr "Слово принято."
 msgid "Word board"
 msgstr "Поле для слов"
 
-#: games/krowa_support/client.rb:249 games/krowa_support/presentation.rb:56 games/krowa_support/presentation.rb:58
+#: games/krowa_support/client.rb:255 games/krowa_support/presentation.rb:56 games/krowa_support/presentation.rb:58
 msgid "Word definition"
 msgstr "Определение слова"
 
-#: games/krowa_support/leaderboards.rb:235
+#: games/krowa_support/leaderboards.rb:261
 msgid "Word leaderboard"
 msgstr "Таблица лидеров по слову"
 
@@ -29576,7 +29620,7 @@ msgstr "Таблица лидеров по слову"
 msgid "Word not accepted."
 msgstr "Слово не принято."
 
-#: games/krowa_support/leaderboards.rb:207
+#: games/krowa_support/leaderboards.rb:233
 msgid "Word or word fragment"
 msgstr "Слово или фрагмент слова"
 
@@ -29628,7 +29672,7 @@ msgstr "Неправильный ответ 2"
 msgid "Wrong answer 3"
 msgstr "Неправильный ответ 3"
 
-#: games/krowa.rb:311
+#: games/krowa.rb:312
 msgid "Wrong number of letters."
 msgstr "Неверное количество букв."
 
@@ -30488,7 +30532,7 @@ msgstr "Текущее расстояние учитывается в счёте
 msgid "Your current race die is used, including any card that changed its range. This roll does not use up that card's effect."
 msgstr "Используется текущий кубик гонки, включая карту, изменившую диапазон. Этот бросок не расходует действие карты."
 
-#: games/krowa_support/client.rb:211
+#: games/krowa_support/client.rb:217
 msgid "Your dictionary is empty."
 msgstr "Ваш словарь пуст."
 
@@ -31136,11 +31180,11 @@ msgstr "отметить нарушение на этой карточке"
 msgid "buzzer"
 msgstr "кнопка"
 
-#: games/krowa.rb:197
+#: games/krowa.rb:198
 msgid "by number of attempts"
 msgstr "по количеству попыток"
 
-#: games/krowa.rb:197
+#: games/krowa.rb:198
 msgid "by time"
 msgstr "по времени"
 
@@ -31556,7 +31600,7 @@ msgstr "зелёный"
 msgid "green group"
 msgstr "зелёная группа"
 
-#: games/krowa_support/leaderboards.rb:278 games/krowa_support/presentation.rb:111
+#: games/krowa_support/leaderboards.rb:304 games/krowa_support/presentation.rb:111
 msgid "guessed"
 msgstr "угадал"
 
@@ -31831,7 +31875,7 @@ msgstr "заявки ещё нет"
 msgid "not filled"
 msgstr "не заполнено"
 
-#: games/krowa_support/leaderboards.rb:278 games/krowa_support/presentation.rb:111
+#: games/krowa_support/leaderboards.rb:304 games/krowa_support/presentation.rb:111
 msgid "not guessed"
 msgstr "не угадал"
 
@@ -32022,11 +32066,11 @@ msgstr "железная дорога"
 msgid "raise"
 msgstr "повысить"
 
-#: games/krowa.rb:196
+#: games/krowa.rb:197
 msgid "random length"
 msgstr "случайная длина"
 
-#: games/krowa.rb:43
+#: games/krowa.rb:44
 msgid "random word length"
 msgstr "случайная длина слова"
 

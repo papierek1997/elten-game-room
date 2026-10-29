@@ -118,6 +118,7 @@ class ListBox < FakeControl
 
   module Flags
     MultiSelection = 1
+    LeftRight = 2
     AnyDir = 8
   end
 

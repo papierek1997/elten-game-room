@@ -6,7 +6,7 @@ require_relative "../../../lib/game_surfaces"
 require "date"
 
 daily_schema = GameRoomGames::KrowaServerSchema::TABLES.fetch("krowa_daily_scores")
-assert(daily_schema["visibility"] == "public" && daily_schema["columns"].keys.sort == %w[attempts day_key],
+assert(daily_schema["visibility"] == "public" && daily_schema["columns"].keys.sort == %w[attempts day_key history_key],
   "daily score schema must be public without a solution column")
 
 bank = GameRoomGames::KrowaWordBank.default

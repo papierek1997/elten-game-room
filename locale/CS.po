@@ -264,7 +264,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: games/krowa.rb:196 games/krowa.rb:43
+#: games/krowa.rb:197 games/krowa.rb:44
 msgid "%{count} letters"
 msgstr "Počet písmen: %{count}"
 
@@ -500,7 +500,7 @@ msgstr "%{left} plus %{right}."
 msgid "%{left} times %{right}."
 msgstr "%{left} krát %{right}."
 
-#: games/krowa.rb:466
+#: games/krowa.rb:467
 msgid "%{length} letters."
 msgstr "Počet písmen: %{length}."
 
@@ -773,7 +773,7 @@ msgstr "Hráč %{player} přidal počítač ke stolu hostitele %{owner} pro hru 
 msgid "%{player} added a computer."
 msgstr "Hráč %{player} přidal počítačového hráče."
 
-#: games/krowa.rb:450
+#: games/krowa.rb:451
 msgid "%{player} adds a noun: %{word}."
 msgstr "Hráč %{player} přidává podstatné jméno: %{word}."
 
@@ -1166,7 +1166,7 @@ msgstr "%{player} překračuje 21."
 msgid "%{player} goes to jail."
 msgstr "Hráč %{player} jde do vězení."
 
-#: games/krowa.rb:490
+#: games/krowa.rb:491
 msgid "%{player} guesses the word in %{count} attempts."
 msgstr "Hráč %{player} uhodl slovo. Počet pokusů: %{count}."
 
@@ -2048,7 +2048,7 @@ msgstr "Hráč %{player} odeslal své odpovědi."
 msgid "%{player} surrendered the deal at a contract of %{contract}."
 msgstr "Hráč %{player} vzdal rozdání při závazku %{contract}."
 
-#: games/krowa.rb:513
+#: games/krowa.rb:514
 msgid "%{player} surrenders."
 msgstr "Hráč %{player} se vzdává."
 
@@ -2531,7 +2531,7 @@ msgstr "%{player}: %{tricks}/%{bid}"
 msgid "%{player}: %{tricks}/%{target}"
 msgstr ""
 
-#: games/krowa.rb:485
+#: games/krowa.rb:486
 msgid "%{player}: %{word}, %{matches} of %{length}."
 msgstr "%{player}: %{word}, %{matches} z %{length}."
 
@@ -3016,11 +3016,11 @@ msgstr "%{variant}; počet semínek v každém důlku: %{seeds}"
 msgid "%{variant}; 3 to 8 letters; %{count} attempts per letter"
 msgstr "%{variant}; 3 až 8 písmen; počet pokusů na písmeno: %{count}"
 
-#: games/krowa.rb:199
+#: games/krowa.rb:200
 msgid "%{variant}; 3 to 8 letters; attempt limit depends on word length"
 msgstr ""
 
-#: games/krowa.rb:198
+#: games/krowa.rb:199
 msgid "%{variant}; 3 to 9 letters"
 msgstr "%{variant}; 3 až 9 písmen"
 
@@ -3036,7 +3036,7 @@ msgstr "Zápas vyhrává dvojice %{winner}: %{scores}."
 msgid "%{words}: %{points} potential points."
 msgstr "%{words}: možný počet bodů: %{points}."
 
-#: games/krowa_support/client.rb:258
+#: games/krowa_support/client.rb:264
 msgid ""
 "%{word}\r\n"
 "\r\n"
@@ -3061,7 +3061,15 @@ msgstr[2] "%{word}, %{count} písmen"
 msgid "%{word}, %{matches} of %{length}"
 msgstr "%{word}, %{matches} z %{length}"
 
-#: games/krowa_support/client.rb:163
+#: games/krowa_support/attempt_list_view.rb:24
+msgid "%{word}. %{matches}"
+msgstr "%{word}. %{matches}"
+
+#: games/krowa_support/client.rb:165
+msgid "%{word}: %{attempts} attempts"
+msgstr "%{word}: %{attempts} pokusů"
+
+#: games/krowa_support/client.rb:165
 msgid "%{word}: %{attempts} attempts, %{length} letters"
 msgstr "%{word}: počet pokusů %{attempts}, počet písmen %{length}"
 
@@ -6281,7 +6289,7 @@ msgstr "Přídavná nádrž chrání před nedostatkem paliva, pneumatiky odoln�
 msgid "An invitation to this table is already pending for this user."
 msgstr "Tento uživatel už má nevyřízenou pozvánku k tomuto stolu."
 
-#: games/krowa.rb:314
+#: games/krowa.rb:315
 msgid "An observer does not take part in the game."
 msgstr "Divák se hry neúčastní."
 
@@ -6363,7 +6371,7 @@ msgstr "Oznamování položených a odebraných písmen je zapnuté."
 msgid "Announcer volume"
 msgstr "Hlasitost komentátora"
 
-#: games/krowa.rb:313
+#: games/krowa.rb:314
 msgid "Another person is playing now."
 msgstr "Teď hraje jiná osoba."
 
@@ -6371,7 +6379,7 @@ msgstr "Teď hraje jiná osoba."
 msgid "Another player is creating this match's table. Accept their invitation or try again shortly."
 msgstr "Jiný hráč právě vytváří stůl pro tento zápas. Přijměte jeho pozvánku nebo to za chvíli zkuste znovu."
 
-#: games/krowa.rb:317
+#: games/krowa.rb:318
 msgid "Another word has already started."
 msgstr "Již se začalo hrát jiné slovo."
 
@@ -6811,7 +6819,15 @@ msgstr "Útoční králové"
 msgid "Attacking kings introduces a separate five-card attack. The king of spades starts it; the king of hearts can answer it and add five more. Thus spades followed by hearts makes the next player draw ten, unless they defend again. It does not reverse play. The other kings are ordinary cards, and a king attack is not combined with a two-or-three attack."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:186 games/krowa_support/leaderboards.rb:282 games/krowa_support/leaderboards.rb:74 games/krowa_support/presentation.rb:40
+#: games/krowa_support/attempt_list_view.rb:12
+msgid "Attempt list"
+msgstr "Seznam pokusů"
+
+#: games/krowa_support/leaderboards.rb:112 games/krowa_support/leaderboards.rb:134 games/krowa_support/leaderboards.rb:92
+msgid "Attempt lists are not enabled on the server yet. You can publish the result without the list."
+msgstr "Server zatím nepodporuje seznamy pokusů. Výsledek můžete zveřejnit bez seznamu."
+
+#: games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:308 games/krowa_support/leaderboards.rb:76 games/krowa_support/presentation.rb:40
 msgid "Attempts"
 msgstr "Pokusy"
 
@@ -7097,7 +7113,7 @@ msgstr "B: přečtěte aktuální dražbu."
 msgid "B: respond to the buzzer."
 msgstr "B: zareagujte na bzučák."
 
-#: __app.rb:1383 __app.rb:1650 __app.rb:1694 __app.rb:1843 __app.rb:2513 __app.rb:2630 __app.rb:2822 games/krowa_support/leaderboards.rb:39 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:767 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/sports_rankings/screen.rb:57 lib/sports_rankings/screen.rb:92 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
+#: __app.rb:1383 __app.rb:1650 __app.rb:1694 __app.rb:1843 __app.rb:2513 __app.rb:2630 __app.rb:2822 games/krowa_support/leaderboards.rb:41 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:767 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/sports_rankings/screen.rb:57 lib/sports_rankings/screen.rb:92 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
 msgid "Back"
 msgstr "Zpět"
 
@@ -7295,7 +7311,7 @@ msgstr "Začíná %{lap}. kolo."
 msgid "Being vulnerable raises both the rewards and the penalties. Who is vulnerable is announced at the start of each deal; V repeats it together with the deal number, the dealer, the contract and the tricks."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:240
+#: games/krowa_support/leaderboards.rb:266
 msgid "Best result"
 msgstr "Nejlepší výsledek"
 
@@ -7911,7 +7927,7 @@ msgstr "Dorovnat %{amount}"
 msgid "Calm (short search)"
 msgstr "Klidný (krátká analýza)"
 
-#: __app.rb:2429 __app.rb:3575 __app.rb:3633 games/krowa_support/client.rb:190 games/krowa_support/leaderboards.rb:209 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_option_editor.rb:117 lib/game_room_screens.rb:361 lib/game_screen.rb:676 lib/game_screen.rb:720 lib/game_surfaces/card_actions.rb:52 lib/game_surfaces/word_board.rb:208 lib/quiz_contributions/views.rb:143 lib/quiz_contributions/views.rb:164 lib/table_voice_screen.rb:180 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:29
+#: __app.rb:2429 __app.rb:3575 __app.rb:3633 games/krowa_support/client.rb:196 games/krowa_support/client.rb:357 games/krowa_support/leaderboards.rb:235 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_option_editor.rb:117 lib/game_room_screens.rb:361 lib/game_screen.rb:676 lib/game_screen.rb:720 lib/game_surfaces/card_actions.rb:52 lib/game_surfaces/word_board.rb:208 lib/quiz_contributions/views.rb:143 lib/quiz_contributions/views.rb:164 lib/table_voice_screen.rb:180 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:29
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -8585,7 +8601,7 @@ msgstr "Kontrola otázek"
 msgid "Checking saved tournament match"
 msgstr "Kontrola uloženého turnajového zápasu"
 
-#: games/krowa_support/leaderboards.rb:140
+#: games/krowa_support/leaderboards.rb:155
 msgid "Checking server date"
 msgstr ""
 
@@ -8644,6 +8660,10 @@ msgstr "Šachy"
 #: games/generated/rulebooks/chess.rb:10
 msgid "Chess is a game for two players. White moves first, then the players alternate one move at a time. Each begins with a king, queen, two rooks, two bishops, two knights and eight pawns on an 8 by 8 board. Your aim is to attack the opposing king in a way your opponent cannot escape: this is checkmate. You do not actually capture the king."
 msgstr ""
+
+#: games/krowa_support/client.rb:357
+msgid "Choose"
+msgstr "Vybrat"
 
 msgid "Choose Classic or Arcade Classic with temporary shields and an invisible ball. Automatic returns are an optional table setting shared by both players. Left and Right move the paddle; Up or Space serves and hits the ball."
 msgstr ""
@@ -9333,7 +9353,7 @@ msgstr ""
 msgid "Clearing the table with your play earns a scopa worth 1 point, including on the last play of the round. Receiving leftover cards at the end is not a scopa."
 msgstr ""
 
-#: games/krowa_support/client.rb:175 games/krowa_support/client.rb:219 games/krowa_support/client.rb:261 games/krowa_support/leaderboards.rb:292 games/krowa_support/leaderboards.rb:293 lib/game_room_screens.rb:66 lib/game_room_screens.rb:82 lib/game_room_ui.rb:338 lib/quiz_contributions/views.rb:119
+#: games/krowa_support/client.rb:177 games/krowa_support/client.rb:225 games/krowa_support/client.rb:267 games/krowa_support/leaderboards.rb:325 games/krowa_support/leaderboards.rb:326 lib/game_room_screens.rb:66 lib/game_room_screens.rb:82 lib/game_room_ui.rb:338 lib/quiz_contributions/views.rb:119
 msgid "Close"
 msgstr "Zavřít"
 
@@ -9766,7 +9786,7 @@ msgstr[2] "Cena: %{count} pírek."
 msgid "Cosy nest"
 msgstr "Útulné hnízdo"
 
-#: games/krowa_support/leaderboards.rb:322
+#: games/krowa_support/leaderboards.rb:359
 msgid "Could not connect to the Krowa leaderboard."
 msgstr "Nepodařilo se připojit k žebříčku hry Krowa."
 
@@ -9774,23 +9794,27 @@ msgstr "Nepodařilo se připojit k žebříčku hry Krowa."
 msgid "Could not disconnect the voice conversation. Open Conferences to leave it."
 msgstr "Hlasový hovor se nepodařilo odpojit. Otevři Konference a opusť ho tam."
 
-#: games/krowa_support/client.rb:35
+#: games/krowa_support/client.rb:36
 msgid "Could not load Krowa settings. Please try again."
 msgstr "Nepodařilo se načíst nastavení hry Krowa. Zkuste to znovu."
+
+#: games/krowa_support/attempt_list_view.rb:32
+msgid "Could not load the attempt list. Return to the result and try again."
+msgstr "Seznam pokusů se nepodařilo načíst. Vraťte se k výsledku a zkuste to znovu."
 
 #: __app.rb:1178
 msgid "Could not open the README."
 msgstr "README se nepodařilo otevřít."
 
-#: games/krowa_support/leaderboards.rb:111
+#: games/krowa_support/leaderboards.rb:123
 msgid "Could not publish the Daily Krowa result."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:130
+#: games/krowa_support/leaderboards.rb:145
 msgid "Could not publish the Word Tower result."
 msgstr "Výsledek Věže slov se nepodařilo zveřejnit."
 
-#: games/krowa_support/leaderboards.rb:94
+#: games/krowa_support/leaderboards.rb:103
 msgid "Could not publish the result."
 msgstr "Výsledek se nepodařilo zveřejnit."
 
@@ -9798,26 +9822,26 @@ msgstr "Výsledek se nepodařilo zveřejnit."
 msgid "Could not record opening Daily Krowa on the server. Please try again."
 msgstr "Nepodařilo se na serveru zaznamenat otevření Denní Krowy. Zkuste to prosím znovu."
 
-#: games/krowa_support/client.rb:253
+#: games/krowa_support/client.rb:259
 msgid "Could not retrieve the definition from SJP."
 msgstr "Definici se nepodařilo načíst ze SJP."
 
-#: games/krowa.rb:317
+#: games/krowa.rb:318
 msgid "Could not retrieve the server time."
 msgstr "Nepodařilo se získat čas serveru."
 
 msgid "Could not retrieve the server time. Please try again."
 msgstr "Nepodařilo se načíst čas serveru. Zkuste to znovu."
 
-#: games/krowa_support/client.rb:288 games/krowa_support/client.rb:293
+#: games/krowa_support/client.rb:294 games/krowa_support/client.rb:299
 msgid "Could not save Daily Krowa completion on the server. The program will try again when the game is reopened."
 msgstr "Dokončení varianty Denní Krowa se nepodařilo uložit na server. Program to zkusí znovu při příštím otevření hry."
 
-#: games/krowa_support/client.rb:240
+#: games/krowa_support/client.rb:246
 msgid "Could not save changes to your dictionary."
 msgstr "Změny ve vašem slovníku se nepodařilo uložit."
 
-#: games/krowa_support/client.rb:81
+#: games/krowa_support/client.rb:83
 msgid "Could not save the local gallery or dictionary."
 msgstr "Nepodařilo se uložit místní galerii nebo slovník."
 
@@ -10335,7 +10359,7 @@ msgstr ""
 msgid "Custom words can be added only in a single-player Daily Krowa or Random word game."
 msgstr "Vlastní slova lze přidávat pouze ve hře Denní Krowa nebo Náhodné slovo pro jednoho hráče."
 
-#: games/krowa.rb:318
+#: games/krowa.rb:319
 msgid "Custom words can be added only in a single-player Random word game."
 msgstr ""
 
@@ -10443,7 +10467,7 @@ msgstr "D: nemovitosti bez vlastníka. Shift+D: hrací deska. V: váš majetek. 
 msgid "D: your cards. E: community cards. G: your best current combination. In Hold'em, 1–2 read private cards and 3–7 the board; in draw poker, 1–5 read your own cards."
 msgstr "D: vaše karty. E: společné karty. G: vaše aktuálně nejlepší kombinace. V Hold'emu 1–2 přečtou vlastní karty a 3–7 karty na stole; v draw pokeru 1–5 přečtou vaše vlastní karty."
 
-#: games/krowa.rb:133
+#: games/krowa.rb:134
 msgid "Daily Krowa"
 msgstr "Denní Krowa"
 
@@ -10459,7 +10483,7 @@ msgstr "Dostupnost Denní Krowy se na serveru nepodařilo ověřit. Zkuste to pr
 msgid "Daily Krowa can draw a word between three and nine letters long. The word is determined using server time, so if you need a different one, you would have to hack into the server and change the date. You can open Daily Krowa only once. If you guess the word, give up or leave the game, it remains unavailable to your account until the next day."
 msgstr ""
 
-#: games/krowa.rb:94
+#: games/krowa.rb:95
 msgid "Daily Krowa cannot be observed or played at another person's table."
 msgstr "Denní hru Krowa nelze sledovat ani hrát u cizího stolu."
 
@@ -10479,7 +10503,7 @@ msgstr ""
 msgid "Daily Krowa keeps one word assigned to each day, so dictionary updates no longer change that day's puzzle or its recorded solution. New words can be drawn from the next day. Old ranking entries without a confirmed solution no longer show a guessed word."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:154 games/krowa_support/leaderboards.rb:32
+#: games/krowa_support/leaderboards.rb:169 games/krowa_support/leaderboards.rb:34
 msgid "Daily Krowa leaderboard"
 msgstr ""
 
@@ -10487,15 +10511,15 @@ msgstr ""
 msgid "Daily Krowa requires a private table. Create a new private table for this variant."
 msgstr "Denní Krowa vyžaduje soukromý stůl. Pro tuto variantu vytvořte nový soukromý stůl."
 
-#: games/krowa_support/leaderboards.rb:103
+#: games/krowa_support/leaderboards.rb:115
 msgid "Daily Krowa result published."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:199 games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:235
+#: games/krowa_support/leaderboards.rb:225 games/krowa_support/leaderboards.rb:227 games/krowa_support/leaderboards.rb:261
 msgid "Daily Krowa: %{date}"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:199
+#: games/krowa_support/leaderboards.rb:225
 msgid "Daily Krowa: %{date}, %{word}"
 msgstr ""
 
@@ -10530,7 +10554,7 @@ msgstr ""
 msgid "Data stays on this computer. Test names do not authenticate network accounts. No invitations or matches are started."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:154 games/krowa_support/leaderboards.rb:264
+#: games/krowa_support/leaderboards.rb:169 games/krowa_support/leaderboards.rb:290
 msgid "Date"
 msgstr "Datum"
 
@@ -10961,6 +10985,10 @@ msgstr ""
 msgid "Do not pay"
 msgstr "Neplaťte"
 
+#: games/krowa_support/client.rb:355
+msgid "Do not publish"
+msgstr "Nezveřejňovat"
+
 #: games/monopoly/presentation.rb:179
 msgid "Do not request this rent"
 msgstr "Nevyžadovat toto nájemné"
@@ -11270,7 +11298,7 @@ msgstr ""
 msgid "Drawing and responses to penalties"
 msgstr ""
 
-#: games/krowa.rb:520
+#: games/krowa.rb:521
 msgid "Drawing another word. Attempts start over."
 msgstr "Losuje se další slovo. Pokusy se počítají od začátku."
 
@@ -11963,7 +11991,7 @@ msgstr "Zadejte jméno virtuálního hráče."
 msgid "Enter a whole number of points from 2 to 999."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:220
+#: games/krowa_support/leaderboards.rb:246
 msgid "Enter a word or word fragment."
 msgstr "Zadejte slovo nebo část slova."
 
@@ -12850,7 +12878,7 @@ msgstr "Minimální počet bodů pro první vyložení"
 msgid "First meld: %{points} points; %{missing} more required."
 msgstr "Body za první vyložení: %{points}; ještě chybí %{missing}."
 
-#: games/krowa_support/leaderboards.rb:74
+#: games/krowa_support/leaderboards.rb:76
 msgid "First result"
 msgstr "První výsledek"
 
@@ -13821,7 +13849,7 @@ msgstr ""
 msgid "Guess aloud. The card is hidden."
 msgstr "Hádejte nahlas. Karta je skrytá."
 
-#: games/krowa.rb:52
+#: games/krowa.rb:53
 msgid "Guess the hidden Polish noun using clues about how many letters are in the right places."
 msgstr "Uhodni skryté polské podstatné jméno podle počtu písmen na správných místech."
 
@@ -13849,7 +13877,7 @@ msgstr "Uhodnuto"
 msgid "Guessed."
 msgstr "Uhodnuto."
 
-#: games/krowa.rb:140
+#: games/krowa.rb:141
 msgid "Guessing time"
 msgstr "Doba potřebná k uhodnutí"
 
@@ -14330,7 +14358,7 @@ msgstr ""
 msgid "If you have no legal move, your turn is passed automatically. The game ends when neither player can move."
 msgstr ""
 
-#: games/krowa.rb:126
+#: games/krowa.rb:127
 msgid "If you leave the table, today's Daily Krowa will remain unavailable even if you have not guessed the word or surrendered. Are you sure you want to leave?"
 msgstr "Pokud opustíte stůl, dnešní Denní Krowa zůstane nedostupná, a to i bez uhodnutí slova nebo vzdání hry. Opravdu chcete odejít?"
 
@@ -15385,7 +15413,7 @@ msgstr "Kong"
 msgid "Kongs and replacement tiles"
 msgstr ""
 
-#: games/krowa.rb:49 games/krowa_support/presentation.rb:36
+#: games/krowa.rb:50 games/krowa_support/presentation.rb:36
 msgid "Krowa"
 msgstr "Krowa"
 
@@ -15393,7 +15421,7 @@ msgstr "Krowa"
 msgid "Krowa explanations from SJP now choose the appropriate base noun and meaning more accurately when looking up inflected words."
 msgstr "Vysvětlivky ze SJP v Krowě nyní při hledání ohýbaných slov přesněji vybírají základní tvar podstatného jména a jeho význam."
 
-#: games/krowa.rb:331 games/krowa_support/client.rb:152
+#: games/krowa.rb:332 games/krowa_support/client.rb:154
 msgid "Krowa gallery"
 msgstr "Galerie hry Krowa"
 
@@ -15405,11 +15433,11 @@ msgstr "Hra Krowa má kratší názvy nastavení a aktualizovanou nápovědu k o
 msgid "Krowa leaderboard search now also finds words from past Daily Krowa games and opens the ranking for the matching day. Today's answer remains hidden."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:37
+#: games/krowa_support/leaderboards.rb:39
 msgid "Krowa leaderboards"
 msgstr "Žebříčky hry Krowa"
 
-#: games/krowa_support/leaderboards.rb:25
+#: games/krowa_support/leaderboards.rb:27
 msgid "Krowa leaderboards are temporarily unavailable."
 msgstr "Žebříčky hry Krowa jsou dočasně nedostupné."
 
@@ -15417,7 +15445,7 @@ msgstr "Žebříčky hry Krowa jsou dočasně nedostupné."
 msgid "Krowa now clears the answer field after rejecting a word with the wrong length or one missing from the dictionary."
 msgstr "V Krowě se nyní pole odpovědi vymaže po odmítnutí slova s nesprávnou délkou nebo slova, které není ve slovníku."
 
-#: games/krowa.rb:68
+#: games/krowa.rb:69
 msgid "Krowa settings"
 msgstr "Nastavení hry Krowa"
 
@@ -15433,7 +15461,7 @@ msgstr ""
 msgid "Krowa sound effects are enabled by default. Your saved personal settings are preserved."
 msgstr "Zvukové efekty ve hře Krowa jsou ve výchozím stavu zapnuté. Uložená osobní nastavení zůstávají beze změny."
 
-#: games/krowa.rb:132
+#: games/krowa.rb:133
 msgid "Krowa variant"
 msgstr "Varianta hry Krowa"
 
@@ -15579,7 +15607,7 @@ msgstr "Posledního půl roku"
 msgid "Last tournament day"
 msgstr "Poslední den turnaje"
 
-#: games/krowa_support/leaderboards.rb:240
+#: games/krowa_support/leaderboards.rb:266
 msgid "Last update"
 msgstr "Poslední aktualizace"
 
@@ -15607,11 +15635,11 @@ msgstr "Vrstva %{layer}: %{tile}"
 msgid "Layout choice"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:240
+#: games/krowa_support/leaderboards.rb:266
 msgid "Leaderboard"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:76
+#: games/krowa_support/leaderboards.rb:78
 msgid "Leaderboard: %{word}"
 msgstr "Žebříček: %{word}"
 
@@ -15894,11 +15922,11 @@ msgstr "Nádraží Liverpool Street"
 msgid "Ljubljana Railway Station"
 msgstr "Železniční stanice Lublaň"
 
-#: games/krowa_support/leaderboards.rb:147
+#: games/krowa_support/leaderboards.rb:162
 msgid "Loading Daily Krowa dates"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:162
+#: games/krowa_support/leaderboards.rb:177
 msgid "Loading Daily Krowa leaderboard"
 msgstr ""
 
@@ -15914,13 +15942,17 @@ msgstr "Načítání stolů Game Room"
 msgid "Loading Power Games tables"
 msgstr "Načítání stolů Power Games"
 
-#: games/krowa_support/leaderboards.rb:249
+#: games/krowa_support/leaderboards.rb:275
 msgid "Loading Word Tower leaderboard"
 msgstr "Načítání žebříčku Věže slov"
 
-#: games/krowa_support/leaderboards.rb:271
+#: games/krowa_support/leaderboards.rb:297
 msgid "Loading Word Tower rounds"
 msgstr "Načítání kol Věže slov"
+
+#: games/krowa_support/leaderboards.rb:318
+msgid "Loading attempt list"
+msgstr "Načítání seznamu pokusů"
 
 #: __app.rb:1631
 msgid "Loading available tables"
@@ -15997,7 +16029,7 @@ msgstr ""
 msgid "Loading users"
 msgstr "Načítání uživatelů"
 
-#: games/krowa_support/leaderboards.rb:60
+#: games/krowa_support/leaderboards.rb:62
 msgid "Loading word leaderboard"
 msgstr "Načítání žebříčku pro slovo"
 
@@ -17029,7 +17061,7 @@ msgstr "Sestavy zápasů pro více hráčů"
 msgid "Multiple discard shows the pile with the newest card first. Choosing a card also takes every newer card above it: the third item takes the third, second and first cards. You may retain discarded cards in your hand; drawing one does not require immediate use. When the stock runs out, older discards can be shuffled into it while the top discard remains on the table."
 msgstr ""
 
-#: games/krowa_support/client.rb:185
+#: games/krowa_support/client.rb:191
 msgid "Music"
 msgstr "Hudba"
 
@@ -17044,7 +17076,7 @@ msgstr "Hudba a zvukové efekty jsou ve výchozím nastavení vypnuté, mají sa
 msgid "Music group"
 msgstr "Hudební skupina"
 
-#: games/krowa_support/client.rb:186
+#: games/krowa_support/client.rb:192
 msgid "Music volume"
 msgstr "Hlasitost hudby"
 
@@ -17064,11 +17096,11 @@ msgstr "Ztlumit mikrofon"
 msgid "Mute or unmute the conference microphone"
 msgstr "Ztlumit nebo zapnout mikrofon konference"
 
-#: games/krowa_support/client.rb:189
+#: games/krowa_support/client.rb:195
 msgid "My dictionary"
 msgstr "Můj slovník"
 
-#: games/krowa_support/client.rb:216
+#: games/krowa_support/client.rb:222
 msgid "My dictionary - select words to remove with Space"
 msgstr "Můj slovník – Mezerníkem označte slova k odstranění"
 
@@ -17223,7 +17255,7 @@ msgstr ""
 msgid "New-table subscriptions are unavailable without access to server settings. Other settings can still be changed."
 msgstr ""
 
-#: games/krowa_support/client.rb:170
+#: games/krowa_support/client.rb:172
 msgid "Newest"
 msgstr "Nejnovější"
 
@@ -17451,7 +17483,7 @@ msgstr "Žádná správná odpověď"
 msgid "No current tournaments."
 msgstr "Žádné aktuální turnaje."
 
-#: games/krowa_support/leaderboards.rb:155
+#: games/krowa_support/leaderboards.rb:170
 msgid "No daily results"
 msgstr ""
 
@@ -17459,11 +17491,11 @@ msgstr ""
 msgid "No deal has been played yet."
 msgstr "Zatím se nehrálo žádné rozdání."
 
-#: games/krowa_support/client.rb:251
+#: games/krowa_support/client.rb:257
 msgid "No definition in SJP."
 msgstr "Ve slovníku SJP není definice."
 
-#: games/krowa_support/client.rb:256
+#: games/krowa_support/client.rb:262
 msgid "No definition was retrieved."
 msgstr "Nepodařilo se načíst definici."
 
@@ -17511,7 +17543,7 @@ msgstr "Zatím nebyla odehrána žádná partie"
 msgid "No green light"
 msgstr "Chybí zelená"
 
-#: games/krowa_support/client.rb:152
+#: games/krowa_support/client.rb:154
 msgid "No guessed words"
 msgstr "Žádná uhodnutá slova"
 
@@ -17580,7 +17612,7 @@ msgstr "Nebyly nalezeny žádné odpovídající figury."
 msgid "No matching property."
 msgstr "Žádná odpovídající nemovitost."
 
-#: games/krowa_support/leaderboards.rb:241
+#: games/krowa_support/leaderboards.rb:267
 msgid "No matching words"
 msgstr "Žádná odpovídající slova"
 
@@ -17662,7 +17694,7 @@ msgstr ""
 msgid "No points"
 msgstr "Bez bodů"
 
-#: games/krowa_support/leaderboards.rb:187 games/krowa_support/leaderboards.rb:77
+#: games/krowa_support/leaderboards.rb:202 games/krowa_support/leaderboards.rb:79
 msgid "No published results"
 msgstr "Žádné zveřejněné výsledky"
 
@@ -17673,6 +17705,10 @@ msgstr "Právě není žádná otázka k nahlášení."
 #: lib/quiz_contributions/views.rb:45
 msgid "No questions."
 msgstr "Žádné otázky."
+
+#: games/krowa_support/attempt_list_view.rb:13 games/krowa_support/attempt_list_view.rb:33
+msgid "No recorded attempts"
+msgstr "Pokusy nejsou zaznamenány"
 
 #: games/monopoly/presentation.rb:350
 msgid "No rent: %{owner} is in jail."
@@ -17686,7 +17722,7 @@ msgstr "Žádné nájemné: tato nemovitost nemá vlastníka."
 msgid "No rent: this property is mortgaged."
 msgstr "Bez nájemného: tato nemovitost je zastavená."
 
-#: games/krowa_support/leaderboards.rb:265
+#: games/krowa_support/leaderboards.rb:291
 msgid "No results"
 msgstr "Žádné výsledky"
 
@@ -17694,7 +17730,7 @@ msgstr "Žádné výsledky"
 msgid "No round was completed. The remaining participants share first place."
 msgstr "Žádné kolo nebylo dokončeno. Ostatní účastníci se dělí o první místo."
 
-#: games/krowa_support/leaderboards.rb:285
+#: games/krowa_support/leaderboards.rb:311
 msgid "No saved rounds"
 msgstr "Žádná uložená kola"
 
@@ -17930,7 +17966,7 @@ msgstr "Číslo od 1 do 100."
 msgid "Number from 1 to 999."
 msgstr "Číslo od 1 do 999."
 
-#: games/krowa.rb:140 games/krowa_support/client.rb:170
+#: games/krowa.rb:141 games/krowa_support/client.rb:172
 msgid "Number of attempts"
 msgstr "Počet pokusů"
 
@@ -17942,7 +17978,7 @@ msgstr "Počet rozdání"
 msgid "Number of groups"
 msgstr "Počet skupin"
 
-#: games/krowa.rb:136 games/krowa_support/client.rb:170
+#: games/krowa.rb:137 games/krowa_support/client.rb:172
 msgid "Number of letters"
 msgstr "Počet písmen"
 
@@ -18224,7 +18260,7 @@ msgstr ""
 msgid "Only the application owner can review submissions."
 msgstr "Návrhy může posuzovat pouze vlastník aplikace."
 
-#: games/krowa.rb:314
+#: games/krowa.rb:315
 msgid "Only the host can do this."
 msgstr "Tuto akci může provést pouze hostitel stolu."
 
@@ -18256,7 +18292,7 @@ msgstr ""
 msgid "Only the tricks promised beyond the first six earn contract points. If you make your contract, they are worth:"
 msgstr "Splněný závazek přináší body za slíbené zdvihy nad prvních šest:"
 
-#: __app.rb:1382 __app.rb:1649 games/krowa_support/leaderboards.rb:292 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:111 lib/game_room_screens.rb:685 lib/game_statistics_screen.rb:17 lib/quiz_contributions/views.rb:142 lib/sports_rankings/screen.rb:57
+#: __app.rb:1382 __app.rb:1649 games/krowa_support/leaderboards.rb:325 games/krowa_support/leaderboards.rb:40 lib/game_room_screens.rb:111 lib/game_room_screens.rb:685 lib/game_statistics_screen.rb:17 lib/quiz_contributions/views.rb:142 lib/sports_rankings/screen.rb:57
 msgid "Open"
 msgstr "Otevřít"
 
@@ -18668,7 +18704,7 @@ msgstr "Odebrání účastníka potvrzeno."
 msgid "Participant removal not confirmed. Check Operations before trying again."
 msgstr "Odebrání účastníka nebylo potvrzeno. Před dalším pokusem zkontrolujte Operace."
 
-#: games/krowa_support/leaderboards.rb:264 lib/tournaments/participant_manager.rb:19 lib/tournaments/public_preview.rb:355 lib/tournaments/public_text.rb:67
+#: games/krowa_support/leaderboards.rb:290 lib/tournaments/participant_manager.rb:19 lib/tournaments/public_preview.rb:355 lib/tournaments/public_text.rb:67
 msgid "Participants"
 msgstr "Účastníci"
 
@@ -18879,7 +18915,7 @@ msgstr "Pigmenty"
 msgid "Pile: %{total}."
 msgstr "Hromádka: %{total}."
 
-#: games/krowa_support/leaderboards.rb:186 games/krowa_support/leaderboards.rb:264 games/krowa_support/leaderboards.rb:74 lib/tournaments/server_forfeit_screen.rb:81
+#: games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:290 games/krowa_support/leaderboards.rb:76 lib/tournaments/server_forfeit_screen.rb:81
 msgid "Place"
 msgstr "Pořadí"
 
@@ -19922,9 +19958,9 @@ msgstr "Zveřejnění a registrace používají samostatnou testovací aplikaci 
 msgid "Publications, registrations and candidate match plans use the separate server test application. Invitations and results are not shared yet. No virtual players are available here."
 msgstr "Zveřejnění, registrace a předběžné rozpisy zápasů používají samostatnou serverovou testovací aplikaci. Pozvánky a výsledky se zatím nesdílejí. Virtuální hráči zde nejsou dostupní."
 
-#: lib/tournaments/local_test_dialogs.rb:181
+#: games/krowa_support/client.rb:355 lib/tournaments/local_test_dialogs.rb:181
 msgid "Publish"
-msgstr ""
+msgstr "Zveřejnit"
 
 #: lib/tournaments/local_test_hub.rb:50
 msgid "Publish a draft in local test"
@@ -19942,11 +19978,11 @@ msgstr "Zveřejnit v místním testu"
 msgid "Publish in server test"
 msgstr "Zveřejnit v serverovém testu"
 
-#: games/krowa_support/client.rb:321
+#: games/krowa_support/client.rb:330
 msgid "Publish the Word Tower result: %{rounds} completed rounds?"
 msgstr "Zveřejnit výsledek Věže slov? Počet dokončených kol: %{rounds}."
 
-#: games/krowa_support/client.rb:309
+#: games/krowa_support/client.rb:313
 msgid "Publish the result for %{word}: %{attempts} attempts?"
 msgstr "Zveřejnit výsledek pro slovo %{word}: počet pokusů %{attempts}?"
 
@@ -19954,7 +19990,11 @@ msgstr "Zveřejnit výsledek pro slovo %{word}: počet pokusů %{attempts}?"
 msgid "Publish tournament"
 msgstr "Zveřejnit turnaj"
 
-#: games/krowa_support/client.rb:306
+#: games/krowa_support/client.rb:355
+msgid "Publish without attempt list"
+msgstr "Zveřejnit bez seznamu pokusů"
+
+#: games/krowa_support/client.rb:312
 msgid "Publish your Daily Krowa result: %{attempts} attempts?"
 msgstr ""
 
@@ -19966,11 +20006,11 @@ msgstr "Zveřejněno"
 msgid "Published build number (only for a published proposal)"
 msgstr "Číslo sestavení (jen u zveřejněného návrhu)"
 
-#: games/krowa_support/leaderboards.rb:100
+#: games/krowa_support/leaderboards.rb:109
 msgid "Publishing Daily Krowa result"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:117
+#: games/krowa_support/leaderboards.rb:129
 msgid "Publishing Word Tower result"
 msgstr "Zveřejňování výsledku Věže slov"
 
@@ -19982,7 +20022,7 @@ msgstr ""
 msgid "Publishing also enrolls you as a participant. You can withdraw before the tournament starts."
 msgstr "Zveřejněním turnaje se do něj také přihlásíte. Před zahájením se můžete odhlásit."
 
-#: games/krowa_support/leaderboards.rb:83
+#: games/krowa_support/leaderboards.rb:89
 msgid "Publishing result"
 msgstr "Zveřejňování výsledku"
 
@@ -20248,7 +20288,7 @@ msgstr "README"
 msgid "README now includes a detailed tournament guide in all interface languages, covering controls, formats, scoring, partners and organizer options. Thank you to guliwer for the idea and implementation of tournaments!"
 msgstr "README nyní ve všech jazycích rozhraní podrobně vysvětluje turnaje: ovládání, zkratky, formáty, bodování, výběr spoluhráče i možnosti pořadatele. Děkujeme guliwerovi za nápad a realizaci turnajů!"
 
-#: games/krowa.rb:134
+#: games/krowa.rb:135
 msgid "Race"
 msgstr "Závod"
 
@@ -20307,11 +20347,11 @@ msgstr "Navýšit o:"
 msgid "Raise; total payment %{amount}"
 msgstr "Navýšit sázku; celková platba %{amount}"
 
-#: games/krowa.rb:137
+#: games/krowa.rb:138
 msgid "Random"
 msgstr "Náhodný počet"
 
-#: games/krowa.rb:133
+#: games/krowa.rb:134
 msgid "Random word"
 msgstr "Náhodné slovo"
 
@@ -20474,7 +20514,7 @@ msgstr "Získáš 7 per a kartu položíš na své pole. Kachna, která na něj 
 msgid "Receiving new-table notifications no longer waits for disk writes, removing one source of temporary interface stalls. The occasional record of a handled table is saved in the background."
 msgstr "Příjem oznámení o nových stolech již nečeká na zápis na disk, čímž se odstraňuje jedna z příčin dočasného zamrzání rozhraní. Občasný zápis informace o zpracovaném stole probíhá na pozadí."
 
-#: games/krowa_support/client.rb:118
+#: games/krowa_support/client.rb:120
 msgid "Receiving the private solution"
 msgstr "Přijímání soukromého řešení"
 
@@ -20716,7 +20756,7 @@ msgstr "Odebrat účastníka %{player}?"
 msgid "Remove question"
 msgstr "Odstranit otázku"
 
-#: games/krowa_support/client.rb:218
+#: games/krowa_support/client.rb:224
 msgid "Remove selected"
 msgstr "Odstranit označené"
 
@@ -20724,7 +20764,7 @@ msgstr "Odstranit označené"
 msgid "Remove selected participant"
 msgstr "Odebrat vybraného účastníka"
 
-#: games/krowa_support/client.rb:233
+#: games/krowa_support/client.rb:239
 msgid "Remove the selected words from your dictionary?"
 msgstr "Odstranit vybraná slova z vašeho slovníku?"
 
@@ -20772,7 +20812,7 @@ msgstr "Odstraněna dodatečná třísekundová prodleva na začátku zápasů h
 msgid "Removed the rustling sound at the start of Audio Ball's standard high-ball sound. The Audiodisc sound pack is unchanged."
 msgstr ""
 
-#: games/krowa_support/client.rb:236
+#: games/krowa_support/client.rb:242
 msgid "Removed words: %{words}."
 msgstr "Odstraněná slova: %{words}."
 
@@ -20945,7 +20985,7 @@ msgstr "Byla vrácena předchozí dvojice kamenů."
 msgid "Restrict rolls that allow leaving the base"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:282
+#: games/krowa_support/leaderboards.rb:308
 msgid "Result"
 msgstr "Výsledek"
 
@@ -20957,7 +20997,7 @@ msgstr ""
 msgid "Result details"
 msgstr "Podrobnosti výsledku"
 
-#: games/krowa_support/leaderboards.rb:86
+#: games/krowa_support/leaderboards.rb:95
 msgid "Result published."
 msgstr "Výsledek zveřejněn."
 
@@ -20965,7 +21005,7 @@ msgstr "Výsledek zveřejněn."
 msgid "Result saved"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:240 games/krowa_support/presentation.rb:41
+#: games/krowa_support/leaderboards.rb:266 games/krowa_support/presentation.rb:41
 msgid "Results"
 msgstr "Výsledky"
 
@@ -21395,7 +21435,7 @@ msgstr ""
 msgid "Rotating judge is the default: the role moves around the seating order, so everyone sometimes judges instead of scoring. Table master judges every round makes the creator the permanent judge and removes that person from the scoring competition. With two participants, that setting leaves one answering player and one permanent judge."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:282
+#: games/krowa_support/leaderboards.rb:308
 msgid "Round"
 msgstr "Kolo"
 
@@ -21434,7 +21474,7 @@ msgstr "Karty pro kolo %{round} rozdal %{dealer}. Součet hromádky je nula."
 msgid "Round %{round} was dealt. %{dealer} is the dealer."
 msgstr "Byly rozdány karty pro kolo %{round}. Rozdává hráč %{dealer}."
 
-#: games/krowa.rb:466
+#: games/krowa.rb:467
 msgid "Round %{round}. %{length} letters."
 msgstr "Kolo %{round}. Počet písmen: %{length}."
 
@@ -21523,7 +21563,7 @@ msgstr ""
 msgid "Rounding to five-point units is on by default: ranks two through nine are worth 5, ten and faces 10, a low ace 5, a high or set ace 15. With rounding off they are face value, faces 10, low ace 1 and high or set ace 11. An ace left in hand is always worth the high value. A hand joker is worth 20; a melded joker takes the represented value. An identity meld adds 10 per card."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:264
+#: games/krowa_support/leaderboards.rb:290
 msgid "Rounds"
 msgstr "Kola"
 
@@ -21724,7 +21764,7 @@ msgstr "Sendvič"
 msgid "Sarajevo Railway Station"
 msgstr "Železniční stanice Sarajevo"
 
-#: games/krowa_support/client.rb:190 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_room_screens.rb:360 lib/quiz_contributions/controller.rb:185 lib/quiz_contributions/views.rb:163
+#: games/krowa_support/client.rb:196 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_room_screens.rb:360 lib/quiz_contributions/controller.rb:185 lib/quiz_contributions/views.rb:163
 msgid "Save"
 msgstr "Uložit"
 
@@ -21829,7 +21869,7 @@ msgstr ""
 msgid "Saved match %{match}, leg %{leg}; winner: %{winner}"
 msgstr ""
 
-#: games/krowa_support/client.rb:281
+#: games/krowa_support/client.rb:287
 msgid "Saving Daily Krowa"
 msgstr "Ukládání Denní Krowy"
 
@@ -21857,7 +21897,7 @@ msgstr "Ukládání rozhodnutí redakce"
 msgid "Saving game"
 msgstr "Ukládání hry"
 
-#: games/krowa.rb:151
+#: games/krowa.rb:152
 msgid "Saving is available only in Race and Word Tower."
 msgstr "Ukládání je dostupné pouze ve variantách Závod a Věž slov."
 
@@ -22009,7 +22049,7 @@ msgstr "Bodované kombinace z posledního hodu: %{dice}"
 msgid "Scoring combinations in this implementation"
 msgstr ""
 
-#: games/krowa.rb:139
+#: games/krowa.rb:140
 msgid "Scoring criterion"
 msgstr "Kritérium hodnocení"
 
@@ -22039,19 +22079,19 @@ msgstr "Scrabble vyžaduje dva až čtyři lidské hráče."
 msgid "Scriptorium: %{values}."
 msgstr "Skriptorium: %{values}."
 
-#: games/krowa_support/leaderboards.rb:208
+#: games/krowa_support/leaderboards.rb:234
 msgid "Search"
 msgstr "Hledat"
 
-#: games/krowa_support/leaderboards.rb:31
+#: games/krowa_support/leaderboards.rb:33
 msgid "Search for a word"
 msgstr "Vyhledejte slovo"
 
-#: games/krowa_support/leaderboards.rb:230
+#: games/krowa_support/leaderboards.rb:256
 msgid "Search results: %{query}"
 msgstr "Výsledky vyhledávání: %{query}"
 
-#: games/krowa_support/leaderboards.rb:223
+#: games/krowa_support/leaderboards.rb:249
 msgid "Searching words"
 msgstr "Vyhledávání slov"
 
@@ -22115,7 +22155,7 @@ msgstr "Vyberte alespoň jednu kostku k opětovnému hodu, nebo otevřete bodova
 msgid "Select at least one person."
 msgstr "Označte alespoň jednu osobu."
 
-#: games/krowa_support/client.rb:230
+#: games/krowa_support/client.rb:236
 msgid "Select at least one word."
 msgstr "Označte alespoň jedno slovo."
 
@@ -23019,11 +23059,11 @@ msgstr ""
 msgid "Solo"
 msgstr ""
 
-#: games/krowa_support/client.rb:257
+#: games/krowa_support/client.rb:263
 msgid "Solution"
 msgstr "Řešení"
 
-#: games/krowa.rb:532 games/krowa_support/client.rb:125
+#: games/krowa.rb:533 games/krowa_support/client.rb:127
 msgid "Solution: %{word}."
 msgstr "Řešení: %{word}."
 
@@ -23063,11 +23103,11 @@ msgstr "Prášek na spaní"
 msgid "Sound %{position}"
 msgstr "Zvuk %{position}"
 
-#: games/krowa_support/client.rb:187
+#: games/krowa_support/client.rb:193
 msgid "Sound effects"
 msgstr "Zvukové efekty"
 
-#: games/krowa_support/client.rb:188
+#: games/krowa_support/client.rb:194
 msgid "Sound effects volume"
 msgstr "Hlasitost zvukových efektů"
 
@@ -24312,7 +24352,7 @@ msgstr "Příloha obsahuje otázky ve formátech TXT a JSON ke kontrole a úprav
 msgid "The attachment exceeds 4 MB. Split the proposal into smaller drafts."
 msgstr "Příloha přesahuje 4 MB. Rozděl návrh na menší koncepty."
 
-#: games/krowa.rb:312
+#: games/krowa.rb:313
 msgid "The attempt is waiting to be checked."
 msgstr "Pokus čeká na kontrolu."
 
@@ -24528,7 +24568,7 @@ msgstr "Tvůrce může zahájit jednu místní hru, jakmile vstoupí všichni hr
 msgid "The creator can start one local game after every participant confirms entry."
 msgstr ""
 
-#: games/battleship.rb:43 games/categories.rb:88 games/krowa.rb:47 games/quiz_party.rb:58 games/scientific_war.rb:78
+#: games/battleship.rb:43 games/categories.rb:88 games/krowa.rb:48 games/quiz_party.rb:58 games/scientific_war.rb:78
 msgid "The current game contains private data that cannot be transferred at this stage."
 msgstr ""
 
@@ -24890,7 +24930,7 @@ msgstr ""
 msgid "The further ahead you are of the last duck, the longer you freeze. The distance includes complete laps and is checked when you freeze:"
 msgstr ""
 
-#: games/krowa_support/client.rb:145
+#: games/krowa_support/client.rb:147
 msgid "The gallery is available before the game starts and after it ends."
 msgstr ""
 
@@ -25050,7 +25090,7 @@ msgstr ""
 msgid "The host can save Race or Word Tower after the current word is ready and all submitted attempts have been checked. The local save includes the private solution and can be resumed with the same players in a new table. The table closes only after the save is verified. Daily Krowa and Random word cannot be saved for later."
 msgstr ""
 
-#: games/krowa.rb:520
+#: games/krowa.rb:521
 msgid "The host changes the word. Race attempts and time start over."
 msgstr "Hostitel stolu mění slovo. Pokusy i čas závodu se počítají znovu od začátku."
 
@@ -25707,7 +25747,7 @@ msgstr "Uložená hra již není dostupná."
 msgid "The saved game storage is damaged or incompatible."
 msgstr "Úložiště uložených her je poškozené nebo nekompatibilní."
 
-#: games/krowa.rb:315
+#: games/krowa.rb:316
 msgid "The saved secret is unavailable. The game cannot check attempts until it is restored."
 msgstr "Uložené tajné řešení není dostupné. Hra nemůže ověřovat pokusy, dokud nebude obnoveno."
 
@@ -25764,7 +25804,7 @@ msgstr ""
 msgid "The second player's pieces are at the bottom."
 msgstr "Figury druhého hráče jsou dole."
 
-#: games/krowa.rb:316
+#: games/krowa.rb:317
 msgid "The secret could not be saved locally. The word has not been started; please try again."
 msgstr "Tajné slovo se nepodařilo uložit do tohoto počítače. Hádání nového slova nezačalo; zkuste to znovu."
 
@@ -25846,7 +25886,7 @@ msgstr "Odeslanou zprávu se nepodařilo odstranit."
 msgid "The separate server test shares tournaments and supports automatic results for matches between two individual players at ordinary public tables. Automatic invitations are not available yet."
 msgstr "Samostatný serverový test sdílí turnaje a podporuje automatické výsledky zápasů dvou samostatných hráčů u běžných veřejných stolů. Automatické pozvánky zatím nejsou dostupné."
 
-#: games/krowa_support/leaderboards.rb:107 games/krowa_support/leaderboards.rb:90
+#: games/krowa_support/leaderboards.rb:119 games/krowa_support/leaderboards.rb:99
 msgid "The server already has the same or a better result."
 msgstr "Na serveru už je stejný nebo lepší výsledek."
 
@@ -26042,7 +26082,7 @@ msgstr ""
 msgid "The table settings let you combine these variants:"
 msgstr ""
 
-#: games/krowa.rb:127
+#: games/krowa.rb:128
 msgid "The table will be closed."
 msgstr "Stůl bude uzavřen."
 
@@ -26641,7 +26681,7 @@ msgstr "Tato varianta mahjongu vyžaduje %{count} hráčů včetně botů."
 msgid "This Tysiac variant requires exactly %{count} players."
 msgstr "Požadovaný počet hráčů pro tuto variantu hry Tisíc je přesně %{count}."
 
-#: games/krowa_support/leaderboards.rb:126
+#: games/krowa_support/leaderboards.rb:141
 msgid "This Word Tower result has already been published."
 msgstr "Tento výsledek režimu Věž slov již byl zveřejněn."
 
@@ -26921,7 +26961,7 @@ msgstr "Tento tah není v aktuální pozici dovolen."
 msgid "This move would leave your king in check."
 msgstr "Po tomto tahu by váš král zůstal v šachu."
 
-#: games/krowa.rb:311
+#: games/krowa.rb:312
 msgid "This noun is not in the dictionary."
 msgstr "Toto podstatné jméno není ve slovníku."
 
@@ -27112,11 +27152,11 @@ msgstr "Tato hodnota není povolena."
 msgid "This variant deals five private cards and has no community cards. The first betting round is followed by one exchange phase, a second betting round and showdown. Keep all five or exchange up to three selected cards. Allow exchanging all five cards is off by default; enabling it raises the exchange limit to five, not the number of exchange phases. Folded players do not exchange; all-in players still do."
 msgstr ""
 
-#: games/krowa.rb:186
+#: games/krowa.rb:187
 msgid "This variant is for exactly one player. Other people may only observe Random word."
 msgstr "Tato varianta je určena přesně pro jednoho hráče. Ostatní mohou pouze sledovat variantu Náhodné slovo."
 
-#: games/krowa.rb:191
+#: games/krowa.rb:192
 msgid "This variant requires %{minimum} to %{maximum} players."
 msgstr "Tato varianta vyžaduje %{minimum} až %{maximum} hráčů."
 
@@ -27137,7 +27177,7 @@ msgstr ""
 msgid "This version uses the classic 8 by 8 rules without additional variants."
 msgstr ""
 
-#: games/krowa.rb:312
+#: games/krowa.rb:313
 msgid "This word has already been tried."
 msgstr "Toto slovo jste již zkoušeli."
 
@@ -27372,6 +27412,10 @@ msgstr "Veřejné toalety"
 #: lib/game_statistics_periods.rb:33
 msgid "Today"
 msgstr ""
+
+#: games/krowa_support/attempt_list_view.rb:31
+msgid "Today's Daily Krowa attempts are hidden until the next day."
+msgstr "Pokusy dnešní denní Krowy budou dostupné až následující den."
 
 #: games/krowa_support/daily_access.rb:131
 msgid "Today's Daily Krowa is no longer available. Come back tomorrow for a new word."
@@ -28444,7 +28488,7 @@ msgstr "Použít dva žolíky"
 msgid "Use two jokers adds two cards that can represent an ordinary or special card. You choose what the joker represents when playing it. It only defends a penalty if the represented card would be a legal defence. Representing an ace, jack or king uses its special effect only when that effect is enabled at the table."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:186 games/krowa_support/leaderboards.rb:74
+#: games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:76
 msgid "User"
 msgstr "Uživatel"
 
@@ -28671,7 +28715,7 @@ msgstr "W: vyberte první dráhu nebo po přípravě proveďte první typ úderu
 msgid "WARNING: local trial only, not a server seal. Acceptance saves an immutable full local plan. It does not assign game roles, teams, starting seats or scoring and cannot start a match."
 msgstr ""
 
-#: games/krowa.rb:313
+#: games/krowa.rb:314
 msgid "Wait for the round to start."
 msgstr "Počkejte na začátek kola."
 
@@ -28683,7 +28727,7 @@ msgstr "Před uložením partie počkejte na konec dražby."
 msgid "Wait until the current game has finished before changing its controller."
 msgstr ""
 
-#: games/krowa.rb:152
+#: games/krowa.rb:153
 msgid "Wait until the current word and all attempts have been checked before saving."
 msgstr "Před uložením počkejte na ověření aktuálního slova a všech pokusů."
 
@@ -28860,7 +28904,7 @@ msgstr "Čekání, až hráči dokončí odpovědi."
 msgid "Waiting for the point to be saved."
 msgstr ""
 
-#: games/krowa_support/client.rb:89
+#: games/krowa_support/client.rb:91
 msgid "Waiting for the private solution."
 msgstr "Čekání na soukromé předání řešení."
 
@@ -29469,11 +29513,11 @@ msgstr "Bez varianty „všechno, nebo nic“"
 msgid "Wooden zone"
 msgstr "Zalesněné místo"
 
-#: games/krowa_support/leaderboards.rb:154 games/krowa_support/leaderboards.rb:240 games/krowa_support/leaderboards.rb:282
+#: games/krowa_support/leaderboards.rb:169 games/krowa_support/leaderboards.rb:266 games/krowa_support/leaderboards.rb:308
 msgid "Word"
 msgstr "Slovo"
 
-#: games/krowa.rb:134
+#: games/krowa.rb:135
 msgid "Word Tower"
 msgstr "Věž slov"
 
@@ -29485,15 +29529,15 @@ msgstr "Věž slov skončila. Dokončená kola: %{count}."
 msgid "Word Tower ends when the limit is exhausted or the host surrenders. Its score is the number of completed rounds; the round list contains words and attempt counts."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:265 games/krowa_support/leaderboards.rb:33
+#: games/krowa_support/leaderboards.rb:291 games/krowa_support/leaderboards.rb:35
 msgid "Word Tower leaderboard"
 msgstr "Žebříček Věže slov"
 
-#: games/krowa_support/leaderboards.rb:122
+#: games/krowa_support/leaderboards.rb:137
 msgid "Word Tower result published."
 msgstr "Výsledek Věže slov byl zveřejněn."
 
-#: games/krowa_support/leaderboards.rb:284
+#: games/krowa_support/leaderboards.rb:310
 msgid "Word Tower: %{participants}"
 msgstr "Věž slov: %{participants}"
 
@@ -29505,11 +29549,11 @@ msgstr "Slovo bylo uznáno."
 msgid "Word board"
 msgstr "Slovní herní deska"
 
-#: games/krowa_support/client.rb:249 games/krowa_support/presentation.rb:56 games/krowa_support/presentation.rb:58
+#: games/krowa_support/client.rb:255 games/krowa_support/presentation.rb:56 games/krowa_support/presentation.rb:58
 msgid "Word definition"
 msgstr "Definice slova"
 
-#: games/krowa_support/leaderboards.rb:235
+#: games/krowa_support/leaderboards.rb:261
 msgid "Word leaderboard"
 msgstr ""
 
@@ -29517,7 +29561,7 @@ msgstr ""
 msgid "Word not accepted."
 msgstr "Slovo nebylo uznáno."
 
-#: games/krowa_support/leaderboards.rb:207
+#: games/krowa_support/leaderboards.rb:233
 msgid "Word or word fragment"
 msgstr "Slovo nebo jeho část"
 
@@ -29569,7 +29613,7 @@ msgstr "Chybná odpověď 2"
 msgid "Wrong answer 3"
 msgstr "Chybná odpověď 3"
 
-#: games/krowa.rb:311
+#: games/krowa.rb:312
 msgid "Wrong number of letters."
 msgstr "Nesprávný počet písmen."
 
@@ -30425,7 +30469,7 @@ msgstr "Aktuální ujetá vzdálenost se započítává do skóre. Karty vzdále
 msgid "Your current race die is used, including any card that changed its range. This roll does not use up that card's effect."
 msgstr ""
 
-#: games/krowa_support/client.rb:211
+#: games/krowa_support/client.rb:217
 msgid "Your dictionary is empty."
 msgstr "Váš slovník je prázdný."
 
@@ -31069,11 +31113,11 @@ msgstr "ohlaste bzučákem porušení pravidel u této karty"
 msgid "buzzer"
 msgstr "bzučák"
 
-#: games/krowa.rb:197
+#: games/krowa.rb:198
 msgid "by number of attempts"
 msgstr "podle počtu pokusů"
 
-#: games/krowa.rb:197
+#: games/krowa.rb:198
 msgid "by time"
 msgstr "podle času"
 
@@ -31481,7 +31525,7 @@ msgstr "zelená"
 msgid "green group"
 msgstr "zelená skupina"
 
-#: games/krowa_support/leaderboards.rb:278 games/krowa_support/presentation.rb:111
+#: games/krowa_support/leaderboards.rb:304 games/krowa_support/presentation.rb:111
 msgid "guessed"
 msgstr "uhodnuto"
 
@@ -31756,7 +31800,7 @@ msgstr "dosud neohlášeno"
 msgid "not filled"
 msgstr "nevyplněno"
 
-#: games/krowa_support/leaderboards.rb:278 games/krowa_support/presentation.rb:111
+#: games/krowa_support/leaderboards.rb:304 games/krowa_support/presentation.rb:111
 msgid "not guessed"
 msgstr "neuhodnuto"
 
@@ -31947,11 +31991,11 @@ msgstr "železnice"
 msgid "raise"
 msgstr "navýšit sázku"
 
-#: games/krowa.rb:196
+#: games/krowa.rb:197
 msgid "random length"
 msgstr "náhodná délka"
 
-#: games/krowa.rb:43
+#: games/krowa.rb:44
 msgid "random word length"
 msgstr ""
 

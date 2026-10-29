@@ -66,6 +66,37 @@ Krowa features and [statistics](STATISTICS.md). The former table, membership,
 invitation and move tables are not a second game backend. Account archives
 are stored by the private-file service, not in a table.
 
+Krowa's optional attempt histories use `krowa_attempt_lists`: immutable
+2048-byte payload parts, scoped to their publishing account and a
+content-derived `list_key`. Add `history_key` (`string:64`) to
+`krowa_word_scores`, `krowa_daily_scores` and `krowa_tower_rounds` before
+enabling the feature on the server, plus `histories_shared` (`integer`) on
+`krowa_tower_scores`. The latter records the final sharing choice even if a
+failed earlier upload wrote optional round details. Public tower details
+redact history references unless the published summary explicitly shares them.
+This is an additive schema update by
+the application's owner; no existing rows or tables need to be deleted.
+Old rows and results published without histories have an empty/missing key.
+Publication checks the remote declaration once per services instance. Until
+the additive schema is available, sharing histories returns explicit feedback
+and leaves ordinary score publication usable, without querying a missing table.
+The canonical earliest row for an exact personal-best score selects its
+history. A later playthrough with the same count cannot replace that list.
+
+Only scored, accepted guesses enter a list. Publish/read back every part
+before writing the score's reference, and reconcile uncertain writes through
+reads. A partial upload can resume with its original nonce and content;
+it must never produce a truncated list or a score referencing missing parts.
+For concurrent identical uploads, the earliest native row fixes the nonce;
+parts of competing envelopes are never combined with that canonical copy.
+Histories use authenticated encryption to avoid exposing today's answer as
+plain table data. As with daily assignments, the embedded application key
+does not protect against modified clients. Ordinary daily-history reads
+require a past Warsaw date confirmed through the server clock and do not
+download today's or future payloads. The local solo gallery retains its
+own best-result attempts independently of public sharing. Match state and
+saved games remain based exclusively on the existing accepted event log.
+
 ### Access to auxiliary tables
 
 Every `program_main` call and entry through a notification rechecks access to

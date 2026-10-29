@@ -249,6 +249,24 @@ Choose Leaderboards in the main menu, then a game.
 - Daily Krowa has a separate leaderboard for each day, also ordered by guesses. Today's word stays hidden; earlier solutions can be viewed once their day is over.
 - Word Tower ranks runs by completed rounds: more rounds means a higher place. Press Enter on a result to see each round's word and guesses.
 
+After guessing a word in Random Word or Daily Krowa, choose “Publish”,
+“Publish without attempt list” or “Do not publish”. The same choices are
+available when publishing a Word Tower result. Lists contain only checked
+guesses, in the order they were made.
+“Publish” is selected by default. Right Arrow moves through the other two
+choices, and Left Arrow moves back. Enter confirms your choice; Escape closes
+the window without publishing.
+
+Select a player's result in a word or daily leaderboard and press Tab to
+read its attempt list. Each item gives the word and the number of matching
+letters. In Word Tower details, select a round; in your gallery, select a
+word, then press Tab. The gallery saves your own attempts whether or not
+you publish them. Daily Krowa attempt lists become available in leaderboards
+on the following day, using the server's date in Poland. Older results and
+results published without a list show that no attempts were recorded.
+Gallery entries show the word and attempt count, without the number of letters.
+If the server does not support attempt lists yet, you can publish just the score.
+
 ## Statistics
 
 Choose Statistics in the main menu, then General, Axel Pong or Audio Ball.

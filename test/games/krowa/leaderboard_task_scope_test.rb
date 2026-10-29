@@ -21,7 +21,7 @@ GameRoomClock.define_singleton_method(:now) { Time.utc(2026, 10, 18, 12).to_f }
 class RankingScopeFixture
   attr_reader :calls, :views, :alerts, :client, :menus
 
-  def initialize(failure_at: nil, cancel: false)
+  def initialize(failure_at: nil, cancel: false, histories: false)
     @ui_thread = Thread.current
     @calls, @views, @alerts, @menus = [], [], [], 0
     bank = GameRoomGames::KrowaWordBank.default
@@ -34,6 +34,7 @@ class RankingScopeFixture
         'assignment' => GameRoomKrowa::DailyAssignment.seal(date, 'kot'))
       scores.insert('day_key' => date.delete('-').to_i, 'attempts' => 6)
       store.record_daily_open(date)
+      store.publish_daily(date, 4, words: %w[las dom sok kot]) if histories
     end
     @original_rows = Marshal.dump(@tables.instance_variable_get(:@tables).transform_values(&:rows))
     @tables.instance_variable_get(:@tables).each do |name, table|
@@ -59,8 +60,8 @@ class RankingScopeFixture
     end
   end
 
-  def browse(select: nil)
-    drive(select: select) { client.run }
+  def browse(select: nil, open_attempts: false)
+    drive(select: select, open_attempts: open_attempts) { client.run }
   end
 
   def publish(date)
@@ -77,7 +78,7 @@ class RankingScopeFixture
 
   private
 
-  def drive(select: nil)
+  def drive(select: nil, open_attempts: false)
     Form.driver = lambda do |form|
       assert(Thread.current.equal?(@ui_thread), 'A visible form was opened on the worker')
       field = form.fields.first
@@ -87,6 +88,13 @@ class RankingScopeFixture
         (@menus == 1 ? form.accept_button : form.cancel_button).trigger(:press)
       else
         @views << {header: field.header, rows: Marshal.load(Marshal.dump(field.rows))}
+        if open_attempts && field.header.start_with?('Daily Krowa:')
+          details = form.fields[1]
+          assert(details.header == 'Attempt list', 'Tab field missing')
+          details.trigger(:before_focus)
+          @views.last[:attempts] = details.options.dup
+          @views.last[:empty_label] = details.empty_label
+        end
         if select && @views.length == 1
           field.index = select
           form.accept_button.trigger(:press)
@@ -142,9 +150,20 @@ assert(cancelled.unchanged?, 'Cancellation changed records')
   assert(published.calls.none? { |call| call[:on_ui] }, 'Post-publication header queried on the UI')
 end
 
+histories = RankingScopeFixture.new(histories: true)
+histories.browse(select: 1, open_attempts: true)
+assert(histories.views.last[:attempts] == ['las. 0', 'dom. 1', 'sok. 1', 'kot. 3'], 'Past attempt list changed')
+assert(histories.calls.none? { |call| call[:on_ui] } && histories.unchanged?, 'Attempt details queried on UI or wrote data')
+assert(histories.calls.any? { |call| call[:table] == 'krowa_attempt_lists' }, 'Attempt payload was not read')
+
+hidden_histories = RankingScopeFixture.new(histories: true)
+hidden_histories.browse(select: 0, open_attempts: true)
+assert(hidden_histories.views.last[:attempts].empty?, 'Today attempts reached the visible control')
+assert(hidden_histories.calls.none? { |call| call[:table] == 'krowa_attempt_lists' || call[:on_ui] }, 'Hidden daily payload was downloaded')
+
 GameRoomClock.define_singleton_method(:synchronized?) { false }
 unconfirmed = RankingScopeFixture.new
 unconfirmed.browse
 assert(unconfirmed.views.empty? && unconfirmed.calls.empty?, 'Unconfirmed time read or displayed a daily solution')
 assert(unconfirmed.alerts == ['Could not connect to the Krowa leaderboard.'], 'Clock failure lost its existing feedback')
-puts 'PASS Krowa leaderboard task scope: 9 public UI paths, native workers, exact query counts, failures/cancellation and date privacy'
+puts 'PASS Krowa leaderboard task scope: public UI paths and lazy histories, native workers, failures/cancellation and date privacy'
