@@ -431,7 +431,7 @@ module GameRoomGames
         item.sort_keys = standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: hand_for(state, viewer).index(card))
         item
       end
-      cards = GameSurfaces::CardTableSpec.new(zones: [
+      cards = GameSurfaces::CardTableSpec.new(default_sort: "colour", zones: [
         GameSurfaces::CardZoneSpec.new(
           id: "hand",
           header: hand_header(state, viewer),
@@ -468,6 +468,17 @@ module GameRoomGames
 
     def shortcut_features
       super + [:hand, :table_cards, :table_cards_list, :led_suit, :scores, :statistics, :bidding]
+    end
+
+    def custom_game_shortcuts(replay, viewer)
+      state = replay.state
+      shortcuts = [announcement_shortcut(key: "r", label: _("read the current contract"),
+        message: current_contract_text(state))]
+      if surrender_available?(state, viewer)
+        shortcuts << GameShortcut.new(key: "r", modifiers: [:shift], label: _("Surrender the deal"),
+          kind: :action, action_kind: "command", action_name: "surrender", payload: {})
+      end
+      shortcuts
     end
 
     def shortcut_feature_data(feature, replay, viewer)
@@ -1652,6 +1663,14 @@ module GameRoomGames
           }
         end.join("; ")
       }
+    end
+
+    def current_contract_text(state)
+      value = state[:contract] || state[:current_bid]
+      player = state[:taker] || state[:current_bidder]
+      return _("There is no contract yet.") if value == nil || player == nil
+
+      _("%{player}: %{bid}") % { player: participant_name(player), bid: value }
     end
 
     def bids_text(state)

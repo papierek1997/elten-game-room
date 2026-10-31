@@ -79,6 +79,16 @@ or CC0 status is claimed for them, and the former Fandom pack's license
 declaration must not be applied to this new set. The earlier provenance
 notes below are retained solely as the history of the removed imports.
 
+## Polish Harry Potter books set
+
+`quiz.harry_potter.books.pl` adds a separate Polish books set based on
+LordKiller's contribution. Of 993 proposed questions, 985 were retained after
+individual review of the facts, wording and answer choices. Two duplicate
+questions and a film-only scene were rejected; five further details were
+withheld for insufficient literary confirmation. See
+`QUIZ_HARRY_POTTER_PL_SOURCES.md` for scope, attribution, exclusions and rights.
+This does not replace or change any existing question set.
+
 ## Earlier Polish imports and retired Witcher sets
 
 The PR declares the Wikidata pack as CC0-1.0, credited to “ELTEN Game Room”,

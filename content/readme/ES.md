@@ -141,6 +141,10 @@ No necesitas aprender todos los atajos a la vez:
 - El menú contextual ofrece acciones relacionadas con la mesa.
 - Ctrl+F4 lee la latencia de conexión, distinguiendo HTTP de la conexión Communications o P2P disponible.
 
+En Mil, R lee solo la cantidad del contrato actual y quién la ofreció. Shift+R abandona la mano cuando las reglas lo permiten.
+
+En Quiz, la pregunta aparece en un campo de texto de solo lectura. Ctrl+Izquierda o Ctrl+Derecha permite leerla palabra por palabra. Abajo pasa a la lista de respuestas; Arriba desde la primera respuesta vuelve a la pregunta.
+
 Puedes consultar las reglas antes de crear una mesa. Tienen capítulos y un índice con enlaces a cada sección. Los atajos del juego aparecen en una lista independiente, con una entrada por atajo.
 La lista de juegos de la biblioteca de reglas también incluye una breve descripción de cada juego.
 En el texto de las reglas, H y Shift+H recorren los encabezados, K y Shift+K los enlaces, y Enter sobre un enlace del índice lleva al capítulo.
@@ -249,6 +253,25 @@ En el menú principal, elige Clasificaciones y después un juego.
 - Krowa diaria tiene una clasificación para cada día, también por número de intentos. La palabra de hoy permanece oculta; las soluciones anteriores se pueden consultar una vez terminado su día.
 - En la Torre de palabras cuenta el número de rondas completadas: cuantas más, mejor posición. Pulsa Enter sobre un resultado para consultar las palabras y los intentos de cada ronda.
 
+Tras adivinar una palabra en Palabra aleatoria o Krowa diaria, puedes elegir
+«Publicar», «Publicar sin la lista de intentos» o «No publicar». Las mismas
+opciones están disponibles al publicar un resultado de la Torre de palabras.
+La lista contiene solo los intentos comprobados, en el orden en que se hicieron.
+«Publicar» está seleccionado por defecto. La flecha derecha pasa por las otras
+dos opciones y la flecha izquierda retrocede. Intro confirma la elección;
+Escape cierra la ventana sin publicar.
+
+En la clasificación de una palabra o de un día, selecciona el resultado de
+un jugador y pulsa Tab para leer su lista de intentos. Cada elemento indica
+la palabra y el número de letras coincidentes. En los detalles de la Torre
+de palabras selecciona una ronda; en tu galería selecciona una palabra y
+pulsa Tab. La galería guarda tus propios intentos aunque no los publiques.
+Las listas de Krowa diaria aparecen en la clasificación al día siguiente,
+según la fecha del servidor en Polonia. Los resultados antiguos y los
+publicados sin lista indican que no hay intentos registrados.
+Las entradas de la galería muestran la palabra y el número de intentos, sin indicar el número de letras.
+Si el servidor aún no admite listas de intentos, puedes publicar solo el resultado.
+
 ## Estadísticas
 
 En el menú principal, elige Estadísticas y después General, Axel Pong o Audio Ball.
@@ -261,9 +284,11 @@ En el menú principal de Power Games, Ctrl+W abre el resumen de personas present
 
 ### Axel Pong y Audio Ball
 
-Elige individuales o dobles. Al principio se muestran tus resultados de todos los partidos registrados: victorias, derrotas, balance de partidos, goles a favor, goles en contra y diferencia de goles.
+Elige individuales o dobles. Al principio se muestran tus resultados de todos los partidos registrados: partidos jugados, victorias, derrotas, balance de partidos, goles a favor, goles en contra y diferencia de goles.
 
-Con Tab llegas al selector de período. Puedes consultar los últimos 7 días, 30 días, seis meses, un año o todo el período. Elegir jugador abre las estadísticas de otra persona; Mis estadísticas vuelve a las tuyas. Actualizar obtiene los datos más recientes.
+Debajo está la lista de rivales: todas las personas contra las que ha jugado el jugador mostrado o, en dobles, las parejas rivales. Cada entrada muestra los partidos jugados, ganados y perdidos en el período elegido. Pulsa Intro sobre un rival para ver las victorias y derrotas contra él en cada período.
+
+Con otro Tab llegas al selector de período. Puedes consultar los últimos 7 días, 30 días, seis meses, un año o todo el período. Elegir jugador abre las estadísticas de otra persona; Mis estadísticas vuelve a las tuyas. Actualizar obtiene los datos más recientes.
 
 En Audio Ball se suman los goles de todos los sets. En dobles, cada compañero recibe el resultado completo del equipo. Los resultados se guardan automáticamente al terminar un partido si ambos bandos están formados únicamente por personas en ese momento. También cuentan los partidos de torneo, incluidos los goles asignados por incomparecencia.
 

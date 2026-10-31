@@ -7,6 +7,7 @@ require_relative "leaderboards"
 require_relative "server_store"
 require_relative "sjp_definition_provider"
 require_relative "profile"
+require_relative 'attempt_list_view'
 require_relative "private_reveal"
 
 require_relative "../../lib/game_room_localization"
@@ -54,7 +55,8 @@ module GameRoomGames
       @server_store = KrowaServerStore.new(
         server_tables: @server_tables,
         bank: KrowaWordBank.default,
-        user: Session.name
+        user: Session.name,
+        program: @program
       )
       @leaderboards = KrowaLeaderboardClient.new(@program, @game, store: @server_store)
       true
@@ -160,8 +162,8 @@ module GameRoomGames
           end
         end
         list.options = words.map do |word|
-          _("%{word}: %{attempts} attempts, %{length} letters") % {
-            word: word, attempts: entries[word]["attempts"], length: word.length
+          _("%{word}: %{attempts} attempts") % {
+            word: word, attempts: entries[word]["attempts"]
           }
         end
         list.index = words.index(selected) || 0
@@ -173,7 +175,11 @@ module GameRoomGames
       end
       list.on(:select) { @leaderboards.show_word_ranking(words[list.index]) unless words.empty? }
       close = Button.new(_("Close"))
-      form = GameRoomUI::Form.new([list, close], program: @program, quiet: true)
+      attempts = KrowaAttemptListView.new(@game, selection: -> { words[list.index] }) do |word|
+        entry = entries[word]
+        entry && entry['words'] ? {word: word, words: entry['words']} : nil
+      end
+      form = GameRoomUI::Form.new([list, attempts.field, close], program: @program, quiet: true)
       form.cancel_button = close
       close.on(:press) { form.resume }
       sort.call
@@ -302,46 +308,78 @@ module GameRoomGames
         key = "#{variant}:#{state[:day]}:#{word}:#{result[:attempts]}:#{state[:started_ms]}"
         return if @publication_offered[key]
         @publication_offered[key] = true
-        if variant == "daily"
-          if confirm(_("Publish your Daily Krowa result: %{attempts} attempts?") % {attempts: result[:attempts]})
-            @leaderboards.publish_daily(state[:day], result[:attempts])
+        title = variant == 'daily' ?
+          _("Publish your Daily Krowa result: %{attempts} attempts?") % {attempts: result[:attempts]} :
+          _("Publish the result for %{word}: %{attempts} attempts?") % {word: word, attempts: result[:attempts]}
+        return publish_with_choice(title) do |include_attempts|
+          words = include_attempts ? KrowaAttemptHistory.rounds(replay).fetch(state[:round], []) : nil
+          if variant == "daily"
+            @leaderboards.publish_daily(state[:day], result[:attempts], words: words)
+          else
+            @leaderboards.publish_word(word, result[:attempts], words: words)
           end
-        elsif confirm(_("Publish the result for %{word}: %{attempts} attempts?") % {word: word, attempts: result[:attempts]})
-          @leaderboards.publish_word(word, result[:attempts])
         end
-        return
       end
 
       return unless variant == "tower" && replay.finished?
       return unless replay.players.first && @game.send(:same_user?, replay.players.first, viewer)
-      rounds = tower_publication_rounds(state)
+      rounds = tower_publication_rounds(state, histories: KrowaAttemptHistory.rounds(replay))
       key = "tower:#{tower_run_code(replay, rounds)}"
       return if @publication_offered[key]
       @publication_offered[key] = true
-      if confirm(_("Publish the Word Tower result: %{rounds} completed rounds?") % {
+      publish_with_choice(_("Publish the Word Tower result: %{rounds} completed rounds?") % {
         rounds: rounds.count { |round| round[:solved] }
-      })
+      }) do |include_attempts|
+        published_rounds = include_attempts ? rounds : rounds.map { |round| round.reject { |key, _| key == :words } }
         @leaderboards.publish_tower(
           run_code: tower_run_code(replay, rounds),
           participants: replay.players,
-          rounds: rounds
+          rounds: published_rounds
         )
       end
     end
 
-    def tower_publication_rounds(state)
-      rounds = state[:completed].map do |round|
-        {word: round[:word], attempts: round[:attempts], solved: true}
+    def publish_with_choice(title)
+      loop do
+        choice = publication_choice(title)
+        return if choice == nil
+        # A failed upload returns to the choices. Retrying is another explicit
+        # user decision, never an automatic repetition of a network write.
+        return if yield(choice == :with_attempts)
+      end
+    end
+
+    def publication_choice(title)
+      selected = nil
+      choices = [:with_attempts, :without_attempts, nil]
+      list = ListBox.new([_("Publish"), _("Publish without attempt list"), _("Do not publish")],
+        header: title, index: 0, flags: ListBox::Flags::LeftRight, quiet: true)
+      accept, cancel = Button.new(_("Choose")), Button.new(_("Cancel"))
+      form = GameRoomUI::Form.new([list, accept, cancel], program: @program, quiet: true)
+      form.accept_button, form.cancel_button = accept, cancel
+      form.hide(accept)
+      form.hide(cancel)
+      accept.on(:press) { selected = choices[list.index]; form.resume }
+      cancel.on(:press) { form.resume }
+      form.wait
+      selected
+    end
+
+    def tower_publication_rounds(state, histories: {})
+      rounds = state[:completed].each_with_index.map do |round, index|
+        {word: round[:word], attempts: round[:attempts], solved: true, words: histories[index + 1]}
       end
       if state[:last_solution]
-        rounds << {word: state[:last_solution], attempts: state[:attempts].length, solved: false}
+        rounds << {word: state[:last_solution], attempts: state[:attempts].length, solved: false,
+          words: histories[state[:round]]}
       end
       rounds
     end
 
     def tower_run_code(replay, rounds)
       source = JSON.generate([
-        replay.players.map { |name| name.to_s.downcase }, replay.state[:started_ms], rounds
+        replay.players.map { |name| name.to_s.downcase }, replay.state[:started_ms],
+        rounds.map { |round| round.slice(:word, :attempts, :solved) }
       ])
       Digest::SHA256.hexdigest(source)
     end

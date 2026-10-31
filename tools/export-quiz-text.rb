@@ -7,6 +7,7 @@ require_relative '../content/quiz_general_en'
 require_relative '../content/quiz_general_ru'
 require_relative '../content/quiz_pl_wikidata'
 require_relative '../content/quiz_witcher_pl'
+require_relative '../content/quiz_harry_potter_pl'
 
 module QuizTextExport
   DIRECTORY = File.expand_path('../docs/quiz-questions', __dir__)
@@ -14,7 +15,8 @@ module QuizTextExport
     'quiz.general.en' => 'general-knowledge-en.txt',
     'quiz.general.ru' => 'obshchie-znaniya-ru.txt',
     'quiz.wikidata.pl' => 'wiedza-ogolna-pl.txt',
-    'quiz.witcher.books.pl' => 'wiedzmin-ksiazki-pl.txt'
+    'quiz.witcher.books.pl' => 'wiedzmin-ksiazki-pl.txt',
+    'quiz.harry_potter.books.pl' => 'harry-potter-ksiazki-pl.txt'
   }.freeze
   module_function
 
@@ -44,6 +46,7 @@ module QuizTextExport
       lines << "#{heading}: #{('A'.ord + index).chr}. #{question.fetch('correct')}"
       lines << ''
     end
+    lines.pop while lines.last == ''
     lines.join("\n") + "\n"
   end
 

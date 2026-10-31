@@ -140,7 +140,7 @@ GameRoomLanguageRuntime.protect_host do
     languages = definitions.find { |item| item.key == 'question_language' }.choices
     assert_equal(translate.call('Polish'), languages.find { |choice| choice.value == 'pl-PL' }.label)
     sets = definitions.find { |item| item.key == 'question_sets' }
-    assert_equal(['quiz.wikidata', 'quiz.witcher.books'], sets.choices.map(&:value).sort)
+    assert_equal(['quiz.harry_potter.books', 'quiz.wikidata', 'quiz.witcher.books'], sets.choices.map(&:value).sort)
     assert_equal(translate.call('General knowledge'), sets.choices.find { |choice| choice.value == 'quiz.wikidata' }.label)
     assert_equal(translate.call('Witcher — books'), sets.choices.find { |choice| choice.value == 'quiz.witcher.books' }.label)
     quiz = ns::GameRoomGames::QuizParty.new
@@ -149,8 +149,9 @@ GameRoomLanguageRuntime.protect_host do
         pack_set = ns::GameRoomContent.registry.pack_set(choice.fetch(:value))
         label = quiz.content_set_choice_label(pack_set, language)
         assert(label.start_with?(choice.fetch(:label) + ', '), "#{code}: Quiz and Duck use different pack labels")
-        title = choice.fetch(:value) == 'quiz.witcher.books' ? 'Witcher — books' : 'General knowledge'
-        assert_equal(translate.call(title), choice.fetch(:label), "#{code}: #{language} pack title uses its content language")
+        title = {'quiz.witcher.books'=>'Witcher — books', 'quiz.harry_potter.books'=>'Harry Potter'}.fetch(choice.fetch(:value), 'General knowledge')
+        expected_title = title == 'Harry Potter' ? title : translate.call(title)
+        assert_equal(expected_title, choice.fetch(:label), "#{code}: #{language} pack title uses its content language")
       end
     end
 

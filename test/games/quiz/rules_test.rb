@@ -217,7 +217,8 @@ assert(replay.state[:deadline] == 105, "the answer deadline does not follow the 
 question_surface = game.surface_spec(replay, "Bob")
 assert(question_surface.mode == :single_choice, "an answering player did not receive four answers")
 assert(question_surface.options.length == 4, "a question does not offer exactly four answers")
-assert(question_surface.prompt_in_choices == true, "the answer list cannot be used to reread the question")
+assert(question_surface.prompt_as_text == true && question_surface.prompt_in_choices != true,
+  "the question must be readable text separate from the four answers")
 assert(question_surface.submit_on_select == true, "answering needs a second keystroke")
 assert(question_surface.options.map(&:label).uniq.length == 4, "a question offered duplicate answers")
 assert(game.surface_spec(replay, "Alice").options.map(&:label) == question_surface.options.map(&:label), "players saw the answers in a different order")

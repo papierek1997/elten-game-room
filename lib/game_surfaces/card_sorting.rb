@@ -5,7 +5,14 @@ module GameSurfaces
     private
 
     def sorted_hand?
-      !@card_sort_mode.to_s.empty? && @card_sort_mode != "none"
+      mode = active_card_sort_mode
+      !mode.empty? && mode != "none"
+    end
+
+    def active_card_sort_mode
+      return @card_sort_mode.to_s unless @card_sort_mode.to_s.empty?
+
+      @spec.respond_to?(:default_sort) ? @spec.default_sort.to_s : ""
     end
 
     def sorted_cards(cards, mode, direction = @card_sort_direction)

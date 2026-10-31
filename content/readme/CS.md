@@ -141,6 +141,10 @@ Všechny zkratky se nemusíte učit najednou:
 - Kontextové menu nabízí činnosti související se stolem.
 - Ctrl+F4 přečte odezvu spojení a rozliší HTTP od dostupného spojení Communications nebo P2P.
 
+V Tisíci R přečte jen aktuální závazek a jméno licitujícího. Shift+R vzdá rozdání, pokud to pravidla dovolují.
+
+V Kvízu je otázka v textovém poli pouze pro čtení. Ctrl+šipka vlevo nebo vpravo umožňuje číst po slovech. Šipka dolů přejde na seznam odpovědí a šipka nahoru z první odpovědi zpět k otázce.
+
 Pravidla si můžete přečíst ještě před vytvořením stolu. Mají kapitoly a obsah s odkazy na jednotlivé části. Herní zkratky jsou v samostatném seznamu, každá na vlastní položce.
 Seznam her v knihovně pravidel obsahuje i krátký popis každé hry.
 V textu pravidel přecházejí H a Shift+H mezi nadpisy, K a Shift+K mezi odkazy a Enter na odkazu v obsahu přesune kurzor do kapitoly.
@@ -249,6 +253,24 @@ V hlavním menu vyberte Žebříčky a potom hru.
 - Denní Krowa má samostatný žebříček pro každý den, také podle počtu pokusů. Dnešní slovo zůstává skryté; řešení minulých dní lze zobrazit po jejich skončení.
 - Ve Slovní věži rozhoduje počet dokončených kol: čím více, tím lepší místo. Enter na výsledku zobrazí slova a pokusy v jednotlivých kolech.
 
+Po uhodnutí slova v náhodné hře nebo denní Krowě můžete vybrat „Zveřejnit“,
+„Zveřejnit bez seznamu pokusů“ nebo „Nezveřejňovat“. Stejná volba je
+dostupná při zveřejňování výsledku Slovní věže. Seznam obsahuje pouze
+vyhodnocené pokusy v pořadí, ve kterém byly zadány.
+Ve výchozím stavu je vybráno „Zveřejnit“. Šipka vpravo postupně přechází
+na zbývající dvě možnosti, šipka vlevo se vrací. Enter volbu potvrdí;
+Escape zavře okno bez zveřejnění.
+
+V žebříčku slova nebo dne vyberte výsledek hráče a klávesou Tab přejděte
+na jeho seznam pokusů. Každá položka uvádí slovo a počet shodných písmen.
+V podrobnostech Slovní věže vyberte kolo, ve vlastní galerii slovo a potom
+také stiskněte Tab. Galerie ukládá vaše pokusy nezávisle na zveřejnění.
+Seznamy pokusů denní Krowy se v žebříčku zpřístupní až následující den
+podle data serveru v Polsku. U starších výsledků a výsledků zveřejněných
+bez seznamu se zobrazí informace, že pokusy nejsou zaznamenány.
+V seznamu galerie se zobrazuje slovo a počet pokusů, bez počtu písmen.
+Pokud server zatím seznamy pokusů nepodporuje, můžete zveřejnit samotný výsledek.
+
 ## Statistiky
 
 V hlavním menu vyberte Statistiky a potom Obecné, Axel Pong nebo Audio Ball.
@@ -261,9 +283,11 @@ V hlavním menu Power Games otevře Ctrl+W přehled lidí právě přítomných 
 
 ### Axel Pong a Audio Ball
 
-Zvolte dvouhru nebo čtyřhru. Nejprve se zobrazí vaše výsledky ze všech zaznamenaných zápasů: výhry, prohry, bilance zápasů, vstřelené a obdržené góly a rozdíl gólů.
+Zvolte dvouhru nebo čtyřhru. Nejprve se zobrazí vaše výsledky ze všech zaznamenaných zápasů: odehrané zápasy, výhry, prohry, bilance zápasů, vstřelené a obdržené góly a rozdíl gólů.
 
-Tabem přejdete na výběr období. Můžete zvolit posledních 7 dní, 30 dní, půl roku, rok nebo celé období. Tlačítkem Vybrat hráče otevřete statistiky jiné osoby; Moje statistiky vás vrátí k vlastním výsledkům. Obnovit načte aktuální údaje.
+Pod nimi je seznam soupeřů: všech, se kterými zobrazený hráč hrál, ve čtyřhře soupeřících dvojic. U každého je počet odehraných, vyhraných a prohraných zápasů ve zvoleném období. Enter na soupeři ukáže výhry a prohry proti němu v každém období.
+
+Dalším Tabem přejdete na výběr období. Můžete zvolit posledních 7 dní, 30 dní, půl roku, rok nebo celé období. Tlačítkem Vybrat hráče otevřete statistiky jiné osoby; Moje statistiky vás vrátí k vlastním výsledkům. Obnovit načte aktuální údaje.
 
 Audio Ball sčítá góly ze všech setů. Ve čtyřhře se každému spoluhráči započítá celý výsledek týmu. Výsledky se ukládají automaticky po skončení zápasu, pokud obě strany v tu chvíli tvoří pouze lidé. Počítají se i turnajové zápasy včetně gólů přidělených při kontumaci.
 

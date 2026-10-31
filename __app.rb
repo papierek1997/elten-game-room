@@ -184,6 +184,7 @@ require_relative "content/quiz_general_en"
 require_relative "content/quiz_general_ru"
 require_relative "content/quiz_pl_wikidata"
 require_relative "content/quiz_witcher_pl"
+require_relative "content/quiz_harry_potter_pl"
 require_relative "games/catalog"
 require_relative "games/krowa_support/server_schema"
 

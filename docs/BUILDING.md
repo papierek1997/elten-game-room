@@ -77,7 +77,10 @@ On 5 October 2026, a further 60 approved entries were appended (34, followed by
 another 26), without changing the previous order. That intermediate file had
 98 247 rows. The later word contributions added 185 distinct nouns and removed
 13 305 duplicate rows while preserving the first occurrence of every old word.
-The current source contains 85 127 unique entries; the generator and its test
+On 29 October 2026, another 12 nouns were appended (the other two submitted
+forms were already present), and cytacik, cytaciki, owocek and owocki were
+removed at the contributor's request. The current source contains 85 135
+unique entries; the generator and its test
 check this. Daily assignments do not depend on the dictionary index.
 Adding a noun does not create a local
 definition: explanations are retrieved from SJP on demand through the existing path.

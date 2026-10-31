@@ -33,6 +33,12 @@ end
 # Reviewed source decisions: preserve wording except for approved minimal
 # choice-list edits, corrected keys, distinct distractors and the Polsat negation.
 reviewed_general = {
+  # Zuzler's 2026-10-31 report: the question must work without a musical clip.
+  '1z10_127f900846145478' => {
+    'prompt' => 'W której operze Jacques’a Offenbacha można usłyszeć słynną barkarolę?',
+    'correct' => 'W Opowieściach Hoffmanna',
+    'wrong' => ['W Carmen', 'W Fauście', 'W Traviacie']
+  },
   # Reports reviewed on 2026-10-28: explicit dates, precise definitions,
   # matching grammar and correctly written book titles. The second carat
   # question is excluded by the pinned fixture; retain the stronger wording.

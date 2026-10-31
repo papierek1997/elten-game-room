@@ -103,7 +103,7 @@ module GameSurfaces
 
   CardZoneSpec = Struct.new(:id, :header, :cards, :empty_label, :hand_order, :hand_epoch, :commands, :select_drawn, keyword_init: true)
 
-  CardTableSpec = Struct.new(:zones, keyword_init: true)
+  CardTableSpec = Struct.new(:zones, :default_sort, keyword_init: true)
 
   AnswerField = Struct.new(
     :id,
@@ -203,6 +203,7 @@ module GameSurfaces
     :max_length,
     :submit_on_select,
     :prompt_in_choices,
+    :prompt_as_text,
     :clear_on_submit,
     :clear_on_rejection,
     :extra_commands,

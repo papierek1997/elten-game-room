@@ -209,6 +209,11 @@ Nie trzeba uczyć się wszystkich skrótów naraz:
 - Ctrl+F4 odczytuje opóźnienie połączenia, rozróżniając HTTP oraz dostępne
   połączenie Communications lub P2P.
 
+W Tysiącu R odczytuje tylko bieżącą wartość kontraktu i licytującego.
+Shift+R poddaje rozdanie, jeśli pozwalają na to zasady gry.
+
+W Quizie pytanie jest polem tekstowym tylko do odczytu. Ctrl+strzałka w lewo lub w prawo pozwala czytać je po słowach. Strzałką w dół przejdziesz do listy odpowiedzi, a strzałką w górę z pierwszej odpowiedzi wrócisz do pytania.
+
 Zasady można czytać przed utworzeniem stołu. Mają rozdziały i spis treści,
 po którym można przejść do wybranego fragmentu. Opis skrótów gry jest
 osobną listą — po jednej pozycji na skrót.
@@ -396,6 +401,24 @@ W głównym menu wybierz „Rankingi”, a następnie grę.
 - W Wieży słów liczy się liczba ukończonych rund: im więcej, tym wyższe miejsce.
   Enter na wyniku pokazuje słowa i próby z poszczególnych rund.
 
+Po odgadnięciu słowa w grze losowej lub dziennej Krowie możesz wybrać:
+„Opublikuj”, „Opublikuj bez listy prób” albo „Nie publikuj”. Taki sam wybór
+jest dostępny przy publikowaniu wyniku Wieży słów. Lista obejmuje tylko
+sprawdzone próby, w kolejności ich wykonania.
+Domyślnie zaznaczone jest „Opublikuj”. Strzałka w prawo przechodzi kolejno
+do dwóch pozostałych opcji, a w lewo wraca do poprzedniej. Enter zatwierdza
+wybór; Escape zamyka okno bez publikowania.
+
+W rankingu słowa lub dnia zaznacz wynik gracza i naciśnij Tab, aby przejść
+do jego listy prób. Każda pozycja zawiera słowo i liczbę zgodnych liter.
+W szczegółach Wieży słów wybierz rundę, a w swojej galerii — słowo, po czym
+również naciśnij Tab. Galeria zapisuje własne próby niezależnie od publikacji.
+Na liście galerii widać słowo i liczbę prób, bez liczby liter.
+Listy prób z dziennej Krowy są dostępne w rankingu dopiero następnego dnia,
+według daty serwera w Polsce. Starsze wyniki oraz wyniki opublikowane bez
+listy pokazują informację o braku zapisanych prób.
+Jeśli serwer nie obsługuje jeszcze list prób, możesz opublikować sam wynik.
+
 ## Statystyki
 
 W głównym menu wybierz „Statystyki”, a następnie „Ogólne”, „Axel Pong” lub „Audio Ball”.
@@ -411,9 +434,11 @@ obsadę.
 
 ### Axel Pong i Audio Ball
 
-Wybierz singiel lub debel. Domyślnie zobaczysz własne wyniki ze wszystkich zapisanych meczów: wygrane, przegrane, bilans meczów, strzelone i stracone bramki oraz bilans bramek.
+Wybierz singiel lub debel. Domyślnie zobaczysz własne wyniki ze wszystkich zapisanych meczów: rozegrane mecze, wygrane, przegrane, bilans meczów, strzelone i stracone bramki oraz bilans bramek.
 
-Tabem przejdziesz do wyboru okresu. Możesz sprawdzić ostatnie 7 dni, 30 dni, pół roku, rok albo cały okres. Przycisk „Wybierz gracza” pozwala wskazać inną osobę, a „Moje statystyki” wraca do Twoich wyników. „Odśwież” pobiera aktualne dane.
+Pod wynikami jest lista przeciwników: osób, z którymi grał wyświetlany gracz, a w deblu par przeciwników. Przy każdej pozycji widać liczbę rozegranych, wygranych i przegranych meczów w wybranym okresie. Enter na przeciwniku pokazuje wygrane i przegrane mecze z nim w każdym okresie.
+
+Kolejnym Tabem przejdziesz do wyboru okresu. Możesz sprawdzić ostatnie 7 dni, 30 dni, pół roku, rok albo cały okres. Przycisk „Wybierz gracza” pozwala wskazać inną osobę, a „Moje statystyki” wraca do Twoich wyników. „Odśwież” pobiera aktualne dane.
 
 W Audio Ballu sumują się bramki ze wszystkich setów. W deblu każdy gracz otrzymuje pełny wynik swojej drużyny. Wyniki zapisują się automatycznie po zakończeniu meczu, jeżeli obie strony składają się wtedy wyłącznie z ludzi. Liczą się także mecze turniejowe, a walkowery uwzględniają bramki przyznane w turnieju.
 

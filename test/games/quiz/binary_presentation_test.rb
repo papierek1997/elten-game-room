@@ -1,6 +1,12 @@
 require_relative "../../support/binary_rules_load"
 
 game = EltenGameRoom::GAME_REGISTRY.build('quiz')
+potter = GameRoomContent.registry.pack('quiz.harry_potter.books.pl')
+raise 'Missing or eagerly loaded Harry Potter set' unless potter && !potter.verified?
+raise 'Unexpected Harry Potter metadata' unless potter.title == 'Harry Potter' && potter.entry_count == 985
+potter_questions = potter.data.fetch('questions')
+raise 'Binary loading changed the new content' unless potter.verified? && potter_questions.size == 985 &&
+  potter_questions.all? { |q| [q.fetch('prompt'), q.fetch('correct'), *q.fetch('wrong')].all? { |s| s.encoding == Encoding::UTF_8 && s.valid_encoding? } }
 expected = {'pl' => 'Wysłano odpowiedź.', 'en' => 'Answer sent.',
   'cs' => 'Odpověď odeslána.', 'es' => 'Respuesta enviada.',
   'ru' => 'Ответ отправлен.', 'fallback' => 'Answer sent.'}

@@ -4,6 +4,7 @@ require_relative "../content/quiz_general_en"
 require_relative "../content/quiz_general_ru"
 require_relative "../content/quiz_pl_wikidata"
 require_relative "../content/quiz_witcher_pl"
+require_relative "../content/quiz_harry_potter_pl"
 require_relative "../lib/game_bots"
 require_relative "../lib/hidden_submissions"
 
@@ -581,7 +582,7 @@ module GameRoomGames
           end,
           required: true,
           submit_on_select: true,
-          prompt_in_choices: true
+          prompt_as_text: true
         )
       end
 

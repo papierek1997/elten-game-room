@@ -1,5 +1,7 @@
 require_relative '../support/quiz_creator_native'
 require_relative '../support/native_tasks'
+require EltenTestHost.file('src/ui/controls/table_box.rb')
+Object.const_set(:TableBox, EltenAPI::Controls.const_get(:TableBox)) unless Object.const_defined?(:TableBox)
 require_relative '../../lib/sports_rankings/screen'
 require_relative '../../lib/game_statistics_screen'
 
@@ -39,14 +41,21 @@ warnings = []
 original_developer_mode = $developer_mode
 original_warning = Log.method(:warning)
 Log.define_singleton_method(:warning) { |message| warnings << message }
-rows = [{'user'=>'Alice','won'=>4,'lost'=>2,'scored'=>45,'conceded'=>31},
-  {'user'=>'Bob','won'=>1,'lost'=>5,'scored'=>20,'conceded'=>50}]
 store = Object.new
-store.define_singleton_method(:report) do |**options|
+day = ->(date) { date.strftime('%Y%m%d').to_i }
+matches = [[%w[Alice], %w[Bob], Date.new(2026,10,24)], [%w[Bob], %w[Alice], Date.new(2026,10,14)],
+  [%w[Alice], %w[Carol], Date.new(2026,7,1)]].map do |winner, loser, date|
+  {'day_key'=>day.call(date), 'winner'=>0, 'sides'=>[{'players'=>winner, 'goals'=>11}, {'players'=>loser, 'goals'=>4}]}
+end
+snapshot_for = ->(options) { GameRoomSportsRankings::Personal.statistics(matches,
+  user: options.fetch(:player), today: options.fetch(:today)) }
+store.define_singleton_method(:player_statistics) do |**options|
   raise 'Statistics network read ran on the UI thread' if Thread.current == ui
   calls << options
-  rows.map(&:dup)
+  snapshot_for.call(options)
 end
+store.define_singleton_method(:report) { |**_| raise 'UI made a second history read for totals' }
+store.define_singleton_method(:personal) { |**_| raise 'UI made a second history read for opponents' }
 game = Struct.new(:id, :name).new('axel_pong', 'Axel Pong')
 build_screen = -> {
   GameRoomSportsRankings::Screen.new(program:program,game:game,
@@ -56,59 +65,90 @@ screen = build_screen.call
 screen.instance_variable_set(:@mode, 'singles')
 screen.define_singleton_method(:input_user) { |_header| 'Bob' }
 Form.driver = lambda do |form|
-  field, period, choose_player, own, refresh = form.fields
+  field, opponents, period, choose_player, own, refresh = form.fields
   assert(field.is_a?(EditBox) && (field.flags & EditBox::Flags::ReadOnly) != 0, 'Statistics are not read-only text')
   assert(period.options == ['All time','Last 7 days','Last 30 days','Last six months','Last year'], 'Statistics period choices differ')
   settle_sports(form)
   assert(field.header == 'Alice: All time', 'The initial report is not the current account across all recorded history')
-  assert(field.text.lines.size == 6 && field.text.include?('Matches won: 4') && field.text.include?('Goal balance: 14'), 'A requested counter is missing')
+  assert(field.text.lines.size == 7 && field.text.lines.first.chomp == "Matches played: 3" && field.text.include?('Matches won: 2') &&
+    field.text.include?("Goal balance: 7"), "A requested counter is missing: #{field.text.inspect}")
   assert(!field.text.match?(/ranking|place|points/i), 'Statistics still expose a ranking')
-  form.index = 1
+  # The opponents list sits below the counters and counts the selected period.
+  assert(opponents.is_a?(TableBox) && opponents.rows == [%w[Bob 2 1 1], %w[Carol 1 1 0]], "Opponents differ: #{opponents.rows.inspect}")
+  assert(calls.last.values_at(:player, :mode, :today) == ['Alice', 'singles', Date.new(2026,10,24)], 'Combined statistics read the wrong scope')
+  opened = []
+  screen.define_singleton_method(:show_head_to_head) { |entry| opened << entry.fetch('players') }
+  form.index = 0
+  form.accept_button.trigger(:press)
+  assert(opened.empty?, 'Enter outside the opponents list opened head-to-head')
+  form.index, opponents.index = 1, 1
+  form.accept_button.trigger(:press)
+  assert(opened == [%w[Carol]], 'Enter on an opponent did not open that head-to-head')
+  3.times { refresh.trigger(:press) }
+  settle_sports(form)
+  assert(form.index == 1 && opponents.index == 1 && opponents.rows[opponents.index].first == 'Carol',
+    'Loading/repeated Refresh lost the selected opponent or moved form focus')
+  form.index = 2
   period.index = 1
   period.trigger(:move)
   settle_sports(form)
-  assert(calls.last.values_at(:from_day,:to_day)==[20261018,20261024], 'The seven-day period is not inclusive')
-  assert(form.index == 1 && period.index == 1, 'A completed read stole focus from the period selector')
+  assert(field.text.include?('Matches played: 1') && field.text.include?('Matches won: 1'), 'The seven-day period is not inclusive')
+  assert(form.index == 2 && period.index == 1, 'A completed read stole focus from the period selector')
+  assert(opponents.rows == [%w[Bob 1 1 0]], 'The opponents list ignored the selected period')
   choose_player.trigger(:press)
   settle_sports(form)
-  assert(field.header == 'Bob: Last 7 days' && field.text.include?('Matches won: 1'), 'Selecting another player did not replace the report')
+  assert(field.header == 'Bob: Last 7 days' && field.text.include?('Matches won: 0') && field.text.include?('Matches lost: 1'), 'Selecting another player did not replace the report')
+  assert(opponents.rows == [%w[Alice 1 0 1]], "The opponents list did not follow the chosen player: #{opponents.rows.inspect}")
   own.trigger(:press)
   settle_sports(form)
-  assert(field.header == 'Alice: Last 7 days' && field.text.include?('Matches won: 4'), 'My statistics did not restore the signed-in player')
+  assert(field.header == 'Alice: Last 7 days' && field.text.include?('Matches won: 1'), 'My statistics did not restore the signed-in player')
   refresh.trigger(:press)
   settle_sports(form)
   assert(calls.last[:fresh], 'Explicit Refresh reused the old snapshot')
-  assert(screen.send(:range,3,Date.new(2026,10,24))==[20260425,20261024], 'The six-month calendar period differs')
+  assert(GameRoomSportsRankings::Personal.first_days(Date.new(2026,10,24))['half_year']==20260425, 'The six-month calendar period differs')
   form.cancel_button.trigger(:press)
 end
 
 begin
   Programs.with_runtime(runtime) { screen.send(:show_statistics) }
-  assert(calls.first[:from_day].nil?, 'The default report omitted recorded history')
+  assert(calls.first[:today] == Date.new(2026,10,24), 'The initial statistics snapshot used the wrong date')
+
+  # Head-to-head details list every period for the selected opponent.
+  screen = build_screen.call
+  screen.instance_variable_set(:@player, 'Alice')
+  Form.driver = lambda do |form|
+    field = form.fields.first
+    assert(field.header == 'Alice against Bob' && field.text.lines.map(&:chomp) == ['All time: won 1, lost 1, played 2',
+      'Last 7 days: won 1, lost 0, played 1', 'Last 30 days: won 1, lost 1, played 2', 'Last six months: won 1, lost 1, played 2',
+      'Last year: won 1, lost 1, played 2'], "Head-to-head details differ: #{[field.header, field.text].inspect}")
+    form.cancel_button.trigger(:press)
+  end
+  bob = GameRoomSportsRankings::Personal.summary(matches, user: 'Alice', today: Date.new(2026,10,24))[1]
+  Programs.with_runtime(runtime) { screen.send(:show_head_to_head, bob) }
 
   # Keep only the latest selection while the first bounded read is pending.
   gate, entered = Queue.new, Queue.new
   held = true
-  store.define_singleton_method(:report) do |**options|
+  store.define_singleton_method(:player_statistics) do |**options|
     calls << options
     if held
       held = false
       entered << options[:cancellation_token]
       gate.pop
     end
-    rows.map(&:dup)
+    snapshot_for.call(options)
   end
   screen = build_screen.call
   screen.instance_variable_set(:@mode,'doubles')
   Form.driver = lambda do |form|
     Timeout.timeout(5) { entered.pop }
     before = calls.size
-    period = form.fields[1]
+    period = form.fields[2]
     [1,2,3,4,1].each { |index| period.index=index; period.trigger(:move) }
     assert(calls.size==before, 'Rapid selections launched overlapping network reads')
     gate << true
     settle_sports(form)
-    assert(calls.size==before+1 && calls.last[:mode]=='doubles' && calls.last[:from_day]==20261018,
+    assert(calls.size==before+1 && calls.last[:mode]=='doubles' && form.fields[2].index==1,
       'The final selection was dropped or intermediate selections were queried')
     assert(form.fields.first.header=='Alice: Last 7 days', 'A stale read replaced the current report')
     form.cancel_button.trigger(:press)
@@ -117,17 +157,19 @@ begin
 
   # A read error must not become a six-zero report; Refresh can recover.
   unavailable = true
-  store.define_singleton_method(:report) do |**_options|
+  store.define_singleton_method(:player_statistics) do |**options|
     raise GameRoomSportsRankings::Unavailable, 'offline' if unavailable
-    []
+    GameRoomSportsRankings::Personal.statistics([], user: options.fetch(:player), today: options.fetch(:today))
   end
   screen = build_screen.call
   screen.instance_variable_set(:@mode,'singles')
   Form.driver = lambda do |form|
     settle_sports(form)
     assert(form.fields.first.text=='Player statistics are unavailable. Try Refresh.', 'Failure became zero statistics')
+    assert(form.fields[1].rows.empty? && form.fields[1].empty_label=='Player statistics are unavailable. Try Refresh.',
+      'A failed read left an empty-looking opponents list')
     unavailable = false
-    form.fields[4].trigger(:press)
+    form.fields[5].trigger(:press)
     settle_sports(form)
     assert(form.fields.first.text.include?('Matches won: 0'), 'An empty successful report is not distinct from an error')
     form.cancel_button.trigger(:press)
@@ -137,10 +179,10 @@ begin
 
   # Changing accounts closes the old view and cancels its pending read.
   token = nil
-  store.define_singleton_method(:report) do |**options|
+  store.define_singleton_method(:player_statistics) do |**options|
     entered << options[:cancellation_token]
     gate.pop
-    rows.map(&:dup)
+    snapshot_for.call(options)
   end
   screen = build_screen.call
   screen.instance_variable_set(:@mode,'singles')
@@ -165,7 +207,7 @@ begin
     form.instance_variable_set(:@wait, true)
     token = Timeout.timeout(5) { entered.pop }
     $developer_mode = true
-    form.fields[4].trigger(:press)
+    form.fields[5].trigger(:press)
     sports_frame(form)
     assert(!form.instance_variable_get(:@wait), 'Developer mode kept the old sports statistics view open')
     form.cancel_button.trigger(:press)
@@ -215,4 +257,4 @@ ensure
   runtime.close
   Log.define_singleton_method(:warning, original_warning)
 end
-puts 'PASS native sports statistics: routing, six counters, periods, responsive reads, coalescing, errors, focus, account/developer-mode cancellation and disabled entry'
+puts 'PASS native sports statistics: routing, seven counters, opponents list and head-to-head, periods, responsive reads, coalescing, errors, focus, account/developer-mode cancellation and disabled entry'

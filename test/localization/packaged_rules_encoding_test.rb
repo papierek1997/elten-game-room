@@ -22,7 +22,7 @@ raise "Quiz Party was not loaded from binary sources" unless registry.ids.includ
 raise "Mille Bornes was not loaded from binary sources" unless registry.ids.include?("mille_bornes")
 raise "Duck Racing was not loaded from binary sources" unless registry.ids.include?("duck_racing")
 raise "Mahjong was not loaded from binary sources" unless registry.ids.include?("mahjong")
-%w[quiz.general.en quiz.general.ru quiz.wikidata.pl quiz.witcher.books.pl].each do |id|
+%w[quiz.general.en quiz.general.ru quiz.wikidata.pl quiz.witcher.books.pl quiz.harry_potter.books.pl].each do |id|
   pack = GameRoomContent.registry.pack(id)
   raise "Question data loaded eagerly" if pack.verified?
 end
@@ -46,7 +46,7 @@ GameRoomContent::MonopolyBoards.choices.each do |choice|
     raise "Binary field name in #{choice.value}" unless square[:name].encoding == Encoding::UTF_8
   end
 end
-%w[quiz.general.en quiz.general.ru quiz.wikidata.pl quiz.witcher.books.pl].each do |id|
+%w[quiz.general.en quiz.general.ru quiz.wikidata.pl quiz.witcher.books.pl quiz.harry_potter.books.pl].each do |id|
   pack = GameRoomContent.registry.pack(id)
   questions = pack.data.fetch("questions")
   raise "Binary lazy Quiz data failed to verify" unless pack.verified? && pack.entry_count == questions.length

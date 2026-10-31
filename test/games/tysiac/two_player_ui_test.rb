@@ -39,6 +39,13 @@ def assert(condition, message); raise message unless condition; end
   apply.call
   assert(events.last["action"] == "take_talon" && events.last["value"] == "1", "wrong talon chosen by Enter")
   assert(replay.state[:phase] == :discarding, "binary phase did not change")
+  shortcuts = game.game_shortcuts(replay, players.last)
+  contract_key = shortcuts.find { |entry| entry.key == 'r' && entry.modifiers.to_a.empty? }
+  surrender_key = shortcuts.find { |entry| entry.key == 'r' && entry.modifiers.to_a == [:shift] }
+  assert(contract_key.message == "#{players.last}: 100", 'R did not retain the Unicode bidder and exact contract')
+  assert(contract_key.label == (language == 'pl' ? 'odczytaj bieżący kontrakt' : 'read the current contract'), 'R label not localized')
+  assert(surrender_key.action_name == 'surrender' && surrender_key.kind == :action, 'Shift+R is not the standard surrender action')
+  assert((contract_key.label + ' — контракт').valid_encoding?, 'R label encoding')
   3.times do |index|
     surface = GameSurfaces.build(game.surface_spec(replay, players.last))
     surface.on_action { |action| emitted << action }

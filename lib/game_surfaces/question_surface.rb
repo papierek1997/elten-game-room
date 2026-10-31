@@ -9,6 +9,40 @@ module GameSurfaces
   class QuestionSurface
     include ActionEmitter
 
+    # Only plain vertical arrows cross this two-control boundary. Native text
+    # navigation, selection and screen-reader modifier keys stay with ELTEN.
+    module PromptNavigation
+      def question_navigation(form, target, key)
+        @question_navigation = [form, target, key]
+      end
+
+      def update
+        if @question_navigation
+          form, target, key = @question_navigation
+          unmodified = !raw_key_held?(:key_shift) && !raw_key_held?(:key_control) &&
+            !raw_key_held?(:key_alt) && !raw_key_held?(:key_insert)
+          if key_pressed?(key) && unmodified && (key == :key_down || index.to_i == 0) &&
+              form.fields[form.index.to_i].equal?(self) && (target_index = form.fields.index(target))
+            trigger(:blur)
+            blur
+            form.index = target_index
+            form.focus
+            form.trigger(:move, target_index)
+            return
+          end
+        end
+        super
+      end
+    end
+
+    class PromptText < RefreshAwareEditBox
+      include PromptNavigation
+    end
+
+    class AnswerList < RefreshAwareListBox
+      include PromptNavigation
+    end
+
     MODES = [:text, :single_choice, :multiple_choice, :information].freeze
 
     def initialize(spec, state: {})
@@ -19,6 +53,12 @@ module GameSurfaces
 
       @options = @spec.options.to_a
       validate_options! if [:single_choice, :multiple_choice].include?(@mode)
+      if prompt_as_text?
+        state = {} if state_value(state, "question_id", @spec.id).to_s != @spec.id.to_s
+        @prompt = PromptText.new(_("Question"), type: EditBox::Flags::ReadOnly,
+          text: @spec.prompt.to_s, quiet: true)
+        @prompt.restore_selection(index: state_value(state, "prompt_index", 0), check: state_value(state, "prompt_check", 0))
+      end
       @answer = build_answer_control(state)
       bind_immediate_choice
       @submit = build_submit_button
@@ -35,7 +75,14 @@ module GameSurfaces
     end
 
     def fields
-      [@answer, @submit].compact + @extra_buttons
+      [@prompt, @answer, @submit].compact + @extra_buttons
+    end
+
+    def attach_form(form)
+      return unless @prompt
+
+      @prompt.question_navigation(form, @answer, :key_down)
+      @answer.question_navigation(form, @prompt, :key_up)
     end
 
     def state
@@ -44,7 +91,10 @@ module GameSurfaces
         { "text" => @answer.text.to_s, "index" => @answer.index,
           "check" => @answer.check, "question_id" => @spec.id }
       when :single_choice
-        { "index" => @answer.index.to_i }
+        result = { "index" => @answer.index.to_i }
+        result.merge!("question_id" => @spec.id, "prompt_index" => @prompt.index,
+          "prompt_check" => @prompt.check) if @prompt
+        result
       when :multiple_choice
         { "selected" => @answer.multiselections }
       else
@@ -134,12 +184,13 @@ module GameSurfaces
       when :single_choice, :multiple_choice
         flags = @mode == :multiple_choice ? ListBox::Flags::MultiSelection : 0
         labels = @options.map { |option| option.label.to_s }
-        header = @spec.prompt.to_s
+        header = prompt_as_text? ? _("Answers") : @spec.prompt.to_s
         if prompt_in_choices?
           labels.unshift(@spec.prompt.to_s)
           header = ""
         end
-        list = RefreshAwareListBox.new(
+        list_class = prompt_as_text? ? AnswerList : RefreshAwareListBox
+        list = list_class.new(
           labels,
           header: header,
           index: selected_index(state),
@@ -238,7 +289,11 @@ module GameSurfaces
     end
 
     def prompt_in_choices?
-      @mode == :single_choice && @spec.respond_to?(:prompt_in_choices) && @spec.prompt_in_choices == true
+      @mode == :single_choice && @spec.prompt_in_choices == true && !prompt_as_text?
+    end
+
+    def prompt_as_text?
+      @mode == :single_choice && @spec.prompt_as_text == true
     end
 
     def validate_options!

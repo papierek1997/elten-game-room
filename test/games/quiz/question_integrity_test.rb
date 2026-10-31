@@ -4,6 +4,7 @@ require_relative "../../../content/languages"
 require_relative "../../../content/quiz_general_en"
 require_relative "../../../content/quiz_pl_wikidata"
 require_relative "../../../content/quiz_witcher_pl"
+require_relative "../../../content/quiz_harry_potter_pl"
 
 def assert(value, message); raise message unless value; end
 root = File.expand_path("../../..", __dir__)

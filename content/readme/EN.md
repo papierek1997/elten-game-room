@@ -141,6 +141,10 @@ You do not need to learn every shortcut at once:
 - The context menu provides table-related actions.
 - Ctrl+F4 reads connection latency, distinguishing HTTP from an available Communications or P2P connection.
 
+In Thousand, R reads just the current contract amount and bidder. Shift+R surrenders the deal when the rules allow it.
+
+In Quiz, the question is a read-only text field. Use Ctrl+Left or Ctrl+Right to read it word by word. Down moves to the answer list; Up from the first answer returns to the question.
+
 You can read the rules before creating a table. They have chapters and a table of contents linking to each section. Game shortcuts appear in a separate list, with one item per shortcut.
 The game list in the rules library includes a short description of each game.
 In the rules text, H and Shift+H move between headings, K and Shift+K between links, and Enter on a contents link takes you to the chapter.
@@ -249,6 +253,24 @@ Choose Leaderboards in the main menu, then a game.
 - Daily Krowa has a separate leaderboard for each day, also ordered by guesses. Today's word stays hidden; earlier solutions can be viewed once their day is over.
 - Word Tower ranks runs by completed rounds: more rounds means a higher place. Press Enter on a result to see each round's word and guesses.
 
+After guessing a word in Random Word or Daily Krowa, choose “Publish”,
+“Publish without attempt list” or “Do not publish”. The same choices are
+available when publishing a Word Tower result. Lists contain only checked
+guesses, in the order they were made.
+“Publish” is selected by default. Right Arrow moves through the other two
+choices, and Left Arrow moves back. Enter confirms your choice; Escape closes
+the window without publishing.
+
+Select a player's result in a word or daily leaderboard and press Tab to
+read its attempt list. Each item gives the word and the number of matching
+letters. In Word Tower details, select a round; in your gallery, select a
+word, then press Tab. The gallery saves your own attempts whether or not
+you publish them. Daily Krowa attempt lists become available in leaderboards
+on the following day, using the server's date in Poland. Older results and
+results published without a list show that no attempts were recorded.
+Gallery entries show the word and attempt count, without the number of letters.
+If the server does not support attempt lists yet, you can publish just the score.
+
 ## Statistics
 
 Choose Statistics in the main menu, then General, Axel Pong or Audio Ball.
@@ -261,9 +283,11 @@ In Power Games' main menu, Ctrl+W opens the overview of people currently at tabl
 
 ### Axel Pong and Audio Ball
 
-Choose Single or Doubles. Your statistics initially cover all recorded matches: wins, losses, match balance, goals scored, goals conceded and goal balance.
+Choose Single or Doubles. Your statistics initially cover all recorded matches: matches played, wins, losses, match balance, goals scored, goals conceded and goal balance.
 
-Press Tab to reach the period selector. Choose the last 7 days, 30 days, six months, year or all time. Choose player opens another person's statistics; My statistics returns to your own. Refresh retrieves the latest data.
+Below them is the list of opponents: everyone the shown player has played against, or opposing pairs in doubles. Each entry shows matches played, won and lost in the selected period. Press Enter on an opponent to see the wins and losses against them in every period.
+
+Press Tab again to reach the period selector. Choose the last 7 days, 30 days, six months, year or all time. Choose player opens another person's statistics; My statistics returns to your own. Refresh retrieves the latest data.
 
 Audio Ball counts goals from every set. In doubles, each teammate receives the team's full result. Results are saved automatically after a match if both sides consist entirely of people at the end. Tournament matches count too, including the technical goal scores awarded for forfeits.
 

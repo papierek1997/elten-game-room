@@ -97,6 +97,15 @@ entire stack and tutorial audio. The real-time surface respects
 
 ## Navigating the rules
 
+Choice questions may opt into `QuestionSpec#prompt_as_text`. The shared
+QuestionSurface then presents native read-only text followed by the answer
+list. Plain Down moves from the question to the list, and Up from its first
+answer returns to the question. Modified arrows and text editing commands
+stay native. GameRoomLayout attaches that navigation to the current form;
+the question cursor/selection and answer index survive ordinary refreshes.
+Quiz uses this capability; category selection and other choice lists keep
+their existing presentation. Regression: `question_text_native_test.rb`.
+
 `GameRoomRules::Document` preserves sections and plain text, while
 `GameRoomRules::View` adds native heading and link elements to `EditBox`.
 The table of contents is level 1, and section titles are level 2. H and 1–6

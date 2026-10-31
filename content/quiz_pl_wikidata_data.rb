@@ -3,7 +3,7 @@ require 'json'
 module GameRoomContent
   module Packa0830f585cc4689a1e2a6335
     def self.load
-      JSON.parse(<<'QUIZ_DATA_2068980b7c11b16d70f221c379f37b559cfd828ab859cf59d06c89625ef78012')
+      JSON.parse(<<'QUIZ_DATA_7ec1a06286cec2d3a5241557fc232729303b4d6b5b728afe4c4363e78be8ed5a')
 {
   "questions": [
     {
@@ -16474,7 +16474,7 @@ module GameRoomContent
       "id": "1z10_baa231999d19d1e6",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "Miasta świata, Sintra, miasto słynące z architektury, leży w pobliżu której europejskiej stolicy?",
+      "prompt": "Sintra, miasto słynące z architektury, leży w pobliżu której europejskiej stolicy?",
       "correct": "Lizbony",
       "wrong": [
         "Madrytu",
@@ -33338,7 +33338,7 @@ module GameRoomContent
       "id": "polqa_01942",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Co oznaczał skrót CK w nazwie Austro-Węgier?",
+      "prompt": "Co oznaczał skrót C K w nazwie Austro-Węgier?",
       "correct": "cesarsko-królewski",
       "wrong": [
         "centralno-krajowy",
@@ -67370,7 +67370,7 @@ module GameRoomContent
       "id": "1z10_9deac4c34e487f83",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Jak brzmi pełna nazwa partii, której skrót jest KPN?",
+      "prompt": "Co oznacza skrót K P N w nazwie partii politycznej?",
       "correct": "Konfederacja Polski Niepodległej",
       "wrong": [
         "Komitet Porozumienia Narodowego",
@@ -98922,7 +98922,7 @@ module GameRoomContent
       "id": "1z10_127f900846145478",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "To jest barkarola, czyli pieśń gondolierów, którą skomponował Jakub Offenbach. W której operze możemy ją usłyszeć?",
+      "prompt": "W której operze Jacques’a Offenbacha można usłyszeć słynną barkarolę?",
       "correct": "W Opowieściach Hoffmanna",
       "wrong": [
         "W Carmen",
@@ -110586,7 +110586,7 @@ module GameRoomContent
       "id": "polqa_02149",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Z którego języka pochodzi skrót LTD oznaczający spółkę z ograniczoną odpowiedzialnością?",
+      "prompt": "Z którego języka pochodzi skrót L T D oznaczający spółkę z ograniczoną odpowiedzialnością?",
       "correct": "z angielskiego",
       "wrong": [
         "z francuskiego",
@@ -141658,7 +141658,7 @@ module GameRoomContent
       "id": "polqa_06469",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Co oznacza angielski skrót DWT?",
+      "prompt": "Co oznacza angielski skrót D W T?",
       "correct": "całkowita nośność statku w tonach",
       "wrong": [
         "wyporność statku w tonach",
@@ -153034,7 +153034,7 @@ module GameRoomContent
       "id": "1z10_72eed55f10d83473",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Proszę rozwinąć skrót EEG.",
+      "prompt": "Proszę rozwinąć skrót E E G.",
       "correct": "Elektroencefalogram",
       "wrong": [
         "Elektrokardiogram",
@@ -153498,7 +153498,7 @@ module GameRoomContent
       "id": "1z10_05981aabe6bba31a",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Proszę rozwinąć skrót USG.",
+      "prompt": "Proszę rozwinąć skrót U S G.",
       "correct": "Ultrasonografia",
       "wrong": [
         "Elektroencefalografia",
@@ -155402,7 +155402,7 @@ module GameRoomContent
       "id": "1z10_eade56ca7a4d504b",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Proszę rozwinąć skrót EKG.",
+      "prompt": "Proszę rozwinąć skrót E K G.",
       "correct": "Elektrokardiogram",
       "wrong": [
         "Elektroencefalogram",
@@ -163946,7 +163946,7 @@ module GameRoomContent
       "id": "polqa_05525",
       "category": "Przyroda",
       "level": "medium",
-      "prompt": "Jak nazywa się hormon oznaczany skrótem LTH?",
+      "prompt": "Jak nazywa się hormon oznaczany skrótem L T H?",
       "correct": "prolaktyna",
       "wrong": [
         "oksytocyna",
@@ -174106,7 +174106,7 @@ module GameRoomContent
       "id": "polqa_03787",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Który zakon kryje się pod skrótem SJ?",
+      "prompt": "Który zakon kryje się pod skrótem S J?",
       "correct": "jezuici",
       "wrong": [
         "salezjanie",
@@ -187786,7 +187786,7 @@ module GameRoomContent
       "id": "polqa_04981",
       "category": "Sport",
       "level": "medium",
-      "prompt": "Która dyscyplina sportowa jest oznaczana skrótem MTB?",
+      "prompt": "Która dyscyplina sportowa jest oznaczana skrótem M T B?",
       "correct": "kolarstwo górskie",
       "wrong": [
         "kolarstwo torowe",
@@ -188986,7 +188986,7 @@ module GameRoomContent
       "id": "1z10_7f22dd028a61b2f3",
       "category": "Sport",
       "level": "medium",
-      "prompt": "Co oznacza skrót PZPN?",
+      "prompt": "Co oznacza skrót P Z P N?",
       "correct": "Polski Związek Piłki Nożnej",
       "wrong": [
         "Polski Związek Piłki Siatkowej",
@@ -192266,7 +192266,7 @@ module GameRoomContent
       "id": "1z10_8dc25587eff4d02a",
       "category": "Sport",
       "level": "medium",
-      "prompt": "Proszę rozszyfrować skrót WKKW używany w zawodach jeździeckich.",
+      "prompt": "Proszę rozszyfrować skrót W K K W używany w zawodach jeździeckich.",
       "correct": "Wszechstronny Konkurs Konia Wierzchowego",
       "wrong": [
         "Wojskowy Konkurs Konia Wyścigowego",
@@ -213194,7 +213194,7 @@ module GameRoomContent
       "id": "polqa_00300",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Proszę rozszyfrować skrót KBWE?",
+      "prompt": "Co oznacza skrót K B W E?",
       "correct": "Konferencja Bezpieczeństwa i Współpracy w Europie",
       "wrong": [
         "Komitet Bezpieczeństwa Wspólnot Europejskich",
@@ -213226,7 +213226,7 @@ module GameRoomContent
       "id": "polqa_00397",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Rozwiń skrót NFZ.",
+      "prompt": "Rozwiń skrót N F Z.",
       "correct": "Narodowy Fundusz Zdrowia",
       "wrong": [
         "Naczelny Fundusz Zdrowotny",
@@ -213594,7 +213594,7 @@ module GameRoomContent
       "id": "polqa_00939",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Proszę rozszyfrować skrót PTTK?",
+      "prompt": "Co oznacza skrót P T T K?",
       "correct": "Polskie Towarzystwo Turystyczno-Krajoznawcze",
       "wrong": [
         "Polskie Towarzystwo Tatrzańskie i Karpackie",
@@ -213722,7 +213722,7 @@ module GameRoomContent
       "id": "polqa_01141",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Proszę rozwinąć skrót IPN.",
+      "prompt": "Proszę rozwinąć skrót I P N.",
       "correct": "Instytut Pamięci Narodowej",
       "wrong": [
         "Instytut Polityki Narodowej",
@@ -214490,7 +214490,7 @@ module GameRoomContent
       "id": "polqa_02114",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Rozwiń skrót „CBŚ”.",
+      "prompt": "Rozwiń skrót „C B Ś”.",
       "correct": "Centralne Biuro Śledcze",
       "wrong": [
         "Centralne Biuro Ścigania",
@@ -215690,7 +215690,7 @@ module GameRoomContent
       "id": "polqa_03834",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Nazwa której organizacji międzynarodowej ma skrót WHO?",
+      "prompt": "Jakiej organizacji odpowiada skrót W H O?",
       "correct": "Światowej Organizacji Zdrowia",
       "wrong": [
         "Światowej Organizacji Handlu",
@@ -216490,7 +216490,7 @@ module GameRoomContent
       "id": "polqa_04725",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Skrótem nazwy której organizacji międzynarodowej jest OBWE?",
+      "prompt": "Skrótem nazwy której organizacji międzynarodowej jest O B W E?",
       "correct": "Organizacji Bezpieczeństwa i Współpracy w Europie",
       "wrong": [
         "Organizacji Bankowości i Współpracy Europejskiej",
@@ -219114,7 +219114,7 @@ module GameRoomContent
       "id": "1z10_7eabc8fb73903d3b",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Co oznacza skrót PWPW?",
+      "prompt": "Co oznacza skrót P W P W?",
       "correct": "Polska Wytwórnia Papierów Wartościowych",
       "wrong": [
         "Państwowa Wytwórnia Papierów Wartościowych",
@@ -219578,7 +219578,7 @@ module GameRoomContent
       "id": "1z10_63526ea598725c4a",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Którą walutę oznacza się skrótem GBP?",
+      "prompt": "Którą walutę oznacza się skrótem G B P?",
       "correct": "Funt brytyjski",
       "wrong": [
         "Frank szwajcarski",
@@ -221178,7 +221178,7 @@ module GameRoomContent
       "id": "1z10_6978cd7c468d65e3",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Proszę rozwinąć skrót nazwy Organu Narodowego Banku Polskiego RPP.",
+      "prompt": "Co oznacza skrót R P P w nazwie organu Narodowego Banku Polskiego?",
       "correct": "Rada Polityki Pieniężnej",
       "wrong": [
         "Rada Polityki Podatkowej",
@@ -222826,7 +222826,7 @@ module GameRoomContent
       "id": "1z10_b7c47e6c48545529",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Rozwiń polski skrót BHP.",
+      "prompt": "Rozwiń polski skrót B H P.",
       "correct": "Bezpieczeństwo i higiena pracy",
       "wrong": [
         "Bezpieczeństwo i higiena produkcji",
@@ -223658,7 +223658,7 @@ module GameRoomContent
       "id": "1z10_b695136b8ae8a95c",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "W nazwie PKN Orlen, co oznacza skrót PKN?",
+      "prompt": "W nazwie P K N Orlen, co oznacza skrót P K N?",
       "correct": "Polski Koncern Naftowy",
       "wrong": [
         "Polska Kompania Naftowa",
@@ -223786,7 +223786,7 @@ module GameRoomContent
       "id": "1z10_d49b93e1cf7f59de",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Rozwiń skrót nazwy instytucji państwowej IMGW.",
+      "prompt": "Rozwiń skrót nazwy instytucji państwowej I M G W.",
       "correct": "Instytut Meteorologii i Gospodarki Wodnej",
       "wrong": [
         "Instytut Miernictwa i Geodezji Wojskowej",
@@ -224762,7 +224762,7 @@ module GameRoomContent
       "id": "1z10_957380b825bc71ee",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Proszę rozwinąć skrót nazwy urzędu zarządzającego drogami w Polsce. GDDKiA.",
+      "prompt": "Co oznacza skrót G D D K i A?",
       "correct": "Generalna Dyrekcja Dróg Krajowych i Autostrad",
       "wrong": [
         "Generalny Inspektorat Transportu Drogowego",
@@ -225386,7 +225386,7 @@ module GameRoomContent
       "id": "1z10_573a2357d622396d",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Rozwiń skrót nazwy lubelskiej uczelni UMCS.",
+      "prompt": "Rozwiń skrót nazwy lubelskiej uczelni U M C S.",
       "correct": "Uniwersytet Marii Curie-Skłodowskiej",
       "wrong": [
         "Uniwersytet Mikołaja Kopernika",
@@ -225466,7 +225466,7 @@ module GameRoomContent
       "id": "1z10_e6b15b111e6c7c4a",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "W którym państwie związek publicznych nadawców radiowo-telewizyjnych posługuje się skrótem ARD?",
+      "prompt": "W którym państwie związek publicznych nadawców radiowo-telewizyjnych posługuje się skrótem A R D?",
       "correct": "W Niemczech",
       "wrong": [
         "W Austrii",
@@ -228538,7 +228538,7 @@ module GameRoomContent
       "id": "polqa_03461",
       "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "Co oznacza skrót CMK?",
+      "prompt": "Co oznacza skrót C M K?",
       "correct": "Centralna Magistrala Kolejowa",
       "wrong": [
         "Centralna Mapa Kolejowa",
@@ -233066,7 +233066,7 @@ module GameRoomContent
       "id": "1z10_35b96b9f488917e0",
       "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "Co oznacza skrót DDM?",
+      "prompt": "Co oznacza skrót D D M?",
       "correct": "Dystans, dezynfekcja, maseczka",
       "wrong": [
         "Dystans, dieta, medytacja",
@@ -233658,7 +233658,7 @@ module GameRoomContent
       "id": "1z10_507aba3370740689",
       "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "A ile na ile pól ma plansza do gry w Scrabble?",
+      "prompt": "Ile na ile pól ma plansza do gry w Scrabble?",
       "correct": "15 na 15",
       "wrong": [
         "8 na 8",
@@ -237210,7 +237210,7 @@ module GameRoomContent
       "id": "1z10_e6c1f3c312074d5e",
       "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "Proszę rozwinąć polski skrót AGD.",
+      "prompt": "Proszę rozwinąć polski skrót A G D.",
       "correct": "Artykuły gospodarstwa domowego",
       "wrong": [
         "Artykuły gospodarstwa detalicznego",
@@ -238402,11 +238402,725 @@ module GameRoomContent
       "source_dataset": "Power Games community",
       "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
       "review_required": false
+    },
+    {
+      "category": "Historia",
+      "prompt": "Jak nazywały się protesty na Ukrainie, które rozpoczęły się po wyborach prezydenckich w listopadzie 2004 roku?",
+      "correct": "Pomarańczowa rewolucja",
+      "wrong": [
+        "Jaśminowa rewolucja",
+        "Aksamitna rewolucja",
+        "Rewolucja róż"
+      ],
+      "source": "https://www.bbn.gov.pl/download/1/3900/AnalizaBBNJednosUkrainy050220102.pdf",
+      "id": "community_zz_20261031_01",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Geografia",
+      "prompt": "Jakie wyroby są szczególnie kojarzone z Bolesławcem na Dolnym Śląsku?",
+      "correct": "Naczynia ceramiczne",
+      "wrong": [
+        "Wyroby z bursztynu",
+        "Wyroby ze szkła kryształowego",
+        "Koronki"
+      ],
+      "source": "https://muzeum.boleslawiec.pl/zaklady-ceramiczne-boleslawiec/",
+      "id": "community_zz_20261031_02",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Język",
+      "prompt": "Kogo w gwarze poznańskiej nazywa się „szkiełami”?",
+      "correct": "Policjantów",
+      "wrong": [
+        "Kolejarzy",
+        "Kupców",
+        "Kierowców"
+      ],
+      "source": "https://prawo.amu.edu.pl/wp-content/uploads/2022/03/Pierwsze-kroki-na-UAM.pdf",
+      "id": "community_zz_20261031_03",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Życie codzienne",
+      "prompt": "W której sieci sklepów można w 2026 roku kupić produkty marki Kraina Wędlin?",
+      "correct": "W Biedronce",
+      "wrong": [
+        "W Lidlu",
+        "W Aldi",
+        "W Kauflandzie"
+      ],
+      "source": "https://zakupy.biedronka.pl/mieso/wedliny/kraina-wedlin-nature/",
+      "id": "community_zz_20261031_04",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Przyroda",
+      "prompt": "Norweski leśny, rosyjski niebieski i turecki van to rasy jakich zwierząt?",
+      "correct": "Kotów",
+      "wrong": [
+        "Psów",
+        "Królików",
+        "Koni"
+      ],
+      "source": "https://fifeweb.org/cats/breeds/",
+      "id": "community_zz_20261031_05",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Geografia",
+      "prompt": "Które z tych miast nie jest w 2026 roku stolicą województwa?",
+      "correct": "Częstochowa",
+      "wrong": [
+        "Katowice",
+        "Kielce",
+        "Kraków"
+      ],
+      "source": "https://www.gov.pl/web/mswia/urzedy-wojewodzkie",
+      "id": "community_zz_20261031_06",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Przyroda",
+      "prompt": "Z której części świata pochodzi fasola zwyczajna?",
+      "correct": "Z Ameryki",
+      "wrong": [
+        "Z Azji",
+        "Z Afryki",
+        "Z Europy"
+      ],
+      "source": "https://powo.science.kew.org/taxon/514191-1",
+      "id": "community_zz_20261031_07",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Religia",
+      "prompt": "W którym miesiącu przypada wspomnienie św. Floriana, patrona strażaków?",
+      "correct": "W maju",
+      "wrong": [
+        "W czerwcu",
+        "W październiku",
+        "W listopadzie"
+      ],
+      "source": "https://www.gov.pl/web/kppsp-police/sw-florian-patron-strazakow",
+      "id": "community_zz_20261031_08",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Religia",
+      "prompt": "Kiedy obchodzimy święto Matki Bożej Gromnicznej?",
+      "correct": "2 lutego",
+      "wrong": [
+        "15 sierpnia",
+        "13 maja",
+        "8 grudnia"
+      ],
+      "source": "https://episkopat.pl/doc/176984.2-lutego-swieto-ofiarowania-panskiego",
+      "id": "community_zz_20261031_09",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Język",
+      "prompt": "Jakiego pochodzenia jest imię Hanna?",
+      "correct": "Hebrajskiego",
+      "wrong": [
+        "Germańskiego",
+        "Greckiego",
+        "Łacińskiego"
+      ],
+      "source": "https://rjp.pan.pl/ana/",
+      "id": "community_zz_20261031_10",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Język",
+      "prompt": "Z jakiego języka pochodzi imię Marcin?",
+      "correct": "Z łaciny",
+      "wrong": [
+        "Z greki",
+        "Z hebrajskiego",
+        "Z niemieckiego"
+      ],
+      "source": "https://poradniajezykowa.uw.edu.pl/porady/imiona-typu-wergiliusz/",
+      "id": "community_zz_20261031_11",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Język",
+      "prompt": "Który z tych języków zapisuje się standardowo alfabetem łacińskim?",
+      "correct": "Słoweński",
+      "wrong": [
+        "Rosyjski",
+        "Bułgarski",
+        "Białoruski"
+      ],
+      "source": "https://op.europa.eu/en/web/eu-vocabularies/formex/physical-specifications/character-encoding/languages-scripts-ans-letters",
+      "id": "community_zz_20261031_12",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Język",
+      "prompt": "Który z tych języków należy do grupy wschodniosłowiańskiej?",
+      "correct": "Łemkowski",
+      "wrong": [
+        "Dolnołużycki",
+        "Kaszubski",
+        "Czeski"
+      ],
+      "source": "https://www.gov.pl/web/mniejszosci-narodowe-i-etniczne/lemkowie",
+      "id": "community_zz_20261031_13",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Język",
+      "prompt": "Gdzie farerski jest językiem urzędowym?",
+      "correct": "Na Wyspach Owczych",
+      "wrong": [
+        "Na Grenlandii",
+        "Na Islandii",
+        "Na Wyspach Alandzkich"
+      ],
+      "source": "https://www.faroeislands.fo/arts-culture/the-faroese-language/",
+      "id": "community_zz_20261031_14",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Język",
+      "prompt": "Do której grupy języków należy kaszubski?",
+      "correct": "Do słowiańskich",
+      "wrong": [
+        "Do germańskich",
+        "Do romańskich",
+        "Do ugrofińskich"
+      ],
+      "source": "https://pl.languagesindanger.eu/book-of-knowledge/list-of-languages/",
+      "id": "community_zz_20261031_15",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Historia",
+      "prompt": "Na terenie którego dzisiejszego państwa mieszkali Słowińcy?",
+      "correct": "Polski",
+      "wrong": [
+        "Słowacji",
+        "Słowenii",
+        "Ukrainy"
+      ],
+      "source": "https://muzeumkluki.pl/z-historii/slowincy/",
+      "id": "community_zz_20261031_16",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Przyroda",
+      "prompt": "Czym jest eustoma?",
+      "correct": "Rośliną kwitnącą",
+      "wrong": [
+        "Grzybem",
+        "Motylem",
+        "Ślimakiem"
+      ],
+      "source": "https://powo.science.kew.org/taxon/urn%3Alsid%3Aipni.org%3Anames%3A330227-2",
+      "id": "community_zz_20261031_17",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Życie codzienne",
+      "prompt": "W którym roku po raz pierwszy wyemitowano powieść radiową „W Jezioranach”?",
+      "correct": "1960",
+      "wrong": [
+        "1970",
+        "1965",
+        "1955"
+      ],
+      "source": "https://www.polskieradio.pl/13/11465/Artykul/2677014%2CTeatr-Polskiego-Radia-Nie-tylko-Matysiakowie-i-w-Jezioranach",
+      "id": "community_zz_20261031_18",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Religia",
+      "prompt": "Kiedy w Kościele katolickim przypada wspomnienie świętych Joachima i Anny?",
+      "correct": "26 lipca",
+      "wrong": [
+        "26 sierpnia",
+        "25 lipca",
+        "25 sierpnia"
+      ],
+      "source": "https://press.vatican.va/content/francesco/en/angelus/2020/documents/papa-francesco_angelus_20200726.html",
+      "id": "community_zz_20261031_19",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Religia",
+      "prompt": "Czyją patronką jest święta Cecylia?",
+      "correct": "Muzyków",
+      "wrong": [
+        "Piekarzy",
+        "Stolarzy",
+        "Rolników"
+      ],
+      "source": "https://www.vatican.va/content/john-paul-ii/en/speeches/2003/november/documents/hf_jp-ii_spe_20031122_santa-cecilia.html",
+      "id": "community_zz_20261031_20",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Religia",
+      "prompt": "Która z tych świętych jest patronką osób niewidomych?",
+      "correct": "Święta Łucja",
+      "wrong": [
+        "Święta Zuzanna",
+        "Święta Cecylia",
+        "Święta Anna"
+      ],
+      "source": "https://www.vatican.va/content/francesco/en/speeches/2014/december/documents/papa-francesco_20141213_unione-ciechi-ipovedenti.html",
+      "id": "community_zz_20261031_21",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Literatura",
+      "prompt": "W którym roku Olga Tokarczuk odebrała Literacką Nagrodę Nobla?",
+      "correct": "2019",
+      "wrong": [
+        "2020",
+        "2017",
+        "2018"
+      ],
+      "source": "https://www.nobelprize.org/prizes/literature/2018/summary/",
+      "id": "community_zz_20261031_22",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Nauka",
+      "prompt": "Jakie dwa metale są głównymi składnikami mosiądzu?",
+      "correct": "Miedź i cynk",
+      "wrong": [
+        "Miedź i cyna",
+        "Miedź i nikiel",
+        "Ołów i cyna"
+      ],
+      "source": "https://www.archeologia.uw.edu.pl/wytworczosc-metalurgiczna-na-ziemiach-polski-od-epoki-brazu-po-mlodszy-okres-przedrzymski/",
+      "id": "community_zz_20261031_23",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Życie codzienne",
+      "prompt": "Kiedy w Polsce tradycyjnie obchodzą imieniny Adam i Ewa?",
+      "correct": "24 grudnia",
+      "wrong": [
+        "1 września",
+        "24 czerwca",
+        "1 kwietnia"
+      ],
+      "source": "https://www.krakow.pl/getPdf?dok_id=236008",
+      "id": "community_zz_20261031_24",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Przyroda",
+      "prompt": "Z krzyżówki jakich zwierząt rodzi się osłomuł?",
+      "correct": "Ogiera i oślicy",
+      "wrong": [
+        "Osła i klaczy",
+        "Ogiera i samicy zebry",
+        "Samca zebry i oślicy"
+      ],
+      "source": "https://wsjp.pl/haslo/podglad/69289/oslomul",
+      "id": "community_zz_20261031_25",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Życie codzienne",
+      "prompt": "Kiedy w Polsce obchodzimy Dzień Mężczyzn?",
+      "correct": "10 marca",
+      "wrong": [
+        "9 marca",
+        "30 września",
+        "29 września"
+      ],
+      "source": "https://lublin.stat.gov.pl/infografiki/infografiki/dzien-mezczyzn-10-marca-2026-r-infografika%2C81%2C3.html",
+      "id": "community_zz_20261031_26",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Życie codzienne",
+      "prompt": "W jakiej kolejności obchodzimy w Polsce te święta, licząc od początku roku?",
+      "correct": "Dzień Babci, Dzień Dziadka, Dzień Kobiet",
+      "wrong": [
+        "Dzień Babci, Dzień Kobiet, Dzień Dziadka",
+        "Dzień Dziadka, Dzień Babci, Dzień Kobiet",
+        "Dzień Dziadka, Dzień Kobiet, Dzień Babci"
+      ],
+      "source": "https://kielce.stat.gov.pl/infografiki/infografiki/dzien-babci-21-stycznia-dzien-dziadka-22-stycznia%2C251%2C1.html",
+      "id": "community_zz_20261031_27",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Język",
+      "prompt": "Czym w gwarze poznańskiej jest „peja”?",
+      "correct": "Wszą",
+      "wrong": [
+        "Pluskwą",
+        "Muchą",
+        "Komarem"
+      ],
+      "source": "https://smakipowiatupoznanskiego.pl/slownik-gwary-poznanskiej/",
+      "id": "community_zz_20261031b_01",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Język",
+      "prompt": "Kogo w gwarze poznańskiej określa się słowem „pener”?",
+      "correct": "Menela",
+      "wrong": [
+        "Eleganta",
+        "Skąpca",
+        "Żarłoka"
+      ],
+      "source": "https://smakipowiatupoznanskiego.pl/slownik-gwary-poznanskiej/",
+      "id": "community_zz_20261031b_02",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Geografia",
+      "prompt": "Przez które z tych miast nie przepływa Warta?",
+      "correct": "Kalisz",
+      "wrong": [
+        "Sieradz",
+        "Konin",
+        "Koło"
+      ],
+      "source": "https://www.kalisz.pl/dla-turysty/kalisz-trasy-turystyczne/szlakiem-rzeki-prosny%2C822",
+      "id": "community_zz_20261031b_03",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Życie codzienne",
+      "prompt": "Jaką literę przypomina krzyż świętego Andrzeja?",
+      "correct": "X",
+      "wrong": [
+        "T",
+        "Y",
+        "H"
+      ],
+      "source": "https://zpe.gov.pl/a/wizualizacja-przejazdow-kolejowo-drogowych/DYLmkCePN",
+      "id": "community_zz_20261031b_04",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Język",
+      "prompt": "Czym są wielkopolskie „ślepe ryby”?",
+      "correct": "Zupą ziemniaczaną",
+      "wrong": [
+        "Plackami ziemniaczanymi",
+        "Kluskami z twarogiem",
+        "Smażonymi śledziami"
+      ],
+      "source": "https://www.gov.pl/web/rolnictwo/slepe-ryby",
+      "id": "community_zz_20261031b_05",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Język",
+      "prompt": "Które słowo jest synonimem wyrazu „rżysko”?",
+      "correct": "Ściernisko",
+      "wrong": [
+        "Rykowisko",
+        "Pastwisko",
+        "Kartoflisko"
+      ],
+      "source": "https://nazwiska.ijppan.pl/haslo/show/name/R%C5%BBYSKO",
+      "id": "community_zz_20261031b_06",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Geografia",
+      "prompt": "W którym województwie leży Olkusz?",
+      "correct": "W małopolskim",
+      "wrong": [
+        "W opolskim",
+        "W śląskim",
+        "W świętokrzyskim"
+      ],
+      "source": "https://pzgik.geoportal.gov.pl/prng/Miejscowosc/PL.PZGiK.204.PRNG.00000000-0000-0000-0000-000000092463-71781",
+      "id": "community_zz_20261031b_07",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Życie codzienne",
+      "prompt": "Z korzeni której rośliny otrzymuje się tapiokę?",
+      "correct": "Manioku",
+      "wrong": [
+        "Ziemniaka",
+        "Batata",
+        "Taro"
+      ],
+      "source": "https://zpe.gov.pl/a/przeczytaj/DQedmHi0G",
+      "id": "community_zz_20261031b_08",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Geografia",
+      "prompt": "Do którego państwa należy w 2026 roku terytorium Tristan da Cunha?",
+      "correct": "Do Wielkiej Brytanii",
+      "wrong": [
+        "Do Portugalii",
+        "Do Francji",
+        "Do Republiki Południowej Afryki"
+      ],
+      "source": "https://www.tristandc.com/government.php",
+      "id": "community_zz_20261031b_09",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Geografia",
+      "prompt": "Częścią którego państwa jest w 2026 roku Nowa Kaledonia?",
+      "correct": "Francji",
+      "wrong": [
+        "Australii",
+        "Wielkiej Brytanii",
+        "Nowej Zelandii"
+      ],
+      "source": "https://gouv.nc/gouvernement-et-institutions/un-peu-d-histoire",
+      "id": "community_zz_20261031b_10",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Literatura",
+      "prompt": "Która z tych książek nie jest autorstwa Stephena Kinga?",
+      "correct": "„W drodze”",
+      "wrong": [
+        "„Wielki marsz”",
+        "„Bezsenność”",
+        "„To”"
+      ],
+      "source": "https://www.bn.org.pl/download/document/1742557599.pdf#page=99",
+      "id": "community_zz_20261031b_11",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Literatura",
+      "prompt": "Który z tych utworów nie jest autorstwa Aleksandra Fredry?",
+      "correct": "„Cud mniemany, czyli Krakowiacy i Górale”",
+      "wrong": [
+        "„Pan Jowialski”",
+        "„Trzy po trzy”",
+        "„Śluby panieńskie”"
+      ],
+      "source": "https://wolnelektury.pl/katalog/lektura/boguslawski-cud-mniemany.html",
+      "id": "community_zz_20261031b_12",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Literatura",
+      "prompt": "Dla której epoki literackiej charakterystyczna jest powieść poetycka?",
+      "correct": "Dla romantyzmu",
+      "wrong": [
+        "Dla klasycyzmu",
+        "Dla Młodej Polski",
+        "Dla dwudziestolecia międzywojennego"
+      ],
+      "source": "https://zpe.gov.pl/a/przeczytaj/DcsZpzocc",
+      "id": "community_zz_20261031b_13",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Przyroda",
+      "prompt": "Które zęby nazywamy przedtrzonowymi w stałym uzębieniu człowieka?",
+      "correct": "Czwórki i piątki",
+      "wrong": [
+        "Jedynki i dwójki",
+        "Szóstki i siódemki",
+        "Siódemki i ósemki"
+      ],
+      "source": "https://jbc.bj.uj.edu.pl/Content/954012/NDIGOC103814_2024_007_008.pdf#page=125",
+      "id": "community_zz_20261031b_14",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "category": "Geografia",
+      "prompt": "Którego państwa częścią jest formalnie Naddniestrze w 2026 roku?",
+      "correct": "Mołdawii",
+      "wrong": [
+        "Ukrainy",
+        "Rumunii",
+        "Rosji"
+      ],
+      "source": "https://www.gov.pl/attachment/4f1631f0-a053-4be7-a73b-0a19e53440f3",
+      "id": "community_zz_20261031b_15",
+      "level": "medium",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
     }
   ],
   "source": "content/QUIZ_PL_GENERAL_SOURCES.txt"
 }
-QUIZ_DATA_2068980b7c11b16d70f221c379f37b559cfd828ab859cf59d06c89625ef78012
+QUIZ_DATA_7ec1a06286cec2d3a5241557fc232729303b4d6b5b728afe4c4363e78be8ed5a
     end
   end
 end

@@ -5,17 +5,18 @@ require_relative "../../../content/quiz_general_en"
 require_relative "../../../content/quiz_general_ru"
 require_relative "../../../content/quiz_pl_wikidata"
 require_relative "../../../content/quiz_witcher_pl"
+require_relative "../../../content/quiz_harry_potter_pl"
 require_relative "../../../games/duck_racing_support/question_sets"
 
 include GameRoomTest::Assertions
 adapter = GameRoomDuckRacing::QuestionSets
 catalog = adapter.catalog
-assert_equal(4, catalog.length)
+assert_equal(5, catalog.length)
 assert_equal(["quiz.general"], adapter.defaults("en"))
 assert_equal(["quiz.wikidata"], adapter.defaults("pl-PL"))
 assert_equal(["quiz.general.ru"], adapter.defaults("ru-RU"))
 assert_raises(adapter::Unavailable) { adapter.defaults("cs-CZ") }
-assert_equal(%w[quiz.wikidata quiz.witcher.books], adapter.choices(language: "pl-PL").map { |entry| entry[:value] })
+assert_equal(%w[quiz.harry_potter.books quiz.wikidata quiz.witcher.books], adapter.choices(language: "pl-PL").map { |entry| entry[:value] }.sort)
 assert_equal(["quiz.general"], adapter.choices(language: "en").map { |entry| entry[:value] })
 assert_equal(["quiz.wikidata"], adapter.prepare_selected(ids: adapter.defaults("pl-PL"), language: "pl-PL").selection.keys)
 selection = catalog.to_h { |entry| [entry[:set_id], entry[:languages].first[:language_id]] }
@@ -34,4 +35,4 @@ seen = {}
   assert_equal(false, adapter.public_view(question).key?(:correct_index))
 end
 assert_equal(selection.keys.sort, seen.keys.sort)
-puts "PASS Duck Racing real question resources: all four current sets usable, exact prompts/ABCD preserved, private correct index excluded from presentation"
+puts "PASS Duck Racing real question resources: all five current sets usable, exact prompts/ABCD preserved, private correct index excluded from presentation"

@@ -6,7 +6,7 @@ def assert(value, message); raise message unless value; end
 
 files = QuizTextExport.files
 packs = GameRoomContent.registry.packs.select { |pack| pack.kind.to_s == 'quiz' }
-assert(packs.size == 4, 'Expected three general sets and the new books-only Witcher set')
+assert(packs.size == 5, 'Expected three general sets, Witcher books and Harry Potter books')
 assert(files.size == packs.size, 'Not every quiz set was exported')
 assert(!GameRoomReleaseFiles.allowed?('tools/export-quiz-text.rb'), 'Exporter must not enter the installer')
 files.each_key { |name| assert(!GameRoomReleaseFiles.allowed?("docs/quiz-questions/#{name}"), 'Review TXT must not enter the installer') }
@@ -14,7 +14,8 @@ packs.each do |pack|
   text = files.fetch(QuizTextExport::NAMES.fetch(pack.id))
   expected_title = {
     'quiz.general.en' => 'General knowledge', 'quiz.general.ru' => 'Общие знания',
-    'quiz.wikidata.pl' => 'Wiedza ogólna', 'quiz.witcher.books.pl' => 'Wiedźmin — książki'
+    'quiz.wikidata.pl' => 'Wiedza ogólna', 'quiz.witcher.books.pl' => 'Wiedźmin — książki',
+    'quiz.harry_potter.books.pl' => 'Harry Potter'
   }.fetch(pack.id)
   assert(text.lines.first.chomp == expected_title, 'The review title must follow the question language')
   assert(text.encoding == Encoding::UTF_8 && text.valid_encoding?, 'Invalid TXT encoding')
@@ -44,6 +45,8 @@ numbering_cases = {
 }
 numbering_cases.each do |scenario, questions|
   sample_pack.data = { 'questions' => questions }
+  rendered = QuizTextExport.render(sample_pack)
+  assert(rendered.end_with?("\n") && !rendered.end_with?("\n\n"), "Extra blank line at EOF after #{scenario}")
   blocks = QuizTextExport.render(sample_pack).split("\n\n").drop(1)
   assert(blocks.size == questions.size, "Question count changed after #{scenario}")
   blocks.each_with_index do |block, index|

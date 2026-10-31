@@ -224,11 +224,11 @@ msgstr "%{copies} × %{set}"
 msgid "%{copies} × Double %{maximum}, %{count} tiles, up to %{players} players"
 msgstr "%{copies} × doble %{maximum}, %{count} fichas, hasta %{players} jugadores"
 
-#: games/quiz_party.rb:806
+#: games/quiz_party.rb:807
 msgid "%{count} answered correctly."
 msgstr "Respuestas correctas: %{count}."
 
-#: games/quiz_party.rb:807
+#: games/quiz_party.rb:808
 msgid "%{count} answered incorrectly."
 msgstr "Respuestas incorrectas: %{count}."
 
@@ -260,7 +260,7 @@ msgid_plural "%{count} hidden cards"
 msgstr[0] ""
 msgstr[1] ""
 
-#: games/krowa.rb:196 games/krowa.rb:43
+#: games/krowa.rb:197 games/krowa.rb:44
 msgid "%{count} letters"
 msgstr "%{count} letras"
 
@@ -276,7 +276,7 @@ msgid_plural "%{count} points"
 msgstr[0] ""
 msgstr[1] ""
 
-#: games/quiz_party.rb:946
+#: games/quiz_party.rb:947
 msgid "%{count} question"
 msgid_plural "%{count} questions"
 msgstr[0] "%{count} pregunta"
@@ -367,7 +367,7 @@ msgstr "%{field}: agua."
 msgid "%{field}: the selected day is not available in this month. Choose the day again."
 msgstr "%{field}: el día elegido no existe en este mes. Elige otro día."
 
-#: games/axel_pong.rb:111 games/duck_racing_support/presentation.rb:622 games/duck_racing_support/presentation.rb:627 games/ninety_nine.rb:925
+#: games/axel_pong.rb:111 games/duck_racing_support/presentation.rb:622 games/duck_racing_support/presentation.rb:627 games/ninety_nine.rb:925 lib/sports_rankings/screen.rb:195
 msgid "%{first} and %{second}"
 msgstr "%{first} y %{second}"
 
@@ -398,7 +398,7 @@ msgstr "Reglas de %{game}"
 msgid "%{game}, %{owner}"
 msgstr "%{game}, %{owner}"
 
-#: __app.rb:3045
+#: __app.rb:3046
 msgid "%{game}, %{table}"
 msgstr "%{game}, %{table}"
 
@@ -410,11 +410,11 @@ msgstr "%{game}: %{mode}"
 msgid "%{game}: %{section}"
 msgstr "%{game}: %{section}"
 
-#: __app.rb:1350
+#: __app.rb:1351
 msgid "%{game}; %{date}; %{players}"
 msgstr "%{game}; %{date}; %{players}"
 
-#: __app.rb:2649
+#: __app.rb:2650
 msgid "%{game}; %{table}; invited by %{sender}; %{count}/%{maximum}"
 msgstr "%{game}; %{table}; invitación de %{sender}; %{count}/%{maximum}"
 
@@ -430,7 +430,7 @@ msgstr ""
 msgid "%{giver} gave a trump card to %{target}; %{target} chooses the return card."
 msgstr ""
 
-#: __app.rb:3908
+#: __app.rb:3909
 msgid "%{group}, %{volume}%%"
 msgstr "%{group}, %{volume}%%"
 
@@ -490,7 +490,7 @@ msgstr "%{left} más %{right}."
 msgid "%{left} times %{right}."
 msgstr "%{left} por %{right}."
 
-#: games/krowa.rb:466
+#: games/krowa.rb:467
 msgid "%{length} letters."
 msgstr "%{length} letras."
 
@@ -618,7 +618,7 @@ msgstr "%{number}. %{name}"
 msgid "%{number}. %{question}"
 msgstr "%{number}. %{question}"
 
-#: games/quiz_party.rb:1198
+#: games/quiz_party.rb:1199
 msgid "%{number}: %{answer}"
 msgstr "%{number}: %{answer}"
 
@@ -633,7 +633,7 @@ msgstr "%{owner} ha reclamado el alquiler. %{player} ha pagado %{rent}."
 msgid "%{owner} waived the rent from %{player}."
 msgstr "%{owner} ha renunciado a cobrar el alquiler a %{player}."
 
-#: __app.rb:3337
+#: __app.rb:3338
 msgid "%{owner}, %{count}/%{maximum}, %{status}"
 msgstr "%{owner}, %{count}/%{maximum}, %{status}"
 
@@ -643,6 +643,10 @@ msgstr "Parejas retiradas: %{pairs}; fichas restantes: %{tiles}."
 
 msgid "%{pawn}: %{position}"
 msgstr "%{pawn}: %{position}"
+
+#: lib/sports_rankings/screen.rb:201
+msgid "%{period}: won %{won}, lost %{lost}, played %{played}"
+msgstr "%{period}: victorias %{won}, derrotas %{lost}, partidos jugados %{played}"
 
 #: games/chess.rb:800
 msgid "%{piece} castles %{side}."
@@ -755,9 +759,13 @@ msgstr "%{player} ha añadido un ordenador a la mesa de %{owner} para jugar a %{
 msgid "%{player} added a computer."
 msgstr "%{player} ha añadido un ordenador."
 
-#: games/krowa.rb:450
+#: games/krowa.rb:451
 msgid "%{player} adds a noun: %{word}."
 msgstr "%{player} añade un sustantivo: %{word}."
+
+#: lib/sports_rankings/screen.rb:204
+msgid "%{player} against %{opponent}"
+msgstr "%{player} contra %{opponent}"
 
 #: games/uno/play_reduction.rb:113
 msgid "%{player} also discards %{count} %{colour} card."
@@ -765,11 +773,11 @@ msgid_plural "%{player} also discards %{count} %{colour} cards."
 msgstr[0] "%{player} también descarta %{count} carta de color %{colour}."
 msgstr[1] "%{player} también descarta %{count} cartas de color %{colour}."
 
-#: games/quiz_party.rb:792
+#: games/quiz_party.rb:793
 msgid "%{player} answered correctly."
 msgstr "%{player} ha respondido correctamente."
 
-#: games/quiz_party.rb:794
+#: games/quiz_party.rb:795
 msgid "%{player} answered incorrectly."
 msgstr "%{player} ha respondido incorrectamente."
 
@@ -790,7 +798,7 @@ msgstr ""
 msgid "%{player} begins the final lap."
 msgstr "%{player} empieza la última vuelta."
 
-#: games/tysiac.rb:742
+#: games/tysiac.rb:753
 msgid "%{player} bid %{bid}."
 msgstr "%{player} ha pujado %{bid}."
 
@@ -897,7 +905,7 @@ msgstr "%{player} ha elegido a %{user} como jugador para la próxima partida."
 msgid "%{player} chose %{user} as an observer for the next game."
 msgstr "%{player} ha elegido a %{user} como espectador para la próxima partida."
 
-#: games/tysiac.rb:808
+#: games/tysiac.rb:819
 msgid "%{player} chose talon %{number}."
 msgstr "%{player} ha elegido la reserva %{number}."
 
@@ -966,7 +974,7 @@ msgstr "%{player} se ha declarado en bancarrota. Las propiedades restantes vuelv
 msgid "%{player} declared riichi, discarding %{tile}."
 msgstr "%{player} ha declarado riichi descartando: %{tile}."
 
-#: games/tysiac.rb:928
+#: games/tysiac.rb:939
 msgid "%{player} declared the %{suit} marriage for %{points} points by playing %{card}. %{suit} is now trump."
 msgstr "%{player} ha realizado el anuncio de %{suit} por %{points} puntos al jugar %{card}. Ahora %{suit} es el palo de triunfo."
 
@@ -1121,15 +1129,15 @@ msgstr ""
 msgid "%{player} folds."
 msgstr "%{player} se retira."
 
-#: games/tysiac.rb:1738
+#: games/tysiac.rb:1757
 msgid "%{player} gained %{points} points."
 msgstr "%{player} ha ganado %{points} puntos."
 
-#: games/tysiac.rb:1742
+#: games/tysiac.rb:1761
 msgid "%{player} gained no points."
 msgstr "%{player} no ha ganado puntos."
 
-#: games/tysiac.rb:1516
+#: games/tysiac.rb:1527
 msgid "%{player} gave you %{card}."
 msgstr "%{player} te ha dado %{card}."
 
@@ -1141,7 +1149,7 @@ msgstr "%{player} se pasa de 21."
 msgid "%{player} goes to jail."
 msgstr "%{player} va a la cárcel."
 
-#: games/krowa.rb:490
+#: games/krowa.rb:491
 msgid "%{player} guesses the word in %{count} attempts."
 msgstr "%{player} adivina la palabra en %{count} intentos."
 
@@ -1219,7 +1227,7 @@ msgstr "%{player} está eligiendo una categoría."
 msgid "%{player} is choosing a colour."
 msgstr "%{player} está eligiendo un color."
 
-#: games/quiz_party.rb:564
+#: games/quiz_party.rb:565
 msgid "%{player} is choosing the category for round %{round}."
 msgstr "%{player} está eligiendo la categoría de la ronda %{round}."
 
@@ -1245,7 +1253,7 @@ msgstr[1] "%{player}: congelación durante %{count} turnos."
 msgid "%{player} is looking at the chosen cards."
 msgstr ""
 
-#: games/tysiac.rb:1027
+#: games/tysiac.rb:1038
 msgid "%{player} is now on the barrel."
 msgstr "%{player} está ahora en el barril."
 
@@ -1386,7 +1394,7 @@ msgstr "%{player} pierde por incomparecencia. Con esta decisión termina la part
 msgid "%{player} lost %{count} tokens for %{reason}; %{remaining} remain."
 msgstr "%{player} ha perdido %{count} fichas por %{reason}; le quedan %{remaining}."
 
-#: games/tysiac.rb:1740
+#: games/tysiac.rb:1759
 msgid "%{player} lost %{points} points."
 msgstr "%{player} ha perdido %{points} puntos."
 
@@ -1482,7 +1490,7 @@ msgstr "%{player} ha pagado %{amount} a %{recipient}: %{reason}."
 msgid "%{player} paid %{rent} rent to %{owner}."
 msgstr "%{player} ha pagado %{rent} de alquiler a %{owner}."
 
-#: games/mahjong_support/table_game.rb:425 games/tysiac.rb:731
+#: games/mahjong_support/table_game.rb:425 games/tysiac.rb:742
 msgid "%{player} passed."
 msgstr "%{player} ha pasado."
 
@@ -1567,7 +1575,7 @@ msgstr "%{player} juega %{card} contra %{target}."
 msgid "%{player} played %{card}, now at %{miles} miles."
 msgstr "%{player} jugó %{card} y ahora lleva %{miles} millas."
 
-#: games/mille_bornes/model.rb:308 games/spades.rb:785 games/three_five_eight.rb:648 games/tysiac.rb:919 games/uno/play_reduction.rb:106
+#: games/mille_bornes/model.rb:308 games/spades.rb:785 games/three_five_eight.rb:648 games/tysiac.rb:930 games/uno/play_reduction.rb:106
 msgid "%{player} played %{card}."
 msgstr "%{player} ha jugado %{card}."
 
@@ -1737,7 +1745,7 @@ msgid_plural "%{player} receives %{count} feathers."
 msgstr[0] "%{player} recibe %{count} pluma."
 msgstr[1] "%{player} recibe %{count} plumas."
 
-#: games/tysiac.rb:970
+#: games/tysiac.rb:981
 msgid "%{player} receives %{points} points from the set-aside cards for winning the last trick."
 msgstr "%{player} recibe %{points} puntos de las cartas apartadas por ganar la última baza."
 
@@ -1957,11 +1965,11 @@ msgstr "%{player} saca para %{receiver}."
 msgid "%{player} serves."
 msgstr "%{player} saca."
 
-#: games/tysiac.rb:825
+#: games/tysiac.rb:836
 msgid "%{player} set aside a card."
 msgstr "%{player} ha apartado una carta."
 
-#: games/tysiac.rb:874
+#: games/tysiac.rb:885
 msgid "%{player} set the contract at %{contract}."
 msgstr "%{player} ha fijado el contrato en %{contract}."
 
@@ -1972,7 +1980,7 @@ msgstr "%{player} ha fijado el contrato final en %{contract} y sale en la primer
 msgid "%{player} shoots at %{field}."
 msgstr "%{player} dispara a %{field}."
 
-#: games/tysiac.rb:710
+#: games/tysiac.rb:721
 msgid "%{player} sits out this deal."
 msgstr ""
 
@@ -2008,11 +2016,11 @@ msgstr "%{player} se planta con %{total}."
 msgid "%{player} submitted their answers."
 msgstr "%{player} ha enviado sus respuestas."
 
-#: games/tysiac.rb:892
+#: games/tysiac.rb:903
 msgid "%{player} surrendered the deal at a contract of %{contract}."
 msgstr "%{player} se ha rendido en el reparto con un contrato de %{contract}."
 
-#: games/krowa.rb:513
+#: games/krowa.rb:514
 msgid "%{player} surrenders."
 msgstr "%{player} se rinde."
 
@@ -2172,7 +2180,7 @@ msgstr "%{player} gana todo el bote: %{amount}%{deciding}."
 msgid "%{player} wins."
 msgstr "Gana %{player}."
 
-#: games/tysiac.rb:774
+#: games/tysiac.rb:785
 msgid "%{player} won the auction at %{bid}."
 msgstr "%{player} ha ganado la subasta con una puja de %{bid}."
 
@@ -2180,11 +2188,11 @@ msgstr "%{player} ha ganado la subasta con una puja de %{bid}."
 msgid "%{player} won the auction for %{property} at %{amount}."
 msgstr "%{player} ha ganado la subasta de %{property} por %{amount}."
 
-#: games/categories.rb:543 games/quiz_party.rb:468
+#: games/categories.rb:543 games/quiz_party.rb:469
 msgid "%{player} won the game with %{points} points."
 msgstr "%{player} ha ganado la partida con %{points} puntos."
 
-#: games/audio_ball.rb:151 games/audio_ball.rb:220 games/axel_pong.rb:144 games/axel_pong.rb:204 games/base.rb:479 games/base.rb:579 games/categories.rb:959 games/dealt_card_game.rb:176 games/ludo.rb:196 games/ludo.rb:375 games/mille_bornes/presentation.rb:127 games/quiz_party.rb:837 games/rummy.rb:582
+#: games/audio_ball.rb:151 games/audio_ball.rb:220 games/axel_pong.rb:144 games/axel_pong.rb:204 games/base.rb:479 games/base.rb:579 games/categories.rb:959 games/dealt_card_game.rb:176 games/ludo.rb:196 games/ludo.rb:375 games/mille_bornes/presentation.rb:127 games/quiz_party.rb:838 games/rummy.rb:582
 msgid "%{player} won the game."
 msgstr "%{player} ha ganado la partida."
 
@@ -2202,7 +2210,7 @@ msgstr "%{player} ha ganado la ronda."
 msgid "%{player} won the round. The values of the remaining cards were added to their owners' scores."
 msgstr "%{player} ha ganado la ronda. Los valores de las cartas restantes se han sumado a las puntuaciones de sus propietarios."
 
-#: games/tysiac.rb:955
+#: games/tysiac.rb:966
 msgid "%{player} won the trick for %{points} card points."
 msgstr "%{player} ha ganado la baza por un valor de %{points} puntos en cartas."
 
@@ -2302,11 +2310,11 @@ msgstr ""
 msgid "%{player}, changed fields: %{fields}."
 msgstr "%{player}, casillas modificadas: %{fields}."
 
-#: games/tysiac.rb:1755
+#: games/tysiac.rb:1774
 msgid "%{player}, collected %{collected}, awarded %{points}."
 msgstr "%{player}, puntos acumulados: %{collected}, puntos otorgados: %{points}."
 
-#: games/tysiac.rb:1753
+#: games/tysiac.rb:1772
 msgid "%{player}, collected %{collected}, lost %{points}."
 msgstr "%{player}, puntos acumulados: %{collected}, puntos perdidos: %{points}."
 
@@ -2347,7 +2355,7 @@ msgstr "%{player}: %{attempts} intentos, en juego"
 msgid "%{player}: %{attempt}"
 msgstr "%{player}: %{attempt}"
 
-#: games/spades.rb:925 games/tysiac.rb:1663
+#: games/spades.rb:925 games/tysiac.rb:1673 games/tysiac.rb:1682
 msgid "%{player}: %{bid}"
 msgstr "%{player}: %{bid}"
 
@@ -2359,7 +2367,7 @@ msgstr "%{player}: %{bonuses}."
 msgid "%{player}: %{cards} points for opponents' cards and %{bonus} bonus points."
 msgstr "%{player}: %{cards} puntos por las cartas de los rivales y %{bonus} puntos de bonificación."
 
-#: games/base/shortcuts.rb:50 games/bouillabaisse.rb:48 games/bouillabaisse.rb:84 games/scientific_war.rb:886 games/spades.rb:936 games/three_five_eight.rb:1017 games/tysiac.rb:1620 games/war.rb:427 games/war.rb:486
+#: games/base/shortcuts.rb:50 games/bouillabaisse.rb:48 games/bouillabaisse.rb:84 games/scientific_war.rb:886 games/spades.rb:936 games/three_five_eight.rb:1017 games/tysiac.rb:1631 games/war.rb:427 games/war.rb:486
 msgid "%{player}: %{card}"
 msgstr "%{player}: %{card}"
 
@@ -2395,7 +2403,7 @@ msgstr "%{player}: %{message}"
 msgid "%{player}: %{miles} miles; %{status}; safeties: %{safeties}; 200-mile cards: %{count} of 2."
 msgstr "%{player}: %{miles} millas; %{status}; protecciones: %{safeties}; cartas de 200 millas: %{count} de 2."
 
-#: lib/sports_rankings/screen.rb:121
+#: lib/sports_rankings/screen.rb:122
 msgid "%{player}: %{period}"
 msgstr "%{player}: %{period}"
 
@@ -2403,7 +2411,7 @@ msgstr "%{player}: %{period}"
 msgid "%{player}: %{pieces}"
 msgstr "%{player}: %{pieces}"
 
-#: games/categories.rb:1364 games/mahjong.rb:162 games/mahjong_support/table_game.rb:207 games/mahjong_support/table_presentation.rb:60 games/quiz_party.rb:1212
+#: games/categories.rb:1364 games/mahjong.rb:162 games/mahjong_support/table_game.rb:207 games/mahjong_support/table_presentation.rb:60 games/quiz_party.rb:1213
 msgid "%{player}: %{points}"
 msgstr "%{player}: %{points}"
 
@@ -2446,7 +2454,7 @@ msgstr "%{player}: %{result}"
 msgid "%{player}: %{result}."
 msgstr "%{player}: %{result}."
 
-#: games/biblios.rb:1296 games/cat_head_tail.rb:433 games/farkle.rb:761 games/three_five_eight.rb:1022 games/tysiac.rb:1632 games/uno.rb:1385 games/yahtzee.rb:527
+#: games/biblios.rb:1296 games/cat_head_tail.rb:433 games/farkle.rb:761 games/three_five_eight.rb:1022 games/tysiac.rb:1643 games/uno.rb:1385 games/yahtzee.rb:527
 msgid "%{player}: %{score}"
 msgstr "%{player}: %{score}"
 
@@ -2484,7 +2492,7 @@ msgstr "%{player}: %{tricks}/%{bid}"
 msgid "%{player}: %{tricks}/%{target}"
 msgstr ""
 
-#: games/krowa.rb:485
+#: games/krowa.rb:486
 msgid "%{player}: %{word}, %{matches} of %{length}."
 msgstr "%{player}: %{word}, %{matches} de %{length}."
 
@@ -2507,11 +2515,11 @@ msgstr "%{player}: doble riichi"
 msgid "%{player}: field %{number}, %{square}"
 msgstr "%{player}: casilla %{number}, %{square}"
 
-#: games/tysiac.rb:1762
+#: games/tysiac.rb:1781
 msgid "%{player}: first surrender."
 msgstr "%{player}: primera rendición."
 
-#: games/tysiac.rb:1767
+#: games/tysiac.rb:1786
 msgid "%{player}: first zero."
 msgstr "%{player}: primer cero."
 
@@ -2543,11 +2551,11 @@ msgstr ""
 msgid "%{player}: riichi"
 msgstr "%{player}: riichi"
 
-#: games/tysiac.rb:1763
+#: games/tysiac.rb:1782
 msgid "%{player}: second surrender."
 msgstr "%{player}: segunda rendición."
 
-#: games/tysiac.rb:1768
+#: games/tysiac.rb:1787
 msgid "%{player}: second zero."
 msgstr "%{player}: segundo cero."
 
@@ -2567,11 +2575,11 @@ msgstr "%{player}: casilla %{square}, vuelta %{lap}."
 msgid "%{player}: surrendered"
 msgstr "%{player}: se ha rendido"
 
-#: games/tysiac.rb:1765
+#: games/tysiac.rb:1784
 msgid "%{player}: third surrender."
 msgstr "%{player}: tercera rendición."
 
-#: games/tysiac.rb:1770
+#: games/tysiac.rb:1789
 msgid "%{player}: third zero."
 msgstr "%{player}: tercer cero."
 
@@ -2583,7 +2591,7 @@ msgstr ""
 msgid "%{player}: tricks won %{tricks}, target %{target}, points this deal %{points}, total score %{score}."
 msgstr ""
 
-#: games/tysiac.rb:1647
+#: games/tysiac.rb:1658
 msgid "%{player}: zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "%{player}: ceros %{zeros}/3, rendiciones %{surrenders}/3%{barrel}"
 
@@ -2617,7 +2625,7 @@ msgstr "%{profile}; %{cards} cartas; comodines: %{jokers}"
 msgid "%{profile}; %{cards} cards; jokers: %{jokers}; bot delay: %{delay} s"
 msgstr "%{profile}; %{cards} cartas; comodines: %{jokers}; demora del bot: %{delay} s"
 
-#: games/quiz_party.rb:1195
+#: games/quiz_party.rb:1196
 msgid "%{prompt} %{answers}"
 msgstr "%{prompt} %{answers}"
 
@@ -2635,7 +2643,7 @@ msgstr "%{property}; grupo: %{owned} de %{total}."
 msgid "%{property}; group ownership %{owned} of %{total}."
 msgstr "%{property}; propiedades del grupo en posesión: %{owned} de %{total}."
 
-#: games/card_game.rb:61 games/makao.rb:913 games/makao.rb:920 games/ninety_nine.rb:1037 games/poker.rb:1409 games/spades.rb:1124 games/three_five_eight.rb:1105 games/tysiac.rb:1717
+#: games/card_game.rb:61 games/makao.rb:913 games/makao.rb:920 games/ninety_nine.rb:1037 games/poker.rb:1409 games/spades.rb:1124 games/three_five_eight.rb:1105 games/tysiac.rb:1736
 msgid "%{rank} of %{suit}"
 msgstr "%{rank} de %{suit}"
 
@@ -2697,7 +2705,7 @@ msgstr[1] "%{seconds} segundos"
 msgid "%{seconds} seconds"
 msgstr "%{seconds} segundos"
 
-#: games/quiz_party.rb:160
+#: games/quiz_party.rb:161
 msgid "%{seconds} seconds per answer; target: %{target} points"
 msgstr "%{seconds} segundos por respuesta; objetivo: %{target} puntos"
 
@@ -2705,15 +2713,15 @@ msgstr "%{seconds} segundos por respuesta; objetivo: %{target} puntos"
 msgid "%{seconds} seconds remaining"
 msgstr "Quedan %{seconds} segundos"
 
-#: games/categories.rb:1354 games/quiz_party.rb:1206 lib/game_surfaces/taboo_surface.rb:52
+#: games/categories.rb:1354 games/quiz_party.rb:1207 lib/game_surfaces/taboo_surface.rb:52
 msgid "%{seconds} seconds remaining."
 msgstr "Quedan %{seconds} segundos."
 
-#: __app.rb:376
+#: __app.rb:377
 msgid "%{sender} invites you to %{table} (%{game})."
 msgstr "%{sender} te invita a la mesa %{table} (%{game})."
 
-#: __app.rb:374
+#: __app.rb:375
 msgid "%{sender} invites you to a tournament match (%{game})."
 msgstr "%{sender} te invita a un partido del torneo (%{game})."
 
@@ -2721,11 +2729,11 @@ msgstr "%{sender} te invita a un partido del torneo (%{game})."
 msgid "%{sender} invites you to register for %{name} (%{game})."
 msgstr "%{sender} te invita a inscribirte en %{name} (%{game})."
 
-#: __app.rb:376
+#: __app.rb:377
 msgid "%{sender} invites you to resume %{table} (%{game})."
 msgstr "%{sender} te invita a reanudar la partida en la mesa %{table} (%{game})."
 
-#: __app.rb:374
+#: __app.rb:375
 msgid "%{sender} invites you to resume a tournament match (%{game})."
 msgstr "%{sender} te invita a reanudar un partido del torneo (%{game})."
 
@@ -2822,14 +2830,14 @@ msgstr ""
 msgid "%{suit}: %{cards}"
 msgstr "%{suit}: %{cards}"
 
-#: __app.rb:3049
+#: __app.rb:3050
 msgid "%{table}, unavailable"
 msgstr "%{table}, no disponible"
 
 msgid "%{taker} gave %{card} to %{player}."
 msgstr "%{taker} ha dado %{card} a %{player}."
 
-#: games/tysiac.rb:1522 games/tysiac.rb:845
+#: games/tysiac.rb:1533 games/tysiac.rb:856
 msgid "%{taker} gave a card to %{player}."
 msgstr "%{taker} ha dado una carta a %{player}."
 
@@ -2871,7 +2879,7 @@ msgstr "%{tile}: %{status}"
 msgid "%{tile}; selected"
 msgstr "%{tile}; seleccionada"
 
-#: games/quiz_party.rb:171
+#: games/quiz_party.rb:172
 msgid "%{title}, %{questions}"
 msgstr "%{title}, %{questions}"
 
@@ -2915,7 +2923,7 @@ msgstr "%{user} ha rechazado la invitación de %{player}."
 msgid "%{user} declined your invitation to %{table}."
 msgstr "%{user} ha rechazado tu invitación a %{table}."
 
-#: __app.rb:3969
+#: __app.rb:3970
 msgid "%{user}'s table"
 msgstr "Mesa de %{user}"
 
@@ -2967,15 +2975,15 @@ msgstr "%{variant}; %{seeds} semillas en cada hoyo"
 msgid "%{variant}; 3 to 8 letters; %{count} attempts per letter"
 msgstr "%{variant}; de 3 a 8 letras; %{count} intentos por letra"
 
-#: games/krowa.rb:199
+#: games/krowa.rb:200
 msgid "%{variant}; 3 to 8 letters; attempt limit depends on word length"
 msgstr ""
 
-#: games/krowa.rb:198
+#: games/krowa.rb:199
 msgid "%{variant}; 3 to 9 letters"
 msgstr "%{variant}; de 3 a 9 letras"
 
-#: games/spades.rb:579 games/spades.rb:849 games/three_five_eight.rb:430 games/tysiac.rb:1035 games/tysiac.rb:120
+#: games/spades.rb:579 games/spades.rb:849 games/three_five_eight.rb:430 games/tysiac.rb:1046 games/tysiac.rb:120
 msgid "%{winner} won the game."
 msgstr "%{winner} ha ganado la partida."
 
@@ -2987,7 +2995,7 @@ msgstr "Gana el encuentro la pareja %{winner}: %{scores}."
 msgid "%{words}: %{points} potential points."
 msgstr "%{words}: %{points} puntos posibles."
 
-#: games/krowa_support/client.rb:258
+#: games/krowa_support/client.rb:264
 msgid ""
 "%{word}\r\n"
 "\r\n"
@@ -3011,6 +3019,14 @@ msgstr[1] "%{word}, %{count} letras"
 msgid "%{word}, %{matches} of %{length}"
 msgstr "%{word}, %{matches} de %{length}"
 
+#: games/krowa_support/attempt_list_view.rb:24
+msgid "%{word}. %{matches}"
+msgstr "%{word}. %{matches}"
+
+#: games/krowa_support/client.rb:165
+msgid "%{word}: %{attempts} attempts"
+msgstr "%{word}: %{attempts} intentos"
+
 #: games/krowa_support/client.rb:163
 msgid "%{word}: %{attempts} attempts, %{length} letters"
 msgstr "%{word}: %{attempts} intentos, %{length} letras"
@@ -3019,11 +3035,11 @@ msgstr "%{word}: %{attempts} intentos, %{length} letras"
 msgid "(more than you can pay)"
 msgstr "(más de lo que puedes pagar)"
 
-#: games/tysiac.rb:1636
+#: games/tysiac.rb:1647
 msgid ", on the barrel"
 msgstr ", en el barril"
 
-#: games/tysiac.rb:1646
+#: games/tysiac.rb:1657
 msgid ", on the barrel, %{deals} deals left"
 msgstr ", en el barril, repartos restantes: %{deals}"
 
@@ -4628,7 +4644,7 @@ msgstr "4: lee las fichas del último jugador en una mesa de cuatro jugadores."
 msgid "4: select one kept die showing 4 for rerolling."
 msgstr "4: selecciona un dado conservado con el valor 4 para volver a lanzarlo."
 
-#: games/quiz_party.rb:312
+#: games/quiz_party.rb:313
 msgid "5 seconds remain."
 msgstr "Quedan 5 segundos."
 
@@ -4898,7 +4914,7 @@ msgstr ""
 msgid "A full column cannot be selected. After a valid move, the turn passes to the other player."
 msgstr ""
 
-#: __app.rb:3442 __app.rb:3484
+#: __app.rb:3443 __app.rb:3485
 msgid "A game has already started. Opening the current game."
 msgstr "Ya ha comenzado una partida. Abriendo la partida actual."
 
@@ -5298,7 +5314,7 @@ msgstr "A: prepárate para sacar o para golpear tras defender."
 msgid "About this adaptation"
 msgstr ""
 
-#: __app.rb:2428 __app.rb:2629
+#: __app.rb:2429 __app.rb:2630
 msgid "Accept"
 msgstr "Aceptar"
 
@@ -5314,7 +5330,7 @@ msgstr ""
 msgid "Accept displayed plan"
 msgstr ""
 
-#: __app.rb:2819 lib/game_room_ui.rb:140 lib/game_room_ui.rb:325 lib/game_room_widget.rb:198 lib/game_room_widget.rb:204
+#: __app.rb:2820 lib/game_room_ui.rb:140 lib/game_room_ui.rb:325 lib/game_room_widget.rb:198 lib/game_room_widget.rb:204
 msgid "Accept invitation"
 msgstr "Aceptar invitación"
 
@@ -5326,7 +5342,7 @@ msgstr ""
 msgid "Accept partnership with %{player}"
 msgstr "Aceptar la pareja con %{player}"
 
-#: __app.rb:3574
+#: __app.rb:3575
 msgid "Accept teams"
 msgstr "Confirmar equipos"
 
@@ -5379,7 +5395,7 @@ msgstr "Participantes aceptados: %{count}"
 msgid "Accepted: %{players}"
 msgstr "Aceptaron: %{players}"
 
-#: __app.rb:2689 __app.rb:2712
+#: __app.rb:2690 __app.rb:2713
 msgid "Accepting invitation"
 msgstr "Aceptando la invitación"
 
@@ -5469,7 +5485,7 @@ msgstr "Añadir un ordenador"
 msgid "Add a new category"
 msgstr "Añadir una nueva categoría"
 
-#: __app.rb:2424
+#: __app.rb:2425
 msgid "Add a new computer in this place"
 msgstr "Añadir un nuevo bot en este puesto"
 
@@ -5703,7 +5719,7 @@ msgstr "Se han añadido sonidos al guardar puntos en Farkle, alcanzar exactament
 msgid "Added statistics by balteam: visits, started and completed games, with game and period filters. Open Statistics in the main menu. Ctrl+W on that menu's options list reads current public and private table counts and human memberships, including observers but not bots. Developer mode does not collect new statistics."
 msgstr ""
 
-#: __app.rb:2325
+#: __app.rb:2326
 msgid "Adding computer"
 msgstr "Añadiendo un ordenador"
 
@@ -6085,7 +6101,7 @@ msgstr "Todas las combinaciones posibles"
 msgid "All six dice scored; hot dice."
 msgstr "Los seis dados han puntuado; dados calientes."
 
-#: lib/game_statistics_periods.rb:43 lib/sports_rankings/screen.rb:70
+#: lib/game_statistics_periods.rb:43 lib/sports_rankings/screen.rb:71
 msgid "All time"
 msgstr "Todo el período"
 
@@ -6176,7 +6192,7 @@ msgstr "Ya estás inscrito."
 msgid "Also added Biblios by dawidpieper (Pajper): a card game of building a library and bidding at auctions, for two to four players, with bots and Polish translation."
 msgstr "También se ha añadido Biblios, de dawidpieper (Pajper): un juego de cartas en el que construyes una biblioteca y pujas en subastas, para entre dos y cuatro jugadores, con bots y traducción al polaco."
 
-#: __app.rb:1110 lib/game_shortcut_bindings.rb:61
+#: __app.rb:1111 lib/game_shortcut_bindings.rb:61
 msgid "Alt"
 msgstr "Alt"
 
@@ -6229,11 +6245,11 @@ msgstr "El depósito extra protege contra la falta de combustible, los neumátic
 msgid "An extra tank protects against running out of gas, puncture-proof tires protect against flat tires, and the driving ace protects against accidents. Right of way protects against red lights and speed limits and removes the need for green lights. A safety removes the corresponding current problem and protects you until the round ends."
 msgstr "Un depósito adicional protege contra la falta de combustible, los neumáticos antipinchazos contra los pinchazos y el as del volante contra los accidentes. La prioridad de paso protege contra los semáforos rojos y los límites de velocidad y elimina la necesidad de semáforos verdes. Una protección elimina el problema actual correspondiente y te protege hasta el final de la ronda."
 
-#: __app.rb:2500
+#: __app.rb:2501
 msgid "An invitation to this table is already pending for this user."
 msgstr "Este usuario ya tiene una invitación pendiente para esta mesa."
 
-#: games/krowa.rb:314
+#: games/krowa.rb:315
 msgid "An observer does not take part in the game."
 msgstr "Un espectador no participa en la partida."
 
@@ -6303,11 +6319,11 @@ msgstr "Anunciar cuando un jugador salga de una mesa"
 msgid "Announce when a table is created"
 msgstr "Anunciar cuando se cree una mesa"
 
-#: __app.rb:2939
+#: __app.rb:2940
 msgid "Announcements of placed and removed letters disabled."
 msgstr "Anuncios de letras colocadas y retiradas desactivados."
 
-#: __app.rb:2939
+#: __app.rb:2940
 msgid "Announcements of placed and removed letters enabled."
 msgstr "Anuncios de letras colocadas y retiradas activados."
 
@@ -6315,15 +6331,15 @@ msgstr "Anuncios de letras colocadas y retiradas activados."
 msgid "Announcer volume"
 msgstr "Volumen del locutor"
 
-#: games/krowa.rb:313
+#: games/krowa.rb:314
 msgid "Another person is playing now."
 msgstr "Ahora está jugando otra persona."
 
-#: __app.rb:900
+#: __app.rb:901
 msgid "Another player is creating this match's table. Accept their invitation or try again shortly."
 msgstr "Otro jugador está creando la mesa de este encuentro. Acepta su invitación o inténtalo de nuevo en unos instantes."
 
-#: games/krowa.rb:317
+#: games/krowa.rb:318
 msgid "Another word has already started."
 msgstr "Ya se ha empezado otra palabra."
 
@@ -6373,7 +6389,7 @@ msgstr ""
 msgid "Answer questions correctly to earn points. Speed does not affect the score, provided you answer before the time expires."
 msgstr ""
 
-#: games/duck_racing_support/challenge_presentation.rb:315 games/quiz_party.rb:1238
+#: games/duck_racing_support/challenge_presentation.rb:315 games/quiz_party.rb:1239
 msgid "Answer sent."
 msgstr "Respuesta enviada."
 
@@ -6410,6 +6426,10 @@ msgstr "Teclas para responder y evaluar"
 #: games/categories/reduction.rb:128
 msgid "Answering has closed."
 msgstr "Se ha cerrado el plazo para responder."
+
+#: lib/game_surfaces/question_surface.rb:187
+msgid "Answers"
+msgstr "Respuestas"
 
 msgid "Answers are hidden while anyone is still writing. When everyone submits, or time expires, writing closes and submitted answers become available for judging. At the deadline the program submits the text still in your fields; it does not first clear it. A participant who has not supplied answers within closing is treated as having empty answers."
 msgstr ""
@@ -6762,7 +6782,15 @@ msgstr "Reyes de ataque"
 msgid "Attacking kings introduces a separate five-card attack. The king of spades starts it; the king of hearts can answer it and add five more. Thus spades followed by hearts makes the next player draw ten, unless they defend again. It does not reverse play. The other kings are ordinary cards, and a king attack is not combined with a two-or-three attack."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:186 games/krowa_support/leaderboards.rb:282 games/krowa_support/leaderboards.rb:74 games/krowa_support/presentation.rb:40
+#: games/krowa_support/attempt_list_view.rb:12
+msgid "Attempt list"
+msgstr "Lista de intentos"
+
+#: games/krowa_support/leaderboards.rb:112 games/krowa_support/leaderboards.rb:134 games/krowa_support/leaderboards.rb:92
+msgid "Attempt lists are not enabled on the server yet. You can publish the result without the list."
+msgstr "El servidor aún no admite listas de intentos. Puedes publicar el resultado sin la lista."
+
+#: games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:308 games/krowa_support/leaderboards.rb:76 games/krowa_support/presentation.rb:40
 msgid "Attempts"
 msgstr "Intentos"
 
@@ -6816,7 +6844,7 @@ msgstr "La subasta ha terminado sin venta: %{property}."
 msgid "Auction, transfer and play keys"
 msgstr "Teclas de subasta, transferencia y juego"
 
-#: games/tysiac.rb:1665
+#: games/tysiac.rb:1684
 msgid "Auction: %{bids}."
 msgstr "Subasta: %{bids}."
 
@@ -6947,7 +6975,7 @@ msgstr "Evita las cartas de penalización y recupera puntos en la última de las
 msgid "Awaiting review"
 msgstr "Pendiente de revisión"
 
-#: __app.rb:932 __app.rb:937 lib/tournaments/server_schedule_overview.rb:339 lib/tournaments/server_schedule_overview.rb:41
+#: __app.rb:933 __app.rb:938 lib/tournaments/server_schedule_overview.rb:339 lib/tournaments/server_schedule_overview.rb:41
 msgid "Award forfeit"
 msgstr "Conceder victoria por incomparecencia"
 
@@ -7048,7 +7076,7 @@ msgstr "B: leer la subasta actual."
 msgid "B: respond to the buzzer."
 msgstr "B: responde al pulsador."
 
-#: __app.rb:1383 __app.rb:1650 __app.rb:1694 __app.rb:1843 __app.rb:2513 __app.rb:2630 __app.rb:2822 games/krowa_support/leaderboards.rb:39 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:767 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/sports_rankings/screen.rb:57 lib/sports_rankings/screen.rb:92 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
+#: __app.rb:1384 __app.rb:1651 __app.rb:1695 __app.rb:1844 __app.rb:2514 __app.rb:2631 __app.rb:2823 games/krowa_support/leaderboards.rb:41 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:767 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/sports_rankings/screen.rb:206 lib/sports_rankings/screen.rb:58 lib/sports_rankings/screen.rb:88 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
 msgid "Back"
 msgstr "Volver"
 
@@ -7246,7 +7274,7 @@ msgstr "Empieza la vuelta %{lap}."
 msgid "Being vulnerable raises both the rewards and the penalties. Who is vulnerable is announced at the start of each deal; V repeats it together with the deal number, the dealer, the contract and the tricks."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:240
+#: games/krowa_support/leaderboards.rb:266
 msgid "Best result"
 msgstr "Mejor resultado"
 
@@ -7861,7 +7889,7 @@ msgstr "Igualar con %{amount}"
 msgid "Calm (short search)"
 msgstr "Tranquilo (búsqueda breve)"
 
-#: __app.rb:2429 __app.rb:3575 __app.rb:3633 games/krowa_support/client.rb:190 games/krowa_support/leaderboards.rb:209 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_option_editor.rb:117 lib/game_room_screens.rb:361 lib/game_screen.rb:676 lib/game_screen.rb:720 lib/game_surfaces/card_actions.rb:52 lib/game_surfaces/word_board.rb:208 lib/quiz_contributions/views.rb:143 lib/quiz_contributions/views.rb:164 lib/table_voice_screen.rb:180 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:29
+#: __app.rb:2430 __app.rb:3576 __app.rb:3634 games/krowa_support/client.rb:196 games/krowa_support/client.rb:357 games/krowa_support/leaderboards.rb:235 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_option_editor.rb:117 lib/game_room_screens.rb:361 lib/game_screen.rb:676 lib/game_screen.rb:720 lib/game_surfaces/card_actions.rb:52 lib/game_surfaces/word_board.rb:208 lib/quiz_contributions/views.rb:143 lib/quiz_contributions/views.rb:164 lib/table_voice_screen.rb:180 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:29
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -8293,7 +8321,7 @@ msgstr "Cambiar el compañero del participante seleccionado"
 msgid "Change settings for the next game"
 msgstr "Cambiar los ajustes de la siguiente partida"
 
-#: __app.rb:3572 lib/game_room_screens.rb:21
+#: __app.rb:3573 lib/game_room_screens.rb:21
 msgid "Change team"
 msgstr "Cambiar de equipo"
 
@@ -8510,11 +8538,11 @@ msgstr "Comprobando las actualizaciones de la partida"
 msgid "Checking game availability"
 msgstr "Comprobando la disponibilidad del juego"
 
-#: __app.rb:1288
+#: __app.rb:1289
 msgid "Checking game before saving"
 msgstr "Comprobando la partida antes de guardarla"
 
-#: __app.rb:2667
+#: __app.rb:2668
 msgid "Checking invitation"
 msgstr "Comprobando la invitación"
 
@@ -8534,11 +8562,11 @@ msgstr "Comprobando las preguntas"
 msgid "Checking saved tournament match"
 msgstr "Comprobando partida guardada del torneo"
 
-#: games/krowa_support/leaderboards.rb:140
+#: games/krowa_support/leaderboards.rb:155
 msgid "Checking server date"
 msgstr ""
 
-#: __app.rb:604
+#: __app.rb:605
 msgid "Checking server table access"
 msgstr "Comprobando el acceso a las tablas del servidor"
 
@@ -8546,30 +8574,30 @@ msgstr "Comprobando el acceso a las tablas del servidor"
 msgid "Checking set details"
 msgstr "Comprobando los datos del conjunto"
 
-#: __app.rb:3208
+#: __app.rb:3209
 msgid "Checking table"
 msgstr "Comprobando la mesa"
 
 msgid "Checking the current game"
 msgstr "Comprobando la partida actual"
 
-#: __app.rb:1414
+#: __app.rb:1415
 msgid "Checking the current table"
 msgstr "Comprobando la mesa actual"
 
-#: __app.rb:3432
+#: __app.rb:3433
 msgid "Checking the table before starting"
 msgstr "Comprobando la mesa antes de empezar"
 
-#: __app.rb:2313 __app.rb:2702 __app.rb:3478
+#: __app.rb:2314 __app.rb:2703 __app.rb:3479
 msgid "Checking the table members"
 msgstr "Comprobando los participantes de la mesa"
 
-#: __app.rb:1917
+#: __app.rb:1918
 msgid "Checking tournament match"
 msgstr "Comprobando el encuentro del torneo"
 
-#: __app.rb:435
+#: __app.rb:436
 msgid "Checking your current table"
 msgstr "Comprobando tu mesa actual"
 
@@ -8593,6 +8621,10 @@ msgstr "Ajedrez"
 #: games/generated/rulebooks/chess.rb:10
 msgid "Chess is a game for two players. White moves first, then the players alternate one move at a time. Each begins with a king, queen, two rooks, two bishops, two knights and eight pawns on an 8 by 8 board. Your aim is to attack the opposing king in a way your opponent cannot escape: this is checkmate. You do not actually capture the king."
 msgstr ""
+
+#: games/krowa_support/client.rb:357
+msgid "Choose"
+msgstr "Elegir"
 
 msgid "Choose Classic or Arcade Classic with temporary shields and an invisible ball. Automatic returns are an optional table setting shared by both players. Left and Right move the paddle; Up or Space serves and hits the ball."
 msgstr ""
@@ -8672,11 +8704,11 @@ msgstr "Elige una carta para descartar"
 msgid "Choose a card to give to %{player}"
 msgstr "Elige una carta para dársela a %{player}"
 
-#: games/tysiac.rb:1537 games/tysiac.rb:548
+#: games/tysiac.rb:1548 games/tysiac.rb:559
 msgid "Choose a card to give to %{player}."
 msgstr "Elige una carta para dar a %{player}."
 
-#: games/tysiac.rb:1530
+#: games/tysiac.rb:1541
 msgid "Choose a card to set aside. Remaining: %{count}."
 msgstr "Elige una carta para apartarla. Restantes: %{count}."
 
@@ -8713,7 +8745,7 @@ msgstr "Elige un kong oculto"
 msgid "Choose a date and time inside the selected window. This is not an invitation TTL or tournament rule."
 msgstr ""
 
-#: __app.rb:3128
+#: __app.rb:3129
 msgid "Choose a game for the preset"
 msgstr "Elige un juego para la configuración predefinida"
 
@@ -8747,7 +8779,7 @@ msgstr "Elige un jugador"
 msgid "Choose a player for the trade"
 msgstr "Elige un jugador para el intercambio"
 
-#: __app.rb:2383
+#: __app.rb:2384
 msgid "Choose a player in the current game."
 msgstr "Elige a un jugador de la partida actual."
 
@@ -8830,11 +8862,11 @@ msgstr "Elige uno de los números de manos disponibles."
 msgid "Choose a talon"
 msgstr "Elige una reserva"
 
-#: games/tysiac.rb:562
+#: games/tysiac.rb:573
 msgid "Choose a talon."
 msgstr "Elige una reserva."
 
-#: __app.rb:3628
+#: __app.rb:3629
 msgid "Choose a team"
 msgstr "Elige un equipo"
 
@@ -8967,7 +8999,7 @@ msgstr ""
 msgid "Choose one of five difficulty levels. The times below describe the first full flight across the 25-step court. At every level, each later hit in the rally increases the current speed by 5%."
 msgstr ""
 
-#: games/tysiac.rb:505
+#: games/tysiac.rb:516
 msgid "Choose one of the available bids."
 msgstr "Elige una de las pujas disponibles."
 
@@ -8995,7 +9027,7 @@ msgstr "Elige una de tus piezas y pulsa Enter; después, elige una casilla de de
 msgid "Choose or change partner"
 msgstr "Elegir o cambiar compañero"
 
-#: lib/sports_rankings/screen.rb:91
+#: lib/sports_rankings/screen.rb:87
 msgid "Choose player"
 msgstr "Elegir jugador"
 
@@ -9007,11 +9039,11 @@ msgstr "Puedes elegir entre una liga de todos contra todos o una fase de grupos 
 msgid "Choose rubber or estimated-reference scoring."
 msgstr "Elige rubber o comparación con una puntuación estimada."
 
-#: __app.rb:3558 lib/participant_menu.rb:27
+#: __app.rb:3559 lib/participant_menu.rb:27
 msgid "Choose teams"
 msgstr "Elegir equipos"
 
-#: __app.rb:3573
+#: __app.rb:3574
 msgid "Choose teams randomly"
 msgstr "Elegir equipos al azar"
 
@@ -9031,7 +9063,7 @@ msgstr ""
 msgid "Choose the card represented by the joker"
 msgstr "Elige la carta que representa el comodín"
 
-#: games/quiz_party.rb:552
+#: games/quiz_party.rb:553
 msgid "Choose the category for round %{round}"
 msgstr "Elige la categoría de la ronda %{round}"
 
@@ -9043,7 +9075,7 @@ msgstr "Elige el color antes de guardar la partida."
 msgid "Choose the content, not the interface language"
 msgstr ""
 
-#: games/tysiac.rb:1602
+#: games/tysiac.rb:1613
 msgid "Choose the contract value"
 msgstr "Elige el valor del contrato"
 
@@ -9051,7 +9083,7 @@ msgstr "Elige el valor del contrato"
 msgid "Choose the correct answer from four options. Everyone who answers correctly earns feathers."
 msgstr "Elige la respuesta correcta entre cuatro opciones. Todos los que acierten ganan plumas."
 
-#: games/quiz_party.rb:75
+#: games/quiz_party.rb:76
 msgid "Choose the correct answers to questions on a topic of your choice."
 msgstr "Elige las respuestas correctas a preguntas del tema que prefieras."
 
@@ -9065,7 +9097,7 @@ msgstr "Elige el valor declarado"
 msgid "Choose the final contract"
 msgstr "Elige el contrato final"
 
-#: __app.rb:2379
+#: __app.rb:2380
 msgid "Choose the new table master"
 msgstr "Elige al nuevo anfitrión de la mesa"
 
@@ -9092,7 +9124,7 @@ msgstr ""
 msgid "Choose the quiz language, then tick the question sets you want. Initially only the general set in that language is selected. Every checked set has the same chance of being chosen, followed by a random question from that set. The same selection applies to duels, group challenges, question squares and Curiosity."
 msgstr ""
 
-#: __app.rb:2397
+#: __app.rb:2398
 msgid "Choose the replacement"
 msgstr "Elige al sustituto"
 
@@ -9144,7 +9176,7 @@ msgstr "Elige las cartas que juegas y usa sus habilidades especiales para quitar
 msgid "Choose with the arrow keys, then press Enter."
 msgstr "Elige con las flechas y pulsa Enter."
 
-#: games/tysiac.rb:1468 games/tysiac.rb:1602
+#: games/tysiac.rb:1479 games/tysiac.rb:1613
 msgid "Choose your bid"
 msgstr "Elige tu puja"
 
@@ -9281,7 +9313,7 @@ msgstr ""
 msgid "Clearing the table with your play earns a scopa worth 1 point, including on the last play of the round. Receiving leftover cards at the end is not a scopa."
 msgstr ""
 
-#: games/krowa_support/client.rb:175 games/krowa_support/client.rb:219 games/krowa_support/client.rb:261 games/krowa_support/leaderboards.rb:292 games/krowa_support/leaderboards.rb:293 lib/game_room_screens.rb:66 lib/game_room_screens.rb:82 lib/game_room_ui.rb:338 lib/quiz_contributions/views.rb:119
+#: games/krowa_support/client.rb:177 games/krowa_support/client.rb:225 games/krowa_support/client.rb:267 games/krowa_support/leaderboards.rb:325 games/krowa_support/leaderboards.rb:326 lib/game_room_screens.rb:66 lib/game_room_screens.rb:82 lib/game_room_ui.rb:338 lib/quiz_contributions/views.rb:119
 msgid "Close"
 msgstr "Cerrar"
 
@@ -9296,11 +9328,11 @@ msgstr "Cerrar inscripciones"
 msgid "Close the table for everyone"
 msgstr ""
 
-#: __app.rb:2364
+#: __app.rb:2365
 msgid "Close the table for everyone?"
 msgstr "¿Cerrar la mesa para todos?"
 
-#: __app.rb:2365
+#: __app.rb:2366
 msgid "Closing table"
 msgstr "Cerrando mesa"
 
@@ -9565,7 +9597,7 @@ msgstr "Conecta la palabra con las letras que ya hay en el tablero."
 msgid "Connecting the match."
 msgstr "Conectando la partida."
 
-#: __app.rb:3081 __app.rb:460
+#: __app.rb:3082 __app.rb:461
 msgid "Connecting to Elten"
 msgstr "Conectando con Elten"
 
@@ -9659,7 +9691,7 @@ msgstr "Respuesta correcta (A)"
 msgid "Correct answer: %{answer}"
 msgstr "Respuesta correcta: %{answer}"
 
-#: games/duck_racing_support/presentation.rb:462 games/duck_racing_support/presentation.rb:667 games/quiz_party.rb:761
+#: games/duck_racing_support/presentation.rb:462 games/duck_racing_support/presentation.rb:667 games/quiz_party.rb:762
 msgid "Correct answer: %{answer}."
 msgstr "Respuesta correcta: %{answer}."
 
@@ -9713,31 +9745,35 @@ msgstr[1] "Coste: %{count} plumas."
 msgid "Cosy nest"
 msgstr "Nido acogedor"
 
-#: games/krowa_support/leaderboards.rb:322
+#: games/krowa_support/leaderboards.rb:359
 msgid "Could not connect to the Krowa leaderboard."
 msgstr "No se ha podido conectar con la clasificación de Krowa."
 
-#: __app.rb:3928
+#: __app.rb:3929
 msgid "Could not disconnect the voice conversation. Open Conferences to leave it."
 msgstr "No se pudo desconectar la conversación de voz. Abre Conferencias para salir."
 
-#: games/krowa_support/client.rb:35
+#: games/krowa_support/client.rb:36
 msgid "Could not load Krowa settings. Please try again."
 msgstr "No se han podido cargar los ajustes de Krowa. Inténtalo de nuevo."
 
-#: __app.rb:1178
+#: games/krowa_support/attempt_list_view.rb:32
+msgid "Could not load the attempt list. Return to the result and try again."
+msgstr "No se pudo cargar la lista de intentos. Vuelve al resultado e inténtalo de nuevo."
+
+#: __app.rb:1179
 msgid "Could not open the README."
 msgstr "No se pudo abrir el README."
 
-#: games/krowa_support/leaderboards.rb:111
+#: games/krowa_support/leaderboards.rb:123
 msgid "Could not publish the Daily Krowa result."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:130
+#: games/krowa_support/leaderboards.rb:145
 msgid "Could not publish the Word Tower result."
 msgstr "No se ha podido publicar el resultado de Torre de palabras."
 
-#: games/krowa_support/leaderboards.rb:94
+#: games/krowa_support/leaderboards.rb:103
 msgid "Could not publish the result."
 msgstr "No se ha podido publicar el resultado."
 
@@ -9745,26 +9781,26 @@ msgstr "No se ha podido publicar el resultado."
 msgid "Could not record opening Daily Krowa on the server. Please try again."
 msgstr "No se ha podido registrar en el servidor la apertura de Krowa diaria. Inténtalo de nuevo."
 
-#: games/krowa_support/client.rb:253
+#: games/krowa_support/client.rb:259
 msgid "Could not retrieve the definition from SJP."
 msgstr "No se ha podido obtener la definición de SJP."
 
-#: games/krowa.rb:317
+#: games/krowa.rb:318
 msgid "Could not retrieve the server time."
 msgstr "No se ha podido obtener la hora del servidor."
 
 msgid "Could not retrieve the server time. Please try again."
 msgstr "No se ha podido obtener la hora del servidor. Inténtalo de nuevo."
 
-#: games/krowa_support/client.rb:288 games/krowa_support/client.rb:293
+#: games/krowa_support/client.rb:294 games/krowa_support/client.rb:299
 msgid "Could not save Daily Krowa completion on the server. The program will try again when the game is reopened."
 msgstr "No se ha podido guardar en el servidor que has completado Krowa diaria. El programa volverá a intentarlo cuando abras de nuevo el juego."
 
-#: games/krowa_support/client.rb:240
+#: games/krowa_support/client.rb:246
 msgid "Could not save changes to your dictionary."
 msgstr "No se han podido guardar los cambios en tu diccionario."
 
-#: games/krowa_support/client.rb:81
+#: games/krowa_support/client.rb:83
 msgid "Could not save the local gallery or dictionary."
 msgstr "No se ha podido guardar la galería local o el diccionario."
 
@@ -9884,11 +9920,11 @@ msgstr ""
 msgid "Create a new set"
 msgstr "Crear un conjunto nuevo"
 
-#: __app.rb:1241 __app.rb:236 lib/game_room_widget.rb:178
+#: __app.rb:1242 __app.rb:237 lib/game_room_widget.rb:178
 msgid "Create a new table"
 msgstr "Crear una nueva mesa"
 
-#: __app.rb:2339
+#: __app.rb:2340
 msgid "Create a new table to add named computers."
 msgstr "Crea una nueva mesa para añadir ordenadores con nombre."
 
@@ -9927,15 +9963,15 @@ msgstr "Crear conversación de voz"
 msgid "Create your own question sets"
 msgstr "Crear tus propios conjuntos de preguntas"
 
-#: __app.rb:240 lib/quiz_contributions/views.rb:47
+#: __app.rb:241 lib/quiz_contributions/views.rb:47
 msgid "Create your own quiz question sets"
 msgstr "Crear tus propios conjuntos de preguntas de Quiz"
 
-#: __app.rb:1256
+#: __app.rb:1257
 msgid "Creating table"
 msgstr "Creando la mesa"
 
-#: __app.rb:886
+#: __app.rb:887
 msgid "Creating tournament table"
 msgstr "Creando mesa del torneo"
 
@@ -9951,7 +9987,7 @@ msgstr "Público desactivado."
 msgid "Crowd on."
 msgstr "Público activado."
 
-#: __app.rb:1109 lib/game_shortcut_bindings.rb:60
+#: __app.rb:1110 lib/game_shortcut_bindings.rb:60
 msgid "Ctrl"
 msgstr "Ctrl"
 
@@ -10188,7 +10224,7 @@ msgstr "Actuales y finalizados recientemente"
 msgid "Current colour: %{colour}."
 msgstr "Color actual: %{colour}."
 
-#: games/tysiac.rb:1667
+#: games/tysiac.rb:1686
 msgid "Current contract: %{contract}, bidder: %{player}."
 msgstr "Contrato actual: %{contract}, pujador: %{player}."
 
@@ -10282,7 +10318,7 @@ msgstr ""
 msgid "Custom words can be added only in a single-player Daily Krowa or Random word game."
 msgstr "Solo puedes añadir palabras propias en una partida en solitario de Krowa diaria o Palabra aleatoria."
 
-#: games/krowa.rb:318
+#: games/krowa.rb:319
 msgid "Custom words can be added only in a single-player Random word game."
 msgstr ""
 
@@ -10390,7 +10426,7 @@ msgstr "D: propiedades sin dueño. Shift+D: tablero. V: tus propiedades. Shift+V
 msgid "D: your cards. E: community cards. G: your best current combination. In Hold'em, 1–2 read private cards and 3–7 the board; in draw poker, 1–5 read your own cards."
 msgstr "D: tus cartas. E: cartas comunitarias. G: tu mejor combinación actual. En Hold'em, 1–2 leen tus cartas privadas y 3–7 las de la mesa; en el póquer con descarte, 1–5 leen tus propias cartas."
 
-#: games/krowa.rb:133
+#: games/krowa.rb:134
 msgid "Daily Krowa"
 msgstr "Krowa diaria"
 
@@ -10406,7 +10442,7 @@ msgstr "No se ha podido comprobar en el servidor la disponibilidad de Krowa diar
 msgid "Daily Krowa can draw a word between three and nine letters long. The word is determined using server time, so if you need a different one, you would have to hack into the server and change the date. You can open Daily Krowa only once. If you guess the word, give up or leave the game, it remains unavailable to your account until the next day."
 msgstr ""
 
-#: games/krowa.rb:94
+#: games/krowa.rb:95
 msgid "Daily Krowa cannot be observed or played at another person's table."
 msgstr "No puedes observar Krowa diaria ni jugarla en la mesa de otra persona."
 
@@ -10426,23 +10462,23 @@ msgstr ""
 msgid "Daily Krowa keeps one word assigned to each day, so dictionary updates no longer change that day's puzzle or its recorded solution. New words can be drawn from the next day. Old ranking entries without a confirmed solution no longer show a guessed word."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:154 games/krowa_support/leaderboards.rb:32
+#: games/krowa_support/leaderboards.rb:169 games/krowa_support/leaderboards.rb:34
 msgid "Daily Krowa leaderboard"
 msgstr ""
 
-#: __app.rb:3828
+#: __app.rb:3829
 msgid "Daily Krowa requires a private table. Create a new private table for this variant."
 msgstr "Krowa diaria requiere una mesa privada. Crea una nueva mesa privada para esta variante."
 
-#: games/krowa_support/leaderboards.rb:103
+#: games/krowa_support/leaderboards.rb:115
 msgid "Daily Krowa result published."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:199 games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:235
+#: games/krowa_support/leaderboards.rb:225 games/krowa_support/leaderboards.rb:227 games/krowa_support/leaderboards.rb:261
 msgid "Daily Krowa: %{date}"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:199
+#: games/krowa_support/leaderboards.rb:225
 msgid "Daily Krowa: %{date}, %{word}"
 msgstr ""
 
@@ -10477,7 +10513,7 @@ msgstr ""
 msgid "Data stays on this computer. Test names do not authenticate network accounts. No invitations or matches are started."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:154 games/krowa_support/leaderboards.rb:264
+#: games/krowa_support/leaderboards.rb:169 games/krowa_support/leaderboards.rb:290
 msgid "Date"
 msgstr "Fecha"
 
@@ -10567,7 +10603,7 @@ msgstr ""
 msgid "Declare riichi by choosing a tile to discard"
 msgstr "Declara riichi eligiendo una ficha para descartar"
 
-#: games/tysiac.rb:1480
+#: games/tysiac.rb:1491
 msgid "Declare the marriage"
 msgstr "Anunciar"
 
@@ -10620,7 +10656,7 @@ msgstr "Eliminar borrador"
 msgid "Delete removes the draft tile under the cursor; Backspace undoes the last placement; Z cancels the draft; F submits. G exchanges tiles; P passes. C reads the rack; I cycles free, alphabetic and vowel-first rack order; Y previews words and points; L lists played words; E reads tile counts; S reads scores; T reads whose turn it is. Writing advances past committed letters. Sorting requires cancelling the draft. These shortcuts do not act in chat."
 msgstr "Supr elimina la ficha del borrador situada bajo el cursor; Retroceso deshace la última colocación; Z cancela el borrador; F confirma. G cambia fichas; P pasa. C lee el atril; I alterna entre el orden libre, el alfabético y el de vocales primero; Y muestra una vista previa de las palabras y los puntos; L enumera las palabras jugadas; E lee las cantidades de fichas; S lee las puntuaciones; T lee de quién es el turno. Al escribir, se saltan las letras ya confirmadas. Para ordenar, hay que cancelar el borrador. Estos atajos no actúan en el chat."
 
-#: __app.rb:1356
+#: __app.rb:1357
 msgid "Delete saved game"
 msgstr "Eliminar partida guardada"
 
@@ -10636,7 +10672,7 @@ msgstr "¿Eliminar este borrador?"
 msgid "Delete this local tournament draft?"
 msgstr ""
 
-#: __app.rb:1373
+#: __app.rb:1374
 msgid "Delete this saved game?"
 msgstr "¿Eliminar esta partida guardada?"
 
@@ -10664,7 +10700,7 @@ msgstr "Supr: descarta la carta actual inmediatamente."
 msgid "Deleting draft"
 msgstr "Eliminando borrador"
 
-#: __app.rb:1373 __app.rb:1598
+#: __app.rb:1374 __app.rb:1599
 msgid "Deleting saved game"
 msgstr "Eliminando partida guardada"
 
@@ -10907,6 +10943,10 @@ msgstr ""
 msgid "Do not pay"
 msgstr "No pagar"
 
+#: games/krowa_support/client.rb:355
+msgid "Do not publish"
+msgstr "No publicar"
+
 #: games/monopoly/presentation.rb:179
 msgid "Do not request this rent"
 msgstr "No solicitar este alquiler"
@@ -10926,11 +10966,11 @@ msgstr ""
 msgid "Do you want to exit ELTEN Game Room?"
 msgstr "¿Quieres salir de ELTEN Game Room?"
 
-#: __app.rb:674
+#: __app.rb:675
 msgid "Do you want to exit Power Games?"
 msgstr "¿Quieres salir de Power Games?"
 
-#: __app.rb:2260
+#: __app.rb:2261
 msgid "Do you want to leave the table?"
 msgstr "¿Quieres salir de la mesa?"
 
@@ -10938,7 +10978,7 @@ msgstr "¿Quieres salir de la mesa?"
 msgid "Do you want to leave the table? The table will be closed for everyone."
 msgstr "¿Quieres salir de la mesa? La mesa se cerrará para todos."
 
-#: __app.rb:2708
+#: __app.rb:2709
 msgid "Do you want to leave your current table and join the invited table?"
 msgstr "¿Quieres salir de tu mesa actual y unirte a la mesa a la que te han invitado?"
 
@@ -11033,7 +11073,7 @@ msgstr "Doble riichi"
 msgid "Double salary when landing on Start"
 msgstr "Doble sueldo al caer en la casilla de Salida"
 
-#: games/audio_ball.rb:31 games/audio_ball.rb:81 games/axel_pong.rb:45 games/generated/rulebooks/axel_pong.rb:20 lib/sports_rankings/screen.rb:33
+#: games/audio_ball.rb:31 games/audio_ball.rb:81 games/axel_pong.rb:45 games/generated/rulebooks/axel_pong.rb:20 lib/sports_rankings/screen.rb:34
 msgid "Doubles"
 msgstr "Dobles"
 
@@ -11215,7 +11255,7 @@ msgstr ""
 msgid "Drawing and responses to penalties"
 msgstr ""
 
-#: games/krowa.rb:520
+#: games/krowa.rb:521
 msgid "Drawing another word. Attempts start over."
 msgstr "Eligiendo otra palabra al azar. Los intentos vuelven a empezar desde cero."
 
@@ -11724,11 +11764,11 @@ msgstr ""
 msgid "Enable availability when you want to play. Each player must accept the proposed match. Results are recorded automatically."
 msgstr "Activa tu disponibilidad cuando quieras jugar. Cada participante debe aceptar el encuentro propuesto. Los resultados se registran automáticamente."
 
-#: __app.rb:2349
+#: __app.rb:2350
 msgid "Enabling observer mode"
 msgstr "Activando el modo espectador"
 
-#: __app.rb:2349
+#: __app.rb:2350
 msgid "Enabling player mode"
 msgstr "Activando el modo jugador"
 
@@ -11766,7 +11806,7 @@ msgstr ""
 msgid "End on the start date"
 msgstr "Terminar el día de inicio"
 
-#: __app.rb:3855
+#: __app.rb:3856
 msgid "End the current game for everyone? The table and chat will stay open, and no winner will be recorded."
 msgstr "¿Terminar la partida actual para todos? La mesa y el chat seguirán abiertos y no se registrará ningún ganador."
 
@@ -11832,7 +11872,7 @@ msgstr "Finalizado: ha pasado el plazo previsto"
 msgid "Ending"
 msgstr "Final"
 
-#: __app.rb:3862
+#: __app.rb:3863
 msgid "Ending game"
 msgstr "Terminando la partida"
 
@@ -11908,7 +11948,7 @@ msgstr "Escribe un nombre para el jugador virtual."
 msgid "Enter a whole number of points from 2 to 999."
 msgstr "Introduce un número entero de puntos entre 2 y 999."
 
-#: games/krowa_support/leaderboards.rb:220
+#: games/krowa_support/leaderboards.rb:246
 msgid "Enter a word or word fragment."
 msgstr "Introduce una palabra o un fragmento de palabra."
 
@@ -12794,7 +12834,7 @@ msgstr "Puntuación mínima de la primera combinación"
 msgid "First meld: %{points} points; %{missing} more required."
 msgstr "Primera combinación: %{points} puntos; faltan %{missing}."
 
-#: games/krowa_support/leaderboards.rb:74
+#: games/krowa_support/leaderboards.rb:76
 msgid "First result"
 msgstr "Primer resultado"
 
@@ -12810,7 +12850,7 @@ msgstr "Primera reserva"
 msgid "First tournament day"
 msgstr "Primer día del torneo"
 
-#: __app.rb:906
+#: __app.rb:907
 msgid "First-to-wins knockout series currently run only in the local tournament test. The ordinary-table server trial cannot play subsequent games yet."
 msgstr "Las series eliminatorias hasta un número de victorias solo funcionan en la prueba local. La prueba de mesas normales del servidor aún no admite las partidas posteriores."
 
@@ -13473,7 +13513,7 @@ msgstr "Historial de la partida"
 msgid "Game in progress"
 msgstr ""
 
-#: __app.rb:336 __app.rb:379 lib/tournaments/proposal_notice_dialog.rb:23 lib/tournaments/proposal_notifications_runtime.rb:60 lib/tournaments/proposal_notifications_runtime.rb:72
+#: __app.rb:337 __app.rb:380 lib/tournaments/proposal_notice_dialog.rb:23 lib/tournaments/proposal_notifications_runtime.rb:60 lib/tournaments/proposal_notifications_runtime.rb:72
 msgid "Game invitation"
 msgstr "Invitación a una partida"
 
@@ -13508,7 +13548,7 @@ msgstr "Partida en pausa."
 msgid "Game points for %{for}, game points against %{against}."
 msgstr ""
 
-#: __app.rb:1224 __app.rb:244 lib/game_rules.rb:108 lib/participant_menu.rb:23
+#: __app.rb:1225 __app.rb:245 lib/game_rules.rb:108 lib/participant_menu.rb:23
 msgid "Game rules"
 msgstr "Reglas del juego"
 
@@ -13651,15 +13691,15 @@ msgstr "Ve a la cárcel"
 msgid "Goal"
 msgstr "Objetivo"
 
-#: lib/sports_rankings/screen.rb:174
+#: lib/sports_rankings/screen.rb:224
 msgid "Goal balance: %{count}"
 msgstr "Diferencia de goles: %{count}"
 
-#: lib/sports_rankings/screen.rb:173
+#: lib/sports_rankings/screen.rb:223
 msgid "Goals conceded: %{count}"
 msgstr "Goles en contra: %{count}"
 
-#: lib/sports_rankings/screen.rb:172
+#: lib/sports_rankings/screen.rb:222
 msgid "Goals scored: %{count}"
 msgstr "Goles a favor: %{count}"
 
@@ -13764,7 +13804,7 @@ msgstr ""
 msgid "Guess aloud. The card is hidden."
 msgstr "Adivina en voz alta. La carta está oculta."
 
-#: games/krowa.rb:52
+#: games/krowa.rb:53
 msgid "Guess the hidden Polish noun using clues about how many letters are in the right places."
 msgstr "Adivina el sustantivo polaco oculto con pistas sobre cuántas letras están en el lugar correcto."
 
@@ -13792,7 +13832,7 @@ msgstr "Acertada"
 msgid "Guessed."
 msgstr "Palabra adivinada."
 
-#: games/krowa.rb:140
+#: games/krowa.rb:141
 msgid "Guessing time"
 msgstr "Tiempo para adivinar"
 
@@ -14273,7 +14313,7 @@ msgstr ""
 msgid "If you have no legal move, your turn is passed automatically. The game ends when neither player can move."
 msgstr ""
 
-#: games/krowa.rb:126
+#: games/krowa.rb:127
 msgid "If you leave the table, today's Daily Krowa will remain unavailable even if you have not guessed the word or surrendered. Are you sure you want to leave?"
 msgstr "Si sales de la mesa, la Krowa diaria de hoy seguirá sin estar disponible, aunque no hayas adivinado la palabra ni te hayas rendido. ¿Seguro que quieres salir?"
 
@@ -14822,7 +14862,7 @@ msgstr "Tablero indonesio"
 msgid "Inferno"
 msgstr "Inferno"
 
-#: __app.rb:1356 lib/tournaments/server_schedule_overview.rb:20
+#: __app.rb:1357 lib/tournaments/server_schedule_overview.rb:20
 msgid "Information"
 msgstr "Información"
 
@@ -14916,7 +14956,7 @@ msgstr "Invento"
 msgid "Investment"
 msgstr "Inversión"
 
-#: __app.rb:2820
+#: __app.rb:2821
 msgid "Invitation"
 msgstr "Invitación"
 
@@ -14935,7 +14975,7 @@ msgstr "Invitación rechazada."
 msgid "Invitation sent."
 msgstr "Invitación enviada."
 
-#: __app.rb:2625
+#: __app.rb:2626
 msgid "Invitations"
 msgstr "Invitaciones"
 
@@ -14951,7 +14991,7 @@ msgstr "Ahora se pueden aceptar invitaciones desde las notificaciones después d
 msgid "Invitations sent: %{sent}. Unconfirmed: %{unconfirmed}."
 msgstr "Invitaciones enviadas: %{sent}. Sin confirmar: %{unconfirmed}."
 
-#: __app.rb:2512 lib/tournaments/tournament_invite_picker.rb:23
+#: __app.rb:2513 lib/tournaments/tournament_invite_picker.rb:23
 msgid "Invite"
 msgstr "Invitar"
 
@@ -14959,11 +14999,11 @@ msgstr "Invitar"
 msgid "Invite an online Elten user"
 msgstr "Invitar a un usuario de Elten conectado"
 
-#: __app.rb:2477
+#: __app.rb:2478
 msgid "Invite an online user"
 msgstr "Invitar a un usuario conectado"
 
-#: __app.rb:2477
+#: __app.rb:2478
 msgid "Invite from contacts"
 msgstr "Invitar desde los contactos"
 
@@ -15076,11 +15116,11 @@ msgstr ""
 msgid "Jail can be reached by a field, a card or three doubles. Before rolling you may pay the exit fee or use a held jail card. Otherwise try for doubles, for up to three turns. Successful doubles release you and move the pawn but give no extra roll. After the third failed attempt you pay and move by that roll. Merely visiting the jail field is not imprisonment."
 msgstr ""
 
-#: __app.rb:1693
+#: __app.rb:1694
 msgid "Join"
 msgstr "Unirse"
 
-#: __app.rb:1645 __app.rb:237
+#: __app.rb:1646 __app.rb:238
 msgid "Join a table"
 msgstr "Unirse a una mesa"
 
@@ -15100,7 +15140,7 @@ msgstr "Unirse a la conversación de voz"
 msgid "Joining a local test tournament"
 msgstr ""
 
-#: __app.rb:1774
+#: __app.rb:1775
 msgid "Joining table"
 msgstr "Uniéndose a la mesa"
 
@@ -15328,7 +15368,7 @@ msgstr "Kong"
 msgid "Kongs and replacement tiles"
 msgstr ""
 
-#: games/krowa.rb:49 games/krowa_support/presentation.rb:36
+#: games/krowa.rb:50 games/krowa_support/presentation.rb:36
 msgid "Krowa"
 msgstr "Krowa"
 
@@ -15336,7 +15376,7 @@ msgstr "Krowa"
 msgid "Krowa explanations from SJP now choose the appropriate base noun and meaning more accurately when looking up inflected words."
 msgstr "Las explicaciones de SJP en Krowa seleccionan con mayor precisión la forma base del sustantivo y su significado al buscar palabras flexionadas."
 
-#: games/krowa.rb:331 games/krowa_support/client.rb:152
+#: games/krowa.rb:332 games/krowa_support/client.rb:154
 msgid "Krowa gallery"
 msgstr "Galería de Krowa"
 
@@ -15348,11 +15388,11 @@ msgstr "Krowa tiene nombres de ajustes más breves y una ayuda del teclado actua
 msgid "Krowa leaderboard search now also finds words from past Daily Krowa games and opens the ranking for the matching day. Today's answer remains hidden."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:37
+#: games/krowa_support/leaderboards.rb:39
 msgid "Krowa leaderboards"
 msgstr "Clasificaciones de Krowa"
 
-#: games/krowa_support/leaderboards.rb:25
+#: games/krowa_support/leaderboards.rb:27
 msgid "Krowa leaderboards are temporarily unavailable."
 msgstr "Las clasificaciones de Krowa no están disponibles temporalmente."
 
@@ -15360,7 +15400,7 @@ msgstr "Las clasificaciones de Krowa no están disponibles temporalmente."
 msgid "Krowa now clears the answer field after rejecting a word with the wrong length or one missing from the dictionary."
 msgstr "En Krowa, el campo de respuesta se vacía tras rechazar una palabra de longitud incorrecta o que no figura en el diccionario."
 
-#: games/krowa.rb:68
+#: games/krowa.rb:69
 msgid "Krowa settings"
 msgstr "Ajustes de Krowa"
 
@@ -15376,7 +15416,7 @@ msgstr ""
 msgid "Krowa sound effects are enabled by default. Your saved personal settings are preserved."
 msgstr "Los efectos de sonido de Krowa están activados de forma predeterminada. Se conservan los ajustes personales guardados."
 
-#: games/krowa.rb:132
+#: games/krowa.rb:133
 msgid "Krowa variant"
 msgstr "Variante de Krowa"
 
@@ -15491,11 +15531,11 @@ msgstr "Escalera larga"
 msgid "Last %{days} days (including today)"
 msgstr ""
 
-#: lib/sports_rankings/screen.rb:70
+#: lib/sports_rankings/screen.rb:71
 msgid "Last 30 days"
 msgstr "Últimos 30 días"
 
-#: lib/sports_rankings/screen.rb:70
+#: lib/sports_rankings/screen.rb:71
 msgid "Last 7 days"
 msgstr "Últimos 7 días"
 
@@ -15514,7 +15554,7 @@ msgstr "Última tirada"
 msgid "Last roll: %{dice}."
 msgstr "Última tirada: %{dice}."
 
-#: lib/sports_rankings/screen.rb:70
+#: lib/sports_rankings/screen.rb:71
 msgid "Last six months"
 msgstr "Últimos seis meses"
 
@@ -15522,11 +15562,11 @@ msgstr "Últimos seis meses"
 msgid "Last tournament day"
 msgstr "Último día del torneo"
 
-#: games/krowa_support/leaderboards.rb:240
+#: games/krowa_support/leaderboards.rb:266
 msgid "Last update"
 msgstr "Última actualización"
 
-#: lib/sports_rankings/screen.rb:70
+#: lib/sports_rankings/screen.rb:71
 msgid "Last year"
 msgstr "Último año"
 
@@ -15550,11 +15590,11 @@ msgstr "Capa %{layer}: %{tile}"
 msgid "Layout choice"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:240
+#: games/krowa_support/leaderboards.rb:266
 msgid "Leaderboard"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:76
+#: games/krowa_support/leaderboards.rb:78
 msgid "Leaderboard: %{word}"
 msgstr "Clasificación: %{word}"
 
@@ -15574,14 +15614,14 @@ msgstr "Clasificación: últimos seis meses"
 msgid "Leaderboard: last year"
 msgstr "Clasificación: último año"
 
-#: __app.rb:1044 __app.rb:241
+#: __app.rb:1045 __app.rb:242
 msgid "Leaderboards"
 msgstr "Clasificaciones"
 
 msgid "Leaderboards will become available after the first playable game is added."
 msgstr "Las clasificaciones estarán disponibles cuando se añada el primer juego al que se pueda jugar."
 
-#: __app.rb:2083 lib/game_layout.rb:198 lib/game_screen/input.rb:112 lib/participant_menu.rb:32
+#: __app.rb:2084 lib/game_layout.rb:198 lib/game_screen/input.rb:112 lib/participant_menu.rb:32
 msgid "Leave"
 msgstr "Salir"
 
@@ -15641,7 +15681,7 @@ msgstr "¿Salir de la conferencia actual y unirse a esta conversación?"
 msgid "Leave your current table before accepting a tournament match."
 msgstr "Sal de la mesa actual antes de aceptar una partida de torneo."
 
-#: __app.rb:902 lib/tournaments/proposal_notice_dialog.rb:54
+#: __app.rb:903 lib/tournaments/proposal_notice_dialog.rb:54
 msgid "Leave your current table before opening another tournament match."
 msgstr "Sal de tu mesa actual antes de abrir otro partido del torneo."
 
@@ -15657,7 +15697,7 @@ msgstr "Al salir de una mesa también te desconectas de su conferencia de voz. C
 msgid "Leaving a table now waits for confirmation. If the connection fails, you stay at the table and can retry instead of returning to the lobby without leaving."
 msgstr "Al salir de una mesa, el programa espera la confirmación. Si falla la conexión, permaneces en la mesa y puedes volver a intentarlo, en lugar de regresar al menú principal sin haber salido realmente."
 
-#: __app.rb:2280
+#: __app.rb:2281
 msgid "Leaving table"
 msgstr "Saliendo de la mesa"
 
@@ -15837,11 +15877,11 @@ msgstr "Estación de Liverpool Street"
 msgid "Ljubljana Railway Station"
 msgstr "Estación de tren de Ljubljana"
 
-#: games/krowa_support/leaderboards.rb:147
+#: games/krowa_support/leaderboards.rb:162
 msgid "Loading Daily Krowa dates"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:162
+#: games/krowa_support/leaderboards.rb:177
 msgid "Loading Daily Krowa leaderboard"
 msgstr ""
 
@@ -15853,23 +15893,27 @@ msgstr "Cargando el historial de Game Room"
 msgid "Loading Game Room tables"
 msgstr "Cargando las mesas de Game Room"
 
-#: __app.rb:2992 lib/game_room_widget.rb:148 lib/game_room_widget.rb:152 lib/game_room_widget.rb:50
+#: __app.rb:2993 lib/game_room_widget.rb:148 lib/game_room_widget.rb:152 lib/game_room_widget.rb:50
 msgid "Loading Power Games tables"
 msgstr "Cargando las mesas de Power Games"
 
-#: games/krowa_support/leaderboards.rb:249
+#: games/krowa_support/leaderboards.rb:275
 msgid "Loading Word Tower leaderboard"
 msgstr "Cargando la clasificación de Torre de palabras"
 
-#: games/krowa_support/leaderboards.rb:271
+#: games/krowa_support/leaderboards.rb:297
 msgid "Loading Word Tower rounds"
 msgstr "Cargando las rondas de Torre de palabras"
 
-#: __app.rb:1631
+#: games/krowa_support/leaderboards.rb:318
+msgid "Loading attempt list"
+msgstr "Cargando la lista de intentos"
+
+#: __app.rb:1632
 msgid "Loading available tables"
 msgstr "Cargando las mesas disponibles"
 
-#: __app.rb:3017
+#: __app.rb:3018
 msgid "Loading contacts"
 msgstr "Cargando los contactos"
 
@@ -15877,7 +15921,7 @@ msgstr "Cargando los contactos"
 msgid "Loading draft"
 msgstr "Cargando borrador"
 
-#: __app.rb:2603
+#: __app.rb:2604
 msgid "Loading invitations"
 msgstr "Cargando las invitaciones"
 
@@ -15913,22 +15957,22 @@ msgstr "Cargando las propuestas de preguntas"
 msgid "Loading saved drafts"
 msgstr "Cargando borradores guardados"
 
-#: __app.rb:1359 __app.rb:1367 __app.rb:1577
+#: __app.rb:1360 __app.rb:1368 __app.rb:1578
 msgid "Loading saved game"
 msgstr "Cargando partida guardada"
 
-#: __app.rb:1343
+#: __app.rb:1344
 msgid "Loading saved games"
 msgstr "Cargando partidas guardadas"
 
 msgid "Loading server time"
 msgstr "Obteniendo la hora del servidor"
 
-#: __app.rb:1088 lib/game_statistics_screen.rb:149 lib/game_statistics_screen.rb:152 lib/sports_rankings/screen.rb:122 lib/sports_rankings/screen.rb:90
+#: __app.rb:1089 lib/game_statistics_screen.rb:149 lib/game_statistics_screen.rb:152 lib/sports_rankings/screen.rb:123 lib/sports_rankings/screen.rb:124 lib/sports_rankings/screen.rb:79 lib/sports_rankings/screen.rb:84
 msgid "Loading statistics"
 msgstr "Cargando estadísticas"
 
-#: __app.rb:1676
+#: __app.rb:1677
 msgid "Loading tables"
 msgstr "Cargando las mesas"
 
@@ -15936,11 +15980,11 @@ msgstr "Cargando las mesas"
 msgid "Loading tournament drafts"
 msgstr ""
 
-#: __app.rb:2445 lib/tournaments/tournament_invite_picker.rb:12
+#: __app.rb:2446 lib/tournaments/tournament_invite_picker.rb:12
 msgid "Loading users"
 msgstr "Cargando los usuarios"
 
-#: games/krowa_support/leaderboards.rb:60
+#: games/krowa_support/leaderboards.rb:62
 msgid "Loading word leaderboard"
 msgstr "Cargando la clasificación de la palabra"
 
@@ -15990,7 +16034,7 @@ msgstr ""
 msgid "Local readiness operation in progress. Back discards its presentation, not its durable intent."
 msgstr ""
 
-#: __app.rb:3194
+#: __app.rb:3195
 msgid "Local settings saved. New-table notification subscriptions could not be saved."
 msgstr "Se han guardado los ajustes locales, pero no las suscripciones a avisos de nuevas mesas."
 
@@ -16061,6 +16105,10 @@ msgstr[1] "Pierde %{count} plumas."
 #: lib/tournaments/server_forfeit_screen.rb:82
 msgid "Loses by forfeit"
 msgstr "Pierde por incomparecencia"
+
+#: lib/sports_rankings/screen.rb:83
+msgid "Lost"
+msgstr "Perdidos"
 
 #: lib/game_room_changelog.rb:454
 msgid "Lowered the challenge announcement sound and clarified the Polish messages about cards that make a duck wait for several turns."
@@ -16429,7 +16477,7 @@ msgstr ""
 msgid "Match awaiting play"
 msgstr ""
 
-#: lib/sports_rankings/screen.rb:171
+#: lib/sports_rankings/screen.rb:221
 msgid "Match balance: %{count}"
 msgstr "Balance de partidos: %{count}"
 
@@ -16519,11 +16567,15 @@ msgstr "Posiciones de las parejas encontradas: %{positions}."
 msgid "Matches"
 msgstr "Encuentros"
 
+#: lib/sports_rankings/screen.rb:86
+msgid "Matches against this opponent"
+msgstr "Partidos contra este rival"
+
 #: lib/tournaments/local_tournament_overview.rb:60
 msgid "Matches are created after registration closes. Open the tournament as its test organizer to prepare them automatically."
 msgstr ""
 
-#: lib/sports_rankings/screen.rb:170
+#: lib/sports_rankings/screen.rb:220
 msgid "Matches lost: %{count}"
 msgstr "Derrotas: %{count}"
 
@@ -16531,7 +16583,11 @@ msgstr "Derrotas: %{count}"
 msgid "Matches may be played at any time after the tournament starts."
 msgstr "Las partidas pueden jugarse a cualquier hora una vez iniciado el torneo."
 
-#: lib/sports_rankings/screen.rb:169
+#: lib/sports_rankings/screen.rb:218
+msgid "Matches played: %{count}"
+msgstr "Partidos jugados: %{count}"
+
+#: lib/sports_rankings/screen.rb:219
 msgid "Matches won: %{count}"
 msgstr "Victorias: %{count}"
 
@@ -16969,7 +17025,7 @@ msgstr "Emparejamientos para varios jugadores"
 msgid "Multiple discard shows the pile with the newest card first. Choosing a card also takes every newer card above it: the third item takes the third, second and first cards. You may retain discarded cards in your hand; drawing one does not require immediate use. When the stock runs out, older discards can be shuffled into it while the top discard remains on the table."
 msgstr ""
 
-#: games/krowa_support/client.rb:185
+#: games/krowa_support/client.rb:191
 msgid "Music"
 msgstr "Música"
 
@@ -16984,7 +17040,7 @@ msgstr "La música y los efectos de sonido están desactivados por defecto, tien
 msgid "Music group"
 msgstr "Grupo musical"
 
-#: games/krowa_support/client.rb:186
+#: games/krowa_support/client.rb:192
 msgid "Music volume"
 msgstr "Volumen de la música"
 
@@ -17004,11 +17060,11 @@ msgstr "Silenciar micrófono"
 msgid "Mute or unmute the conference microphone"
 msgstr "Silenciar o activar el micrófono de la conferencia"
 
-#: games/krowa_support/client.rb:189
+#: games/krowa_support/client.rb:195
 msgid "My dictionary"
 msgstr "Mi diccionario"
 
-#: games/krowa_support/client.rb:216
+#: games/krowa_support/client.rb:222
 msgid "My dictionary - select words to remove with Space"
 msgstr "Mi diccionario - selecciona con Espacio las palabras que quieres eliminar"
 
@@ -17044,7 +17100,7 @@ msgstr "Mi compañero"
 msgid "My question proposals"
 msgstr "Mis propuestas de preguntas"
 
-#: lib/sports_rankings/screen.rb:91
+#: lib/sports_rankings/screen.rb:87
 msgid "My statistics"
 msgstr "Mis estadísticas"
 
@@ -17136,7 +17192,7 @@ msgstr "Nuevo conjunto de preguntas"
 msgid "New set"
 msgstr "Conjunto nuevo"
 
-#: __app.rb:360 __app.rb:366
+#: __app.rb:361 __app.rb:367
 msgid "New table"
 msgstr "Nueva mesa"
 
@@ -17163,7 +17219,7 @@ msgstr "Las notificaciones de nuevas mesas utilizan ahora un sonido distinto, aj
 msgid "New-table subscriptions are unavailable without access to server settings. Other settings can still be changed."
 msgstr ""
 
-#: games/krowa_support/client.rb:170
+#: games/krowa_support/client.rb:172
 msgid "Newest"
 msgstr "Más recientes"
 
@@ -17344,7 +17400,7 @@ msgstr ""
 msgid "No cards have been played in this trick"
 msgstr "Aún no se ha jugado ninguna carta en esta baza"
 
-#: games/tysiac.rb:1618
+#: games/tysiac.rb:1629
 msgid "No cards have been played in this trick."
 msgstr "Aún no se ha jugado ninguna carta en esta baza."
 
@@ -17391,7 +17447,7 @@ msgstr "Ninguna respuesta correcta"
 msgid "No current tournaments."
 msgstr "No hay torneos actuales."
 
-#: games/krowa_support/leaderboards.rb:155
+#: games/krowa_support/leaderboards.rb:170
 msgid "No daily results"
 msgstr ""
 
@@ -17399,11 +17455,11 @@ msgstr ""
 msgid "No deal has been played yet."
 msgstr "Todavía no se ha jugado ninguna mano."
 
-#: games/krowa_support/client.rb:251
+#: games/krowa_support/client.rb:257
 msgid "No definition in SJP."
 msgstr "No hay ninguna definición en SJP."
 
-#: games/krowa_support/client.rb:256
+#: games/krowa_support/client.rb:262
 msgid "No definition was retrieved."
 msgstr "No se ha obtenido ninguna definición."
 
@@ -17443,7 +17499,7 @@ msgstr "Por ahora no tienes flores ni estaciones: un posible fan adicional, no i
 msgid "No further registration request will be sent from this preview."
 msgstr "No se enviarán más solicitudes de inscripción desde esta vista."
 
-#: __app.rb:1908 __app.rb:1909
+#: __app.rb:1909 __app.rb:1910
 msgid "No games have been played yet"
 msgstr "Todavía no se ha jugado ninguna partida"
 
@@ -17451,7 +17507,7 @@ msgstr "Todavía no se ha jugado ninguna partida"
 msgid "No green light"
 msgstr "Falta el semáforo verde"
 
-#: games/krowa_support/client.rb:152
+#: games/krowa_support/client.rb:154
 msgid "No guessed words"
 msgstr "No hay palabras adivinadas"
 
@@ -17500,6 +17556,10 @@ msgstr ""
 msgid "No local tournament drafts."
 msgstr ""
 
+#: lib/sports_rankings/screen.rb:153
+msgid "No matches against other players"
+msgstr "No hay partidos contra otros jugadores"
+
 #: lib/game_room_widget.rb:278
 msgid "No matching Game Room tables"
 msgstr "No hay mesas de Game Room que coincidan"
@@ -17520,7 +17580,7 @@ msgstr "No se han encontrado piezas que coincidan."
 msgid "No matching property."
 msgstr "No hay ninguna propiedad que coincida."
 
-#: games/krowa_support/leaderboards.rb:241
+#: games/krowa_support/leaderboards.rb:267
 msgid "No matching words"
 msgstr "No hay palabras que coincidan"
 
@@ -17602,7 +17662,7 @@ msgstr ""
 msgid "No points"
 msgstr "Sin puntos"
 
-#: games/krowa_support/leaderboards.rb:187 games/krowa_support/leaderboards.rb:77
+#: games/krowa_support/leaderboards.rb:202 games/krowa_support/leaderboards.rb:79
 msgid "No published results"
 msgstr "No hay resultados publicados"
 
@@ -17613,6 +17673,10 @@ msgstr "No hay ninguna pregunta que se pueda marcar ahora."
 #: lib/quiz_contributions/views.rb:45
 msgid "No questions."
 msgstr "No hay preguntas."
+
+#: games/krowa_support/attempt_list_view.rb:13 games/krowa_support/attempt_list_view.rb:33
+msgid "No recorded attempts"
+msgstr "No hay intentos registrados"
 
 #: games/monopoly/presentation.rb:350
 msgid "No rent: %{owner} is in jail."
@@ -17626,7 +17690,7 @@ msgstr "Sin alquiler: esta propiedad no tiene dueño."
 msgid "No rent: this property is mortgaged."
 msgstr "Sin alquiler: esta propiedad está hipotecada."
 
-#: games/krowa_support/leaderboards.rb:265
+#: games/krowa_support/leaderboards.rb:291
 msgid "No results"
 msgstr "No hay resultados"
 
@@ -17634,7 +17698,7 @@ msgstr "No hay resultados"
 msgid "No round was completed. The remaining participants share first place."
 msgstr "No se ha completado ninguna ronda. Los demás participantes comparten el primer puesto."
 
-#: games/krowa_support/leaderboards.rb:285
+#: games/krowa_support/leaderboards.rb:311
 msgid "No saved rounds"
 msgstr "No hay rondas guardadas"
 
@@ -17681,7 +17745,7 @@ msgstr ""
 msgid "No suit has been led."
 msgstr "Todavía no hay palo de salida."
 
-#: __app.rb:3099
+#: __app.rb:3100
 msgid "No table preset is assigned to this shortcut."
 msgstr "No hay ninguna configuración predefinida de mesa asignada a este atajo."
 
@@ -17734,7 +17798,7 @@ msgstr "Nadie ha adivinado la palabra."
 msgid "Nobody has chosen a card yet."
 msgstr ""
 
-#: __app.rb:3547 lib/game_option_values.rb:84
+#: __app.rb:3548 lib/game_option_values.rb:84
 msgid "None"
 msgstr "Nadie"
 
@@ -17869,7 +17933,7 @@ msgstr "Número del 1 al 100."
 msgid "Number from 1 to 999."
 msgstr "Número del 1 al 999."
 
-#: games/krowa.rb:140 games/krowa_support/client.rb:170
+#: games/krowa.rb:141 games/krowa_support/client.rb:172
 msgid "Number of attempts"
 msgstr "Número de intentos"
 
@@ -17881,7 +17945,7 @@ msgstr "Número de manos"
 msgid "Number of groups"
 msgstr "Número de grupos"
 
-#: games/krowa.rb:136 games/krowa_support/client.rb:170
+#: games/krowa.rb:137 games/krowa_support/client.rb:172
 msgid "Number of letters"
 msgstr "Número de letras"
 
@@ -18163,7 +18227,7 @@ msgstr ""
 msgid "Only the application owner can review submissions."
 msgstr "Solo el propietario de la aplicación puede revisar los envíos."
 
-#: games/krowa.rb:314
+#: games/krowa.rb:315
 msgid "Only the host can do this."
 msgstr "Solo el anfitrión de la mesa puede hacer esto."
 
@@ -18175,7 +18239,7 @@ msgstr ""
 msgid "Only the organizer can do this."
 msgstr "Solo el organizador puede hacerlo."
 
-#: __app.rb:3438
+#: __app.rb:3439
 msgid "Only the table master may start a game."
 msgstr "Solo el anfitrión de la mesa puede iniciar una partida."
 
@@ -18195,7 +18259,7 @@ msgstr ""
 msgid "Only the tricks promised beyond the first six earn contract points. If you make your contract, they are worth:"
 msgstr "Si cumples el contrato, recibes puntos por las bazas prometidas por encima de las seis primeras:"
 
-#: __app.rb:1382 __app.rb:1649 games/krowa_support/leaderboards.rb:292 games/krowa_support/leaderboards.rb:38 lib/game_room_screens.rb:111 lib/game_room_screens.rb:685 lib/game_statistics_screen.rb:17 lib/quiz_contributions/views.rb:142 lib/sports_rankings/screen.rb:57
+#: __app.rb:1383 __app.rb:1650 games/krowa_support/leaderboards.rb:325 games/krowa_support/leaderboards.rb:40 lib/game_room_screens.rb:111 lib/game_room_screens.rb:685 lib/game_statistics_screen.rb:17 lib/quiz_contributions/views.rb:142 lib/sports_rankings/screen.rb:58
 msgid "Open"
 msgstr "Abrir"
 
@@ -18254,7 +18318,7 @@ msgstr "Abrir la ayuda con F1 o las reglas con Ctrl+F1 ya no detiene la partida.
 msgid "Opening the betting requires a pair of jacks or better."
 msgstr "Para abrir las apuestas se necesita una pareja de jotas o una combinación superior."
 
-#: __app.rb:3481
+#: __app.rb:3482
 msgid "Opening the current game"
 msgstr "Abriendo la partida actual"
 
@@ -18294,9 +18358,17 @@ msgstr "Estado de la operación: %{status}."
 msgid "Operations"
 msgstr "Operaciones"
 
+#: lib/sports_rankings/screen.rb:83
+msgid "Opponent"
+msgstr "Rival"
+
 #: lib/axel_pong/settings.rb:16
 msgid "Opponent paddle volume"
 msgstr "Volumen de la pala del rival"
+
+#: lib/sports_rankings/screen.rb:84
+msgid "Opponents"
+msgstr "Rivales"
 
 #: games/war.rb:464
 msgid "Opponents' hidden cards: %{cards}."
@@ -18607,7 +18679,7 @@ msgstr "Retirada del participante confirmada."
 msgid "Participant removal not confirmed. Check Operations before trying again."
 msgstr "La retirada no se ha confirmado. Consulta Operaciones antes de intentarlo de nuevo."
 
-#: games/krowa_support/leaderboards.rb:264 lib/tournaments/participant_manager.rb:19 lib/tournaments/public_preview.rb:355 lib/tournaments/public_text.rb:67
+#: games/krowa_support/leaderboards.rb:290 lib/tournaments/participant_manager.rb:19 lib/tournaments/public_preview.rb:355 lib/tournaments/public_text.rb:67
 msgid "Participants"
 msgstr "Participantes"
 
@@ -18635,7 +18707,7 @@ msgstr "Se ha guardado la elección de compañero."
 msgid "Partners and the deal"
 msgstr ""
 
-#: games/biblios.rb:1100 games/mahjong_support/table_presentation.rb:201 games/tysiac.rb:1459 games/tysiac.rb:1596
+#: games/biblios.rb:1100 games/mahjong_support/table_presentation.rb:201 games/tysiac.rb:1470 games/tysiac.rb:1607
 msgid "Pass"
 msgstr "Pasar"
 
@@ -18777,7 +18849,7 @@ msgstr ""
 msgid "Perfect!"
 msgstr "¡Perfecto!"
 
-#: lib/game_statistics_screen.rb:67 lib/sports_rankings/screen.rb:88
+#: lib/game_statistics_screen.rb:67 lib/sports_rankings/screen.rb:77
 msgid "Period"
 msgstr ""
 
@@ -18818,7 +18890,7 @@ msgstr "Pigmentos"
 msgid "Pile: %{total}."
 msgstr "Pila: %{total}."
 
-#: games/krowa_support/leaderboards.rb:186 games/krowa_support/leaderboards.rb:264 games/krowa_support/leaderboards.rb:74 lib/tournaments/server_forfeit_screen.rb:81
+#: games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:290 games/krowa_support/leaderboards.rb:76 lib/tournaments/server_forfeit_screen.rb:81
 msgid "Place"
 msgstr "Puesto"
 
@@ -19033,7 +19105,7 @@ msgstr ""
 msgid "Play until a specified number of wins"
 msgstr "Hasta un número de victorias"
 
-#: games/tysiac.rb:1474
+#: games/tysiac.rb:1485
 msgid "Play without declaring a marriage"
 msgstr "Jugar sin realizar un anuncio"
 
@@ -19041,11 +19113,15 @@ msgstr "Jugar sin realizar un anuncio"
 msgid "Play your top card"
 msgstr ""
 
+#: lib/sports_rankings/screen.rb:83
+msgid "Played"
+msgstr "Jugados"
+
 #: games/scrabble_ui.rb:42
 msgid "Played words"
 msgstr "Palabras jugadas"
 
-#: lib/sports_rankings/screen.rb:97
+#: lib/sports_rankings/screen.rb:98
 msgid "Player"
 msgstr "Jugador"
 
@@ -19077,15 +19153,15 @@ msgstr ""
 msgid "Player sounds in doubles"
 msgstr "Sonidos de jugadores en dobles"
 
-#: lib/sports_rankings/screen.rb:89
+#: lib/sports_rankings/screen.rb:78
 msgid "Player statistics"
 msgstr "Estadísticas del jugador"
 
-#: lib/sports_rankings/screen.rb:27
+#: lib/sports_rankings/screen.rb:28
 msgid "Player statistics are temporarily unavailable."
 msgstr "Las estadísticas de jugadores no están disponibles por el momento."
 
-#: lib/sports_rankings/screen.rb:161
+#: lib/sports_rankings/screen.rb:165 lib/sports_rankings/screen.rb:166
 msgid "Player statistics are unavailable. Try Refresh."
 msgstr "Las estadísticas de jugadores no están disponibles. Prueba a actualizar."
 
@@ -19124,7 +19200,7 @@ msgstr ""
 msgid "Players: %{count}"
 msgstr ""
 
-#: __app.rb:3548 lib/table_roster_reader.rb:69
+#: __app.rb:3549 lib/table_roster_reader.rb:69
 msgid "Players: %{players}."
 msgstr "Jugadores: %{players}."
 
@@ -19339,7 +19415,7 @@ msgstr "Límite del bote"
 msgid "Pot: %{amount}."
 msgstr "Bote: %{amount}."
 
-#: __app.rb:284 lib/game_room_screens.rb:104
+#: __app.rb:285 lib/game_room_screens.rb:104
 msgid "Power Games"
 msgstr "Power Games"
 
@@ -19440,7 +19516,7 @@ msgstr "Preparando el informe sobre la pregunta"
 msgid "Preparing round %{round}."
 msgstr "Preparando la ronda %{round}."
 
-#: __app.rb:1472 __app.rb:1506
+#: __app.rb:1473 __app.rb:1507
 msgid "Preparing saved game"
 msgstr "Preparando la partida guardada"
 
@@ -19861,9 +19937,9 @@ msgstr "Las publicaciones e inscripciones usan la aplicación de prueba separada
 msgid "Publications, registrations and candidate match plans use the separate server test application. Invitations and results are not shared yet. No virtual players are available here."
 msgstr "Las publicaciones, inscripciones y planes preliminares de partidos usan la aplicación de prueba separada del servidor. Las invitaciones y los resultados aún no se comparten. Aquí no hay jugadores virtuales."
 
-#: lib/tournaments/local_test_dialogs.rb:181
+#: games/krowa_support/client.rb:355 lib/tournaments/local_test_dialogs.rb:181
 msgid "Publish"
-msgstr ""
+msgstr "Publicar"
 
 #: lib/tournaments/local_test_hub.rb:50
 msgid "Publish a draft in local test"
@@ -19881,11 +19957,11 @@ msgstr "Publicar en la prueba local"
 msgid "Publish in server test"
 msgstr "Publicar en la prueba de servidor"
 
-#: games/krowa_support/client.rb:321
+#: games/krowa_support/client.rb:330
 msgid "Publish the Word Tower result: %{rounds} completed rounds?"
 msgstr "¿Publicar el resultado de Torre de palabras: %{rounds} rondas completadas?"
 
-#: games/krowa_support/client.rb:309
+#: games/krowa_support/client.rb:313
 msgid "Publish the result for %{word}: %{attempts} attempts?"
 msgstr "¿Publicar el resultado de %{word}: %{attempts} intentos?"
 
@@ -19893,7 +19969,11 @@ msgstr "¿Publicar el resultado de %{word}: %{attempts} intentos?"
 msgid "Publish tournament"
 msgstr "Publicar torneo"
 
-#: games/krowa_support/client.rb:306
+#: games/krowa_support/client.rb:355
+msgid "Publish without attempt list"
+msgstr "Publicar sin la lista de intentos"
+
+#: games/krowa_support/client.rb:312
 msgid "Publish your Daily Krowa result: %{attempts} attempts?"
 msgstr ""
 
@@ -19905,11 +19985,11 @@ msgstr "Publicada"
 msgid "Published build number (only for a published proposal)"
 msgstr "Número de compilación (solo si la propuesta está publicada)"
 
-#: games/krowa_support/leaderboards.rb:100
+#: games/krowa_support/leaderboards.rb:109
 msgid "Publishing Daily Krowa result"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:117
+#: games/krowa_support/leaderboards.rb:129
 msgid "Publishing Word Tower result"
 msgstr "Publicando el resultado de Torre de palabras"
 
@@ -19921,7 +20001,7 @@ msgstr ""
 msgid "Publishing also enrolls you as a participant. You can withdraw before the tournament starts."
 msgstr "Al publicar el torneo también te inscribes como participante. Puedes darte de baja antes de que empiece."
 
-#: games/krowa_support/leaderboards.rb:83
+#: games/krowa_support/leaderboards.rb:89
 msgid "Publishing result"
 msgstr "Publicando el resultado"
 
@@ -20003,7 +20083,7 @@ msgstr ""
 msgid "Queen, spy: in the next trick, the player who played a queen chooses last and first hears the cards the others have chosen. If two or more queens are played in the same trick, they cancel each other out."
 msgstr ""
 
-#: lib/quiz_contributions/views.rb:68 lib/quiz_reports.rb:133
+#: lib/game_surfaces/question_surface.rb:58 lib/quiz_contributions/views.rb:68 lib/quiz_reports.rb:133
 msgid "Question"
 msgstr "Pregunta"
 
@@ -20109,7 +20189,7 @@ msgstr "Puntuación de Arenas movedizas"
 msgid "Quiz"
 msgstr "Quiz"
 
-#: games/quiz_party.rb:71
+#: games/quiz_party.rb:72
 msgid "Quiz Party"
 msgstr "Quiz Party"
 
@@ -20179,7 +20259,7 @@ msgstr "R: leer el tiempo restante."
 msgid "R: reject an incoming offer."
 msgstr "R: rechaza una oferta recibida."
 
-#: __app.rb:245 lib/game_room_screens.rb:81
+#: __app.rb:246 lib/game_room_screens.rb:81
 msgid "README"
 msgstr "README"
 
@@ -20187,7 +20267,7 @@ msgstr "README"
 msgid "README now includes a detailed tournament guide in all interface languages, covering controls, formats, scoring, partners and organizer options. Thank you to guliwer for the idea and implementation of tournaments!"
 msgstr "El README incluye ahora una guía detallada de los torneos en todos los idiomas de la interfaz: controles, atajos, formatos, puntuación, elección de pareja y opciones del organizador. ¡Gracias a guliwer por la idea y la implementación de los torneos!"
 
-#: games/krowa.rb:134
+#: games/krowa.rb:135
 msgid "Race"
 msgstr "Carrera"
 
@@ -20246,11 +20326,11 @@ msgstr "Subir en:"
 msgid "Raise; total payment %{amount}"
 msgstr "Subir; pago total %{amount}"
 
-#: games/krowa.rb:137
+#: games/krowa.rb:138
 msgid "Random"
 msgstr "Aleatorio"
 
-#: games/krowa.rb:133
+#: games/krowa.rb:134
 msgid "Random word"
 msgstr "Palabra aleatoria"
 
@@ -20308,11 +20388,11 @@ msgstr "Lee primero las reglas y las fechas. Ve con Tab a Inscribirse en el torn
 msgid "Read the selected current match first. Historical readback does not authorize a new declaration."
 msgstr ""
 
-#: __app.rb:1759 __app.rb:1764 lib/game_room_widget.rb:190 lib/game_room_widget.rb:207
+#: __app.rb:1760 __app.rb:1765 lib/game_room_widget.rb:190 lib/game_room_widget.rb:207
 msgid "Read the table participants"
 msgstr "Leer participantes de la mesa"
 
-#: __app.rb:1760 __app.rb:1763 lib/game_room_widget.rb:189 lib/game_room_widget.rb:208 lib/participant_menu.rb:24
+#: __app.rb:1761 __app.rb:1764 lib/game_room_widget.rb:189 lib/game_room_widget.rb:208 lib/participant_menu.rb:24
 msgid "Read the table variant and settings"
 msgstr "Leer la variante y los ajustes de la mesa"
 
@@ -20412,7 +20492,7 @@ msgstr "Recibes 7 plumas y dejas la carta en tu casilla. El próximo pato que ca
 msgid "Receiving new-table notifications no longer waits for disk writes, removing one source of temporary interface stalls. The occasional record of a handled table is saved in the background."
 msgstr "La recepción de notificaciones de mesas nuevas ya no espera a las escrituras en disco, lo que elimina una de las causas de los bloqueos temporales de la interfaz. El registro ocasional de una mesa procesada se guarda en segundo plano."
 
-#: games/krowa_support/client.rb:118
+#: games/krowa_support/client.rb:120
 msgid "Receiving the private solution"
 msgstr "Recibiendo la solución de forma privada"
 
@@ -20464,7 +20544,7 @@ msgstr "Se ha reducido la espera durante los desafíos de Carreras de patos, esp
 msgid "Reed path"
 msgstr "Sendero entre juncos"
 
-#: lib/game_room_presence_screen.rb:15 lib/game_statistics_screen.rb:76 lib/quiz_contributions/views.rb:46 lib/sports_rankings/screen.rb:92 lib/tournaments/draft_screen.rb:25 lib/tournaments/local_participant_manager.rb:15 lib/tournaments/local_tournament_overview.rb:17 lib/tournaments/operations_screen.rb:58 lib/tournaments/participant_manager.rb:32 lib/tournaments/participant_manager.rb:83 lib/tournaments/public_preview.rb:361 lib/tournaments/public_screen.rb:199 lib/tournaments/public_screen.rb:74 lib/tournaments/server_proposal_screen.rb:30 lib/tournaments/server_schedule_overview.rb:21 lib/tournaments/tournament_invitation_screen.rb:20
+#: lib/game_room_presence_screen.rb:15 lib/game_statistics_screen.rb:76 lib/quiz_contributions/views.rb:46 lib/sports_rankings/screen.rb:88 lib/tournaments/draft_screen.rb:25 lib/tournaments/local_participant_manager.rb:15 lib/tournaments/local_tournament_overview.rb:17 lib/tournaments/operations_screen.rb:58 lib/tournaments/participant_manager.rb:32 lib/tournaments/participant_manager.rb:83 lib/tournaments/public_preview.rb:361 lib/tournaments/public_screen.rb:199 lib/tournaments/public_screen.rb:74 lib/tournaments/server_proposal_screen.rb:30 lib/tournaments/server_schedule_overview.rb:21 lib/tournaments/tournament_invitation_screen.rb:20
 msgid "Refresh"
 msgstr "Actualizar"
 
@@ -20592,11 +20672,11 @@ msgstr ""
 msgid "Registration outside the allowed window."
 msgstr "Inscripción fuera del plazo permitido."
 
-#: __app.rb:2629
+#: __app.rb:2630
 msgid "Reject"
 msgstr "Rechazar"
 
-#: __app.rb:2819 lib/game_room_screens.rb:140
+#: __app.rb:2820 lib/game_room_screens.rb:140
 msgid "Reject invitation"
 msgstr "Rechazar invitación"
 
@@ -20612,7 +20692,7 @@ msgstr "Rechazada"
 msgid "Rejected or conflicting entry reports — announcements: %{announcements}; registrations: %{registrations}. These are not accepted entries."
 msgstr "Registros rechazados o en conflicto: anuncios %{announcements}; inscripciones %{registrations}. No se cuentan como registros aceptados."
 
-#: __app.rb:2782
+#: __app.rb:2783
 msgid "Rejecting invitation"
 msgstr "Rechazando la invitación"
 
@@ -20654,7 +20734,7 @@ msgstr "¿Retirar a %{player}?"
 msgid "Remove question"
 msgstr "Eliminar una pregunta"
 
-#: games/krowa_support/client.rb:218
+#: games/krowa_support/client.rb:224
 msgid "Remove selected"
 msgstr "Eliminar seleccionadas"
 
@@ -20662,7 +20742,7 @@ msgstr "Eliminar seleccionadas"
 msgid "Remove selected participant"
 msgstr "Retirar al participante seleccionado"
 
-#: games/krowa_support/client.rb:233
+#: games/krowa_support/client.rb:239
 msgid "Remove the selected words from your dictionary?"
 msgstr "¿Eliminar de tu diccionario las palabras seleccionadas?"
 
@@ -20710,7 +20790,7 @@ msgstr "Se ha eliminado el retardo adicional de tres segundos al inicio de las p
 msgid "Removed the rustling sound at the start of Audio Ball's standard high-ball sound. The Audiodisc sound pack is unchanged."
 msgstr ""
 
-#: games/krowa_support/client.rb:236
+#: games/krowa_support/client.rb:242
 msgid "Removed words: %{words}."
 msgstr "Palabras eliminadas: %{words}."
 
@@ -20730,7 +20810,7 @@ msgstr ""
 msgid "Removing a red light or the lack of an initial green light allows driving only if no other problem blocks it. Repairing a fuel, tire or accident problem still requires a green light unless you have Right of way. Other problems remain unchanged. Instant repair is not a safety or an immediate response to an attack: it grants no immunity, extra turn, or 100- or 300-point bonus."
 msgstr "Eliminar el semáforo rojo o la falta del semáforo verde inicial permite avanzar solo si no lo impide otro problema. Reparar un problema de combustible, neumáticos o accidente sigue requiriendo un semáforo verde, salvo que tengas Prioridad de paso. Los demás problemas no cambian. La reparación instantánea no es una protección ni una respuesta inmediata a un ataque: no concede inmunidad, turno extra ni bonificación de 100 o 300 puntos."
 
-#: __app.rb:2325
+#: __app.rb:2326
 msgid "Removing computer"
 msgstr "Eliminando un ordenador"
 
@@ -20859,7 +20939,7 @@ msgstr "Volver a barajar un mazo agotado durante un reparto tiene ahora un breve
 msgid "Resolve what happens on your landing square before the next player takes a turn. If a card or move starts a challenge, finish it before continuing."
 msgstr ""
 
-#: __app.rb:3195
+#: __app.rb:3196
 msgid "Restart ELTEN to apply the interface language preferences."
 msgstr "Reinicia ELTEN para aplicar las preferencias de idioma de la interfaz."
 
@@ -20883,7 +20963,7 @@ msgstr "Se ha recuperado la pareja anterior."
 msgid "Restrict rolls that allow leaving the base"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:282
+#: games/krowa_support/leaderboards.rb:308
 msgid "Result"
 msgstr "Resultado"
 
@@ -20895,7 +20975,7 @@ msgstr ""
 msgid "Result details"
 msgstr "Detalles del resultado"
 
-#: games/krowa_support/leaderboards.rb:86
+#: games/krowa_support/leaderboards.rb:95
 msgid "Result published."
 msgstr "Resultado publicado."
 
@@ -20903,7 +20983,7 @@ msgstr "Resultado publicado."
 msgid "Result saved"
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:240 games/krowa_support/presentation.rb:41
+#: games/krowa_support/leaderboards.rb:266 games/krowa_support/presentation.rb:41
 msgid "Results"
 msgstr "Resultados"
 
@@ -20911,7 +20991,7 @@ msgstr "Resultados"
 msgid "Results — %{phase}"
 msgstr "Resultados — %{phase}"
 
-#: __app.rb:1356 __app.rb:3552
+#: __app.rb:1357 __app.rb:3553
 msgid "Resume game"
 msgstr "Reanudar partida"
 
@@ -20919,7 +20999,7 @@ msgstr "Reanudar partida"
 msgid "Resume saved tournament"
 msgstr ""
 
-#: __app.rb:1591
+#: __app.rb:1592
 msgid "Resuming game"
 msgstr "Reanudando la partida"
 
@@ -21333,7 +21413,7 @@ msgstr ""
 msgid "Rotating judge is the default: the role moves around the seating order, so everyone sometimes judges instead of scoring. Table master judges every round makes the creator the permanent judge and removes that person from the scoring competition. With two participants, that setting leaves one answering player and one permanent judge."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:282
+#: games/krowa_support/leaderboards.rb:308
 msgid "Round"
 msgstr "Ronda"
 
@@ -21357,7 +21437,7 @@ msgstr "Ronda %{round} de 6. %{rule}"
 msgid "Round %{round} started. Letter: %{letter}."
 msgstr "Ha empezado la ronda %{round}. Letra: %{letter}."
 
-#: games/tysiac.rb:699
+#: games/tysiac.rb:710
 msgid "Round %{round} was dealt by %{dealer}. %{player} opens the auction."
 msgstr "%{dealer} ha repartido las cartas de la ronda %{round}. %{player} abre la subasta."
 
@@ -21372,7 +21452,7 @@ msgstr "%{dealer} ha repartido la ronda %{round}. La suma de la pila es cero."
 msgid "Round %{round} was dealt. %{dealer} is the dealer."
 msgstr "Se han repartido las cartas de la ronda %{round}. Reparte: %{dealer}."
 
-#: games/krowa.rb:466
+#: games/krowa.rb:467
 msgid "Round %{round}. %{length} letters."
 msgstr "Ronda %{round}. %{length} letras."
 
@@ -21408,11 +21488,11 @@ msgstr "Ronda %{round}. Fichas repartidas."
 msgid "Round %{round}. Tricks: %{tricks}. Trick %{current} of %{total}."
 msgstr "Ronda %{round}. Bazas: %{tricks}. Baza %{current} de %{total}."
 
-#: games/quiz_party.rb:227
+#: games/quiz_party.rb:228
 msgid "Round %{round}; category %{category}; question %{position} of %{total}"
 msgstr "Ronda %{round}; categoría %{category}; pregunta %{position} de %{total}"
 
-#: games/quiz_party.rb:1223
+#: games/quiz_party.rb:1224
 msgid "Round %{round}; category %{category}; question %{position} of %{total}; target: %{target} points."
 msgstr "Ronda %{round}; categoría %{category}; pregunta %{position} de %{total}; objetivo: %{target} puntos."
 
@@ -21461,7 +21541,7 @@ msgstr ""
 msgid "Rounding to five-point units is on by default: ranks two through nine are worth 5, ten and faces 10, a low ace 5, a high or set ace 15. With rounding off they are face value, faces 10, low ace 1 and high or set ace 11. An ace left in hand is always worth the high value. A hand joker is worth 20; a melded joker takes the represented value. An identity meld adds 10 per card."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:264
+#: games/krowa_support/leaderboards.rb:290
 msgid "Rounds"
 msgstr "Rondas"
 
@@ -21496,7 +21576,7 @@ msgstr "Reglas y fechas"
 msgid "Rules for this game are not available in this version of ELTEN Game Room."
 msgstr "Las reglas de este juego no están disponibles en esta versión de ELTEN Game Room."
 
-#: __app.rb:1232
+#: __app.rb:1233
 msgid "Rules for this game are not available in this version of Power Games."
 msgstr "Las reglas de este juego no están disponibles en esta versión de Power Games."
 
@@ -21662,7 +21742,7 @@ msgstr "Sándwich"
 msgid "Sarajevo Railway Station"
 msgstr "Estación de tren de Sarajevo"
 
-#: games/krowa_support/client.rb:190 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_room_screens.rb:360 lib/quiz_contributions/controller.rb:185 lib/quiz_contributions/views.rb:163
+#: games/krowa_support/client.rb:196 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_room_screens.rb:360 lib/quiz_contributions/controller.rb:185 lib/quiz_contributions/views.rb:163
 msgid "Save"
 msgstr "Guardar"
 
@@ -21674,7 +21754,7 @@ msgstr "Guarda Rummy al principio de un turno, antes de robar o manipular cartas
 msgid "Save Taboo between turns, after the table master approves the review."
 msgstr "Guarda Tabú entre turnos, después de que el anfitrión de la mesa apruebe la revisión."
 
-#: __app.rb:3805
+#: __app.rb:3806
 msgid "Save changes"
 msgstr "Guardar cambios"
 
@@ -21711,7 +21791,7 @@ msgstr "Guardar conserva el lado seleccionado para futuras partidas; Cancelar ma
 msgid "Save partner"
 msgstr "Guardar compañero"
 
-#: __app.rb:3135
+#: __app.rb:3136
 msgid "Save preset"
 msgstr "Guardar configuración predefinida"
 
@@ -21719,7 +21799,7 @@ msgstr "Guardar configuración predefinida"
 msgid "Save result"
 msgstr "Guardar resultado"
 
-#: __app.rb:1326 lib/participant_menu.rb:29
+#: __app.rb:1327 lib/participant_menu.rb:29
 msgid "Save table history"
 msgstr "Guardar historial de la mesa"
 
@@ -21731,7 +21811,7 @@ msgstr "Guardar la partida y cerrar la mesa"
 msgid "Save the game at the beginning of a trick, before any person has chosen a card."
 msgstr ""
 
-#: __app.rb:1295
+#: __app.rb:1296
 msgid "Save this game and close the table for everyone?"
 msgstr "¿Guardar esta partida y cerrar la mesa para todos?"
 
@@ -21747,7 +21827,7 @@ msgstr "Guardar cambios del torneo"
 msgid "Saved drafts"
 msgstr "Borradores guardados"
 
-#: __app.rb:1353 __app.rb:238
+#: __app.rb:1354 __app.rb:239
 msgid "Saved games"
 msgstr "Partidas guardadas"
 
@@ -21767,7 +21847,7 @@ msgstr ""
 msgid "Saved match %{match}, leg %{leg}; winner: %{winner}"
 msgstr ""
 
-#: games/krowa_support/client.rb:281
+#: games/krowa_support/client.rb:287
 msgid "Saving Daily Krowa"
 msgstr "Guardando Krowa diaria"
 
@@ -21791,19 +21871,19 @@ msgstr "Guardando el borrador en tu cuenta"
 msgid "Saving editorial decision"
 msgstr "Guardando la decisión de revisión"
 
-#: __app.rb:1297
+#: __app.rb:1298
 msgid "Saving game"
 msgstr "Guardando la partida"
 
-#: games/krowa.rb:151
+#: games/krowa.rb:152
 msgid "Saving is available only in Race and Word Tower."
 msgstr "Solo se puede guardar en Carrera y Torre de palabras."
 
-#: games/categories.rb:93 games/quiz_party.rb:63
+#: games/categories.rb:93 games/quiz_party.rb:64
 msgid "Saving is not supported for this game."
 msgstr "Este juego no permite guardar partidas."
 
-#: __app.rb:3175
+#: __app.rb:3176
 msgid "Saving notification settings"
 msgstr "Guardando los ajustes de notificaciones"
 
@@ -21811,11 +21891,11 @@ msgstr "Guardando los ajustes de notificaciones"
 msgid "Saving question for a report"
 msgstr "Guardando la pregunta para informar de un error"
 
-#: __app.rb:3834
+#: __app.rb:3835
 msgid "Saving table settings"
 msgstr "Guardando los ajustes de la mesa"
 
-#: __app.rb:3669
+#: __app.rb:3670
 msgid "Saving teams"
 msgstr "Guardando equipos"
 
@@ -21918,7 +21998,7 @@ msgstr ""
 msgid "Score: %{own} to %{opponent}."
 msgstr "Puntuación: %{own} a %{opponent}."
 
-#: games/cat_head_tail.rb:438 games/categories.rb:1369 games/farkle.rb:766 games/quiz_party.rb:1217 games/spades.rb:644 games/tysiac.rb:1630
+#: games/cat_head_tail.rb:438 games/categories.rb:1369 games/farkle.rb:766 games/quiz_party.rb:1218 games/spades.rb:644 games/tysiac.rb:1641
 msgid "Scores: %{scores}."
 msgstr "Puntuaciones: %{scores}."
 
@@ -21947,7 +22027,7 @@ msgstr "Combinaciones que puntúan de la última tirada: %{dice}"
 msgid "Scoring combinations in this implementation"
 msgstr ""
 
-#: games/krowa.rb:139
+#: games/krowa.rb:140
 msgid "Scoring criterion"
 msgstr "Criterio de puntuación"
 
@@ -21977,19 +22057,19 @@ msgstr "Scrabble requiere de dos a cuatro jugadores humanos."
 msgid "Scriptorium: %{values}."
 msgstr "Scriptorium: %{values}."
 
-#: games/krowa_support/leaderboards.rb:208
+#: games/krowa_support/leaderboards.rb:234
 msgid "Search"
 msgstr "Buscar"
 
-#: games/krowa_support/leaderboards.rb:31
+#: games/krowa_support/leaderboards.rb:33
 msgid "Search for a word"
 msgstr "Buscar una palabra"
 
-#: games/krowa_support/leaderboards.rb:230
+#: games/krowa_support/leaderboards.rb:256
 msgid "Search results: %{query}"
 msgstr "Resultados de búsqueda: %{query}"
 
-#: games/krowa_support/leaderboards.rb:223
+#: games/krowa_support/leaderboards.rb:249
 msgid "Searching words"
 msgstr "Buscando palabras"
 
@@ -22021,7 +22101,7 @@ msgstr "Segunda reserva"
 msgid "Seeds in each pit"
 msgstr "Semillas en cada hoyo"
 
-#: __app.rb:1842 __app.rb:2821 __app.rb:3632 lib/game_screen.rb:675 lib/game_surfaces/word_board.rb:208
+#: __app.rb:1843 __app.rb:2822 __app.rb:3633 lib/game_screen.rb:675 lib/game_surfaces/word_board.rb:208
 msgid "Select"
 msgstr "Seleccionar"
 
@@ -22053,7 +22133,7 @@ msgstr "Selecciona al menos un dado para volver a lanzarlo o abre las categoría
 msgid "Select at least one person."
 msgstr "Selecciona al menos una persona."
 
-#: games/krowa_support/client.rb:230
+#: games/krowa_support/client.rb:236
 msgid "Select at least one word."
 msgstr "Selecciona al menos una palabra."
 
@@ -22159,19 +22239,19 @@ msgstr "El envío y el rechazo de invitaciones se registran en el historial de l
 msgid "Sending assessment"
 msgstr "Enviando evaluación"
 
-#: __app.rb:2234 lib/game_screen.rb:1283
+#: __app.rb:2235 lib/game_screen.rb:1283
 msgid "Sending chat message"
 msgstr "Enviando el mensaje del chat"
 
-#: __app.rb:1552 __app.rb:2481 __app.rb:889 lib/tournaments/tournament_invite_picker.rb:47
+#: __app.rb:1553 __app.rb:2482 __app.rb:890 lib/tournaments/tournament_invite_picker.rb:47
 msgid "Sending invitation"
 msgstr "Enviando la invitación"
 
-#: __app.rb:628
+#: __app.rb:629
 msgid "Sending invitations is unavailable because server table access could not be confirmed."
 msgstr "El envío de invitaciones no está disponible porque no se ha podido confirmar el acceso a las tablas del servidor."
 
-#: __app.rb:626
+#: __app.rb:627
 msgid "Sending invitations is unavailable because the server requires an official launcher stamp that this Elten session cannot provide. Changing developer mode does not grant server table access."
 msgstr "No se pueden enviar invitaciones: el servidor exige la verificación del iniciador oficial, que esta sesión de ELTEN no puede proporcionar. Cambiar el modo de desarrollador no da acceso a las tablas."
 
@@ -22233,7 +22313,7 @@ msgstr "Prueba de propuestas en el servidor: sin invitaciones automáticas, rese
 msgid "Server table access could not be checked. Global lobby history and sending invitations are unavailable until you reopen Game Room."
 msgstr "No se ha podido comprobar el acceso a las tablas del servidor. El historial global de la sala de espera y el envío de invitaciones no estarán disponibles hasta que vuelvas a abrir Game Room."
 
-#: __app.rb:618
+#: __app.rb:619
 msgid "Server table access could not be checked. Global lobby history and sending invitations are unavailable until you reopen Power Games."
 msgstr "No se ha podido comprobar el acceso a las tablas del servidor. El historial global de la sala de espera y el envío de invitaciones no estarán disponibles hasta que vuelvas a abrir Power Games."
 
@@ -22301,7 +22381,7 @@ msgstr "Sets necesarios para ganar"
 msgid "Sets: %{own} to %{opponent}."
 msgstr "Sets: %{own} a %{opponent}."
 
-#: __app.rb:243 lib/game_room_screens.rb:320
+#: __app.rb:244 lib/game_room_screens.rb:320
 msgid "Settings"
 msgstr "Ajustes"
 
@@ -22309,11 +22389,11 @@ msgstr "Ajustes"
 msgid "Settings changed. Preview the plan again before accepting."
 msgstr ""
 
-#: __app.rb:3200
+#: __app.rb:3201
 msgid "Settings saved."
 msgstr "Ajustes guardados."
 
-#: __app.rb:3198
+#: __app.rb:3199
 msgid "Settings saved. Restart ELTEN to apply the interface language preferences."
 msgstr "Ajustes guardados. Reinicia ELTEN para aplicar las preferencias de idioma de la interfaz."
 
@@ -22358,7 +22438,7 @@ msgstr "Controles comunes de la sala: Tab y Shift+Tab permiten moverse entre los
 msgid "Shared tournaments"
 msgstr "Torneos en línea"
 
-#: games/categories.rb:548 games/quiz_party.rb:473
+#: games/categories.rb:548 games/quiz_party.rb:474
 msgid "Shared victory: %{players}, %{points} points."
 msgstr "Victoria compartida: %{players}, %{points} puntos."
 
@@ -22374,7 +22454,7 @@ msgstr "No se ha confirmado que se haya compartido. El borrador está guardado; 
 msgid "Sharp (searches deeply and answers more slowly)"
 msgstr "Perspicaz (busca en profundidad y responde más despacio)"
 
-#: __app.rb:1111 lib/game_shortcut_bindings.rb:62
+#: __app.rb:1112 lib/game_shortcut_bindings.rb:62
 msgid "Shift"
 msgstr "Shift"
 
@@ -22807,7 +22887,7 @@ msgstr ""
 msgid "Simplified tournament menus and removed duplicate actions. The main views are now Tournament matches, Standings, and Information and rules. Your tournaments appear first in the current list, and context menus show the available keyboard shortcuts."
 msgstr "Se han simplificado los menús de los torneos y eliminado las opciones duplicadas. Las vistas principales son ahora Partidas del torneo, Clasificación e Información y reglas. Tus torneos aparecen primero en la lista de torneos actuales, y los menús contextuales muestran los atajos disponibles."
 
-#: games/audio_ball.rb:81 games/axel_pong.rb:45 lib/sports_rankings/screen.rb:33
+#: games/audio_ball.rb:81 games/axel_pong.rb:45 lib/sports_rankings/screen.rb:34
 msgid "Single"
 msgstr "Individual"
 
@@ -22955,11 +23035,11 @@ msgstr ""
 msgid "Solo"
 msgstr ""
 
-#: games/krowa_support/client.rb:257
+#: games/krowa_support/client.rb:263
 msgid "Solution"
 msgstr "Solución"
 
-#: games/krowa.rb:532 games/krowa_support/client.rb:125
+#: games/krowa.rb:533 games/krowa_support/client.rb:127
 msgid "Solution: %{word}."
 msgstr "Solución: %{word}."
 
@@ -22999,11 +23079,11 @@ msgstr "Pastilla para dormir"
 msgid "Sound %{position}"
 msgstr "Sonido %{position}"
 
-#: games/krowa_support/client.rb:187
+#: games/krowa_support/client.rb:193
 msgid "Sound effects"
 msgstr "Efectos de sonido"
 
-#: games/krowa_support/client.rb:188
+#: games/krowa_support/client.rb:194
 msgid "Sound effects volume"
 msgstr "Volumen de los efectos de sonido"
 
@@ -23063,7 +23143,7 @@ msgstr "Viento del sur"
 msgid "South-east Asia board"
 msgstr "Tablero del Sudeste Asiático"
 
-#: __app.rb:1112 lib/game_shortcut_bindings.rb:58
+#: __app.rb:1113 lib/game_shortcut_bindings.rb:58
 msgid "Space"
 msgstr "Espacio"
 
@@ -23240,7 +23320,7 @@ msgstr ""
 msgid "Start date (YYYY-MM-DD)"
 msgstr ""
 
-#: __app.rb:3561 games/krowa_support/presentation.rb:15 lib/game_layout.rb:193
+#: __app.rb:3562 games/krowa_support/presentation.rb:15 lib/game_layout.rb:193
 msgid "Start game"
 msgstr "Iniciar partida"
 
@@ -23310,7 +23390,7 @@ msgstr "Fichas iniciales"
 msgid "Starting chips must be from 100 to 100000."
 msgstr "El número de fichas iniciales debe estar entre 100 y 100000."
 
-#: __app.rb:3517
+#: __app.rb:3518
 msgid "Starting game"
 msgstr "Iniciando la partida"
 
@@ -23339,7 +23419,7 @@ msgstr "Estación Gambir"
 msgid "Stasiun Hall Bandung"
 msgstr "Estación Hall Bandung"
 
-#: __app.rb:242 lib/game_statistics_screen.rb:16 lib/game_statistics_screen.rb:68
+#: __app.rb:243 lib/game_statistics_screen.rb:16 lib/game_statistics_screen.rb:68
 msgid "Statistics"
 msgstr "Estadísticas"
 
@@ -23363,7 +23443,7 @@ msgstr ""
 msgid "Statistics unavailable"
 msgstr ""
 
-#: games/tysiac.rb:1643
+#: games/tysiac.rb:1654
 msgid "Statistics: %{statistics}."
 msgstr "Estadísticas: %{statistics}."
 
@@ -23425,7 +23505,7 @@ msgstr ""
 msgid "Submission to finish"
 msgstr "Envío pendiente de completar"
 
-#: lib/game_surfaces/question_surface.rb:161
+#: lib/game_surfaces/question_surface.rb:212
 msgid "Submit answer"
 msgstr "Enviar respuesta"
 
@@ -23545,7 +23625,7 @@ msgstr "Rendirse"
 msgid "Surrender Word Tower"
 msgstr "Rendirse en Torre de palabras"
 
-#: games/tysiac.rb:1583
+#: games/tysiac.rb:1594 games/tysiac.rb:478
 msgid "Surrender the deal"
 msgstr "Rendirse en el reparto"
 
@@ -23680,7 +23760,7 @@ msgstr "Tab: en curso, inscripciones y finalizados. Enter: ver torneo. Menú con
 msgid "Table chat messages can now contain up to 2000 characters instead of 400."
 msgstr "El límite de los mensajes del chat de la mesa pasa de 400 a 2000 caracteres."
 
-#: __app.rb:905
+#: __app.rb:906
 msgid "Table creation is not confirmed. Check Operations; the table will not be created again automatically."
 msgstr "La creación de la mesa no está confirmada. Revisa Operaciones; no se creará otra mesa automáticamente."
 
@@ -23830,7 +23910,7 @@ msgstr "Objetivo %{number} de 5."
 msgid "Target and forbidden words"
 msgstr "Palabra que adivinar y palabras prohibidas"
 
-#: games/categories.rb:227 games/mille_bornes.rb:82 games/quiz_party.rb:133 games/tysiac.rb:206
+#: games/categories.rb:227 games/mille_bornes.rb:82 games/quiz_party.rb:134 games/tysiac.rb:206
 msgid "Target score"
 msgstr "Puntuación objetivo"
 
@@ -23873,7 +23953,7 @@ msgstr "Equipo %{number}: %{score}"
 msgid "Team %{players}"
 msgstr "Equipo %{players}"
 
-#: __app.rb:3627
+#: __app.rb:3628
 msgid "Team %{team}"
 msgstr "Equipo %{team}"
 
@@ -23885,7 +23965,7 @@ msgstr "El equipo %{team} debe tener exactamente %{count} jugadores; actualmente
 msgid "Team %{team} wins Taboo."
 msgstr "El equipo %{team} gana Tabú."
 
-#: games/axel_pong.rb:110 games/mille_bornes/presentation.rb:251 games/tysiac.rb:1573
+#: games/axel_pong.rb:110 games/mille_bornes/presentation.rb:251 games/tysiac.rb:1584
 msgid "Team %{team}: %{players}"
 msgstr "Equipo %{team}: %{players}"
 
@@ -24223,7 +24303,7 @@ msgstr "Objetivo"
 msgid "The aim of the game"
 msgstr ""
 
-#: games/categories.rb:1352 games/quiz_party.rb:1204
+#: games/categories.rb:1352 games/quiz_party.rb:1205
 msgid "The answer time has ended."
 msgstr "Se ha agotado el tiempo para responder."
 
@@ -24231,7 +24311,7 @@ msgstr "Se ha agotado el tiempo para responder."
 msgid "The answer time must be 0, or between %{minimum} and %{maximum} seconds."
 msgstr "El tiempo para responder debe ser 0 o estar entre %{minimum} y %{maximum} segundos."
 
-#: games/quiz_party.rb:145
+#: games/quiz_party.rb:146
 msgid "The answer time must be between %{minimum} and %{maximum} seconds."
 msgstr "El tiempo para responder debe estar entre %{minimum} y %{maximum} segundos."
 
@@ -24247,7 +24327,7 @@ msgstr "El adjunto contiene las preguntas en TXT y JSON para su revisión."
 msgid "The attachment exceeds 4 MB. Split the proposal into smaller drafts."
 msgstr "El archivo adjunto supera los 4 MB. Divide la propuesta en borradores más pequeños."
 
-#: games/krowa.rb:312
+#: games/krowa.rb:313
 msgid "The attempt is waiting to be checked."
 msgstr "El intento está pendiente de comprobación."
 
@@ -24262,7 +24342,7 @@ msgstr ""
 msgid "The auction ends when three players pass in a row after a bid. The last bid becomes the contract. If all four players pass at the start, nobody scores and the cards are dealt again by the next dealer."
 msgstr ""
 
-#: games/tysiac.rb:1658
+#: games/tysiac.rb:1677
 msgid "The auction has not started."
 msgstr "La subasta no ha comenzado."
 
@@ -24370,7 +24450,7 @@ msgstr "Se han repartido las cartas y comienza la fase de donaciones."
 msgid "The categories are country, city, name, animal, plant and thing. Their labels follow each player's interface language, while the selected answer language determines the letters used in the match."
 msgstr ""
 
-#: games/quiz_party.rb:1247
+#: games/quiz_party.rb:1248
 msgid "The categories for the next round are being drawn."
 msgstr "Se están eligiendo al azar las categorías de la siguiente ronda."
 
@@ -24462,11 +24542,11 @@ msgstr "El creador puede iniciar una partida local cuando hayan entrado todos lo
 msgid "The creator can start one local game after every participant confirms entry."
 msgstr ""
 
-#: games/battleship.rb:43 games/categories.rb:88 games/krowa.rb:47 games/quiz_party.rb:58 games/scientific_war.rb:78
+#: games/battleship.rb:43 games/categories.rb:88 games/krowa.rb:48 games/quiz_party.rb:59 games/scientific_war.rb:78
 msgid "The current game contains private data that cannot be transferred at this stage."
 msgstr ""
 
-#: __app.rb:948 lib/tournaments/server_schedule_overview.rb:311
+#: __app.rb:949 lib/tournaments/server_schedule_overview.rb:311
 msgid "The current game history is unavailable. Join the table as an observer and try again. No forfeit was recorded."
 msgstr "No está disponible el historial actual de la partida. Entra en la mesa como espectador e inténtalo de nuevo. No se ha registrado ninguna derrota por incomparecencia."
 
@@ -24753,7 +24833,7 @@ msgstr "Las piezas del primer jugador están abajo."
 msgid "The first playing window has a nonexistent, ambiguous or unsupported start in the computer's system time zone. Correct the draft or choose a specific date and time."
 msgstr ""
 
-#: games/categories.rb:1328 games/categories.rb:1342 games/quiz_party.rb:1191 games/quiz_party.rb:1221
+#: games/categories.rb:1328 games/categories.rb:1342 games/quiz_party.rb:1192 games/quiz_party.rb:1222
 msgid "The first round is being prepared."
 msgstr "Se está preparando la primera ronda."
 
@@ -24824,7 +24904,7 @@ msgstr ""
 msgid "The further ahead you are of the last duck, the longer you freeze. The distance includes complete laps and is checked when you freeze:"
 msgstr ""
 
-#: games/krowa_support/client.rb:145
+#: games/krowa_support/client.rb:147
 msgid "The gallery is available before the game starts and after it ends."
 msgstr ""
 
@@ -24840,7 +24920,7 @@ msgstr ""
 msgid "The game announces when someone goes onto the barrel and records it in the history. S reads scores and marks the players currently on the barrel. Shift+S also tells you how many barrel chances they have left."
 msgstr ""
 
-#: __app.rb:3495
+#: __app.rb:3496
 msgid "The game cannot start until these players join the real-time session: %{players}."
 msgstr "La partida no puede empezar hasta que estos jugadores se unan a la sesión en tiempo real: %{players}."
 
@@ -24851,7 +24931,7 @@ msgstr "La partida ha cambiado antes de que se aceptara tu acción. Vuelve a ele
 msgid "The game could not be opened. Please try again."
 msgstr "No se ha podido abrir la partida. Inténtalo de nuevo."
 
-#: __app.rb:1320
+#: __app.rb:1321
 msgid "The game could not be saved. The table was not closed by this operation."
 msgstr "No se ha podido guardar la partida. Esta operación no ha cerrado la mesa."
 
@@ -24896,7 +24976,7 @@ msgstr "La partida ya ha terminado."
 msgid "The game has already started."
 msgstr ""
 
-#: __app.rb:1306
+#: __app.rb:1307
 msgid "The game has been saved."
 msgstr "La partida se ha guardado."
 
@@ -24929,7 +25009,7 @@ msgstr ""
 msgid "The game was interrupted because fewer than two participants remain."
 msgstr "La partida se ha interrumpido porque quedan menos de dos participantes."
 
-#: __app.rb:1606
+#: __app.rb:1607
 msgid "The game was resumed, but its saved copy could not be deleted. Remove it from Saved games."
 msgstr "La partida se ha reanudado, pero no se ha podido eliminar el guardado. Elimínalo de la lista de partidas guardadas."
 
@@ -24984,7 +25064,7 @@ msgstr ""
 msgid "The host can save Race or Word Tower after the current word is ready and all submitted attempts have been checked. The local save includes the private solution and can be resumed with the same players in a new table. The table closes only after the save is verified. Daily Krowa and Random word cannot be saved for later."
 msgstr ""
 
-#: games/krowa.rb:520
+#: games/krowa.rb:521
 msgid "The host changes the word. Race attempts and time start over."
 msgstr "El anfitrión de la mesa cambia la palabra. Los intentos y el tiempo de Carrera vuelven a empezar desde cero."
 
@@ -25137,7 +25217,7 @@ msgstr "Hay un empate en cabeza. Solo %{players} jugarán el desempate; se elegi
 msgid "The lead is tied. Another complete judge cycle will be played."
 msgstr "Hay un empate en cabeza. Se jugará otro ciclo completo de jueces."
 
-#: games/quiz_party.rb:825
+#: games/quiz_party.rb:826
 msgid "The lead is tied. Another round will be played: %{players}."
 msgstr "Hay un empate en cabeza. Se jugará otra ronda: %{players}."
 
@@ -25235,7 +25315,7 @@ msgstr "Se ha cambiado el orden del menú principal: las partidas guardadas apar
 msgid "The main menu's Leaderboards entry gives access to Krowa word results and Word Tower results, including round details. Your gallery and custom dictionary are local and separate for each account. To remove custom words, open My dictionary in Krowa settings, select them with Space and use Remove selected. Removing a word does not rewrite attempts already made in a game."
 msgstr ""
 
-#: __app.rb:940
+#: __app.rb:941
 msgid "The match changed. Review the updated consequences before confirming again."
 msgstr "El estado de la partida ha cambiado. Revisa las consecuencias antes de volver a confirmar."
 
@@ -25289,7 +25369,7 @@ msgstr ""
 msgid "The new General knowledge set has 11 broad categories: Geography, History, Culture, Literature, Science, Nature, Religion, Sport, Language, Society and Everyday life. Each contains several hundred questions or more. Other languages and the Witcher sets are unchanged."
 msgstr ""
 
-#: games/quiz_party.rb:1245
+#: games/quiz_party.rb:1246
 msgid "The next question is being prepared."
 msgstr "Se está preparando la siguiente pregunta."
 
@@ -25328,7 +25408,7 @@ msgstr ""
 msgid "The number of starting tokens must be greater than zero."
 msgstr "El número de fichas iniciales debe ser mayor que cero."
 
-#: __app.rb:1568 __app.rb:2498 __app.rb:3259 lib/game_room_widget.rb:251 lib/game_screen.rb:1614
+#: __app.rb:1569 __app.rb:2499 __app.rb:3260 lib/game_room_widget.rb:251 lib/game_screen.rb:1614
 msgid "The operation could not be completed. Please try again."
 msgstr "No se ha podido completar la operación. Inténtalo de nuevo."
 
@@ -25572,7 +25652,7 @@ msgstr "Se ha alcanzado el límite de subidas de esta ronda de apuestas."
 msgid "The readiness revision changed. Check status before a new declaration."
 msgstr ""
 
-#: __app.rb:1730 __app.rb:2696 __app.rb:2724 __app.rb:3058
+#: __app.rb:1731 __app.rb:2697 __app.rb:2725 __app.rb:3059
 msgid "The real-time connection to this table could not be established. Please try again."
 msgstr "No se ha podido establecer la conexión en tiempo real con esta mesa. Inténtalo de nuevo."
 
@@ -25631,15 +25711,15 @@ msgstr "El horario se repite cada día. Si la hora de fin es anterior a la de in
 msgid "The saved draft is damaged."
 msgstr "El borrador guardado está dañado."
 
-#: __app.rb:1579
+#: __app.rb:1580
 msgid "The saved game is no longer available."
 msgstr "La partida guardada ya no está disponible."
 
-#: __app.rb:1377
+#: __app.rb:1378
 msgid "The saved game storage is damaged or incompatible."
 msgstr "El almacenamiento de partidas guardadas está dañado o es incompatible."
 
-#: games/krowa.rb:315
+#: games/krowa.rb:316
 msgid "The saved secret is unavailable. The game cannot check attempts until it is restored."
 msgstr "La solución guardada no está disponible. El juego no puede comprobar los intentos hasta que se restaure."
 
@@ -25681,7 +25761,7 @@ msgctxt "cat_head_tail"
 msgid "The score limit must be greater than zero."
 msgstr "El límite de puntos debe ser mayor que cero."
 
-#: __app.rb:947
+#: __app.rb:948
 msgid "The scores from a completed round are unavailable. No forfeit was recorded."
 msgstr "No están disponibles las puntuaciones de una ronda terminada. No se ha registrado ninguna derrota por incomparecencia."
 
@@ -25696,7 +25776,7 @@ msgstr ""
 msgid "The second player's pieces are at the bottom."
 msgstr "Las piezas del segundo jugador están abajo."
 
-#: games/krowa.rb:316
+#: games/krowa.rb:317
 msgid "The secret could not be saved locally. The word has not been started; please try again."
 msgstr "No se ha podido guardar la solución localmente. No se ha empezado la palabra; inténtalo de nuevo."
 
@@ -25750,7 +25830,7 @@ msgstr "El idioma seleccionado no está disponible para este conjunto de conteni
 msgid "The selected piece cannot capture %{piece} on %{field} with this move."
 msgstr "La pieza seleccionada no puede capturar la pieza %{piece} en %{field} con este movimiento."
 
-#: games/quiz_party.rb:153
+#: games/quiz_party.rb:154
 msgid "The selected question set contains no questions."
 msgstr "El conjunto de preguntas seleccionado no contiene preguntas."
 
@@ -25778,7 +25858,7 @@ msgstr "No se pudo eliminar el mensaje enviado."
 msgid "The separate server test shares tournaments and supports automatic results for matches between two individual players at ordinary public tables. Automatic invitations are not available yet."
 msgstr "La prueba de servidor comparte torneos y admite resultados automáticos para partidos entre dos jugadores individuales en mesas públicas normales. Las invitaciones automáticas aún no están disponibles."
 
-#: games/krowa_support/leaderboards.rb:107 games/krowa_support/leaderboards.rb:90
+#: games/krowa_support/leaderboards.rb:119 games/krowa_support/leaderboards.rb:99
 msgid "The server already has the same or a better result."
 msgstr "El servidor ya tiene el mismo resultado o uno mejor."
 
@@ -25798,14 +25878,14 @@ msgstr "El servidor no está disponible o ha denegado el acceso. El borrador loc
 msgid "The server repeated a page of submissions."
 msgstr "El servidor ha repetido una página de envíos."
 
-#: __app.rb:616
+#: __app.rb:617
 msgid "The server requires an official launcher stamp that this Elten session cannot provide. Changing developer mode does not grant server table access. Global lobby history and sending invitations are unavailable until server table access is confirmed."
 msgstr "El servidor exige la verificación del iniciador oficial, que esta sesión de ELTEN no puede proporcionar. Cambiar el modo de desarrollador no da acceso a las tablas. El historial general y el envío de invitaciones no estarán disponibles hasta que se confirme el acceso."
 
 msgid "The server tournament test failed. No local fallback was used. Check Operations before repeating a write."
 msgstr "La operación de prueba del servidor ha fallado. No se ha usado el almacén local como alternativa. Revisa Operaciones antes de repetir la escritura."
 
-#: __app.rb:3370 lib/table_roster_reader.rb:79
+#: __app.rb:3371 lib/table_roster_reader.rb:79
 msgid "The settings of this table are not available."
 msgstr "Los ajustes de esta mesa no están disponibles."
 
@@ -25842,7 +25922,7 @@ msgstr ""
 msgid "The soft nest looks like a good place for a nap."
 msgstr "El nido mullido invita a una siesta."
 
-#: __app.rb:3911 __app.rb:3916
+#: __app.rb:3912 __app.rb:3917
 msgid "The sound volume could not be saved."
 msgstr "No se ha podido guardar el volumen de los sonidos."
 
@@ -25880,7 +25960,7 @@ msgstr ""
 msgid "The table and score use Power Games's normal session; movement uses Communications. During a human match, each player calculates their own flight and return locally. Lost or delayed paddle-position updates alone do not stop the ball. Serves, returns and misses travel separately in order. An actual connection failure pauses the rally; a replacement connection restarts the unfinished point with the confirmed score unchanged. Observers may listen but cannot control a paddle. Unfinished matches cannot currently be saved."
 msgstr ""
 
-#: __app.rb:3673 __app.rb:3819 __app.rb:3838
+#: __app.rb:3674 __app.rb:3820 __app.rb:3839
 msgid "The table changed while you were editing. Open its settings again."
 msgstr "La mesa ha cambiado mientras la editabas. Vuelve a abrir sus ajustes."
 
@@ -25913,11 +25993,11 @@ msgstr ""
 msgid "The table form shows only settings relevant to the chosen variant. Number of letters is available in Random word and Race; Scoring criterion appears only in Race. Daily Krowa and Word Tower select their own lengths and hide both settings."
 msgstr ""
 
-#: __app.rb:1337
+#: __app.rb:1338
 msgid "The table history could not be saved."
 msgstr "No se ha podido guardar el historial de la mesa."
 
-#: __app.rb:1333
+#: __app.rb:1334
 msgid "The table history has been saved to %{path}."
 msgstr "El historial de la mesa se ha guardado en %{path}."
 
@@ -25925,7 +26005,7 @@ msgstr "El historial de la mesa se ha guardado en %{path}."
 msgid "The table is empty."
 msgstr "La mesa está vacía."
 
-#: __app.rb:1546
+#: __app.rb:1547
 msgid "The table is waiting for the original players. Start the game when everyone has joined."
 msgstr "La mesa está esperando a los jugadores originales. Inicia la partida cuando se hayan unido todos."
 
@@ -25974,7 +26054,7 @@ msgstr ""
 msgid "The table settings let you combine these variants:"
 msgstr ""
 
-#: games/krowa.rb:127
+#: games/krowa.rb:128
 msgid "The table will be closed."
 msgstr "La mesa se cerrará."
 
@@ -25985,7 +26065,7 @@ msgstr ""
 msgid "The taker leads first, and the winner of each trick leads the next. A trump beats every non-trump; without a trump the highest card of the led suit wins. Collected round points and the actual score change are different figures, so both are announced."
 msgstr ""
 
-#: games/tysiac.rb:788
+#: games/tysiac.rb:799
 msgid "The talon is %{cards}."
 msgstr "La reserva es: %{cards}."
 
@@ -26007,7 +26087,7 @@ msgstr ""
 msgid "The target score is a positive number, normally 300. Scores are checked after the deal. A sole leader at or above the target wins; a tie for first place means another deal. In a team game compare team scores, not individual tricks."
 msgstr ""
 
-#: games/quiz_party.rb:151
+#: games/quiz_party.rb:152
 msgid "The target score must be at least %{minimum} points."
 msgstr "La puntuación objetivo debe ser de al menos %{minimum} puntos."
 
@@ -26023,7 +26103,7 @@ msgstr "La puntuación objetivo debe estar entre 10 y 1000 puntos."
 msgid "The target score must be between 100 and 100000."
 msgstr "La puntuación objetivo debe estar entre 100 y 100000."
 
-#: games/quiz_party.rb:816
+#: games/quiz_party.rb:817
 msgid "The target score was reached."
 msgstr "Se ha alcanzado la puntuación objetivo."
 
@@ -26066,7 +26146,7 @@ msgstr "El torneo ha cambiado. Actualiza y vuelve a elegir la acción."
 msgid "The tournament changed. Refresh its view before changing it again."
 msgstr "El torneo ha cambiado. Actualiza la vista antes de volver a modificarlo."
 
-#: __app.rb:3510 __app.rb:913 lib/tournaments/public_text.rb:69
+#: __app.rb:3511 __app.rb:914 lib/tournaments/public_text.rb:69
 msgid "The tournament deadline has passed. New matches cannot be started; games already in progress may finish."
 msgstr "Ha pasado la fecha límite del torneo. No se pueden iniciar nuevos encuentros; las partidas en curso pueden terminar."
 
@@ -26151,7 +26231,7 @@ msgstr ""
 msgid "The upper-section bonus adds 35 points if the six upper rows total at least 63. It is enabled by default. You do not need three of each value separately: a strong result in Sixes can compensate for a weak result in Ones. Switching the bonus off leaves the rows themselves unchanged."
 msgstr ""
 
-#: __app.rb:3489 __app.rb:3661
+#: __app.rb:3490 __app.rb:3662
 msgid "The users at the table changed while teams were being selected. Please start again."
 msgstr "Los usuarios de la mesa han cambiado durante la selección de equipos. Vuelve a empezar."
 
@@ -26281,19 +26361,19 @@ msgstr "No hay combinaciones en la mesa."
 msgid "There are no non-empty answers to review"
 msgstr "No hay respuestas con contenido para evaluar"
 
-#: __app.rb:2470
+#: __app.rb:2471
 msgid "There are no online contacts available to invite."
 msgstr "No hay contactos conectados a los que puedas invitar."
 
-#: __app.rb:2470
+#: __app.rb:2471
 msgid "There are no online users available to invite."
 msgstr "No hay usuarios conectados a los que puedas invitar."
 
-#: __app.rb:1681
+#: __app.rb:1682
 msgid "There are no open tables for this game."
 msgstr "No hay mesas abiertas para este juego."
 
-#: __app.rb:1636
+#: __app.rb:1637
 msgid "There are no open tables."
 msgstr "No hay mesas abiertas."
 
@@ -26301,7 +26381,7 @@ msgstr "No hay mesas abiertas."
 msgid "There are no optional board sizes or alternative placement rules in this game. Either player can be a bot."
 msgstr ""
 
-#: __app.rb:2577
+#: __app.rb:2578
 msgid "There are no pending invitations."
 msgstr "No hay invitaciones pendientes."
 
@@ -26341,7 +26421,7 @@ msgstr ""
 msgid "There is a short break before the next serve after an ordinary point, and a five-second break between sets. The game automatically announces the set number and who is serving. You do not need to request these announcements."
 msgstr ""
 
-#: __app.rb:3952
+#: __app.rb:3953
 msgid "There is currently %{current} user at the table."
 msgid_plural "There are currently %{current} users at the table."
 msgstr[0] "Actualmente hay %{current} usuario en la mesa."
@@ -26358,7 +26438,7 @@ msgstr "No hay ninguna carta en la pila de descartes."
 msgid "There is no computer to remove."
 msgstr "No hay ningún ordenador que eliminar."
 
-#: games/bridge/presentation.rb:506
+#: games/bridge/presentation.rb:506 games/tysiac.rb:1671
 msgid "There is no contract yet."
 msgstr "Todavía no hay contrato."
 
@@ -26403,11 +26483,11 @@ msgstr "Esta partida no tiene límite de tiempo."
 msgid "There is no trump at the beginning of a deal. When leading a trick after the first trick, a player who still holds the king and queen of one suit may play either card and declare the marriage. That suit immediately becomes trump and the player receives 100 points for hearts, 80 for diamonds, 60 for clubs or 40 for spades."
 msgstr ""
 
-#: games/tysiac.rb:485
+#: games/tysiac.rb:496
 msgid "There is no trump suit."
 msgstr "No hay palo de triunfo."
 
-#: __app.rb:2394
+#: __app.rb:2395
 msgid "There is nobody available to replace this player."
 msgstr "No hay nadie disponible para sustituir a este jugador."
 
@@ -26572,7 +26652,7 @@ msgstr "Esta variante de mahjong requiere %{count} jugadores, incluidos los bots
 msgid "This Tysiac variant requires exactly %{count} players."
 msgstr "Esta variante de Mil requiere exactamente %{count} jugadores."
 
-#: games/krowa_support/leaderboards.rb:126
+#: games/krowa_support/leaderboards.rb:141
 msgid "This Word Tower result has already been published."
 msgstr "Este resultado de Torre de palabras ya se ha publicado."
 
@@ -26628,7 +26708,7 @@ msgstr ""
 msgid "This card is not in the hand that is to play."
 msgstr "Esa carta no está en la mano a la que le toca."
 
-#: games/dealt_card_game.rb:91 games/makao.rb:443 games/ninety_nine.rb:403 games/spades.rb:560 games/three_five_eight.rb:390 games/tysiac.rb:507
+#: games/dealt_card_game.rb:91 games/makao.rb:443 games/ninety_nine.rb:403 games/spades.rb:560 games/three_five_eight.rb:390 games/tysiac.rb:518
 msgid "This card is not in your hand."
 msgstr "Esta carta no está en tu mano."
 
@@ -26719,7 +26799,7 @@ msgstr "Este juego no proporciona una puntuación numérica."
 msgid "This game does not support computers."
 msgstr ""
 
-#: __app.rb:946
+#: __app.rb:947
 msgid "This game does not yet support removing a participant from a tournament match in progress. No result was recorded."
 msgstr "Este juego aún no permite retirar participantes de una partida de torneo en curso. No se ha registrado ningún resultado."
 
@@ -26731,7 +26811,7 @@ msgstr "Esta partida ya ha terminado."
 msgid "This game is not supported by this version of ELTEN Game Room."
 msgstr "Esta versión de ELTEN Game Room no admite este juego."
 
-#: __app.rb:3454 __app.rb:3739 __app.rb:3942
+#: __app.rb:3455 __app.rb:3740 __app.rb:3943
 msgid "This game is not supported by this version of Power Games."
 msgstr "Esta versión de Power Games no admite este juego."
 
@@ -26743,7 +26823,7 @@ msgstr ""
 msgid "This game requires %{minimum} to %{maximum} players per match."
 msgstr ""
 
-#: __app.rb:3948
+#: __app.rb:3949
 msgid "This game requires exactly %{required} players."
 msgstr "Este juego requiere exactamente %{required} jugadores."
 
@@ -26751,7 +26831,7 @@ msgstr "Este juego requiere exactamente %{required} jugadores."
 msgid "This game requires exactly %{required} players. There are currently %{current} users at the table."
 msgstr "Este juego requiere exactamente %{required} jugadores. Actualmente hay %{current} usuarios en la mesa."
 
-#: __app.rb:3950
+#: __app.rb:3951
 msgid "This game requires from %{minimum} to %{maximum} players."
 msgstr "Este juego requiere entre %{minimum} y %{maximum} jugadores."
 
@@ -26759,7 +26839,7 @@ msgstr "Este juego requiere entre %{minimum} y %{maximum} jugadores."
 msgid "This game requires from %{minimum} to %{maximum} players. There are currently %{current} users at the table."
 msgstr "Este juego requiere entre %{minimum} y %{maximum} jugadores. Actualmente hay %{current} usuarios en la mesa."
 
-#: __app.rb:904
+#: __app.rb:905
 msgid "This game variant requires a private table and is not supported by this server test."
 msgstr "Esta variante requiere una mesa privada y no está disponible en esta prueba del servidor."
 
@@ -26773,11 +26853,11 @@ msgstr ""
 msgid "This invitation expired. Choose Play to send a new one."
 msgstr "La invitación ha caducado. Elige Jugar para enviar otra."
 
-#: __app.rb:2773 __app.rb:471
+#: __app.rb:2774 __app.rb:472
 msgid "This invitation has expired."
 msgstr "Esta invitación ha caducado."
 
-#: __app.rb:2589 __app.rb:2676 __app.rb:2810
+#: __app.rb:2590 __app.rb:2677 __app.rb:2811
 msgid "This invitation is no longer available."
 msgstr "Esta invitación ya no está disponible."
 
@@ -26789,7 +26869,7 @@ msgstr "Es un subtotal de bonos básicos, no el valor final de la mano. Conserva
 msgid "This is an observed candidate, not a final plan."
 msgstr ""
 
-#: games/tysiac.rb:511
+#: games/tysiac.rb:522
 msgid "This marriage cannot be declared now."
 msgstr "No se puede realizar este anuncio ahora."
 
@@ -26797,7 +26877,7 @@ msgstr "No se puede realizar este anuncio ahora."
 msgid "This match has already been played."
 msgstr "Este encuentro ya se ha jugado."
 
-#: __app.rb:949
+#: __app.rb:950
 msgid "This match has already been resolved."
 msgstr "Esta partida ya está resuelta."
 
@@ -26805,15 +26885,15 @@ msgstr "Esta partida ya está resuelta."
 msgid "This match has already finished."
 msgstr "Este encuentro ya ha terminado."
 
-#: __app.rb:903
+#: __app.rb:904
 msgid "This match has unsupported player counts or team assignments for the selected game."
 msgstr "La cantidad de jugadores o la composición de equipos no es compatible con el juego seleccionado."
 
-#: __app.rb:336 lib/tournaments/proposal_notifications_runtime.rb:59 lib/tournaments/proposal_notifications_runtime.rb:72 lib/tournaments/server_proposal_screen.rb:49
+#: __app.rb:337 lib/tournaments/proposal_notifications_runtime.rb:59 lib/tournaments/proposal_notifications_runtime.rb:72 lib/tournaments/server_proposal_screen.rb:49
 msgid "This match invitation is no longer available."
 msgstr "Esta invitación a la partida ya no está disponible."
 
-#: __app.rb:945
+#: __app.rb:946
 msgid "This match is still being played. A manual forfeit cannot interrupt it."
 msgstr "Esta partida sigue en curso. El organizador no puede interrumpirla con una derrota por incomparecencia."
 
@@ -26824,7 +26904,7 @@ msgstr "Este plan de partidos se ha leído del servidor y comprobado con las ins
 msgid "This match proposal changed. Refresh before responding; no new opponent was accepted."
 msgstr "La propuesta cambió. Actualiza antes de responder; no se aceptó un nuevo rival."
 
-#: __app.rb:901
+#: __app.rb:902
 msgid "This match was started or its state is uncertain, so it cannot be started again. Use 'Check pending changes' in the tournament list to check any unconfirmed operation."
 msgstr "Este encuentro ya empezó o su estado no está confirmado, por lo que no se puede iniciar de nuevo. En la lista de torneos, selecciona «Comprobar cambios pendientes» para revisar las operaciones que aún no se han confirmado."
 
@@ -26852,7 +26932,7 @@ msgstr "Este movimiento no es válido en la posición actual."
 msgid "This move would leave your king in check."
 msgstr "Este movimiento dejaría a tu rey en jaque."
 
-#: games/krowa.rb:311
+#: games/krowa.rb:312
 msgid "This noun is not in the dictionary."
 msgstr "Este sustantivo no está en el diccionario."
 
@@ -26870,7 +26950,7 @@ msgstr "Esta prueba en mesa normal admite dos jugadores individuales. Las mesas 
 msgid "This participant already has a partner."
 msgstr "Este participante ya tiene compañero."
 
-#: __app.rb:2401
+#: __app.rb:2402
 msgid "This participant cannot replace the selected player."
 msgstr "Este participante no puede sustituir al jugador seleccionado."
 
@@ -26894,11 +26974,11 @@ msgstr "Esta plataforma no puede convertir la hora local de forma segura. Elige 
 msgid "This player already has a partner. Refresh the list and choose a free player."
 msgstr ""
 
-#: __app.rb:2387
+#: __app.rb:2388
 msgid "This player is no longer at the table."
 msgstr "Este jugador ya no está en la mesa."
 
-#: __app.rb:3104
+#: __app.rb:3105
 msgid "This preset needs updating. Check its game and options before creating a table."
 msgstr "Esta configuración predefinida necesita actualizarse. Comprueba el juego y sus opciones antes de crear una mesa."
 
@@ -26934,11 +27014,11 @@ msgstr ""
 msgid "This runtime cannot safely read local tournament test data."
 msgstr ""
 
-#: __app.rb:1460 __app.rb:1624
+#: __app.rb:1461 __app.rb:1625
 msgid "This saved game is not compatible with this version or is damaged."
 msgstr "Esta partida guardada no es compatible con esta versión o está dañada."
 
-#: __app.rb:1409
+#: __app.rb:1410
 msgid "This saved game needs %{count} seats, but tables support at most %{maximum}."
 msgstr "Esta partida guardada necesita %{count} plazas, pero las mesas admiten como máximo %{maximum}."
 
@@ -26972,15 +27052,15 @@ msgstr "Esta casilla no tiene título de propiedad."
 msgid "This table already has a game. A forfeit cannot replace a game in progress or a finished result."
 msgstr "Ya se inició una partida en esta mesa. Una victoria por incomparecencia no puede sustituir una partida en curso ni un resultado guardado."
 
-#: __app.rb:3220 __app.rb:367
+#: __app.rb:3221 __app.rb:368
 msgid "This table announcement has expired or is no longer available."
 msgstr "Este anuncio de mesa ha caducado o ya no está disponible."
 
-#: __app.rb:1744 __app.rb:2337 __app.rb:2684 __app.rb:2728 __app.rb:2737 __app.rb:3070
+#: __app.rb:1745 __app.rb:2338 __app.rb:2685 __app.rb:2729 __app.rb:2738 __app.rb:3071
 msgid "This table is full."
 msgstr "Esta mesa está llena."
 
-#: __app.rb:1538 __app.rb:1563 __app.rb:1747 __app.rb:2338 __app.rb:2504 __app.rb:2676 __app.rb:2728 __app.rb:2740 __app.rb:3072 __app.rb:3233 __app.rb:484 lib/game_table_background.rb:116 lib/table_roster_reader.rb:48
+#: __app.rb:1539 __app.rb:1564 __app.rb:1748 __app.rb:2339 __app.rb:2505 __app.rb:2677 __app.rb:2729 __app.rb:2741 __app.rb:3073 __app.rb:3234 __app.rb:485 lib/game_table_background.rb:116 lib/table_roster_reader.rb:48
 msgid "This table is no longer available."
 msgstr "Esta mesa ya no está disponible."
 
@@ -27020,7 +27100,7 @@ msgstr ""
 msgid "This tournament is no longer available."
 msgstr "Este torneo ya no está disponible."
 
-#: __app.rb:843 lib/tournaments/tournament_start_runtime.rb:113 lib/tournaments/tournament_start_runtime.rb:161 lib/tournaments/tournament_start_runtime.rb:93
+#: __app.rb:844 lib/tournaments/tournament_start_runtime.rb:113 lib/tournaments/tournament_start_runtime.rb:161 lib/tournaments/tournament_start_runtime.rb:93
 msgid "This tournament notification is no longer available."
 msgstr "Esta notificación del torneo ya no está disponible."
 
@@ -27032,7 +27112,7 @@ msgstr "Este torneo usa cartas privadas. Vuelve a la misma mesa para continuar; 
 msgid "This trade is no longer valid. Check the player, properties and available cash."
 msgstr "Este intercambio ya no es válido. Comprueba el jugador, las propiedades y el efectivo disponible."
 
-#: __app.rb:2502
+#: __app.rb:2503
 msgid "This user is already at the table."
 msgstr "Este usuario ya está en la mesa."
 
@@ -27043,11 +27123,11 @@ msgstr "Este valor no está permitido."
 msgid "This variant deals five private cards and has no community cards. The first betting round is followed by one exchange phase, a second betting round and showdown. Keep all five or exchange up to three selected cards. Allow exchanging all five cards is off by default; enabling it raises the exchange limit to five, not the number of exchange phases. Folded players do not exchange; all-in players still do."
 msgstr ""
 
-#: games/krowa.rb:186
+#: games/krowa.rb:187
 msgid "This variant is for exactly one player. Other people may only observe Random word."
 msgstr "Esta variante es para un solo jugador. Las demás personas solo pueden observar Palabra aleatoria."
 
-#: games/krowa.rb:191
+#: games/krowa.rb:192
 msgid "This variant requires %{minimum} to %{maximum} players."
 msgstr "Esta variante requiere de %{minimum} a %{maximum} jugadores."
 
@@ -27068,7 +27148,7 @@ msgstr ""
 msgid "This version uses the classic 8 by 8 rules without additional variants."
 msgstr ""
 
-#: games/krowa.rb:312
+#: games/krowa.rb:313
 msgid "This word has already been tried."
 msgstr "Ya se ha probado esta palabra."
 
@@ -27214,11 +27294,11 @@ msgstr "Tiempo para describir en segundos"
 msgid "Time for one answer defaults to 20 seconds. The offered choices are 5–10 seconds one second apart, then 15–60 in steps of five. This limit applies separately to each question. The target defaults to 15 points; the list also offers 20, 25, 30, 40 and 50."
 msgstr ""
 
-#: games/quiz_party.rb:124
+#: games/quiz_party.rb:125
 msgid "Time for one answer in seconds"
 msgstr "Tiempo por respuesta en segundos"
 
-#: games/categories.rb:451 games/quiz_party.rb:313
+#: games/categories.rb:451 games/quiz_party.rb:314
 msgid "Time is up."
 msgstr "Se ha agotado el tiempo."
 
@@ -27289,7 +27369,7 @@ msgstr ""
 msgid "To swap two positions, press Shift with the first position's digit, then Shift with the second. You can also select each position with the arrow keys and Enter. Listen and swap as often as you need."
 msgstr ""
 
-#: __app.rb:3446
+#: __app.rb:3447
 msgid "To use the new game rules, create a table in Game Room 2.0. All players need version 2.0 or later."
 msgstr "Para utilizar las nuevas reglas, crea una mesa en Game Room 2.0. Todos los jugadores necesitan la versión 2.0 o posterior."
 
@@ -27303,6 +27383,10 @@ msgstr "Aseo público"
 #: lib/game_statistics_periods.rb:33
 msgid "Today"
 msgstr ""
+
+#: games/krowa_support/attempt_list_view.rb:31
+msgid "Today's Daily Krowa attempts are hidden until the next day."
+msgstr "Los intentos de la Krowa diaria de hoy estarán disponibles mañana."
 
 #: games/krowa_support/daily_access.rb:131
 msgid "Today's Daily Krowa is no longer available. Come back tomorrow for a new word."
@@ -27446,7 +27530,7 @@ msgstr "Formato del torneo"
 msgid "Tournament game result: %{id}"
 msgstr "Resultado de partida: torneo %{id}"
 
-#: __app.rb:1309 __app.rb:1449 __app.rb:1613 lib/game_screen.rb:285
+#: __app.rb:1310 __app.rb:1450 __app.rb:1614 lib/game_screen.rb:285
 msgid "Tournament games cannot be saved or resumed from a saved game."
 msgstr "Las partidas de torneo no se pueden guardar ni reanudar desde una partida guardada."
 
@@ -27469,7 +27553,7 @@ msgstr "Lista de torneos"
 msgid "Tournament list scope"
 msgstr "Vista de la lista de torneos"
 
-#: __app.rb:3345 __app.rb:3349 lib/tournaments/server_proposal_screen.rb:27
+#: __app.rb:3346 __app.rb:3350 lib/tournaments/server_proposal_screen.rb:27
 msgid "Tournament match"
 msgstr "Partido del torneo"
 
@@ -27521,7 +27605,7 @@ msgstr "Parejas del torneo"
 msgid "Tournament participants and invitations are now managed from the participant list. Organizers can invite several online users or contacts at once; Ctrl+L shows pending and declined invitations."
 msgstr "Los participantes y las invitaciones del torneo se gestionan ahora desde la lista de participantes. El organizador puede invitar a varias personas conectadas o de sus contactos a la vez; Ctrl+L muestra las invitaciones pendientes y rechazadas."
 
-#: __app.rb:831 lib/tournaments/tournament_start_runtime.rb:115
+#: __app.rb:832 lib/tournaments/tournament_start_runtime.rb:115
 msgid "Tournament partnership"
 msgstr "Pareja del torneo"
 
@@ -27585,11 +27669,11 @@ msgstr "Creación de mesa: torneo %{id}"
 msgid "Tournament table link: %{id}"
 msgstr "Vinculación de mesa: torneo %{id}"
 
-#: __app.rb:1312 __app.rb:1452 __app.rb:1616 __app.rb:3506 __app.rb:907 __app.rb:950 __app.rb:967
+#: __app.rb:1313 __app.rb:1453 __app.rb:1617 __app.rb:3507 __app.rb:908 __app.rb:951 __app.rb:968
 msgid "Tournament table operation blocked: %{reason}"
 msgstr "Operación de mesa del torneo bloqueada: %{reason}"
 
-#: __app.rb:1316 __app.rb:1456 __app.rb:1620 __app.rb:915 __app.rb:955 __app.rb:971
+#: __app.rb:1317 __app.rb:1457 __app.rb:1621 __app.rb:916 __app.rb:956 __app.rb:972
 msgid "Tournament table or result not confirmed. Check Operations before trying again."
 msgstr "La mesa o el resultado del torneo no está confirmado. Revisa Operaciones antes de intentarlo otra vez."
 
@@ -27609,7 +27693,7 @@ msgstr "Torneo actualizado."
 msgid "Tournament winner: %{player}"
 msgstr "Ganador del torneo: %{player}"
 
-#: __app.rb:239 lib/game_room_ui.rb:131 lib/game_room_ui.rb:328 lib/game_room_widget.rb:200 lib/game_room_widget.rb:206 lib/tournaments/public_screen.rb:181 lib/tournaments/public_screen.rb:65 lib/tournaments/server_workspace.rb:756
+#: __app.rb:240 lib/game_room_ui.rb:131 lib/game_room_ui.rb:328 lib/game_room_widget.rb:200 lib/game_room_widget.rb:206 lib/tournaments/public_screen.rb:181 lib/tournaments/public_screen.rb:65 lib/tournaments/server_workspace.rb:756
 msgid "Tournaments"
 msgstr "Torneos"
 
@@ -27690,7 +27774,7 @@ msgstr ""
 msgid "Tricks: %{tricks}."
 msgstr "Bazas: %{tricks}."
 
-#: games/tysiac.rb:485
+#: games/tysiac.rb:496
 msgid "Trump: %{suit}."
 msgstr "Triunfo: %{suit}."
 
@@ -27917,7 +28001,7 @@ msgstr "Los doses y los treses pueden responderse entre sí"
 msgid "Twos, threes, fours and kings"
 msgstr ""
 
-#: __app.rb:2136 lib/game_screen/input.rb:381
+#: __app.rb:2137 lib/game_screen/input.rb:381
 msgid "Type a chat message first."
 msgstr "Escribe primero un mensaje en el chat."
 
@@ -28211,7 +28295,7 @@ msgstr ""
 msgid "Updating game"
 msgstr "Actualizando la partida"
 
-#: __app.rb:1610 __app.rb:2003 __app.rb:2254 __app.rb:2263 __app.rb:2274 __app.rb:2361 __app.rb:2406 __app.rb:3648 __app.rb:3657 __app.rb:3802 __app.rb:3815 __app.rb:3856 lib/game_screen.rb:1079 lib/game_screen/input.rb:531
+#: __app.rb:1611 __app.rb:2004 __app.rb:2255 __app.rb:2264 __app.rb:2275 __app.rb:2362 __app.rb:2407 __app.rb:3649 __app.rb:3658 __app.rb:3803 __app.rb:3816 __app.rb:3857 lib/game_screen.rb:1079 lib/game_screen/input.rb:531
 msgid "Updating table"
 msgstr "Actualizando la mesa"
 
@@ -28374,7 +28458,7 @@ msgstr "Usar dos comodines"
 msgid "Use two jokers adds two cards that can represent an ordinary or special card. You choose what the joker represents when playing it. It only defends a penalty if the represented card would be a legal defence. Representing an ace, jack or king uses its special effect only when that effect is enabled at the table."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:186 games/krowa_support/leaderboards.rb:74
+#: games/krowa_support/leaderboards.rb:201 games/krowa_support/leaderboards.rb:76
 msgid "User"
 msgstr "Usuario"
 
@@ -28389,7 +28473,7 @@ msgstr "Usuarios en la mesa (%{count})"
 msgid "Users at the table. %{name}; %{game}; host: %{owner}; %{count}/%{maximum}"
 msgstr "Usuarios en la mesa. %{name}; %{game}; anfitrión de la mesa: %{owner}; %{count}/%{maximum}"
 
-#: __app.rb:3354
+#: __app.rb:3355
 msgid "Users at the table. %{status}; %{name}; %{game}; host: %{owner}; %{count}/%{maximum}"
 msgstr "Usuarios de la mesa. %{status}; %{name}; %{game}; anfitrión: %{owner}; %{count}/%{maximum}"
 
@@ -28607,7 +28691,7 @@ msgstr "W: selecciona el primer carril o realiza el primer tipo de golpe despué
 msgid "WARNING: local trial only, not a server seal. Acceptance saves an immutable full local plan. It does not assign game roles, teams, starting seats or scoring and cannot start a match."
 msgstr ""
 
-#: games/krowa.rb:313
+#: games/krowa.rb:314
 msgid "Wait for the round to start."
 msgstr "Espera a que empiece la ronda."
 
@@ -28619,7 +28703,7 @@ msgstr "Espera a que termine la subasta antes de guardar la partida."
 msgid "Wait until the current game has finished before changing its controller."
 msgstr ""
 
-#: games/krowa.rb:152
+#: games/krowa.rb:153
 msgid "Wait until the current word and all attempts have been checked before saving."
 msgstr "Antes de guardar, espera a que se hayan comprobado la palabra actual y todos los intentos."
 
@@ -28784,7 +28868,7 @@ msgstr "Esperando a los demás jugadores"
 msgid "Waiting for the other players."
 msgstr "Esperando a los demás jugadores."
 
-#: games/quiz_party.rb:1240
+#: games/quiz_party.rb:1241
 msgid "Waiting for the players to answer."
 msgstr "Esperando a que los jugadores respondan."
 
@@ -28796,11 +28880,11 @@ msgstr "Esperando a que los jugadores terminen de responder."
 msgid "Waiting for the point to be saved."
 msgstr "Esperando a que se guarde el punto."
 
-#: games/krowa_support/client.rb:89
+#: games/krowa_support/client.rb:91
 msgid "Waiting for the private solution."
 msgstr "Esperando la solución por vía privada."
 
-#: __app.rb:1588
+#: __app.rb:1589
 msgid "Waiting for these players: %{players}."
 msgstr "Esperando a estos jugadores: %{players}."
 
@@ -28943,7 +29027,7 @@ msgstr ""
 msgid "What your card will do"
 msgstr ""
 
-#: __app.rb:246 lib/game_room_screens.rb:63
+#: __app.rb:247 lib/game_room_screens.rb:63
 msgid "What's new"
 msgstr "Novedades"
 
@@ -29400,15 +29484,19 @@ msgstr "Aún sin compañero"
 msgid "Without all or nothing"
 msgstr "Sin todo o nada"
 
+#: lib/sports_rankings/screen.rb:83
+msgid "Won"
+msgstr "Ganados"
+
 #: games/duck_racing_support/presentation.rb:37
 msgid "Wooden zone"
 msgstr "Zona arbolada"
 
-#: games/krowa_support/leaderboards.rb:154 games/krowa_support/leaderboards.rb:240 games/krowa_support/leaderboards.rb:282
+#: games/krowa_support/leaderboards.rb:169 games/krowa_support/leaderboards.rb:266 games/krowa_support/leaderboards.rb:308
 msgid "Word"
 msgstr "Palabra"
 
-#: games/krowa.rb:134
+#: games/krowa.rb:135
 msgid "Word Tower"
 msgstr "Torre de palabras"
 
@@ -29420,15 +29508,15 @@ msgstr "Torre de palabras ha terminado. Rondas completadas: %{count}."
 msgid "Word Tower ends when the limit is exhausted or the host surrenders. Its score is the number of completed rounds; the round list contains words and attempt counts."
 msgstr ""
 
-#: games/krowa_support/leaderboards.rb:265 games/krowa_support/leaderboards.rb:33
+#: games/krowa_support/leaderboards.rb:291 games/krowa_support/leaderboards.rb:35
 msgid "Word Tower leaderboard"
 msgstr "Clasificación de Torre de palabras"
 
-#: games/krowa_support/leaderboards.rb:122
+#: games/krowa_support/leaderboards.rb:137
 msgid "Word Tower result published."
 msgstr "Resultado de Torre de palabras publicado."
 
-#: games/krowa_support/leaderboards.rb:284
+#: games/krowa_support/leaderboards.rb:310
 msgid "Word Tower: %{participants}"
 msgstr "Torre de palabras: %{participants}"
 
@@ -29440,11 +29528,11 @@ msgstr "Palabra aceptada."
 msgid "Word board"
 msgstr "Tablero de palabras"
 
-#: games/krowa_support/client.rb:249 games/krowa_support/presentation.rb:56 games/krowa_support/presentation.rb:58
+#: games/krowa_support/client.rb:255 games/krowa_support/presentation.rb:56 games/krowa_support/presentation.rb:58
 msgid "Word definition"
 msgstr "Definición de la palabra"
 
-#: games/krowa_support/leaderboards.rb:235
+#: games/krowa_support/leaderboards.rb:261
 msgid "Word leaderboard"
 msgstr ""
 
@@ -29452,7 +29540,7 @@ msgstr ""
 msgid "Word not accepted."
 msgstr "Palabra no válida."
 
-#: games/krowa_support/leaderboards.rb:207
+#: games/krowa_support/leaderboards.rb:233
 msgid "Word or word fragment"
 msgstr "Palabra o fragmento de palabra"
 
@@ -29504,7 +29592,7 @@ msgstr "Respuesta incorrecta 2"
 msgid "Wrong answer 3"
 msgstr "Respuesta incorrecta 3"
 
-#: games/krowa.rb:311
+#: games/krowa.rb:312
 msgid "Wrong number of letters."
 msgstr "Número de letras incorrecto."
 
@@ -29544,11 +29632,11 @@ msgstr "Sí"
 msgid "You already accepted another match. Cancel that invitation or finish the match first."
 msgstr "Ya has aceptado otra partida. Cancela esa invitación o termina primero aquella partida."
 
-#: games/quiz_party.rb:786
+#: games/quiz_party.rb:787
 msgid "You answered correctly."
 msgstr "Has respondido correctamente."
 
-#: games/quiz_party.rb:786
+#: games/quiz_party.rb:787
 msgid "You answered incorrectly."
 msgstr "Has respondido incorrectamente."
 
@@ -29556,11 +29644,11 @@ msgstr "Has respondido incorrectamente."
 msgid "You are already at a table."
 msgstr "Ya estás en una mesa."
 
-#: __app.rb:1428 __app.rb:1442 __app.rb:1740 __app.rb:2743 __app.rb:3067
+#: __app.rb:1429 __app.rb:1443 __app.rb:1741 __app.rb:2744 __app.rb:3068
 msgid "You are already at another table."
 msgstr "Ya estás en otra mesa."
 
-#: __app.rb:2694
+#: __app.rb:2695
 msgid "You are already at this table."
 msgstr "Ya estás en esta mesa."
 
@@ -29789,7 +29877,7 @@ msgstr "No puedes mover la pieza seleccionada de %{from} a %{to}. Pulsa V para o
 msgid "You cannot move the selected piece to %{field}. Press V to hear its available moves."
 msgstr "No puedes mover la pieza seleccionada a %{field}. Pulsa V para escuchar sus movimientos disponibles."
 
-#: games/tysiac.rb:513
+#: games/tysiac.rb:524
 msgid "You cannot surrender this deal now."
 msgstr "No puedes rendirte en este reparto ahora."
 
@@ -29805,7 +29893,7 @@ msgstr ""
 msgid "You chose %{card}."
 msgstr ""
 
-#: __app.rb:1273
+#: __app.rb:1274
 msgid "You created a room."
 msgstr "Has creado una sala."
 
@@ -29829,7 +29917,7 @@ msgstr "Robas %{card}."
 msgid "You fired %{shots} shots, %{hits} of them hits, and sank %{sunk} ships."
 msgstr "Has efectuado %{shots} disparos, de los cuales %{hits} han dado en el blanco, y has hundido %{sunk} barcos."
 
-#: games/tysiac.rb:1510
+#: games/tysiac.rb:1521
 msgid "You gave %{card} to %{player}."
 msgstr "Has dado %{card} a %{player}."
 
@@ -29949,7 +30037,7 @@ msgstr "No tienes ninguna ficha que puedas jugar."
 msgid "You have no properties available to mortgage now."
 msgstr "Ahora no tienes propiedades que puedas hipotecar."
 
-#: __app.rb:1346
+#: __app.rb:1347
 msgid "You have no saved games."
 msgstr "No tienes partidas guardadas."
 
@@ -30000,7 +30088,7 @@ msgstr ""
 msgid "You hold your cards in your hand and choose which one to play. The cards in your hand are always listed from the lowest to the highest, with the joker last. The cards you win go to a separate pile."
 msgstr ""
 
-#: __app.rb:2867
+#: __app.rb:2868
 msgid "You joined %{player}'s room."
 msgstr "Te has unido a la sala de %{player}."
 
@@ -30077,7 +30165,7 @@ msgstr "Debes cubrir el doble %{number} en el tren de %{player}."
 msgid "You must cover double %{number} on the Mexican train."
 msgstr "Debes cubrir el doble %{number} en el tren mexicano."
 
-#: games/tysiac.rb:509
+#: games/tysiac.rb:520
 msgid "You must follow suit or play a trump when required."
 msgstr "Debes seguir el palo o jugar un triunfo cuando sea obligatorio."
 
@@ -30164,7 +30252,7 @@ msgstr ""
 msgid "You rolled %{value}. Choose a pawn to move"
 msgstr "Has sacado %{value}. Elige una ficha para moverla"
 
-#: games/tysiac.rb:525
+#: games/tysiac.rb:536
 msgid "You set aside %{card}."
 msgstr "Has apartado %{card}."
 
@@ -30172,7 +30260,7 @@ msgstr "Has apartado %{card}."
 msgid "You sit %{seat}; your partner is %{partner}."
 msgstr "Tu puesto: %{seat}; tu compañero: %{partner}."
 
-#: games/tysiac.rb:1504 games/tysiac.rb:1611
+#: games/tysiac.rb:1515 games/tysiac.rb:1622
 msgid "You sit out this deal."
 msgstr ""
 
@@ -30212,11 +30300,11 @@ msgstr ""
 msgid "You want as few points as possible. The round winner receives zero; everyone else adds the value of cards still held. Number cards count their number, coloured action cards 20 and wild cards 50. The elimination limit is normally 500, configurable from 50 to 5000. Players reaching it leave after the round, while the others continue. The last remaining player wins the whole game."
 msgstr ""
 
-#: __app.rb:2355
+#: __app.rb:2356
 msgid "You will observe the next game."
 msgstr "Observarás la próxima partida."
 
-#: __app.rb:2355
+#: __app.rb:2356
 msgid "You will play in the next game."
 msgstr "Jugarás en la próxima partida."
 
@@ -30355,7 +30443,7 @@ msgstr "La distancia actual cuenta para tu puntuación. Normalmente, las cartas 
 msgid "Your current race die is used, including any card that changed its range. This roll does not use up that card's effect."
 msgstr ""
 
-#: games/krowa_support/client.rb:211
+#: games/krowa_support/client.rb:217
 msgid "Your dictionary is empty."
 msgstr "Tu diccionario está vacío."
 
@@ -30406,7 +30494,7 @@ msgstr ""
 msgid "Your game is over. Waiting for the other players."
 msgstr "Tu partida ha terminado. Esperando a los demás jugadores."
 
-#: games/card_game.rb:75 games/dealt_card_game.rb:115 games/makao.rb:352 games/mille_bornes/presentation.rb:34 games/ninety_nine.rb:364 games/rummy_ui.rb:60 games/spades.rb:870 games/three_five_eight.rb:1001 games/three_five_eight.rb:1003 games/three_five_eight.rb:1005 games/tysiac.rb:1505 games/uno.rb:443
+#: games/card_game.rb:75 games/dealt_card_game.rb:115 games/makao.rb:352 games/mille_bornes/presentation.rb:34 games/ninety_nine.rb:364 games/rummy_ui.rb:60 games/spades.rb:870 games/three_five_eight.rb:1001 games/three_five_eight.rb:1003 games/three_five_eight.rb:1005 games/tysiac.rb:1516 games/uno.rb:443
 msgid "Your hand"
 msgstr "Tu mano"
 
@@ -30424,7 +30512,7 @@ msgid_plural "Your hand is empty, so you take %{count} cards from your pile into
 msgstr[0] ""
 msgstr[1] ""
 
-#: games/bridge/presentation.rb:446 games/makao.rb:969 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:903 games/spades.rb:946 games/three_five_eight.rb:1011 games/tysiac.rb:1613
+#: games/bridge/presentation.rb:446 games/makao.rb:969 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:903 games/spades.rb:946 games/three_five_eight.rb:1011 games/tysiac.rb:1624
 msgid "Your hand is empty."
 msgstr "Tu mano está vacía."
 
@@ -30440,7 +30528,7 @@ msgstr "Tu mano, %{seat}, puntos de honor: %{points}"
 msgid "Your hand, %{seat}: you are dummy and your partner plays these cards"
 msgstr "Tu mano, %{seat}: eres el muerto y tu compañero juega estas cartas"
 
-#: games/dealt_card_game.rb:134 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:905 games/spades.rb:948 games/three_five_eight.rb:1012 games/tysiac.rb:1614
+#: games/dealt_card_game.rb:134 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:905 games/spades.rb:948 games/three_five_eight.rb:1012 games/tysiac.rb:1625
 msgid "Your hand: %{cards}."
 msgstr "Tu mano: %{cards}."
 
@@ -30809,11 +30897,11 @@ msgstr "cero"
 msgid "answer revealed"
 msgstr "respuesta revelada"
 
-#: games/quiz_party.rb:327
+#: games/quiz_party.rb:328
 msgid "answered"
 msgstr "ha respondido"
 
-#: games/categories.rb:1397 games/quiz_party.rb:327
+#: games/categories.rb:1397 games/quiz_party.rb:328
 msgid "answering"
 msgstr "respondiendo"
 
@@ -30997,11 +31085,11 @@ msgstr "usar el pulsador para señalar una infracción en esta carta"
 msgid "buzzer"
 msgstr "pulsador"
 
-#: games/krowa.rb:197
+#: games/krowa.rb:198
 msgid "by number of attempts"
 msgstr "por número de intentos"
 
-#: games/krowa.rb:197
+#: games/krowa.rb:198
 msgid "by time"
 msgstr "por tiempo"
 
@@ -31079,7 +31167,7 @@ msgstr "dama"
 msgid "choose a card to discard"
 msgstr "elige una carta para descartar"
 
-#: games/quiz_party.rb:323
+#: games/quiz_party.rb:324
 msgid "choosing a category"
 msgstr "eligiendo una categoría"
 
@@ -31199,7 +31287,7 @@ msgstr "descartar la carta actual inmediatamente"
 msgid "discard the selected card"
 msgstr "descartar la carta seleccionada"
 
-#: games/base.rb:299 games/categories.rb:461 games/quiz_party.rb:319
+#: games/base.rb:299 games/categories.rb:461 games/quiz_party.rb:320
 msgid "disconnected"
 msgstr "sin conexión"
 
@@ -31272,7 +31360,7 @@ msgstr "conjunto de categorías fácil"
 msgid "edit prepared melds"
 msgstr "editar las combinaciones preparadas"
 
-#: games/quiz_party.rb:318 games/rummy.rb:179 games/tile_game.rb:110 games/uno.rb:454
+#: games/quiz_party.rb:319 games/rummy.rb:179 games/tile_game.rb:110 games/uno.rb:454
 msgid "eliminated"
 msgstr "fuera de la partida"
 
@@ -31312,7 +31400,7 @@ msgstr "fan"
 msgid "finish"
 msgstr "meta"
 
-#: games/categories.rb:466 games/quiz_party.rb:322
+#: games/categories.rb:466 games/quiz_party.rb:323
 msgid "finished"
 msgstr "finalizado"
 
@@ -31366,7 +31454,7 @@ msgstr "full"
 msgid "game finished"
 msgstr "partida terminada"
 
-#: __app.rb:3424
+#: __app.rb:3425
 msgid "game in progress"
 msgstr "partida en curso"
 
@@ -31406,7 +31494,7 @@ msgstr "verde"
 msgid "green group"
 msgstr "grupo verde"
 
-#: games/krowa_support/leaderboards.rb:278 games/krowa_support/presentation.rb:111
+#: games/krowa_support/leaderboards.rb:304 games/krowa_support/presentation.rb:111
 msgid "guessed"
 msgstr "adivinada"
 
@@ -31579,7 +31667,7 @@ msgstr "grupo magenta"
 msgid "main pot"
 msgstr "bote principal"
 
-#: games/spades.rb:622 games/tysiac.rb:1601
+#: games/spades.rb:622 games/tysiac.rb:1612
 msgid "make a bid"
 msgstr "hacer una declaración"
 
@@ -31672,7 +31760,7 @@ msgstr ""
 msgid "none"
 msgstr "ninguno"
 
-#: games/spades.rb:919 games/spades.rb:996 games/tysiac.rb:1661
+#: games/spades.rb:919 games/spades.rb:996 games/tysiac.rb:1680
 msgid "not bid yet"
 msgstr "aún sin declarar"
 
@@ -31680,7 +31768,7 @@ msgstr "aún sin declarar"
 msgid "not filled"
 msgstr "sin rellenar"
 
-#: games/krowa_support/leaderboards.rb:278 games/krowa_support/presentation.rb:111
+#: games/krowa_support/leaderboards.rb:304 games/krowa_support/presentation.rb:111
 msgid "not guessed"
 msgstr "no adivinada"
 
@@ -31712,7 +31800,7 @@ msgstr "activado"
 msgid "one pair"
 msgstr "pareja"
 
-#: __app.rb:3424 games/mexican_train.rb:185
+#: __app.rb:3425 games/mexican_train.rb:185
 msgid "open"
 msgstr "abierto"
 
@@ -31751,7 +31839,7 @@ msgstr "pasar"
 msgid "pass your turn"
 msgstr "pasar tu turno"
 
-#: games/tysiac.rb:1662
+#: games/tysiac.rb:1681
 msgid "passed"
 msgstr "ha pasado"
 
@@ -31871,11 +31959,11 @@ msgstr "estación de ferrocarril"
 msgid "raise"
 msgstr "subir"
 
-#: games/krowa.rb:196
+#: games/krowa.rb:197
 msgid "random length"
 msgstr "longitud aleatoria"
 
-#: games/krowa.rb:43
+#: games/krowa.rb:44
 msgid "random word length"
 msgstr ""
 
@@ -31998,6 +32086,10 @@ msgstr "leer el contrato"
 #: games/uno.rb:491
 msgid "read the current colour"
 msgstr "leer el color actual"
+
+#: games/tysiac.rb:475
+msgid "read the current contract"
+msgstr "leer el contrato actual"
 
 #: games/three_five_eight.rb:453
 msgid "read the current contract and trump suit"
@@ -32154,7 +32246,7 @@ msgstr "leer la ficha pendiente de tu respuesta"
 msgid "read the top card"
 msgstr "leer la carta superior"
 
-#: games/tysiac.rb:484
+#: games/tysiac.rb:495
 msgid "read the trump suit"
 msgstr "leer el palo de triunfo"
 
@@ -32402,7 +32494,7 @@ msgstr "seleccionado para volver a tirarlo"
 msgid "sell a building"
 msgstr "vender un edificio"
 
-#: games/tysiac.rb:1601
+#: games/tysiac.rb:1612
 msgid "set the final contract"
 msgstr "fijar el contrato definitivo"
 
@@ -32681,7 +32773,7 @@ msgstr "esperando una partida"
 msgid "waiting for the judge"
 msgstr "esperando al juez"
 
-#: games/quiz_party.rb:331
+#: games/quiz_party.rb:332
 msgid "waiting for the next question"
 msgstr "esperando la siguiente pregunta"
 
@@ -32689,7 +32781,7 @@ msgstr "esperando la siguiente pregunta"
 msgid "waiting for the next round"
 msgstr "esperando a la siguiente ronda"
 
-#: games/categories.rb:473 games/quiz_party.rb:329
+#: games/categories.rb:473 games/quiz_party.rb:330
 msgid "waiting to reveal"
 msgstr "esperando para revelar"
 

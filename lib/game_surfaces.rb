@@ -574,7 +574,7 @@ module GameSurfaces
       @zones.each do |zone|
         changed = false
         same_epoch = true
-        cards = sorted_cards(zone.cards.to_a, @card_sort_mode)
+        cards = sorted_cards(zone.cards.to_a, active_card_sort_mode)
         validate_card_choices!(cards)
         zone_id = zone.id.to_s
         @cards[zone_id] = cards
@@ -741,7 +741,7 @@ module GameSurfaces
       @cursor_announcements.clear
       @zones.each_with_index do |zone, field_index|
         zone_id = zone.id.to_s
-        next_cards = sorted_cards(zone.cards.to_a, @card_sort_mode)
+        next_cards = sorted_cards(zone.cards.to_a, active_card_sort_mode)
         validate_card_choices!(next_cards)
         next_cards, index, changed = CardHandCursor.resolve(next_cards, zone.hand_order, zone.hand_epoch,
           remembered.fetch("hand_cursors", {})[zone_id], remembered["zones"][zone_id], sorted: sorted_hand?, select_drawn: zone.select_drawn != false)

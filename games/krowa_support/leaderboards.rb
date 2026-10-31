@@ -2,6 +2,7 @@
 
 require_relative "server_store"
 require_relative "warsaw_date"
+require_relative 'attempt_list_view'
 
 require_relative "../../lib/game_room_localization"
 
@@ -16,7 +17,8 @@ module GameRoomGames
       @store = store || KrowaServerStore.new(
         server_tables: server_tables,
         bank: KrowaWordBank.default,
-        user: Session.name
+        user: Session.name,
+        program: @program
       )
     end
 
@@ -75,13 +77,20 @@ module GameRoomGames
         rows,
         header: _("Leaderboard: %{word}") % {word: normalized},
         empty_label: _("No published results"),
-        selectable: false
+        selectable: false,
+        attempts: ->(index) do
+          result = results[index]
+          load_attempt_list { @store.word_attempt_list(normalized, user: result['__insertion_user'], attempts: result['attempts']) } if result
+        end
       )
     end
 
-    def publish_word(word, attempts)
-      result = network(_("Publishing result")) { @store.publish_word(word, attempts) }
+    def publish_word(word, attempts, words: nil)
+      result = network(_("Publishing result")) { @store.publish_word(word, attempts, words: words) }
       case result
+      when :history_unavailable
+        alert(_("Attempt lists are not enabled on the server yet. You can publish the result without the list."))
+        false
       when :published
         alert(_("Result published."))
         show_word_ranking(word)
@@ -96,9 +105,12 @@ module GameRoomGames
       end
     end
 
-    def publish_daily(date_id, attempts)
-      result = network(_("Publishing Daily Krowa result")) { @store.publish_daily(date_id, attempts) }
+    def publish_daily(date_id, attempts, words: nil)
+      result = network(_("Publishing Daily Krowa result")) { @store.publish_daily(date_id, attempts, words: words) }
       case result
+      when :history_unavailable
+        alert(_("Attempt lists are not enabled on the server yet. You can publish the result without the list."))
+        false
       when :published
         alert(_("Daily Krowa result published."))
         show_daily_ranking(date_id)
@@ -118,6 +130,9 @@ module GameRoomGames
         @store.publish_tower(run_code: run_code, participants: participants, rounds: rounds)
       end
       case result
+      when :history_unavailable
+        alert(_("Attempt lists are not enabled on the server yet. You can publish the result without the list."))
+        false
       when :published
         alert(_("Word Tower result published."))
         show_tower_ranking
@@ -184,7 +199,18 @@ module GameRoomGames
       end
       show_table(
         [_('Place'), _('User'), _('Attempts')], rows,
-        header: header, empty_label: _("No published results"), selectable: false
+        header: header, empty_label: _("No published results"), selectable: false,
+        attempts: ->(index) do
+          result = results[index]
+          if result
+            load_attempt_list do
+              GameRoomClock.synchronize
+              raise 'Unconfirmed server time' unless GameRoomClock.synchronized?
+              current = GameRoomKrowa::WarsawDate.today_id(clock: -> { Time.at(GameRoomClock.now).utc })
+              @store.daily_attempt_list(date, user: result['__insertion_user'], attempts: result['attempts'], today: current)
+            end
+          end
+        end
       )
     end
 
@@ -269,7 +295,7 @@ module GameRoomGames
 
     def show_tower_details(result)
       rounds = network(_("Loading Word Tower rounds")) do
-        @store.tower_rounds(result["run_code"], user: result["__insertion_user"])
+        @store.published_tower_rounds(result)
       end
       return if rounds == nil
 
@@ -282,16 +308,27 @@ module GameRoomGames
         [_('Round'), _('Word'), _('Attempts'), _('Result')],
         rows,
         header: _("Word Tower: %{participants}") % {participants: participants.join(", ")},
-        empty_label: _("No saved rounds"), selectable: false
+        empty_label: _("No saved rounds"), selectable: false,
+        attempts: ->(index) { load_attempt_list { @store.tower_attempt_list(rounds[index]) } if rounds[index] }
       )
     end
 
-    def show_table(columns, rows, header:, empty_label:, selectable: true)
+    def load_attempt_list
+      # Wrap nil so a missing legacy history differs from a failed/cancelled read.
+      result = network(_("Loading attempt list")) { [yield] }
+      result ? result.first : :failed
+    end
+
+    def show_table(columns, rows, header:, empty_label:, selectable: true, attempts: nil)
       action = nil
       table = TableBox.new(columns, rows, header: header, quiet: true, empty_label: empty_label)
       open_button = Button.new(selectable ? _("Open") : _("Close"))
       close_button = Button.new(_("Close"))
       controls = selectable ? [table, open_button, close_button] : [table, close_button]
+      if attempts
+        details = KrowaAttemptListView.new(@game, selection: -> { table.index }) { |index| attempts.call(index) }
+        controls.insert(1, details.field)
+      end
       form = GameRoomUI::Form.new(controls, program: @program, quiet: true)
       form.accept_button = selectable ? open_button : close_button
       form.cancel_button = close_button

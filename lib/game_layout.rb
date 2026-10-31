@@ -341,6 +341,7 @@ module GameRoomLayout
         @form.hide(@back_button)
       end
       @form.cancel_button = @back_button
+      @surface.attach_form(@form) if @surface.respond_to?(:attach_form)
       new_index = form_index_for_location(location)
       @form.index = new_index if @form.index.to_i != new_index
       refresh_conference_controls

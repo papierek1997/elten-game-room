@@ -35,6 +35,7 @@ module GameRoomGames
     end
 
     def id; "krowa"; end
+    def attempt_matches(word, solution); @bank.matches(word, solution); end
     def notification_option_keys(options)
       %w[variant] + (%w[random race].include?(options["variant"]) ? ["length"] : [])
     end

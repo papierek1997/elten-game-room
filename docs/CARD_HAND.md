@@ -17,7 +17,10 @@ dice, action lists and other lists retain their own navigation.
   Removing a selected card still selects its nearest surviving neighbour;
   a new hand epoch still resets the selection. Other hands retain the default.
 - Without an explicitly selected sort order, preserve the order of the remaining
-  hand and append new cards at the bottom. UNO sorting remains active.
+  hand and append new cards at the bottom. A CardTableSpec may declare a
+  default_sort to keep its default order active for received cards; Thousand
+  uses suit order. An explicit player choice, including acquisition order,
+  takes precedence. UNO sorting remains active.
 - Announcements follow the identity of the new card under the cursor. They do
   not add the label “dobrano” (“drawn”); they also cover a change to a different
   card with an identical name.

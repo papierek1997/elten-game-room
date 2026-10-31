@@ -1,3 +1,4 @@
+require 'date'
 require 'monitor'
 require_relative '../support/statistics_tables'
 require_relative '../../lib/sports_rankings/service'
@@ -81,6 +82,56 @@ store.report(game:'axel_pong',mode:'singles',from_day:nil,to_day:20261024)
 assert(api.table_object.queries.size==calls,'The bounded report cache did not reuse its snapshot')
 store.report(game:'axel_pong',mode:'singles',from_day:nil,to_day:20261024,fresh:true)
 assert(api.table_object.queries.size>calls,'Explicit Refresh reused a cached snapshot')
+
+# Head-to-head reads the same canonical history; the report keeps its own cache entry.
+today=Date.new(2026,10,24)
+mine=store.personal(game:'axel_pong',mode:'singles',today:today)
+assert(mine.map { |r| r['players'] }==[['Alice'],['Bob']] && mine[1]['periods']['all']=={'won'=>3,'lost'=>0} &&
+  mine[1]['periods']['month']=={'won'=>2,'lost'=>0},"Head-to-head counted duplicates or the wrong period: #{mine.inspect}")
+bob=store.personal(game:'axel_pong',mode:'singles',today:today,player:'bob')
+assert(bob.map { |r| r['players'] }==[['bob'],['Alice']] && bob[1]['periods']['all']=={'won'=>0,'lost'=>3},'A chosen player did not get their own opponents')
+pair=store.personal(game:'axel_pong',mode:'doubles',today:today)
+assert(pair.map { |r| r['players'] }==[['Alice'],%w[Bob Dave]],'Doubles head-to-head did not use the opposing pair')
+calls=api.table_object.queries.size
+store.report(game:'axel_pong',mode:'singles',from_day:nil,to_day:20261024)
+store.personal(game:'axel_pong',mode:'singles',today:today)
+assert(api.table_object.queries.size==calls,'Alternating report and head-to-head reads evicted each other')
+
+# The screen's combined reader scans once and uses one server boundary for
+# counters and opponents, even when another result arrives during that read.
+snapshot_api = SportsMemoryApi.new
+snapshot_store = GameRoomSportsRankings::Store.new(app_uuid:'snapshot',user:'Alice',api:snapshot_api,
+  client:Object.new,current_user:-> {'Alice'},monotonic:-> {100.0})
+snapshot_api.table_object.insert(build.call('snapshot-first',[11,3]))
+snapshot_api.table_object.insert(R.build(identity:'snapshot-second',game:'axel_pong',finished_at:epoch,
+  sides:[{'players'=>['Bob'],'goals'=>11},{'players'=>['Alice'],'goals'=>3}],winner:0))
+inserted = false
+snapshot_api.table_object.after_select = lambda do |query,_rows|
+  if query[:columns] == ['__id'] && !inserted
+    inserted = true
+    snapshot_api.table_object.insert(build.call('snapshot-later',[11,3]))
+  end
+end
+totals, opponents = snapshot_store.player_statistics(game:'axel_pong',mode:'singles',today:today)
+assert(totals['all'].values_at('won','lost','scored','conceded') == [1,1,14,14], 'Counters escaped the captured snapshot boundary')
+assert(opponents[1]['periods']['all'] == {'won'=>1,'lost'=>1}, 'Opponents came from a newer snapshot than the counters')
+assert(snapshot_api.table_object.queries.count { |query| query[:columns] == ['__id'] } == 1,
+  'Combined statistics made two independent history reads')
+assert(GameRoomSportsRankings::Personal::PERIODS.all? { |period| totals[period].values_at('won','lost') ==
+  opponents[0]['periods'][period].values_at('won','lost') }, 'Own counts and opponents used different period boundaries')
+snapshot_api.table_object.after_select = nil
+snapshot_queries, snapshot_schemas = snapshot_api.table_object.queries.size, snapshot_api.schema_calls
+totals['all']['won'] = 999
+opponents[1]['players'].first.replace('Changed')
+again, head_to_head = snapshot_store.player_statistics(game:'axel_pong',mode:'singles',today:today)
+assert(again['all']['won'] == 1 && head_to_head[1]['players'] == ['Bob'], 'A caller mutated the cached snapshot')
+assert(snapshot_api.table_object.queries.size == snapshot_queries && snapshot_api.schema_calls == snapshot_schemas + 1,
+  'Cached period reads repeated history I/O or skipped fresh schema verification')
+refreshed, refreshed_opponents = snapshot_store.player_statistics(game:'axel_pong',mode:'singles',today:today,fresh:true)
+assert(refreshed['all']['won'] == 2 && refreshed_opponents[1]['periods']['all']['won'] == 2,
+  'Explicit Refresh did not update both views together')
+renamed, = snapshot_store.player_statistics(game:'axel_pong',mode:'singles',today:today,player:'aLiCe')
+assert(renamed['all']['user'] == 'aLiCe' && renamed['all']['won'] == 2, 'Cached statistics borrowed another display name')
 
 batch=(1..30).map { |index| build.call("batch-#{index}") }
 assert(store.write_batch(batch)==25,'A sports upload exceeded the bounded pass')
