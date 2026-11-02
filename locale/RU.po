@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Power Games 2.0.5.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-11-01 20:44+0300\n"
+"PO-Revision-Date: 2026-11-02 22:34+0300\n"
 "Last-Translator: Russian translation contributors\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -1298,20 +1298,20 @@ msgstr "%{player} выбывает."
 
 #: games/duck_racing_support/presentation.rb:481
 msgid "%{player} is frozen and skips this turn."
-msgstr "%{player} пропускает ход из-за заморозки."
+msgstr "%{player} замёрз и пропускает ход."
 
 #: games/duck_racing_support/presentation.rb:578
 msgid "%{player} is frozen for %{count} turn."
 msgid_plural "%{player} is frozen for %{count} turns."
-msgstr[0] "%{player}: замерзание на %{count} ход."
-msgstr[1] "%{player}: замерзание на %{count} хода."
-msgstr[2] "%{player}: замерзание на %{count} ходов."
+msgstr[0] "%{player} замерзает на %{count} ход."
+msgstr[1] "%{player} замерзает на %{count} хода."
+msgstr[2] "%{player} замерзает на %{count} ходов."
 
 #: games/duck_racing_support/presentation.rb:272
 #| msgid "%{player} is frozen for %{count} turn."
 #| msgid_plural "%{player} is frozen for %{count} turns."
 msgid "%{player} is frozen for %{count} turns."
-msgstr "%{player}: длительность заморозки в ходах: %{count}."
+msgstr "%{player} замёрз на %{count} ходов."
 
 #: games/scientific_war.rb:353 games/scientific_war.rb:365 games/scientific_war.rb:822
 msgid "%{player} is looking at the chosen cards."
@@ -2077,7 +2077,7 @@ msgstr "%{player} пропускает эту раздачу."
 
 #: games/duck_racing_support/presentation.rb:481
 msgid "%{player} skips this turn."
-msgstr "%{player} пропускает этот ход."
+msgstr "%{player} пропускает ход."
 
 #: games/mancala.rb:251 games/mancala.rb:309
 msgid "%{player} sows %{seeds} from %{pit}."
@@ -3527,7 +3527,7 @@ msgstr "- «Испытание» начинает дуэль с выбранны
 
 #: games/generated/rulebooks/duck_racing.rb:32
 msgid "- Challenge starts a duel with your chosen opponent. Super challenge involves every unfrozen duck. Curiosity asks everyone a quiz question, including frozen ducks."
-msgstr "- «Испытание» начинает дуэль с выбранным соперником. «Супериспытание» включает всех незамороженных уток. «Любопытство» задаёт вопрос викторины всем, включая замороженных."
+msgstr "- «Испытание» начинает дуэль с выбранным соперником. «Супериспытание» включает всех незамороженных уток. «Любопытство» задаёт вопрос викторины всем, включая замёрзших."
 
 #: games/generated/rulebooks/duck_racing.rb:133
 msgid "- Challenges: tick the ones you want to include. All are enabled by default. Keep at least one for duels and one for groups."
@@ -5079,7 +5079,7 @@ msgstr "Взятую подходящую карту можно сразу сы�
 
 #: games/generated/rulebooks/duck_racing.rb:116
 msgid "A duel question is for its participants. A question from a square or Curiosity is for everyone, including frozen ducks."
-msgstr "Вопрос дуэли предназначен её участникам. На вопрос клетки или карты «Любопытство» отвечают все, включая замороженных уток."
+msgstr "Вопрос дуэли предназначен её участникам. На вопрос клетки или карты «Любопытство» отвечают все, включая замёрзших уток."
 
 msgid "A finished move advances automatically; there is no required End turn button. Doubles normally give another roll after resolving the field. Three consecutive doubles send you to jail instead of moving for the third roll. Going to jail or going into debt removes the extra roll."
 msgstr "Завершённый ход передаётся автоматически; нажимать «Завершить ход» не требуется. Дубль обычно даёт повторный бросок после выполнения действия поля. Три дубля подряд отправляют в тюрьму вместо перемещения по третьему броску. Попадание в тюрьму или возникновение долга отменяет повторный бросок."
@@ -14415,7 +14415,7 @@ msgstr[2] "Замерзание продлится ещё %{count} ходов."
 #| msgid "Frozen for %{count} more turn."
 #| msgid_plural "Frozen for %{count} more turns."
 msgid "Frozen for %{count} more turns."
-msgstr "Осталось ходов заморозки: %{count}."
+msgstr "Замерзание продлится ещё %{count} ходов."
 
 #: lib/realtime/p2p_options.rb:34
 msgid "Full P2P"
@@ -15448,7 +15448,7 @@ msgstr "Если вы покинете стол, сегодняшняя Daily Kr
 
 #: games/generated/rulebooks/duck_racing.rb:43
 msgid "If you must skip turns before you have rolled, the current turn counts as the first. If the effect comes after your roll, it starts from your next turn. Frozen ducks still answer questions asked by squares and by Curiosity."
-msgstr "Если пропуск ходов начался до броска, текущий ход считается первым. Если после — эффект действует со следующего хода. Замороженные утки всё равно отвечают на вопросы клеток и карты «Любопытство»."
+msgstr "Если пропуск ходов начался до броска, текущий ход считается первым. Если после — эффект действует со следующего хода. Замёрзшие утки всё равно отвечают на вопросы клеток и карты «Любопытство»."
 
 #: games/generated/rulebooks/quiz.rb:22
 msgid "If you spot a mistake, press Ctrl+B to mark the current question or Ctrl+Shift+B to mark the previous one. You can keep playing straight away."
@@ -15801,7 +15801,7 @@ msgstr ""
 
 #: games/generated/rulebooks/duck_racing.rb:111
 msgid "In a duel, only the two opponents answer; in a group challenge, all unfrozen ducks answer. A question square or Curiosity includes everyone, even frozen ducks. All these questions come from the sets selected for the table."
-msgstr "В дуэли отвечают только два соперника, в групповом испытании — все незамороженные утки. Вопрос клетки или карты «Любопытство» предназначен всем, включая замороженных. Все эти вопросы берутся из выбранных для стола наборов."
+msgstr "В дуэли отвечают только два соперника, в групповом испытании — все незамороженные утки. Вопрос клетки или карты «Любопытство» предназначен всем, включая замёрзших. Все эти вопросы берутся из выбранных для стола наборов."
 
 #: games/krowa_support/presentation.rb:19
 msgid "In a single-player Daily Krowa or Random word game, the add button stores the entered noun in the user's dictionary and immediately checks it as an attempt. The button is unavailable in multiplayer. The person adding a word is responsible for it being a noun. Solutions are drawn from the shared database."
@@ -24636,7 +24636,7 @@ msgstr "Показывать заполненные и недоступные с
 
 #: lib/game_room_screens.rb:489
 msgid "Show invitation notifications from"
-msgstr "Показывать уведомления о приглашениях от"
+msgstr "Показывать уведомления о приглашениях"
 
 #: lib/tournaments/server_schedule_overview.rb:22
 msgid "Show matches"
