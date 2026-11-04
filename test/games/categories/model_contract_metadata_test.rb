@@ -28,6 +28,12 @@ assert_equal({session_id: 1, receipts: {}}, env.replay.state.fetch(:answer_clean
 before = GameRoomTest::ContractValues.digest(env.replay)
 assert_equal({}, env.replay.state.fetch(:category_letters), 'Ordinary mode has per-category letters')
 assert_equal(false, env.replay.state.fetch(:options).fetch('separate_letters'), 'Ordinary mode changed')
+without_variant = env.replay.dup
+without_variant.state = env.replay.state.reject { |key, _value| key == :category_letters }
+without_variant.state[:options] = env.replay.state.fetch(:options).reject { |key, _value| key == 'separate_letters' }
+previous_v2 = JSON.parse(File.read(File.join(__dir__, '../../fixtures/contracts/v2/categories.json'), encoding: 'UTF-8'))
+assert_equal(previous_v2.fetch('final').fetch('replay'), GameRoomTest::ContractValues.digest(without_variant),
+  'Categories changed beyond the two declared disabled-variant fields since the complete v2 checkpoint')
 without_cleanup = env.replay.dup
 without_cleanup.state = env.replay.state.reject { |key, _value| [:answer_cleanup, :category_letters].include?(key) }
 without_cleanup.state[:options] = env.replay.state.fetch(:options).reject { |key, _value| key == 'separate_letters' }
@@ -42,6 +48,8 @@ ordinary_session = env.session.merge('options'=>JSON.generate(JSON.parse(env.ses
 assert_equal(item.fetch('session'), ordinary_session, 'Opening session changed beyond the disabled variant option')
 assert_equal(item.fetch('events'), env.events, 'Opening action or serialized history changed')
 checkpoint = GameRoomTest::ModelContract.checkpoint(env)
+current = JSON.parse(File.read(File.join(__dir__, '../../fixtures/contracts/v3/categories.json'), encoding: 'UTF-8'))
+assert_equal(current.fetch('final'), checkpoint, 'The current complete checkpoint is not covered by the approved metadata comparison')
 assert_equal(item.fetch('final').reject { |key, _value| key == 'replay' },
   checkpoint.reject { |key, _value| key == 'replay' }, 'Opening actor, legal choices or RNG changed')
 puts 'PASS Categories contract: exact cleanup metadata and detached v2/v1 full replay; unchanged session, events, actor, legal choices and RNG'

@@ -76,10 +76,10 @@ end
     offered_users << users.dup
     users.first
   end
-  app.define_singleton_method(:invitation_metadata) do |_row, id|
-    { "invitation_id" => id, "created_at" => GameRoomClock.now.to_i, "expires_at" => GameRoomClock.now.to_i + 300 }
-  end
-  table = { "__id" => 7, "owner" => "Alice", "private" => true }
+  # Use the real metadata builder, including the table/session identity used
+  # by native notification keys. Only the transport boundary is simulated.
+  table = { "__id" => 7, "__live_session_id" => "network-errors-session",
+    "owner" => "Alice", "private" => true, "name" => "Network test", "game" => "uno", "game_options" => "{}" }
   snapshot = LobbyRepository::TableSnapshot.new(table: table, members: %w[Alice Bob], bots: [])
   lobby = Object.new
   lobby.define_singleton_method(:snapshot_for) { |_row| snapshot }
@@ -114,6 +114,11 @@ end
   before = alerts.length
   result = app.send(:show_invite_users, table, source: source)
   assert(result == true && notifications.length == 1 && alerts.length == before, "#{source} did not recover after delivery failure")
+  notification_options = notifications.last.last
+  metadata = notification_options.fetch(:metadata)
+  assert(metadata.values_at('table_id', 'live_session_id') == [7, 'network-errors-session'], "#{source} lost invitation identity")
+  assert(notification_options.fetch(:key) == GameRoomNotifications.key(type: 'game_room.invitation',
+    metadata: metadata, sender: Session.name, recipient: 'Carol'), "#{source} used the wrong native notification key")
   assert(history.length == 1 && history.first[:kind] == "invited", "#{source} did not record the successful invitation once")
   expected_users = source == :contacts ? ["Carol"] : ["Carol", "Eve"]
   assert(offered_users.all? { |users| users == expected_users }, "#{source} invitation candidates do not respect online contacts")

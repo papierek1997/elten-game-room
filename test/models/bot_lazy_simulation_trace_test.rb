@@ -1,5 +1,6 @@
 require_relative "../support/elten_array_shuffle"
 require_relative "../support/new_games_fixture"
+require_relative "../support/contract_values"
 require_relative "../../lib/game_execution_policy"
 
 def trace_environment(type, seed)
@@ -18,7 +19,9 @@ comparisons = 0
     coordinator = GameRoomBots::Coordinator.new
     completed = 0
     40.times do
-      assert(Marshal.dump(eager.replay) == Marshal.dump(lazy.replay), "#{type}: replay diverged before planning")
+      # Marshal records shared-object identity too; a copied cache checkpoint
+      # may use different aliases while retaining every state/history value.
+      assert(GameRoomTest::ContractValues.canonical(eager.replay) == GameRoomTest::ContractValues.canonical(lazy.replay), "#{type}: replay diverged before planning")
       break if eager.finished?
 
       simulation = GameRoomSimulation::Environment.from_snapshot(game: eager.game,
@@ -38,7 +41,7 @@ comparisons = 0
       completed += 1
     end
     assert(completed > 0 && (completed == 40 || eager.finished?), "#{type}: trace stopped without a final game result")
-    assert(Marshal.dump(eager.replay) == Marshal.dump(lazy.replay), "#{type}: final state/history diverged")
+    assert(GameRoomTest::ContractValues.canonical(eager.replay) == GameRoomTest::ContractValues.canonical(lazy.replay), "#{type}: final state/history diverged")
     puts "#{type}/#{seed}: #{completed} consecutive decisions, #{eager.events.length} accepted events identical, finished=#{eager.finished?}"
     comparisons += completed
     game_decisions += completed

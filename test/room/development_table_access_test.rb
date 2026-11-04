@@ -137,6 +137,9 @@ end
 Session.name = "papierek"
 client = EltenLink::Client.new
 app = EltenGameRoom.new
+# This headless access fixture has no storage Runtime. Native directory
+# preparation is covered by host/local_directories_test, not the SDK probe.
+app.define_singleton_method(:prepare_local_directories) { nil }
 tables = GameRoomServerTables.new(app, client: client)
 app.instance_variable_set(:@server_tables, tables)
 GameRoomStartupUpdate.define_singleton_method(:check) { |_program| nil } # This test covers table access, not catalogue updates.

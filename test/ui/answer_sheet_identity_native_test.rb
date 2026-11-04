@@ -12,9 +12,9 @@ include GameRoomTest::Assertions
 $native_tutorial_driver = BackgroundHelpNativeDriver.new
 
 game = GameRoomGames::Categories.new
-state = {phase: :answering, round: 1, attempt: 1, players: %w[Alice Bob],
+state = {phase: :answering, round: 1, attempt: 1, options: game.default_options, players: %w[Alice Bob],
   judge: 'Alice', letter: 'A', active_players: ['Bob'], commitments: {},
-  round_categories: %w[country city]}
+  round_categories: %w[country city], category_letters: {}}
 sheet = game.send(:answering_surface, state, 'Bob')
 layout = GameRoomLayout::Screen.new(view_spec: GameRoomLayout::ViewSpec.new(surface: sheet),
   history_items: [], user_items: %w[Alice Bob], users_header: 'People')

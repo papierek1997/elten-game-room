@@ -43,15 +43,36 @@ jobs:
             return (Get-Command ffmpeg -CommandType Application -ErrorAction SilentlyContinue) -and
               (Get-Command ffprobe -CommandType Application -ErrorAction SilentlyContinue)
           }
-          for ($attempt = 1; -not (Test-AudioTools) -and $attempt -le 3; $attempt++) {
-            try {
-              choco install ffmpeg --no-progress -y
-            } catch {
-              Write-Warning "Audio tool installation failed: $_"
+          if (-not (Test-AudioTools)) {
+            # The same publisher as Chocolatey's essentials package, without
+            # depending on the package feed. Pin both the archive and its hash.
+            $audioVersion = '9.0.2'
+            $audioSha256 = '60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba'
+            $audioRoot = Join-Path $env:RUNNER_TEMP "power-games-ffmpeg-$audioVersion"
+            $audioArchive = Join-Path $audioRoot 'ffmpeg.zip'
+            $audioBin = Join-Path $audioRoot "ffmpeg-$audioVersion-essentials_build/bin"
+            New-Item -ItemType Directory -Force -Path $audioRoot | Out-Null
+            for ($attempt = 1; $attempt -le 3; $attempt++) {
+              try {
+                Invoke-WebRequest -Uri "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-$audioVersion-essentials_build.zip" -OutFile $audioArchive -TimeoutSec 600
+                if ((Get-FileHash -LiteralPath $audioArchive -Algorithm SHA256).Hash -ne $audioSha256) {
+                  throw 'FFmpeg archive checksum mismatch.'
+                }
+                Expand-Archive -LiteralPath $audioArchive -DestinationPath $audioRoot -Force
+                foreach ($tool in @('ffmpeg', 'ffprobe')) {
+                  if (-not (Test-Path -LiteralPath (Join-Path $audioBin "$tool.exe") -PathType Leaf)) {
+                    throw "The archive does not contain $tool.exe."
+                  }
+                }
+                $env:PATH = "$audioBin;$env:PATH"
+                Add-Content -LiteralPath $env:GITHUB_PATH -Value $audioBin -Encoding utf8
+                if (Test-AudioTools) { break }
+              } catch {
+                Write-Warning "Audio tool installation failed: $_"
+              }
+              if ($attempt -eq 3) { throw 'FFmpeg and FFprobe are unavailable after three installation attempts.' }
+              Start-Sleep -Seconds (10 * $attempt)
             }
-            if (Test-AudioTools) { break }
-            if ($attempt -eq 3) { throw 'FFmpeg and FFprobe are unavailable after three installation attempts.' }
-            Start-Sleep -Seconds (10 * $attempt)
           }
           foreach ($tool in @('ffmpeg', 'ffprobe')) {
             & $tool -version
@@ -76,7 +97,7 @@ jobs:
           ELTEN_HOST_SOURCE: ${{ github.workspace }}/.ci/elten3
         run: ruby test/run.rb --suite ${{ matrix.suite }} --shard ${{ matrix.part }}/${{ matrix.parts }} --report test-results.json
       - name: Preserve scenario results
-        if: always()
+        if: always() && hashFiles('test-results.json') != ''
         uses: actions/upload-artifact@v7
         with:
           name: test-results-${{ matrix.suite }}-${{ matrix.part }}

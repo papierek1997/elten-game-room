@@ -34,9 +34,12 @@ assert_equal(without_replay_hashes.call(previous_poker), without_replay_hashes.c
 # Categories adds pause, participant-departure and confirmed-cleanup metadata.
 # A separate semantic regression verifies their exact values and reproduces
 # both historical full replay hashes using detached copies.
-categories = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/categories.json'), encoding: 'UTF-8'))
+previous_categories_v2 = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/categories.json'), encoding: 'UTF-8'))
+categories = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v3/categories.json'), encoding: 'UTF-8'))
 previous_categories = corpus.fetch('cases').find { |item| item.fetch('game') == 'categories' }
 assert_equal(without_replay_hashes.call(previous_categories), without_replay_hashes.call(categories), 'Categories metadata must not replace the reference actions or RNG')
+assert_equal(without_replay_hashes.call(previous_categories_v2), without_replay_hashes.call(categories),
+  'The disabled per-category letter variant must not replace reference inputs, actions or RNG')
 # Confirmed Scientific War reveals now retain public cleanup receipts across
 # tricks. The semantic regression checks their exact historical commitments
 # and reproduces every original full hash on a detached copy.

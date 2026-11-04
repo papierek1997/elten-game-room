@@ -265,9 +265,16 @@ EltenGameRoom.define_singleton_method(:read_json) do |_path, default:|
   default.merge("invitation_notifications" => "everyone", "invitation_sounds" => true)
 end
 EltenGameRoom.remember_settings(EltenGameRoom.read_json("settings.json", default: EltenGameRoom::DEFAULT_SETTINGS))
-EltenGameRoom.define_singleton_method(:sound_asset_path) { |name| %w[notice table_notice].include?(name) ? "C:/program-assets/#{name}.opus" : nil }
+EltenGameRoom.define_singleton_method(:sound_asset_path) { |_name| raise 'Native managed notifications must not materialize an asset path' }
+managed_sounds = []
+EltenGameRoom.define_singleton_method(:play_sound_from_asset) { |name, volume:| managed_sounds << [name, volume] }
 audible = EltenGameRoom.map_notification(FakeNotification.new("Bob"))
-assert(audible.sound == "C:/program-assets/notice.opus", "Game Room notification did not use notice.opus")
+assert(audible.sound.nil?, "Managed playback must suppress the host's second copy of the sound")
+assert(audible.respond_to?(:game_room_notice_player), "Notification lost its managed playback callback")
+assert(managed_sounds == [['notice', GameRoomPreferences.sound_volume(EltenGameRoom::DEFAULT_SETTINGS, 'notice')]],
+  "Power Games notification did not play the notice asset at the configured volume")
+audible.sound
+assert(managed_sounds.length == 1, "Reading the presentation twice replayed the notice sound")
 assert(File.file?(File.expand_path("../../Audio/notice.opus", __dir__)), "notice.opus is missing from packaged assets")
 manifest = JSON.parse(File.read(File.expand_path("../../manifest.json", __dir__), encoding: "UTF-8"))
 assert(manifest.dig("required_assets", "sounds").include?("notice"), "notice.opus is missing from manifest assets")

@@ -8,7 +8,7 @@ require File.join(host, 'src/eapi/program')
 # actual old and replacement installer records, with no source fallback.
 def keyboard_reload_sources(package = nil)
   paths = %w[lib/audio_ball/keyboard.rb lib/game_surfaces/audio_ball_surface.rb]
-  dependencies = %w[lib/game_room_plural_rule.rb lib/game_room_localization.rb lib/host_bridge.rb lib/game_surfaces/specifications.rb lib/audio_ball/rotation.rb]
+  dependencies = %w[lib/game_room_plural_rule.rb lib/game_room_localization.rb lib/host_bridge.rb lib/game_surfaces/specifications.rb lib/audio_ball/rotation.rb lib/game_surfaces/realtime_information.rb]
   return (dependencies + paths).to_h { |path| [path, File.binread(File.expand_path("../../../#{path}", __dir__))] } unless package
   require 'json'
   require 'zip'
@@ -36,6 +36,9 @@ def keyboard_reload_sources(package = nil)
   needed.unshift('lib/host_bridge.rb') if found.fetch(paths.first).include?('host_bridge')
   needed.unshift('lib/game_surfaces/specifications.rb') if found.fetch(paths.last).include?('specifications')
   needed.unshift('lib/audio_ball/rotation.rb') if found.fetch(paths.last).include?('../audio_ball/rotation')
+  if found.fetch(paths.last).include?("require_relative 'realtime_information'")
+    needed.insert(needed.index(paths.first), 'lib/game_surfaces/realtime_information.rb')
+  end
   needed.to_h { |path| [path, found.fetch(path)] }
 end
 
@@ -46,10 +49,10 @@ def keyboard_reload_runtime(sources)
   runtime = ReloadRuntime.new(ReloadManifest.new('GameRoomKeyboardReloadTest'))
   backend = Programs::Execution::RuntimeBackend.new(runtime)
   runtime.namespace = backend.namespace
-  # Only this already-evaluated application dependency is required by the
-  # surface. The host runtime itself supplies namespace creation/disposal.
+  # These dependencies are evaluated explicitly below. Keep the allowlist
+  # exact; the host itself supplies namespace creation/disposal.
   runtime.namespace.define_singleton_method(:require_relative) do |path|
-    raise "Unexpected runtime dependency: #{path}" unless %w[../audio_ball/keyboard ../audio_ball/rotation ../game_room_localization game_room_plural_rule ../host_bridge specifications].include?(path)
+    raise "Unexpected runtime dependency: #{path}" unless %w[../audio_ball/keyboard ../audio_ball/rotation ../game_room_localization game_room_plural_rule ../host_bridge specifications realtime_information].include?(path)
     true
   end
   surfaces = runtime.namespace.const_set(:GameSurfaces, Module.new)
