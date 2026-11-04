@@ -33,6 +33,7 @@ require_relative "biblios"
 require_relative "battleship"
 require_relative "mancala"
 require_relative "krowa"
+require_relative "mania_pisania"
 require_relative "axel_pong"
 require_relative "audio_ball"
 require_relative "war"
@@ -75,6 +76,7 @@ module GameRoomGames
     GameRoomGames::Battleship,
     GameRoomGames::Mancala,
     GameRoomGames::Krowa,
+    GameRoomGames::ManiaPisania,
     GameRoomGames::AxelPong,
     GameRoomGames::AudioBall,
     GameRoomGames::War,

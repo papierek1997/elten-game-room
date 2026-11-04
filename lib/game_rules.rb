@@ -38,14 +38,24 @@ module GameRoomRules
   end
 
   class Document < Section
-    attr_reader :sections, :contents_title
+    attr_reader :sections, :contents_title, :introduction, :separator
 
-    def initialize(id:, title:, sections:, contents: false)
+    def initialize(id:, title:, sections:, contents: false, introduction: [], compact: false)
       @sections = sections.to_a.dup.freeze
+      @introduction = introduction.map { |text| GameRoomContent.utf8(text).strip }.reject(&:empty?).freeze
+      @separator = compact ? "\r\n" : "\r\n\r\n"
       @contents_title = GameRoomContent.utf8(_("Contents")) if contents
-      paragraphs = @sections.map { |section| "#{section.title}\r\n#{section.text}" }
+      paragraphs = @sections.map { |section| "#{section.title}\r\n#{section_text(section)}" }
       paragraphs.unshift([@contents_title, *@sections.map(&:title)].join("\r\n")) if contents
-      super(id: id, title: title, paragraphs: paragraphs)
+      super(id: id, title: title, paragraphs: @introduction + paragraphs)
+    end
+
+    def section_text(section)
+      section.paragraphs.join(separator)
+    end
+
+    def text
+      paragraphs.join(separator)
     end
   end
 

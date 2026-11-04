@@ -50,7 +50,7 @@ class GameRoomOptionEditor
       [GameRoomContent::PACK_OPTION_KEY, GameRoomContent::PACK_VERSION_KEY,
         GameRoomContent::PACK_CHECKSUM_KEY].include?(key)
     end
-    definitions = game.effective_option_definitions(selected).to_a
+    definitions = game.option_editor_definitions(selected).to_a
     return selected if definitions.empty? && !creating_table && !require_confirmation
     built_language = selected[GameRoomContent::LANGUAGE_OPTION_KEY].to_s
     private_table = initial_private_table == true
@@ -62,56 +62,11 @@ class GameRoomOptionEditor
         privacy_control = CheckBox.new(GameRoomContent.utf8(_("Private table")), checked: private_table)
         controls << privacy_control
       end
-      bindings = []
-      defaults = selected
-      definitions.each do |definition|
-        case definition.kind.to_s
-        when "boolean"
-          control = CheckBox.new(
-            definition.label.to_s,
-            checked: GameRoomOptionValues.read(definition, defaults) == true
-          )
-          controls << control
-          bindings << [definition, control]
-        when "choice"
-          choices = definition.choices.to_a
-          default_index = choices.index do |choice|
-            choice.value.to_s == GameRoomOptionValues.read(definition, defaults).to_s
-          end.to_i
-          control = choice_control(definition, index: default_index)
-          controls << control
-          bindings << [definition, control]
-        when "multiple_choice", "multiple_values"
-          if definition.kind.to_s == "multiple_values"
-            definition = multiple_values_definition(definition, GameRoomOptionValues.read(definition, defaults))
-          end
-          choices = definition.choices.to_a
-          control = choice_control(definition, multiple: true)
-          selected_indices = if definition.kind.to_s == "multiple_values"
-            selected_values = GameRoomOptionValues.read(definition, defaults)
-            choices.each_index.select { |index| selected_values.is_a?(Array) && selected_values.include?(choices[index].value) }
-          else
-            mask = GameRoomOptionValues.read(definition, defaults).to_i
-            choices.each_index.select { |index| (mask & (1 << index)) != 0 }
-          end
-          control.select_multiselection_indices(selected_indices)
-          controls << control
-          bindings << [definition, control]
-        when "integer"
-          control = EditBox.new(
-            definition.label.to_s,
-            type: EditBox::Flags::Numbers,
-            text: GameRoomOptionValues.read(definition, defaults).to_i.to_s,
-            quiet: true
-          )
-          control.select_all if !control.text.to_s.empty?
-          controls << control
-          bindings << [definition, control]
-        else
-          raise ArgumentError, "Unsupported game option type: #{definition.kind}"
-        end
-      end
+      option_controls, bindings = build_option_controls(definitions, selected)
+      controls.concat(option_controls)
 
+      extension = game.build_option_editor_extension(@program, selected)
+      controls.concat(extension.fields) if extension
       action = nil
       save_button = Button.new(submit_label || _("Create table"))
       cancel_button = Button.new(_("Cancel"))
@@ -121,6 +76,7 @@ class GameRoomOptionEditor
       previous_options = game.normalize_options(game_option_values(bindings, base_options))
       refresh_visibility = lambda do
         previous_options = refresh_option_controls(game, bindings, previous_options, form, base_options)
+        extension&.refresh(previous_options, form)
       end
       bindings.each do |definition, control|
         event = definition.kind.to_s == "boolean" ? :change : :move
@@ -143,7 +99,7 @@ class GameRoomOptionEditor
           # Replace only the dependent choices. Recreating the form here
           # steals focus (and speech) from the language being browsed.
           options = game.normalize_options(game_option_values(bindings, base_options))
-          definitions = game.effective_option_definitions(options).to_a
+          definitions = game.option_editor_definitions(options).to_a
           set_binding = bindings.find { |definition, _control| definition.key.to_s == GameRoomContent::SET_OPTION_KEY }
           set_definition = definitions.find { |definition| definition.key.to_s == GameRoomContent::SET_OPTION_KEY }
           if set_binding && set_definition
@@ -165,11 +121,17 @@ class GameRoomOptionEditor
         private_table = privacy_control.checked == true if creating_table
         raw = game_option_values(bindings, base_options)
         options = game.normalize_options(raw)
+        begin
+          options = extension.prepare(options) if extension
+        rescue ArgumentError, IOError, SystemCallError => error
+          @alert.call(GameRoomContent.utf8(error.message))
+          next
+        end
         chosen_language = options[GameRoomContent::LANGUAGE_OPTION_KEY].to_s
         if chosen_language != built_language
           selected = options
           built_language = chosen_language
-          definitions = game.effective_option_definitions(selected).to_a
+          definitions = game.option_editor_definitions(selected).to_a
           break
         end
         error = game.validation_error(options)
@@ -186,6 +148,61 @@ class GameRoomOptionEditor
   end
 
   private
+
+  def build_option_controls(definitions, selected)
+    controls = []
+    bindings = []
+    defaults = selected
+    definitions.each do |definition|
+      case definition.kind.to_s
+      when "boolean"
+        control = CheckBox.new(
+          definition.label.to_s,
+          checked: GameRoomOptionValues.read(definition, defaults) == true
+        )
+        controls << control
+        bindings << [definition, control]
+      when "choice"
+        choices = definition.choices.to_a
+        default_index = choices.index do |choice|
+          choice.value.to_s == GameRoomOptionValues.read(definition, defaults).to_s
+        end.to_i
+        control = choice_control(definition, index: default_index)
+        controls << control
+        bindings << [definition, control]
+      when "multiple_choice", "multiple_values"
+        if definition.kind.to_s == "multiple_values"
+          definition = multiple_values_definition(definition, GameRoomOptionValues.read(definition, defaults))
+        end
+        choices = definition.choices.to_a
+        control = choice_control(definition, multiple: true)
+        selected_indices = if definition.kind.to_s == "multiple_values"
+          selected_values = GameRoomOptionValues.read(definition, defaults)
+          choices.each_index.select { |index| selected_values.is_a?(Array) && selected_values.include?(choices[index].value) }
+        else
+          mask = GameRoomOptionValues.read(definition, defaults).to_i
+          choices.each_index.select { |index| (mask & (1 << index)) != 0 }
+        end
+        control.select_multiselection_indices(selected_indices)
+        controls << control
+        bindings << [definition, control]
+      when "integer"
+        control = EditBox.new(
+          definition.label.to_s,
+          type: EditBox::Flags::Numbers,
+          text: GameRoomOptionValues.read(definition, defaults).to_i.to_s,
+          quiet: true
+        )
+        control.select_all if !control.text.to_s.empty?
+        controls << control
+        bindings << [definition, control]
+      else
+        raise ArgumentError, "Unsupported game option type: #{definition.kind}"
+      end
+    end
+
+    [controls, bindings]
+  end
 
   def choice_control(definition, index: 0, multiple: false)
     choices = definition.choices.to_a

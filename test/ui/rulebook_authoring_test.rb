@@ -48,7 +48,8 @@ options_count = paragraphs_count = 0
     end
     options_count += local_keys.length
     book = game.rule_book(options: game.default_options)
-    assert(book.documents.map(&:id) == [:rules, :controls, :current_options], "table rules changed document structure for #{id}")
+    expected_documents = id == 'mania_pisania' ? [:rules, :controls, :touch_typing, :current_options] : [:rules, :controls, :current_options]
+    assert(book.documents.map(&:id) == expected_documents, "table rules changed document structure for #{id}")
     assert(!book.documents.first.sections.any? { |section| section.id == :bot_pacing }, "#{id}: generic bot pacing appended to complete edition")
   end
 end

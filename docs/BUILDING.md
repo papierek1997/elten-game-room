@@ -1,5 +1,46 @@
 # Testing and building
 
+## Reproducing Typoholism dictionaries and braille tables
+
+`tools/data/typing-word-packs.json` pins the Hunspell and wooorm/dictionaries
+commits and all source/output hashes. Download `index.aff`, `index.dic` and
+`license` from each pinned `en`, `cs`, `es` and `ru` directory. Retain their
+original bytes and verify the recorded SHA-256 hashes before rebuilding.
+Download the pinned Hunspell source and build the local exporter with a C++17
+compiler; in PowerShell, with `g++` on PATH:
+
+```powershell
+./tools/build-typing-hunspell.ps1 -Source path/to/hunspell -Output path/to/typing-hunspell-export.exe
+path/to/typing-hunspell-export.exe path/to/en/index.aff path/to/en/index.dic tmp/en-raw.txt
+ruby tools/build-typing-word-list.rb en tmp/en-raw.txt path/to/words-en.txt
+```
+
+Repeat the last two commands for `cs`, `es` and `ru`. The `.txt` destination is
+the complete sorted export, one word per line. Only the generated compressed
+Ruby packs and licence/source notices enter the installer. Runtime words retain
+the existing 3–12-letter limit. Keep source and full export files in a development
+directory, outside release staging.
+
+The exporter adds one explicitly marked `friend` declaration to Hunspell's
+`AffixMgr` header to enumerate its parsed rules; it does not replace affix
+matching, Unicode handling or spelling validation. It handles the pinned
+dictionaries' one-prefix/two-suffix model and continuation classes. Arbitrary
+compound combinations are not enumerated. `-CompilerFlags` accepts extra
+compiler arguments where required by a local toolchain.
+
+To refresh the dependency closure of the braille catalogue, use:
+
+```console
+ruby tools/build-typing-braille.rb path/to/liblouis-3.39.0/share/liblouis/tables
+```
+
+The embedded original Polish tables and native DLLs are preserved byte for byte;
+new includes come from that Liblouis release. Do not replace historical dictionary
+packs in place: saved sequences depend on their checksum and ordering. Run the
+targeted `test/games/mania_pisania/` tests, the word-pack integrity test and the
+binary package language test after rebuilding. The full TXT hashes and the
+runtime pack hashes must match the manifest for a reproducibility check.
+
 ## Tests without ELTEN
 
 Game-logic tests are standalone Ruby scripts. Application and interface tests

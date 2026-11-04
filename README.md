@@ -63,7 +63,7 @@ następnego nagłówka, a Shift+H — do poprzedniego. Escape zamyka dokument.
 
 ## W co można zagrać
 
-Obecnie Power Games zawiera 38 gier:
+Obecnie Power Games zawiera 39 gier:
 
 - Karcianki: 3-5-8, 99, 1000 mil, Biblios, Bouillabaisse, Brydż, Makao, Piki, Poker, Remik, Scopa, Tysiąc,
   UNO, Wojna i Wojna naukowa.
@@ -71,7 +71,7 @@ Obecnie Power Games zawiera 38 gier:
   Kółko i krzyżyk, Mankala, Monopoly, Reversi, Statki, Szachy, Warcaby
   i Wyścigi kaczek.
 - Kości i domino: Cat, head, tail, Domino, Farkle, Mexican Train i Yahtzee.
-- Słowa i wiedza: Krowa, Państwa-miasta, Quiz, Scrabble i Taboo.
+- Słowa i wiedza: Krowa, Mania pisania, Państwa-miasta, Quiz, Scrabble i Taboo.
 - Gry zręcznościowe audio: Axel Pong i Audio Ball.
 
 Mahjong ma jedną pozycję na liście gier. W jego opcjach najpierw wybierz pasjansa, Hong Kong, Riichi albo MCR; poniżej pojawią się ustawienia tej odmiany. W pasjansa grasz sam. Hong Kong i MCR wymagają czterech graczy, a Riichi czterech lub trzech w sanmie; brakujące miejsca uzupełnisz botami przez Ctrl+O przy stole. Po rozdaniu dłuższego meczu każdy potwierdza gotowość do kolejnego. Zasady i obsługę otworzysz przez Ctrl+F1.
@@ -98,6 +98,47 @@ punktację i sterowanie opisuje dostępna w programie sekcja „Zasady gry”.
 
 W grze taboo potrzebujesz komunikacji z innymi graczami. Możesz użyć do tego
 konferencji w eltenie, innego komunikatora lub grać na żywo.
+
+Brajl jest dostępny we wszystkich czterech wariantach. Gra zawiera Liblouis dla Windows i tablice literackie polskie, angielskie, czeskie, hiszpańskie i rosyjskie; NVDA nie jest wymagane. Domyślna tablica i teksty odpowiadają językowi interfejsu. Lokalną tablicę wybierzesz w przeglądarce plików Eltena; obsługiwane rozszerzenia to .ctb, .utb, .tbl i .uti. W Łańcuchu pamięciowym słychać samo nowe słowo, a odczyt reszty słowa jest niedostępny. Pomoc zawiera instrukcję, listę skrótów oraz osobny tekst o pisaniu bezwzrokowym.
+
+W ustawieniach brajla dostępne są 32 tablice: literackie, skrótowe, komputerowe i regionalne dla pięciu obsługiwanych języków. Domyślnie wybierana jest tablica literacka języka interfejsu; zapisany wybór pozostaje bez zmian. Losowe słowa, Łańcuch pamięciowy i Tryb przetrwania korzystają ze słowników polskiego, angielskiego, czeskiego, hiszpańskiego i rosyjskiego, wraz z odmianami słów. Język słów wybierzesz w ustawieniach stołu. Nowy stół domyślnie używa języka interfejsu gospodarza, a wszyscy uczestnicy dostają słowa z tego samego słownika. Gra losuje wyrazy od 3 do 12 liter. Wielkość liter nie wpływa na poprawność wpisywanych słów; w brajlu nie trzeba dodawać oznaczeń wielkich liter.
+
+Listy gotowych tekstów, tablic brajlowskich i języków słownika obejmują tylko języki zaznaczone jako znane w ustawieniach Power Games. Gdy lista znanych języków jest pusta, dostępny jest wyłącznie język interfejsu, a wybór języka słów jest ukryty. Domyślna tablica jest literacka. W trybie mieszanym odczyt słowa podaje też sposób wpisywania. W Swobodnym pisaniu najpierw słychać całe zdanie, potem sposób wpisywania i pierwsze słowo.
+
+Mania pisania oferuje Swobodne pisanie, Losowe słowa, Łańcuch pamięciowy
+i Tryb przetrwania, solo lub z innymi osobami. Tryb przetrwania zatwierdza słowo po
+ostatnim poprawnym znaku, bez Spacji. Każde poprawne słowo przyspiesza muzykę
+o 2,5%. W pozostałych wariantach słownych
+przedwczesna Spacja jest ignorowana i nie dodaje błędu. Kara za bezczynność w wieloosobowych
+Losowych słowach i Łańcuchu pamięciowym następuje po pięciu sekundach;
+odczytywanie i literowanie nie zużywają tego limitu.
+
+Ctrl+L literuje słowo, Ctrl+O je odczytuje, Ctrl+średnik odczytuje jego resztę,
+a Ctrl+Shift+średnik resztę zdania w Swobodnym pisaniu. Ctrl+P otwiera
+ustawienia brajla, dźwięków i osobnego echa pisania. Echo dotyczy tylko pola
+gry; domyślnie korzysta z ustawienia Eltena. Opcja Wklej tekst otwiera pole edycyjne bez
+przeglądarki plików na tym samym ekranie co ustawienia stołu. Tytuł poprzedza
+treść w kolejności Tab; zmiana ustawień zachowuje oba pola.
+Importy mają limit 1 000 000 bajtów UTF-8 (1000 kB).
+Przekroczenie limitu wyświetla błąd importu; wklejona treść pozostaje do poprawienia.
+Pozostają lokalne, chyba że gospodarz wybierze konkretny tekst do wspólnej
+gry. Rozpoczęcie tej gry udostępnia wybrany tekst uczestnikom przez serwer
+i historię stołu, bez dodatkowego potwierdzenia.
+
+Tekst wybierasz przed utworzeniem stołu. Jego tytuł i liczba znaków ze spacjami
+są widoczne wraz z limitem czasu w opisie stołu i na widgecie przed dołączeniem do gry.
+
+Wygrywa ocena uwzględniająca błędy: WPM w Swobodnym pisaniu lub liczbę
+poprawnych słów w pozostałych wariantach mnożymy dwukrotnie przez
+współczynnik: poprawne słowa / (poprawne słowa + błędy). Dokładne zasady
+i przykład znajdziesz w pomocy gry. Każda nowa runda ustawia fokus w polu pisania.
+
+Partię Manii pisania można zapisać solo i multiplayer przez Ctrl+S lub menu
+kontekstowe stołu. Gospodarz zatrzymuje pisanie u graczy, a po potwierdzeniu zapisuje
+postęp na swoim koncie i zamyka stół. Nieudany zapis nie zamyka stołu.
+Zapisane partie w menu głównym przywracają także rozpoczęte słowo i pozostały
+czas. W multiplayerze muszą dołączyć wszyscy pierwotni gracze, bez obserwatorów.
+Tekst solo trafia do prywatnego archiwum konta, nie do publicznej biblioteki.
 
 ## Stoły i wspólna gra
 

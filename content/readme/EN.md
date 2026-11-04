@@ -44,12 +44,12 @@ This is a read-only document with a heading for each version. H moves to the nex
 
 ## What you can play
 
-Power Games currently includes 38 games:
+Power Games currently includes 39 games:
 
 - Card games: 3-5-8, 99, 1000 miles, Biblios, Bouillabaisse, Bridge, Makao, Spades, Poker, Rummy, Scopa, Thousand, UNO, War and Scientific War.
 - Board and strategy games: Ludo, Four in a Row, Tic Tac Toe, Mancala, Monopoly, Reversi, Battleships, Chess, Checkers and Duck Racing.
 - Dice and dominoes: Cat, head, tail, Dominos, Farkle, Mexican Train and Yahtzee.
-- Words and knowledge: Krowa, Categories, Quiz Party, Scrabble and Taboo.
+- Words and knowledge: Krowa, Typoholism, Categories, Quiz Party, Scrabble and Taboo.
 - Audio action games: Axel Pong and Audio Ball.
 
 Mahjong has one entry in the game list. Choose Solitaire, Hong Kong, Riichi or MCR first; the options for that variant appear below it. Solitaire is solo. Hong Kong and MCR need four players; Riichi needs four or three in sanma. At the table, use Ctrl+O to add bots for missing seats. In a longer match, everyone confirms readiness after each hand. Open the rules and controls with Ctrl+F1.
@@ -73,6 +73,46 @@ In Solitaire you choose individual tiles: arrows move between rows and columns, 
 Many games have several variants. The choices, player counts, bot support and additional settings depend on the game. Detailed rules, scoring and controls are described in the program's “Game rules” section.
 
 In Taboo, you need to communicate with the other players. You can use an ELTEN conference, another messaging app or play in person.
+
+Braille is available in all four variants. The game includes Liblouis for Windows and Polish, English, Czech, Spanish and Russian literary tables; NVDA is not required. The default table and stories follow the interface language. Select a local table in Elten's file browser; supported extensions are .ctb, .utb, .tbl and .uti. Memory Chain announces only the new word and disables reading the word remainder. Help contains instructions, a shortcut list and a separate touch-typing guide.
+
+Braille settings offer 32 literary, contracted, computer and regional tables for the five supported languages. The default is a literary table in the interface language; a saved choice is preserved. Random Words, Memory Chain and Survival mode use Polish, English, Czech, Spanish and Russian dictionaries, including inflected forms. Choose the word language in the table settings. A new table defaults to the host's interface language, and every participant receives words from the same dictionary. The game draws words of 3 to 12 letters. Letter case does not affect whether a word is correct; braille input does not require capital indicators.
+
+The lists of built-in texts, braille tables and dictionary languages include only languages marked as known in Power Games settings. With no known languages selected, only the interface language is offered and the word-language selector is hidden. The default table is literary. In mixed mode, reading a word also announces its input method. Free Typing reads the full sentence first, then the input method and the first word.
+
+Typoholism offers Free typing, Random words, Memory chain and Survival mode,
+alone or with others. Survival mode confirms after the last correct character,
+without Space. Each correct word speeds the music up by 2.5%.
+An early Space in the other word variants is ignored without an error.
+Multiplayer Random words and Memory chain penalise five seconds of
+inactivity; reading and spelling do not consume this time.
+
+Ctrl+L spells the word, Ctrl+O reads it, Ctrl+semicolon reads its remainder,
+and Ctrl+Shift+semicolon reads the remaining sentence in Free typing.
+Ctrl+P opens braille, sound and local typing echo settings. Echo applies only
+to the game field and follows Elten by default. Paste a text opens an edit field
+without a file browser on the same screen as the table settings. Tab moves
+from the title to the content; editing settings preserves both fields.
+Imports are limited to 1,000,000 UTF-8 bytes (1000 kB).
+Exceeding the limit displays an import error and keeps the pasted text for editing.
+They stay local unless the host selects a particular text for shared play
+Starting that game sends the selected text to participants through the server
+and table history, without another confirmation.
+
+Select the text before the table is created. Its title and character count,
+including spaces, and the time limit appear in the table description and widget before joining.
+
+The highest error-adjusted score wins: multiply WPM in Free typing, or correct
+words in the other variants, twice by the factor correct words / (correct words + errors).
+The game rules explain this with an example. Every new round returns
+focus to the typing field.
+
+Save solo and multiplayer Typoholism with Ctrl+S or the table's context
+menu. The host pauses everyone's typing, then confirms storing progress
+on their account and closing the table. A failed save keeps the table open.
+Saved games in the main menu restores the current word and remaining time.
+All original multiplayer players must join, but observers are not required.
+Solo source text goes into a private account archive, not a public library.
 
 ## Tables and playing together
 

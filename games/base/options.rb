@@ -79,6 +79,11 @@ module GameRoomGames
         normalize_options({})
       end
 
+      # Presentation choices may be narrower than the canonical replay schema.
+      def option_editor_definitions(selected = {})
+        effective_option_definitions(selected)
+      end
+
       # Only the creator's option form uses these defaults. Replay and saved
       # tables keep their recorded language, regardless of the viewer's UI.
       def table_creation_options(values = {})

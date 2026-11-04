@@ -183,6 +183,14 @@ class GameScreen
 
   def table_activity_cursor; event_presenter.last_seen_activity_id; end
 
+  private def save_current_game(replay)
+    return false if @game_client&.respond_to?(:prepare_save) && !@game_client.prepare_save(replay, context: action_context)
+
+    saved = @save_game&.call(@table, @session, @game)
+    @game_client.save_finished(saved == true) if @game_client&.respond_to?(:save_finished)
+    saved
+  end
+
   def run
     start_sound_output
     return :back unless start_game_client
@@ -259,7 +267,8 @@ class GameScreen
       end
       @game_client&.after_events(replay, Session.name, context: action_context)
       revision = @repository.events_revision(snapshot.events)
-      action = wait_for_action(replay, revision)
+      action = @game_client&.respond_to?(:pending_screen_action) ? @game_client.pending_screen_action(replay) : nil
+      action ||= wait_for_action(replay, revision)
       if @latest_wait_replay != nil
         replay = @latest_wait_replay
         @latest_wait_replay = nil
@@ -293,7 +302,7 @@ class GameScreen
           @suppress_surface_focus = true
           next
         end
-        return :saved if @save_game&.call(@table, @session, @game)
+        return :saved if save_current_game(replay)
         @suppress_surface_focus = true
       when :edit_options, :edit_teams
         edit_table_configuration(action)
@@ -1369,6 +1378,7 @@ class GameScreen
 
     selection = @game.automatic_action(replay, automatic_actor, context: context)
     return false if selection == nil
+    automatic_actor = selected_action_actor(selection, replay) if @game.moderator_action?(selection)
 
     status, plan = @game.action_for(
       selection,

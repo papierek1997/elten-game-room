@@ -56,6 +56,11 @@ module GameRoomGames
       nil
     end
 
+    # A game with a local completion presenter may suppress the shared cue.
+    def result_sound_cue(before_replay:, after_replay:, viewer:, default_cue:)
+      default_cue
+    end
+
     # A new participant inherits the existing place, never a rewritten event log.
     # Private commitments cannot be reconstructed by a different computer.
     # Games with a private protocol must explicitly opt in at a safe boundary.
@@ -92,6 +97,8 @@ module GameRoomGames
     # independent instance for the presenter's ordered historical prefixes.
     def build_presentation_game; self; end
     def build_start_guard(_program, user:, **_services); nil; end
+    def build_table_preparation(_program); nil; end
+    def build_option_editor_extension(_program, _options); nil; end
     def supports_leaderboards?; false; end
     def build_leaderboard_client(_program, **_services); nil; end
     def supports_player_statistics?; false; end

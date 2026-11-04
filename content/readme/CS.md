@@ -44,12 +44,12 @@ Jde o dokument pouze ke čtení s nadpisem pro každou verzi. H přejde na dalš
 
 ## Co si můžete zahrát
 
-Power Games v současnosti obsahuje 38 her:
+Power Games v současnosti obsahuje 39 her:
 
 - Karetní hry: 3-5-8, 99, 1000 mil, Biblios, Bouillabaisse, Bridž, Makao, Piky, Poker, Rummy, Scopa, Tisíc, UNO, War a Scientific War.
 - Deskové a strategické hry: Člověče, nezlob se, Čtyři v řadě, Piškvorky, Mankala, Monopoly, Reversi, Lodě, Šachy, Dáma a Závody kachen.
 - Kostky a domino: Cat, head, tail, Domino, Farkle, Mexican Train a Yahtzee.
-- Slova a vědomosti: Krowa, Kategorie, Quiz Party, Scrabble a Taboo.
+- Slova a vědomosti: Krowa, Psanománie, Kategorie, Quiz Party, Scrabble a Taboo.
 - Zvukové akční hry: Axel Pong a Audio Ball.
 
 Mahjong má v seznamu her jednu položku. Nejprve vyber solitaire, Hong Kong, Riichi nebo MCR; pod volbou se zobrazí nastavení dané varianty. Solitaire hraješ sám. Hong Kong a MCR vyžadují čtyři hráče, Riichi čtyři nebo tři v sanmě. Chybějící místa doplníš u stolu boty pomocí Ctrl+O. V delším zápase každý po rozdání potvrdí připravenost k dalšímu. Pravidla a ovládání otevřeš pomocí Ctrl+F1.
@@ -73,6 +73,44 @@ V solitaire vybíráš jednotlivé kameny: šipky mění řádek a sloupec, 1–
 Mnoho her nabízí několik variant. Jejich výběr, počet účastníků, dostupnost botů a další nastavení závisejí na konkrétní hře. Podrobná pravidla, bodování a ovládání popisuje část „Pravidla hry“ v programu.
 
 Ve hře Taboo potřebujete komunikovat s ostatními hráči. Můžete k tomu využít konferenci v ELTENu, jiný komunikační program nebo hrát osobně.
+
+Brajl je dostupný ve všech čtyřech variantách. Hra obsahuje Liblouis pro Windows a polské, anglické, české, španělské a ruské literární tabulky; NVDA není potřeba. Výchozí tabulka a příběhy odpovídají jazyku rozhraní. Místní tabulku vyberete v prohlížeči souborů Eltenu; podporované přípony jsou .ctb, .utb, .tbl a .uti. Paměťový řetězec oznamuje jen nové slovo a neumožňuje číst zbytek slova. Nápověda obsahuje pokyny, seznam zkratek a samostatný návod k psaní všemi deseti.
+
+Nastavení braillu nabízí 32 tabulek pro pět podporovaných jazyků: plnopisné, zkratkopisné, počítačové i regionální varianty. Výchozí je plnopisná tabulka jazyka rozhraní; uložená volba zůstává zachována. Náhodná slova, Paměťový řetězec a Režim přežití využívají polský, anglický, český, španělský a ruský slovník včetně skloňovaných a časovaných tvarů. Jazyk slov vyberete v nastavení stolu. Nový stůl používá jako výchozí jazyk rozhraní hostitele a všichni účastníci dostávají slova ze stejného slovníku. Hra vybírá slova o 3 až 12 písmenech. Velikost písmen nemá vliv na správnost zadaných slov; při psaní braillem nemusíš zadávat znaky pro velká písmena.
+
+Seznamy připravených textů, braillských tabulek a jazyků slovníku obsahují jen jazyky označené jako známé v nastavení Power Games. Pokud nejsou vybrány žádné známé jazyky, je dostupný pouze jazyk rozhraní a výběr jazyka slov je skrytý. Výchozí tabulka je plnopisná. Ve smíšeném režimu přečtení slova oznámí také způsob zadávání. Volné psaní nejprve přečte celou větu, potom oznámí způsob zadávání a první slovo.
+
+Psanománie nabízí Volné psaní, Náhodná slova, Paměťový řetězec a Režim přežití,
+sólo i s ostatními. Režim přežití potvrzuje posledním správným znakem bez Mezerníku.
+Každé správné slovo zrychlí hudbu o 2,5 %.
+Předčasný Mezerník se v ostatních slovních variantách ignoruje a nepřidá chybu.
+Ve hře více hráčů v Náhodných slovech a Paměťovém řetězci nastává trest po
+pěti sekundách nečinnosti; čtení a hláskování tento čas nespotřebovává.
+
+Ctrl+L hláskuje slovo, Ctrl+O ho čte, Ctrl+středník čte jeho zbytek
+a Ctrl+Shift+středník zbytek věty ve Volném psaní. Ctrl+P otevře nastavení
+braillu, zvuků a samostatné odezvy psaní. Odezva platí jen pro herní pole
+a ve výchozím stavu používá nastavení Eltenu. Vložit text otevře pole přímo
+v nastavení stolu: nejprve název, potom klávesou Tab obsah. Změna nastavení oba údaje zachová.
+Limit importu je 1 000 000 bajtů UTF-8 (1000 kB).
+Překročení limitu zobrazí chybu importu a zachová vložený text pro úpravu.
+Importy zůstávají místní,
+pokud hostitel nevybere konkrétní text ke společné hře. Její spuštění odešle
+vybraný text účastníkům přes server a historii stolu bez dalšího potvrzení.
+
+Text vybereš před vytvořením stolu. Jeho název a počet znaků včetně mezer
+jsou spolu s časovým limitem viditelné v popisu stolu i ve widgetu před připojením.
+
+Vyhrává skóre upravené podle chyb: WPM ve Volném psaní, nebo správná slova
+v ostatních variantách, se dvakrát násobí koeficientem správná slova /
+(správná slova + chyby). Pravidla hry uvádějí příklad. Každé nové kolo vrací kurzor do pole pro psaní.
+
+Partii Psanománie lze uložit sólo i ve více hráčích pomocí Ctrl+S nebo
+kontextové nabídky stolu. Hostitel pozastaví psaní a potvrdí uložení postupu na svůj účet
+a zavření stolu. Při neúspěchu zůstane stůl otevřený. Uložené partie v hlavní
+nabídce obnovují i rozepsané slovo a zbývající čas. Musí přijít všichni
+původní hráči; pozorovatelé nejsou nutní. Sólo předloha se ukládá do
+soukromého archivu účtu, ne do veřejné knihovny.
 
 ## Stoly a společné hraní
 

@@ -20,6 +20,7 @@ module GameRoomShortcutBindings
     shortcut_by_key = shortcuts.group_by(&:key)
     shortcut_signatures = shortcuts.map { |shortcut| [shortcut.key, shortcut.modifiers.to_a] }
     shortcut_keys = shortcut_by_key.keys
+    form.game_named_shortcut_keys = shortcut_keys if form.respond_to?(:game_named_shortcut_keys=)
     if shortcut_signatures.uniq.length != shortcut_signatures.length
       raise ArgumentError, "game shortcut combinations must be unique"
     end
@@ -55,7 +56,11 @@ module GameRoomShortcutBindings
     shifted_character = if modifiers.include?(:shift)
       GameSurfaces::SHIFTED_DIGIT_CHARACTERS[shortcut.key.to_s]
     end
-    key = shifted_character || (shortcut.key.to_s == "space" ? _("Space") : shortcut.key.to_s.upcase)
+    key = shifted_character || case shortcut.key.to_s
+    when 'space' then _("Space")
+    when 'semicolon' then ';'
+    else shortcut.key.to_s.upcase
+    end
     prefixes = []
     prefixes << _("Ctrl") if modifiers.include?(:control)
     prefixes << _("Alt") if modifiers.include?(:alt)
