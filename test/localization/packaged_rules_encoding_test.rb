@@ -55,7 +55,7 @@ end
 metadata = BinaryRulesLoad.instance_variable_get(:@metadata) || JSON.parse(File.read(File.join(BinaryRulesLoad::ROOT, "manifest.json")))
 raise "Runtime build differs from package manifest" unless EltenGameRoom::GAME_ROOM_BUILD_ID.to_s == metadata.fetch("build_id").to_s
 raise "Runtime version differs from package manifest" unless EltenGameRoom::GAME_ROOM_VERSION == metadata.fetch("version")
-raise "Wrong target ELTEN runtime" unless metadata.fetch('EltenAPIVersion') == '3.0.4'
+raise "Wrong target ELTEN runtime" unless metadata.fetch('EltenAPIVersion') == '3.0.5'
 current_changelog = GameRoomChangelog::ENTRIES.find { |entry| entry.build == EltenGameRoom::GAME_ROOM_BUILD_ID }
 raise "Binary changelog version differs" unless current_changelog && current_changelog.version == EltenGameRoom::GAME_ROOM_VERSION
 current_changelog.changes.each do |change|

@@ -2,8 +2,10 @@
 
 ## Current contract
 
-- The sources require the final ELTEN 3.0.4 release; the integration contract
+- The sources require the final ELTEN 3.0.5 release; the integration contract
   is described in [HOST_API.md](docs/HOST_API.md).
+- Use the required host API directly. Do not add fallback paths for older
+  ELTEN APIs or earlier notification formats unless explicitly requested.
 - Maintenance rules: [ARCHITECTURE.md](docs/ARCHITECTURE.md); the index of
   current contracts and instructions: [INDEX.md](docs/INDEX.md).
   Git contains the change history; that history is not an instruction to revert current code.
@@ -101,6 +103,28 @@
 
 ## Working practices
 
+- Local data/cache roots are prepared once in a finite startup task and shared
+  by the current Power Games Runtime. Do not resolve host storage identity from
+  an audio frame or recording chunk: it can decode the entire signed package.
+  Preserve native subpath validation and isolate the adapter from other apps;
+  a reload must prepare fresh roots rather than reuse the former Runtime.
+
+- Application sounds use ELTEN's default effect buffering; do not force
+  `:low_latency`, which caused HRTF underruns. Preserve explicitly supplied
+  buffering and sample choices. Do not change
+  ELTEN's global mixer, add artificial effects to ordinary stereo or infer
+  end-to-end latency from the queue size. Notification keys include the
+  authenticated sender, recipient and exact event scope. Native lifecycle
+  checks use existing local evidence only: missing verification or a cold
+  clock is not proof of expiry. Keep the original invitation deadlines.
+  Tournament match invitations bypass contact/blacklist filters, not sender
+  authentication, quiet mode or sound settings. Start/final information has
+  no expiry; per-publication journals preserve previous attempted sends.
+  Final notice snapshots carry the recipient's place and winning unit names.
+  Notice refresh is driven by verified tournament changes, not timer polling.
+  Hide resolved notices locally without dropping their native lifecycle entry
+  before the host has revoked the server notification.
+
 - Tournament result policies v6 and later use explicit game-owned small-point support;
   the base policy is disabled. Keep finishing places separate from numeric
   small-point exports, and preserve all earlier policies when verifying old
@@ -129,6 +153,10 @@
   membership when read/focused; local joins/leaves need no table/game refresh.
   Retain a matching local target while still connected after its creator clears
   the invitation, so remaining guests can leave without altering a newer offer.
+  Explicit departure while connected to the table's conference offers No,
+  Yes and Leave only the table. The last choice preserves Conference and only
+  drops local table tracking after confirmed departure. Do not apply this choice
+  to an unrelated channel or consume it on cancellation or a failed leave.
 - The shared replay cache owns sealed authenticated records and copied
   checkpoints. Recheck actors and IDs, all earlier changed records, resource
   identities and session context; retain bounded memory and generation guards.
@@ -474,6 +502,17 @@ and `docs/PRIVATE_STATE.md`:
   through `supports_saved_games?`. If event values contain controller names,
   implement `restored_event_value` for those specific fields. Do not replace
   players or close the table before the account archive write is confirmed.
+
+- History/replay files (`lib/recordings`) are passive records, not resumable
+  saves. Observe existing renderers; never rerun physics, publish results or
+  evaluate file contents during playback. Reuse Progress for background audio.
+  Capture queues are bounded and disk work stays on finite native workers.
+  Immutable chunk leases protect an export from new captures and cleanup.
+  The per-account directory owns the library; export copies, delete removes
+  only the selected owned file. Confirmed message delivery removes the exact
+  sender copy, never the library file. Preview never removes received messages;
+  ask about removal only after persistent import succeeds. Preserve the delivery
+  journal on an uncertain send and reconcile rather than duplicate it.
 
 - Update affected tests in the same change as the behavior they verify, not
   after a failed GitHub run. Search existing tests, shared fixtures, snapshots

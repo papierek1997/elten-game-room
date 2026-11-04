@@ -10,8 +10,6 @@ module GameRoomTournaments
     Data=Publication::Data
     FIELDS=%w[version backend_identity publication_ref recipient event_id].freeze
     DESCRIPTION_FIELDS=%w[title game].freeze
-    DELIVERY_GRACE=300
-    READING_GRACE=1800
 
     def self.metadata(value)
       value=Data.copy(value,max_bytes:2048,max_nodes:64,max_depth:4)
@@ -72,7 +70,7 @@ module GameRoomTournaments
     def presentable?(proof)
       current!
       now=now!
-      proof['metadata']['recipient']==@scope['account'] && proof['starts_at']<=now && now<proof['expires_at']
+      proof['metadata']['recipient']==@scope['account'] && proof['starts_at']<=now && !expired?(proof['expires_at'])
     rescue ProposalNotice::Stale,Publication::Invalid
       false
     end
@@ -85,14 +83,29 @@ module GameRoomTournaments
 
     def expired?(deadline)
       current!
+      return false if deadline==0
       now!>=deadline
     end
 
-    # Old delivery journals did not store expiry. Retain those entries for a
-    # whole notice lifetime from migration, including uncertain sends.
     def retention_deadline
       current!
-      now!+READING_GRACE
+      0
+    end
+
+    # These are retained event records, not still-pending invitations. A
+    # later rename/removal must not withdraw an authenticated historical text.
+    def retain_stale_notice?(metadata,sender:)
+      current!
+      notice=self.class.metadata(metadata)
+      notice['version']==2 && notice['recipient']==@scope['account'] &&
+        notice['backend_identity']==@scope['backend_identity'] &&
+        Data.account(sender).downcase==notice['publication_ref']['author']
+    rescue ProposalNotice::Stale,Publication::Invalid
+      false
+    end
+
+    def refresh_on_change?(_metadata,proof:nil)
+      false
     end
     # Authenticated sender + scoped event metadata describe an event, not
     # permission to play or to announce it again. No network read on list focus.
@@ -105,6 +118,7 @@ module GameRoomTournaments
     end
     def remaining_seconds(closes)
       current!
+      return 0 if closes==0
       seconds=closes-now!
       raise ProposalNotice::Stale,'Start notice expired' unless seconds>0
       seconds
@@ -131,14 +145,12 @@ module GameRoomTournaments
       starts=TournamentTiming.starts_at(row)
       raise ProposalNotice::Stale,'Tournament not started' unless starts
       now=now!
-      expires=starts+READING_GRACE
-      expires=[TournamentTiming.deadline_at(row),expires].min unless TournamentTiming.optional?(row)
-      unless TournamentTiming.registration_closed?(row,now) && starts<=now && now<expires && (!delivery || now<=starts+DELIVERY_GRACE)
+      unless TournamentTiming.registration_closed?(row,now) && starts<=now
         raise ProposalNotice::Stale,'Not a current tournament start'
       end
       Data.freeze_tree({'sender'=>sender,'title'=>row['title'],'game'=>row['game'],'participants'=>people,
         'usernames'=>value['usernames'],
-        'starts_at'=>starts,'expires_at'=>expires,'publication_digest'=>Digest::SHA256.hexdigest(JSON.generate(row.slice(*Publication::COLUMNS)))})
+        'starts_at'=>starts,'expires_at'=>0,'publication_digest'=>Digest::SHA256.hexdigest(JSON.generate(row.slice(*Publication::COLUMNS)))})
     end
 
     def now!

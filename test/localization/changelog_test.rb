@@ -488,6 +488,33 @@ assert(GameRoomChangelog.pending_entries(258, 259).map(&:build) == [259], 'build
 assert(GameRoomChangelog.pending_entries(nil, 259).map(&:build) == [259], 'first build 259 launch repeats history')
 assert(GameRoomChangelog.pending_entries(259, 259).empty?, 'build 259 reopens after being read')
 assert(GameRoomChangelog.list_items([entry_259]).first == 'Version 2.0.5.8, build 259', 'build 259 heading differs')
+entry_260 = entries.find { |entry| entry.build == 260 }
+assert(entry_260 && entry_260.version == '2.0.5.9' && entry_260.changes.length == 10, 'build 260 has incorrect release metadata')
+assert(entry_260.changes.uniq.length == 10, 'build 260 contains duplicate notes')
+['opponent list', 'Balteam', 'Krowa', 'Paulina', 'following day', 'Shift+R', 'suit order',
+ 'read-only text field', 'Harry Potter', '985', 'LordKiller', '42', 'Zuzler', 'Scopa', 'Bouillabaisse'].each do |topic|
+  assert(entry_260.changes.join(' ').include?(topic), "build 260 lacks #{topic}")
+end
+assert(GameRoomChangelog.pending_entries(259, 260).map(&:build) == [260], 'build 260 repeats older notes')
+assert(GameRoomChangelog.pending_entries(nil, 260).map(&:build) == [260], 'first build 260 launch repeats history')
+assert(GameRoomChangelog.pending_entries(260, 260).empty?, 'build 260 reopens after being read')
+assert(GameRoomChangelog.list_items([entry_260]).first == 'Version 2.0.5.9, build 260', 'build 260 heading differs')
+assert(GameRoomChangelog.available_entries(260).first.equal?(entry_260),
+  'build 260 is not the newest available entry at that build')
+entry_261 = entries.find { |entry| entry.build == 261 }
+assert(entry_261 && entry_261.version == '2.0.5.10' && entry_261.changes.length == 12, 'build 261 has incorrect release metadata')
+assert(entry_261.changes.uniq.length == 12, 'build 261 contains duplicate notes')
+['3.0.5', 'Ctrl+Shift+S', 'replay', 'perspective', 'Import from messages', 'Countries and Cities',
+ 'no longer expire', 'blacklist', 'Leave only the table', 'chat', 'Monopoly', 'Harry Potter', 'Power Games'].each do |topic|
+  assert(entry_261.changes.join(' ').include?(topic), "build 261 lacks #{topic}")
+end
+assert(GameRoomChangelog.pending_entries(260, 261).map(&:build) == [261], 'build 261 repeats older notes')
+assert(GameRoomChangelog.pending_entries(nil, 261).map(&:build) == [261], 'first build 261 launch repeats history')
+assert(GameRoomChangelog.pending_entries(261, 261).empty?, 'build 261 reopens after being read')
+assert(GameRoomChangelog.list_items([entry_261]).first == 'Version 2.0.5.10, build 261', 'build 261 heading differs')
+assert(GameRoomChangelog.available_entries(261).first.equal?(entry_261), 'build 261 is not the newest entry')
+assert([EltenGameRoom::GAME_ROOM_VERSION, EltenGameRoom::GAME_ROOM_BUILD_ID] == ['2.0.5.10', 261],
+  'runtime and latest release metadata differ')
 %w[PL CS ES RU].each do |language|
   bytes = File.binread(File.expand_path("../../locale/#{language}.mo", __dir__))
   total, source_table, target_table = bytes.byteslice(8, 12).unpack('V3')
@@ -521,5 +548,9 @@ assert(GameRoomChangelog.list_items([entry_259]).first == 'Version 2.0.5.8, buil
     "build 258 has untranslated #{language} notes")
   assert(entry_259.changes.all? { |source| !release_catalog.fetch(source, '').empty? },
     "build 259 has untranslated #{language} notes")
+  assert(entry_260.changes.all? { |source| !release_catalog.fetch(source, '').empty? },
+    "build 260 has untranslated #{language} notes")
+  assert(entry_261.changes.all? { |source| !release_catalog.fetch(source, '').empty? },
+    "build 261 has untranslated #{language} notes")
 end
-puts "Changelog tests passed: first launch, updates, downgrade, Enter, storage, old notes preserved and multilingual build 259 notes"
+puts "Changelog tests passed: first launch, updates, downgrade, Enter, storage, old notes preserved and multilingual build 261 notes"

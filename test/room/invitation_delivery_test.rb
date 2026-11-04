@@ -39,6 +39,7 @@ $game_room_test_user = "Receipt owner"
 receipt = Receipt.new(id: 901,app_uuid: "test-app",type: reply[0],sender: user,metadata: reply[1])
 program = Object.new
 program.define_singleton_method(:server_app_uuid) { "test-app" }
+program.define_singleton_method(:revoke_sent_notification) { |_user, key:| true }
 receipt_gateway = ReceiptGateway.new
 2.times do |index|
   duplicate = receipt.dup

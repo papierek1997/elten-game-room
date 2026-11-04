@@ -7,8 +7,26 @@ module GameRoomTournaments
   # The file lock spans the entire host transaction, including its final write.
   class ProposalNoticeJournal
     MAX_BYTES = 524_288
-    def initialize(program:, path:)
-      @program, @path = program, path
+    def initialize(program:, path:, seed: nil)
+      @program, @path, @seed = program, path, seed
+    end
+
+    def read
+      path=LocalFilesystem.native(@program.data_path(@path))
+      return nil unless safe_file!(path)
+      lock_path=path+'.lock'
+      safe_file!(lock_path)
+      File.open(lock_path,File::RDWR|File::CREAT,0o600) do |lock|
+        raise IOError,'Notification journal lock unavailable' unless lock.flock(File::LOCK_SH)
+        begin
+          stat=safe_file!(path)
+          return nil unless stat
+          raise ProposalNotice::Unavailable,'Notification journal is too large' if stat.size>MAX_BYTES
+          read_strict(path)
+        ensure
+          lock.flock(File::LOCK_UN)
+        end
+      end
     end
 
     def update(&edit)
@@ -26,6 +44,12 @@ module GameRoomTournaments
               strict = read_strict(path)
               raise ProposalNotice::Unavailable, 'Notification journal is corrupt' unless strict.is_a?(Hash) && state.is_a?(Hash)
               state.replace(strict)
+            end
+            if @seed
+              unless state.is_a?(Hash) && state['operations'].is_a?(Hash)
+                raise ProposalNotice::Unavailable,'Notification journal is corrupt'
+              end
+              @seed.each { |key,entry| state['operations'][key] ||= Publication::Data.copy(entry) }
             end
             edit.call(state)
             raise ProposalNotice::Unavailable, 'Notification journal is too large' if JSON.generate(state).bytesize > MAX_BYTES

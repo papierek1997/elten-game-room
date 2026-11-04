@@ -3,6 +3,7 @@ require_relative '../audio_ball/keyboard'
 require_relative '../audio_ball/rotation'
 
 require_relative "../game_room_localization"
+require_relative 'realtime_information'
 
 module GameSurfaces
   using GameRoomLocalization::Translations
@@ -163,21 +164,8 @@ module GameSurfaces
       case command
       when 'hurry'
         @on_audio_ball_command&.call(command)
-      when 'scores'
-        speak((@spec.score_labels || @spec.players).each_with_index.map do |player, side|
-          _('%{player}. Points: %{points}. Sets: %{sets}.') % {
-            player: GameRoomContent.utf8(player), points: @spec.scores[side], sets: @spec.sets[side] }
-        end.join(' '))
-      when 'server'
-        server = @snapshot && @snapshot['server']
-        text = ''
-        if server.is_a?(Integer) && server.between?(0, @spec.players.length - 1)
-          receiver = GameRoomAudioBall::Rotation.seat(@spec.teams || [0, 1], server, 1)
-          template = @spec.players.length == 2 ? _('%{player} serves.') : _('%{player} serves to %{receiver}.')
-          text = GameRoomContent.utf8(template) % {
-            player: GameRoomContent.utf8(@spec.players[server]), receiver: GameRoomContent.utf8(@spec.players[receiver])}
-        end
-        speak([text, @status].reject(&:empty?).join(' '))
+      when 'scores', 'server'
+        speak(RealtimeInformation.audio_ball(command, spec: @spec, snapshot: @snapshot, status: @status))
       else
         return false
       end

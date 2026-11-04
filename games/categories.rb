@@ -74,10 +74,12 @@ module GameRoomGames
     }.freeze
     REVIEW_CODE_DECISIONS = REVIEW_DECISION_CODES.invert.freeze
 
-    def notification_option_keys(_options); %w[answer_language target_score]; end
+    def notification_option_keys(_options); %w[answer_language target_score separate_letters]; end
     def content_language_option_key; "answer_language"; end
     def notification_variant(options)
-      [notification_choice(options, "answer_language"), notification_points(options, "target_score")].compact.join(", ")
+      parts = [notification_choice(options, "answer_language"), notification_points(options, "target_score")]
+      parts << _("Separate letter for each category") if normalize_options(options)['separate_letters']
+      parts.compact.join(", ")
     end
 
     def id
@@ -216,6 +218,8 @@ module GameRoomGames
             OptionChoice.new(value: count, label: count.to_s)
           end
         ),
+        OptionDefinition.new(key: "separate_letters", label: _("Separate letter for each category"),
+          kind: :boolean, default: false),
         OptionDefinition.new(
           key: "round_time",
           label: _("Time for answers in seconds; 0 means no time limit"),
@@ -330,6 +334,10 @@ module GameRoomGames
     def game_field_header(replay, viewer)
       state = replay.state
       return name if state[:round].to_i <= 0
+
+      return _("Round %{round}; judge: %{judge}") % {
+        round: state[:round], judge: participant_name(state[:judge])
+      } if state[:options]['separate_letters']
 
       _("Round %{round}; letter %{letter}; judge: %{judge}") % {
         round: state[:round],
@@ -564,6 +572,7 @@ module GameRoomGames
         completed_rounds: 0,
         judge: nil,
         letter: "",
+        category_letters: {},
         deadline: 0,
         resume_at: 0,
         active_players: [],
@@ -597,7 +606,7 @@ module GameRoomGames
               id: category,
               label: _("%{category} for letter %{letter}") % {
                 category: category_label(category),
-                letter: answer_letter_label(state[:letter])
+                letter: answer_letter_label(round_letter(state, category))
               },
               required: false,
               max_length: ANSWER_MAX_LENGTH
@@ -651,14 +660,15 @@ module GameRoomGames
     def review_spec(state)
       GameSurfaces::ReviewSpec.new(
         id: "#{round_id(state)}-review-#{state[:roster_revision]}",
-        header: _("Review answers for letter %{letter}") % { letter: state[:letter] },
+        header: state[:options]['separate_letters'] ? _("Review answers") :
+          _("Review answers for letter %{letter}") % { letter: state[:letter] },
         # Keep the positional wire review_commit in its historical order.
         # Only presentation changes; item IDs still identify the same answers.
         items: review_items(state).sort_by { |item| round_category_ids(state).index(item[:category]) }.map do |item|
           GameSurfaces::ReviewItem.new(
             id: item[:id],
             author: "",
-            category: category_label(item[:category]),
+            category: round_category_label(state, item[:category]),
             answer: item[:answer],
             status: review_item_status(state, item),
             decision: state[:decisions][item[:id]],
@@ -832,7 +842,10 @@ module GameRoomGames
         duration = state[:options]["round_time"].to_i
         deadline = duration > 0 ? context.now.to_i + duration : 0
         categories = draw_categories(state[:options], draw, round)
-        value = [attempt, round, judge, letter, deadline, encode_round_categories(categories)].join(",")
+        letters = draw_round_letters(state[:options], categories, letter) do |size|
+          context.random_source.roll(count: 1, sides: size).values.first - 1
+        end
+        value = [attempt, round, judge, letters.join('.'), deadline, encode_round_categories(categories)].join(",")
         [:ok, event_plan("category_round", value)]
       when "close_answers"
         return [:not_your_turn, nil] if state[:phase] != :answering || !owner?(state[:players], actor)
@@ -1232,13 +1245,9 @@ module GameRoomGames
       state[:round_categories].to_a
     end
 
-    def valid_round_letter?(letter, options, used)
-      available_letters(options, used).include?(letter)
-    end
-
     def parse_round(value)
       parts = value.to_s.split(",", -1)
-      return nil if parts.length != 6 || !/\A[A-Z]\z/.match?(parts[3])
+      return nil if parts.length != 6 || !/\A[A-Z](?:\.[A-Z]){0,8}\z/.match?(parts[3])
 
       categories = decode_round_categories(parts[5])
       return nil if categories == nil
@@ -1247,7 +1256,8 @@ module GameRoomGames
         attempt: Integer(parts[0], 10),
         round: Integer(parts[1], 10),
         judge_index: Integer(parts[2], 10),
-        letter: parts[3],
+        letter: parts[3].split('.').first,
+        letters: parts[3].split('.'),
         deadline: Integer(parts[4], 10),
         categories: categories
       }
@@ -1262,9 +1272,12 @@ module GameRoomGames
       seed = GameRoomServerRandom.text_seed_value(event, template:"#{attempt},#{round},n:{seed},#{parts.last}")
       return nil unless seed
       available = available_letters(state[:options],state[:used_letters])
-      draw = Random.new(seed.to_i(16)).rand(available.size)+1
+      random = Random.new(seed.to_i(16))
+      draw = random.rand(available.size)+1
+      categories = draw_categories(state[:options],draw,round)
+      letters = draw_round_letters(state[:options], categories, available[draw-1]) { |size| random.rand(size) }
       {attempt:attempt, round:round, judge_index:judge_index(state[:options],state[:players],round,state),
-        letter:available[draw-1], deadline:parts.last.to_i, categories:draw_categories(state[:options],draw,round)}
+        letter:letters.first, letters:letters, deadline:parts.last.to_i, categories:categories}
     end
 
     def parse_score(value)
@@ -1331,6 +1344,7 @@ module GameRoomGames
       else
         phase_label(state[:phase])
       end
+      return "#{game_field_header(Replay.new(state: state), nil)}; #{time}." if state[:options]['separate_letters']
       _("Letter %{letter}; judge: %{judge}; %{status}.") % {
         letter: state[:letter],
         judge: participant_name(state[:judge]),
@@ -1340,6 +1354,10 @@ module GameRoomGames
 
     def letter_and_judge_text(state)
       return _("The first round is being prepared.") if state[:round].to_i <= 0
+      if state[:options]['separate_letters']
+        return round_category_ids(state).map { |category| round_category_label(state, category) }.join("; ") +
+          ". " + _("%{player} is the judge.") % { player: participant_name(state[:judge]) }
+      end
 
       _("Letter %{letter}; judge: %{judge}.") % {
         letter: state[:letter],
@@ -1477,5 +1495,6 @@ end
 
 require_relative 'categories/reduction'
 require_relative 'categories/membership'
+require_relative 'categories/round_letters'
 
 require_relative 'generated/rulebooks/categories'

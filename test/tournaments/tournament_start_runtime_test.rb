@@ -100,7 +100,7 @@ begin
   presentation,listed=label.call(rows[1])
   assert_equal('Power Games: '+original_text,listed,'List description differs from the delivered text')
   assert_equal(2,sounds.size,'List rendering replayed a notification sound')
-  now+=T::TournamentStartNotice::READING_GRACE
+  now+=1800
   assert_equal('Power Games: '+original_text,label.call(rows[1]).last,'Expired event lost its description')
   EltenGameRoom.configure_tournament_starts(source:source,context:-> {scope},clock:-> {now},registry:GameRoomGames::CATALOG)
   assert_equal('Power Games: '+original_text,label.call(rows[1]).last,'Cold runtime lost the recorded event description')
@@ -117,7 +117,7 @@ begin
   scope['account_epoch']='new-epoch'
   assert(Programs.map_app_notification(rows[1]).last.default_suppressed?,'Old account epoch stayed visible')
   GameRoomLocalization.boot(settings:{'interface_language'=>'en','known_languages'=>['en']})
-  now-=T::TournamentStartNotice::READING_GRACE
+  now-=1800
   phase={'schedule_id'=>'a'*64,'format'=>'groups_knockout'}
   next_phase={'format'=>'knockout','knockout'=>{'round'=>1,'seeds'=>%w[alice bob],'players_per_match'=>2}}
   event_reads=[]
@@ -125,7 +125,8 @@ begin
     event_reads<<[kind,Thread.current,Programs.current_runtime]
     {'publication'=>publications.first,'people'=>%w[alice bob],'members'=>[],
       'transition'=>{'phase_id'=>phase_id,'phase'=>phase,'next_phase'=>next_phase,'completed_at'=>now},
-      'results'=>{'completed'=>true,'completed_at'=>now},'winners'=>['alice']}
+      'results'=>{'completed'=>true,'completed_at'=>now},'winners'=>['alice'],
+      'places'=>{'alice'=>1,'bob'=>2},'team_mode'=>false}
   end
   EltenGameRoom.configure_tournament_events(source:event_source,context:-> {scope},clock:-> {now},registry:GameRoomGames::CATALOG)
   %w[phase_finished finished].each_with_index do |kind,index|
@@ -147,11 +148,34 @@ begin
     presentation=Programs.map_app_notification(row).last
     assert_equal(kind=='phase_finished' ? :open_tournament_phase_standings : :open_tournament_standings,presentation.action)
     assert(presentation.body.include?(kind=='phase_finished' ? 'Next: Final.' : 'Winner: alice'),'Missing phase/winner description')
+    assert(presentation.body.include?('Your place: 1.'),'Final notice omitted personal place') if kind=='finished'
     count=event_reads.size
     5.times{Programs.receive_app_notification(row);EltenGameRoom.tournament_starts_tick}
     assert_equal(count,event_reads.size,'Duplicate notice repeated source reads')
     assert_equal(before+1,events.size,'Duplicate event was announced')
     assert(event_reads.last[1]!=Thread.current && event_reads.last[2]==runtime,'Event verification lost its owning background runtime')
+    if kind=='finished'
+      expected={'en'=>'Your place: 1.','pl'=>'Twoje miejsce: 1.','cs'=>'Vaše umístění: 1.',
+        'es'=>'Tu puesto: 1.','ru'=>'Ваше место: 1.'}
+      expected.each do |language,place_text|
+        GameRoomLocalization.boot(settings:{'interface_language'=>language,'known_languages'=>[language]})
+        assert(Programs.map_app_notification(row).last.body.include?(place_text),"Missing personal result translation: #{language}")
+      end
+      GameRoomLocalization.boot(settings:{'interface_language'=>'en','known_languages'=>['en']})
+      EltenGameRoom.configure_tournament_starts(source:source,context:-> {scope},clock:-> {now},registry:GameRoomGames::CATALOG)
+      EltenGameRoom.configure_tournament_events(source:->(*) { raise T::Publication::Invalid,:missing_publication },context:-> {scope},clock:-> {now},registry:GameRoomGames::CATALOG)
+      text=Programs.map_app_notification(row).last.body
+      assert(text.include?('Your place: 1.') && text.include?('Winner: alice'),'Cold history lost its recorded result')
+      before=events.size
+      Programs.receive_app_notification(row)
+      EltenGameRoom.tournament_starts_tick
+      cold_worker=EltenGameRoom.instance_variable_get(:@tournament_event_inboxes).fetch('finished').instance_variable_get(:@worker)
+      wait_background_work(cold_worker) or raise 'Historical verification did not finish'
+      EltenGameRoom.tournament_starts_tick
+      assert_equal(before,events.size,'Unverifiable history was announced as a fresh result')
+      assert(EltenGameRoom.game_room_notification_current?(Programs.app_notification_from(row)),'Retained historical result was discarded')
+      assert(Programs.map_app_notification(row).last.body.include?('Your place: 1.'),'Tournament retention erased the recorded personal result')
+    end
   end
 ensure
   EltenGameRoom.stop_tournament_starts

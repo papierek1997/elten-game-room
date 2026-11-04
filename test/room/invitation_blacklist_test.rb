@@ -82,7 +82,7 @@ assert(!program.invitation_sender_allowed?('Owner') && program.invitation_sender
   assert(program.contact_notification_allowed?(native), "Blacklist filtered a non-invitation #{type}")
 end
 program.remember_settings('invitation_blacklist' => ['Owner'], 'invitation_notifications' => 'nobody')
-assert(!program.contact_notification_allowed?(Programs.app_notification_from(tournament)), 'Blacklist exception changed existing invitation policy')
+assert(program.contact_notification_allowed?(Programs.app_notification_from(tournament)), 'Tournament match invitations must bypass ordinary contact filters too')
 
 # A notice queued while the ordinary contact cache is unresolved must consult
 # the committed blacklist again before its delayed speech/audio delivery.

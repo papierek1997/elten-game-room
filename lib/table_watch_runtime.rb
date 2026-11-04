@@ -1,4 +1,5 @@
 require_relative "table_watch"
+require_relative "game_room_notifications"
 
 module GameRoomTableWatchRuntime
   def table_watch_repository
@@ -143,7 +144,7 @@ module GameRoomTableWatchRuntime
         variant: ->(table) { GameRoomTableVariant.payload(self::GAME_REGISTRY.build(table["game"]), table["game_options"]) },
         clock: @table_watch_clock,
         online: -> { EltenLink::Users.online(client) }, send_notice: ->(user, metadata, expires) {
-          EltenLink::Apps.notify(client, appid: server_app_uuid, user: user, type: GameRoomTableWatch::TYPE,
+          GameRoomNotifications.deliver(self, user, client: client, type: GameRoomTableWatch::TYPE,
             metadata: metadata.merge("expires_in" => expires), expires_in: expires) if expires > 0
         })
     end

@@ -47,13 +47,14 @@ module GameRoomGames
         expected_judge = judge_index(options, players, expected_round, state)
         if owner?(players, actor) && [:setup, :round_complete].include?(state[:phase]) &&
             parsed != nil && parsed[:round] == expected_round && parsed[:attempt] == expected_attempt &&
-            parsed[:judge_index] == expected_judge && valid_round_letter?(parsed[:letter], options, state[:used_letters]) &&
+            parsed[:judge_index] == expected_judge && valid_round_letters?(parsed, options, state[:used_letters]) &&
             valid_round_categories?(parsed[:categories], options)
           state[:attempt] = parsed[:attempt]
           state[:round] = parsed[:round]
           state[:judge] = options["judge_mode"] == JUDGE_MASTER ? state[:permanent_judge] : players[parsed[:judge_index]]
           state[:letter] = parsed[:letter]
           state[:round_categories] = parsed[:categories]
+          state[:category_letters] = options['separate_letters'] ? parsed[:categories].zip(parsed[:letters]).to_h : {}
           state[:deadline] = parsed[:deadline]
           state[:resume_at] = 0
           state[:active_players] = contestants_for_round(players, state[:judge], state)
@@ -72,14 +73,15 @@ module GameRoomGames
           accepted_event = true
           history << history_entry(
             event_id,
-            _("Round %{round} started. Letter: %{letter}.") % { round: state[:round], letter: state[:letter] },
+            options['separate_letters'] ? _("Round %{round} started.") % { round: state[:round] } :
+              _("Round %{round} started. Letter: %{letter}.") % { round: state[:round], letter: state[:letter] },
             actor,
             :round_start
           )
           history << history_entry(
             event_id,
             _("Categories: %{categories}.") % {
-              categories: state[:round_categories].map { |category| category_label(category) }.join(", ")
+              categories: state[:round_categories].map { |category| round_category_label(state, category) }.join(", ")
             },
             actor,
             :round_categories

@@ -21,7 +21,10 @@ module GameRoomTournaments
         state['operations'].each_value{|entry|entry['expires_at'] ||= fallback}
         state['operations'].delete_if{|_,entry|@service.expired?(entry['expires_at'])}
         if (entry=state['operations'][key])
-          raise ProposalNotice::Stale,'Start delivery changed' unless entry['descriptor']==descriptor
+          prior=entry.fetch('descriptor')
+          same_event=Publication::Data.account(prior.fetch('sender')).downcase==sender &&
+            @service.delivery_identity(@service.class.metadata(prior.fetch('metadata')))==@service.delivery_identity(notice)
+          raise ProposalNotice::Stale,'Start delivery changed' unless same_event
           previous=entry['state']
         else
           if state['operations'].size>=LIMIT

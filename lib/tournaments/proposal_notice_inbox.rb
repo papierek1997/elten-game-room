@@ -23,7 +23,7 @@ module GameRoomTournaments
     def receive(id:, metadata:, sender:)
       return false if @closed || !id.is_a?(Integer) || id <= 0
       notice = @metadata.call(metadata)
-      return false if @dismissed.key?(notice['token'])
+      return false if @dismissed.key?(identity(notice))
       sender = Publication::Data.account(sender).downcase
       key = JSON.generate([notice, sender])
       return false if @seen.key?(key)
@@ -45,12 +45,15 @@ module GameRoomTournaments
         id, metadata, sender = row
         @running = nil
         if @recheck.delete(id)
-          @pending << row unless @dismissed.key?(metadata['token'])
+          @pending << row unless @dismissed.key?(identity(metadata))
         elsif error
           @last_error = error
-          if error.is_a?(ProposalNotice::Stale)
-            @revoked.concat((forget(metadata['token']) + [id]).uniq)
-            @verified.delete(id)
+          missing=error.is_a?(Publication::Invalid) && error.code==:missing_publication
+          if error.is_a?(ProposalNotice::Stale) || missing
+            unless @service.retain_stale_notice?(metadata,sender:sender)
+              @revoked.concat((forget(identity(metadata)) + [id]).uniq)
+              @verified.delete(id)
+            end
             @failures.delete(id)
           elsif retryable?(error)
             attempt=(@failures[id] || 0)
@@ -66,7 +69,7 @@ module GameRoomTournaments
           else
             @failures.delete(id)
           end
-        elsif !@dismissed.key?(proof.dig('metadata','token'))
+        elsif !@dismissed.key?(identity(proof.fetch('metadata')))
           first_delivery = !@verified.key?(id)
           @verified[id] = [proof, sender]
           @verified.shift while @verified.size > LIMIT
@@ -77,7 +80,7 @@ module GameRoomTournaments
       now=@clock.call
       @retries.delete_if do |id,(row,deadline)|
         next false if deadline>now
-        @pending << row unless @dismissed.key?(row[1]['token'])
+        @pending << row unless @dismissed.key?(identity(row[1]))
         true
       end
       unless @worker.busy? || @pending.empty?
@@ -92,6 +95,7 @@ module GameRoomTournaments
     end
 
     def verified(id); @verified[id]; end
+    def dismissed?(token); @dismissed.key?(token); end
 
     # A verified tournament change wakes a finite read, never a timer poll.
     # If verification was already in flight, its earlier snapshot cannot
@@ -100,6 +104,7 @@ module GameRoomTournaments
       return if @closed
       @verified.each do |id,(proof,sender)|
         next unless proof.dig('metadata','publication_ref') == reference
+        next unless @service.refresh_on_change?(proof['metadata'],proof:proof)
         next if @pending.any?{|row|row.first==id} || @retries.key?(id) || @pending.size+@retries.size>=LIMIT
         if @running && @running.first==id
           @recheck[id]=true
@@ -107,7 +112,9 @@ module GameRoomTournaments
           @pending << [id,proof['metadata'],sender]
         end
       end
-      @recheck[@running.first]=true if @running && @running[1]['publication_ref']==reference
+      if @running && @running[1]['publication_ref']==reference && @service.refresh_on_change?(@running[1])
+        @recheck[@running.first]=true
+      end
     end
 
     def take_revoked
@@ -118,11 +125,11 @@ module GameRoomTournaments
       return [] unless token.is_a?(String) && !token.empty?
       @dismissed[token]=true
       @dismissed.shift while @dismissed.size>LIMIT*4
-      ids=@verified.filter_map{|id,(proof,_)|id if proof.dig('metadata','token')==token}
+      ids=@verified.filter_map{|id,(proof,_)|id if identity(proof.fetch('metadata'))==token}
       ids.each{|id|@verified.delete(id)}
-      @pending.reject!{|_,metadata,_|metadata['token']==token}
+      @pending.reject!{|_,metadata,_|identity(metadata)==token}
       @retries.delete_if do |id,(row,_)|
-        next false unless row[1]['token']==token
+        next false unless identity(row[1])==token
         @failures.delete(id)
         true
       end
@@ -147,6 +154,10 @@ module GameRoomTournaments
     end
 
     private
+
+    def identity(metadata)
+      metadata['token'] || metadata.fetch('event_id')
+    end
 
     def retryable?(error)
       return false if GameRoomNetworkErrors.cancelled?(error)

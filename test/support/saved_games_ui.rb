@@ -39,7 +39,7 @@ class SaveAppDriver < EltenGameRoom
   def confirm(_message); true; end
   def alert(message); @notices << message; end
   def play_game_sound(_name); end
-  def send_notification(user, type:, metadata:, expires_in:); @notices << [user, type, metadata, expires_in]; end
+  def send_notification(user, type:, metadata:, expires_in:, key:); @notices << [user, type, metadata, expires_in]; end
   # The current native session requires a server draw. Do not seed it with a
   # precomputed simulation deal from the former client-random protocol.
   def prepare_playing_game(table, session, game)

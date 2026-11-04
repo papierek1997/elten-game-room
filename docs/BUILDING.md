@@ -17,10 +17,10 @@ times before stopping, rather than running tests without their dependencies.
 
 Ruby 4.0 is recommended, matching the current ELTEN environment.
 Host-contract tests also require matching host sources (currently ELTEN
-3.0.4). Set `ELTEN_HOST_SOURCE` to the directory containing `src/` and `locale/`.
+3.0.5). Set `ELTEN_HOST_SOURCE` to the directory containing `src/` and `locale/`.
 In CI, the host sources are pinned to a specific commit in the test workflow.
-The current pin is `3418d67dea40ee116f4a8ba545b1c409fd04706f` (release 3.0.4).
-The earlier RC1 does not provide the required parallel-scene contract.
+The current pin is `f29e82a0c32c66b1eca5e6fa5e5e7b858b61f480` (release 3.0.5).
+Use the final release, including its native notification and audio additions.
 
 ```console
 ruby test/run.rb --report tmp/test-results.json

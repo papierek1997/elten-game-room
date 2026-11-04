@@ -128,10 +128,25 @@ Transient notice verification failures allow three read-only retries, with
 backoff and respect for the server's retry delay. Cancellation, a stale source,
 account changes and programming errors do not trigger retries. Receiving a
 notice never repeats consent, delivery or table creation. Delivery journals
-retain both confirmed and uncertain sends until the verified notice expiry.
-Older start-delivery entries without expiry get a conservative 30-minute
-retention period on first migration; a completely full legacy journal may
-therefore require that period before accepting another entry.
+retain both confirmed and uncertain sends. Start/final information uses
+`expires_in: 0`, without a late-start delivery cutoff. Its journals are scoped
+per publication; matching entries from the previous global journal are copied
+without expiry, never discarded or resent after an uncertain delivery.
+Final v2 metadata records each recipient's place, the team flag and winners,
+so its historical text survives runtime reloads and tournament retention.
+Round-robin places come from verified standings; knockout elimination cohorts
+share a place. Teams are single units, and separate group scores are not used
+to order eliminated players across groups. A void knockout final has no winner.
+
+Verified coordinator observations refresh only actionable notice proofs.
+Pending registration invitees also receive authenticated change wakes before
+they become players. There is no periodic notification storage scan. An
+obsolete notice is hidden by the scoped list bridge; its native lifecycle
+entry remains until ELTEN revokes it on the server too (checks every 60 s).
+Permanent informational records are not withdrawn merely because the source
+tournament was renamed or removed. Tournament match invitations bypass contact
+filters and the blacklist, but retain sender checks, native quiet mode, volume
+settings and the original five-minute invitation boundary.
 
 Creation has one durable claim per table attempt, not a claim per player.
 A partial earlier creator document blocks a competing creator. A lost native

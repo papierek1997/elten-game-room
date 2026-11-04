@@ -197,8 +197,10 @@ module GameRoomUI
   # draft and typing the same words again creates a different draft.
   ChatSubmission = Struct.new(:control, :generation, :session_id, :text, keyword_init: true) do
     def self.capture(control, session_id:)
-      new(control: control, generation: control.game_room_edit_generation,
+      receipt = new(control: control, generation: control.game_room_edit_generation,
         session_id: session_id, text: control.text.to_s.dup.freeze).freeze
+      control.game_room_track_submission(receipt)
+      receipt
     end
 
     def same_draft?(other)
@@ -206,10 +208,14 @@ module GameRoomUI
     end
 
     def clear_if_current(current_control, session_id:)
-      return false unless current_control.equal?(control) && self.session_id == session_id &&
-        generation == control.game_room_edit_generation
-      control.set_text("")
-      control.index = control.check = 0
+      return false unless current_control.equal?(control) && self.session_id == session_id
+
+      remaining = generation == control.game_room_edit_generation ? "" : control.game_room_submission_tail(self)
+      return false if remaining.nil?
+
+      index, check = [control.index, control.check].map { |position| [[position.to_i - text.length, 0].max, remaining.length].min }
+      control.set_text(remaining)
+      control.index, control.check = index, check
       true
     end
   end

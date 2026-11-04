@@ -10,16 +10,19 @@ module GameRoomTournaments
     TYPES={'registration'=>'game_room.tournament_registration','finished'=>'game_room.tournament_finished',
       'phase_finished'=>'game_room.tournament_phase_finished', 'partnership'=>'game_room.tournament_partnership'}.freeze
     LIFETIME=7*86400
+    FINISH_FIELDS=%w[place winners team].freeze
 
     def self.metadata(raw)
-      value=Data.copy(raw,max_bytes:2048,max_nodes:64,max_depth:4)
+      finish=raw.is_a?(Hash) && raw['version']==2 && raw['kind']=='finished'
+      value=Data.copy(raw,max_bytes:finish ? 65_536 : 2048,max_nodes:finish ? 1024 : 64,max_depth:4)
       fields=FIELDS+DESCRIPTION_FIELDS+%w[kind issued_at]
       fields=fields+['phase_id'] if value.is_a?(Hash) && value['kind']=='phase_finished'
       fields+=%w[change_key change_index] if value.is_a?(Hash) && value['kind']=='partnership'
       permanent = value.is_a?(Hash) && value['version'] == 2 && value['kind'] == 'registration'
       fields += ['invitation_key'] if permanent
+      fields += FINISH_FIELDS if finish
       unless value.is_a?(Hash) && value.keys.sort==fields.sort &&
-          (value['version']==1 || permanent) && TYPES.key?(value['kind']) && Data.integer?(value['issued_at'],1)
+          (value['version']==1 || permanent || finish) && TYPES.key?(value['kind']) && Data.integer?(value['issued_at'],1)
         raise Publication::Invalid,:invalid_tournament_notice
       end
       Data.text!(value['title'],bytes:1024)
@@ -34,6 +37,14 @@ module GameRoomTournaments
         raise Publication::Invalid,:invalid_tournament_notice unless Data.integer?(value['change_index']) && value['change_index']<=511
       end
       Data.key!(value['invitation_key']) if permanent
+      if finish
+        valid_place=value['place'].nil? || Data.integer?(value['place'],1) && value['place']<=256
+        unless valid_place && [true,false].include?(value['team']) && value['winners'].is_a?(Array) &&
+            value['winners'].size<=256 && value['winners'].uniq==value['winners']
+          raise Publication::Invalid,:invalid_tournament_notice
+        end
+        value['winners'].each { |name| Data.text!(name,bytes:512) }
+      end
       expected=event_id(value)
       raise Publication::Invalid,:invalid_tournament_notice unless value['event_id']==expected
       Data.freeze_tree(value)
@@ -67,6 +78,10 @@ module GameRoomTournaments
         metadata['phase_id']=phase_id if @kind=='phase_finished'
         metadata.merge!('change_key'=>change_key,'change_index'=>change_index) if @kind=='partnership'
         metadata.merge!('version'=>2,'invitation_key'=>invitation_key) if @kind=='registration' && invitation_key
+        if @kind=='finished'
+          metadata.merge!('version'=>2,'place'=>proof.fetch('places')[person],
+            'winners'=>proof.fetch('winners'),'team'=>proof.fetch('team_mode'))
+        end
         metadata['event_id']=self.class.event_id(metadata)
         metadata=self.class.metadata(metadata)
         name=@kind=='registration' ? Data.account(recipient) : RegistrationProjection.delivery_name(proof['usernames'],person) if addressed
@@ -87,6 +102,11 @@ module GameRoomTournaments
       raise ProposalNotice::Stale,'Wrong organizer or changed description' unless sender==proof['sender'] &&
         (notice['version']==2 || notice.slice(*DESCRIPTION_FIELDS)==proof.slice(*DESCRIPTION_FIELDS))
       check_recipient!(proof,notice['recipient'])
+      if @kind=='finished' && notice['version']==2
+        expected={'place'=>proof.fetch('places')[notice['recipient']],
+          'winners'=>proof.fetch('winners'),'team'=>proof.fetch('team_mode')}
+        raise ProposalNotice::Stale,'Tournament result description changed' unless notice.slice(*FINISH_FIELDS)==expected
+      end
       current!
       Data.freeze_tree(proof.merge('metadata'=>notice))
     end
@@ -102,24 +122,26 @@ module GameRoomTournaments
       end
       return unless notice['kind']==@kind && notice['backend_identity']==@scope['backend_identity'] &&
         notice['recipient']==@scope['account'] && Data.account(sender).downcase==notice['publication_ref']['author']
-      notice.slice(*DESCRIPTION_FIELDS)
+      notice.slice(*(DESCRIPTION_FIELDS+(@kind=='finished' ? FINISH_FIELDS : [])))
     end
 
     def delivery_identity(notice)
-      notice.slice(*(FIELDS+%w[kind phase_id change_key change_index]))
+      identity=notice.slice(*(FIELDS+%w[kind phase_id change_key change_index]))
+      identity['version']=1 if notice['kind']=='finished'
+      identity
     end
 
     def retention_deadline
       current!
-      now!+LIFETIME
+      @kind=='finished' ? 0 : now!+LIFETIME
     end
 
-    def expired?(closes)
-      if @kind == 'registration' && closes == 0
-        assert_context!
-        return false
-      end
-      super
+    def retain_stale_notice?(metadata,sender:)
+      @kind=='finished' && super
+    end
+
+    def refresh_on_change?(_metadata,proof:nil)
+      @kind=='registration' || @kind=='partnership' && (proof.nil? || proof.dig('change','kind')=='requested')
     end
 
     def presentable?(proof)
@@ -130,14 +152,6 @@ module GameRoomTournaments
       super
     rescue ProposalNotice::Stale, Publication::Invalid
       false
-    end
-
-    def remaining_seconds(closes)
-      if @kind == 'registration' && closes == 0
-        assert_context!
-        return 0
-      end
-      super
     end
 
     private
@@ -212,8 +226,10 @@ module GameRoomTournaments
         proof['starts_at']=results['completed_at']
         proof['issued_at']=results['completed_at']
         raise ProposalNotice::Stale,'Completion changed' if issued_at && issued_at!=proof['issued_at']
-        proof['expires_at']=results['completed_at']+LIFETIME
+        proof['expires_at']=0
         proof['winners']=value.fetch('winners')
+        proof['places']=value.fetch('places')
+        proof['team_mode']=value.fetch('team_mode')
       end
       raise ProposalNotice::Stale,'Tournament notice expired' unless proof['expires_at']==0 || now<proof['expires_at']
       Data.freeze_tree(Data.copy(proof,max_bytes:262_144,max_nodes:16384,max_depth:12))

@@ -27,6 +27,8 @@ service.define_singleton_method(:inspect) do |metadata:,sender:|
   {'metadata'=>metadata,'players'=>%w[alice bob]}
 end
 service.define_singleton_method(:presentable?){|_|true}
+service.define_singleton_method(:refresh_on_change?){|_metadata,proof:nil|true}
+service.define_singleton_method(:retain_stale_notice?){|_metadata,sender:|false}
 worker=NoticeAuditWorker.new
 inbox=T::ProposalNoticeInbox.new(service:service,worker:worker,clock:-> {now})
 inbox.receive(id:1,metadata:notice,sender:'owner')
@@ -86,14 +88,14 @@ now+=10
 assert_equal([],inbox.tick)
 assert_equal(1,worker.starts,'Closed inbox continued retrying')
 
-# Start delivery journal: retire only after expiry; old files get a full
-# conservative lifetime and the migration commits even at the capacity limit.
+# Historical finite-lifetime journal fixture. This deliberately retains the
+# original 1800-second policy, independent of today's permanent start notices.
 now=1000
 starts={}
 # Keep the production metadata/identity contract while isolating the clock
 # and source reads needed by the retention fixture.
 service=T::TournamentStartNotice.allocate
-service.define_singleton_method(:retention_deadline){now+T::TournamentStartNotice::READING_GRACE}
+service.define_singleton_method(:retention_deadline){now+1800}
 service.define_singleton_method(:expired?){|expiry|now>=expiry}
 service.define_singleton_method(:assert_context!){true}
 service.define_singleton_method(:inspect) do |metadata:,sender:,delivery:|

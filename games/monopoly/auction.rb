@@ -17,7 +17,7 @@ module GameRoomGames
           state[:auction_leader] = player
           text = _("%{player} bids %{amount}.") % { player: participant_name(player), amount: amount }
         else
-          timestamp_text = event["value"].to_s
+          timestamp_text = timed_out ? event["value"].to_s.split("|", 4).last : event["value"].to_s
           state[:auction_passed][player] = true
           text = (timed_out ? _("%{player} ran out of auction time and passes.") : _("%{player} passes in the auction.")) % { player: participant_name(player) }
         end
@@ -57,8 +57,7 @@ module GameRoomGames
         return false if !same_user?(actor, state[:players].first) || state[:phase] != :auction || state[:auction_deadline].to_i <= 0
         turn, index, deadline, timestamp = event["value"].to_s.split("|", 4).map { |value| Integer(value, 10) }
         return false if turn != state[:auction_turn].to_i || index != player_index(state[:players], state[:current_player]) || deadline != state[:auction_deadline] || timestamp == nil || timestamp < deadline
-        passed = event.merge("action" => "auction_pass", "value" => timestamp.to_s)
-        apply_auction(state, passed, state[:current_player], repository, history, timed_out: true)
+        apply_auction(state, event, state[:current_player], repository, history, timed_out: true)
       rescue ArgumentError, TypeError
         false
       end

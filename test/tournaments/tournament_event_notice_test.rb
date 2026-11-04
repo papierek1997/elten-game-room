@@ -32,6 +32,8 @@ scope=scope.merge('account'=>'alice','account_epoch'=>'three')
 finished=make.call('finished')
 value['results']={'completed'=>false,'completed_at'=>now}
 value['winners']=['alice','bob']
+value['places']={'alice'=>1,'bob'=>1}
+value['team_mode']=false
 assert_raises(T::ProposalNotice::Stale){finished.notices(publication_ref:reference)}
 value['results']['completed']=true
 notices=finished.notices(publication_ref:reference)
@@ -44,7 +46,8 @@ publisher=T::TournamentStartPublisher.new(service:finished,sender:-> {scope['acc
 2.times{assert_equal(:sent,publisher.deliver(metadata:notice))}
 assert_equal(1,sent.size,'Completed tournament was announced twice')
 now+=T::TournamentEventNotice::LIFETIME
-assert_raises(T::ProposalNotice::Stale){publisher.deliver(metadata:notice)}
+assert_equal(:sent,publisher.deliver(metadata:notice))
+assert_equal(1,sent.size,'A permanent result was resent after seven days')
 puts 'PASS tournament notices: explicit registration, full/already joined refusal, sender checks, real completion, ties and durable once-only delivery'
 
 now=2_000_000

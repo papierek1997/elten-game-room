@@ -100,6 +100,21 @@ module GameRoomGames
       end
 
       def monopoly_cash_reserve(state, player)
+        # Keep one owned forecast snapshot, not mutable state references or a
+        # hash alone. Every input affecting rents/exposure is compared again;
+        # hypothetical trades and in-place property changes invalidate it too.
+        inputs = state.values_at(:board, :board_data, :options, :players, :positions,
+          :jail, :bankrupt, :owners, :houses, :mortgaged)
+        unless @monopoly_reserve_inputs.eql?(inputs)
+          @monopoly_reserve_inputs = GameRoomSnapshot.copy(inputs)
+          @monopoly_reserves = {}
+        end
+        return @monopoly_reserves[player] if @monopoly_reserves.key?(player)
+
+        @monopoly_reserves[player] = calculate_monopoly_cash_reserve(state, player)
+      end
+
+      def calculate_monopoly_cash_reserve(state, player)
         rents = state[:board].filter_map do |square|
           owner = state[:owners][square[:index]]
           monopoly_expected_rent(state, square, owner) if owner && !same_user?(owner, player) && !state[:mortgaged][square[:index]]

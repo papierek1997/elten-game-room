@@ -50,6 +50,7 @@ module GameRoomGames
     def personal_settings_label; _('Audio Ball settings'); end
     def personal_settings_action; :show_audio_ball_settings; end
     def supports_saved_games?; false; end
+    def recording_audio_kind; 'audio_ball'; end
     def shortcut_features; []; end
 
     def _(source); GameRoomContent.utf8(super(source)); end

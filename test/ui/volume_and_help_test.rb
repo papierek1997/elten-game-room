@@ -55,9 +55,9 @@ await_volume(app)
 assert(state["sound_volumes"]["all"] == 40 && state["sound_volumes"]["chat"] == 40, "master erased individual volume")
 assert(state["unrelated"] == "keep" && writes == 1, "unrelated setting overwritten")
 app.send(:adjust_game_room_volume, -2)
-assert($spoken_messages.last == "Invitation and Game Room notification sounds, 70%", "previous group wrap")
+assert($spoken_messages.last == "Invitation and Power Games notification sounds, 70%", "previous group wrap")
 app.send(:adjust_game_room_volume, -3)
-assert($spoken_messages.last == "All Game Room sounds, 40%", "next group wrap")
+assert($spoken_messages.last == "All Power Games sounds, 40%", "next group wrap")
 4.times { app.send(:adjust_game_room_volume, 2) }
 before = played.length
 GameRoomSounds.play(app, "roll")

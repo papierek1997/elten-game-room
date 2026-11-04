@@ -395,6 +395,32 @@ and language variants. Interface messages use `_()` and are delivered in
 `locale/<LANG>.mo`. English comes from the sources; catalog-selection rules
 are described in [INTERFACE_LANGUAGES.md](INTERFACE_LANGUAGES.md).
 
+## Passive history and replay library
+
+On the first application entry, `local_directories.rb` prepares the data and
+cache roots in one finite native task. All instances share those roots through
+the current application's Runtime, including native JSON storage helpers.
+Subpaths retain native validation; no storage-identity or package discovery runs
+again during gameplay. The adapter is runtime-local and is discarded on reload.
+
+`lib/recordings` is separate from resumable server archives. A game declares
+`recording_audio_kind`; the shared realtime presentation observer copies frames
+and renderer calls into bounded immutable background chunks. Snapshot leases
+protect exports while a match continues or a new one replaces the capture.
+Only an explicit save persists the replay in the account's local library.
+The opening-match cue is captured once per recording, not once per request:
+the live audio guards later requests at every rally. Playback and navigation
+indexes likewise ignore repeated opening requests in a passive timeline, so
+creating a new renderer after seeking cannot announce another match start.
+
+The versioned JSON document contains passive presentation data, never executable
+commands, Ruby objects or authoritative game state. Playback reuses the game's
+audio renderer with a virtual clock under the existing Progress bridge. Seeking
+does not replay historical goals; no session or statistics writer is created.
+TXT histories and JSON replays share a directory-authoritative library. Native
+message attachments use exact-message checks, a delivery journal, confirmed
+sender-copy removal and optional recipient removal after successful import.
+
 ## Invariants to preserve
 
 - the LiveSessions stack is the source of truth for the room and game;

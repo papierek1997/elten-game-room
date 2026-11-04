@@ -67,7 +67,8 @@ module GameRoomGames
               "- St\u0159edn\u00ED roz\u0161i\u0159uje snadn\u00FD okruh na osmn\u00E1ct kategori\u00ED. P\u0159id\u00E1v\u00E1 nap\u0159\u00EDklad n\u00E1poje, n\u00E1stroje a zn\u00E1m\u00E9 sportovce.",
               "- T\u011B\u017Ek\u00FD obsahuje dvacet sedm kategori\u00ED, nav\u00EDc t\u0159eba \u0159eky, zn\u00E1m\u00E9 herce a zn\u00E1m\u00E9 spisovatele.",
               "- Vlastn\u00ED v\u00FDb\u011Br dovol\u00ED ozna\u010Dit libovoln\u00E9 kategorie z cel\u00E9 nab\u00EDdky a losovat jen z nich.",
-              "Samostatn\u011B nastav\u00ED\u0161 po\u010Det kategori\u00ED v kole. M\u00EDsto \u0161esti m\u016F\u017Ee b\u00FDt jedna a\u017E dev\u011Bt, nejv\u00FD\u0161e v\u0161ak tolik, kolik jich obsahuje vybran\u00FD okruh."),
+              "Samostatn\u011B nastav\u00ED\u0161 po\u010Det kategori\u00ED v kole. M\u00EDsto \u0161esti m\u016F\u017Ee b\u00FDt jedna a\u017E dev\u011Bt, nejv\u00FD\u0161e v\u0161ak tolik, kolik jich obsahuje vybran\u00FD okruh.",
+              "- S volbou \u201EJin\u00E9 p\u00EDsmeno pro ka\u017Edou kategorii\u201C dostane ka\u017Ed\u00E1 kategorie v kole jin\u00E9 p\u00EDsmeno, nap\u0159\u00EDklad vozidlo na D a j\u00EDdlo na F. P\u00EDsmeno usly\u0161\u00ED\u0161 u pole odpov\u011Bdi i p\u0159i hodnocen\u00ED. V dal\u0161\u00EDm kole se p\u00EDsmena losuj\u00ED znovu."),
             rule_section(:options, "\u010Cas, rozhod\u010D\u00ED a podm\u00EDnky v\u00EDt\u011Bzstv\u00ED",
               "Nastaven\u00ED stolu nab\u00EDz\u00ED je\u0161t\u011B tyto zm\u011Bny:",
               "- \u010Cas na odpov\u011Bdi lze prodlou\u017Eit i zkr\u00E1tit oproti 90 sekund\u00E1m. Nula limit vypne a kolo \u010Dek\u00E1 na odevzd\u00E1n\u00ED v\u0161ech hr\u00E1\u010D\u016F.",
@@ -80,7 +81,7 @@ module GameRoomGames
               "\u0160ipky p\u0159i hodnocen\u00ED: vybrat hodnocen\u00ED.",
               "Enter: potvrdit hodnocen\u00ED nebo tla\u010D\u00EDtko dokon\u010Den\u00ED.",
               "Ctrl+T: p\u0159e\u010D\u00EDst zb\u00FDvaj\u00EDc\u00ED \u010Das na odpov\u011Bdi.",
-              "T mimo psan\u00ED: ozn\u00E1mit p\u00EDsmeno a rozhod\u010D\u00EDho.",
+              "T mimo psan\u00ED: ozn\u00E1mit p\u00EDsmeno nebo p\u00EDsmena kategori\u00ED a rozhod\u010D\u00EDho.",
               "S mimo psan\u00ED: p\u0159e\u010D\u00EDst sk\u00F3re.",
               "V mimo psan\u00ED: p\u0159e\u010D\u00EDst \u00FAdaje o kole.")
           ]
@@ -115,7 +116,8 @@ module GameRoomGames
               "- Medium expands the pool to eighteen categories, adding drinks, tools and famous athletes, among others.",
               "- Hard has twenty-seven categories, including rivers, famous actors and famous writers.",
               "- Custom lets you mark any categories from the full set for the draw.",
-              "You can separately choose one to nine categories per round instead of six, but no more than your selected pool contains."),
+              "You can separately choose one to nine categories per round instead of six, but no more than your selected pool contains.",
+              "- Enable Separate letter for each category to give every category in a round a different letter: for example, a vehicle beginning with D and food beginning with F. Each answer field and review item includes its letter. Letters are drawn again for the next round."),
             rule_section(:options, "Time, judge and ending options",
               "The host can change these rules before play:",
               "- Answer time may be shorter or longer than 90 seconds. Zero removes the timer, so everyone must submit before judging begins.",
@@ -128,7 +130,7 @@ module GameRoomGames
               "Arrows during judging: choose a judgement.",
               "Enter: confirm a judgement or a finish button.",
               "Ctrl+T: read answer time remaining.",
-              "T outside text fields: read the letter and judge.",
+              "T outside text fields: read the letter or category letters and the judge.",
               "S outside text fields: read scores.",
               "V outside text fields: read round information.")
           ]
@@ -163,7 +165,8 @@ module GameRoomGames
               "- Medio ampl\u00EDa el grupo f\u00E1cil a dieciocho categor\u00EDas. A\u00F1ade, entre otras, bebidas, herramientas y deportistas famosos.",
               "- Dif\u00EDcil tiene veintisiete categor\u00EDas e incluye tambi\u00E9n r\u00EDos, actores famosos y escritores famosos.",
               "- Personalizado permite marcar las categor\u00EDas que quieras de todo el conjunto. Los sorteos se har\u00E1n entre las elegidas.",
-              "Por separado se elige cu\u00E1ntas categor\u00EDas habr\u00E1 en cada ronda. En lugar de seis pueden ser entre una y nueve, sin superar el n\u00FAmero disponible en el grupo seleccionado."),
+              "Por separado se elige cu\u00E1ntas categor\u00EDas habr\u00E1 en cada ronda. En lugar de seis pueden ser entre una y nueve, sin superar el n\u00FAmero disponible en el grupo seleccionado.",
+              "- Activa \u00ABUna letra distinta para cada categor\u00EDa\u00BB para que cada categor\u00EDa de la ronda tenga una letra diferente; por ejemplo, un veh\u00EDculo con D y una comida con F. La letra se anuncia en el campo de respuesta y al evaluar. En la siguiente ronda se vuelven a sortear las letras."),
             rule_section(:options, "Tiempo, juez y final de partida",
               "Los ajustes de la mesa permiten modificar estas reglas:",
               "- El plazo de respuesta puede ser mayor o menor que 90 segundos. Un valor de 0 elimina el l\u00EDmite: habr\u00E1 que esperar a que todos env\u00EDen su hoja.",
@@ -176,7 +179,7 @@ module GameRoomGames
               "Flechas al evaluar: elegir una valoraci\u00F3n.",
               "Enter: confirmar la valoraci\u00F3n o activar el bot\u00F3n de finalizar.",
               "Ctrl+T: consultar el tiempo de respuesta restante.",
-              "T fuera de los campos de texto: consultar la letra y el juez.",
+              "T fuera de los campos de texto: consultar la letra o las letras de las categor\u00EDas y el juez.",
               "S fuera de los campos de texto: consultar los resultados.",
               "V fuera de los campos de texto: consultar los datos de la ronda.")
           ]
@@ -211,7 +214,8 @@ module GameRoomGames
               "- \u015Arednia rozszerza \u0142atw\u0105 pul\u0119 do osiemnastu kategorii. Dochodz\u0105 mi\u0119dzy innymi napoje, narz\u0119dzia i znani sportowcy.",
               "- Trudna zawiera dwadzie\u015Bcia siedem kategorii. Obejmuje te\u017C mi\u0119dzy innymi rzeki, znanych aktor\u00F3w i znanych pisarzy.",
               "- W\u0142asna pozwala zaznaczy\u0107 dowolne kategorie z ca\u0142ego zestawu. To z nich b\u0119d\u0105 losowane zadania.",
-              "Osobno wybieracie liczb\u0119 kategorii losowanych na ka\u017Cd\u0105 rund\u0119. Zamiast sze\u015Bciu mo\u017Cna ustawi\u0107 od jednej do dziewi\u0119ciu, ale nie wi\u0119cej, ni\u017C jest w wybranej puli."),
+              "Osobno wybieracie liczb\u0119 kategorii losowanych na ka\u017Cd\u0105 rund\u0119. Zamiast sze\u015Bciu mo\u017Cna ustawi\u0107 od jednej do dziewi\u0119ciu, ale nie wi\u0119cej, ni\u017C jest w wybranej puli.",
+              "- Po zaznaczeniu opcji \u201EOsobna litera dla ka\u017Cdej kategorii\u201D ka\u017Cda kategoria w rundzie ma inn\u0105 liter\u0119, na przyk\u0142ad pojazd na D, a jedzenie na F. Liter\u0119 us\u0142yszysz przy polu odpowiedzi i podczas oceniania. W nast\u0119pnej rundzie litery s\u0105 losowane ponownie."),
             rule_section(:options, "Zmiana czasu, s\u0119dziowania i ko\u0144ca gry",
               "W ustawieniach sto\u0142u mo\u017Cna zmieni\u0107 poni\u017Csze zasady:",
               "- Czas odpowiedzi mo\u017Ce by\u0107 d\u0142u\u017Cszy albo kr\u00F3tszy ni\u017C 90 sekund. Ustawienie 0 wy\u0142\u0105cza limit czasu. Odpowiadanie ko\u0144czy si\u0119 wtedy, gdy wszyscy wy\u015Bl\u0105 swoje arkusze.",
@@ -224,7 +228,7 @@ module GameRoomGames
               "Strza\u0142ki podczas oceniania: wybierz ocen\u0119.",
               "Enter: potwierd\u017A ocen\u0119 albo wybrany przycisk zako\u0144czenia.",
               "Ctrl+T: odczytaj pozosta\u0142y czas odpowiedzi.",
-              "T poza wpisywaniem: odczytaj liter\u0119 i s\u0119dziego.",
+              "T poza wpisywaniem: odczytaj liter\u0119 lub litery kategorii oraz s\u0119dziego.",
               "S poza wpisywaniem: odczytaj wyniki.",
               "V poza wpisywaniem: odczytaj informacje o rundzie.")
           ]
@@ -259,7 +263,8 @@ module GameRoomGames
               "- \u0421\u0440\u0435\u0434\u043D\u0438\u0439 \u0440\u0430\u0441\u0448\u0438\u0440\u044F\u0435\u0442 \u043D\u0430\u0431\u043E\u0440 \u0434\u043E \u0432\u043E\u0441\u0435\u043C\u043D\u0430\u0434\u0446\u0430\u0442\u0438 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0439. \u0412 \u043D\u0435\u0433\u043E \u0432\u0445\u043E\u0434\u044F\u0442, \u043D\u0430\u043F\u0440\u0438\u043C\u0435\u0440, \u043D\u0430\u043F\u0438\u0442\u043A\u0438, \u0438\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u044B \u0438 \u0438\u0437\u0432\u0435\u0441\u0442\u043D\u044B\u0435 \u0441\u043F\u043E\u0440\u0442\u0441\u043C\u0435\u043D\u044B.",
               "- \u0421\u043B\u043E\u0436\u043D\u044B\u0439 \u0441\u043E\u0434\u0435\u0440\u0436\u0438\u0442 \u0434\u0432\u0430\u0434\u0446\u0430\u0442\u044C \u0441\u0435\u043C\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0439. \u0421\u0440\u0435\u0434\u0438 \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0445 \u2014 \u0440\u0435\u043A\u0438, \u0438\u0437\u0432\u0435\u0441\u0442\u043D\u044B\u0435 \u0430\u043A\u0442\u0451\u0440\u044B \u0438 \u0438\u0437\u0432\u0435\u0441\u0442\u043D\u044B\u0435 \u043F\u0438\u0441\u0430\u0442\u0435\u043B\u0438.",
               "- \u0421\u043E\u0431\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0439 \u043D\u0430\u0431\u043E\u0440 \u043F\u043E\u0437\u0432\u043E\u043B\u044F\u0435\u0442 \u043E\u0442\u043C\u0435\u0442\u0438\u0442\u044C \u043B\u044E\u0431\u044B\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u0438\u0437 \u043F\u043E\u043B\u043D\u043E\u0433\u043E \u0441\u043F\u0438\u0441\u043A\u0430. \u0417\u0430\u0434\u0430\u043D\u0438\u044F \u0431\u0443\u0434\u0443\u0442 \u0432\u044B\u0431\u0438\u0440\u0430\u0442\u044C\u0441\u044F \u0442\u043E\u043B\u044C\u043A\u043E \u0438\u0437 \u043D\u0438\u0445.",
-              "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0439 \u0432 \u043E\u0434\u043D\u043E\u043C \u0440\u0430\u0443\u043D\u0434\u0435 \u0437\u0430\u0434\u0430\u0451\u0442\u0441\u044F \u043E\u0442\u0434\u0435\u043B\u044C\u043D\u043E. \u0412\u043C\u0435\u0441\u0442\u043E \u0448\u0435\u0441\u0442\u0438 \u043C\u043E\u0436\u043D\u043E \u0432\u044B\u0431\u0440\u0430\u0442\u044C \u043E\u0442 \u043E\u0434\u043D\u043E\u0439 \u0434\u043E \u0434\u0435\u0432\u044F\u0442\u0438, \u043D\u043E \u043D\u0435 \u0431\u043E\u043B\u044C\u0448\u0435, \u0447\u0435\u043C \u0435\u0441\u0442\u044C \u0432 \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u043E\u043C \u043D\u0430\u0431\u043E\u0440\u0435."),
+              "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0439 \u0432 \u043E\u0434\u043D\u043E\u043C \u0440\u0430\u0443\u043D\u0434\u0435 \u0437\u0430\u0434\u0430\u0451\u0442\u0441\u044F \u043E\u0442\u0434\u0435\u043B\u044C\u043D\u043E. \u0412\u043C\u0435\u0441\u0442\u043E \u0448\u0435\u0441\u0442\u0438 \u043C\u043E\u0436\u043D\u043E \u0432\u044B\u0431\u0440\u0430\u0442\u044C \u043E\u0442 \u043E\u0434\u043D\u043E\u0439 \u0434\u043E \u0434\u0435\u0432\u044F\u0442\u0438, \u043D\u043E \u043D\u0435 \u0431\u043E\u043B\u044C\u0448\u0435, \u0447\u0435\u043C \u0435\u0441\u0442\u044C \u0432 \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u043E\u043C \u043D\u0430\u0431\u043E\u0440\u0435.",
+              "- \u0415\u0441\u043B\u0438 \u0432\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u00AB\u041E\u0442\u0434\u0435\u043B\u044C\u043D\u0430\u044F \u0431\u0443\u043A\u0432\u0430 \u0434\u043B\u044F \u043A\u0430\u0436\u0434\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438\u00BB, \u0443 \u043A\u0430\u0436\u0434\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u0432 \u0440\u0430\u0443\u043D\u0434\u0435 \u0431\u0443\u0434\u0435\u0442 \u0441\u0432\u043E\u044F \u0431\u0443\u043A\u0432\u0430: \u043D\u0430\u043F\u0440\u0438\u043C\u0435\u0440, \u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442 \u043D\u0430 D, \u0430 \u0435\u0434\u0430 \u043D\u0430 F. \u0411\u0443\u043A\u0432\u0430 \u043E\u0431\u044A\u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u0443 \u043F\u043E\u043B\u044F \u043E\u0442\u0432\u0435\u0442\u0430 \u0438 \u043F\u0440\u0438 \u0441\u0443\u0434\u0435\u0439\u0441\u0442\u0432\u0435. \u0412 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u043C \u0440\u0430\u0443\u043D\u0434\u0435 \u0431\u0443\u043A\u0432\u044B \u0432\u044B\u0431\u0438\u0440\u0430\u044E\u0442\u0441\u044F \u0437\u0430\u043D\u043E\u0432\u043E."),
             rule_section(:options, "\u0412\u0440\u0435\u043C\u044F, \u0441\u0443\u0434\u044C\u044F \u0438 \u0443\u0441\u043B\u043E\u0432\u0438\u044F \u043F\u043E\u0431\u0435\u0434\u044B",
               "\u0412 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0430\u0445 \u0441\u0442\u043E\u043B\u0430 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u044B \u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u044F:",
               "- \u0412\u0440\u0435\u043C\u044F \u043D\u0430 \u043E\u0442\u0432\u0435\u0442\u044B \u043C\u043E\u0436\u0435\u0442 \u0431\u044B\u0442\u044C \u043C\u0435\u043D\u044C\u0448\u0435 \u0438\u043B\u0438 \u0431\u043E\u043B\u044C\u0448\u0435 90 \u0441\u0435\u043A\u0443\u043D\u0434. \u0417\u043D\u0430\u0447\u0435\u043D\u0438\u0435 0 \u0443\u0431\u0438\u0440\u0430\u0435\u0442 \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u0438\u0435: \u0440\u0430\u0443\u043D\u0434 \u0436\u0434\u0451\u0442 \u043E\u0442\u043F\u0440\u0430\u0432\u043A\u0438 \u0432\u0441\u0435\u0445 \u0431\u043B\u0430\u043D\u043A\u043E\u0432.",
@@ -272,7 +277,7 @@ module GameRoomGames
               "\u0421\u0442\u0440\u0435\u043B\u043A\u0438 \u043F\u0440\u0438 \u0441\u0443\u0434\u0435\u0439\u0441\u0442\u0432\u0435: \u0432\u044B\u0431\u0440\u0430\u0442\u044C \u043E\u0446\u0435\u043D\u043A\u0443.",
               "Enter: \u043F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044C \u043E\u0446\u0435\u043D\u043A\u0443 \u0438\u043B\u0438 \u043D\u0430\u0436\u0430\u0442\u044C \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u0443\u044E \u043A\u043D\u043E\u043F\u043A\u0443 \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0438\u044F.",
               "Ctrl+T: \u0443\u0437\u043D\u0430\u0442\u044C \u043E\u0441\u0442\u0430\u0432\u0448\u0435\u0435\u0441\u044F \u0432\u0440\u0435\u043C\u044F \u043D\u0430 \u043E\u0442\u0432\u0435\u0442\u044B.",
-              "T \u0432\u043D\u0435 \u043F\u043E\u043B\u044F \u0432\u0432\u043E\u0434\u0430: \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u0443\u043A\u0432\u0443 \u0438 \u0441\u0443\u0434\u044C\u044E.",
+              "T \u0432\u043D\u0435 \u043F\u043E\u043B\u044F \u0432\u0432\u043E\u0434\u0430: \u0443\u0437\u043D\u0430\u0442\u044C \u0431\u0443\u043A\u0432\u0443 \u0438\u043B\u0438 \u0431\u0443\u043A\u0432\u044B \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0439 \u0438 \u0441\u0443\u0434\u044C\u044E.",
               "S \u0432\u043D\u0435 \u043F\u043E\u043B\u044F \u0432\u0432\u043E\u0434\u0430: \u0443\u0437\u043D\u0430\u0442\u044C \u0441\u0447\u0451\u0442.",
               "V \u0432\u043D\u0435 \u043F\u043E\u043B\u044F \u0432\u0432\u043E\u0434\u0430: \u0443\u0437\u043D\u0430\u0442\u044C \u0441\u0432\u0435\u0434\u0435\u043D\u0438\u044F \u043E \u0440\u0430\u0443\u043D\u0434\u0435.")
           ]

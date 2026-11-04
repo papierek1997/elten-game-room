@@ -24,13 +24,13 @@ module GameRoomUI
     end
   end
   VOLUME_LABELS = {
-    "all" => "All Game Room sounds", "game" => "Game sounds",
+    "all" => "All Power Games sounds", "game" => "Game sounds",
     "room" => "Sounds when someone enters or leaves a room",
-    "chat" => "Chat sounds", "notifications" => "Invitation and Game Room notification sounds"
+    "chat" => "Chat sounds", "notifications" => "Invitation and Power Games notification sounds"
   }.freeze
   GLOBAL_TIPS = [
-    "F2: lower the selected Game Room sound volume.",
-    "F3: raise the selected Game Room sound volume.",
+    "F2: lower the selected Power Games sound volume.",
+    "F3: raise the selected Power Games sound volume.",
     "Shift+F2: select the previous sound group.",
     "Shift+F3: select the next sound group.",
     "Ctrl+F4: read HTTP ping and available Communications relay or P2P ping."

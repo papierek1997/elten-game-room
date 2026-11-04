@@ -5,6 +5,7 @@ require_relative 'operation_journal'
 require_relative 'server_schedule_store'
 require_relative 'server_phase_store'
 require_relative 'phase_description'
+require_relative 'tournament_finish_summary'
 require_relative 'ordinary_match_service'
 require_relative 'server_readiness_service'
 require_relative 'server_proposal_service'
@@ -418,9 +419,9 @@ module GameRoomTournaments
       candidate=view.fetch('candidate')
       reader=ordinary_service_on_worker(publication_ref:reference,lobby:nil,games:nil,transport:nil)
       results=reader.result_view
-      units=results['champion'] ? [results['champion']] : results.fetch('standings').select{|row|row['place']==1}.map{|row|row['unit']}
-      teams=(candidate.dig('membership','units') || []).to_h{|unit|[unit['unit_id'],unit['accounts'].join(' + ')]}
-      value.merge('results'=>results.slice('completed','completed_at'),'winners'=>units.map{|unit|teams.fetch(unit,unit)})
+      summary=TournamentFinishSummary.build(candidate:candidate,results:results,
+        history:view.fetch('phase_history',[]),usernames:value['usernames'])
+      value.merge(summary).merge('results'=>results.slice('completed','completed_at'))
     ensure
       reader&.close
     end

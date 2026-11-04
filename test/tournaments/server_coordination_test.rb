@@ -116,6 +116,11 @@ sandbox do |c|
   assert_equal(true,notice_source['results']['completed'])
   assert(notice_source['results']['completed_at'].positive?)
   assert(!notice_source['winners'].empty?)
+  assert_equal(%w[realowner secondplayer],notice_source.fetch('places').keys.sort)
+  assert_equal([1,2],notice_source.fetch('places').values.sort)
+  assert(h.users.include?(notice_source['winners'].first),'Final notice lost registered username case')
+  assert_equal(1,notice_source['places'].fetch(notice_source['winners'].first.downcase))
+  assert_equal(false,notice_source['team_mode'])
   assert_equal({},coordinator.instance_variable_get(:@deadlines))
   puts "SDK reads by stage: #{request_counts.inspect}"
 ensure

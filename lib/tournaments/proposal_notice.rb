@@ -80,6 +80,14 @@ module GameRoomTournaments
     end
 
     # UI-side cache guard only. Opening/answering always performs a fresh read.
+    def retain_stale_notice?(_metadata,sender:)
+      false
+    end
+
+    def refresh_on_change?(_metadata,proof:nil)
+      true
+    end
+
     def presentable?(proof)
       current!
       proof['window']['opens'] <= @clock.call && @clock.call < proof['window']['closes'] &&

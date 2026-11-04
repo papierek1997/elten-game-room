@@ -1,6 +1,8 @@
 require_relative "../support/invitation_receipts"
 program = Object.new
 program.define_singleton_method(:server_app_uuid) { "test-app" }
+revoked_keys = []
+program.define_singleton_method(:revoke_sent_notification) { |user, key:| revoked_keys << [user, key]; true }
 receipts = ReceiptGateway.new
 broker = NativeLiveSessionsBroker.new
 gateway = DurableNoticeGateway.new
@@ -18,7 +20,9 @@ assert(repo.entries_for(room).map(&:kind) == ["invited"], "sending invitation di
 assert(!owner.send(:deliver_table_invitation, room, "Guest").created?, "duplicate send lost its lock")
 assert(repo.entries_for(room).length == 1, "duplicate send duplicated history")
 assert(process.call, "rejection receipt not consumed")
+assert(revoked_keys == [["Guest", GameRoomNotifications.invitation_key(row)]], "resolved invitation was not revoked by its exact native key")
 assert(process.call, "duplicate receipt not harmless")
+assert(revoked_keys.size == 1, "duplicate receipt repeated keyed revocation")
 entries = repo.entries_for(room)
 assert(entries.map(&:kind) == %w[invited invitation_rejected], "duplicate or missing invitation events")
 assert(entries.map { |entry| repo.text_for(entry, game_name: ->(_id) { "Makao" }) } ==

@@ -40,7 +40,7 @@ end
 
 driver = CategoriesReviewNativeDriver.new
 game = GameRoomGames::Categories.new
-state = {phase: :review, round: 1, attempt: 1, roster_revision: 0,
+state = {phase: :review, options: game.default_options, category_letters: {}, round: 1, attempt: 1, roster_revision: 0,
   players: %w[Alice Bob], judge: 'Alice', active_players: ['Bob'], round_player_order: ['Bob'],
   round_categories: ['country'], reveals: {'Bob' => {'country' => 'Austria'}}, decisions: {}, letter: 'A'}
 spec = game.send(:review_spec, state)

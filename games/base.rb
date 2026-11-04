@@ -197,6 +197,9 @@ module GameRoomGames
       true
     end
 
+    # A listening-only recording is separate from an archive used to resume.
+    def recording_audio_kind; nil; end
+
     # Seconds after the final move during which Restart ignores key presses.
     def restart_guard_seconds
       0

@@ -32,6 +32,7 @@ module GameRoomGames
     def supports_bots?; true; end
     def supports_bot_move_delay?; false; end
     def supports_saved_games?; false; end
+    def recording_audio_kind; 'axel_pong'; end
     def shortcut_features; []; end
 
     def _(source); GameRoomContent.utf8(super(source)); end

@@ -25,6 +25,8 @@ ELTEN reads out cards, boards, scores and events, while sounds help you follow t
 
 ## Getting started
 
+Power Games requires ELTEN 3.0.5 or later.
+
 Stereo headphones are recommended for audio games, where the direction of sound matters.
 
 1. Open Power Games from ELTEN's program list.
@@ -102,7 +104,7 @@ Use the table's “Create voice conversation” button to create an ELTEN confer
 
 The others hear a short invitation and get a “Join voice conversation” button at the table. Once you join, it changes to “Disconnect voice conversation”. You can leave the conference and join again later. When the creator disconnects, the table invitation is removed too; people who have already joined can keep talking. No dialog opens on its own during play. If you are already in another conference, switching requires confirmation. Your microphone and push-to-talk settings stay unchanged.
 
-Leaving a table also disconnects you from its conference. Ctrl+Shift+M mutes or unmutes your microphone in the current conference.
+If you are connected to the table's conference, choose “Yes” when leaving to leave both the table and the conversation, or “Leave only the table” to keep talking. Ctrl+Shift+M mutes or unmutes your microphone in the current conference.
 
 You can also mute or unmute from the table's context menu; a message confirms the microphone's state. While connected to a conference, “Channel space” appears immediately after the voice conversation button. Use the arrow keys to move and Shift+Left/Right Arrow to turn, just as in the conference window.
 
@@ -181,7 +183,7 @@ In Settings → Notification settings, choose the games whose new public tables 
 Separately, choose whether to show invitations from everyone, only contacts or nobody. Invitations and new table notifications have different sounds. Their descriptions include brief information about the game and its main settings; Ctrl+R gives you the full table settings.
 
 Notification settings also contain the Blacklist. Add the user names of people whose invitations you do not want to see. On the list, Ctrl+N adds a person and Delete removes the selected one. Confirm your changes with Save.
-The blacklist does not block invitations to tournament matches.
+Invitation filters and the blacklist do not block invitations to tournament matches.
 
 In Settings → Lobby announcements, you separately choose which announcements are read while you are in the program's main window.
 
@@ -224,7 +226,7 @@ Outside tournaments, the host can use Ctrl+S in games that support saving to sav
 
 Tournament games cannot be saved or resumed from a saved game.
 
-Use “Saved games” in the main menu to resume. Restoring a save creates a table where you can gather the participants again and continue playing. Not every game can be saved, and not every moment is suitable: the command depends on the game and its current stage.
+Use “Saved games” → “Games to resume” in the main menu. Restoring a save creates a table where you can gather the participants again and continue playing. Not every game can be saved, and not every moment is suitable: the command depends on the game and its current stage.
 
 Once the game resumes, its save is removed from your account. Creating the table and waiting for players does not remove it yet. To stop again, save your current progress with Ctrl+S.
 
@@ -241,7 +243,17 @@ Table history includes game events, chat and changes at the table. You can read 
 
 Categories let you separate chat from game events or read everything together. The comma and period shortcuts also work while you type a message. In an editable field, Ctrl+Home and Ctrl+End retain their usual text navigation.
 
-Ctrl+Shift+S saves the available table history to a TXT file in a folder you choose. You can use it to keep a conversation or a record of play. This is a text export, not a save you can later resume, and it does not close the table. Remember that the file may contain other participants' messages before sharing it.
+### Histories and replays
+
+Ctrl+Shift+S adds a record to your library without closing the table: text for turn-based games, or a sound replay for Axel Pong and Audio Ball. A replay covers the play you have followed up to the moment you save it. It cannot resume a game, and matches are not kept permanently unless you use this shortcut.
+
+Choose Saved games → Histories and replays. Enter opens the text or player. On the player field, Space plays or pauses. S reads the score using the game's usual announcement, T names the server, and L reads your position in the recording. Use 1 and 2 to change perspective; Axel Pong doubles also offers 3 and 4. Tab takes you to perspective and speed.
+
+Left and Right arrows seek back or forward five seconds. A and N jump to the previous or next action, G and H to a point, and U and J to a set when the recording contains them. K returns to the beginning and E goes to the end. These keys work without Ctrl on the player field. The context menu and F1 help show the actions currently available.
+
+Files stay in Power Games' own folder on this computer, separately for each account. Opening the library detects files added or removed there. The context menu lets you rename, export a copy, send or delete an entry. Deleting an entry removes its file, not any exported copies.
+
+Ctrl+M opens Import from messages. You can preview a received game or add it to the library; only after adding it are you asked whether to delete the message. The sender's sent copy is removed automatically after delivery is confirmed, while their library file remains. Ctrl+I imports a file from disk. Before sharing text history, remember that it may include the table chat.
 
 ## Leaderboards
 
@@ -350,7 +362,7 @@ This list covers the program's common controls. Use F1 for a specific game's com
 - Ctrl+Shift+O — choose to play or spectate in the next game.
 - Ctrl+P — personal settings or a personal toggle, in games that provide one.
 - Ctrl+S — save the game and close the table; for the host, in supported games outside tournaments.
-- Ctrl+Shift+S — export table history to TXT without closing the game.
+- Ctrl+Shift+S — keep text history or an audio-game replay in the library without closing the game.
 - Ctrl+Q — end the current game without closing the table; for the host.
 - Ctrl+X — change settings for the next game; for the host, outside text editing.
 
@@ -444,7 +456,9 @@ You can have one outgoing proposal. Choosing someone else asks you to cancel the
 
 At the start, the program keeps agreed pairs and randomly pairs the remaining entrants. The organiser cannot choose those partners. If an odd number remains without partners, or too few people have registered, the organiser gets a reason why the tournament cannot start. Once it starts, you keep the same partner and share a team result.
 
-The start notification opens the tournament matches. At the end of a phase, one notification names the next phase and opens the standings for the phase just completed. The final produces only the tournament completion notice, naming the winner or joint winners and opening the final standings. These sounds follow your usual notification settings.
+The start notification opens the tournament matches. At the end of a phase, one notification names the next phase and opens the standings for the phase just completed. The final produces only the tournament completion notice. It gives your finishing place — your team's place in a team tournament — and the winner or joint winners, and opens the final standings. Players eliminated at the same knockout stage share a place. Scores are not compared between players eliminated from different groups.
+
+Start and completion notices do not expire automatically. Tournament match invitations remain visible regardless of invitation filters and the blacklist; their five-minute lifetime is unchanged. Notification sounds still follow your sound settings and ELTEN's notification mute.
 
 ### Starting a match
 
@@ -477,7 +491,7 @@ Completed match entries also show the game score when available. If a return mat
 
 Games supporting small points show the available totals scored and conceded, and their difference. A missing score from one match neither hides the other totals nor counts as zero. Lower scores are better in UNO, Domino, Mexican Train and elimination Rummy. Audio Ball counts points across all sets. Participants still sharing a place are listed with fewer matches played first; this display order does not decide qualification.
 
-No tournament game can be saved or resumed from a file. The save command and Ctrl+S are unavailable, but Ctrl+Shift+S still exports the history as text.
+No tournament game can be saved or resumed from a file. The save command and Ctrl+S are unavailable, but Ctrl+Shift+S still keeps text history or an audio-game replay.
 
 Once an individual match has started, play pauses if a player disconnects. Each player has a total of five minutes to return during that match. Returning stops the clock but does not reset the allowance. Rejoin the same table on the same account to continue with your cards, score and remaining turn time intact.
 

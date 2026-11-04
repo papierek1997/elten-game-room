@@ -162,10 +162,33 @@ Shortcuts for previous tricks or battles read historical authors without
 substituting the names of the current participants.
 
 Ctrl+Shift+S or “Zapisz historię stołu” (“Save table history”) in the menu saves
-the available event and chat history to a TXT file in the selected folder.
-It works before, during and after a game; it neither saves nor closes the game
-itself. The file uses UTF-8 and a unique name, so another export does not
-overwrite the previous one. Returning preserves focus and the unsent chat draft.
+the available event and chat history as UTF-8 TXT in the account's local
+recording library. Audio Ball and Axel Pong instead save a versioned passive
+JSON presentation timeline. This never closes or resumes the game. All disk
+I/O uses finite background tasks; the realtime observer only copies frames and
+presentation events into bounded batches. Returning preserves focus and chat.
+
+Saved games separates Histories and replays from Games to resume. The library
+rescans its owned directory instead of storing arbitrary external paths. Export
+copies; delete removes only the selected owned file. The offline player reuses
+the audio renderers under a virtual clock and the existing Progress bridge,
+without constructing physics, game sessions or result publishers. Message import
+validates passive data and checksums. Preview does not import or delete; after
+persistent import the recipient explicitly chooses whether to delete the exact
+message. Confirmed sending removes only the sender's mailbox copy.
+
+The replay player's primary field is a passive native Button, like the audio
+playfields, not a command list. Its context options and F1 are derived from the
+same current action set. Native symbol shortcuts act without Ctrl only while
+that field is active; Space/Enter toggle playback and Left/Right seek five seconds.
+These non-letter keys use the native field events, with their localized key
+names included in menu labels and F1; do not advertise P/B/F aliases or register
+global keyboard actions for replay navigation. S/T share the live game's
+read-only score/server formatter, without inventing a replay connection status.
+Pong offers two/four seat perspectives; Audio Ball offers its two team-side
+perspectives. No active engine, input-capture hook or session is constructed.
+Navigation retains the selected event boundary while its cue plays, so another
+Previous/Next moves to another boundary instead of selecting the same cue.
 
 Ctrl+R reads `table_options_announcement`, based on the same definitions as
 the settings document. The board game's S counter uses
@@ -199,6 +222,17 @@ rotation and position/size queries delegate to Conference, without a second
 position model or audio pipeline. Membership is local: changing it updates
 only this control's visibility, preserving the focused field and chat draft.
 Regression: `test/ui/table_conference_controls_native_test.rb`.
+
+When the user is connected to that table's conference, explicit departure
+offers No, Yes and Leave only the table, in that order, defaulting to No.
+The third choice releases only table membership and local tracking after the
+normal confirmed table departure; it never calls Conference.leave. Yes retains
+the ordinary disconnect behavior. Cancellation and failed table departure do
+not clean up either membership. Match native channel ID and name against the
+published or retained table identity; an unrelated conference does not enable
+the extra choice. A creator's authenticated table departure still withdraws its
+invitation as usual, without closing the conference for connected people.
+Regressions: `table_voice_departure_choice_test.rb`, `table_voice_departure_test.rb`.
 
 Only the main lobby opts into `game_room_tournament_shortcut_enabled`.
 Ctrl+T opens the tournament browser; Ctrl+Shift+T keeps the My tournaments

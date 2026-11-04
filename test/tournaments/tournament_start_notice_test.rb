@@ -56,7 +56,7 @@ GameRoomTest::TemporaryDirectory.create('start-notice-upgrade-') do |directory|
   end
   cold=T::TournamentStartPublisher.new(service:make.call,sender:-> {'alice'},transaction:journal.method(:update),
     send:->(*) {sent<<:duplicate;true})
-  assert_raises(T::ProposalNotice::Stale){cold.deliver(metadata:notice)}
+  assert_equal(:sent,cold.deliver(metadata:notice))
   assert_equal([],sent,'Adding a description resent an already delivered start')
   assert_equal(:sent,cold.deliver(metadata:notices.first),'A legacy journal blocked a different recipient')
   assert_equal([:duplicate],sent)
@@ -75,12 +75,14 @@ people=%w[alice bob]
 complete=false
 assert_raises(T::ProposalNotice::Stale){recipient.inspect(metadata:notice,sender:'Alice')}
 complete=true
-now=starts+T::TournamentStartNotice::READING_GRACE
-assert_raises(T::ProposalNotice::Stale){recipient.inspect(metadata:notice,sender:'Alice')}
+now=starts+90*86400
+assert(recipient.presentable?(recipient.inspect(metadata:notice,sender:'Alice')),'Start information expired')
+assert_equal(0,recipient.remaining_seconds(0))
+assert_equal(0,recipient.retention_deadline)
 assert_equal(row['title'],recipient.description(metadata:notice,sender:'Alice')['title'],'Historical description expired like a live delivery')
 now=starts
 scope=scope.merge('account_epoch'=>'changed-epoch')
 assert_raises(T::ProposalNotice::Stale){recipient.inspect(metadata:notice,sender:'Alice')}
 scope=scope.merge('account_epoch'=>'bob-epoch')
 assert_raises(T::ProposalNotice::Stale){recipient.inspect(metadata:notice,sender:'Alice')}
-puts 'PASS tournament start notices: actual game/title from authenticated snapshot, registered recipients only, start/expiry windows, sender/epoch/complete-source guards, local durable once-only attempts and cold lost-reply protection'
+puts 'PASS tournament start notices: actual game/title, registered recipients, permanent lifetime, sender/epoch/complete-source guards and durable once-only attempts'

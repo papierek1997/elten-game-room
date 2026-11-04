@@ -41,7 +41,7 @@ drive = lambda do |&edit|
     switch, list = sounds[1], sounds[2]
     assert(switch.is_a?(CheckBox) && switch.label == 'Use 3D sound (HRTF) to hear other players around the table',
       '3D sound check box does not open Sounds, followed by the game list')
-    assert(sounds[3].header == 'All Game Room sounds', 'Volume settings do not follow the 3D sound game list')
+    assert(sounds[3].header == 'All Power Games sounds', 'Volume settings do not follow the 3D sound game list')
     assert(list.header == 'Games with 3D sound' &&
       list.options == ['Select all games', 'Deselect all games', 'UNO', 'Chess'],
       'Game list lacks the action rows or lists audio games')

@@ -92,7 +92,11 @@ comparisons = 0
   cache.transitions(changed, original.call(changed, events.take(5), repository), [events[4]])
   assert(calls == [4], "#{game.id}: new session failed to invalidate prefix")
   cache.remember(session, original.call(session, prefix, repository))
-  cache.instance_variable_get(:@previous).accepted_events.first['value'] = 'stale'
+  previous = cache.instance_variable_get(:@previous)
+  # Cached games can expose immutable authenticated logs. Construct the
+  # deliberately different local prefix without editing a shared sealed row.
+  previous.accepted_events = GameRoomSnapshot.copy(Array.new(previous.accepted_events))
+  previous.accepted_events.first['value'] = 'stale'
   calls.clear
   cache.transitions(session, original.call(session, next_events, repository), [next_events.last])
   assert(calls == [3], "#{game.id}: differing prefix reused")

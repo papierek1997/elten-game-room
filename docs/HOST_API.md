@@ -1,9 +1,43 @@
-# Integration with ELTEN 3.0.4
+# Integration with ELTEN 3.0.5
 
-The required API comes from the final `3.0.4` tag, commit
-`3418d67dea40ee116f4a8ba545b1c409fd04706f`. Native tests use one
-`ELTEN_HOST_SOURCE` pointing to a compatible checkout. API 3.0.5 RC 1 is not
-the basis of this integration. Commands: [BUILDING.md](BUILDING.md).
+The required API comes from the final `3.0.5` tag, commit
+`f29e82a0c32c66b1eca5e6fa5e5e7b858b61f480`. Native tests use one
+`ELTEN_HOST_SOURCE` pointing to that checkout. The existing service adapters
+originated in final 3.0.4; the notification and sound integrations below
+require final 3.0.5. Commands: [BUILDING.md](BUILDING.md).
+
+## Native notification lifecycle and audio buffering
+
+`GameRoomNotifications` sends native keyed notifications. An invitation key
+includes the sender, recipient, native session, table and invitation ID;
+tournament keys use the existing event identity. Receiving an authenticated
+acceptance/rejection receipt revokes that sender's exact invitation by key,
+without listing the recipient's notifications. Confirmed table closure also
+revokes the local sender's outstanding invitations for that native session;
+ordinary departure and host transfer do not. Cleanup failure cannot undo a
+confirmed closure. The ordinary five-minute invitation deadline and tournament
+registration windows are unchanged. Repeated internal coordination wakes keep
+their separate, unkeyed delivery path because they are not a single event.
+
+The Program's `notification_lifecycle` hook declares a native lifecycle with
+60-second local-evidence checks. These callbacks do not discover rooms, read
+tournament tables, open forms or send new invitations. A synchronized native
+clock may establish expiry; a verified dismissed token may establish that a
+tournament invitation is stale. Missing data is unknown, not rejection.
+The host performs a revocation only after an explicit negative result.
+No receipt-relative expiry is added to the original invitation lifetime.
+Tournament start/final information is permanent. Final metadata includes the
+recipient's place and winning units; it remains readable without a new table
+read. Verified coordinator observations refresh actionable notice proofs.
+List grouping hides dismissed notices without removing the native entries
+before their lifecycle worker has revoked them on the server.
+
+Sound factories retain ELTEN's default effect buffering. Power Games does not
+force `effect_buffer: :low_latency`: that smaller queue caused underruns with
+HRTF processing. Explicit buffering and sample requests pass through unchanged;
+the host's global mixer, output device and HRTF settings are not changed.
+Spatial scenes, new HRTF profiles, UserState and local notifications are not
+part of this integration.
 
 ## Native service adapters
 

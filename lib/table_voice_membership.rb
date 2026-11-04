@@ -15,10 +15,14 @@ class GameRoomTableVoiceMembership
     @tables[table['__id']]=voice.dup.freeze
     @tables.shift while @tables.size>16
   end
-  def depart(table)
+  def connected?(table)
+    GameRoomTableVoice.connected?(table['voice'],@conference) ||
+      GameRoomTableVoice.connected?(@tables[table['__id']],@conference)
+  end
+  def depart(table, disconnect: true)
     remember(table)
     voice=@tables[table['__id']]
-    if GameRoomTableVoice.connected?(voice,@conference)
+    if disconnect && GameRoomTableVoice.connected?(voice,@conference)
       return false unless @conference.leave
     end
     @tables.delete(table['__id'])

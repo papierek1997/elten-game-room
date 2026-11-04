@@ -15,13 +15,14 @@ module Programs
   def self.runtime_for(*); nil; end
   def self.with_runtime(*); yield; end
   def self.handle_execution_error(error, *); ($handoff_errors ||= []) << error; false; end
+  def self.report_execution_error(error, *); ($handoff_errors ||= []) << error; false; end
 end
 require EltenTestHost.file('src/eapi/core/runtime.rb')
 require EltenTestHost.file('src/eapi/common/threads.rb')
 Object.include(EltenAPI)
 native_source = EltenTestHost.file('src/eapi/program.rb')
 lines = File.readlines(native_source, encoding: 'UTF-8')
-first = lines.index { |line| line.strip == 'class NotificationActionScene' }
+first = lines.index { |line| line.strip == 'class AppNotification' }
 last = ((first + 1)...lines.length).find { |i| lines[i].strip == 'class Leaderboard' } if first
 raise 'Native notification class boundary changed' unless first && last
 Programs.module_eval(lines[first...last].join, native_source, first + 1)
@@ -94,16 +95,21 @@ end
 GameRoomSingleInstance.instance_variable_set(:@lock, barrier)
 initial_threads = Thread.list
 switcher = Thread.new { host.send(:thr2) }
+notification = Programs::AppNotification.new(id: 7, app_uuid: 'test-app',
+  type: 'game_room.invitation', sender: 'Bob', created_at: 1, metadata: {})
 $handoff_owner.run = -> do
-  host.send(:insert_scene, Programs::NotificationActionScene.new(HandoffProgram, :open_invitation, 7), true)
+  host.send(:insert_scene, Programs::NotificationActionScene.new(HandoffProgram, :open_invitation, notification), true)
 end
 begin
   Timeout.timeout(6) do
     host.send(:execute_scene_main, $handoff_owner)
-    sleep(0.002) until incoming_thread && !incoming_thread.alive?
+    until incoming_thread && !incoming_thread.alive?
+      raise "Native notification dispatch failed: #{$handoff_errors.inspect}" unless $handoff_errors.empty?
+      sleep(0.002)
+    end
   end
   incoming = HandoffProgram.instances.find { |program| !program.equal?($handoff_owner) }
-  assert(incoming.calls == [[:open_invitation, 7]], 'Notification was lost or duplicated after its captured owner finished')
+  assert(incoming.calls == [[:open_invitation, notification]], 'Notification was lost or duplicated after its captured owner finished')
   assert(!incoming.instance_variable_get(:@game_room_redirected), 'New owner remained a discarded launch')
   assert(incoming.finalizations == [:notification], 'Notification did not retain normal native finalization')
   assert(GameRoomSingleInstance.active_program.nil? && $handoff_errors.empty?, 'Owner/error leaked after notification')

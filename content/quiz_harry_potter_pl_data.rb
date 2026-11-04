@@ -3,7 +3,7 @@ require 'json'
 module GameRoomContent
   module Pack17d0ce6cdc1b22b1abbc2c2b
     def self.load
-      JSON.parse(<<'QUIZ_DATA_a6d11d27edb2deffce7ecfdcdc3e28f518a3aeb5f97783de736c7ca9119fcf2c')
+      JSON.parse(<<'QUIZ_DATA_7592f7682d77cdee9d9f372593d23b673c71a18e517b5608b434537bac984b93')
 {
   "questions": [
     {
@@ -1608,14 +1608,14 @@ module GameRoomContent
       "id": "community_hp_lk_0095",
       "category": "Eliksiry",
       "level": "medium",
-      "prompt": "Których Ślizgonów Harry i Ron udawali za pomocą Eliksiru Wielosokowego?",
+      "prompt": "Kogo Harry i Ron udawali za pomocą Eliksiru Wielosokowego w „Komnacie Tajemnic”?",
       "correct": "Crabbe’a i Goyle’a",
       "wrong": [
         "Freda i George’a",
         "Deana i Seamusa",
         "Percy’ego i Olivera"
       ],
-      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "source": "J.K. Rowling: Harry Potter i Komnata Tajemnic",
       "author": "LordKiller; redakcja Power Games",
       "source_dataset": "Power Games community: Harry Potter books",
       "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
@@ -7966,12 +7966,12 @@ module GameRoomContent
       "id": "community_hp_lk_0471",
       "category": "Fabuła",
       "level": "medium",
-      "prompt": "W jaki sposób Neville wrócił do pokoju wspólnego, gdy Malfoy rzucił na niego urok?",
+      "prompt": "Jak Neville wrócił do pokoju wspólnego, gdy Malfoy rzucił na niego urok w „Kamieniu Filozoficznym”?",
       "correct": "Skacząc ze sklejonymi nogami",
       "wrong": [
         "Pełzając",
-        "Na miotle",
-        "Niesiony przez Hagrida"
+        "Podtrzymywany przez Harry’ego i Rona",
+        "Na plecach jednego z uczniów"
       ],
       "source": "J.K. Rowling: Harry Potter i Kamień Filozoficzny",
       "author": "LordKiller; redakcja Power Games",
@@ -10499,7 +10499,7 @@ module GameRoomContent
       "id": "community_hp_lk_0621",
       "category": "Bohaterowie",
       "level": "medium",
-      "prompt": "Który ogrodnik zginął po podsłuchaniu Voldemorta w domu Riddle’ów?",
+      "prompt": "Kto zginął po podsłuchaniu rozmowy Voldemorta w domu Riddle’ów na początku „Czary Ognia”?",
       "correct": "Frank Bryce",
       "wrong": [
         "Berta Jorkins",
@@ -11978,7 +11978,7 @@ module GameRoomContent
       "id": "community_hp_lk_0708",
       "category": "Bohaterowie",
       "level": "medium",
-      "prompt": "Kto okłamał Harry'ego, że Syriusza nie ma w domu?",
+      "prompt": "W „Zakonie Feniksa” Harry szuka Syriusza przez kominek Umbridge. Kto kłamie mu, że Syriusza nie ma w domu?",
       "correct": "Stworek",
       "wrong": [
         "Mundungus",
@@ -16754,7 +16754,7 @@ module GameRoomContent
   ],
   "source": "J.K. Rowling: siedem powieści o Harrym Potterze; propozycja LordKiller, redakcja Power Games"
 }
-QUIZ_DATA_a6d11d27edb2deffce7ecfdcdc3e28f518a3aeb5f97783de736c7ca9119fcf2c
+QUIZ_DATA_7592f7682d77cdee9d9f372593d23b673c71a18e517b5608b434537bac984b93
     end
   end
 end

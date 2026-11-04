@@ -52,6 +52,7 @@ class GameScreen
     manage_observer: nil,
     manage_teams: nil,
     save_table_history: nil,
+    save_recording: nil,
     save_game: nil,
     edit_options: nil,
     abort_game: nil,
@@ -64,6 +65,7 @@ class GameScreen
     @manage_observer = manage_observer
     @manage_teams = manage_teams
     @save_table_history = save_table_history
+    @save_recording = save_recording
     @save_game = save_game
     @edit_options = edit_options
     @abort_game = abort_game
@@ -278,8 +280,7 @@ class GameScreen
       when :rules
         show_game_rules(replay)
       when :save_table_history
-        @save_table_history&.call(combined_history_entries(replay))
-        @suppress_surface_focus = true
+        save_presented_history(replay)
       when :save_game
         if GameRoomTournamentMarker.present?(@table, @session)
           speak(_("Tournament games cannot be saved or resumed from a saved game."))
@@ -392,6 +393,15 @@ class GameScreen
   end
 
   private
+
+  def save_presented_history(replay)
+    if @save_recording && @game.recording_audio_kind
+      @save_recording.call(@game_client)
+    else
+      @save_table_history&.call(combined_history_entries(replay))
+    end
+    @suppress_surface_focus=true
+  end
 
   def edit_table_configuration(action)
     callback = action == :edit_options ? @edit_options : @manage_teams
@@ -1304,6 +1314,9 @@ class GameScreen
   def clear_chat_draft(receipt: nil)
     if receipt
       return false unless receipt.clear_if_current(@chat_control, session_id: @layout&.session_id)
+      @chat_text = @chat_control.text.to_s.dup
+      @chat_index, @chat_check = @chat_control.index, @chat_control.check
+      return true
     end
     @chat_text = ""
     @chat_index = 0

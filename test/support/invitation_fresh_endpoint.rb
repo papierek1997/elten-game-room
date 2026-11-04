@@ -26,6 +26,9 @@ class DurableNoticeGateway
 end
 
 class InvitationAppDriver < EltenGameRoom
+  # These headless invitation fixtures have no installed Runtime/filesystem.
+  # Real startup preparation is covered by local_directories_test and live UI.
+  def prepare_local_directories; end
   attr_reader :alerts, :errors, :sent
   def initialize(broker, user, gateway, fresh: false)
     # Native startup publishes local preferences before notification actions.
@@ -49,7 +52,7 @@ class InvitationAppDriver < EltenGameRoom
     @errors << error
     nil
   end
-  def send_notification(user, type:, metadata:, expires_in:)
+  def send_notification(user, type:, metadata:, expires_in:, key:)
     @sent << [type, metadata, expires_in]
     @gateway.send(user, metadata, type: type, sender: Session.name)
   end

@@ -15,6 +15,7 @@ coordinator=Object.new
 ticks=[]
 coordinator.define_singleton_method(:tick){ticks << Thread.current}
 coordinator.define_singleton_method(:last_error){nil}
+coordinator.define_singleton_method(:take_observed_references){[]}
 coordinator.define_singleton_method(:close){}
 previous_account=Session.instance_variable_get(:@name)
 previous_token=Session.token

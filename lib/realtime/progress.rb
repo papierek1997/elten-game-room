@@ -1,6 +1,7 @@
 require_relative 'timer'
 require_relative '../game_background_policy'
 require_relative '../game_background_presentation'
+require_relative '../recordings/capture'
 
 module GameRoomRealtime
   # The form and the active-UI bridge share ONE clock-gated timer. Detaching a
@@ -61,9 +62,11 @@ module GameRoomRealtime
   end
 
   module ProgressClient
+    include GameRoomRecordings::CaptureClient
     def background_progress?; true; end
 
     def start_progress
+      attach_recording
       @audio.background_provider = -> { @progress&.covered? } if @audio.respond_to?(:background_provider=)
       @progress = Progress.new(program: @program, clock: @clock, key: @base_match) do |background|
         @background_input = background

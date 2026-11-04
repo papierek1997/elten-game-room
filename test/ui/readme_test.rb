@@ -11,12 +11,24 @@ section_titles = {
   'es' => ['Torneos', 'Colaborar en el programa'],
   'ru' => ['Турниры', 'Помощь в развитии программы']
 }.freeze
-blacklist_exception_text = {
-  'pl' => 'Czarna lista nie blokuje zaproszeń do meczów turniejowych.',
-  'en' => 'The blacklist does not block invitations to tournament matches.',
-  'cs' => 'Černá listina neblokuje pozvánky k turnajovým zápasům.',
-  'es' => 'La lista negra no bloquea las invitaciones a partidas de torneo.',
-  'ru' => 'Чёрный список не блокирует приглашения на турнирные матчи.'
+invitation_filter_exception_text = {
+  'pl' => 'Filtry zaproszeń i czarna lista nie blokują zaproszeń do meczów turniejowych.',
+  'en' => 'Invitation filters and the blacklist do not block invitations to tournament matches.',
+  'cs' => 'Filtry pozvánek ani černá listina neblokují pozvánky k turnajovým zápasům.',
+  'es' => 'Los filtros de invitaciones y la lista negra no bloquean las invitaciones a partidas de torneo.',
+  'ru' => 'Фильтры приглашений и чёрный список не блокируют приглашения на турнирные матчи.'
+}.freeze
+permanent_notice_text = {
+  'pl' => ['Informacje o rozpoczęciu i zakończeniu turnieju nie wygasają automatycznie.',
+    'Podaje Twoje miejsce', 'zwycięzcę lub wspólnych zwycięzców'],
+  'en' => ['Start and completion notices do not expire automatically.',
+    'It gives your finishing place', 'the winner or joint winners'],
+  'cs' => ['Oznámení o zahájení a dokončení turnaje automaticky nevyprší.',
+    'Obsahuje vaše umístění', 'vítěze nebo společné vítěze'],
+  'es' => ['Los avisos de inicio y fin del torneo no caducan automáticamente.',
+    'Indica tu puesto', 'el ganador o los ganadores empatados'],
+  'ru' => ['Уведомления о начале и завершении турнира не имеют срока действия.',
+    'В нём указаны ваше место', 'победитель или участники, разделившие победу']
 }.freeze
 tournament_contract_text = {
   'pl' => ['W pojedynku wybierz przegranego', 'Możesz ustawić wspólne miejsce',
@@ -59,8 +71,8 @@ paths.each do |language, path|
   bytes = File.binread(File.join(root, path))
   markdown = bytes.dup.force_encoding(Encoding::UTF_8)
   assert(markdown.valid_encoding?, "#{language}: invalid UTF-8")
-  assert(markdown.include?(blacklist_exception_text.fetch(language)),
-    "#{language}: invitation blacklist omits the tournament exception")
+  assert(markdown.include?(invitation_filter_exception_text.fetch(language)),
+    "#{language}: invitation filters omit the tournament exception")
   tournament_title, help_title = section_titles.fetch(language)
   chapters = markdown.scan(/^## (.+)$/).flatten.map(&:strip)
   # Sports results belong to Statistics, not to a competitive leaderboard.
@@ -77,7 +89,7 @@ paths.each do |language, path|
   tournament_section = markdown[/^## #{Regexp.escape(tournament_title)}\r?\n(.*?)(?=^## |\z)/m, 1]
   assert(tournament_section && tournament_section.include?('guliwer'),
     "#{language}: tournament section is missing the contributor credit")
-  tournament_contract_text.fetch(language).each do |description|
+  (tournament_contract_text.fetch(language) + permanent_notice_text.fetch(language)).each do |description|
     assert(tournament_section.include?(description), "#{language}: current tournament help omits #{description}")
   end
   contents_titles = markdown.lines.filter_map { |line| line[/\A- \[([^\]]+)\]\(#/, 1] }

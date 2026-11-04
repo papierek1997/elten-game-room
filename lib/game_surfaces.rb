@@ -333,11 +333,46 @@ module GameSurfaces
   class RefreshAwareEditBox < EditBox
     def initialize(*arguments, **options)
       super
-      on(:change) { @game_room_edit_generation = game_room_edit_generation + 1 }
+      on(:insert) do |position, inserted|
+        # Only native tail insertions extend a captured submission. A reset,
+        # deletion, replacement or newer submission must keep its own draft.
+        receipt = @game_room_submission
+        @game_room_appending_submission = receipt && !inserted.to_s.empty? &&
+          game_room_edit_generation == @game_room_submission_generation &&
+          position == receipt.text.length + @game_room_submission_tail_length
+        @game_room_submission_tail_length += inserted.to_s.length if @game_room_appending_submission
+      end
+      on(:change) do
+        @game_room_edit_generation = game_room_edit_generation + 1
+        if @game_room_appending_submission && @game_room_submission_generation + 1 == game_room_edit_generation
+          @game_room_submission_generation = game_room_edit_generation
+        else
+          @game_room_submission = nil
+        end
+        @game_room_appending_submission = false
+      end
     end
 
     def game_room_edit_generation
       @game_room_edit_generation.to_i
+    end
+
+    def game_room_track_submission(receipt)
+      @game_room_submission = receipt
+      @game_room_submission_generation = game_room_edit_generation
+      @game_room_submission_tail_length = 0
+      @game_room_appending_submission = false
+    end
+
+    def game_room_submission_tail(receipt)
+      return unless receipt.same_draft?(@game_room_submission) &&
+        game_room_edit_generation == @game_room_submission_generation &&
+        @game_room_submission_tail_length.positive?
+
+      current = text.to_s
+      return unless current.length == receipt.text.length + @game_room_submission_tail_length && current.start_with?(receipt.text)
+
+      current[receipt.text.length..]
     end
 
     def set_text(*arguments, **options)

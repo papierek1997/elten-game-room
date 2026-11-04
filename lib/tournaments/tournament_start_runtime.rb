@@ -3,6 +3,7 @@ require_relative 'tournament_start_publisher'
 require_relative 'proposal_notice_inbox'
 require_relative 'proposal_notice_journal'
 require_relative 'tournament_event_notice'
+require_relative '../game_room_notifications'
 
 module GameRoomTournaments
   module TournamentStartRuntime
@@ -38,13 +39,11 @@ module GameRoomTournaments
       service=@tournament_event_services&.fetch(kind)
       raise ProposalNotice::Unavailable,'Tournament notices are not connected' unless service
       account=Publication::Data.account(Session.name).downcase
-      service.notices(publication_ref:publication_ref,recipient:recipient,phase_id:phase_id,addressed:true,invitation_key:invitation_key,change_key:change_key,change_index:change_index).map do |notice,delivery_name|
-        identity=[account,notice['backend_identity']]
-        identity << notice['publication_ref'] if notice['version']==2
-        scope=Digest::SHA256.hexdigest(JSON.generate(identity))
-        journal=ProposalNoticeJournal.new(program:self,path:"tournament-#{kind}-deliveries-#{scope}.json")
+      notices=service.notices(publication_ref:publication_ref,recipient:recipient,phase_id:phase_id,addressed:true,invitation_key:invitation_key,change_key:change_key,change_index:change_index)
+      journal=tournament_notice_journal(account:account,notice:notices.first.first,kind:kind) unless notices.empty?
+      notices.map do |notice,delivery_name|
         TournamentStartPublisher.new(service:service,sender:-> {Session.name},transaction:journal.method(:update),
-          send:->(metadata,closes){send_notification(delivery_name,type:TournamentEventNotice::TYPES.fetch(kind),metadata:metadata,
+          send:->(metadata,closes){GameRoomNotifications.deliver(self,delivery_name,type:TournamentEventNotice::TYPES.fetch(kind),metadata:metadata,
             expires_in:service.remaining_seconds(closes))}).deliver(metadata:notice)
       end
     end
@@ -56,14 +55,37 @@ module GameRoomTournaments
       account=Publication::Data.account(Session.name).downcase
       notices=service.notices(publication_ref:publication_ref,addressed:true)
       results={}
+      journal=tournament_notice_journal(account:account,notice:notices.first.first,kind:'start') unless notices.empty?
       notices.each do |notice,delivery_name|
-        scope=Digest::SHA256.hexdigest(JSON.generate([account,notice['backend_identity']]))
-        journal=ProposalNoticeJournal.new(program:self,path:"tournament-start-deliveries-#{scope}.json")
         results[notice['recipient']]=TournamentStartPublisher.new(service:service,sender:-> {Session.name},transaction:journal.method(:update),
-          send:->(metadata,closes){send_notification(delivery_name,type:TournamentStartNotice::TYPE,metadata:metadata,
+          send:->(metadata,closes){GameRoomNotifications.deliver(self,delivery_name,type:TournamentStartNotice::TYPE,metadata:metadata,
             expires_in:service.remaining_seconds(closes))}).deliver(metadata:notice)
       end
       results.freeze
+    end
+
+    def tournament_notice_journal(account:,notice:,kind:)
+      identity=[account,notice['backend_identity']]
+      permanent=%w[start finished].include?(kind)
+      previous=Digest::SHA256.hexdigest(JSON.generate(identity))
+      identity << notice['publication_ref'] if permanent || notice['version']==2
+      scope=Digest::SHA256.hexdigest(JSON.generate(identity))
+      seed=nil
+      if permanent
+        old=ProposalNoticeJournal.new(program:self,path:"tournament-#{kind}-deliveries-#{previous}.json").read
+        if old
+          unless old.is_a?(Hash) && old.keys.sort==%w[operations version] && old['version']==1 && old['operations'].is_a?(Hash)
+            raise ProposalNotice::Unavailable,'Notification journal is corrupt'
+          end
+          seed=old['operations'].select do |_key,entry|
+            unless entry.is_a?(Hash) && entry.dig('descriptor','metadata').is_a?(Hash)
+              raise ProposalNotice::Unavailable,'Notification journal is corrupt'
+            end
+            entry['descriptor']['metadata']['publication_ref']==notice['publication_ref']
+          end.transform_values { |entry| entry.merge('expires_at'=>0) }
+        end
+      end
+      ProposalNoticeJournal.new(program:self,path:"tournament-#{kind}-deliveries-#{scope}.json",seed:seed)
     end
 
     def tournament_start_presentation(notification)
@@ -77,7 +99,7 @@ module GameRoomTournaments
       description ||= cached[0].slice('title','game') if verified
       valid=verified && @tournament_start_service.presentable?(cached[0])
       return notification.presentation(title:_("Tournament"),body:_("Open My tournaments to see the current status."),sound:nil).suppress_default! unless description
-      body=GameRoomContent.utf8(_("The tournament %{name} (%{game}) you registered for has just started."))%
+      body=GameRoomContent.utf8(_("The tournament %{name} (%{game}) you registered for has started."))%
         {name:GameRoomContent.utf8(description['title']),game:GameRoomContent.utf8(@tournament_start_registry.name(description['game']))}
       presentation=notification.presentation(title:_("Tournament started"),body:body,sound:nil,action: :open_tournament_matches)
       presentation.suppress_default! unless valid
@@ -141,9 +163,16 @@ module GameRoomTournaments
       else
         title=_("Tournament finished")
         body=GameRoomContent.utf8(_("The tournament %{name} has finished."))%{name:description['title']}
-        if valid
-          winners=cached[0].fetch('winners')
-          body+=' '+GameRoomContent.utf8(winners.size==1 ? _("Winner: %{players}") : _("Joint winners: %{players}"))%{players:winners.join(', ')} unless winners.empty?
+        result=notice['version']==2 ? notice : (cached[0] if valid)
+        if result
+          place=notice['version']==2 ? result['place'] : result.dig('places',notice['recipient'])
+          if place
+            template=result['team']==true || result['team_mode']==true ? _("Your team's place: %{place}.") : _("Your place: %{place}.")
+            body+="\n"+GameRoomContent.utf8(template)%{place:place}
+          end
+          winners=result.fetch('winners')
+          body+="\n"+GameRoomContent.utf8(winners.empty? ? _("No winner was determined.") :
+            winners.size==1 ? _("Winner: %{players}") : _("Joint winners: %{players}"))%{players:winners.join(', ')}
         end
         action=:open_tournament_standings
       end
@@ -179,8 +208,10 @@ module GameRoomTournaments
         next unless ([TournamentStartNotice::TYPE]+TournamentEventNotice::TYPES.values).include?(notification.type)
         present_deferred_contact_notification(notification)
       end
-      revoked=inboxes.flat_map(&:take_revoked).uniq
-      EltenAPI::NotificationService.revoke_active_notifications(revoked) unless revoked.empty?
+      # Keep the native entries until their lifecycle callback has revoked
+      # them on the server too. Removing only the local rows loses that task
+      # and lets an obsolete notification return after a refresh/restart.
+      inboxes.each(&:take_revoked)
     rescue StandardError => error
       Log.warning("Tournament start delivery failed: #{error.class}: #{error.message}") if defined?(Log)
     end

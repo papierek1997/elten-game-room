@@ -21,6 +21,14 @@ module GameRoomRealtime
       !@score_queue.empty? || !@announcing.empty? || @speech_pending == true
     end
 
+    def recording_sound_handles
+      @sounds.values.dup
+    end
+
+    def recording_seek(seconds)
+      @score_queue.delete_if { |entry| entry[0]<seconds }
+    end
+
     def start_match
       return if @started
       @started = true

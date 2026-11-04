@@ -7,6 +7,15 @@ class InvitationRepository
   SENT_LOCK = Mutex.new
   SENT = {}
 
+  def self.sent_for_table(table_id:, live_session_id:, sender:)
+    return [] if table_id.to_i <= 0 || live_session_id.to_s.empty? || sender.to_s.empty?
+
+    SENT_LOCK.synchronize do
+      SENT.values.select { |row| row["table_id"].to_i == table_id.to_i &&
+        row["live_session_id"].to_s == live_session_id.to_s && row["sender"].to_s.casecmp?(sender.to_s) }.map(&:dup)
+    end
+  end
+
   def self.resolve_sent(reference, table_id: nil, recipient: nil)
     expected = GameRoomInvitationIdentity.row(reference).dup
     expected["table_id"] = table_id unless table_id.nil?

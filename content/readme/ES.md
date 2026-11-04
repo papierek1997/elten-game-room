@@ -25,6 +25,8 @@ ELTEN lee las cartas, los tableros, las puntuaciones y los sucesos, mientras que
 
 ## Primeros pasos
 
+Power Games requiere ELTEN 3.0.5 o una versión posterior.
+
 Para los juegos de audio conviene usar auriculares estéreo: la dirección del sonido importa.
 
 1. Abre Power Games desde la lista de programas de ELTEN.
@@ -102,7 +104,7 @@ El botón «Crear conversación de voz» de la mesa permite crear un canal de co
 
 Los demás oyen una invitación breve y ven «Unirse a la conversación de voz» en la mesa. Al unirte, el botón cambia a «Desconectar conversación de voz». Puedes salir de la conferencia y volver a unirte después. Cuando se desconecta quien la creó, también se retira la invitación de la mesa; quienes ya se hayan unido pueden seguir hablando. No se abre ningún diálogo por sí solo durante la partida. Si ya estás en otra conferencia, tendrás que confirmar el cambio. No se modifican tus ajustes de micrófono ni de pulsar para hablar.
 
-Al salir de una mesa también te desconectas de su conferencia. Ctrl+Shift+M silencia o activa tu micrófono en la conferencia actual.
+Si estás conectado a la conferencia de la mesa, al salir elige «Sí» para abandonar tanto la mesa como la conversación, o «Salir solo de la mesa» para seguir hablando. Ctrl+Shift+M silencia o activa tu micrófono en la conferencia actual.
 
 También puedes silenciar o activar el micrófono desde el menú contextual de la mesa; un mensaje confirma su estado. Mientras estás en una conferencia, «Espacio del canal» aparece justo después del botón de conversación de voz. Usa las flechas para moverte y Mayús+flecha izquierda o derecha para girar, igual que en la ventana de conferencias.
 
@@ -181,7 +183,7 @@ En Ajustes → Ajustes de notificaciones, elige los juegos cuyas nuevas mesas p�
 Por separado, elige si quieres ver invitaciones de todos, solo de tus contactos o de nadie. Las invitaciones y los avisos de mesas nuevas tienen sonidos diferentes. Sus descripciones incluyen información breve sobre el juego y sus ajustes principales; Ctrl+R ofrece los ajustes completos de la mesa.
 
 Los ajustes de notificaciones también contienen la Lista negra. Añade los nombres de las personas cuyas invitaciones no quieres ver. En la lista, Ctrl+N añade un usuario y Delete quita al seleccionado. Confirma los cambios con Guardar.
-La lista negra no bloquea las invitaciones a partidas de torneo.
+Los filtros de invitaciones y la lista negra no bloquean las invitaciones a partidas de torneo.
 
 En Ajustes → Avisos de la sala de espera eliges por separado qué avisos se leen mientras estás en la ventana principal del programa.
 
@@ -224,7 +226,7 @@ Fuera de los torneos, el anfitrión puede usar Ctrl+S en los juegos que permiten
 
 Las partidas de torneo no se pueden guardar ni reanudar desde un archivo guardado.
 
-Para continuar, usa «Partidas guardadas» en el menú principal. Restaurar un guardado crea una mesa donde podéis reuniros de nuevo y seguir jugando. No todos los juegos se pueden guardar ni cualquier momento es adecuado: la orden depende del juego y de su fase actual.
+Para continuar, usa «Partidas guardadas» → «Partidas para reanudar» en el menú principal. Restaurar un guardado crea una mesa donde podéis reuniros de nuevo y seguir jugando. No todos los juegos se pueden guardar ni cualquier momento es adecuado: la orden depende del juego y de su fase actual.
 
 Al reanudarse la partida, el guardado se elimina de tu cuenta. Crear la mesa y esperar a los jugadores todavía no lo elimina. Si quieres volver a interrumpir la partida, guarda el progreso actual con Ctrl+S.
 
@@ -241,7 +243,17 @@ El historial de la mesa contiene los sucesos del juego, la conversación y los c
 
 Las categorías permiten separar la conversación de los sucesos del juego o leerlo todo junto. Los atajos con coma y punto también funcionan mientras escribes mensajes. En los campos editables, Ctrl+Home y Ctrl+End mantienen la navegación habitual por el texto.
 
-Ctrl+Shift+S guarda el historial disponible de la mesa en un archivo TXT en la carpeta que elijas. Así puedes conservar una conversación o el desarrollo de una partida. Es una exportación de texto, no un guardado para reanudar el juego, y no cierra la mesa. Recuerda que el archivo puede contener mensajes de otras personas antes de compartirlo.
+### Historiales y repeticiones
+
+Ctrl+Shift+S añade un registro a la biblioteca sin cerrar la mesa: texto en los juegos por turnos y una repetición sonora en Axel Pong y Audio Ball. La repetición recoge la partida desde que empezaste a seguirla hasta el momento de guardarla. No permite reanudar el juego. Las partidas no se conservan en la biblioteca si no usas este atajo.
+
+Entra en Partidas guardadas → Historiales y repeticiones. Enter abre el texto o el reproductor. En el campo del reproductor, Espacio inicia o pausa la reproducción. S anuncia el marcador como en el propio juego, T indica quién saca y L lee la posición en la grabación. Las cifras 1 y 2 cambian la perspectiva; en los dobles de Axel Pong también están disponibles 3 y 4. Tab lleva a la perspectiva y la velocidad.
+
+Las flechas izquierda y derecha retroceden o avanzan cinco segundos. A y N saltan a la acción anterior o siguiente, G y H a un punto, y U y J a un set cuando la grabación los contiene. K vuelve al principio y E va al final. Estas teclas funcionan sin Ctrl en el campo del reproductor. El menú contextual y la ayuda F1 muestran las acciones disponibles en ese momento.
+
+Los archivos se guardan en una carpeta propia de Power Games en este equipo, separada para cada cuenta. Al abrirse, la biblioteca detecta los archivos añadidos y elimina de la lista los que faltan. El menú contextual permite cambiar el nombre, exportar una copia, enviar o borrar un registro. Borrarlo elimina su archivo, no las copias exportadas.
+
+Ctrl+M abre Importar desde mensajes. Puedes consultar una partida recibida o añadirla a la biblioteca. Solo después de añadirla se pregunta si quieres borrar el mensaje. La copia enviada del remitente se borra automáticamente tras confirmarse el envío; el archivo de su biblioteca permanece. Ctrl+I importa un archivo del disco. Antes de compartir un historial de texto, recuerda que puede incluir la conversación de la mesa.
 
 ## Clasificaciones
 
@@ -351,7 +363,7 @@ Esta lista cubre los controles comunes del programa. Para las órdenes de un jue
 - Ctrl+Shift+O — elegir el papel de jugador o espectador para la siguiente partida.
 - Ctrl+P — ajustes o interruptor personal en los juegos que lo ofrecen.
 - Ctrl+S — guardar la partida y cerrar la mesa; para el anfitrión, en juegos compatibles fuera de los torneos.
-- Ctrl+Shift+S — exportar el historial de la mesa a TXT sin cerrar la partida.
+- Ctrl+Shift+S — guardar el historial de texto o una repetición de un juego sonoro en la biblioteca sin cerrar la partida.
 - Ctrl+Q — terminar la partida actual sin cerrar la mesa; para el anfitrión.
 - Ctrl+X — cambiar los ajustes de la siguiente partida; para el anfitrión, fuera de la edición de texto.
 
@@ -445,7 +457,9 @@ Solo puedes tener una propuesta enviada. Si eliges a otra persona, debes confirm
 
 Al comenzar el torneo, el programa conserva las parejas acordadas y empareja al azar a los demás inscritos. El organizador no elige esas parejas. Si queda un número impar sin compañero o faltan participantes, recibe una explicación de por qué no puede comenzar. Durante el torneo mantenéis la pareja y compartís el resultado.
 
-La notificación de inicio abre los partidos del torneo. Al terminar una fase, un único aviso indica cuál viene a continuación y abre la clasificación de la fase terminada. Tras la final solo llega el aviso de fin del torneo, con el ganador o los ganadores empatados y acceso a la clasificación final. Estos sonidos respetan tus ajustes habituales de notificaciones.
+La notificación de inicio abre los partidos del torneo. Al terminar una fase, un único aviso indica cuál viene a continuación y abre la clasificación de la fase terminada. Tras la final solo llega el aviso de fin del torneo. Indica tu puesto — el de tu equipo en un torneo por equipos — y el ganador o los ganadores empatados, y abre la clasificación final. Quienes quedan eliminados en la misma fase de las eliminatorias comparten puesto. No se comparan los puntos de jugadores eliminados de grupos distintos.
+
+Los avisos de inicio y fin del torneo no caducan automáticamente. Las invitaciones a partidos de torneo se muestran independientemente de los filtros de invitaciones y de la lista negra; siguen siendo válidas durante cinco minutos. Sus sonidos respetan los ajustes de sonido y el modo de silenciar notificaciones de ELTEN.
 
 ### Iniciar un encuentro
 
@@ -478,7 +492,7 @@ Las entradas de partidos terminados incluyen el marcador del juego cuando está 
 
 En los juegos que admiten puntos de juego, la tabla muestra las sumas disponibles a favor y en contra, y su diferencia. Que falte el marcador de un encuentro no oculta las demás sumas ni se cuenta como cero. En UNO, Dominó, Mexican Train y Remik eliminatorio es mejor una puntuación menor. Audio Ball suma los puntos de todos los sets. Entre quienes siguen compartiendo puesto aparecen primero los que han jugado menos encuentros; ese orden no decide el pase a la siguiente fase.
 
-Ninguna partida de torneo se puede guardar ni reanudar desde un archivo. La orden de guardar y Ctrl+S no están disponibles, pero Ctrl+Shift+S sigue permitiendo exportar el historial como texto.
+Ninguna partida de torneo se puede guardar ni reanudar desde un archivo. La orden de guardar y Ctrl+S no están disponibles, pero Ctrl+Shift+S permite conservar el historial de texto o una repetición de un juego sonoro.
 
 Una vez iniciado un encuentro individual, la partida se pausa si alguien se desconecta. Cada jugador dispone de cinco minutos en total para volver durante ese encuentro. Al regresar se detiene la cuenta, pero no se recupera el tiempo ya gastado. Vuelve a la misma mesa con la misma cuenta para continuar con tus cartas, tu puntuación y el tiempo de turno que te quedaba.
 

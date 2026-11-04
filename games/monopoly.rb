@@ -1,5 +1,6 @@
 require_relative "card_game"
 require_relative "../lib/game_bots"
+require_relative "../lib/game_replay_cache"
 require_relative "../content/monopoly_boards"
 
 require_relative "../lib/game_room_localization"
@@ -119,38 +120,33 @@ module GameRoomGames
     end
 
     def replay(session, events, repository)
-      players = repository.players_for(session)
-      state = initial_state(players, options_from_json(session["options"]))
-      accepted = []
-      history = [starting_history(players)]
-      events.each do |event|
-        break if state[:winner] != nil
-        actor = repository.actor_of(event, session)
-        groups_before = %w[buy trade_accept auction_bid auction_pass auction_timeout bankrupt bankrupt_auto].include?(event["action"].to_s) ? completed_colour_groups(state) : nil
-        applied = case event["action"].to_s
-        when "roll" then apply_roll(state, event, actor, repository, history)
-        when "buy" then apply_buy(state, event, actor, repository, history)
-        when "decline" then apply_decline(state, event, actor, repository, history)
-        when "build", "sell", "mortgage", "unmortgage" then apply_property_action(state, event, actor, repository, history)
-        when "pay_jail", "use_jail_card" then apply_jail_action(state, event, actor, repository, history)
-        when "request_rent", "waive_rent" then apply_manual_rent(state, event, actor, repository, history)
-        when "trade_prepare", "trade_offer", "trade_accept", "trade_reject" then apply_trade(state, event, actor, repository, history)
-        when "bankrupt" then apply_bankruptcy(state, event, actor, repository, history)
-        when "bankrupt_auto" then apply_automatic_bankruptcy(state, event, actor, repository, history)
-        when "auction_bid", "auction_pass" then apply_auction(state, event, actor, repository, history)
-        when "auction_timeout" then apply_auction_timeout(state, event, actor, repository, history)
-        else false
-        end
-        if applied
-          announce_completed_groups(state, groups_before, repository.event_id(event), history) if groups_before
-          settle_debts(state, repository.event_id(event), history)
-          advance_completed_turn(state) if event["action"].to_s != "trade_prepare"
-          accepted << event
-        end
+      # Use the shared bounded, authenticated-prefix cache. A changed earlier
+      # event/actor/session still rebuilds the model; ordinary append does not
+      # replay every past purchase, building and rent payment on every client.
+      unless cacheable_monopoly_session?(session)
+        # Local presentation metadata can contain a callback. Serialization is
+        # an optimization, not a new requirement for the game's pure reducer.
+        players = repository.players_for(session)
+        state = initial_state(players, options_from_json(session["options"]))
+        state, positions, history = reduce_monopoly_events(state, [], [starting_history(players)],
+          events, session, repository)
+        return monopoly_replay_result(state, players, positions.map { |position| events.fetch(position) }, history, session)
       end
-      GameRoomSessionClock.attach(state, session)
-      Replay.new(board: state[:board], players: players, current_player: state[:current_player], winner: state[:winner],
-        draw: false, accepted_events: accepted, history: history, state: state)
+      input = GameRoomReplayCache::Input.new(session.reject { |key, _| key == '__game_revision' }, events, repository,
+        previous: @monopoly_replay_input)
+      @monopoly_replay_input = input.retention_bytes <= GameRoomReplayCache::MAX_BYTES ? input : nil
+      @monopoly_replay_cache ||= GameRoomReplayCache.new
+      state, positions, history = @monopoly_replay_cache.reduce(input, context: :monopoly,
+        identities: [repository, GameRoomLocalization.cache_token]) do |previous, prefix|
+        previous ||= [initial_state(input.players, options_from_json(input.session["options"])), [], [starting_history(input.players)]]
+        state, previous_positions, previous_history = previous
+        state, positions, history = reduce_monopoly_events(state, previous_positions.dup, previous_history.dup,
+          input.events.drop(prefix), input.session, input, offset: prefix)
+        [state, GameRoomSnapshot::Log.from_owned(positions, previous: previous_positions),
+          GameRoomSnapshot::Log.from_owned(history, previous: previous_history)]
+      end
+      accepted = GameRoomSnapshot::Log.from_sealed(positions.map { |position| input.events.fetch(position) }, bytes: input.retained_bytes)
+      monopoly_replay_result(state, input.players, accepted, history, session)
     end
 
     def active_actors(replay)
@@ -276,7 +272,7 @@ module GameRoomGames
         seed = card_seed(context.random_source)
         return [:ok, event_plan("roll", "#{dice[0]},#{dice[1]},#{seed}")]
       end
-      legal = legal_actions(replay, actor, context: context)
+      legal = legal_actions(replay, actor, context: context, include_trade_offers: false)
       candidate = legal.find do |item|
         item["action"] == action && (selection["property"].to_s.empty? || item["property"].to_s == selection["property"].to_s) &&
           (action != "auction_bid" || item["amount"].to_i == selection["amount"].to_i) &&
@@ -299,6 +295,48 @@ module GameRoomGames
     end
 
     private
+
+    def cacheable_monopoly_session?(session)
+      Marshal.dump(session)
+      true
+    rescue TypeError
+      false
+    end
+
+    def monopoly_replay_result(state, players, accepted, history, session)
+      GameRoomSessionClock.attach(state, session)
+      Replay.new(board: state[:board], players: players, current_player: state[:current_player], winner: state[:winner],
+        draw: false, accepted_events: accepted, history: GameRoomSnapshot.copy(Array.new(history)), state: state)
+    end
+
+    def reduce_monopoly_events(state, positions, history, events, session, repository, offset: 0)
+      events.each_with_index do |event, index|
+        break if state[:winner] != nil
+        actor = repository.actor_of(event, session)
+        groups_before = %w[buy trade_accept auction_bid auction_pass auction_timeout bankrupt bankrupt_auto].include?(event["action"].to_s) ? completed_colour_groups(state) : nil
+        applied = case event["action"].to_s
+        when "roll" then apply_roll(state, event, actor, repository, history)
+        when "buy" then apply_buy(state, event, actor, repository, history)
+        when "decline" then apply_decline(state, event, actor, repository, history)
+        when "build", "sell", "mortgage", "unmortgage" then apply_property_action(state, event, actor, repository, history)
+        when "pay_jail", "use_jail_card" then apply_jail_action(state, event, actor, repository, history)
+        when "request_rent", "waive_rent" then apply_manual_rent(state, event, actor, repository, history)
+        when "trade_prepare", "trade_offer", "trade_accept", "trade_reject" then apply_trade(state, event, actor, repository, history)
+        when "bankrupt" then apply_bankruptcy(state, event, actor, repository, history)
+        when "bankrupt_auto" then apply_automatic_bankruptcy(state, event, actor, repository, history)
+        when "auction_bid", "auction_pass" then apply_auction(state, event, actor, repository, history)
+        when "auction_timeout" then apply_auction_timeout(state, event, actor, repository, history)
+        else false
+        end
+        if applied
+          announce_completed_groups(state, groups_before, repository.event_id(event), history) if groups_before
+          settle_debts(state, repository.event_id(event), history)
+          advance_completed_turn(state) if event["action"].to_s != "trade_prepare"
+          positions << offset + index
+        end
+      end
+      [state, positions, history]
+    end
 
     def initial_state(players, options)
       board_data = GameRoomContent::MonopolyBoards.build(options["board"])

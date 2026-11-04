@@ -7,13 +7,13 @@ GameRoomContent.registry.register_pack(GameRoomContent::Pack.new(
   set_id: "quiz.harry_potter.books",
   kind: :quiz,
   language_id: "pl-PL",
-  version: 1,
+  version: 2,
   title: "Harry Potter",
   game_ids: ["quiz"],
   author: "LordKiller; Power Games editorial",
   license: "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
   entry_count: 985,
-  checksum: "a6d11d27edb2deffce7ecfdcdc3e28f518a3aeb5f97783de736c7ca9119fcf2c",
+  checksum: "7592f7682d77cdee9d9f372593d23b673c71a18e517b5608b434537bac984b93",
   loader: lambda {
     require_relative "quiz_harry_potter_pl_data"
     GameRoomContent::Pack17d0ce6cdc1b22b1abbc2c2b.load

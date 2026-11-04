@@ -25,6 +25,8 @@ ELTEN předčítá karty, herní desky, výsledky i události a zvuky pomáhají
 
 ## První kroky
 
+Power Games vyžaduje ELTEN ve verzi 3.0.5 nebo novější.
+
 Pro zvukové hry doporučujeme stereofonní sluchátka — směr zvuku je v nich důležitý.
 
 1. Spusťte Power Games ze seznamu programů ELTENu.
@@ -102,7 +104,7 @@ Tlačítkem „Vytvořit hlasový hovor“ u stolu vytvoříte konferenční kan
 
 Ostatní uslyší krátkou pozvánku a u stolu najdou „Připojit se k hlasovému hovoru“. Po připojení se tlačítko změní na „Odpojit hlasový hovor“. Můžete konferenci opustit a později se znovu připojit. Když se odpojí tvůrce, zmizí i pozvánka u stolu; lidé, kteří se už připojili, mohou dál hovořit. Během hry se samo neotevře žádné okno. Pokud už jste v jiné konferenci, přechod musíte potvrdit. Nastavení mikrofonu a push-to-talk se nemění.
 
-Když opustíte stůl, odpojíte se také od jeho konference. Ctrl+Shift+M ztlumí nebo zapne váš mikrofon v probíhající konferenci.
+Pokud jste připojeni ke konferenci stolu, zvolte při odchodu „Ano“, chcete-li opustit stůl i hovor, nebo „Opustit pouze stůl“, chcete-li dál mluvit. Ctrl+Shift+M ztlumí nebo zapne váš mikrofon v probíhající konferenci.
 
 Mikrofon můžete ztlumit nebo zapnout také v kontextové nabídce stolu. Hlášení potvrdí jeho stav. Při připojení ke konferenci se hned za tlačítkem hlasového hovoru zobrazí „Prostor kanálu“. Šipkami se v něm pohybujete a pomocí Shift+šipky vlevo nebo vpravo se otáčíte, stejně jako v okně konference.
 
@@ -181,7 +183,7 @@ V Nastavení → Nastavení oznámení vyberete hry, o jejichž nových veřejn�
 Samostatně určíte, zda chcete pozvánky od všech, jen od kontaktů, nebo od nikoho. Pozvánky a oznámení nových stolů mají různé zvuky. Jejich popis stručně uvádí hru a nejdůležitější nastavení; úplný popis nastavení stolu přečte Ctrl+R.
 
 V nastavení oznámení najdete také Černou listinu. Přidejte na ni uživatelská jména lidí, od kterých nechcete vidět pozvánky. Na seznamu přidáte člověka klávesami Ctrl+N a vybraného odeberete klávesou Delete. Změny potvrďte tlačítkem Uložit.
-Černá listina neblokuje pozvánky k turnajovým zápasům.
+Filtry pozvánek ani černá listina neblokují pozvánky k turnajovým zápasům.
 
 V Nastavení → Oznámení v lobby zvlášť vybíráte, které zprávy se mají předčítat při pobytu v hlavním okně programu.
 
@@ -224,7 +226,7 @@ Mimo turnaje může hostitel ve hrách podporujících ukládání pomocí Ctrl+
 
 Turnajové partie nelze ukládat ani obnovovat z uloženého souboru.
 
-K pokračování slouží „Uložené hry“ v hlavním menu. Obnovení vytvoří stůl, u kterého můžete znovu shromáždit účastníky a pokračovat. Ne každou hru lze uložit a ne každý okamžik je k tomu vhodný — dostupnost příkazu závisí na hře a aktuální fázi.
+K pokračování slouží „Uložené hry“ → „Hry k pokračování“ v hlavním menu. Obnovení vytvoří stůl, u kterého můžete znovu shromáždit účastníky a pokračovat. Ne každou hru lze uložit a ne každý okamžik je k tomu vhodný — dostupnost příkazu závisí na hře a aktuální fázi.
 
 Po obnovení partie se její uložená kopie z účtu odstraní. Samotné vytvoření stolu a čekání na hráče ji ještě nesmaže. Chcete-li hru znovu přerušit, uložte její aktuální stav pomocí Ctrl+S.
 
@@ -241,7 +243,17 @@ Historie stolu obsahuje herní události, rozhovor a změny u stolu. Můžete ji
 
 Kategorie umožňují oddělit rozhovor od herních událostí nebo číst vše společně. Zkratky s čárkou a tečkou fungují i při psaní zprávy. Ctrl+Home a Ctrl+End v editovatelném poli zachovávají obvyklý pohyb po textu.
 
-Ctrl+Shift+S uloží dostupnou historii stolu do souboru TXT ve vybrané složce. Můžete si tak uchovat rozhovor nebo průběh partie. Jde o export textu, nikoli o uloženou hru pro pozdější pokračování, a stůl se při něm nezavře. Před sdílením souboru pamatujte na to, že může obsahovat zprávy ostatních účastníků.
+### Historie a záznamy
+
+Ctrl+Shift+S přidá záznam do knihovny, aniž by zavřel stůl. U tahových her uloží text, u her Axel Pong a Audio Ball zvukový záznam od chvíle, kdy jste partii začali sledovat, do okamžiku uložení. Nejde o uložení pro pokračování ve hře. Bez použití této zkratky se záznam v knihovně neuchová.
+
+Vyberte Uložené hry → Historie a záznamy. Enter otevře text nebo přehrávač. Na poli přehrávače spustíte či pozastavíte přehrávání mezerníkem. S přečte skóre stejně jako v dané hře, T oznámí podávajícího a L pozici v záznamu. Číslice 1 a 2 mění perspektivu; ve čtyřhře Axel Pongu jsou dostupné také 3 a 4. Tab přejde na výběr perspektivy a rychlosti.
+
+Šipky vlevo a vpravo posunou záznam o pět sekund zpět nebo vpřed. A a N přejdou na předchozí či následující akci, G a H na bod, U a J na set, pokud je záznam obsahuje. K vrátí přehrávání na začátek, E přejde na konec. Tyto klávesy na poli přehrávače nevyžadují Ctrl. Kontextové menu a nápověda F1 nabízejí právě dostupné akce.
+
+Soubory se ukládají do vlastní složky Power Games na tomto počítači, pro každý účet zvlášť. Knihovna při otevření načte přidané soubory a vyřadí chybějící. V kontextovém menu lze záznam přejmenovat, exportovat jeho kopii, odeslat nebo smazat. Smazání odstraní soubor knihovny, nikoli exportované kopie.
+
+Ctrl+M otevře Importovat ze zpráv. Přijatou hru si můžete nejprve prohlédnout či poslechnout, nebo ji přidat do knihovny. Teprve po přidání se program zeptá na smazání zprávy. U odesílatele se odeslaná zpráva po potvrzení odeslání smaže automaticky; soubor v knihovně zůstane. Ctrl+I importuje soubor z disku. Před sdílením textové historie pamatujte, že může obsahovat rozhovor u stolu.
 
 ## Žebříčky
 
@@ -350,7 +362,7 @@ Následující přehled se týká společného ovládání programu. Příkazy k
 - Ctrl+Shift+O — výběr role hráče či diváka pro další partii.
 - Ctrl+P — osobní nastavení nebo přepínač ve hrách, které jej nabízejí.
 - Ctrl+S — uložení partie a zavření stolu; pro hostitele v podporovaných hrách mimo turnaje.
-- Ctrl+Shift+S — export historie stolu do TXT bez ukončení partie.
+- Ctrl+Shift+S — textová historie nebo záznam zvukové hry v knihovně bez ukončení partie.
 - Ctrl+Q — ukončení aktuální partie bez zavření stolu; pro hostitele.
 - Ctrl+X — změna nastavení další partie; pro hostitele, mimo editaci textu.
 
@@ -444,7 +456,9 @@ Odeslanou můžete mít jednu nabídku. Při výběru jiné osoby potvrdíte zru
 
 Při zahájení turnaje program ponechá dohodnuté dvojice a zbývající hráče spáruje náhodně. Pořadatel jejich partnery nevybírá. Pokud zbude lichý počet lidí bez spoluhráče nebo je účastníků málo, dozví se, proč nelze začít. Po zahájení zůstávají dvojice stejné a výsledek se počítá společně.
 
-Oznámení o zahájení turnaje otevře jeho zápasy. Po dokončení fáze přijde jedno oznámení s názvem následující fáze; otevře tabulku výsledků právě dokončené fáze. Po finále přijde pouze oznámení o konci celého turnaje se jménem vítěze nebo společných vítězů a odkazem na konečnou tabulku. Zvuky se řídí běžným nastavením oznámení.
+Oznámení o zahájení turnaje otevře jeho zápasy. Po dokončení fáze přijde jedno oznámení s názvem následující fáze; otevře tabulku výsledků právě dokončené fáze. Po finále přijde pouze oznámení o konci celého turnaje. Obsahuje vaše umístění — v týmovém turnaji umístění týmu — a vítěze nebo společné vítěze a otevře konečnou tabulku výsledků. Hráči vyřazení ve stejném kole vyřazovací části sdílejí umístění. Body hráčů vyřazených z různých skupin se navzájem neporovnávají.
+
+Oznámení o zahájení a dokončení turnaje automaticky nevyprší. Pozvánky k turnajovým zápasům se zobrazují bez ohledu na filtry pozvánek a černou listinu; jejich platnost zůstává pět minut. Zvuky stále závisí na nastavení zvuku a ztlumení oznámení v ELTENu.
 
 ### Jak zahájit zápas
 
@@ -477,7 +491,7 @@ U dokončeného zápasu najdete také skóre samotné hry, pokud je k dispozici.
 
 U her s pomocnými body tabulka ukazuje dostupné součty získaných a ztracených bodů i jejich rozdíl. Chybějící skóre jednoho zápasu neskryje ostatní součty a nepočítá se jako nula. V UNO, Dominu, Mexican Train a vyřazovacím Remiku je lepší nižší skóre. Audio Ball sčítá body ze všech setů. Účastníci, kteří stále sdílejí místo, se zobrazují od nejmenšího počtu odehraných zápasů; toto pořadí nerozhoduje o postupu.
 
-Žádnou turnajovou partii nelze uložit ani obnovit ze souboru. Příkaz k uložení ani Ctrl+S nejsou dostupné, ale Ctrl+Shift+S nadále umožňuje exportovat historii jako text.
+Žádnou turnajovou partii nelze uložit ani obnovit ze souboru. Příkaz k uložení ani Ctrl+S nejsou dostupné, ale Ctrl+Shift+S umožňuje uchovat textovou historii nebo záznam zvukové hry.
 
 Pokud se hráč odpojí z rozehraného zápasu jednotlivců, hra se pozastaví. Na návrat má během celého zápasu dohromady pět minut. Návratem se odpočet zastaví, ale limit se neobnoví. Připojte se ke stejnému stolu se stejným účtem; karty, skóre i zbývající čas na tah zůstanou zachovány.
 

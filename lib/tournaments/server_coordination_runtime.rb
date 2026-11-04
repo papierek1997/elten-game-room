@@ -54,7 +54,7 @@ module GameRoomTournaments
           begin
             send_tournament_start_notices(publication_ref:reference)
           rescue ProposalNotice::Stale
-            # No late start announcement; match coordination still continues.
+            # An unavailable start does not stop match coordination.
             nil
           end
         })
@@ -125,6 +125,9 @@ module GameRoomTournaments
         return if @tournament_coordination_tick_at && now-@tournament_coordination_tick_at<1.0
         @tournament_coordination_tick_at=now
         @tournament_coordinator&.tick
+        @tournament_coordinator&.take_observed_references&.each do |reference|
+          @tournament_event_inboxes&.each_value { |inbox| inbox.refresh(reference) }
+        end
         error=@tournament_coordinator&.last_error
         if error && !error.equal?(@tournament_runtime_error)
           @tournament_runtime_error=error

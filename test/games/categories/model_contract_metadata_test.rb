@@ -26,8 +26,11 @@ assert_equal(metadata, env.replay.state.slice(*metadata.keys), 'New opening meta
 assert_equal({session_id: 1, receipts: {}}, env.replay.state.fetch(:answer_cleanup),
   'Opening cleanup receipt must identify this session and contain no confirmations')
 before = GameRoomTest::ContractValues.digest(env.replay)
+assert_equal({}, env.replay.state.fetch(:category_letters), 'Ordinary mode has per-category letters')
+assert_equal(false, env.replay.state.fetch(:options).fetch('separate_letters'), 'Ordinary mode changed')
 without_cleanup = env.replay.dup
-without_cleanup.state = env.replay.state.reject { |key, _value| key == :answer_cleanup }
+without_cleanup.state = env.replay.state.reject { |key, _value| [:answer_cleanup, :category_letters].include?(key) }
+without_cleanup.state[:options] = env.replay.state.fetch(:options).reject { |key, _value| key == 'separate_letters' }
 assert_equal('4d70727b42f55fb285d284c0193d8662255b36ae4ec48efd1f8554e56b707d78',
   GameRoomTest::ContractValues.digest(without_cleanup), 'Categories changed more than the approved cleanup metadata since v2')
 legacy = without_cleanup.dup
@@ -35,7 +38,8 @@ legacy.state = without_cleanup.state.reject { |key, _value| metadata.key?(key) }
 assert_equal(item.fetch('final').fetch('replay'), GameRoomTest::ContractValues.digest(legacy),
   'Categories changed more than the seven approved opening state fields')
 assert_equal(before, GameRoomTest::ContractValues.digest(env.replay), 'Comparison mutated the real replay')
-assert_equal(item.fetch('session'), env.session, 'Opening session changed')
+ordinary_session = env.session.merge('options'=>JSON.generate(JSON.parse(env.session.fetch('options')).reject { |key,_| key == 'separate_letters' }))
+assert_equal(item.fetch('session'), ordinary_session, 'Opening session changed beyond the disabled variant option')
 assert_equal(item.fetch('events'), env.events, 'Opening action or serialized history changed')
 checkpoint = GameRoomTest::ModelContract.checkpoint(env)
 assert_equal(item.fetch('final').reject { |key, _value| key == 'replay' },

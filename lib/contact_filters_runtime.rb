@@ -38,6 +38,7 @@ module GameRoomContactFiltersRuntime
       sender = GameRoomInvitationIdentity.notification_sender(notification, notification.metadata.to_h)
       return false if sender.nil?
       tournament = notification.metadata.is_a?(Hash) && notification.metadata["tournament_match"] == true
+      return true if tournament
       return false unless invitation_sender_allowed?(sender, tournament_match: tournament, settings: settings)
       case settings["invitation_notifications"]
       when "nobody" then false

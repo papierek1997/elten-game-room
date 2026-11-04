@@ -143,6 +143,14 @@ module GameRoomAudioBall
       @point_audio.announcement_pending?
     end
 
+    def recording_sound_handles
+      @sounds.values+@point_audio.recording_sound_handles
+    end
+
+    def recording_seek(seconds)
+      @point_audio.recording_seek(seconds)
+    end
+
     def announce(text)
       return if @closed
       if @point_audio.presentation_enabled?

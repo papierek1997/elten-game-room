@@ -31,6 +31,7 @@ module GameRoomTournaments
       @lock=Mutex.new
       @pending,@deadlines={}, {}
       @view_revisions,@view_values={},{}
+      @observed_references={}
       @view_sequence=0
       @active_job=@retry_job=nil
       @started_references={}
@@ -66,6 +67,15 @@ module GameRoomTournaments
       presentation_snapshot(reference)&.fetch('overview',nil)
     end
 
+    def take_observed_references
+      check!
+      @lock.synchronize do
+        values=@observed_references.keys
+        @observed_references.clear
+        values
+      end
+    end
+
     private def presentation_snapshot(reference)
       check!
       @lock.synchronize do
@@ -90,6 +100,13 @@ module GameRoomTournaments
                 @view_revisions.delete(oldest)
               end
             end
+          end
+        end
+        missing=error.is_a?(Publication::Invalid) && error.code==:missing_publication
+        if @active_job && @active_job.first!=:directory && ((!error && value) || missing)
+          @lock.synchronize do
+            @observed_references[@active_job.first]=true
+            @observed_references.shift while @observed_references.size>LIMIT
           end
         end
         @last_error=error if error
@@ -149,7 +166,7 @@ module GameRoomTournaments
     end
 
     def close
-      @lock.synchronize{@closed=true;@pending.clear;@deadlines.clear;@view_revisions.clear;@view_values.clear;@active_job=@retry_job=nil;@bootstrap=false}
+      @lock.synchronize{@closed=true;@pending.clear;@deadlines.clear;@view_revisions.clear;@view_values.clear;@observed_references.clear;@active_job=@retry_job=nil;@bootstrap=false}
       @worker.close
     end
 
@@ -229,7 +246,12 @@ module GameRoomTournaments
       end
       if broadcast
         names=source['usernames'] || RegistrationProjection.usernames(source.fetch('members'))
-        people.reject{|person|person==@owner}.each{|person|@wake.call(RegistrationProjection.delivery_name(names,person),reference)}
+        # Pending invitees are not players, but must learn about closed/full
+        # registration too. Reuse this event, not a recipient polling loop.
+        invited=source.fetch('invitations',[]).select { |entry| entry['status']=='pending' && !entry['resolved'] }
+        names=names.merge(invited.to_h { |entry| [entry.fetch('account'),entry.fetch('username')] })
+        recipients=(people+invited.map { |entry| entry.fetch('account') }).uniq
+        recipients.reject{|person|person==@owner}.each{|person|@wake.call(RegistrationProjection.delivery_name(names,person),reference)}
       end
       source
     end

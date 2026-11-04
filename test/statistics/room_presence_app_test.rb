@@ -13,6 +13,7 @@ store = AppPresenceStore.new
 collector = GameRoomPresence::Collector.new(user: "Alice", store: store,
   current_user: -> { "Alice" }, synchronize_clock: -> {})
 klass = Class.new(EltenGameRoom)
+klass.define_method(:prepare_local_directories) {} # No installed storage in this collector fixture.
 klass.define_singleton_method(:room_presence_collector) { collector }
 app = klass.new
 endpoint = Object.new
@@ -100,6 +101,7 @@ ensure
   GameRoomPresenceScreen.define_singleton_method(:new, constructor)
 end
 factory = Class.new(EltenGameRoom)
+factory.define_method(:prepare_local_directories) {}
 factory.define_singleton_method(:app_runtime) { :runtime }
 factory.define_singleton_method(:server_app_uuid) { "presence-app" }
 factory.define_singleton_method(:analytics_storage) { factory }

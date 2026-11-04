@@ -1,4 +1,5 @@
 require_relative 'host_bridge'
+require_relative 'game_room_notifications'
 require "thread"
 
 # A durable reply is still needed when the invited person has no room connection.
@@ -51,7 +52,7 @@ module GameRoomInvitationReceipts
         program.manage(registration)
       end
     end
-    return if host.instance_variable_get(:@game_room_receipt_bridge_version) == 3
+    return if host.instance_variable_get(:@game_room_receipt_bridge_version) == 4
 
     GameRoomHostBridge.prepare(host, marker: :@game_room_receipt_bridge,
       method_name: :build_notification_groups, source: '/lib/invitation_receipts.rb')
@@ -77,6 +78,9 @@ module GameRoomInvitationReceipts
             # receipt callback still updates tournaments; a list redraw must
             # not replay that callback or start another server read.
             hidden ||= program != nil && type == "game_room.tournament_changed"
+            if program != nil && type.start_with?("game_room.tournament_") && program.respond_to?(:game_room_notification_current?)
+              hidden ||= program.game_room_notification_current?(::Programs.app_notification_from(row)) == false
+            end
             if program != nil && type == "game_room.table_created" && program.respond_to?(:table_notice_visible?)
               hidden ||= !program.table_notice_visible?(::Programs.app_notification_from(row))
             end
@@ -89,7 +93,7 @@ module GameRoomInvitationReceipts
         end
       end
     RUBY
-    host.instance_variable_set(:@game_room_receipt_bridge_version, 3)
+    host.instance_variable_set(:@game_room_receipt_bridge_version, 4)
   end
 
   def enqueue(program, notification)
@@ -163,6 +167,8 @@ module GameRoomInvitationReceipts
         history = row["__history_writer"]
         history&.record("invited")
         history&.record("invitation_rejected") if response == "rejected"
+        return false if Session.name.to_s.casecmp(user.to_s) != 0
+        GameRoomNotifications.revoke_invitation(program, row)
         return false if Session.name.to_s.casecmp(user.to_s) != 0
         InvitationRepository.resolve_sent(row)
       end

@@ -103,6 +103,6 @@ refs = exercise_generations
 assert(refs.none?(&:weakref_alive?), "host bridge retained an unloaded namespace/program/runtime")
 assert(EltenAPI::QuickActions.singleton_class.instance_variable_get(:@game_room_dispatch_bridge_version) == 3,
   "hotkey bridge was not upgraded")
-assert(NotificationGroups.instance_variable_get(:@game_room_receipt_bridge_version) == 3,
+assert(NotificationGroups.instance_variable_get(:@game_room_receipt_bridge_version) == 4,
   "receipt bridge was not upgraded")
 puts "PASS actual host lifecycle: legacy upgrade, 20 namespaces, managed receipt cleanup, stale disposal, current delivery, WeakRef GC and stable ancestors"

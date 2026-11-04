@@ -1,10 +1,16 @@
 # Polish Harry Potter questions
 
-`quiz.harry_potter.books.pl`, data version 1, contains 985 questions in eight
+`quiz.harry_potter.books.pl`, data version 2, contains 985 questions in eight
 categories. LordKiller submitted 993 proposals. Power Games reviewed their
-wording, correct answers and distractors individually. Of the included items,
-241 were edited and 744 retain the submitted question and answer wording.
+wording, correct answers and distractors individually. In the initial review,
+241 included items were edited and 744 retained the submitted wording.
 The set is in Polish regardless of the interface language.
+
+Data version 2 addresses four reports from Zuzler: it supplies missing novel
+or scene context, removes house and occupation clues from the prompts,
+replaces two implausible distractors and corrects the source of the Polyjuice
+disguise scene to *Harry Potter and the Chamber of Secrets*. The question
+identities, correct answers and total count remain unchanged.
 
 ## Scope and verification
 

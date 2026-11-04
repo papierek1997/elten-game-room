@@ -620,6 +620,40 @@ module GameRoomChangelog
         "Corrected reported questions in the Polish general-knowledge set and removed a duplicate. Thank you to Zuzler and paulinux for the reports!",
         "Player statistics, like general statistics, are not collected, read or sent while ELTEN runs in developer mode. Previously unsent normal-mode results remain saved."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.5.9",
+      build: 260,
+      changes: [
+        "Axel Pong and Audio Ball statistics now show matches played and an opponent list for each selected period. Press Tab to reach the list and Enter on an opponent to view head-to-head results. Singles and doubles remain separate. Thank you to Balteam!",
+        "Krowa results can now include the words you tried and the number of letters in the right places. Check them in your gallery or a public result; when publishing, choose whether to share the attempt list. Thank you to Paulina!",
+        "Daily Krowa attempt lists become public only on the following day. Word Tower results include attempts from each round.",
+        "In Thousand, R reads the current bid or contract and who declared it. Shift+R surrenders when the rules allow it; B still reads the full bidding information.",
+        "In Thousand, cards received from a talon or another player now join the hand in suit order, as in Spades. Your own sorting choice is preserved.",
+        "Quiz questions now appear in a read-only text field, where Ctrl+Left/Right Arrow reads word by word. Down Arrow moves to the answer list; Up Arrow from the first answer returns to the question.",
+        "Added a Polish Harry Potter question set with 985 questions about the seven books, contributed by LordKiller.",
+        "Added 42 Polish general-knowledge questions from Zuzler and corrected reported questions, including wording that depended on a missing recording and abbreviations read by speech. Thank you for the questions and reports!",
+        "Updated Krowa's word list with the submitted additions and removals.",
+        "Short Scopa table descriptions now show the selected variants and score limit; Bouillabaisse shows whether All or nothing is enabled."
+      ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.5.10",
+      build: 261,
+      changes: [
+        "Power Games now requires ELTEN 3.0.5 or later.",
+        "Added a history and replay library under Saved games. Ctrl+Shift+S keeps a text history in turn-based games or an audio replay in Axel Pong and Audio Ball, without closing the table. Games saved for resuming have their own section.",
+        "The replay player supports changing perspective and speed, seeking through actions, points and sets, and checking the score and server with S and T. Space pauses or resumes playback; Left and Right Arrow seek by five seconds.",
+        "Histories and replays can be renamed, exported, imported and sent to other players. Use Import from messages in the library to open a received game. After importing, you can choose to delete its message.",
+        "Added a Countries and Cities option that draws a different letter for each category.",
+        "Improved notification cleanup for expired and resolved invitations. Tournament start and finish announcements no longer expire; the final announcement includes your place and the winner or joint winners.",
+        "Tournament match invitations now appear regardless of invitation filters and the blacklist. Sound and quiet-mode settings still apply.",
+        "When leaving a table with an active voice conversation, you can now choose Leave only the table to stay in the conversation.",
+        "Fixed a chat issue where pressing Enter together with another character could leave an already sent message in the input field.",
+        "Reduced the progressive slowdown in long Monopoly games with computer players, especially after many purchases and building upgrades.",
+        "Clarified four reported questions in the Polish Harry Potter set, including missing context and misleading answer clues.",
+        "Replaced remaining references to the old Game Room name in the interface with Power Games."
+      ].freeze
     ).freeze
   ].freeze
 

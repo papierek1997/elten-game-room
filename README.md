@@ -32,6 +32,8 @@ będzie już znajomych.
 
 ## Pierwsze kroki
 
+Power Games wymaga ELTEN-a w wersji 3.0.5 lub nowszej.
+
 Do gier audio warto używać słuchawek stereo — kierunek dźwięku ma w nich
 znaczenie.
 
@@ -143,7 +145,7 @@ Przycisk „Utwórz rozmowę głosową” przy stole pozwala utworzyć kanał ko
 
 Pozostali usłyszą krótkie zaproszenie, a przy stole pojawi się „Dołącz do rozmowy głosowej”. Po dołączeniu przycisk zmienia się na „Rozłącz rozmowę głosową”. Możesz nim wyjść z konferencji i później dołączyć ponownie. Gdy rozłącza się twórca, usuwa też zaproszenie przy stole; osoby, które już dołączyły, mogą nadal rozmawiać. Nic nie otwiera się samo w trakcie partii. Dołączenie do innej rozmowy wymaga potwierdzenia, jeśli jesteś już na konferencji. Twoje ustawienia mikrofonu i push-to-talk pozostają bez zmian.
 
-Po wyjściu ze stołu rozłączysz się także z jego konferencją. Ctrl+Shift+M wycisza lub włącza twój mikrofon w trwającej konferencji.
+Jeśli jesteś na konferencji stołu, przy wychodzeniu możesz wybrać „Tak”, żeby opuścić stół i rozmowę, albo „Wyjdź tylko ze stołu”, żeby nadal rozmawiać. Ctrl+Shift+M wycisza lub włącza twój mikrofon w trwającej konferencji.
 
 Wyciszenie mikrofonu możesz też przełączyć w menu kontekstowym stołu. Usłyszysz, czy mikrofon jest wyciszony, czy włączony. Gdy jesteś na konferencji, za przyciskiem rozmowy pojawia się „Przestrzeń kanału”. Strzałkami zmieniasz w niej położenie, a Shift+strzałka w lewo lub w prawo obraca cię tak samo jak w oknie konferencji.
 
@@ -276,7 +278,7 @@ ustawieniach; pełny opis stołu jest dostępny pod Ctrl+R.
 W ustawieniach powiadomień znajdziesz też Czarną listę. Dodaj do niej nazwy
 użytkowników, od których nie chcesz widzieć zaproszeń. Na liście Ctrl+N dodaje
 osobę, a Delete usuwa wybraną. Zmiany zatwierdź przyciskiem Zapisz.
-Czarna lista nie blokuje zaproszeń do meczów turniejowych.
+Filtry zaproszeń i czarna lista nie blokują zaproszeń do meczów turniejowych.
 
 W Ustawienia → Komunikaty lobby osobno wybierasz, jakie komunikaty
 mają być odczytywane podczas przebywania w głównym oknie programu.
@@ -355,7 +357,7 @@ serwerze, więc można wrócić do niego także na innym komputerze.
 
 Partii turniejowych nie można zapisywać ani wznawiać z zapisu.
 
-Do wznowienia służy pozycja „Zapisane gry” w głównym menu. Odtworzenie
+Do wznowienia służy „Zapisane gry” → „Gry do wznowienia” w głównym menu. Odtworzenie
 tworzy stół, przy którym można ponownie zebrać uczestników i kontynuować
 rozgrywkę. Nie każdą grę można zapisać i nie każdy moment jest do tego
 odpowiedni — dostępność polecenia zależy od gry oraz bieżącego etapu.
@@ -381,11 +383,34 @@ razem. Skróty z przecinkiem i kropką działają również podczas pisania
 wiadomości. Ctrl+Home i Ctrl+End w edytowanym polu zachowują zwykłą
 nawigację po tekście.
 
-Ctrl+Shift+S zapisuje dostępną historię stołu do pliku TXT w wybranym
-folderze. Można w ten sposób zachować rozmowę lub przebieg partii.
-To eksport tekstu, nie zapis pozwalający później wznowić grę, i nie zamyka
-stołu. Pamiętaj, że plik może zawierać wiadomości innych uczestników,
-zanim udostępnisz go dalej.
+### Historie i powtórki
+
+Ctrl+Shift+S dodaje historię do biblioteki, nie zamykając stołu. W grach turowych
+zapisuje tekst, a w Axel Pongu i Audio Ballu — powtórkę dźwiękową od chwili,
+w której zacząłeś śledzić partię, do momentu zapisu. Nie służy ona do wznowienia gry.
+Nagranie trzeba zachować tym skrótem; samo rozegranie meczu nie dodaje go do biblioteki.
+
+Otwórz „Zapisane gry” → „Historie i powtórki”. Enter otwiera tekst lub odtwarzacz.
+Na polu odtwarzacza Spacja włącza i zatrzymuje odtwarzanie. S odczytuje wynik
+tak jak w danej grze, T przypomina serwującego, a L — miejsce w nagraniu.
+Cyfry 1 i 2 zmieniają perspektywę; w deblu Axel Ponga dostępne są też 3 i 4.
+Tabem przejdziesz do wyboru perspektywy i tempa.
+
+Strzałki w lewo i w prawo cofają lub przesuwają nagranie o pięć sekund. A i N przechodzą do poprzedniej
+lub następnej akcji, G i H — punktu, a U i J — seta, jeśli nagranie je zawiera.
+K wraca do początku, E przechodzi do końca. Te skróty działają bez Ctrl na polu
+odtwarzacza. Menu kontekstowe i pomoc pod F1 pokazują dostępne w danej chwili opcje.
+
+Pliki trafiają do stałego folderu Power Games na tym komputerze, osobno dla każdego
+konta. Biblioteka wykrywa pliki dodane do tego folderu i pomija te, które zniknęły.
+W menu kontekstowym możesz zmienić nazwę, wyeksportować kopię, wysłać grę lub ją
+usunąć. Usunięcie z biblioteki kasuje jej plik, ale nie wyeksportowane kopie.
+
+Przesłaną grę znajdziesz przez Ctrl+M — „Importuj z wiadomości”. Możesz najpierw ją
+odsłuchać lub przeczytać, a potem dodać do biblioteki. Po dodaniu program zapyta,
+czy usunąć wiadomość. U nadawcy wysłana wiadomość znika automatycznie po potwierdzeniu
+wysłania, ale plik pozostaje w bibliotece. Ctrl+I importuje plik z dysku.
+Przed udostępnieniem historii pamiętaj, że tekst może zawierać rozmowę przy stole.
 
 ## Rankingi
 
@@ -531,7 +556,7 @@ do wskazanej listy lub pola gry, nie do wpisywania wiadomości.
 - Ctrl+Shift+O — wybór roli gracza lub obserwatora na następną partię.
 - Ctrl+P — ustawienia lub przełącznik osobisty, w grach, które go mają.
 - Ctrl+S — zapis partii i zamknięcie stołu; dla gospodarza, w obsługiwanych grach poza turniejami.
-- Ctrl+Shift+S — eksport historii stołu do TXT, bez zamykania partii.
+- Ctrl+Shift+S — historia tekstowa lub powtórka gry audio w bibliotece, bez zamykania partii.
 - Ctrl+Q — zakończenie bieżącej partii bez zamykania stołu; dla gospodarza.
 - Ctrl+X — zmiana ustawień następnej partii; dla gospodarza, poza edycją tekstu.
 
@@ -625,7 +650,9 @@ Możesz mieć jedną wysłaną propozycję. Wybranie innej osoby wymaga potwierd
 
 Przy rozpoczęciu turnieju program zachowuje uzgodnione pary, a pozostałe osoby łączy losowo. Organizator nie wybiera tych par. Jeśli bez partnera pozostanie nieparzysta liczba osób albo uczestników będzie za mało, otrzyma wyjaśnienie, dlaczego turniej nie może ruszyć. Po starcie drużyny pozostają stałe, a wynik liczy się dla Was wspólnie.
 
-Powiadomienie o rozpoczęciu turnieju otwiera jego mecze. Po zakończeniu fazy otrzymasz jeden komunikat z informacją o następnej, prowadzący do tabeli wyników zakończonej fazy. Po finale przychodzi już tylko powiadomienie o zakończeniu całego turnieju, ze zwycięzcą lub wspólnymi zwycięzcami. Otwiera ono końcową tabelę wyników. Dźwięki tych powiadomień podlegają zwykłym ustawieniom.
+Powiadomienie o rozpoczęciu turnieju otwiera jego mecze. Po zakończeniu fazy otrzymasz jeden komunikat z informacją o następnej, prowadzący do tabeli wyników zakończonej fazy. Po finale przychodzi już tylko powiadomienie o zakończeniu całego turnieju. Podaje Twoje miejsce — w grze drużynowej miejsce drużyny — oraz zwycięzcę lub wspólnych zwycięzców i otwiera końcową tabelę wyników. W części pucharowej osoby, które odpadły na tym samym etapie, mają wspólne miejsce. Nie porównuje się punktów osób wyeliminowanych z różnych grup.
+
+Informacje o rozpoczęciu i zakończeniu turnieju nie wygasają automatycznie. Zaproszenia do meczów turniejowych są widoczne niezależnie od filtrów zaproszeń i czarnej listy. Ich pięciominutowy termin pozostaje bez zmian. Dźwięki tych powiadomień nadal zależą od ustawień dźwięku i wyciszenia powiadomień w ELTEN-ie.
 
 ### Jak rozpocząć mecz
 
@@ -658,7 +685,7 @@ Wpis zakończonego meczu zawiera też wynik samej gry, jeśli gra go udostępnia
 
 W grach obsługujących małe punkty tabela pokazuje dostępne sumy zdobyte i stracone oraz ich różnicę. Brak wyniku z jednego meczu nie ukrywa pozostałych sum i nie jest liczony jako zero. W UNO, Domino, Mexican Train i eliminacyjnym Remiku lepszy jest niższy wynik. W Audio Ballu sumowane są punkty ze wszystkich setów. Uczestnicy nadal dzielący miejsce są wyświetlani od najmniejszej liczby rozegranych meczów; ta kolejność nie rozstrzyga awansu.
 
-Żadnej partii turniejowej nie można zapisać ani wznowić z pliku. Polecenie zapisu i Ctrl+S nie są tu dostępne, ale Ctrl+Shift+S nadal pozwala zachować historię w pliku tekstowym.
+Żadnej partii turniejowej nie można zapisać ani wznowić z pliku. Polecenie zapisu i Ctrl+S nie są tu dostępne, ale Ctrl+Shift+S nadal pozwala zachować historię tekstową lub powtórkę gry audio.
 
 W rozpoczętym meczu indywidualnym gra zatrzymuje się, gdy gracz zostanie rozłączony. Ma łącznie pięć minut na powrót w ciągu całego meczu: powrót zatrzymuje odliczanie, ale nie odnawia limitu. Wróć na to samo konto i do tego samego stołu, aby grać dalej z zachowanymi kartami, wynikiem i czasem na ruch.
 

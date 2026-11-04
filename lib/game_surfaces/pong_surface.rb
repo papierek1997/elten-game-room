@@ -1,6 +1,7 @@
 require_relative "specifications"
 # encoding: UTF-8
 require_relative "../game_room_localization"
+require_relative 'realtime_information'
 
 module GameSurfaces
   using GameRoomLocalization::Translations
@@ -107,44 +108,9 @@ module GameSurfaces
       case command
       when 'echo', 'crowd', 'hurry', 'perspective_first', 'perspective_second', 'perspective_third', 'perspective_fourth'
         @on_pong_command&.call(command)
-      when 'scores'
-        if @spec.score_labels
-          speak(@spec.score_labels.each_with_index.map do |label, i|
-            _('%{team}. Points: %{points}.') % { team: label, points: @spec.scores[i] }
-          end.join(' '))
-        else
-          order = [0, 1].sort_by { |i| [-@spec.scores[i].to_i, i] }
-          speak(order.map { |i| "#{@spec.players[i]}, #{@spec.scores[i]}" }.join('. '))
-        end
-      when 'server'
-        text = if @snapshot && @spec.score_labels
-          _('%{server} will serve against %{receiver}.') % {
-            server: @spec.players[@snapshot['server']], receiver: @spec.players[@snapshot['receiver']] }
-        elsif @snapshot
-          _('%{player} serves.') % { player: @spec.players[@snapshot['server']] }
-        else
-          ''
-        end
-        speak([text, @status].reject(&:empty?).join(' '))
-      when 'position'
-        seat = @spec.viewer || @listening_seat
-        x = @snapshot && seat.is_a?(Integer) && @snapshot['p'][seat]
-        if x && @spec.viewer == nil
-          speak(_('%{player}: %{position}.') % {
-            player: GameRoomParticipants.display_name(@spec.players[seat]), position: x.round })
-        else
-          speak(x ? (_('Paddle: %{position}.') % { position: x.round }) : @status)
-        end
-      when 'effects'
-        if @snapshot
-          parts = @snapshot['shields'].each_with_index.filter_map do |ticks, i|
-            _('%{player}: shield, %{seconds} seconds.') % { player: @spec.players[i], seconds: (ticks * 0.016).ceil } if ticks > 0
-          end
-          parts << _('The ball is invisible.') if @snapshot['invisible']
-          speak(parts.empty? ? _('No active effects.') : parts.join(' '))
-        else
-          speak(@status)
-        end
+      when 'scores', 'server', 'position', 'effects'
+        speak(RealtimeInformation.pong(command, spec: @spec, snapshot: @snapshot,
+          status: @status, listening_seat: @listening_seat))
       end
       true
     end
