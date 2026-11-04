@@ -654,6 +654,15 @@ module GameRoomChangelog
         "Clarified four reported questions in the Polish Harry Potter set, including missing context and misleading answer clues.",
         "Replaced remaining references to the old Game Room name in the interface with Power Games."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.5.11",
+      build: 262,
+      changes: [
+        "Fixed missing paddle-hit sounds after goals in Axel Pong replays.",
+        "Fixed Audio Ball replays cutting off preparation and ball-stop sounds or briefly replaying the previous flight.",
+        "Completed translations of history and replay library labels in Polish, Czech, Spanish and Russian."
+      ].freeze
     ).freeze
   ].freeze
 

@@ -20,6 +20,7 @@ module GameRoomRecordings
     UUID = /\A[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\z/
     KINDS = %w[frame audio].freeze
     AUDIO_METHODS = %w[reset start_match goal point prepare stop_ball announce announce_set hurry].freeze
+    SCENE_METHODS = %w[reset goal point prepare stop_ball].freeze
 
     class ObjectMap < Hash
       def []=(key,value)

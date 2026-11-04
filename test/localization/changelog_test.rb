@@ -513,7 +513,19 @@ assert(GameRoomChangelog.pending_entries(nil, 261).map(&:build) == [261], 'first
 assert(GameRoomChangelog.pending_entries(261, 261).empty?, 'build 261 reopens after being read')
 assert(GameRoomChangelog.list_items([entry_261]).first == 'Version 2.0.5.10, build 261', 'build 261 heading differs')
 assert(GameRoomChangelog.available_entries(261).first.equal?(entry_261), 'build 261 is not the newest entry')
-assert([EltenGameRoom::GAME_ROOM_VERSION, EltenGameRoom::GAME_ROOM_BUILD_ID] == ['2.0.5.10', 261],
+entry_262 = entries.find { |entry| entry.build == 262 }
+assert(entry_262 && entry_262.version == '2.0.5.11' && entry_262.changes.length == 3, 'build 262 has incorrect release metadata')
+assert(entry_262.changes.uniq.length == 3, 'build 262 contains duplicate notes')
+['Axel Pong', 'Audio Ball', 'replay library', 'translations'].each do |topic|
+  assert(entry_262.changes.join(' ').include?(topic), "build 262 lacks #{topic}")
+end
+assert(GameRoomChangelog.pending_entries(261, 262).map(&:build) == [262], 'build 262 repeats older notes')
+assert(GameRoomChangelog.pending_entries(260, 262).map(&:build) == [262, 261], 'updating from build 260 loses notes')
+assert(GameRoomChangelog.pending_entries(nil, 262).map(&:build) == [262], 'first build 262 launch repeats history')
+assert(GameRoomChangelog.pending_entries(262, 262).empty?, 'build 262 reopens after being read')
+assert(GameRoomChangelog.list_items([entry_262]).first == 'Version 2.0.5.11, build 262', 'build 262 heading differs')
+assert(GameRoomChangelog.available_entries(262).first.equal?(entry_262), 'build 262 is not the newest entry')
+assert([EltenGameRoom::GAME_ROOM_VERSION, EltenGameRoom::GAME_ROOM_BUILD_ID] == ['2.0.5.11', 262],
   'runtime and latest release metadata differ')
 %w[PL CS ES RU].each do |language|
   bytes = File.binread(File.expand_path("../../locale/#{language}.mo", __dir__))
@@ -552,5 +564,7 @@ assert([EltenGameRoom::GAME_ROOM_VERSION, EltenGameRoom::GAME_ROOM_BUILD_ID] == 
     "build 260 has untranslated #{language} notes")
   assert(entry_261.changes.all? { |source| !release_catalog.fetch(source, '').empty? },
     "build 261 has untranslated #{language} notes")
+  assert(entry_262.changes.all? { |source| !release_catalog.fetch(source, '').empty? },
+    "build 262 has untranslated #{language} notes")
 end
-puts "Changelog tests passed: first launch, updates, downgrade, Enter, storage, old notes preserved and multilingual build 261 notes"
+puts "Changelog tests passed: first launch, updates, downgrade, Enter, storage, old notes preserved and multilingual build 262 notes"

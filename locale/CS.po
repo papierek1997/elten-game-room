@@ -2787,7 +2787,7 @@ msgstr "%{sender} tě zve k pokračování turnajového zápasu (%{game})."
 
 #: lib/recordings/ui.rb:95
 msgid "%{sender}; %{name}; %{date}"
-msgstr ""
+msgstr "%{sender}; %{name}; %{date}"
 
 #: lib/axel_pong/client.rb:531 lib/game_surfaces/realtime_information.rb:25
 msgid "%{server} will serve against %{receiver}."
@@ -9573,6 +9573,10 @@ msgstr "Dokončená kola: %{count}. Pokusy v tomto kole: %{used} z %{limit}."
 msgid "Completed tournament matches show the game's score when available. If a scheduled rematch remains, you can invite its players directly from the completed match with Ctrl+G. Forfeit details remain available after the tournament moves to its next phase."
 msgstr "U dokončeného turnajového zápasu se zobrazuje i skóre samotné hry, pokud je dostupné. Pokud ještě zbývá naplánovaná odveta, můžeš na ni hráče pozvat přímo z dokončeného zápasu pomocí Ctrl+G. Podrobnosti o kontumačním výsledku zůstávají dostupné i po přechodu turnaje do další fáze."
 
+#: lib/game_room_changelog.rb:664
+msgid "Completed translations of history and replay library labels in Polish, Czech, Spanish and Russian."
+msgstr "Doplněny překlady názvů a příkazů v knihovně historií a záznamů do polštiny, češtiny, španělštiny a ruštiny."
+
 #: lib/tournaments/public_text.rb:47 lib/tournaments/server_schedule_overview.rb:179
 msgid "Completed — all required matches have been resolved"
 msgstr "Dokončeno — všechny požadované zápasy jsou rozhodnuty"
@@ -10760,7 +10764,7 @@ msgstr "Brání %{player}."
 
 #: lib/recordings/ui.rb:29
 msgid "Delete"
-msgstr ""
+msgstr "Odstranit"
 
 #: lib/quiz_contributions/views.rb:45 lib/quiz_contributions/views.rb:52 lib/tournaments/draft_screen.rb:24
 msgid "Delete draft"
@@ -10882,7 +10886,7 @@ msgstr "Zrušit výběr všech her"
 
 #: lib/recordings/ui.rb:28
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosti"
 
 #: games/duck_racing_support/presentation.rb:109
 msgid "Detour"
@@ -12630,7 +12634,7 @@ msgstr "Exportovat všechny odpovídající příspěvky"
 
 #: lib/recordings/ui.rb:29
 msgid "Export file"
-msgstr ""
+msgstr "Exportovat soubor"
 
 #: lib/recordings/ui.rb:50
 msgid "Export history or replay"
@@ -13055,6 +13059,10 @@ msgstr ""
 msgid "Fives"
 msgstr "Pětky"
 
+#: lib/game_room_changelog.rb:663
+msgid "Fixed Audio Ball replays cutting off preparation and ball-stop sounds or briefly replaying the previous flight."
+msgstr "Opraveno předčasné přerušování zvuků přípravy a zastavení míčku v záznamech hry Audio Ball i krátké přehrávání předchozího letu míčku."
+
 #: lib/game_room_changelog.rb:511
 msgid "Fixed Audio Ball's timing between sets when the match starts some time after the table is created."
 msgstr "Opraveno odměřování přestávky mezi sety v Audio Ballu, když zápas začne až nějakou dobu po vytvoření stolu."
@@ -13126,6 +13134,10 @@ msgstr "Opraveno určování konečných míst v několika turnajových hrách, 
 #: games/poker.rb:22
 msgid "Fixed limit"
 msgstr "Pevný limit"
+
+#: lib/game_room_changelog.rb:662
+msgid "Fixed missing paddle-hit sounds after goals in Axel Pong replays."
+msgstr "Opraveny chybějící zvuky odrazů míčku po gólu při přehrávání záznamů hry Axel Pong."
 
 #: lib/game_room_changelog.rb:128
 msgid "Fixed mixed Polish and English text in Taboo's rules and keyboard help. Help follows the interface language, independently of the card language."
@@ -21170,7 +21182,7 @@ msgstr "Odstraňování odeslaného konceptu"
 
 #: lib/recordings/ui.rb:28
 msgid "Rename"
-msgstr ""
+msgstr "Přejmenovat"
 
 #: lib/recordings/ui.rb:48
 msgid "Renaming recording"
@@ -22279,7 +22291,7 @@ msgstr "Ukládání záznamu"
 
 #: __app.rb:1339
 msgid "Saving table history"
-msgstr ""
+msgstr "Ukládání historie stolu"
 
 #: __app.rb:3886
 msgid "Saving table settings"
@@ -24187,7 +24199,7 @@ msgstr "Vytvoření stolu není potvrzeno. Zkontrolujte Operace; stůl se znovu 
 
 #: __app.rb:1338
 msgid "Table history"
-msgstr ""
+msgstr "Historie stolu"
 
 #: lib/game_room_changelog.rb:375
 msgid "Table lists and the widget now include the same short variant description as notifications. UNO, Spades and Categories also show the point limit, and Audio Ball shows the number of sets needed to win."

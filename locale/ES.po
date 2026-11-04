@@ -2739,7 +2739,7 @@ msgstr "%{sender} te invita a reanudar un partido del torneo (%{game})."
 
 #: lib/recordings/ui.rb:95
 msgid "%{sender}; %{name}; %{date}"
-msgstr ""
+msgstr "%{sender}; %{name}; %{date}"
 
 #: lib/axel_pong/client.rb:531 lib/game_surfaces/realtime_information.rb:25
 msgid "%{server} will serve against %{receiver}."
@@ -9521,6 +9521,10 @@ msgstr "Rondas completadas: %{count}. Intentos en esta ronda: %{used} de %{limit
 msgid "Completed tournament matches show the game's score when available. If a scheduled rematch remains, you can invite its players directly from the completed match with Ctrl+G. Forfeit details remain available after the tournament moves to its next phase."
 msgstr "Las partidas de torneo terminadas muestran también la puntuación de la propia partida, si está disponible. Si queda una revancha programada, puedes invitar a sus jugadores directamente desde la partida terminada con Ctrl+G. Los detalles de una derrota por incomparecencia siguen disponibles cuando el torneo pasa a la siguiente fase."
 
+#: lib/game_room_changelog.rb:664
+msgid "Completed translations of history and replay library labels in Polish, Czech, Spanish and Russian."
+msgstr "Se han completado las traducciones de los nombres y comandos de la biblioteca de historiales y repeticiones al polaco, checo, español y ruso."
+
 #: lib/tournaments/public_text.rb:47 lib/tournaments/server_schedule_overview.rb:179
 msgid "Completed — all required matches have been resolved"
 msgstr "Finalizado — todas las partidas necesarias están resueltas"
@@ -10707,7 +10711,7 @@ msgstr "Defiende: %{player}."
 
 #: lib/recordings/ui.rb:29
 msgid "Delete"
-msgstr ""
+msgstr "Eliminar"
 
 #: lib/quiz_contributions/views.rb:45 lib/quiz_contributions/views.rb:52 lib/tournaments/draft_screen.rb:24
 msgid "Delete draft"
@@ -10829,7 +10833,7 @@ msgstr "Deseleccionar todos los juegos"
 
 #: lib/recordings/ui.rb:28
 msgid "Details"
-msgstr ""
+msgstr "Detalles"
 
 #: games/duck_racing_support/presentation.rb:109
 msgid "Detour"
@@ -12574,7 +12578,7 @@ msgstr "Exportar todos los envíos coincidentes"
 
 #: lib/recordings/ui.rb:29
 msgid "Export file"
-msgstr ""
+msgstr "Exportar archivo"
 
 #: lib/recordings/ui.rb:50
 msgid "Export history or replay"
@@ -12999,6 +13003,10 @@ msgstr ""
 msgid "Fives"
 msgstr "Cincos"
 
+#: lib/game_room_changelog.rb:663
+msgid "Fixed Audio Ball replays cutting off preparation and ball-stop sounds or briefly replaying the previous flight."
+msgstr "Se ha corregido un fallo en las repeticiones de Audio Ball que interrumpía los sonidos de preparación y parada de la pelota o reproducía brevemente su trayectoria anterior."
+
 #: lib/game_room_changelog.rb:511
 msgid "Fixed Audio Ball's timing between sets when the match starts some time after the table is created."
 msgstr "Se ha corregido la duración de la pausa entre sets de Audio Ball cuando la partida empieza un tiempo después de crear la mesa."
@@ -13070,6 +13078,10 @@ msgstr "Se ha corregido la clasificación final en varios juegos de torneo, incl
 #: games/poker.rb:22
 msgid "Fixed limit"
 msgstr "Límite fijo"
+
+#: lib/game_room_changelog.rb:662
+msgid "Fixed missing paddle-hit sounds after goals in Axel Pong replays."
+msgstr "Se han corregido los sonidos de golpe de la paleta que faltaban después de los goles en las repeticiones de Axel Pong."
 
 #: lib/game_room_changelog.rb:128
 msgid "Fixed mixed Polish and English text in Taboo's rules and keyboard help. Help follows the interface language, independently of the card language."
@@ -21108,7 +21120,7 @@ msgstr "Eliminando el borrador enviado"
 
 #: lib/recordings/ui.rb:28
 msgid "Rename"
-msgstr ""
+msgstr "Cambiar nombre"
 
 #: lib/recordings/ui.rb:48
 msgid "Renaming recording"
@@ -22217,7 +22229,7 @@ msgstr "Guardando repetición"
 
 #: __app.rb:1339
 msgid "Saving table history"
-msgstr ""
+msgstr "Guardando el historial de la mesa"
 
 #: __app.rb:3886
 msgid "Saving table settings"
@@ -24122,7 +24134,7 @@ msgstr "La creación de la mesa no está confirmada. Revisa Operaciones; no se c
 
 #: __app.rb:1338
 msgid "Table history"
-msgstr ""
+msgstr "Historial de la mesa"
 
 #: lib/game_room_changelog.rb:375
 msgid "Table lists and the widget now include the same short variant description as notifications. UNO, Spades and Categories also show the point limit, and Audio Ball shows the number of sets needed to win."

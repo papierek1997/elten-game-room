@@ -4,18 +4,19 @@ module GameRoomRecordings
   # Parsing, validation and timeline indexes run together on a finite worker.
   # The UI only receives an immutable passive document, never executable data.
   class Prepared
-    attr_reader :document,:frames,:points,:sets,:actions,:markers,:match_start_index
+    attr_reader :document,:frames,:points,:sets,:actions,:markers,:match_start_index,:scene_changes
     def self.load(bytes); new(Document.parse(bytes)); end
     def self.copy(document); new(Document.validate(Document.copy(document))); end
 
     def initialize(document)
       @document=document
       events=document.fetch('timeline')
-      @frames=[];@points=[];@sets=[];@actions=[]
+      @frames=[];@points=[];@sets=[];@actions=[];@scene_changes=[]
       seen={}
       events.each_with_index do |event,index|
         if event['kind']=='audio'
           method=event.dig('data','method')
+          @scene_changes << index if Document::SCENE_METHODS.include?(method)
           if method=='start_match'
             next unless @match_start_index.nil?
             @match_start_index=index
@@ -39,7 +40,7 @@ module GameRoomRecordings
         ([0]+indexes.map { |i| events[i]['t'] }).uniq.freeze
       end.freeze
       freeze_data(@document)
-      [@frames,@points,@sets,@actions].each(&:freeze)
+      [@frames,@points,@sets,@actions,@scene_changes].each(&:freeze)
       freeze
     end
     private_class_method :new

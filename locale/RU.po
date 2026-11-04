@@ -2799,7 +2799,7 @@ msgstr "%{sender} приглашает вас продолжить матч ту
 
 #: lib/recordings/ui.rb:95
 msgid "%{sender}; %{name}; %{date}"
-msgstr ""
+msgstr "%{sender}; %{name}; %{date}"
 
 #: lib/axel_pong/client.rb:531 lib/game_surfaces/realtime_information.rb:25
 msgid "%{server} will serve against %{receiver}."
@@ -9598,6 +9598,10 @@ msgstr "Завершённые раунды: %{count}. Попытки в тек�
 msgid "Completed tournament matches show the game's score when available. If a scheduled rematch remains, you can invite its players directly from the completed match with Ctrl+G. Forfeit details remain available after the tournament moves to its next phase."
 msgstr "У завершённого турнирного матча теперь отображается и счёт самой игры, если он доступен. Если запланирован ответный матч, пригласить в него игроков можно прямо из завершённого матча сочетанием Ctrl+G. Подробности технического поражения остаются доступны и после перехода турнира к следующему этапу."
 
+#: lib/game_room_changelog.rb:664
+msgid "Completed translations of history and replay library labels in Polish, Czech, Spanish and Russian."
+msgstr "Дополнены переводы названий и команд библиотеки историй и повторов на польский, чешский, испанский и русский языки."
+
 #: lib/tournaments/public_text.rb:47 lib/tournaments/server_schedule_overview.rb:179
 msgid "Completed — all required matches have been resolved"
 msgstr "Завершён — определены результаты всех необходимых матчей"
@@ -10785,7 +10789,7 @@ msgstr "Защищается %{player}."
 
 #: lib/recordings/ui.rb:29
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: lib/quiz_contributions/views.rb:45 lib/quiz_contributions/views.rb:52 lib/tournaments/draft_screen.rb:24
 msgid "Delete draft"
@@ -10907,7 +10911,7 @@ msgstr "Снять выбор со всех игр"
 
 #: lib/recordings/ui.rb:28
 msgid "Details"
-msgstr ""
+msgstr "Подробности"
 
 #: games/duck_racing_support/presentation.rb:109
 msgid "Detour"
@@ -12655,7 +12659,7 @@ msgstr "Экспортировать все подходящие предлож�
 
 #: lib/recordings/ui.rb:29
 msgid "Export file"
-msgstr ""
+msgstr "Экспортировать файл"
 
 #: lib/recordings/ui.rb:50
 msgid "Export history or replay"
@@ -13080,6 +13084,10 @@ msgstr "Слова из пяти букв: 30 попыток"
 msgid "Fives"
 msgstr "Пятёрки"
 
+#: lib/game_room_changelog.rb:663
+msgid "Fixed Audio Ball replays cutting off preparation and ball-stop sounds or briefly replaying the previous flight."
+msgstr "В повторах Audio Ball исправлены обрывы звуков подготовки и остановки мяча, а также краткое воспроизведение предыдущего полёта мяча."
+
 #: lib/game_room_changelog.rb:511
 msgid "Fixed Audio Ball's timing between sets when the match starts some time after the table is created."
 msgstr "Исправлен отсчёт перерыва между сетами в Audio Ball, если матч начинается не сразу после создания стола."
@@ -13151,6 +13159,10 @@ msgstr "Исправлено определение итоговых мест в
 #: games/poker.rb:22
 msgid "Fixed limit"
 msgstr "Фиксированный лимит"
+
+#: lib/game_room_changelog.rb:662
+msgid "Fixed missing paddle-hit sounds after goals in Axel Pong replays."
+msgstr "Исправлено отсутствие звуков ударов ракеткой после голов в повторах Axel Pong."
 
 #: lib/game_room_changelog.rb:128
 msgid "Fixed mixed Polish and English text in Taboo's rules and keyboard help. Help follows the interface language, independently of the card language."
@@ -21211,7 +21223,7 @@ msgstr "Удаление отправленного черновика"
 
 #: lib/recordings/ui.rb:28
 msgid "Rename"
-msgstr ""
+msgstr "Переименовать"
 
 #: lib/recordings/ui.rb:48
 msgid "Renaming recording"
@@ -22332,7 +22344,7 @@ msgstr "Сохранение повтора"
 
 #: __app.rb:1339
 msgid "Saving table history"
-msgstr ""
+msgstr "Сохранение истории стола"
 
 #: __app.rb:3886
 msgid "Saving table settings"
@@ -24240,7 +24252,7 @@ msgstr "Создание стола не подтверждено. Провер�
 
 #: __app.rb:1338
 msgid "Table history"
-msgstr ""
+msgstr "История стола"
 
 #: lib/game_room_changelog.rb:375
 msgid "Table lists and the widget now include the same short variant description as notifications. UNO, Spades and Categories also show the point limit, and Audio Ball shows the number of sets needed to win."

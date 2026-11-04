@@ -15,6 +15,7 @@ module GameRoomRecordings
       @speed,@seat,@position=1.0,@document['metadata']['seat'] || 0,0
       @playing=false
       @frames,@points,@sets,@actions=prepared.frames,prepared.points,prepared.sets,prepared.actions
+      @scene_changes=prepared.scene_changes
       @markers=prepared.markers
       @match_start_index=prepared.match_start_index
       seek(0)
@@ -29,7 +30,7 @@ module GameRoomRecordings
       @playing=true
       @anchor=@clock.call
       @audio.resume_playback if @audio.respond_to?(:resume_playback)
-      @audio.update(@frame.fetch('snapshot'),viewer:frame_viewer,paused:@frame['paused']) if @frame
+      render_frame if @frame
       self
     end
 
@@ -53,6 +54,9 @@ module GameRoomRecordings
       index=@frames.bsearch_index { |i| @events[i]['t']>target }
       selected=index ? (index.positive? ? @frames[index-1] : nil) : @frames.last
       @frame=selected && Document.copy(@events[selected]['data'])
+      index=@scene_changes.bsearch_index { |i| @events[i]['t']>target } || @scene_changes.size
+      change=index.positive? ? @scene_changes[index-1] : nil
+      @awaiting_frame=change && (!selected || change>selected)
       point=point_at(target)
       update_scores(@events[point]['data']) if @frame && point && (!selected || point>selected)
       @cursor=@events.bsearch_index { |event| event['t']>target } || @events.length
@@ -178,6 +182,7 @@ module GameRoomRecordings
     def apply(event)
       if event['kind']=='frame'
         @frame=Document.copy(event['data'])
+        @awaiting_frame=false
         if @generation!=@frame['generation']
           @generation=@frame['generation']
           @fx_floor=0
@@ -195,6 +200,9 @@ module GameRoomRecordings
         if method=='point' && @frame
           update_scores(data)
         end
+        # Keep scores for the controls, but never render the preceding flight
+        # over a new goal, prepare/stop cue or reset while its frame is pending.
+        @awaiting_frame=true if Document::SCENE_METHODS.include?(method)
         @audio.public_send(method,*args,**keys)
       end
     end
@@ -205,6 +213,8 @@ module GameRoomRecordings
     def frame_viewer; metadata['game']=='audio_ball' ? team_viewer : @seat; end
 
     def render_frame(prime:false)
+      return if @awaiting_frame
+
       state=Document.copy(@frame['snapshot'])
       state['fx']=state['fx'].reject { |fx| fx[0]<=@fx_floor } if state['fx']
       @audio.update(state,viewer:frame_viewer,paused:prime || !@playing || @frame['paused'])
