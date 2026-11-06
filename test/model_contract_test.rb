@@ -65,7 +65,7 @@ previous_bridge = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1
 assert_equal(without_replay_hashes.call(previous_bridge), without_replay_hashes.call(bridge), 'Bridge hand storage must not replace the reference actions or RNG')
 cases << bridge
 cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/mahjong-model.json"), encoding: "UTF-8"))
-%w[bouillabaisse scopa].each do |id|
+%w[bouillabaisse scopa mania_pisania].each do |id|
   cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding:'UTF-8'))
 end
 duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/duck_racing.json'), encoding: 'UTF-8'))
@@ -79,9 +79,11 @@ cases.each do |item|
   SecureRandom.define_singleton_method(:hex) { |n = 16| Array.new(n) { random.rand(256).to_s(16).rjust(2, '0') }.join }
   env = GameRoomTest::PrivateSimulation.new_game(game: game, players: item.fetch('players'), options: item.fetch('options'), seed: item.fetch('seed'))
   item.fetch('steps').each_with_index do |step, index|
-    expected = step.reject { |key, _| key == 'action' }
+    # Simultaneous local-input games have no single active turn. The corpus
+    # still verifies that actor field, and separately names each input writer.
+    expected = step.reject { |key, _| %w[action action_actor].include?(key) }
     assert_equal(expected, GameRoomTest::ModelContract.checkpoint(env), "#{game.id}, step #{index}: contract changed")
-    assert_equal(:ok, env.step(step.fetch('action'), actor: step.fetch('actor')), "#{game.id}: action rejected")
+    assert_equal(:ok, env.step(step.fetch('action'), actor: step.fetch('action_actor', step.fetch('actor'))), "#{game.id}: action rejected")
   end
   assert_equal(item.fetch('final'), GameRoomTest::ModelContract.checkpoint(env), "#{game.id}: final checkpoint changed")
   assert_equal(item.fetch('events'), env.events, "#{game.id}: serialized history changed")

@@ -72,6 +72,24 @@ module GameSurfaces
   # ELTEN 3.0.4 owns quiet refresh and input-safe resume. Only the surface's
   # one-shot focus suppression needs clearing before returning to its wait.
   class RefreshAwareForm < GameRoomUI::Form
+    attr_writer :game_named_shortcut_keys
+
+    private
+
+    # The host does not emit key_semicolon. Extend only an active game form
+    # with this declared shortcut; do not patch the host's global event map.
+    def keyevents
+      events = super
+      if @game_named_shortcut_keys.to_a.include?('semicolon') && key_pressed?(0xba) &&
+          events.none? { |event, _key| event == :key_semicolon }
+        events + [[:key_semicolon, :semicolon]]
+      else
+        events
+      end
+    end
+
+    public
+
     def wait_without_announcement
       current = fields[@index.to_i]
       current.clear_suppressed_focus! if current.respond_to?(:clear_suppressed_focus!)
@@ -1078,6 +1096,7 @@ module GameSurfaces
   require_relative "game_surfaces/pong_surface"
   require_relative "game_surfaces/audio_ball_surface"
   require_relative "game_surfaces/duck_challenge_surface"
+  require_relative "game_surfaces/typing_surface"
   require_relative "game_surfaces/pawn_track"
   require_relative "game_surfaces/piece_board"
   require_relative "game_surfaces/layered_tile_board"
@@ -1323,6 +1342,8 @@ module GameSurfaces
       AudioBallSurface.new(spec, state: state)
     when DuckChallengeSpec
       DuckChallengeSurface.new(spec, state: state)
+    when TypingSpec
+      TypingSurface.new(spec, state: state)
     when PawnTrackSpec
       PawnTrackSurface.new(spec, state: state)
     when PieceBoardSpec

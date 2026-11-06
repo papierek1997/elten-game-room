@@ -44,12 +44,12 @@ Es un documento de solo lectura con un encabezado para cada versión. H pasa al 
 
 ## A qué puedes jugar
 
-Power Games incluye actualmente 38 juegos:
+Power Games incluye actualmente 39 juegos:
 
 - Cartas: 3-5-8, 99, 1000 millas, Biblios, Bouillabaisse, Bridge, Makao, Picas, Póker, Rummy, Scopa, Mil, UNO, War y Scientific War.
 - Tablero y estrategia: Ludo, Cuatro en raya, Tres en raya, Mancala, Monopoly, Reversi, Batalla naval, Ajedrez, Damas y Carrera de patos.
 - Dados y dominó: Cat, head, tail, Dominó, Farkle, Mexican Train y Yahtzee.
-- Palabras y conocimientos: Krowa, Categorías, Quiz Party, Scrabble y Taboo.
+- Palabras y conocimientos: Krowa, Teclamanía, Categorías, Quiz Party, Scrabble y Taboo.
 - Acción con audio: Axel Pong y Audio Ball.
 
 Mahjong tiene una sola entrada en la lista de juegos. Elige primero Solitario, Hong Kong, Riichi o MCR; debajo aparecerán las opciones de esa variante. El solitario se juega a solas. Hong Kong y MCR necesitan cuatro jugadores; Riichi necesita cuatro o tres en sanma. En la mesa, usa Ctrl+O para añadir bots a los asientos vacíos. En partidas largas, todos confirman que están listos después de cada mano. Abre las reglas y los controles con Ctrl+F1.
@@ -73,6 +73,48 @@ En el solitario eliges fichas individuales: las flechas recorren filas y columna
 Muchos juegos tienen varias variantes. Las opciones, el número de participantes, la disponibilidad de bots y otros ajustes dependen del título. La sección «Reglas del juego» explica las reglas, la puntuación y los controles en detalle.
 
 En Taboo necesitas comunicarte con los demás jugadores. Puedes usar una conferencia de ELTEN, otra aplicación de mensajería o jugar en persona.
+
+El braille está disponible en las cuatro variantes. El juego incluye Liblouis para Windows y tablas literarias en polaco, inglés, checo, español y ruso; no se necesita NVDA. La tabla predeterminada y los relatos siguen el idioma de la interfaz. Selecciona una tabla local en el explorador de archivos de Elten; se admiten .ctb, .utb, .tbl y .uti. Cadena de memoria anuncia solo la palabra nueva y no permite leer el resto de la palabra. La ayuda contiene instrucciones, una lista de atajos y una guía de mecanografía al tacto independiente.
+
+Los ajustes de braille ofrecen 32 tablas literarias, abreviadas, informáticas y regionales para los cinco idiomas compatibles. La tabla predeterminada es literaria y corresponde al idioma de la interfaz; se conserva cualquier elección guardada. Palabras aleatorias, Cadena de memoria y Modo supervivencia usan diccionarios de polaco, inglés, checo, español y ruso, incluidas las formas flexionadas. El idioma de las palabras se elige en los ajustes de la mesa. Una mesa nueva usa por defecto el idioma de la interfaz del anfitrión, y todos los participantes reciben palabras del mismo diccionario. El juego selecciona palabras de 3 a 12 letras. Las mayúsculas y minúsculas no afectan a la corrección de las palabras; al escribir en braille no se necesitan indicadores de mayúscula.
+
+Las listas de textos incluidos, tablas braille e idiomas del diccionario muestran solo los idiomas marcados como conocidos en los ajustes de Power Games. Si no se selecciona ninguno, solo se ofrece el idioma de la interfaz y se oculta el selector del idioma de las palabras. La tabla predeterminada es literaria. En el modo mixto, la lectura de una palabra también anuncia el método de entrada. Escritura libre lee primero la frase completa y después anuncia el método de entrada y la primera palabra.
+
+Teclamanía ofrece Escritura libre, Palabras aleatorias, Cadena de
+memoria y Modo supervivencia, en solitario o con otros. Modo supervivencia confirma
+tras el último carácter correcto, sin Espacio. Cada palabra correcta acelera
+la música un 2,5 %. Un Espacio prematuro en las
+otras variantes se ignora sin añadir errores. En multijugador, Palabras aleatorias
+y Cadena de memoria penalizan cinco segundos de inactividad; leer y
+deletrear no consumen este tiempo.
+
+Ctrl+L deletrea, Ctrl+O lee la palabra y Ctrl+punto y coma lee su resto.
+Ctrl+Mayús+punto y coma lee el resto de la frase en Escritura libre.
+Ctrl+P abre los ajustes de braille, sonidos y eco de escritura local. El eco
+solo afecta al campo del juego y usa el ajuste de Elten por defecto. Pegar un texto abre un campo
+en la misma pantalla de ajustes de la mesa: primero el título y, con Tab, el contenido.
+Ambos se conservan al cambiar los ajustes.
+El límite es 1 000 000 de bytes UTF-8 (1000 kB).
+Si se supera el límite, se muestra un error de importación y se conserva el texto pegado para corregirlo.
+Las importaciones son locales salvo que el anfitrión seleccione un texto
+para jugar juntos. Al empezar se envía ese texto mediante el servidor e historial,
+sin otra confirmación.
+
+Elige el texto antes de crear la mesa. El título y el número de caracteres,
+incluidos los espacios, y el límite de tiempo aparecen en su descripción y en el widget antes de entrar.
+
+Gana la puntuación ajustada según los errores: multiplica WPM en Escritura
+libre, o las palabras correctas en las otras variantes, dos veces por el factor
+palabras correctas / (palabras correctas + errores). Las reglas incluyen un
+ejemplo. Cada ronda nueva devuelve el foco al campo de escritura.
+
+Guarda partidas individuales y multijugador con Ctrl+S o desde el menú
+contextual de la mesa. El anfitrión pausa la escritura y confirma guardar el progreso
+en su cuenta y cerrar la mesa. Si falla, la mesa permanece abierta.
+Partidas guardadas en el menú principal restaura la palabra en curso y el
+tiempo restante. Deben entrar todos los jugadores originales, no los
+observadores. La referencia individual se guarda en un archivo privado
+de la cuenta, no en una biblioteca pública.
 
 ## Mesas y juego en compañía
 

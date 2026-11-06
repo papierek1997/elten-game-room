@@ -539,3 +539,62 @@ terms; obtain this information from the author before public distribution.
 Missing information is neither a statement of infringement nor a reason
 to assign the whole repository's license to these assets. Definitions
 shown on request come from SJP.pl and credit that source in the window.
+
+### Typoholism — error effects and Survival recordings
+
+The five effects `Audio/typing_error_1.opus` through `typing_error_5.opus`
+come from `Error1.opus` through `Error5.opus`, supplied by paulinux.
+They were encoded once to
+Opus 144 kb/s VBR, 48 kHz, 20 ms frames, complexity 10, preserving stereo
+and complete recordings without level filters. Originals remain outside
+the repository. Public redistribution terms have not been confirmed;
+the repository's code licence is not automatically assigned to them.
+
+The recordings `easy.opus`, `medium.opus`, `hard.opus` and `endgame.ogg`,
+supplied by paulinux, were included as `typing_survival_easy.opus`,
+`typing_survival_medium.opus`, `typing_survival_hard.opus` and
+`typing_endgame.opus`. Originals were encoded once to the same Opus standard,
+without level changes, trimming, normalisation or channel-count changes.
+Metadata was retained. Their public redistribution terms also need confirmation.
+
+### Typoholism — Polish braille tables
+
+`Pl-Pl-g1.utb` and `Pl-Pl-g2.utb` were supplied by paulinux. Their original
+bytes, headers and contraction rules are preserved. The first table and
+the supporting files `spaces.uti`, `text_nabcc.dis`, `latinLetterDef6Dots.uti`,
+`digits6Dots.uti` and `litdigits6Dots.uti` originate in Liblouis; supporting
+files were obtained from the local NVDA installation. Their headers identify
+authors and LGPL 2.1 or later. The licence text is in
+`LICENSES/LIBLOUIS-LGPL-2.1.txt`; source:
+https://github.com/liblouis/liblouis/blob/master/COPYING.LESSER.
+
+The tables are embedded in `content/mania_pisania_braille_tables.rb` and
+materialised in the program cache so Liblouis can read includes from a signed
+package. The generator does not alter table content. The package also embeds
+the Windows x86 and x64 Liblouis 3.39.0 libraries and the dependency closure
+of all 32 selectable literary, contracted, computer and regional tables for
+English, Czech, Spanish, Russian and Polish, as listed in
+`lib/mania_pisania/braille_catalog.rb`. Supplemental include/display files are
+bundled as dependencies, not offered as independent translation tables.
+NVDA is not required for these languages.
+Official binaries and corresponding source are available from
+https://github.com/liblouis/liblouis/releases/tag/v3.39.0 under LGPL 2.1 or later.
+Users may select another compatible Liblouis table in the game's settings.
+
+The original integral `pl-pl-g1.utb` from local NVDA is preserved separately
+as `pl-pl-integral.utb`, without byte changes. This keeps integral braille
+independent of the two supplied tables and avoids Windows filename collisions.
+
+The supplied `Pl-Pl-g2.utb` does not identify a separate author, provenance
+or redistribution terms. Confirm these before public redistribution. Local
+use does not assign the application's licence or the first table's licence
+to this table.
+
+### Typoholism — additional word dictionaries
+
+English, Czech, Spanish and Russian word forms are generated from the pinned
+wooorm/dictionaries sources using native Hunspell affix expansion and spelling
+validation. Provenance, processing and source links are documented in
+`content/mania_pisania_words_SOURCES.md`. Full upstream licence/credit notices
+are included in `LICENSES/TYPING-WORDS-{EN,CS,ES,RU}.txt`. The existing Polish
+word pack is unchanged. Hunspell is a build-time tool, not a runtime dependency.

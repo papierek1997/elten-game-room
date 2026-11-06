@@ -71,8 +71,10 @@ def check_document(field, document, label)
   assert(field.is_a?(EltenAPI::Controls.const_get(:EditBox)), "#{label}: bypassed the real host EditBox")
   field.extend(NativeRuleInput)
   sections = document.sections
-  body = sections.map { |section| "#{section.title}\n#{section.text.delete("\r")}" }.join("\n\n")
-  expected = document.contents_title ? "#{document.contents_title}\n#{sections.map(&:title).join("\n")}\n\n#{body}" : body
+  separator = document.separator.delete("\r")
+  body = sections.map { |section| "#{section.title}\n#{section.paragraphs.join(separator).delete("\r")}" }.join(separator)
+  expected = document.contents_title ? "#{document.contents_title}\n#{sections.map(&:title).join("\n")}#{separator}#{body}" : body
+  expected = document.introduction.join(separator) + separator + expected unless document.introduction.empty?
   displayed_text = field.text_range(0, field.text_len - 1)
   assert(displayed_text == expected, "#{label}: displayed plain text changed")
   sections.each do |section|
@@ -85,7 +87,8 @@ def check_document(field, document, label)
   links = elements(field, EditBox::Element::Link).select { |element| element.param[1].start_with?("#rule-section-") }
   assert(headings.length == sections.length + (document.contents_title ? 1 : 0), "#{label}: incorrect heading count")
   if document.contents_title
-    assert(headings.first.from == 0 && headings.first.param == 1, "#{label}: missing Contents heading")
+    intro_size = document.introduction.empty? ? 0 : document.introduction.join(separator).length + separator.length
+    assert(headings.first.from == intro_size && headings.first.param == 1, "#{label}: missing Contents heading")
     assert(field.text_range(headings.first.from, headings.first.to) == document.contents_title, "#{label}: Contents text changed")
     assert(links.length == sections.length, "#{label}: incorrect contents link count")
     headings = headings.drop(1)

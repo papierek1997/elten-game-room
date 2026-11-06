@@ -91,6 +91,15 @@ module GameRoomSounds
     win1
     win2
     win_party
+    typing_error_1
+    typing_error_2
+    typing_error_3
+    typing_error_4
+    typing_error_5
+    typing_endgame
+    typing_survival_easy
+    typing_survival_medium
+    typing_survival_hard
   ].freeze
 
   BATTLESHIP_HITS = %w[hit_ship1 hit_ship2].freeze
@@ -220,6 +229,13 @@ module GameRoomSounds
   end
 
   def result_cue(game, before_replay, after_replay, viewer)
+    cue = default_result_cue(game, before_replay, after_replay, viewer)
+    return cue unless game.respond_to?(:result_sound_cue)
+    game.result_sound_cue(before_replay: before_replay, after_replay: after_replay,
+      viewer: viewer, default_cue: cue)
+  end
+
+  def default_result_cue(game, before_replay, after_replay, viewer)
     # Initial reconstruction is silent. Permanent elimination is a transition,
     # not a property to announce again for every later move or final result.
     return nil if before_replay == nil || after_replay == nil || before_replay.finished?

@@ -402,6 +402,12 @@ class GameRoomSessionRunner
   end
 
   def execute_automatic(selection, actor, key, now, controller: false)
+    # Match the visible screen's moderation route. An observing host can save
+    # or resume a game, but never submit another player's ordinary input.
+    if GameRoomParticipants.same?(@viewer, @owner) && @game.moderator_action?(selection)
+      actor = @replay.players.first
+      controller = !GameRoomParticipants.same?(actor, @viewer)
+    end
     status = commit(selection, actor, controller: controller).first
     if status == :ok
       @automatic_retry_key = nil

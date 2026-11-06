@@ -63,6 +63,11 @@ module GameRoomLocalization
       @translator.primary
     end
 
+    def known_languages
+      boot unless @translator
+      @translator.known.dup
+    end
+
     # Opaque identity of the current catalogs and fallback-language settings.
     # Keep the object, not its object_id: a later boot may reuse an integer ID.
     def cache_token

@@ -43,11 +43,19 @@ languages.each do |language|
     options += keys.length
 
     book = game.rule_book(options: game.default_options)
-    assert(book.documents.map(&:id) == [:rules, :controls, :current_options], "#{language}/#{id}: document navigation changed")
+    document_ids = id == 'mania_pisania' ? [:rules, :controls, :touch_typing, :current_options] : [:rules, :controls, :current_options]
+    assert(book.documents.map(&:id) == document_ids, "#{language}/#{id}: document navigation changed")
     rendered = book.documents.first.sections.map { |section| [section.id, section.title, section.paragraphs] }
-    authored = compiled.reject { |section| section.id == :controls }.map { |section| [section.id, section.title, section.paragraphs] }
+    authored = compiled.reject { |section| section.id == :controls || (id == 'mania_pisania' && (section.id == :main_0 || section.id.to_s.start_with?('touch_'))) }.map { |section| [section.id, section.title, section.paragraphs] }
     assert(rendered == authored,
       "#{language}/#{id}: old or foreign chapters leaked into the authored rules")
+    if id == 'mania_pisania'
+      document = book.documents.first
+      assert(document.introduction == compiled.first.paragraphs, 'Mania introduction differs from supplied prose')
+      assert(document.text.start_with?(compiled.first.paragraphs.first), 'Mania introduction must precede contents')
+      assert(!document.text.match?(/\n\r?\n/), 'Mania help contains empty lines')
+      assert(document.sections.none? { |section| section.id == :main_0 }, 'Introduction retained its heading')
+    end
     screen = GameRoomScreens::GameRules.new(book, game_shortcuts: ["Current field shortcut"])
     screen.instance_variable_get(:@documents).each do |document|
       field = screen.send(:section_form, document).fields.first
@@ -57,7 +65,7 @@ languages.each do |language|
       end
       check_document(field, document, "#{language}/#{id}/#{document.id}")
       items = elements(field, EditBox::Element::ListItem)
-      expected_items = document.sections.flat_map(&:paragraphs).select { |line| line.match?(/\A(?:- |\d+\. )/) }
+      expected_items = document.sections.flat_map(&:paragraphs).flat_map { |paragraph| paragraph.lines.map(&:chomp) }.select { |line| line.match?(/\A(?:- |\d+[.)] )\S/) }
       assert(items.map { |item| field.text_range(item.from, item.to) } == expected_items,
         "#{language}/#{id}: native list items differ from the authored paragraphs")
       lists += items.length

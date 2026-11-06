@@ -6,7 +6,7 @@ def assert(value, message); raise message unless value; end
 # Audio, realtime and private-client games keep their own sound scene.
 catalog = GameRoomGames::CATALOG
 placed = catalog.ids.select { |id| catalog.build(id).player_spatial_audio? }
-excluded = %w[audio_ball axel_pong krowa duck_racing categories quiz]
+excluded = %w[audio_ball axel_pong krowa duck_racing categories quiz mania_pisania]
 assert((excluded & catalog.ids).sort == excluded.sort, "Excluded game ids changed: #{excluded - catalog.ids}")
 assert((placed & excluded).empty?, "Games without seat-based sounds offer 3D sound: #{placed & excluded}")
 assert((catalog.ids - excluded - placed).empty?, "Turn-based games lost 3D sound: #{catalog.ids - excluded - placed}")

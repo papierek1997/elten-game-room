@@ -23,6 +23,15 @@ transport does not interpret moves.
 
 ## Layers
 
+Typing Mania's model is in `games/mania_pisania.rb`, with save handling in
+`games/mania_pisania_support/`. Its client, typing engine, Braille input and
+text library live in `lib/mania_pisania/`; `typing_surface.rb` in
+`lib/game_surfaces/` connects typing input to the shared game UI. The text
+library owns the UTF-8 byte limit for both file and pasted imports. Dialogs
+report validation errors while retaining the input for correction. Table
+options use the game's option-editor extension and carry a bounded text
+descriptor; shared-text preparation handles transfer separately.
+
 `lib/use_cases/` handles invitation acceptance and game saving, while the
 application provides their UI. `game_screen/input.rb` stores the current
 replay and revision for a single form. `GameRoomEventPresenter` shares

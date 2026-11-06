@@ -1,7 +1,7 @@
 require_relative "../support/no_bot_table_control"
 
 no_bots = EltenGameRoom::GAME_REGISTRY.ids.select { |id| !EltenGameRoom::GAME_REGISTRY.build(id).supports_bots? }
-assert(no_bots.sort == %w[categories krowa scrabble taboo], "Uncovered no-bot game: #{no_bots.inspect}")
+assert(no_bots.sort == %w[categories krowa mania_pisania scrabble taboo], "Uncovered no-bot game: #{no_bots.inspect}")
 
 %w[scrabble taboo].each do |id|
   game = EltenGameRoom::GAME_REGISTRY.build(id)

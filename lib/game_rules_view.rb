@@ -25,6 +25,9 @@ module GameRoomRules
     def add_document_elements(document)
       offset = 0
       links = []
+      unless document.introduction.empty?
+        offset += document.introduction.join(document.separator).delete("\r").length + document.separator.delete("\r").length
+      end
       if document.contents_title
         add_element(document.contents_title, offset, Element::Header, 1)
         offset += document.contents_title.length + 1
@@ -32,19 +35,19 @@ module GameRoomRules
           links << add_element(section.title, offset, Element::Link, [0, "#rule-section-#{index}"])
           offset += section.title.delete("\r").length + 1
         end
-        offset += 1
+        offset += document.separator.delete("\r").length - 1
       end
       headings = document.sections.map do |section|
         heading = add_element(section.title, offset, Element::Header, 2)
-        add_list_items(section, offset + section.title.delete("\r").length + 1)
-        offset += "#{section.title}\n#{section.text}".delete("\r").length + 2
+        add_list_items(section, offset + section.title.delete("\r").length + 1, document.section_text(section))
+        offset += "#{section.title}\n#{document.section_text(section)}".delete("\r").length + document.separator.delete("\r").length
         heading
       end
       @contents_targets = links.zip(headings).to_h
     end
 
-    def add_list_items(section, offset)
-      section.text.delete("\r").each_line do |line|
+    def add_list_items(section, offset, text = section.text)
+      text.delete("\r").each_line do |line|
         text = line.chomp
         if text.match?(/\A(?:- |\d+[.)] )\S/)
           add_element(text, offset, Element::ListItem, nil)

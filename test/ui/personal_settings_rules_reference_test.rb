@@ -6,7 +6,7 @@ languages.each do |language|
 GameRoomTestLocalization.use_language(language)
 players = %w[Alice Bob]
 replay = GameRoomGames::Replay.new(players: players, state: nil, accepted_events: [], history: [])
-expected_games = %w[audio_ball axel_pong krowa scrabble]
+expected_games = %w[audio_ball axel_pong krowa scrabble mania_pisania]
 seen = []
 EltenGameRoom::GAME_REGISTRY.ids.each do |id|
   game = EltenGameRoom::GAME_REGISTRY.build(id)

@@ -110,7 +110,16 @@
       "mille_end_speed_limit",
       "mille_extra_tank",
       "mille_end_counterflow",
-      "mille_instant_repair"
+      "mille_instant_repair",
+      "typing_error_1",
+      "typing_error_2",
+      "typing_error_3",
+      "typing_error_4",
+      "typing_error_5",
+      "typing_endgame",
+      "typing_survival_easy",
+      "typing_survival_medium",
+      "typing_survival_hard"
     ]
   }
 }
@@ -1263,6 +1272,10 @@ class EltenGameRoom < Program
   def create_configured_table(game, configuration)
     game_id = game.id
     game_options = configuration.fetch(:game_options)
+    if (preparation = game.build_table_preparation(self))
+      game_options = preparation.prepare(game_options)
+      return if game_options == nil
+    end
     privacy = configuration.fetch(:private_table) || game.private_table_required?(game_options)
 
     result = run_network_task(_("Creating table")) do
@@ -2990,6 +3003,13 @@ class EltenGameRoom < Program
     speak(enabled ? _("Announcements of placed and removed letters enabled.") : _("Announcements of placed and removed letters disabled."))
   end
 
+  def show_typing_settings
+    client = game_definition('mania_pisania').build_client(self, **game_local_services)
+    client.show_settings
+  ensure
+    client&.close
+  end
+
   def show_pong_settings(tick: nil, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
     # The fast entry point is deliberately local: no notification preferences,
     # contacts, or table requests are loaded while opening or saving this panel.
@@ -3856,6 +3876,10 @@ class EltenGameRoom < Program
     previous = state.room.table["game_options"].to_s
     options = configure_game_options(state.game, initial_options: state.game.options_from_json(previous), submit_label: _("Save changes"))
     return false if options == nil
+    if (preparation = state.game.build_table_preparation(self))
+      options = preparation.prepare(options)
+      return false if options == nil
+    end
     # Editing an unrelated option must not throw away the accepted line-up.
     participants = state.room.game_participants
     assignment = state.game.prepared_team_assignment(state.game.options_from_json(previous), players: participants)
