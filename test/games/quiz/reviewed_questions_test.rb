@@ -33,6 +33,113 @@ end
 # Reviewed source decisions: preserve wording except for approved minimal
 # choice-list edits, corrected keys, distinct distractors and the Polsat negation.
 reviewed_general = {
+  '1z10_e0543b5f92049361' => {
+    'prompt' => 'Kto stanął na czele Polskiego Komisariatu Plebiscytowego na Górnym Śląsku w 1920 roku?', 'correct' => 'Wojciech Korfanty'
+  },
+  '1z10_bb07185d5b4569bd' => {
+    'prompt' => 'W którym wieku powstały wielkie organy oliwskie?', 'correct' => 'W 18. wieku'
+  },
+  '1z10_207d2cec5f737f92' => {
+    'prompt' => 'W komiksach którego polskiego autora bohaterowie podróżowali wannolotem, trąbolotem i gwizdkolotem?',
+    'correct' => 'Henryka Jerzego Chmielewskiego'
+  },
+  'polqa_00272' => {
+    'prompt' => 'Jak kończy się tytuł „Dziennik pisany…” Gustawa Herlinga-Grudzińskiego?',
+    'correct' => 'nocą', 'wrong' => ['rano', 'w południe', 'wieczorem']
+  },
+  '1z10_b4a62c7e896d9013' => {
+    'prompt' => 'Która z podanych nazw stolic występuje w języku polskim tylko w liczbie mnogiej?',
+    'correct' => 'Ateny', 'wrong' => ['Praga', 'Warszawa', 'Lizbona']
+  },
+  '1z10_f48e0a24fdee0c09' => {
+    'prompt' => 'Która para znaków zodiaku ma polskie nazwy występujące w liczbie mnogiej?',
+    'correct' => 'Bliźnięta i Ryby', 'wrong' => ['Bliźnięta i Rak', 'Waga i Ryby', 'Baran i Lew']
+  },
+  'milionerzy_62a1cb2a06b4927f' => {
+    'prompt' => 'Która z tych nazw owadów ma jedną sylabę?', 'correct' => 'chrząszcz', 'wrong' => ['szerszeń', 'osa', 'mszyca']
+  },
+  'polqa_01722' => {
+    'prompt' => 'Jak nazywa się obtaczanie mięsa w jajku i tartej bułce?', 'correct' => 'panierowanie', 'category' => 'Życie codzienne'
+  },
+  '1z10_a5b8c2a8854ffb28' => {
+    'prompt' => 'W którym roku abdykował car Mikołaj II?', 'correct' => 'W 1917 roku'
+  },
+  '1z10_9aff34a6ba6f0f3f' => {
+    'prompt' => 'W jaki sposób zakończył żywot Ludwik XVI?', 'correct' => 'Został ścięty na gilotynie'
+  },
+  # Zuzler's 2026-11-05/06 reports: self-contained prompts, readable chemistry,
+  # no giveaway food names, and the emperor's actual role in Gniezno.
+  'polqa_05690' => {
+    'prompt' => 'Który cesarz ogłosił w 1000 roku papieską decyzję o utworzeniu arcybiskupstwa w Gnieźnie?',
+    'correct' => 'Otton III', 'wrong' => ['Otton I', 'Otton II', 'Henryk II']
+  },
+  '1z10_eef7f7cbdf7c6024' => {
+    'prompt' => 'Co oznacza określenie „bilateralny”?',
+    'correct' => 'Dwustronny', 'wrong' => ['Jednostronny', 'Trójstronny', 'Czterostronny']
+  },
+  '1z10_193cecb56709c8cb' => {
+    'prompt' => 'Z jakiego mięsa tradycyjnie przyrządza się sznycel wiedeński?',
+    'correct' => 'Z cielęciny', 'wrong' => ['Z wieprzowiny', 'Z kurczaka', 'Z indyka']
+  },
+  'polqa_04867' => {
+    'prompt' => 'W okresie których świąt przedstawiane są jasełka?',
+    'correct' => 'Bożego Narodzenia', 'wrong' => ['Wielkanocy', 'Zesłania Ducha Świętego', 'Bożego Ciała']
+  },
+  '1z10_04ebcd25539e5516' => {
+    'prompt' => 'Jaką nazwę zwyczajową ma tlenek arsenu na trzecim stopniu utlenienia?',
+    'correct' => 'Arszenik', 'wrong' => ['Karbid', 'Saletra', 'Wapno palone']
+  },
+  '1z10_06108e85e205febd' => {
+    'prompt' => 'Kim jest Bilbo Baggins, bohater powieści Tolkiena?',
+    'correct' => 'Hobbitem', 'wrong' => ['Goblinem', 'Trollem', 'Gnomem']
+  },
+  '1z10_5bd1ef0cacd03326' => {
+    'prompt' => 'Która para mórz oblewa Półwysep Skandynawski?',
+    'correct' => 'Morze Norweskie i Morze Północne',
+    'wrong' => ['Morze Śródziemne i Morze Egejskie', 'Morze Czarne i Morze Kaspijskie', 'Morze Białe i Morze Azowskie']
+  },
+  'polqa_05662' => {
+    'prompt' => 'Kto w połowie 15. wieku wydrukował Biblię, wykorzystując ruchomą czcionkę?',
+    'correct' => 'Johannes Gutenberg', 'wrong' => ['Aldus Manutius', 'Christophe Plantin', 'William Caxton']
+  },
+  '1z10_beea73faddf4e8c5' => {
+    'prompt' => 'Ile razy Międzynarodowy Komitet Czerwonego Krzyża otrzymał Pokojową Nagrodę Nobla w 20. wieku?',
+    'correct' => 'Trzykrotnie', 'wrong' => ['Dwukrotnie', 'Czterokrotnie', 'Pięciokrotnie']
+  },
+  '1z10_cbea8d2204ee0101' => {
+    'prompt' => 'Przed którym świętem żydowskim obchodzi się post Estery?',
+    'correct' => 'Purim', 'wrong' => ['Pesach', 'Szawuot', 'Sukkot']
+  },
+  '1z10_3b75aeaa483a03f6' => {
+    'prompt' => 'Który angielski dramaturg, autor „Tragicznej historii doktora Fausta”, zginął w wieku 29 lat?',
+    'correct' => 'Christopher Marlowe', 'wrong' => ['Ben Jonson', 'Thomas Kyd', 'John Webster']
+  },
+  'polqa_02820' => {
+    'prompt' => 'Co według powiedzenia kole w oczy?',
+    'correct' => 'prawda', 'wrong' => ['bogactwo', 'piękno', 'władza']
+  },
+  '1z10_8a4e7eed3f40e488' => {
+    'prompt' => 'Jakie słowo kończy powiedzenie „burza w szklance…”?',
+    'correct' => 'Wody', 'wrong' => ['Mleka', 'Herbaty', 'Wina']
+  },
+  '1z10_52a43aa78e2f6620' => {
+    'prompt' => 'Jakie słowo kończy powiedzenie „obchodzi mnie to tyle, co zeszłoroczny…”?',
+    'correct' => 'Śnieg', 'wrong' => ['Deszcz', 'Grad', 'Mróz']
+  },
+  '1z10_d23b274d45650045' => {
+    'prompt' => 'Jakie francuskie wyrażenie oznacza nietakt?',
+    'correct' => 'Faux pas', 'wrong' => ['Déjà vu', 'Savoir-vivre', 'Tête-à-tête']
+  },
+  # Rejected suggestions: keep the country qualifier and proper regnal names.
+  '1z10_c1491bdf48d3f548' => {
+    'prompt' => 'Kiedy przypada w Polsce Międzynarodowy Dzień Dziecka?', 'correct' => '1 czerwca'
+  },
+  'polqa_05075' => {
+    'correct' => 'Mikołaj II Romanow', 'wrong' => ['Aleksander III Romanow', 'Mikołaj I Romanow', 'Aleksander II Romanow']
+  },
+  'polqa_00095' => {
+    'correct' => 'Ludwika XIII', 'wrong' => ['Ludwika XIV', 'Henryka IV', 'Ludwika XV']
+  },
   # Zuzler's 2026-10-31 report: the question must work without a musical clip.
   '1z10_127f900846145478' => {
     'prompt' => 'W której operze Jacques’a Offenbacha można usłyszeć słynną barkarolę?',

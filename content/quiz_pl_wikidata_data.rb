@@ -3,7 +3,7 @@ require 'json'
 module GameRoomContent
   module Packa0830f585cc4689a1e2a6335
     def self.load
-      JSON.parse(<<'QUIZ_DATA_7ec1a06286cec2d3a5241557fc232729303b4d6b5b728afe4c4363e78be8ed5a')
+      JSON.parse(<<'QUIZ_DATA_b857e9337d332f807de6619e586bae0d79e764240c2ec0152e306838ea3cca16')
 {
   "questions": [
     {
@@ -23450,7 +23450,7 @@ module GameRoomContent
       "id": "1z10_5bd1ef0cacd03326",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "Proszę wymienić nazwy dwóch morzy, które oblewają Półwysep Skandynawski.",
+      "prompt": "Która para mórz oblewa Półwysep Skandynawski?",
       "correct": "Morze Norweskie i Morze Północne",
       "wrong": [
         "Morze Śródziemne i Morze Egejskie",
@@ -43258,8 +43258,8 @@ module GameRoomContent
       "id": "polqa_05662",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Kto w połowie 15. wieku wydał biblię drukiem?",
-      "correct": "Gutenberg",
+      "prompt": "Kto w połowie 15. wieku wydrukował Biblię, wykorzystując ruchomą czcionkę?",
+      "correct": "Johannes Gutenberg",
       "wrong": [
         "Aldus Manutius",
         "Christophe Plantin",
@@ -43338,7 +43338,7 @@ module GameRoomContent
       "id": "polqa_05690",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Który z cesarzy niemieckich ustanowił arcybiskupstwo polskie w Gnieźnie?",
+      "prompt": "Który cesarz ogłosił w 1000 roku papieską decyzję o utworzeniu arcybiskupstwa w Gnieźnie?",
       "correct": "Otton III",
       "wrong": [
         "Otton I",
@@ -55162,7 +55162,7 @@ module GameRoomContent
       "id": "1z10_e0543b5f92049361",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Historia Polski. Proszę podać imię i nazwisko polityka, który stanął na czele Polskiego Komisariatu Plebiscytowego na Górnym Śląsku w 1920 roku.",
+      "prompt": "Kto stanął na czele Polskiego Komisariatu Plebiscytowego na Górnym Śląsku w 1920 roku?",
       "correct": "Wojciech Korfanty",
       "wrong": [
         "Wincenty Witos",
@@ -98682,7 +98682,7 @@ module GameRoomContent
       "id": "1z10_bb07185d5b4569bd",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "Panie Wojciechu, w którym wieku powstały wielkie organy oliwskie?",
+      "prompt": "W którym wieku powstały wielkie organy oliwskie?",
       "correct": "W 18. wieku",
       "wrong": [
         "W 16. wieku",
@@ -102762,7 +102762,7 @@ module GameRoomContent
       "id": "1z10_207d2cec5f737f92",
       "category": "Kultura",
       "level": "medium",
-      "prompt": "W serii komiksów którego autora, polskiego autora, bohaterowie poruszali się wannolotem, trąbolotem, gwizdkolotem?",
+      "prompt": "W komiksach którego polskiego autora bohaterowie podróżowali wannolotem, trąbolotem i gwizdkolotem?",
       "correct": "Henryka Jerzego Chmielewskiego",
       "wrong": [
         "Janusza Christy",
@@ -107290,7 +107290,7 @@ module GameRoomContent
       "id": "polqa_00272",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "O której porze dnia był pisany Dziennik Herlinga Grudzińskiego?",
+      "prompt": "Jak kończy się tytuł „Dziennik pisany…” Gustawa Herlinga-Grudzińskiego?",
       "correct": "nocą",
       "wrong": [
         "rano",
@@ -111962,7 +111962,7 @@ module GameRoomContent
       "id": "polqa_02820",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Powiedzenia i przysłowia: co kole w oczy?",
+      "prompt": "Co według powiedzenia kole w oczy?",
       "correct": "prawda",
       "wrong": [
         "bogactwo",
@@ -120410,12 +120410,12 @@ module GameRoomContent
       "id": "1z10_06108e85e205febd",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Jak nazywają się miłe, chochlikowate istoty stworzone przez brytyjskiego pisarza Johna Ronalda Tolkiena?",
-      "correct": "Hobici",
+      "prompt": "Kim jest Bilbo Baggins, bohater powieści Tolkiena?",
+      "correct": "Hobbitem",
       "wrong": [
-        "Gobliny",
-        "Trolle",
-        "Gnomy"
+        "Goblinem",
+        "Trollem",
+        "Gnomem"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -127386,7 +127386,7 @@ module GameRoomContent
       "id": "1z10_3b75aeaa483a03f6",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Rówieśnik Szekspira. Początkowo Autor tragicznej historii doktora Fausta zginął zasztyletowany, gdy miał dwadzieścia dziewięć lat. O kim mowa?",
+      "prompt": "Który angielski dramaturg, autor „Tragicznej historii doktora Fausta”, zginął w wieku 29 lat?",
       "correct": "Christopher Marlowe",
       "wrong": [
         "Ben Jonson",
@@ -144938,12 +144938,12 @@ module GameRoomContent
       "id": "1z10_04ebcd25539e5516",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Jak nazywa się związek o wzorze chemicznym As₂O₃?",
-      "correct": "Tlenek arsenu(III), czyli arszenik",
+      "prompt": "Jaką nazwę zwyczajową ma tlenek arsenu na trzecim stopniu utlenienia?",
+      "correct": "Arszenik",
       "wrong": [
-        "Tlenek arsenu(V)",
-        "Siarczek arsenu(III)",
-        "Kwas arsenowy(V)"
+        "Karbid",
+        "Saletra",
+        "Wapno palone"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -173623,22 +173623,6 @@ module GameRoomContent
       "source_license": "CC-BY-SA-4.0"
     },
     {
-      "id": "polqa_03179",
-      "category": "Religia",
-      "level": "medium",
-      "prompt": "Jaki łaciński termin oznacza miejsce święte?",
-      "correct": "sacrum",
-      "wrong": [
-        "profanum",
-        "martyrium",
-        "credo"
-      ],
-      "source": "https://huggingface.co/datasets/ipipan/polqa",
-      "review_required": false,
-      "source_dataset": "PolQA",
-      "source_license": "CC-BY-SA-4.0"
-    },
-    {
       "id": "polqa_03182",
       "category": "Religia",
       "level": "medium",
@@ -175003,7 +174987,7 @@ module GameRoomContent
       "category": "Religia",
       "level": "medium",
       "prompt": "W okresie których świąt przedstawiane są jasełka?",
-      "correct": "Świąt Bożego Narodzenia",
+      "correct": "Bożego Narodzenia",
       "wrong": [
         "Wielkanocy",
         "Zesłania Ducha Świętego",
@@ -182138,7 +182122,7 @@ module GameRoomContent
       "id": "1z10_cbea8d2204ee0101",
       "category": "Religia",
       "level": "medium",
-      "prompt": "Kościoły i religie. Post Estery to w judaizmie post w przeddzień którego święta?",
+      "prompt": "Przed którym świętem żydowskim obchodzi się post Estery?",
       "correct": "Purim",
       "wrong": [
         "Pesach",
@@ -203146,7 +203130,7 @@ module GameRoomContent
       "id": "1z10_b4a62c7e896d9013",
       "category": "Język",
       "level": "medium",
-      "prompt": "Podaj nazwę jednej z dwóch stolic państw UE, których nazwy występują wyłącznie w liczbie mnogiej.",
+      "prompt": "Która z podanych nazw stolic występuje w języku polskim tylko w liczbie mnogiej?",
       "correct": "Ateny",
       "wrong": [
         "Praga",
@@ -203674,7 +203658,7 @@ module GameRoomContent
       "id": "1z10_eef7f7cbdf7c6024",
       "category": "Język",
       "level": "medium",
-      "prompt": "Czy bilateralny to jest ilustronny?",
+      "prompt": "Co oznacza określenie „bilateralny”?",
       "correct": "Dwustronny",
       "wrong": [
         "Jednostronny",
@@ -204218,7 +204202,7 @@ module GameRoomContent
       "id": "1z10_d23b274d45650045",
       "category": "Język",
       "level": "medium",
-      "prompt": "Języki obce, jak z francuskiego nazywa się nietakt?",
+      "prompt": "Jakie francuskie wyrażenie oznacza nietakt?",
       "correct": "Faux pas",
       "wrong": [
         "Déjà vu",
@@ -206074,7 +206058,7 @@ module GameRoomContent
       "id": "1z10_8a4e7eed3f40e488",
       "category": "Język",
       "level": "medium",
-      "prompt": "Jakie jest zakończenie powiedzenia: Awantura z błahego powodu to jest burza w szklance...",
+      "prompt": "Jakie słowo kończy powiedzenie „burza w szklance…”?",
       "correct": "Wody",
       "wrong": [
         "Mleka",
@@ -208266,7 +208250,7 @@ module GameRoomContent
       "id": "1z10_52a43aa78e2f6620",
       "category": "Język",
       "level": "medium",
-      "prompt": "O czym mówimy, że obchodzi nas tyle, co zeszłoroczny...?",
+      "prompt": "Jakie słowo kończy powiedzenie „obchodzi mnie to tyle, co zeszłoroczny…”?",
       "correct": "Śnieg",
       "wrong": [
         "Deszcz",
@@ -209194,7 +209178,7 @@ module GameRoomContent
       "id": "1z10_f48e0a24fdee0c09",
       "category": "Język",
       "level": "medium",
-      "prompt": "W zodiaku są tylko dwa znaki występujące w liczbie mnogiej. Które?",
+      "prompt": "Która para znaków zodiaku ma polskie nazwy występujące w liczbie mnogiej?",
       "correct": "Bliźnięta i Ryby",
       "wrong": [
         "Bliźnięta i Rak",
@@ -211994,7 +211978,7 @@ module GameRoomContent
       "id": "milionerzy_62a1cb2a06b4927f",
       "category": "Język",
       "level": "medium",
-      "prompt": "Insekt jednosylabowy:",
+      "prompt": "Która z tych nazw owadów ma jedną sylabę?",
       "correct": "chrząszcz",
       "wrong": [
         "szerszeń",
@@ -220666,7 +220650,7 @@ module GameRoomContent
       "id": "1z10_beea73faddf4e8c5",
       "category": "Społeczeństwo",
       "level": "medium",
-      "prompt": "Nagrody. Ile razy Międzynarodowy Komitet Czerwonego Krzyża dostał pokojową Nagrodę Nobla?",
+      "prompt": "Ile razy Międzynarodowy Komitet Czerwonego Krzyża otrzymał Pokojową Nagrodę Nobla w 20. wieku?",
       "correct": "Trzykrotnie",
       "wrong": [
         "Dwukrotnie",
@@ -227242,7 +227226,7 @@ module GameRoomContent
       "id": "polqa_01722",
       "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "Jak z francuskiego i niemieckiego nazywamy otaczanie mięsa w jajku i tartej bułce?",
+      "prompt": "Jak nazywa się obtaczanie mięsa w jajku i tartej bułce?",
       "correct": "panierowanie",
       "wrong": [
         "peklowanie",
@@ -236906,12 +236890,12 @@ module GameRoomContent
       "id": "1z10_193cecb56709c8cb",
       "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "Proszę wymienić przynajmniej dwie potrawy, w nazwie których występuje określenie wiedeński albo powiedeńsku.",
-      "correct": "Sernik wiedeński i sznycel wiedeński",
+      "prompt": "Z jakiego mięsa tradycyjnie przyrządza się sznycel wiedeński?",
+      "correct": "Z cielęciny",
       "wrong": [
-        "Pierogi ruskie i barszcz ukraiński",
-        "Ryba po grecku i fasolka po bretońsku",
-        "Placki po węgiersku i kotlet po parysku"
+        "Z wieprzowiny",
+        "Z kurczaka",
+        "Z indyka"
       ],
       "source": "https://huggingface.co/datasets/ipipan/maupqa",
       "source_dataset": "1z10/MAUPQA",
@@ -239120,7 +239104,7 @@ module GameRoomContent
   ],
   "source": "content/QUIZ_PL_GENERAL_SOURCES.txt"
 }
-QUIZ_DATA_7ec1a06286cec2d3a5241557fc232729303b4d6b5b728afe4c4363e78be8ed5a
+QUIZ_DATA_b857e9337d332f807de6619e586bae0d79e764240c2ec0152e306838ea3cca16
     end
   end
 end
