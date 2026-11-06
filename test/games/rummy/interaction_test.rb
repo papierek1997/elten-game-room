@@ -269,6 +269,53 @@ check.call("normal round summaries give each player's total, including blocked r
   end
 end
 
+check.call("an invalid submission unticks only the invalid selection and permits a retry") do
+  game, state, replay, surface, control, emitted = interaction_fixture
+  original = Marshal.dump(state)
+  surface.handle_command("meld_new")
+  [0, 3].each { |index| select_row(control, index) }
+  cursor = control.index
+  assert(surface.handle_command("meld_submit") == true, "invalid meld emitted an action")
+  assert(surface.state["meld_selection"].empty? && surface.state["meld_draft"], "invalid cards remain selected or editor closed")
+  assert(control.options.none? { |label| label.include?("; selected") } && control.index == cursor, "labels or cursor were not preserved")
+  assert(emitted.empty? && Marshal.dump(state) == original, "invalid draft changed the game")
+  [0, 1, 2].each { |index| select_row(control, index) }
+  action = surface.handle_command("meld_submit")
+  assert(action.is_a?(GameSurfaces::Action) && action.payload["groups"] == [%w[2S0 3S0 4S0]], "could not retry directly")
+end
+
+check.call("N clears a malformed next meld without discarding correct prepared groups") do
+  _game, _state, _replay, surface, control, = interaction_fixture
+  prepare_group(surface, control)
+  surface.handle_command("meld_new")
+  [3, 4].each { |index| select_row(control, index) }
+  surface.handle_command("meld_new")
+  assert(surface.state["meld_groups"] == [%w[2S0 3S0 4S0]] && surface.state["meld_selection"].empty?, "valid earlier meld lost or invalid cards retained")
+end
+
+check.call("invalid groups saved in the local editor are removed without losing a valid current selection") do
+  _game, _state, _replay, surface, control, = interaction_fixture
+  surface.handle_command("meld_new")
+  [3, 4].each { |index| select_row(control, index) }
+  surface.handle_command("meld_edit")
+  surface.cancel_pending_action!
+  [0, 1, 2].each { |index| select_row(control, index) }
+  surface.handle_command("meld_submit")
+  assert(surface.state["meld_groups"].empty? && surface.state["meld_selection"] == %w[2S0 3S0 4S0], "cleared the correct selection instead of the bad stored group")
+end
+
+check.call("reading invalid cards and a valid meld below the opening minimum do not clear the draft") do
+  _game, _state, _replay, surface, control, = interaction_fixture(opened: false)
+  prepare_group(surface, control)
+  selected = surface.state["meld_selection"]
+  surface.handle_command("meld_submit")
+  assert(surface.state["meld_selection"] == selected, "opening minimum rejection cleared a valid meld")
+  select_row(control, 1)
+  invalid = surface.state["meld_selection"]
+  surface.handle_command("meld_read")
+  assert(surface.state["meld_selection"] == invalid, "P changed the selection")
+end
+
 puts JSON.pretty_generate(checks)
 raise "#{checks.count { |result| !result[:passed] }} Rummy interaction regressions" if checks.any? { |result| !result[:passed] }
 puts "Rummy interaction: #{checks.length} scenarios passed."

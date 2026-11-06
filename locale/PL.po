@@ -2244,7 +2244,7 @@ msgstr[0] "%{player} wygrywa lewę i zabiera %{count} kartę."
 msgstr[1] "%{player} wygrywa lewę i zabiera %{count} karty."
 msgstr[2] "%{player} wygrywa lewę i zabiera %{count} kart."
 
-#: games/bouillabaisse.rb:154
+#: games/bouillabaisse.rb:166
 msgid "%{player} wins the trick."
 msgstr "%{player} wygrywa lewę."
 
@@ -11356,7 +11356,7 @@ msgstr "Tryb stosu odrzuconych jest jedyną listą ustawień: bez stosu; odrzuca
 msgid "Discard mode is the only list setting: no discard pile; discarding without taking discards; taking only the top discard (default); or taking a selected discard and every newer card above it. Taken discards may stay in your hand. Shift+D lists names from newest to oldest, not a separate draw-count option."
 msgstr "Tryb stosu odrzuconych jest jedyną listą ustawień: bez stosu; odrzucanie bez zabierania; zabieranie tylko wierzchniej karty, domyślnie; albo zabieranie wybranej karty i wszystkich nowszych nad nią. Dobrane odrzuty mogą pozostać w ręce. Shift+D pokazuje nazwy od najnowszej do najstarszej karty, bez dodatkowego wyboru liczby kart."
 
-#: lib/game_surfaces/meld_cards.rb:119 lib/game_surfaces/meld_cards.rb:331
+#: lib/game_surfaces/meld_cards.rb:119 lib/game_surfaces/meld_cards.rb:339
 msgid "Discard pile"
 msgstr "Stos odrzuconych"
 
@@ -11969,11 +11969,11 @@ msgstr ""
 msgid "Each board is scored on its own. A game earns a bonus of 300, or 500 when vulnerable, and a part score earns 50. Everything else is scored as described above. There are no honours and no rubber."
 msgstr ""
 
-#: games/bouillabaisse.rb:200
+#: games/bouillabaisse.rb:220
 msgid "Each card of %{suit} costs 10 points."
 msgstr "Każda zabrana karta w kolorze %{suit} kosztuje 10 punktów."
 
-#: games/bouillabaisse.rb:193
+#: games/bouillabaisse.rb:213
 msgid "Each card of %{suit} you take subtracts 10 points."
 msgstr "Za każdą zabraną kartę w kolorze %{suit} odejmujesz sobie 10 punktów."
 
@@ -12001,19 +12001,19 @@ msgstr ""
 msgid "Each honba adds 300 to a discard payment or 100 from each opponent on self-draw. Riichi deposits are awarded to the winner in addition. Honba increases after a draw or dealer repeat and resets after another player wins."
 msgstr ""
 
-#: games/bouillabaisse.rb:201
+#: games/bouillabaisse.rb:221
 msgid "Each jack you take costs 50 points."
 msgstr "Każdy zabrany walet kosztuje 50 punktów."
 
-#: games/bouillabaisse.rb:194
+#: games/bouillabaisse.rb:214
 msgid "Each jack you take subtracts 50 points."
 msgstr "Każdy zabrany walet zmniejsza twój wynik o 50 punktów."
 
-#: games/bouillabaisse.rb:203
+#: games/bouillabaisse.rb:223
 msgid "Each king you take costs 50 points."
 msgstr "Każdy zabrany król kosztuje 50 punktów."
 
-#: games/bouillabaisse.rb:196
+#: games/bouillabaisse.rb:216
 msgid "Each king you take subtracts 50 points."
 msgstr "Każdy zabrany król zmniejsza twój wynik o 50 punktów."
 
@@ -12083,11 +12083,11 @@ msgstr "Każdy rzuca kością raz. Wygrywa najwyższy wynik."
 msgid "Each player's closest guess counts. The winner takes three feathers from each opponent; equally close guesses tie."
 msgstr ""
 
-#: games/bouillabaisse.rb:202
+#: games/bouillabaisse.rb:222
 msgid "Each queen you take costs 50 points."
 msgstr "Każda zabrana dama kosztuje 50 punktów."
 
-#: games/bouillabaisse.rb:195
+#: games/bouillabaisse.rb:215
 msgid "Each queen you take subtracts 50 points."
 msgstr "Każda zabrana dama zmniejsza twój wynik o 50 punktów."
 
@@ -12095,7 +12095,7 @@ msgstr "Każda zabrana dama zmniejsza twój wynik o 50 punktów."
 msgid "Each time, you must reproduce the entire sequence from the beginning, separating the words with Space."
 msgstr ""
 
-#: games/bouillabaisse.rb:199
+#: games/bouillabaisse.rb:219
 msgid "Each trick costs 5 points."
 msgstr "Każde zabranie kart ze stołu kosztuje 5 punktów."
 
@@ -12103,7 +12103,7 @@ msgstr "Każde zabranie kart ze stołu kosztuje 5 punktów."
 msgid "Each trick has four cards, one from each player in clockwise order. To play, go to a card in your hand with the arrow keys and press Enter. Z moves to the next card you are allowed to play and Shift+Z to the previous one; if you have only one playable card, Z plays it."
 msgstr ""
 
-#: games/bouillabaisse.rb:192
+#: games/bouillabaisse.rb:212
 msgid "Each trick you take subtracts 5 points from your score."
 msgstr "Każde zabranie kart ze stołu zmniejsza twój wynik o 5 punktów."
 
@@ -12190,7 +12190,7 @@ msgstr "Edytuj pytanie"
 msgid "Edit report"
 msgstr "Edytuj zgłoszenie"
 
-#: lib/game_surfaces/meld_cards.rb:312
+#: lib/game_surfaces/meld_cards.rb:320
 msgid "Edit this meld"
 msgstr "Edytuj ten układ"
 
@@ -13478,7 +13478,7 @@ msgstr "Pierwsza licytacja."
 msgid "First meld minimum score"
 msgstr "Minimalna wartość pierwszego wyłożenia"
 
-#: lib/game_surfaces/meld_cards.rb:101 lib/game_surfaces/meld_cards.rb:252
+#: lib/game_surfaces/meld_cards.rb:101 lib/game_surfaces/meld_cards.rb:260
 msgid "First meld: %{points} points; %{missing} more required."
 msgstr "Pierwsze wyłożenie: %{points} punktów; brakuje %{missing}."
 
@@ -14361,7 +14361,7 @@ msgstr "Zatankowanie"
 msgid "General"
 msgstr "Ogólne"
 
-#: content/quiz_general_en.rb:12 content/quiz_general_ru.rb:11 content/quiz_pl_wikidata.rb:12
+#: content/quiz_general_en.rb:12 content/quiz_general_ru.rb:11 content/quiz_pl_wikidata.rb:11
 msgid "General knowledge"
 msgstr "Wiedza ogólna"
 
@@ -17679,7 +17679,7 @@ msgstr "Średnia, 18 kategorii"
 msgid "Meld %{number}: %{cards}"
 msgstr "Układ %{number}: %{cards}"
 
-#: lib/game_surfaces/meld_cards.rb:273
+#: lib/game_surfaces/meld_cards.rb:281
 msgid "Melds on the table"
 msgstr "Układy na stole"
 
@@ -17725,7 +17725,7 @@ msgstr "Rachunek w pamięci"
 msgid "Mental arithmetic."
 msgstr "Rachunek w pamięci."
 
-#: lib/game_surfaces/meld_cards.rb:362
+#: lib/game_surfaces/meld_cards.rb:370
 msgid "Merge"
 msgstr "Połącz"
 
@@ -18658,7 +18658,7 @@ msgstr "Brak pasujących nieruchomości."
 msgid "No matching words"
 msgstr "Brak pasujących słów"
 
-#: lib/game_surfaces/meld_cards.rb:242
+#: lib/game_surfaces/meld_cards.rb:250
 msgid "No meld is being prepared."
 msgstr "Nie przygotowujesz żadnego układu."
 
@@ -20687,15 +20687,15 @@ msgstr "Przygotuj następną fazę turnieju (test serwera)"
 msgid "Prepared cards are marked in your hand."
 msgstr "Przygotowane karty są oznaczone w ręce."
 
-#: lib/game_surfaces/meld_cards.rb:305 lib/game_surfaces/meld_cards.rb:337
+#: lib/game_surfaces/meld_cards.rb:313 lib/game_surfaces/meld_cards.rb:345
 msgid "Prepared meld"
 msgstr "Przygotowany układ"
 
-#: lib/game_surfaces/meld_cards.rb:267 lib/game_surfaces/meld_cards.rb:334
+#: lib/game_surfaces/meld_cards.rb:275 lib/game_surfaces/meld_cards.rb:342
 msgid "Prepared melds"
 msgstr "Przygotowane układy"
 
-#: lib/game_surfaces/meld_cards.rb:254
+#: lib/game_surfaces/meld_cards.rb:262
 msgid "Prepared melds: %{points} points."
 msgstr "Przygotowane układy: %{points} punktów."
 
@@ -22072,7 +22072,7 @@ msgstr "Usuń wybranego uczestnika"
 msgid "Remove the selected words from your dictionary?"
 msgstr "Usunąć zaznaczone słowa z własnego słownika?"
 
-#: lib/game_surfaces/meld_cards.rb:317
+#: lib/game_surfaces/meld_cards.rb:325
 msgid "Remove this meld"
 msgstr "Usuń ten układ"
 
@@ -22810,7 +22810,7 @@ msgstr "Runda %{round} zakończyła się."
 msgid "Round %{round} ended. %{scores}"
 msgstr "Koniec rundy %{round}. %{scores}"
 
-#: games/bouillabaisse.rb:207
+#: games/bouillabaisse.rb:227
 msgid "Round %{round} of 6. %{rule}"
 msgstr "Runda %{round} z 6. %{rule}"
 
@@ -22909,7 +22909,7 @@ msgstr "1/8 finału"
 msgid "Round robin"
 msgstr "Każdy z każdym"
 
-#: games/bouillabaisse.rb:178 games/scopa.rb:246
+#: games/bouillabaisse.rb:198 games/scopa.rb:246
 msgid "Round scores: %{scores}."
 msgstr ""
 "Wyniki rundy:\n"
@@ -25434,11 +25434,11 @@ msgstr ""
 msgid "Take turns uncovering two positions by pressing their digits. Listen to your opponent's choices too and remember where the sounds are. A matching pair is removed and scores a point; a mismatch is hidden again."
 msgstr ""
 
-#: games/bouillabaisse.rb:204
+#: games/bouillabaisse.rb:224
 msgid "Taking %{card} costs 200 points."
 msgstr "Zabranie karty %{card} kosztuje 200 punktów."
 
-#: games/bouillabaisse.rb:197
+#: games/bouillabaisse.rb:217
 msgid "Taking %{card} subtracts 200 points."
 msgstr "Zabranie karty %{card} zmniejsza twój wynik o 200 punktów."
 
@@ -26666,6 +26666,10 @@ msgstr ""
 
 #: games/generated/rulebooks/bouillabaisse.rb:14
 msgid "The highest card in the suit led takes all the cards played and leads next. Ace is highest, followed by king, queen, jack, 10 and so on down to 2. There are no trumps. Once all hands are empty, the round is scored."
+msgstr ""
+
+#: games/generated/rulebooks/bouillabaisse.rb:14
+msgid "The highest card in the suit led takes all the cards played and leads next. Ace is highest, followed by king, queen, jack, 10 and so on down to 2. There are no trumps. The round is scored when all hands are empty, or earlier in rounds 2, 3 and 4 once all their penalty cards have been taken."
 msgstr ""
 
 #: games/generated/rulebooks/war.rb:11
@@ -28105,7 +28109,7 @@ msgstr "Nie ma kontaktów, które można zaprosić."
 msgid "There are no invitations yet."
 msgstr "Nie ma jeszcze zaproszeń."
 
-#: lib/game_surfaces/meld_cards.rb:272 lib/game_surfaces/meld_cards.rb:284
+#: lib/game_surfaces/meld_cards.rb:280 lib/game_surfaces/meld_cards.rb:292
 msgid "There are no melds on the table."
 msgstr "Na stole nie ma układów."
 
@@ -28276,7 +28280,7 @@ msgstr "To punkty z gry. Nie ustalono punktacji ligowej ani zasad rozstrzygania 
 msgid "These are registration dates, not the playing windows saved in the draft."
 msgstr "To terminy zapisów, a nie okna rozgrywek zapisane w szkicu."
 
-#: lib/game_surfaces/meld_cards.rb:235 lib/game_surfaces/meld_cards.rb:250
+#: lib/game_surfaces/meld_cards.rb:242 lib/game_surfaces/meld_cards.rb:258
 msgid "These cards do not form valid ordered melds."
 msgstr "Te karty w podanej kolejności nie tworzą poprawnych układów."
 
@@ -28444,7 +28448,7 @@ msgstr "Ten wynik Wieży jest już opublikowany."
 msgid "This action contains too much data and was not sent."
 msgstr "Ta akcja zawiera zbyt dużo danych i nie została wysłana."
 
-#: games/rummy_ui.rb:126 games/rummy_ui.rb:135 lib/game_surfaces/meld_cards.rb:376 lib/game_surfaces/word_board.rb:136 lib/participant_menu.rb:228
+#: games/rummy_ui.rb:126 games/rummy_ui.rb:135 lib/game_surfaces/meld_cards.rb:384 lib/game_surfaces/word_board.rb:136 lib/participant_menu.rb:228
 msgid "This action is not available now."
 msgstr "Ta akcja jest teraz niedostępna."
 
@@ -30809,7 +30813,7 @@ msgstr "Oczekiwanie na rozdanie kart"
 msgid "Waiting for the deal"
 msgstr "Oczekiwanie na rozdanie"
 
-#: games/bouillabaisse.rb:189
+#: games/bouillabaisse.rb:209
 msgid "Waiting for the deal."
 msgstr "Oczekiwanie na rozdanie."
 
@@ -33345,7 +33349,7 @@ msgstr "zamknięcie nawiasu"
 msgid "closing square bracket"
 msgstr "zamknięcie nawiasu kwadratowego"
 
-#: games/bouillabaisse.rb:185 games/bridge/presentation.rb:194 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:26 games/poker.rb:36 games/spades.rb:32 games/three_five_eight.rb:35 games/tysiac.rb:24
+#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:26 games/poker.rb:36 games/spades.rb:32 games/three_five_eight.rb:35 games/tysiac.rb:24
 msgid "clubs"
 msgstr "trefl"
 
@@ -33427,7 +33431,7 @@ msgstr "zgłoś UNO albo wyłap jego brak"
 msgid "describe the selected card"
 msgstr "opis wybranej karty"
 
-#: games/bouillabaisse.rb:185 games/bridge/presentation.rb:194 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:27 games/poker.rb:36 games/spades.rb:33 games/three_five_eight.rb:35 games/tysiac.rb:25
+#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:27 games/poker.rb:36 games/spades.rb:33 games/three_five_eight.rb:35 games/tysiac.rb:25
 msgid "diamonds"
 msgstr "karo"
 
@@ -33704,7 +33708,7 @@ msgstr "trudna pula kategorii"
 msgid "hash sign"
 msgstr "kratka"
 
-#: games/bouillabaisse.rb:185 games/bridge/presentation.rb:194 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:28 games/poker.rb:36 games/spades.rb:34 games/three_five_eight.rb:36 games/tysiac.rb:26
+#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:28 games/poker.rb:36 games/spades.rb:34 games/three_five_eight.rb:36 games/tysiac.rb:26
 msgid "hearts"
 msgstr "kier"
 
@@ -34809,7 +34813,7 @@ msgstr "sortuj karty według wartości"
 msgid "space"
 msgstr "spacja"
 
-#: games/bouillabaisse.rb:185 games/bridge/presentation.rb:194 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:29 games/poker.rb:36 games/spades.rb:35 games/three_five_eight.rb:36 games/tysiac.rb:27
+#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:29 games/poker.rb:36 games/spades.rb:35 games/three_five_eight.rb:36 games/tysiac.rb:27
 msgid "spades"
 msgstr "pik"
 

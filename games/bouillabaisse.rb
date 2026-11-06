@@ -124,6 +124,18 @@ module GameRoomGames
     def private_after_event(state, event, session, repository, history)
       state[:private_round_actions] << event
       return unless state[:phase] == :private_round_end
+      # A scoring round may end while cards remain in hands. Reveal those
+      # receipts through the shared path before auditing the complete deal.
+      return if GameRoomPrivateCardDisclosure.prepare(state, state[:players], purpose: 'round-audit')
+      state.delete(:private_disclosure)
+      audit_private_round(state, event, session, repository, history)
+    end
+
+    def private_disclosure_completed(state, purpose, event, session, repository, history)
+      audit_private_round(state, event, session, repository, history) if purpose == 'round-audit'
+    end
+
+    def audit_private_round(state, event, session, repository, history)
       audit = GameRoomPrivateCardRoundAudit.initial_state(state)
       audit_history = []
       valid = audit && state[:private_round_actions].all? do |item|
@@ -153,13 +165,21 @@ module GameRoomGames
       state[:trick] = []
       add_history(history, event, repository, :trick, _("%{player} wins the trick.") % {player: participant_name(winner)}, actor: winner)
       state[:current_player] = winner
-      if state[:hands].values.all?(&:empty?)
+      if round_scoring_complete?(state)
         if state[:private_cards]
           state[:phase], state[:current_player] = :private_round_end, nil
         else
           score_round(state, event, repository, history)
         end
       end
+    end
+
+    def round_scoring_complete?(state)
+      return true if state[:hands].values.all?(&:empty?)
+      # Rounds 1, 5 and 6 score every trick, so unplayed tricks still matter.
+      return false unless [2, 3, 4].include?(state[:round])
+      remaining = state[:round_deck] - state[:taken].values.flatten
+      remaining.none? { |card| penalty_value(card, state[:round], state[:penalties]).positive? }
     end
 
     def score_round(state, event, repository, history)

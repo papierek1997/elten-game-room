@@ -16,7 +16,12 @@ include GameRoomTest::Assertions
     action = t.game.legal_actions(t.replay, t.replay.current_player).first
     assert(t.act(wrong, action) == :not_your_turn, 'wrong player could play')
     t.finish_round
-    assert(t.state[:taken].values.flatten.uniq.size == 52 - 52 % count, 'missing played card')
+    played = t.state[:taken].values.flatten
+    remaining = t.state[:hands].values.flatten
+    assert((played + remaining).uniq.size == 52 - 52 % count, 'missing dealt card')
+    assert((played & remaining).empty?, 'captured card remained in a hand')
+    assert(remaining.empty? || [2, 3, 4].include?(round + 1) &&
+      remaining.none? { |card| game.penalty_value(card, round + 1, penalties).positive? }, 'scoring cards remain at round end')
     old_dealer = t.state[:dealer]
     t.deal if round < 5
     assert(t.state[:dealer] == (old_dealer + 1) % count, 'dealer did not rotate') if round < 5

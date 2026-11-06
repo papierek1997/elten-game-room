@@ -232,7 +232,15 @@ module GameSurfaces
 
     def validate_groups(groups)
       value = @spec.validator.call(groups)
-      speak(_("These cards do not form valid ordered melds.")) unless value
+      unless value
+        # Keep correct prepared melds, but let the player start an invalid
+        # one again without manually unticking every card. Reading with P
+        # does not use this submission path and remains non-destructive.
+        @groups.select! { |group| @spec.validator.call([group]) }
+        @selection = [] if !@selection.empty? && !@spec.validator.call([@selection])
+        refresh_labels
+        speak(_("These cards do not form valid ordered melds."))
+      end
       value
     end
 
