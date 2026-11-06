@@ -10,7 +10,12 @@ require_relative '../../support/game_option_editor_native'
   NativeOptionTest.assert(choice.label==expected_name,'Survival mode label differs from the requested name')
   NativeOptionTest.assert(book.sections.none? { |section| section.id==:main_8 },'Inactivity retained its own section')
   memory=book.sections.find { |section| section.id==:main_9 }
-  NativeOptionTest.assert(memory.paragraphs.last.match?(/nerd|нерд/),'Memory section is missing the final mixed-mode sentence')
+  if language=='ru'
+    NativeOptionTest.assert(memory.paragraphs.last=='Смешанный режим здесь — для неисправимых фанатов: приходится вспоминать не только слово, но и то, каким способом его нужно было набрать.',
+      'Memory section lost the approved Russian mixed-mode explanation')
+  else
+    NativeOptionTest.assert(memory.paragraphs.last.match?(/nerd/),'Memory section is missing the final mixed-mode sentence')
+  end
   if language=='pl'
     NativeOptionTest.assert(memory.paragraphs.last=='Tryb mieszany w tym przypadku jest dla nieuleczalnych nerdów, ponieważ należy odtworzyć z pamięci zarówno słowo, jak i sposób, w jaki należało je wpisać.','The supplied Polish sentence changed')
   end
