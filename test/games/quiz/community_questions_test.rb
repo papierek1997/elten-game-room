@@ -3,11 +3,12 @@ require 'json'
 require 'digest'
 require_relative '../../../content/languages'
 require_relative '../../../content/quiz_pl_wikidata'
+require_relative '../../support/quiz_editorial_baseline'
 
 def assert(value, message); raise message unless value; end
 
 pack = GameRoomContent.registry.pack('quiz.wikidata.pl')
-questions = pack.data.fetch('questions')
+questions = QuizEditorialBaseline.before_november_review(pack.data.fetch('questions'))
 # This is an editorial baseline, not an engine compatibility requirement.
 # It includes the six approved wording corrections from the 2026-10-16
 # player reports, covered individually by reviewed_questions_test.rb.

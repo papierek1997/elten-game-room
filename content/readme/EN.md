@@ -184,6 +184,7 @@ You do not need to learn every shortcut at once:
 - Ctrl+F4 reads connection latency, distinguishing HTTP from an available Communications or P2P connection.
 
 In Thousand, R reads just the current contract amount and bidder. Shift+R surrenders the deal when the rules allow it.
+Shift+D requests a redeal when your initial hand contains all four nines. A separate option, off by default, allows a redeal when the revealed talon contains at least two nines, before the first card is passed or discarded. The same player deals again, without changing scores or penalty counters.
 
 In Quiz, the question is a read-only text field. Use Ctrl+Left or Ctrl+Right to read it word by word. Down moves to the answer list; Up from the first answer returns to the question.
 
@@ -252,7 +253,7 @@ Game sounds are not muted by default. Muting them in the background does not rep
 
 ## Languages
 
-Power Games has its own interface language selection in Settings → General. English, Polish, Czech, Spanish and Russian are available. This does not change the language of ELTEN itself. Restart ELTEN to apply the choice throughout Power Games, including the widget.
+Power Games has its own interface language selection in Settings → General. English, Polish, Czech, Spanish and Russian are available. This does not change the language of ELTEN itself. Close ELTEN completely and start it again to apply the choice throughout Power Games, including the widget. Restarting with F12 does not reload Power Games.
 
 The optional “Known languages” list provides fallback translations. If text is missing in the main language, the program can use one of the selected languages and ultimately English.
 
@@ -411,6 +412,7 @@ This list covers the program's common controls. Use F1 for a specific game's com
 - Enter — ELTEN's user menu for the selected person.
 - Ctrl+M — transfer hosting to the selected person; for the host.
 - Ctrl+Shift+R — replace the selected player; for the host.
+- Ctrl+Shift+P — choose whether the selected person will play or observe the next game; for the host, on the users list.
 
 ### In the table list and widget
 

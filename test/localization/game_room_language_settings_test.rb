@@ -170,7 +170,7 @@ end
 symbolized = GameRoomPreferences.normalize({ interface_language: "pl", known_languages: [] }, [])
 assert(symbolized["interface_language"] == "pl" && symbolized["known_languages"] == [], "language normalization discarded symbol-keyed preferences or filled the empty list")
 
-language_tip = "Missing translations use other known languages, then English. Restart ELTEN to apply language changes."
+language_tip = "Missing translations use other known languages, then English. Close ELTEN completely and start it again to apply language changes; F12 is not enough."
 settings_dialog do |form|
   form.fields[1..2].each do |control|
     assert(control.language_tips.to_a.include?(language_tip), "language controls do not explain fallback and restart in their help")
@@ -191,7 +191,7 @@ assert(!translations.empty?, "Polish language-settings reference is missing")
   "Language" => "Język",
   "Primary interface language" => "Główny język interfejsu",
   "Known languages" => "Znane języki",
-  language_tip => "Jeśli brakuje tłumaczenia, używany jest inny znany język, a na końcu angielski. Zmiany języka zaczną obowiązywać po ponownym uruchomieniu ELTEN-a."
+  language_tip => "Brakujące tłumaczenia są uzupełniane z innych znanych języków, a następnie z angielskiego. Aby zastosować zmianę języka, zamknij całkowicie ELTEN-a i uruchom go ponownie; F12 nie wystarczy."
 }.each do |source, translated|
   assert(translations[source] == translated, "missing Polish language setting: #{source}")
 end

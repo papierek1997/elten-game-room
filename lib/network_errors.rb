@@ -6,6 +6,16 @@ module GameRoomNetworkErrors
   class UncertainWrite < StandardError; end
   class UnsupportedInvitation < StandardError; end
   class GamePaused < StandardError; end
+  # A roster or owner can change after the participant menu was opened.
+  # Keep this expected conflict distinct from invalid arguments/programming errors.
+  class RoleChangeUnavailable < ArgumentError
+    attr_reader :reason
+
+    def initialize(reason)
+      @reason = reason
+      super(reason == :not_owner ? "Only the table master may change another user's role" : "The user is not at this table")
+    end
+  end
   class ClockUnavailable < IOError; end
 
   def self.expected?(error)

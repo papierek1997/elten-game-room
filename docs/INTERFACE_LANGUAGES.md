@@ -3,9 +3,11 @@
 Game Room settings include Primary interface language, then Known languages
 (native multi-selection), at the start of the General category.
 Known languages are optional and independent of the primary language. Language changes are
-staged with the other settings: Save writes them, Cancel discards them. Restart
-ELTEN to apply them to the entire program, including menus and the main-screen
-widget. Merely closing the Game Room window does not reload its translated data.
+staged with the other settings: Save writes them, Cancel discards them. Quit
+ELTEN completely and start it again to apply them to the entire program, including
+menus and the main-screen widget. Neither closing Power Games nor the host's F12
+soft restart reloads its translated data: `Programs.load_all` retains existing
+Runtimes, and `load_sig` returns early for an already loaded entry.
 
 The local `settings.json` stores language codes, not names or list indices:
 

@@ -23,6 +23,8 @@ module TysiacPlanning
       choices = actions.to_a
       return nil if choices.empty?
       return choices.first if choices.length == 1
+      redeal = choices.find { |action| action["action"] == "redeal" }
+      return redeal if redeal
 
       planner = Planner.new(game, replay, actor, random_source)
       selected = case replay.state[:phase]

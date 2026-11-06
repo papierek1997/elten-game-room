@@ -213,9 +213,9 @@ class LobbyRepository
     snapshot = snapshot_for(row, force: true)
     return nil if snapshot == nil
     own_role = GameRoomParticipants.same?(user, Session.name)
-    raise ArgumentError, "Only the table master may change another user's role" unless own_role || GameRoomParticipants.same?(owner_of(snapshot.table), Session.name)
+    raise GameRoomNetworkErrors::RoleChangeUnavailable, :not_owner unless own_role || GameRoomParticipants.same?(owner_of(snapshot.table), Session.name)
     raise ArgumentError, "A computer cannot observe a game" if GameRoomParticipants.bot?(user)
-    raise ArgumentError, "The user is not at this table" if !GameRoomParticipants.includes?(snapshot.members, user)
+    raise GameRoomNetworkErrors::RoleChangeUnavailable, :not_member if !GameRoomParticipants.includes?(snapshot.members, user)
 
     if own_role
       @transport.set_observer(snapshot.table, observing, actor: Session.name)

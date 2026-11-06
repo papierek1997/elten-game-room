@@ -8,7 +8,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n == 1 ? 0 : 1);\n"
 "X-Language-Name: español\n"
 
-#: games/bridge/presentation.rb:178
+#: games/bridge/presentation.rb:237
 msgid " and "
 msgstr " y "
 
@@ -42,6 +42,10 @@ msgstr "%{action}: %{tiles}"
 #: lib/game_surfaces/review_surface.rb:204
 msgid "%{answer}; status: %{status}"
 msgstr "%{answer}; estado: %{status}"
+
+#: games/bridge/presentation.rb:363
+msgid "%{bid}: %{count} tricks"
+msgstr "%{bid}: %{count} bazas"
 
 msgid "%{board} property %{number}"
 msgstr "%{board}, propiedad %{number}"
@@ -82,7 +86,7 @@ msgstr "%{card}. %{bid}"
 msgid "%{card}. Choose how to change the Scriptorium"
 msgstr "%{card}. Elige cómo modificar el Scriptorium"
 
-#: lib/game_surfaces.rb:1018
+#: lib/game_surfaces.rb:1024
 msgid "%{card}. Choose how to play it"
 msgstr "%{card}. Elige cómo jugarla"
 
@@ -206,15 +210,19 @@ msgstr "%{challenge}: %{players}."
 msgid "%{colour} %{value}"
 msgstr "%{colour} %{value}"
 
-#: games/bridge/presentation.rb:370
+#: games/bridge/presentation.rb:469
 msgid "%{contract} by %{declarer} %{result}"
 msgstr "%{contract}, juega %{declarer}: %{result}"
 
-#: games/bridge/presentation.rb:222
+#: games/bridge/presentation.rb:442
+msgid "%{contract} by %{declarer}: %{result}."
+msgstr "%{contract}, declarante %{declarer}: %{result}."
+
+#: games/bridge/presentation.rb:281
 msgid "%{contract} doubled"
 msgstr "%{contract} doblado"
 
-#: games/bridge/presentation.rb:223
+#: games/bridge/presentation.rb:282
 msgid "%{contract} redoubled"
 msgstr "%{contract} redoblado"
 
@@ -398,7 +406,7 @@ msgstr "Reglas de %{game}"
 msgid "%{game}, %{owner}"
 msgstr "%{game}, %{owner}"
 
-#: __app.rb:3116
+#: __app.rb:3120
 msgid "%{game}, %{table}"
 msgstr "%{game}, %{table}"
 
@@ -414,7 +422,7 @@ msgstr "%{game}: %{section}"
 msgid "%{game}; %{date}; %{players}"
 msgstr "%{game}; %{date}; %{players}"
 
-#: __app.rb:2713
+#: __app.rb:2717
 msgid "%{game}; %{table}; invited by %{sender}; %{count}/%{maximum}"
 msgstr "%{game}; %{table}; invitación de %{sender}; %{count}/%{maximum}"
 
@@ -430,7 +438,7 @@ msgstr ""
 msgid "%{giver} gave a trump card to %{target}; %{target} chooses the return card."
 msgstr ""
 
-#: __app.rb:3984
+#: __app.rb:3988
 msgid "%{group}, %{volume}%%"
 msgstr "%{group}, %{volume}%%"
 
@@ -460,7 +468,7 @@ msgstr "%{judge}; respuestas en %{language}; %{pool}; %{categories} categorías 
 msgid "%{judge}; answers in %{language}; %{time}; target: %{target} points"
 msgstr "%{judge}; respuestas en %{language}; %{time}; objetivo: %{target} puntos"
 
-#: games/bridge/presentation.rb:550
+#: games/bridge/presentation.rb:651
 msgid "%{label} after %{boards} of %{total} boards: %{scores}."
 msgstr "%{label} tras %{boards} de %{total} manos: %{scores}."
 
@@ -502,29 +510,29 @@ msgstr ""
 msgid "%{letter}, %{points} points"
 msgstr "%{letter}, %{points} puntos"
 
-#: games/bridge/presentation.rb:212
+#: games/bridge/presentation.rb:271
 msgid "%{level} club"
 msgid_plural "%{level} clubs"
 msgstr[0] "%{level} trébol"
 msgstr[1] "%{level} tréboles"
 
-#: games/bridge/presentation.rb:213
+#: games/bridge/presentation.rb:272
 msgid "%{level} diamond"
 msgid_plural "%{level} diamonds"
 msgstr[0] "%{level} diamante"
 msgstr[1] "%{level} diamantes"
 
-#: games/bridge/presentation.rb:214
+#: games/bridge/presentation.rb:273
 msgid "%{level} heart"
 msgid_plural "%{level} hearts"
 msgstr[0] "%{level} corazón"
 msgstr[1] "%{level} corazones"
 
-#: games/bridge/presentation.rb:216
+#: games/bridge/presentation.rb:275
 msgid "%{level} no trump"
 msgstr "%{level} sin triunfo"
 
-#: games/bridge/presentation.rb:215
+#: games/bridge/presentation.rb:274
 msgid "%{level} spade"
 msgid_plural "%{level} spades"
 msgstr[0] "%{level} pica"
@@ -633,7 +641,7 @@ msgstr "%{owner} ha reclamado el alquiler. %{player} ha pagado %{rent}."
 msgid "%{owner} waived the rent from %{player}."
 msgstr "%{owner} ha renunciado a cobrar el alquiler a %{player}."
 
-#: __app.rb:3408
+#: __app.rb:3412
 msgid "%{owner}, %{count}/%{maximum}, %{status}"
 msgstr "%{owner}, %{count}/%{maximum}, %{status}"
 
@@ -736,7 +744,7 @@ msgstr "%{player} %{score}%{barrel}"
 msgid "%{player} %{score}, zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "%{player} %{score}, ceros %{zeros}/3, rendiciones %{surrenders}/3%{barrel}"
 
-#: games/bridge/presentation.rb:42 games/bridge/presentation.rb:67
+#: games/bridge/presentation.rb:126
 msgid "%{player} (%{seat}) is bidding."
 msgstr "Habla %{player} (%{seat})."
 
@@ -798,7 +806,7 @@ msgstr ""
 msgid "%{player} begins the final lap."
 msgstr "%{player} empieza la última vuelta."
 
-#: games/tysiac.rb:753
+#: games/tysiac.rb:761
 msgid "%{player} bid %{bid}."
 msgstr "%{player} ha pujado %{bid}."
 
@@ -905,7 +913,7 @@ msgstr "%{player} ha elegido a %{user} como jugador para la próxima partida."
 msgid "%{player} chose %{user} as an observer for the next game."
 msgstr "%{player} ha elegido a %{user} como espectador para la próxima partida."
 
-#: games/tysiac.rb:819
+#: games/tysiac.rb:827
 msgid "%{player} chose talon %{number}."
 msgstr "%{player} ha elegido la reserva %{number}."
 
@@ -974,7 +982,7 @@ msgstr "%{player} se ha declarado en bancarrota. Las propiedades restantes vuelv
 msgid "%{player} declared riichi, discarding %{tile}."
 msgstr "%{player} ha declarado riichi descartando: %{tile}."
 
-#: games/tysiac.rb:939
+#: games/tysiac.rb:947
 msgid "%{player} declared the %{suit} marriage for %{points} points by playing %{card}. %{suit} is now trump."
 msgstr "%{player} ha realizado el anuncio de %{suit} por %{points} puntos al jugar %{card}. Ahora %{suit} es el palo de triunfo."
 
@@ -1129,15 +1137,15 @@ msgstr ""
 msgid "%{player} folds."
 msgstr "%{player} se retira."
 
-#: games/tysiac.rb:1757
+#: games/tysiac.rb:1765
 msgid "%{player} gained %{points} points."
 msgstr "%{player} ha ganado %{points} puntos."
 
-#: games/tysiac.rb:1761
+#: games/tysiac.rb:1769
 msgid "%{player} gained no points."
 msgstr "%{player} no ha ganado puntos."
 
-#: games/tysiac.rb:1527
+#: games/tysiac.rb:1535
 msgid "%{player} gave you %{card}."
 msgstr "%{player} te ha dado %{card}."
 
@@ -1215,7 +1223,7 @@ msgstr "%{player} te invita a formar pareja en %{name}."
 msgid "%{player} is all in for %{amount}."
 msgstr "%{player} lo apuesta todo: %{amount}."
 
-#: games/base.rb:343 games/base.rb:384 games/spades.rb:905
+#: games/base.rb:343 games/base.rb:384 games/bridge/presentation.rb:42 games/spades.rb:905
 msgid "%{player} is bidding."
 msgstr "%{player} está haciendo su declaración."
 
@@ -1253,7 +1261,7 @@ msgstr[1] "%{player}: congelación durante %{count} turnos."
 msgid "%{player} is looking at the chosen cards."
 msgstr ""
 
-#: games/tysiac.rb:1038
+#: games/tysiac.rb:1046
 msgid "%{player} is now on the barrel."
 msgstr "%{player} está ahora en el barril."
 
@@ -1394,7 +1402,7 @@ msgstr "%{player} pierde por incomparecencia. Con esta decisión termina la part
 msgid "%{player} lost %{count} tokens for %{reason}; %{remaining} remain."
 msgstr "%{player} ha perdido %{count} fichas por %{reason}; le quedan %{remaining}."
 
-#: games/tysiac.rb:1759
+#: games/tysiac.rb:1767
 msgid "%{player} lost %{points} points."
 msgstr "%{player} ha perdido %{points} puntos."
 
@@ -1490,7 +1498,7 @@ msgstr "%{player} ha pagado %{amount} a %{recipient}: %{reason}."
 msgid "%{player} paid %{rent} rent to %{owner}."
 msgstr "%{player} ha pagado %{rent} de alquiler a %{owner}."
 
-#: games/mahjong_support/table_game.rb:425 games/tysiac.rb:742
+#: games/mahjong_support/table_game.rb:425 games/tysiac.rb:750
 msgid "%{player} passed."
 msgstr "%{player} ha pasado."
 
@@ -1575,7 +1583,7 @@ msgstr "%{player} juega %{card} contra %{target}."
 msgid "%{player} played %{card}, now at %{miles} miles."
 msgstr "%{player} jugó %{card} y ahora lleva %{miles} millas."
 
-#: games/mille_bornes/model.rb:308 games/spades.rb:785 games/three_five_eight.rb:648 games/tysiac.rb:930 games/uno/play_reduction.rb:106
+#: games/mille_bornes/model.rb:308 games/spades.rb:785 games/three_five_eight.rb:648 games/tysiac.rb:938 games/uno/play_reduction.rb:106
 msgid "%{player} played %{card}."
 msgstr "%{player} ha jugado %{card}."
 
@@ -1643,9 +1651,13 @@ msgstr "%{player} juega %{tile} en su propio tren."
 msgid "%{player} plays %{words}: %{points} points."
 msgstr "%{player} juega %{words}: %{points} puntos."
 
-#: games/bridge/presentation.rb:47 games/bridge/presentation.rb:69
+#: games/bridge/presentation.rb:128
 msgid "%{player} plays from dummy (%{seat})."
 msgstr "%{player} juega desde el muerto (%{seat})."
+
+#: games/bridge/presentation.rb:47
+msgid "%{player} plays from dummy."
+msgstr "%{player} juega del muerto."
 
 #: games/chess.rb:477
 msgid "%{player} promoted the pawn to %{piece}."
@@ -1745,7 +1757,7 @@ msgid_plural "%{player} receives %{count} feathers."
 msgstr[0] "%{player} recibe %{count} pluma."
 msgstr[1] "%{player} recibe %{count} plumas."
 
-#: games/tysiac.rb:981
+#: games/tysiac.rb:989
 msgid "%{player} receives %{points} points from the set-aside cards for winning the last trick."
 msgstr "%{player} recibe %{points} puntos de las cartas apartadas por ganar la última baza."
 
@@ -1805,6 +1817,14 @@ msgstr "%{player} devuelve %{amount} de su deuda a %{recipient}."
 #: games/makao.rb:619
 msgid "%{player} requests %{rank}."
 msgstr "%{player} pide el valor %{rank}."
+
+#: games/tysiac_redeals.rb:100
+msgid "%{player} requests a redeal with four nines."
+msgstr "%{player} pide un nuevo reparto por tener los cuatro nueves."
+
+#: games/tysiac_redeals.rb:102
+msgid "%{player} requests a redeal: at least two nines in the talon."
+msgstr "%{player} pide un nuevo reparto: hay al menos dos nueves en el talón."
 
 msgid "%{player} resolved a board card. Cash: %{cash}."
 msgstr "%{player} ha resuelto una carta del tablero. Efectivo: %{cash}."
@@ -1965,11 +1985,11 @@ msgstr "%{player} saca para %{receiver}."
 msgid "%{player} serves."
 msgstr "%{player} saca."
 
-#: games/tysiac.rb:836
+#: games/tysiac.rb:844
 msgid "%{player} set aside a card."
 msgstr "%{player} ha apartado una carta."
 
-#: games/tysiac.rb:885
+#: games/tysiac.rb:893
 msgid "%{player} set the contract at %{contract}."
 msgstr "%{player} ha fijado el contrato en %{contract}."
 
@@ -1980,7 +2000,7 @@ msgstr "%{player} ha fijado el contrato final en %{contract} y sale en la primer
 msgid "%{player} shoots at %{field}."
 msgstr "%{player} dispara a %{field}."
 
-#: games/tysiac.rb:721
+#: games/tysiac.rb:729
 msgid "%{player} sits out this deal."
 msgstr ""
 
@@ -2016,7 +2036,7 @@ msgstr "%{player} se planta con %{total}."
 msgid "%{player} submitted their answers."
 msgstr "%{player} ha enviado sus respuestas."
 
-#: games/tysiac.rb:903
+#: games/tysiac.rb:911
 msgid "%{player} surrendered the deal at a contract of %{contract}."
 msgstr "%{player} se ha rendido en el reparto con un contrato de %{contract}."
 
@@ -2156,7 +2176,7 @@ msgid_plural "%{player} wins the trick and takes %{count} cards."
 msgstr[0] ""
 msgstr[1] ""
 
-#: games/bouillabaisse.rb:166
+#: games/bouillabaisse.rb:185 games/bridge/presentation.rb:100
 msgid "%{player} wins the trick."
 msgstr "%{player} gana la baza."
 
@@ -2180,7 +2200,7 @@ msgstr "%{player} gana todo el bote: %{amount}%{deciding}."
 msgid "%{player} wins."
 msgstr "Gana %{player}."
 
-#: games/tysiac.rb:785
+#: games/tysiac.rb:793
 msgid "%{player} won the auction at %{bid}."
 msgstr "%{player} ha ganado la subasta con una puja de %{bid}."
 
@@ -2210,7 +2230,7 @@ msgstr "%{player} ha ganado la ronda."
 msgid "%{player} won the round. The values of the remaining cards were added to their owners' scores."
 msgstr "%{player} ha ganado la ronda. Los valores de las cartas restantes se han sumado a las puntuaciones de sus propietarios."
 
-#: games/tysiac.rb:966
+#: games/tysiac.rb:974
 msgid "%{player} won the trick for %{points} card points."
 msgstr "%{player} ha ganado la baza por un valor de %{points} puntos en cartas."
 
@@ -2310,11 +2330,11 @@ msgstr ""
 msgid "%{player}, changed fields: %{fields}."
 msgstr "%{player}, casillas modificadas: %{fields}."
 
-#: games/tysiac.rb:1774
+#: games/tysiac.rb:1782
 msgid "%{player}, collected %{collected}, awarded %{points}."
 msgstr "%{player}, puntos acumulados: %{collected}, puntos otorgados: %{points}."
 
-#: games/tysiac.rb:1772
+#: games/tysiac.rb:1780
 msgid "%{player}, collected %{collected}, lost %{points}."
 msgstr "%{player}, puntos acumulados: %{collected}, puntos perdidos: %{points}."
 
@@ -2355,7 +2375,7 @@ msgstr "%{player}: %{attempts} intentos, en juego"
 msgid "%{player}: %{attempt}"
 msgstr "%{player}: %{attempt}"
 
-#: games/spades.rb:925 games/tysiac.rb:1673 games/tysiac.rb:1682
+#: games/spades.rb:925 games/tysiac.rb:1681 games/tysiac.rb:1690
 msgid "%{player}: %{bid}"
 msgstr "%{player}: %{bid}"
 
@@ -2363,16 +2383,24 @@ msgstr "%{player}: %{bid}"
 msgid "%{player}: %{bonuses}."
 msgstr "%{player}: %{bonuses}."
 
+#: games/bridge/presentation.rb:88
+msgid "%{player}: %{call}."
+msgstr "%{player}: %{call}."
+
 #: games/rummy.rb:552
 msgid "%{player}: %{cards} points for opponents' cards and %{bonus} bonus points."
 msgstr "%{player}: %{cards} puntos por las cartas de los rivales y %{bonus} puntos de bonificación."
 
-#: games/base/shortcuts.rb:50 games/bouillabaisse.rb:48 games/bouillabaisse.rb:84 games/scientific_war.rb:886 games/spades.rb:936 games/three_five_eight.rb:1017 games/tysiac.rb:1631 games/war.rb:427 games/war.rb:486
+#: games/base/shortcuts.rb:50 games/bouillabaisse.rb:103 games/bouillabaisse.rb:67 games/scientific_war.rb:886 games/spades.rb:936 games/three_five_eight.rb:1017 games/tysiac.rb:1639 games/war.rb:427 games/war.rb:486
 msgid "%{player}: %{card}"
 msgstr "%{player}: %{card}"
 
 msgid "%{player}: %{card} Cash: %{cash}."
 msgstr "%{player}: %{card} Efectivo: %{cash}."
+
+#: games/bridge/presentation.rb:95
+msgid "%{player}: %{card}."
+msgstr "%{player}: %{card}."
 
 #: games/poker.rb:1415
 msgid "%{player}: %{chips}"
@@ -2454,7 +2482,7 @@ msgstr "%{player}: %{result}"
 msgid "%{player}: %{result}."
 msgstr "%{player}: %{result}."
 
-#: games/biblios.rb:1296 games/cat_head_tail.rb:433 games/farkle.rb:761 games/three_five_eight.rb:1022 games/tysiac.rb:1643 games/uno.rb:1385 games/yahtzee.rb:527
+#: games/biblios.rb:1296 games/cat_head_tail.rb:433 games/farkle.rb:761 games/three_five_eight.rb:1022 games/tysiac.rb:1651 games/uno.rb:1385 games/yahtzee.rb:527
 msgid "%{player}: %{score}"
 msgstr "%{player}: %{score}"
 
@@ -2519,11 +2547,11 @@ msgstr "%{player}: doble riichi"
 msgid "%{player}: field %{number}, %{square}"
 msgstr "%{player}: casilla %{number}, %{square}"
 
-#: games/tysiac.rb:1781
+#: games/tysiac.rb:1789
 msgid "%{player}: first surrender."
 msgstr "%{player}: primera rendición."
 
-#: games/tysiac.rb:1786
+#: games/tysiac.rb:1794
 msgid "%{player}: first zero."
 msgstr "%{player}: primer cero."
 
@@ -2555,11 +2583,11 @@ msgstr ""
 msgid "%{player}: riichi"
 msgstr "%{player}: riichi"
 
-#: games/tysiac.rb:1782
+#: games/tysiac.rb:1790
 msgid "%{player}: second surrender."
 msgstr "%{player}: segunda rendición."
 
-#: games/tysiac.rb:1787
+#: games/tysiac.rb:1795
 msgid "%{player}: second zero."
 msgstr "%{player}: segundo cero."
 
@@ -2579,11 +2607,11 @@ msgstr "%{player}: casilla %{square}, vuelta %{lap}."
 msgid "%{player}: surrendered"
 msgstr "%{player}: se ha rendido"
 
-#: games/tysiac.rb:1784
+#: games/tysiac.rb:1792
 msgid "%{player}: third surrender."
 msgstr "%{player}: tercera rendición."
 
-#: games/tysiac.rb:1789
+#: games/tysiac.rb:1797
 msgid "%{player}: third zero."
 msgstr "%{player}: tercer cero."
 
@@ -2595,11 +2623,11 @@ msgstr ""
 msgid "%{player}: tricks won %{tricks}, target %{target}, points this deal %{points}, total score %{score}."
 msgstr ""
 
-#: games/tysiac.rb:1658
+#: games/tysiac.rb:1666
 msgid "%{player}: zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "%{player}: ceros %{zeros}/3, rendiciones %{surrenders}/3%{barrel}"
 
-#: games/bridge/presentation.rb:381
+#: games/bridge/presentation.rb:480
 msgid "%{points} for %{side}"
 msgstr "%{points} para %{side}"
 
@@ -2647,7 +2675,7 @@ msgstr "%{property}; grupo: %{owned} de %{total}."
 msgid "%{property}; group ownership %{owned} of %{total}."
 msgstr "%{property}; propiedades del grupo en posesión: %{owned} de %{total}."
 
-#: games/card_game.rb:61 games/makao.rb:913 games/makao.rb:920 games/ninety_nine.rb:1037 games/poker.rb:1409 games/spades.rb:1124 games/three_five_eight.rb:1105 games/tysiac.rb:1736
+#: games/card_game.rb:61 games/makao.rb:913 games/makao.rb:920 games/ninety_nine.rb:1037 games/poker.rb:1409 games/spades.rb:1124 games/three_five_eight.rb:1105 games/tysiac.rb:1744
 msgid "%{rank} of %{suit}"
 msgstr "%{rank} de %{suit}"
 
@@ -2675,27 +2703,27 @@ msgstr "%{round}. %{word}: %{attempts} intentos"
 msgid "%{seat} %{card}"
 msgstr "%{seat} %{card}"
 
-#: games/bridge/presentation.rb:169
+#: games/bridge/presentation.rb:228
 msgid "%{seat} (%{player})"
 msgstr "%{seat} (%{player})"
 
-#: games/bridge/presentation.rb:349
+#: games/bridge/presentation.rb:418
 msgid "%{seat} won the trick. Tricks: %{tricks}."
 msgstr "Gana la baza %{seat}. Bazas: %{tricks}."
 
-#: games/bridge/presentation.rb:489
+#: games/bridge/presentation.rb:590
 msgid "%{seat}: %{call}"
 msgstr "%{seat}: %{call}"
 
-#: games/bridge/presentation.rb:326
+#: games/bridge/presentation.rb:395
 msgid "%{seat}: %{call}."
 msgstr "%{seat}: %{call}."
 
-#: games/bridge/presentation.rb:468
+#: games/bridge/presentation.rb:562 games/bridge/presentation.rb:569 games/bridge/presentation.rb:585
 msgid "%{seat}: %{card}"
 msgstr "%{seat}: %{card}"
 
-#: games/bridge/presentation.rb:340
+#: games/bridge/presentation.rb:409
 msgid "%{seat}: %{card}."
 msgstr "%{seat}: %{card}."
 
@@ -2753,57 +2781,57 @@ msgstr "%{server} sacará contra %{receiver}."
 msgid "%{set}, %{count} tiles, up to %{players} players"
 msgstr "%{set}, %{count} fichas, hasta %{players} jugadores"
 
-#: games/bridge/presentation.rb:428
+#: games/bridge/presentation.rb:527
 msgid "%{side} %{percent}%%"
 msgstr "%{side} %{percent} %%"
 
-#: games/bridge/presentation.rb:413
+#: games/bridge/presentation.rb:453 games/bridge/presentation.rb:512
 msgid "%{side} %{score}"
 msgstr "%{side} %{score}"
 
-#: games/bridge/presentation.rb:178
+#: games/bridge/presentation.rb:237
 msgid "%{side} (%{players})"
 msgstr "%{side} (%{players})"
 
-#: games/bridge/presentation.rb:392
+#: games/bridge/presentation.rb:491
 msgid "%{side} gains %{count} IMP."
 msgid_plural "%{side} gains %{count} IMPs."
 msgstr[0] "%{side} gana %{count} IMP."
 msgstr[1] "%{side} gana %{count} IMP."
 
-#: games/bridge/presentation.rb:400
+#: games/bridge/presentation.rb:499
 msgid "%{side} score %{points} below the line."
 msgstr "%{side}: %{points} debajo de la raya."
 
-#: games/bridge/presentation.rb:405
+#: games/bridge/presentation.rb:504
 msgid "%{side} score %{points} for honours."
 msgstr "%{side}: %{points} por honores."
 
-#: games/bridge/presentation.rb:402
+#: games/bridge/presentation.rb:501
 msgid "%{side} score %{points} for making a doubled contract."
 msgstr "%{side}: %{points} por cumplir un contrato doblado."
 
-#: games/bridge/presentation.rb:401
+#: games/bridge/presentation.rb:500
 msgid "%{side} score %{points} for overtricks."
 msgstr "%{side}: %{points} por sobrebazas."
 
-#: games/bridge/presentation.rb:403
+#: games/bridge/presentation.rb:502
 msgid "%{side} score %{points} for the slam."
 msgstr "%{side}: %{points} por el slam."
 
-#: games/bridge/presentation.rb:404
+#: games/bridge/presentation.rb:503
 msgid "%{side} score %{points} for undertricks."
 msgstr "%{side}: %{points} por las multas."
 
-#: games/bridge/presentation.rb:406
+#: games/bridge/presentation.rb:461 games/bridge/presentation.rb:505
 msgid "%{side} won a game."
 msgstr "%{side} gana una manga."
 
-#: games/bridge/presentation.rb:407
+#: games/bridge/presentation.rb:506
 msgid "%{side} won the rubber and score %{points}."
 msgstr "%{side} gana el robber: premio de %{points} puntos."
 
-#: games/bridge/presentation.rb:557
+#: games/bridge/presentation.rb:658
 msgid "%{side}: %{games} games, %{below} below and %{above} above the line, %{total} in total"
 msgstr "%{side}: mangas ganadas %{games}, debajo de la raya %{below}, encima %{above}, total %{total}"
 
@@ -2834,18 +2862,18 @@ msgstr "%{status}; %{name}; anfitrión: %{owner}; usuarios: %{users}; %{count}/%
 msgid "%{suit} as trump"
 msgstr ""
 
-#: games/bridge/presentation.rb:241
+#: games/bridge/presentation.rb:300
 msgid "%{suit}: %{cards}"
 msgstr "%{suit}: %{cards}"
 
-#: __app.rb:3120
+#: __app.rb:3124
 msgid "%{table}, unavailable"
 msgstr "%{table}, no disponible"
 
 msgid "%{taker} gave %{card} to %{player}."
 msgstr "%{taker} ha dado %{card} a %{player}."
 
-#: games/tysiac.rb:1533 games/tysiac.rb:856
+#: games/tysiac.rb:1541 games/tysiac.rb:864
 msgid "%{taker} gave a card to %{player}."
 msgstr "%{taker} ha dado una carta a %{player}."
 
@@ -2935,7 +2963,7 @@ msgstr "%{user} ha rechazado la invitación de %{player}."
 msgid "%{user} declined your invitation to %{table}."
 msgstr "%{user} ha rechazado tu invitación a %{table}."
 
-#: __app.rb:4054
+#: __app.rb:4058
 msgid "%{user}'s table"
 msgstr "Mesa de %{user}"
 
@@ -2995,11 +3023,11 @@ msgstr ""
 msgid "%{variant}; 3 to 9 letters"
 msgstr "%{variant}; de 3 a 9 letras"
 
-#: games/spades.rb:579 games/spades.rb:849 games/three_five_eight.rb:430 games/tysiac.rb:1046 games/tysiac.rb:120
+#: games/spades.rb:579 games/spades.rb:849 games/three_five_eight.rb:430 games/tysiac.rb:1054 games/tysiac.rb:126
 msgid "%{winner} won the game."
 msgstr "%{winner} ha ganado la partida."
 
-#: games/bridge/presentation.rb:436
+#: games/bridge/presentation.rb:535
 msgid "%{winner} won the match: %{scores}."
 msgstr "Gana el encuentro la pareja %{winner}: %{scores}."
 
@@ -3051,11 +3079,11 @@ msgstr "%{word}: %{attempts} intentos, %{length} letras"
 msgid "(more than you can pay)"
 msgstr "(más de lo que puedes pagar)"
 
-#: games/tysiac.rb:1647
+#: games/tysiac.rb:1655
 msgid ", on the barrel"
 msgstr ", en el barril"
 
-#: games/tysiac.rb:1657
+#: games/tysiac.rb:1665
 msgid ", on the barrel, %{deals} deals left"
 msgstr ", en el barril, repartos restantes: %{deals}"
 
@@ -4256,27 +4284,27 @@ msgstr ""
 
 #: games/generated/rulebooks/bouillabaisse.rb:18
 msgid "- Round 1: each trick you take costs 5 points."
-msgstr ""
+msgstr "- Primera ronda: cada baza que ganes te cuesta 5 puntos."
 
 #: games/generated/rulebooks/bouillabaisse.rb:19
 msgid "- Round 2: each card you take in the selected suit costs 10 points."
-msgstr ""
+msgstr "- Segunda: cada carta que captures del palo elegido te cuesta 10 puntos."
 
 #: games/generated/rulebooks/bouillabaisse.rb:20
 msgid "- Round 3: each card of the selected rank — jack, queen or king — costs 50 points."
-msgstr ""
+msgstr "- Tercera: cada figura del tipo elegido — jota, dama o rey — te cuesta 50 puntos."
 
 #: games/generated/rulebooks/bouillabaisse.rb:21
 msgid "- Round 4: taking the selected card costs 200 points."
-msgstr ""
+msgstr "- Cuarta: llevarte la carta señalada cuesta 200 puntos."
 
 #: games/generated/rulebooks/bouillabaisse.rb:22
 msgid "- Round 5: all four penalties apply together. A card can count towards more than one penalty."
-msgstr ""
+msgstr "- Quinta: se suman las cuatro penalizaciones anteriores. Una carta puede contar en varias de ellas."
 
 #: games/generated/rulebooks/bouillabaisse.rb:23
 msgid "- Round 6: the same values are subtracted from your total, so collecting cards can improve your result."
-msgstr ""
+msgstr "- Sexta: esos mismos valores se restan de tu total, así que ahora conviene llevarse cartas."
 
 #: games/generated/rulebooks/mahjong.rb:184
 msgid "- Round wind pung or kong; matching seat wind gives 2 han in total. Closed: 1 han; open: 1 han."
@@ -4552,11 +4580,11 @@ msgstr "10"
 msgid "10 minutes"
 msgstr "10 minutos"
 
-#: games/tysiac.rb:86
+#: games/tysiac.rb:92
 msgid "1000 card game"
 msgstr "Mil"
 
-#: games/tysiac.rb:192
+#: games/tysiac.rb:198
 msgid "1000 card game variant"
 msgstr "Variante de Mil"
 
@@ -4599,7 +4627,7 @@ msgstr ""
 msgid "2 adds two points directly to your banked score. It leaves the current turn total unchanged and does not end the turn. Those two points remain yours even if you roll a 1 later."
 msgstr ""
 
-#: games/tysiac.rb:199
+#: games/tysiac.rb:205
 msgid "2 cards"
 msgstr "2 cartas"
 
@@ -4651,7 +4679,7 @@ msgstr "2: selecciona un dado conservado con el valor 2 para volver a lanzarlo."
 msgid "3 (Solitaire): top layer in Terraces."
 msgstr ""
 
-#: games/tysiac.rb:200
+#: games/tysiac.rb:206
 msgid "3 cards"
 msgstr "3 cartas"
 
@@ -5029,7 +5057,7 @@ msgstr ""
 msgid "A full column cannot be selected. After a valid move, the turn passes to the other player."
 msgstr ""
 
-#: __app.rb:3513 __app.rb:3555
+#: __app.rb:3517 __app.rb:3559
 msgid "A game has already started. Opening the current game."
 msgstr "Ya ha comenzado una partida. Abriendo la partida actual."
 
@@ -5433,7 +5461,7 @@ msgstr "A: prepárate para sacar o para golpear tras defender."
 msgid "About this adaptation"
 msgstr ""
 
-#: __app.rb:2492 __app.rb:2693
+#: __app.rb:2496 __app.rb:2697
 msgid "Accept"
 msgstr "Aceptar"
 
@@ -5449,7 +5477,7 @@ msgstr ""
 msgid "Accept displayed plan"
 msgstr ""
 
-#: __app.rb:2883 lib/game_room_ui.rb:140 lib/game_room_ui.rb:325 lib/game_room_widget.rb:198 lib/game_room_widget.rb:204
+#: __app.rb:2887 lib/game_room_ui.rb:140 lib/game_room_ui.rb:325 lib/game_room_widget.rb:198 lib/game_room_widget.rb:204
 msgid "Accept invitation"
 msgstr "Aceptar invitación"
 
@@ -5461,7 +5489,7 @@ msgstr ""
 msgid "Accept partnership with %{player}"
 msgstr "Aceptar la pareja con %{player}"
 
-#: __app.rb:3645
+#: __app.rb:3649
 msgid "Accept teams"
 msgstr "Confirmar equipos"
 
@@ -5514,7 +5542,7 @@ msgstr "Participantes aceptados: %{count}"
 msgid "Accepted: %{players}"
 msgstr "Aceptaron: %{players}"
 
-#: __app.rb:2753 __app.rb:2776
+#: __app.rb:2757 __app.rb:2780
 msgid "Accepting invitation"
 msgstr "Aceptando la invitación"
 
@@ -5604,7 +5632,7 @@ msgstr "Añadir un ordenador"
 msgid "Add a new category"
 msgstr "Añadir una nueva categoría"
 
-#: __app.rb:2488
+#: __app.rb:2492
 msgid "Add a new computer in this place"
 msgstr "Añadir un nuevo bot en este puesto"
 
@@ -5791,6 +5819,10 @@ msgstr "Scopa llega para 2–6 personas, con las variantes Escoba, Scopone y Mue
 msgid "Added Tournaments to the main menu, directly after Saved games. You can organize a tournament or join one, playing individually or in fixed pairs."
 msgstr "Se ha añadido Torneos al menú principal, justo después de Partidas guardadas. Puedes organizar un torneo o apuntarte a uno, de forma individual o en parejas fijas."
 
+#: lib/game_room_changelog.rb:671
+msgid "Added Typoholism: practise typing on your own or compete with friends in four modes, using a keyboard or Braille input."
+msgstr "Añadida Teclamanía: practica la escritura en solitario o compite con amigos en cuatro modos, con teclado o entrada braille."
+
 #: lib/game_room_changelog.rb:276
 msgid "Added War and Scientific War by balteam, for two to eight players, with bots. War compares cards from a face-down deck; Scientific War lets you choose your cards and use their special powers."
 msgstr ""
@@ -5838,6 +5870,10 @@ msgstr "Se han añadido cinco preguntas de cultura general en polaco propuestas 
 msgid "Added missing Polish messages, including the notice that Daily Krowa requires a private table."
 msgstr "Se han añadido mensajes que faltaban en polaco, incluido el aviso de que Krowa diaria requiere una mesa privada."
 
+#: lib/game_room_changelog.rb:673
+msgid "Added options in Tysiac to request a redeal with four nines in the initial hand or at least two nines in the talon. Use Shift+D when a redeal is available."
+msgstr "En Mil se puede permitir pedir un nuevo reparto con cuatro nueves en la mano inicial o al menos dos nueves en el montón central. Pulsa Shift+D cuando esté disponible."
+
 #: lib/game_room_changelog.rb:497
 msgid "Added private tournament hands in 1000 miles, Spades, Thousand, 3-5-8, 99, Poker, War, Rummy, Makao, Biblios and UNO, as well as private tiles in Domino, Mexican Train and Scrabble. Other players, observers and the host do not receive your unrevealed hand."
 msgstr "Las cartas de la mano son ahora privadas en los torneos de 1000 millas, Picas, Mil, 3-5-8, 99, Póker, Guerra, Rummy, Makao, Biblios y UNO. Lo mismo ocurre con las fichas de Dominó, Mexican Train y Scrabble. Los demás jugadores, los espectadores y el anfitrión no reciben el contenido de tu mano sin revelar."
@@ -5853,6 +5889,10 @@ msgstr "Se han añadido siete preguntas al conjunto polaco de cultura general a 
 #: lib/game_room_changelog.rb:130
 msgid "Added sounds for banking points in Farkle, reaching exactly 33 or 66 in 99, and declaring a marriage in Tysiac."
 msgstr "Se han añadido sonidos al guardar puntos en Farkle, alcanzar exactamente 33 o 66 en 99 y realizar un anuncio en Mil."
+
+#: lib/game_room_changelog.rb:674
+msgid "Added sounds for surrendering and for making or missing the contract in Tysiac."
+msgstr "Añadidos sonidos para la rendición y para cumplir o incumplir el contrato en Mil."
 
 #: lib/game_room_changelog.rb:277
 msgid "Added statistics by balteam: visits, started and completed games, with game and period filters. Open Statistics in the main menu. Ctrl+W on that menu's options list reads current public and private table counts and human memberships, including observers but not bots. Developer mode does not collect new statistics."
@@ -6055,7 +6095,7 @@ msgstr "Tras jugar un comodín o un comodín roba cuatro en UNO, los colores se 
 
 #: games/generated/rulebooks/bouillabaisse.rb:27
 msgid "After round 6, the lowest total wins. Equal lowest totals are a draw. S reads the standings during the game. You can turn all or nothing off in the table settings."
-msgstr ""
+msgstr "Tras la sexta ronda gana el total más bajo. Si varias personas comparten ese mínimo, hay empate. S lee las puntuaciones. Puedes desactivar Todo o nada en los ajustes de la mesa."
 
 msgid "After seeing the talon and before giving away a card, the bidder may surrender unless already on the barrel. The bidder receives zero and each defender receives at least 60 points, or half the contract when that is higher, rounded upward to a multiple of 5. The first 2 surrenders are free; every third surrender costs the bidder 120 points."
 msgstr ""
@@ -6186,7 +6226,7 @@ msgstr "Se suman las cuatro penalizaciones."
 msgid "All four penalties are subtracted from your score."
 msgstr "Las cuatro penalizaciones se restan de tu puntuación."
 
-#: games/bridge.rb:555
+#: games/bridge.rb:560
 msgid "All four players passed. The deal is thrown in."
 msgstr "Han pasado los cuatro jugadores. La mano no se juega."
 
@@ -6218,11 +6258,11 @@ msgstr "Todo o nada"
 
 #: games/generated/rulebooks/bouillabaisse.rb:24
 msgid "All or nothing and the final result"
-msgstr ""
+msgstr "Todo o nada y final"
 
 #: games/generated/rulebooks/bouillabaisse.rb:25
 msgid "All or nothing is on by default. If you take every scoring item in a round, the sign of your round score is reversed: a penalty becomes a reduction. It does not apply in round 4."
-msgstr ""
+msgstr "La opción Todo o nada está activada por defecto. Si te llevas todo lo que puntúa en una ronda, se invierte el signo de tu resultado: en vez de sumarte una penalización, te la restas. No se aplica en la cuarta ronda."
 
 #: games/bouillabaisse.rb:20
 msgid "All or nothing: taking every scoring item reverses your round score"
@@ -6273,6 +6313,14 @@ msgstr ""
 #: games/generated/rulebooks/poker.rb:21
 msgid "All-in puts in your remaining chips, subject to the betting limits. Other players still have to respond. If you cannot afford a full call, you may call with everything you have. An all-in smaller than a full raise does not normally let players who already acted raise again; several small increases must add up to a full raise before that right returns. If nobody can continue betting, the game completes the board where needed and compares the hands."
 msgstr ""
+
+#: games/tysiac_redeals.rb:9
+msgid "Allow a redeal with at least two nines in the talon"
+msgstr "Permitir un nuevo reparto con al menos dos nueves en el talón"
+
+#: games/tysiac_redeals.rb:8
+msgid "Allow a redeal with four initial nines"
+msgstr "Permitir un nuevo reparto con los cuatro nueves en la mano inicial"
 
 #: games/categories.rb:242
 msgid "Allow a shared victory"
@@ -6392,7 +6440,7 @@ msgstr "El depósito extra protege contra la falta de combustible, los neumátic
 msgid "An extra tank protects against running out of gas, puncture-proof tires protect against flat tires, and the driving ace protects against accidents. Right of way protects against red lights and speed limits and removes the need for green lights. A safety removes the corresponding current problem and protects you until the round ends."
 msgstr "Un depósito adicional protege contra la falta de combustible, los neumáticos antipinchazos contra los pinchazos y el as del volante contra los accidentes. La prioridad de paso protege contra los semáforos rojos y los límites de velocidad y elimina la necesidad de semáforos verdes. Una protección elimina el problema actual correspondiente y te protege hasta el final de la ronda."
 
-#: __app.rb:2564
+#: __app.rb:2568
 msgid "An invitation to this table is already pending for this user."
 msgstr "Este usuario ya tiene una invitación pendiente para esta mesa."
 
@@ -6474,11 +6522,11 @@ msgstr "Anunciar cuando un jugador salga de una mesa"
 msgid "Announce when a table is created"
 msgstr "Anunciar cuando se cree una mesa"
 
-#: __app.rb:3003
+#: __app.rb:3007
 msgid "Announcements of placed and removed letters disabled."
 msgstr "Anuncios de letras colocadas y retiradas desactivados."
 
-#: __app.rb:3003
+#: __app.rb:3007
 msgid "Announcements of placed and removed letters enabled."
 msgstr "Anuncios de letras colocadas y retiradas activados."
 
@@ -6761,7 +6809,7 @@ msgstr "Flechas: recorrer la carta o la lista de revisión cuando puedas verlas.
 
 #: games/generated/rulebooks/bouillabaisse.rb:29
 msgid "Arrows: browse your cards."
-msgstr ""
+msgstr "Flechas: recorrer la mano."
 
 #: games/generated/rulebooks/mille_bornes.rb:43
 msgid "Arrows: browse your hand or card choices."
@@ -6981,7 +7029,7 @@ msgstr "Intentos: %{count} de 3."
 msgid "Attempts: %{count}. %{status}"
 msgstr "Intentos: %{count}. %{status}"
 
-#: games/bridge/presentation.rb:150
+#: games/bridge/presentation.rb:209
 msgid "Auction"
 msgstr "Subasta"
 
@@ -7015,11 +7063,11 @@ msgstr "La subasta ha terminado sin venta: %{property}."
 msgid "Auction, transfer and play keys"
 msgstr "Teclas de subasta, transferencia y juego"
 
-#: games/tysiac.rb:1684
+#: games/tysiac.rb:1692
 msgid "Auction: %{bids}."
 msgstr "Subasta: %{bids}."
 
-#: games/bridge/presentation.rb:495
+#: games/bridge/presentation.rb:596
 msgid "Auction: %{calls}."
 msgstr "Subasta: %{calls}."
 
@@ -7251,7 +7299,7 @@ msgstr "B: leer la subasta actual."
 msgid "B: respond to the buzzer."
 msgstr "B: responde al pulsador."
 
-#: __app.rb:1404 __app.rb:1671 __app.rb:1715 __app.rb:1864 __app.rb:2577 __app.rb:2694 __app.rb:2886 games/krowa_support/leaderboards.rb:41 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:786 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/recordings/ui.rb:217 lib/sports_rankings/screen.rb:206 lib/sports_rankings/screen.rb:58 lib/sports_rankings/screen.rb:88 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
+#: __app.rb:1404 __app.rb:1671 __app.rb:1715 __app.rb:1864 __app.rb:2581 __app.rb:2698 __app.rb:2890 games/krowa_support/leaderboards.rb:41 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:786 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/recordings/ui.rb:217 lib/sports_rankings/screen.rb:206 lib/sports_rankings/screen.rb:58 lib/sports_rankings/screen.rb:88 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
 msgid "Back"
 msgstr "Volver"
 
@@ -7531,7 +7579,7 @@ msgstr "Pujar %{amount} cartas"
 msgid "Bid %{value}"
 msgstr ""
 
-#: games/tysiac.rb:90
+#: games/tysiac.rb:96
 msgid "Bid how many points you will score, then collect valuable cards and announce king-and-queen pairs to keep your promise."
 msgstr "Apuesta cuántos puntos ganarás, recoge cartas valiosas y anuncia parejas de rey y reina para cumplir tu promesa."
 
@@ -7545,7 +7593,7 @@ msgstr "Subasta un contrato con tu compañero y haz después las bazas prometida
 
 #: lib/tournaments/local_fixed_team_execution_screen.rb:616
 msgid "Bidding"
-msgstr ""
+msgstr "La subasta"
 
 msgid "Bidding and inspecting a trick"
 msgstr "Subasta y consulta de la baza"
@@ -7610,7 +7658,7 @@ msgstr "Ciegas: %{small} y %{big}."
 msgid "Board"
 msgstr "Tablero"
 
-#: games/bridge/presentation.rb:308
+#: games/bridge/presentation.rb:377
 msgid "Board %{board} of %{boards}. Dealer: %{dealer}. %{vulnerability}."
 msgstr "Mano %{board} de %{boards}. Reparte %{dealer}. %{vulnerability}."
 
@@ -7734,7 +7782,11 @@ msgstr ""
 
 #: games/generated/rulebooks/bouillabaisse.rb:10
 msgid "Bouillabaisse is a card game for 2–8 players. Over six rounds you try to finish with the lowest total. Most rounds give you penalty points for collecting particular cards; in the last round those points help you instead."
-msgstr ""
+msgstr "En Bouillabaisse pueden jugar de 2 a 8 personas. A lo largo de seis rondas intentas acabar con la menor puntuación. En casi todas recibes penalizaciones por llevarte determinadas cartas; en la última, esas mismas cartas te permiten restar puntos."
+
+#: lib/game_room_changelog.rb:675
+msgid "Bouillabaisse rounds now end once all their scoring cards have been taken. Distinct sounds identify penalty suits, ranks and the special card."
+msgstr "Las rondas de Bouillabaisse terminan cuando se han recogido todas las cartas que puntúan en esa ronda. Sonidos distintos identifican el palo penalizado, la figura y la carta especial."
 
 #: games/battleship.rb:640
 msgid "Bow cleared."
@@ -7788,19 +7840,19 @@ msgstr ""
 msgid "Bridge is played by four people in two partnerships. You and your partner bid for a contract: a promise to win a certain number of tricks. A trick is the four cards played in turn, one from each hand. If your pair wins the auction, you try to fulfil that promise; otherwise, you try to stop the other pair."
 msgstr "El bridge se juega entre cuatro personas, en dos parejas. Primero participas con tu compañero en una subasta para comprometeros a ganar cierto número de bazas. Una baza son las cuatro cartas que se juegan por turno, una de cada mano. La pareja que gana la subasta intenta cumplir su contrato y la otra trata de impedirlo."
 
-#: games/bridge.rb:147
+#: games/bridge.rb:152
 msgid "Bridge requires exactly four players."
 msgstr "El bridge se juega con exactamente cuatro jugadores."
 
-#: games/bridge/presentation.rb:302
+#: games/bridge/presentation.rb:370
 msgid "Bridge started: %{seats}."
 msgstr "Empieza el bridge: %{seats}."
 
-#: games/bridge.rb:105
+#: games/bridge.rb:110
 msgid "Bridge variant"
 msgstr "Modalidad de bridge"
 
-#: games/bridge.rb:110
+#: games/bridge.rb:115
 msgid "Bridge with an estimated reference score"
 msgstr "Bridge con puntuación de referencia estimada"
 
@@ -7967,7 +8019,7 @@ msgstr "C pasa o iguala, F se retira, R sube, A lo apuesta todo, S lee tus ficha
 
 #: games/generated/rulebooks/bouillabaisse.rb:15
 msgid "C reads the cards currently on the table, and F repeats the suit led. H reads your hand. Z finds a playable card; if only one is possible, it plays it."
-msgstr ""
+msgstr "C lee las cartas de la baza en curso; F recuerda el palo de salida y H lee tu mano. Z busca una carta que puedas jugar; si solo hay una, la juega directamente."
 
 #: games/generated/rulebooks/bridge.rb:33
 msgid "C reads the cards in the current trick and F the suit that was led. P repeats the previous trick, including who won it."
@@ -8108,7 +8160,7 @@ msgstr "Igualar con %{amount}"
 msgid "Calm (short search)"
 msgstr "Tranquilo (búsqueda breve)"
 
-#: __app.rb:2329 __app.rb:2493 __app.rb:3646 __app.rb:3704 games/krowa_support/client.rb:196 games/krowa_support/client.rb:357 games/krowa_support/leaderboards.rb:235 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_option_editor.rb:72 lib/game_room_screens.rb:361 lib/game_screen.rb:695 lib/game_screen.rb:739 lib/game_surfaces/card_actions.rb:52 lib/game_surfaces/word_board.rb:208 lib/mania_pisania/client.rb:341 lib/mania_pisania/client.rb:590 lib/mania_pisania/client.rb:611 lib/mania_pisania/text_import_dialog.rb:18 lib/quiz_contributions/views.rb:143 lib/quiz_contributions/views.rb:164 lib/table_voice_screen.rb:180 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:29
+#: __app.rb:2329 __app.rb:2497 __app.rb:3650 __app.rb:3708 games/krowa_support/client.rb:196 games/krowa_support/client.rb:357 games/krowa_support/leaderboards.rb:235 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_option_editor.rb:72 lib/game_room_screens.rb:361 lib/game_screen.rb:695 lib/game_screen.rb:739 lib/game_surfaces/card_actions.rb:52 lib/game_surfaces/word_board.rb:208 lib/mania_pisania/client.rb:341 lib/mania_pisania/client.rb:590 lib/mania_pisania/client.rb:611 lib/mania_pisania/text_import_dialog.rb:18 lib/quiz_contributions/views.rb:143 lib/quiz_contributions/views.rb:164 lib/table_voice_screen.rb:180 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:29
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -8317,7 +8369,7 @@ msgstr ""
 msgid "Cards help you race or hinder your opponents. Some cost feathers, and you need enough to pay the full cost before playing them. You can hold as many cards as you collect."
 msgstr ""
 
-#: games/tysiac.rb:198
+#: games/tysiac.rb:204
 msgid "Cards in each talon"
 msgstr "Cartas en cada reserva"
 
@@ -8329,7 +8381,7 @@ msgstr "Cartas en la mano: %{cards}."
 msgid "Cards in hand: %{counts}."
 msgstr ""
 
-#: games/base/shortcuts.rb:59 games/bouillabaisse.rb:47 games/bridge/presentation.rb:471 games/dealt_card_game.rb:138
+#: games/base/shortcuts.rb:59 games/bouillabaisse.rb:66 games/bridge/presentation.rb:572 games/dealt_card_game.rb:138
 msgid "Cards on the table"
 msgstr "Cartas en la mesa"
 
@@ -8552,7 +8604,7 @@ msgstr "Cambiar el compañero del participante seleccionado"
 msgid "Change settings for the next game"
 msgstr "Cambiar los ajustes de la siguiente partida"
 
-#: __app.rb:3643 lib/game_room_screens.rb:21
+#: __app.rb:3647 lib/game_room_screens.rb:21
 msgid "Change team"
 msgstr "Cambiar de equipo"
 
@@ -8777,7 +8829,7 @@ msgstr "Comprobando la disponibilidad del juego"
 msgid "Checking game before saving"
 msgstr "Comprobando la partida antes de guardarla"
 
-#: __app.rb:2731
+#: __app.rb:2735
 msgid "Checking invitation"
 msgstr "Comprobando la invitación"
 
@@ -8809,7 +8861,7 @@ msgstr "Comprobando el acceso a las tablas del servidor"
 msgid "Checking set details"
 msgstr "Comprobando los datos del conjunto"
 
-#: __app.rb:3279
+#: __app.rb:3283
 msgid "Checking table"
 msgstr "Comprobando la mesa"
 
@@ -8820,11 +8872,11 @@ msgstr "Comprobando la partida actual"
 msgid "Checking the current table"
 msgstr "Comprobando la mesa actual"
 
-#: __app.rb:3503
+#: __app.rb:3507
 msgid "Checking the table before starting"
 msgstr "Comprobando la mesa antes de empezar"
 
-#: __app.rb:2373 __app.rb:2766 __app.rb:3549
+#: __app.rb:2373 __app.rb:2770 __app.rb:3553
 msgid "Checking the table members"
 msgstr "Comprobando los participantes de la mesa"
 
@@ -8872,7 +8924,7 @@ msgstr ""
 msgid "Choose Classic or Arcade in the Game mode list when creating the table. Classic is the default and follows the normal rules above. In Arcade, every paddle return has two independent chances of 7 percent: a shield for the player who returned the ball and an invisible ball. Both may happen on the same hit. A serve alone does not trigger these effects."
 msgstr ""
 
-#: games/bridge.rb:146
+#: games/bridge.rb:151
 msgid "Choose IMP or matchpoint scoring."
 msgstr "Elige puntuación por IMP o por porcentaje."
 
@@ -8951,11 +9003,11 @@ msgstr "Elige una carta para descartar"
 msgid "Choose a card to give to %{player}"
 msgstr "Elige una carta para dársela a %{player}"
 
-#: games/tysiac.rb:1548 games/tysiac.rb:559
+#: games/tysiac.rb:1556 games/tysiac.rb:565
 msgid "Choose a card to give to %{player}."
 msgstr "Elige una carta para dar a %{player}."
 
-#: games/tysiac.rb:1541
+#: games/tysiac.rb:1549
 msgid "Choose a card to set aside. Remaining: %{count}."
 msgstr "Elige una carta para apartarla. Restantes: %{count}."
 
@@ -8992,7 +9044,7 @@ msgstr "Elige un kong oculto"
 msgid "Choose a date and time inside the selected window. This is not an invitation TTL or tournament rule."
 msgstr ""
 
-#: __app.rb:3199
+#: __app.rb:3203
 msgid "Choose a game for the preset"
 msgstr "Elige un juego para la configuración predefinida"
 
@@ -9034,7 +9086,7 @@ msgstr "Elige un jugador"
 msgid "Choose a player for the trade"
 msgstr "Elige un jugador para el intercambio"
 
-#: __app.rb:2447
+#: __app.rb:2451
 msgid "Choose a player in the current game."
 msgstr "Elige a un jugador de la partida actual."
 
@@ -9109,19 +9161,19 @@ msgstr "Elige una casilla del tablero enemigo para disparar."
 msgid "Choose a suit"
 msgstr "Elige un palo"
 
-#: games/bridge.rb:145
+#: games/bridge.rb:150
 msgid "Choose a supported number of boards."
 msgstr "Elige uno de los números de manos disponibles."
 
-#: games/tysiac.rb:422
+#: games/tysiac.rb:428
 msgid "Choose a talon"
 msgstr "Elige una reserva"
 
-#: games/tysiac.rb:573
+#: games/tysiac.rb:579
 msgid "Choose a talon."
 msgstr "Elige una reserva."
 
-#: __app.rb:3699
+#: __app.rb:3703
 msgid "Choose a team"
 msgstr "Elige un equipo"
 
@@ -9211,7 +9263,7 @@ msgstr "Elige las cartas que quieres cambiar"
 msgid "Choose different start and end times, or turn off the playing-hours limit."
 msgstr "Elige horas de inicio y fin distintas, o desactiva el límite de horario."
 
-#: games/domino.rb:89 games/domino.rb:93 games/tysiac.rb:223
+#: games/domino.rb:89 games/domino.rb:93 games/tysiac.rb:229
 msgid "Choose equal teams with at least two players each."
 msgstr "Elige equipos del mismo tamaño, con al menos dos jugadores en cada uno."
 
@@ -9258,7 +9310,7 @@ msgstr ""
 msgid "Choose one of five difficulty levels. The times below describe the first full flight across the 25-step court. At every level, each later hit in the rally increases the current speed by 5%."
 msgstr ""
 
-#: games/tysiac.rb:516
+#: games/tysiac.rb:522
 msgid "Choose one of the available bids."
 msgstr "Elige una de las pujas disponibles."
 
@@ -9294,15 +9346,15 @@ msgstr "Elegir jugador"
 msgid "Choose round-robin play or a group stage followed by a knockout stage. Tournaments support rematches and knockout matches played to a chosen number of wins. The program arranges matches, records game results and determines who advances."
 msgstr "Puedes elegir entre una liga de todos contra todos o una fase de grupos seguida de eliminatorias. Hay opciones de revancha y de jugar las eliminatorias hasta alcanzar un número de victorias. El programa organiza los encuentros, guarda los resultados y determina quién pasa de fase."
 
-#: games/bridge.rb:144
+#: games/bridge.rb:149
 msgid "Choose rubber or estimated-reference scoring."
 msgstr "Elige rubber o comparación con una puntuación estimada."
 
-#: __app.rb:3629 lib/participant_menu.rb:27
+#: __app.rb:3633 lib/participant_menu.rb:27
 msgid "Choose teams"
 msgstr "Elegir equipos"
 
-#: __app.rb:3644
+#: __app.rb:3648
 msgid "Choose teams randomly"
 msgstr "Elegir equipos al azar"
 
@@ -9334,7 +9386,7 @@ msgstr "Elige el color antes de guardar la partida."
 msgid "Choose the content, not the interface language"
 msgstr ""
 
-#: games/tysiac.rb:1613
+#: games/tysiac.rb:1621
 msgid "Choose the contract value"
 msgstr "Elige el valor del contrato"
 
@@ -9356,7 +9408,7 @@ msgstr "Elige el valor declarado"
 msgid "Choose the final contract"
 msgstr "Elige el contrato final"
 
-#: __app.rb:2443
+#: __app.rb:2447
 msgid "Choose the new table master"
 msgstr "Elige al nuevo anfitrión de la mesa"
 
@@ -9383,7 +9435,7 @@ msgstr ""
 msgid "Choose the quiz language, then tick the question sets you want. Initially only the general set in that language is selected. Every checked set has the same chance of being chosen, followed by a random question from that set. The same selection applies to duels, group challenges, question squares and Curiosity."
 msgstr ""
 
-#: __app.rb:2461
+#: __app.rb:2465
 msgid "Choose the replacement"
 msgstr "Elige al sustituto"
 
@@ -9439,9 +9491,13 @@ msgstr "Elige las cartas que juegas y usa sus habilidades especiales para quitar
 msgid "Choose with the arrow keys, then press Enter."
 msgstr "Elige con las flechas y pulsa Enter."
 
-#: games/tysiac.rb:1479 games/tysiac.rb:1613
+#: games/tysiac.rb:1487 games/tysiac.rb:1621
 msgid "Choose your bid"
 msgstr "Elige tu puja"
+
+#: games/bridge/presentation.rb:352
+msgid "Choose your call."
+msgstr "Elige tu voz."
 
 #: games/bridge/presentation.rb:125
 msgid "Choose your call. %{auction}"
@@ -9530,6 +9586,10 @@ msgstr ""
 msgid "Clarified four reported questions in the Polish Harry Potter set, including missing context and misleading answer clues."
 msgstr "Se han aclarado cuatro preguntas señaladas en el conjunto polaco de Harry Potter, añadiendo contexto y eliminando pistas engañosas."
 
+#: lib/game_room_changelog.rb:680
+msgid "Clarified the language-change instructions: close ELTEN completely and start it again; restarting with F12 does not reload Power Games."
+msgstr "Se han aclarado las instrucciones para cambiar el idioma: hay que cerrar ELTEN por completo y volver a abrirlo; reiniciar con F12 no vuelve a cargar Power Games."
+
 #: lib/game_room_changelog.rb:436
 msgid "Clarified the options for switching between playing and observing: the menu now makes clear whether you are changing your own role or the selected person's. If the current participants cannot start a game, the message lists the selected variant's requirements and the people signed up to play."
 msgstr "Aclaramos las opciones para pasar de jugador a espectador y viceversa: el menú indica si estás cambiando tu propio papel o el de la persona seleccionada. Si no se puede iniciar la partida con los participantes actuales, el mensaje muestra los requisitos de la variante elegida y quiénes están apuntados para jugar."
@@ -9584,6 +9644,10 @@ msgstr ""
 msgid "Close"
 msgstr "Cerrar"
 
+#: __app.rb:3270
+msgid "Close ELTEN completely and start it again to apply the interface language preferences. Restarting with F12 does not reload Power Games."
+msgstr "Cierra ELTEN por completo y vuelve a abrirlo para aplicar los idiomas de la interfaz. El reinicio con F12 no vuelve a cargar Power Games."
+
 msgid "Close answering now"
 msgstr "Cerrar ahora el plazo de respuesta"
 
@@ -9595,11 +9659,11 @@ msgstr "Cerrar inscripciones"
 msgid "Close the table for everyone"
 msgstr ""
 
-#: __app.rb:2424
+#: __app.rb:2428
 msgid "Close the table for everyone?"
 msgstr "¿Cerrar la mesa para todos?"
 
-#: __app.rb:2425
+#: __app.rb:2429
 msgid "Closing table"
 msgstr "Cerrando mesa"
 
@@ -9690,7 +9754,7 @@ msgstr "Caja de Comunidad"
 msgid "Community chest"
 msgstr "Caja de Comunidad"
 
-#: games/bridge.rb:130
+#: games/bridge.rb:135
 msgid "Comparison scoring"
 msgstr "Puntuación de la comparación"
 
@@ -9868,7 +9932,7 @@ msgstr "Conecta la palabra con las letras que ya hay en el tablero."
 msgid "Connecting the match."
 msgstr "Conectando la partida."
 
-#: __app.rb:3152 __app.rb:480
+#: __app.rb:3156 __app.rb:480
 msgid "Connecting to Elten"
 msgstr "Conectando con Elten"
 
@@ -9903,17 +9967,21 @@ msgstr ""
 msgid "Contract, declarer and dummy"
 msgstr ""
 
-#: games/bridge/presentation.rb:508
+#: games/bridge/presentation.rb:609
 msgid "Contract: %{contract} by %{declarer}. Declarer needs %{needed} tricks and has %{won}."
 msgstr "Contrato: %{contract}, juega %{declarer}. El declarante necesita %{needed} bazas y lleva %{won}."
 
-#: games/bridge/presentation.rb:330
+#: games/bridge/presentation.rb:399
 msgid "Contract: %{contract}, declarer %{declarer}. %{leader} makes the opening lead."
 msgstr "Contrato: %{contract}, declarante %{declarer}. Sale %{leader}."
 
 #: games/three_five_eight.rb:1035
 msgid "Contract: %{contract}."
 msgstr ""
+
+#: games/bridge/presentation.rb:103
+msgid "Contract: %{contract}. %{player} declares, needing %{count} tricks."
+msgstr "Contrato: %{contract}. Declara %{player}; necesita %{count} bazas."
 
 #: games/generated/rulebooks/spades.rb:18
 msgid "Contracts, nils and bags"
@@ -10020,7 +10088,7 @@ msgstr "Nido acogedor"
 msgid "Could not connect to the Krowa leaderboard."
 msgstr "No se ha podido conectar con la clasificación de Krowa."
 
-#: __app.rb:4013
+#: __app.rb:4017
 msgid "Could not disconnect the voice conversation. Open Conferences to leave it."
 msgstr "No se pudo desconectar la conversación de voz. Abre Conferencias para salir."
 
@@ -10308,7 +10376,7 @@ msgstr "Ctrl+C: explorar las cartas de la baza."
 
 #: games/generated/rulebooks/bouillabaisse.rb:33
 msgid "Ctrl+C: inspect its cards."
-msgstr ""
+msgstr "Ctrl+C: revisar sus cartas."
 
 #: games/generated/rulebooks/bridge.rb:85
 msgid "Ctrl+C: inspect the current trick."
@@ -10527,7 +10595,7 @@ msgstr "Actuales y finalizados recientemente"
 msgid "Current colour: %{colour}."
 msgstr "Color actual: %{colour}."
 
-#: games/tysiac.rb:1686
+#: games/tysiac.rb:1694
 msgid "Current contract: %{contract}, bidder: %{player}."
 msgstr "Contrato actual: %{contract}, pujador: %{player}."
 
@@ -10535,7 +10603,7 @@ msgstr "Contrato actual: %{contract}, pujador: %{player}."
 msgid "Current game history"
 msgstr "Historial de la partida actual"
 
-#: games/bridge/presentation.rb:562
+#: games/bridge/presentation.rb:663
 msgid "Current game: North-South %{ns}, East-West %{ew}."
 msgstr "Manga en curso: Norte-Sur %{ns}, Este-Oeste %{ew}."
 
@@ -10559,7 +10627,7 @@ msgstr ""
 msgid "Current table options"
 msgstr "Ajustes actuales de la mesa"
 
-#: games/bridge/presentation.rb:463
+#: games/bridge/presentation.rb:562
 msgid "Current trick: %{cards}."
 msgstr "Baza actual: %{cards}."
 
@@ -10789,7 +10857,7 @@ msgstr ""
 msgid "Daily Krowa leaderboard"
 msgstr ""
 
-#: __app.rb:3904
+#: __app.rb:3908
 msgid "Daily Krowa requires a private table. Create a new private table for this variant."
 msgstr "Krowa diaria requiere una mesa privada. Crea una nueva mesa privada para esta variante."
 
@@ -10884,7 +10952,7 @@ msgstr "Reparto %{round}."
 msgid "Deal %{round}. Cards left to deal: %{count}."
 msgstr "Reparto %{round}. Quedan %{count} cartas por repartir."
 
-#: games/bridge/presentation.rb:314
+#: games/bridge/presentation.rb:383
 msgid "Deal %{round}. Dealer: %{dealer}. %{vulnerability}."
 msgstr "Mano %{round}. Reparte %{dealer}. %{vulnerability}."
 
@@ -10930,7 +10998,7 @@ msgstr ""
 msgid "Declare riichi by choosing a tile to discard"
 msgstr "Declara riichi eligiendo una ficha para descartar"
 
-#: games/tysiac.rb:1491
+#: games/tysiac.rb:1499
 msgid "Declare the marriage"
 msgstr "Anunciar"
 
@@ -11329,7 +11397,7 @@ msgstr "¿Quieres salir de la mesa?"
 msgid "Do you want to leave the table? The table will be closed for everyone."
 msgstr "¿Quieres salir de la mesa? La mesa se cerrará para todos."
 
-#: __app.rb:2772
+#: __app.rb:2776
 msgid "Do you want to leave your current table and join the invited table?"
 msgstr "¿Quieres salir de tu mesa actual y unirte a la mesa a la que te han invitado?"
 
@@ -11689,25 +11757,37 @@ msgstr "Nido de patitos"
 msgid "Ducks: %{players}."
 msgstr "Patos: %{players}."
 
-#: games/bridge/presentation.rb:455
+#: games/bridge/presentation.rb:554
 msgid "Dummy is not on the table yet. It is shown after the opening lead."
 msgstr "El muerto todavía no está en la mesa. Se muestra después de la salida."
 
-#: games/bridge/presentation.rb:345
+#: games/bridge/presentation.rb:414
 msgid "Dummy is on the table, %{seat}: %{cards}."
 msgstr "El muerto está en la mesa, %{seat}: %{cards}."
+
+#: games/bridge/presentation.rb:98
+msgid "Dummy's hand is exposed: %{player}."
+msgstr "Se muestran las cartas del muerto: %{player}."
 
 #: games/bridge/presentation.rb:258
 msgid "Dummy, %{seat}, %{count} cards"
 msgstr "Muerto, %{seat}, cartas: %{count}"
 
-#: games/bridge/presentation.rb:457
+#: games/bridge/presentation.rb:556
 msgid "Dummy, %{seat}: %{cards}."
 msgstr "Muerto, %{seat}: %{cards}."
 
-#: games/bridge/presentation.rb:337
+#: games/bridge/presentation.rb:406
 msgid "Dummy, %{seat}: %{card}."
 msgstr "Muerto, %{seat}: %{card}."
+
+#: games/bridge/presentation.rb:93
+msgid "Dummy: %{card}."
+msgstr "Muerto: %{card}."
+
+#: games/bridge/presentation.rb:317
+msgid "Dummy: %{player}"
+msgstr "Muerto: %{player}"
 
 #: games/generated/rulebooks/bridge.rb:56
 msgid "Duplicate bridge"
@@ -11827,11 +11907,11 @@ msgstr ""
 msgid "Each board is scored on its own. A game earns a bonus of 300, or 500 when vulnerable, and a part score earns 50. Everything else is scored as described above. There are no honours and no rubber."
 msgstr ""
 
-#: games/bouillabaisse.rb:220
+#: games/bouillabaisse.rb:239
 msgid "Each card of %{suit} costs 10 points."
 msgstr "Cada carta de %{suit} que te lleves suma 10 puntos."
 
-#: games/bouillabaisse.rb:213
+#: games/bouillabaisse.rb:232
 msgid "Each card of %{suit} you take subtracts 10 points."
 msgstr "Cada carta de %{suit} que te lleves resta 10 puntos."
 
@@ -11859,19 +11939,19 @@ msgstr ""
 msgid "Each honba adds 300 to a discard payment or 100 from each opponent on self-draw. Riichi deposits are awarded to the winner in addition. Honba increases after a draw or dealer repeat and resets after another player wins."
 msgstr ""
 
-#: games/bouillabaisse.rb:221
+#: games/bouillabaisse.rb:240
 msgid "Each jack you take costs 50 points."
 msgstr "Cada jota que te lleves suma 50 puntos."
 
-#: games/bouillabaisse.rb:214
+#: games/bouillabaisse.rb:233
 msgid "Each jack you take subtracts 50 points."
 msgstr "Cada jota que te lleves resta 50 puntos."
 
-#: games/bouillabaisse.rb:223
+#: games/bouillabaisse.rb:242
 msgid "Each king you take costs 50 points."
 msgstr "Cada rey que te lleves suma 50 puntos."
 
-#: games/bouillabaisse.rb:216
+#: games/bouillabaisse.rb:235
 msgid "Each king you take subtracts 50 points."
 msgstr "Cada rey que te lleves resta 50 puntos."
 
@@ -11941,11 +12021,11 @@ msgstr "Cada jugador tira el dado una vez. Gana quien saque el número más alto
 msgid "Each player's closest guess counts. The winner takes three feathers from each opponent; equally close guesses tie."
 msgstr ""
 
-#: games/bouillabaisse.rb:222
+#: games/bouillabaisse.rb:241
 msgid "Each queen you take costs 50 points."
 msgstr "Cada reina que te lleves suma 50 puntos."
 
-#: games/bouillabaisse.rb:215
+#: games/bouillabaisse.rb:234
 msgid "Each queen you take subtracts 50 points."
 msgstr "Cada reina que te lleves resta 50 puntos."
 
@@ -11953,7 +12033,7 @@ msgstr "Cada reina que te lleves resta 50 puntos."
 msgid "Each time, you must reproduce the entire sequence from the beginning, separating the words with Space."
 msgstr ""
 
-#: games/bouillabaisse.rb:219
+#: games/bouillabaisse.rb:238
 msgid "Each trick costs 5 points."
 msgstr "Cada baza cuesta 5 puntos."
 
@@ -11961,7 +12041,7 @@ msgstr "Cada baza cuesta 5 puntos."
 msgid "Each trick has four cards, one from each player in clockwise order. To play, go to a card in your hand with the arrow keys and press Enter. Z moves to the next card you are allowed to play and Shift+Z to the previous one; if you have only one playable card, Z plays it."
 msgstr ""
 
-#: games/bouillabaisse.rb:212
+#: games/bouillabaisse.rb:231
 msgid "Each trick you take subtracts 5 points from your score."
 msgstr "Cada baza que te lleves resta 5 puntos de tu total."
 
@@ -11983,7 +12063,7 @@ msgstr ""
 msgid "Each word has its own time limit, determined by the length of the recording."
 msgstr ""
 
-#: games/bridge/presentation.rb:161
+#: games/bridge/presentation.rb:220
 msgid "East"
 msgstr "Este"
 
@@ -11999,11 +12079,11 @@ msgstr "Ronda Este"
 msgid "East wind"
 msgstr "Viento del este"
 
-#: games/bridge/presentation.rb:173
+#: games/bridge/presentation.rb:232
 msgid "East-West"
 msgstr "Este-Oeste"
 
-#: games/bridge/presentation.rb:230
+#: games/bridge/presentation.rb:289
 msgid "East-West vulnerable"
 msgstr "Este-Oeste vulnerables"
 
@@ -12193,7 +12273,7 @@ msgstr ""
 msgid "End on the start date"
 msgstr "Terminar el día de inicio"
 
-#: __app.rb:3931
+#: __app.rb:3935
 msgid "End the current game for everyone? The table and chat will stay open, and no winner will be recorded."
 msgstr "¿Terminar la partida actual para todos? La mesa y el chat seguirán abiertos y no se registrará ningún ganador."
 
@@ -12263,7 +12343,7 @@ msgstr "Final"
 msgid "Ending a game"
 msgstr ""
 
-#: __app.rb:3938
+#: __app.rb:3942
 msgid "Ending game"
 msgstr "Terminando la partida"
 
@@ -12769,7 +12849,7 @@ msgstr "Estación de Francia"
 msgid "Estación del norte"
 msgstr "Estación del Norte"
 
-#: games/bridge.rb:95
+#: games/bridge.rb:100
 msgid "Estimated comparison, %{boards} boards, %{scoring}"
 msgstr "Comparación estimada, %{boards} repartos, %{scoring}"
 
@@ -12871,7 +12951,7 @@ msgstr "Cada jugador recibe 13 cartas. De mayor a menor, las cartas de cada palo
 
 #: games/generated/rulebooks/bouillabaisse.rb:12
 msgid "Everyone receives the same number of cards from one deck. If necessary, a few of the lowest cards are removed so the deal is even. The first dealer is chosen at random; dealing then passes to the next player each round."
-msgstr ""
+msgstr "Todos reciben el mismo número de cartas de una sola baraja. Si no se puede repartir por igual, se retiran unas pocas de las más bajas. El primer repartidor se elige al azar y el reparto pasa al siguiente jugador en cada ronda."
 
 #: lib/tournaments/server_schedule_overview.rb:375
 msgid "Everyone receives zero tournament points."
@@ -12942,6 +13022,10 @@ msgstr "Salir"
 #: lib/game_room_changelog.rb:577
 msgid "Expanded Mahjong rules explain all variants and their scoring. During play, you can check basic scoring progress and read the scoring breakdown after a completed hand."
 msgstr "Las reglas ampliadas de Mahjong explican todas las variantes y su puntuación. Durante la partida puedes consultar los puntos básicos que vas reuniendo y, al terminar una mano, leer el desglose de la puntuación."
+
+#: lib/game_room_changelog.rb:678
+msgid "Expanded and improved the Russian interface, README and game rules."
+msgstr "Ampliados y revisados la interfaz, el README y las reglas de los juegos en ruso."
 
 #: lib/quiz_contributions/controller.rb:155
 msgid "Export all matching submissions"
@@ -13065,7 +13149,7 @@ msgstr "F: leer el palo de triunfo."
 
 #: games/generated/rulebooks/bouillabaisse.rb:34
 msgid "F: repeat the suit led."
-msgstr ""
+msgstr "F: recordar el palo de salida."
 
 #: games/generated/rulebooks/scrabble.rb:33
 msgid "F: submit the draft."
@@ -13261,7 +13345,7 @@ msgstr ""
 msgid "Finish line"
 msgstr "Meta"
 
-#: lib/game_surfaces.rb:911 lib/game_surfaces/card_actions.rb:24
+#: lib/game_surfaces.rb:917 lib/game_surfaces/card_actions.rb:24
 msgid "Finish or cancel the current card choice first."
 msgstr "Primero termina o cancela la elección de cómo jugar la carta actual."
 
@@ -13333,7 +13417,7 @@ msgstr "Primer resultado"
 msgid "First set."
 msgstr "Primer set."
 
-#: games/tysiac.rb:424
+#: games/tysiac.rb:430
 msgid "First talon"
 msgstr "Primera reserva"
 
@@ -13800,7 +13884,7 @@ msgstr ""
 msgid "Four players try to finish a winning hand first. The usual shape is four sets and a pair, with at least 8 fan before flower bonuses. Fan are the value of compatible scoring patterns. A hand win earns a payment; the match winner is the player with the highest combined balance."
 msgstr ""
 
-#: games/tysiac.rb:195
+#: games/tysiac.rb:201
 msgid "Four players, one sits out each deal"
 msgstr ""
 
@@ -14651,6 +14735,10 @@ msgstr "Honores"
 msgid "Honours are also scored above the line, whoever holds them, even a defender. Four of the five top trumps (ace, king, queen, jack, ten) in one hand earn 100 and all five earn 150. In no trump, all four aces in one hand earn 150. The table settings can turn honours off."
 msgstr ""
 
+#: lib/game_room_changelog.rb:677
+msgid "Hosts can use Ctrl+Shift+P on the users list to change a person's role for the next game. Fixed an error when that person has already left the table."
+msgstr "El anfitrión puede usar Ctrl+Shift+P en la lista de usuarios para cambiar el rol de una persona en la siguiente partida. También se ha corregido un error si esa persona ya ha salido de la mesa."
+
 #: lib/tournaments/tournament_datetime_field.rb:20
 msgid "Hour"
 msgstr "Hora"
@@ -14763,9 +14851,13 @@ msgstr "I: leer tu progreso en la ronda."
 msgid "I: read your seat, partner and role in this deal."
 msgstr ""
 
-#: games/bridge.rb:134 games/bridge.rb:157 games/bridge.rb:97 games/bridge/presentation.rb:549
+#: games/bridge.rb:102 games/bridge.rb:139 games/bridge.rb:162 games/bridge/presentation.rb:650
 msgid "IMPs"
 msgstr "IMP"
+
+#: games/bridge/presentation.rb:456
+msgid "IMPs: %{scores}."
+msgstr "IMP: %{scores}."
 
 msgid "Identical answers in the same category are grouped and shown with all their authors. The judge, not the program, decides whether a group is unique, duplicated or incorrect."
 msgstr ""
@@ -15381,7 +15473,7 @@ msgstr "En las partidas normales de Categorías, se retira al jugador cuando se 
 
 #: games/generated/rulebooks/bouillabaisse.rb:26
 msgid "In round 1 you must take every trick; in round 2, every card of the chosen suit; in round 3, all four cards of the chosen rank. In rounds 5 and 6 you must take every trick. In the final round, all or nothing turns your reduction into a penalty instead."
-msgstr ""
+msgstr "En la primera debes ganar todas las bazas; en la segunda, llevarte todas las cartas del palo elegido; en la tercera, las cuatro figuras del tipo elegido. En la quinta y la sexta necesitas todas las bazas. En la sexta, invertir el signo te perjudica: lo que ibas a restar se convierte en una penalización."
 
 #: games/generated/rulebooks/mahjong.rb:250
 msgid "In sanma the absent fourth player does not pay, and that share is not redistributed. Self-draw can therefore earn less than with four players. Draw settlements divide 2000 between tenpai and noten players, instead of 3000 with four players."
@@ -15699,7 +15791,7 @@ msgstr "Invento"
 msgid "Investment"
 msgstr "Inversión"
 
-#: __app.rb:2884
+#: __app.rb:2888
 msgid "Invitation"
 msgstr "Invitación"
 
@@ -15722,7 +15814,7 @@ msgstr "Invitación rechazada."
 msgid "Invitation sent."
 msgstr "Invitación enviada."
 
-#: __app.rb:2689
+#: __app.rb:2693
 msgid "Invitations"
 msgstr "Invitaciones"
 
@@ -15738,7 +15830,7 @@ msgstr "Ahora se pueden aceptar invitaciones desde las notificaciones después d
 msgid "Invitations sent: %{sent}. Unconfirmed: %{unconfirmed}."
 msgstr "Invitaciones enviadas: %{sent}. Sin confirmar: %{unconfirmed}."
 
-#: __app.rb:2576 lib/tournaments/tournament_invite_picker.rb:23
+#: __app.rb:2580 lib/tournaments/tournament_invite_picker.rb:23
 msgid "Invite"
 msgstr "Invitar"
 
@@ -15746,11 +15838,11 @@ msgstr "Invitar"
 msgid "Invite an online Elten user"
 msgstr "Invitar a un usuario de Elten conectado"
 
-#: __app.rb:2541
+#: __app.rb:2545
 msgid "Invite an online user"
 msgstr "Invitar a un usuario conectado"
 
-#: __app.rb:2541
+#: __app.rb:2545
 msgid "Invite from contacts"
 msgstr "Invitar desde los contactos"
 
@@ -15770,11 +15862,11 @@ msgstr "Personas invitadas"
 msgid "Island"
 msgstr "Isla"
 
-#: games/bridge/presentation.rb:51 games/bridge/presentation.rb:71
+#: games/bridge/presentation.rb:130
 msgid "It is %{player}'s turn (%{seat})."
 msgstr "Le toca a %{player} (%{seat})."
 
-#: games/base.rb:363 games/base.rb:390 games/board_game.rb:235 games/spades.rb:907
+#: games/base.rb:363 games/base.rb:390 games/board_game.rb:235 games/bridge/presentation.rb:51 games/spades.rb:907
 msgid "It is %{player}'s turn."
 msgstr "Es el turno de %{player}."
 
@@ -16302,6 +16394,10 @@ msgstr "Últimos 30 días"
 msgid "Last 7 days"
 msgstr "Últimos 7 días"
 
+#: games/bridge/presentation.rb:357
+msgid "Last bid: %{bid} by %{player}."
+msgstr "Última declaración: %{bid}, de %{player}."
+
 #: lib/tournaments/local_fixed_team_execution_screen.rb:417
 msgid "Last confirmed own move: %{id}"
 msgstr ""
@@ -16676,7 +16772,7 @@ msgstr "Cargando el historial de Game Room"
 msgid "Loading Game Room tables"
 msgstr "Cargando las mesas de Game Room"
 
-#: __app.rb:3063 lib/game_room_widget.rb:148 lib/game_room_widget.rb:152 lib/game_room_widget.rb:50
+#: __app.rb:3067 lib/game_room_widget.rb:148 lib/game_room_widget.rb:152 lib/game_room_widget.rb:50
 msgid "Loading Power Games tables"
 msgstr "Cargando las mesas de Power Games"
 
@@ -16696,7 +16792,7 @@ msgstr "Cargando la lista de intentos"
 msgid "Loading available tables"
 msgstr "Cargando las mesas disponibles"
 
-#: __app.rb:3088
+#: __app.rb:3092
 msgid "Loading contacts"
 msgstr "Cargando los contactos"
 
@@ -16708,7 +16804,7 @@ msgstr "Cargando borrador"
 msgid "Loading histories and replays"
 msgstr "Cargando historiales y repeticiones"
 
-#: __app.rb:2667
+#: __app.rb:2671
 msgid "Loading invitations"
 msgstr "Cargando las invitaciones"
 
@@ -16771,7 +16867,7 @@ msgstr "Cargando las mesas"
 msgid "Loading tournament drafts"
 msgstr ""
 
-#: __app.rb:2509 lib/tournaments/tournament_invite_picker.rb:12
+#: __app.rb:2513 lib/tournaments/tournament_invite_picker.rb:12
 msgid "Loading users"
 msgstr "Cargando los usuarios"
 
@@ -16829,7 +16925,7 @@ msgstr ""
 msgid "Local readiness operation in progress. Back discards its presentation, not its durable intent."
 msgstr ""
 
-#: __app.rb:3265
+#: __app.rb:3269
 msgid "Local settings saved. New-table notification subscriptions could not be saved."
 msgstr "Se han guardado los ajustes locales, pero no las suscripciones a avisos de nuevas mesas."
 
@@ -17068,6 +17164,10 @@ msgstr ""
 msgid "MCR: 88 fan"
 msgstr ""
 
+#: lib/game_room_changelog.rb:672
+msgid "Made Bridge announcements shorter, clarified bidding and improved navigation between your hand and dummy. Trump cards now use the same sound as in Spades."
+msgstr "Se han acortado los anuncios de Bridge, aclarado la subasta y mejorado la navegación entre tu mano y las cartas del muerto. Los triunfos usan ahora el mismo sonido que en Picas."
+
 #: games/mahjong.rb:24 games/mahjong_support/private_table.rb:129 games/mahjong_support/solitaire_presentation.rb:12 games/mahjong_support/solitaire_presentation.rb:36 games/mahjong_support/table_game.rb:219 games/mahjong_support/table_presentation.rb:21 games/mahjong_support/table_presentation.rb:25
 msgid "Mahjong"
 msgstr "Mahjong"
@@ -17130,11 +17230,11 @@ msgstr ""
 msgid "Makao's F1 help now includes Shift+Enter for adding a card to or removing it from a package."
 msgstr "La ayuda de F1 de Makao incluye ahora Shift+Enter para añadir una carta a un grupo o quitarla de él."
 
-#: lib/participant_menu.rb:244
+#: lib/participant_menu.rb:259
 msgid "Make %{player} a player for the next game"
 msgstr "%{player}: asignar como jugador para la próxima partida"
 
-#: lib/participant_menu.rb:244
+#: lib/participant_menu.rb:259
 msgid "Make %{player} an observer for the next game"
 msgstr "%{player}: asignar como espectador para la próxima partida"
 
@@ -17420,11 +17520,15 @@ msgstr ""
 msgid "Matching cards and winning rounds"
 msgstr ""
 
-#: games/bridge.rb:135 games/bridge/presentation.rb:549
+#: games/bridge.rb:140 games/bridge/presentation.rb:650
 msgid "Matchpoints"
 msgstr "Por porcentaje"
 
-#: games/bridge/presentation.rb:386
+#: games/bridge/presentation.rb:456
+msgid "Matchpoints: %{scores}."
+msgstr "Puntos de match: %{scores}."
+
+#: games/bridge/presentation.rb:485
 msgid "Matchpoints: North-South %{ns}, East-West %{ew}."
 msgstr "Puntos: Norte-Sur %{ns}, Este-Oeste %{ew}."
 
@@ -17610,6 +17714,10 @@ msgstr "¡Fallo!"
 #: games/categories/reduction.rb:177
 msgid "Missing reveals count as blank answers: %{players}."
 msgstr "Las respuestas no reveladas se cuentan como respuestas en blanco: %{players}."
+
+#: lib/game_room_screens.rb:382
+msgid "Missing translations use other known languages, then English. Close ELTEN completely and start it again to apply language changes; F12 is not enough."
+msgstr "Las traducciones que falten se buscan en los demás idiomas conocidos y, por último, en inglés. Cierra ELTEN por completo y vuelve a abrirlo para aplicar el cambio de idioma; F12 no basta."
 
 #: lib/game_room_screens.rb:382
 msgid "Missing translations use other known languages, then English. Restart ELTEN to apply language changes."
@@ -18129,7 +18237,7 @@ msgstr ""
 msgid "No Hell, Quicksand and Suicide are off by default. Quicksand takes precedence over standard contract bonuses and bag scoring when enabled. The score limit must be positive and defaults to 300. Team arrangement is Individual by default; team membership is chosen before the game and partners share a score."
 msgstr ""
 
-#: games/bridge/presentation.rb:388
+#: games/bridge/presentation.rb:487
 msgid "No IMPs change hands."
 msgstr "Nadie gana IMP."
 
@@ -18234,7 +18342,7 @@ msgstr ""
 msgid "No bids yet."
 msgstr "Aún no hay pujas."
 
-#: games/bridge/presentation.rb:493 games/bridge/presentation.rb:500
+#: games/bridge/presentation.rb:594 games/bridge/presentation.rb:601
 msgid "No calls have been made yet."
 msgstr "Todavía nadie ha hablado."
 
@@ -18249,7 +18357,7 @@ msgstr "No hay ninguna carta en la posición %{number}."
 msgid "No card in this packet can legally begin the move."
 msgstr "Ninguna carta de este grupo puede iniciar la jugada de forma válida."
 
-#: games/bridge/presentation.rb:270 games/poker.rb:348
+#: games/bridge/presentation.rb:329 games/poker.rb:348
 msgid "No cards"
 msgstr "Sin cartas"
 
@@ -18257,15 +18365,15 @@ msgstr "Sin cartas"
 msgid "No cards are on the table."
 msgstr ""
 
-#: games/base/shortcuts.rb:43 games/bridge/presentation.rb:470
+#: games/base/shortcuts.rb:43 games/bridge/presentation.rb:571
 msgid "No cards have been played in this trick"
 msgstr "Aún no se ha jugado ninguna carta en esta baza"
 
-#: games/tysiac.rb:1629
+#: games/tysiac.rb:1637
 msgid "No cards have been played in this trick."
 msgstr "Aún no se ha jugado ninguna carta en esta baza."
 
-#: games/bouillabaisse.rb:54 games/dealt_card_game.rb:139 games/dealt_card_game.rb:277
+#: games/bouillabaisse.rb:73 games/dealt_card_game.rb:139 games/dealt_card_game.rb:277
 msgid "No cards on the table"
 msgstr "No hay cartas en la mesa"
 
@@ -18312,7 +18420,7 @@ msgstr "No hay torneos actuales."
 msgid "No daily results"
 msgstr ""
 
-#: games/bridge/presentation.rb:515
+#: games/bridge/presentation.rb:616
 msgid "No deal has been played yet."
 msgstr "Todavía no se ha jugado ninguna mano."
 
@@ -18606,11 +18714,11 @@ msgstr "Casilla sin efecto especial."
 msgid "No statistics were collected for this period."
 msgstr ""
 
-#: games/bridge/presentation.rb:475 games/spades.rb:954
+#: games/bridge/presentation.rb:576 games/spades.rb:954
 msgid "No suit has been led."
 msgstr "Todavía no hay palo de salida."
 
-#: __app.rb:3170
+#: __app.rb:3174
 msgid "No table preset is assigned to this shortcut."
 msgstr "No hay ninguna configuración predefinida de mesa asignada a este atajo."
 
@@ -18629,7 +18737,7 @@ msgstr "No hay anuncios de torneos."
 msgid "No tournaments in this view."
 msgstr "No hay torneos en esta vista."
 
-#: games/bridge/presentation.rb:482
+#: games/bridge/presentation.rb:583
 msgid "No trick has been completed in this deal."
 msgstr "En esta mano todavía no se ha completado ninguna baza."
 
@@ -18667,7 +18775,7 @@ msgstr "Nadie ha adivinado la palabra."
 msgid "Nobody has chosen a card yet."
 msgstr ""
 
-#: __app.rb:3618 lib/game_option_values.rb:84 lib/mania_pisania/client.rb:339
+#: __app.rb:3622 lib/game_option_values.rb:84 lib/mania_pisania/client.rb:339
 msgid "None"
 msgstr "Nadie"
 
@@ -18710,7 +18818,7 @@ msgstr ""
 msgid "Normally, Space draws one tile. You may start drawing only once in a turn. If a legal play is available afterwards, you can make it; if none is available, your turn ends. Without any playable tile and with an empty boneyard, the game passes automatically. Having drawn is not permission to keep pressing Space for more tiles."
 msgstr ""
 
-#: games/bridge/presentation.rb:160
+#: games/bridge/presentation.rb:219
 msgid "North"
 msgstr "Norte"
 
@@ -18730,15 +18838,15 @@ msgstr "Estación del Norte"
 msgid "North wind"
 msgstr "Viento del norte"
 
-#: games/bridge/presentation.rb:173
+#: games/bridge/presentation.rb:232
 msgid "North-South"
 msgstr "Norte-Sur"
 
-#: games/bridge/presentation.rb:353
+#: games/bridge/presentation.rb:422
 msgid "North-South %{ns}, East-West %{ew}"
 msgstr "Norte-Sur %{ns}, Este-Oeste %{ew}"
 
-#: games/bridge/presentation.rb:229
+#: games/bridge/presentation.rb:288
 msgid "North-South vulnerable"
 msgstr "Norte-Sur vulnerables"
 
@@ -18806,7 +18914,7 @@ msgstr "Número del 1 al 999."
 msgid "Number of attempts"
 msgstr "Número de intentos"
 
-#: games/bridge.rb:122
+#: games/bridge.rb:127
 msgid "Number of boards"
 msgstr "Número de manos"
 
@@ -19124,7 +19232,11 @@ msgstr "Solo el organizador puede hacerlo."
 msgid "Only the solo player can save their private typing progress."
 msgstr "Solo el jugador individual puede guardar su progreso privado."
 
-#: __app.rb:3509
+#: __app.rb:2419
+msgid "Only the table master may change another user's role."
+msgstr "Solo el anfitrión puede cambiar el papel de otra persona."
+
+#: __app.rb:3513
 msgid "Only the table master may start a game."
 msgstr "Solo el anfitrión de la mesa puede iniciar una partida."
 
@@ -19215,7 +19327,7 @@ msgstr "Abriendo historial o repetición"
 msgid "Opening the betting requires a pair of jacks or better."
 msgstr "Para abrir las apuestas se necesita una pareja de jotas o una combinación superior."
 
-#: __app.rb:3552
+#: __app.rb:3556
 msgid "Opening the current game"
 msgstr "Abriendo la partida actual"
 
@@ -19604,7 +19716,7 @@ msgstr "Se ha guardado la elección de compañero."
 msgid "Partners and the deal"
 msgstr ""
 
-#: games/biblios.rb:1100 games/mahjong_support/table_presentation.rb:201 games/tysiac.rb:1470 games/tysiac.rb:1607
+#: games/biblios.rb:1100 games/mahjong_support/table_presentation.rb:201 games/tysiac.rb:1478 games/tysiac.rb:1615
 msgid "Pass"
 msgstr "Pasar"
 
@@ -19926,7 +20038,7 @@ msgstr "Juega al solitario mahjong, Hong Kong, Riichi o MCR."
 msgid "Play a card from dummy."
 msgstr "Juega una carta del muerto."
 
-#: games/bridge.rb:294
+#: games/bridge.rb:299
 msgid "Play a card from the hand whose turn it is."
 msgstr "Juega una carta de la mano a la que le toca."
 
@@ -20038,7 +20150,7 @@ msgstr ""
 msgid "Play until a specified number of wins"
 msgstr "Hasta un número de victorias"
 
-#: games/tysiac.rb:1485
+#: games/tysiac.rb:1493
 msgid "Play without declaring a marriage"
 msgstr "Jugar sin realizar un anuncio"
 
@@ -20149,7 +20261,7 @@ msgstr ""
 msgid "Players: %{count}"
 msgstr ""
 
-#: __app.rb:3619 lib/table_roster_reader.rb:69
+#: __app.rb:3623 lib/table_roster_reader.rb:69
 msgid "Players: %{players}."
 msgstr "Jugadores: %{players}."
 
@@ -20162,7 +20274,7 @@ msgstr ""
 
 #: games/generated/rulebooks/bouillabaisse.rb:11
 msgid "Playing a round"
-msgstr ""
+msgstr "Cómo jugar"
 
 #: games/generated/rulebooks/bridge.rb:50
 msgid "Playing a rubber"
@@ -20207,7 +20319,7 @@ msgstr ""
 
 #: games/generated/rulebooks/bridge.rb:29
 msgid "Playing the cards"
-msgstr ""
+msgstr "Jugar las bazas"
 
 #: games/generated/rulebooks/bridge.rb:26
 msgid "Playing the contract"
@@ -20257,6 +20369,10 @@ msgstr ""
 #: games/generated/rulebooks/tysiac.rb:28
 msgid "Points in cards are not the same as the score you receive"
 msgstr ""
+
+#: games/bridge/presentation.rb:458
+msgid "Points this deal: %{scores}."
+msgstr "Puntos del reparto: %{scores}."
 
 #: games/axel_pong.rb:49
 msgid "Points to win"
@@ -20817,7 +20933,7 @@ msgstr "Fase anterior del torneo"
 msgid "Previous tournament phase results"
 msgstr "Resultados de la fase anterior del torneo"
 
-#: games/bridge/presentation.rb:485
+#: games/bridge/presentation.rb:586
 msgid "Previous trick: %{cards}. Won by %{seat}."
 msgstr "Baza anterior: %{cards}. La ganó %{seat}."
 
@@ -21737,11 +21853,11 @@ msgstr ""
 msgid "Registration outside the allowed window."
 msgstr "Inscripción fuera del plazo permitido."
 
-#: __app.rb:2693
+#: __app.rb:2697
 msgid "Reject"
 msgstr "Rechazar"
 
-#: __app.rb:2883 lib/game_room_screens.rb:140
+#: __app.rb:2887 lib/game_room_screens.rb:140
 msgid "Reject invitation"
 msgstr "Rechazar invitación"
 
@@ -21757,7 +21873,7 @@ msgstr "Rechazada"
 msgid "Rejected or conflicting entry reports — announcements: %{announcements}; registrations: %{registrations}. These are not accepted entries."
 msgstr "Registros rechazados o en conflicto: anuncios %{announcements}; inscripciones %{registrations}. No se cuentan como registros aceptados."
 
-#: __app.rb:2846
+#: __app.rb:2850
 msgid "Rejecting invitation"
 msgstr "Rechazando la invitación"
 
@@ -21787,7 +21903,7 @@ msgstr "Eliminar un ordenador"
 msgid "Remove all 144 tiles in matching pairs. You play alone and win when you remove the last pair."
 msgstr ""
 
-#: lib/participant_menu.rb:210
+#: lib/participant_menu.rb:214
 msgid "Remove computer"
 msgstr "Quitar ordenador"
 
@@ -22004,6 +22120,10 @@ msgstr "Informes sobre esta pregunta"
 msgid "Request %{amount} rent from %{player}"
 msgstr "Solicitar a %{player} un alquiler de %{amount}"
 
+#: games/tysiac_redeals.rb:52 games/tysiac_redeals.rb:61
+msgid "Request a redeal"
+msgstr "Pedir un nuevo reparto"
+
 #: games/monopoly/presentation.rb:221
 msgid "Requested properties from %{player}"
 msgstr "Propiedades que solicitas a %{player}"
@@ -22088,7 +22208,7 @@ msgstr "Resultados"
 msgid "Results — %{phase}"
 msgstr "Resultados — %{phase}"
 
-#: __app.rb:1377 __app.rb:3623
+#: __app.rb:1377 __app.rb:3627
 msgid "Resume game"
 msgstr "Reanudar partida"
 
@@ -22191,6 +22311,10 @@ msgstr "Revisar la partida terminada"
 #: games/taboo_ui.rb:62
 msgid "Review this turn. The table master must approve it."
 msgstr "Revisa este turno. El anfitrión de la mesa debe aprobarlo."
+
+#: lib/game_room_changelog.rb:679
+msgid "Reviewed reported Polish quiz questions, clarified their wording and removed an ambiguous question. Thanks to Zuzler for the reports!"
+msgstr "Se han revisado los avisos sobre preguntas del quiz en polaco, aclarado su redacción y eliminado una pregunta ambigua. ¡Gracias a Zuzler por los avisos!"
 
 #: lib/quiz_contributions/views.rb:141
 msgid "Revision: %{revision}"
@@ -22538,7 +22662,7 @@ msgstr "La ronda %{round} ha terminado."
 msgid "Round %{round} ended. %{scores}"
 msgstr "La ronda %{round} ha terminado. %{scores}"
 
-#: games/bouillabaisse.rb:227
+#: games/bouillabaisse.rb:246
 msgid "Round %{round} of 6. %{rule}"
 msgstr "Ronda %{round} de 6. %{rule}"
 
@@ -22550,7 +22674,7 @@ msgstr "Comienza la ronda %{round}."
 msgid "Round %{round} started. Letter: %{letter}."
 msgstr "Ha empezado la ronda %{round}. Letra: %{letter}."
 
-#: games/tysiac.rb:710
+#: games/tysiac.rb:718
 msgid "Round %{round} was dealt by %{dealer}. %{player} opens the auction."
 msgstr "%{dealer} ha repartido las cartas de la ronda %{round}. %{player} abre la subasta."
 
@@ -22637,7 +22761,7 @@ msgstr "Octavos de final"
 msgid "Round robin"
 msgstr "Todos contra todos"
 
-#: games/bouillabaisse.rb:198 games/scopa.rb:246
+#: games/bouillabaisse.rb:217 games/scopa.rb:246
 msgid "Round scores: %{scores}."
 msgstr ""
 "Puntos de la ronda:\n"
@@ -22670,11 +22794,11 @@ msgstr "Rondas"
 msgid "Rounds and multiplayer matches"
 msgstr ""
 
-#: games/bridge.rb:93
+#: games/bridge.rb:98
 msgid "Rubber"
 msgstr "Rubber"
 
-#: games/bridge.rb:109
+#: games/bridge.rb:114
 msgid "Rubber bridge (social)"
 msgstr "Bridge rubber"
 
@@ -22727,6 +22851,10 @@ msgstr "Atajos de Rummy"
 #: games/rummy.rb:542
 msgid "Rummy multiplier: %{factor}."
 msgstr "Multiplicador de Rummy: %{factor}."
+
+#: lib/game_room_changelog.rb:676
+msgid "Rummy now clears the selection after an invalid card combination."
+msgstr "En Rummy se desmarcan automáticamente las cartas de una combinación no válida."
 
 #: games/generated/rulebooks/rummy.rb:12
 msgid "Runs, sets and the position of a joker"
@@ -22899,7 +23027,7 @@ msgstr "Guarda Rummy al principio de un turno, antes de robar o manipular cartas
 msgid "Save Taboo between turns, after the table master approves the review."
 msgstr "Guarda Tabú entre turnos, después de que el anfitrión de la mesa apruebe la revisión."
 
-#: __app.rb:3877
+#: __app.rb:3881
 msgid "Save changes"
 msgstr "Guardar cambios"
 
@@ -22936,7 +23064,7 @@ msgstr "Guardar conserva el lado seleccionado para futuras partidas; Cancelar ma
 msgid "Save partner"
 msgstr "Guardar compañero"
 
-#: __app.rb:3206
+#: __app.rb:3210
 msgid "Save preset"
 msgstr "Guardar configuración predefinida"
 
@@ -23036,7 +23164,7 @@ msgstr "Solo se puede guardar en Carrera y Torre de palabras."
 msgid "Saving is not supported for this game."
 msgstr "Este juego no permite guardar partidas."
 
-#: __app.rb:3246
+#: __app.rb:3250
 msgid "Saving notification settings"
 msgstr "Guardando los ajustes de notificaciones"
 
@@ -23052,11 +23180,11 @@ msgstr "Guardando repetición"
 msgid "Saving table history"
 msgstr "Guardando el historial de la mesa"
 
-#: __app.rb:3910
+#: __app.rb:3914
 msgid "Saving table settings"
 msgstr "Guardando los ajustes de la mesa"
 
-#: __app.rb:3740
+#: __app.rb:3744
 msgid "Saving teams"
 msgstr "Guardando equipos"
 
@@ -23119,7 +23247,7 @@ msgstr "Scopone"
 msgid "Scopone: an empty table and larger hands instead of three-card deals"
 msgstr "Scopone: mesa vacía y manos mayores en lugar de repartir de tres en tres"
 
-#: games/bridge/presentation.rb:394
+#: games/bridge/presentation.rb:493
 msgid "Score %{result}, compared with %{reference}. %{comparison}"
 msgstr "Resultado: %{result}; referencia: %{reference}. %{comparison}"
 
@@ -23130,7 +23258,7 @@ msgstr "Las puntuaciones que se leen con S se ordenan de mayor a menor, con los 
 msgid "Score every word formed in the move. New letter bonuses apply first, then word multipliers; multiple word multipliers multiply. A shared letter scores in each word. Covered bonuses never apply again. A blank can activate a word bonus. Using seven rack tiles in one move adds 50 points after the other calculations."
 msgstr ""
 
-#: games/bridge.rb:115
+#: games/bridge.rb:120
 msgid "Score honours"
 msgstr "Contar honores"
 
@@ -23163,7 +23291,7 @@ msgstr "Puntuación: %{own} a %{opponent}."
 msgid "Score: %{score}; accuracy factor: %{accuracy} percent."
 msgstr "Puntuación: %{score}; factor de precisión: %{accuracy} por ciento."
 
-#: games/cat_head_tail.rb:438 games/categories.rb:1387 games/farkle.rb:766 games/quiz_party.rb:1218 games/spades.rb:644 games/tysiac.rb:1641
+#: games/cat_head_tail.rb:438 games/categories.rb:1387 games/farkle.rb:766 games/quiz_party.rb:1218 games/spades.rb:644 games/tysiac.rb:1649
 msgid "Scores: %{scores}."
 msgstr "Puntuaciones: %{scores}."
 
@@ -23258,7 +23386,7 @@ msgstr "Segunda ronda de apuestas."
 msgid "Second set."
 msgstr "Segundo set."
 
-#: games/tysiac.rb:425
+#: games/tysiac.rb:431
 msgid "Second talon"
 msgstr "Segunda reserva"
 
@@ -23266,7 +23394,7 @@ msgstr "Segunda reserva"
 msgid "Seeds in each pit"
 msgstr "Semillas en cada hoyo"
 
-#: __app.rb:1863 __app.rb:2885 __app.rb:3703 lib/game_screen.rb:694 lib/game_surfaces/word_board.rb:208
+#: __app.rb:1863 __app.rb:2889 __app.rb:3707 lib/game_screen.rb:694 lib/game_surfaces/word_board.rb:208
 msgid "Select"
 msgstr "Seleccionar"
 
@@ -23420,7 +23548,7 @@ msgstr "Enviando el mensaje del chat"
 msgid "Sending has not been confirmed. Try again to check delivery; the file will not be sent twice."
 msgstr "No se ha confirmado el envío. Inténtalo de nuevo para comprobar la entrega; el archivo no se enviará dos veces."
 
-#: __app.rb:1573 __app.rb:2545 __app.rb:910 lib/tournaments/tournament_invite_picker.rb:47
+#: __app.rb:1573 __app.rb:2549 __app.rb:910 lib/tournaments/tournament_invite_picker.rb:47
 msgid "Sending invitation"
 msgstr "Enviando la invitación"
 
@@ -23546,7 +23674,7 @@ msgstr "Configurar reglas del torneo"
 msgid "Set tournament table limit"
 msgstr ""
 
-#: games/tysiac.rb:202
+#: games/tysiac.rb:208
 msgid "Set-aside cards go to the last trick winner"
 msgstr "Las cartas apartadas van a quien gane la última baza"
 
@@ -23574,9 +23702,13 @@ msgstr "Ajustes"
 msgid "Settings changed. Preview the plan again before accepting."
 msgstr ""
 
-#: __app.rb:3271
+#: __app.rb:3275
 msgid "Settings saved."
 msgstr "Ajustes guardados."
+
+#: __app.rb:3273
+msgid "Settings saved. Close ELTEN completely and start it again to apply the interface language preferences. Restarting with F12 does not reload Power Games."
+msgstr "Ajustes guardados. Cierra ELTEN por completo y vuelve a abrirlo para aplicar los idiomas de la interfaz. El reinicio con F12 no vuelve a cargar Power Games."
 
 #: __app.rb:3269
 msgid "Settings saved. Restart ELTEN to apply the interface language preferences."
@@ -23701,7 +23833,7 @@ msgstr "Shift+C: ordena por palo o color; pulsa de nuevo para invertir el orden.
 
 #: games/generated/rulebooks/bouillabaisse.rb:39 games/generated/rulebooks/scopa.rb:43
 msgid "Shift+C: sort by suit."
-msgstr ""
+msgstr "Mayús+C: ordenar por palo."
 
 msgid "Shift+C: sort by suit; Shift+H: sort by rank. Press the same shortcut again to reverse that order. Shift+M restores receipt order. Sorting changes only your view and keeps the selected physical card; it does not alter card strength or select a move."
 msgstr "Shift+C: ordenar por palo; Shift+H: ordenar por valor. Vuelve a pulsar el mismo atajo para invertir el orden. Shift+M restablece el orden en que recibiste las cartas. La ordenación solo cambia tu vista y mantiene seleccionada la misma carta; no modifica la fuerza de las cartas ni elige un movimiento."
@@ -23804,7 +23936,7 @@ msgstr "Shift+H: ordena por valor; pulsa de nuevo para invertir el orden."
 
 #: games/generated/rulebooks/bouillabaisse.rb:40 games/generated/rulebooks/scopa.rb:44
 msgid "Shift+H: sort by rank."
-msgstr ""
+msgstr "Mayús+H: ordenar por valor."
 
 #: games/generated/rulebooks/bridge.rb:93
 msgid "Shift+H: sort cards by rank."
@@ -24324,7 +24456,7 @@ msgstr "Fuente (opcional)"
 msgid "Source: %{source}"
 msgstr "Fuente: %{source}"
 
-#: games/bridge/presentation.rb:162
+#: games/bridge/presentation.rb:221
 msgid "South"
 msgstr "Sur"
 
@@ -24563,7 +24695,7 @@ msgstr ""
 msgid "Start date (YYYY-MM-DD)"
 msgstr ""
 
-#: __app.rb:3632 games/krowa_support/presentation.rb:15 lib/game_layout.rb:193
+#: __app.rb:3636 games/krowa_support/presentation.rb:15 lib/game_layout.rb:193
 msgid "Start game"
 msgstr "Iniciar partida"
 
@@ -24637,7 +24769,7 @@ msgstr "Fichas iniciales"
 msgid "Starting chips must be from 100 to 100000."
 msgstr "El número de fichas iniciales debe estar entre 100 y 100000."
 
-#: __app.rb:3588
+#: __app.rb:3592
 msgid "Starting game"
 msgstr "Iniciando la partida"
 
@@ -24690,7 +24822,7 @@ msgstr ""
 msgid "Statistics unavailable"
 msgstr ""
 
-#: games/tysiac.rb:1654
+#: games/tysiac.rb:1662
 msgid "Statistics: %{statistics}."
 msgstr "Estadísticas: %{statistics}."
 
@@ -24872,7 +25004,7 @@ msgstr "Rendirse"
 msgid "Surrender Word Tower"
 msgstr "Rendirse en Torre de palabras"
 
-#: games/tysiac.rb:1594 games/tysiac.rb:478
+#: games/tysiac.rb:1602 games/tysiac.rb:484
 msgid "Surrender the deal"
 msgstr "Rendirse en el reparto"
 
@@ -25148,11 +25280,11 @@ msgstr ""
 msgid "Take turns uncovering two positions by pressing their digits. Listen to your opponent's choices too and remember where the sounds are. A matching pair is removed and scores a point; a mismatch is hidden again."
 msgstr ""
 
-#: games/bouillabaisse.rb:224
+#: games/bouillabaisse.rb:243
 msgid "Taking %{card} costs 200 points."
 msgstr "Llevarte %{card} cuesta 200 puntos."
 
-#: games/bouillabaisse.rb:217
+#: games/bouillabaisse.rb:236
 msgid "Taking %{card} subtracts 200 points."
 msgstr "Llevarte la carta %{card} resta 200 puntos."
 
@@ -25174,7 +25306,7 @@ msgstr ""
 msgid "Talon"
 msgstr "Reserva"
 
-#: games/tysiac.rb:82
+#: games/tysiac.rb:88
 msgid "Talons: %{size}"
 msgstr ""
 
@@ -25193,7 +25325,7 @@ msgstr "Objetivo %{number} de 5."
 msgid "Target and forbidden words"
 msgstr "Palabra que adivinar y palabras prohibidas"
 
-#: games/categories.rb:231 games/mille_bornes.rb:82 games/quiz_party.rb:134 games/tysiac.rb:206
+#: games/categories.rb:231 games/mille_bornes.rb:82 games/quiz_party.rb:134 games/tysiac.rb:212
 msgid "Target score"
 msgstr "Puntuación objetivo"
 
@@ -25236,7 +25368,7 @@ msgstr "Equipo %{number}: %{score}"
 msgid "Team %{players}"
 msgstr "Equipo %{players}"
 
-#: __app.rb:3698
+#: __app.rb:3702
 msgid "Team %{team}"
 msgstr "Equipo %{team}"
 
@@ -25248,7 +25380,7 @@ msgstr "El equipo %{team} debe tener exactamente %{count} jugadores; actualmente
 msgid "Team %{team} wins Taboo."
 msgstr "El equipo %{team} gana Tabú."
 
-#: games/axel_pong.rb:111 games/mille_bornes/presentation.rb:251 games/tysiac.rb:1584 lib/recordings/information.rb:28
+#: games/axel_pong.rb:111 games/mille_bornes/presentation.rb:251 games/tysiac.rb:1592 lib/recordings/information.rb:28
 msgid "Team %{team}: %{players}"
 msgstr "Equipo %{team}: %{players}"
 
@@ -25289,7 +25421,7 @@ msgstr "Compañero de equipo"
 
 #: games/domino.rb:31
 msgid "Team play"
-msgstr ""
+msgstr "Juego por parejas"
 
 #: lib/game_room_changelog.rb:252
 msgid "Team selection is now a separate step: choose the players or use Choose teams randomly, then Accept to return to the table. Start game starts the match. Everyone hears the accepted teams, which are saved for the next game. Use Choose teams in the table menu to change them."
@@ -25657,7 +25789,7 @@ msgstr ""
 msgid "The auction ends when three players pass in a row after a bid. The last bid becomes the contract. If all four players pass at the start, nobody scores and the cards are dealt again by the next dealer."
 msgstr ""
 
-#: games/tysiac.rb:1677
+#: games/tysiac.rb:1685
 msgid "The auction has not started."
 msgstr "La subasta no ha comenzado."
 
@@ -26243,7 +26375,7 @@ msgstr ""
 msgid "The game announces when someone goes onto the barrel and records it in the history. S reads scores and marks the players currently on the barrel. Shift+S also tells you how many barrel chances they have left."
 msgstr ""
 
-#: __app.rb:3566
+#: __app.rb:3570
 msgid "The game cannot start until these players join the real-time session: %{players}."
 msgstr "La partida no puede empezar hasta que estos jugadores se unan a la sesión en tiempo real: %{players}."
 
@@ -26373,7 +26505,7 @@ msgstr ""
 
 #: games/generated/rulebooks/bouillabaisse.rb:14
 msgid "The highest card in the suit led takes all the cards played and leads next. Ace is highest, followed by king, queen, jack, 10 and so on down to 2. There are no trumps. The round is scored when all hands are empty, or earlier in rounds 2, 3 and 4 once all their penalty cards have been taken."
-msgstr ""
+msgstr "La carta más alta del palo de salida se lleva la baza, y su dueño sale en la siguiente. El as es el más alto, seguido del rey, la dama, la jota, el diez y las demás hasta el dos. No hay triunfo. La ronda se puntúa cuando se agotan las manos. En las rondas 2, 3 y 4 termina antes, en cuanto se han recogido todas las cartas que penalizan en esa ronda."
 
 #: games/generated/rulebooks/war.rb:11
 msgid "The highest card wins the battle and takes all the cards from the table. Aces are highest, then kings, queens, jacks, tens and so on down to the lowest card in the deck. Suits do not matter. The cards taken go to the bottom of the winner's pile in random order."
@@ -26564,7 +26696,7 @@ msgstr "Hay un empate en cabeza. Se jugará otro ciclo completo de jueces."
 msgid "The lead is tied. Another round will be played: %{players}."
 msgstr "Hay un empate en cabeza. Se jugará otra ronda: %{players}."
 
-#: games/bridge/presentation.rb:477 games/spades.rb:957
+#: games/bridge/presentation.rb:578 games/spades.rb:957
 msgid "The led suit is %{suit}."
 msgstr "El palo de salida es %{suit}."
 
@@ -26666,7 +26798,7 @@ msgstr ""
 msgid "The match changed. Review the updated consequences before confirming again."
 msgstr "El estado de la partida ha cambiado. Revisa las consecuencias antes de volver a confirmar."
 
-#: games/bridge/presentation.rb:433
+#: games/bridge/presentation.rb:532
 msgid "The match ended in a draw: %{scores}."
 msgstr "El encuentro terminó en empate: %{scores}."
 
@@ -26759,7 +26891,7 @@ msgstr ""
 msgid "The number of starting tokens must be greater than zero."
 msgstr "El número de fichas iniciales debe ser mayor que cero."
 
-#: __app.rb:1589 __app.rb:2562 __app.rb:3330 lib/game_room_widget.rb:251 lib/game_screen.rb:1637
+#: __app.rb:1589 __app.rb:2566 __app.rb:3334 lib/game_room_widget.rb:251 lib/game_screen.rb:1637
 msgid "The operation could not be completed. Please try again."
 msgstr "No se ha podido completar la operación. Inténtalo de nuevo."
 
@@ -26868,7 +27000,7 @@ msgstr "El jugador siguiente al declarante sale con la primera carta. Entonces e
 
 #: games/generated/rulebooks/bouillabaisse.rb:13
 msgid "The player after the dealer leads. Choose a card with the arrows and play it with Enter. Each player adds one card in turn. You must follow the suit led if you can; otherwise, play any card."
-msgstr ""
+msgstr "Sale quien está después del repartidor. Elige una carta con las flechas y juégala con Intro. Los demás añaden una carta por turno. Debes seguir el palo de la primera carta si lo tienes; si no, puedes jugar cualquiera."
 
 #: games/generated/rulebooks/tysiac.rb:11
 msgid "The player after the dealer opens at no less than 100. Later bids rise in steps of five. Passing removes you from this auction, not from the game. You may bid up to 120 plus the values of the marriages you currently hold, with an overall maximum of 400. A marriage is a king and queen of the same suit."
@@ -27011,7 +27143,7 @@ msgstr "Se ha alcanzado el límite de subidas de esta ronda de apuestas."
 msgid "The readiness revision changed. Check status before a new declaration."
 msgstr ""
 
-#: __app.rb:1751 __app.rb:2760 __app.rb:2788 __app.rb:3129
+#: __app.rb:1751 __app.rb:2764 __app.rb:2792 __app.rb:3133
 msgid "The real-time connection to this table could not be established. Please try again."
 msgstr "No se ha podido establecer la conexión en tiempo real con esta mesa. Inténtalo de nuevo."
 
@@ -27300,7 +27432,7 @@ msgstr "El servidor exige la verificación del iniciador oficial, que esta sesi�
 msgid "The server tournament test failed. No local fallback was used. Check Operations before repeating a write."
 msgstr "La operación de prueba del servidor ha fallado. No se ha usado el almacén local como alternativa. Revisa Operaciones antes de repetir la escritura."
 
-#: __app.rb:3441 lib/table_roster_reader.rb:79
+#: __app.rb:3445 lib/table_roster_reader.rb:79
 msgid "The settings of this table are not available."
 msgstr "Los ajustes de esta mesa no están disponibles."
 
@@ -27331,13 +27463,13 @@ msgstr "Se ha cambiado la cuenta conectada."
 
 #: games/generated/rulebooks/bouillabaisse.rb:16
 msgid "The six rounds"
-msgstr ""
+msgstr "Las seis rondas"
 
 #: games/duck_racing_support/presentation.rb:501
 msgid "The soft nest looks like a good place for a nap."
 msgstr "El nido mullido invita a una siesta."
 
-#: __app.rb:3987 __app.rb:3992
+#: __app.rb:3991 __app.rb:3996
 msgid "The sound volume could not be saved."
 msgstr "No se ha podido guardar el volumen de los sonidos."
 
@@ -27379,7 +27511,7 @@ msgstr ""
 msgid "The table and score use Power Games's normal session; movement uses Communications. During a human match, each player calculates their own flight and return locally. Lost or delayed paddle-position updates alone do not stop the ball. Serves, returns and misses travel separately in order. An actual connection failure pauses the rally; a replacement connection restarts the unfinished point with the confirmed score unchanged. Observers may listen but cannot control a paddle. Unfinished matches cannot currently be saved."
 msgstr ""
 
-#: __app.rb:3744 __app.rb:3895 __app.rb:3914
+#: __app.rb:3748 __app.rb:3899 __app.rb:3918
 msgid "The table changed while you were editing. Open its settings again."
 msgstr "La mesa ha cambiado mientras la editabas. Vuelve a abrir sus ajustes."
 
@@ -27488,7 +27620,7 @@ msgstr ""
 msgid "The taker leads first, and the winner of each trick leads the next. A trump beats every non-trump; without a trump the highest card of the led suit wins. Collected round points and the actual score change are different figures, so both are announced."
 msgstr ""
 
-#: games/tysiac.rb:799
+#: games/tysiac.rb:807
 msgid "The talon is %{cards}."
 msgstr "La reserva es: %{cards}."
 
@@ -27514,7 +27646,7 @@ msgstr ""
 msgid "The target score must be at least %{minimum} points."
 msgstr "La puntuación objetivo debe ser de al menos %{minimum} puntos."
 
-#: games/tysiac.rb:216
+#: games/tysiac.rb:222
 msgid "The target score must be at least 200 and divisible by 5."
 msgstr "La puntuación objetivo debe ser al menos 200 y divisible entre 5."
 
@@ -27577,7 +27709,7 @@ msgstr "El torneo ha cambiado. Actualiza y vuelve a elegir la acción."
 msgid "The tournament changed. Refresh its view before changing it again."
 msgstr "El torneo ha cambiado. Actualiza la vista antes de volver a modificarlo."
 
-#: __app.rb:3581 __app.rb:934 lib/tournaments/public_text.rb:69
+#: __app.rb:3585 __app.rb:934 lib/tournaments/public_text.rb:69
 msgid "The tournament deadline has passed. New matches cannot be started; games already in progress may finish."
 msgstr "Ha pasado la fecha límite del torneo. No se pueden iniciar nuevos encuentros; las partidas en curso pueden terminar."
 
@@ -27666,7 +27798,7 @@ msgstr ""
 msgid "The upper-section bonus adds 35 points if the six upper rows total at least 63. It is enabled by default. You do not need three of each value separately: a strong result in Sixes can compensate for a weak result in Ones. Switching the bonus off leaves the rows themselves unchanged."
 msgstr ""
 
-#: __app.rb:3560 __app.rb:3732
+#: __app.rb:3564 __app.rb:3736
 msgid "The users at the table changed while teams were being selected. Please start again."
 msgstr "Los usuarios de la mesa han cambiado durante la selección de equipos. Vuelve a empezar."
 
@@ -27786,7 +27918,7 @@ msgstr ""
 msgid "There are no available moves from %{field}."
 msgstr "No hay movimientos disponibles desde %{field}."
 
-#: games/bridge/presentation.rb:461
+#: games/bridge/presentation.rb:560
 msgid "There are no cards in the current trick."
 msgstr "Todavía no hay cartas en la baza actual."
 
@@ -27812,11 +27944,11 @@ msgstr "No hay combinaciones en la mesa."
 msgid "There are no non-empty answers to review"
 msgstr "No hay respuestas con contenido para evaluar"
 
-#: __app.rb:2534
+#: __app.rb:2538
 msgid "There are no online contacts available to invite."
 msgstr "No hay contactos conectados a los que puedas invitar."
 
-#: __app.rb:2534
+#: __app.rb:2538
 msgid "There are no online users available to invite."
 msgstr "No hay usuarios conectados a los que puedas invitar."
 
@@ -27832,7 +27964,7 @@ msgstr "No hay mesas abiertas."
 msgid "There are no optional board sizes or alternative placement rules in this game. Either player can be a bot."
 msgstr ""
 
-#: __app.rb:2641
+#: __app.rb:2645
 msgid "There are no pending invitations."
 msgstr "No hay invitaciones pendientes."
 
@@ -27880,7 +28012,7 @@ msgstr ""
 msgid "There is a short break before the next serve after an ordinary point, and a five-second break between sets. The game automatically announces the set number and who is serving. You do not need to request these announcements."
 msgstr ""
 
-#: __app.rb:4037
+#: __app.rb:4041
 msgid "There is currently %{current} user at the table."
 msgid_plural "There are currently %{current} users at the table."
 msgstr[0] "Actualmente hay %{current} usuario en la mesa."
@@ -27897,7 +28029,7 @@ msgstr "No hay ninguna carta en la pila de descartes."
 msgid "There is no computer to remove."
 msgstr "No hay ningún ordenador que eliminar."
 
-#: games/bridge/presentation.rb:506 games/tysiac.rb:1671
+#: games/bridge/presentation.rb:607 games/tysiac.rb:1679
 msgid "There is no contract yet."
 msgstr "Todavía no hay contrato."
 
@@ -27952,11 +28084,11 @@ msgstr "Esta partida no tiene límite de tiempo."
 msgid "There is no trump at the beginning of a deal. When leading a trick after the first trick, a player who still holds the king and queen of one suit may play either card and declare the marriage. That suit immediately becomes trump and the player receives 100 points for hearts, 80 for diamonds, 60 for clubs or 40 for spades."
 msgstr ""
 
-#: games/tysiac.rb:496
+#: games/tysiac.rb:502
 msgid "There is no trump suit."
 msgstr "No hay palo de triunfo."
 
-#: __app.rb:2458
+#: __app.rb:2462
 msgid "There is nobody available to replace this player."
 msgstr "No hay nadie disponible para sustituir a este jugador."
 
@@ -28107,7 +28239,7 @@ msgstr "El tiempo para pensar debe ser cero o estar entre 20 y 600 segundos."
 msgid "Third set."
 msgstr "Tercer set."
 
-#: games/tysiac.rb:219
+#: games/tysiac.rb:225
 msgid "This 1000 card game variant requires exactly %{count} players."
 msgstr "Esta variante de Mil requiere exactamente %{count} jugadores."
 
@@ -28135,7 +28267,7 @@ msgstr "Este resultado de Torre de palabras ya se ha publicado."
 msgid "This action contains too much data and was not sent."
 msgstr "Esta acción contiene demasiados datos y no se ha enviado."
 
-#: games/rummy_ui.rb:126 games/rummy_ui.rb:135 lib/game_surfaces/meld_cards.rb:384 lib/game_surfaces/word_board.rb:136 lib/participant_menu.rb:228
+#: games/rummy_ui.rb:126 games/rummy_ui.rb:135 lib/game_surfaces/meld_cards.rb:384 lib/game_surfaces/word_board.rb:136 lib/participant_menu.rb:232 lib/participant_menu.rb:244
 msgid "This action is not available now."
 msgstr "Esta acción no está disponible ahora."
 
@@ -28147,7 +28279,7 @@ msgstr ""
 msgid "This bid is not allowed with the selected Spades rules."
 msgstr "Esta declaración no está permitida con las reglas de Picas seleccionadas."
 
-#: games/bridge.rb:290
+#: games/bridge.rb:295
 msgid "This call is not allowed now. A bid must be higher than the last bid, and you may only double or redouble your opponents."
 msgstr "Ahora no puedes dar esa voz. Una declaración tiene que ser más alta que la anterior, y solo puedes doblar o redoblar a los rivales."
 
@@ -28183,11 +28315,11 @@ msgstr "Esta carta no tiene el valor solicitado."
 msgid "This card exchange is not available."
 msgstr ""
 
-#: games/bridge.rb:292
+#: games/bridge.rb:297
 msgid "This card is not in the hand that is to play."
 msgstr "Esa carta no está en la mano a la que le toca."
 
-#: games/dealt_card_game.rb:91 games/makao.rb:443 games/ninety_nine.rb:403 games/spades.rb:560 games/three_five_eight.rb:390 games/tysiac.rb:518
+#: games/dealt_card_game.rb:91 games/makao.rb:443 games/ninety_nine.rb:403 games/spades.rb:560 games/three_five_eight.rb:390 games/tysiac.rb:524
 msgid "This card is not in your hand."
 msgstr "Esta carta no está en tu mano."
 
@@ -28290,7 +28422,7 @@ msgstr "Esta partida ya ha terminado."
 msgid "This game is not supported by this version of ELTEN Game Room."
 msgstr "Esta versión de ELTEN Game Room no admite este juego."
 
-#: __app.rb:3525 __app.rb:3810 __app.rb:4027
+#: __app.rb:3529 __app.rb:3814 __app.rb:4031
 msgid "This game is not supported by this version of Power Games."
 msgstr "Esta versión de Power Games no admite este juego."
 
@@ -28302,7 +28434,7 @@ msgstr ""
 msgid "This game requires %{minimum} to %{maximum} players per match."
 msgstr ""
 
-#: __app.rb:4033
+#: __app.rb:4037
 msgid "This game requires exactly %{required} players."
 msgstr "Este juego requiere exactamente %{required} jugadores."
 
@@ -28310,7 +28442,7 @@ msgstr "Este juego requiere exactamente %{required} jugadores."
 msgid "This game requires exactly %{required} players. There are currently %{current} users at the table."
 msgstr "Este juego requiere exactamente %{required} jugadores. Actualmente hay %{current} usuarios en la mesa."
 
-#: __app.rb:4035
+#: __app.rb:4039
 msgid "This game requires from %{minimum} to %{maximum} players."
 msgstr "Este juego requiere entre %{minimum} y %{maximum} jugadores."
 
@@ -28336,11 +28468,11 @@ msgstr ""
 msgid "This invitation expired. Choose Play to send a new one."
 msgstr "La invitación ha caducado. Elige Jugar para enviar otra."
 
-#: __app.rb:2837 __app.rb:491
+#: __app.rb:2841 __app.rb:491
 msgid "This invitation has expired."
 msgstr "Esta invitación ha caducado."
 
-#: __app.rb:2653 __app.rb:2740 __app.rb:2874
+#: __app.rb:2657 __app.rb:2744 __app.rb:2878
 msgid "This invitation is no longer available."
 msgstr "Esta invitación ya no está disponible."
 
@@ -28356,7 +28488,7 @@ msgstr ""
 msgid "This is your home position. From here, you can type other characters by moving your fingers to nearby keys. For example, to type z, move your left pinky down from a. To type q, move the same finger up. To type y, move your right index finger diagonally up and to the left from j."
 msgstr ""
 
-#: games/tysiac.rb:522
+#: games/tysiac.rb:528
 msgid "This marriage cannot be declared now."
 msgstr "No se puede realizar este anuncio ahora."
 
@@ -28447,7 +28579,7 @@ msgstr "Esta prueba en mesa normal admite dos jugadores individuales. Las mesas 
 msgid "This participant already has a partner."
 msgstr "Este participante ya tiene compañero."
 
-#: __app.rb:2465
+#: __app.rb:2469
 msgid "This participant cannot replace the selected player."
 msgstr "Este participante no puede sustituir al jugador seleccionado."
 
@@ -28458,6 +28590,10 @@ msgstr "Esta invitación de pareja sigue pendiente."
 #: games/ludo.rb:225
 msgid "This pawn cannot move after the current roll."
 msgstr "Esta ficha no puede moverse con la tirada actual."
+
+#: __app.rb:2420
+msgid "This person is no longer at the table. Their role was not changed."
+msgstr "Esta persona ya no está en la mesa. No se ha cambiado su papel."
 
 #: lib/tournaments/draft_preview.rb:112
 msgid "This plan exceeds 5000 matches. Reduce participants, change multiplayer pairings or disable return matches."
@@ -28471,11 +28607,11 @@ msgstr "Esta plataforma no puede convertir la hora local de forma segura. Elige 
 msgid "This player already has a partner. Refresh the list and choose a free player."
 msgstr ""
 
-#: __app.rb:2451
+#: __app.rb:2455
 msgid "This player is no longer at the table."
 msgstr "Este jugador ya no está en la mesa."
 
-#: __app.rb:3175
+#: __app.rb:3179
 msgid "This preset needs updating. Check its game and options before creating a table."
 msgstr "Esta configuración predefinida necesita actualizarse. Comprueba el juego y sus opciones antes de crear una mesa."
 
@@ -28553,15 +28689,15 @@ msgstr "Esta casilla no tiene título de propiedad."
 msgid "This table already has a game. A forfeit cannot replace a game in progress or a finished result."
 msgstr "Ya se inició una partida en esta mesa. Una victoria por incomparecencia no puede sustituir una partida en curso ni un resultado guardado."
 
-#: __app.rb:3291 __app.rb:387
+#: __app.rb:3295 __app.rb:387
 msgid "This table announcement has expired or is no longer available."
 msgstr "Este anuncio de mesa ha caducado o ya no está disponible."
 
-#: __app.rb:1765 __app.rb:2397 __app.rb:2748 __app.rb:2792 __app.rb:2801 __app.rb:3141
+#: __app.rb:1765 __app.rb:2397 __app.rb:2752 __app.rb:2796 __app.rb:2805 __app.rb:3145
 msgid "This table is full."
 msgstr "Esta mesa está llena."
 
-#: __app.rb:1559 __app.rb:1584 __app.rb:1768 __app.rb:2398 __app.rb:2568 __app.rb:2740 __app.rb:2792 __app.rb:2804 __app.rb:3143 __app.rb:3304 __app.rb:504 lib/game_table_background.rb:116 lib/table_roster_reader.rb:48
+#: __app.rb:1559 __app.rb:1584 __app.rb:1768 __app.rb:2398 __app.rb:2572 __app.rb:2744 __app.rb:2796 __app.rb:2808 __app.rb:3147 __app.rb:3308 __app.rb:504 lib/game_table_background.rb:116 lib/table_roster_reader.rb:48
 msgid "This table is no longer available."
 msgstr "Esta mesa ya no está disponible."
 
@@ -28613,7 +28749,7 @@ msgstr "Este torneo usa cartas privadas. Vuelve a la misma mesa para continuar; 
 msgid "This trade is no longer valid. Check the player, properties and available cash."
 msgstr "Este intercambio ya no es válido. Comprueba el jugador, las propiedades y el efectivo disponible."
 
-#: __app.rb:2566
+#: __app.rb:2570
 msgid "This user is already at the table."
 msgstr "Este usuario ya está en la mesa."
 
@@ -28710,7 +28846,7 @@ msgstr ""
 msgid "Three of your marks in an unbroken row, column or diagonal win immediately. If all nine fields are filled without a winning line, the result is a draw. There are no optional board sizes or rule variants. Either seat may be occupied by a computer."
 msgstr ""
 
-#: games/tysiac.rb:193
+#: games/tysiac.rb:199
 msgid "Three players"
 msgstr "Tres jugadores"
 
@@ -28892,7 +29028,7 @@ msgstr ""
 msgid "To use the new game rules, create a table in Game Room 2.0. All players need version 2.0 or later."
 msgstr "Para utilizar las nuevas reglas, crea una mesa en Game Room 2.0. Todos los jugadores necesitan la versión 2.0 o posterior."
 
-#: __app.rb:3517
+#: __app.rb:3521
 msgid "To use the new game rules, create a table in Power Games. All players need version 2.0 or later."
 msgstr "Para utilizar las nuevas reglas, crea una mesa en Power Games. Todos los jugadores necesitan la versión 2.0 o posterior."
 
@@ -28970,7 +29106,7 @@ msgstr "Carta superior: %{card}; palo declarado: %{suit}%{request}."
 msgid "Total across matches: %{points}."
 msgstr "Total de todas las partidas: %{points}."
 
-#: games/bridge/presentation.rb:376
+#: games/bridge/presentation.rb:475
 msgid "Total: %{scores}."
 msgstr "Total: %{scores}."
 
@@ -29088,7 +29224,7 @@ msgstr "Lista de torneos"
 msgid "Tournament list scope"
 msgstr "Vista de la lista de torneos"
 
-#: __app.rb:3416 __app.rb:3420 lib/tournaments/server_proposal_screen.rb:27
+#: __app.rb:3420 __app.rb:3424 lib/tournaments/server_proposal_screen.rb:27
 msgid "Tournament match"
 msgstr "Partido del torneo"
 
@@ -29208,7 +29344,7 @@ msgstr "Creación de mesa: torneo %{id}"
 msgid "Tournament table link: %{id}"
 msgstr "Vinculación de mesa: torneo %{id}"
 
-#: __app.rb:1337 __app.rb:1473 __app.rb:1637 __app.rb:3577 __app.rb:928 __app.rb:971 __app.rb:988
+#: __app.rb:1337 __app.rb:1473 __app.rb:1637 __app.rb:3581 __app.rb:928 __app.rb:971 __app.rb:988
 msgid "Tournament table operation blocked: %{reason}"
 msgstr "Operación de mesa del torneo bloqueada: %{reason}"
 
@@ -29278,7 +29414,7 @@ msgstr "Trenes; estación %{station}"
 msgid "Transfer table master"
 msgstr ""
 
-#: lib/participant_menu.rb:194 lib/participant_menu.rb:221
+#: lib/participant_menu.rb:194 lib/participant_menu.rb:225
 msgid "Transfer table master to this person"
 msgstr ""
 
@@ -29313,11 +29449,11 @@ msgstr ""
 msgid "Tricks and marriages"
 msgstr ""
 
-#: games/bridge/presentation.rb:519
+#: games/bridge/presentation.rb:620
 msgid "Tricks: %{tricks}."
 msgstr "Bazas: %{tricks}."
 
-#: games/tysiac.rb:496
+#: games/tysiac.rb:502
 msgid "Trump: %{suit}."
 msgstr "Triunfo: %{suit}."
 
@@ -29416,7 +29552,7 @@ msgstr ""
 msgid "Two pawns of one player form a blockade: on by default. Disable it to remove blockade restrictions. These settings do not change the length of the shared track or private home lanes."
 msgstr ""
 
-#: games/tysiac.rb:194
+#: games/tysiac.rb:200
 msgid "Two players"
 msgstr "Dos jugadores"
 
@@ -29465,7 +29601,7 @@ msgstr ""
 msgid "Two teams"
 msgstr "Dos equipos"
 
-#: games/tysiac.rb:196
+#: games/tysiac.rb:202
 msgid "Two teams of two"
 msgstr ""
 
@@ -29946,7 +30082,7 @@ msgstr ""
 msgid "Updating game"
 msgstr "Actualizando la partida"
 
-#: __app.rb:1631 __app.rb:2024 __app.rb:2276 __app.rb:2285 __app.rb:2296 __app.rb:2421 __app.rb:2470 __app.rb:3719 __app.rb:3728 __app.rb:3874 __app.rb:3891 __app.rb:3932 lib/game_screen.rb:1098 lib/game_screen/input.rb:531
+#: __app.rb:1631 __app.rb:2024 __app.rb:2276 __app.rb:2285 __app.rb:2296 __app.rb:2425 __app.rb:2474 __app.rb:3723 __app.rb:3732 __app.rb:3878 __app.rb:3895 __app.rb:3936 lib/game_screen.rb:1098 lib/game_screen/input.rb:531
 msgid "Updating table"
 msgstr "Actualizando la mesa"
 
@@ -30132,7 +30268,7 @@ msgstr "Usuarios en la mesa (%{count})"
 msgid "Users at the table. %{name}; %{game}; host: %{owner}; %{count}/%{maximum}"
 msgstr "Usuarios en la mesa. %{name}; %{game}; anfitrión de la mesa: %{owner}; %{count}/%{maximum}"
 
-#: __app.rb:3425
+#: __app.rb:3429
 msgid "Users at the table. %{status}; %{name}; %{game}; host: %{owner}; %{count}/%{maximum}"
 msgstr "Usuarios de la mesa. %{status}; %{name}; %{game}; anfitrión: %{owner}; %{count}/%{maximum}"
 
@@ -30495,7 +30631,7 @@ msgstr "Esperando a que se repartan las cartas"
 msgid "Waiting for the deal"
 msgstr ""
 
-#: games/bouillabaisse.rb:209
+#: games/bouillabaisse.rb:228
 msgid "Waiting for the deal."
 msgstr "Esperando el reparto."
 
@@ -30645,7 +30781,7 @@ msgstr "Compañía de aguas"
 msgid "Welcome to the audio tutorial. Here you will learn the sounds used in this game. Use the arrow keys to browse. Press Space or Enter to play a sound."
 msgstr "Te damos la bienvenida al tutorial de audio. Aquí conocerás los sonidos que se utilizan en este juego. Usa las flechas para recorrerlos. Pulsa Espacio o Enter para reproducir un sonido."
 
-#: games/bridge/presentation.rb:163
+#: games/bridge/presentation.rb:222
 msgid "West"
 msgstr "Oeste"
 
@@ -31371,11 +31507,11 @@ msgstr "Has respondido incorrectamente."
 msgid "You are already at a table."
 msgstr "Ya estás en una mesa."
 
-#: __app.rb:1449 __app.rb:1463 __app.rb:1761 __app.rb:2807 __app.rb:3138
+#: __app.rb:1449 __app.rb:1463 __app.rb:1761 __app.rb:2811 __app.rb:3142
 msgid "You are already at another table."
 msgstr "Ya estás en otra mesa."
 
-#: __app.rb:2758
+#: __app.rb:2762
 msgid "You are already at this table."
 msgstr "Ya estás en esta mesa."
 
@@ -31383,15 +31519,15 @@ msgstr "Ya estás en esta mesa."
 msgid "You are bidding."
 msgstr "Estás haciendo tu declaración."
 
-#: games/bridge/presentation.rb:537
+#: games/bridge/presentation.rb:638
 msgid "You are declarer and also play dummy's cards."
 msgstr "Eres el declarante y juegas también las cartas del muerto."
 
-#: games/bridge/presentation.rb:541
+#: games/bridge/presentation.rb:642
 msgid "You are defending; your side needs %{count} tricks to defeat the contract."
 msgstr "Defiendes; tu pareja necesita %{count} bazas para hacer fallar el contrato."
 
-#: games/bridge/presentation.rb:539
+#: games/bridge/presentation.rb:640
 msgid "You are dummy."
 msgstr "Eres el muerto."
 
@@ -31407,7 +31543,7 @@ msgstr "No participas como jugador en esta partida."
 msgid "You are not connected to a voice conversation."
 msgstr "No estás en una conversación de voz."
 
-#: games/bridge/presentation.rb:445
+#: games/bridge/presentation.rb:544
 msgid "You are not playing at this table."
 msgstr "No juegas en esta mesa."
 
@@ -31467,7 +31603,7 @@ msgstr ""
 msgid "You are watching this challenge."
 msgstr "Estás observando este desafío."
 
-#: games/bridge/presentation.rb:524 games/bridge/presentation.rb:529
+#: games/bridge/presentation.rb:625 games/bridge/presentation.rb:630
 msgid "You are watching this table."
 msgstr "Estás observando esta mesa."
 
@@ -31620,7 +31756,11 @@ msgstr "No puedes mover la pieza seleccionada de %{from} a %{to}. Pulsa V para o
 msgid "You cannot move the selected piece to %{field}. Press V to hear its available moves."
 msgstr "No puedes mover la pieza seleccionada a %{field}. Pulsa V para escuchar sus movimientos disponibles."
 
-#: games/tysiac.rb:524
+#: games/tysiac_redeals.rb:68
+msgid "You cannot request a redeal now."
+msgstr "Ahora no puedes pedir un nuevo reparto."
+
+#: games/tysiac.rb:530
 msgid "You cannot surrender this deal now."
 msgstr "No puedes rendirte en este reparto ahora."
 
@@ -31660,7 +31800,7 @@ msgstr "Robas %{card}."
 msgid "You fired %{shots} shots, %{hits} of them hits, and sank %{sunk} ships."
 msgstr "Has efectuado %{shots} disparos, de los cuales %{hits} han dado en el blanco, y has hundido %{sunk} barcos."
 
-#: games/tysiac.rb:1521
+#: games/tysiac.rb:1529
 msgid "You gave %{card} to %{player}."
 msgstr "Has dado %{card} a %{player}."
 
@@ -31768,7 +31908,7 @@ msgstr "No tienes ninguna combinación."
 msgid "You have no kings."
 msgstr "No tienes damas."
 
-#: games/base/shortcuts.rb:159 lib/game_surfaces.rb:922 lib/game_surfaces/packet_cards.rb:190
+#: games/base/shortcuts.rb:159 lib/game_surfaces.rb:928 lib/game_surfaces/packet_cards.rb:190
 msgid "You have no playable card."
 msgstr "No tienes ninguna carta que puedas jugar."
 
@@ -31831,7 +31971,7 @@ msgstr ""
 msgid "You hold your cards in your hand and choose which one to play. The cards in your hand are always listed from the lowest to the highest, with the joker last. The cards you win go to a separate pile."
 msgstr ""
 
-#: __app.rb:2931
+#: __app.rb:2935
 msgid "You joined %{player}'s room."
 msgstr "Te has unido a la sala de %{player}."
 
@@ -31908,7 +32048,7 @@ msgstr "Debes cubrir el doble %{number} en el tren de %{player}."
 msgid "You must cover double %{number} on the Mexican train."
 msgstr "Debes cubrir el doble %{number} en el tren mexicano."
 
-#: games/tysiac.rb:520
+#: games/tysiac.rb:526
 msgid "You must follow suit or play a trump when required."
 msgstr "Debes seguir el palo o jugar un triunfo cuando sea obligatorio."
 
@@ -31923,7 +32063,7 @@ msgstr ""
 msgid "You must follow the suit that was led if you can. If you have no card of that suit, you may play any card, including a trump, but you never have to trump. The highest trump in the trick wins it. If no trump was played, the highest card of the led suit wins. Cards of other suits cannot win the trick. The player who wins a trick leads to the next one."
 msgstr ""
 
-#: games/bridge.rb:296 games/dealt_card_game.rb:92 games/spades.rb:562
+#: games/bridge.rb:301 games/dealt_card_game.rb:92 games/spades.rb:562
 msgid "You must follow the suit that was led."
 msgstr "Debes jugar una carta del palo de salida."
 
@@ -31995,15 +32135,15 @@ msgstr ""
 msgid "You rolled %{value}. Choose a pawn to move"
 msgstr "Has sacado %{value}. Elige una ficha para moverla"
 
-#: games/tysiac.rb:536
+#: games/tysiac.rb:542
 msgid "You set aside %{card}."
 msgstr "Has apartado %{card}."
 
-#: games/bridge/presentation.rb:532
+#: games/bridge/presentation.rb:633
 msgid "You sit %{seat}; your partner is %{partner}."
 msgstr "Tu puesto: %{seat}; tu compañero: %{partner}."
 
-#: games/tysiac.rb:1515 games/tysiac.rb:1622
+#: games/tysiac.rb:1523 games/tysiac.rb:1630
 msgid "You sit out this deal."
 msgstr ""
 
@@ -32251,7 +32391,7 @@ msgid ""
 "You can play alone or with up to seven other people. In multiplayer, players compete for the best score, with victory depending on both the average number of correctly typed words per minute and accuracy, measured by the number of mistakes made."
 msgstr ""
 
-#: games/card_game.rb:75 games/dealt_card_game.rb:115 games/makao.rb:352 games/mille_bornes/presentation.rb:34 games/ninety_nine.rb:364 games/rummy_ui.rb:60 games/spades.rb:870 games/three_five_eight.rb:1001 games/three_five_eight.rb:1003 games/three_five_eight.rb:1005 games/tysiac.rb:1516 games/uno.rb:443
+#: games/bridge/presentation.rb:337 games/card_game.rb:75 games/dealt_card_game.rb:115 games/makao.rb:352 games/mille_bornes/presentation.rb:34 games/ninety_nine.rb:364 games/rummy_ui.rb:60 games/spades.rb:870 games/three_five_eight.rb:1001 games/three_five_eight.rb:1003 games/three_five_eight.rb:1005 games/tysiac.rb:1524 games/uno.rb:443
 msgid "Your hand"
 msgstr "Tu mano"
 
@@ -32259,7 +32399,7 @@ msgstr "Tu mano"
 msgid "Your hand and your partner"
 msgstr "Tu mano y tu compañero"
 
-#: games/card_game.rb:92 games/dealt_card_game.rb:117 games/dealt_card_game.rb:134 games/duck_racing_support/presentation.rb:211 games/makao.rb:354 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:367 games/rummy_ui.rb:61 games/scientific_war.rb:786 games/spades.rb:873 games/three_five_eight.rb:374 games/tile_game.rb:140 games/tysiac.rb:440 games/uno.rb:444 lib/game_surfaces/packet_cards.rb:51
+#: games/card_game.rb:92 games/dealt_card_game.rb:117 games/dealt_card_game.rb:134 games/duck_racing_support/presentation.rb:211 games/makao.rb:354 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:367 games/rummy_ui.rb:61 games/scientific_war.rb:786 games/spades.rb:873 games/three_five_eight.rb:374 games/tile_game.rb:140 games/tysiac.rb:446 games/uno.rb:444 lib/game_surfaces/packet_cards.rb:51
 msgid "Your hand is empty"
 msgstr "Tu mano está vacía"
 
@@ -32269,11 +32409,11 @@ msgid_plural "Your hand is empty, so you take %{count} cards from your pile into
 msgstr[0] ""
 msgstr[1] ""
 
-#: games/bridge/presentation.rb:446 games/makao.rb:969 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:903 games/spades.rb:946 games/three_five_eight.rb:1011 games/tysiac.rb:1624
+#: games/bridge/presentation.rb:545 games/makao.rb:969 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:903 games/spades.rb:946 games/three_five_eight.rb:1011 games/tysiac.rb:1632
 msgid "Your hand is empty."
 msgstr "Tu mano está vacía."
 
-#: games/bridge/presentation.rb:448
+#: games/bridge/presentation.rb:547
 msgid "Your hand, %{count} cards: %{cards}. %{points} high card points."
 msgstr "Tu mano, cartas: %{count}: %{cards}. Puntos de honor: %{points}."
 
@@ -32285,9 +32425,13 @@ msgstr "Tu mano, %{seat}, puntos de honor: %{points}"
 msgid "Your hand, %{seat}: you are dummy and your partner plays these cards"
 msgstr "Tu mano, %{seat}: eres el muerto y tu compañero juega estas cartas"
 
-#: games/dealt_card_game.rb:134 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:905 games/spades.rb:948 games/three_five_eight.rb:1012 games/tysiac.rb:1625
+#: games/dealt_card_game.rb:134 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:905 games/spades.rb:948 games/three_five_eight.rb:1012 games/tysiac.rb:1633
 msgid "Your hand: %{cards}."
 msgstr "Tu mano: %{cards}."
+
+#: games/bridge/presentation.rb:334
+msgid "Your hand: your partner plays these cards"
+msgstr "Tu mano: juega tu pareja"
 
 #: games/three_five_eight.rb:1003
 msgid "Your hand; choose a return card"
@@ -32499,7 +32643,7 @@ msgstr "Tu viento: %{wind}."
 
 #: games/generated/rulebooks/bouillabaisse.rb:38 games/generated/rulebooks/scopa.rb:42
 msgid "Z / Shift+Z: find the next / previous playable card."
-msgstr ""
+msgstr "Z / Mayús+Z: buscar la siguiente / anterior carta jugable."
 
 msgid "Z and Shift+Z can visit legal cards on your own turn in the basic game. This assistance is disabled with straights, interceptions or buzzer cards. A Wild requiring a colour choice is not played automatically by navigation."
 msgstr "Z y Shift+Z permiten recorrer las cartas que puedes jugar durante tu turno en el juego básico. Esta ayuda está desactivada cuando se juega con escaleras, intercepciones o cartas de pulsador. Un comodín que requiere elegir un color no se juega automáticamente al navegar."
@@ -32643,7 +32787,7 @@ msgstr "una carta de Iglesia que aumenta el valor de dos dados"
 msgid "a card"
 msgstr "una carta"
 
-#: games/bridge/presentation.rb:382
+#: games/bridge/presentation.rb:481
 msgid "a reference of %{points} for %{side}"
 msgstr "%{points} para %{side}"
 
@@ -32651,7 +32795,7 @@ msgstr "%{points} para %{side}"
 msgid "accept the trade"
 msgstr "aceptar el intercambio"
 
-#: games/bridge/presentation.rb:198 games/card_game.rb:55 games/makao.rb:30 games/ninety_nine.rb:44 games/poker.rb:37 games/spades.rb:50 games/three_five_eight.rb:40 games/tysiac.rb:35
+#: games/bridge/presentation.rb:257 games/card_game.rb:55 games/makao.rb:30 games/ninety_nine.rb:44 games/poker.rb:37 games/spades.rb:50 games/three_five_eight.rb:40 games/tysiac.rb:35
 msgid "ace"
 msgstr "as"
 
@@ -32663,7 +32807,7 @@ msgstr "todo apostado"
 msgid "ampersand"
 msgstr "et comercial"
 
-#: games/bridge/presentation.rb:382
+#: games/bridge/presentation.rb:481
 msgid "an even reference"
 msgstr "cero"
 
@@ -32794,7 +32938,7 @@ msgstr "bloqueada por ambos lados"
 msgid "blue"
 msgstr "azul"
 
-#: games/bridge/presentation.rb:231
+#: games/bridge/presentation.rb:290
 msgid "both sides vulnerable"
 msgstr "todos vulnerables"
 
@@ -32822,7 +32966,7 @@ msgstr "explorar las propiedades de otros jugadores"
 msgid "browse played words"
 msgstr "recorrer las palabras jugadas"
 
-#: games/bridge/presentation.rb:150
+#: games/bridge/presentation.rb:209
 msgid "browse the auction"
 msgstr "recorrer la subasta"
 
@@ -33006,7 +33150,7 @@ msgstr "paréntesis de cierre"
 msgid "closing square bracket"
 msgstr "corchete de cierre"
 
-#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:26 games/poker.rb:36 games/spades.rb:32 games/three_five_eight.rb:35 games/tysiac.rb:24
+#: games/bouillabaisse.rb:224 games/bridge/presentation.rb:253 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:26 games/poker.rb:36 games/spades.rb:32 games/three_five_eight.rb:35 games/tysiac.rb:24
 msgid "clubs"
 msgstr "tréboles"
 
@@ -33084,7 +33228,7 @@ msgstr "anunciar UNO o señalar a quien no lo haya dicho"
 msgid "describe the selected card"
 msgstr "describir la carta seleccionada"
 
-#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:27 games/poker.rb:36 games/spades.rb:33 games/three_five_eight.rb:35 games/tysiac.rb:25
+#: games/bouillabaisse.rb:224 games/bridge/presentation.rb:253 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:27 games/poker.rb:36 games/spades.rb:33 games/three_five_eight.rb:35 games/tysiac.rb:25
 msgid "diamonds"
 msgstr "diamantes"
 
@@ -33120,7 +33264,7 @@ msgstr "dólar"
 msgid "dollars"
 msgstr "dólares"
 
-#: games/bridge/presentation.rb:204
+#: games/bridge/presentation.rb:263
 msgid "double"
 msgstr "doblo"
 
@@ -33132,7 +33276,7 @@ msgstr "doble valor de letra"
 msgid "double word"
 msgstr "doble valor de palabra"
 
-#: games/bridge/presentation.rb:364
+#: games/bridge/presentation.rb:433
 msgid "down %{count} trick"
 msgid_plural "down %{count} tricks"
 msgstr[0] "%{count} multa"
@@ -33205,7 +33349,7 @@ msgstr "introducir tu puja"
 msgid "equals sign"
 msgstr "igual"
 
-#: games/bridge.rb:155
+#: games/bridge.rb:160
 msgid "estimated comparison, %{boards} boards, %{scoring}"
 msgstr "comparación estimada, %{boards} repartos, %{scoring}"
 
@@ -33295,7 +33439,7 @@ msgstr "punto"
 msgid "game finished"
 msgstr "partida terminada"
 
-#: __app.rb:3495
+#: __app.rb:3499
 msgid "game in progress"
 msgstr "partida en curso"
 
@@ -33355,7 +33499,7 @@ msgstr "conjunto de categorías difícil"
 msgid "hash sign"
 msgstr "almohadilla"
 
-#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:28 games/poker.rb:36 games/spades.rb:34 games/three_five_eight.rb:36 games/tysiac.rb:26
+#: games/bouillabaisse.rb:224 games/bridge/presentation.rb:253 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:28 games/poker.rb:36 games/spades.rb:34 games/three_five_eight.rb:36 games/tysiac.rb:26
 msgid "hearts"
 msgstr "corazones"
 
@@ -33425,7 +33569,7 @@ msgstr "signo de apertura de exclamación"
 msgid "inverted question mark"
 msgstr "signo de apertura de interrogación"
 
-#: games/bridge/presentation.rb:198 games/card_game.rb:54 games/makao.rb:30 games/ninety_nine.rb:41 games/poker.rb:37 games/spades.rb:47 games/three_five_eight.rb:39 games/tysiac.rb:31
+#: games/bridge/presentation.rb:257 games/card_game.rb:54 games/makao.rb:30 games/ninety_nine.rb:41 games/poker.rb:37 games/spades.rb:47 games/three_five_eight.rb:39 games/tysiac.rb:31
 msgid "jack"
 msgstr "jota"
 
@@ -33458,7 +33602,7 @@ msgstr "conservar el dado %{number}"
 msgid "kept"
 msgstr "conservado"
 
-#: games/bridge/presentation.rb:198 games/card_game.rb:55 games/chess.rb:281 games/chess.rb:871 games/makao.rb:30 games/ninety_nine.rb:43 games/poker.rb:37 games/spades.rb:49 games/three_five_eight.rb:40 games/tysiac.rb:33
+#: games/bridge/presentation.rb:257 games/card_game.rb:55 games/chess.rb:281 games/chess.rb:871 games/makao.rb:30 games/ninety_nine.rb:43 games/poker.rb:37 games/spades.rb:49 games/three_five_eight.rb:40 games/tysiac.rb:33
 msgid "king"
 msgstr "rey"
 
@@ -33510,11 +33654,11 @@ msgstr "escuchar desde la perspectiva del segundo jugador"
 msgid "listen from the third player's perspective"
 msgstr "escuchar desde la perspectiva del tercer jugador"
 
-#: games/bridge/presentation.rb:357
+#: games/bridge/presentation.rb:426
 msgid "made exactly"
 msgstr "cumplido justo"
 
-#: games/bridge/presentation.rb:360
+#: games/bridge/presentation.rb:429
 msgid "made with %{count} overtrick"
 msgid_plural "made with %{count} overtricks"
 msgstr[0] "cumplido con %{count} sobrebaza"
@@ -33528,15 +33672,15 @@ msgstr "grupo magenta"
 msgid "main pot"
 msgstr "bote principal"
 
-#: games/spades.rb:622 games/tysiac.rb:1612
+#: games/spades.rb:622 games/tysiac.rb:1620
 msgid "make a bid"
 msgstr "hacer una declaración"
 
-#: games/bridge/presentation.rb:124
+#: games/bridge/presentation.rb:183
 msgid "make a call"
 msgstr "dar una voz"
 
-#: games/bridge.rb:157 games/bridge.rb:97
+#: games/bridge.rb:102 games/bridge.rb:162
 msgid "matchpoints"
 msgstr "por porcentaje"
 
@@ -33574,7 +33718,7 @@ msgstr "hipotecada"
 msgid "navigate the board"
 msgstr "recorrer el tablero"
 
-#: games/bridge/presentation.rb:232
+#: games/bridge/presentation.rb:291
 msgid "neither side vulnerable"
 msgstr "nadie vulnerable"
 
@@ -33609,7 +33753,7 @@ msgstr "ningún dado"
 msgid "no pawns on the board"
 msgstr "no hay fichas en el tablero"
 
-#: games/bridge/presentation.rb:381
+#: games/bridge/presentation.rb:480
 msgid "no score"
 msgstr "sin puntuación"
 
@@ -33621,11 +33765,11 @@ msgstr "sin límite de tiempo"
 msgid "no trump"
 msgstr ""
 
-#: games/bridge/presentation.rb:240 games/makao.rb:1000 games/mille_bornes/presentation.rb:260 games/monopoly/presentation.rb:279
+#: games/bridge/presentation.rb:299 games/makao.rb:1000 games/mille_bornes/presentation.rb:260 games/monopoly/presentation.rb:279
 msgid "none"
 msgstr "ninguno"
 
-#: games/spades.rb:919 games/spades.rb:996 games/tysiac.rb:1680
+#: games/spades.rb:919 games/spades.rb:996 games/tysiac.rb:1688
 msgid "not bid yet"
 msgstr "aún sin declarar"
 
@@ -33665,7 +33809,7 @@ msgstr "activado"
 msgid "one pair"
 msgstr "pareja"
 
-#: __app.rb:3495 games/mexican_train.rb:185
+#: __app.rb:3499 games/mexican_train.rb:185
 msgid "open"
 msgstr "abierto"
 
@@ -33708,7 +33852,7 @@ msgstr "parcialmente correcta, 1 punto"
 msgid "partially correct, 5 points"
 msgstr "parcialmente correcta, 5 puntos"
 
-#: games/bridge/presentation.rb:203 games/scrabble_ui.rb:25
+#: games/bridge/presentation.rb:262 games/scrabble_ui.rb:25
 msgid "pass"
 msgstr "pasar"
 
@@ -33716,7 +33860,7 @@ msgstr "pasar"
 msgid "pass your turn"
 msgstr "pasar tu turno"
 
-#: games/tysiac.rb:1681
+#: games/tysiac.rb:1689
 msgid "passed"
 msgstr "ha pasado"
 
@@ -33823,7 +33967,7 @@ msgstr "morado"
 msgid "purple group"
 msgstr "grupo morado"
 
-#: games/bridge/presentation.rb:198 games/card_game.rb:54 games/makao.rb:30 games/ninety_nine.rb:42 games/poker.rb:37 games/spades.rb:48 games/three_five_eight.rb:39 games/tysiac.rb:32
+#: games/bridge/presentation.rb:257 games/card_game.rb:54 games/makao.rb:30 games/ninety_nine.rb:42 games/poker.rb:37 games/spades.rb:48 games/three_five_eight.rb:39 games/tysiac.rb:32
 msgid "queen"
 msgstr "reina"
 
@@ -33884,7 +34028,7 @@ msgstr "leer cuántas cartas tiene cada jugador"
 msgid "read dora and your Riichi status"
 msgstr "leer dora y tu estado de Riichi"
 
-#: games/bridge/presentation.rb:147
+#: games/bridge/presentation.rb:206
 msgid "read dummy's hand"
 msgstr "leer la mano del muerto"
 
@@ -33944,7 +34088,7 @@ msgstr "leer las puntuaciones"
 msgid "read the Scriptorium"
 msgstr "leer el Scriptorium"
 
-#: games/bridge/presentation.rb:149
+#: games/bridge/presentation.rb:208
 msgid "read the auction"
 msgstr "leer la subasta"
 
@@ -33972,7 +34116,7 @@ msgstr "leer la cantidad necesaria para igualar"
 msgid "read the cards on the table"
 msgstr "leer las cartas de la mesa"
 
-#: games/bridge/presentation.rb:148
+#: games/bridge/presentation.rb:207
 msgid "read the contract"
 msgstr "leer el contrato"
 
@@ -33980,7 +34124,7 @@ msgstr "leer el contrato"
 msgid "read the current colour"
 msgstr "leer el color actual"
 
-#: games/tysiac.rb:475
+#: games/tysiac.rb:481
 msgid "read the current contract"
 msgstr "leer el contrato actual"
 
@@ -34079,7 +34223,7 @@ msgstr "leer el bote"
 msgid "read the prepared packet"
 msgstr "leer el grupo de cartas preparado"
 
-#: games/bridge/presentation.rb:152
+#: games/bridge/presentation.rb:211
 msgid "read the previous trick"
 msgstr "leer la baza anterior"
 
@@ -34123,7 +34267,7 @@ msgstr ""
 msgid "read the round information"
 msgstr "leer la información de la ronda"
 
-#: games/bouillabaisse.rb:42
+#: games/bouillabaisse.rb:61
 msgid "read the rules for this round"
 msgstr "recordar las reglas de esta ronda"
 
@@ -34155,7 +34299,7 @@ msgstr "leer la ficha pendiente de tu respuesta"
 msgid "read the top card"
 msgstr "leer la carta superior"
 
-#: games/tysiac.rb:495
+#: games/tysiac.rb:501
 msgid "read the trump suit"
 msgstr "leer el palo de triunfo"
 
@@ -34287,7 +34431,7 @@ msgstr "rojo"
 msgid "red group"
 msgstr "grupo rojo"
 
-#: games/bridge/presentation.rb:205
+#: games/bridge/presentation.rb:264
 msgid "redouble"
 msgstr "redoblo"
 
@@ -34359,11 +34503,11 @@ msgstr "juez rotatorio"
 msgid "round completed"
 msgstr "ronda completada"
 
-#: games/bridge.rb:161
+#: games/bridge.rb:166
 msgid "rubber, honours scored"
 msgstr "rubber, con honores"
 
-#: games/bridge.rb:161
+#: games/bridge.rb:166
 msgid "rubber, without honours"
 msgstr "rubber, sin honores"
 
@@ -34411,7 +34555,7 @@ msgstr "vender un edificio"
 msgid "semicolon"
 msgstr "punto y coma"
 
-#: games/tysiac.rb:1612
+#: games/tysiac.rb:1620
 msgid "set the final contract"
 msgstr "fijar el contrato definitivo"
 
@@ -34459,7 +34603,7 @@ msgstr "ordenar las cartas por valor"
 msgid "space"
 msgstr "espacio"
 
-#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:29 games/poker.rb:36 games/spades.rb:35 games/three_five_eight.rb:36 games/tysiac.rb:27
+#: games/bouillabaisse.rb:224 games/bridge/presentation.rb:253 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:29 games/poker.rb:36 games/spades.rb:35 games/three_five_eight.rb:36 games/tysiac.rb:27
 msgid "spades"
 msgstr "picas"
 
@@ -34586,7 +34730,7 @@ msgstr "a %{limit} puntos"
 msgid "to %{limit} points; bank from %{turn}; first bank from %{entry}"
 msgstr "hasta %{limit} puntos; guardar puntos a partir de %{turn}; primera vez a partir de %{entry}"
 
-#: games/tysiac.rb:230
+#: games/tysiac.rb:236
 msgid "to %{score} points"
 msgstr "a %{score} puntos"
 

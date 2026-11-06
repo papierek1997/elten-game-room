@@ -2,12 +2,15 @@ require_relative '../../support/private_card_games'
 require_relative '../../../games/bouillabaisse'
 
 game = GameRoomGames::Bouillabaisse.new
-h, runners = PrivateCardGamesTest.create(game, users: %w[Alice Bob Carol])
+h, runners = PrivateCardGamesTest.create(game, users: %w[Alice Bob Carol], random_values: Array.new(16, 2))
 begin
   51.times do
     actor = h.replay('Alice').current_player
     PrivateCardGamesTest.submit(h, runners, actor, game.legal_actions(h.replay(actor), actor).first)
   end
+  # The native pool fixture is deterministic; also pin the second round's
+  # public deck mapping so the last penalty card leaves an unplayed hand.
+  h.view('Alice').next_random_values = Array.new(16, 2)
   16.times do
     break if h.replay('Alice').state[:round] == 2 && h.replay('Alice').state[:phase] == :playing
     PrivateCardGamesTest.tick(h, runners)

@@ -379,7 +379,7 @@ module GameRoomScreens
         language_values["known_languages"].include?(languages[index].fetch(:id))
       end)
       [primary_language, known_languages].each do |control|
-        control.add_tip(GameRoomContent.utf8(_("Missing translations use other known languages, then English. Restart ELTEN to apply language changes.")))
+        control.add_tip(GameRoomContent.utf8(_("Missing translations use other known languages, then English. Close ELTEN completely and start it again to apply language changes; F12 is not enough.")))
       end
       presets = TablePresetList.new(@values["table_presets"], editor: @preset_editor,
         writer: @preset_writer) if @preset_editor && @preset_writer

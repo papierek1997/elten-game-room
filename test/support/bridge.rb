@@ -16,8 +16,8 @@ module GameRoomTest
 
     attr_reader :game, :session, :repository, :events, :replay
 
-    def initialize(players = %w[Alice Bob Carol Dave], options = {}, seed: 1)
-      @game = GameRoomGames::CATALOG.build("bridge")
+    def initialize(players = %w[Alice Bob Carol Dave], options = {}, seed: 1, game: nil)
+      @game = game || GameRoomGames::CATALOG.build("bridge")
       @session = { "options" => JSON.generate(@game.normalize_options(options)) }
       @repository = Repository.new(players)
       @events = []

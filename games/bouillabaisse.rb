@@ -29,6 +29,25 @@ module GameRoomGames
       notification_flag(options, 'all_or_nothing', _("All or nothing"), _("Without all or nothing")).to_s
     end
 
+    def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
+      cues = Array(super)
+      played = history.find { |entry| entry.kind == :play }
+      return cues unless played && event['action'] == 'play'
+      state = before_replay.state
+      round, penalties, card = state[:round], state[:penalties], event['value'].to_s
+      # In combined rounds, the most valuable scoring property owns the
+      # tone: never layer three conflicting pitches for the same card.
+      special = if [4, 5, 6].include?(round) && card == penalties['card']
+        'bouillabaisse_card'
+      elsif [3, 5, 6].include?(round) && card[0] == penalties['rank']
+        'bouillabaisse_rank'
+      elsif [2, 5, 6].include?(round) && card[1] == penalties['suit']
+        'draw2'
+      end
+      cues << special if special
+      cues
+    end
+
     def bot_strategy; @bot_strategy ||= BouillabaisseStrategy.new; end
     def bot_observation(replay, actor)
       state = replay.state

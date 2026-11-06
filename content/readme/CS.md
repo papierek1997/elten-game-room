@@ -182,6 +182,7 @@ Všechny zkratky se nemusíte učit najednou:
 - Ctrl+F4 přečte odezvu spojení a rozliší HTTP od dostupného spojení Communications nebo P2P.
 
 V Tisíci R přečte jen aktuální závazek a jméno licitujícího. Shift+R vzdá rozdání, pokud to pravidla dovolují.
+Se všemi čtyřmi devítkami v počáteční ruce můžete klávesami Shift+D požádat o nové rozdání. Samostatná volba, ve výchozím stavu vypnutá, dovoluje nové rozdání také při alespoň dvou devítkách v odkrytém talonu, před předáním nebo odložením první karty. Znovu rozdává stejný hráč; body ani počítadla trestů se nemění.
 
 V Kvízu je otázka v textovém poli pouze pro čtení. Ctrl+šipka vlevo nebo vpravo umožňuje číst po slovech. Šipka dolů přejde na seznam odpovědí a šipka nahoru z první odpovědi zpět k otázce.
 
@@ -250,7 +251,7 @@ Ve výchozím nastavení se zvuky her neztlumují. Ztlumení na pozadí nenahraz
 
 ## Jazyky
 
-Power Games má vlastní výběr jazyka rozhraní v Nastavení → General. K dispozici je angličtina, polština, čeština, španělština a ruština. Tato volba nemění jazyk celého ELTENu. Aby se uplatnila ve všech částech Power Games včetně widgetu, restartujte ELTEN.
+Power Games má vlastní výběr jazyka rozhraní v Nastavení → Obecné. K dispozici je angličtina, polština, čeština, španělština a ruština. Tato volba nemění jazyk celého ELTENu. Aby se uplatnila ve všech částech Power Games včetně widgetu, ELTEN úplně ukončete a znovu spusťte. Restart klávesou F12 Power Games znovu nenačte.
 
 Volitelný seznam „Jazyky, kterým rozumíte“ slouží k doplnění chybějících překladů. Pokud text není v hlavním jazyce, program může použít některý ze zaškrtnutých jazyků a nakonec angličtinu.
 
@@ -409,6 +410,7 @@ Následující přehled se týká společného ovládání programu. Příkazy k
 - Enter — uživatelské menu ELTENu pro vybranou osobu.
 - Ctrl+M — předání hostitelství vybrané osobě; pro hostitele.
 - Ctrl+Shift+R — nahrazení vybraného hráče; pro hostitele.
+- Ctrl+Shift+P — výběr, zda označená osoba bude příští partii hrát, nebo sledovat; pro hostitele na seznamu uživatelů.
 
 ### V seznamu stolů a ve widgetu
 

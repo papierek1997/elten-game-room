@@ -741,6 +741,12 @@ module GameSurfaces
       @controls
     end
 
+    # Expose named card zones to the shared decision-focus policy without
+    # splitting one table's cursor/sorting state across separate surfaces.
+    def fields_for_parts(ids)
+      @zones.each_with_index.filter_map { |zone, index| @controls[index] if ids.include?(zone.id.to_s) }
+    end
+
     def suppress_next_focus!(field_index = 0)
       control = @controls[field_index.to_i]
       control.suppress_next_focus! if control != nil

@@ -82,7 +82,12 @@ module GameRoomGames
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
       case event["action"].to_s
       when "deal" then "shuffle"
-      when "play" then "play"
+      when "play"
+        played = history.find { |entry| entry.kind == :play }
+        return nil unless played
+
+        contract = before_replay.state&.[](:contract) || after_replay.state&.[](:contract)
+        contract && R::SUITS.include?(contract.strain) && R.card_suit(played.value) == contract.strain ? ["play", "draw2"] : "play"
       end
     end
 
@@ -301,7 +306,7 @@ module GameRoomGames
 
     def describe_event(event, repository, replay, viewer)
       event_id = repository.event_id(event)
-      entries = replay.history.select { |entry| entry.event_id.to_i == event_id && ![:start, :result].include?(entry.kind) }
+      entries = replay.history.select { |entry| entry.event_id.to_i == event_id && ![:start, :turn, :result].include?(entry.kind) }
       return nil if entries.empty?
 
       entries.map(&:text)

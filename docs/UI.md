@@ -1,5 +1,13 @@
 # Forms, volume and help
 
+On the Users list, the host uses `Ctrl+Shift+P` to toggle the selected human's
+role for the next game. `Ctrl+Shift+O` still changes the viewer's own role.
+The selected-person menu and dynamic F1 help share `participant_role_action`;
+the callback preserves its original subject and rechecks the displayed action.
+Both repository and transport revalidate membership and ownership. Their typed
+`RoleChangeUnavailable` conflicts are presented by the Program without closing
+the table; arbitrary `ArgumentError` exceptions must still propagate.
+
 `F2` lowers and `F3` raises the volume by 10 points (0–100%).
 `Shift+F2/F3` selects the previous/next group: all, game, join/leave, chat,
 invitations/notifications. In a new program instance, the selected group starts

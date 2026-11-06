@@ -186,6 +186,7 @@ No necesitas aprender todos los atajos a la vez:
 - Ctrl+F4 lee la latencia de conexión, distinguiendo HTTP de la conexión Communications o P2P disponible.
 
 En Mil, R lee solo la cantidad del contrato actual y quién la ofreció. Shift+R abandona la mano cuando las reglas lo permiten.
+Con los cuatro nueves en tu mano inicial, pulsa Shift+D para pedir un nuevo reparto. Otra opción, desactivada por defecto, permite pedirlo si la reserva descubierta contiene al menos dos nueves, antes de pasar o descartar la primera carta. Vuelve a repartir la misma persona, sin cambiar los puntos ni los contadores de penalizaciones.
 
 En Quiz, la pregunta aparece en un campo de texto de solo lectura. Ctrl+Izquierda o Ctrl+Derecha permite leerla palabra por palabra. Abajo pasa a la lista de respuestas; Arriba desde la primera respuesta vuelve a la pregunta.
 
@@ -254,7 +255,7 @@ Por defecto no se silencian los sonidos del juego. Silenciarlos en segundo plano
 
 ## Idiomas
 
-Power Games tiene su propia selección de idioma de interfaz en Ajustes → General. Están disponibles inglés, polaco, checo, español y ruso. La selección no cambia el idioma de todo ELTEN. Reinicia ELTEN para aplicarla a todas las partes de Power Games, incluido el widget.
+Power Games tiene su propia selección de idioma de interfaz en Ajustes → General. Están disponibles inglés, polaco, checo, español y ruso. La selección no cambia el idioma de todo ELTEN. Cierra ELTEN por completo y vuelve a abrirlo para aplicarla a todas las partes de Power Games, incluido el widget. El reinicio con F12 no vuelve a cargar Power Games.
 
 La lista opcional «Idiomas conocidos» sirve para completar traducciones que falten. Si un texto no está en el idioma principal, el programa puede recurrir a uno de los idiomas marcados y, en último término, al inglés.
 
@@ -414,6 +415,7 @@ Esta lista cubre los controles comunes del programa. Para las órdenes de un jue
 - Enter — menú de usuario de ELTEN para la persona seleccionada.
 - Ctrl+M — transferir la función de anfitrión a la persona seleccionada; para el anfitrión.
 - Ctrl+Shift+R — sustituir al jugador seleccionado; para el anfitrión.
+- Ctrl+Shift+P — elegir si la persona seleccionada jugará u observará la siguiente partida; para el anfitrión, en la lista de usuarios.
 
 ### En la lista de mesas y en el widget
 

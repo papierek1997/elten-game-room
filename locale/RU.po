@@ -16,7 +16,7 @@ msgstr ""
 "4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.10\n"
 
-#: games/bridge/presentation.rb:178
+#: games/bridge/presentation.rb:237
 msgid " and "
 msgstr " и "
 
@@ -50,6 +50,10 @@ msgstr "%{action}: %{tiles}"
 #: lib/game_surfaces/review_surface.rb:204
 msgid "%{answer}; status: %{status}"
 msgstr "%{answer}; состояние: %{status}"
+
+#: games/bridge/presentation.rb:363
+msgid "%{bid}: %{count} tricks"
+msgstr "%{bid}: %{count} взяток"
 
 msgid "%{board} property %{number}"
 msgstr "%{board}: участок %{number}"
@@ -90,7 +94,7 @@ msgstr "%{card}. %{bid}"
 msgid "%{card}. Choose how to change the Scriptorium"
 msgstr "%{card}. Выберите способ изменения Скриптория"
 
-#: lib/game_surfaces.rb:1018
+#: lib/game_surfaces.rb:1024
 msgid "%{card}. Choose how to play it"
 msgstr "%{card}. Выберите способ розыгрыша"
 
@@ -214,15 +218,19 @@ msgstr "%{challenge}: %{players}."
 msgid "%{colour} %{value}"
 msgstr "%{colour} %{value}"
 
-#: games/bridge/presentation.rb:370
+#: games/bridge/presentation.rb:469
 msgid "%{contract} by %{declarer} %{result}"
 msgstr "%{contract}, разыгрывает %{declarer}: %{result}"
 
-#: games/bridge/presentation.rb:222
+#: games/bridge/presentation.rb:442
+msgid "%{contract} by %{declarer}: %{result}."
+msgstr "%{contract}, разыгрывающий %{declarer}: %{result}."
+
+#: games/bridge/presentation.rb:281
 msgid "%{contract} doubled"
 msgstr "%{contract} с контрой"
 
-#: games/bridge/presentation.rb:223
+#: games/bridge/presentation.rb:282
 msgid "%{contract} redoubled"
 msgstr "%{contract} с реконтрой"
 
@@ -423,7 +431,7 @@ msgstr "Правила игры «%{game}»"
 msgid "%{game}, %{owner}"
 msgstr "%{game}, %{owner}"
 
-#: __app.rb:3116
+#: __app.rb:3120
 msgid "%{game}, %{table}"
 msgstr "%{game}, %{table}"
 
@@ -439,7 +447,7 @@ msgstr "%{game}: %{section}"
 msgid "%{game}; %{date}; %{players}"
 msgstr "%{game}; %{date}; %{players}"
 
-#: __app.rb:2713
+#: __app.rb:2717
 msgid "%{game}; %{table}; invited by %{sender}; %{count}/%{maximum}"
 msgstr "%{game}; %{table}; приглашение от %{sender}; %{count}/%{maximum}"
 
@@ -455,7 +463,7 @@ msgstr "%{giver} обменялся одной картой с игроком %{
 msgid "%{giver} gave a trump card to %{target}; %{target} chooses the return card."
 msgstr "%{giver} передал козырную карту игроку %{target}; %{target} выбирает карту для возврата."
 
-#: __app.rb:3984
+#: __app.rb:3988
 msgid "%{group}, %{volume}%%"
 msgstr "%{group}, %{volume}%%"
 
@@ -485,7 +493,7 @@ msgstr "%{judge}; язык ответов: %{language}; %{pool}; категор�
 msgid "%{judge}; answers in %{language}; %{time}; target: %{target} points"
 msgstr "%{judge}; язык ответов: %{language}; %{time}; цель: %{target} очков"
 
-#: games/bridge/presentation.rb:550
+#: games/bridge/presentation.rb:651
 msgid "%{label} after %{boards} of %{total} boards: %{scores}."
 msgstr "%{label} после %{boards} из %{total} сдач: %{scores}."
 
@@ -532,32 +540,32 @@ msgstr "%{letter}, %{field}, %{points} очков"
 msgid "%{letter}, %{points} points"
 msgstr "%{letter}, %{points} очков"
 
-#: games/bridge/presentation.rb:212
+#: games/bridge/presentation.rb:271
 msgid "%{level} club"
 msgid_plural "%{level} clubs"
 msgstr[0] "%{level} трефа"
 msgstr[1] "%{level} трефы"
 msgstr[2] "%{level} треф"
 
-#: games/bridge/presentation.rb:213
+#: games/bridge/presentation.rb:272
 msgid "%{level} diamond"
 msgid_plural "%{level} diamonds"
 msgstr[0] "%{level} бубна"
 msgstr[1] "%{level} бубны"
 msgstr[2] "%{level} бубен"
 
-#: games/bridge/presentation.rb:214
+#: games/bridge/presentation.rb:273
 msgid "%{level} heart"
 msgid_plural "%{level} hearts"
 msgstr[0] "%{level} черва"
 msgstr[1] "%{level} червы"
 msgstr[2] "%{level} черв"
 
-#: games/bridge/presentation.rb:216
+#: games/bridge/presentation.rb:275
 msgid "%{level} no trump"
 msgstr "%{level} без козыря"
 
-#: games/bridge/presentation.rb:215
+#: games/bridge/presentation.rb:274
 msgid "%{level} spade"
 msgid_plural "%{level} spades"
 msgstr[0] "%{level} пика"
@@ -667,7 +675,7 @@ msgstr "%{owner} запросил аренду. %{player} заплатил %{ren
 msgid "%{owner} waived the rent from %{player}."
 msgstr "%{owner} отказался взыскивать арендную плату с игрока %{player}."
 
-#: __app.rb:3408
+#: __app.rb:3412
 msgid "%{owner}, %{count}/%{maximum}, %{status}"
 msgstr "%{owner}, %{count}/%{maximum}, %{status}"
 
@@ -774,7 +782,7 @@ msgstr "%{player} %{score}%{barrel}"
 msgid "%{player} %{score}, zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "%{player} %{score}, болтов %{zeros}/3, росписей %{surrenders}/3%{barrel}"
 
-#: games/bridge/presentation.rb:42 games/bridge/presentation.rb:67
+#: games/bridge/presentation.rb:126
 msgid "%{player} (%{seat}) is bidding."
 msgstr "Торгуется %{player} (%{seat})."
 
@@ -837,7 +845,7 @@ msgstr "%{player} становится хозяином стола."
 msgid "%{player} begins the final lap."
 msgstr "%{player} начинает последний круг."
 
-#: games/tysiac.rb:753
+#: games/tysiac.rb:761
 msgid "%{player} bid %{bid}."
 msgstr "%{player} сделал заявку: %{bid}."
 
@@ -944,7 +952,7 @@ msgstr "%{player} выбрал %{user} в качестве игрока для �
 msgid "%{player} chose %{user} as an observer for the next game."
 msgstr "%{player} выбрал %{user} в качестве наблюдателя для следующей игры."
 
-#: games/tysiac.rb:819
+#: games/tysiac.rb:827
 msgid "%{player} chose talon %{number}."
 msgstr "%{player} выбрал прикуп %{number}."
 
@@ -1013,7 +1021,7 @@ msgstr "%{player} объявил банкротство. Оставшееся и
 msgid "%{player} declared riichi, discarding %{tile}."
 msgstr "%{player} объявил риичи, сбросив: %{tile}."
 
-#: games/tysiac.rb:939
+#: games/tysiac.rb:947
 msgid "%{player} declared the %{suit} marriage for %{points} points by playing %{card}. %{suit} is now trump."
 msgstr "%{player} объявил марьяж масти %{suit} на %{points} очков, сыграв %{card}. Козырная масть теперь: %{suit}."
 
@@ -1178,15 +1186,15 @@ msgstr "%{player} завершил обмен картами."
 msgid "%{player} folds."
 msgstr "%{player} пасует."
 
-#: games/tysiac.rb:1757
+#: games/tysiac.rb:1765
 msgid "%{player} gained %{points} points."
 msgstr "%{player} получил %{points} очков."
 
-#: games/tysiac.rb:1761
+#: games/tysiac.rb:1769
 msgid "%{player} gained no points."
 msgstr "%{player} не получил очков."
 
-#: games/tysiac.rb:1527
+#: games/tysiac.rb:1535
 msgid "%{player} gave you %{card}."
 msgstr "%{player} передал вам %{card}."
 
@@ -1265,7 +1273,7 @@ msgstr "%{player} приглашает вас в пару в турнире %{na
 msgid "%{player} is all in for %{amount}."
 msgstr "%{player} идёт ва-банк: %{amount}."
 
-#: games/base.rb:343 games/base.rb:384 games/spades.rb:905
+#: games/base.rb:343 games/base.rb:384 games/bridge/presentation.rb:42 games/spades.rb:905
 msgid "%{player} is bidding."
 msgstr "%{player} делает заявку."
 
@@ -1308,7 +1316,7 @@ msgstr "%{player} замёрз на %{count} ходов."
 msgid "%{player} is looking at the chosen cards."
 msgstr "%{player} смотрит на выбранные карты."
 
-#: games/tysiac.rb:1038
+#: games/tysiac.rb:1046
 msgid "%{player} is now on the barrel."
 msgstr "%{player} теперь на бочке."
 
@@ -1459,7 +1467,7 @@ msgstr "%{player} получает техническое поражение. Э
 msgid "%{player} lost %{count} tokens for %{reason}; %{remaining} remain."
 msgstr "%{player} потерял %{count} жетонов за %{reason}; осталось: %{remaining}."
 
-#: games/tysiac.rb:1759
+#: games/tysiac.rb:1767
 msgid "%{player} lost %{points} points."
 msgstr "%{player} потерял %{points} очков."
 
@@ -1559,7 +1567,7 @@ msgstr "%{player} заплатил %{amount} получателю %{recipient}: 
 msgid "%{player} paid %{rent} rent to %{owner}."
 msgstr "%{player} заплатил %{rent} за аренду игроку %{owner}."
 
-#: games/mahjong_support/table_game.rb:425 games/tysiac.rb:742
+#: games/mahjong_support/table_game.rb:425 games/tysiac.rb:750
 msgid "%{player} passed."
 msgstr "%{player} спасовал."
 
@@ -1644,7 +1652,7 @@ msgstr "%{player} сыграл %{card} против %{target}."
 msgid "%{player} played %{card}, now at %{miles} miles."
 msgstr "%{player} сыграл %{card}; пробег: %{miles} миль."
 
-#: games/mille_bornes/model.rb:308 games/spades.rb:785 games/three_five_eight.rb:648 games/tysiac.rb:930 games/uno/play_reduction.rb:106
+#: games/mille_bornes/model.rb:308 games/spades.rb:785 games/three_five_eight.rb:648 games/tysiac.rb:938 games/uno/play_reduction.rb:106
 msgid "%{player} played %{card}."
 msgstr "%{player} сыграл %{card}."
 
@@ -1712,9 +1720,13 @@ msgstr "%{player} кладёт %{tile} в свой поезд."
 msgid "%{player} plays %{words}: %{points} points."
 msgstr "%{player} разыгрывает %{words}: %{points} очков."
 
-#: games/bridge/presentation.rb:47 games/bridge/presentation.rb:69
+#: games/bridge/presentation.rb:128
 msgid "%{player} plays from dummy (%{seat})."
 msgstr "%{player} играет картами болвана (%{seat})."
+
+#: games/bridge/presentation.rb:47
+msgid "%{player} plays from dummy."
+msgstr "%{player} играет с болвана."
 
 #: games/chess.rb:477
 msgid "%{player} promoted the pawn to %{piece}."
@@ -1821,7 +1833,7 @@ msgstr[2] "%{player} получает %{count} перьев."
 msgid "%{player} receives %{count} feathers."
 msgstr "%{player} получает перья: %{count}."
 
-#: games/tysiac.rb:981
+#: games/tysiac.rb:989
 msgid "%{player} receives %{points} points from the set-aside cards for winning the last trick."
 msgstr "%{player} получает %{points} очков с отложенных карт за победу в последней взятке."
 
@@ -1881,6 +1893,14 @@ msgstr "%{player} погашает %{amount} долга перед получа�
 #: games/makao.rb:619
 msgid "%{player} requests %{rank}."
 msgstr "%{player} заказывает достоинство: %{rank}."
+
+#: games/tysiac_redeals.rb:100
+msgid "%{player} requests a redeal with four nines."
+msgstr "%{player} просит пересдачу с четырьмя девятками."
+
+#: games/tysiac_redeals.rb:102
+msgid "%{player} requests a redeal: at least two nines in the talon."
+msgstr "%{player} просит пересдачу: в прикупе две или более девятки."
 
 msgid "%{player} resolved a board card. Cash: %{cash}."
 msgstr "%{player} выполнил действие карточки. Наличные: %{cash}."
@@ -2041,11 +2061,11 @@ msgstr "Подаёт %{player}, принимает %{receiver}."
 msgid "%{player} serves."
 msgstr "%{player} подаёт."
 
-#: games/tysiac.rb:836
+#: games/tysiac.rb:844
 msgid "%{player} set aside a card."
 msgstr "%{player} отложил карту."
 
-#: games/tysiac.rb:885
+#: games/tysiac.rb:893
 msgid "%{player} set the contract at %{contract}."
 msgstr "%{player} назначил контракт: %{contract}."
 
@@ -2056,7 +2076,7 @@ msgstr "%{player} назначил окончательный контракт: 
 msgid "%{player} shoots at %{field}."
 msgstr "%{player} стреляет по клетке %{field}."
 
-#: games/tysiac.rb:721
+#: games/tysiac.rb:729
 msgid "%{player} sits out this deal."
 msgstr "%{player} пропускает эту раздачу."
 
@@ -2092,7 +2112,7 @@ msgstr "%{player} останавливается на %{total}."
 msgid "%{player} submitted their answers."
 msgstr "%{player} отправил ответы."
 
-#: games/tysiac.rb:903
+#: games/tysiac.rb:911
 msgid "%{player} surrendered the deal at a contract of %{contract}."
 msgstr "%{player} расписал раздачу при контракте %{contract}."
 
@@ -2252,7 +2272,7 @@ msgstr[0] "%{player} выигрывает взятку и забирает %{cou
 msgstr[1] "%{player} выигрывает взятку и забирает %{count} карты."
 msgstr[2] "%{player} выигрывает взятку и забирает %{count} карт."
 
-#: games/bouillabaisse.rb:166
+#: games/bouillabaisse.rb:185 games/bridge/presentation.rb:100
 msgid "%{player} wins the trick."
 msgstr "%{player} выигрывает взятку."
 
@@ -2278,7 +2298,7 @@ msgstr "%{player} выигрывает весь банк: %{amount}%{deciding}."
 msgid "%{player} wins."
 msgstr "Побеждает %{player}."
 
-#: games/tysiac.rb:785
+#: games/tysiac.rb:793
 msgid "%{player} won the auction at %{bid}."
 msgstr "%{player} выиграл торги с заявкой %{bid}."
 
@@ -2308,7 +2328,7 @@ msgstr "%{player} выиграл раунд."
 msgid "%{player} won the round. The values of the remaining cards were added to their owners' scores."
 msgstr "%{player} выиграл раунд. Стоимость оставшихся карт добавлена к очкам их владельцев."
 
-#: games/tysiac.rb:966
+#: games/tysiac.rb:974
 msgid "%{player} won the trick for %{points} card points."
 msgstr "%{player} забрал взятку стоимостью %{points} очков."
 
@@ -2408,11 +2428,11 @@ msgstr "%{player}, %{position}"
 msgid "%{player}, changed fields: %{fields}."
 msgstr "%{player}, изменённые поля: %{fields}."
 
-#: games/tysiac.rb:1774
+#: games/tysiac.rb:1782
 msgid "%{player}, collected %{collected}, awarded %{points}."
 msgstr "%{player}, набрано %{collected}, начислено %{points}."
 
-#: games/tysiac.rb:1772
+#: games/tysiac.rb:1780
 msgid "%{player}, collected %{collected}, lost %{points}."
 msgstr "%{player}, набрано %{collected}, потеряно %{points}."
 
@@ -2453,7 +2473,7 @@ msgstr "%{player}: попыток — %{attempts}, продолжает игру
 msgid "%{player}: %{attempt}"
 msgstr "%{player}: %{attempt}"
 
-#: games/spades.rb:925 games/tysiac.rb:1673 games/tysiac.rb:1682
+#: games/spades.rb:925 games/tysiac.rb:1681 games/tysiac.rb:1690
 msgid "%{player}: %{bid}"
 msgstr "%{player}: %{bid}"
 
@@ -2461,16 +2481,24 @@ msgstr "%{player}: %{bid}"
 msgid "%{player}: %{bonuses}."
 msgstr "%{player}: %{bonuses}."
 
+#: games/bridge/presentation.rb:88
+msgid "%{player}: %{call}."
+msgstr "%{player}: %{call}."
+
 #: games/rummy.rb:552
 msgid "%{player}: %{cards} points for opponents' cards and %{bonus} bonus points."
 msgstr "%{player}: очков за карты соперников — %{cards}, бонусных очков — %{bonus}."
 
-#: games/base/shortcuts.rb:50 games/bouillabaisse.rb:48 games/bouillabaisse.rb:84 games/scientific_war.rb:886 games/spades.rb:936 games/three_five_eight.rb:1017 games/tysiac.rb:1631 games/war.rb:427 games/war.rb:486
+#: games/base/shortcuts.rb:50 games/bouillabaisse.rb:103 games/bouillabaisse.rb:67 games/scientific_war.rb:886 games/spades.rb:936 games/three_five_eight.rb:1017 games/tysiac.rb:1639 games/war.rb:427 games/war.rb:486
 msgid "%{player}: %{card}"
 msgstr "%{player}: %{card}"
 
 msgid "%{player}: %{card} Cash: %{cash}."
 msgstr "%{player}: %{card} Наличные: %{cash}."
+
+#: games/bridge/presentation.rb:95
+msgid "%{player}: %{card}."
+msgstr "%{player}: %{card}."
 
 #: games/poker.rb:1415
 msgid "%{player}: %{chips}"
@@ -2553,7 +2581,7 @@ msgstr "%{player}: %{result}"
 msgid "%{player}: %{result}."
 msgstr "%{player}: %{result}."
 
-#: games/biblios.rb:1296 games/cat_head_tail.rb:433 games/farkle.rb:761 games/three_five_eight.rb:1022 games/tysiac.rb:1643 games/uno.rb:1385 games/yahtzee.rb:527
+#: games/biblios.rb:1296 games/cat_head_tail.rb:433 games/farkle.rb:761 games/three_five_eight.rb:1022 games/tysiac.rb:1651 games/uno.rb:1385 games/yahtzee.rb:527
 msgid "%{player}: %{score}"
 msgstr "%{player}: %{score}"
 
@@ -2622,11 +2650,11 @@ msgstr "%{player}: двойное риичи"
 msgid "%{player}: field %{number}, %{square}"
 msgstr "%{player}: поле %{number}, %{square}"
 
-#: games/tysiac.rb:1781
+#: games/tysiac.rb:1789
 msgid "%{player}: first surrender."
 msgstr "%{player}: первая роспись."
 
-#: games/tysiac.rb:1786
+#: games/tysiac.rb:1794
 msgid "%{player}: first zero."
 msgstr "%{player}: первый болт."
 
@@ -2662,11 +2690,11 @@ msgstr "%{player}: выбыл"
 msgid "%{player}: riichi"
 msgstr "%{player}: риичи"
 
-#: games/tysiac.rb:1782
+#: games/tysiac.rb:1790
 msgid "%{player}: second surrender."
 msgstr "%{player}: вторая роспись."
 
-#: games/tysiac.rb:1787
+#: games/tysiac.rb:1795
 msgid "%{player}: second zero."
 msgstr "%{player}: второй болт."
 
@@ -2686,11 +2714,11 @@ msgstr "%{player}: клетка %{square}, круг %{lap}."
 msgid "%{player}: surrendered"
 msgstr "%{player}: сдался"
 
-#: games/tysiac.rb:1784
+#: games/tysiac.rb:1792
 msgid "%{player}: third surrender."
 msgstr "%{player}: третья роспись."
 
-#: games/tysiac.rb:1789
+#: games/tysiac.rb:1797
 msgid "%{player}: third zero."
 msgstr "%{player}: третий болт."
 
@@ -2702,11 +2730,11 @@ msgstr "%{player}: три шестёрки подряд; конец хода."
 msgid "%{player}: tricks won %{tricks}, target %{target}, points this deal %{points}, total score %{score}."
 msgstr "%{player}: взяток — %{tricks}, цель — %{target}, очков за сдачу — %{points}, общий счёт — %{score}."
 
-#: games/tysiac.rb:1658
+#: games/tysiac.rb:1666
 msgid "%{player}: zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "%{player}: болтов %{zeros}/3, росписей %{surrenders}/3%{barrel}"
 
-#: games/bridge/presentation.rb:381
+#: games/bridge/presentation.rb:480
 msgid "%{points} for %{side}"
 msgstr "%{points} в пользу пары %{side}"
 
@@ -2754,7 +2782,7 @@ msgstr "%{property}; в группе: %{owned} из %{total}."
 msgid "%{property}; group ownership %{owned} of %{total}."
 msgstr "%{property}; участков группы во владении: %{owned} из %{total}."
 
-#: games/card_game.rb:61 games/makao.rb:913 games/makao.rb:920 games/ninety_nine.rb:1037 games/poker.rb:1409 games/spades.rb:1124 games/three_five_eight.rb:1105 games/tysiac.rb:1736
+#: games/card_game.rb:61 games/makao.rb:913 games/makao.rb:920 games/ninety_nine.rb:1037 games/poker.rb:1409 games/spades.rb:1124 games/three_five_eight.rb:1105 games/tysiac.rb:1744
 msgid "%{rank} of %{suit}"
 msgstr "%{rank}, %{suit}"
 
@@ -2782,27 +2810,27 @@ msgstr "%{round}. %{word}: %{attempts} попытки"
 msgid "%{seat} %{card}"
 msgstr "%{seat} %{card}"
 
-#: games/bridge/presentation.rb:169
+#: games/bridge/presentation.rb:228
 msgid "%{seat} (%{player})"
 msgstr "%{seat} (%{player})"
 
-#: games/bridge/presentation.rb:349
+#: games/bridge/presentation.rb:418
 msgid "%{seat} won the trick. Tricks: %{tricks}."
 msgstr "Взятку берёт %{seat}. Взятки: %{tricks}."
 
-#: games/bridge/presentation.rb:489
+#: games/bridge/presentation.rb:590
 msgid "%{seat}: %{call}"
 msgstr "%{seat}: %{call}"
 
-#: games/bridge/presentation.rb:326
+#: games/bridge/presentation.rb:395
 msgid "%{seat}: %{call}."
 msgstr "%{seat}: %{call}."
 
-#: games/bridge/presentation.rb:468
+#: games/bridge/presentation.rb:562 games/bridge/presentation.rb:569 games/bridge/presentation.rb:585
 msgid "%{seat}: %{card}"
 msgstr "%{seat}: %{card}"
 
-#: games/bridge/presentation.rb:340
+#: games/bridge/presentation.rb:409
 msgid "%{seat}: %{card}."
 msgstr "%{seat}: %{card}."
 
@@ -2861,58 +2889,58 @@ msgstr "%{server} будет подавать, %{receiver} — принимат�
 msgid "%{set}, %{count} tiles, up to %{players} players"
 msgstr "%{set}, %{count} костей, до %{players} игроков"
 
-#: games/bridge/presentation.rb:428
+#: games/bridge/presentation.rb:527
 msgid "%{side} %{percent}%%"
 msgstr "%{side} %{percent} %%"
 
-#: games/bridge/presentation.rb:413
+#: games/bridge/presentation.rb:453 games/bridge/presentation.rb:512
 msgid "%{side} %{score}"
 msgstr "%{side} %{score}"
 
-#: games/bridge/presentation.rb:178
+#: games/bridge/presentation.rb:237
 msgid "%{side} (%{players})"
 msgstr "%{side} (%{players})"
 
-#: games/bridge/presentation.rb:392
+#: games/bridge/presentation.rb:491
 msgid "%{side} gains %{count} IMP."
 msgid_plural "%{side} gains %{count} IMPs."
 msgstr[0] "%{side} получает %{count} IMP."
 msgstr[1] "%{side} получает %{count} IMP."
 msgstr[2] "%{side} получает %{count} IMP."
 
-#: games/bridge/presentation.rb:400
+#: games/bridge/presentation.rb:499
 msgid "%{side} score %{points} below the line."
 msgstr "%{side}: %{points} под чертой."
 
-#: games/bridge/presentation.rb:405
+#: games/bridge/presentation.rb:504
 msgid "%{side} score %{points} for honours."
 msgstr "%{side}: %{points} за онёры."
 
-#: games/bridge/presentation.rb:402
+#: games/bridge/presentation.rb:501
 msgid "%{side} score %{points} for making a doubled contract."
 msgstr "%{side}: %{points} за выполнение законтренного контракта."
 
-#: games/bridge/presentation.rb:401
+#: games/bridge/presentation.rb:500
 msgid "%{side} score %{points} for overtricks."
 msgstr "%{side}: %{points} за лишние взятки."
 
-#: games/bridge/presentation.rb:403
+#: games/bridge/presentation.rb:502
 msgid "%{side} score %{points} for the slam."
 msgstr "%{side}: %{points} за шлем."
 
-#: games/bridge/presentation.rb:404
+#: games/bridge/presentation.rb:503
 msgid "%{side} score %{points} for undertricks."
 msgstr "%{side}: %{points} за недобор."
 
-#: games/bridge/presentation.rb:406
+#: games/bridge/presentation.rb:461 games/bridge/presentation.rb:505
 msgid "%{side} won a game."
 msgstr "%{side} выигрывает гейм."
 
-#: games/bridge/presentation.rb:407
+#: games/bridge/presentation.rb:506
 msgid "%{side} won the rubber and score %{points}."
 msgstr "%{side} выигрывает роббер: премия %{points} очков."
 
-#: games/bridge/presentation.rb:557
+#: games/bridge/presentation.rb:658
 msgid "%{side}: %{games} games, %{below} below and %{above} above the line, %{total} in total"
 msgstr "%{side}: выиграно геймов %{games}, под чертой %{below}, над чертой %{above}, всего %{total}"
 
@@ -2943,18 +2971,18 @@ msgstr "%{status}; %{name}; ведущий: %{owner}; пользователи: 
 msgid "%{suit} as trump"
 msgstr "%{suit} как козырь"
 
-#: games/bridge/presentation.rb:241
+#: games/bridge/presentation.rb:300
 msgid "%{suit}: %{cards}"
 msgstr "%{suit}: %{cards}"
 
-#: __app.rb:3120
+#: __app.rb:3124
 msgid "%{table}, unavailable"
 msgstr "%{table}, недоступен"
 
 msgid "%{taker} gave %{card} to %{player}."
 msgstr "%{taker} передал %{card} игроку %{player}."
 
-#: games/tysiac.rb:1533 games/tysiac.rb:856
+#: games/tysiac.rb:1541 games/tysiac.rb:864
 msgid "%{taker} gave a card to %{player}."
 msgstr "%{taker} передал карту игроку %{player}."
 
@@ -3044,7 +3072,7 @@ msgstr "%{user} отклонил приглашение игрока %{player}."
 msgid "%{user} declined your invitation to %{table}."
 msgstr "%{user} отклонил ваше приглашение за стол %{table}."
 
-#: __app.rb:4054
+#: __app.rb:4058
 msgid "%{user}'s table"
 msgstr "Стол игрока %{user}"
 
@@ -3104,11 +3132,11 @@ msgstr "%{variant}; от 3 до 8 букв; лимит попыток завис
 msgid "%{variant}; 3 to 9 letters"
 msgstr "%{variant}; 3–9 букв"
 
-#: games/spades.rb:579 games/spades.rb:849 games/three_five_eight.rb:430 games/tysiac.rb:1046 games/tysiac.rb:120
+#: games/spades.rb:579 games/spades.rb:849 games/three_five_eight.rb:430 games/tysiac.rb:1054 games/tysiac.rb:126
 msgid "%{winner} won the game."
 msgstr "%{winner} выиграл партию."
 
-#: games/bridge/presentation.rb:436
+#: games/bridge/presentation.rb:535
 msgid "%{winner} won the match: %{scores}."
 msgstr "Матч выигрывает пара %{winner}: %{scores}."
 
@@ -3165,11 +3193,11 @@ msgstr "%{word}: %{attempts} попытки, %{length} букв"
 msgid "(more than you can pay)"
 msgstr "(больше, чем вы можете заплатить)"
 
-#: games/tysiac.rb:1647
+#: games/tysiac.rb:1655
 msgid ", on the barrel"
 msgstr ", на бочке"
 
-#: games/tysiac.rb:1657
+#: games/tysiac.rb:1665
 msgid ", on the barrel, %{deals} deals left"
 msgstr ", на бочке, осталось раздач: %{deals}"
 
@@ -4673,11 +4701,11 @@ msgstr "10"
 msgid "10 minutes"
 msgstr "10 минут"
 
-#: games/tysiac.rb:86
+#: games/tysiac.rb:92
 msgid "1000 card game"
 msgstr "карточная игра 1000"
 
-#: games/tysiac.rb:192
+#: games/tysiac.rb:198
 msgid "1000 card game variant"
 msgstr "Вариант карточной игры 1000"
 
@@ -4720,7 +4748,7 @@ msgstr "2 (пасьянс): второй слой в «Террасах»."
 msgid "2 adds two points directly to your banked score. It leaves the current turn total unchanged and does not end the turn. Those two points remain yours even if you roll a 1 later."
 msgstr "2 напрямую добавляет два очка к вашему накопленному счёту. Это оставляет текущий ход неизменным и не заканчивает ход. Эти два очка остаются вашими, даже если вы выбросите 1 позже."
 
-#: games/tysiac.rb:199
+#: games/tysiac.rb:205
 msgid "2 cards"
 msgstr "2 карты"
 
@@ -4772,7 +4800,7 @@ msgstr "2: выбрать один отложенный кубик с двойк
 msgid "3 (Solitaire): top layer in Terraces."
 msgstr "3 (пасьянс): верхний слой в «Террасах»."
 
-#: games/tysiac.rb:200
+#: games/tysiac.rb:206
 msgid "3 cards"
 msgstr "3 карты"
 
@@ -5148,7 +5176,7 @@ msgstr "Четвёрка заставляет пропускать ходы. Е�
 msgid "A full column cannot be selected. After a valid move, the turn passes to the other player."
 msgstr "Заполненный столбец выбрать нельзя. После допустимого хода очередь переходит к другому игроку."
 
-#: __app.rb:3513 __app.rb:3555
+#: __app.rb:3517 __app.rb:3559
 msgid "A game has already started. Opening the current game."
 msgstr "Партия уже началась. Открывается текущая партия."
 
@@ -5552,7 +5580,7 @@ msgstr "Ответ: готовьтесь к подаче или удару по�
 msgid "About this adaptation"
 msgstr "Об этом адаптации"
 
-#: __app.rb:2492 __app.rb:2693
+#: __app.rb:2496 __app.rb:2697
 msgid "Accept"
 msgstr "Принять"
 
@@ -5568,7 +5596,7 @@ msgstr "Принять показанные пары плей-офф"
 msgid "Accept displayed plan"
 msgstr "Принять показанный план"
 
-#: __app.rb:2883 lib/game_room_ui.rb:140 lib/game_room_ui.rb:325 lib/game_room_widget.rb:198 lib/game_room_widget.rb:204
+#: __app.rb:2887 lib/game_room_ui.rb:140 lib/game_room_ui.rb:325 lib/game_room_widget.rb:198 lib/game_room_widget.rb:204
 msgid "Accept invitation"
 msgstr "Принять приглашение"
 
@@ -5580,7 +5608,7 @@ msgstr "Принять локальный тестовый план"
 msgid "Accept partnership with %{player}"
 msgstr "Принять предложение пары от %{player}"
 
-#: __app.rb:3645
+#: __app.rb:3649
 msgid "Accept teams"
 msgstr "Подтвердить команды"
 
@@ -5637,7 +5665,7 @@ msgstr "Принятых участников: %{count}"
 msgid "Accepted: %{players}"
 msgstr "Приняли: %{players}"
 
-#: __app.rb:2753 __app.rb:2776
+#: __app.rb:2757 __app.rb:2780
 msgid "Accepting invitation"
 msgstr "Принятие приглашения"
 
@@ -5727,7 +5755,7 @@ msgstr "Добавить бота"
 msgid "Add a new category"
 msgstr "Добавить новую категорию"
 
-#: __app.rb:2488
+#: __app.rb:2492
 msgid "Add a new computer in this place"
 msgstr "Добавить нового бота на это место"
 
@@ -5914,6 +5942,10 @@ msgstr "Добавлена Scopa для 2–6 человек с варианта
 msgid "Added Tournaments to the main menu, directly after Saved games. You can organize a tournament or join one, playing individually or in fixed pairs."
 msgstr "В главном меню появился раздел «Турниры», сразу после сохранённых игр. Можно организовать свой турнир или присоединиться к чужому, играя поодиночке либо в постоянной паре."
 
+#: lib/game_room_changelog.rb:671
+msgid "Added Typoholism: practise typing on your own or compete with friends in four modes, using a keyboard or Braille input."
+msgstr "Добавлена Клавомания: тренируйте печать самостоятельно или соревнуйтесь с друзьями в четырёх режимах, используя клавиатуру или брайлевский ввод."
+
 #: lib/game_room_changelog.rb:276
 msgid "Added War and Scientific War by balteam, for two to eight players, with bots. War compares cards from a face-down deck; Scientific War lets you choose your cards and use their special powers."
 msgstr "Добавлены War и Scientific War от balteam для двух–восьми игроков с ботами. War сравнивает карты из закрытой колоды; Scientific War позволяет выбирать карты и использовать их специальные способности."
@@ -5961,6 +5993,10 @@ msgstr "В польский набор общих знаний добавлен�
 msgid "Added missing Polish messages, including the notice that Daily Krowa requires a private table."
 msgstr "Добавлены недостающие польские сообщения, включая уведомление о том, что для Daily Krowa требуется закрытый стол."
 
+#: lib/game_room_changelog.rb:673
+msgid "Added options in Tysiac to request a redeal with four nines in the initial hand or at least two nines in the talon. Use Shift+D when a redeal is available."
+msgstr "В тысяче можно разрешить новое распределение карт при четырёх девятках в начальной руке или хотя бы двух девятках в прикупе. Чтобы запросить его, нажмите Shift+D, когда это возможно."
+
 #: lib/game_room_changelog.rb:497
 msgid "Added private tournament hands in 1000 miles, Spades, Thousand, 3-5-8, 99, Poker, War, Rummy, Makao, Biblios and UNO, as well as private tiles in Domino, Mexican Train and Scrabble. Other players, observers and the host do not receive your unrevealed hand."
 msgstr "В турнирах по играм 1000 миль, Пики, Тысяча, 3-5-8, 99, Покер, Война, Ремик, Макао, Biblios и UNO карты в руке теперь приватные. Так же защищены кости в Домино и Mexican Train и буквы в Scrabble. Другие игроки, наблюдатели и хозяин стола не получают содержимое твоей нераскрытой руки."
@@ -5976,6 +6012,10 @@ msgstr "В польский набор общих знаний добавлен�
 #: lib/game_room_changelog.rb:130
 msgid "Added sounds for banking points in Farkle, reaching exactly 33 or 66 in 99, and declaring a marriage in Tysiac."
 msgstr "Добавлены звуки сохранения очков в Farkle, точного достижения 33 или 66 в игре 99 и объявления марьяжа в Tysiac."
+
+#: lib/game_room_changelog.rb:674
+msgid "Added sounds for surrendering and for making or missing the contract in Tysiac."
+msgstr "Добавлены звуки сдачи и выполнения или невыполнения контракта в тысяче."
 
 #: lib/game_room_changelog.rb:277
 msgid "Added statistics by balteam: visits, started and completed games, with game and period filters. Open Statistics in the main menu. Ctrl+W on that menu's options list reads current public and private table counts and human memberships, including observers but not bots. Developer mode does not collect new statistics."
@@ -6309,7 +6349,7 @@ msgstr "Действуют все четыре штрафа одновремен
 msgid "All four penalties are subtracted from your score."
 msgstr "Значения всех четырёх штрафов вычитаются из результата."
 
-#: games/bridge.rb:555
+#: games/bridge.rb:560
 msgid "All four players passed. The deal is thrown in."
 msgstr "Все четверо спасовали. Сдача не разыгрывается."
 
@@ -6396,6 +6436,14 @@ msgstr "Ва-банк означает ставку всех оставшихс�
 #: games/generated/rulebooks/poker.rb:21
 msgid "All-in puts in your remaining chips, subject to the betting limits. Other players still have to respond. If you cannot afford a full call, you may call with everything you have. An all-in smaller than a full raise does not normally let players who already acted raise again; several small increases must add up to a full raise before that right returns. If nobody can continue betting, the game completes the board where needed and compares the hands."
 msgstr "При олл-ине вы ставите все оставшиеся фишки с учётом лимитов ставок. Остальные игроки всё равно должны ответить. Если фишек не хватает для полного колла, можно уравнять ставку всеми имеющимися фишками. Олл-ин меньше полного повышения обычно не возвращает право повысить ставку игрокам, которые уже сделали ход; несколько небольших повышений должны в сумме составить полное повышение, чтобы это право вернулось. Если никто больше не может делать ставки, игра при необходимости открывает оставшиеся общие карты и сравнивает комбинации."
+
+#: games/tysiac_redeals.rb:9
+msgid "Allow a redeal with at least two nines in the talon"
+msgstr "Разрешить пересдачу при двух или более девятках в прикупе"
+
+#: games/tysiac_redeals.rb:8
+msgid "Allow a redeal with four initial nines"
+msgstr "Разрешить пересдачу с четырьмя девятками в начальной руке"
 
 #: games/categories.rb:242
 msgid "Allow a shared victory"
@@ -6515,7 +6563,7 @@ msgstr "Дополнительный бак защищает от нехватк
 msgid "An extra tank protects against running out of gas, puncture-proof tires protect against flat tires, and the driving ace protects against accidents. Right of way protects against red lights and speed limits and removes the need for green lights. A safety removes the corresponding current problem and protects you until the round ends."
 msgstr "Дополнительный бак защищает от нехватки топлива, непрокалываемые шины — от прокола, а ас вождения — от аварий. Преимущество проезда защищает от красного света и ограничений скорости и отменяет необходимость зелёного света. Защита устраняет соответствующую текущую проблему и действует до конца раунда."
 
-#: __app.rb:2564
+#: __app.rb:2568
 msgid "An invitation to this table is already pending for this user."
 msgstr "У этого пользователя уже есть действующее приглашение за этот стол."
 
@@ -6597,11 +6645,11 @@ msgstr "Объявлять уход игрока из-за стола"
 msgid "Announce when a table is created"
 msgstr "Объявлять создание стола"
 
-#: __app.rb:3003
+#: __app.rb:3007
 msgid "Announcements of placed and removed letters disabled."
 msgstr "Объявления о размещении и снятии букв отключены."
 
-#: __app.rb:3003
+#: __app.rb:3007
 msgid "Announcements of placed and removed letters enabled."
 msgstr "Объявления о размещении и снятии букв включены."
 
@@ -7105,7 +7153,7 @@ msgstr "Попытки: %{count} из 3."
 msgid "Attempts: %{count}. %{status}"
 msgstr "Попытки: %{count}. %{status}"
 
-#: games/bridge/presentation.rb:150
+#: games/bridge/presentation.rb:209
 msgid "Auction"
 msgstr "Торговля"
 
@@ -7139,11 +7187,11 @@ msgstr "Аукцион завершён без продажи: %{property}."
 msgid "Auction, transfer and play keys"
 msgstr "Клавиши аукциона, обмена и игры"
 
-#: games/tysiac.rb:1684
+#: games/tysiac.rb:1692
 msgid "Auction: %{bids}."
 msgstr "Аукцион: %{bids}."
 
-#: games/bridge/presentation.rb:495
+#: games/bridge/presentation.rb:596
 msgid "Auction: %{calls}."
 msgstr "Торговля: %{calls}."
 
@@ -7375,7 +7423,7 @@ msgstr "B: прочитать текущий аукцион."
 msgid "B: respond to the buzzer."
 msgstr "B: ответить на сигнальную карту."
 
-#: __app.rb:1404 __app.rb:1671 __app.rb:1715 __app.rb:1864 __app.rb:2577 __app.rb:2694 __app.rb:2886 games/krowa_support/leaderboards.rb:41 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:786 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/recordings/ui.rb:217 lib/sports_rankings/screen.rb:206 lib/sports_rankings/screen.rb:58 lib/sports_rankings/screen.rb:88 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
+#: __app.rb:1404 __app.rb:1671 __app.rb:1715 __app.rb:1864 __app.rb:2581 __app.rb:2698 __app.rb:2890 games/krowa_support/leaderboards.rb:41 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:686 lib/game_room_screens.rb:703 lib/game_screen.rb:786 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/recordings/ui.rb:217 lib/sports_rankings/screen.rb:206 lib/sports_rankings/screen.rb:58 lib/sports_rankings/screen.rb:88 lib/table_voice_screen.rb:142 lib/table_voice_screen.rb:160 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:68 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/participant_partner_picker.rb:22 lib/tournaments/partner_choice.rb:55 lib/tournaments/proposal_notice_dialog.rb:27 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:189 lib/tournaments/public_preview.rb:210 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:116
 msgid "Back"
 msgstr "Назад"
 
@@ -7656,7 +7704,7 @@ msgstr "Сделать ставку %{amount} карт"
 msgid "Bid %{value}"
 msgstr "Заявка %{value}"
 
-#: games/tysiac.rb:90
+#: games/tysiac.rb:96
 msgid "Bid how many points you will score, then collect valuable cards and announce king-and-queen pairs to keep your promise."
 msgstr "Объяви, сколько очков наберёшь, а затем собирай ценные карты и объявляй пары короля с дамой, чтобы выполнить обещание."
 
@@ -7735,7 +7783,7 @@ msgstr "Блайнды: %{small} и %{big}."
 msgid "Board"
 msgstr "Доска"
 
-#: games/bridge/presentation.rb:308
+#: games/bridge/presentation.rb:377
 msgid "Board %{board} of %{boards}. Dealer: %{dealer}. %{vulnerability}."
 msgstr "Сдача %{board} из %{boards}. Сдаёт %{dealer}. %{vulnerability}."
 
@@ -7861,6 +7909,10 @@ msgstr "Боты никогда не дают контру. Розыгрыш у 
 msgid "Bouillabaisse is a card game for 2–8 players. Over six rounds you try to finish with the lowest total. Most rounds give you penalty points for collecting particular cards; in the last round those points help you instead."
 msgstr "Буйабес — карточная игра для 2–8 игроков. За шесть раундов нужно набрать как можно меньше очков. В большинстве раундов за сбор определённых карт начисляются штрафные очки; в последнем раунде эти очки, наоборот, помогают вам."
 
+#: lib/game_room_changelog.rb:675
+msgid "Bouillabaisse rounds now end once all their scoring cards have been taken. Distinct sounds identify penalty suits, ranks and the special card."
+msgstr "Раунды Bouillabaisse теперь заканчиваются, когда разыграны все карты, за которые в этом раунде начисляются очки. Разные звуки обозначают штрафную масть, достоинство и особую карту."
+
 #: games/battleship.rb:640
 msgid "Bow cleared."
 msgstr "Выбор носа отменён."
@@ -7913,19 +7965,19 @@ msgstr "Бридж — карточная игра для четверых дв�
 msgid "Bridge is played by four people in two partnerships. You and your partner bid for a contract: a promise to win a certain number of tricks. A trick is the four cards played in turn, one from each hand. If your pair wins the auction, you try to fulfil that promise; otherwise, you try to stop the other pair."
 msgstr "В бридж играют вчетвером, двумя парами. Сначала вы с партнёром участвуете в торговле и обещаете взять определённое число взяток. Взятка состоит из четырёх карт: каждый по очереди кладёт одну. Пара, выигравшая торговлю, старается выполнить свой контракт, а соперники мешают ей."
 
-#: games/bridge.rb:147
+#: games/bridge.rb:152
 msgid "Bridge requires exactly four players."
 msgstr "В бридж играют ровно четыре игрока."
 
-#: games/bridge/presentation.rb:302
+#: games/bridge/presentation.rb:370
 msgid "Bridge started: %{seats}."
 msgstr "Начинается бридж: %{seats}."
 
-#: games/bridge.rb:105
+#: games/bridge.rb:110
 msgid "Bridge variant"
 msgstr "Вариант бриджа"
 
-#: games/bridge.rb:110
+#: games/bridge.rb:115
 msgid "Bridge with an estimated reference score"
 msgstr "Бридж с ориентировочным результатом"
 
@@ -8233,7 +8285,7 @@ msgstr "Уравнять %{amount}"
 msgid "Calm (short search)"
 msgstr "Спокойный (короткий поиск)"
 
-#: __app.rb:2329 __app.rb:2493 __app.rb:3646 __app.rb:3704 games/krowa_support/client.rb:196 games/krowa_support/client.rb:357 games/krowa_support/leaderboards.rb:235 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_option_editor.rb:72 lib/game_room_screens.rb:361 lib/game_screen.rb:695 lib/game_screen.rb:739 lib/game_surfaces/card_actions.rb:52 lib/game_surfaces/word_board.rb:208 lib/mania_pisania/client.rb:341 lib/mania_pisania/client.rb:590 lib/mania_pisania/client.rb:611 lib/mania_pisania/text_import_dialog.rb:18 lib/quiz_contributions/views.rb:143 lib/quiz_contributions/views.rb:164 lib/table_voice_screen.rb:180 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:29
+#: __app.rb:2329 __app.rb:2497 __app.rb:3650 __app.rb:3708 games/krowa_support/client.rb:196 games/krowa_support/client.rb:357 games/krowa_support/leaderboards.rb:235 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/game_option_editor.rb:72 lib/game_room_screens.rb:361 lib/game_screen.rb:695 lib/game_screen.rb:739 lib/game_surfaces/card_actions.rb:52 lib/game_surfaces/word_board.rb:208 lib/mania_pisania/client.rb:341 lib/mania_pisania/client.rb:590 lib/mania_pisania/client.rb:611 lib/mania_pisania/text_import_dialog.rb:18 lib/quiz_contributions/views.rb:143 lib/quiz_contributions/views.rb:164 lib/table_voice_screen.rb:180 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:29
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -8442,7 +8494,7 @@ msgstr "Карты от 3 до 8 добавляют напечатанное з�
 msgid "Cards help you race or hinder your opponents. Some cost feathers, and you need enough to pay the full cost before playing them. You can hold as many cards as you collect."
 msgstr "Карты помогают вам в гонке или мешают соперникам. Некоторые стоят перьев; перед розыгрышем их должно хватать на полную оплату. Число карт на руках не ограничено."
 
-#: games/tysiac.rb:198
+#: games/tysiac.rb:204
 msgid "Cards in each talon"
 msgstr "Карты в каждом прикупе"
 
@@ -8454,7 +8506,7 @@ msgstr "Карты в руке: %{cards}."
 msgid "Cards in hand: %{counts}."
 msgstr "Карты на руках: %{counts}."
 
-#: games/base/shortcuts.rb:59 games/bouillabaisse.rb:47 games/bridge/presentation.rb:471 games/dealt_card_game.rb:138
+#: games/base/shortcuts.rb:59 games/bouillabaisse.rb:66 games/bridge/presentation.rb:572 games/dealt_card_game.rb:138
 msgid "Cards on the table"
 msgstr "Карты на столе"
 
@@ -8682,7 +8734,7 @@ msgstr "Изменить партнёра выбранного участник�
 msgid "Change settings for the next game"
 msgstr "Изменить настройки для следующей игры"
 
-#: __app.rb:3643 lib/game_room_screens.rb:21
+#: __app.rb:3647 lib/game_room_screens.rb:21
 msgid "Change team"
 msgstr "Сменить команду"
 
@@ -8907,7 +8959,7 @@ msgstr "Проверка доступности игры"
 msgid "Checking game before saving"
 msgstr "Проверка партии перед сохранением"
 
-#: __app.rb:2731
+#: __app.rb:2735
 msgid "Checking invitation"
 msgstr "Проверка приглашения"
 
@@ -8939,7 +8991,7 @@ msgstr "Проверка доступа к столу на сервере"
 msgid "Checking set details"
 msgstr "Проверка данных набора"
 
-#: __app.rb:3279
+#: __app.rb:3283
 msgid "Checking table"
 msgstr "Проверка стола"
 
@@ -8950,11 +9002,11 @@ msgstr "Проверка текущей партии"
 msgid "Checking the current table"
 msgstr "Проверка текущего стола"
 
-#: __app.rb:3503
+#: __app.rb:3507
 msgid "Checking the table before starting"
 msgstr "Проверка стола перед началом"
 
-#: __app.rb:2373 __app.rb:2766 __app.rb:3549
+#: __app.rb:2373 __app.rb:2770 __app.rb:3553
 msgid "Checking the table members"
 msgstr "Проверка участников стола"
 
@@ -9002,7 +9054,7 @@ msgstr "Выберите Classic или Arcade в списке режимов и
 msgid "Choose Classic or Arcade in the Game mode list when creating the table. Classic is the default and follows the normal rules above. In Arcade, every paddle return has two independent chances of 7 percent: a shield for the player who returned the ball and an invisible ball. Both may happen on the same hit. A serve alone does not trigger these effects."
 msgstr "При создании стола выберите «Классику» или «Аркаду» в списке режимов. По умолчанию действует «Классика» по обычным правилам выше. В «Аркаде» каждый удар ракеткой даёт два независимых шанса по 7 процентов: получить щит или сделать мяч невидимым. Оба эффекта могут сработать одновременно. На подаче они не появляются."
 
-#: games/bridge.rb:146
+#: games/bridge.rb:151
 msgid "Choose IMP or matchpoint scoring."
 msgstr "Выберите подсчёт в IMP или в матчпойнтах."
 
@@ -9081,11 +9133,11 @@ msgstr "Выберите карту для сброса"
 msgid "Choose a card to give to %{player}"
 msgstr "Выберите карту для игрока %{player}"
 
-#: games/tysiac.rb:1548 games/tysiac.rb:559
+#: games/tysiac.rb:1556 games/tysiac.rb:565
 msgid "Choose a card to give to %{player}."
 msgstr "Выберите карту для игрока %{player}."
 
-#: games/tysiac.rb:1541
+#: games/tysiac.rb:1549
 msgid "Choose a card to set aside. Remaining: %{count}."
 msgstr "Выберите карту, чтобы отложить. Осталось: %{count}."
 
@@ -9123,7 +9175,7 @@ msgstr "Выберите закрытый конг"
 msgid "Choose a date and time inside the selected window. This is not an invitation TTL or tournament rule."
 msgstr "Выберите дату и время внутри выбранного временного окна. Это не срок действия приглашения и не правило турнира."
 
-#: __app.rb:3199
+#: __app.rb:3203
 msgid "Choose a game for the preset"
 msgstr "Выберите игру для шаблона"
 
@@ -9165,7 +9217,7 @@ msgstr "Выберите игрока"
 msgid "Choose a player for the trade"
 msgstr "Выберите партнёра для обмена"
 
-#: __app.rb:2447
+#: __app.rb:2451
 msgid "Choose a player in the current game."
 msgstr "Выберите игрока в текущей игре."
 
@@ -9240,19 +9292,19 @@ msgstr "Выберите клетку на поле соперника для в
 msgid "Choose a suit"
 msgstr "Выберите масть"
 
-#: games/bridge.rb:145
+#: games/bridge.rb:150
 msgid "Choose a supported number of boards."
 msgstr "Выберите одно из доступных чисел сдач."
 
-#: games/tysiac.rb:422
+#: games/tysiac.rb:428
 msgid "Choose a talon"
 msgstr "Выберите прикуп"
 
-#: games/tysiac.rb:573
+#: games/tysiac.rb:579
 msgid "Choose a talon."
 msgstr "Выберите прикуп."
 
-#: __app.rb:3699
+#: __app.rb:3703
 msgid "Choose a team"
 msgstr "Выберите команду"
 
@@ -9342,7 +9394,7 @@ msgstr "Выберите карты для обмена"
 msgid "Choose different start and end times, or turn off the playing-hours limit."
 msgstr "Выберите разное время начала и окончания или отключите ограничение по часам."
 
-#: games/domino.rb:89 games/domino.rb:93 games/tysiac.rb:223
+#: games/domino.rb:89 games/domino.rb:93 games/tysiac.rb:229
 msgid "Choose equal teams with at least two players each."
 msgstr "Сформируйте равные команды, не менее двух игроков в каждой."
 
@@ -9389,7 +9441,7 @@ msgstr "Перед составлением плана матчей выбери
 msgid "Choose one of five difficulty levels. The times below describe the first full flight across the 25-step court. At every level, each later hit in the rally increases the current speed by 5%."
 msgstr "Выберите один из пяти уровней сложности. Приведённые ниже времена описывают первый полный полёт через 25-ступенчатый корт. На каждом уровне каждый следующий удар в ралли увеличивает текущую скорость на 5%."
 
-#: games/tysiac.rb:516
+#: games/tysiac.rb:522
 msgid "Choose one of the available bids."
 msgstr "Выберите одну из доступных заявок."
 
@@ -9425,15 +9477,15 @@ msgstr "Выбрать игрока"
 msgid "Choose round-robin play or a group stage followed by a knockout stage. Tournaments support rematches and knockout matches played to a chosen number of wins. The program arranges matches, records game results and determines who advances."
 msgstr "Доступны круговой формат и групповой этап с последующей игрой на выбывание. Можно включить ответные матчи, а на этапе выбывания играть до заданного числа побед. Программа составляет расписание матчей, записывает результаты и определяет, кто проходит дальше."
 
-#: games/bridge.rb:144
+#: games/bridge.rb:149
 msgid "Choose rubber or estimated-reference scoring."
 msgstr "Выберите роббер или сравнение с ориентировочным результатом."
 
-#: __app.rb:3629 lib/participant_menu.rb:27
+#: __app.rb:3633 lib/participant_menu.rb:27
 msgid "Choose teams"
 msgstr "Выбрать команды"
 
-#: __app.rb:3644
+#: __app.rb:3648
 msgid "Choose teams randomly"
 msgstr "Распределить команды случайным образом"
 
@@ -9465,7 +9517,7 @@ msgstr "Выберите цвет перед сохранением партии
 msgid "Choose the content, not the interface language"
 msgstr "Выберите содержимое, а не язык интерфейса"
 
-#: games/tysiac.rb:1613
+#: games/tysiac.rb:1621
 msgid "Choose the contract value"
 msgstr "Выберите стоимость контракта"
 
@@ -9487,7 +9539,7 @@ msgstr "Выберите объявляемое значение"
 msgid "Choose the final contract"
 msgstr "Выберите окончательный контракт"
 
-#: __app.rb:2443
+#: __app.rb:2447
 msgid "Choose the new table master"
 msgstr "Выберите нового хозяина стола"
 
@@ -9518,7 +9570,7 @@ msgstr "Отдельно выберите язык викторины, зате�
 msgid "Choose the quiz language, then tick the question sets you want. Initially only the general set in that language is selected. Every checked set has the same chance of being chosen, followed by a random question from that set. The same selection applies to duels, group challenges, question squares and Curiosity."
 msgstr "Выберите язык викторины, затем отметьте нужные наборы вопросов. Сначала выбран только общий набор этого языка. Каждый отмеченный набор имеет равные шансы, затем из него выбирается случайный вопрос. Выбор действует для дуэлей, групповых испытаний, клеток с вопросами и карты «Любопытство»."
 
-#: __app.rb:2461
+#: __app.rb:2465
 msgid "Choose the replacement"
 msgstr "Выберите замену"
 
@@ -9578,9 +9630,13 @@ msgstr "Выбирай карты для хода и используй их о�
 msgid "Choose with the arrow keys, then press Enter."
 msgstr "Выберите стрелками и нажмите Enter."
 
-#: games/tysiac.rb:1479 games/tysiac.rb:1613
+#: games/tysiac.rb:1487 games/tysiac.rb:1621
 msgid "Choose your bid"
 msgstr "Выберите свою заявку"
+
+#: games/bridge/presentation.rb:352
+msgid "Choose your call."
+msgstr "Выберите заявку."
 
 #: games/bridge/presentation.rb:125
 msgid "Choose your call. %{auction}"
@@ -9669,6 +9725,10 @@ msgstr "Использование сброшенной кости"
 msgid "Clarified four reported questions in the Polish Harry Potter set, including missing context and misleading answer clues."
 msgstr "Уточнены четыре вопроса из польского набора о Гарри Поттере, на которые поступили замечания: добавлен недостающий контекст и исправлены подсказки, вводившие в заблуждение."
 
+#: lib/game_room_changelog.rb:680
+msgid "Clarified the language-change instructions: close ELTEN completely and start it again; restarting with F12 does not reload Power Games."
+msgstr "Уточнена инструкция по смене языка: полностью закройте ELTEN и запустите его снова; перезапуск клавишей F12 не перезагружает Power Games."
+
 #: lib/game_room_changelog.rb:436
 msgid "Clarified the options for switching between playing and observing: the menu now makes clear whether you are changing your own role or the selected person's. If the current participants cannot start a game, the message lists the selected variant's requirements and the people signed up to play."
 msgstr "Уточнены пункты меню для смены роли игрока на наблюдателя и наоборот: теперь ясно, меняете ли вы свою роль или роль выбранного человека. Если с текущим составом нельзя начать партию, сообщение перечисляет требования выбранного варианта и участников, записанных в игру."
@@ -9723,6 +9783,10 @@ msgstr "Если своим ходом вы забираете все карты
 msgid "Close"
 msgstr "Закрыть"
 
+#: __app.rb:3270
+msgid "Close ELTEN completely and start it again to apply the interface language preferences. Restarting with F12 does not reload Power Games."
+msgstr "Чтобы применить настройки языков интерфейса, полностью закройте ELTEN и запустите его снова. Перезапуск клавишей F12 не перезагружает Power Games."
+
 msgid "Close answering now"
 msgstr "Завершить приём ответов сейчас"
 
@@ -9734,11 +9798,11 @@ msgstr "Закрыть регистрацию"
 msgid "Close the table for everyone"
 msgstr "Закрыть стол для всех"
 
-#: __app.rb:2424
+#: __app.rb:2428
 msgid "Close the table for everyone?"
 msgstr "Закрыть стол для всех?"
 
-#: __app.rb:2425
+#: __app.rb:2429
 msgid "Closing table"
 msgstr "Закрытие стола"
 
@@ -9829,7 +9893,7 @@ msgstr "Общественная казна"
 msgid "Community chest"
 msgstr "Общественная казна"
 
-#: games/bridge.rb:130
+#: games/bridge.rb:135
 msgid "Comparison scoring"
 msgstr "Подсчёт при сравнении"
 
@@ -10007,7 +10071,7 @@ msgstr "Соедините слово с уже выложенными букв�
 msgid "Connecting the match."
 msgstr "Подключение матча."
 
-#: __app.rb:3152 __app.rb:480
+#: __app.rb:3156 __app.rb:480
 msgid "Connecting to Elten"
 msgstr "Подключение к Elten"
 
@@ -10042,17 +10106,21 @@ msgstr "Очки за контракт записываются под черт�
 msgid "Contract, declarer and dummy"
 msgstr "Контракт, разыгрывающий и болван"
 
-#: games/bridge/presentation.rb:508
+#: games/bridge/presentation.rb:609
 msgid "Contract: %{contract} by %{declarer}. Declarer needs %{needed} tricks and has %{won}."
 msgstr "Контракт: %{contract}, разыгрывает %{declarer}. Разыгрывающему нужно %{needed} взяток, взято %{won}."
 
-#: games/bridge/presentation.rb:330
+#: games/bridge/presentation.rb:399
 msgid "Contract: %{contract}, declarer %{declarer}. %{leader} makes the opening lead."
 msgstr "Контракт: %{contract}, разыгрывающий %{declarer}. Первый ход: %{leader}."
 
 #: games/three_five_eight.rb:1035
 msgid "Contract: %{contract}."
 msgstr "Контракт: %{contract}."
+
+#: games/bridge/presentation.rb:103
+msgid "Contract: %{contract}. %{player} declares, needing %{count} tricks."
+msgstr "Контракт: %{contract}. Разыгрывает %{player}; цель: %{count} взяток."
 
 #: games/generated/rulebooks/spades.rb:18
 msgid "Contracts, nils and bags"
@@ -10164,7 +10232,7 @@ msgstr "Уютное гнездо"
 msgid "Could not connect to the Krowa leaderboard."
 msgstr "Не удалось подключиться к таблице лидеров Krowa."
 
-#: __app.rb:4013
+#: __app.rb:4017
 msgid "Could not disconnect the voice conversation. Open Conferences to leave it."
 msgstr "Не удалось отключиться от комнаты голосового чата. Откройте Голосовой чат в Elten, чтобы выйти."
 
@@ -10674,7 +10742,7 @@ msgstr "Текущие и недавно завершённые"
 msgid "Current colour: %{colour}."
 msgstr "Текущий цвет: %{colour}."
 
-#: games/tysiac.rb:1686
+#: games/tysiac.rb:1694
 msgid "Current contract: %{contract}, bidder: %{player}."
 msgstr "Текущий контракт: %{contract}; заявитель: %{player}."
 
@@ -10682,7 +10750,7 @@ msgstr "Текущий контракт: %{contract}; заявитель: %{play
 msgid "Current game history"
 msgstr "История текущей партии"
 
-#: games/bridge/presentation.rb:562
+#: games/bridge/presentation.rb:663
 msgid "Current game: North-South %{ns}, East-West %{ew}."
 msgstr "Текущий гейм: Север–Юг %{ns}, Восток–Запад %{ew}."
 
@@ -10706,7 +10774,7 @@ msgstr "Текущая активность в комнате"
 msgid "Current table options"
 msgstr "Настройки текущего стола"
 
-#: games/bridge/presentation.rb:463
+#: games/bridge/presentation.rb:562
 msgid "Current trick: %{cards}."
 msgstr "Текущая взятка: %{cards}."
 
@@ -10936,7 +11004,7 @@ msgstr "В Daily Krowa за каждым днём закреплено одно 
 msgid "Daily Krowa leaderboard"
 msgstr "Рейтинг Daily Krowa"
 
-#: __app.rb:3904
+#: __app.rb:3908
 msgid "Daily Krowa requires a private table. Create a new private table for this variant."
 msgstr "Для Daily Krowa требуется закрытый стол. Создайте новый закрытый стол для этого варианта."
 
@@ -11031,7 +11099,7 @@ msgstr "Раздача %{round}."
 msgid "Deal %{round}. Cards left to deal: %{count}."
 msgstr "Раздача %{round}. Осталось раздать карт: %{count}."
 
-#: games/bridge/presentation.rb:314
+#: games/bridge/presentation.rb:383
 msgid "Deal %{round}. Dealer: %{dealer}. %{vulnerability}."
 msgstr "Сдача %{round}. Сдаёт %{dealer}. %{vulnerability}."
 
@@ -11077,7 +11145,7 @@ msgstr "Объявить готовность"
 msgid "Declare riichi by choosing a tile to discard"
 msgstr "Объявите риичи, выбрав кость для сброса"
 
-#: games/tysiac.rb:1491
+#: games/tysiac.rb:1499
 msgid "Declare the marriage"
 msgstr "Объявить марьяж"
 
@@ -11481,7 +11549,7 @@ msgstr "Покинуть стол?"
 msgid "Do you want to leave the table? The table will be closed for everyone."
 msgstr "Покинуть стол? Стол будет закрыт для всех."
 
-#: __app.rb:2772
+#: __app.rb:2776
 msgid "Do you want to leave your current table and join the invited table?"
 msgstr "Покинуть текущий стол и присоединиться к столу из приглашения?"
 
@@ -11846,25 +11914,37 @@ msgstr "Гнездо утят"
 msgid "Ducks: %{players}."
 msgstr "Утки: %{players}."
 
-#: games/bridge/presentation.rb:455
+#: games/bridge/presentation.rb:554
 msgid "Dummy is not on the table yet. It is shown after the opening lead."
 msgstr "Болван ещё не выложен. Его карты откроются после первого хода."
 
-#: games/bridge/presentation.rb:345
+#: games/bridge/presentation.rb:414
 msgid "Dummy is on the table, %{seat}: %{cards}."
 msgstr "Болван выложен, %{seat}: %{cards}."
+
+#: games/bridge/presentation.rb:98
+msgid "Dummy's hand is exposed: %{player}."
+msgstr "Открыты карты болвана: %{player}."
 
 #: games/bridge/presentation.rb:258
 msgid "Dummy, %{seat}, %{count} cards"
 msgstr "Болван, %{seat}, карт: %{count}"
 
-#: games/bridge/presentation.rb:457
+#: games/bridge/presentation.rb:556
 msgid "Dummy, %{seat}: %{cards}."
 msgstr "Болван, %{seat}: %{cards}."
 
-#: games/bridge/presentation.rb:337
+#: games/bridge/presentation.rb:406
 msgid "Dummy, %{seat}: %{card}."
 msgstr "Болван, %{seat}: %{card}."
+
+#: games/bridge/presentation.rb:93
+msgid "Dummy: %{card}."
+msgstr "Болван: %{card}."
+
+#: games/bridge/presentation.rb:317
+msgid "Dummy: %{player}"
+msgstr "Карты болвана: %{player}"
 
 #: games/generated/rulebooks/bridge.rb:56
 msgid "Duplicate bridge"
@@ -11984,11 +12064,11 @@ msgstr "С каждой попыткой становится сложнее, п
 msgid "Each board is scored on its own. A game earns a bonus of 300, or 500 when vulnerable, and a part score earns 50. Everything else is scored as described above. There are no honours and no rubber."
 msgstr "Каждая сдача считается отдельно. За гейм начисляется премия 300 очков или 500 в зоне, за частичный контракт — 50. Остальные очки считаются, как описано выше. Онёров и роббера нет."
 
-#: games/bouillabaisse.rb:220
+#: games/bouillabaisse.rb:239
 msgid "Each card of %{suit} costs 10 points."
 msgstr "Каждая взятая карта масти %{suit} приносит 10 штрафных очков."
 
-#: games/bouillabaisse.rb:213
+#: games/bouillabaisse.rb:232
 msgid "Each card of %{suit} you take subtracts 10 points."
 msgstr "За каждую взятую карту масти %{suit} из твоего счёта вычитается 10 очков."
 
@@ -12016,19 +12096,19 @@ msgstr "Каждый пункт ниже даёт 1 якуман и заменя
 msgid "Each honba adds 300 to a discard payment or 100 from each opponent on self-draw. Riichi deposits are awarded to the winner in addition. Honba increases after a draw or dealer repeat and resets after another player wins."
 msgstr "Каждая хонба добавляет 300 к выплате на сбросе или по 100 с каждого соперника при победе со стены. Взносы риичи также достаются победителю. Хонба растёт после ничьей или сохранения сдающего и обнуляется после победы другого игрока."
 
-#: games/bouillabaisse.rb:221
+#: games/bouillabaisse.rb:240
 msgid "Each jack you take costs 50 points."
 msgstr "Каждый взятый валет приносит 50 штрафных очков."
 
-#: games/bouillabaisse.rb:214
+#: games/bouillabaisse.rb:233
 msgid "Each jack you take subtracts 50 points."
 msgstr "За каждого взятого валета из твоего счёта вычитается 50 очков."
 
-#: games/bouillabaisse.rb:223
+#: games/bouillabaisse.rb:242
 msgid "Each king you take costs 50 points."
 msgstr "Каждый взятый король приносит 50 штрафных очков."
 
-#: games/bouillabaisse.rb:216
+#: games/bouillabaisse.rb:235
 msgid "Each king you take subtracts 50 points."
 msgstr "За каждого взятого короля из твоего счёта вычитается 50 очков."
 
@@ -12098,11 +12178,11 @@ msgstr "Каждый игрок один раз бросает кубик. По�
 msgid "Each player's closest guess counts. The winner takes three feathers from each opponent; equally close guesses tie."
 msgstr "У каждого учитывается ближайшее предположение. Победитель получает по три пера от каждого соперника; одинаково близкие предположения дают ничью."
 
-#: games/bouillabaisse.rb:222
+#: games/bouillabaisse.rb:241
 msgid "Each queen you take costs 50 points."
 msgstr "Каждая взятая дама приносит 50 штрафных очков."
 
-#: games/bouillabaisse.rb:215
+#: games/bouillabaisse.rb:234
 msgid "Each queen you take subtracts 50 points."
 msgstr "За каждую взятую даму из твоего счёта вычитается 50 очков."
 
@@ -12110,7 +12190,7 @@ msgstr "За каждую взятую даму из твоего счёта в�
 msgid "Each time, you must reproduce the entire sequence from the beginning, separating the words with Space."
 msgstr "Каждый раз нужно воспроизводить всю последовательность с начала, разделяя слова Пробелом."
 
-#: games/bouillabaisse.rb:219
+#: games/bouillabaisse.rb:238
 msgid "Each trick costs 5 points."
 msgstr "Каждая взятка стоит 5 очков."
 
@@ -12118,7 +12198,7 @@ msgstr "Каждая взятка стоит 5 очков."
 msgid "Each trick has four cards, one from each player in clockwise order. To play, go to a card in your hand with the arrow keys and press Enter. Z moves to the next card you are allowed to play and Shift+Z to the previous one; if you have only one playable card, Z plays it."
 msgstr "В каждой взятке четыре карты, по одной от каждого игрока по часовой стрелке. Выберите карту на руке стрелками и нажмите Enter. Z переходит к следующей допустимой карте, Shift+Z — к предыдущей; если допустима только одна карта, Z сразу играет её."
 
-#: games/bouillabaisse.rb:212
+#: games/bouillabaisse.rb:231
 msgid "Each trick you take subtracts 5 points from your score."
 msgstr "За каждую взятку из твоего счёта вычитается 5 очков."
 
@@ -12140,7 +12220,7 @@ msgstr "Для каждой открытой кости сообщается, д
 msgid "Each word has its own time limit, determined by the length of the recording."
 msgstr "На каждое слово отводится своё время, определяемое длительностью записи."
 
-#: games/bridge/presentation.rb:161
+#: games/bridge/presentation.rb:220
 msgid "East"
 msgstr "Восток"
 
@@ -12156,11 +12236,11 @@ msgstr "Восточный раунд"
 msgid "East wind"
 msgstr "Восточный ветер"
 
-#: games/bridge/presentation.rb:173
+#: games/bridge/presentation.rb:232
 msgid "East-West"
 msgstr "Восток–Запад"
 
-#: games/bridge/presentation.rb:230
+#: games/bridge/presentation.rb:289
 msgid "East-West vulnerable"
 msgstr "Восток–Запад в зоне"
 
@@ -12353,7 +12433,7 @@ msgstr "Конец игры"
 msgid "End on the start date"
 msgstr "Закончить в день начала"
 
-#: __app.rb:3931
+#: __app.rb:3935
 msgid "End the current game for everyone? The table and chat will stay open, and no winner will be recorded."
 msgstr "Завершить текущую игру для всех? Стол и чат останутся открыты, а победитель зарегистрирован не будет."
 
@@ -12423,7 +12503,7 @@ msgstr "Завершение"
 msgid "Ending a game"
 msgstr "Завершение игры"
 
-#: __app.rb:3938
+#: __app.rb:3942
 msgid "Ending game"
 msgstr "Завершение игры"
 
@@ -12933,7 +13013,7 @@ msgstr "Французский вокзал"
 msgid "Estación del norte"
 msgstr "Северный вокзал"
 
-#: games/bridge.rb:95
+#: games/bridge.rb:100
 msgid "Estimated comparison, %{boards} boards, %{scoring}"
 msgstr "Сравнение с ориентиром, сдач: %{boards}, %{scoring}"
 
@@ -13114,6 +13194,10 @@ msgstr "Выход"
 #: lib/game_room_changelog.rb:577
 msgid "Expanded Mahjong rules explain all variants and their scoring. During play, you can check basic scoring progress and read the scoring breakdown after a completed hand."
 msgstr "Расширенные правила маджонга объясняют все варианты и подсчёт очков. Во время игры можно проверить набранные базовые очки, а после завершения раздачи — прочитать подробное объяснение начислений."
+
+#: lib/game_room_changelog.rb:678
+msgid "Expanded and improved the Russian interface, README and game rules."
+msgstr "Расширены и улучшены русский интерфейс, README и правила игр."
 
 #: lib/quiz_contributions/controller.rb:155
 msgid "Export all matching submissions"
@@ -13433,7 +13517,7 @@ msgstr "Завершить обмен"
 msgid "Finish line"
 msgstr "Финиш"
 
-#: lib/game_surfaces.rb:911 lib/game_surfaces/card_actions.rb:24
+#: lib/game_surfaces.rb:917 lib/game_surfaces/card_actions.rb:24
 msgid "Finish or cancel the current card choice first."
 msgstr "Сначала завершите или отмените текущий выбор карты."
 
@@ -13505,7 +13589,7 @@ msgstr "Первый результат"
 msgid "First set."
 msgstr "Первый сет."
 
-#: games/tysiac.rb:424
+#: games/tysiac.rb:430
 msgid "First talon"
 msgstr "Первый прикуп"
 
@@ -13976,7 +14060,7 @@ msgstr "Четверо игроков стараются первыми заве
 msgid "Four players try to finish a winning hand first. The usual shape is four sets and a pair, with at least 8 fan before flower bonuses. Fan are the value of compatible scoring patterns. A hand win earns a payment; the match winner is the player with the highest combined balance."
 msgstr "Четверо игроков стараются первыми завершить выигрышную руку. Обычная структура — четыре набора и пара, не меньше 8 фань без цветов. Фань — стоимость совместимых премиальных комбинаций. Победа в раздаче приносит выплату; партию выигрывает игрок с наибольшим общим балансом."
 
-#: games/tysiac.rb:195
+#: games/tysiac.rb:201
 msgid "Four players, one sits out each deal"
 msgstr "Четыре игрока, один пропускает каждую раздачу"
 
@@ -14832,6 +14916,10 @@ msgstr "Онёры"
 msgid "Honours are also scored above the line, whoever holds them, even a defender. Four of the five top trumps (ace, king, queen, jack, ten) in one hand earn 100 and all five earn 150. In no trump, all four aces in one hand earn 150. The table settings can turn honours off."
 msgstr "Онёры также записываются над чертой независимо от владельца, даже если это защитник. Четыре из пяти старших козырей — туз, король, дама, валет, десятка — на одной руке дают 100 очков, все пять — 150. Без козыря четыре туза на одной руке дают 150. Онёры можно отключить в настройках стола."
 
+#: lib/game_room_changelog.rb:677
+msgid "Hosts can use Ctrl+Shift+P on the users list to change a person's role for the next game. Fixed an error when that person has already left the table."
+msgstr "Хозяин стола может нажать Ctrl+Shift+P в списке пользователей, чтобы изменить роль выбранного участника в следующей партии. Также исправлена ошибка, возникавшая, если участник уже покинул стол."
+
 #: lib/tournaments/tournament_datetime_field.rb:20
 msgid "Hour"
 msgstr "Час"
@@ -14944,9 +15032,13 @@ msgstr "I: прочитать ход выполнения своей заявк�
 msgid "I: read your seat, partner and role in this deal."
 msgstr "I: прочитать своё место, партнёра и роль в этой сдаче."
 
-#: games/bridge.rb:134 games/bridge.rb:157 games/bridge.rb:97 games/bridge/presentation.rb:549
+#: games/bridge.rb:102 games/bridge.rb:139 games/bridge.rb:162 games/bridge/presentation.rb:650
 msgid "IMPs"
 msgstr "IMP"
+
+#: games/bridge/presentation.rb:456
+msgid "IMPs: %{scores}."
+msgstr "ИМП: %{scores}."
 
 msgid "Identical answers in the same category are grouped and shown with all their authors. The judge, not the program, decides whether a group is unique, duplicated or incorrect."
 msgstr "Одинаковые ответы одной категории объединяются и показываются со всеми авторами. Судья, а не программа, решает, считать ли группу уникальной, совпавшей или неправильной."
@@ -15893,7 +15985,7 @@ msgstr "Изобретение"
 msgid "Investment"
 msgstr "Вложение"
 
-#: __app.rb:2884
+#: __app.rb:2888
 msgid "Invitation"
 msgstr "Приглашение"
 
@@ -15916,7 +16008,7 @@ msgstr "Приглашение отклонено."
 msgid "Invitation sent."
 msgstr "Приглашение отправлено."
 
-#: __app.rb:2689
+#: __app.rb:2693
 msgid "Invitations"
 msgstr "Приглашения"
 
@@ -15932,7 +16024,7 @@ msgstr "Теперь приглашения можно принять из ув�
 msgid "Invitations sent: %{sent}. Unconfirmed: %{unconfirmed}."
 msgstr "Отправлено приглашений: %{sent}. Не подтверждено: %{unconfirmed}."
 
-#: __app.rb:2576 lib/tournaments/tournament_invite_picker.rb:23
+#: __app.rb:2580 lib/tournaments/tournament_invite_picker.rb:23
 msgid "Invite"
 msgstr "Пригласить"
 
@@ -15940,11 +16032,11 @@ msgstr "Пригласить"
 msgid "Invite an online Elten user"
 msgstr "Пригласить пользователя Elten онлайн"
 
-#: __app.rb:2541
+#: __app.rb:2545
 msgid "Invite an online user"
 msgstr "Пригласить пользователя онлайн"
 
-#: __app.rb:2541
+#: __app.rb:2545
 msgid "Invite from contacts"
 msgstr "Пригласить из контактов"
 
@@ -15964,11 +16056,11 @@ msgstr "Приглашённые"
 msgid "Island"
 msgstr "Остров"
 
-#: games/bridge/presentation.rb:51 games/bridge/presentation.rb:71
+#: games/bridge/presentation.rb:130
 msgid "It is %{player}'s turn (%{seat})."
 msgstr "Ходит %{player} (%{seat})."
 
-#: games/base.rb:363 games/base.rb:390 games/board_game.rb:235 games/spades.rb:907
+#: games/base.rb:363 games/base.rb:390 games/board_game.rb:235 games/bridge/presentation.rb:51 games/spades.rb:907
 msgid "It is %{player}'s turn."
 msgstr "Ходит %{player}."
 
@@ -16510,6 +16602,10 @@ msgstr "Последние 30 дней"
 msgid "Last 7 days"
 msgstr "Последние 7 дней"
 
+#: games/bridge/presentation.rb:357
+msgid "Last bid: %{bid} by %{player}."
+msgstr "Последняя ставка: %{bid}, игрок %{player}."
+
 #: lib/tournaments/local_fixed_team_execution_screen.rb:417
 msgid "Last confirmed own move: %{id}"
 msgstr "Последний подтверждённый собственный ход: %{id}"
@@ -16884,7 +16980,7 @@ msgstr "Загрузка истории Game Room"
 msgid "Loading Game Room tables"
 msgstr "Загрузка столов Game Room"
 
-#: __app.rb:3063 lib/game_room_widget.rb:148 lib/game_room_widget.rb:152 lib/game_room_widget.rb:50
+#: __app.rb:3067 lib/game_room_widget.rb:148 lib/game_room_widget.rb:152 lib/game_room_widget.rb:50
 msgid "Loading Power Games tables"
 msgstr "Загрузка столов Power Games"
 
@@ -16904,7 +17000,7 @@ msgstr "Загрузка списка попыток"
 msgid "Loading available tables"
 msgstr "Загрузка доступных столов"
 
-#: __app.rb:3088
+#: __app.rb:3092
 msgid "Loading contacts"
 msgstr "Загрузка контактов"
 
@@ -16916,7 +17012,7 @@ msgstr "Загрузка черновика"
 msgid "Loading histories and replays"
 msgstr "Загрузка историй и повторов"
 
-#: __app.rb:2667
+#: __app.rb:2671
 msgid "Loading invitations"
 msgstr "Загрузка приглашений"
 
@@ -16979,7 +17075,7 @@ msgstr "Загрузка столов"
 msgid "Loading tournament drafts"
 msgstr "Загрузка черновиков турниров"
 
-#: __app.rb:2509 lib/tournaments/tournament_invite_picker.rb:12
+#: __app.rb:2513 lib/tournaments/tournament_invite_picker.rb:12
 msgid "Loading users"
 msgstr "Загрузка пользователей"
 
@@ -17040,7 +17136,7 @@ msgstr "Только локальный план. Ничего не сохран
 msgid "Local readiness operation in progress. Back discards its presentation, not its durable intent."
 msgstr "Операция локальной готовности выполняется. «Назад» закрывает её представление, но не удаляет сохранённое намерение."
 
-#: __app.rb:3265
+#: __app.rb:3269
 msgid "Local settings saved. New-table notification subscriptions could not be saved."
 msgstr "Локальные настройки сохранены. Не удалось сохранить подписки на уведомления о новых столах."
 
@@ -17295,6 +17391,10 @@ msgstr "MCR: 8 фань"
 msgid "MCR: 88 fan"
 msgstr "MCR: 88 фань"
 
+#: lib/game_room_changelog.rb:672
+msgid "Made Bridge announcements shorter, clarified bidding and improved navigation between your hand and dummy. Trump cards now use the same sound as in Spades."
+msgstr "Сокращены объявления в бридже, уточнены подсказки при торговле и улучшены переходы между своей рукой и картами болвана. При розыгрыше козыря теперь звучит тот же сигнал, что и в пиках."
+
 #: games/mahjong.rb:24 games/mahjong_support/private_table.rb:129 games/mahjong_support/solitaire_presentation.rb:12 games/mahjong_support/solitaire_presentation.rb:36 games/mahjong_support/table_game.rb:219 games/mahjong_support/table_presentation.rb:21 games/mahjong_support/table_presentation.rb:25
 msgid "Mahjong"
 msgstr "Маджонг"
@@ -17357,11 +17457,11 @@ msgstr "В варианте Makao с джокерами к простым пра
 msgid "Makao's F1 help now includes Shift+Enter for adding a card to or removing it from a package."
 msgstr "В справку F1 для Makao добавлено сочетание Shift+Enter, которое добавляет карту в выбранный набор или удаляет её из него."
 
-#: lib/participant_menu.rb:244
+#: lib/participant_menu.rb:259
 msgid "Make %{player} a player for the next game"
 msgstr "%{player} — сделать игроком в следующей игре"
 
-#: lib/participant_menu.rb:244
+#: lib/participant_menu.rb:259
 msgid "Make %{player} an observer for the next game"
 msgstr "%{player} — сделать наблюдателем в следующей игре"
 
@@ -17647,11 +17747,15 @@ msgstr "Подбор карт и розыгрыш пакетов"
 msgid "Matching cards and winning rounds"
 msgstr "Подбор карт и победа в раундах"
 
-#: games/bridge.rb:135 games/bridge/presentation.rb:549
+#: games/bridge.rb:140 games/bridge/presentation.rb:650
 msgid "Matchpoints"
 msgstr "Матчпойнты"
 
-#: games/bridge/presentation.rb:386
+#: games/bridge/presentation.rb:456
+msgid "Matchpoints: %{scores}."
+msgstr "Матчпункты: %{scores}."
+
+#: games/bridge/presentation.rb:485
 msgid "Matchpoints: North-South %{ns}, East-West %{ew}."
 msgstr "Очки: Север–Юг %{ns}, Восток–Запад %{ew}."
 
@@ -17837,6 +17941,10 @@ msgstr "Мимо!"
 #: games/categories/reduction.rb:177
 msgid "Missing reveals count as blank answers: %{players}."
 msgstr "Нераскрытые ответы считаются пустыми: %{players}."
+
+#: lib/game_room_screens.rb:382
+msgid "Missing translations use other known languages, then English. Close ELTEN completely and start it again to apply language changes; F12 is not enough."
+msgstr "Недостающие переводы берутся из других известных языков, затем из английского. Чтобы применить смену языка, полностью закройте ELTEN и запустите его снова; F12 недостаточно."
 
 #: lib/game_room_screens.rb:382
 msgid "Missing translations use other known languages, then English. Restart ELTEN to apply language changes."
@@ -18368,7 +18476,7 @@ msgstr "«Без ада», «Зыбучие пески» и «Самоубийс
 msgid "No Hell, Quicksand and Suicide are off by default. Quicksand takes precedence over standard contract bonuses and bag scoring when enabled. The score limit must be positive and defaults to 300. Team arrangement is Individual by default; team membership is chosen before the game and partners share a score."
 msgstr "«Без ада», «Зыбучие пески» и «Самоубийство» отключены по умолчанию. Включённые «Зыбучие пески» заменяют стандартные бонусы контрактов и подсчёт мешков. Предел очков положительный, по умолчанию 300. По умолчанию игра индивидуальная; команды выбираются до начала, партнёры имеют общий счёт."
 
-#: games/bridge/presentation.rb:388
+#: games/bridge/presentation.rb:487
 msgid "No IMPs change hands."
 msgstr "Никто не получает IMP."
 
@@ -18473,7 +18581,7 @@ msgstr "Ещё ни одно сражение не завершено."
 msgid "No bids yet."
 msgstr "Ставок ещё нет."
 
-#: games/bridge/presentation.rb:493 games/bridge/presentation.rb:500
+#: games/bridge/presentation.rb:594 games/bridge/presentation.rb:601
 msgid "No calls have been made yet."
 msgstr "Заявок пока не было."
 
@@ -18488,7 +18596,7 @@ msgstr "На позиции %{number} нет карты."
 msgid "No card in this packet can legally begin the move."
 msgstr "Ни одна карта этого пакета не может законно начать ход."
 
-#: games/bridge/presentation.rb:270 games/poker.rb:348
+#: games/bridge/presentation.rb:329 games/poker.rb:348
 msgid "No cards"
 msgstr "Нет карт"
 
@@ -18496,15 +18604,15 @@ msgstr "Нет карт"
 msgid "No cards are on the table."
 msgstr "На столе нет карт."
 
-#: games/base/shortcuts.rb:43 games/bridge/presentation.rb:470
+#: games/base/shortcuts.rb:43 games/bridge/presentation.rb:571
 msgid "No cards have been played in this trick"
 msgstr "В этой взятке ещё не сыграно ни одной карты"
 
-#: games/tysiac.rb:1629
+#: games/tysiac.rb:1637
 msgid "No cards have been played in this trick."
 msgstr "В этой взятке ещё не сыграно ни одной карты."
 
-#: games/bouillabaisse.rb:54 games/dealt_card_game.rb:139 games/dealt_card_game.rb:277
+#: games/bouillabaisse.rb:73 games/dealt_card_game.rb:139 games/dealt_card_game.rb:277
 msgid "No cards on the table"
 msgstr "На столе нет карт"
 
@@ -18551,7 +18659,7 @@ msgstr "Нет текущих турниров."
 msgid "No daily results"
 msgstr "Нет ежедневных результатов"
 
-#: games/bridge/presentation.rb:515
+#: games/bridge/presentation.rb:616
 msgid "No deal has been played yet."
 msgstr "Ни одной сдачи ещё не сыграно."
 
@@ -18845,11 +18953,11 @@ msgstr "Клетка без особого эффекта."
 msgid "No statistics were collected for this period."
 msgstr "За этот период статистика не собиралась."
 
-#: games/bridge/presentation.rb:475 games/spades.rb:954
+#: games/bridge/presentation.rb:576 games/spades.rb:954
 msgid "No suit has been led."
 msgstr "Захода в масть ещё не было."
 
-#: __app.rb:3170
+#: __app.rb:3174
 msgid "No table preset is assigned to this shortcut."
 msgstr "Для этого сочетания клавиш не назначен шаблон стола."
 
@@ -18868,7 +18976,7 @@ msgstr "Нет объявлений о турнирах."
 msgid "No tournaments in this view."
 msgstr "В этом списке нет турниров."
 
-#: games/bridge/presentation.rb:482
+#: games/bridge/presentation.rb:583
 msgid "No trick has been completed in this deal."
 msgstr "В этой сдаче ещё не закончено ни одной взятки."
 
@@ -18907,7 +19015,7 @@ msgstr "Никто не угадал слово."
 msgid "Nobody has chosen a card yet."
 msgstr "Никто ещё не выбрал карту."
 
-#: __app.rb:3618 lib/game_option_values.rb:84 lib/mania_pisania/client.rb:339
+#: __app.rb:3622 lib/game_option_values.rb:84 lib/mania_pisania/client.rb:339
 msgid "None"
 msgstr "Нет"
 
@@ -18950,7 +19058,7 @@ msgstr "Обычно один диск размещается на пустой 
 msgid "Normally, Space draws one tile. You may start drawing only once in a turn. If a legal play is available afterwards, you can make it; if none is available, your turn ends. Without any playable tile and with an empty boneyard, the game passes automatically. Having drawn is not permission to keep pressing Space for more tiles."
 msgstr "Обычно Пробел берёт одну кость. Добор разрешён только один раз за ход. Если после него появился допустимый ход, его можно сделать; иначе ход заканчивается. Если подходящей кости нет и базар пуст, ход пропускается автоматически. Повторные нажатия Пробела после добора не позволяют брать новые кости."
 
-#: games/bridge/presentation.rb:160
+#: games/bridge/presentation.rb:219
 msgid "North"
 msgstr "Север"
 
@@ -18970,15 +19078,15 @@ msgstr "Северный вокзал"
 msgid "North wind"
 msgstr "Северный ветер"
 
-#: games/bridge/presentation.rb:173
+#: games/bridge/presentation.rb:232
 msgid "North-South"
 msgstr "Север–Юг"
 
-#: games/bridge/presentation.rb:353
+#: games/bridge/presentation.rb:422
 msgid "North-South %{ns}, East-West %{ew}"
 msgstr "Север–Юг %{ns}, Восток–Запад %{ew}"
 
-#: games/bridge/presentation.rb:229
+#: games/bridge/presentation.rb:288
 msgid "North-South vulnerable"
 msgstr "Север–Юг в зоне"
 
@@ -19046,7 +19154,7 @@ msgstr "Число от 1 до 999."
 msgid "Number of attempts"
 msgstr "Количество попыток"
 
-#: games/bridge.rb:122
+#: games/bridge.rb:127
 msgid "Number of boards"
 msgstr "Число сдач"
 
@@ -19364,7 +19472,11 @@ msgstr "Это может сделать только организатор."
 msgid "Only the solo player can save their private typing progress."
 msgstr "Только одиночный игрок может сохранить свой личный прогресс."
 
-#: __app.rb:3509
+#: __app.rb:2419
+msgid "Only the table master may change another user's role."
+msgstr "Только хозяин стола может менять роль другого участника."
+
+#: __app.rb:3513
 msgid "Only the table master may start a game."
 msgstr "Только хозяин стола может начать партию."
 
@@ -19455,7 +19567,7 @@ msgstr "Открытие истории или повтора"
 msgid "Opening the betting requires a pair of jacks or better."
 msgstr "Для открытия торговли нужна пара валетов или выше."
 
-#: __app.rb:3552
+#: __app.rb:3556
 msgid "Opening the current game"
 msgstr "Открытие текущей партии"
 
@@ -19844,7 +19956,7 @@ msgstr "Выбор напарника сохранён."
 msgid "Partners and the deal"
 msgstr "Партнёры и раздача"
 
-#: games/biblios.rb:1100 games/mahjong_support/table_presentation.rb:201 games/tysiac.rb:1470 games/tysiac.rb:1607
+#: games/biblios.rb:1100 games/mahjong_support/table_presentation.rb:201 games/tysiac.rb:1478 games/tysiac.rb:1615
 msgid "Pass"
 msgstr "Пас"
 
@@ -20166,7 +20278,7 @@ msgstr "Играй в пасьянс маджонг, гонконгский ма
 msgid "Play a card from dummy."
 msgstr "Сыграйте карту с болвана."
 
-#: games/bridge.rb:294
+#: games/bridge.rb:299
 msgid "Play a card from the hand whose turn it is."
 msgstr "Сыграйте карту из руки игрока, чей сейчас ход."
 
@@ -20278,7 +20390,7 @@ msgstr "Играть матчи турнира"
 msgid "Play until a specified number of wins"
 msgstr "До заданного числа побед"
 
-#: games/tysiac.rb:1485
+#: games/tysiac.rb:1493
 msgid "Play without declaring a marriage"
 msgstr "Сыграть без объявления марьяжа"
 
@@ -20392,7 +20504,7 @@ msgstr "Игроки по очереди делают по одному брос
 msgid "Players: %{count}"
 msgstr "Игроки: %{count}"
 
-#: __app.rb:3619 lib/table_roster_reader.rb:69
+#: __app.rb:3623 lib/table_roster_reader.rb:69
 msgid "Players: %{players}."
 msgstr "Игроки: %{players}."
 
@@ -20500,6 +20612,10 @@ msgstr "Очки за контракт"
 #: games/generated/rulebooks/tysiac.rb:28
 msgid "Points in cards are not the same as the score you receive"
 msgstr "Стоимость карт отличается от начисляемого счёта"
+
+#: games/bridge/presentation.rb:458
+msgid "Points this deal: %{scores}."
+msgstr "Очки за сдачу: %{scores}."
 
 #: games/axel_pong.rb:49
 msgid "Points to win"
@@ -21060,7 +21176,7 @@ msgstr "Предыдущий этап турнира"
 msgid "Previous tournament phase results"
 msgstr "Результаты предыдущего этапа турнира"
 
-#: games/bridge/presentation.rb:485
+#: games/bridge/presentation.rb:586
 msgid "Previous trick: %{cards}. Won by %{seat}."
 msgstr "Предыдущая взятка: %{cards}. Взятку взял %{seat}."
 
@@ -22024,11 +22140,11 @@ msgstr "Открытие регистрации: год"
 msgid "Registration outside the allowed window."
 msgstr "Регистрация вне разрешённого срока."
 
-#: __app.rb:2693
+#: __app.rb:2697
 msgid "Reject"
 msgstr "Отклонить"
 
-#: __app.rb:2883 lib/game_room_screens.rb:140
+#: __app.rb:2887 lib/game_room_screens.rb:140
 msgid "Reject invitation"
 msgstr "Отклонить приглашение"
 
@@ -22044,7 +22160,7 @@ msgstr "Отклонено"
 msgid "Rejected or conflicting entry reports — announcements: %{announcements}; registrations: %{registrations}. These are not accepted entries."
 msgstr "Отклонённые или противоречивые записи: объявлений %{announcements}; регистраций %{registrations}. Они не считаются принятыми."
 
-#: __app.rb:2846
+#: __app.rb:2850
 msgid "Rejecting invitation"
 msgstr "Отклонение приглашения"
 
@@ -22074,7 +22190,7 @@ msgstr "Удалить компьютер"
 msgid "Remove all 144 tiles in matching pairs. You play alone and win when you remove the last pair."
 msgstr "Уберите все 144 кости подходящими парами. Вы играете самостоятельно и выигрываете, убрав последнюю пару."
 
-#: lib/participant_menu.rb:210
+#: lib/participant_menu.rb:214
 msgid "Remove computer"
 msgstr "Удалить бота"
 
@@ -22299,6 +22415,10 @@ msgstr "Сообщения об этом вопросе"
 msgid "Request %{amount} rent from %{player}"
 msgstr "Запросить у игрока %{player} арендную плату %{amount}"
 
+#: games/tysiac_redeals.rb:52 games/tysiac_redeals.rb:61
+msgid "Request a redeal"
+msgstr "Попросить пересдачу"
+
 #: games/monopoly/presentation.rb:221
 msgid "Requested properties from %{player}"
 msgstr "Запрашиваемые участки игрока %{player}"
@@ -22386,7 +22506,7 @@ msgstr "Результаты"
 msgid "Results — %{phase}"
 msgstr "Результаты — %{phase}"
 
-#: __app.rb:1377 __app.rb:3623
+#: __app.rb:1377 __app.rb:3627
 msgid "Resume game"
 msgstr "Продолжить партию"
 
@@ -22493,6 +22613,10 @@ msgstr "Просмотреть завершённую партию"
 #: games/taboo_ui.rb:62
 msgid "Review this turn. The table master must approve it."
 msgstr "Проверьте итоги хода. Хозяин стола должен подтвердить их."
+
+#: lib/game_room_changelog.rb:679
+msgid "Reviewed reported Polish quiz questions, clarified their wording and removed an ambiguous question. Thanks to Zuzler for the reports!"
+msgstr "Проверены сообщения об ошибках в польских вопросах викторины, уточнены формулировки и удалён неоднозначный вопрос. Спасибо Zuzler за сообщения!"
 
 #: lib/quiz_contributions/views.rb:141
 msgid "Revision: %{revision}"
@@ -22840,7 +22964,7 @@ msgstr "Раунд %{round} завершён."
 msgid "Round %{round} ended. %{scores}"
 msgstr "Раунд %{round} завершён. %{scores}"
 
-#: games/bouillabaisse.rb:227
+#: games/bouillabaisse.rb:246
 msgid "Round %{round} of 6. %{rule}"
 msgstr "Раунд %{round} из 6. %{rule}"
 
@@ -22852,7 +22976,7 @@ msgstr "Раунд %{round} начался."
 msgid "Round %{round} started. Letter: %{letter}."
 msgstr "Раунд %{round} начался. Буква: %{letter}."
 
-#: games/tysiac.rb:710
+#: games/tysiac.rb:718
 msgid "Round %{round} was dealt by %{dealer}. %{player} opens the auction."
 msgstr "Раунд %{round}, сдавал %{dealer}. %{player} начинает торги."
 
@@ -22939,7 +23063,7 @@ msgstr "1/8 финала"
 msgid "Round robin"
 msgstr "Каждый с каждым"
 
-#: games/bouillabaisse.rb:198 games/scopa.rb:246
+#: games/bouillabaisse.rb:217 games/scopa.rb:246
 msgid "Round scores: %{scores}."
 msgstr ""
 "Очки за раунд:\n"
@@ -22972,11 +23096,11 @@ msgstr "Раунды"
 msgid "Rounds and multiplayer matches"
 msgstr "Раунды и сетевые матчи"
 
-#: games/bridge.rb:93
+#: games/bridge.rb:98
 msgid "Rubber"
 msgstr "Роббер"
 
-#: games/bridge.rb:109
+#: games/bridge.rb:114
 msgid "Rubber bridge (social)"
 msgstr "Роббер (дружеская игра)"
 
@@ -23029,6 +23153,10 @@ msgstr "Клавиши Румми"
 #: games/rummy.rb:542
 msgid "Rummy multiplier: %{factor}."
 msgstr "Множитель Румми: %{factor}."
+
+#: lib/game_room_changelog.rb:676
+msgid "Rummy now clears the selection after an invalid card combination."
+msgstr "В румми после неверной комбинации выделение карт снимается автоматически."
 
 #: games/generated/rulebooks/rummy.rb:12
 msgid "Runs, sets and the position of a joker"
@@ -23201,7 +23329,7 @@ msgstr "Сохраняйте партию Румми в начале хода, �
 msgid "Save Taboo between turns, after the table master approves the review."
 msgstr "Сохраняйте «Табу» между ходами после подтверждения итогов хозяином стола."
 
-#: __app.rb:3877
+#: __app.rb:3881
 msgid "Save changes"
 msgstr "Сохранить изменения"
 
@@ -23238,7 +23366,7 @@ msgstr "Сохранить сохраняет выбранную сторону 
 msgid "Save partner"
 msgstr "Сохранить партнёра"
 
-#: __app.rb:3206
+#: __app.rb:3210
 msgid "Save preset"
 msgstr "Сохранить шаблон"
 
@@ -23338,7 +23466,7 @@ msgstr "Сохранение доступно только в Рейсе и Ба
 msgid "Saving is not supported for this game."
 msgstr "Сохранение этой игры не поддерживается."
 
-#: __app.rb:3246
+#: __app.rb:3250
 msgid "Saving notification settings"
 msgstr "Сохранение настроек уведомлений"
 
@@ -23354,11 +23482,11 @@ msgstr "Сохранение повтора"
 msgid "Saving table history"
 msgstr "Сохранение истории стола"
 
-#: __app.rb:3910
+#: __app.rb:3914
 msgid "Saving table settings"
 msgstr "Сохранение настроек стола"
 
-#: __app.rb:3740
+#: __app.rb:3744
 msgid "Saving teams"
 msgstr "Сохранение команд"
 
@@ -23421,7 +23549,7 @@ msgstr "Scopone"
 msgid "Scopone: an empty table and larger hands instead of three-card deals"
 msgstr "Scopone: пустой стол и большие руки вместо раздач по три карты"
 
-#: games/bridge/presentation.rb:394
+#: games/bridge/presentation.rb:493
 msgid "Score %{result}, compared with %{reference}. %{comparison}"
 msgstr "Результат: %{result}; эталон: %{reference}. %{comparison}"
 
@@ -23432,7 +23560,7 @@ msgstr "При нажатии S результаты объявляются от
 msgid "Score every word formed in the move. New letter bonuses apply first, then word multipliers; multiple word multipliers multiply. A shared letter scores in each word. Covered bonuses never apply again. A blank can activate a word bonus. Using seven rack tiles in one move adds 50 points after the other calculations."
 msgstr "Засчитывайте очки за каждое слово, составленное в ходе хода. Сначала применяются бонусы за новые буквы, затем множители слова; несколько множителей умножаются друг на друга. Общая буква засчитывается для каждого слова. Покрытые бонусы больше не применяются. Пустая клетка может активировать бонус слова. Использование всех семи плиток одной раздачи добавляет 50 очков после остальных расчётов."
 
-#: games/bridge.rb:115
+#: games/bridge.rb:120
 msgid "Score honours"
 msgstr "Считать онёры"
 
@@ -23465,7 +23593,7 @@ msgstr "Счёт: %{own} к %{opponent}."
 msgid "Score: %{score}; accuracy factor: %{accuracy} percent."
 msgstr "Оценка: %{score}; коэффициент точности: %{accuracy} процентов."
 
-#: games/cat_head_tail.rb:438 games/categories.rb:1387 games/farkle.rb:766 games/quiz_party.rb:1218 games/spades.rb:644 games/tysiac.rb:1641
+#: games/cat_head_tail.rb:438 games/categories.rb:1387 games/farkle.rb:766 games/quiz_party.rb:1218 games/spades.rb:644 games/tysiac.rb:1649
 msgid "Scores: %{scores}."
 msgstr "Счёт: %{scores}."
 
@@ -23560,7 +23688,7 @@ msgstr "Второй круг торговли."
 msgid "Second set."
 msgstr "Второй сет."
 
-#: games/tysiac.rb:425
+#: games/tysiac.rb:431
 msgid "Second talon"
 msgstr "Второй прикуп"
 
@@ -23568,7 +23696,7 @@ msgstr "Второй прикуп"
 msgid "Seeds in each pit"
 msgstr "Камней в каждой лунке"
 
-#: __app.rb:1863 __app.rb:2885 __app.rb:3703 lib/game_screen.rb:694 lib/game_surfaces/word_board.rb:208
+#: __app.rb:1863 __app.rb:2889 __app.rb:3707 lib/game_screen.rb:694 lib/game_surfaces/word_board.rb:208
 msgid "Select"
 msgstr "Выбрать"
 
@@ -23722,7 +23850,7 @@ msgstr "Отправка сообщения чата"
 msgid "Sending has not been confirmed. Try again to check delivery; the file will not be sent twice."
 msgstr "Отправка не подтверждена. Попробуйте ещё раз, чтобы проверить доставку; файл не будет отправлен повторно."
 
-#: __app.rb:1573 __app.rb:2545 __app.rb:910 lib/tournaments/tournament_invite_picker.rb:47
+#: __app.rb:1573 __app.rb:2549 __app.rb:910 lib/tournaments/tournament_invite_picker.rb:47
 msgid "Sending invitation"
 msgstr "Отправка приглашения"
 
@@ -23851,7 +23979,7 @@ msgstr "Настроить правила турнира"
 msgid "Set tournament table limit"
 msgstr "Задать предел числа турнирных столов"
 
-#: games/tysiac.rb:202
+#: games/tysiac.rb:208
 msgid "Set-aside cards go to the last trick winner"
 msgstr "Отложенные карты получает победитель последней взятки"
 
@@ -23879,9 +24007,13 @@ msgstr "Настройки"
 msgid "Settings changed. Preview the plan again before accepting."
 msgstr "Настройки изменены. Перед принятием просмотрите план ещё раз."
 
-#: __app.rb:3271
+#: __app.rb:3275
 msgid "Settings saved."
 msgstr "Настройки сохранены."
+
+#: __app.rb:3273
+msgid "Settings saved. Close ELTEN completely and start it again to apply the interface language preferences. Restarting with F12 does not reload Power Games."
+msgstr "Настройки сохранены. Чтобы применить настройки языков интерфейса, полностью закройте ELTEN и запустите его снова. Перезапуск клавишей F12 не перезагружает Power Games."
 
 #: __app.rb:3269
 msgid "Settings saved. Restart ELTEN to apply the interface language preferences."
@@ -24642,7 +24774,7 @@ msgstr "Источник (необязательно)"
 msgid "Source: %{source}"
 msgstr "Источник: %{source}"
 
-#: games/bridge/presentation.rb:162
+#: games/bridge/presentation.rb:221
 msgid "South"
 msgstr "Юг"
 
@@ -24883,7 +25015,7 @@ msgstr "Начните с броска шести кубиков. Выберит
 msgid "Start date (YYYY-MM-DD)"
 msgstr "Дата начала (ГГГГ-ММ-ДД)"
 
-#: __app.rb:3632 games/krowa_support/presentation.rb:15 lib/game_layout.rb:193
+#: __app.rb:3636 games/krowa_support/presentation.rb:15 lib/game_layout.rb:193
 msgid "Start game"
 msgstr "Начать партию"
 
@@ -24957,7 +25089,7 @@ msgstr "Начальные фишки"
 msgid "Starting chips must be from 100 to 100000."
 msgstr "Начальное число фишек должно быть от 100 до 100000."
 
-#: __app.rb:3588
+#: __app.rb:3592
 msgid "Starting game"
 msgstr "Начало партии"
 
@@ -25010,7 +25142,7 @@ msgstr "Статистика теперь учитывает все записи
 msgid "Statistics unavailable"
 msgstr "Статистика недоступна"
 
-#: games/tysiac.rb:1654
+#: games/tysiac.rb:1662
 msgid "Statistics: %{statistics}."
 msgstr "Статистика: %{statistics}."
 
@@ -25192,7 +25324,7 @@ msgstr "Капитуляция"
 msgid "Surrender Word Tower"
 msgstr "Сдаться в «Башне слов»"
 
-#: games/tysiac.rb:1594 games/tysiac.rb:478
+#: games/tysiac.rb:1602 games/tysiac.rb:484
 msgid "Surrender the deal"
 msgstr "Расписать раздачу"
 
@@ -25469,11 +25601,11 @@ msgstr "По очереди делайте по одному броску. В с
 msgid "Take turns uncovering two positions by pressing their digits. Listen to your opponent's choices too and remember where the sounds are. A matching pair is removed and scores a point; a mismatch is hidden again."
 msgstr "По очереди открывайте две позиции нажатием их цифр. Слушайте также выборы соперника и запоминайте расположение звуков. Совпавшая пара удаляется и даёт очко; несовпавшая скрывается снова."
 
-#: games/bouillabaisse.rb:224
+#: games/bouillabaisse.rb:243
 msgid "Taking %{card} costs 200 points."
 msgstr "Карта %{card} стоит 200 штрафных очков."
 
-#: games/bouillabaisse.rb:217
+#: games/bouillabaisse.rb:236
 msgid "Taking %{card} subtracts 200 points."
 msgstr "Взятие карты %{card} уменьшает твой счёт на 200 очков."
 
@@ -25495,7 +25627,7 @@ msgstr "Разговор, команды и роли"
 msgid "Talon"
 msgstr "Прикуп"
 
-#: games/tysiac.rb:82
+#: games/tysiac.rb:88
 msgid "Talons: %{size}"
 msgstr "Прикупы: %{size}"
 
@@ -25514,7 +25646,7 @@ msgstr "Цель %{number} из 5."
 msgid "Target and forbidden words"
 msgstr "Загаданное и запрещённые слова"
 
-#: games/categories.rb:231 games/mille_bornes.rb:82 games/quiz_party.rb:134 games/tysiac.rb:206
+#: games/categories.rb:231 games/mille_bornes.rb:82 games/quiz_party.rb:134 games/tysiac.rb:212
 msgid "Target score"
 msgstr "Целевой счёт"
 
@@ -25557,7 +25689,7 @@ msgstr "Команда %{number}: %{score}"
 msgid "Team %{players}"
 msgstr "Команда %{players}"
 
-#: __app.rb:3698
+#: __app.rb:3702
 msgid "Team %{team}"
 msgstr "Команда %{team}"
 
@@ -25569,7 +25701,7 @@ msgstr "В команде %{team} должно быть ровно %{count} иг
 msgid "Team %{team} wins Taboo."
 msgstr "Команда %{team} выигрывает Табу."
 
-#: games/axel_pong.rb:111 games/mille_bornes/presentation.rb:251 games/tysiac.rb:1584 lib/recordings/information.rb:28
+#: games/axel_pong.rb:111 games/mille_bornes/presentation.rb:251 games/tysiac.rb:1592 lib/recordings/information.rb:28
 msgid "Team %{team}: %{players}"
 msgstr "Команда %{team}: %{players}"
 
@@ -25984,7 +26116,7 @@ msgstr "Торги и прикуп"
 msgid "The auction ends when three players pass in a row after a bid. The last bid becomes the contract. If all four players pass at the start, nobody scores and the cards are dealt again by the next dealer."
 msgstr "После заявки три паса подряд завершают торги. Последняя заявка становится контрактом. Если вначале пасуют все четверо, очки никому не начисляются и следующий сдающий раздаёт карты заново."
 
-#: games/tysiac.rb:1677
+#: games/tysiac.rb:1685
 msgid "The auction has not started."
 msgstr "Торги ещё не начались."
 
@@ -26575,7 +26707,7 @@ msgstr "Галерея сохраняет угаданные в одиночно
 msgid "The game announces when someone goes onto the barrel and records it in the history. S reads scores and marks the players currently on the barrel. Shift+S also tells you how many barrel chances they have left."
 msgstr "Игра объявляет переход игрока на бочку и записывает его в историю. Клавиша S читает счёт и отмечает находящихся на бочке игроков. Shift+S также сообщает, сколько попыток у них осталось."
 
-#: __app.rb:3566
+#: __app.rb:3570
 msgid "The game cannot start until these players join the real-time session: %{players}."
 msgstr "Партия не начнётся, пока к сеансу реального времени не присоединятся: %{players}."
 
@@ -26705,7 +26837,7 @@ msgstr "Старшая карта масти захода забирает вс�
 
 #: games/generated/rulebooks/bouillabaisse.rb:14
 msgid "The highest card in the suit led takes all the cards played and leads next. Ace is highest, followed by king, queen, jack, 10 and so on down to 2. There are no trumps. The round is scored when all hands are empty, or earlier in rounds 2, 3 and 4 once all their penalty cards have been taken."
-msgstr ""
+msgstr "Старшая карта масти первого хода забирает взятку, и её владелец начинает следующую. Туз старше короля, затем идут дама, валет, десятка и остальные до двойки. Козырей нет. Когда карты в руках заканчиваются, подсчитывается результат раунда. Второй, третий и четвёртый раунды заканчиваются раньше, как только взяты все карты, за которые в этом раунде начисляются штрафные очки."
 
 #: games/generated/rulebooks/war.rb:11
 msgid "The highest card wins the battle and takes all the cards from the table. Aces are highest, then kings, queens, jacks, tens and so on down to the lowest card in the deck. Suits do not matter. The cards taken go to the bottom of the winner's pile in random order."
@@ -26898,7 +27030,7 @@ msgstr "Лидеры равны. Будет сыгран ещё полный ц�
 msgid "The lead is tied. Another round will be played: %{players}."
 msgstr "Несколько игроков делят первое место. Будет сыгран ещё раунд: %{players}."
 
-#: games/bridge/presentation.rb:477 games/spades.rb:957
+#: games/bridge/presentation.rb:578 games/spades.rb:957
 msgid "The led suit is %{suit}."
 msgstr "Масть захода: %{suit}."
 
@@ -27003,7 +27135,7 @@ msgstr "Разрешение на проведение матча изменил
 msgid "The match changed. Review the updated consequences before confirming again."
 msgstr "Состояние матча изменилось. Перед повторным подтверждением проверьте последствия решения."
 
-#: games/bridge/presentation.rb:433
+#: games/bridge/presentation.rb:532
 msgid "The match ended in a draw: %{scores}."
 msgstr "Матч закончился вничью: %{scores}."
 
@@ -27096,7 +27228,7 @@ msgstr "Начальное число жетонов настраивается,
 msgid "The number of starting tokens must be greater than zero."
 msgstr "Начальное число жетонов должно быть больше нуля."
 
-#: __app.rb:1589 __app.rb:2562 __app.rb:3330 lib/game_room_widget.rb:251 lib/game_screen.rb:1637
+#: __app.rb:1589 __app.rb:2566 __app.rb:3334 lib/game_room_widget.rb:251 lib/game_screen.rb:1637
 msgid "The operation could not be completed. Please try again."
 msgstr "Не удалось выполнить операцию. Попробуйте снова."
 
@@ -27348,7 +27480,7 @@ msgstr "Достигнут предел повышений этого круга
 msgid "The readiness revision changed. Check status before a new declaration."
 msgstr "Редакция готовности изменилась. Перед новым объявлением проверьте состояние."
 
-#: __app.rb:1751 __app.rb:2760 __app.rb:2788 __app.rb:3129
+#: __app.rb:1751 __app.rb:2764 __app.rb:2792 __app.rb:3133
 msgid "The real-time connection to this table could not be established. Please try again."
 msgstr "Не удалось установить соединение реального времени с этим столом. Попробуйте снова."
 
@@ -27640,7 +27772,7 @@ msgstr "Сервер требует подтверждение официаль�
 msgid "The server tournament test failed. No local fallback was used. Check Operations before repeating a write."
 msgstr "Операция серверного теста не удалась. Локальное хранилище не использовано вместо сервера. Перед повторной записью проверьте Операции."
 
-#: __app.rb:3441 lib/table_roster_reader.rb:79
+#: __app.rb:3445 lib/table_roster_reader.rb:79
 msgid "The settings of this table are not available."
 msgstr "Настройки этого стола недоступны."
 
@@ -27677,7 +27809,7 @@ msgstr "Шесть раундов"
 msgid "The soft nest looks like a good place for a nap."
 msgstr "В мягком гнезде так и хочется вздремнуть."
 
-#: __app.rb:3987 __app.rb:3992
+#: __app.rb:3991 __app.rb:3996
 msgid "The sound volume could not be saved."
 msgstr "Не удалось сохранить громкость звука."
 
@@ -27719,7 +27851,7 @@ msgstr "Стол и счёт используют обычную сессию И
 msgid "The table and score use Power Games's normal session; movement uses Communications. During a human match, each player calculates their own flight and return locally. Lost or delayed paddle-position updates alone do not stop the ball. Serves, returns and misses travel separately in order. An actual connection failure pauses the rally; a replacement connection restarts the unfinished point with the confirmed score unchanged. Observers may listen but cannot control a paddle. Unfinished matches cannot currently be saved."
 msgstr "Стол и счёт используют обычную сессию Игровой Комнаты; движение использует Связь. Во время матча между людьми каждый игрок рассчитывает свой собственный полёт и возврат локально. Потеря или задержка обновлений позиции ракетки сама по себе не останавливает мяч. Подачи, возвраты и промахи передаются отдельно и по порядку. Фактический сбой соединения ставит розыгрыш на паузу; восстановленное соединение перезапускает незавершённый очко с неизменённым подтверждённым счётом. Наблюдатели могут слушать, но не могут управлять ракеткой. Незавершённые матчи в настоящее время нельзя сохранить."
 
-#: __app.rb:3744 __app.rb:3895 __app.rb:3914
+#: __app.rb:3748 __app.rb:3899 __app.rb:3918
 msgid "The table changed while you were editing. Open its settings again."
 msgstr "Стол изменился во время редактирования. Снова откройте его настройки."
 
@@ -27828,7 +27960,7 @@ msgstr "Настройка «Сетов для победы» стола — 1, 
 msgid "The taker leads first, and the winner of each trick leads the next. A trump beats every non-trump; without a trump the highest card of the led suit wins. Collected round points and the actual score change are different figures, so both are announced."
 msgstr "Взявший прикуп заходит первым; затем заходит победитель взятки. Козырь бьёт любую некозырную карту; без козыря побеждает старшая карта масти захода. Набранные очки раунда и изменение общего счёта различаются, поэтому объявляются оба."
 
-#: games/tysiac.rb:799
+#: games/tysiac.rb:807
 msgid "The talon is %{cards}."
 msgstr "Прикуп: %{cards}."
 
@@ -27854,7 +27986,7 @@ msgstr "Целевая сумма очков — положительное чи
 msgid "The target score must be at least %{minimum} points."
 msgstr "Целевой счёт должен быть не меньше %{minimum} очков."
 
-#: games/tysiac.rb:216
+#: games/tysiac.rb:222
 msgid "The target score must be at least 200 and divisible by 5."
 msgstr "Целевой счёт должен быть не меньше 200 и делиться на 5."
 
@@ -27917,7 +28049,7 @@ msgstr "Турнир изменился. Обновите экран и выбе
 msgid "The tournament changed. Refresh its view before changing it again."
 msgstr "Турнир изменился. Обновите его данные, прежде чем вносить новые изменения."
 
-#: __app.rb:3581 __app.rb:934 lib/tournaments/public_text.rb:69
+#: __app.rb:3585 __app.rb:934 lib/tournaments/public_text.rb:69
 msgid "The tournament deadline has passed. New matches cannot be started; games already in progress may finish."
 msgstr "Срок проведения матчей истёк. Новые встречи начинать нельзя; уже начатые партии можно завершить."
 
@@ -28006,7 +28138,7 @@ msgstr "Верхняя секция считает подходящие куби
 msgid "The upper-section bonus adds 35 points if the six upper rows total at least 63. It is enabled by default. You do not need three of each value separately: a strong result in Sixes can compensate for a weak result in Ones. Switching the bonus off leaves the rows themselves unchanged."
 msgstr "Бонус верхней части добавляет 35 очков, если сумма шести верхних рядов составляет не менее 63. Включён по умолчанию. Вам не нужно иметь три карты каждого значения отдельно: хороший результат в шестёрках может компенсировать слабый результат в единицах. Выключение бонуса не изменяет сами ряды."
 
-#: __app.rb:3560 __app.rb:3732
+#: __app.rb:3564 __app.rb:3736
 msgid "The users at the table changed while teams were being selected. Please start again."
 msgstr "Состав стола изменился во время выбора команд. Начните заново."
 
@@ -28126,7 +28258,7 @@ msgstr "Существует пять категорий: Пигменты, Мо
 msgid "There are no available moves from %{field}."
 msgstr "С поля %{field} нет доступных ходов."
 
-#: games/bridge/presentation.rb:461
+#: games/bridge/presentation.rb:560
 msgid "There are no cards in the current trick."
 msgstr "В текущей взятке пока нет карт."
 
@@ -28152,11 +28284,11 @@ msgstr "На столе нет комбинаций."
 msgid "There are no non-empty answers to review"
 msgstr "Нет непустых ответов для проверки"
 
-#: __app.rb:2534
+#: __app.rb:2538
 msgid "There are no online contacts available to invite."
 msgstr "Нет контактов онлайн, которых можно пригласить."
 
-#: __app.rb:2534
+#: __app.rb:2538
 msgid "There are no online users available to invite."
 msgstr "Нет пользователей онлайн, которых можно пригласить."
 
@@ -28172,7 +28304,7 @@ msgstr "Нет открытых столов."
 msgid "There are no optional board sizes or alternative placement rules in this game. Either player can be a bot."
 msgstr "В этой игре нет опциональных размеров доски или альтернативных правил размещения. Любой игрок может быть ботом."
 
-#: __app.rb:2641
+#: __app.rb:2645
 msgid "There are no pending invitations."
 msgstr "Нет ожидающих приглашений."
 
@@ -28220,7 +28352,7 @@ msgstr "Между сетами есть пятисекундный переры
 msgid "There is a short break before the next serve after an ordinary point, and a five-second break between sets. The game automatically announces the set number and who is serving. You do not need to request these announcements."
 msgstr "После обычного очка перед следующей подачей есть короткий перерыв, а между сетами — пятисекундный. Игра автоматически объявляет номер сета и того, кто подаёт. Вам не нужно запрашивать эти объявления."
 
-#: __app.rb:4037
+#: __app.rb:4041
 msgid "There is currently %{current} user at the table."
 msgid_plural "There are currently %{current} users at the table."
 msgstr[0] "Сейчас за столом %{current} пользователь."
@@ -28238,7 +28370,7 @@ msgstr "В стопке сброса нет карты."
 msgid "There is no computer to remove."
 msgstr "Нет бота."
 
-#: games/bridge/presentation.rb:506 games/tysiac.rb:1671
+#: games/bridge/presentation.rb:607 games/tysiac.rb:1679
 msgid "There is no contract yet."
 msgstr "Контракта пока нет."
 
@@ -28295,11 +28427,11 @@ msgstr "В этой игре нет ограничения времени."
 msgid "There is no trump at the beginning of a deal. When leading a trick after the first trick, a player who still holds the king and queen of one suit may play either card and declare the marriage. That suit immediately becomes trump and the player receives 100 points for hearts, 80 for diamonds, 60 for clubs or 40 for spades."
 msgstr "В начале раздачи козыря нет. После первой взятки игрок, заходящий с королём и дамой одной масти на руках, может сыграть любую из них и объявить марьяж. Масть сразу становится козырной; начисляется 100 за червы, 80 за бубны, 60 за трефы или 40 за пики."
 
-#: games/tysiac.rb:496
+#: games/tysiac.rb:502
 msgid "There is no trump suit."
 msgstr "Козырной масти нет."
 
-#: __app.rb:2458
+#: __app.rb:2462
 msgid "There is nobody available to replace this player."
 msgstr "Нет никого, кто мог бы заменить этого игрока."
 
@@ -28459,7 +28591,7 @@ msgstr "Время мышления должно быть равным нулю 
 msgid "Third set."
 msgstr "Третий сет."
 
-#: games/tysiac.rb:219
+#: games/tysiac.rb:225
 msgid "This 1000 card game variant requires exactly %{count} players."
 msgstr "Для этого варианта карточной игры «1000» требуется ровно %{count} игроков."
 
@@ -28487,7 +28619,7 @@ msgstr "Этот результат Word Tower уже опубликован."
 msgid "This action contains too much data and was not sent."
 msgstr "Действие содержит слишком много данных и не отправлено."
 
-#: games/rummy_ui.rb:126 games/rummy_ui.rb:135 lib/game_surfaces/meld_cards.rb:384 lib/game_surfaces/word_board.rb:136 lib/participant_menu.rb:228
+#: games/rummy_ui.rb:126 games/rummy_ui.rb:135 lib/game_surfaces/meld_cards.rb:384 lib/game_surfaces/word_board.rb:136 lib/participant_menu.rb:232 lib/participant_menu.rb:244
 msgid "This action is not available now."
 msgstr "Это действие сейчас недоступно."
 
@@ -28499,7 +28631,7 @@ msgstr "Так можно сыграть как короткую партию, �
 msgid "This bid is not allowed with the selected Spades rules."
 msgstr "Эта заявка недопустима по выбранным правилам «Пик»."
 
-#: games/bridge.rb:290
+#: games/bridge.rb:295
 msgid "This call is not allowed now. A bid must be higher than the last bid, and you may only double or redouble your opponents."
 msgstr "Сейчас эта заявка недопустима. Заявка должна быть выше предыдущей, а контрить и реконтрить можно только соперников."
 
@@ -28535,11 +28667,11 @@ msgstr "Эта карта не соответствует заказанному
 msgid "This card exchange is not available."
 msgstr "Этот обмен картами недоступен."
 
-#: games/bridge.rb:292
+#: games/bridge.rb:297
 msgid "This card is not in the hand that is to play."
 msgstr "Этой карты нет у игрока, чья очередь ходить."
 
-#: games/dealt_card_game.rb:91 games/makao.rb:443 games/ninety_nine.rb:403 games/spades.rb:560 games/three_five_eight.rb:390 games/tysiac.rb:518
+#: games/dealt_card_game.rb:91 games/makao.rb:443 games/ninety_nine.rb:403 games/spades.rb:560 games/three_five_eight.rb:390 games/tysiac.rb:524
 msgid "This card is not in your hand."
 msgstr "Этой карты нет у вас на руках."
 
@@ -28642,7 +28774,7 @@ msgstr "Эта партия уже завершена."
 msgid "This game is not supported by this version of ELTEN Game Room."
 msgstr "Эта игра не поддерживается данной версией ELTEN Game Room."
 
-#: __app.rb:3525 __app.rb:3810 __app.rb:4027
+#: __app.rb:3529 __app.rb:3814 __app.rb:4031
 msgid "This game is not supported by this version of Power Games."
 msgstr "Эта игра не поддерживается данной версией Power Games."
 
@@ -28654,7 +28786,7 @@ msgstr "Для этой игры нужен клиент реального вр
 msgid "This game requires %{minimum} to %{maximum} players per match."
 msgstr "Для этой игры требуется от %{minimum} до %{maximum} игроков на матч."
 
-#: __app.rb:4033
+#: __app.rb:4037
 msgid "This game requires exactly %{required} players."
 msgstr "Для этой игры требуется ровно %{required} игроков."
 
@@ -28662,7 +28794,7 @@ msgstr "Для этой игры требуется ровно %{required} иг�
 msgid "This game requires exactly %{required} players. There are currently %{current} users at the table."
 msgstr "Для игры нужно ровно %{required} игроков. Сейчас за столом %{current} пользователей."
 
-#: __app.rb:4035
+#: __app.rb:4039
 msgid "This game requires from %{minimum} to %{maximum} players."
 msgstr "Для этой игры требуется от %{minimum} до %{maximum} игроков."
 
@@ -28688,11 +28820,11 @@ msgstr "Эта реализация сохраняет внесённую кол
 msgid "This invitation expired. Choose Play to send a new one."
 msgstr "Срок приглашения истёк. Выберите «Играть», чтобы отправить новое."
 
-#: __app.rb:2837 __app.rb:491
+#: __app.rb:2841 __app.rb:491
 msgid "This invitation has expired."
 msgstr "Срок приглашения истёк."
 
-#: __app.rb:2653 __app.rb:2740 __app.rb:2874
+#: __app.rb:2657 __app.rb:2744 __app.rb:2878
 msgid "This invitation is no longer available."
 msgstr "Это приглашение больше недоступно."
 
@@ -28708,7 +28840,7 @@ msgstr "Это наблюдаемый вариант, а не окончател
 msgid "This is your home position. From here, you can type other characters by moving your fingers to nearby keys. For example, to type z, move your left pinky down from a. To type q, move the same finger up. To type y, move your right index finger diagonally up and to the left from j."
 msgstr "Это исходная позиция. Из неё можно набирать другие символы, перемещая пальцы к соседним клавишам. Например, чтобы набрать z, переместите левый мизинец вниз с a. Для q переместите тот же палец вверх. Для y переместите правый указательный палец с j по диагонали вверх и влево."
 
-#: games/tysiac.rb:522
+#: games/tysiac.rb:528
 msgid "This marriage cannot be declared now."
 msgstr "Сейчас нельзя объявить этот марьяж."
 
@@ -28801,7 +28933,7 @@ msgstr "Этот тест обычного стола поддерживает �
 msgid "This participant already has a partner."
 msgstr "У этого участника уже есть напарник."
 
-#: __app.rb:2465
+#: __app.rb:2469
 msgid "This participant cannot replace the selected player."
 msgstr "Этот участник не может заменить выбранного игрока."
 
@@ -28812,6 +28944,10 @@ msgstr "Это приглашение в пару всё ещё ожидает �
 #: games/ludo.rb:225
 msgid "This pawn cannot move after the current roll."
 msgstr "Эта фишка не может пойти по текущему броску."
+
+#: __app.rb:2420
+msgid "This person is no longer at the table. Their role was not changed."
+msgstr "Этого участника больше нет за столом. Его роль не изменена."
 
 #: lib/tournaments/draft_preview.rb:112
 msgid "This plan exceeds 5000 matches. Reduce participants, change multiplayer pairings or disable return matches."
@@ -28825,11 +28961,11 @@ msgstr "На этой платформе нельзя надёжно преоб�
 msgid "This player already has a partner. Refresh the list and choose a free player."
 msgstr "У этого игрока уже есть партнёр. Обновите список и выберите свободного игрока."
 
-#: __app.rb:2451
+#: __app.rb:2455
 msgid "This player is no longer at the table."
 msgstr "Этого игрока больше нет за столом."
 
-#: __app.rb:3175
+#: __app.rb:3179
 msgid "This preset needs updating. Check its game and options before creating a table."
 msgstr "Этот шаблон требует обновления. Проверьте игру и настройки перед созданием стола."
 
@@ -28907,15 +29043,15 @@ msgstr "У этого поля нет карточки собственност�
 msgid "This table already has a game. A forfeit cannot replace a game in progress or a finished result."
 msgstr "За этим столом уже началась игра. Техническое поражение не может заменить текущую игру или сохранённый результат."
 
-#: __app.rb:3291 __app.rb:387
+#: __app.rb:3295 __app.rb:387
 msgid "This table announcement has expired or is no longer available."
 msgstr "Срок этого объявления о столе истёк или оно больше недоступно."
 
-#: __app.rb:1765 __app.rb:2397 __app.rb:2748 __app.rb:2792 __app.rb:2801 __app.rb:3141
+#: __app.rb:1765 __app.rb:2397 __app.rb:2752 __app.rb:2796 __app.rb:2805 __app.rb:3145
 msgid "This table is full."
 msgstr "Этот стол заполнен."
 
-#: __app.rb:1559 __app.rb:1584 __app.rb:1768 __app.rb:2398 __app.rb:2568 __app.rb:2740 __app.rb:2792 __app.rb:2804 __app.rb:3143 __app.rb:3304 __app.rb:504 lib/game_table_background.rb:116 lib/table_roster_reader.rb:48
+#: __app.rb:1559 __app.rb:1584 __app.rb:1768 __app.rb:2398 __app.rb:2572 __app.rb:2744 __app.rb:2796 __app.rb:2808 __app.rb:3147 __app.rb:3308 __app.rb:504 lib/game_table_background.rb:116 lib/table_roster_reader.rb:48
 msgid "This table is no longer available."
 msgstr "Этот стол больше недоступен."
 
@@ -28967,7 +29103,7 @@ msgstr "В этом турнире карты закрыты. Чтобы про�
 msgid "This trade is no longer valid. Check the player, properties and available cash."
 msgstr "Этот обмен больше недопустим. Проверьте игрока, участки и наличные."
 
-#: __app.rb:2566
+#: __app.rb:2570
 msgid "This user is already at the table."
 msgstr "Этот пользователь уже за столом."
 
@@ -29064,7 +29200,7 @@ msgstr "Тройка требует как минимум три одинако�
 msgid "Three of your marks in an unbroken row, column or diagonal win immediately. If all nine fields are filled without a winning line, the result is a draw. There are no optional board sizes or rule variants. Either seat may be occupied by a computer."
 msgstr "Три ваших знака в непрерывном ряду, столбце или диагонали сразу дают победу. Заполнение всех девяти полей без победной линии даёт ничью. Других размеров и вариантов правил нет. Любое место может занять бот."
 
-#: games/tysiac.rb:193
+#: games/tysiac.rb:199
 msgid "Three players"
 msgstr "Три игрока"
 
@@ -29248,7 +29384,7 @@ msgstr "Для обмена двух позиций нажмите Shift с ци
 msgid "To use the new game rules, create a table in Game Room 2.0. All players need version 2.0 or later."
 msgstr "Чтобы использовать новые правила игры, создайте стол в Game Room 2.0. Всем игрокам требуется версия 2.0 или более поздняя версия."
 
-#: __app.rb:3517
+#: __app.rb:3521
 msgid "To use the new game rules, create a table in Power Games. All players need version 2.0 or later."
 msgstr "Чтобы использовать новые правила игры, создайте стол в Power Games. Всем игрокам нужна версия 2.0 или новее."
 
@@ -29326,7 +29462,7 @@ msgstr "Верхняя карта: %{card}; объявленная масть: %
 msgid "Total across matches: %{points}."
 msgstr "Всего за все матчи: %{points}."
 
-#: games/bridge/presentation.rb:376
+#: games/bridge/presentation.rb:475
 msgid "Total: %{scores}."
 msgstr "Всего: %{scores}."
 
@@ -29444,7 +29580,7 @@ msgstr "Список турниров"
 msgid "Tournament list scope"
 msgstr "Вид списка турниров"
 
-#: __app.rb:3416 __app.rb:3420 lib/tournaments/server_proposal_screen.rb:27
+#: __app.rb:3420 __app.rb:3424 lib/tournaments/server_proposal_screen.rb:27
 msgid "Tournament match"
 msgstr "Матч турнира"
 
@@ -29564,7 +29700,7 @@ msgstr "Создание стола: турнир %{id}"
 msgid "Tournament table link: %{id}"
 msgstr "Связь стола: турнир %{id}"
 
-#: __app.rb:1337 __app.rb:1473 __app.rb:1637 __app.rb:3577 __app.rb:928 __app.rb:971 __app.rb:988
+#: __app.rb:1337 __app.rb:1473 __app.rb:1637 __app.rb:3581 __app.rb:928 __app.rb:971 __app.rb:988
 msgid "Tournament table operation blocked: %{reason}"
 msgstr "Операция турнирного стола заблокирована: %{reason}"
 
@@ -29634,7 +29770,7 @@ msgstr "Поезда; станция %{station}"
 msgid "Transfer table master"
 msgstr "Передать роль хозяина стола"
 
-#: lib/participant_menu.rb:194 lib/participant_menu.rb:221
+#: lib/participant_menu.rb:194 lib/participant_menu.rb:225
 msgid "Transfer table master to this person"
 msgstr "Передать этому пользователю роль хозяина стола"
 
@@ -29669,11 +29805,11 @@ msgstr "Лимит взяток (от 20 до 100)"
 msgid "Tricks and marriages"
 msgstr "Взятки и марьяжи"
 
-#: games/bridge/presentation.rb:519
+#: games/bridge/presentation.rb:620
 msgid "Tricks: %{tricks}."
 msgstr "Взятки: %{tricks}."
 
-#: games/tysiac.rb:496
+#: games/tysiac.rb:502
 msgid "Trump: %{suit}."
 msgstr "Козырь: %{suit}."
 
@@ -29772,7 +29908,7 @@ msgstr "По умолчанию две фишки одного игрока на
 msgid "Two pawns of one player form a blockade: on by default. Disable it to remove blockade restrictions. These settings do not change the length of the shared track or private home lanes."
 msgstr "Две фишки одного игрока образуют блокаду: включено по умолчанию. Отключите, чтобы убрать ограничения блокад. Эти настройки не меняют длину общего пути и домашних дорожек."
 
-#: games/tysiac.rb:194
+#: games/tysiac.rb:200
 msgid "Two players"
 msgstr "Два игрока"
 
@@ -29821,7 +29957,7 @@ msgstr "Два специальных хода"
 msgid "Two teams"
 msgstr "Две команды"
 
-#: games/tysiac.rb:196
+#: games/tysiac.rb:202
 msgid "Two teams of two"
 msgstr "Две команды по два человека"
 
@@ -30302,7 +30438,7 @@ msgstr "Обновлён русский перевод от Данила (Kosten
 msgid "Updating game"
 msgstr "Обновление партии"
 
-#: __app.rb:1631 __app.rb:2024 __app.rb:2276 __app.rb:2285 __app.rb:2296 __app.rb:2421 __app.rb:2470 __app.rb:3719 __app.rb:3728 __app.rb:3874 __app.rb:3891 __app.rb:3932 lib/game_screen.rb:1098 lib/game_screen/input.rb:531
+#: __app.rb:1631 __app.rb:2024 __app.rb:2276 __app.rb:2285 __app.rb:2296 __app.rb:2425 __app.rb:2474 __app.rb:3723 __app.rb:3732 __app.rb:3878 __app.rb:3895 __app.rb:3936 lib/game_screen.rb:1098 lib/game_screen/input.rb:531
 msgid "Updating table"
 msgstr "Обновление стола"
 
@@ -30493,7 +30629,7 @@ msgstr "Пользователи за столом (%{count})"
 msgid "Users at the table. %{name}; %{game}; host: %{owner}; %{count}/%{maximum}"
 msgstr "Пользователи за столом. %{name}; %{game}; ведущий: %{owner}; %{count}/%{maximum}"
 
-#: __app.rb:3425
+#: __app.rb:3429
 msgid "Users at the table. %{status}; %{name}; %{game}; host: %{owner}; %{count}/%{maximum}"
 msgstr "Пользователи за столом. %{status}; %{name}; %{game}; хозяин: %{owner}; %{count}/%{maximum}"
 
@@ -30856,7 +30992,7 @@ msgstr "Ожидание раздачи карт"
 msgid "Waiting for the deal"
 msgstr "Ожидание раздачи"
 
-#: games/bouillabaisse.rb:209
+#: games/bouillabaisse.rb:228
 msgid "Waiting for the deal."
 msgstr "Ожидание раздачи."
 
@@ -31007,7 +31143,7 @@ msgstr "Водопроводная компания"
 msgid "Welcome to the audio tutorial. Here you will learn the sounds used in this game. Use the arrow keys to browse. Press Space or Enter to play a sound."
 msgstr "Добро пожаловать в аудиоурок. Здесь вы узнаете звуки, используемые в этой игре. Используйте стрелки для просмотра. Нажмите пробел или Enter, чтобы воспроизвести звук."
 
-#: games/bridge/presentation.rb:163
+#: games/bridge/presentation.rb:222
 msgid "West"
 msgstr "Запад"
 
@@ -31737,11 +31873,11 @@ msgstr "Вы ответили неправильно."
 msgid "You are already at a table."
 msgstr "Вы уже за столом."
 
-#: __app.rb:1449 __app.rb:1463 __app.rb:1761 __app.rb:2807 __app.rb:3138
+#: __app.rb:1449 __app.rb:1463 __app.rb:1761 __app.rb:2811 __app.rb:3142
 msgid "You are already at another table."
 msgstr "Вы уже за другим столом."
 
-#: __app.rb:2758
+#: __app.rb:2762
 msgid "You are already at this table."
 msgstr "Вы уже за этим столом."
 
@@ -31749,15 +31885,15 @@ msgstr "Вы уже за этим столом."
 msgid "You are bidding."
 msgstr "Вы делаете заявку."
 
-#: games/bridge/presentation.rb:537
+#: games/bridge/presentation.rb:638
 msgid "You are declarer and also play dummy's cards."
 msgstr "Вы разыгрывающий и играете также картами болвана."
 
-#: games/bridge/presentation.rb:541
+#: games/bridge/presentation.rb:642
 msgid "You are defending; your side needs %{count} tricks to defeat the contract."
 msgstr "Вы защищаетесь; чтобы подсадить контракт, вашей паре нужно %{count} взяток."
 
-#: games/bridge/presentation.rb:539
+#: games/bridge/presentation.rb:640
 msgid "You are dummy."
 msgstr "Вы болван."
 
@@ -31773,7 +31909,7 @@ msgstr "Вы не игрок в этой партии."
 msgid "You are not connected to a voice conversation."
 msgstr "Вы не подключены к голосовой беседе."
 
-#: games/bridge/presentation.rb:445
+#: games/bridge/presentation.rb:544
 msgid "You are not playing at this table."
 msgstr "Вы не играете за этим столом."
 
@@ -31833,7 +31969,7 @@ msgstr "Вы шпион. Вы увидите выбранные карты, ко
 msgid "You are watching this challenge."
 msgstr "Вы наблюдаете за этим испытанием."
 
-#: games/bridge/presentation.rb:524 games/bridge/presentation.rb:529
+#: games/bridge/presentation.rb:625 games/bridge/presentation.rb:630
 msgid "You are watching this table."
 msgstr "Вы наблюдаете за этим столом."
 
@@ -31986,7 +32122,11 @@ msgstr "Нельзя переместить выбранную фигуру с %
 msgid "You cannot move the selected piece to %{field}. Press V to hear its available moves."
 msgstr "Нельзя переместить выбранную фигуру на %{field}. V читает доступные ходы."
 
-#: games/tysiac.rb:524
+#: games/tysiac_redeals.rb:68
+msgid "You cannot request a redeal now."
+msgstr "Сейчас нельзя попросить пересдачу."
+
+#: games/tysiac.rb:530
 msgid "You cannot surrender this deal now."
 msgstr "Сейчас нельзя расписать эту раздачу."
 
@@ -32026,7 +32166,7 @@ msgstr "Вы тянете %{card}."
 msgid "You fired %{shots} shots, %{hits} of them hits, and sank %{sunk} ships."
 msgstr "Вы сделали %{shots} выстрелов, %{hits} из них попали в цель, и потопили %{sunk} кораблей."
 
-#: games/tysiac.rb:1521
+#: games/tysiac.rb:1529
 msgid "You gave %{card} to %{player}."
 msgstr "Вы передали %{card} игроку %{player}."
 
@@ -32134,7 +32274,7 @@ msgstr "У вас нет комбинации."
 msgid "You have no kings."
 msgstr "У вас нет дамок."
 
-#: games/base/shortcuts.rb:159 lib/game_surfaces.rb:922 lib/game_surfaces/packet_cards.rb:190
+#: games/base/shortcuts.rb:159 lib/game_surfaces.rb:928 lib/game_surfaces/packet_cards.rb:190
 msgid "You have no playable card."
 msgstr "У вас нет подходящей для розыгрыша карты."
 
@@ -32197,7 +32337,7 @@ msgstr "Вы снялись с этого турнира. Предыдущая �
 msgid "You hold your cards in your hand and choose which one to play. The cards in your hand are always listed from the lowest to the highest, with the joker last. The cards you win go to a separate pile."
 msgstr "Вы держите свои карты в руках и выбираете, какую сыграть. Карты в вашей руке всегда перечислены от самой низкой до самой высокой, а джокер идёт последним. Карты, которые вы выигрываете, идут в отдельную стопку."
 
-#: __app.rb:2931
+#: __app.rb:2935
 msgid "You joined %{player}'s room."
 msgstr "Вы вошли в комнату игрока %{player}."
 
@@ -32274,7 +32414,7 @@ msgstr "Вы должны закрыть дубль %{number} в поезде и
 msgid "You must cover double %{number} on the Mexican train."
 msgstr "Вы должны закрыть дубль %{number} в мексиканском поезде."
 
-#: games/tysiac.rb:520
+#: games/tysiac.rb:526
 msgid "You must follow suit or play a trump when required."
 msgstr "Вы обязаны ходить в масть или козырять, когда это требуется."
 
@@ -32293,7 +32433,7 @@ msgstr "По возможности ходите в масть захода. Е�
 msgid "You must follow the suit that was led if you can. If you have no card of that suit, you may play any card, including a trump, but you never have to trump. The highest trump in the trick wins it. If no trump was played, the highest card of the led suit wins. Cards of other suits cannot win the trick. The player who wins a trick leads to the next one."
 msgstr "Если у вас есть карта масти захода, вы обязаны сыграть в масть. Иначе можно сыграть любую карту, включая козырь, но ходить козырем необязательно. Старший козырь берёт взятку. Если козырей нет, побеждает старшая карта масти захода. Карты других мастей взятку не берут. Победитель взятки начинает следующую."
 
-#: games/bridge.rb:296 games/dealt_card_game.rb:92 games/spades.rb:562
+#: games/bridge.rb:301 games/dealt_card_game.rb:92 games/spades.rb:562
 msgid "You must follow the suit that was led."
 msgstr "Вы обязаны ходить в масть захода."
 
@@ -32370,15 +32510,15 @@ msgstr "После разморозки вы получаете пять пер�
 msgid "You rolled %{value}. Choose a pawn to move"
 msgstr "Вы выбросили %{value}. Выберите фишку для хода"
 
-#: games/tysiac.rb:536
+#: games/tysiac.rb:542
 msgid "You set aside %{card}."
 msgstr "Вы откладываете %{card}."
 
-#: games/bridge/presentation.rb:532
+#: games/bridge/presentation.rb:633
 msgid "You sit %{seat}; your partner is %{partner}."
 msgstr "Ваше место: %{seat}; партнёр: %{partner}."
 
-#: games/tysiac.rb:1515 games/tysiac.rb:1622
+#: games/tysiac.rb:1523 games/tysiac.rb:1630
 msgid "You sit out this deal."
 msgstr "Вы пропускаете эту раздачу."
 
@@ -32632,7 +32772,7 @@ msgstr ""
 "Ваша цель — печатать как можно быстрее, допуская как можно меньше ошибок. В зависимости от режима вы будете перепечатывать готовый текст, набирать случайные слова, запоминать всё более длинные последовательности слов или соревноваться со временем.\n"
 "Можно играть в одиночку или с другими — до восьми человек всего. В сетевой игре участники соревнуются за лучший результат: победа зависит и от среднего числа правильно набранных слов в минуту, и от точности, определяемой числом ошибок."
 
-#: games/card_game.rb:75 games/dealt_card_game.rb:115 games/makao.rb:352 games/mille_bornes/presentation.rb:34 games/ninety_nine.rb:364 games/rummy_ui.rb:60 games/spades.rb:870 games/three_five_eight.rb:1001 games/three_five_eight.rb:1003 games/three_five_eight.rb:1005 games/tysiac.rb:1516 games/uno.rb:443
+#: games/bridge/presentation.rb:337 games/card_game.rb:75 games/dealt_card_game.rb:115 games/makao.rb:352 games/mille_bornes/presentation.rb:34 games/ninety_nine.rb:364 games/rummy_ui.rb:60 games/spades.rb:870 games/three_five_eight.rb:1001 games/three_five_eight.rb:1003 games/three_five_eight.rb:1005 games/tysiac.rb:1524 games/uno.rb:443
 msgid "Your hand"
 msgstr "Ваша рука"
 
@@ -32640,7 +32780,7 @@ msgstr "Ваша рука"
 msgid "Your hand and your partner"
 msgstr "Ваши карты и партнёр"
 
-#: games/card_game.rb:92 games/dealt_card_game.rb:117 games/dealt_card_game.rb:134 games/duck_racing_support/presentation.rb:211 games/makao.rb:354 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:367 games/rummy_ui.rb:61 games/scientific_war.rb:786 games/spades.rb:873 games/three_five_eight.rb:374 games/tile_game.rb:140 games/tysiac.rb:440 games/uno.rb:444 lib/game_surfaces/packet_cards.rb:51
+#: games/card_game.rb:92 games/dealt_card_game.rb:117 games/dealt_card_game.rb:134 games/duck_racing_support/presentation.rb:211 games/makao.rb:354 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:367 games/rummy_ui.rb:61 games/scientific_war.rb:786 games/spades.rb:873 games/three_five_eight.rb:374 games/tile_game.rb:140 games/tysiac.rb:446 games/uno.rb:444 lib/game_surfaces/packet_cards.rb:51
 msgid "Your hand is empty"
 msgstr "Ваша рука пуста"
 
@@ -32651,11 +32791,11 @@ msgstr[0] "На руках нет карт, поэтому вы берёте %{c
 msgstr[1] "На руках нет карт, поэтому вы берёте %{count} карты из своей стопки."
 msgstr[2] "На руках нет карт, поэтому вы берёте %{count} карт из своей стопки."
 
-#: games/bridge/presentation.rb:446 games/makao.rb:969 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:903 games/spades.rb:946 games/three_five_eight.rb:1011 games/tysiac.rb:1624
+#: games/bridge/presentation.rb:545 games/makao.rb:969 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:903 games/spades.rb:946 games/three_five_eight.rb:1011 games/tysiac.rb:1632
 msgid "Your hand is empty."
 msgstr "Ваша рука пуста."
 
-#: games/bridge/presentation.rb:448
+#: games/bridge/presentation.rb:547
 msgid "Your hand, %{count} cards: %{cards}. %{points} high card points."
 msgstr "Ваша рука, карт: %{count}: %{cards}. Очков за фигуры: %{points}."
 
@@ -32667,9 +32807,13 @@ msgstr "Ваша рука, %{seat}, очков за фигуры: %{points}"
 msgid "Your hand, %{seat}: you are dummy and your partner plays these cards"
 msgstr "Ваша рука, %{seat}: вы болван, этими картами играет партнёр"
 
-#: games/dealt_card_game.rb:134 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:905 games/spades.rb:948 games/three_five_eight.rb:1012 games/tysiac.rb:1625
+#: games/dealt_card_game.rb:134 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:905 games/spades.rb:948 games/three_five_eight.rb:1012 games/tysiac.rb:1633
 msgid "Your hand: %{cards}."
 msgstr "Ваша рука: %{cards}."
+
+#: games/bridge/presentation.rb:334
+msgid "Your hand: your partner plays these cards"
+msgstr "Ваша рука: этими картами играет партнёр"
 
 #: games/three_five_eight.rb:1003
 msgid "Your hand; choose a return card"
@@ -33030,7 +33174,7 @@ msgstr "карта Церкви, повышающая два кубика"
 msgid "a card"
 msgstr "карта"
 
-#: games/bridge/presentation.rb:382
+#: games/bridge/presentation.rb:481
 msgid "a reference of %{points} for %{side}"
 msgstr "%{points} в пользу пары %{side}"
 
@@ -33038,7 +33182,7 @@ msgstr "%{points} в пользу пары %{side}"
 msgid "accept the trade"
 msgstr "принять обмен"
 
-#: games/bridge/presentation.rb:198 games/card_game.rb:55 games/makao.rb:30 games/ninety_nine.rb:44 games/poker.rb:37 games/spades.rb:50 games/three_five_eight.rb:40 games/tysiac.rb:35
+#: games/bridge/presentation.rb:257 games/card_game.rb:55 games/makao.rb:30 games/ninety_nine.rb:44 games/poker.rb:37 games/spades.rb:50 games/three_five_eight.rb:40 games/tysiac.rb:35
 msgid "ace"
 msgstr "туз"
 
@@ -33050,7 +33194,7 @@ msgstr "ва-банк"
 msgid "ampersand"
 msgstr "амперсанд"
 
-#: games/bridge/presentation.rb:382
+#: games/bridge/presentation.rb:481
 msgid "an even reference"
 msgstr "ноль"
 
@@ -33181,7 +33325,7 @@ msgstr "заблокирована с обеих сторон"
 msgid "blue"
 msgstr "синий"
 
-#: games/bridge/presentation.rb:231
+#: games/bridge/presentation.rb:290
 msgid "both sides vulnerable"
 msgstr "обе пары в зоне"
 
@@ -33209,7 +33353,7 @@ msgstr "просмотреть чужие владения"
 msgid "browse played words"
 msgstr "просматривать сыгранные слова"
 
-#: games/bridge/presentation.rb:150
+#: games/bridge/presentation.rb:209
 msgid "browse the auction"
 msgstr "просмотреть торговлю"
 
@@ -33398,7 +33542,7 @@ msgstr "закрывающая круглая скобка"
 msgid "closing square bracket"
 msgstr "закрывающая квадратная скобка"
 
-#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:26 games/poker.rb:36 games/spades.rb:32 games/three_five_eight.rb:35 games/tysiac.rb:24
+#: games/bouillabaisse.rb:224 games/bridge/presentation.rb:253 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:26 games/poker.rb:36 games/spades.rb:32 games/three_five_eight.rb:35 games/tysiac.rb:24
 msgid "clubs"
 msgstr "трефы"
 
@@ -33480,7 +33624,7 @@ msgstr "объявить УНО или поймать нарушение"
 msgid "describe the selected card"
 msgstr "описание выбранной карты"
 
-#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:27 games/poker.rb:36 games/spades.rb:33 games/three_five_eight.rb:35 games/tysiac.rb:25
+#: games/bouillabaisse.rb:224 games/bridge/presentation.rb:253 games/card_game.rb:58 games/makao.rb:29 games/ninety_nine.rb:27 games/poker.rb:36 games/spades.rb:33 games/three_five_eight.rb:35 games/tysiac.rb:25
 msgid "diamonds"
 msgstr "бубны"
 
@@ -33516,7 +33660,7 @@ msgstr "доллар"
 msgid "dollars"
 msgstr "доллары"
 
-#: games/bridge/presentation.rb:204
+#: games/bridge/presentation.rb:263
 msgid "double"
 msgstr "контра"
 
@@ -33528,7 +33672,7 @@ msgstr "удвоение буквы"
 msgid "double word"
 msgstr "удвоение слова"
 
-#: games/bridge/presentation.rb:364
+#: games/bridge/presentation.rb:433
 msgid "down %{count} trick"
 msgid_plural "down %{count} tricks"
 msgstr[0] "без %{count} взятки"
@@ -33602,7 +33746,7 @@ msgstr "ввести ставку на аукционе"
 msgid "equals sign"
 msgstr "равно"
 
-#: games/bridge.rb:155
+#: games/bridge.rb:160
 msgid "estimated comparison, %{boards} boards, %{scoring}"
 msgstr "сравнение с ориентиром, сдач: %{boards}, %{scoring}"
 
@@ -33697,7 +33841,7 @@ msgstr "точка"
 msgid "game finished"
 msgstr "партия завершена"
 
-#: __app.rb:3495
+#: __app.rb:3499
 msgid "game in progress"
 msgstr "партия идёт"
 
@@ -33757,7 +33901,7 @@ msgstr "сложный набор категорий"
 msgid "hash sign"
 msgstr "решётка"
 
-#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:28 games/poker.rb:36 games/spades.rb:34 games/three_five_eight.rb:36 games/tysiac.rb:26
+#: games/bouillabaisse.rb:224 games/bridge/presentation.rb:253 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:28 games/poker.rb:36 games/spades.rb:34 games/three_five_eight.rb:36 games/tysiac.rb:26
 msgid "hearts"
 msgstr "червы"
 
@@ -33827,7 +33971,7 @@ msgstr "перевёрнутый восклицательный знак"
 msgid "inverted question mark"
 msgstr "перевёрнутый вопросительный знак"
 
-#: games/bridge/presentation.rb:198 games/card_game.rb:54 games/makao.rb:30 games/ninety_nine.rb:41 games/poker.rb:37 games/spades.rb:47 games/three_five_eight.rb:39 games/tysiac.rb:31
+#: games/bridge/presentation.rb:257 games/card_game.rb:54 games/makao.rb:30 games/ninety_nine.rb:41 games/poker.rb:37 games/spades.rb:47 games/three_five_eight.rb:39 games/tysiac.rb:31
 msgid "jack"
 msgstr "валет"
 
@@ -33860,7 +34004,7 @@ msgstr "оставить кубик %{number}"
 msgid "kept"
 msgstr "отложен"
 
-#: games/bridge/presentation.rb:198 games/card_game.rb:55 games/chess.rb:281 games/chess.rb:871 games/makao.rb:30 games/ninety_nine.rb:43 games/poker.rb:37 games/spades.rb:49 games/three_five_eight.rb:40 games/tysiac.rb:33
+#: games/bridge/presentation.rb:257 games/card_game.rb:55 games/chess.rb:281 games/chess.rb:871 games/makao.rb:30 games/ninety_nine.rb:43 games/poker.rb:37 games/spades.rb:49 games/three_five_eight.rb:40 games/tysiac.rb:33
 msgid "king"
 msgstr "король"
 
@@ -33912,11 +34056,11 @@ msgstr "слушать с точки зрения второго игрока"
 msgid "listen from the third player's perspective"
 msgstr "слушать со стороны третьего игрока"
 
-#: games/bridge/presentation.rb:357
+#: games/bridge/presentation.rb:426
 msgid "made exactly"
 msgstr "контракт выполнен ровно"
 
-#: games/bridge/presentation.rb:360
+#: games/bridge/presentation.rb:429
 msgid "made with %{count} overtrick"
 msgid_plural "made with %{count} overtricks"
 msgstr[0] "выполнен с %{count} лишней взяткой"
@@ -33931,15 +34075,15 @@ msgstr "пурпурная группа"
 msgid "main pot"
 msgstr "основной банк"
 
-#: games/spades.rb:622 games/tysiac.rb:1612
+#: games/spades.rb:622 games/tysiac.rb:1620
 msgid "make a bid"
 msgstr "сделать заявку"
 
-#: games/bridge/presentation.rb:124
+#: games/bridge/presentation.rb:183
 msgid "make a call"
 msgstr "сделать заявку"
 
-#: games/bridge.rb:157 games/bridge.rb:97
+#: games/bridge.rb:102 games/bridge.rb:162
 msgid "matchpoints"
 msgstr "матчпойнты"
 
@@ -33977,7 +34121,7 @@ msgstr "в залоге"
 msgid "navigate the board"
 msgstr "навигация по доске"
 
-#: games/bridge/presentation.rb:232
+#: games/bridge/presentation.rb:291
 msgid "neither side vulnerable"
 msgstr "обе пары до зоны"
 
@@ -34012,7 +34156,7 @@ msgstr "нет кубиков"
 msgid "no pawns on the board"
 msgstr "нет фишек на доске"
 
-#: games/bridge/presentation.rb:381
+#: games/bridge/presentation.rb:480
 msgid "no score"
 msgstr "без записи"
 
@@ -34024,11 +34168,11 @@ msgstr "без ограничения времени"
 msgid "no trump"
 msgstr "без козыря"
 
-#: games/bridge/presentation.rb:240 games/makao.rb:1000 games/mille_bornes/presentation.rb:260 games/monopoly/presentation.rb:279
+#: games/bridge/presentation.rb:299 games/makao.rb:1000 games/mille_bornes/presentation.rb:260 games/monopoly/presentation.rb:279
 msgid "none"
 msgstr "нет"
 
-#: games/spades.rb:919 games/spades.rb:996 games/tysiac.rb:1680
+#: games/spades.rb:919 games/spades.rb:996 games/tysiac.rb:1688
 msgid "not bid yet"
 msgstr "заявки ещё нет"
 
@@ -34068,7 +34212,7 @@ msgstr "включено"
 msgid "one pair"
 msgstr "одна пара"
 
-#: __app.rb:3495 games/mexican_train.rb:185
+#: __app.rb:3499 games/mexican_train.rb:185
 msgid "open"
 msgstr "открыт"
 
@@ -34111,7 +34255,7 @@ msgstr "частично правильный, 1 очко"
 msgid "partially correct, 5 points"
 msgstr "частично правильный, 5 очков"
 
-#: games/bridge/presentation.rb:203 games/scrabble_ui.rb:25
+#: games/bridge/presentation.rb:262 games/scrabble_ui.rb:25
 msgid "pass"
 msgstr "пас"
 
@@ -34119,7 +34263,7 @@ msgstr "пас"
 msgid "pass your turn"
 msgstr "пропустить ход"
 
-#: games/tysiac.rb:1681
+#: games/tysiac.rb:1689
 msgid "passed"
 msgstr "спасовал"
 
@@ -34226,7 +34370,7 @@ msgstr "фиолетовый"
 msgid "purple group"
 msgstr "фиолетовая группа"
 
-#: games/bridge/presentation.rb:198 games/card_game.rb:54 games/makao.rb:30 games/ninety_nine.rb:42 games/poker.rb:37 games/spades.rb:48 games/three_five_eight.rb:39 games/tysiac.rb:32
+#: games/bridge/presentation.rb:257 games/card_game.rb:54 games/makao.rb:30 games/ninety_nine.rb:42 games/poker.rb:37 games/spades.rb:48 games/three_five_eight.rb:39 games/tysiac.rb:32
 msgid "queen"
 msgstr "дама"
 
@@ -34287,7 +34431,7 @@ msgstr "прочитать количество карт"
 msgid "read dora and your Riichi status"
 msgstr "прочитать дора и свой статус риичи"
 
-#: games/bridge/presentation.rb:147
+#: games/bridge/presentation.rb:206
 msgid "read dummy's hand"
 msgstr "прочитать руку болвана"
 
@@ -34347,7 +34491,7 @@ msgstr "прочитать счёт"
 msgid "read the Scriptorium"
 msgstr "прочитать Скрипторий"
 
-#: games/bridge/presentation.rb:149
+#: games/bridge/presentation.rb:208
 msgid "read the auction"
 msgstr "прочитать торговлю"
 
@@ -34375,7 +34519,7 @@ msgstr "прочитать сумму колла"
 msgid "read the cards on the table"
 msgstr "прочитать карты стола"
 
-#: games/bridge/presentation.rb:148
+#: games/bridge/presentation.rb:207
 msgid "read the contract"
 msgstr "прочитать контракт"
 
@@ -34383,7 +34527,7 @@ msgstr "прочитать контракт"
 msgid "read the current colour"
 msgstr "прочитать текущий цвет"
 
-#: games/tysiac.rb:475
+#: games/tysiac.rb:481
 msgid "read the current contract"
 msgstr "узнать текущий контракт"
 
@@ -34482,7 +34626,7 @@ msgstr "прочитать банк"
 msgid "read the prepared packet"
 msgstr "прочитать подготовленный набор карт"
 
-#: games/bridge/presentation.rb:152
+#: games/bridge/presentation.rb:211
 msgid "read the previous trick"
 msgstr "прочитать предыдущую взятку"
 
@@ -34526,7 +34670,7 @@ msgstr "прочитать результат последней взятки"
 msgid "read the round information"
 msgstr "прочитать сведения о раунде"
 
-#: games/bouillabaisse.rb:42
+#: games/bouillabaisse.rb:61
 msgid "read the rules for this round"
 msgstr "прочитать правила текущего раунда"
 
@@ -34558,7 +34702,7 @@ msgstr "прочитать кость, ожидающую вашего отве�
 msgid "read the top card"
 msgstr "прочитать верхнюю карту"
 
-#: games/tysiac.rb:495
+#: games/tysiac.rb:501
 msgid "read the trump suit"
 msgstr "прочитать козырную масть"
 
@@ -34690,7 +34834,7 @@ msgstr "красный"
 msgid "red group"
 msgstr "красная группа"
 
-#: games/bridge/presentation.rb:205
+#: games/bridge/presentation.rb:264
 msgid "redouble"
 msgstr "реконтра"
 
@@ -34762,11 +34906,11 @@ msgstr "сменный судья"
 msgid "round completed"
 msgstr "раунд завершён"
 
-#: games/bridge.rb:161
+#: games/bridge.rb:166
 msgid "rubber, honours scored"
 msgstr "роббер, с онёрами"
 
-#: games/bridge.rb:161
+#: games/bridge.rb:166
 msgid "rubber, without honours"
 msgstr "роббер, без онёров"
 
@@ -34814,7 +34958,7 @@ msgstr "продать постройку"
 msgid "semicolon"
 msgstr "точка с запятой"
 
-#: games/tysiac.rb:1612
+#: games/tysiac.rb:1620
 msgid "set the final contract"
 msgstr "назначить окончательный контракт"
 
@@ -34862,7 +35006,7 @@ msgstr "сортировать карты по достоинству"
 msgid "space"
 msgstr "пробел"
 
-#: games/bouillabaisse.rb:205 games/bridge/presentation.rb:194 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:29 games/poker.rb:36 games/spades.rb:35 games/three_five_eight.rb:36 games/tysiac.rb:27
+#: games/bouillabaisse.rb:224 games/bridge/presentation.rb:253 games/card_game.rb:59 games/makao.rb:29 games/ninety_nine.rb:29 games/poker.rb:36 games/spades.rb:35 games/three_five_eight.rb:36 games/tysiac.rb:27
 msgid "spades"
 msgstr "пики"
 
@@ -34989,7 +35133,7 @@ msgstr "до %{limit} очков"
 msgid "to %{limit} points; bank from %{turn}; first bank from %{entry}"
 msgstr "до %{limit} очков; запись от %{turn}; первая запись от %{entry}"
 
-#: games/tysiac.rb:230
+#: games/tysiac.rb:236
 msgid "to %{score} points"
 msgstr "до %{score} очков"
 

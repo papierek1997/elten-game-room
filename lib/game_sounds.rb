@@ -29,6 +29,8 @@ module GameRoomSounds
     card-shuffle
     draw
     draw2
+    bouillabaisse_rank
+    bouillabaisse_card
     domino_refill
     domino_move_tile
     domino_take_chip
@@ -47,6 +49,9 @@ module GameRoomSounds
     cht-cat-plus-8
     ninety3366
     1000_mariage
+    tysiac_surrender
+    tysiac_contract_made
+    tysiac_contract_failed
     mille_accident
     mille_distance_25
     mille_distance_50

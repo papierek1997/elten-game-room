@@ -254,6 +254,7 @@ Nie trzeba uczyć się wszystkich skrótów naraz:
 
 W Tysiącu R odczytuje tylko bieżącą wartość kontraktu i licytującego.
 Shift+R poddaje rozdanie, jeśli pozwalają na to zasady gry.
+Shift+D pozwala poprosić o ponowne rozdanie z czterema dziewiątkami w początkowej ręce. Osobna, domyślnie wyłączona opcja pozwala poprosić o powtórkę po odkryciu co najmniej dwóch dziewiątek w musiku, przed przekazaniem lub odrzuceniem pierwszej karty. Rozdaje ponownie ta sama osoba, bez zmiany punktów i liczników kar.
 
 W Quizie pytanie jest polem tekstowym tylko do odczytu. Ctrl+strzałka w lewo lub w prawo pozwala czytać je po słowach. Strzałką w dół przejdziesz do listy odpowiedzi, a strzałką w górę z pierwszej odpowiedzi wrócisz do pytania.
 
@@ -376,7 +377,7 @@ innych części ELTEN-a, jak i przejścia do innego programu.
 Power Games ma własny wybór języka interfejsu w Ustawienia → Ogólne.
 Dostępne są angielski, polski, czeski, hiszpański i rosyjski. Wybór nie
 zmienia języka całego ELTEN-a. Aby zastosować go we wszystkich częściach
-Power Games, także w widgecie, uruchom ELTEN-a ponownie.
+Power Games, także w widgecie, zamknij całkowicie ELTEN-a i uruchom go ponownie. Restart klawiszem F12 nie przeładowuje Power Games.
 
 Opcjonalna lista „Znane języki” służy do uzupełniania brakujących tłumaczeń.
 Jeśli tekstu nie ma w głównym języku, program może sięgnąć po jeden
@@ -606,6 +607,7 @@ do wskazanej listy lub pola gry, nie do wpisywania wiadomości.
 - Enter — menu użytkownika ELTEN-a dla zaznaczonej osoby.
 - Ctrl+M — przekazanie gospodarza zaznaczonej osobie; dla gospodarza.
 - Ctrl+Shift+R — zastąpienie zaznaczonego gracza; dla gospodarza.
+- Ctrl+Shift+P — zmiana roli zaznaczonej osoby na gracza lub obserwatora następnej partii; dla gospodarza, na liście użytkowników.
 
 ### Na liście stołów i w widgecie
 

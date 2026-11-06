@@ -1,11 +1,12 @@
 # encoding: UTF-8
 require_relative '../../../content/languages'
 require_relative '../../../content/quiz_pl_wikidata'
+require_relative '../../support/quiz_editorial_baseline'
 
 def assert(value, message); raise message unless value; end
 
 pack = GameRoomContent.registry.pack('quiz.wikidata.pl')
-questions = pack.data.fetch('questions')
+questions = QuizEditorialBaseline.before_november_review(pack.data.fetch('questions'))
 indexed = questions.to_h { |q| [q.fetch('id'), q] }
 prefix = 'community_zz_20261031b_'
 prior = questions.take_while { |q| !q.fetch('id').start_with?(prefix) }

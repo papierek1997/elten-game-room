@@ -58,15 +58,21 @@ module GameRoomGames
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
       action = event["action"].to_s
       return "shuffle" if action == "deal"
-      return nil unless %w[play contract_play].include?(action)
-
-      mode, card = event["value"].to_s.split("|").last(2)
-      trump = after_replay&.state.to_h[:trump].to_s
-      cues = ["play"]
-      cues << "draw2" if !trump.empty? && card.to_s.end_with?(trump)
-      if mode == "marriage" && history.any? { |entry| entry.kind == :play }
-        cues << "1000_mariage"
+      return "tysiac_surrender" if action == "surrender" && history.any? { |entry| entry.kind == :surrender }
+      state = after_replay&.state.to_h
+      cues = []
+      if %w[play contract_play].include?(action) && history.any? { |entry| entry.kind == :play }
+        mode, card = event["value"].to_s.split("|").last(2)
+        trump = state[:trump].to_s
+        cues << "play"
+        cues << "draw2" if !trump.empty? && card.to_s.end_with?(trump)
+        cues << "1000_mariage" if mode == "marriage"
       end
+      if !state[:private_error] && history.any? { |entry| entry.kind == :round_result }
+        made = unit_points(state, score_unit(state, state[:taker])) >= state[:contract].to_i
+        cues << (made ? "tysiac_contract_made" : "tysiac_contract_failed")
+      end
+      return nil if cues.empty?
       cues
     end
 
@@ -436,7 +442,7 @@ module GameRoomGames
           id: "hand",
           header: hand_header(state, viewer),
           cards: hand_cards,
-          hand_order: hand_for(state, viewer).dup, hand_epoch: [viewer, state[:round]].join(":"),
+          hand_order: hand_for(state, viewer).dup, hand_epoch: [viewer, state[:round], state[:redeal_count]].compact.join(":"),
           empty_label: _("Your hand is empty")
         )
       ])
@@ -581,13 +587,12 @@ module GameRoomGames
     def deal_action_for(replay, actor, context)
       state = replay.state
       return [:not_your_turn, nil] if !same_user?(actor, replay.players.first)
-      return [:invalid, nil] if ![:awaiting_deal, :round_complete].include?(state[:phase])
+      return [:invalid, nil] if ![:awaiting_deal, :round_complete, :redeal].include?(state[:phase])
       return [:invalid, nil] if context == nil || context.random_source == nil
       return [:invalid, nil] if options_error(state[:options], player_count: state[:players].length)
 
-      round = state[:round].to_i + 1
+      round, dealer = next_deal_coordinates(state)
       count = state[:players].length
-      dealer = state[:dealer_index] == nil ? nil : (state[:dealer_index].to_i + 1) % count
       if context.server_random
         return [:ok, server_seed_plan('deal', template: "#{round}|#{dealer || '{dealer}'}|{seed}", seats: (0...count).to_a)]
       end
@@ -600,6 +605,7 @@ module GameRoomGames
       actor = repository.actor_of(event, session)
       case event['action']
       when 'deal' then apply_deal(state, event, actor, repository, history)
+      when 'redeal' then apply_redeal(state, event, actor, repository, history)
       when 'bid' then apply_bid(state, event, actor, repository, history)
       when 'pass_card' then apply_pass_card(state, event, actor, repository, history)
       when 'take_talon' then apply_take_talon(state, event, actor, repository, history)
@@ -660,19 +666,21 @@ module GameRoomGames
     def apply_deal(state, event, actor, repository, history)
       return false if options_error(state[:options], player_count: state[:players].length)
       return false if !same_user?(actor, state[:players].first)
-      return false if ![:awaiting_deal, :round_complete].include?(state[:phase])
+      return false if ![:awaiting_deal, :round_complete, :redeal].include?(state[:phase])
       round, dealer, seed = parse_deal(event["value"])
-      expected = state[:dealer_index] == nil ? '{dealer}' : (state[:dealer_index] + 1) % state[:players].length
+      expected_round, expected_dealer = next_deal_coordinates(state)
+      expected = expected_dealer == nil ? '{dealer}' : expected_dealer
       return false unless GameRoomServerRandom.valid_text_seed_event?(event,
-        template: "#{state[:round] + 1}|#{expected}|{seed}", seats: (0...state[:players].length).to_a)
-      return false if round != state[:round].to_i + 1
+        template: "#{expected_round}|#{expected}|{seed}", seats: (0...state[:players].length).to_a)
+      return false if round != expected_round
       count = state[:players].length
       return false if !dealer.between?(0, count - 1)
       if state[:dealer_index] != nil
-        return false if dealer != (state[:dealer_index].to_i + 1) % count
+        return false if dealer != expected_dealer
       end
 
       deck = shuffled_deck(seed)
+      state.delete(:redeal_count) unless state[:phase] == :redeal
       order = state[:play_order]
       state[:resting_player] = state[:options]["variant"] == "four_players" ? order[dealer] : nil
       state[:round_players] = order.reject { |player| player == state[:resting_player] }
@@ -706,7 +714,7 @@ module GameRoomGames
       state[:tricks_won] = state[:players].each_with_object({}) { |player, result| result[player] = 0 }
       event_id = repository.event_id(event)
       history << HistoryEntry.new(
-        key: "deal:#{round}",
+        key: ["deal", round, state[:redeal_count]].compact.join(":"),
         text: _("Round %{round} was dealt by %{dealer}. %{player} opens the auction.") % {
           round: round,
           dealer: participant_name(order[dealer]),
@@ -1792,6 +1800,8 @@ module GameRoomGames
   end
 end
 
+require_relative 'tysiac_redeals'
+GameRoomGames::Tysiac.prepend(GameRoomGames::TysiacRedeals)
 require_relative 'tysiac_private'
 GameRoomGames::Tysiac.prepend(GameRoomGames::TysiacPrivate)
 

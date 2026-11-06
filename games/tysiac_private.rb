@@ -3,13 +3,18 @@ require_relative '../lib/private_card_round_audit'
 
 GameRoomPrivateCards.register('tysiac', host: %w[private_deal],
   claim: %w[private_ready bid take_talon contract surrender], take: %w[initial_hand private_draw],
-  reveal: %w[pass_card discard_card play contract_play], random: %w[deal])
+  reveal: %w[pass_card discard_card play contract_play redeal], random: %w[deal])
 
 module GameRoomGames
   module TysiacPrivate
     include GameRoomPrivateCardGame
 
     private
+
+    def private_event_cards(event, state)
+      return Tysiac::SUITS.map { |suit| "9#{suit}" } if event["action"] == "redeal" && event["value"] == "four_nines"
+      super
+    end
 
     def private_event_card(event, _state)
       event['value'].to_s.split('|').last if %w[pass_card discard_card play contract_play].include?(event['action'])

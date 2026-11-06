@@ -663,6 +663,22 @@ module GameRoomChangelog
         "Fixed Audio Ball replays cutting off preparation and ball-stop sounds or briefly replaying the previous flight.",
         "Completed translations of history and replay library labels in Polish, Czech, Spanish and Russian."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6",
+      build: 263,
+      changes: [
+        "Added Typoholism: practise typing on your own or compete with friends in four modes, using a keyboard or Braille input.",
+        "Made Bridge announcements shorter, clarified bidding and improved navigation between your hand and dummy. Trump cards now use the same sound as in Spades.",
+        "Added options in Tysiac to request a redeal with four nines in the initial hand or at least two nines in the talon. Use Shift+D when a redeal is available.",
+        "Added sounds for surrendering and for making or missing the contract in Tysiac.",
+        "Bouillabaisse rounds now end once all their scoring cards have been taken. Distinct sounds identify penalty suits, ranks and the special card.",
+        "Rummy now clears the selection after an invalid card combination.",
+        "Hosts can use Ctrl+Shift+P on the users list to change a person's role for the next game. Fixed an error when that person has already left the table.",
+        "Expanded and improved the Russian interface, README and game rules.",
+        "Reviewed reported Polish quiz questions, clarified their wording and removed an ambiguous question. Thanks to Zuzler for the reports!",
+        "Clarified the language-change instructions: close ELTEN completely and start it again; restarting with F12 does not reload Power Games."
+      ].freeze
     ).freeze
   ].freeze
 

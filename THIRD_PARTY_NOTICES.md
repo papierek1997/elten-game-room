@@ -49,6 +49,38 @@ a statement that the PRs have been merged on GitHub.
 
 ## Sounds
 
+### Bouillabaisse — scoring-card cues
+
+`audio/bouillabaisse_rank.opus` and `audio/bouillabaisse_card.opus`
+are lower-pitched derivatives of the existing `audio/draw2.opus` cue,
+by three and six semitones respectively. Duration and channel count are
+preserved. The explicit authoring script is
+`tools/author-bouillabaisse-sounds.rb`; these files use the project's
+144 kb/s VBR Opus settings. This processing introduces no new recording
+or separate license grant for the underlying sound.
+
+### Thousand — surrender
+
+`audio/tysiac_surrender.opus` uses “Opening/Pop-up.wav” by **GabrielAraujo**,
+Freesound [242605](https://freesound.org/s/242605/), supplied by the user
+with its [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) notice.
+The complete HQ Ogg preview was converted to 144 kb/s VBR Opus, 48 kHz,
+20 ms frames, audio mode and complexity 10. Channels, duration and level
+are preserved; the original file remains unchanged outside the project.
+
+### Thousand — contract results
+
+The user supplied these HQ Ogg previews with their CC0 1.0 notices:
+
+- `audio/tysiac_contract_made.opus`: “done sound” by **Licht2003**,
+  Freesound [808521](https://freesound.org/s/808521/), for a fulfilled contract.
+- `audio/tysiac_contract_failed.opus`: “Done sound.ogg” by **TheMrAngelGames584**,
+  Freesound [674827](https://freesound.org/s/674827/), for an unfulfilled contract.
+
+Both complete recordings were converted to 144 kb/s VBR Opus, 48 kHz,
+20 ms frames, audio mode and complexity 10, preserving channels,
+duration and level. The supplied originals were not changed.
+
 ### Poker — betting and pot sounds
 
 These six recordings were supplied with

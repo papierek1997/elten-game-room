@@ -376,11 +376,11 @@ class GameRoomLiveSessionStore
 
     ensure_current(table_id, force: true)
     members = connected_users(table_id)
-    raise ArgumentError, "The user is not at this table" if !members.any? { |member| same_user?(member, actor) }
+    raise GameRoomNetworkErrors::RoleChangeUnavailable, :not_member if !members.any? { |member| same_user?(member, actor) }
     target = subject || actor
     raise ArgumentError, "Invalid role subject" unless target.is_a?(String) && target.length.between?(1, 64) && GameRoomParticipants.human?(target)
-    raise ArgumentError, "Only the table master may change another user's role" if subject && !same_user?(actor, owner_for(table_id))
-    raise ArgumentError, "The user is not at this table" unless members.any? { |member| same_user?(member, target) }
+    raise GameRoomNetworkErrors::RoleChangeUnavailable, :not_owner if subject && !same_user?(actor, owner_for(table_id))
+    raise GameRoomNetworkErrors::RoleChangeUnavailable, :not_member unless members.any? { |member| same_user?(member, target) }
     data = { "role" => observing ? "observer" : "player" }
     data["subject"] = subject if subject
 

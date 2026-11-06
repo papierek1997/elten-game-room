@@ -3,8 +3,8 @@
   "id": "c24d98cc-9ccd-4d50-b801-459da324ff60",
   "name": "Power Games",
   "description": "Accessible multiplayer games for ELTEN users.",
-  "version": "2.0.5.11",
-  "build_id": "262",
+  "version": "2.0.6",
+  "build_id": "263",
   "EltenAPIVersion": "3.0.5",
   "main_language": "en",
   "supported_languages": ["en", "pl", "cs", "es", "ru"],
@@ -25,13 +25,13 @@
     "sounds": [
       "connect", "disconnect", "chatmsg", "notice", "table_notice", "invitation_rejected", "conference_created", "buzzer", "buzzer2", "quiz_wrong_answer", "duck_challenge", "duck_question", "duck_countdown", "duck_quack", "duck_correct", "duck_frozen",
       "duck_final_lap", "duck_shot", "duck_note_c", "duck_memory_bark", "duck_memory_bell", "duck_memory_drop", "duck_memory_clap", "duck_memory_zip",
-      "duck_rhythm_f", "duck_rhythm_j", "war_open", "ding", "shuffle", "scopa", "scopa_deal", "scopa_take", "draw", "draw2",
+      "duck_rhythm_f", "duck_rhythm_j", "war_open", "ding", "shuffle", "scopa", "scopa_deal", "scopa_take", "draw", "draw2", "bouillabaisse_rank", "bouillabaisse_card",
       "farkle", "cht-roll-dice", "cht-bank", "cht-lost-points", "cht-cat-minus-8", "cht-cat-plus-8",
       "hit1", "hit_ship1", "hit_ship2", "rocket_launch1", "rocket_launch2", "rocket_launch3", "rocket_miss",
       "interception", "lose1", "lose3", "play", "play2", "replay",
       "reverse", "reverse3", "roll", "skip", "win1", "win2",
       "farkle_bank", "poker_fold", "poker_check", "poker_call", "poker_raise", "poker_all_in", "poker_pot",
-      "ninety3366", "1000_mariage", "win_party", "lose_party",
+      "ninety3366", "1000_mariage", "tysiac_surrender", "tysiac_contract_made", "tysiac_contract_failed", "win_party", "lose_party",
       "domino_refill", "domino_move_tile", "domino_take_chip", "card-shuffle",
       "krowa-race", "krowa-word-tower", "krowa-single", "krowa-opponent-guessed",
       "krowa-duplicate", "krowa-unknown", "krowa-length", "krowa-success",
@@ -210,8 +210,8 @@ class EltenGameRoom < Program
   extend GameRoomContactFiltersRuntime
   extend GameRoomAnalyticsRuntime
   extend GameRoomSportsRankings::Runtime
-  GAME_ROOM_VERSION = "2.0.5.11".freeze
-  GAME_ROOM_BUILD_ID = 262
+  GAME_ROOM_VERSION = "2.0.6".freeze
+  GAME_ROOM_BUILD_ID = 263
   GAME_ROOM_CAPABILITIES = ["invitations", "live_sessions", "live_session_stack"].freeze
   LOBBY_ACTIVITY_POLL_INTERVAL = 5.0
 
@@ -2415,6 +2415,10 @@ class EltenGameRoom < Program
     message = observing ? _("You will observe the next game.") : _("You will play in the next game.")
     speak(message, stop: false, break_sequence: false) if GameRoomParticipants.same?(participant, Session.name)
     snapshot
+  rescue GameRoomNetworkErrors::RoleChangeUnavailable => error
+    alert(error.reason == :not_owner ? _("Only the table master may change another user's role.") :
+      _("This person is no longer at the table. Their role was not changed."))
+    nil
   end
 
   def change_table_control(row, action, participant = nil, replacement: :choose)
@@ -3263,10 +3267,10 @@ class EltenGameRoom < Program
     language_changed = GameRoomLocalization.normalize_settings(settings) != GameRoomLocalization.normalize_settings(normalized)
     if watch_save_failed
       message = _("Local settings saved. New-table notification subscriptions could not be saved.")
-      message += " " + _("Restart ELTEN to apply the interface language preferences.") if language_changed
+      message += " " + _("Close ELTEN completely and start it again to apply the interface language preferences. Restarting with F12 does not reload Power Games.") if language_changed
       alert(message)
     elsif language_changed
-      alert(_("Settings saved. Restart ELTEN to apply the interface language preferences."))
+      alert(_("Settings saved. Close ELTEN completely and start it again to apply the interface language preferences. Restarting with F12 does not reload Power Games."))
     else
       alert(_("Settings saved."))
     end

@@ -39,16 +39,75 @@ module GameRoomGames
       if state[:phase] == :bidding
         return _("You are bidding.") if mine
 
-        return _("%{player} (%{seat}) is bidding.") % { player: participant_name(state[:current_player]), seat: seat_name(seat) }
+        return _("%{player} is bidding.") % { player: participant_name(state[:current_player]) }
       end
       if seat == dummy_seat(state)
         return _("Play a card from dummy.") if mine
 
-        return _("%{player} plays from dummy (%{seat}).") % { player: participant_name(state[:current_player]), seat: seat_name(seat) }
+        return _("%{player} plays from dummy.") % { player: participant_name(state[:current_player]) }
       end
       return _("It is your turn.") if mine
 
-      _("It is %{player}'s turn (%{seat}).") % { player: participant_name(state[:current_player]), seat: seat_name(seat) }
+      _("It is %{player}'s turn.") % { player: participant_name(state[:current_player]) }
+    end
+
+    # Reuse the shared decision-focus policy: move between declarer's two
+    # hands only for a new decision, never while reading chat or history.
+    def game_view_spec(replay, viewer)
+      surface = surface_spec(replay, viewer)
+      target = if same_user?(replay.current_player, viewer)
+        case replay.state[:phase]
+        when :bidding then "auction"
+        when :playing then playing_zone(replay.state, viewer)
+        end
+      end
+      GameRoomLayout::ViewSpec.new(surface: surface,
+        decision_focus_part: target, decision_focus_key: target && required_decision_key(replay, viewer))
+    end
+
+    # Catch-up may span more than one deal. The existing sequencer supplies
+    # each event's projection; zero-delay stages never wait for card audio.
+    def serial_event_presentation?; true; end
+
+    def event_presentation_stages(event, repository, _before, after, viewer)
+      [{descriptions: describe_event_for_display(event, repository, after, viewer), wait_for_sounds: false}]
+    end
+
+    # The complete, canonical history stays available for review/export.
+    # Automatic speech needs only the action and its immediate consequence.
+    def describe_event_for_display(event, repository, replay, viewer, surface_state: {})
+      event_id = repository.event_id(event).to_i
+      replay.history.filter_map do |entry|
+        next unless entry.event_id.to_i == event_id
+        next if [:start, :turn, :result].include?(entry.kind)
+
+        case entry.kind
+        when :deal
+          deal_text(replay.state, include_dealer_seat: false)
+        when :bid
+          _("%{player}: %{call}.") % { player: participant_name(entry.actor), call: call_label(entry.value) }
+        when :play
+          played = replay.state[:trick].find { |_seat, card| card == entry.value } ||
+            replay.state[:completed_tricks].flat_map { |trick| trick[:cards] }.find { |_seat, card| card == entry.value }
+          if played && played.first == dummy_seat(replay.state)
+            _("Dummy: %{card}.") % { card: card_label(entry.value) }
+          else
+            _("%{player}: %{card}.") % { player: participant_name(entry.actor), card: card_label(entry.value) }
+          end
+        when :dummy
+          _("Dummy's hand is exposed: %{player}.") % { player: participant_name(replay.state[:seats][dummy_seat(replay.state)]) }
+        when :trick
+          _("%{player} wins the trick.") % { player: participant_name(entry.actor) }
+        when :contract
+          contract = replay.state[:contract]
+          contract ? _("Contract: %{contract}. %{player} declares, needing %{count} tricks.") % {
+            contract: contract_label(contract), player: participant_name(replay.state[:seats][contract.declarer]), count: contract.tricks_needed
+          } : entry.text
+        when :score
+          spoken_deal_result(replay.state)
+        else entry.text
+        end
+      end
     end
 
     def turn_transition_history_entry(before_replay, after_replay, event_id:)
@@ -77,7 +136,7 @@ module GameRoomGames
     # Declarer decides for two seats, so a new decision includes the seat.
     def required_decision_key(replay, viewer)
       key = super
-      key == nil ? nil : key + [replay.state[:round], replay.state[:seat_to_play]]
+      key == nil ? nil : key + [replay.state[:round], replay.state[:seat_to_play], replay.state[:completed_tricks].length]
     end
 
     def bot_observation(replay, actor)
@@ -122,11 +181,11 @@ module GameRoomGames
         {
           kind: :choice,
           label: _("make a call"),
-          prompt: _("Choose your call. %{auction}") % { auction: auction_text(state) },
+          prompt: call_prompt(state),
           action_kind: "command",
           action_name: "call",
           value_key: "call",
-          choices: calls.map { |call| ShortcutChoice.new(value: call, label: call_label(call)) }
+          choices: calls.map { |call| ShortcutChoice.new(value: call, label: call_choice_label(call)) }
         }
       when :hand then { message: own_hand_text(state, viewer) }
       when :table_cards then { message: trick_cards_text(state) }
@@ -255,7 +314,7 @@ module GameRoomGames
       end
       dummy = dummy_seat(state)
       if state[:dummy_visible] && dummy != nil && dummy != seat
-        header = _("Dummy, %{seat}, %{count} cards") % { seat: seated_name(state, dummy), count: seat_hand(state, dummy).length }
+        header = _("Dummy: %{player}") % { player: participant_name(state[:seats][dummy]) }
         zones << hand_zone("dummy", header, seat_hand(state, dummy), ["dummy", dummy, state[:round]].join(":"))
       end
       zones
@@ -272,17 +331,17 @@ module GameRoomGames
 
     def own_hand_header(state, seat)
       if state[:phase] == :playing && seat == dummy_seat(state)
-        return _("Your hand, %{seat}: you are dummy and your partner plays these cards") % { seat: seat_name(seat) }
+        return _("Your hand: your partner plays these cards")
       end
 
-      _("Your hand, %{seat}, %{points} high card points") % { seat: seat_name(seat), points: R.high_card_points(initial_hand(state, seat)) }
+      _("Your hand")
     end
 
     def call_question(state, viewer)
       return nil if state[:phase] != :bidding || !same_user?(state[:current_player], viewer)
 
       options = legal_calls(state).map do |call|
-        GameSurfaces::QuestionOption.new(id: call, label: GameRoomContent.utf8(call_label(call)), value: call)
+        GameSurfaces::QuestionOption.new(id: call, label: GameRoomContent.utf8(call_choice_label(call)), value: call)
       end
       GameSurfaces::QuestionSpec.new(id: "call", prompt: GameRoomContent.utf8(call_prompt(state)), mode: :single_choice,
         options: options, value: R::PASS, required: true, submit_on_select: true)
@@ -290,9 +349,18 @@ module GameRoomGames
 
     def call_prompt(state)
       last = R.last_bid(state[:calls])
-      return _("Your call. No bid has been made yet.") if last == nil
+      return _("Choose your call.") if last == nil
 
-      _("Your call. The last bid is %{call} by %{seat}.") % { call: call_label(last[1]), seat: seat_name(last[0]) }
+      after_bid = state[:calls].drop(state[:calls].rindex { |entry| entry == last } + 1)
+      contract = R::Contract.new(level: R.bid_level(last[1]), strain: R.bid_strain(last[1]),
+        doubled: after_bid.count { |_seat, call| [R::DOUBLE, R::REDOUBLE].include?(call) }, declarer: last[0])
+      _("Last bid: %{bid} by %{player}.") % { bid: contract_label(contract), player: participant_name(state[:seats][last[0]]) }
+    end
+
+    def call_choice_label(call)
+      return call_label(call) unless R.bid?(call)
+
+      _("%{bid}: %{count} tricks") % { bid: call_label(call), count: R.bid_level(call) + 6 }
     end
 
     # History ------------------------------------------------------------------
@@ -303,16 +371,17 @@ module GameRoomGames
         actor: "", kind: :start)
     end
 
-    def deal_text(state)
+    def deal_text(state, include_dealer_seat: true)
+      dealer = include_dealer_seat ? seated_name(state, state[:dealer]) : participant_name(state[:seats][state[:dealer]])
       if duplicate?(state)
         return _("Board %{board} of %{boards}. Dealer: %{dealer}. %{vulnerability}.") % {
-          board: state[:round], boards: state[:options]["boards"], dealer: seated_name(state, state[:dealer]),
+          board: state[:round], boards: state[:options]["boards"], dealer: dealer,
           vulnerability: capitalize_text(vulnerability_text(state[:vulnerability]))
         }
       end
 
       _("Deal %{round}. Dealer: %{dealer}. %{vulnerability}.") % {
-        round: state[:round], dealer: seated_name(state, state[:dealer]),
+        round: state[:round], dealer: dealer,
         vulnerability: capitalize_text(vulnerability_text(state[:vulnerability]))
       }
     end
@@ -362,6 +431,36 @@ module GameRoomGames
 
       down = contract.tricks_needed - tricks
       n_("down %{count} trick", "down %{count} tricks", down) % { count: down }
+    end
+
+    def spoken_deal_result(state)
+      deal = state[:deals].last
+      return nil unless deal
+
+      parts = []
+      if (contract = deal[:contract])
+        parts << _("%{contract} by %{declarer}: %{result}.") % {
+          contract: contract_label(contract), declarer: participant_name(state[:seats][contract.declarer]),
+          result: contract_result_text(contract, deal[:tricks])
+        }
+      end
+      points = if duplicate?(state)
+        [deal[:ns_points], deal[:ew_points]]
+      else
+        [0, 1].map { |side| deal[:entries].to_a.sum { |entry| entry[0] == side ? entry[2] : 0 } }
+      end
+      scores = points.each_with_index.map do |score, side|
+        _("%{side} %{score}") % { side: side_name(side), score: score }
+      end.join(", ")
+      parts << if duplicate?(state)
+        state[:options]["scoring"] == "mp" ? _("Matchpoints: %{scores}.") % { scores: scores } : _("IMPs: %{scores}.") % { scores: scores }
+      else
+        _("Points this deal: %{scores}.") % { scores: scores }
+      end
+      deal[:entries].to_a.each do |side, _line, _points, reason|
+        parts << _("%{side} won a game.") % { side: side_name(side) } if reason == :game
+      end
+      parts.join("\n")
     end
 
     def deal_result_text(state, deal)
@@ -454,18 +553,20 @@ module GameRoomGames
       dummy = dummy_seat(state)
       return _("Dummy is not on the table yet. It is shown after the opening lead.") if dummy == nil || !state[:dummy_visible]
 
-      _("Dummy, %{seat}: %{cards}.") % { seat: seated_name(state, dummy), cards: hand_by_suits(seat_hand(state, dummy)) }
+      _("Dummy, %{seat}: %{cards}.") % { seat: participant_name(state[:seats][dummy]), cards: hand_by_suits(seat_hand(state, dummy)) }
     end
 
     def trick_cards_text(state)
       return _("There are no cards in the current trick.") if state[:trick].empty?
 
-      _("Current trick: %{cards}.") % { cards: state[:trick].map { |seat, card| _("%{seat} %{card}") % { seat: seat_name(seat), card: card_label(card) } }.join("; ") }
+      _("Current trick: %{cards}.") % { cards: state[:trick].map { |seat, card| _("%{seat}: %{card}") % {
+        seat: participant_name(state[:seats][seat]), card: card_label(card)
+      } }.join("\n") }
     end
 
     def trick_browse_data(state)
       choices = state[:trick].map do |seat, card|
-        ShortcutChoice.new(value: card, label: _("%{seat}: %{card}") % { seat: seated_name(state, seat), card: card_label(card) })
+        ShortcutChoice.new(value: card, label: _("%{seat}: %{card}") % { seat: participant_name(state[:seats][seat]), card: card_label(card) })
       end
       choices = [ShortcutChoice.new(value: nil, label: _("No cards have been played in this trick"))] if choices.empty?
       { kind: :browse, prompt: _("Cards on the table"), choices: choices }
@@ -481,12 +582,12 @@ module GameRoomGames
       trick = state[:completed_tricks].last
       return _("No trick has been completed in this deal.") if trick == nil
 
-      cards = trick[:cards].map { |seat, card| _("%{seat} %{card}") % { seat: seat_name(seat), card: card_label(card) } }
-      _("Previous trick: %{cards}. Won by %{seat}.") % { cards: cards.join("; "), seat: seat_name(trick[:winner]) }
+      cards = trick[:cards].map { |seat, card| _("%{seat}: %{card}") % { seat: participant_name(state[:seats][seat]), card: card_label(card) } }
+      _("Previous trick: %{cards}. Won by %{seat}.") % { cards: cards.join("\n"), seat: participant_name(state[:seats][trick[:winner]]) }
     end
 
     def auction_entries(state)
-      state[:calls].map { |seat, call| _("%{seat}: %{call}") % { seat: seat_name(seat), call: call_label(call) } }
+      state[:calls].map { |seat, call| _("%{seat}: %{call}") % { seat: participant_name(state[:seats][seat]), call: call_label(call) } }
     end
 
     def auction_text(state)
@@ -506,7 +607,7 @@ module GameRoomGames
       return _("There is no contract yet.") if contract == nil
 
       _("Contract: %{contract} by %{declarer}. Declarer needs %{needed} tricks and has %{won}.") % {
-        contract: contract_label(contract), declarer: seated_name(state, contract.declarer),
+        contract: contract_label(contract), declarer: participant_name(state[:seats][contract.declarer]),
         needed: contract.tricks_needed, won: state[:tricks_won][contract.side]
       }
     end

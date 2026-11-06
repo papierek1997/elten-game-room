@@ -51,6 +51,20 @@
       ]
     },
     {
+      "id": "redeal",
+      "title": {
+        "cs": "Nové rozdání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Pokud máš hned po rozdání v ruce všechny čtyři devítky, můžeš požádat o nové rozdání. Při svém prvním tahu v licitaci, ještě před nabídkou nebo pasem, stiskni Shift+D nebo vyber „Nové rozdání“ na konci seznamu karet."
+        },
+        {
+          "cs": "Znovu rozdává stejný hráč. Zrušené rozdání nemění skóre ani počítadla trestů a nespotřebuje pokus na sudu."
+        }
+      ]
+    },
+    {
       "id": "auction",
       "title": {
         "cs": "Licitace"
@@ -197,6 +211,23 @@
       ]
     },
     {
+      "id": "redeal_variants",
+      "title": {
+        "cs": "Možnosti nového rozdání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Při vytváření stolu můžeš nastavit dvě nezávislá pravidla:"
+        },
+        {
+          "cs": "- Nové rozdání při čtyřech devítkách v počáteční ruce je ve výchozím nastavení povoleno. Můžeš ho vypnout."
+        },
+        {
+          "cs": "- Dvě devítky v talonu běžně neopravňují k novému rozdání. Když tuto možnost zapneš, může vítěz licitace stisknout Shift+D, pokud odkrytý talon obsahuje alespoň dvě devítky. Musí to udělat dříve, než předá nebo odloží první kartu. Znovu rozdává stejný hráč, bez bodů, trestů a spotřebování pokusu na sudu."
+        }
+      ]
+    },
+    {
       "id": "variants",
       "title": {
         "cs": "Počet hráčů a další nastavení"
@@ -304,6 +335,9 @@
         },
         {
           "cs": "Shift+M: obnovit pořadí přijatých karet."
+        },
+        {
+          "cs": "Shift+D: požádej o nové rozdání, pokud splňuješ jeho podmínky."
         }
       ]
     }
@@ -312,6 +346,8 @@
     "variant": "variants",
     "talon_size": "variants",
     "last_trick_talon": "variants",
-    "score_limit": "variants"
+    "score_limit": "variants",
+    "redeal_four_nines": "redeal",
+    "redeal_talon_nines": "redeal_variants"
   }
 }

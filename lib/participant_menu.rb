@@ -197,12 +197,21 @@ module GameRoomParticipantMenu
         entry = replacement_entry
         tips << GameRoomContextHelp.shortcut_tip(entry.help_key, entry.label)
       end
+      role = participant_role_action(available: actions, room: snapshot, participant: participant)
+      if role
+        tips << GameRoomContextHelp.shortcut_tip("Ctrl+Shift+P", participant_role_label(participant, role == :make_player))
+      end
       tips
     end
     GameRoomRules.bind_ctrl_f1(layout.form, []) do
       dispatch.call(:rules, nil) if available.call.include?(:rules)
     end
 
+    bind_participant_context(layout, available: available, room: room, control: control,
+      game: game, control_denied: control_denied, &dispatch)
+  end
+
+  def bind_participant_context(layout, available:, room:, control:, game:, control_denied:, &dispatch)
     layout.users.bind_context do |menu|
       actions = available.call
       participant = layout.selected_participant
@@ -229,15 +238,26 @@ module GameRoomParticipantMenu
           end
         end
       end
-      if actions.include?(:manage_roles) && snapshot && GameRoomParticipants.human?(participant) &&
-          GameRoomParticipants.includes?(snapshot.members, participant) && !GameRoomParticipants.same?(participant, Session.name)
-        observing = snapshot.observer?(participant)
-        label = participant_role_label(participant, observing)
-        menu.option(label) do
-          dispatch.call(observing ? :make_player : :make_observer, participant) if available.call.include?(:manage_roles)
+      role = participant_role_action(available: actions, room: snapshot, participant: participant)
+      if role
+        label = participant_role_label(participant, role == :make_player)
+        menu.option(label, nil, "P") do
+          current = participant_role_action(available: available.call, room: room&.call, participant: participant)
+          if current == role
+            dispatch.call(role, participant)
+          else
+            control_denied&.call(_("This action is not available now."))
+          end
         end
       end
     end
+  end
+
+  def participant_role_action(available:, room:, participant:, viewer: Session.name)
+    return nil unless available.include?(:manage_roles) && room && GameRoomParticipants.human?(participant) &&
+      GameRoomParticipants.includes?(room.members, participant) && !GameRoomParticipants.same?(participant, viewer)
+
+    room.observer?(participant) ? :make_player : :make_observer
   end
 
   def participant_role_label(participant, observing)

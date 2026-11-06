@@ -51,6 +51,20 @@
       ]
     },
     {
+      "id": "redeal",
+      "title": {
+        "es": "Pedir un nuevo reparto"
+      },
+      "paragraphs": [
+        {
+          "es": "Si recibes los cuatro nueves en tu mano inicial, puedes pedir un nuevo reparto. En tu primer turno de la subasta, antes de pujar o pasar, pulsa Mayús+D o elige «Pedir un nuevo reparto» al final de la lista de cartas."
+        },
+        {
+          "es": "Vuelve a repartir la misma persona. El reparto anulado no altera los puntos ni los contadores de penalizaciones y no consume un intento en el barril."
+        }
+      ]
+    },
+    {
       "id": "auction",
       "title": {
         "es": "La subasta"
@@ -197,6 +211,23 @@
       ]
     },
     {
+      "id": "redeal_variants",
+      "title": {
+        "es": "Opciones de nuevo reparto"
+      },
+      "paragraphs": [
+        {
+          "es": "Al crear la mesa puedes ajustar dos reglas independientes:"
+        },
+        {
+          "es": "- La posibilidad de pedir un nuevo reparto por cuatro nueves en la mano inicial está activada de forma predeterminada. Puedes desactivarla."
+        },
+        {
+          "es": "- Normalmente, dos nueves en la reserva no permiten repetir el reparto. Si activas esta opción, quien gane la subasta podrá pulsar Mayús+D si la reserva descubierta contiene al menos dos nueves, antes de entregar o descartar la primera carta. Reparte de nuevo la misma persona, sin puntos, penalizaciones ni consumo de un intento en el barril."
+        }
+      ]
+    },
+    {
       "id": "variants",
       "title": {
         "es": "Otros números de jugadores"
@@ -304,6 +335,9 @@
         },
         {
           "es": "Shift+M: recuperar el orden de recepción."
+        },
+        {
+          "es": "Mayús+D: pide un nuevo reparto si se cumplen sus condiciones."
         }
       ]
     }
@@ -312,6 +346,8 @@
     "variant": "variants",
     "talon_size": "variants",
     "last_trick_talon": "variants",
-    "score_limit": "variants"
+    "score_limit": "variants",
+    "redeal_four_nines": "redeal",
+    "redeal_talon_nines": "redeal_variants"
   }
 }

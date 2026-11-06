@@ -26,7 +26,7 @@ ids = ["reversi"] + (EltenGameRoom::GAME_REGISTRY.ids - ["reversi"])
     end
     if id == "tysiac"
       %w[2 3].product([false, true]).each do |size, award|
-        changed = game.normalize_options("variant" => "two_players", "talon_size" => size, "last_trick_talon" => award)
+        changed = game.table_creation_options("variant" => "two_players", "talon_size" => size, "last_trick_talon" => award)
         actual = app.send(:configure_game_options, game, initial_options: changed, submit_label: "Save changes")
         raise "Editing Tysiac changed selected variants" unless actual == changed
       end
