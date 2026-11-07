@@ -147,5 +147,7 @@ assert(writes.size == 1, 'An unchanged or inaccessible selection triggered an un
 mode, select_games, select_language = :save_failure, ['makao'], 'pl'
 app.send(:show_settings)
 assert(stored['interface_language'] == 'pl' && notices.last.include?('could not be saved.') &&
-  notices.last.include?('Restart ELTEN'), 'Partial server save lost the language choice or its restart notice')
+  notices.last.include?('Close ELTEN completely and start it again') &&
+  notices.last.include?('Restarting with F12 does not reload Power Games.'),
+  'Partial server save lost the language choice or its complete restart instructions')
 puts 'Settings: restricted/read failure/cancel/recovery, all local categories, no subscription loss and partial save: OK'

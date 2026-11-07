@@ -74,9 +74,19 @@ ids.each do |id|
     assert(form.accept_button.label == "Save changes", "#{id}: editing says Create table")
     form.accept_button.trigger(:press)
   end
-  result = app.send(:configure_game_options, game, initial_options: game.default_options, submit_label: "Save changes")
-  assert(result == game.default_options, "#{id}: Ctrl+X result changed")
+  # Edit the options actually stored on a new table. A replay's defaults
+  # may omit fields that the creation and editing forms explicitly store.
+  initial_options = game.table_creation_options
+  result = app.send(:configure_game_options, game, initial_options: initial_options, submit_label: "Save changes")
+  assert(result == initial_options, "#{id}: Ctrl+X did not preserve the table's rules")
 end
+
+tysiac = EltenGameRoom::GAME_REGISTRY.build("tysiac")
+app = CreationFormApp.new(tysiac)
+Form.driver = ->(form) { form.accept_button.trigger(:press) }
+legacy = app.send(:configure_game_options, tysiac, initial_options: tysiac.default_options, submit_label: "Save changes")
+assert(legacy == tysiac.default_options.merge("redeal_four_nines" => true, "redeal_talon_nines" => false),
+  "Editing a table without redeal options did not fill in the correct defaults")
 
 [GameRoomGames::QuizParty.new, GameRoomGames::Taboo.new].each do |game|
   app = CreationFormApp.new(game)

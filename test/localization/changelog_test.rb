@@ -1,4 +1,5 @@
 require 'digest'
+require 'json'
 require_relative "../support/translation_reference"
 require_relative "../support/ui"
 require_relative "../support/log"
@@ -525,8 +526,22 @@ assert(GameRoomChangelog.pending_entries(nil, 262).map(&:build) == [262], 'first
 assert(GameRoomChangelog.pending_entries(262, 262).empty?, 'build 262 reopens after being read')
 assert(GameRoomChangelog.list_items([entry_262]).first == 'Version 2.0.5.11, build 262', 'build 262 heading differs')
 assert(GameRoomChangelog.available_entries(262).first.equal?(entry_262), 'build 262 is not the newest entry')
-assert([EltenGameRoom::GAME_ROOM_VERSION, EltenGameRoom::GAME_ROOM_BUILD_ID] == ['2.0.5.11', 262],
-  'runtime and latest release metadata differ')
+entry_263 = entries.find { |entry| entry.build == 263 }
+assert(entry_263 && entry_263.version == '2.0.6' && entry_263.changes.uniq.size == 10 &&
+  entry_263.changes.size == 10, 'build 263 has incorrect release metadata or duplicate notes')
+['Typoholism', 'Bridge', 'four nines', 'the talon', 'Bouillabaisse', 'Rummy', 'Ctrl+Shift+P',
+ 'Russian interface', 'Zuzler', 'F12'].each do |topic|
+  assert(entry_263.changes.join(' ').include?(topic), "build 263 lacks #{topic}")
+end
+assert(GameRoomChangelog.pending_entries(262, 263).map(&:build) == [263], 'build 263 repeats earlier notes')
+assert(GameRoomChangelog.pending_entries(nil, 263).map(&:build) == [263], 'first build 263 launch repeats history')
+assert(GameRoomChangelog.list_items([entry_263]).first == 'Version 2.0.6, build 263', 'build 263 heading differs')
+latest = entries.max_by(&:build)
+manifest = JSON.parse(File.read(File.expand_path('../../manifest.json', __dir__)))
+runtime_release = [EltenGameRoom::GAME_ROOM_VERSION, EltenGameRoom::GAME_ROOM_BUILD_ID]
+assert(runtime_release == [latest.version, latest.build] &&
+  runtime_release == [manifest.fetch('version'), Integer(manifest.fetch('build_id'), 10)],
+  'runtime, manifest and latest release metadata differ')
 %w[PL CS ES RU].each do |language|
   bytes = File.binread(File.expand_path("../../locale/#{language}.mo", __dir__))
   total, source_table, target_table = bytes.byteslice(8, 12).unpack('V3')
@@ -566,5 +581,7 @@ assert([EltenGameRoom::GAME_ROOM_VERSION, EltenGameRoom::GAME_ROOM_BUILD_ID] == 
     "build 261 has untranslated #{language} notes")
   assert(entry_262.changes.all? { |source| !release_catalog.fetch(source, '').empty? },
     "build 262 has untranslated #{language} notes")
+  assert(latest.changes.all? { |source| !release_catalog.fetch(source, '').empty? },
+    "build #{latest.build} has untranslated #{language} notes")
 end
-puts "Changelog tests passed: first launch, updates, downgrade, Enter, storage, old notes preserved and multilingual build 262 notes"
+puts "Changelog tests passed: first launch, updates, downgrade, Enter, storage, old notes and multilingual release metadata"
