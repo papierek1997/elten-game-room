@@ -334,7 +334,10 @@ module GameRoomGames
         return _("Your hand: your partner plays these cards")
       end
 
-      _("Your hand")
+      dealt = initial_hand(state, seat)
+      return _("Your hand") if dealt.empty?
+
+      _("Your hand, high card points: %{points}") % { points: R.high_card_points(dealt) }
     end
 
     def call_question(state, viewer)

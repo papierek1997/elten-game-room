@@ -84,10 +84,26 @@ Play uses the public cards, observed failures to follow suit, the controller's
 hand and dummy only after it is visible. The planner compares common sampled
 deals and models follow-suit, overruffs and entries, with an exact short search
 only for a deducible distribution. Simulated players do not see the other
-sampled hands. The natural bidding policy distinguishes weak twos from
-opening strength and considers fit and stoppers. See the ACBL lessons on
+sampled hands. The natural bidding policy distinguishes weak twos and
+overcalls from opening strength. It separates simple raises, invitations
+and raises forced higher by an opponent, and uses announced suit lengths,
+stoppers and vulnerability to find a legal alternative. There are no new
+artificial conventions. See the ACBL lessons on
 [planning the play](https://cdn.acbl.org/assets/documents/teachers/Teacher-Manuals/Defense-in-the-21st-Century-Lesson-8.pdf)
-and [weak two-bids](https://cdn.acbl.org/assets/documents/teachers/Teacher-Manuals/Commonly-Used-Conventions-Lesson-7.pdf).
+and [responding to a suit opening](https://cdn.acbl.org/assets/documents/teachers/Teacher-Manuals/Bidding-in-the-21st-Century-Lesson-4.pdf).
+
+For bidding comparisons, run
+`ruby tools/benchmark-bridge-bidding.rb --seed 20261107 --boards 8000 f76d73a`
+against that trusted local revision. Each deal is played with the same
+dealer and vulnerability, switching one partnership's bidder at a time.
+The common card evaluator sees the final contract but not the auction.
+Use `--planner` on a smaller sample to score with the full play planner
+instead of the faster play heuristics. Report both IMP differences and
+defeated contracts: bidding too cautiously can also miss a playable game.
+Against `f76d73a`, the full-planner check used 160 boards at seed 914
+and 224 boards at each of seeds 916–919. Across those 1,056 boards the
+new bidder gained 0.39 IMP per comparison, with 207/1,017 defeated
+contracts instead of 322/1,037 and 214 games made instead of 216.
 
 For paired comparisons, keep the deal and evaluated seat fixed, vary the
 seats across the campaign, and report the actual round score and decision

@@ -679,6 +679,17 @@ module GameRoomChangelog
         "Reviewed reported Polish quiz questions, clarified their wording and removed an ambiguous question. Thanks to Zuzler for the reports!",
         "Clarified the language-change instructions: close ELTEN completely and start it again; restarting with F12 does not reload Power Games."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.1",
+      build: 264,
+      changes: [
+        "Bridge reads your initial high-card points when you focus your own hand again, without repeating them on table refreshes.",
+        "Bridge bots bid more carefully and plan their card play better.",
+        "Bouillabaisse bots adapt their play to the scoring of each round, including All or Nothing.",
+        "Scopa bots choose captures more carefully and are less likely to leave an easy sweep for the next player.",
+        "Mahjong bots make better choices about discards, calls and when to defend."
+      ].freeze
     ).freeze
   ].freeze
 

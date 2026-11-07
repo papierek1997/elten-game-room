@@ -536,6 +536,16 @@ end
 assert(GameRoomChangelog.pending_entries(262, 263).map(&:build) == [263], 'build 263 repeats earlier notes')
 assert(GameRoomChangelog.pending_entries(nil, 263).map(&:build) == [263], 'first build 263 launch repeats history')
 assert(GameRoomChangelog.list_items([entry_263]).first == 'Version 2.0.6, build 263', 'build 263 heading differs')
+entry_264 = entries.find { |entry| entry.build == 264 }
+assert(entry_264 && entry_264.version == '2.0.6.1' && entry_264.changes.size == 5 &&
+  entry_264.changes.uniq.size == 5, 'build 264 has incorrect release metadata or duplicate notes')
+['high-card points', 'Bridge bots', 'Bouillabaisse bots', 'Scopa bots', 'Mahjong bots'].each do |topic|
+  assert(entry_264.changes.any? { |change| change.include?(topic) }, "build 264 lacks #{topic}")
+end
+assert(GameRoomChangelog.pending_entries(263, 264).map(&:build) == [264], 'build 264 repeats earlier notes')
+assert(GameRoomChangelog.pending_entries(nil, 264).map(&:build) == [264], 'first build 264 launch repeats history')
+assert(GameRoomChangelog.pending_entries(264, 264).empty?, 'build 264 reopens after being read')
+assert(GameRoomChangelog.list_items([entry_264]).first == 'Version 2.0.6.1, build 264', 'build 264 heading differs')
 latest = entries.max_by(&:build)
 manifest = JSON.parse(File.read(File.expand_path('../../manifest.json', __dir__)))
 runtime_release = [EltenGameRoom::GAME_ROOM_VERSION, EltenGameRoom::GAME_ROOM_BUILD_ID]

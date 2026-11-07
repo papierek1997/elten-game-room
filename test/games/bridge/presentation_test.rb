@@ -13,6 +13,8 @@ assert_equal("1 heart: 7 tricks", choice.options.find { |option| option.value ==
 assert_equal("7 no trump: 13 tricks", choice.options.find { |option| option.value == "7N" }.label)
 assert_equal("auction", game.game_view_spec(table.replay, viewer).decision_focus_part)
 assert_equal(nil, game.game_view_spec(table.replay, "Watcher").decision_focus_key)
+opening_cards = game.surface_spec(table.replay, viewer).parts.find { |part| part.id == "cards" }.surface
+opening_points = opening_cards.zones.find { |zone| zone.id == "hand" }.header
 
 bidder = viewer
 table.calls("1H", "X", "XX")
@@ -51,6 +53,10 @@ while table.state[:phase] == :playing
   before = table.replay
   table.play_lowest_legal
   after = table.replay
+  if after.state[:phase] == :playing
+    header = game.surface_spec(after, declarer).zones.find { |zone| zone.id == "hand" }.header
+    assert_equal(opening_points, header, "Playing a card changed the initial hand strength")
+  end
   actor = before.current_player
   if after.state[:completed_tricks].length > before.state[:completed_tricks].length
     speech = game.describe_event_for_display(table.events.last, table.repository, after, actor)

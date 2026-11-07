@@ -11,6 +11,9 @@ context = GameRoomGames::ActionContext.new(session_id: 45, random_source: Mahjon
 events = []
 expected = generator.replay(session, events, repository)
 6500.times do
+  # A change in bot strategy can remove dealer repeats and legitimately
+  # finish the match at hand four instead of leaving it between hands.
+  break if expected.finished?
   break if expected.state[:hand_number] >= 4 && expected.state[:phase] == :between_hands
   actor = generator.active_actors(expected).first
   selection = generator.automatic_action(expected, actor, context: context) || generator.table_bot_selection(expected, actor)
@@ -21,7 +24,7 @@ expected = generator.replay(session, events, repository)
   expected = generator.incremental_replay(expected, session, [event], repository)
 end
 assert_equal(4, expected.state[:hand_number])
-assert_equal(:between_hands, expected.state[:phase])
+assert([:between_hands, :finished].include?(expected.state[:phase]), 'Fixture did not complete the fourth hand')
 
 signature = lambda do |replay|
   [round_snapshot(replay.state[:round]), replay.state[:phase], replay.state[:hand_number],

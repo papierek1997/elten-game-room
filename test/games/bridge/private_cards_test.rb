@@ -16,6 +16,13 @@ users = %w[Alice Bob Carol Dave]
     users.each do |user|
       state = h.replay(user).state
       assert(state[:initial_hands].flatten.empty?, 'public seed retained initial cards')
+      points = GameRoomGames::BridgeRules.high_card_points(original.fetch(user))
+      surface = game.surface_spec(h.replay(user), user)
+      surface = surface.parts.find { |part| part.id == 'cards' }.surface if surface.is_a?(GameSurfaces::CompositeSpec)
+      own_zone = surface.zones.find { |zone| zone.id == 'hand' }
+      assert(own_zone.header == "Your hand, high card points: #{points}", 'Own private cards did not supply the header')
+      observer_view = game.game_view_spec(h.replay(user), 'Observer')
+      assert(observer_view.surface.is_a?(GameSurfaces::QuestionSpec), 'An observer received more than the auction status')
       users.reject { |other| other == user }.each do |other|
         receipt = state[:private_draws].find { |_, draw| draw[:player] == other }
         assert_raises(EltenLink::Error) { h.view(user).pool(receipt.last[:pool]).draw(receipt.first) }
