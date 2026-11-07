@@ -1,5 +1,7 @@
 require_relative 'dealt_card_game'
 require_relative '../lib/private_card_round_audit'
+require_relative '../lib/bouillabaisse_strategy'
+require_relative '../lib/bouillabaisse/information'
 
 GameRoomServerRandom.register('bouillabaisse', ['deal'])
 GameRoomPrivateCards.register('bouillabaisse', host: %w[private_deal], claim: %w[private_ready],
@@ -50,10 +52,7 @@ module GameRoomGames
 
     def bot_strategy; @bot_strategy ||= BouillabaisseStrategy.new; end
     def bot_observation(replay, actor)
-      state = replay.state
-      {'hand' => hand_for(state, actor).dup, 'trick' => state[:trick].to_a.map(&:dup),
-        'round' => state[:round], 'penalties' => (state[:penalties] || {}).dup,
-        'seats' => state[:seats].dup, 'actor' => actor}
+      BouillabaissePlanning::Information.observation(self, replay, actor)
     end
 
     def shortcut_features; super + [:led_suit]; end
@@ -204,14 +203,10 @@ module GameRoomGames
     def score_round(state, event, repository, history)
       round = state[:round]
       raw = state[:players].to_h do |player|
-        tricks = [1, 5, 6].include?(round) ? state[:tricks][player] * 5 : 0
+        tricks = state[:tricks][player] * BouillabaissePlanning::Scoring.trick_points(round)
         [player, tricks + state[:taken][player].sum { |card| penalty_value(card, round, state[:penalties]) }]
       end
-      total = raw.values.sum
-      additions = raw.to_h do |player, value|
-        value = -value if state[:options]['all_or_nothing'] && round != 4 && value == total && total.positive?
-        [player, round == 6 ? -value : value]
-      end
+      additions = BouillabaissePlanning::Scoring.additions(raw, round: round, all_or_nothing: state[:options]['all_or_nothing'])
       additions.each { |player, value| state[:scores][player] += value }
       state[:phase], state[:current_player] = :round_complete, nil
       add_history(history, event, repository, :score, _("Round scores: %{scores}.") % {
@@ -248,23 +243,6 @@ module GameRoomGames
 
   end
 
-  class BouillabaisseStrategy
-    include GameRoomBots::ReplayOnlyStrategy
-    def choose(actions:, observation:, **_extra)
-      cards = actions.to_a
-      return nil if cards.empty?
-      trick = observation['trick']
-      rank = ->(card) { CardGame::CARD_RANKS.index(card[0]) }
-      winning = trick.empty? ? nil : trick.select { |_, card| card[1] == trick.first.last[1] }.max_by { |_, card| rank.call(card) }.last
-      lose = cards.select { |action| winning && (action['card'][1] != winning[1] || rank.call(action['card']) < rank.call(winning)) }
-      candidates = observation['round'] == 6 ? cards : (lose.empty? ? cards : lose)
-      candidates.min_by do |action|
-        card = action['card']
-        # Only the current public trick and this bot's own legal hand are used.
-        observation['round'] == 6 ? -rank.call(card) : (lose.empty? ? rank.call(card) : -rank.call(card))
-      end
-    end
-  end
 end
 
 require_relative 'generated/rulebooks/bouillabaisse'

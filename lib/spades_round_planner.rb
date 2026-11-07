@@ -1,4 +1,5 @@
 require "digest"
+require_relative "hidden_card_deals"
 
 # Shared, information-aware round planning for Spades bots.
 #
@@ -381,33 +382,9 @@ module SpadesPlanning
     end
 
     def assign_hidden_cards(cards, players, counts, void_suits, random)
-      remaining = counts.dup
-      result = players.each_with_object({}) { |player, hands| hands[player] = [] }
-      ordered = cards.sort_by do |card|
-        eligible = players.count do |player|
-          hidden_card_allowed?(void_suits, player, card)
-        end
-        [eligible, random.rand]
+      GameRoomHiddenCardDeals.assign(cards, players, counts, random) do |player, card|
+        hidden_card_allowed?(void_suits, player, card)
       end
-      ordered.each do |card|
-        eligible = players.select do |player|
-          remaining.fetch(player, 0) > 0 &&
-            hidden_card_allowed?(void_suits, player, card)
-        end
-        return nil if eligible.empty?
-
-        total = eligible.sum { |player| remaining.fetch(player) }
-        draw = random.rand(total)
-        selected = eligible.find do |player|
-          draw -= remaining.fetch(player)
-          draw < 0
-        end
-        result[selected] << card
-        remaining[selected] -= 1
-      end
-      return nil if remaining.values.any? { |value| value != 0 }
-
-      result
     end
 
     # A fair bot never reads the real hidden hands. It does, however, prefer

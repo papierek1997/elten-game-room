@@ -14,7 +14,7 @@ assert_equal(nil, round.bot_action(seat: 1))
 assert_raises(ArgumentError) { round.legal_actions(seat: -1) }
 selected = round.bot_action(seat: 0)
 assert(actions.include?(selected))
-assert_equal(:discard, selected[:type])
+assert_equal(:riichi, selected[:type], 'A closed hand with live waits can declare Riichi')
 assert([28, 31].include?(GameRoomMahjong::Tiles.kind(selected[:tile])))
 next_round = round.action(**selected)
 assert_equal(:reactions, next_round.flow.phase)
@@ -35,6 +35,7 @@ next_round.window.pending.each do |seat|
   assert_equal([], next_round.legal_actions(seat: seat)) if next_round.flow.phase == :reactions
 end
 assert_equal(:draw, next_round.flow.phase)
+assert_equal(2, next_round.riichi_state.levels.fetch(0), 'The bot declaration must be accepted through the claim window')
 draw = next_round.bot_action(seat: next_round.flow.seat)
 assert_equal(:draw, draw[:type])
 assert_equal(:discard, next_round.action(**draw).flow.phase)

@@ -1,21 +1,23 @@
+require_relative 'play_planner'
+
 module GameRoomGames
-  # A simple, honest Bridge partner. It sees only what a player at the table
-  # sees (its hand, dummy after the lead, the auction and played cards) and
-  # follows a compact natural system: 1NT 15-17, five-card majors, simple
-  # raises and game/slam targets from the estimated combined strength.
+  # Natural bidding and a play planner using the same information as a
+  # player: own hand, dummy after the lead, auction and public tricks.
   class BridgeStrategy
     include GameRoomBots::ReplayOnlyStrategy
     R = BridgeRules
 
     def choose(actions:, observation:, actor:, random_source:, **_extra)
       values = actions.to_a
-      return nil if values.empty?
+      return values.first if values.size <= 1
 
       choice = if observation["phase"] == "bidding"
         call = Bidding.new(observation).call
         values.find { |action| action["call"] == call }
       else
-        card = Play.new(observation).card(values.map { |action| action["card"] })
+        legal = values.map { |action| action["card"] }
+        fallback = Play.new(observation).card(legal)
+        card = BridgePlayPlanner.new(observation).choose(legal, fallback)
         values.find { |action| action["card"] == card }
       end
       choice || values.find { |action| action["call"] == R::PASS } || values.first
@@ -41,6 +43,7 @@ module GameRoomGames
         @calls = observation["calls"].to_a
         @points = R.high_card_points(@hand)
         @lengths = lengths(@hand)
+        @vulnerable = R.vulnerable?(observation.fetch("vulnerability", "none"), R.side_of(@seat))
       end
 
       def call
@@ -89,26 +92,29 @@ module GameRoomGames
         return "1N" if balanced?(@hand) && @points.between?(15, 17)
         return "2N" if balanced?(@hand) && @points.between?(20, 21)
         if @points >= 12 || (@points >= 11 && @lengths.values.max >= 6)
-          major = %w[S H].find { |suit| @lengths[suit] >= 5 }
+          major = %w[S H].max_by { |suit| @lengths[suit] }
+          major = nil if @lengths[major] < 5
           return "1#{major}" if major
           return "1D" if @lengths["D"] >= 4 && @lengths["D"] >= @lengths["C"]
 
           return "1C"
         end
-        weak = %w[S H D].find { |suit| @lengths[suit] >= 6 }
+        weak = %w[S H D].select { |suit| @lengths[suit] >= 6 && sound_suit?(suit) }
+          .max_by { |suit| @lengths[suit] }
         return "2#{weak}" if weak && @points.between?(6, 10)
 
         R::PASS
       end
 
       def overcall
-        suit = %w[S H D C].find { |name| @lengths[name] >= 5 }
+        suit = %w[S H D C].select { |name| @lengths[name] >= 5 && sound_suit?(name) }
+          .max_by { |name| @lengths[name] }
         if suit && @points.between?(9, 16)
           bid = cheapest_bid(suit)
-          return bid if R.bid_level(bid) <= 2
+          return bid if R.bid_level(bid) == 1 || R.bid_level(bid) == 2 && @points >= (@vulnerable ? 12 : 10)
         end
         bid = cheapest_bid("N")
-        return bid if balanced?(@hand) && @points.between?(15, 18) && R.bid_level(bid) == 1
+        return bid if balanced?(@hand) && @points.between?(15, 18) && R.bid_level(bid) == 1 && stopped_opponents?
 
         R::PASS
       end
@@ -117,22 +123,61 @@ module GameRoomGames
         strain = R.bid_strain(opening)
         level = R.bid_level(opening)
         return notrump_response(level) if strain == "N"
+        return weak_two_response(strain) if weak_two_opening?(partner, opening)
         return R::PASS if @points < 6
 
         support = @lengths[strain] >= (%w[S H].include?(strain) ? 3 : 4)
         if support
-          target = if @points >= 13 then %w[S H].include?(strain) ? "4#{strain}" : "3N"
-          elsif @points >= 10 then "3#{strain}"
+          points = @points + fit_shortness(strain)
+          target = if points >= 13 && %w[S H].include?(strain) then "4#{strain}"
+          elsif @points >= 13 && stopped_opponents? then "3N"
+          elsif points >= 10 then "3#{strain}"
           else "2#{strain}"
           end
           return target
         end
         new_suit = %w[S H D C].find { |suit| @lengths[suit] >= 4 && R.bid_index("1#{suit}") > R.bid_index(opening) }
         return "1#{new_suit}" if new_suit && level == 1
-        return "3N" if @points >= 13
-        return "2N" if @points >= 11
+        return "3N" if @points >= 13 && stopped_opponents?
+        return "2N" if @points >= 11 && stopped_opponents?
 
         cheapest_bid("N").start_with?("1") ? "1N" : R::PASS
+      end
+
+      def weak_two_opening?(seat, call)
+        @calls.find { |_, bid| R.bid?(bid) } == [seat, call] && call.match?(/\A2[DSH]\z/)
+      end
+
+      def weak_two_response(strain)
+        support = @lengths.fetch(strain)
+        return R::PASS if support < 3
+
+        total = @points + 8 + fit_shortness(strain)
+        return "4#{strain}" if %w[S H].include?(strain) && total >= 25
+        return "5D" if strain == "D" && total >= 28
+        return "3#{strain}" if total >= 20 || !@vulnerable
+
+        R::PASS
+      end
+
+      def fit_shortness(trump)
+        @lengths.reject { |suit, _| suit == trump }.values.sum { |length| [2 - length, 0].max }
+      end
+
+      def sound_suit?(suit)
+        cards = @hand.select { |card| R.card_suit(card) == suit }
+        cards.count { |card| R.rank_index(card) >= R.rank_index('TS') } >= 2
+      end
+
+      def stopped_opponents?
+        suits = @calls.filter_map do |seat, bid|
+          strain = R.bid_strain(bid) if R.bid?(bid)
+          strain if R.side_of(seat) != R.side_of(@seat) && R::SUITS.include?(strain)
+        end.uniq
+        suits.all? do |suit|
+          @hand.include?("A#{suit}") || @hand.include?("K#{suit}") && @lengths[suit] >= 2 ||
+            @hand.include?("Q#{suit}") && @lengths[suit] >= 3
+        end
       end
 
       def notrump_response(level)
@@ -153,6 +198,7 @@ module GameRoomGames
         return 0 if first == nil
         return 16 if first == "1N"
         return 20 if first == "2N"
+        return 8 if weak_two_opening?(partner, first)
 
         first_index = ->(seat) { @calls.index { |caller, call| caller == seat && R.bid?(call) } }
         mine = first_index.call(@seat)
@@ -163,12 +209,13 @@ module GameRoomGames
         total = @points + partner_estimate(partners)
         fit = (mine + partners).map { |bid| R.bid_strain(bid) }.tally.find { |strain, count| count >= 2 && strain != "N" }&.first
         fit ||= partners.map { |bid| R.bid_strain(bid) }.find { |strain| strain != "N" && @lengths[strain] >= 3 }
+        total += fit_shortness(fit) if fit && %w[S H].include?(fit)
         current = R.last_bid(@calls)
         ours = current != nil && R.side_of(current[0]) == R.side_of(@seat)
         target = if total >= 33
           fit ? "6#{fit}" : "6N"
         elsif total >= 25
-          fit && %w[S H].include?(fit) ? "4#{fit}" : "3N"
+          fit && %w[S H].include?(fit) ? "4#{fit}" : (stopped_opponents? ? "3N" : nil)
         elsif fit
           "2#{fit}"
         end

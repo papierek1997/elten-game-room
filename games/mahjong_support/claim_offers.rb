@@ -5,6 +5,17 @@ module GameRoomMahjong
   module ClaimOffers
     module_function
 
+    def discard_restrictions(variant, discarded, type, first)
+      return [] unless variant == 'riichi' && %i[chow pung].include?(type)
+
+      blocked = [discarded]
+      if type == :chow
+        opposite = discarded == first ? first + 3 : discarded == first + 2 ? first - 1 : nil
+        blocked << opposite if opposite && opposite.between?(0, 26) && opposite / 9 == first / 9
+      end
+      blocked
+    end
+
     # Only the rules/scoring adapter may certify a win. Shape alone is not
     # enough for a yaku/minimum-fan rule. A kong also needs an available legal
     # replacement draw, which is decided by the variant's wall adapter.

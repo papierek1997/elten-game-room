@@ -1,4 +1,5 @@
 require_relative 'dealt_card_game'
+require_relative '../lib/scopa_strategy'
 
 GameRoomServerRandom.register('scopa', ['deal'])
 GameRoomPrivateCards.register('scopa', host: %w[private_deal], claim: %w[private_ready],
@@ -66,7 +67,16 @@ module GameRoomGames
     def bot_strategy; @bot_strategy ||= ScopaStrategy.new; end
     def bot_observation(replay, actor)
       state = replay.state
+      return {} unless state[:phase] == :playing
+
       {'hand' => hand_for(state, actor).dup, 'table' => state[:table].to_a.dup,
+        'seat' => player_index(state[:seats], actor),
+        'units' => state[:seats].map { |player| state[:unit_for].fetch(player) },
+        'counts' => state[:seats].map { |player| state[:hands].fetch(player).size },
+        'taken' => state[:taken].transform_values(&:dup), 'scopas' => state[:scopas].dup,
+        'last_capturer' => state[:last_capturer], 'scores' => state[:scores].dup,
+        'stock_count' => state[:stock].size, 'discard_count' => state[:discarded].size,
+        'score_limit' => state[:options]['score_limit'], 'two_point_lead' => state[:options]['two_point_lead'],
         'escoba' => state[:options]['escoba'], 'muerto' => state[:options]['muerto']}
     end
 
@@ -293,19 +303,6 @@ module GameRoomGames
     end
   end
 
-  class ScopaStrategy
-    include GameRoomBots::ReplayOnlyStrategy
-    def choose(actions:, observation:, **_extra)
-      actions.to_a.max_by do |action|
-        card = action['card']
-        captured = Scopa.capture(observation['table'], card, escoba: observation['escoba'])
-        reward = captured.empty? ? 0 : 2 + captured.size + captured.count { |item| item[1] == 'D' || item[0] == '7' } * 2
-        reward += 10 if captured.include?('7D') || (card == '7D' && captured.any?)
-        reward += 15 if captured.any? && captured.size == observation['table'].size
-        [observation['muerto'] ? -reward : reward, -Scopa.card_value(card)]
-      end
-    end
-  end
 end
 
 require_relative 'generated/rulebooks/scopa'

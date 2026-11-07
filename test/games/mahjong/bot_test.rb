@@ -25,4 +25,10 @@ assert_raises(ArgumentError) { bot.shanten([0] * 5) }
 assert_raises(ArgumentError) { bot.discard_kind(concealed: own[0...-1]) }
 assert(bot.discard_kind(concealed: mahjong_kinds('123m456p789s11z'), melds: [[:pung, 31]], public_counts: {31=>3}),
   'An exposed owned meld is public; it must not be counted twice')
-puts 'PASS mahjong bot hand distance, legal discard restrictions, fair observation boundary and nonmutation'
+
+# East leaves a dead wait on the 3 of characters. Discarding a 1 also
+# accepts the 2 of characters, of which three copies are not yet visible.
+blocked_wait = mahjong_kinds('11112m123p456s111z')
+assert_equal(0, bot.discard_kind(concealed: blocked_wait, public_counts: {2=>4}),
+  'Prefer a live wait to a formally ready hand with no remaining tile')
+puts 'PASS mahjong bot hand distance, live waits, legal discard restrictions, fair observation boundary and nonmutation'

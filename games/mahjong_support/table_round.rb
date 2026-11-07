@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require_relative 'claim_offers'
 require_relative 'round_settlement'
-require_relative 'bot'
+require_relative 'bot_policy'
 require_relative 'riichi_state'
 
 module GameRoomMahjong
@@ -145,22 +145,12 @@ module GameRoomMahjong
 
     def bot_action(seat:)
       actions = legal_actions(seat: seat)
-      return nil if actions.empty?
+      return actions.first if actions.size <= 1
       win = actions.find { |candidate| candidate[:type] == :win || candidate[:choice] == [:win] }
       return win if win
-      # The initial conservative policy preserves a closed hand rather than
-      # calling an unscored set. This is a strategy choice, not a legality rule.
-      pass = actions.find { |candidate| candidate[:choice] == [:pass] }
-      return pass if pass
-      discards = actions.select { |candidate| candidate[:type] == :discard }
-      return actions.first if discards.empty?
-      observation = flow.observation(viewer: seat)
-      public_tiles = observation[:discards].map(&:last) + observation[:melds].flatten(1).flat_map { |meld| meld[:tiles] }
-      chosen = Bot.discard_kind(concealed: observation[:concealed].map { |tile| Tiles.kind(tile) },
-        melds: observation[:melds][seat].map { |meld| [meld[:type], meld[:first_kind]] },
-        public_counts: public_tiles.map { |tile| Tiles.kind(tile) }.tally,
-        choices: discards.map { |candidate| Tiles.kind(candidate[:tile]) }, variant: variant)
-      discards.find { |candidate| Tiles.kind(candidate[:tile]) == chosen }
+
+      Bot::Policy.new(flow.observation(viewer: seat), seat: seat, dealer: dealer,
+        variant: variant, round_wind: round_wind, riichi_levels: riichi_state&.levels).choose(actions)
     end
 
     def action(seat:, type:, generation:, tile: nil, choice: nil)
@@ -239,16 +229,7 @@ module GameRoomMahjong
           return with(flow: flow.complete_added_kong(kind: added_kong_kind, generation: generation),
             window: nil, added_kong_kind: nil, furiten: next_furiten, blocked_discards: [], riichi_state: next_riichi)
         end
-        blocked = []
-        if variant == 'riichi' && %i[chow pung].include?(resolution.type)
-          kind = Tiles.kind(flow.discards.last.last)
-          blocked << kind
-          if resolution.type == :chow
-            first = resolution.first_kind
-            opposite = kind == first ? first + 3 : kind == first + 2 ? first - 1 : nil
-            blocked << opposite if opposite && opposite.between?(0, 26) && opposite / 9 == first / 9
-          end
-        end
+        blocked = ClaimOffers.discard_restrictions(variant, Tiles.kind(flow.discards.last.last), resolution.type, resolution.first_kind)
         next_furiten[resolution.seat] = false if variant == 'riichi' && %i[chow pung kong].include?(resolution.type)
         with(flow: flow.apply_claim(updated), window: nil, furiten: next_furiten, blocked_discards: blocked,
           riichi_state: next_riichi, pending_riichi: nil)
