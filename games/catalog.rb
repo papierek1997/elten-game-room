@@ -40,6 +40,13 @@ require_relative "war"
 require_relative "scientific_war"
 require_relative "duck_racing"
 require_relative "mahjong"
+require_relative "blackjack"
+require_relative "blackjack_dice"
+require_relative "bingo"
+require_relative "dice_poker"
+require_relative "liars_dice"
+require_relative "go"
+require_relative "roulette"
 require_relative "registry"
 
 module GameRoomGames
@@ -82,6 +89,13 @@ module GameRoomGames
     GameRoomGames::War,
     GameRoomGames::ScientificWar,
     GameRoomGames::DuckRacing,
-    GameRoomGames::Mahjong
+    GameRoomGames::Mahjong,
+    GameRoomGames::Blackjack,
+    GameRoomGames::BlackjackDice,
+    GameRoomGames::Bingo,
+    GameRoomGames::DicePoker,
+    GameRoomGames::LiarsDice,
+    GameRoomGames::Go,
+    GameRoomGames::Roulette
   ])
 end

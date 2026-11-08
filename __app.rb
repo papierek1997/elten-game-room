@@ -23,7 +23,7 @@
   },
   "required_assets": {
     "sounds": [
-      "connect", "disconnect", "chatmsg", "notice", "table_notice", "invitation_rejected", "conference_created", "buzzer", "buzzer2", "quiz_wrong_answer", "duck_challenge", "duck_question", "duck_countdown", "duck_quack", "duck_correct", "duck_frozen",
+      "connect", "disconnect", "chatmsg", "notice", "table_notice", "invitation_rejected", "conference_created", "buzzer", "buzzer2", "quiz_wrong_answer", "bingo_draw", "roulette_spin", "roulette_chips", "duck_challenge", "duck_question", "duck_countdown", "duck_quack", "duck_correct", "duck_frozen",
       "duck_final_lap", "duck_shot", "duck_note_c", "duck_memory_bark", "duck_memory_bell", "duck_memory_drop", "duck_memory_clap", "duck_memory_zip",
       "duck_rhythm_f", "duck_rhythm_j", "war_open", "ding", "shuffle", "scopa", "scopa_deal", "scopa_take", "draw", "draw2", "bouillabaisse_rank", "bouillabaisse_card",
       "farkle", "cht-roll-dice", "cht-bank", "cht-lost-points", "cht-cat-minus-8", "cht-cat-plus-8",
@@ -168,6 +168,7 @@ require_relative "lib/game_participants"
 require_relative "lib/game_sounds"
 require_relative "lib/game_room_preferences"
 require_relative "lib/volume_settings"
+require_relative "lib/background_music"
 require_relative "lib/game_room_widget"
 require_relative "lib/game_teams"
 require_relative "lib/game_bots"
@@ -337,6 +338,15 @@ class EltenGameRoom < Program
     end
   end
 
+  def self.background_music
+    @background_music ||= GameRoomBackgroundMusic.new(settings: method(:normalized_settings),
+      register: ->(music) { manage(music) })
+  end
+
+  def background_music
+    self.class.background_music
+  end
+
   def self.map_notification(notification)
     GameRoomTableWatch::Timing.measure(:mapping) { map_game_room_notification(notification) }
   end
@@ -448,6 +458,7 @@ class EltenGameRoom < Program
   end
 
   def program_main
+    background_music.enter
     initialize_services
     record_statistics_visit
     show_update_changelog
@@ -461,6 +472,8 @@ class EltenGameRoom < Program
     end
     play_game_sound("connect") if current != nil
     run_program_interface(current)
+  ensure
+    background_music.leave
   end
 
   def notification_action(action, notification)
@@ -652,6 +665,7 @@ class EltenGameRoom < Program
   end
 
   def run_program_interface(initial_table = nil)
+    background_music.enter
     @lobby_activity_entries = []
     reset_lobby_activity_cursor
     current = initial_table
@@ -663,6 +677,8 @@ class EltenGameRoom < Program
       end
       current = switched
     end
+  ensure
+    background_music.leave
   end
 
   def show_main_menu
@@ -3262,6 +3278,7 @@ class EltenGameRoom < Program
     end
     @game_room_settings = nil
     @pong_preferences = nil
+    background_music.update(retry_failed: true)
     self.class.contacts_settings_changed(normalized)
     Programs::Extensions.refresh_ui if defined?(Programs::Extensions) && Programs::Extensions.respond_to?(:refresh_ui)
     language_changed = GameRoomLocalization.normalize_settings(settings) != GameRoomLocalization.normalize_settings(normalized)
@@ -3980,6 +3997,7 @@ class EltenGameRoom < Program
           writer.call(group, level)
         else
           self.class.volume_settings(self).set(group, level)
+          background_music.update
         end
         levels[group] = level
       end

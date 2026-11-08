@@ -1,0 +1,64 @@
+{
+  "source": "games/bingo.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Cartones y objetivos de bingo"
+      },
+      "paragraphs": [
+        {
+          "es": "Cada jugador recibe un cartón. Las bolas se extraen sin repetirse. Completa el patrón anunciado. Todos usan las mismas llamadas; completar juntos el objetivo final produce un empate entre ganadores."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Variantes"
+      },
+      "paragraphs": [
+        {
+          "es": "30 bolas: cartón de 3 por 3, tres números de cada rango 1–10, 11–20 y 21–30. Se gana cubriendo los nueve. No hay casilla libre."
+        },
+        {
+          "es": "75 bolas: cartón de 5 por 5. B, I, N, G y O usan rangos 1–15, 16–30, 31–45, 46–60 y 61–75. El centro es libre. 80 bolas usa 4 por 4 con columnas 1–20, 21–40, 41–60 y 61–80. Al crear la mesa elige cualquier línea horizontal, vertical o diagonal, cuatro esquinas o cartón completo para estas variantes."
+        },
+        {
+          "es": "90 bolas: tres filas y nueve columnas, cinco números por fila y quince por cartón. Las columnas abarcan 1–9, 10–19 hasta 70–79 y 80–90, ordenados de arriba abajo. Se juega sucesivamente por una línea horizontal, dos y cartón completo. Se anuncian los primeros ganadores; el cartón completo decide la partida."
+        }
+      ]
+    },
+    {
+      "id": "marking",
+      "title": {
+        "es": "Marcar y cantar bingo"
+      },
+      "paragraphs": [
+        {
+          "es": "El modo automático marca y detecta patrones ganadores. El intervalo es 3–30 segundos, cinco por defecto. El modo manual espera a que todos terminen la llamada. Marca números anunciados de tu cartón y canta bingo o confirma listo. Se revisan juntos los cantos de la misma bola, sin decidir por velocidad de red. Un canto incorrecto no cambia nada."
+        },
+        {
+          "es": "Tras ganar una etapa de 90 bolas en modo manual, el siguiente objetivo puede cantarse con la misma bola; en otro caso confirma listo de nuevo para continuar. Se pueden marcar números llamados anteriormente. Un bombo vacío sin canto válido termina en empate. La espera tras cada bola es una adaptación de accesibilidad de Power Games. Cartones y llamadas usan el ejecutor compartido con servidor."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Controles"
+      },
+      "paragraphs": [
+        {
+          "es": "Las flechas recorren el cartón. En modo manual Intro marca, M introduce un número, B canta bingo y R confirma listo. Los comandos están también en las acciones. L repite la última bola; D recorre llamadas. Tab cambia campos. F1 muestra atajos actuales y Ctrl+F1 reglas. Historial, chat y volumen usan las teclas normales de Power Games."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "pattern": "variants",
+    "marking": "marking",
+    "ball_interval": "marking"
+  }
+}

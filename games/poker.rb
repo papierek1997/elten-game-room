@@ -15,6 +15,9 @@ module GameRoomGames
       OptionChoice.new(value: "holdem", label: _("Texas Hold'em")),
       OptionChoice.new(value: "draw", label: _("Five-card draw"))
     ].freeze
+    DECK_OPTION = OptionDefinition.new(key: "deck", label: _("Poker deck"), kind: :choice, default: "full", choices: [
+      OptionChoice.new(value: "full", label: _("Full deck: 52 cards")),
+      OptionChoice.new(value: "nine", label: _("Short deck: 24 cards, nine through ace"))])
     STRUCTURES = [
       OptionChoice.new(value: "no_limit", label: _("No limit")),
       OptionChoice.new(value: "pot_limit", label: _("Pot limit")),
@@ -67,7 +70,7 @@ module GameRoomGames
     end
     private :betting_sound_cue
 
-    def notification_option_keys(_options); %w[variant]; end
+    def notification_option_keys(_options); %w[variant deck]; end
 
     def id
       "poker"
@@ -96,6 +99,12 @@ module GameRoomGames
       8
     end
 
+    def maximum_players_for_options(options)
+      values = normalize_options(options)
+      return 8 unless values['deck'] == 'nine' && DRAW_VARIANT.call(values)
+      values['draw_five'] ? 3 : 4
+    end
+
     def supports_bots?
       true
     end
@@ -113,6 +122,7 @@ module GameRoomGames
     def option_definitions
       [
         OptionDefinition.new(key: "variant", label: _("Poker variant"), kind: :choice, default: "holdem", choices: VARIANTS),
+        DECK_OPTION,
         OptionDefinition.new(key: "starting_chips", label: _("Starting chips"), kind: :integer, default: 1_000),
         OptionDefinition.new(key: "small_blind", label: _("Small blind"), kind: :integer, default: 5, visible_if: USES_BLINDS),
         OptionDefinition.new(key: "big_blind", label: _("Big blind"), kind: :integer, default: 10, visible_if: USES_BLINDS),
@@ -139,6 +149,9 @@ module GameRoomGames
 
     def options_error(options, player_count: nil)
       values = normalize_options(options)
+      if player_count && player_count > maximum_players_for_options(values)
+        return _("This poker deck and exchange setting support at most %{count} players.") % {count: maximum_players_for_options(values)}
+      end
       return _("Starting chips must be from 100 to 100000.") if !values["starting_chips"].to_i.between?(100, 100_000)
       if USES_BLINDS.call(values) && (values["small_blind"].to_i < 1 || values["big_blind"].to_i < values["small_blind"].to_i)
         return _("Blinds must be positive and the big blind must not be smaller than the small blind.")
@@ -156,6 +169,16 @@ module GameRoomGames
         return _("The blind multiplier must be from 2 to 10.")
       end
       nil
+    end
+
+    def normalize_options(values)
+      result = super
+      result.delete("deck") if result["deck"] == "full"
+      result
+    end
+
+    def poker_deck(options)
+      GameRoomOptionValues.read(DECK_OPTION, options) == "nine" ? standard_deck.select { |card| %w[9 T J Q K A].include?(playing_card_rank(card)) } : standard_deck
     end
 
     def options_summary(options)
@@ -639,7 +662,7 @@ module GameRoomGames
       seated = seated_players(state)
       return false if seated.length < 2 || !seated.include?(state[:players][dealer])
       previous_blinds = [current_small_blind(state), current_big_blind(state)]
-      deck = shuffled_cards(standard_deck, seed)
+      deck = shuffled_cards(poker_deck(state[:options]), seed)
       count = state[:options]["variant"] == "holdem" ? 2 : 5
       hands = state[:players].to_h { |player| [player, []] }
       cursor = dealer
@@ -1118,11 +1141,12 @@ module GameRoomGames
       opponents ||= all_opponents
       return 1.0 if opponents.empty?
       key = [actor, own, board, all_opponents, state[:options]["variant"], ranges].inspect
+      key += ':nine' if state[:options]["deck"] == "nine"
       if @poker_equity_key == key
         return poker_sample_equity(opponents)
       end
       random = Random.new(Digest::SHA256.hexdigest(key).to_i(16))
-      unknown = standard_deck - own - board
+      unknown = poker_deck(state[:options]) - own - board
       @poker_samples = Array.new(64) do
         sample = unknown.dup
         # Partial Fisher-Yates, independent of the actual deal seed and hands.
@@ -1174,10 +1198,11 @@ module GameRoomGames
       own = hand_for(state, actor)
       opponents = contenders(state).reject { |player| same_user?(player, actor) }
       key = [actor, own, opponents, state[:options]["draw_five"], exchanges].inspect
+      key += ':nine' if state[:options]["deck"] == "nine"
       if @exchange_plan_key != key
         @exchange_plan_key = key
         random = Random.new(Digest::SHA256.hexdigest(key).to_i(16))
-        unknown = standard_deck - own
+        unknown = poker_deck(state[:options]) - own
         @exchange_samples = Array.new(96) do
           sample = unknown.dup
           sample.length.times do |index|

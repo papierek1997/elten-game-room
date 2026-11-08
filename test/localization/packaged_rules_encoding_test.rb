@@ -14,7 +14,8 @@ GameRoomBotNames::NAMES.each do |token, name|
     raise "Binary lobby bot announcement lost name" unless global.valid_encoding? && global.include?(name) && !global.include?("komputer")
   end
 end
-raise "Lost games during binary loading" unless registry.ids.length == 39
+expected_games = JSON.parse(File.read(File.join(__dir__, '../fixtures/game_descriptions_pl.json'), encoding: 'UTF-8')).keys
+raise "Unexpected games during binary loading" unless registry.ids.sort == expected_games.sort
 raise "Typing Mania was not loaded from binary sources" unless registry.ids.include?('mania_pisania')
 %w[bouillabaisse scopa].each { |id| raise "Missing new card game: #{id}" unless registry.ids.include?(id) }
 raise "Bridge was not loaded from binary sources" unless registry.ids.include?("bridge")
@@ -77,7 +78,8 @@ end
 # second ordinary require of the checkout. No network or host UI is used.
 raise "Missing binary save engine" unless defined?(GameRoomSavedGameArchive) && GameRoomSavedGameArchive::FORMAT == 1
 raise "Missing binary saved games menu" unless EltenGameRoom::MAIN_OPTIONS.include?(RULES_CATALOG.fetch("Saved games"))
-raise "Wrong number of saveable games" unless registry.ids.count { |id| registry.build(id).supports_saved_games? } == 34
+without_saves = registry.ids.reject { |id| registry.build(id).supports_saved_games? }
+raise "Unexpected games without saves" unless without_saves.sort == %w[audio_ball axel_pong battleship categories quiz]
 raise "Typing Mania saves were lost during binary loading" unless registry.build('mania_pisania').supports_saved_games?
 raise "Bridge saves were lost during binary loading" unless registry.build("bridge").supports_saved_games?
 raise "Mille Bornes saves were lost during binary loading" unless registry.build("mille_bornes").supports_saved_games?

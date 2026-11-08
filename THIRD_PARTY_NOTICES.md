@@ -1,5 +1,11 @@
 # Third-party notices
 
+Roulette wheel and casino-chip effects use CC0 sounds by Joao_Janz and reg7783.
+Sources and edits are documented in `LICENSES/ROULETTE-SOUNDS.txt`.
+
+The bingo drawing effect uses a CC0 sound by deltaknightone.
+Its source and edits are documented in `LICENSES/BINGO-SOUND.txt`.
+
 ## Krowa: SJP inflection rules
 
 `games/krowa_support/sjp_noun_forms.rb` adapts a small subset of the noun

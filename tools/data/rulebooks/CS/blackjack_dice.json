@@ -1,0 +1,69 @@
+{
+  "source": "games/blackjack_dice.rb",
+  "sections": [
+    {
+      "id": "play",
+      "title": {
+        "cs": "Kostkové varianty a body"
+      },
+      "paragraphs": [
+        {
+          "cs": "Hráči postupně sčítají hody k 21. Varianta Dvě kostky používá dvě pod 16 a jednu od 16. Jedna kostka používá stále jednu. Po prvním hodu lze stát. Dosažení nebo překročení 21 ukončuje tah."
+        },
+        {
+          "cs": "Po tazích všech hráčů získá jediné nejvyšší skóre do 21 jeden bod, přesných 21 dva. Shoda nejvyšších výsledků včetně 21 a překročení všech hráčů nedávají body. Stejné bodování platí pro jednu kostku místo rozstřelu. Začínající hráč se každé kolo střídá. První na zvoleném limitu, výchozím deseti, vyhrává."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "cs": "Vstupní vklad a sázení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Na začátku kola každý aktivní hráč automaticky vloží vstupní částku: výchozí hodnota je deset žetonů nebo částka nastavená u stolu. Kdo má méně, vloží celý zůstatek a je all-in. Potom hráči postupně mohou čekat, dorovnat, zvýšit, složit nebo jít all-in. Zvýšení vyžaduje další odpověď ostatních. Sázení končí, když všichni s žetony odpověděli a dorovnali, nebo zbývá jediný hráč, který nesložil. All-in hráči dále hrají bez dalších sázek. Krátký all-in znovu neotevře zvyšování již rozhodnutému hráči, dokud součet zvýšení nedosáhne plného zvýšení."
+        },
+        {
+          "cs": "C čeká nebo dorovná, F složí, A jde all-in a R nebo B zadá vlastní zvýšení. Zadáváš zvýšení nad aktuální sázku; případné dorovnání se přičte k platbě. První zvýšení je alespoň jeden žeton, další alespoň poslední plné zvýšení; menší konečný all-in je povolen. Nabídky jsou i v akcích. Karty nebo hody začnou až po skončení sázení."
+        }
+      ]
+    },
+    {
+      "id": "chips",
+      "title": {
+        "cs": "Hra o žetony"
+      },
+      "paragraphs": [
+        {
+          "cs": "Při tvorbě stolu vyber Virtuální žetony ve Vyhodnocení kola pro vstupní vklady a sázení před hody. Nastav počáteční žetony, vklad a počet kol. Výchozí hodnoty jsou 100 žetonů, vklad deset a deset kol. Bodový režim zachovává skórování bez sázek o žetony."
+        },
+        {
+          "cs": "Po sázení házejí všichni, kteří nesložili, včetně all-in hráčů. Vklady tvoří hlavní a vedlejší banky: hráč může vyhrát jen vrstvy pokryté jeho vkladem. Každou vrstvu vyhraje nejvyšší oprávněný výsledek do 21; shodná maxima ji rozdělí, zbytky získají podle pořadí míst v kole. Nedorovnaný přebytek se vrací. Vrstva bez oprávněného výsledku do 21 se vrátí přispěvatelům. Pokud všichni kromě jednoho složí, zbývající hráč vyhraje společný bank bez hodů. Celkový počet žetonů v banku a zůstatcích se zachová."
+        },
+        {
+          "cs": "Začínající hráč se střídá. Nula žetonů vyřadí až po vyhodnocení. Zápas končí limitem kol nebo méně než dvěma hráči s žetony. Vyhraje nejvyšší konečný zůstatek; shodná maxima remizují. S čte zůstatky. Starší uložené žetonové hry zachovají původní sázení."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Ovládání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipkami zvolte akci a potvrďte Enterem. Tab mění pole. T čte tah, S skóre, F1 aktuální zkratky a Ctrl+F1 pravidla. Karty v ruce zachovávají svou identitu a pořadí dobrání. Slouží k prohlížení; rozhodnutí vybírejte v samostatných akcích."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "play",
+    "score_limit": "play",
+    "scoring": "chips",
+    "starting_chips": "chips",
+    "stake": "betting",
+    "round_limit": "chips"
+  }
+}

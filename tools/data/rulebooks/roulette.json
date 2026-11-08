@@ -1,0 +1,63 @@
+{
+  "source": "games/roulette.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "Roulette",
+        "pl": "Ruletka"
+      },
+      "paragraphs": [
+        {
+          "en": "This game uses virtual chips only. Place any number of bets within your balance before finishing your turn. Players bet in order; after everyone is ready, no further bets can be changed for this spin. The outcome comes from native server randomness, not the spinner’s choice.",
+          "pl": "Gra używa wyłącznie wirtualnych żetonów. Przed zakończeniem swojej tury możesz stawiać wiele zakładów w granicach salda. Gracze obstawiają kolejno. Po gotowości wszystkich nie można zmienić zakładów tego obrotu. Wynik losuje natywny serwer, nie wybiera go kręcący."
+        }
+      ]
+    },
+    {
+      "id": "modes",
+      "title": {
+        "en": "Casino and social tables",
+        "pl": "Stół kasynowy i towarzyski"
+      },
+      "paragraphs": [
+        {
+          "en": "Casino mode uses an automatic croupier and fixed casino payouts, with no player bank balance. Social mode requires two players: the spinner rotates among solvent seats. Space spins after betting. The shared pool is divided between winning claims in proportion to their nominal casino returns, including returned stake. These are pool shares, not guaranteed casino odds. If nobody has a winning claim, every stake is refunded. This shared-pool settlement is a Power Games social rule. Choose starting chips and 1–100 spins. Highest remaining balance wins after the last spin; equal best balances draw. Betting uses whole chips; balances can include half chips. A balance below one chip cannot bet again.",
+          "pl": "W kasynie automatyczny krupier wypłaca według stałych kursów; żaden gracz nie finansuje banku. Tryb towarzyski wymaga dwóch graczy, a kręcący zmienia się między wypłacalnymi miejscami. Po obstawianiu Spacja kręci kołem. Wygrane zakłady dzielą całą pulę proporcjonalnie do nominalnych zwrotów kasynowych wraz ze stawką. To udziały w puli, nie gwarantowane kursy kasyna. Gdy żaden zakład nie wygra, stawki wracają do właścicieli. Jest to towarzyska zasada Power Games. Wybierz początkowe żetony i 1–100 obrotów. Po ostatnim wygrywa najwyższe saldo; równe najwyższe salda dają remis. Stawki są całkowite, saldo może zawierać połówki. Poniżej jednego żetonu nie można obstawiać."
+        }
+      ]
+    },
+    {
+      "id": "bets",
+      "title": {
+        "en": "Wheels, bets and payouts",
+        "pl": "Koła, zakłady i wypłaty"
+      },
+      "paragraphs": [
+        {
+          "en": "European roulette has 0–36. American roulette also has 00. French roulette has one zero and la partage: zero returns half of red, black, odd, even, low and high stakes. Zero and double zero are neither red/black, odd/even nor low/high. Casino profit odds are 35:1 for a number, 17:1 for a split, 11:1 for a street or trio, 8:1 for four numbers, 6:1 for the American first five, 5:1 for six numbers, 2:1 for a dozen or column and 1:1 for an outside even-money bet. Winning stakes are also returned. Only adjacent legal groups on the layout are offered. In social mode these nominal returns are weights for pool division.",
+          "pl": "Koło europejskie ma 0–36, amerykańskie dodatkowo 00. Francuskie ma jedno zero i la partage: przy zerze wraca połowa stawki na kolor, parzystość lub niskie/wysokie. Zero i podwójne zero nie należą do tych grup. Zysk kasynowy wynosi 35:1 na numer, 17:1 na parę, 11:1 na trójkę, 8:1 na cztery numery, 6:1 na amerykańską pierwszą piątkę, 5:1 na sześć, 2:1 na tuzin lub kolumnę oraz 1:1 na zakłady zewnętrzne. Wygrana stawka również wraca. Dostępne są wyłącznie prawidłowe sąsiadujące grupy stołu. Towarzysko zwroty te określają proporcje podziału puli."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Controls",
+        "pl": "Sterowanie"
+      },
+      "paragraphs": [
+        {
+          "en": "B opens a form to choose any offered bet and enter your own whole-chip amount. The main list offers quick bets up to ten chips. R finishes your betting turn, C removes and refunds your current bets, V reads them and S reads balances. Space spins in social mode when all are ready. T reads the turn; F1 lists shortcuts; Ctrl+F1 opens rules. Sounds play locally and respect Power Games volume.",
+          "pl": "B otwiera formularz wyboru zakładu i własnej całkowitej kwoty. Lista główna pozwala szybko postawić do dziesięciu żetonów. R kończy obstawianie, C usuwa i zwraca bieżące stawki, V odczytuje zakłady, a S salda. Spacja kręci kołem towarzyskim po gotowości wszystkich. T odczytuje turę, F1 skróty, Ctrl+F1 zasady. Dźwięki są lokalne i respektują głośność Power Games."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "mode": "modes",
+    "wheel": "bets",
+    "starting_chips": "modes",
+    "round_limit": "modes"
+  }
+}

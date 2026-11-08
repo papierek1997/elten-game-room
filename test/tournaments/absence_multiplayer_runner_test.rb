@@ -2,7 +2,9 @@ require_relative '../support/tournament_presence_native'
 P = TournamentPresenceNative
 
 [GameRoomGames::Farkle.new, GameRoomGames::CatHeadTail.new, GameRoomGames::Yahtzee.new,
- GameRoomGames::Categories.new, GameRoomGames::QuizParty.new].each do |game|
+ GameRoomGames::Categories.new, GameRoomGames::QuizParty.new, GameRoomGames::Blackjack.new,
+ GameRoomGames::BlackjackDice.new, GameRoomGames::DicePoker.new, GameRoomGames::Bingo.new,
+ GameRoomGames::LiarsDice.new, GameRoomGames::Roulette.new].each do |game|
   TournamentForfeitNative.with_fixture(game: game, users: %w[Alice Bob Carol]) do |f|
     f.start
     h, clock = f.h, [0.0]
@@ -61,4 +63,4 @@ P = TournamentPresenceNative
     runner&.close
   end
 end
-puts 'PASS native tournament multiplayer: five game-owned continuations, trusted boundary, cold return, sole survivor and one ranked result'
+puts 'PASS native tournament multiplayer: eleven game-owned continuations, trusted boundary, cold return, sole survivor and one ranked result'

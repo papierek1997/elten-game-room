@@ -1,0 +1,75 @@
+{
+  "source": "games/bingo.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "Bingo tickets and goals",
+        "pl": ""
+      },
+      "paragraphs": [
+        {
+          "en": "Each player receives one ticket. Balls are called without replacement. Complete the announced pattern. All tickets use the same calls; players completing the final goal together share a draw.",
+          "pl": ""
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Variants",
+        "pl": "Warianty"
+      },
+      "paragraphs": [
+        {
+          "en": "30-ball: a 3 by 3 ticket, three numbers from each range 1–10, 11–20 and 21–30. Cover all nine to win. There is no free square.",
+          "pl": ""
+        },
+        {
+          "en": "75-ball: a 5 by 5 ticket. B, I, N, G and O use ranges 1–15, 16–30, 31–45, 46–60 and 61–75. The centre is free. 80-ball uses a 4 by 4 ticket with columns 1–20, 21–40, 41–60 and 61–80. For these variants choose any horizontal, vertical or diagonal line, four corners or full house at table creation.",
+          "pl": ""
+        },
+        {
+          "en": "90-ball: three rows and nine columns, five numbers per row and fifteen per ticket. Columns cover 1–9, 10–19, through 70–79 and 80–90; numbers increase down each column. Play for one horizontal line, then two, then full house on the same ticket. Earlier winners are announced; full house decides the match.",
+          "pl": ""
+        }
+      ]
+    },
+    {
+      "id": "marking",
+      "title": {
+        "en": "Marking and calling bingo",
+        "pl": ""
+      },
+      "paragraphs": [
+        {
+          "en": "Automatic mode marks tickets and detects winning patterns. Calls are paced at 3–30 seconds, default five. Manual mode waits for every player to finish the call. Mark only called numbers on your ticket, then claim bingo or confirm ready. Claims from that call are checked together, so network speed does not select a winner. A wrong claim changes nothing.",
+          "pl": ""
+        },
+        {
+          "en": "After a 90-ball stage win in manual mode, the next goal can be claimed on the same call; otherwise confirm ready again to continue drawing. Called numbers may be marked later. An empty drum without a valid claim ends in a draw. The per-call ready barrier is a Power Games accessibility adaptation. Tickets and calls use the shared server-backed game executor.",
+          "pl": ""
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Controls",
+        "pl": "Sterowanie"
+      },
+      "paragraphs": [
+        {
+          "en": "Use arrows to read the ticket. In manual mode Enter marks a called number, M enters a number, B claims bingo and R confirms ready. The actions list also has Claim bingo and Ready. L repeats the last ball; D browses calls. Tab changes fields. F1 shows current shortcuts, Ctrl+F1 the rules. History, chat and volume use the normal Power Games keys.",
+          "pl": ""
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "pattern": "variants",
+    "marking": "marking",
+    "ball_interval": "marking"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "source": "games/dice_poker.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Kostkový poker"
+      },
+      "paragraphs": [
+        {
+          "cs": "Každý hází pěti běžnými kostkami do limitu stolu a mezi hody může ponechat libovolné kostky. Můžeš skončit dříve. Po tazích všech hráčů získá nejlepší kombinace bod; při shodě dostane bod každý vítěz kola. Vyhrává nejvíce bodů po zvoleném počtu kol. Shoda konečných bodů znamená remízu. Toto bodování kol je formát zápasu Power Games."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Varianty a kombinace"
+      },
+      "paragraphs": [
+        {
+          "cs": "S postupkami: pět stejných, čtyři stejné, full house, postupka, trojice, dva páry, pár, vysoká kostka. Postupka je 1–5 nebo 2–6; 2–6 je vyšší. Bez postupek se tyto hody hodnotí jako vysoké kostky. Obvykle jsou nejvyšší šestky; varianta s esy staví jedničky nad šestky a nemá postupky. Shodné kategorie rozhodují opakované hodnoty, potom zbývající kostky. Barvy se nehodnotí."
+        }
+      ]
+    },
+    {
+      "id": "turns",
+      "title": {
+        "cs": "Hody a kola"
+      },
+      "paragraphs": [
+        {
+          "cs": "Zvol dva nebo tři hody na tah a 1–20 kol. Při limitu zahajujícího mají ostatní nejvýše tolik hodů, kolik použil první hráč kola. Zahajující místo se každé kolo posouvá. Kostky jsou veřejné a každý hod využívá náhodu serveru. Před dalším hodem můžeš změnit ponechané kostky."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "cs": "Sázení žetonů"
+      },
+      "paragraphs": [
+        {
+          "cs": "Zvolte body nebo virtuální žetony. Každý zaplatí ante, při nedostatku celý zbytek. Sázení proběhne před hody i po dokončení všech kombinací. Lze čekat, dorovnat, zvýšit vlastní částkou, složit nebo jít all-in. Složený hráč nehází, all-in stále ano. Hlavní a vedlejší banky se dělí podle krytých vkladů a nejlepších kombinací, shody podle pořadí míst. Nekryté části se vracejí. Jeden zbývající soupeř vyhrává bez hodů. Konec nastane po limitu kol nebo s jediným solventním hráčem. C čeká/dorovná, F složí, A all-in, B či R zadá zvýšení, S čte zůstatky."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Ovládání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Enter hází. Po hodu klávesy 1–6 vyberou další kostku s touto hodnotou k přehození; Shift+1–6 ji ponechá. Enter přehodí vybrané kostky, bez výběru otevře ponechání kombinace. K ji ponechá přímo. Mezerník čte kostky a výběr, S body. F1 zobrazí zkratky, Ctrl+F1 pravidla. Chat, historie a hlasitost používají společné ovládání."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "throws": "turns",
+    "opener_limit": "turns",
+    "round_limit": "turns",
+    "scoring": "betting",
+    "starting_chips": "betting",
+    "stake": "betting"
+  }
+}

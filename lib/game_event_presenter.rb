@@ -66,6 +66,7 @@ class GameRoomEventPresenter
 
   def process_new_events(replay, signal_received_at: nil, session:, background: false, timer_now: nil)
     return unless prepare_presentation_session(session, background: background)
+    update_game_background_music(replay)
     @presentation_session = session
     newest_id = replay.accepted_events.map { |event| @repository.call.event_id(event) }.max.to_i
     return present_reconstructed_events(replay, newest_id, session, background, timer_now) if @last_seen_event_id == nil
@@ -141,6 +142,13 @@ class GameRoomEventPresenter
     @last_seen_event_id = [@last_seen_event_id, newest_id].max
     present_decision.call if @event_presentation == nil || new_events.empty? && !event_presentation_busy?
     @event_presentation&.advance
+  end
+
+  private def update_game_background_music(replay)
+    program = @program.call
+    if program&.respond_to?(:background_music)
+      program.background_music.game(self, replay, output: GameRoomSoundOutput.current(program))
+    end
   end
 
   def present_reconstructed_events(replay, newest_id, session, background, timer_now)

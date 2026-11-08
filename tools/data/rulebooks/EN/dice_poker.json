@@ -1,0 +1,69 @@
+{
+  "source": "games/dice_poker.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "Poker dice"
+      },
+      "paragraphs": [
+        {
+          "en": "Each player rolls five ordinary dice up to the table limit, keeping any dice between throws. Stop early or use all throws. After everyone finishes, the strongest combination earns one point; tied strongest hands each earn one. Most points after the selected rounds wins. Equal final scores draw. This round scoring is the Power Games match format."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Variants and ranking"
+      },
+      "paragraphs": [
+        {
+          "en": "With straights: five equal, four equal, full house, straight, three equal, two pairs, pair, high die. A straight is 1–5 or 2–6; 2–6 wins. Without straights, these rolls count as high dice. Sixes normally rank highest; the aces variant ranks ones above sixes and omits straights. Compare equal categories by the repeated values, then remaining dice. There are no suits or flushes."
+        }
+      ]
+    },
+    {
+      "id": "turns",
+      "title": {
+        "en": "Throws and rounds"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose two or three throws per turn and 1–20 rounds. If the opener limit is enabled, everyone else gets at most the number of throws used by the first player in that round. The opening seat rotates each round. Dice are public, and every throw uses native server randomness. You may change which dice to keep before a later throw."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "en": "Chip betting"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose point scoring or virtual chips. With chips, everyone pays the opening contribution or all remaining chips if short. A poker-style betting round runs before throws and another after everyone keeps a hand. Check, call, raise by a custom amount, fold or go all-in. Folded seats do not roll; an all-in seat still completes its throws. Contribution levels create main and side pots. Each layer goes to its strongest eligible hand, splitting exact ties in seat order. Uncontested layers or layers without eligible players are refunded as appropriate. One remaining contender wins without further throws. The match stops at the round limit or with one solvent player. S reads balances, C checks/calls, F folds, A goes all-in and B or R enters a raise."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Controls"
+      },
+      "paragraphs": [
+        {
+          "en": "Enter rolls. After a throw, keys 1–6 select another die with that face to reroll; Shift+1–6 keeps it. Enter rerolls selected dice; without a selection it opens the Keep hand choice. K keeps the current hand directly. Space reads dice and selection; S reads scores. F1 lists current shortcuts, Ctrl+F1 opens rules. Chat, history and volume use shared controls."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "throws": "turns",
+    "opener_limit": "turns",
+    "round_limit": "turns",
+    "scoring": "betting",
+    "starting_chips": "betting",
+    "stake": "betting"
+  }
+}

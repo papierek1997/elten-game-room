@@ -11,9 +11,10 @@ module GameRoomGames
     private
 
     def private_deal_spec(state)
-      state[:deck] = Array.new(52 - state[:hands].values.sum(&:size), :private_card)
+      deck = poker_deck(state[:options])
+      state[:deck] = Array.new(deck.size - state[:hands].values.sum(&:size), :private_card)
       state[:private_discarded] = state[:players].to_h { |player| [player, []] }
-      {hands: state[:hands], deck: standard_deck}
+      {hands: state[:hands], deck: deck}
     end
 
     # Exchanging positions, rather than names, does not disclose discarded

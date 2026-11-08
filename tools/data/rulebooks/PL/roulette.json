@@ -1,0 +1,55 @@
+{
+  "source": "games/roulette.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Ruletka"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gra używa wyłącznie wirtualnych żetonów. Przed zakończeniem swojej tury możesz stawiać wiele zakładów w granicach salda. Gracze obstawiają kolejno. Po gotowości wszystkich nie można zmienić zakładów tego obrotu. Wynik losuje natywny serwer, nie wybiera go kręcący."
+        }
+      ]
+    },
+    {
+      "id": "modes",
+      "title": {
+        "pl": "Stół kasynowy i towarzyski"
+      },
+      "paragraphs": [
+        {
+          "pl": "W kasynie automatyczny krupier wypłaca według stałych kursów; żaden gracz nie finansuje banku. Tryb towarzyski wymaga dwóch graczy, a kręcący zmienia się między wypłacalnymi miejscami. Po obstawianiu Spacja kręci kołem. Wygrane zakłady dzielą całą pulę proporcjonalnie do nominalnych zwrotów kasynowych wraz ze stawką. To udziały w puli, nie gwarantowane kursy kasyna. Gdy żaden zakład nie wygra, stawki wracają do właścicieli. Jest to towarzyska zasada Power Games. Wybierz początkowe żetony i 1–100 obrotów. Po ostatnim wygrywa najwyższe saldo; równe najwyższe salda dają remis. Stawki są całkowite, saldo może zawierać połówki. Poniżej jednego żetonu nie można obstawiać."
+        }
+      ]
+    },
+    {
+      "id": "bets",
+      "title": {
+        "pl": "Koła, zakłady i wypłaty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Koło europejskie ma 0–36, amerykańskie dodatkowo 00. Francuskie ma jedno zero i la partage: przy zerze wraca połowa stawki na kolor, parzystość lub niskie/wysokie. Zero i podwójne zero nie należą do tych grup. Zysk kasynowy wynosi 35:1 na numer, 17:1 na parę, 11:1 na trójkę, 8:1 na cztery numery, 6:1 na amerykańską pierwszą piątkę, 5:1 na sześć, 2:1 na tuzin lub kolumnę oraz 1:1 na zakłady zewnętrzne. Wygrana stawka również wraca. Dostępne są wyłącznie prawidłowe sąsiadujące grupy stołu. Towarzysko zwroty te określają proporcje podziału puli."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Sterowanie"
+      },
+      "paragraphs": [
+        {
+          "pl": "B otwiera formularz wyboru zakładu i własnej całkowitej kwoty. Lista główna pozwala szybko postawić do dziesięciu żetonów. R kończy obstawianie, C usuwa i zwraca bieżące stawki, V odczytuje zakłady, a S salda. Spacja kręci kołem towarzyskim po gotowości wszystkich. T odczytuje turę, F1 skróty, Ctrl+F1 zasady. Dźwięki są lokalne i respektują głośność Power Games."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "mode": "modes",
+    "wheel": "bets",
+    "starting_chips": "modes",
+    "round_limit": "modes"
+  }
+}

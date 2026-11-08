@@ -118,9 +118,9 @@ module GameRoomGames
 
       # Called only at a game-owned, fully scored round/deal boundary. Copy the
       # cumulative public scores now, before later partial scoring can alter them.
-      def remember_tournament_checkpoint(state, event_id:, index:, kind: 'round', order: 'higher')
+      def remember_tournament_checkpoint(state, event_id:, index:, kind: 'round', order: 'higher', scores: state.fetch(:scores))
         state[:tournament_checkpoint] = {'status'=>'scored','event_id'=>event_id,
-          'index'=>index,'kind'=>kind,'order'=>order,'scores'=>state.fetch(:scores).dup}
+          'index'=>index,'kind'=>kind,'order'=>order,'scores'=>scores.dup}
       end
       private :remember_tournament_checkpoint
 

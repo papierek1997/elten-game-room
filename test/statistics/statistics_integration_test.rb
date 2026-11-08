@@ -80,6 +80,7 @@ service = Struct.new(:store).new(store)
 service_reads = 0
 EltenGameRoom.define_singleton_method(:statistics_service) { service_reads += 1; service }
 app = EltenGameRoom.new
+EltenGameRoom.remember_settings(EltenGameRoom::DEFAULT_SETTINGS)
 app.define_singleton_method(:run_network_task) { |*_args, **_options| raise "Statistics used the shared lobby task" }
 app.define_singleton_method(:announce_server_table_access) { raise "Statistics changed the lobby access status" }
 lobby_error = IOError.new("existing lobby error")

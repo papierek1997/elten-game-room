@@ -43,6 +43,13 @@ translations must be kept up to date together.
 
 ## Maintenance
 
+- [Bingo](BINGO.md): variants, tickets, manual/automatic marking, native draws and sound licensing.
+- [Dice poker and Liar's dice](DICE_GAMES.md): variants, ranking, hidden-roll protocol, controls and rule sources.
+- [Go and roulette](GO_ROULETTE.md): boards, scoring agreement, wheels, bets, social pool and rule sources.
+- [Local background music](BACKGROUND_MUSIC.md): general/game tracks, files, MIDI, volumes and lifecycle.
+- [Blackjack games](BLACKJACK.md): card and dice variants, scoring, replay,
+  virtual-chip boundaries and targeted verification.
+
 - [Architecture](ARCHITECTURE.md): data flow, layers and their responsibilities.
 - [Host API](HOST_API.md): the final ELTEN 3.0.4 contract.
 - [Building](BUILDING.md): dependencies, tests, generators and staging.

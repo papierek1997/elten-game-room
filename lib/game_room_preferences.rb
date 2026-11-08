@@ -106,10 +106,21 @@ module GameRoomPreferences
       widget_show_unavailable
     ].each { |key| result[key] = result[key] != false }
     result["sound_volumes"] = sound_volumes(source)
+    result["background_music"] = background_music(source)
     LEGACY_SOUND_KEYS.each do |group, key|
       result[key] = result["sound_volumes"][group] > 0
     end
     result.merge(GameRoomLocalization.normalize_settings(result))
+  end
+
+  def background_music(values)
+    source = values['background_music'].is_a?(Hash) ? values['background_music'] : {}
+    %w[general game].to_h do |kind|
+      track = source[kind].is_a?(Hash) ? source[kind] : {}
+      volume = track['volume'].is_a?(Numeric) ? track['volume'].to_i.clamp(0, 100) : 30
+      path = track['file'].is_a?(String) && !track['file'].include?("\0") ? track['file'].dup : ''
+      [kind, {'enabled' => track['enabled'] == true, 'file' => path, 'volume' => volume}]
+    end
   end
 
   def lobby_announcement_enabled?(values, kind, game_id, game_ids)

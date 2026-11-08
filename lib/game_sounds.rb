@@ -15,6 +15,9 @@ module GameRoomSounds
     buzzer
     buzzer2
     quiz_wrong_answer
+    bingo_draw
+    roulette_spin
+    roulette_chips
     duck_challenge
     duck_question
     duck_correct

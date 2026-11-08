@@ -1,0 +1,66 @@
+{
+  "source": "games/liars_dice.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Dados mentirosos"
+      },
+      "paragraphs": [
+        {
+          "es": "Cada jugador comienza con 1–5 dados, normalmente cinco. Solo ves tu cubilete. Una apuesta declara cuántos dados de una cara hay entre todos los cubiletes. Sube o desafía. Una apuesta falsa cuesta un dado a su autor; desafiar una verdadera cuesta un dado al desafiante. Es verdadera si hay al menos la cantidad indicada. Sin dados quedas eliminado. Gana el último con dados."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Variantes y llamadas exactas"
+      },
+      "paragraphs": [
+        {
+          "es": "Clásico no tiene comodines. Sube la cantidad con cualquier cara, o conserva la cantidad y sube la cara. El estilo Red Dead añade Exacto: si aciertas, todos los demás pierden un dado; si fallas, lo pierdes tú. En Perudo los unos son comodines para otras caras. Una ronda normal no comienza con unos. Pasar a unos exige la mitad de la cantidad anterior redondeada hacia arriba; volver a otra cara exige el doble más uno. Para subir unos hay que anunciar más unos."
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": {
+        "es": "Palifico, Calza y tiradas ocultas"
+      },
+      "paragraphs": [
+        {
+          "es": "Palifico opcional de Perudo dura una ronda cuando quien comienza llega por primera vez a un dado y quedan más de dos jugadores. Los unos dejan de ser comodines; solo quienes ya declararon Palifico pueden cambiar la cara. Calza opcional permite a cualquiera salvo el autor declarar la cantidad exacta antes de la siguiente apuesta aceptada. Acertar recupera un dado hasta el límite inicial; fallar pierde uno. Tras perder empieza quien perdió o el siguiente superviviente. Tras Exacto correcto de Red Dead empieza el desafiante; tras Calza correcta, quien perdió por última vez."
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": {
+        "es": "Dados privados"
+      },
+      "paragraphs": [
+        {
+          "es": "Primero se guardan compromisos secretos; después el servidor sortea una nueva semilla. Juntos determinan los dados ocultos. Los secretos se revelan y verifican solo tras un desafío. Los bots usan su cubilete y apuestas públicas. Conserva el mismo perfil de Elten para mantener los secretos. Guardar o transferir un secreto pendiente está bloqueado; se puede reemplazar a otra persona sin secreto pendiente."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Controles"
+      },
+      "paragraphs": [
+        {
+          "es": "Flechas y Enter eligen la apuesta mínima legal por cara o un desafío. B abre un formulario para tu cantidad y cara. K desafía el farol y D declara Exacto cuando está disponible. V lee tus dados, L la apuesta actual. Tiradas y revelaciones son automáticas mediante el ejecutor común. F1 muestra atajos; Ctrl+F1 reglas. Chat, historial y volumen usan controles comunes."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "starting_dice": "aim",
+    "palifico": "special",
+    "calza": "special"
+  }
+}

@@ -201,7 +201,7 @@ PublicationTest.test('legalne choice Axel Ponga custom i unlimited przechodzą p
   assert_equal([], failures, 'Legalne choice odrzucone przed normalizacją')
 end
 
-PublicationTest.test('wszystkie 32 gry zachowują rzeczywiste opcje i legalną liczebność') do
+PublicationTest.test('wszystkie gry zachowują rzeczywiste opcje i legalną liczebność') do
   assert(GameRoomGames::CATALOG.ids.include?('mille_bornes'), 'Missing Power Games model')
   GameRoomGames::CATALOG.ids.each do |id|
     value = PublicationTest.draft(id)
@@ -254,7 +254,7 @@ PublicationTest.test('bool i team_seats zachowują ścisłe typy oraz walidację
   [true, false].each { |flag| PublicationTest.roundtrip(ludo.merge('game_options' => ludo['game_options'].merge('enter_on_one' => flag))) }
 end
 
-PublicationTest.test('bounded choice wszystkich 32 modeli zachowują dokładne wartości i zależne definicje') do
+PublicationTest.test('bounded choice wszystkich modeli zachowują dokładne wartości i zależne definicje') do
   counts = {}
   GameRoomGames::CATALOG.ids.each do |id|
     game = GameRoomGames::CATALOG.build(id)
@@ -263,7 +263,9 @@ PublicationTest.test('bounded choice wszystkich 32 modeli zachowują dokładne w
       # Normalizacja służy jedynie wyznaczeniu oczekiwanych brakujących domyślnych;
       # Publication otrzymuje pierwotne jawne choice, nigdy poprawiony wariant.
       expected = game.normalize_options(options)
-      assert(options.all? { |key, value| expected.fetch(key).eql?(value) }, "Normalizator zmienił choice: #{id} #{options.inspect}")
+      definitions = game.effective_option_definitions(options).to_h { |definition| [definition.key.to_s, definition] }
+      assert(options.all? { |key, value| expected.fetch(key) { definitions.fetch(key).default }.eql?(value) },
+        "Normalizator zmienił choice: #{id} #{options.inspect}")
       count = (game.minimum_players..game.maximum_players).find { |size| game.validation_error(expected, player_count: size).nil? }
       assert(count, "Brak legalnej liczebności: #{id} #{options.inspect}")
       value = PublicationTest.draft(id).merge('game_options' => options, 'players_per_match' => count)
