@@ -1,0 +1,69 @@
+{
+  "source": "games/dice_poker.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Poker kościany"
+      },
+      "paragraphs": [
+        {
+          "pl": "Każdy rzuca pięcioma zwykłymi kośćmi do ustalonego limitu, zatrzymując dowolne kości między rzutami. Możesz skończyć wcześniej. Po turach wszystkich graczy najlepszy układ daje jeden punkt; remisujące najlepsze układy dostają po punkcie. Wygrywa najwięcej punktów po wybranej liczbie rund. Równy wynik końcowy oznacza remis. Ta punktacja rund to format meczu Power Games."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Odmiany i układy"
+      },
+      "paragraphs": [
+        {
+          "pl": "Ze stritami: pięć jednakowych, kareta, ful, strit, trójka, dwie pary, para, wysoka kość. Strit to 1–5 albo 2–6; 2–6 jest wyższy. Bez stritów te rzuty liczą się jako wysokie kości. Zwykle najwyższe są szóstki; w odmianie z asami jedynki są wyższe od szóstek, a stritów nie ma. Równe kategorie porównuje się według powtarzanych wartości, następnie pozostałych kości. Nie ma kolorów ani pokerów w kolorze."
+        }
+      ]
+    },
+    {
+      "id": "turns",
+      "title": {
+        "pl": "Rzuty i rundy"
+      },
+      "paragraphs": [
+        {
+          "pl": "Wybierz dwa lub trzy rzuty na turę i 1–20 rund. Gdy włączysz limit otwierającego, pozostali mają najwyżej tyle rzutów, ile wykorzystał pierwszy gracz w rundzie. Otwierający zmienia się co rundę. Kości są jawne, a każdy rzut korzysta z losowania serwera. Przed kolejnym rzutem możesz zmienić wybór zatrzymanych kości."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "pl": "Licytacja na żetony"
+      },
+      "paragraphs": [
+        {
+          "pl": "Wybierz punkty albo wirtualne żetony. Każdy wpłaca wpisowe lub całe pozostałe saldo, gdy ma mniej. Licytacja jak w pokerze odbywa się przed rzutami i po zatrzymaniu układów przez wszystkich. Można czekać, sprawdzać, podbijać o własną kwotę, pasować lub zagrać all-in. Po spasowaniu nie rzuca się; all-in zachowuje prawo do rzutów. Wpłaty tworzą pulę główną i poboczne. Warstwę wygrywa najlepszy uprawniony układ, remisy dzielą ją w kolejności miejsc. Niepokryte części i warstwy bez uprawnionych są odpowiednio zwracane. Jeden pozostały gracz wygrywa bez dalszych rzutów. Gra kończy się po limicie rund lub gdy pozostaje jeden wypłacalny gracz. S czyta salda, C czeka lub sprawdza, F pasuje, A gra all-in, B lub R wpisuje podbicie."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Sterowanie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Enter rzuca. Po rzucie klawisze 1–6 wybierają kolejną kość o tylu oczkach do przerzutu; Shift+1–6 ją zatrzymuje. Enter przerzuca wybrane kości, a bez wyboru otwiera zachowanie układu. K od razu zachowuje bieżący układ. Spacja odczytuje kości i zaznaczenie, S wyniki. F1 pokazuje skróty, Ctrl+F1 zasady. Czat, historia i głośność używają wspólnych klawiszy."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "throws": "turns",
+    "opener_limit": "turns",
+    "round_limit": "turns",
+    "scoring": "betting",
+    "starting_chips": "betting",
+    "stake": "betting"
+  }
+}

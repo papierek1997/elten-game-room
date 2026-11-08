@@ -1,0 +1,66 @@
+{
+  "source": "games/liars_dice.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Kłamczuch kościany"
+      },
+      "paragraphs": [
+        {
+          "pl": "Każdy zaczyna z 1–5 kośćmi, zwykle pięcioma. Widzisz tylko swój kubek. Deklaracja określa, ile kości o danej liczbie oczek jest łącznie pod wszystkimi kubkami. Podbij albo sprawdź. Fałszywa deklaracja kosztuje kość deklarującego; sprawdzenie prawdziwej kosztuje kość sprawdzającego. Deklaracja jest prawdziwa, gdy kości jest co najmniej tyle, ile podano. Bez kości odpadasz. Wygrywa ostatni gracz z kośćmi."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Odmiany i dokładne sprawdzenie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Klasyczny nie ma jokerów. Zwiększ liczbę kości przy dowolnych oczkach albo zachowaj liczbę kości i zwiększ oczka. Odmiana w stylu Red Dead dodaje Dokładnie: trafne sprawdzenie zabiera kość wszystkim pozostałym; błędne zabiera kość sprawdzającemu. W Perudo jedynki są jokerami dla innych oczek. Zwykłej rundy nie zaczyna się jedynkami. Przejście na jedynki wymaga połowy poprzedniej liczby, zaokrąglonej w górę; powrót do innych oczek wymaga podwojenia plus jeden. Podbicie jedynek wymaga większej ich liczby."
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": {
+        "pl": "Palifico, Calza i ukryte rzuty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Opcjonalne Palifico w Perudo działa przez jedną rundę, gdy otwierający pierwszy raz spadnie do jednej kości i gra więcej niż dwóch graczy. Jedynki przestają być jokerami; oczka mogą zmieniać tylko gracze, którzy już ogłaszali Palifico. Opcjonalna Calza pozwala każdemu poza deklarującym zgłosić dokładną liczbę przed przyjęciem kolejnej deklaracji. Trafienie odzyskuje kość do limitu początkowego, błąd ją zabiera. Po stracie zaczyna przegrany lub następny pozostały gracz. Po trafnym Dokładnie w Red Dead zaczyna sprawdzający. Po trafnej Calzie zaczyna ostatni przegrany."
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": {
+        "pl": "Prywatność kości"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gracze najpierw zapisują zobowiązania do tajnych wartości, a serwer potem losuje nowe ziarno. Razem wyznaczają ukryte kości. Sekrety są ujawniane i sprawdzane dopiero po zakwestionowaniu deklaracji. Bot zna tylko swój kubek i jawne deklaracje. Używaj tego samego profilu Eltena, aby zachować sekrety. Zapis gry i przekazanie trwającego sekretu są blokowane; inną osobę nadal można zastąpić."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Sterowanie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki i Enter wybierają najmniejszą legalną deklarację dla oczek albo sprawdzenie. B otwiera formularz własnej liczby kości i oczek. K sprawdza blef, D zgłasza Dokładnie, gdy jest dostępne. V czyta twoje kości, L bieżącą deklarację. Losowanie i ujawnianie obsługuje automatycznie wspólny wykonawca. F1 pokazuje skróty, Ctrl+F1 zasady. Czat, historia i głośność używają wspólnych klawiszy."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "starting_dice": "aim",
+    "palifico": "special",
+    "calza": "special"
+  }
+}

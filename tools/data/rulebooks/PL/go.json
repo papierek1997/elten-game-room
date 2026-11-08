@@ -1,0 +1,54 @@
+{
+  "source": "games/go.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Go"
+      },
+      "paragraphs": [
+        {
+          "pl": "Go powstało w Chinach; znane jest też jako baduk i igo. Dwaj gracze kładą czarne i białe kamienie na przecięciach linii. Zaczynają czarne. Kamienie połączone bokami tworzą grupę. Sąsiednie puste przecięcie jest oddechem. Zajęcie wszystkich oddechów zbija grupę. Najpierw usuwa się zbite kamienie przeciwnika, potem sprawdza samobójstwo, które jest zabronione."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Odmiany i ustawienia"
+      },
+      "paragraphs": [
+        {
+          "pl": "Wybierz planszę 9 na 9, 13 na 13 lub 19 na 19. Liczenie obszaru w stylu chińskim dodaje żywe kamienie do otoczonych pustych punktów. Liczenie terytorium dodaje do pustych punktów jeńców oraz uzgodnione martwe kamienie przeciwnika. Białe dostają wybrane komi. W Atari Go wygrywa pierwsze zbicie, a dwa pasy bez zbicia dają remis. We wszystkich odmianach obowiązuje pozycyjne superko: nie wolno odtworzyć wcześniejszego układu całej planszy. Tryb terytorialny wymaga uzgodnienia martwych grup i neutralnego seki; nie rozstrzyga automatycznie japońskich wyjątków życia i śmierci, na przykład zgiętej czwórki w rogu."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "pl": "Zakończenie i uzgadnianie wyniku"
+      },
+      "paragraphs": [
+        {
+          "pl": "Dwa kolejne pasy otwierają liczenie. Gracze na zmianę zaznaczają całą grupę jako martwą lub ją przywracają, wybierając jej kamień. Wybranie pustego punktu przełącza neutralność całego połączonego pustego obszaru, na przykład przy seki. Każda zmiana kasuje oba zatwierdzenia, a zmiana martwej grupy kasuje też neutralne obszary. A zatwierdza dokładnie tę propozycję. Dwa zatwierdzenia kończą partię. R wznawia grę z kamieniami nadal na planszy i usuwa oznaczenia; następny ruch ma przeciwnik. Punkty dają tylko obszary otoczone jednym kolorem. W obszarze liczą się też żywe kamienie, w terytorium zamiast nich jeńcy. Wyższy wynik wygrywa, równy daje remis. Q poddaje partię."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Sterowanie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałki przeglądają przecięcia, Enter stawia kamień lub zmienia oznaczenie. P pasuje, A zatwierdza wynik, R wznawia grę, Q poddaje, S odczytuje punkty, a T turę. Bot stosuje prostą ocenę zbić i oddechów, a następnie akceptuje liczenie. F1 podaje aktualne skróty, Ctrl+F1 otwiera zasady. Historia, czat i głośność używają wspólnych kontrolek."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "size": "variants",
+    "komi": "variants"
+  }
+}

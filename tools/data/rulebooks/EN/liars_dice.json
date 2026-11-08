@@ -1,0 +1,66 @@
+{
+  "source": "games/liars_dice.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "Liar's dice"
+      },
+      "paragraphs": [
+        {
+          "en": "Each player begins with 1–5 dice, normally five. Only you see your cup. A bid states how many dice of one face exist under all cups together. Raise the bid or challenge it. A false bid costs its bidder a die; challenging a true bid costs the challenger a die. A bid is true when at least the stated count exists. Players with no dice are eliminated. The last player with dice wins."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Variants and exact calls"
+      },
+      "paragraphs": [
+        {
+          "en": "Classic uses no wilds. Raise the quantity, choosing any face, or keep the quantity and raise the face. Red Dead style adds Exactly: if the count is exact, every other player loses a die; otherwise the caller loses one. Perudo counts ones as wilds for other faces. A normal Perudo round cannot open on ones. Changing to ones requires half the last quantity rounded up; changing from ones requires double plus one. Increasing a bid of ones requires more ones."
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": {
+        "en": "Palifico, Calza and hidden rolls"
+      },
+      "paragraphs": [
+        {
+          "en": "Optional Perudo Palifico applies for one round when its starter first falls to one die and more than two players remain. Ones stop being wild; faces cannot change except for players who have already declared Palifico. Optional Calza lets anyone except the bidder claim an exact count before the next accepted bid. A correct Calza recovers one die up to the starting limit; an incorrect one loses a die. After a loss, the loser or next surviving seat starts. After successful Red Dead Exactly, the caller starts. After successful Calza, the last loser starts."
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": {
+        "en": "Private dice"
+      },
+      "paragraphs": [
+        {
+          "en": "Players first save secret commitments; the server then supplies a new random seed. Together these determine the hidden dice. Secrets are revealed and verified only after a challenge. Bots use their own cup and public bids. Keep the same Elten profile to retain your secrets. Saving or transferring a pending secret is blocked; an unrelated participant can still be replaced."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Controls"
+      },
+      "paragraphs": [
+        {
+          "en": "Arrows and Enter choose a minimum legal bid for a face or a challenge. B opens a form for your own quantity and face. K calls bluff, D calls exactly when available. V reads your dice, L reads the current bid. Rolls and reveals happen through the shared executor automatically. F1 lists shortcuts; Ctrl+F1 opens rules. Chat, history and volume use shared controls."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "starting_dice": "aim",
+    "palifico": "special",
+    "calza": "special"
+  }
+}

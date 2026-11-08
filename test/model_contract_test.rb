@@ -65,7 +65,7 @@ previous_bridge = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1
 assert_equal(without_replay_hashes.call(previous_bridge), without_replay_hashes.call(bridge), 'Bridge hand storage must not replace the reference actions or RNG')
 cases << bridge
 cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/mahjong-model.json"), encoding: "UTF-8"))
-%w[bouillabaisse scopa mania_pisania].each do |id|
+%w[bouillabaisse scopa mania_pisania blackjack blackjack_dice bingo dice_poker liars_dice go roulette].each do |id|
   cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding:'UTF-8'))
 end
 duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/duck_racing.json'), encoding: 'UTF-8'))

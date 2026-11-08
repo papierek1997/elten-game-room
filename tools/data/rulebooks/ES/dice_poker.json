@@ -1,0 +1,69 @@
+{
+  "source": "games/dice_poker.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Póquer de dados"
+      },
+      "paragraphs": [
+        {
+          "es": "Cada jugador lanza cinco dados hasta el límite de la mesa, conservando los que quiera entre tiradas. Puede terminar antes. Al finalizar todos, la mejor combinación gana un punto; las mejores manos empatadas ganan un punto cada una. Gana quien tenga más puntos tras las rondas elegidas. La igualdad final es empate. Esta puntuación por rondas es el formato de Power Games."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Variantes y combinaciones"
+      },
+      "paragraphs": [
+        {
+          "es": "Con escaleras: cinco iguales, cuatro iguales, full, escalera, trío, dos parejas, pareja y dado alto. Las escaleras son 1–5 y 2–6; gana 2–6. Sin escaleras, esas tiradas son dados altos. Normalmente el seis es mayor; la variante de ases coloca el uno sobre el seis y no cuenta escaleras. Los empates se comparan por valores repetidos y después dados restantes. No hay palos ni color."
+        }
+      ]
+    },
+    {
+      "id": "turns",
+      "title": {
+        "es": "Tiradas y rondas"
+      },
+      "paragraphs": [
+        {
+          "es": "Elige dos o tres tiradas por turno y 1–20 rondas. Con el límite del primer jugador, los demás disponen como máximo de las tiradas que este haya usado en esa ronda. El primero cambia cada ronda. Los dados son públicos y cada tirada usa el azar del servidor. Puedes cambiar los dados conservados antes de otra tirada."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "es": "Apuestas con fichas"
+      },
+      "paragraphs": [
+        {
+          "es": "Elija puntos o fichas virtuales. Cada jugador paga el ante o todo su saldo si tiene menos. Hay apuestas antes y después de los lanzamientos. Puede pasar, igualar, subir una cantidad propia, retirarse o ir all-in. Retirarse impide lanzar; all-in conserva los lanzamientos. Los aportes crean botes principal y laterales; gana la mejor mano elegible y los empates se reparten por asiento. Se devuelve lo no cubierto. Un único contendiente gana sin más lanzamientos. Termina al límite de rondas o con un solo jugador solvente. C pasa/iguala, F retira, A all-in, B o R introduce subida y S lee saldos."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Controles"
+      },
+      "paragraphs": [
+        {
+          "es": "Enter lanza. Después, 1–6 seleccionan otro dado con esa cara para repetirlo; Mayús+1–6 lo conserva. Enter repite los seleccionados; sin selección abre Conservar mano. K conserva la mano directamente. Espacio lee dados y selección; S lee puntos. F1 muestra atajos y Ctrl+F1 reglas. Chat, historial y volumen usan controles comunes."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "throws": "turns",
+    "opener_limit": "turns",
+    "round_limit": "turns",
+    "scoring": "betting",
+    "starting_chips": "betting",
+    "stake": "betting"
+  }
+}

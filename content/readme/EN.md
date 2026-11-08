@@ -44,11 +44,27 @@ This is a read-only document with a heading for each version. H moves to the nex
 
 ## What you can play
 
-Power Games currently includes 39 games:
+Power Games currently includes 46 games:
 
 - Card games: 3-5-8, 99, 1000 miles, Biblios, Bouillabaisse, Bridge, Makao, Spades, Poker, Rummy, Scopa, Thousand, UNO, War and Scientific War.
 - Board and strategy games: Ludo, Four in a Row, Tic Tac Toe, Mancala, Monopoly, Reversi, Battleships, Chess, Checkers and Duck Racing.
 - Dice and dominoes: Cat, head, tail, Dominos, Farkle, Mexican Train and Yahtzee.
+
+Both blackjack chip games collect an opening contribution automatically (default ten, or all remaining chips if fewer), then offer checking/calling, raising, folding and all-in before play. R or B enters a custom raise; C checks/calls, F folds, A goes all-in. Casino card blackjack settles against the dealer; Blackjack Dice uses main and side pots.
+
+Bingo offers 30-, 75-, 80- and 90-ball variants at table creation, with selectable winning patterns in 75/80-ball games. Automatic marking is the default; manual marking is also available. Arrows browse the ticket, Enter marks a called number, M enters a number, B claims bingo and R confirms readiness for the next call. L repeats the last ball; D browses calls. A bingo-drum sound accompanies each draw.
+
+Dice poker lets you keep dice and compete for the best hand across rounds. Table settings choose straights, ones or sixes high, two or three throws and an opener throw limit. Enter rolls, 1–6 selects dice to reroll, Shift+1–6 keeps them, K stands and S reads scores. Liar's dice uses hidden cups: choose Classic, Red Dead style or Perudo with optional Palifico and Calza. B enters a bid, K challenges, D calls exact, V reads your dice and L the bid. Both games support bots. Keep the same Elten profile to retain your Liar's dice secrets.
+
+Card Poker offers the full 52-card deck or 24 cards from nine through ace. Short-deck draw poker supports four seats, or three when all-five exchange is allowed; Hold’em still supports eight. Dice poker also offers chips, a common ante, betting before and after throws, custom raises, all-in and side pots. Social blackjack has no house hand: the dealing seat rotates, D deals, and the best eligible hand up to 21 wins the shared pot.
+
+Go offers 9×9, 13×13 and 19×19 boards, area scoring, agreed territory scoring and first-capture Atari Go. P passes. After two passes, Enter marks dead groups or neutral regions, A agrees the score, R resumes and Q resigns. Territory mode does not automatically adjudicate every Japanese life-and-death exception.
+
+Roulette offers European, American and French la partage wheels. Choose an automatic casino croupier with fixed payouts or a social shared pool with a rotating spinner. Social winners share the pool in proportion to nominal casino returns; no winning claims means stakes are refunded. B opens a custom-amount bet, R finishes betting, C clears, V reads bets, S balances and Space spins socially. Only virtual chips are used. Local wheel and chip effects accompany play.
+
+Settings → Sounds adds Power Games background and In-game background. Each has its own enable switch, local audio/MIDI file picker and volume. Both start disabled. The general loop covers menus and the rest of the app; starting a game switches to the game loop and finishing restores the general loop. These settings affect only your client and respect All Power Games sounds volume.
+
+
 - Words and knowledge: Krowa, Typoholism, Categories, Quiz Party, Scrabble and Taboo.
 - Audio action games: Axel Pong and Audio Ball.
 

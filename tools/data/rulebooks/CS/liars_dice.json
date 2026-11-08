@@ -1,0 +1,66 @@
+{
+  "source": "games/liars_dice.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Lhářské kostky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Každý začíná s 1–5 kostkami, obvykle pěti. Vidíš jen svůj kelímek. Nabídka říká, kolik kostek určité hodnoty je pod všemi kelímky dohromady. Zvyš nabídku nebo ji zpochybni. Nepravdivá nabídka stojí jejího autora kostku; zpochybnění pravdivé nabídky stojí kostku vyzyvatele. Pravda znamená alespoň uvedený počet. Bez kostek vypadáváš. Vyhrává poslední hráč s kostkami."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Varianty a přesné výzvy"
+      },
+      "paragraphs": [
+        {
+          "cs": "Klasická varianta nemá žolíky. Zvyš počet při libovolné hodnotě, nebo ponech počet a zvyš hodnotu. Styl Red Dead přidává Přesně: při správném počtu ztratí kostku všichni ostatní, jinak vyzyvatel. V Perudu jsou jedničky žolíky pro jiné hodnoty. Běžné kolo nesmí začít jedničkami. Přechod na jedničky vyžaduje polovinu předchozího počtu zaokrouhlenou nahoru; přechod zpět dvojnásobek plus jedna. Nabídku jedniček zvyšuje více jedniček."
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "title": {
+        "cs": "Palifico, Calza a skryté hody"
+      },
+      "paragraphs": [
+        {
+          "cs": "Volitelné Palifico v Perudu trvá jedno kolo, když zahajující poprvé klesne na jednu kostku a zbývají více než dva hráči. Jedničky nejsou žolíky; hodnotu mohou změnit jen hráči, kteří již vyhlásili Palifico. Volitelnou Calzu smí před další přijatou nabídkou vyhlásit kdokoli kromě autora nabídky. Správný počet vrací jednu kostku do počátečního limitu, chyba kostku bere. Po ztrátě začíná poražený nebo další zbývající hráč. Po přesné výzvě Red Dead začíná vyzyvatel, po správné Calze poslední poražený."
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": {
+        "cs": "Soukromé kostky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Hráči nejdříve uloží závazky k tajným hodnotám, poté server poskytne náhodný základ. Společně určují skryté kostky. Tajemství se odhalí a ověří až po výzvě. Bot zná jen svůj kelímek a veřejné nabídky. Používej stejný profil Eltena, aby zůstala tajemství dostupná. Uložení hry a předání probíhajícího tajemství je blokováno; jiného účastníka lze nahradit."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Ovládání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky a Enter volí nejmenší platnou nabídku pro hodnotu nebo výzvu. B otevře formulář vlastního počtu a hodnoty. K zpochybní nabídku, D vyhlásí Přesně, pokud je dostupné. V čte tvé kostky, L nabídku. Hody a odhalení zajišťuje automaticky společný vykonavatel. F1 ukazuje zkratky, Ctrl+F1 pravidla. Chat, historie a hlasitost používají společné ovládání."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "starting_dice": "aim",
+    "palifico": "special",
+    "calza": "special"
+  }
+}

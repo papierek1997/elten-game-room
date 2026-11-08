@@ -1,0 +1,64 @@
+{
+  "source": "games/bingo.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Kupony i cele bingo"
+      },
+      "paragraphs": [
+        {
+          "pl": "Każdy gracz otrzymuje jeden kupon. Kulki losowane są bez powtórzeń. Uzupełnij zapowiedziany układ. Wszyscy korzystają z tych samych losowań; jednoczesne osiągnięcie końcowego celu oznacza remis zwycięzców."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Odmiany"
+      },
+      "paragraphs": [
+        {
+          "pl": "30 kulek: kupon 3 na 3, po trzy liczby z zakresów 1–10, 11–20 i 21–30. Wygrywa zaznaczenie wszystkich dziewięciu. Nie ma wolnego pola."
+        },
+        {
+          "pl": "75 kulek: kupon 5 na 5. Kolumny B, I, N, G i O mają zakresy 1–15, 16–30, 31–45, 46–60 i 61–75. Środek jest wolny. Odmiana 80-kulowa ma kupon 4 na 4 i kolumny 1–20, 21–40, 41–60 i 61–80. Przy tworzeniu stołu w tych odmianach wybierz dowolną linię poziomą, pionową lub przekątną, cztery narożniki albo cały kupon."
+        },
+        {
+          "pl": "90 kulek: trzy wiersze i dziewięć kolumn, po pięć liczb w wierszu i piętnaście na kuponie. Kolumny obejmują 1–9, 10–19, aż do 70–79 i 80–90; liczby rosną w dół kolumny. Na tym samym kuponie kolejno gra się o jedną linię poziomą, dwie i cały kupon. Wcześniejsi zwycięzcy są ogłaszani, ale cały kupon rozstrzyga mecz."
+        }
+      ]
+    },
+    {
+      "id": "marking",
+      "title": {
+        "pl": "Zaznaczanie i zgłaszanie bingo"
+      },
+      "paragraphs": [
+        {
+          "pl": "Tryb automatyczny zaznacza liczby i wykrywa zwycięskie układy. Odstęp między kulkami wynosi 3–30 sekund, domyślnie pięć. Tryb ręczny czeka, aż każdy zakończy bieżące zaznaczanie. Zaznacz wywołane liczby ze swojego kuponu, potem zgłoś bingo albo gotowość. Zgłoszenia dla tej samej kulki sprawdzane są razem, więc szybkość połączenia nie wybiera zwycięzcy. Błędne zgłoszenie niczego nie zmienia."
+        },
+        {
+          "pl": "Po wygraniu etapu 90-kulowego w trybie ręcznym można zgłosić następny cel przy tej samej kulce; w przeciwnym razie ponownie potwierdź gotowość, aby losować dalej. Wywołane liczby można zaznaczyć później. Pusty bęben bez poprawnego zgłoszenia oznacza remis. Czekanie na gotowość po każdej kulce jest dostosowaniem dostępności w Power Games. Kupony i losowania obsługuje wspólny mechanizm gry z serwerem."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Obsługa"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałkami przeglądasz kupon. W trybie ręcznym Enter zaznacza wywołaną liczbę, M pozwala ją wpisać, B zgłasza bingo, R potwierdza gotowość. Te same polecenia są na liście akcji. L odczytuje ostatnią kulkę, D przegląda losowania. Tab zmienia pola. F1 pokazuje bieżące skróty, Ctrl+F1 zasady. Historia, czat i głośność używają zwykłych klawiszy Power Games."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "pattern": "variants",
+    "marking": "marking",
+    "ball_interval": "marking"
+  }
+}

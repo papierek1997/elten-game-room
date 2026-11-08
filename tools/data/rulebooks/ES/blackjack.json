@@ -1,0 +1,86 @@
+{
+  "source": "games/blackjack.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo y pagos"
+      },
+      "paragraphs": [
+        {
+          "es": "Se juega contra un crupier automático con seis barajas recién mezcladas. Las cartas numéricas conservan su valor, las figuras valen diez y cada as uno u once. Hay que superar al crupier sin pasar de 21. Las fichas solo pertenecen a esta mesa."
+        },
+        {
+          "es": "Ganar devuelve la apuesta y una ganancia igual. Un 21 inicial de dos cartas paga una ganancia de 3:2. Dos blackjack naturales empatan y devuelven la apuesta. Un natural vence a un 21 ordinario. Pasarse pierde aunque el crupier se pase después. Los pagos de media ficha son exactos."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "es": "Aportación inicial y apuestas"
+      },
+      "paragraphs": [
+        {
+          "es": "Cada ronda empieza cobrando automáticamente la aportación inicial a cada jugador activo: diez fichas por defecto o el ajuste de mesa. Quien tenga menos aporta todo su saldo y queda all-in. Después se actúa por orden: pasar si no se debe nada, igualar, subir, retirarse o ir all-in. Una subida exige otra respuesta de los demás. Se cierra cuando todos los que aún tienen fichas han respondido e igualado o solo queda uno sin retirarse. Los all-in siguen jugando sin apostar más. Un all-in corto no reabre las subidas a quien ya actuó hasta que el aumento acumulado alcance una subida completa."
+        },
+        {
+          "es": "C pasa o iguala, F se retira, A va all-in y R o B permite escribir una subida propia. Introduce el incremento sobre la apuesta actual; la cantidad necesaria para igualar se añade al pago. La primera subida es de al menos una ficha y las siguientes de al menos la última subida completa; se permite un all-in final menor. También hay propuestas en las acciones. Se reparten cartas o se tiran dados solo cuando se cierra la apuesta."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "title": {
+        "es": "Cómo jugar"
+      },
+      "paragraphs": [
+        {
+          "es": "Elige Pedir o Plantarse en las acciones. La variante ampliada permite doblar la apuesta inicial de dos cartas y recibir una última carta, o separar una pareja del mismo rango una sola vez. Hace falta otra apuesta. Los ases separados reciben una carta y se plantan; las manos separadas no cobran la prima de blackjack. No hay seguro, rendición, nuevas separaciones ni doblar después de separar."
+        },
+        {
+          "es": "Tras las decisiones, el crupier muestra su segunda carta, pide por debajo de 17 y se planta en cualquier 17, incluido el suave. Las cartas de jugadores son públicas. La interfaz oculta la segunda carta del crupier; la repetición determinista compartida no protege frente a un cliente modificado. Los bots usan solo su mano y la carta visible del crupier."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Opciones y final"
+      },
+      "paragraphs": [
+        {
+          "es": "Elige Simple o Ampliada, rondas (1–100), fichas iniciales (10–10000) y aportación inicial. Por defecto son diez rondas, 100 fichas y aportación de diez. El crupier liquida la apuesta real de cada mano no retirada por separado; retirarse pierde lo ya aportado. El último jugador tras retirarse los demás sigue contra el crupier. Cualquier saldo positivo permite un all-in corto en la siguiente ronda. Gana el mayor saldo final; máximos iguales empatan. Las partidas guardadas conservan sus reglas de apuestas originales."
+        }
+      ]
+    },
+    {
+      "id": "social",
+      "title": {
+        "es": "Blackjack social"
+      },
+      "paragraphs": [
+        {
+          "es": "No existe mano de la banca. Los jugadores se turnan para repartir. Tras el ante y las apuestas, quien reparte pulsa D. Todos compiten entre sí pidiendo o plantándose. No hay división, doblaje, pago bancario ni premio por blackjack natural. Los aportes forman botes; gana el mayor total elegible hasta 21 y los empates se reparten. Si todos se pasan, se devuelve esa parte. Se conservan las fichas. Quien reparte juega al final y rota al siguiente asiento solvente. Es un formato social de Power Games."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Controles"
+      },
+      "paragraphs": [
+        {
+          "es": "Elige con las flechas y confirma con Intro. Tab cambia de campo. T lee el turno, S las puntuaciones, F1 los atajos actuales y Ctrl+F1 las reglas. La mano mantiene la identidad de las cartas y su orden de llegada. Las cartas se consultan; las decisiones se eligen en las acciones separadas."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "round_limit": "variants",
+    "starting_chips": "variants",
+    "stake": "betting"
+  }
+}

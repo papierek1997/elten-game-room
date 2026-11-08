@@ -1,0 +1,54 @@
+{
+  "source": "games/go.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "Go"
+      },
+      "paragraphs": [
+        {
+          "en": "Go originated in China and is also known as baduk and igo. Two players place black and white stones on intersections; Black starts. Orthogonally connected stones form a group. An adjacent empty intersection is a liberty. Fill every liberty to capture a group. Captures are removed before checking self-capture; suicide is forbidden."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Variants and settings"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose a 9 by 9, 13 by 13 or 19 by 19 board. Chinese-style area counts living stones plus surrounded empty points. Territory counts surrounded empty points plus captured and agreed dead opposing stones. White receives the selected komi. Atari Go ends at the first capture; two passes without a capture draw. All variants use positional superko: a placement may not recreate any earlier complete board position. Territory mode uses agreed dead groups and neutral seki regions, not automatic Japanese life-and-death adjudication. No automatic bent-four ruling or referee is implemented."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "en": "Ending and agreeing the score"
+      },
+      "paragraphs": [
+        {
+          "en": "Two consecutive passes enter scoring. Players alternate: select an occupied point to mark or unmark its whole group as dead. Select an empty point to mark or unmark its whole connected empty region as neutral, for seki or other agreed neutral territory. A change clears both approvals; changing a dead group also clears neutral marks. A accepts this exact proposal. Two approvals end the game. R resumes play with the stones still present and clears marks; the other player moves next. Only regions bordered by one colour score; shared or unbordered regions are neutral. In area mode living stones also count; in territory mode prisoners count instead. Higher score wins; equal scores draw. Q resigns."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Controls"
+      },
+      "paragraphs": [
+        {
+          "en": "Use arrows to browse intersections and Enter to place or mark. P passes; A accepts scoring; R resumes play; Q resigns; S reads provisional or final points. T reads the current turn. Bots use a basic capture and liberties strategy, then accept scoring. F1 lists current shortcuts; Ctrl+F1 opens these rules. Shared controls provide history, chat and volume."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "size": "variants",
+    "komi": "variants"
+  }
+}

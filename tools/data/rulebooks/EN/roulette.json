@@ -1,0 +1,55 @@
+{
+  "source": "games/roulette.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "Roulette"
+      },
+      "paragraphs": [
+        {
+          "en": "This game uses virtual chips only. Place any number of bets within your balance before finishing your turn. Players bet in order; after everyone is ready, no further bets can be changed for this spin. The outcome comes from native server randomness, not the spinner’s choice."
+        }
+      ]
+    },
+    {
+      "id": "modes",
+      "title": {
+        "en": "Casino and social tables"
+      },
+      "paragraphs": [
+        {
+          "en": "Casino mode uses an automatic croupier and fixed casino payouts, with no player bank balance. Social mode requires two players: the spinner rotates among solvent seats. Space spins after betting. The shared pool is divided between winning claims in proportion to their nominal casino returns, including returned stake. These are pool shares, not guaranteed casino odds. If nobody has a winning claim, every stake is refunded. This shared-pool settlement is a Power Games social rule. Choose starting chips and 1–100 spins. Highest remaining balance wins after the last spin; equal best balances draw. Betting uses whole chips; balances can include half chips. A balance below one chip cannot bet again."
+        }
+      ]
+    },
+    {
+      "id": "bets",
+      "title": {
+        "en": "Wheels, bets and payouts"
+      },
+      "paragraphs": [
+        {
+          "en": "European roulette has 0–36. American roulette also has 00. French roulette has one zero and la partage: zero returns half of red, black, odd, even, low and high stakes. Zero and double zero are neither red/black, odd/even nor low/high. Casino profit odds are 35:1 for a number, 17:1 for a split, 11:1 for a street or trio, 8:1 for four numbers, 6:1 for the American first five, 5:1 for six numbers, 2:1 for a dozen or column and 1:1 for an outside even-money bet. Winning stakes are also returned. Only adjacent legal groups on the layout are offered. In social mode these nominal returns are weights for pool division."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Controls"
+      },
+      "paragraphs": [
+        {
+          "en": "B opens a form to choose any offered bet and enter your own whole-chip amount. The main list offers quick bets up to ten chips. R finishes your betting turn, C removes and refunds your current bets, V reads them and S reads balances. Space spins in social mode when all are ready. T reads the turn; F1 lists shortcuts; Ctrl+F1 opens rules. Sounds play locally and respect Power Games volume."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "mode": "modes",
+    "wheel": "bets",
+    "starting_chips": "modes",
+    "round_limit": "modes"
+  }
+}

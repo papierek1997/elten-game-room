@@ -44,11 +44,26 @@ Es un documento de solo lectura con un encabezado para cada versión. H pasa al 
 
 ## A qué puedes jugar
 
-Power Games incluye actualmente 39 juegos:
+Power Games incluye actualmente 46 juegos:
 
 - Cartas: 3-5-8, 99, 1000 millas, Biblios, Bouillabaisse, Bridge, Makao, Picas, Póker, Rummy, Scopa, Mil, UNO, War y Scientific War.
 - Tablero y estrategia: Ludo, Cuatro en raya, Tres en raya, Mancala, Monopoly, Reversi, Batalla naval, Ajedrez, Damas y Carrera de patos.
 - Dados y dominó: Cat, head, tail, Dominó, Farkle, Mexican Train y Yahtzee.
+
+Ambos blackjack con fichas cobran automáticamente una aportación inicial (diez por defecto, o todo el saldo si es menor) y después permiten apostar. R o B escribe una subida, C pasa o iguala, F se retira, A va all-in. El modo casino de cartas liquida contra el crupier; los dados usan botes principales y laterales.
+
+Bingo ofrece variantes de 30, 75, 80 y 90 bolas al crear la mesa, con patrones elegibles en 75/80. El marcado automático es predeterminado y también existe el manual. Las flechas recorren el cartón, Intro marca, M introduce un número, B canta bingo y R confirma listo para la próxima llamada. L repite la última bola y D recorre llamadas. Cada extracción lleva un sonido de bombo de bingo.
+
+Póquer de dados permite conservar dados y competir por la mejor mano durante varias rondas. La mesa elige escaleras, unos o seises altos, dos o tres tiradas y límite del primer jugador. Enter lanza, 1–6 seleccionan dados para repetir, Mayús+1–6 los conserva, K termina y S lee puntos. Dados mentirosos usa cubiletes ocultos: elige Clásico, estilo Red Dead o Perudo con Palifico y Calza opcionales. B introduce una apuesta, K desafía, D declara exacto, V lee tus dados y L la apuesta. Ambos admiten bots. Conserva el mismo perfil de Elten para guardar tus secretos.
+
+El póquer de cartas ofrece 52 cartas o 24 del nueve al as. Con baraja corta, el descarte admite cuatro plazas, o tres si se cambian cinco cartas; Hold’em admite ocho. El póquer de dados añade fichas, ante común, apuestas antes y después de lanzar, subidas propias, all-in y botes laterales. El blackjack social no tiene mano de la banca: el reparto rota, D reparte y la mejor mano elegible hasta 21 gana el bote común.
+
+Go ofrece tableros 9×9, 13×13 y 19×19, área, territorio acordado y Atari Go a primera captura. P pasa; tras dos pases, Intro marca grupos muertos o zonas neutrales, A acepta, R reanuda y Q abandona. El modo territorial no adjudica automáticamente todas las excepciones japonesas de vida y muerte.
+
+Ruleta ofrece ruedas europea, americana y francesa con la partage. El casino tiene crupier automático y pagos fijos; el modo social comparte el bote y rota quien gira. Las apuestas ganadoras comparten el bote según devoluciones nominales de casino; sin aciertos, se devuelve lo apostado. B introduce una apuesta propia, R termina, C retira, V lee apuestas, S saldos y Espacio gira en social. Solo fichas virtuales, con sonidos locales de rueda y fichas.
+
+Ajustes → Sonidos añade Fondo de Power Games y Fondo durante la partida. Cada uno tiene activación, selector de audio/MIDI local y volumen; ambos empiezan desactivados. El fondo general cubre menús y otras secciones; al comenzar la partida cambia al fondo de juego y al terminar vuelve al general. Solo afectan a su cliente y respetan el volumen general de Power Games.
+
 - Palabras y conocimientos: Krowa, Teclamanía, Categorías, Quiz Party, Scrabble y Taboo.
 - Acción con audio: Axel Pong y Audio Ball.
 

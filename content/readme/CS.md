@@ -44,11 +44,27 @@ Jde o dokument pouze ke čtení s nadpisem pro každou verzi. H přejde na dalš
 
 ## Co si můžete zahrát
 
-Power Games v současnosti obsahuje 39 her:
+Power Games v současnosti obsahuje 46 her:
 
 - Karetní hry: 3-5-8, 99, 1000 mil, Biblios, Bouillabaisse, Bridž, Makao, Piky, Poker, Rummy, Scopa, Tisíc, UNO, War a Scientific War.
 - Deskové a strategické hry: Člověče, nezlob se, Čtyři v řadě, Piškvorky, Mankala, Monopoly, Reversi, Lodě, Šachy, Dáma a Závody kachen.
 - Kostky a domino: Cat, head, tail, Domino, Farkle, Mexican Train a Yahtzee.
+
+Oba blackjacky s žetony vybírají automatický vstupní vklad (výchozí deset, při menším zůstatku vše), pak probíhá sázení. R nebo B zadá vlastní zvýšení, C čeká či dorovná, F složí, A jde all-in. Kasino v karetní hře vyhodnocuje sázky proti krupiérovi, kostky používají hlavní a vedlejší banky.
+
+Bingo nabízí při tvorbě stolu varianty s 30, 75, 80 a 90 koulemi; u 75 a 80 vybereš i výherní vzor. Výchozí je automatické označování, dostupné je i ruční. Šipky prohlížejí tiket, Enter označí volané číslo, M zadá číslo, B ohlásí bingo a R potvrdí připravenost na další tah. L opakuje poslední kouli, D prohlíží tahy. Losování doprovází zvuk bubnu binga.
+
+Kostkový poker umožňuje ponechat kostky a soupeřit o nejlepší kombinaci v několika kolech. U stolu zvol postupky, nejvyšší jedničky či šestky, dva nebo tři hody a limit zahajujícího. Enter hází, 1–6 vybírá kostky k přehození, Shift+1–6 je ponechá, K ukončí tah a S čte body. Lhářské kostky mají skryté kelímky: zvol klasiku, styl Red Dead nebo Perudo s volitelným Palifico a Calzou. B zadá nabídku, K zpochybní, D vyhlásí přesný počet, V čte tvé kostky a L nabídku. Obě hry podporují boty. Používej stejný profil Eltena kvůli uchování tajemství.
+
+Karetní poker nabízí 52 karet nebo 24 od devítky po eso. Krátký dobírací poker má čtyři místa, při výměně všech pěti karet tři; Hold’em osm. Kostkový poker nabízí žetony, společné ante, sázení před hody i po nich, vlastní zvýšení, all-in a vedlejší banky. Společenský blackjack nemá ruku krupiéra: rozdávající se střídá, D rozdá a nejlepší oprávněná ruka do 21 vyhraje společný bank.
+
+Go nabízí desky 9×9, 13×13 a 19×19, počítání oblasti, dohodnuté území a Atari Go na první zajetí. P pasuje; po dvou pasech Enter označí mrtvé skupiny či neutrální oblasti, A schválí, R obnoví hru a Q vzdá partii. Územní režim automaticky nerozhoduje všechny japonské výjimky života a smrti.
+
+Ruleta nabízí evropské, americké a francouzské kolo s la partage. Kasino má automatického krupiéra a pevné výplaty, společenský režim společný bank a střídání obsluhy. Výherní sázky sdílejí bank podle nominálních kasinových vrácení; bez výher se vklady vracejí. B zadá vlastní sázku, R ukončí sázení, C zruší sázky, V je přečte, S zůstatky a mezerník společensky roztočí kolo. Pouze virtuální žetony; zaznívají zvuky kola a žetonů.
+
+Nastavení → Zvuky přidává Pozadí Power Games a Pozadí při hře. Každé má zapnutí, místní audio/MIDI soubor a hlasitost; obě začínají vypnutá. Obecná smyčka hraje v menu a ostatních částech aplikace, začátek hry ji nahradí herní a konec obnoví obecnou. Nastavení platí jen pro vašeho klienta a respektují celkovou hlasitost Power Games.
+
+
 - Slova a vědomosti: Krowa, Psanománie, Kategorie, Quiz Party, Scrabble a Taboo.
 - Zvukové akční hry: Axel Pong a Audio Ball.
 

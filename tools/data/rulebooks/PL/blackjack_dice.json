@@ -1,0 +1,69 @@
+{
+  "source": "games/blackjack_dice.rb",
+  "sections": [
+    {
+      "id": "play",
+      "title": {
+        "pl": "Odmiany kościane i punkty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gracze kolejno sumują rzuty, zbliżając się do 21. W odmianie Dwie kości rzuca się dwiema poniżej 16, a od 16 jedną. W odmianie Jedna kość zawsze używa się jednej. Po pierwszym rzucie można spasować. Osiągnięcie lub przekroczenie 21 kończy kolejkę."
+        },
+        {
+          "pl": "Punkty przyznaje się po kolejkach wszystkich graczy. Jedyny najwyższy wynik nieprzekraczający 21 daje punkt, a dokładnie 21 dwa punkty. Remis na najwyższym wyniku, także na 21, oraz przekroczenie 21 przez wszystkich nie dają punktów. Ta punktacja meczu obowiązuje również przy jednej kości i zastępuje dogrywkę. W każdej rundzie zaczyna inna osoba. Wygrywa pierwszy gracz osiągający wybrany limit, domyślnie dziesięć."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "pl": "Wpłata początkowa i licytacja"
+      },
+      "paragraphs": [
+        {
+          "pl": "Na początku rundy każdy aktywny gracz automatycznie wpłaca kwotę wejściową: domyślnie dziesięć żetonów albo kwotę z ustawień stołu. Kto ma mniej, wpłaca całe saldo i wchodzi all-in. Następnie gracze po kolei mogą czekać, jeśli nic nie dopłacają, sprawdzić podbicie, podbić, spasować lub wejść za wszystko. Podbicie daje pozostałym ponowną decyzję. Licytacja kończy się, gdy wszyscy mający jeszcze żetony odpowiedzą i wyrównają bieżącą stawkę albo pozostanie jeden niespasowany gracz. Gracz all-in nadal gra, ale nie licytuje dalej. Krótki all-in nie otwiera ponownie podbijania osobie, która już wykonała ruch, chyba że suma kolejnych podbić osiągnie pełne podbicie."
+        },
+        {
+          "pl": "C pozwala czekać lub sprawdzić, F spasować, A wejść za wszystko, a R albo B wpisać własne podbicie. Wpisujesz kwotę podbicia ponad bieżącą stawkę; ewentualna dopłata do sprawdzenia jest doliczana do wpłaty. Pierwsze podbicie wynosi co najmniej jeden żeton, następne co najmniej tyle co ostatnie pełne podbicie; mniejszy końcowy all-in jest dozwolony. Proponowane podbicia są też na liście akcji. Karty albo rzuty rozpoczynają się dopiero po zamknięciu licytacji."
+        }
+      ]
+    },
+    {
+      "id": "chips",
+      "title": {
+        "pl": "Gra o żetony"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przy tworzeniu stołu w Rozliczaniu rundy wybierz Wirtualne żetony, aby grać z wpłatą wejściową i licytacją przed rzutami. Ustaw saldo początkowe, wejście i liczbę rund. Domyślnie każdy ma 100 żetonów, wejście wynosi dziesięć, a mecz trwa dziesięć rund. Tryb punktowy zachowuje punktację bez licytacji o żetony."
+        },
+        {
+          "pl": "Po licytacji rzucają wszyscy niespasowani gracze, także all-in. Wpłaty tworzą pulę główną i pule boczne: można wygrać tylko warstwy pokryte własną wpłatą. Każdą warstwę wygrywa najwyższy uprawniony wynik do 21; przy remisie dzieli się ją równo, a niepodzielne żetony trafiają do remisujących w kolejności miejsc w rundzie. Niewyrównana nadwyżka wraca do wpłacającego. Warstwa bez uprawnionego wyniku do 21 jest zwracana jej wpłacającym. Gdy wszyscy poza jednym spasują, pozostały gracz wygrywa wspólną pulę bez rzutów. Łączna liczba żetonów w saldach i pulach jest zachowana."
+        },
+        {
+          "pl": "Rozpoczynający zmienia się co rundę. Zero żetonów eliminuje dopiero po rozliczeniu. Mecz kończy limit rund albo pozostanie mniej niż dwóch graczy z żetonami. Wygrywa najwyższe saldo końcowe; równe najwyższe salda dają remis. S odczytuje salda. Wcześniej zapisane gry żetonowe zachowują dotychczasową licytację."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Sterowanie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałkami wybierz akcję i zatwierdź Enterem. Tab zmienia pola. T odczytuje kolejkę, a S wyniki. F1 otwiera bieżący spis skrótów, Ctrl+F1 zasady. Ręce zachowują tożsamość kart i kolejność dobierania. Karty służą do przeglądania; decyzje wybieraj na osobnej liście akcji."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "play",
+    "score_limit": "play",
+    "scoring": "chips",
+    "starting_chips": "chips",
+    "stake": "betting",
+    "round_limit": "chips"
+  }
+}

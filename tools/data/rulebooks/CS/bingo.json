@@ -1,0 +1,64 @@
+{
+  "source": "games/bingo.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Tikety a cíle binga"
+      },
+      "paragraphs": [
+        {
+          "cs": "Každý hráč dostane jeden tiket. Koule se losují bez opakování. Dokonči oznámený vzor. Všichni používají stejné tahy; společné dokončení závěrečného cíle znamená remízu vítězů."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Varianty"
+      },
+      "paragraphs": [
+        {
+          "cs": "30 koulí: tiket 3 krát 3, po třech číslech z rozsahů 1–10, 11–20 a 21–30. Vyhraje označení všech devíti. Volné pole není."
+        },
+        {
+          "cs": "75 koulí: tiket 5 krát 5. Sloupce B, I, N, G a O používají rozsahy 1–15, 16–30, 31–45, 46–60 a 61–75. Střed je volný. 80 koulí má tiket 4 krát 4 a sloupce 1–20, 21–40, 41–60 a 61–80. U těchto variant při tvorbě stolu vyber libovolný řádek, sloupec či úhlopříčku, čtyři rohy nebo celý tiket."
+        },
+        {
+          "cs": "90 koulí: tři řádky a devět sloupců, pět čísel v řádku a patnáct na tiketu. Sloupce zahrnují 1–9, 10–19 až 70–79 a 80–90; čísla ve sloupci rostou dolů. Postupně se hraje o jeden vodorovný řádek, dva a celý tiket. Dřívější vítězové se oznámí; celý tiket rozhodne zápas."
+        }
+      ]
+    },
+    {
+      "id": "marking",
+      "title": {
+        "cs": "Označování a hlášení binga"
+      },
+      "paragraphs": [
+        {
+          "cs": "Automatický režim označuje čísla a rozpozná výhru. Interval koulí je 3–30 sekund, výchozí pět. Ruční režim čeká na dokončení tahu všech hráčů. Označ volaná čísla na tiketu a ohlas bingo nebo připravenost. Hlášení stejné koule se ověřují společně, rychlost sítě tedy nerozhoduje. Chybné hlášení nic nezmění."
+        },
+        {
+          "cs": "Po výhře etapy 90 koulí v ručním režimu lze další cíl ohlásit při stejné kouli, jinak znovu potvrď připravenost pro další losování. Volaná čísla lze označit později. Prázdný buben bez platného hlášení znamená remízu. Čekání po každé kouli je přístupnostní úprava Power Games. Tikety i tahy spravuje společný serverový vykonavatel hry."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Ovládání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipky prohlížejí tiket. V ručním režimu Enter označí volané číslo, M zadá číslo, B ohlásí bingo a R potvrdí připravenost. Příkazy jsou i v akcích. L přečte poslední kouli, D prohlíží tahy. Tab mění pole. F1 ukáže aktuální zkratky, Ctrl+F1 pravidla. Historie, chat a hlasitost používají běžné klávesy Power Games."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "pattern": "variants",
+    "marking": "marking",
+    "ball_interval": "marking"
+  }
+}

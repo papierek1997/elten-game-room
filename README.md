@@ -63,7 +63,7 @@ następnego nagłówka, a Shift+H — do poprzedniego. Escape zamyka dokument.
 
 ## W co można zagrać
 
-Obecnie Power Games zawiera 39 gier:
+Obecnie Power Games zawiera 46 gier:
 
 - Karcianki: 3-5-8, 99, 1000 mil, Biblios, Bouillabaisse, Brydż, Makao, Piki, Poker, Remik, Scopa, Tysiąc,
   UNO, Wojna i Wojna naukowa.
@@ -71,6 +71,22 @@ Obecnie Power Games zawiera 39 gier:
   Kółko i krzyżyk, Mankala, Monopoly, Reversi, Statki, Szachy, Warcaby
   i Wyścigi kaczek.
 - Kości i domino: Cat, head, tail, Domino, Farkle, Mexican Train i Yahtzee.
+
+W obu blackjackach gra o żetony zaczyna się od automatycznej wpłaty wejściowej (domyślnie po dziesięć, a przy niższym saldzie za wszystko), potem następuje licytacja przed grą. R albo B pozwala wpisać własne podbicie, C czekać lub sprawdzić, F spasować, A wejść za wszystko. Kasynowy wariant karcianego rozlicza stawki z krupierem, kościany używa puli głównej i pul bocznych.
+
+Bingo ma odmiany 30-, 75-, 80- i 90-kulowe, wybierane przy tworzeniu stołu. W 75 i 80 kulkach wybierasz też wzór zwycięstwa. Domyślnie liczby zaznaczane są automatycznie; można wybrać zaznaczanie ręczne. Strzałki przeglądają kupon, Enter zaznacza wywołaną liczbę, M pozwala ją wpisać, B zgłasza bingo, R potwierdza gotowość do następnej kulki. L powtarza ostatnią kulkę, D przegląda losowania. Losowaniu towarzyszy dźwięk bębna bingo.
+
+Poker kościany pozwala zatrzymywać kości i walczyć o najlepszy układ w kilku rundach. Przy tworzeniu stołu wybierasz strity, najwyższe jedynki lub szóstki, dwa albo trzy rzuty oraz limit rzutów otwierającego. Enter rzuca, 1–6 wybiera kości do przerzutu, Shift+1–6 je zatrzymuje, K zachowuje układ, S czyta wyniki. Kłamczuch to gra ukrytymi kośćmi: wybierz odmianę klasyczną, w stylu Red Dead albo Perudo z opcjonalnym Palifico i Calzą. B wpisuje deklarację, K sprawdza blef, D zgłasza dokładną liczbę, V czyta własne kości, L deklarację. Obie gry obsługują boty. Używaj tego samego profilu Eltena, aby zachować sekrety kłamczucha.
+
+W pokerze karcianym wybierzesz pełną talię 52 kart albo 24 karty od dziewiątek do asów. Z krótką talią poker dobierany ma najwyżej czterech graczy, a przy wymianie wszystkich pięciu kart — trzech. Hold’em nadal obsługuje osiem miejsc. Poker kościany oferuje także żetony: wspólne wpisowe, licytację przed rzutami i po nich, własne podbicia, all-in i pule boczne. Blackjack towarzyski nie ma ręki krupiera: gracze rozdają kolejno, D rozdaje, a najlepsza ręka do 21 wygrywa wspólną pulę.
+
+Go: wybierz planszę 9×9, 13×13 lub 19×19, liczenie obszaru, uzgadniane liczenie terytorium albo Atari Go na pierwsze zbicie. P pasuje; po dwóch pasach Enter oznacza martwe grupy lub neutralne obszary, A zatwierdza wynik, R wznawia grę, Q poddaje. Liczenie terytorialne nie rozstrzyga automatycznie wszystkich japońskich wyjątków życia i śmierci.
+
+Ruletka: koło europejskie, amerykańskie albo francuskie z la partage. Wybierz kasyno z automatycznym krupierem i stałymi wypłatami albo stół towarzyski ze wspólną pulą i zmiennym kręcącym. Towarzysko wygrane dzielą pulę proporcjonalnie do nominalnych zwrotów kasynowych; gdy nikt nie trafi, stawki wracają. B otwiera zakład z własną kwotą, R kończy obstawianie, C usuwa zakłady, V je czyta, S podaje salda, Spacja kręci towarzysko. Używamy tylko wirtualnych żetonów. Słychać koło i stawiane żetony.
+
+W Ustawienia → Dźwięki dodano Tło Power Games i Tło podczas rozgrywki. Każde ma osobne włączenie, wybór lokalnego pliku audio lub MIDI oraz głośność. Początkowo oba są wyłączone. Tło ogólne gra w menu i innych częściach aplikacji; rozpoczęcie gry zastępuje je tłem rozgrywki, a zakończenie przywraca ogólne. Ustawienia dotyczą wyłącznie twojego klienta i uwzględniają poziom Wszystkie dźwięki Power Games.
+
+
 - Słowa i wiedza: Krowa, Mania pisania, Państwa-miasta, Quiz, Scrabble i Taboo.
 - Gry zręcznościowe audio: Axel Pong i Audio Ball.
 
