@@ -102,6 +102,10 @@ end
 
 class Program
   def self.server_app(**_options); end
+  def self.manage(resource, **_options)
+    (@binary_managed_resources ||= []) << resource
+    resource
+  end
 end
 
 Kernel.prepend(BinaryRulesLoad::Requires)

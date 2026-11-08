@@ -181,10 +181,13 @@ module GameRoomUI
 
     def wait
       GameRoomUI.install_hotkeys
+      music = @game_room_program.background_music if @game_room_program&.respond_to?(:background_music)
+      music&.enter
       @game_room_waiting = true
       super
     ensure
       @game_room_waiting = false
+      music&.leave
     end
 
     def update

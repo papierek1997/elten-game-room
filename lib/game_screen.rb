@@ -175,6 +175,7 @@ class GameScreen
   end
 
   def close_covered_session
+    @program.background_music.leave_game(event_presenter) if @program.respond_to?(:background_music)
     stop_session_runner
     event_presenter.event_presentation&.close
     @game_client&.close
@@ -364,6 +365,7 @@ class GameScreen
       end
     end
   ensure
+    @program.background_music.leave_game(event_presenter) if @program.respond_to?(:background_music)
     @chat_sends&.clear
     @layout&.computer_changes&.clear
     @pending_move_intent = nil
@@ -464,6 +466,9 @@ class GameScreen
     if packet && !packet.equal?(@background_presented_snapshot)
       @background_presented_snapshot = packet
       data = Marshal.load(Marshal.dump(packet))
+      if data[:session]['__aborted'] && @program.respond_to?(:background_music)
+        @program.background_music.leave_game(event_presenter)
+      end
       @background_timer_data = nil
       present_session_membership(data[:members])
       if @game.background_client? && !data[:session]["__aborted"]
@@ -494,6 +499,7 @@ class GameScreen
   end
 
   def background_session_closed
+    @program.background_music.leave_game(event_presenter) if @program.respond_to?(:background_music)
     @game_client&.close if @game.background_client?
     @sound_output&.close
   end

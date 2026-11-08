@@ -168,6 +168,7 @@ require_relative "lib/game_participants"
 require_relative "lib/game_sounds"
 require_relative "lib/game_room_preferences"
 require_relative "lib/volume_settings"
+require_relative "lib/background_music"
 require_relative "lib/game_room_widget"
 require_relative "lib/game_teams"
 require_relative "lib/game_bots"
@@ -337,6 +338,14 @@ class EltenGameRoom < Program
     end
   end
 
+  def background_music
+    self.class.instance_variable_get(:@background_music) || begin
+      music = GameRoomBackgroundMusic.new(settings: -> { self.class.normalized_settings })
+      self.class.manage(music)
+      self.class.instance_variable_set(:@background_music, music)
+    end
+  end
+
   def self.map_notification(notification)
     GameRoomTableWatch::Timing.measure(:mapping) { map_game_room_notification(notification) }
   end
@@ -448,6 +457,7 @@ class EltenGameRoom < Program
   end
 
   def program_main
+    background_music.enter
     initialize_services
     record_statistics_visit
     show_update_changelog
@@ -461,6 +471,8 @@ class EltenGameRoom < Program
     end
     play_game_sound("connect") if current != nil
     run_program_interface(current)
+  ensure
+    background_music.leave
   end
 
   def notification_action(action, notification)
@@ -652,6 +664,7 @@ class EltenGameRoom < Program
   end
 
   def run_program_interface(initial_table = nil)
+    background_music.enter
     @lobby_activity_entries = []
     reset_lobby_activity_cursor
     current = initial_table
@@ -663,6 +676,8 @@ class EltenGameRoom < Program
       end
       current = switched
     end
+  ensure
+    background_music.leave
   end
 
   def show_main_menu
@@ -3262,6 +3277,7 @@ class EltenGameRoom < Program
     end
     @game_room_settings = nil
     @pong_preferences = nil
+    background_music.update(retry_failed: true)
     self.class.contacts_settings_changed(normalized)
     Programs::Extensions.refresh_ui if defined?(Programs::Extensions) && Programs::Extensions.respond_to?(:refresh_ui)
     language_changed = GameRoomLocalization.normalize_settings(settings) != GameRoomLocalization.normalize_settings(normalized)
@@ -3980,6 +3996,7 @@ class EltenGameRoom < Program
           writer.call(group, level)
         else
           self.class.volume_settings(self).set(group, level)
+          background_music.update
         end
         levels[group] = level
       end

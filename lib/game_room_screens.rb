@@ -340,10 +340,29 @@ module GameRoomScreens
       invitation_policy, watched_games, watched_contacts, invitation_blacklist = notification_controls(watched_header)
       levels = GameRoomPreferences.sound_volumes(@values)
       volume_fields = GameRoomPreferences::SOUND_GROUPS.to_h do |group|
-        [group, ListBox.new((0..100).map { |level| "#{level}%" },
-          header: _(GameRoomUI::VOLUME_LABELS.fetch(group)), index: levels.fetch(group), quiet: true)]
+        [group, ListBox.new((0..100).map { |level| GameRoomContent.utf8("#{level}%") },
+          header: GameRoomContent.utf8(_(GameRoomUI::VOLUME_LABELS.fetch(group))), index: levels.fetch(group), quiet: true)]
       end
       hrtf = hrtf_controls
+      backgrounds = GameRoomPreferences.background_music(@values)
+      background_fields = %w[general game].to_h do |kind|
+        track = backgrounds.fetch(kind)
+        title = kind == 'general' ? _("Power Games background") : _("In-game background")
+        enabled = CheckBox.new(GameRoomContent.utf8(title), checked: track['enabled'])
+        choose = Button.new(background_file_label(track['file']))
+        volume = ListBox.new((0..100).map { |level| GameRoomContent.utf8("#{level}%") }, quiet: true,
+          header: GameRoomContent.utf8(_("Background volume")), index: track['volume'])
+        choose.on(:press) do
+          path = get_file(GameRoomContent.utf8(_("Select background audio or MIDI file")),
+            path: Dirs.documents, save: false,
+            extensions: %w[.mp3 .wav .ogg .opus .flac .m4a .aac .wma .aiff .aif .w64 .alac .webm .mod .xm .it .s3m .mid .midi .rmi])
+          if path && background_file_valid?(path)
+            track['file'] = path
+            choose.label = background_file_label(path)
+          end
+        end
+        [kind, [enabled, choose, volume]]
+      end
       widget_enabled = CheckBox.new(
         _("Show Power Games on the ELTEN main screen"),
         checked: setting_enabled?("widget_enabled")
@@ -388,7 +407,7 @@ module GameRoomScreens
         [primary_language, known_languages, background_speech, background_turn, background_sounds],
         [lobby_games, created, joined, left, computers],
         [invitation_policy, watched_games, watched_contacts, invitation_blacklist],
-        hrtf + volume_fields.values,
+        hrtf + volume_fields.values + background_fields.values.flatten,
         [widget_enabled, widget_games, widget_unavailable, widget_contacts, presets].compact
       ]
       form = PresetSettingsForm.new([sections] + groups.flatten + [save_button, cancel_button], program: @program, quiet: true)
@@ -441,6 +460,9 @@ module GameRoomScreens
           presets.edit
           next
         end
+        next unless background_fields.all? do |kind, (enabled, _choose, _volume)|
+          !enabled.checked || background_file_valid?(backgrounds.fetch(kind)['file'])
+        end
         action = :save
         form.resume
       end
@@ -469,6 +491,9 @@ module GameRoomScreens
         "invitation_blacklist" => invitation_blacklist.names,
         "table_watch_contacts_only" => watched_contacts.checked,
         "sound_volumes" => form.game_room_volume_reader.call,
+        "background_music" => background_fields.to_h do |kind, (enabled, _choose, volume)|
+          [kind, backgrounds.fetch(kind).merge('enabled' => enabled.checked, 'volume' => volume.index.to_i)]
+        end,
         "widget_enabled" => widget_enabled.checked,
         "widget_contacts_only" => widget_contacts.checked,
         "widget_games" => selected_game_ids(widget_games),
@@ -482,6 +507,20 @@ module GameRoomScreens
     end
 
     private
+
+    def background_file_label(path)
+      GameRoomContent.utf8(_("Select background file: %{file}")) % {
+        file: GameRoomContent.utf8(path.to_s.empty? ? _("None") : File.basename(path.to_s)) }
+    end
+
+    def background_file_valid?(path)
+      sound = ::Sound.new(path, sample: false) if !path.to_s.empty? && File.file?(path)
+      return true if sound&.opened?
+      alert(GameRoomContent.utf8(_("Cannot open this background file. Choose a supported audio or MIDI file.")))
+      false
+    ensure
+      sound&.close
+    end
 
     def notification_controls(watched_header)
       invitation_policy = ListBox.new(
