@@ -343,6 +343,8 @@ mają być odczytywane podczas przebywania w głównym oknie programu.
 
 ## Dźwięki i gra w tle
 
+W Ustawieniach → Dźwięki możesz włączyć własną muzykę w tle. Wybierz plik i ustaw głośność osobno dla menu Power Games i dla rozgrywki. Domyślnie obie opcje są wyłączone.
+
 Głośność można regulować bez opuszczania gry:
 
 - F2 — ciszej.

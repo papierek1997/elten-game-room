@@ -690,6 +690,20 @@ module GameRoomChangelog
         "Scopa bots choose captures more carefully and are less likely to leave an easy sweep for the next player.",
         "Mahjong bots make better choices about discards, calls and when to defend."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.2",
+      build: 265,
+      changes: [
+        "Added seven games: Blackjack, Blackjack Dice, Dice Poker, Liar's Dice, Go, Roulette and Bingo. Rules are available in all five languages.",
+        "In Blackjack, press Space to draw a card. The new card and dice games announce turns and round results more clearly and use the familiar betting sounds.",
+        "Improved the new games' computer players: they make better decisions about drawing cards, keeping dice, calling bluffs, placing stones and betting on the wheel.",
+        "Poker now offers a short deck of 24 cards, from nines to aces.",
+        "Added optional background music, with separate tracks for menus and for games. You can turn it on under Settings, Sounds.",
+        "Countries and Cities now offers 86 categories across three difficulty levels. You can also choose your own set of categories.",
+        "Added 67 questions to the Polish General Knowledge and Harry Potter sets and corrected reported questions. Thanks to Zuzler for the submissions and reports!",
+        "Corrected the Russian text in Monopoly. When two salaries are paid in a single move, both now appear separately in the history."
+      ].freeze
     ).freeze
   ].freeze
 

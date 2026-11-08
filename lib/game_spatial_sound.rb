@@ -58,6 +58,8 @@ module GameRoomSpatialSound
 
   def event_position(program, game, event, before_replay, after_replay, repository, viewer, session)
     return nil if after_replay == nil || !enabled?(program, game)
+    # The host can commit a shared event without being the source of its sound.
+    return nil if game.respond_to?(:table_sound_event?) && game.table_sound_event?(event)
     source = repository.actor_of(event, session).to_s
     source = before_replay&.current_player.to_s if source.empty?
     position(after_replay.players, viewer, source)

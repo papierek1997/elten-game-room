@@ -2,6 +2,7 @@
 # Real ELTEN 3.0.4 controls/keyboard/speech adapter; only device boundaries are fake.
 # Neither this helper nor its dependencies load NVDA/SAPI/audio device backends.
 require_relative 'background_help_native'
+require_relative 'program_settings'
 
 raise 'Native tournament test must not run inside a live NVDA process' if defined?(NVDA)
 module NVDA

@@ -42,6 +42,21 @@ module GameRoomOptionValues
     definition.default
   end
 
+  def normalize_mask(choices, value)
+    width = choices.length
+    mask = if value.is_a?(Array)
+      requested = value.map(&:to_s)
+      choices.each_with_index.reduce(0) do |selected, (choice, index)|
+        requested.include?(choice.value.to_s) ? selected | (1 << index) : selected
+      end
+    else
+      integer_value(value) & ((1 << width) - 1)
+    end
+    # Tournament documents accept only 63-bit integers. Wide checklists
+    # stay compact by storing the same mask as a decimal string.
+    width > 63 ? mask.to_s : mask
+  end
+
   # Check declared types before permissive game normalizers can coerce them.
   def valid?(definition, value)
     case definition.kind.to_sym
@@ -52,7 +67,13 @@ module GameRoomOptionValues
     when :choice
       definition.choices.to_a.any? { |choice| choice.value.eql?(value) }
     when :multiple_choice
-      value.is_a?(Integer) && value >= 0 && (value >> definition.choices.to_a.length) == 0
+      width = definition.choices.to_a.length
+      if width > 63
+        return false unless value.is_a?(String) && value.bytesize <= ((1 << width) - 1).to_s.length &&
+          /\A(?:0|[1-9][0-9]*)\z/.match?(value)
+        return (value.to_i >> width) == 0
+      end
+      value.is_a?(Integer) && value >= 0 && (value >> width) == 0
     when :multiple_values
       values = definition.choices.to_a.map(&:value)
       value.is_a?(Array) && value.all? { |item| item.is_a?(String) && values.include?(item) }

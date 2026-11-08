@@ -4,28 +4,17 @@
     {
       "id": "play",
       "title": {
-        "en": "Dice variants and scoring"
+        "en": "Rolling and scoring"
       },
       "paragraphs": [
         {
-          "en": "Players take turns accumulating rolls towards 21. In Two dice, use both below 16 and one die from 16. In One die, use one throughout. After the first roll you may stand. Reaching 21 or exceeding it ends your turn."
+          "en": "Press Space on your turn to roll and add the result to your total. Roll two dice below 16 and one from 16 onward. You can roll again or select Keep your total and press Enter. Reaching 21 or going over ends your turn; if you go over, you cannot win the round."
         },
         {
-          "en": "Finish every player’s turn before scoring. A unique best total not exceeding 21 earns one point, or two for exactly 21. A tied best total, including tied 21s, and an all-bust round earn no points. This match scoring also applies to the one-die variant; it replaces a playoff. Rotate the first player each round. First to the chosen target (default ten) wins."
-        }
-      ]
-    },
-    {
-      "id": "betting",
-      "title": {
-        "en": "Opening contributions and betting"
-      },
-      "paragraphs": [
-        {
-          "en": "Each round starts with an automatic opening contribution from every active player: ten chips by default, or the table setting. A player with less pays their entire balance and is all-in. Then players act in seat order: check if nothing is owed, call a raise, raise, fold, or go all-in. A raise makes the others respond again. Betting closes when all players who still have chips have responded and matched the current bet, or only one player has not folded. All-in players keep their right to play without further betting. A short all-in does not reopen raising for someone who already acted unless the cumulative increase reaches a full raise."
+          "en": "After every player has had a turn, the best total up to 21 earns a point, or two for exactly 21. No one scores if the best total is tied or everyone goes over. A different player starts each round. The first to the agreed target wins; the default is ten points."
         },
         {
-          "en": "Use C to check or call, F to fold, A for all-in, and R or B to type your own raise. The entered amount is the increase above the current bet; any amount needed to call is added to the payment. Raises start at one chip and later must match the last full raise; a smaller final all-in is allowed. Preset raises are also in the actions list. Cards or dice start only after betting closes."
+          "en": "You can choose to use only one die throughout the game in the table settings."
         }
       ]
     },
@@ -36,24 +25,71 @@
       },
       "paragraphs": [
         {
-          "en": "Before any dice, use Virtual chips under Round settlement to play with opening contributions and betting. Set initial chips, opening contribution and round limit when creating the table. Defaults are 100 chips, an opening contribution of ten and ten rounds. Point mode retains its scoring without chip betting."
+          "en": "Choose Virtual chips under Round settlement when creating the table to bet before rolling. Set the starting balance, opening stake and number of rounds instead of a points target."
         },
         {
-          "en": "After betting, players who have not folded take their dice turns, including all-in players. Contributions create main and side pots: a player may win only the layers their own contribution covers. Each layer goes to its highest non-bust eligible total; tied leaders split it, with remaining whole chips assigned in round seat order. An unmatched excess is returned. A layer with no eligible non-bust total is refunded to its contributors. If everyone but one folds, the remaining player wins the contested pot without rolling. Chips in balances and pots are conserved."
+          "en": "The best total up to 21 wins the pot, with ties sharing it. Extra indivisible chips go to tied players in round order. You can win at most your own stake from each other player. Any amount no one matched is returned, and bets in a pot with no eligible total up to 21 are also returned."
         },
         {
-          "en": "The starting seat rotates each round. A zero balance eliminates only after settlement. Play ends at the round limit or with fewer than two funded players. The highest final balance wins; tied maxima draw. S reads balances. Previously recorded chip games retain their original betting rules."
+          "en": "A player with no chips after settlement is out. The match ends at the round limit or when fewer than two players have chips. Highest balance wins; equal highest balances draw."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "en": "Betting before rolling"
+      },
+      "paragraphs": [
+        {
+          "en": "Each player pays an opening stake, normally ten chips. If you cannot cover the table’s opening stake, you put in what you have. Players then bet in turn."
+        },
+        {
+          "en": "Press C to check if you owe nothing or call to match the bet. F folds: you leave the round and give up what you have paid. A puts in all your chips. You stay in the round but cannot bet again."
+        },
+        {
+          "en": "To raise, press R and enter how much higher the bet should be. Any amount you need to call is added to your payment. The first raise is at least one chip; later raises must match the last full raise. A smaller all-in does not let a player who already acted raise again unless the smaller increases together make a full raise."
+        },
+        {
+          "en": "Betting ends when one player remains or everyone still in the round with chips has responded and matched the bet."
+        },
+        {
+          "en": "Players who did not fold now roll. If only one player remains, they win the pot without rolling."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "en": "Controls"
+        "en": "Keyboard shortcuts"
       },
       "paragraphs": [
         {
-          "en": "Use the arrows to choose an action and Enter to perform it. Tab changes fields. T reads the current turn; S reads scores. F1 opens the current shortcut reference; Ctrl+F1 opens the rules. Card hands preserve physical card identity and draw order. Their cards are for inspection, not play: choose decisions in the separate actions list."
+          "en": "Space: roll"
+        },
+        {
+          "en": "C: read the current total when rolling; check or call when betting"
+        },
+        {
+          "en": "D: read the last roll"
+        },
+        {
+          "en": "S: read scores or balances"
+        },
+        {
+          "en": "T: read the current turn"
+        },
+        {
+          "en": "F: fold in betting"
+        },
+        {
+          "en": "A: go all-in"
+        },
+        {
+          "en": "R: roll the dice or raise, depending on the phase"
+        },
+        {
+          "en": "B: raise when betting"
         }
       ]
     }

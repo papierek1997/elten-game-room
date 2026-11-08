@@ -65,7 +65,7 @@ assert(game.automatic_action_due?(shifted, 'Alice', context: context), 'A restor
 
 # Completed history must include everyone, including a shared winner. This
 # fixture uses the already-established two-point test threshold, not defaults.
-final_session = {'options' => JSON.generate(game.default_options.merge('target_score' => 2, 'tie_mode' => 'shared'))}
+final_session = {'options' => JSON.generate(options.merge('target_score' => 2, 'tie_mode' => 'shared'))}
 final_context = GameRoomGames::ActionContext.new(session_id: 903, table_id: 904, now: 200,
   hidden_submissions: HiddenSubmissions::Vault.new(HiddenSubmissions::MemoryStorage.new),
   random_source: GameRoomRandom::SequenceSource.new([1, 1]))

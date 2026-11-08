@@ -1,8 +1,8 @@
 # Polish Harry Potter questions
 
-`quiz.harry_potter.books.pl`, data version 2, contains 985 questions in eight
-categories. LordKiller submitted 993 proposals. Power Games reviewed their
-wording, correct answers and distractors individually. In the initial review,
+`quiz.harry_potter.books.pl`, data version 3, contains 1,015 questions in eight
+categories. Of LordKiller's 993 proposals, 985 were included. Power Games
+reviewed their wording, correct answers and distractors individually. In the initial review,
 241 included items were edited and 744 retained the submitted wording.
 The set is in Polish regardless of the interface language.
 
@@ -11,6 +11,12 @@ or scene context, removes house and occupation clues from the prompts,
 replaces two implausible distractors and corrects the source of the Polyjuice
 disguise scene to *Harry Potter and the Chamber of Secrets*. The question
 identities, correct answers and total count remain unchanged.
+
+Data version 3 adds 30 questions based on 44 proposals from Zuzler. The
+accepted items were checked against the seven Polish novels. Fourteen
+proposals were excluded: they repeated existing or newly reviewed questions,
+depended on an ill-defined count, or tested a made-up title. The earlier 985
+questions retain their identities, wording and answers.
 
 ## Scope and verification
 
@@ -55,7 +61,7 @@ intentional. Excluded material has not been replaced with unrelated filler.
 
 ## Attribution and rights
 
-Proposal: LordKiller. Editorial review and revisions: Power Games.
+Proposals: LordKiller and Zuzler. Editorial review and revisions: Power Games.
 The literary works remain the works of J.K. Rowling; the Polish translation
 remains the work of Andrzej Polkowski. No public-domain or CC0 status is
 claimed for the novels, translation or submitted question set. Licenses of

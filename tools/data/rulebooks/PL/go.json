@@ -4,44 +4,77 @@
     {
       "id": "aim",
       "title": {
-        "pl": "Go"
+        "pl": "Plansza i ruchy"
       },
       "paragraphs": [
         {
-          "pl": "Go powstało w Chinach; znane jest też jako baduk i igo. Dwaj gracze kładą czarne i białe kamienie na przecięciach linii. Zaczynają czarne. Kamienie połączone bokami tworzą grupę. Sąsiednie puste przecięcie jest oddechem. Zajęcie wszystkich oddechów zbija grupę. Najpierw usuwa się zbite kamienie przeciwnika, potem sprawdza samobójstwo, które jest zabronione."
-        }
-      ]
-    },
-    {
-      "id": "variants",
-      "title": {
-        "pl": "Odmiany i ustawienia"
-      },
-      "paragraphs": [
+          "pl": "Otaczaj puste obszary i zachowuj na planszy własne kamienie, żeby zdobyć więcej punktów od przeciwnika. W Go grają dwie osoby. Na początku plansza jest pusta. Czarne zaczynają, a potem gracze na zmianę kładą po jednym kamieniu. Strzałkami przejdź na wolne przecięcie i naciśnij Enter. Kolumny są oznaczone literami od lewej, a wiersze numerami od dołu."
+        },
         {
-          "pl": "Wybierz planszę 9 na 9, 13 na 13 lub 19 na 19. Liczenie obszaru w stylu chińskim dodaje żywe kamienie do otoczonych pustych punktów. Liczenie terytorium dodaje do pustych punktów jeńców oraz uzgodnione martwe kamienie przeciwnika. Białe dostają wybrane komi. W Atari Go wygrywa pierwsze zbicie, a dwa pasy bez zbicia dają remis. We wszystkich odmianach obowiązuje pozycyjne superko: nie wolno odtworzyć wcześniejszego układu całej planszy. Tryb terytorialny wymaga uzgodnienia martwych grup i neutralnego seki; nie rozstrzyga automatycznie japońskich wyjątków życia i śmierci, na przykład zgiętej czwórki w rogu."
+          "pl": "Kamienie tego samego koloru połączone bokami tworzą grupę. Każde wolne przecięcie obok grupy to oddech. Gdy zabierzesz grupie przeciwnika ostatni oddech, zdejmujesz ją z planszy. Nie możesz dołożyć kamienia, który po ewentualnym zbiciu pozostawi twoją grupę bez oddechu. Nie wolno też odtwarzać wcześniejszego układu planszy."
         }
       ]
     },
     {
       "id": "scoring",
       "title": {
-        "pl": "Zakończenie i uzgadnianie wyniku"
+        "pl": "Pas i liczenie punktów"
       },
       "paragraphs": [
         {
-          "pl": "Dwa kolejne pasy otwierają liczenie. Gracze na zmianę zaznaczają całą grupę jako martwą lub ją przywracają, wybierając jej kamień. Wybranie pustego punktu przełącza neutralność całego połączonego pustego obszaru, na przykład przy seki. Każda zmiana kasuje oba zatwierdzenia, a zmiana martwej grupy kasuje też neutralne obszary. A zatwierdza dokładnie tę propozycję. Dwa zatwierdzenia kończą partię. R wznawia grę z kamieniami nadal na planszy i usuwa oznaczenia; następny ruch ma przeciwnik. Punkty dają tylko obszary otoczone jednym kolorem. W obszarze liczą się też żywe kamienie, w terytorium zamiast nich jeńcy. Wyższy wynik wygrywa, równy daje remis. Q poddaje partię."
+          "pl": "Jeśli nie chcesz kłaść kamienia, naciśnij P. Gdy obaj gracze spasują z rzędu, przechodzicie do liczenia. Wybierz kamień i naciśnij Enter, żeby oznaczyć całą grupę jako martwą lub przywrócić jej status żywej. Enter na pustym przecięciu zmienia status całego połączonego obszaru na neutralny lub z powrotem na liczony."
+        },
+        {
+          "pl": "Sprawdź proponowany wynik klawiszem S. Zatwierdź go klawiszem A, jeśli się zgadzasz. Po każdej zmianie oznaczeń trzeba zatwierdzić wynik ponownie; zmiana martwych grup kasuje też oznaczenia neutralnych obszarów. Jeśli chcecie dalej grać, naciśnij R. Kamienie zostają na planszy, oznaczenia znikają, a ruch ma przeciwnik."
+        },
+        {
+          "pl": "W podstawowej odmianie dostajesz punkt za każdy swój żywy kamień oraz za każde puste przecięcie w obszarze otoczonym wyłącznie twoim kolorem. Obszary neutralne nie dają punktów. Białe mają dodatkowe punkty, zwane komi. Gdy obie strony zatwierdzą wynik, wygrywa wyższy; równe wyniki dają remis."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Rozmiar planszy i odmiany"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przy tworzeniu stołu możesz wybrać planszę 9 na 9, 13 na 13 albo 19 na 19 oraz wysokość komi."
+        },
+        {
+          "pl": "- Liczenie terytorium: zamiast żywych kamieni liczysz zbite kamienie przeciwnika oraz jego grupy uznane za martwe. Nadal doliczasz otoczone puste przecięcia."
+        },
+        {
+          "pl": "- Atari Go: wygrywa pierwsze zbicie. Dwa pasy bez zbicia oznaczają remis; klawisz S podaje liczbę zbić zamiast punktów."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "pl": "Sterowanie"
+        "pl": "Skróty klawiszowe"
       },
       "paragraphs": [
         {
-          "pl": "Strzałki przeglądają przecięcia, Enter stawia kamień lub zmienia oznaczenie. P pasuje, A zatwierdza wynik, R wznawia grę, Q poddaje, S odczytuje punkty, a T turę. Bot stosuje prostą ocenę zbić i oddechów, a następnie akceptuje liczenie. F1 podaje aktualne skróty, Ctrl+F1 otwiera zasady. Historia, czat i głośność używają wspólnych kontrolek."
+          "pl": "Strzałki: przeglądaj przecięcia"
+        },
+        {
+          "pl": "Enter: połóż kamień albo zmień oznaczenie"
+        },
+        {
+          "pl": "P: spasuj"
+        },
+        {
+          "pl": "S: sprawdź proponowany wynik lub zbicia w Atari Go"
+        },
+        {
+          "pl": "A: zatwierdź wynik"
+        },
+        {
+          "pl": "R: wróć do gry po pasach"
+        },
+        {
+          "pl": "Q: poddaj partię"
         }
       ]
     }

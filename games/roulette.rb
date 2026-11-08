@@ -16,6 +16,8 @@ module GameRoomGames
     def minimum_players; 1; end
     def maximum_players; 8; end
     def supports_bots?; true; end
+    def player_spatial_audio?; true; end
+    def table_sound_event?(event); event['action'] == 'spin'; end
     def bot_strategy; @bot_strategy ||= GameRoomBots::HeuristicStrategy.new; end
     def rule_sections; generated_rule_sections; end
     def notification_option_keys(_options); %w[mode wheel]; end
@@ -116,20 +118,23 @@ module GameRoomGames
           items << GameSurfaces::PawnTrackItem.new(id: "#{action['action']}:#{action['bet']}", label: GameRoomContent.utf8(label), action: GameSurfaces::Action.from_h(action))
         end
       end
-      header = _('Spin %{round}; last number %{number}; your chips %{chips}.') % {
-        round: state[:round], number: state[:last_number].nil? ? '-' : GameRoomRouletteBets.display(state[:last_number]), chips: player ? state[:chips][player] / 2.0 : '-'}
+      header = _('Spin %{round} of %{total}.') % {round: state[:round], total: state[:options]['round_limit']}
+      unless state[:last_number].nil?
+        header += ' ' + (_('Last number: %{number}.') % {number: GameRoomRouletteBets.display(state[:last_number])})
+      end
+      header += ' ' + (_('Your chips: %{chips}.') % {chips: roulette_amount(state[:chips][player])}) if player
       GameSurfaces::PawnTrackSpec.new(id: 'roulette', header: GameRoomContent.utf8(header), items: items,
         empty_label: GameRoomContent.utf8(current_turn_shortcut_text(replay, viewer)))
     end
 
     def custom_game_shortcuts(replay, viewer)
       state = replay.state
-      shortcuts = [announcement_shortcut(key: 's', label: _('read the chip balances'), message: state[:players].map { |p| "#{participant_name(p)}: #{state[:chips][p] / 2.0}" }.join('; '))]
+      shortcuts = [announcement_shortcut(key: 's', label: _('read the chip balances'), message: state[:players].map { |p| "#{participant_name(p)}: #{roulette_amount(state[:chips][p])}" }.join('; '))]
       player = state[:players].find { |p| same_user?(p, viewer) }
       if player
         bets = state[:bets][player].map do |key, amount|
           bet = bet_definitions(state).find { |b| b[:key] == key }
-          "#{bet_label(bet)}: #{amount / 2.0}"
+          "#{bet_name(bet)}: #{roulette_amount(amount)}"
         end
         shortcuts << announcement_shortcut(key: 'v', label: _('read your roulette bets'), message: bets.empty? ? _('You have no bets on this spin.') : bets.join('; '))
       end
@@ -145,6 +150,8 @@ module GameRoomGames
             prompt: _('Place roulette bet'), fields: fields, action_kind: 'command', action_name: 'bet', payload: {'round' => state[:round]})
         end
         [['r', 'ready', _('finish betting')], ['c', 'clear', _('remove all your bets')]].each do |key, action, label|
+          next if action == 'clear' && state[:bets][player].empty?
+
           shortcuts << GameShortcut.new(key: key, label: label, kind: :action, action_kind: 'command', action_name: action, payload: {'round' => state[:round]})
         end
       end
@@ -158,10 +165,50 @@ module GameRoomGames
       player && replay.state[:chips][player] < 2 && replay.state[:bets][player].empty?
     end
     def bot_action_score(replay, actor, action, context: nil)
+      state, player = replay.state, replay.current_player
       return 100 if action['action'] == 'spin'
       return -100 if action['action'] == 'clear'
-      return replay.state[:bets][replay.current_player].empty? ? -1 : 100 if action['action'] == 'ready'
-      1
+      ready = action['action'] == 'ready'
+      return ready ? 100 : -1 unless state[:bets][player].empty?
+
+      bet = bet_definitions(state).find { |item| item[:key] == action['bet'] } unless ready
+      if state[:options]['mode'] != 'casino' || state[:round] != state[:options]['round_limit']
+        return ready ? -1 : bet[:numbers].size
+      end
+
+      # On the last casino spin, prefer the best chance to finish
+      # ahead of public balances and stakes. The wheel result is still unknown.
+      @bot_final_spin = [replay, roulette_final_scores(state, player)] unless @bot_final_spin&.first.equal?(replay)
+      amount, wheel = ready ? 0 : action['amount'] * 2, state[:options]['wheel']
+      chance = @bot_final_spin.last.sum do |number, own, others|
+        chips = ready ? own : own - amount + GameRoomRouletteBets.payout(bet, amount, number, wheel)
+        chips > others ? 2 : chips == others ? 1 : 0
+      end
+      chance + (ready ? 0.2 : bet[:numbers].size / 100.0)
+    end
+
+    def required_decision_key(replay, viewer)
+      return nil if casino_spinning?(replay)
+
+      key = super
+      [key, replay.state[:round]] if key
+    end
+
+    def turn_announcement(replay, viewer)
+      return nil if casino_spinning?(replay)
+      if replay&.state&.[](:phase) == :spinning
+        return _('Spin the wheel with Space.') if same_user?(replay.current_player, viewer)
+        return _('%{player} will spin the wheel.') % {player: participant_name(replay.current_player)}
+      end
+      super
+    end
+
+    def turn_transition_history_entry(before_replay, after_replay, event_id:)
+      super unless casino_spinning?(after_replay)
+    end
+
+    def current_turn_shortcut_text(replay, viewer)
+      casino_spinning?(replay) ? _('The wheel is spinning.') : super
     end
     def move_error(status)
       return _('Choose a valid bet and a positive whole number of chips within your balance.') if status == :invalid_bet
@@ -173,17 +220,49 @@ module GameRoomGames
 
     private
 
+    def casino_spinning?(replay)
+      state = replay&.state
+      state && state[:phase] == :spinning && state[:options]['mode'] == 'casino'
+    end
+
+    def turn_phase_kind(replay)
+      case replay&.state&.[](:phase)
+      when :betting then :bidding
+      when :spinning then :spin
+      else super
+      end
+    end
+
+    def roulette_amount(amount); amount.even? ? amount / 2 : amount / 2.0; end
+
+    def roulette_final_scores(state, player)
+      wheel = state[:options]['wheel']
+      definitions = bet_definitions(state).to_h { |bet| [bet[:key], bet] }
+      (0..(wheel == 'american' ? 37 : 36)).map do |number|
+        scores = tournament_remaining_players(state).to_h do |person|
+          returned = state[:bets][person].sum { |key, paid| GameRoomRouletteBets.payout(definitions.fetch(key), paid, number, wheel) }
+          [person, state[:chips][person] + returned]
+        end
+        own = scores.delete(player)
+        [number, own, scores.values.max || 0]
+      end
+    end
+
     def bet_definitions(state)
       @bet_definitions ||= {}
       @bet_definitions[state[:options]['wheel']] ||= GameRoomRouletteBets.definitions(state[:options]['wheel'])
     end
 
-    def bet_label(bet)
+    def bet_name(bet)
       labels = {'red' => _('Red'), 'black' => _('Black'), 'odd' => _('Odd'), 'even' => _('Even'),
         'low' => _('Low: 1-18'), 'high' => _('High: 19-36'),
         'dozen1' => _('First dozen'), 'dozen2' => _('Second dozen'), 'dozen3' => _('Third dozen'),
         'column1' => _('First column'), 'column2' => _('Second column'), 'column3' => _('Third column')}
-      GameRoomContent.utf8(_('%{bet}, pays %{odds} to 1')) % {bet: GameRoomContent.utf8(labels.fetch(bet[:label], bet[:label])), odds: bet[:odds]}
+      GameRoomContent.utf8(labels.fetch(bet[:label], bet[:label]))
+    end
+
+    def bet_label(bet)
+      GameRoomContent.utf8(_('%{bet}, pays %{odds} to 1')) % {bet: bet_name(bet), odds: bet[:odds]}
     end
 
     def apply_roulette_event(state, event, actor, event_id, history)
@@ -217,8 +296,8 @@ module GameRoomGames
         return false unless amount <= 2_000_000_000 && amount <= state[:chips][player] && bet_definitions(state).any? { |b| b[:key] == key }
         state[:chips][player] -= amount
         state[:bets][player][key] = state[:bets][player].fetch(key, 0) + amount
-        label = bet_label(bet_definitions(state).find { |b| b[:key] == key })
-        message = _('%{player} bets %{amount} on %{bet}.') % {player: participant_name(player), amount: amount / 2.0, bet: label}
+        label = bet_name(bet_definitions(state).find { |b| b[:key] == key })
+        message = _('%{player} bets %{amount} on %{bet}.') % {player: participant_name(player), amount: roulette_amount(amount), bet: label}
       elsif action == 'clear' && value == state[:round].to_s
         refund_bets(state, player)
         message = _('%{player} removes their bets.') % {player: participant_name(player)}
@@ -272,7 +351,20 @@ module GameRoomGames
       payouts.each { |player, amount| state[:chips][player] += amount }
       state[:last_number] = number
       history << HistoryEntry.new(key: "roulette:#{event_id}", event_id: event_id, actor: state[:spinner], kind: :move,
-        text: _('The ball lands on %{number}. Returns: %{returns}.') % {number: GameRoomRouletteBets.display(number), returns: payouts.map { |p, amount| "#{participant_name(p)}: #{amount / 2.0}" }.join('; ')})
+        text: _('The ball lands on %{number}.') % {number: GameRoomRouletteBets.display(number)})
+      payouts.each do |player, amount|
+        stake = state[:bets][player].values.sum
+        next if stake.zero?
+        outcome = if amount > stake
+          _('Profit for %{player}: %{amount}.')
+        elsif amount < stake
+          _('Loss for %{player}: %{amount}.')
+        else
+          _('%{player} gets their stake back.')
+        end
+        text = outcome % {player: participant_name(player), amount: roulette_amount((amount - stake).abs)}
+        history << HistoryEntry.new(key: "roulette:#{event_id}:#{history.size}", event_id: event_id, actor: player, kind: :settlement, text: text)
+      end
       contenders = tournament_remaining_players(state)
       record_tournament_round(state, event_id, kind: 'spin')
       alive = contenders.select { |p| state[:chips][p] >= 2 }

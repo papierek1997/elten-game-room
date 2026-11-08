@@ -4,44 +4,77 @@
     {
       "id": "aim",
       "title": {
-        "es": "Go"
+        "es": "Tablero y jugadas"
       },
       "paragraphs": [
         {
-          "es": "El Go nació en China. Dos jugadores colocan piedras negras y blancas en intersecciones; empiezan las negras. Las piedras unidas por sus lados forman grupos. Un punto vacío adyacente es una libertad. Un grupo sin libertades se captura. Se retiran primero las capturas enemigas; el suicidio está prohibido."
-        }
-      ]
-    },
-    {
-      "id": "variants",
-      "title": {
-        "es": "Variantes"
-      },
-      "paragraphs": [
+          "es": "Rodea zonas vacías y conserva tus piedras en el tablero para sumar más puntos que tu rival. El go se juega entre dos personas y empieza con el tablero vacío. Juegan primero las negras; después se coloca una piedra por turno. Muévete con las flechas a una intersección libre y pulsa Intro. Las columnas llevan letras desde la izquierda y las filas se numeran desde abajo."
+        },
         {
-          "es": "Tableros de 9, 13 o 19 intersecciones por lado. El área de estilo chino suma piedras vivas y puntos vacíos rodeados. El territorio suma puntos rodeados, prisioneros y piedras enemigas muertas acordadas. Las blancas reciben el komi elegido. En Atari Go gana la primera captura; dos pases empatan. Todas las variantes usan superko posicional. El modo territorial requiere acordar grupos muertos y regiones seki neutrales; no implementa toda la adjudicación japonesa de vida y muerte."
+          "es": "Las piedras del mismo color unidas por las líneas forman un grupo. Las intersecciones libres a su lado son sus libertades. Si ocupas la última libertad de un grupo rival, lo retiras entero. Después de retirar las capturas, tu grupo debe tener alguna libertad. Tampoco puedes repetir una posición anterior del tablero."
         }
       ]
     },
     {
       "id": "scoring",
       "title": {
-        "es": "Puntuación"
+        "es": "Pasar y contar los puntos"
       },
       "paragraphs": [
         {
-          "es": "Dos pases consecutivos abren la puntuación. Por turnos se marcan grupos enteros como muertos y regiones vacías como neutrales. Cada cambio anula ambas aprobaciones; cambiar grupos elimina también las marcas neutrales. A acepta la propuesta exacta y dos aprobaciones terminan la partida. R reanuda el juego, borra las marcas y da el siguiente turno al rival. Solo puntúan regiones rodeadas por un color. Gana la mayor puntuación; la igualdad empata. Q abandona."
+          "es": "Pulsa P si prefieres pasar. Dos pases seguidos abren el recuento. Intro sobre una piedra marca todo el grupo como muerto o lo recupera. En un cruce vacío, cambia entre contar y no contar toda la región conectada."
+        },
+        {
+          "es": "Pulsa S para escuchar el resultado propuesto y A para aceptarlo. Cualquier cambio anula las dos aprobaciones; cambiar un grupo muerto también quita las marcas de regiones neutrales. R reanuda la partida: las piedras se quedan, las marcas se quitan y juega la otra persona."
+        },
+        {
+          "es": "En el recuento inicial, cada piedra viva de tu color y cada cruce vacío rodeado solo por tu color vale un punto. Las regiones neutrales no puntúan. Las blancas reciben una compensación llamada komi. Cuando ambos aceptan el resultado, gana la mayor puntuación. A igualdad, empate."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Tamaño del tablero y variantes"
+      },
+      "paragraphs": [
+        {
+          "es": "Al crear la mesa puedes elegir un tablero de 9×9, 13×13 o 19×19 y ajustar el komi."
+        },
+        {
+          "es": "- Recuento por territorio: en vez de piedras vivas, cuenta las capturas y las piedras rivales declaradas muertas. Los cruces vacíos rodeados también cuentan."
+        },
+        {
+          "es": "- Atari go: gana la primera captura. Dos pases sin capturas empatan. S lee las capturas, no el territorio."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "es": "Controles"
+        "es": "Atajos de teclado"
       },
       "paragraphs": [
         {
-          "es": "Flechas recorren intersecciones; Intro coloca o marca. P pasa, A acepta el resultado, R reanuda, Q abandona, S lee puntos y T el turno. El bot usa una estrategia básica de capturas y libertades. F1 muestra atajos y Ctrl+F1 las reglas."
+          "es": "Flechas: recorrer las intersecciones"
+        },
+        {
+          "es": "Intro: colocar una piedra o cambiar una marca"
+        },
+        {
+          "es": "P: pasar"
+        },
+        {
+          "es": "S: leer el resultado propuesto o las capturas en Atari go"
+        },
+        {
+          "es": "A: aceptar el resultado"
+        },
+        {
+          "es": "R: reanudar después de pasar"
+        },
+        {
+          "es": "Q: abandonar"
         }
       ]
     }

@@ -1,5 +1,6 @@
 require_relative 'host_controls'
 require_relative 'native_tasks'
+require_relative 'program_settings'
 
 def _(text)
   text

@@ -11,6 +11,7 @@ module GameRoomGames
     def name; _('Go'); end
     def short_description; _('Surround territory, capture stones and protect the liberties of your groups.'); end
     def supports_bots?; true; end
+    def player_spatial_audio?; true; end
     def bot_strategy; @bot_strategy ||= GameRoomBots::HeuristicStrategy.new; end
     def rule_sections; generated_rule_sections; end
     def notification_option_keys(_options); %w[variant size]; end
@@ -49,7 +50,12 @@ module GameRoomGames
         captured = state[:captures].sum - before_captures
         if captured > 0
           history << HistoryEntry.new(key: "capture:#{event_id}", event_id: event_id, actor: actor, kind: :capture,
-            text: _('%{player} captures %{count} stones.') % {player: participant_name(actor), count: captured})
+            text: n_('%{player} captures %{count} stone.', '%{player} captures %{count} stones.', captured) % {
+              player: participant_name(actor), count: captured})
+        end
+        if action == 'pass' && state[:phase] == :scoring
+          history << HistoryEntry.new(key: "review:#{event_id}", event_id: event_id, actor: "", kind: :score_review,
+            text: _('Both players passed. Review the score.'))
         end
         if state[:scores] && state[:phase] == :finished
           history << HistoryEntry.new(key: "score:#{event_id}", event_id: event_id, actor: actor, kind: :score,
@@ -107,9 +113,15 @@ module GameRoomGames
     end
 
     def custom_game_shortcuts(replay, viewer)
-      scores = replay.state[:scores] || GameRoomGoPosition.score(replay.state)
-      result = [announcement_shortcut(key: 's', label: _('read the current Go score'), message:
-        _('Black %{black}; White %{white}, including komi.') % {black: scores[0] / 2.0, white: scores[1] / 2.0})]
+      state = replay.state
+      result = if state[:options]['variant'] == 'atari'
+        [announcement_shortcut(key: 's', label: _('read captured stones'), message:
+          _('Stones captured: Black %{black}, White %{white}.') % {black: state[:captures][0], white: state[:captures][1]})]
+      else
+        scores = state[:scores] || GameRoomGoPosition.score(state)
+        [announcement_shortcut(key: 's', label: _('read the current Go score'), message:
+          _('Black %{black}; White %{white}, including komi.') % {black: scores[0] / 2.0, white: scores[1] / 2.0})]
+      end
       return result if replay.finished? || !same_user?(replay.current_player, viewer)
       pairs = replay.state[:phase] == :scoring ? [['a', 'accept', _('accept the proposed score')], ['r', 'resume', _('resume play')]] : [['p', 'pass', _('pass your turn')]]
       pairs << ['q', 'resign', _('resign this game')]
@@ -122,17 +134,35 @@ module GameRoomGames
     end
 
     def bot_action_score(replay, actor, action, context: nil)
-      state = replay.state
-      return action['action'] == 'accept' ? 100 : -100 if state[:phase] == :scoring
-      return -100_000 if action['action'] == 'resign'
-      return state[:moves] >= state[:stones].size * 2 || state[:passes] > 0 ? 100_000 : -10 if action['action'] == 'pass'
-      point = action['y'] * state[:options]['size'].to_i + action['x']
-      board, captured = placement(state, point)
+      state, board = replay.state, replay.state[:stones]
       marker, size = state[:players].index(state[:current_player]), state[:options]['size'].to_i
-      liberties = GameRoomGoPosition.group(board, point, size).last.size
+      return -100_000 if action['action'] == 'resign'
+      if state[:phase] == :scoring
+        if %w[accept resume].include?(action['action'])
+          wrong = state[:dead].any? do |point|
+            board[point] == marker && GameRoomGoPosition.group(board, point, size).last.count { |liberty| go_eye?(board, liberty, marker, size) } >= 2
+          end
+          return action['action'] == (wrong ? 'resume' : 'accept') ? 100 : -100
+        end
+        return -200
+      end
+      if action['action'] == 'pass'
+        return 100_000 if state[:moves] >= board.size * 2 && state[:options]['variant'] != 'atari'
+        return state[:passes].positive? && state[:moves] >= size * 2 ? 15 : -2
+      end
+
+      point = action['y'] * size + action['x']
+      next_board, captured = placement(state, point)
+      liberties = GameRoomGoPosition.group(next_board, point, size).last.size
       adjacent = GameRoomGoPosition.neighbors(point, size)
-      eye = adjacent.all? { |n| state[:stones][n] == marker }
-      captured.size * 100 + [liberties, 4].min * 2 - (liberties == 1 ? 20 : 0) - (eye ? 30 : 0)
+      threatened = adjacent.select { |neighbor| board[neighbor] == marker }.map do |neighbor|
+        GameRoomGoPosition.group(board, neighbor, size)
+      end.uniq
+      saved = liberties > 1 ? threatened.sum { |stones, open| open.one? ? stones.size : 0 } : 0
+      distance = [action['x'], action['y'], size - 1 - action['x'], size - 1 - action['y']].min
+      opening = state[:moves] < size ? 4 - (distance - 2).abs : 0
+      captured.size * 100 + saved * 45 + [liberties, 4].min * 2 + opening -
+        (liberties == 1 ? 20 : 0) - (go_eye?(board, point, marker, size) ? 30 : 0)
     end
 
     def event_sound_cues(event:, **_arguments)
@@ -140,6 +170,17 @@ module GameRoomGames
     end
 
     private
+
+    def go_eye?(board, point, marker, size)
+      neighbors = GameRoomGoPosition.neighbors(point, size)
+      return false unless neighbors.all? { |other| board[other] == marker }
+
+      x, y = point % size, point / size
+      enemies = [x - 1, x + 1].product([y - 1, y + 1]).count do |dx, dy|
+        dx.between?(0, size - 1) && dy.between?(0, size - 1) && board[dy * size + dx] == 1 - marker
+      end
+      enemies <= (neighbors.size == 4 ? 1 : 0)
+    end
 
     def placement(state, point)
       GameRoomGoPosition.place(state[:stones], point, state[:players].index(state[:current_player]),

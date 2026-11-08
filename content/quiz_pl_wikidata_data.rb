@@ -3,7 +3,7 @@ require 'json'
 module GameRoomContent
   module Packa0830f585cc4689a1e2a6335
     def self.load
-      JSON.parse(<<'QUIZ_DATA_b857e9337d332f807de6619e586bae0d79e764240c2ec0152e306838ea3cca16')
+      JSON.parse(<<'QUIZ_DATA_da9ba54b6f1641e06aa7c8dfe773fa1b8d8421dc2ea4ea5c899f536032cc1b63')
 {
   "questions": [
     {
@@ -109032,9 +109032,9 @@ module GameRoomContent
     },
     {
       "id": "polqa_01139",
-      "category": "Literatura",
+      "category": "Kultura",
       "level": "medium",
-      "prompt": "W jakiej dziedzinie przyznawana jest Nagroda Kościelskich?",
+      "prompt": "Której dziedziny dotyczy Nagroda Kościelskich?",
       "correct": "literatury",
       "wrong": [
         "malarstwa",
@@ -132234,7 +132234,7 @@ module GameRoomContent
       "id": "1z10_e2c8dcc4a4d81201",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Powieść Marka Twena. Jeden z dwóch tytułowych bohaterów jest Królewicz. A kto jest drugim bohaterem?",
+      "prompt": "Kto oprócz królewicza jest tytułowym bohaterem powieści Marka Twaina?",
       "correct": "Żebrak",
       "wrong": [
         "Kupiec",
@@ -134712,14 +134712,14 @@ module GameRoomContent
     },
     {
       "id": "polqa_01468",
-      "category": "Nauka",
+      "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "Jaką nazwę noszą niechciane wiadomości elektroniczne?",
+      "prompt": "Jak ogólnie nazywa się masowo rozsyłane, niezamówione wiadomości e-mail?",
       "correct": "spam",
       "wrong": [
-        "phishing",
         "newsletter",
-        "cookie"
+        "potwierdzenie odbioru",
+        "automatyczna odpowiedź"
       ],
       "source": "https://huggingface.co/datasets/ipipan/polqa",
       "review_required": false,
@@ -158138,7 +158138,7 @@ module GameRoomContent
       "id": "1z10_4a0d5047b6486d17",
       "category": "Nauka",
       "level": "medium",
-      "prompt": "Jaka jest nazwa włoskiego fizyka, który wynalazł baterię?",
+      "prompt": "Który włoski fizyk opisał w 1800 roku pierwszą baterię elektryczną?",
       "correct": "Alessandro Volta",
       "wrong": [
         "Luigi Galvani",
@@ -210455,22 +210455,6 @@ module GameRoomContent
       "review_required": false
     },
     {
-      "id": "1z10_281cbf9bc456d7ce",
-      "category": "Język",
-      "level": "medium",
-      "prompt": "Ile liter F występuje w wyrazie graffiti?",
-      "correct": "Dwie",
-      "wrong": [
-        "Jedna",
-        "Trzy",
-        "Cztery"
-      ],
-      "source": "https://huggingface.co/datasets/ipipan/maupqa",
-      "source_dataset": "1z10/MAUPQA",
-      "source_license": "CC-BY-SA-4.0",
-      "review_required": false
-    },
-    {
       "id": "1z10_7858dd1bb107d54d",
       "category": "Język",
       "level": "medium",
@@ -239100,11 +239084,640 @@ module GameRoomContent
       "source_dataset": "Power Games community",
       "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
       "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_01",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Kto napisał „Alfabet wspomnień”?",
+      "correct": "Antoni Słonimski",
+      "wrong": [
+        "Jan Brzechwa",
+        "Czesław Miłosz",
+        "Jerzy Andrzejewski"
+      ],
+      "source": "https://abc.uw.edu.pl/katalog/ksiazka/10149",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_03",
+      "category": "Geografia",
+      "level": "medium",
+      "prompt": "Jak brzmi ukraińska nazwa miasta znanego po polsku jako Stanisławów?",
+      "correct": "Iwano-Frankiwsk",
+      "wrong": [
+        "Tarnopol",
+        "Drohobycz",
+        "Czerniowce"
+      ],
+      "source": "https://www.poradnia-jezykowa.uni.lodz.pl/szczegoly/iwano-frankowsk-czy-iwano-frankiwsk",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_04",
+      "category": "Przyroda",
+      "level": "medium",
+      "prompt": "Jaką inną nazwę nosi kawia domowa?",
+      "correct": "Świnka morska",
+      "wrong": [
+        "Koszatniczka pospolita",
+        "Chomik syryjski",
+        "Myszoskoczek mongolski"
+      ],
+      "source": "https://technical-regulation-information-system.ec.europa.eu/mt/notification/25282/text/F/PL",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_05",
+      "category": "Przyroda",
+      "level": "medium",
+      "prompt": "Który z tych ssaków morskich nie występuje naturalnie w Bałtyku?",
+      "correct": "Kotik afrykański",
+      "wrong": [
+        "Morświn",
+        "Foka szara",
+        "Foka obrączkowana"
+      ],
+      "source": "https://www.gov.pl/attachment/5256b6a8-a008-40c9-9029-ff7eb96b7f4c",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_06",
+      "category": "Przyroda",
+      "level": "medium",
+      "prompt": "Ile gatunków ssaków morskich regularnie występuje w Bałtyku?",
+      "correct": "Cztery",
+      "wrong": [
+        "Trzy",
+        "Pięć",
+        "Sześć"
+      ],
+      "source": "https://www.gov.pl/attachment/5256b6a8-a008-40c9-9029-ff7eb96b7f4c",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_07",
+      "category": "Życie codzienne",
+      "level": "medium",
+      "prompt": "Jak inaczej nazywa się kajmak, którym w polskiej kuchni polewa się mazurki?",
+      "correct": "Masa krówkowa",
+      "wrong": [
+        "Lukier królewski",
+        "Masa marcepanowa",
+        "Krem budyniowy"
+      ],
+      "source": "https://nck.pl/projekty-kulturalne/projekty/ojczysty-dodaj-do-ulubionych/ciekawostki-jezykowe/kajmak%2Cc%2C50018",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_08",
+      "category": "Życie codzienne",
+      "level": "medium",
+      "prompt": "Które purée dodaje się do majonezu w sosie andaluzyjskim według przepisu Auguste’a Escoffiera?",
+      "correct": "Pomidorowe",
+      "wrong": [
+        "Dyniowe",
+        "Buraczane",
+        "Marchewkowe"
+      ],
+      "source": "https://www.mori.bz.it/gastronomia/Escoffier%20-%20Le%20guide%20culinaire.pdf",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_09",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Z którą epoką literacką związana była publicystyka Aleksandra Świętochowskiego i Piotra Chmielowskiego?",
+      "correct": "Z pozytywizmem",
+      "wrong": [
+        "Z romantyzmem",
+        "Z oświeceniem",
+        "Z Młodą Polską"
+      ],
+      "source": "https://zpe.gov.pl/a/przeczytaj/DJ8kE0uws",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_10",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Do której epoki literackiej należą „Skargi Jeremiego” Kornela Ujejskiego?",
+      "correct": "Do romantyzmu",
+      "wrong": [
+        "Do oświecenia",
+        "Do pozytywizmu",
+        "Do Młodej Polski"
+      ],
+      "source": "https://literat.ug.edu.pl/autors/ujejski.htm",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_11",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Z którą epoką literacką związany był Władysław Syrokomla, autor „Gawęd”?",
+      "correct": "Z romantyzmem",
+      "wrong": [
+        "Z oświeceniem",
+        "Z pozytywizmem",
+        "Z Młodą Polską"
+      ],
+      "source": "https://wolnelektury.pl/katalog/lektura/syrokomla-gawedy/",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_12",
+      "category": "Kultura",
+      "level": "medium",
+      "prompt": "Z czego znany był Tadeusz Faliszewski w międzywojennej Polsce?",
+      "correct": "Ze śpiewania i gry aktorskiej",
+      "wrong": [
+        "Z komponowania symfonii i dyrygowania",
+        "Z pisania powieści i reportaży",
+        "Z malowania obrazów i rzeźbienia"
+      ],
+      "source": "https://bibliotekapiosenki.pl/osoby/Faliszewski_Tadeusz",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_13",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Kto napisał esej „Lalka i perła”, poświęcony powieści Bolesława Prusa?",
+      "correct": "Olga Tokarczuk",
+      "wrong": [
+        "Tadeusz Konwicki",
+        "Wisława Szymborska",
+        "Maria Janion"
+      ],
+      "source": "https://www.wydawnictwoliterackie.pl/index.php/produkt/3848/lalka-i-perla",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_14",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Którą z tych książek napisał Tadeusz Konwicki?",
+      "correct": "„Zwierzoczłekoupiór”",
+      "wrong": [
+        "„Dolina Issy”",
+        "„Panny z Wilka”",
+        "„Ten obcy”"
+      ],
+      "source": "https://www.bn.org.pl/aktualnosci/678-tadeusz-konwicki-nie-zyje.html",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_15",
+      "category": "Kultura",
+      "level": "medium",
+      "prompt": "Kim była Pola Gojawiczyńska, która zasłynęła w dwudziestoleciu międzywojennym?",
+      "correct": "Pisarką",
+      "wrong": [
+        "Malarką",
+        "Śpiewaczką operową",
+        "Rzeźbiarką"
+      ],
+      "source": "https://www.bn.org.pl/aktualnosci/413-120-rocznica-urodzin-poli-gojawiczynskiej.html",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_16",
+      "category": "Historia",
+      "level": "medium",
+      "prompt": "Jakiego rodzaju amunicję zatapiano w Bałtyku po II wojnie światowej, pozbywając się m.in. zapasów iperytu?",
+      "correct": "Amunicję chemiczną",
+      "wrong": [
+        "Amunicję przeciwpancerną",
+        "Amunicję oświetlającą",
+        "Amunicję dymną"
+      ],
+      "source": "https://helcom.fi/baltic-sea-trends/hazardous-subtances/sea-dumped-chemical-munitions/",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108a_17",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "W jakim języku Aleksander Majkowski napisał „Życie i przygody Remusa”?",
+      "correct": "Po kaszubsku",
+      "wrong": [
+        "Po polsku",
+        "Po niemiecku",
+        "Po czesku"
+      ],
+      "source": "https://literat.ug.edu.pl/remus/index.htm",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_01",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Kto napisał dla dzieci „Skarby śniegu” i „Tajemnicę Dzikiego Boru”?",
+      "correct": "Patricia St. John",
+      "wrong": [
+        "Lucy Maud Montgomery",
+        "Frances Hodgson Burnett",
+        "Edith Nesbit"
+      ],
+      "source": "https://sklep.ligabiblijna.pl/sklep/ksiazki/dla-dzieci/skarby-sniegu-patricia-st-john/",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_02",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "W której noweli Bolesława Prusa pan Tomasz pomaga niewidomej dziewczynce?",
+      "correct": "W „Katarynce”",
+      "wrong": [
+        "W „Kamizelce”",
+        "W „Michałku”",
+        "W „Powracającej fali”"
+      ],
+      "source": "https://wolnelektury.pl/katalog/lektura/katarynka/",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_03",
+      "category": "Przyroda",
+      "level": "medium",
+      "prompt": "Do której części ciała dorosłego owada przyczepione są trzy pary odnóży krocznych?",
+      "correct": "Do tułowia",
+      "wrong": [
+        "Do głowy",
+        "Do odwłoka",
+        "Do głowotułowia"
+      ],
+      "source": "https://zpe.gov.pl/a/stawonogi/DI3fqwjFK",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_04",
+      "category": "Życie codzienne",
+      "level": "medium",
+      "prompt": "Ile znaków ze spacjami mieści standardowa strona znormalizowanego maszynopisu?",
+      "correct": "1800",
+      "wrong": [
+        "1600",
+        "2000",
+        "2400"
+      ],
+      "source": "https://historia.ug.edu.pl/13399/informacje_autorow",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_05",
+      "category": "Życie codzienne",
+      "level": "medium",
+      "prompt": "Ile znaków ze spacjami liczy jeden arkusz wydawniczy tekstu ciągłego?",
+      "correct": "40 000",
+      "wrong": [
+        "20 000",
+        "30 000",
+        "60 000"
+      ],
+      "source": "https://wydawnictwo.umw.edu.pl/files/arkusz.pdf",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_07",
+      "category": "Nauka",
+      "level": "medium",
+      "prompt": "Która dziedzina medycyny zajmuje się leczeniem osób w podeszłym wieku?",
+      "correct": "Geriatria",
+      "wrong": [
+        "Pediatria",
+        "Hematologia",
+        "Nefrologia"
+      ],
+      "source": "https://www.gov.pl/web/zdrowie/szczegolna-opieka-geriatryczna",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_08",
+      "category": "Nauka",
+      "level": "medium",
+      "prompt": "Skąd pobiera się materiał do badania cytologicznego w profilaktyce ginekologicznej?",
+      "correct": "Z szyjki macicy",
+      "wrong": [
+        "Z jajnika",
+        "Z trzonu macicy",
+        "Z jajowodu"
+      ],
+      "source": "https://pacjent.gov.pl/program-profilaktyczny/profilaktyka-raka-szyjki-macicy",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_09",
+      "category": "Przyroda",
+      "level": "medium",
+      "prompt": "W którym miesiącu zwykle dojrzewają papierówki w polskich sadach?",
+      "correct": "W lipcu",
+      "wrong": [
+        "We wrześniu",
+        "W październiku",
+        "W listopadzie"
+      ],
+      "source": "https://instytutskrzynki.pl/informacje/papierowka-oliwka-zolta/",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_10",
+      "category": "Geografia",
+      "level": "medium",
+      "prompt": "Na którym oceanie leży wyspiarskie państwo Vanuatu?",
+      "correct": "Na Oceanie Spokojnym",
+      "wrong": [
+        "Na Oceanie Indyjskim",
+        "Na Oceanie Atlantyckim",
+        "Na Oceanie Południowym"
+      ],
+      "source": "https://www.gov.vu/index.php/about/about-vanuatu",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_11",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "W którym wieku tworzył poeta Jan Andrzej Morsztyn?",
+      "correct": "W 17. wieku",
+      "wrong": [
+        "W 16. wieku",
+        "W 18. wieku",
+        "W 19. wieku"
+      ],
+      "source": "https://zpe.gov.pl/a/prezentacja-multimedialna/DdsDk9cFh",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_12",
+      "category": "Sport",
+      "level": "medium",
+      "prompt": "W której konkurencji lekkoatletycznej wypycha się przyrząd jedną ręką od szyi lub podbródka?",
+      "correct": "W pchnięciu kulą",
+      "wrong": [
+        "W rzucie młotem",
+        "W rzucie oszczepem",
+        "W rzucie dyskiem"
+      ],
+      "source": "https://worldathletics.org/disciplines/throwing-event/shot-put",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_13",
+      "category": "Język",
+      "level": "medium",
+      "prompt": "Z którego języka pochodzi pierwowzór polskiego słowa „burmistrz”?",
+      "correct": "Z niemieckiego",
+      "wrong": [
+        "Z węgierskiego",
+        "Z niderlandzkiego",
+        "Z łaciny"
+      ],
+      "source": "https://nck.pl/projekty-kulturalne/projekty/ojczysty-dodaj-do-ulubionych/ciekawostki-jezykowe/burmistrz",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_14",
+      "category": "Język",
+      "level": "medium",
+      "prompt": "Czego nazwami własnymi są toponimy?",
+      "correct": "Miejsc",
+      "wrong": [
+        "Osób",
+        "Organizacji",
+        "Dzieł literackich"
+      ],
+      "source": "https://pisg.wgsr.uw.edu.pl/wp-content/uploads/2024/02/PiSG_68.4-03.pdf",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_15",
+      "category": "Język",
+      "level": "medium",
+      "prompt": "Którą parę tworzą dwa języki południowosłowiańskie?",
+      "correct": "Słoweński i chorwacki",
+      "wrong": [
+        "Czeski i słowacki",
+        "Rosyjski i białoruski",
+        "Litewski i łotewski"
+      ],
+      "source": "https://bivaltyp.info/docs/Alfimova_2024_Object.pdf",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_16",
+      "category": "Język",
+      "level": "medium",
+      "prompt": "Który z tych języków nie należy do języków słowiańskich?",
+      "correct": "Albański",
+      "wrong": [
+        "Serbski",
+        "Słoweński",
+        "Macedoński"
+      ],
+      "source": "https://bivaltyp.info/docs/Alfimova_2024_Object.pdf",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_18",
+      "category": "Język",
+      "level": "medium",
+      "prompt": "Który z tych języków należy do języków bałtyckich?",
+      "correct": "Litewski",
+      "wrong": [
+        "Estoński",
+        "Fiński",
+        "Białoruski"
+      ],
+      "source": "https://glottolog.org/resource/languoid/id/lith1251",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_19",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Pod jakim innym tytułem znany jest „Lament świętokrzyski”?",
+      "correct": "„Żale Matki Boskiej pod krzyżem”",
+      "wrong": [
+        "„Skarga umierającego”",
+        "„Kazania świętokrzyskie”",
+        "„Rozmyślanie przemyskie”"
+      ],
+      "source": "https://wolnelektury.pl/katalog/lektura/lament-swietokrzyski/",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_20",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "W jakim języku Gall Anonim napisał swoją kronikę?",
+      "correct": "Po łacinie",
+      "wrong": [
+        "Po polsku",
+        "Po czesku",
+        "Po niemiecku"
+      ],
+      "source": "https://zpe.gov.pl/a/kultura-starozytna-w-sredniowieczu/DUHD98smL",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_21",
+      "category": "Religia",
+      "level": "medium",
+      "prompt": "W który dzień tygodnia przypada pierwszy dzień Zielonych Świątek?",
+      "correct": "W niedzielę",
+      "wrong": [
+        "W czwartek",
+        "W piątek",
+        "W sobotę"
+      ],
+      "source": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20180324_notificazione-mater-ecclesiae_en.html",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_22",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Kto napisał dramat „Ślepcy”?",
+      "correct": "Maurice Maeterlinck",
+      "wrong": [
+        "Henryk Ibsen",
+        "August Strindberg",
+        "Anton Czechow"
+      ],
+      "source": "https://catalogue.bnf.fr/ark%3A/12148/cb39480826v.public",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261108b_24",
+      "category": "Społeczeństwo",
+      "level": "medium",
+      "prompt": "Jak nazywa się postawa, w której przekonanie o wyższości własnej grupy łączy się z pogardą wobec innych?",
+      "correct": "Szowinizm",
+      "wrong": [
+        "Patriotyzm",
+        "Kosmopolityzm",
+        "Konformizm"
+      ],
+      "source": "https://wsjp.pl/haslo/podglad/72097/szowinizm",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
     }
   ],
   "source": "content/QUIZ_PL_GENERAL_SOURCES.txt"
 }
-QUIZ_DATA_b857e9337d332f807de6619e586bae0d79e764240c2ec0152e306838ea3cca16
+QUIZ_DATA_da9ba54b6f1641e06aa7c8dfe773fa1b8d8421dc2ea4ea5c899f536032cc1b63
     end
   end
 end

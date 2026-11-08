@@ -4,53 +4,73 @@
     {
       "id": "aim",
       "title": {
-        "es": "Objetivo y pagos"
+        "es": "Objetivo"
       },
       "paragraphs": [
         {
-          "es": "Se juega contra un crupier automático con seis barajas recién mezcladas. Las cartas numéricas conservan su valor, las figuras valen diez y cada as uno u once. Hay que superar al crupier sin pasar de 21. Las fichas solo pertenecen a esta mesa."
-        },
-        {
-          "es": "Ganar devuelve la apuesta y una ganancia igual. Un 21 inicial de dos cartas paga una ganancia de 3:2. Dos blackjack naturales empatan y devuelven la apuesta. Un natural vence a un 21 ordinario. Pasarse pierde aunque el crupier se pase después. Los pagos de media ficha son exactos."
+          "es": "Supera la mano de la banca sin pasarte de 21. Las cartas numéricas valen lo que indican y las figuras valen diez. Un as cuenta como once si no hace que te pases; si no, vale uno. Se juega con fichas virtuales."
         }
       ]
     },
     {
       "id": "betting",
       "title": {
-        "es": "Aportación inicial y apuestas"
+        "es": "Entrada y apuestas"
       },
       "paragraphs": [
         {
-          "es": "Cada ronda empieza cobrando automáticamente la aportación inicial a cada jugador activo: diez fichas por defecto o el ajuste de mesa. Quien tenga menos aporta todo su saldo y queda all-in. Después se actúa por orden: pasar si no se debe nada, igualar, subir, retirarse o ir all-in. Una subida exige otra respuesta de los demás. Se cierra cuando todos los que aún tienen fichas han respondido e igualado o solo queda uno sin retirarse. Los all-in siguen jugando sin apostar más. Un all-in corto no reabre las subidas a quien ya actuó hasta que el aumento acumulado alcance una subida completa."
+          "es": "Al comenzar la ronda, todos aportan la entrada de la mesa, normalmente diez fichas. Si tienes menos, aportas todas las que te quedan. Después se apuesta por turnos."
         },
         {
-          "es": "C pasa o iguala, F se retira, A va all-in y R o B permite escribir una subida propia. Introduce el incremento sobre la apuesta actual; la cantidad necesaria para igualar se añade al pago. La primera subida es de al menos una ficha y las siguientes de al menos la última subida completa; se permite un all-in final menor. También hay propuestas en las acciones. Se reparten cartas o se tiran dados solo cuando se cierra la apuesta."
+          "es": "Pulsa C para pasar si no tienes nada que añadir o igualar la apuesta. Con F te retiras y pierdes lo aportado. Con A apuestas todo: sigues en la ronda, pero no puedes volver a apostar."
+        },
+        {
+          "es": "Para subir, pulsa R e indica cuánto quieres aumentar la apuesta. El juego añade lo necesario para igualarla. La primera subida es de al menos una ficha; las siguientes deben alcanzar la última subida completa. Un envite inferior con todas tus fichas no permite volver a subir a quien ya actuó, salvo que la suma de subidas alcance el mínimo."
+        },
+        {
+          "es": "Las apuestas terminan cuando solo queda un jugador o cuando todos los que siguen en juego y tienen fichas han actuado e igualado la apuesta."
         }
       ]
     },
     {
       "id": "play",
       "title": {
-        "es": "Cómo jugar"
+        "es": "Robar cartas"
       },
       "paragraphs": [
         {
-          "es": "Elige Pedir o Plantarse en las acciones. La variante ampliada permite doblar la apuesta inicial de dos cartas y recibir una última carta, o separar una pareja del mismo rango una sola vez. Hace falta otra apuesta. Los ases separados reciben una carta y se plantan; las manos separadas no cobran la prima de blackjack. No hay seguro, rendición, nuevas separaciones ni doblar después de separar."
+          "es": "Al terminar las apuestas recibes dos cartas y la banca muestra una. Pulsa H para oír tus cartas y el total. En tu turno, usa Espacio para robar o elige Plantarse con este total en la lista y confirma con Intro. Si llegas a 21 o te pasas, tu turno termina."
         },
         {
-          "es": "Tras las decisiones, el crupier muestra su segunda carta, pide por debajo de 17 y se planta en cualquier 17, incluido el suave. Las cartas de jugadores son públicas. La interfaz oculta la segunda carta del crupier; la repetición determinista compartida no protege frente a un cliente modificado. Los bots usan solo su mano y la carta visible del crupier."
+          "es": "Cuando todos terminan, la banca descubre su segunda carta. Roba por debajo de 17 y se planta a partir de 17, aunque cuente un as como once. Si tiene 21 en las dos primeras cartas, la mano se resuelve de inmediato."
+        }
+      ]
+    },
+    {
+      "id": "settlement",
+      "title": {
+        "es": "Resultado de la mano"
+      },
+      "paragraphs": [
+        {
+          "es": "Si pasas de 21, pierdes la apuesta aunque la banca también se pase. Si no, ganas cuando la banca se pasa o queda por debajo de ti. Una victoria normal devuelve tu apuesta y paga la misma cantidad. Con el mismo total recuperas lo apostado."
+        },
+        {
+          "es": "Tener 21 de entrada con dos cartas es un blackjack. Gana a un 21 normal y paga tres fichas de beneficio por cada dos apostadas. Si la banca también tiene blackjack, te devuelve la apuesta."
         }
       ]
     },
     {
       "id": "variants",
       "title": {
-        "es": "Opciones y final"
+        "es": "Fin de la partida y variante ampliada"
       },
       "paragraphs": [
         {
-          "es": "Elige Simple o Ampliada, rondas (1–100), fichas iniciales (10–10000) y aportación inicial. Por defecto son diez rondas, 100 fichas y aportación de diez. El crupier liquida la apuesta real de cada mano no retirada por separado; retirarse pierde lo ya aportado. El último jugador tras retirarse los demás sigue contra el crupier. Cualquier saldo positivo permite un all-in corto en la siguiente ronda. Gana el mayor saldo final; máximos iguales empatan. Las partidas guardadas conservan sus reglas de apuestas originales."
+          "es": "Gana quien conserve más fichas al terminar la última ronda. Si el mejor saldo es igual, hay empate. Por defecto se juegan diez rondas y se empieza con cien fichas. La partida termina antes si nadie conserva fichas."
+        },
+        {
+          "es": "En la variante ampliada puedes doblar la apuesta desde la lista para recibir una sola carta más. También puedes separar dos cartas del mismo valor con una segunda apuesta. Juega cada mano por separado: no puedes volver a separarlas ni doblar. Al separar ases recibes una carta para cada uno; ninguna mano separada cobra la prima del blackjack."
         }
       ]
     },
@@ -61,18 +81,48 @@
       },
       "paragraphs": [
         {
-          "es": "No existe mano de la banca. Los jugadores se turnan para repartir. Tras el ante y las apuestas, quien reparte pulsa D. Todos compiten entre sí pidiendo o plantándose. No hay división, doblaje, pago bancario ni premio por blackjack natural. Los aportes forman botes; gana el mayor total elegible hasta 21 y los empates se reparten. Si todos se pasan, se devuelve esa parte. Se conservan las fichas. Quien reparte juega al final y rota al siguiente asiento solvente. Es un formato social de Power Games."
+          "es": "No hay mano de la banca. Después de apostar, pulsa D si te toca repartir; jugarás tu mano al final. Cambia el repartidor en cada ronda. No se dobla, no se separan parejas y no hay prima por blackjack."
+        },
+        {
+          "es": "El mayor total que no pase de 21 se lleva el bote. Si hay empate, los ganadores se lo reparten. De cada rival solo puedes ganar hasta lo que tú hayas aportado. Si todos los que pueden ganar un bote se pasan, se devuelven las aportaciones de ese bote."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "es": "Controles"
+        "es": "Atajos de teclado"
       },
       "paragraphs": [
         {
-          "es": "Elige con las flechas y confirma con Intro. Tab cambia de campo. T lee el turno, S las puntuaciones, F1 los atajos actuales y Ctrl+F1 las reglas. La mano mantiene la identidad de las cartas y su orden de llegada. Las cartas se consultan; las decisiones se eligen en las acciones separadas."
+          "es": "Espacio: robar una carta"
+        },
+        {
+          "es": "H: leer tus cartas y el total"
+        },
+        {
+          "es": "S: consultar los saldos"
+        },
+        {
+          "es": "T: consultar el turno"
+        },
+        {
+          "es": "C: pasar o igualar"
+        },
+        {
+          "es": "F: retirarse de las apuestas"
+        },
+        {
+          "es": "A: apostarlo todo"
+        },
+        {
+          "es": "R: subir la apuesta"
+        },
+        {
+          "es": "B: subir la apuesta"
+        },
+        {
+          "es": "D: repartir en el blackjack social"
         }
       ]
     }

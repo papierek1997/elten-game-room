@@ -4,44 +4,77 @@
     {
       "id": "aim",
       "title": {
-        "cs": "Go"
+        "cs": "Deska a tahy"
       },
       "paragraphs": [
         {
-          "cs": "Go pochází z Číny. Dva hráči kladou černé a bílé kameny na průsečíky; černý začíná. Kameny spojené stranami tvoří skupinu, sousední prázdné body jsou svobody. Skupina bez svobod je zajata. Nejprve se odstraní soupeřovy zajaté kameny; sebevražda je zakázána."
-        }
-      ]
-    },
-    {
-      "id": "variants",
-      "title": {
-        "cs": "Varianty"
-      },
-      "paragraphs": [
+          "cs": "Obkličuj prázdná místa a udrž na desce své kameny, abys získal víc bodů než soupeř. Go hrají dva hráči na prázdné desce. Začíná černý a pak se hráči střídají v pokládání kamenů. Šipkami najeď na volný průsečík a stiskni Enter. Sloupce mají písmena zleva, řady čísla zdola."
+        },
         {
-          "cs": "Deska má 9, 13 nebo 19 bodů na straně. Čínské počítání oblasti sčítá živé kameny a obklopené prázdné body. Územní počítání sčítá území a zajatce včetně dohodnutých mrtvých kamenů. Bílý získá zvolené komi. Atari Go vyhrává první zajetí; dva pasy znamenají remízu. Vždy platí poziční superko. Územní varianta používá dohodu o mrtvých skupinách a neutrálním seki, nikoli úplné japonské rozhodování života a smrti."
+          "cs": "Stejně barevné kameny spojené podél čar tvoří skupinu. Volné sousední průsečíky jsou její svobody. Obsazením poslední svobody soupeřovu skupinu zajmeš. Po odebrání zajatých kamenů musí mít tvoje skupina alespoň jednu svobodu. Nesmíš také obnovit dřívější postavení celé desky."
         }
       ]
     },
     {
       "id": "scoring",
       "title": {
-        "cs": "Počítání"
+        "cs": "Vynechání tahu a počítání"
       },
       "paragraphs": [
         {
-          "cs": "Dva pasy otevřou počítání. Hráči střídavě označují celé skupiny jako mrtvé a prázdné oblasti jako neutrální. Změna ruší schválení; změna skupin ruší i neutrální značky. A schválí návrh; souhlas obou ukončí partii. R obnoví hru a odstraní značky, soupeř hraje další tah. Bodují pouze oblasti ohraničené jednou barvou. Vyšší součet vyhrává, rovnost je remíza. Q vzdá partii."
+          "cs": "Místo položení kamene můžeš stisknout P. Když oba hráči po sobě vynechají tah, počítá se výsledek. Enter na kameni označí celou skupinu jako mrtvou nebo toto označení zruší. Na prázdném průsečíku přepne neutralitu celé spojené oblasti."
+        },
+        {
+          "cs": "Klávesa S přečte navržený výsledek, A ho potvrdí. Každá změna ruší oba souhlasy; změna mrtvé skupiny navíc ruší neutrální označení. Chceš-li pokračovat, stiskni R. Kameny zůstanou na desce, označení zmizí a hraje soupeř."
+        },
+        {
+          "cs": "Ve výchozím počítání máš bod za každý svůj živý kámen i za každý prázdný průsečík obklopený jen tvojí barvou. Neutrální oblasti se nepočítají. Bílý dostává vyrovnání, kterému se říká komi. Jakmile oba hráči schválí výsledek, vyhrává vyšší skóre. Shoda je remíza."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Velikost desky a varianty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Při vytváření stolu vybereš desku 9×9, 13×13 či 19×19 a hodnotu komi."
+        },
+        {
+          "cs": "- Počítání území: místo živých kamenů počítej zajaté kameny a soupeřovy skupiny uznané za mrtvé. Obklopené prázdné průsečíky se počítají dál."
+        },
+        {
+          "cs": "- Atari Go: vyhrává první zajetí. Dvě vynechání bez zajetí znamenají remízu. S přečte počet zajatých kamenů."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "cs": "Ovládání"
+        "cs": "Klávesové zkratky"
       },
       "paragraphs": [
         {
-          "cs": "Šipky procházejí desku, Enter položí kámen nebo změní značku. P pasuje, A schválí skóre, R obnoví hru, Q vzdá partii, S přečte body, T tah. Bot používá jednoduchou strategii zajetí a svobod. F1 nabízí zkratky a Ctrl+F1 pravidla."
+          "cs": "Šipky: procházet průsečíky"
+        },
+        {
+          "cs": "Enter: položit kámen nebo změnit označení"
+        },
+        {
+          "cs": "P: vynechat tah"
+        },
+        {
+          "cs": "S: přečíst výsledek nebo počet zajatých kamenů v Atari Go"
+        },
+        {
+          "cs": "A: potvrdit výsledek"
+        },
+        {
+          "cs": "R: pokračovat ve hře po vynechání"
+        },
+        {
+          "cs": "Q: vzdát partii"
         }
       ]
     }

@@ -4,22 +4,17 @@
     {
       "id": "aim",
       "title": {
-        "es": "Ruleta"
+        "es": "Apuestas y resultado"
       },
       "paragraphs": [
         {
-          "es": "Solo se usan fichas virtuales. Los jugadores apuestan por turnos dentro de su saldo. Tras confirmar todos, no se cambian las apuestas. El servidor nativo sortea el resultado."
-        }
-      ]
-    },
-    {
-      "id": "modes",
-      "title": {
-        "es": "Modos"
-      },
-      "paragraphs": [
+          "es": "En tu turno puedes apostar fichas virtuales a un número o a un grupo. Pulsa B para elegir la apuesta e indicar cuánto pones. También puedes elegir una apuesta rápida con las flechas y pulsar Intro. Puedes hacer varias si tienes fichas suficientes."
+        },
         {
-          "es": "El casino tiene crupier automático y pagos fijos. El modo social requiere dos jugadores y rota quien gira. El bote se reparte entre apuestas ganadoras en proporción a sus devoluciones nominales de casino, incluida la apuesta. No garantiza cuotas de casino. Si nadie acierta, se devuelven todas las apuestas. Es una regla social de Power Games. Elija fichas iniciales y 1–100 giros. Gana el mayor saldo final; los mejores saldos iguales empatan. Se apuestan fichas enteras; el saldo puede tener medias fichas y se necesita al menos una para apostar."
+          "es": "Antes de ceder el turno, C retira todas tus apuestas y devuelve las fichas. Pulsa R cuando hayas terminado. Después de todas las apuestas, la rueda gira sola. Cobran las apuestas que incluyen el número en el que cae la bola."
+        },
+        {
+          "es": "Gana quien tenga más fichas al terminar las tiradas acordadas. Si coinciden los mejores saldos, hay empate. Las apuestas se hacen en fichas enteras; los pagos pueden incluir media ficha. La partida termina antes si nadie puede apostar, o si en la mesa social solo puede hacerlo una persona."
         }
       ]
     },
@@ -30,18 +25,59 @@
       },
       "paragraphs": [
         {
-          "es": "Europa usa 0–36; América añade 00. Francia usa un cero y la partage: el cero devuelve la mitad de apuestas externas simples. Los ceros no pertenecen a colores, paridad ni rangos. Beneficios: número 35:1, pareja 17:1, terna 11:1, cuatro números 8:1, primeros cinco americanos 6:1, seis números 5:1, docena o columna 2:1 y apuestas externas simples 1:1. Además se devuelve la apuesta ganadora. Solo se ofrecen grupos legales adyacentes. En social son pesos para repartir el bote."
+          "es": "La rueda europea va del 0 al 36; la americana añade el 00. Ninguno de los ceros cuenta para las apuestas de color, paridad o mitad baja o alta. En la francesa, si sale cero se devuelve la mitad de esas apuestas."
+        },
+        {
+          "es": "Si aciertas, recuperas lo apostado y ganas lo siguiente:"
+        },
+        {
+          "es": "- Un número: 35 a 1; dos vecinos: 17 a 1; tres: 11 a 1; cuatro: 8 a 1."
+        },
+        {
+          "es": "- Seis números: 5 a 1; los cinco primeros de la rueda americana: 6 a 1."
+        },
+        {
+          "es": "- Docena o columna: 2 a 1; color, paridad o mitad: 1 a 1."
+        }
+      ]
+    },
+    {
+      "id": "modes",
+      "title": {
+        "es": "Mesa social"
+      },
+      "paragraphs": [
+        {
+          "es": "Juegan al menos dos personas. Cuando todos terminan de apostar, quien tenga asignado el giro pulsa Espacio. Ese turno va rotando entre quienes aún pueden apostar."
+        },
+        {
+          "es": "Las apuestas forman un bote común. La parte que te toca es proporcional a lo que te devolvería tu apuesta en el casino. Si ninguna apuesta devuelve nada, cada cual recupera lo que puso."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "es": "Controles"
+        "es": "Atajos de teclado"
       },
       "paragraphs": [
         {
-          "es": "B abre una apuesta con cantidad propia. La lista ofrece apuestas rápidas de hasta diez fichas. R termina el turno, C devuelve sus apuestas, V las lee y S lee saldos. Espacio gira en modo social. T lee el turno, F1 atajos y Ctrl+F1 reglas."
+          "es": "B: elegir una apuesta e indicar la cantidad"
+        },
+        {
+          "es": "C: retirar tus apuestas"
+        },
+        {
+          "es": "R: terminar de apostar"
+        },
+        {
+          "es": "V: leer tus apuestas"
+        },
+        {
+          "es": "S: consultar los saldos"
+        },
+        {
+          "es": "Espacio: girar la rueda en la mesa social"
         }
       ]
     }

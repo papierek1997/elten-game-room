@@ -15,7 +15,8 @@ module GameRoomGames
           salary *= 2 if destination.zero? && state[:options]["double_salary_on_start"]
           state[:cash][player] += salary
           text = destination.zero? && state[:options]["double_salary_on_start"] ? _("%{player} receives double salary, %{amount}, for landing on Start.") : _("%{player} collected %{amount} for passing Start.")
-          history << HistoryEntry.new(key: "salary:#{event_id}:#{history.length}", text: text % { player: participant_name(player), amount: salary }, event_id: event_id, actor: player, kind: :game)
+          # A roll and a subsequent card can both pay salary, in separate history buffers.
+          history << HistoryEntry.new(key: "salary:#{event_id}:#{state[:laps][player]}", text: text % { player: participant_name(player), amount: salary }, event_id: event_id, actor: player, kind: :game)
         end
         state[:positions][player] = destination
       end

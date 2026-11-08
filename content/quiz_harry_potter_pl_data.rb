@@ -3,7 +3,7 @@ require 'json'
 module GameRoomContent
   module Pack17d0ce6cdc1b22b1abbc2c2b
     def self.load
-      JSON.parse(<<'QUIZ_DATA_7592f7682d77cdee9d9f372593d23b673c71a18e517b5608b434537bac984b93')
+      JSON.parse(<<'QUIZ_DATA_bbc1c9075d43be406ccc16f530ebdf361b9fdef829998253d9516ef2fcf3bbf3')
 {
   "questions": [
     {
@@ -16750,11 +16750,521 @@ module GameRoomContent
       "source_dataset": "Power Games community: Harry Potter books",
       "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
       "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_01",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Co przypominały kolczyki Luny Lovegood w „Zakonie Feniksa”?",
+      "correct": "Pomarańczowe rzodkiewki",
+      "wrong": [
+        "Małe cytryny",
+        "Czerwone jagody",
+        "Orzechy laskowe"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Zakon Feniksa",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_02",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Czyją śmierć widziała Luna Lovegood, która potrafiła dostrzec testrale?",
+      "correct": "Swojej matki",
+      "wrong": [
+        "Swojej babci",
+        "Swojego dziadka",
+        "Koleżanki z dzieciństwa"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Zakon Feniksa",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_03",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Jakie oczy i brwi miała Luna Lovegood, gdy Harry poznał ją w pociągu?",
+      "correct": "Wyłupiaste oczy i jasne brwi",
+      "wrong": [
+        "Wąskie oczy i ciemne brwi",
+        "Głęboko osadzone oczy i gęste brwi",
+        "Przymrużone oczy i rude brwi"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Zakon Feniksa",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_04",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "Czyje imię Dudley usłyszał, gdy Harry mówił przez sen przed ich spotkaniem z dementorami?",
+      "correct": "Cedrika",
+      "wrong": [
+        "Syriusza",
+        "Hagrida",
+        "Rona"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Zakon Feniksa",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_06",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "Kto podczas przesłuchania wyjawił, że Augustus Rookwood szpiegował dla Voldemorta?",
+      "correct": "Igor Karkarow",
+      "wrong": [
+        "Ludo Bagman",
+        "Barty Crouch senior",
+        "Lucjusz Malfoy"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_07",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "W którym departamencie Ministerstwa Magii pracował Augustus Rookwood, zanim trafił do Azkabanu?",
+      "correct": "W Departamencie Tajemnic",
+      "wrong": [
+        "W Departamencie Transportu Magicznego",
+        "W Departamencie Czarodziejskich Gier i Sportów",
+        "W Departamencie Międzynarodowej Współpracy Czarodziejów"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_08",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "Dlaczego według Dumbledore’a Stworek mógł bezkarnie okłamać Harry’ego, kiedy ten szukał Syriusza?",
+      "correct": "Harry nie był jego panem",
+      "wrong": [
+        "Syriusz wcześniej wyzwolił Stworka",
+        "Syriusz sam nakazał mu skłamać",
+        "Stworek nie był skrzatem domowym"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Zakon Feniksa",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_09",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "Ilu śmierciożerców zbiegło w czasie masowej ucieczki z Azkabanu opisanej w „Zakonie Feniksa”?",
+      "correct": "Dziesięciu",
+      "wrong": [
+        "Ośmiu",
+        "Dwunastu",
+        "Piętnastu"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Zakon Feniksa",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_11",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Jak miał na imię brat męża Bellatriks Lestrange?",
+      "correct": "Rabastan",
+      "wrong": [
+        "Augustus",
+        "Lucjusz",
+        "Regulus"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Zakon Feniksa",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_14",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "Kto zabił Helenę Ravenclaw według jej opowieści z „Insygniów Śmierci”?",
+      "correct": "Krwawy Baron",
+      "wrong": [
+        "Salazar Slytherin",
+        "Godryk Gryffindor",
+        "Prawie Bezgłowy Nick"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Insygnia Śmierci",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_16",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Jak Ginny zareagowała, gdy Neville w pociągu wahał się, czy usiąść w przedziale Luny?",
+      "correct": "Zachęciła go, żeby wszedł, i sama przywitała się z Luną",
+      "wrong": [
+        "Zabrała Neville’a do innego przedziału",
+        "Poprosiła Lunę o zwolnienie miejsca",
+        "Zawołała konduktora, żeby przydzielił miejsca"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Zakon Feniksa",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_17",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Ile lat w chwili śmierci mieli James i Lily Potterowie?",
+      "correct": "Po 21 lat",
+      "wrong": [
+        "Po 20 lat",
+        "Po 22 lata",
+        "Po 23 lata"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Insygnia Śmierci",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_20",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "Kiedy w „Czarze Ognia” Harry rozmawiał z Syriuszem przez kominek o smokach?",
+      "correct": "Przed pierwszym zadaniem turnieju",
+      "wrong": [
+        "Po drugim zadaniu turnieju",
+        "W trakcie Balu Bożonarodzeniowego",
+        "Po zakończeniu turnieju"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_23",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "Co zawierał anonim, po którego otwarciu na dłoniach Hermiony pojawiły się pęcherze?",
+      "correct": "Nierozcieńczoną ropę czyrakobulwy",
+      "wrong": [
+        "Jad akromantuli",
+        "Wywar z mandragory",
+        "Eliksir Wielosokowy"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_24",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "W którym piśmie Rita Skeeter opublikowała artykuł oczerniający Hermionę po drugim zadaniu turnieju?",
+      "correct": "W „Czarownicy”",
+      "wrong": [
+        "W „Proroku Codziennym”",
+        "W „Żonglerze”",
+        "W „Proroku Wieczornym”"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_26",
+      "category": "Magiczne stworzenia",
+      "level": "medium",
+      "prompt": "Czego szukały niuchacze podczas lekcji Hagrida w „Czarze Ognia”?",
+      "correct": "Zakopanych złotych monet",
+      "wrong": [
+        "Zakopanych klejnotów",
+        "Srebrnych łyżeczek",
+        "Mosiężnych kluczy"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_27",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "Ilu spośród czterech Huncwotów zostało niezarejestrowanymi animagami?",
+      "correct": "Trzech",
+      "wrong": [
+        "Dwóch",
+        "Czterech",
+        "Jeden"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Więzień Azkabanu",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_29",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "Jaką broń Hagrid miał przy sobie, gdy prowadził uczniów na szlaban w Zakazanym Lesie w „Kamieniu Filozoficznym”?",
+      "correct": "Kuszę",
+      "wrong": [
+        "Łuk",
+        "Włócznię",
+        "Topór"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Kamień Filozoficzny",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_30",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "O co Karkarow oskarżył Dumbledore’a po znalezieniu ogłuszonego Kruma?",
+      "correct": "O udział w spisku, który miał wyeliminować Kruma z turnieju",
+      "wrong": [
+        "O odmowę pomocy Krumowi po ataku",
+        "O zmianę wyniku drugiego zadania",
+        "O ukrycie przed Krumem terminu trzeciego zadania"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_31",
+      "category": "Magiczne przedmioty",
+      "level": "medium",
+      "prompt": "Ile zamków miał kufer, w którym uwięziono prawdziwego Alastora Moody’ego?",
+      "correct": "Siedem",
+      "wrong": [
+        "Trzy",
+        "Pięć",
+        "Dziewięć"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_32",
+      "category": "Zaklęcia",
+      "level": "medium",
+      "prompt": "Kto za pomocą zaklęcia sprawdził, co ostatnio wyczarowano różdżką Harry’ego po mistrzostwach świata w quidditchu?",
+      "correct": "Amos Diggory",
+      "wrong": [
+        "Artur Weasley",
+        "Barty Crouch senior",
+        "Ludo Bagman"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_33",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "Skąd, zdaniem Knota, Harry mógł znać nazwiska śmierciożerców, których widział na cmentarzu?",
+      "correct": "Ze starych akt sądowych",
+      "wrong": [
+        "Z listów od Syriusza",
+        "Z rozmów z Hagridem",
+        "Z książek Gilderoya Lockharta"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_34",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Jak ma na imię madame Maxime?",
+      "correct": "Olimpia",
+      "wrong": [
+        "Amalia",
+        "Eleonora",
+        "Adelajda"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_35",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Jak ma na imię młodsza siostra Fleur Delacour?",
+      "correct": "Gabrielle",
+      "wrong": [
+        "Amélie",
+        "Juliette",
+        "Émilie"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_36",
+      "category": "Magiczne przedmioty",
+      "level": "medium",
+      "prompt": "Z czego wykonano rdzeń różdżki Fleur Delacour?",
+      "correct": "Z włosa wili",
+      "wrong": [
+        "Z włosa jednorożca",
+        "Z włókna ze smoczego serca",
+        "Z pióra feniksa"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_40",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Kto z Huncwotów nosił przydomek Glizdogon?",
+      "correct": "Peter Pettigrew",
+      "wrong": [
+        "James Potter",
+        "Remus Lupin",
+        "Syriusz Black"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Więzień Azkabanu",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_41",
+      "category": "Fabuła",
+      "level": "medium",
+      "prompt": "Kto nadał sowie Rona imię Świstoświnka?",
+      "correct": "Ginny Weasley",
+      "wrong": [
+        "Fred Weasley",
+        "Molly Weasley",
+        "Hermiona Granger"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_42",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Jak nazywał się poprzedni gajowy Hogwartu, o którym Molly Weasley opowiadała przed ostatnim zadaniem turnieju?",
+      "correct": "Ogg",
+      "wrong": [
+        "Ogden",
+        "Filch",
+        "Fletcher"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_43",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Którym departamentem Ministerstwa Magii kierował Bartemiusz Crouch senior podczas Turnieju Trójmagicznego?",
+      "correct": "Departamentem Międzynarodowej Współpracy Czarodziejów",
+      "wrong": [
+        "Departamentem Transportu Magicznego",
+        "Departamentem Czarodziejskich Gier i Sportów",
+        "Departamentem Kontroli nad Magicznymi Stworzeniami"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
+    },
+    {
+      "id": "community_hp_zz_20261108_44",
+      "category": "Bohaterowie",
+      "level": "medium",
+      "prompt": "Kim był Poliakow, którego Karkarow zganił podczas uczty w Hogwarcie?",
+      "correct": "Uczniem Durmstrangu",
+      "wrong": [
+        "Uczniem Beauxbatons",
+        "Uczniem Hogwartu",
+        "Pracownikiem Ministerstwa Magii"
+      ],
+      "source": "J.K. Rowling: Harry Potter i Czara Ognia",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community: Harry Potter books",
+      "source_license": "See QUIZ_HARRY_POTTER_PL_SOURCES.md; no CC0 or adaptation-data license claimed",
+      "review_required": false
     }
   ],
-  "source": "J.K. Rowling: siedem powieści o Harrym Potterze; propozycja LordKiller, redakcja Power Games"
+  "source": "J.K. Rowling: siedem powieści o Harrym Potterze; propozycje LordKiller i Zuzler, redakcja Power Games"
 }
-QUIZ_DATA_7592f7682d77cdee9d9f372593d23b673c71a18e517b5608b434537bac984b93
+QUIZ_DATA_bbc1c9075d43be406ccc16f530ebdf361b9fdef829998253d9516ef2fcf3bbf3
     end
   end
 end

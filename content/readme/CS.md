@@ -244,6 +244,8 @@ V Nastavení → Oznámení v lobby zvlášť vybíráte, které zprávy se maj�
 
 ## Zvuky a hraní na pozadí
 
+V části Nastavení → Zvuky si můžeš zapnout vlastní hudbu na pozadí. Pro nabídky Power Games a pro samotnou hru vyber soubor a nastav hlasitost zvlášť. Ve výchozím nastavení jsou obě možnosti vypnuté.
+
 Hlasitost můžete měnit bez opuštění hry:
 
 - F2 — tišeji.

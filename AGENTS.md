@@ -644,6 +644,17 @@ Procedure: `docs/BUILDING.md`. Preserve licensing and attribution.
   list, not the game field. Help checks current availability, and execution
   rechecks permissions and identity, not just the row index.
 
+## Acceptance review for new games and game PRs
+
+Use [the game review checklist](docs/GAME_ACCEPTANCE.md) when implementing,
+importing or reviewing a game, including a new variant. Passing a model test,
+starting a table or finishing an all-bot match is not sufficient. Before calling
+the game ready, walk through an ordinary round and relevant edge cases from
+the player and observer views. Check what the player hears, where focus goes,
+which native controls and shortcuts work, and what the rules tell a newcomer
+to do next. Fix issues in the same change; state separately what could not be
+verified in ELTEN or by listening. Apply the same review to a contributed PR.
+
 ## Writing game rules
 
 Before writing, importing, revising or translating a rulebook, read the

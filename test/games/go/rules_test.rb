@@ -47,7 +47,7 @@ atari = dice_session(game,variant:'atari')
 events = [[0,0],[1,0],[1,1],[8,8],[2,0]].each_with_index.map { |(x,y),i| dice_event(i+1,repo.players[i%2],'place',(y*9+x).to_s) }
 result = game.replay(atari,events,repo)
 check(result.winner=='Alice' && result.state[:captures][0]==1,'First capture did not win Atari Go')
-check(result.history.any? { |entry| entry.kind==:capture && entry.text.include?('1 stones') },'Capture count not announced')
+check(result.history.any? { |entry| entry.kind==:capture && entry.text=='Alice captures 1 stone.' },'Singular capture count not announced')
 
 env = GameRoomSimulation::Environment.new_game(game:game,players:%w[bot:1:1:pl01 bot:1:2:pl02],options:{'size'=>'9','komi'=>'7.5','bot_delay'=>0},seed:11)
 coordinator = GameRoomBots::Coordinator.new

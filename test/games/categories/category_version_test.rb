@@ -4,13 +4,11 @@ require_relative '../../support/sequence_random'
 game = GameRoomGames::Categories.new
 klass = GameRoomGames::Categories
 removed = %w[surname famous_person building invention chemical_element]
-added = %w[drink known_athlete tool known_actor known_writer]
-assert(klass::CATEGORY_IDS.first(27) == klass::LEGACY_HARD_CATEGORY_IDS, 'Historical category mask positions moved')
-assert(klass::CATEGORY_IDS.last(5) == added, 'New wire categories must be appended')
-assert(klass::HARD_CATEGORY_IDS.size == 27 && klass::MEDIUM_CATEGORY_IDS.size == 18, 'Pool sizes changed')
-assert((klass::HARD_CATEGORY_IDS & removed).empty?, 'A retired category is still offered')
-assert((added - klass::HARD_CATEGORY_IDS).empty?, 'A selected replacement is missing')
-assert(game.default_options['category_version'] == 2, 'New default options did not select the new pools')
+version_two = %w[drink known_athlete tool known_actor known_writer]
+historical_wire = klass::LEGACY_HARD_CATEGORY_IDS + version_two
+assert(klass::CATEGORY_IDS.first(historical_wire.size) == historical_wire, 'Historical category mask positions moved')
+assert((klass::CATALOG_CATEGORY_IDS & removed).empty?, 'A retired category is still offered')
+assert(game.default_options['category_version'] == 3, 'New default options did not select the new pools')
 
 legacy = {'category_set'=>'custom', 'custom_categories'=>1 << 9, 'round_category_count'=>1}
 old_options = game.normalize_options(legacy)
@@ -22,24 +20,35 @@ assert(game.options_from_json(JSON.generate(old_options)) == old_options, 'Histo
 legacy_array = game.normalize_options('category_set'=>'custom', 'custom_categories'=>%w[surname building], 'round_category_count'=>2)
 assert(game.send(:selected_category_pool, legacy_array) == %w[surname building], 'Legacy string selections were discarded')
 
-fresh = game.table_creation_options('category_set'=>'custom', 'custom_categories'=>%w[drink known_athlete tool known_actor known_writer], 'round_category_count'=>5)
+old_v2 = game.normalize_options('category_version'=>2, 'category_set'=>'custom', 'custom_categories'=>version_two, 'round_category_count'=>5)
+v2_def = game.effective_option_definitions(old_v2).find { |item| item.key == 'custom_categories' }
+assert(v2_def.kind == :multiple_choice && v2_def.choices.map(&:value) == klass::V2_HARD_CATEGORY_IDS, 'Version 2 checklist changed')
+assert(game.send(:selected_category_pool, old_v2) == version_two, 'Version 2 selections changed')
+assert(game.options_from_json(JSON.generate(old_v2)) == old_v2, 'Version 2 options changed on reload')
+converted = game.table_creation_options(old_v2.merge('round_category_count'=>1))
+assert(game.send(:selected_category_pool, converted) == ['tool'], 'Reusing old options reinterpreted a retired category')
+remembered = game.remembered_table_creation_options('custom_categories'=>old_v2.fetch('custom_categories'))
+assert(game.send(:selected_category_pool, remembered.merge('category_set'=>'custom')) == ['tool'], 'The old local preference was not migrated')
+
+fresh = game.table_creation_options('category_set'=>'custom', 'custom_categories'=>%w[tool medical_equipment unit_of_measurement], 'round_category_count'=>3)
 fresh_def = game.effective_option_definitions(fresh).find { |item| item.key == 'custom_categories' }
-assert(fresh_def.choices.map(&:value) == klass::HARD_CATEGORY_IDS, 'New custom choices expose retired categories')
-assert(game.send(:selected_category_pool, fresh).sort == added.sort, 'New custom selections changed')
+assert(fresh_def.kind == :multiple_choice && fresh_def.choices.map(&:value) == klass::CATALOG_CATEGORY_IDS,
+  'New custom choices do not use the complete current checklist')
+assert(game.send(:selected_category_pool, fresh) == %w[tool medical_equipment unit_of_measurement], 'New custom selections changed')
 assert(game.validation_error(fresh).nil?, 'New category selections are invalid')
 assert(JSON.generate(game.default_options).bytesize <= 256, 'New defaults exceed the option size budget')
-assert(game.options_from_json(JSON.generate(fresh)) == fresh, 'New masks changed on reload')
+assert(game.options_from_json(JSON.generate(fresh)) == fresh, 'New selections changed on reload')
 assert(game.send(:decode_round_categories, game.send(:encode_round_categories, removed)) == removed,
   'Old round categories no longer decode faithfully')
-assert(game.send(:decode_round_categories, game.send(:encode_round_categories, added)) == added,
-  'New round categories did not retain their physical wire identities')
+assert(game.send(:decode_round_categories, game.send(:encode_round_categories, version_two)) == version_two,
+  'Version 2 round categories did not retain their physical wire identities')
 
 players = %w[Alice Bob]
 repo = CategoriesRepository.new(players)
-context = GameRoomGames::ActionContext.new(session_id: 7, table_id: 4, now: 100,
-  hidden_submissions: HiddenSubmissions::Vault.new(HiddenSubmissions::MemoryStorage.new),
-  random_source: GameRoomRandom::SequenceSource.new([1, 1]))
-[old_options, fresh].each do |options|
+[old_options, old_v2, fresh].each do |options|
+  context = GameRoomGames::ActionContext.new(session_id: 7, table_id: 4, now: 100,
+    hidden_submissions: HiddenSubmissions::Vault.new(HiddenSubmissions::MemoryStorage.new),
+    random_source: GameRoomRandom::SequenceSource.new([1]))
   session = {'options'=>JSON.generate(options)}
   replay = game.replay(session, [], repo)
   selection = game.automatic_action(replay, 'Alice', context: context)

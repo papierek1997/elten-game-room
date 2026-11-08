@@ -5,6 +5,32 @@ module GameRoomGames
     BETTING_VERSION = OptionDefinition.new(key: "blackjack_betting_version", label: "Betting rules version",
       kind: :integer, default: 2, visible_if: ->(_options) { false }).freeze
 
+    def required_decision_key(replay, viewer)
+      return nil unless auction_game_decision?(replay)
+
+      key = super
+      [key, replay.state[:round], replay.state[:hand_index]] if key
+    end
+
+    def turn_announcement(replay, viewer)
+      super if auction_game_decision?(replay)
+    end
+
+    def turn_transition_history_entry(before_replay, after_replay, event_id:)
+      super if auction_game_decision?(after_replay)
+    end
+
+    def current_turn_shortcut_text(replay, viewer)
+      case replay.state[:phase]
+      when :awaiting_ante then _("Preparing the opening bets.")
+      when :dealer then _("Settling the blackjack round.")
+      when :awaiting_deal
+        return _("Waiting for the cards to be dealt.") unless auction_game_decision?(replay)
+        super
+      else super
+      end
+    end
+
     def participant_status(replay, participant, connected: true)
       if replay && !replay.finished? && replay.state[:auction]
         player = replay.players.find { |person| same_user?(person, participant) }
@@ -17,6 +43,56 @@ module GameRoomGames
     end
 
     private
+
+    def auction_game_decision?(replay)
+      state = replay&.state
+      state && (%i[betting playing].include?(state[:phase]) ||
+        (state[:phase] == :awaiting_deal && state[:options]["variant"] == "social"))
+    end
+
+    def turn_phase_kind(replay)
+      case replay&.state&.[](:phase)
+      when :betting then :bidding
+      when :awaiting_deal then :deal
+      else super
+      end
+    end
+
+    def auction_sound_cues(event, history)
+      action = event["action"]
+      cue = if action == "ante"
+        "poker_call"
+      elsif action == "bet"
+        move, amount = event["value"].to_s.split("|", 2)
+        if amount
+          {"check"=>"poker_check", "call"=>"poker_call", "raise"=>"poker_raise",
+            "fold"=>"poker_fold", "all_in"=>"poker_all_in"}[move]
+        else
+          "poker_call" # Fixed-stake and pre-auction bets.
+        end
+      end
+      [cue, ("poker_pot" if history.any? { |entry| entry.kind == :pot })].compact
+    end
+
+    def auction_opening_bot_score(state, action)
+      player = state[:current_player]
+      case action["action"]
+      when "check" then 2
+      when "call"
+        action["amount"] <= [state[:options]["stake"] * auction_unit * 2, state[:chips][player].div(3)].max ? 2 : 0
+      when "fold" then 1
+      else -1
+      end
+    end
+
+    def dice_pot_result(winners, amount)
+      if winners.one?
+        _("%{player} wins the pot of %{amount}.") % {player: participant_name(winners.first), amount: amount}
+      else
+        _("%{players} share the pot of %{amount}.") % {
+          players: winners.map { |player| participant_name(player) }.join(", "), amount: amount}
+      end
+    end
 
     def betting_version_definitions(definitions, options)
       return definitions unless options.is_a?(Hash) &&
@@ -178,7 +254,12 @@ module GameRoomGames
       when "check" then _("%{player} checks.") % {player: participant_name(player)}
       when "call" then _("%{player} calls %{amount}.") % {player: participant_name(player), amount: auction_amount(amount)}
       when "raise" then _("%{player} raises by %{increase}, to %{amount}.") % {player: participant_name(player), increase: auction_amount(auction[:current_bet] - previous), amount: auction_amount(auction[:current_bet])}
-      when "all_in" then _("%{player} is all in for %{amount}.") % {player: participant_name(player), amount: auction_amount(amount)}
+      when "all_in"
+        if auction[:current_bet] > previous
+          _("%{player} goes all in and raises the bet to %{amount}.") % {player: participant_name(player), amount: auction_amount(auction[:current_bet])}
+        else
+          _("%{player} is all in for %{amount}.") % {player: participant_name(player), amount: auction_amount(amount)}
+        end
       end
       add_history(history, event_id, player, :bet, text)
       if auction_complete?(state)
@@ -221,6 +302,8 @@ module GameRoomGames
       header = _("Betting: current bet %{bet}; your contribution %{paid}; balance %{balance}.") % {
         bet: auction_amount(state[:auction][:current_bet]), paid: auction_amount(state[:auction][:contributions].fetch(player, 0)),
         balance: auction_amount(state[:chips].fetch(player, 0))}
+      header = _("Betting: current bet %{bet}.") % {bet: auction_amount(state[:auction][:current_bet])} unless player
+      header = _("After the throws.") + " " + header if state[:betting_stage] == 2
       GameSurfaces::CardTableSpec.new(zones: [GameSurfaces::CardZoneSpec.new(id: "actions", header: header, cards: actions,
         empty_label: current_turn_shortcut_text(replay, viewer))])
     end
@@ -250,10 +333,10 @@ module GameRoomGames
       shortcuts
     end
 
-    def auction_pots(state)
+    def auction_pots(state, contributions: state[:auction][:contributions])
       previous = 0
-      state[:auction][:contributions].values.select(&:positive?).uniq.sort.map do |level|
-        contributors = state[:auction][:order].select { |player| state[:auction][:contributions][player] >= level }
+      contributions.values.select(&:positive?).uniq.sort.map do |level|
+        contributors = state[:auction][:order].select { |player| contributions[player] >= level }
         amount = (level - previous) * contributors.size
         slice = level - previous
         previous = level
@@ -265,7 +348,11 @@ module GameRoomGames
       auction = state[:auction]
       auction.merge!(acted: {}, acted_at: {}, min_raise: auction_unit)
       state.merge!(phase: :betting, current_player: auction_actionable(state).first)
-      complete_auction(state, event_id, history) if auction_complete?(state)
+      if auction_complete?(state)
+        complete_auction(state, event_id, history)
+      else
+        add_history(history, event_id, "", :betting, _("All hands are set. Betting resumes."))
+      end
     end
   end
 end

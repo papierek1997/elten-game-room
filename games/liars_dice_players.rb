@@ -73,7 +73,15 @@ module GameRoomGames
       exact, at_least = count_probabilities(quantity - own, unknown, probability)
       case action["action"]
       when "challenge" then (1 - at_least) * 150 - at_least * 80
-      when "exact" then exact * 100 - (1 - exact) * 50
+      when "exact"
+        gain = if state[:options]["variant"] == "rdr"
+          130 + 15 * (alive(state).size - 2)
+        elsif state[:counts][actor] < state[:options]["starting_dice"]
+          100
+        else
+          0
+        end
+        exact * gain - (1 - exact) * 85 - 0.01
       else at_least * 80 - quantity * 0.1
       end
     end

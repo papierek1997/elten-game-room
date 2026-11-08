@@ -4,55 +4,82 @@
     {
       "id": "aim",
       "title": {
-        "cs": "Lhářské kostky"
+        "cs": "Nabídky a jejich ověření"
       },
       "paragraphs": [
         {
-          "cs": "Každý začíná s 1–5 kostkami, obvykle pěti. Vidíš jen svůj kelímek. Nabídka říká, kolik kostek určité hodnoty je pod všemi kelímky dohromady. Zvyš nabídku nebo ji zpochybni. Nepravdivá nabídka stojí jejího autora kostku; zpochybnění pravdivé nabídky stojí kostku vyzyvatele. Pravda znamená alespoň uvedený počet. Bez kostek vypadáváš. Vyhrává poslední hráč s kostkami."
+          "cs": "Na začátku máš obvykle pět kostek. Vidíš jen svůj hod; přečteš jej klávesou V. Nabídka platí pro všechny kostky u stolu. Tři čtyřky tedy znamenají, že jsou mezi nimi alespoň tři kostky s hodnotou čtyři."
+        },
+        {
+          "cs": "Klávesou B otevři formulář a zadej počet a hodnotu kostek. Šipkami a Enterem můžeš také vybrat nejnižší přípustnou nabídku pro danou hodnotu. L zopakuje poslední nabídku. Zvýšíš ji větším počtem kostek nebo stejným počtem s vyšší hodnotou."
+        },
+        {
+          "cs": "Pokud poslední nabídce nevěříš, stiskni K. Všichni odhalí kostky. Je-li odpovídajících kostek méně, ztrácí kostku poslední nabízející. Jinak ji ztrácíš ty."
+        },
+        {
+          "cs": "Ve výchozí variantě můžeš klávesou D prohlásit, že počet souhlasí přesně. Máš-li pravdu, ostatní ztratí po kostce a ty začneš další kolo. Při omylu ztrácíš kostku ty. Po běžném ověření začíná hráč, který o kostku přišel, nebo následující hráč, pokud vypadl. Kdo už nemá kostku, končí. Vyhrává poslední hráč s kostkami."
         }
       ]
     },
     {
       "id": "variants",
       "title": {
-        "cs": "Varianty a přesné výzvy"
+        "cs": "Klasická hra a Perudo"
       },
       "paragraphs": [
         {
-          "cs": "Klasická varianta nemá žolíky. Zvyš počet při libovolné hodnotě, nebo ponech počet a zvyš hodnotu. Styl Red Dead přidává Přesně: při správném počtu ztratí kostku všichni ostatní, jinak vyzyvatel. V Perudu jsou jedničky žolíky pro jiné hodnoty. Běžné kolo nesmí začít jedničkami. Přechod na jedničky vyžaduje polovinu předchozího počtu zaokrouhlenou nahoru; přechod zpět dvojnásobek plus jedna. Nabídku jedniček zvyšuje více jedniček."
+          "cs": "V klasické hře se přesný počet nehlásí a jedničky nezastupují jiné hodnoty."
+        },
+        {
+          "cs": "V Perudu jsou jedničky žolíky pro ostatní hodnoty. Běžné kolo jimi nezačíná. Přecházíš-li na jedničky, nabídni alespoň polovinu předchozího počtu, zaokrouhlenou nahoru. Při návratu k jiné hodnotě potřebuješ alespoň dvojnásobek počtu jedniček plus jedna. Při zvýšení bez změny hodnoty nabídni více jedniček."
         }
       ]
     },
     {
       "id": "special",
       "title": {
-        "cs": "Palifico, Calza a skryté hody"
+        "cs": "Palifico a Calza"
       },
       "paragraphs": [
         {
-          "cs": "Volitelné Palifico v Perudu trvá jedno kolo, když zahajující poprvé klesne na jednu kostku a zbývají více než dva hráči. Jedničky nejsou žolíky; hodnotu mohou změnit jen hráči, kteří již vyhlásili Palifico. Volitelnou Calzu smí před další přijatou nabídkou vyhlásit kdokoli kromě autora nabídky. Správný počet vrací jednu kostku do počátečního limitu, chyba kostku bere. Po ztrátě začíná poražený nebo další zbývající hráč. Po přesné výzvě Red Dead začíná vyzyvatel, po správné Calze poslední poražený."
+          "cs": "Je-li zapnuté Palifico, první pokles na jedinou kostku změní následující kolo, pokud zbývají alespoň tři hráči. Jedničky nejsou žolíky. Hodnotu nabídky smí změnit jen hráč, který už zahajoval kolo Palifico."
+        },
+        {
+          "cs": "Při zapnuté Calze nahlásíš přesný počet klávesou D. Můžeš i mimo svůj tah, ale ne u vlastní nabídky. Správný odhad ti vrátí jednu kostku až do počátečního počtu; začne poslední hráč, který o kostku přišel. Chybný odhad stojí kostku."
         }
       ]
     },
     {
       "id": "privacy",
       "title": {
-        "cs": "Soukromé kostky"
+        "cs": "Návrat ke stolu"
       },
       "paragraphs": [
         {
-          "cs": "Hráči nejdříve uloží závazky k tajným hodnotám, poté server poskytne náhodný základ. Společně určují skryté kostky. Tajemství se odhalí a ověří až po výzvě. Bot zná jen svůj kelímek a veřejné nabídky. Používej stejný profil Eltena, aby zůstala tajemství dostupná. Uložení hry a předání probíhajícího tajemství je blokováno; jiného účastníka lze nahradit."
+          "cs": "Po výpadku se vrať ze stejného profilu ELTENu, abys měl přístup ke svým kostkám. Dokud jsou kostky skryté, hru nelze uložit ani tyto kostky předat jinému hráči."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "cs": "Ovládání"
+        "cs": "Klávesové zkratky"
       },
       "paragraphs": [
         {
-          "cs": "Šipky a Enter volí nejmenší platnou nabídku pro hodnotu nebo výzvu. B otevře formulář vlastního počtu a hodnoty. K zpochybní nabídku, D vyhlásí Přesně, pokud je dostupné. V čte tvé kostky, L nabídku. Hody a odhalení zajišťuje automaticky společný vykonavatel. F1 ukazuje zkratky, Ctrl+F1 pravidla. Chat, historie a hlasitost používají společné ovládání."
+          "cs": "V: přečíst vlastní kostky"
+        },
+        {
+          "cs": "L: zopakovat poslední nabídku"
+        },
+        {
+          "cs": "B: zadat nabídku"
+        },
+        {
+          "cs": "K: ověřit bluf"
+        },
+        {
+          "cs": "D: ohlásit přesný počet, je-li to povoleno"
         }
       ]
     }

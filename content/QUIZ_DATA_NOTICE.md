@@ -45,6 +45,10 @@ Data version 9 integrates PR #32: centuries use Arabic numerals, while Roman
 numerals in rulers' names and proper names remain. The 14,887 questions and
 their identifiers are retained.
 
+Data version 23 adds 37 reviewed questions from Zuzler, corrects four
+reported questions and removes one whose prompt disclosed the answer. The
+set has 14,976 questions; see `QUIZ_PL_GENERAL_SOURCES.txt` for provenance.
+
 ## Current Polish Witcher books set
 
 From Power Games 2.0.4.5 (build 244), `quiz.witcher.books.pl` replaces all
@@ -87,7 +91,9 @@ individual review of the facts, wording and answer choices. Two duplicate
 questions and a film-only scene were rejected; five further details were
 withheld for insufficient literary confirmation. See
 `QUIZ_HARRY_POTTER_PL_SOURCES.md` for scope, attribution, exclusions and rights.
-This does not replace or change any existing question set.
+Data version 3 adds 30 questions from Zuzler after checking all 44 proposals
+against the Polish books and existing questions. The set now has 1,015
+questions. It remains a separate, books-only set.
 
 ## Earlier Polish imports and retired Witcher sets
 

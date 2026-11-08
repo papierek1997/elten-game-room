@@ -4,53 +4,73 @@
     {
       "id": "aim",
       "title": {
-        "pl": "Cel i punktacja"
+        "pl": "Cel gry"
       },
       "paragraphs": [
         {
-          "pl": "Gracze mierzą się z automatycznym krupierem. Każde rozdanie używa sześciu świeżo potasowanych talii. Blotki mają wartość nominalną, figury dziesięć, a as jeden lub jedenaście. Trzeba pokonać krupiera, nie przekraczając 21. Żetony obowiązują wyłącznie przy tym stole."
-        },
-        {
-          "pl": "Wygrana zwraca stawkę i daje tyle samo zysku. Początkowe 21 z dwóch kart daje zysk 3:2. Dwa naturalne blackjacki oznaczają zwrot stawki. Naturalny blackjack pokonuje zwykłe 21. Przekroczenie 21 przegrywa także wtedy, gdy później przekroczy je krupier. Połówki żetonów są rozliczane dokładnie."
+          "pl": "Przebij wynik krupiera, nie przekraczając 21. Blotki liczą się według wartości, walet, dama i król są warte po 10, a as liczy się jako 1 lub 11 — zależnie od tego, co daje lepszą sumę bez przekroczenia 21. Grasz wirtualnymi żetonami."
         }
       ]
     },
     {
       "id": "betting",
       "title": {
-        "pl": "Wpłata początkowa i licytacja"
+        "pl": "Wpisowe i licytacja"
       },
       "paragraphs": [
         {
-          "pl": "Na początku rundy każdy aktywny gracz automatycznie wpłaca kwotę wejściową: domyślnie dziesięć żetonów albo kwotę z ustawień stołu. Kto ma mniej, wpłaca całe saldo i wchodzi all-in. Następnie gracze po kolei mogą czekać, jeśli nic nie dopłacają, sprawdzić podbicie, podbić, spasować lub wejść za wszystko. Podbicie daje pozostałym ponowną decyzję. Licytacja kończy się, gdy wszyscy mający jeszcze żetony odpowiedzą i wyrównają bieżącą stawkę albo pozostanie jeden niespasowany gracz. Gracz all-in nadal gra, ale nie licytuje dalej. Krótki all-in nie otwiera ponownie podbijania osobie, która już wykonała ruch, chyba że suma kolejnych podbić osiągnie pełne podbicie."
+          "pl": "Każda runda zaczyna się od wpisowego. Domyślnie wynosi 10 żetonów; jeśli brakuje ci do wpisowego, wpłacasz wszystkie swoje żetony. Potem każdy po kolei decyduje, czy zostać w rozdaniu."
         },
         {
-          "pl": "C pozwala czekać lub sprawdzić, F spasować, A wejść za wszystko, a R albo B wpisać własne podbicie. Wpisujesz kwotę podbicia ponad bieżącą stawkę; ewentualna dopłata do sprawdzenia jest doliczana do wpłaty. Pierwsze podbicie wynosi co najmniej jeden żeton, następne co najmniej tyle co ostatnie pełne podbicie; mniejszy końcowy all-in jest dozwolony. Proponowane podbicia są też na liście akcji. Karty albo rzuty rozpoczynają się dopiero po zamknięciu licytacji."
+          "pl": "C pozwala zaczekać, gdy nie masz nic do dopłaty, lub wyrównać bieżącą stawkę. F oznacza pas: rezygnujesz z rundy i tracisz dotychczasowe wpłaty. Klawiszem A stawiasz wszystkie żetony. Nadal bierzesz udział w rundzie, ale nie licytujesz dalej."
+        },
+        {
+          "pl": "Żeby podbić, naciśnij R i wpisz, o ile chcesz zwiększyć stawkę. Gra doliczy kwotę potrzebną do jej wyrównania. Pierwsze podbicie wynosi co najmniej jeden żeton, następne co najmniej tyle, co ostatnie pełne podbicie. Mniejsze wejście za wszystko nie przywraca prawa do podbicia osobie, która już licytowała, dopóki suma tych podbić nie osiągnie pełnego podbicia."
+        },
+        {
+          "pl": "Licytacja kończy się, gdy pozostanie jedna osoba lub wszyscy niespasowani gracze z żetonami odpowiedzą i wyrównają stawkę."
         }
       ]
     },
     {
       "id": "play",
       "title": {
-        "pl": "Przebieg rozdania"
+        "pl": "Dobieranie kart"
       },
       "paragraphs": [
         {
-          "pl": "Wybierz Dobierz lub Pasuj na liście akcji. W wariancie rozszerzonym można podwoić stawkę początkowej ręki i otrzymać dokładnie jedną kartę albo raz podzielić parę tej samej rangi na dwie ręce. Potrzebna jest dodatkowa stawka. Po podziale asów każda ręka dostaje jedną kartę i kończy grę; ręce po podziale nie dają premii za blackjacka. Nie ma ubezpieczenia, poddania, kolejnego podziału ani podwojenia po podziale."
+          "pl": "Po licytacji dostajesz dwie karty, a krupier odsłania jedną ze swoich. Klawisz H odczyta twoje karty i ich sumę. Gdy przyjdzie twoja tura, dobierz kartę Spacją albo wybierz „Zostań przy tej sumie” na liście akcji i naciśnij Enter. Możesz dobierać, dopóki nie osiągniesz lub nie przekroczysz 21."
         },
         {
-          "pl": "Po decyzjach graczy krupier odsłania drugą kartę. Dobiera poniżej 17 i pasuje przy każdym 17, także z asem liczonym jako jedenaście. Karty graczy są jawne. Interfejs zakrywa drugą kartę krupiera, ale wspólne deterministyczne odtwarzanie nie chroni przed zmodyfikowanym klientem. Boty korzystają tylko z własnej ręki i odkrytej karty krupiera."
+          "pl": "Gdy gracze skończą, krupier odsłania drugą kartę. Dobiera, jeśli ma mniej niż 17, i zatrzymuje się przy co najmniej 17, nawet jeśli liczy asa jako 11. Jeśli już w pierwszych dwóch kartach ma 21, od razu rozlicza rozdanie."
+        }
+      ]
+    },
+    {
+      "id": "settlement",
+      "title": {
+        "pl": "Rozliczenie rozdania"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli masz więcej niż 21, tracisz stawkę niezależnie od wyniku krupiera. W przeciwnym razie wygrywasz, gdy krupier przekroczy 21 albo ma mniej od ciebie. Za zwykłą wygraną odzyskujesz stawkę i dostajesz drugie tyle; przy równej sumie dostajesz zwrot stawki."
+        },
+        {
+          "pl": "21 w pierwszych dwóch kartach to blackjack. Pokonuje zwykłe 21 i daje 3 żetony zysku za każde 2 postawione. Jeśli obie strony mają blackjacka, odzyskujesz stawkę."
         }
       ]
     },
     {
       "id": "variants",
       "title": {
-        "pl": "Ustawienia i koniec meczu"
+        "pl": "Koniec meczu i wariant rozszerzony"
       },
       "paragraphs": [
         {
-          "pl": "Wybierz wariant prosty albo rozszerzony, liczbę rund (1–100), żetony początkowe (10–10000) i wpłatę wejściową. Domyślnie jest dziesięć rund, 100 żetonów i wejście po dziesięć. Krupier rozlicza rzeczywistą stawkę każdej niespasowanej ręki osobno; pasowanie oznacza utratę już wpłaconych żetonów. Ostatni gracz po spasowaniu pozostałych nadal gra przeciw krupierowi. Każde dodatnie saldo pozwala wejść krótkim all-in w kolejnej rundzie. Wygrywa najwyższe saldo końcowe; równe najwyższe salda dają remis. Wcześniej zapisane gry zachowują swoje zasady obstawiania."
+          "pl": "Po ostatnim rozdaniu wygrywa osoba z największą liczbą żetonów. Przy najwyższym równym saldzie jest remis. Domyślnie gracie przez 10 rund, zaczynając po 100 żetonów. Jeśli zabraknie żetonów wszystkim graczom, mecz kończy się wcześniej."
+        },
+        {
+          "pl": "W wariancie rozszerzonym na liście akcji możesz wybrać podwojenie stawki albo rozdzielenie pary. Podwojenie daje dokładnie jedną dodatkową kartę. Rozdzielenie dzieli dwie karty tej samej wartości na osobne ręce i wymaga drugiej stawki. Obie ręce rozgrywasz osobno, ale nie można ich ponownie rozdzielić ani podwoić. Po rozdzieleniu asów dostajesz tylko po jednej karcie. 21 po rozdzieleniu nie jest blackjackiem."
         }
       ]
     },
@@ -61,18 +81,48 @@
       },
       "paragraphs": [
         {
-          "pl": "Ta odmiana nie ma ręki krupiera. Gracze rozdają kolejno, a rozdający zmienia się co rundę. Po wspólnym wpisowym i licytacji rozdający naciska D. Wszyscy grają przeciw sobie, dobierając lub zatrzymując rękę. Nie ma podziału par, podwajania, wypłaty banku ani premii za naturalnego blackjacka. Wpłaty tworzą pule; każdą wygrywa najwyższy uprawniony wynik do 21, a remisy dzielą pulę. Jeśli wszystkie uprawnione ręce przekroczą 21, warstwa wraca do wpłacających. Suma żetonów się nie zmienia. Rozdający gra ostatni; następna runda przechodzi do kolejnego wypłacalnego miejsca. To format towarzyski Power Games."
+          "pl": "W tej odmianie nie ma ręki krupiera. Rozdający zmienia się co rundę. Gdy skończy się licytacja, naciska D, a swoją rękę rozgrywa jako ostatni. Nie ma podwajania, rozdzielania ani premii za blackjacka."
+        },
+        {
+          "pl": "Najwyższa suma do 21 wygrywa pulę, a przy remisie gracze ją dzielą. Jeśli ktoś wpłacił mniej od innych, może wygrać od każdego najwyżej tyle, ile sam wpłacił. Jeśli wszyscy uprawnieni do danej puli przekroczą 21, ich wpłaty do tej puli wracają."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "pl": "Sterowanie"
+        "pl": "Skróty klawiszowe"
       },
       "paragraphs": [
         {
-          "pl": "Strzałkami wybierz akcję i zatwierdź Enterem. Tab zmienia pola. T odczytuje kolejkę, a S wyniki. F1 otwiera bieżący spis skrótów, Ctrl+F1 zasady. Ręce zachowują tożsamość kart i kolejność dobierania. Karty służą do przeglądania; decyzje wybieraj na osobnej liście akcji."
+          "pl": "Spacja: dobierz kartę"
+        },
+        {
+          "pl": "H: odczytaj karty i ich sumę"
+        },
+        {
+          "pl": "S: sprawdź salda"
+        },
+        {
+          "pl": "T: sprawdź, kto wykonuje ruch"
+        },
+        {
+          "pl": "C: zaczekaj lub wyrównaj stawkę"
+        },
+        {
+          "pl": "F: spasuj w licytacji"
+        },
+        {
+          "pl": "A: wejdź za wszystko"
+        },
+        {
+          "pl": "R: podbij"
+        },
+        {
+          "pl": "B: podbij"
+        },
+        {
+          "pl": "D: rozdaj karty w grze towarzyskiej"
         }
       ]
     }

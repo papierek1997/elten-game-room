@@ -4,53 +4,80 @@
     {
       "id": "aim",
       "title": {
-        "cs": "Tikety a cíle binga"
+        "cs": "Karta a cíl hry"
       },
       "paragraphs": [
         {
-          "cs": "Každý hráč dostane jeden tiket. Koule se losují bez opakování. Dokonči oznámený vzor. Všichni používají stejné tahy; společné dokončení závěrečného cíle znamená remízu vítězů."
-        }
-      ]
-    },
-    {
-      "id": "variants",
-      "title": {
-        "cs": "Varianty"
-      },
-      "paragraphs": [
-        {
-          "cs": "30 koulí: tiket 3 krát 3, po třech číslech z rozsahů 1–10, 11–20 a 21–30. Vyhraje označení všech devíti. Volné pole není."
+          "cs": "Každý dostane jednu kartu a všichni slyší stejná čísla. Výchozí hra má 90 míčků. Nejdřív jde o jeden úplný řádek, potom o dva řádky a nakonec o celou kartu. Vyhrává ten, kdo ji vyplní první. Pokud ji více hráčů vyplní při stejném čísle, dělí se o výhru."
         },
         {
-          "cs": "75 koulí: tiket 5 krát 5. Sloupce B, I, N, G a O používají rozsahy 1–15, 16–30, 31–45, 46–60 a 61–75. Střed je volný. 80 koulí má tiket 4 krát 4 a sloupce 1–20, 21–40, 41–60 a 61–80. U těchto variant při tvorbě stolu vyber libovolný řádek, sloupec či úhlopříčku, čtyři rohy nebo celý tiket."
-        },
-        {
-          "cs": "90 koulí: tři řádky a devět sloupců, pět čísel v řádku a patnáct na tiketu. Sloupce zahrnují 1–9, 10–19 až 70–79 a 80–90; čísla ve sloupci rostou dolů. Postupně se hraje o jeden vodorovný řádek, dva a celý tiket. Dřívější vítězové se oznámí; celý tiket rozhodne zápas."
+          "cs": "Kartu procházíš šipkami. Ve výchozí hře se čísla označují automaticky a hra hlásí vítěze jednotlivých etap. Čísla se neopakují. L přečte poslední číslo, D otevře seznam všech vylosovaných čísel."
         }
       ]
     },
     {
       "id": "marking",
       "title": {
-        "cs": "Označování a hlášení binga"
+        "cs": "Ruční označování"
       },
       "paragraphs": [
         {
-          "cs": "Automatický režim označuje čísla a rozpozná výhru. Interval koulí je 3–30 sekund, výchozí pět. Ruční režim čeká na dokončení tahu všech hráčů. Označ volaná čísla na tiketu a ohlas bingo nebo připravenost. Hlášení stejné koule se ověřují společně, rychlost sítě tedy nerozhoduje. Chybné hlášení nic nezmění."
+          "cs": "V ručním režimu najeď šipkami na vylosované číslo na kartě a stiskni Enter. Číslo můžeš také napsat po stisknutí M. Označit lze i čísla z dřívějšího losování."
         },
         {
-          "cs": "Po výhře etapy 90 koulí v ručním režimu lze další cíl ohlásit při stejné kouli, jinak znovu potvrď připravenost pro další losování. Volaná čísla lze označit později. Prázdný buben bez platného hlášení znamená remízu. Čekání po každé kouli je přístupnostní úprava Power Games. Tikety i tahy spravuje společný serverový vykonavatel hry."
+          "cs": "Pokud máš požadovaný obrazec, ohlas bingo klávesou B. Jinak stiskni R, až budeš s označováním hotový. Další číslo se losuje, až skončí všichni. Hlášení u stejného čísla se posuzují společně, takže rychlost stisku B nerozhoduje."
+        },
+        {
+          "cs": "Po výhře za jeden či dva řádky u 90 míčků zkontroluj další cíl. Pokud ho už máš, ohlas ho ještě u stejného čísla. Jinak znovu stiskni R. Pokud míčky dojdou a nikdo správně neohlásí poslední obrazec, hra skončí remízou."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Varianty binga"
+      },
+      "paragraphs": [
+        {
+          "cs": "Při vytváření stolu můžeš nastavit odstup mezi automatickými losováními. Výchozí odstup je pět sekund."
+        },
+        {
+          "cs": "- 90 míčků: tři řádky po pěti číslech v devíti sloupcích. Výhry za jeden a dva řádky se hlásí průběžně; rozhoduje celá karta."
+        },
+        {
+          "cs": "- 75 míčků: pět řádků a sloupce B, I, N, G, O. Volný střed se počítá od začátku."
+        },
+        {
+          "cs": "- 80 míčků: čtyři řádky a čtyři sloupce. U 75 a 80 míčků zvolíš řádek, sloupec či úhlopříčku, čtyři rohy, nebo celou kartu."
+        },
+        {
+          "cs": "- 30 míčků: tři řádky a tři sloupce bez volného pole. Vyhrává celá karta."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "cs": "Ovládání"
+        "cs": "Klávesové zkratky"
       },
       "paragraphs": [
         {
-          "cs": "Šipky prohlížejí tiket. V ručním režimu Enter označí volané číslo, M zadá číslo, B ohlásí bingo a R potvrdí připravenost. Příkazy jsou i v akcích. L přečte poslední kouli, D prohlíží tahy. Tab mění pole. F1 ukáže aktuální zkratky, Ctrl+F1 pravidla. Historie, chat a hlasitost používají běžné klávesy Power Games."
+          "cs": "L: přečíst poslední číslo"
+        },
+        {
+          "cs": "D: procházet vylosovaná čísla"
+        },
+        {
+          "cs": "Enter na kartě: označit číslo v ručním režimu"
+        },
+        {
+          "cs": "M: zadat číslo k označení"
+        },
+        {
+          "cs": "B: ohlásit bingo"
+        },
+        {
+          "cs": "R: ukončit označování"
         }
       ]
     }

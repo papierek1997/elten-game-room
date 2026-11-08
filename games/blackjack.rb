@@ -3,6 +3,7 @@ require_relative "base/round_tournament"
 require_relative "../lib/game_bots"
 require_relative "../lib/blackjack_auction"
 require_relative "../lib/blackjack_social"
+require_relative "../lib/twenty_one_strategy"
 
 module GameRoomGames
   using GameRoomLocalization::Translations
@@ -176,26 +177,21 @@ module GameRoomGames
     end
 
     def bot_action_score(replay, actor, action, context: nil)
-      return %w[check call].include?(action["action"]) ? 100 : 0 if replay.state[:phase] == :betting && auction_rules?(replay.state[:options])
-      return -(action["amount"].to_i - default_bet(replay.state)).abs if replay.state[:phase] == :betting
-      return 100 if social?(replay.state) && action["action"] == "deal"
-      if social?(replay.state)
-        return action["action"] == (hand_total(current_hand(replay.state)[:cards]) < 17 ? "hit" : "stand") ? 100 : 0
-      end
+      state = replay.state
+      return auction_opening_bot_score(state, action) if state[:phase] == :betting && auction_rules?(state[:options])
+      return -(action["amount"].to_i - default_bet(state)).abs if state[:phase] == :betting
+      return 1 if action["action"] == "deal"
+
       observation = bot_observation(replay, actor)
-      cards, total = observation.values_at("cards", "total")
-      upcard = card_points(observation["dealer_upcard"])
-      preferred = if cards.size == 2 && %w[A 8].include?(playing_card_rank(cards[0])) && playing_card_rank(cards[0]) == playing_card_rank(cards[1])
-        "split"
-      elsif cards.size == 2 && [10, 11].include?(total) && upcard < 10
-        "double"
-      elsif total < 12 || (total < 17 && upcard >= 7)
-        "hit"
-      else
-        "stand"
+      values = observation["cards"].map { |card| bot_card_value(card) }
+      hard, ace = values.sum, values.include?(1)
+      plan = blackjack_bot_plan(state, observation)
+      case action["action"]
+      when "stand" then plan.stand(hard, ace) + 1e-9
+      when "hit" then plan.draw(hard, ace)
+      when "double" then 2 * plan.draw(hard, ace, stop: true)
+      when "split" then 2 * plan.draw(values.first, ace, stop: ace)
       end
-      return 100 if action["action"] == preferred
-      action["action"] == (total < 17 ? "hit" : "stand") ? 10 : 0
     end
 
     def playable_card_navigation(replay, viewer)
@@ -203,10 +199,29 @@ module GameRoomGames
       card_navigation_spec(hand_id: "hand", card_actions: {}) if displayed_hand(replay.state, viewer)
     end
 
-    def required_decision_key(replay, viewer)
-      return nil unless replay && [:betting, :playing].include?(replay.state[:phase])
-      key = super
-      key && (replay.state.key?(:bets) || auction_rules?(replay.state[:options])) ? [key, replay.state[:round], replay.state[:phase]] : key
+    def turn_announcement(replay, viewer)
+      if replay && social?(replay.state) && replay.state[:phase] == :awaiting_deal
+        return _("Deal the cards with D.") if same_user?(replay.current_player, viewer)
+        return _("%{player} will deal the cards.") % {player: participant_name(replay.current_player)}
+      end
+      super
+    end
+
+    def current_turn_shortcut_text(replay, viewer)
+      return turn_announcement(replay, viewer) if social?(replay.state) && replay.state[:phase] == :awaiting_deal
+
+      super
+    end
+
+    def describe_event(event, repository, replay, viewer)
+      return super unless event["action"] == "deal"
+
+      event_id = repository.event_id(event).to_i
+      replay.history.filter_map do |entry|
+        next unless entry.event_id.to_i == event_id
+        entry.text if %i[deal initial_twenty_one].include?(entry.kind) ||
+          (entry.kind == :dealt_hand && same_user?(entry.actor, viewer))
+      end
     end
 
     def surface_spec(replay, viewer)
@@ -226,17 +241,22 @@ module GameRoomGames
       if hand
         player = replay.players.find { |person| same_user?(person, viewer) }
         index = state[:hands].fetch(player).index(hand)
-        header = _("Your hand %{hand} of %{count}: %{total}") % {hand: index + 1, count: state[:hands].fetch(player).size, total: hand_total(hand[:cards])}
+        count, total = state[:hands].fetch(player).size, hand_total(hand[:cards])
+        header = if count > 1
+          _("Your hand %{hand} of %{count}: %{total}") % {hand: index + 1, count: count, total: total}
+        else
+          _("Your hand; total %{total}.") % {total: total}
+        end
         zones.concat(card_hand_surface(hand[:cards], header: header, hand_epoch: [state[:round], player.to_s.downcase, index]).zones)
       end
-      labels = {"hit" => _("Hit"), "stand" => _("Stand"), "double" => _("Double down"), "split" => _("Split pair"), "deal"=>_("Deal cards")}
+      labels = {"hit" => _("Draw a card"), "stand" => _("Keep your total"), "double" => _("Double down"), "split" => _("Split pair"), "deal"=>_("Deal cards")}
       actions = legal_actions(replay, viewer).map do |action|
         GameSurfaces::Card.new(id: action["action"], value: action["action"], label: labels.fetch(action["action"]))
       end
       public_dealer = state[:dealer_revealed] ? state[:dealer] : state[:dealer].take(1)
       dealer_text = public_dealer.map { |card| playing_card_label(card) }.join(", ")
       dealer_text += ", " + _("hidden card") if !state[:dealer_revealed] && state[:dealer].size > 1
-      header = _("Dealer: %{cards}") % {cards: dealer_text}
+      header = dealer_text.empty? ? _("Blackjack actions") : _("Dealer: %{cards}") % {cards: dealer_text}
       header = _("Dealing player: %{player}; no house hand.") % {player:participant_name(state[:dealing_player])} if social?(state)
       zones << GameSurfaces::CardZoneSpec.new(id: "actions", header: header, cards: actions,
         empty_label: result_text(replay) || current_turn_shortcut_text(replay, viewer))
@@ -256,22 +276,27 @@ module GameRoomGames
         invalid_message: _("Choose a whole-chip bet within your balance."))]
     end
 
-    def shortcut_features; super + [:scores, :hand]; end
+    def shortcut_features; super + [:scores, :hand, :draw_card]; end
     def shortcut_feature_data(feature, replay, viewer)
       case feature.to_sym
       when :scores
-        {message: participant_scores(replay).map { |person, score| "#{participant_name(person)}: #{score}" }.join("; ")}
+        {message: replay.state[:chips].map { |person, chips| "#{participant_name(person)}: #{auction_amount(chips)}" }.join("; ")}
       when :hand
         hand = displayed_hand(replay.state, viewer)
-        {message: hand ? hand[:cards].map { |card| playing_card_label(card) }.join(", ") : _("Your hand is empty")}
+        {message: hand ? blackjack_hand_text(hand[:cards]) : _("Your hand is empty")}
+      when :draw_card
+        if replay.state[:phase] == :playing && !replay.finished? && same_user?(replay.current_player, viewer)
+          {kind: :action, action_kind: "command", action_name: "hit"}
+        end
       else super
       end
     end
 
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
-      cues = []
+      cues = auction_sound_cues(event, history)
       cues << "shuffle" if event["action"] == "deal"
-      cues << "draw" if %w[hit double split dealer].include?(event["action"])
+      cues << "draw" if %w[hit double split].include?(event["action"]) ||
+        history.any? { |entry| entry.kind == :dealer_draw }
       cues << "lose1" if history.any? { |entry| entry.kind == :bust && same_user?(entry.actor, viewer) }
       cues
     end
@@ -284,6 +309,29 @@ module GameRoomGames
     private
 
     def auction_unit; 2; end
+
+    def bot_card_value(card)
+      points = card_points(card)
+      points == 11 ? 1 : points
+    end
+
+    def blackjack_bot_plan(state, observation)
+      if social?(state)
+        others = state[:hands].reject { |player, _| player == state[:current_player] }.values.flatten
+        done, pending = others.partition { |hand| hand[:done] }
+        stand_value = GameRoomTwentyOneStrategy.contest_value(done.map { |hand| hand_total(hand[:cards]) },
+          pending.size, GameRoomTwentyOneStrategy.card_opponent, split_ties: true)
+        return GameRoomTwentyOneStrategy::Plan.new(stand_value) { GameRoomTwentyOneStrategy::CARDS }
+      end
+      upcard = bot_card_value(observation["dealer_upcard"])
+      dealer = GameRoomTwentyOneStrategy.card_dealer(upcard)
+      stand_value = lambda do |sum|
+        dealer.sum do |score, probability|
+          score == GameRoomTwentyOneStrategy::BUST || sum > score ? probability : (sum < score ? -probability : 0)
+        end
+      end
+      GameRoomTwentyOneStrategy::Plan.new(stand_value, bust_value: -1) { GameRoomTwentyOneStrategy::CARDS }
+    end
 
     def prepare_auction(state, rotate_dealer: true)
       state.delete(:auction)
@@ -401,6 +449,7 @@ module GameRoomGames
       state.merge!(phase: :playing, current_player: state[:hands].keys.first, hand_index: 0)
       add_history(history, event_id, "", :deal,
         _("Round %{round}. Dealer shows %{card}.") % {round: state[:round], card: playing_card_label(state[:dealer].first)})
+      announce_dealt_hands(state, event_id, history)
       # A dealer natural ends the round before any optional extra stake.
       if hand_total(state[:dealer]) == 21
         state[:hands].each_value { |hands| hands.each { |hand| hand[:done] = true } }
@@ -431,15 +480,23 @@ module GameRoomGames
     def play(state, action, event_id, history)
       actor = state[:current_player]
       hand = current_hand(state)
-      case action
-      when "stand" then hand[:done] = true
+      player = participant_name(actor)
+      text = case action
+      when "stand"
+        hand[:done] = true
+        _("%{player} stands at %{total}.") % {player: player, total: hand_total(hand[:cards])}
       when "hit", "double"
         if action == "double"
           state[:chips][actor] -= hand[:bet]
           hand[:bet] *= 2
         end
-        hand[:cards] << state[:deck].shift
-        hand[:done] = action == "double" || hand_total(hand[:cards]) >= 21
+        card = state[:deck].shift
+        hand[:cards] << card
+        total = hand_total(hand[:cards])
+        hand[:done] = action == "double" || total >= 21
+        format = action == "double" ? _("%{player} doubles the bet and draws %{card}. Total: %{total}.") :
+          _("%{player} draws %{card}. Total: %{total}.")
+        format % {player: player, card: playing_card_label(card), total: total}
       when "split"
         state[:chips][actor] -= hand[:bet]
         first, second = hand[:cards]
@@ -449,15 +506,54 @@ module GameRoomGames
         end
         state[:hands][actor] = hands
         hand = hands.first
+        _("%{player} splits the pair. First hand: %{first} Second hand: %{second}") % {
+          player: player, first: blackjack_hand_text(hands[0][:cards]), second: blackjack_hand_text(hands[1][:cards])}
       end
-      total = hand_total(hand[:cards])
-      add_history(history, event_id, actor, total > 21 ? :bust : :move,
-        _("%{player}: %{action}; total %{total}.") % {player: participant_name(actor), action: action_label(action), total: total})
+      bust = hand_total(hand[:cards]) > 21
+      add_history(history, event_id, actor, bust ? :bust : :move, bust ? "#{text} #{_('Over 21.')}" : text)
+      index = state[:hand_index]
       advance_hand(state)
+      if state[:phase] == :playing && state[:current_player] == actor && state[:hand_index] != index
+        add_history(history, event_id, actor, :move,
+          _("%{player} plays the second hand.") % {player: player})
+      end
     end
 
-    def action_label(action)
-      {"hit" => _("Hit"), "stand" => _("Stand"), "double" => _("Double down"), "split" => _("Split pair")}.fetch(action)
+    def blackjack_hand_text(cards)
+      _("%{cards}. Total: %{total}.") % {
+        cards: cards.map { |card| playing_card_label(card) }.join(", "), total: hand_total(cards)}
+    end
+
+    def announce_dealt_hands(state, event_id, history)
+      state[:hands].each do |player, hands|
+        cards = hands.first[:cards]
+        text = if hand_total(cards) == 21
+          _("%{player} is dealt 21: %{cards}.") % {
+            player: participant_name(player), cards: cards.map { |card| playing_card_label(card) }.join(", ")}
+        else
+          _("%{player} is dealt: %{hand}") % {player: participant_name(player), hand: blackjack_hand_text(cards)}
+        end
+        add_history(history, event_id, player, hand_total(cards) == 21 ? :initial_twenty_one : :dealt_hand, text)
+      end
+    end
+
+    def blackjack_balance_text(player, changes, balance)
+      outcomes = changes.map do |change|
+        if change.positive?
+          _("profit %{amount}") % {amount: auction_amount(change)}
+        elsif change.negative?
+          _("loss %{amount}") % {amount: auction_amount(-change)}
+        else
+          _("gets the stake back")
+        end
+      end
+      outcome = if outcomes.one?
+        outcomes.first
+      else
+        outcomes.each_with_index.map { |value, index| _("hand %{hand}: %{outcome}") % {hand: index + 1, outcome: value} }.join("; ")
+      end
+      _("%{player}: %{outcome}. Balance: %{balance}.") % {
+        player: participant_name(player), outcome: outcome, balance: auction_amount(balance)}
     end
 
     def advance_hand(state)
@@ -475,13 +571,21 @@ module GameRoomGames
       return social_settle(state,event_id,history) if social?(state)
       state[:dealer_revealed] = true
       live = state[:hands].values.flatten.any? { |hand| hand_total(hand[:cards]) <= 21 && !natural?(hand) }
+      before_count = state[:dealer].size
       state[:dealer] << state[:deck].shift while live && hand_total(state[:dealer]) < 17
       dealer = hand_total(state[:dealer])
       dealer_natural = state[:dealer].size == 2 && dealer == 21
-      add_history(history, event_id, "", :dealer,
-        _("Dealer: %{cards}; total %{total}.") % {cards: state[:dealer].map { |card| playing_card_label(card) }.join(", "), total: dealer})
+      cards = state[:dealer].map { |card| playing_card_label(card) }.join(", ")
+      text = if dealer_natural
+        _("Dealer has blackjack: %{cards}.") % {cards: cards}
+      elsif dealer > 21
+        _("Dealer goes over 21: %{cards}. Total: %{total}.") % {cards: cards, total: dealer}
+      else
+        _("Dealer finishes with %{cards}. Total: %{total}.") % {cards: cards, total: dealer}
+      end
+      add_history(history, event_id, "", state[:dealer].size > before_count ? :dealer_draw : :dealer, text)
       state[:hands].each do |person, hands|
-        hands.each do |hand|
+        changes = hands.map do |hand|
           total = hand_total(hand[:cards])
           payout = if total > 21
             0
@@ -497,9 +601,9 @@ module GameRoomGames
             0
           end
           state[:chips][person] += payout
+          payout - hand[:bet]
         end
-        add_history(history, event_id, person, :settlement,
-          _("%{player} has %{chips} chips.") % {player: participant_name(person), chips: state[:chips][person] / 2.0})
+        add_history(history, event_id, person, :settlement, blackjack_balance_text(person, changes, state[:chips][person]))
       end
       minimum = state.key?(:auction) ? 0 : state.key?(:bets) ? 2 : state[:options]["stake"] * 2
       state[:eliminated] = state[:players].select { |person| state[:chips][person].zero? || state[:chips][person] < minimum }

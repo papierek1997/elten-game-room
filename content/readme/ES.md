@@ -247,6 +247,8 @@ En Ajustes → Avisos de la sala de espera eliges por separado qué avisos se le
 
 ## Sonidos y juego en segundo plano
 
+En Ajustes → Sonidos puedes activar tu propia música de fondo. Elige el archivo y ajusta el volumen por separado para los menús de Power Games y las partidas. Ambas opciones están desactivadas de forma predeterminada.
+
 Puedes ajustar el volumen sin salir del juego:
 
 - F2 — bajar el volumen.

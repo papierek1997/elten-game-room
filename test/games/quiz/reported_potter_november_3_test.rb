@@ -36,6 +36,6 @@ end
 assert(indexed.fetch('community_hp_lk_0471').fetch('wrong') == [
   'Pełzając', 'Podtrzymywany przez Harry’ego i Rona', 'Na plecach jednego z uczniów'
 ], 'Implausible broom/Hagrid distractors returned')
-assert(questions.length == 985, 'Wording-only reports added or removed questions')
-assert(pack.version == 2, 'Edited questions were published without a new data version')
+assert(questions.count { |q| q.fetch('id').start_with?('community_hp_lk_') } == 985, 'Wording-only reports added or removed original questions')
+assert(pack.version >= 2, 'Edited questions were published without a new data version')
 puts 'PASS four Potter reports: standalone context, no occupation/house clues, plausible return methods and correct source novels'

@@ -48,7 +48,8 @@ end
 require_relative '../../support/session_runner'
 %w[pl en].each do |language|
   native = NativeRoomHarness.new(game:game, users:%w[Alice Bob],
-    options:{'separate_letters'=>true,'answer_language'=>language,'round_category_count'=>9})
+    options:game.table_creation_options('separate_letters'=>true, 'answer_language'=>language,
+      'round_category_count'=>9, 'category_set'=>'hard'))
   native.start
   random = Object.new
   def random.roll(**); raise 'Server variant requested local entropy'; end
@@ -59,6 +60,8 @@ require_relative '../../support/session_runner'
   native.assert_converged('separate category letters', expected_count:1)
   state = native.replay('Alice').state
   assert(state[:phase] == :answering && state[:category_letters].values.uniq.size == 9, 'Server letters missing')
+  assert(state[:round_categories] == (GameRoomGames::CategoriesCatalog::POOLS.fetch('hard') & state[:round_categories]),
+    'Server round did not preserve the catalogue order')
   assert(native.view('Alice').calls[:random] == 1, 'Per-category server requests')
 end
 puts 'PASS distinct category letters: local/server rounds, both alphabets, fields, judging, reminder, tampered wires and ordinary mode'

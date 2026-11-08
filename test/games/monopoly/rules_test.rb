@@ -40,6 +40,25 @@ assert(automatic_turn.state[:phase] == :awaiting_roll && automatic_turn.current_
 assert(monopoly.legal_actions(automatic_turn, "Bob").none? { |action| action["action"] == "end_turn" },
   "Monopoly still exposes End turn")
 
+# Crossing Start on the roll and reaching Start again by Chance are two separate payments.
+salary_state = monopoly.send(:initial_state, players, monopoly.default_options)
+chance = salary_state[:board].find { |square| square[:type] == :chance }
+salary_state[:positions]["Alice"] = salary_state[:board].length + chance[:index] - 9
+salary_state[:card_decks] = { chance: [1], community: [] }
+salary = salary_state[:board_data].fetch(:salary)
+cash_before = salary_state[:cash]["Alice"]
+salary_roll = { "id" => 77, "action" => "roll", "value" => "4,5,1" }
+salary_history = []
+assert(monopoly.send(:apply_roll, salary_state, salary_roll, "Alice", repository, salary_history),
+  "Start salary fixture rejected the roll")
+assert(salary_state[:positions]["Alice"].zero? && salary_state[:laps]["Alice"] == 2 &&
+  salary_state[:cash]["Alice"] == cash_before + salary * 3, "Roll and Chance did not pay both salaries")
+salary_entries = salary_history.select { |entry| entry.key.start_with?("salary:") }
+assert(salary_entries.map(&:text) == ["Alice collected #{salary} for passing Start.",
+  "Alice receives double salary, #{salary * 2}, for landing on Start."],
+  "Salary announcements are missing or out of order")
+assert(salary_history.map(&:key).uniq.size == salary_history.size, "Separate salary payments share a history key")
+
 purchase_state = monopoly.send(:initial_state, players, monopoly.default_options)
 purchase_state[:positions]["Alice"] = 1
 purchase_state[:phase] = :property_decision

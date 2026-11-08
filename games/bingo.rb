@@ -153,9 +153,18 @@ module GameRoomGames
       nil
     end
 
+    def turn_transition_history_entry(before_replay, after_replay, event_id:)
+      nil
+    end
+
     def current_turn_shortcut_text(replay, viewer)
       return result_text(replay) if replay.finished?
-      replay.state[:phase] == :marking ? _("Marking the current bingo call.") : _("The bingo caller is drawing balls.")
+      return _("The bingo caller is drawing balls.") unless replay.state[:phase] == :marking
+      if GameRoomParticipants.includes?(active_actors(replay), viewer)
+        _("Mark the called number if it is on your ticket, then finish marking.")
+      else
+        _("Waiting for players to finish marking.")
+      end
     end
 
     def participant_status(replay, participant, connected: true)
@@ -180,15 +189,18 @@ module GameRoomGames
         end
       end
       header = _("Bingo %{variant}: %{goal}; last ball %{ball}; calls %{count} of %{total}.") % {
-        variant: state[:options]["variant"], goal: goal_label(goal(state)), ball: state[:called].last || "-",
+        variant: state[:options]["variant"], goal: goal_label(goal(state)),
+        ball: state[:called].last ? ball_label(state, state[:called].last) : "-",
         count: state[:called].size, total: state[:options]["variant"]}
       grid = GameSurfaces::GridSpec.new(width: width, height: height, header: GameRoomContent.utf8(header),
         cells: labels.map { |label| GameRoomContent.utf8(label) }.each_slice(width).to_a, row_origin: :top)
       commands = []
       if active_actors(replay).include?(player)
         payload = {"kind" => "command", "call" => state[:called].size, "stage" => state[:stage]}
-        commands << GameSurfaces::PawnTrackItem.new(id: "claim", label: GameRoomContent.utf8(_("Claim bingo")),
-          action: GameSurfaces::Action.new(kind: "command", name: "claim", payload: payload))
+        if ticket_wins?(state, player)
+          commands << GameSurfaces::PawnTrackItem.new(id: "claim", label: GameRoomContent.utf8(_("Claim bingo")),
+            action: GameSurfaces::Action.new(kind: "command", name: "claim", payload: payload))
+        end
         commands << GameSurfaces::PawnTrackItem.new(id: "ready", label: GameRoomContent.utf8(_("Ready for the next bingo call")),
           action: GameSurfaces::Action.new(kind: "command", name: "ready", payload: payload))
       end
@@ -207,11 +219,13 @@ module GameRoomGames
           choices: called)]
       return shortcuts unless GameRoomParticipants.includes?(active_actors(replay), viewer)
       payload = {"call" => state[:called].size, "stage" => state[:stage]}
-      shortcuts + [GameShortcut.new(key: "m", label: _("mark a called bingo number"), kind: :number_input, prompt: _("Number to mark"),
+      shortcuts << GameShortcut.new(key: "m", label: _("mark a called bingo number"), kind: :number_input, prompt: _("Number to mark"),
         action_kind: "command", action_name: "mark", value_key: "number", allowed_values: 1..state[:options]["variant"].to_i,
-        default_value: state[:called].last, payload: payload),
-        GameShortcut.new(key: "b", label: _("claim bingo"), kind: :action, action_kind: "command", action_name: "claim", payload: payload),
-        GameShortcut.new(key: "r", label: _("finish marking this call"), kind: :action, action_kind: "command", action_name: "ready", payload: payload)]
+        default_value: state[:called].last, payload: payload)
+      if ticket_wins?(state, player_key(state, viewer))
+        shortcuts << GameShortcut.new(key: "b", label: _("claim bingo"), kind: :action, action_kind: "command", action_name: "claim", payload: payload)
+      end
+      shortcuts << GameShortcut.new(key: "r", label: _("finish marking this call"), kind: :action, action_kind: "command", action_name: "ready", payload: payload)
     end
 
     def move_error(status)

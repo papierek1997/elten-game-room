@@ -4,44 +4,77 @@
     {
       "id": "aim",
       "title": {
-        "en": "Go"
+        "en": "Board and moves"
       },
       "paragraphs": [
         {
-          "en": "Go originated in China and is also known as baduk and igo. Two players place black and white stones on intersections; Black starts. Orthogonally connected stones form a group. An adjacent empty intersection is a liberty. Fill every liberty to capture a group. Captures are removed before checking self-capture; suicide is forbidden."
-        }
-      ]
-    },
-    {
-      "id": "variants",
-      "title": {
-        "en": "Variants and settings"
-      },
-      "paragraphs": [
+          "en": "Surround empty areas and keep your own stones on the board to outscore your opponent. Go is played by two people on an empty board. Black goes first, and players take turns placing one stone. Move to an empty intersection with the arrows and press Enter. Columns are lettered from the left and rows numbered from the bottom."
+        },
         {
-          "en": "Choose a 9 by 9, 13 by 13 or 19 by 19 board. Chinese-style area counts living stones plus surrounded empty points. Territory counts surrounded empty points plus captured and agreed dead opposing stones. White receives the selected komi. Atari Go ends at the first capture; two passes without a capture draw. All variants use positional superko: a placement may not recreate any earlier complete board position. Territory mode uses agreed dead groups and neutral seki regions, not automatic Japanese life-and-death adjudication. No automatic bent-four ruling or referee is implemented."
+          "en": "Stones of the same colour joined along the lines form a group. Empty intersections next to a group are its liberties. Filling the last liberty takes the whole opposing group off the board. You cannot leave your own group with no liberties after removing any captures, or recreate an earlier board position."
         }
       ]
     },
     {
       "id": "scoring",
       "title": {
-        "en": "Ending and agreeing the score"
+        "en": "Passing and scoring"
       },
       "paragraphs": [
         {
-          "en": "Two consecutive passes enter scoring. Players alternate: select an occupied point to mark or unmark its whole group as dead. Select an empty point to mark or unmark its whole connected empty region as neutral, for seki or other agreed neutral territory. A change clears both approvals; changing a dead group also clears neutral marks. A accepts this exact proposal. Two approvals end the game. R resumes play with the stones still present and clears marks; the other player moves next. Only regions bordered by one colour score; shared or unbordered regions are neutral. In area mode living stones also count; in territory mode prisoners count instead. Higher score wins; equal scores draw. Q resigns."
+          "en": "Press P instead of placing a stone to pass. Two passes in a row start scoring. Press Enter on a stone to mark its whole group dead or restore it. Enter on an empty intersection toggles whether its connected area is neutral."
+        },
+        {
+          "en": "Press S to hear the proposed score and A to accept it. A change cancels both approvals, and changing a dead group also clears neutral markings. Press R to resume with the same stones, clear the markings and give the other player the next move."
+        },
+        {
+          "en": "In the default game, each living stone of your colour and each empty intersection surrounded by your colour alone is worth one point. Neutral areas do not score. White gets a compensation called komi. Once both players agree, the higher score wins; equal scores draw."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Board size and variants"
+      },
+      "paragraphs": [
+        {
+          "en": "When creating the table, choose 9×9, 13×13 or 19×19 and set the komi."
+        },
+        {
+          "en": "- Territory scoring: count captured stones and agreed dead enemy stones instead of living stones. You still count surrounded empty intersections."
+        },
+        {
+          "en": "- Atari Go: the first capture wins. Two passes without a capture draw. S reads captures rather than a territory score."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "en": "Controls"
+        "en": "Keyboard shortcuts"
       },
       "paragraphs": [
         {
-          "en": "Use arrows to browse intersections and Enter to place or mark. P passes; A accepts scoring; R resumes play; Q resigns; S reads provisional or final points. T reads the current turn. Bots use a basic capture and liberties strategy, then accept scoring. F1 lists current shortcuts; Ctrl+F1 opens these rules. Shared controls provide history, chat and volume."
+          "en": "Arrows: move through the intersections"
+        },
+        {
+          "en": "Enter: place a stone or change a scoring mark"
+        },
+        {
+          "en": "P: pass"
+        },
+        {
+          "en": "S: read the proposed score or Atari captures"
+        },
+        {
+          "en": "A: accept the score"
+        },
+        {
+          "en": "R: resume play after passing"
+        },
+        {
+          "en": "Q: resign"
         }
       ]
     }

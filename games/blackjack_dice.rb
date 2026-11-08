@@ -2,6 +2,7 @@ require_relative "base"
 require_relative "base/round_tournament"
 require_relative "../lib/game_bots"
 require_relative "../lib/blackjack_auction"
+require_relative "../lib/twenty_one_strategy"
 
 module GameRoomGames
   using GameRoomLocalization::Translations
@@ -79,10 +80,6 @@ module GameRoomGames
     def eliminated_from_game?(replay, viewer)
       super || GameRoomParticipants.includes?(replay&.state&.fetch(:eliminated, []).to_a, viewer)
     end
-    def required_decision_key(replay, viewer)
-      key = super
-      key && chip_game?(replay.state[:options]) ? [key, replay.state[:round], replay.state[:phase]] : key
-    end
     def shortcut_features; super + [:scores, :current_total, :last_roll]; end
 
     def shortcut_feature_data(feature, replay, viewer)
@@ -92,9 +89,10 @@ module GameRoomGames
         scores = participant_scores(replay)
         {message: state[:players].map { |player| "#{participant_name(player)}: #{scores[player]}" }.join("; ")}
       when :current_total
-        return nil if state[:phase] == :betting && auction_rules?(state[:options])
+        return nil unless state[:phase] == :playing
         {message: _("Current total: %{total}") % {total: state[:total]}}
       when :last_roll
+        return nil unless state[:phase] == :playing && state[:last_roll].any?
         {message: _("Last roll: %{dice}") % {dice: state[:last_roll].join(", ")}}
       else super
       end
@@ -151,10 +149,19 @@ module GameRoomGames
     end
 
     def bot_action_score(replay, actor, action, context: nil)
-      return %w[check call].include?(action["action"]) ? 100 : 0 if replay.state[:phase] == :betting && auction_rules?(replay.state[:options])
-      return -((action["amount"].to_i - default_stake(replay.state)).abs) if replay.state[:phase] == :betting
-      stop = replay.state[:total] >= (dice_count(replay.state) == 2 ? 15 : 18)
-      action["action"] == (stop ? "stand" : "roll") ? 10 : 0
+      state = replay.state
+      return auction_opening_bot_score(state, action) if state[:phase] == :betting && auction_rules?(state[:options])
+      return -(action["amount"].to_i - default_stake(state)).abs if state[:phase] == :betting
+
+      two_dice = state[:options]["variant"] == "two_dice"
+      chips = chip_game?(state[:options])
+      bonus = !chips && state[:scores][actor] + 1 < state[:options]["score_limit"] ? 0.15 : 0.0
+      stand_value = GameRoomTwentyOneStrategy.contest_value(state[:totals].values,
+        state[:order].size - state[:totals].size - 1, GameRoomTwentyOneStrategy.dice_opponent(two_dice),
+        split_ties: chips, bonus: bonus)
+      plan = GameRoomTwentyOneStrategy::Plan.new(stand_value, cards: false) { |sum| GameRoomTwentyOneStrategy.dice_weights(two_dice, sum) }
+      total = state[:total]
+      action["action"] == "stand" ? plan.stand(total, false) + 1e-9 : plan.draw(total, false)
     end
 
     def replay(session, events, repository)
@@ -195,8 +202,15 @@ module GameRoomGames
           next unless GameRoomServerRandom.valid_dice_event?(event, count: dice_count(state), sides: 6)
           state[:last_roll] = values.map(&:to_i)
           state[:total] += state[:last_roll].sum
-          add_history(history, event_id, state[:current_player], :roll,
-            _("%{player} rolled %{dice}; total %{total}.") % {player: participant_name(state[:current_player]), dice: values.join(", "), total: state[:total]})
+          format = if state[:total] > 21
+            _("%{player} rolls %{dice} and goes over 21. Total: %{total}.")
+          elsif state[:total] == 21
+            _("%{player} rolls %{dice} and stops at %{total}.")
+          else
+            _("%{player} rolled %{dice}; total %{total}.")
+          end
+          add_history(history, event_id, state[:current_player], state[:total] > 21 ? :bust : :roll,
+            format % {player: participant_name(state[:current_player]), dice: values.join(", "), total: state[:total]})
           finish_turn(state, event_id, history) if state[:total] >= 21
         elsif action == "stand" && state[:phase] == :playing && value.to_s.empty? && state[:total].positive?
           add_history(history, event_id, state[:current_player], :stand,
@@ -225,7 +239,7 @@ module GameRoomGames
           cards: actions, empty_label: current_turn_shortcut_text(replay, viewer))])
       end
       roll_label = dice_count(state) == 1 ? _("Roll one die") : _("Roll %{count} dice") % {count: dice_count(state)}
-      labels = {"roll" => roll_label, "stand" => _("Stand")}
+      labels = {"roll" => roll_label, "stand" => _("Keep your total")}
       actions = legal_actions(replay, viewer).map do |action|
         GameSurfaces::Card.new(id: action["action"], value: action["action"], label: labels.fetch(action["action"]))
       end
@@ -236,13 +250,18 @@ module GameRoomGames
     end
 
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
-      cues = []
+      cues = auction_sound_cues(event, history)
       cues << "roll" if event["action"] == "roll"
       cues << "lose1" if history.any? { |entry| entry.kind == :bust && same_user?(entry.actor, viewer) }
       cues
     end
 
     def custom_game_shortcuts(replay, viewer)
+      if replay.state[:phase] == :playing && same_user?(replay.current_player, viewer)
+        return %w[r space].map do |key|
+          GameShortcut.new(key: key, label: _("roll the dice"), kind: :action, action_kind: "dice", action_name: "roll")
+        end
+      end
       return auction_shortcuts(replay, viewer) if replay.state[:phase] == :betting && auction_rules?(replay.state[:options])
       return [] unless replay.state[:phase] == :betting && same_user?(replay.current_player, viewer)
       maximum = maximum_stake(replay.state)
@@ -327,9 +346,6 @@ module GameRoomGames
     def finish_turn(state, event_id, history)
       player = state[:current_player]
       state[:totals][player] = state[:total]
-      if state[:total] > 21
-        add_history(history, event_id, player, :bust, _("%{player} went bust.") % {player: participant_name(player)})
-      end
       next_index = state[:order].index(player) + 1
       if next_index == state[:order].size
         return finish_chip_round(state, event_id, history) if chip_game?(state[:options])
@@ -340,16 +356,22 @@ module GameRoomGames
           winner = winners.first
           points = best == 21 ? 2 : 1
           state[:scores][winner] += points
-          add_history(history, event_id, winner, :round,
-            _("%{player} won the round with %{total}, earning %{points} points.") % {player: participant_name(winner), total: best, points: points})
+          text = n_("%{player} wins the round with %{total} and earns %{points} point.",
+            "%{player} wins the round with %{total} and earns %{points} points.", points) %
+            {player: participant_name(winner), total: best, points: points}
+          add_history(history, event_id, winner, :round, text)
           if state[:scores][winner] >= state[:options]["score_limit"]
             record_tournament_round(state, event_id)
             state.merge!(phase: :finished, current_player: nil, winner: winner)
             history << result_history(event_id: event_id, winner: winner)
             return
           end
+        elsif winners.empty?
+          add_history(history, event_id, "", :round, _("Everyone went over 21. No points this round."))
         else
-          add_history(history, event_id, "", :round, _("No round points: a tie for the highest total or everyone went bust."))
+          add_history(history, event_id, "", :round,
+            _("%{players} tie at %{total}. No points this round.") % {
+              players: winners.map { |person| participant_name(person) }.join(", "), total: best})
         end
         record_tournament_round(state, event_id)
         state[:round] += 1
@@ -371,9 +393,9 @@ module GameRoomGames
       else
         share, remainder = state[:pot].divmod(winners.size)
         winners.each_with_index { |player, index| state[:chips][player] += share + (index < remainder ? 1 : 0) }
-        text = _("Pot %{pot} chips shared by: %{players}.") % {pot: state[:pot], players: winners.map { |player| participant_name(player) }.join(", ")}
+        text = dice_pot_result(winners, state[:pot])
       end
-      add_history(history, event_id, "", :settlement, text)
+      add_history(history, event_id, "", winners.empty? ? :settlement : :pot, text)
       finish_chip_balances(state, event_id, history)
     end
 
@@ -410,15 +432,16 @@ module GameRoomGames
         valid = pot[:eligible].select { |player| state[:totals].fetch(player) <= 21 }
         best = valid.map { |player| state[:totals][player] }.max
         winners = valid.select { |player| state[:totals][player] == best }
-        if pot[:contributors].one? || winners.empty?
+        refunded = pot[:contributors].one? || winners.empty?
+        if refunded
           pot[:contributors].each { |player| state[:chips][player] += pot[:slice] }
           text = _("Unclaimed pot of %{pot} chips returned to its contributors.") % {pot: pot[:amount]}
         else
           share, remainder = pot[:amount].divmod(winners.size)
           winners.each_with_index { |player, index| state[:chips][player] += share + (index < remainder ? 1 : 0) }
-          text = _("Pot %{pot} chips shared by: %{players}.") % {pot: pot[:amount], players: winners.map { |player| participant_name(player) }.join(", ")}
+          text = dice_pot_result(winners, pot[:amount])
         end
-        add_history(history, event_id, "", :settlement, text)
+        add_history(history, event_id, "", refunded ? :settlement : :pot, text)
       end
       finish_chip_balances(state, event_id, history)
     end

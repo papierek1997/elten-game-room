@@ -4,28 +4,17 @@
     {
       "id": "play",
       "title": {
-        "pl": "Odmiany kościane i punkty"
+        "pl": "Rzuty i punktacja"
       },
       "paragraphs": [
         {
-          "pl": "Gracze kolejno sumują rzuty, zbliżając się do 21. W odmianie Dwie kości rzuca się dwiema poniżej 16, a od 16 jedną. W odmianie Jedna kość zawsze używa się jednej. Po pierwszym rzucie można spasować. Osiągnięcie lub przekroczenie 21 kończy kolejkę."
+          "pl": "W swojej turze naciskasz Spację, żeby rzucić, i dodajesz wyrzucone oczka do sumy. Poniżej 16 rzucasz dwiema kośćmi, od 16 jedną. Po każdym rzucie możesz rzucić ponownie albo wybrać „Zostań przy tej sumie” i potwierdzić Enterem. Przy 21 lub więcej tura kończy się sama. Jeśli przekroczysz 21, nie możesz wygrać tej rundy."
         },
         {
-          "pl": "Punkty przyznaje się po kolejkach wszystkich graczy. Jedyny najwyższy wynik nieprzekraczający 21 daje punkt, a dokładnie 21 dwa punkty. Remis na najwyższym wyniku, także na 21, oraz przekroczenie 21 przez wszystkich nie dają punktów. Ta punktacja meczu obowiązuje również przy jednej kości i zastępuje dogrywkę. W każdej rundzie zaczyna inna osoba. Wygrywa pierwszy gracz osiągający wybrany limit, domyślnie dziesięć."
-        }
-      ]
-    },
-    {
-      "id": "betting",
-      "title": {
-        "pl": "Wpłata początkowa i licytacja"
-      },
-      "paragraphs": [
-        {
-          "pl": "Na początku rundy każdy aktywny gracz automatycznie wpłaca kwotę wejściową: domyślnie dziesięć żetonów albo kwotę z ustawień stołu. Kto ma mniej, wpłaca całe saldo i wchodzi all-in. Następnie gracze po kolei mogą czekać, jeśli nic nie dopłacają, sprawdzić podbicie, podbić, spasować lub wejść za wszystko. Podbicie daje pozostałym ponowną decyzję. Licytacja kończy się, gdy wszyscy mający jeszcze żetony odpowiedzą i wyrównają bieżącą stawkę albo pozostanie jeden niespasowany gracz. Gracz all-in nadal gra, ale nie licytuje dalej. Krótki all-in nie otwiera ponownie podbijania osobie, która już wykonała ruch, chyba że suma kolejnych podbić osiągnie pełne podbicie."
+          "pl": "Gdy każdy wykona swoją turę, najwyższa suma nieprzekraczająca 21 daje punkt. Za dokładnie 21 dostajesz dwa punkty. Jeśli najlepszy wynik osiągnęło kilka osób lub wszyscy przekroczyli 21, nikt nie dostaje punktów. W każdej rundzie zaczyna kolejna osoba. Wygrywa ten, kto pierwszy osiągnie ustalony limit, domyślnie 10 punktów."
         },
         {
-          "pl": "C pozwala czekać lub sprawdzić, F spasować, A wejść za wszystko, a R albo B wpisać własne podbicie. Wpisujesz kwotę podbicia ponad bieżącą stawkę; ewentualna dopłata do sprawdzenia jest doliczana do wpłaty. Pierwsze podbicie wynosi co najmniej jeden żeton, następne co najmniej tyle co ostatnie pełne podbicie; mniejszy końcowy all-in jest dozwolony. Proponowane podbicia są też na liście akcji. Karty albo rzuty rozpoczynają się dopiero po zamknięciu licytacji."
+          "pl": "Przy tworzeniu stołu możesz wybrać wariant, w którym przez całą grę rzucasz tylko jedną kością."
         }
       ]
     },
@@ -36,24 +25,71 @@
       },
       "paragraphs": [
         {
-          "pl": "Przy tworzeniu stołu w Rozliczaniu rundy wybierz Wirtualne żetony, aby grać z wpłatą wejściową i licytacją przed rzutami. Ustaw saldo początkowe, wejście i liczbę rund. Domyślnie każdy ma 100 żetonów, wejście wynosi dziesięć, a mecz trwa dziesięć rund. Tryb punktowy zachowuje punktację bez licytacji o żetony."
+          "pl": "W ustawieniu „Rozliczenie rundy” możesz wybrać wirtualne żetony. Przed rzutami gracie wtedy o pulę. Zamiast limitu punktów ustalasz liczbę rund, a także początkowe saldo i wpisowe."
         },
         {
-          "pl": "Po licytacji rzucają wszyscy niespasowani gracze, także all-in. Wpłaty tworzą pulę główną i pule boczne: można wygrać tylko warstwy pokryte własną wpłatą. Każdą warstwę wygrywa najwyższy uprawniony wynik do 21; przy remisie dzieli się ją równo, a niepodzielne żetony trafiają do remisujących w kolejności miejsc w rundzie. Niewyrównana nadwyżka wraca do wpłacającego. Warstwa bez uprawnionego wyniku do 21 jest zwracana jej wpłacającym. Gdy wszyscy poza jednym spasują, pozostały gracz wygrywa wspólną pulę bez rzutów. Łączna liczba żetonów w saldach i pulach jest zachowana."
+          "pl": "Najwyższa suma do 21 wygrywa pulę; remisujący ją dzielą. Żeton, którego nie da się podzielić, przypada według kolejności w rundzie. Jeśli ktoś wpłacił mniej od pozostałych, może wygrać od każdego najwyżej tyle, ile sam wpłacił. Niewyrównaną część stawki dostaje z powrotem ten, kto ją wpłacił. Jeśli nikt uprawniony do danej puli nie ma wyniku do 21, wpłaty do niej wracają."
         },
         {
-          "pl": "Rozpoczynający zmienia się co rundę. Zero żetonów eliminuje dopiero po rozliczeniu. Mecz kończy limit rund albo pozostanie mniej niż dwóch graczy z żetonami. Wygrywa najwyższe saldo końcowe; równe najwyższe salda dają remis. S odczytuje salda. Wcześniej zapisane gry żetonowe zachowują dotychczasową licytację."
+          "pl": "Kto po rozliczeniu nie ma żetonów, odpada. Mecz kończy się po ustalonej liczbie rund albo gdy mniej niż dwie osoby mają jeszcze żetony. Wygrywa najwyższe saldo; równe najwyższe salda dają remis."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "pl": "Licytacja przed rzutami"
+      },
+      "paragraphs": [
+        {
+          "pl": "Każda runda zaczyna się od wpisowego. Domyślnie wynosi 10 żetonów; jeśli brakuje ci do wpisowego, wpłacasz wszystkie swoje żetony. Potem każdy po kolei decyduje, czy zostać w rozdaniu."
+        },
+        {
+          "pl": "C pozwala zaczekać, gdy nie masz nic do dopłaty, lub wyrównać bieżącą stawkę. F oznacza pas: rezygnujesz z rundy i tracisz dotychczasowe wpłaty. Klawiszem A stawiasz wszystkie żetony. Nadal bierzesz udział w rundzie, ale nie licytujesz dalej."
+        },
+        {
+          "pl": "Żeby podbić, naciśnij R i wpisz, o ile chcesz zwiększyć stawkę. Gra doliczy kwotę potrzebną do jej wyrównania. Pierwsze podbicie wynosi co najmniej jeden żeton, następne co najmniej tyle, co ostatnie pełne podbicie. Mniejsze wejście za wszystko nie przywraca prawa do podbicia osobie, która już licytowała, dopóki suma tych podbić nie osiągnie pełnego podbicia."
+        },
+        {
+          "pl": "Licytacja kończy się, gdy pozostanie jedna osoba lub wszyscy niespasowani gracze z żetonami odpowiedzą i wyrównają stawkę."
+        },
+        {
+          "pl": "Po zamknięciu licytacji rzucają osoby, które nie spasowały. Jeśli została tylko jedna, wygrywa pulę bez rzucania."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "pl": "Sterowanie"
+        "pl": "Skróty klawiszowe"
       },
       "paragraphs": [
         {
-          "pl": "Strzałkami wybierz akcję i zatwierdź Enterem. Tab zmienia pola. T odczytuje kolejkę, a S wyniki. F1 otwiera bieżący spis skrótów, Ctrl+F1 zasady. Ręce zachowują tożsamość kart i kolejność dobierania. Karty służą do przeglądania; decyzje wybieraj na osobnej liście akcji."
+          "pl": "Spacja: rzuć kośćmi"
+        },
+        {
+          "pl": "C: odczytaj sumę podczas rzutów, a przy licytacji zaczekaj lub wyrównaj stawkę"
+        },
+        {
+          "pl": "D: odczytaj ostatni rzut"
+        },
+        {
+          "pl": "S: sprawdź punkty lub salda"
+        },
+        {
+          "pl": "T: sprawdź, kto wykonuje ruch"
+        },
+        {
+          "pl": "F: spasuj w licytacji"
+        },
+        {
+          "pl": "A: wejdź za wszystko"
+        },
+        {
+          "pl": "R: rzuć kośćmi albo podbij stawkę w licytacji"
+        },
+        {
+          "pl": "B: podbij stawkę w licytacji"
         }
       ]
     }

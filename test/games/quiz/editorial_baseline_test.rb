@@ -8,7 +8,8 @@ questions = GameRoomContent.registry.pack('quiz.wikidata.pl').data.fetch('questi
 original = JSON.generate(questions)
 restored = QuizEditorialBaseline.before_november_review(questions)
 assert(JSON.generate(questions) == original, 'Editorial baseline mutated the released questions')
-assert(restored.size == questions.size + 1, 'Rejected question was not restored for the historical audit')
+assert(restored.size == questions.size + 2, 'Rejected questions were not restored for the historical audit')
+assert(restored.any? { |row| row['id'] == '1z10_281cbf9bc456d7ce' }, 'Missing historical spelling question')
 assert(restored.find { |row| row['id'] == 'polqa_05662' }['correct'] == 'Gutenberg', 'Historical answer not restored')
 changed = Marshal.load(Marshal.dump(questions))
 changed.find { |row| row['id'] == 'polqa_05662' }['correct'] = 'Unapproved change'

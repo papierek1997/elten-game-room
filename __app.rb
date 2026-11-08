@@ -3,8 +3,8 @@
   "id": "c24d98cc-9ccd-4d50-b801-459da324ff60",
   "name": "Power Games",
   "description": "Accessible multiplayer games for ELTEN users.",
-  "version": "2.0.6.1",
-  "build_id": "264",
+  "version": "2.0.6.2",
+  "build_id": "265",
   "EltenAPIVersion": "3.0.5",
   "main_language": "en",
   "supported_languages": ["en", "pl", "cs", "es", "ru"],
@@ -211,8 +211,8 @@ class EltenGameRoom < Program
   extend GameRoomContactFiltersRuntime
   extend GameRoomAnalyticsRuntime
   extend GameRoomSportsRankings::Runtime
-  GAME_ROOM_VERSION = "2.0.6.1".freeze
-  GAME_ROOM_BUILD_ID = 264
+  GAME_ROOM_VERSION = "2.0.6.2".freeze
+  GAME_ROOM_BUILD_ID = 265
   GAME_ROOM_CAPABILITIES = ["invitations", "live_sessions", "live_session_stack"].freeze
   LOBBY_ACTIVITY_POLL_INTERVAL = 5.0
 
@@ -1910,10 +1910,7 @@ class EltenGameRoom < Program
       key = definition.key.to_s
       defaults[key] = stored[key] if stored.key?(key)
     end
-    # Keep remembered fields of a currently hidden profile (e.g. custom
-    # Makao). Normalising the simple profile would erase them before its
-    # controls can be shown. The submitted form is still fully validated.
-    game.table_creation_options(defaults).merge(defaults)
+    game.remembered_table_creation_options(defaults)
   rescue StandardError => error
     Log.warning("ELTEN Game Room could not read option preferences: #{error.class}: #{error.message}") if defined?(Log)
     game.table_creation_options

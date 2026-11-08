@@ -1,7 +1,7 @@
 require_relative "base"
 require_relative "base/round_tournament"
 require_relative "../lib/game_bots"
-require_relative "../lib/dice_poker_hands"
+require_relative "../lib/dice_poker_strategy"
 require_relative "../lib/blackjack_auction"
 
 module GameRoomGames
@@ -135,7 +135,7 @@ module GameRoomGames
       return auction_surface(replay,viewer) if state[:phase] == :betting
       header = GameRoomContent.utf8(_("Dice poker: round %{round} of %{total}; throw %{roll} of %{limit}.") % {
         round: state[:round], total: state[:options]["round_limit"], roll: state[:rolls], limit: throw_limit(state)})
-      unless !replay.finished? && same_user?(replay.current_player, viewer)
+      unless state[:phase] == :playing && !replay.finished? && same_user?(replay.current_player, viewer)
         return GameSurfaces::PawnTrackSpec.new(id: "dice_poker_status", header: header,
           items: [GameSurfaces::PawnTrackItem.new(id: "status", label: GameRoomContent.utf8(replay.finished? ? result_text(replay) : current_turn_shortcut_text(replay, viewer)))])
       end
@@ -150,10 +150,13 @@ module GameRoomGames
     def custom_game_shortcuts(replay, viewer)
       shortcuts = [announcement_shortcut(key: "s", label: _("read the scores"), message: score_text(replay.state))]
       return shortcuts + auction_shortcuts(replay,viewer) if replay.state[:phase] == :betting
-      return shortcuts if replay.finished? || !same_user?(replay.current_player, viewer)
-      1.upto(6) do |value|
-        shortcuts << surface_shortcut(key: value.to_s, label: _("select another die showing %{value}") % {value: value}, command: "select_die", payload: {"value" => value})
-        shortcuts << surface_shortcut(key: value.to_s, modifiers: [:shift], label: _("keep another die showing %{value}") % {value: value}, command: "unselect_die", payload: {"value" => value})
+      state = replay.state
+      return shortcuts unless state[:phase] == :playing && !replay.finished? && same_user?(replay.current_player, viewer)
+      if state[:rolls].positive? && state[:rolls] < throw_limit(state)
+        1.upto(6) do |value|
+          shortcuts << surface_shortcut(key: value.to_s, label: _("select another die showing %{value}") % {value: value}, command: "select_die", payload: {"value" => value})
+          shortcuts << surface_shortcut(key: value.to_s, modifiers: [:shift], label: _("keep another die showing %{value}") % {value: value}, command: "unselect_die", payload: {"value" => value})
+        end
       end
       shortcuts << surface_shortcut(key: "space", label: _("read the dice and their selection state"), command: "announce_dice")
       shortcuts << GameShortcut.new(key: "k", label: _("keep the current poker dice hand"), kind: :action,
@@ -171,25 +174,60 @@ module GameRoomGames
 
     def bot_action_score(replay, actor, action, context: nil)
       state = replay.state
-      return %w[check call].include?(action["action"]) ? 100 : 0 if state[:phase] == :betting
+      if state[:phase] == :betting
+        return auction_opening_bot_score(state, action) unless state[:betting_stage] == 2
+        return showdown_bot_score(state, action)
+      end
       return 10 if state[:rolls] == 0
-      rank = GameRoomDicePokerHands.rank(state[:dice], state[:options]["variant"])
-      return rank.first >= 5 || state[:rolls] >= throw_limit(state) ? 200 : -100 if action["action"] == "score"
-      groups = state[:dice].tally
-      best = groups.keys.max_by { |value| [groups[value], state[:options]["variant"] == "aces_high" && value == 1 ? 7 : value] }
-      keep = groups[best] >= 2 ? groups.select { |_, count| count >= 2 }.keys : [best]
-      wanted = state[:dice].each_index.reject { |i| keep.include?(state[:dice][i]) }
-      die_indices(action["die_ids"]) == wanted ? 100 : 0
+
+      variant = state[:options]["variant"]
+      order = state[:round_order] || tournament_contenders(state)
+      best = state[:hands].values.map { |dice| GameRoomDicePokerHands.rank(dice, variant) }.max
+      pending = order.size - state[:turn] - 1
+      key = [variant, best, pending]
+      if @bot_plan_key != key
+        @bot_plan_key, @bot_plan = key, GameRoomDicePokerStrategy::Plan.new(variant, best, pending)
+      end
+      return @bot_plan.stand(state[:dice].sort) + 1e-9 if action["action"] == "score"
+
+      indices = die_indices(action["die_ids"])
+      keep = state[:dice].each_with_index.filter_map { |value, index| value unless indices.include?(index) }.sort
+      @bot_plan.roll(keep, throw_limit(state) - state[:rolls])
     end
 
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
-      event["action"] == "roll" ? "roll" : "play"
+      cues = auction_sound_cues(event, history)
+      cues << "roll" if event["action"] == "roll"
+      cues << "play" if event["action"] == "stand"
+      cues
     end
 
     private
 
     def chip_rules?(options); GameRoomOptionValues.read(CHIP_OPTIONS.first,options) == "chips"; end
     def auction_unit; 1; end
+
+    def showdown_bot_score(state, action)
+      return 2 if action["action"] == "check"
+      return 1 if action["action"] == "fold"
+      return -1 unless action["action"] == "call"
+
+      player, paid = state[:current_player], action["amount"]
+      # Evaluate only layers the bot can actually win. A strong short-stacked
+      # hand must not make the bot abandon a winning side pot.
+      original = state[:auction][:contributions]
+      contributions = original.merge(player => original.fetch(player) + paid)
+      hands = state[:hands].transform_values { |dice| GameRoomDicePokerHands.rank(dice, state[:options]["variant"]) }
+      share = auction_pots(state, contributions: contributions).sum do |pot|
+        eligible = pot[:eligible]
+        next 0 unless eligible.include?(player)
+        best = eligible.map { |person| hands.fetch(person) }.max
+        next 0 unless hands[player] == best
+        # The exact odd chip is not needed to decide whether to match.
+        pot[:amount] / eligible.count { |person| hands[person] == best }
+      end
+      share > paid ? 2 : 0
+    end
     def add_history(history,event_id,actor,kind,text)
       history << HistoryEntry.new(key:"#{kind}:#{event_id}:#{history.size}",event_id:event_id,actor:actor,kind:kind,text:text)
     end
@@ -206,7 +244,7 @@ module GameRoomGames
     def settle_chip_round(state,event_id,history)
       auction_pots(state).each do |pot|
         eligible = pot[:eligible]
-        if eligible.empty?
+        if eligible.empty? || pot[:contributors].one?
           pot[:contributors].each { |p| state[:chips][p] += pot[:slice] }
           next
         end
@@ -214,6 +252,7 @@ module GameRoomGames
         winners = eligible.select { |p| ranks[p] == ranks.values.max }
         share,odd = pot[:amount].divmod(winners.size)
         winners.each_with_index { |p,i| state[:chips][p] += share + (i < odd ? 1 : 0) }
+        add_history(history, event_id, "", :pot, dice_pot_result(winners, pot[:amount]))
       end
       state[:pot] = 0
       state[:eliminated] = state[:players].select { |p| state[:chips][p] == 0 }
@@ -264,7 +303,10 @@ module GameRoomGames
 
     def score_text(state)
       return state[:players].map { |p| _("%{player} has %{chips} chips.") % {player:participant_name(p),chips:state[:chips][p]} }.join(" ") if state[:chips]
-      state[:players].map { |player| _("%{player}: %{points} points") % {player: participant_name(player), points: state[:scores][player]} }.join(". ")
+      state[:players].map do |player|
+        points = state[:scores][player]
+        n_("%{player}: %{points} point", "%{player}: %{points} points", points) % {player: participant_name(player), points: points}
+      end.join(". ")
     end
 
     def apply_event(state, event, event_id, history)
@@ -303,6 +345,8 @@ module GameRoomGames
       elsif event["action"] == "stand"
         return false unless state[:phase] == :playing && state[:rolls] > 0 && value == state[:round].to_s
         state[:hands][player] = state[:dice].dup
+        add_history(history, event_id, player, :stand, _("%{player} keeps the hand: %{hand}.") % {
+          player: participant_name(player), hand: hand_name(state[:dice], state[:options]["variant"])})
         state[:budget] = state[:rolls] if state[:turn] == 0 && state[:options]["opener_limit"]
         state[:turn] += 1
         if state[:chips]
@@ -330,8 +374,15 @@ module GameRoomGames
       ranks = state[:hands].transform_values { |dice| GameRoomDicePokerHands.rank(dice, state[:options]["variant"]) }
       winners = ranks.keys.select { |player| ranks[player] == ranks.values.max }
       winners.each { |player| state[:scores][player] += 1 }
-      history << HistoryEntry.new(key: "round:#{event_id}", event_id: event_id, actor: "", kind: :round,
-        text: _("Round %{round}: %{players} earn one point.") % {round: state[:round], players: winners.map { |player| participant_name(player) }.join(", ")})
+      hand = hand_name(state[:hands].fetch(winners.first), state[:options]["variant"])
+      text = if winners.one?
+        _("Round %{round}: %{player} wins and earns one point. Winning hand: %{hand}.") % {
+          round: state[:round], player: participant_name(winners.first), hand: hand}
+      else
+        _("Round %{round}: %{players} tie. Each earns one point. Winning hand: %{hand}.") % {
+          round: state[:round], players: winners.map { |player| participant_name(player) }.join(", "), hand: hand}
+      end
+      add_history(history, event_id, "", :round, text)
       record_tournament_round(state, event_id)
       if state[:round] == state[:options]["round_limit"]
         contenders = tournament_contenders(state)

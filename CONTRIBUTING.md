@@ -13,6 +13,10 @@ important as implementing the game rules correctly.
 5. In the pull request description, explain the cause, the scope of the change,
    and how to check it manually in ELTEN.
 
+For a new game or variant, use the [game acceptance checklist](docs/GAME_ACCEPTANCE.md).
+Include evidence for the player-facing flow, keyboard, sound, bot decisions
+and rules, as applicable; distinguish automated checks from a live playthrough.
+
 ## Important project constraints
 
 - Use ELTEN's event-driven UI and the shared classes in `lib/`.

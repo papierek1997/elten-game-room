@@ -135,6 +135,7 @@ end
 class Program
   def self.server_app(**options); @server_app_uuid = options.fetch(:uuid); end
   def self.server_app_uuid; @server_app_uuid; end
+  def self.read_json(_path, default:); default; end
 end
 
 def _(text); text; end

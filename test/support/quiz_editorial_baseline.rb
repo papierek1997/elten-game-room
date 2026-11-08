@@ -7,10 +7,18 @@ module QuizEditorialBaseline
   module_function
 
   def before_november_review(questions)
+    restore(before_november_8_review(questions), 'november_review.json')
+  end
+
+  def before_november_8_review(questions)
+    restore(questions, 'november_8_review.json')
+  end
+
+  def restore(questions, fixture_name)
     restored = questions.map(&:dup)
     indexed = restored.to_h { |question| [question.fetch('id'), question] }
     raise 'Duplicate quiz IDs' unless indexed.size == restored.size
-    fixture = JSON.parse(File.read(File.expand_path('../fixtures/quiz/november_review.json', __dir__), encoding: 'UTF-8'))
+    fixture = JSON.parse(File.read(File.expand_path("../fixtures/quiz/#{fixture_name}", __dir__), encoding: 'UTF-8'))
     fixture.fetch('changes').each do |change|
       if change.key?('deleted')
         row = change.fetch('deleted')

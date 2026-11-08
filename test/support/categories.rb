@@ -56,7 +56,8 @@ def play_unique_round(game, session, repository, events, context, owner:, judge:
   append_plan(events, plan, owner, now: context.now)
   replay = game.replay(session, events, repository)
 
-  answers = { "country" => "Austria", "city" => "", "name" => "", "animal" => "", "plant" => "", "thing" => "" }
+  assert(replay.state[:round_categories].include?("country"), "The scoring fixture requires the country category")
+  answers = { "country" => { "A" => "Austria", "B" => "Belgium" }.fetch(replay.state[:letter]) }
   status, plan = game.action_for(surface_action("answer_sheet", "submit", "answers" => answers), replay, answerer, context: context)
   raise "submission failed" if status != :ok
   append_plan(events, plan, answerer, now: context.now)

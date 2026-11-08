@@ -12,9 +12,9 @@ GameRoomContent.registry.register_pack(GameRoomContent::Pack.new(
   game_ids: ["quiz"],
   author: "PolQA/MAUPQA (IPI PAN), Polsat; bratczyk96, turekcom, Zuzler (community questions); adaptation for Power Games",
   license: "Mixed: CC-BY-SA-4.0 (PolQA/MAUPQA); Milionerzy by permission; community submissions for Power Games. See QUIZ_PL_GENERAL_SOURCES.txt",
-  version: 22,
-  entry_count: 14940,
-  checksum: "b857e9337d332f807de6619e586bae0d79e764240c2ec0152e306838ea3cca16",
+  version: 23,
+  entry_count: 14976,
+  checksum: "da9ba54b6f1641e06aa7c8dfe773fa1b8d8421dc2ea4ea5c899f536032cc1b63",
   loader: lambda {
     require_relative "quiz_pl_wikidata_data"
     GameRoomContent::Packa0830f585cc4689a1e2a6335.load

@@ -30,8 +30,13 @@ checks = {forms: 0, checkbox_states: 0, labels: 0}
     raise "Bingo ticket became a card hand" if game.playable_card_navigation(replay, "Alice")
     selected = nil
     surface.on_action { |action| selected = action }
-    surface.fields.last.index = 1
-    surface.fields.last.trigger(:select, [1])
+    actions = spec.parts.last.surface.items
+    raise "Bingo offered an incomplete claim" if actions.any? { |item| item.id == "claim" }
+    raise "Bingo advertised the claim shortcut early" if game.game_shortcuts(replay, "Alice").any? { |shortcut| shortcut.key == "b" }
+    ready = actions.index { |item| item.id == "ready" }
+    raise "Missing ready command" unless ready
+    surface.fields.last.index = ready
+    surface.fields.last.trigger(:select, [ready])
     raise "Ready does not follow the standard action path" unless selected && game.action_for(selected.to_h, replay, "Alice").first == :ok
     button = Button.new("OK")
     form = GameRoomUI::Form.new(surface.fields + [button], program: EltenGameRoom.allocate, quiet: true)

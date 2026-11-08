@@ -4,44 +4,80 @@
     {
       "id": "aim",
       "title": {
-        "pl": "Ruletka"
+        "pl": "Obstawianie i wynik"
       },
       "paragraphs": [
         {
-          "pl": "Gra używa wyłącznie wirtualnych żetonów. Przed zakończeniem swojej tury możesz stawiać wiele zakładów w granicach salda. Gracze obstawiają kolejno. Po gotowości wszystkich nie można zmienić zakładów tego obrotu. Wynik losuje natywny serwer, nie wybiera go kręcący."
-        }
-      ]
-    },
-    {
-      "id": "modes",
-      "title": {
-        "pl": "Stół kasynowy i towarzyski"
-      },
-      "paragraphs": [
+          "pl": "W swojej turze możesz postawić wirtualne żetony na pojedynczy numer albo grupę numerów. Żeby wybrać zakład i wpisać własną kwotę, naciśnij B. Możesz też wybrać strzałkami szybką stawkę z listy i zatwierdzić Enterem. Wolno stawiać kilka zakładów, ale łącznie nie więcej, niż masz żetonów."
+        },
         {
-          "pl": "W kasynie automatyczny krupier wypłaca według stałych kursów; żaden gracz nie finansuje banku. Tryb towarzyski wymaga dwóch graczy, a kręcący zmienia się między wypłacalnymi miejscami. Po obstawianiu Spacja kręci kołem. Wygrane zakłady dzielą całą pulę proporcjonalnie do nominalnych zwrotów kasynowych wraz ze stawką. To udziały w puli, nie gwarantowane kursy kasyna. Gdy żaden zakład nie wygra, stawki wracają do właścicieli. Jest to towarzyska zasada Power Games. Wybierz początkowe żetony i 1–100 obrotów. Po ostatnim wygrywa najwyższe saldo; równe najwyższe salda dają remis. Stawki są całkowite, saldo może zawierać połówki. Poniżej jednego żetonu nie można obstawiać."
+          "pl": "Przed końcem swojej tury klawiszem C możesz zdjąć wszystkie swoje zakłady i odzyskać stawki. Klawisz R kończy obstawianie. Gdy wszyscy skończą, koło kręci się automatycznie, a zakłady obejmujące wylosowany numer wygrywają."
+        },
+        {
+          "pl": "Po ustalonej liczbie obrotów wygrywa osoba z największą liczbą żetonów. Równe najwyższe salda dają remis. Zakłady przyjmowane są od jednego żetonu; wypłata może zawierać połówkę. Mecz kończy się wcześniej, jeśli nikt nie może już obstawiać, a przy stole towarzyskim także wtedy, gdy może to robić tylko jedna osoba."
         }
       ]
     },
     {
       "id": "bets",
       "title": {
-        "pl": "Koła, zakłady i wypłaty"
+        "pl": "Koła i wypłaty"
       },
       "paragraphs": [
         {
-          "pl": "Koło europejskie ma 0–36, amerykańskie dodatkowo 00. Francuskie ma jedno zero i la partage: przy zerze wraca połowa stawki na kolor, parzystość lub niskie/wysokie. Zero i podwójne zero nie należą do tych grup. Zysk kasynowy wynosi 35:1 na numer, 17:1 na parę, 11:1 na trójkę, 8:1 na cztery numery, 6:1 na amerykańską pierwszą piątkę, 5:1 na sześć, 2:1 na tuzin lub kolumnę oraz 1:1 na zakłady zewnętrzne. Wygrana stawka również wraca. Dostępne są wyłącznie prawidłowe sąsiadujące grupy stołu. Towarzysko zwroty te określają proporcje podziału puli."
+          "pl": "Europejskie koło ma numery od 0 do 36; amerykańskie ma także 00. Zero i 00 nie należą do zakładów na kolor, parzystość ani zakres 1–18 lub 19–36. Przy kole francuskim na zerze odzyskujesz połowę stawki z takiego zakładu."
+        },
+        {
+          "pl": "Przy wygranej odzyskujesz stawkę i dostajesz zysk według zakładu:"
+        },
+        {
+          "pl": "- Jeden numer: 35 do 1; dwa sąsiednie: 17 do 1; trzy: 11 do 1; cztery: 8 do 1."
+        },
+        {
+          "pl": "- Sześć numerów: 5 do 1; pierwsza piątka na kole amerykańskim: 6 do 1."
+        },
+        {
+          "pl": "- Tuzin albo kolumna: 2 do 1; kolor, parzystość lub połowa numerów: 1 do 1."
+        }
+      ]
+    },
+    {
+      "id": "modes",
+      "title": {
+        "pl": "Stół towarzyski"
+      },
+      "paragraphs": [
+        {
+          "pl": "W grze towarzyskiej potrzeba co najmniej dwóch osób. Po zakończeniu obstawiania jedna z nich kręci kołem Spacją. Zadanie przechodzi na kolejną osobę, która może jeszcze obstawiać."
+        },
+        {
+          "pl": "Gracze dzielą między siebie pulę wszystkich stawek. Im większy zwrot dałby twój zakład w kasynie, tym większą część puli dostaniesz. Jeśli żaden zakład nie daje zwrotu, każdy odzyskuje swoje stawki."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "pl": "Sterowanie"
+        "pl": "Skróty klawiszowe"
       },
       "paragraphs": [
         {
-          "pl": "B otwiera formularz wyboru zakładu i własnej całkowitej kwoty. Lista główna pozwala szybko postawić do dziesięciu żetonów. R kończy obstawianie, C usuwa i zwraca bieżące stawki, V odczytuje zakłady, a S salda. Spacja kręci kołem towarzyskim po gotowości wszystkich. T odczytuje turę, F1 skróty, Ctrl+F1 zasady. Dźwięki są lokalne i respektują głośność Power Games."
+          "pl": "B: wybierz zakład i wpisz kwotę"
+        },
+        {
+          "pl": "C: wycofaj swoje zakłady"
+        },
+        {
+          "pl": "R: zakończ obstawianie"
+        },
+        {
+          "pl": "V: odczytaj swoje zakłady"
+        },
+        {
+          "pl": "S: sprawdź salda"
+        },
+        {
+          "pl": "Spacja: zakręć kołem przy stole towarzyskim"
         }
       ]
     }

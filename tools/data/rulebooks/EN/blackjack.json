@@ -4,53 +4,73 @@
     {
       "id": "aim",
       "title": {
-        "en": "Aim and scoring"
+        "en": "Aim of the game"
       },
       "paragraphs": [
         {
-          "en": "Players face an automatic dealer with six freshly shuffled decks. Number cards keep their value, faces count ten and each ace counts one or eleven. The aim is to beat the dealer without exceeding 21. All chips belong only to this table."
-        },
-        {
-          "en": "A win returns the stake plus an equal profit. An original two-card 21 pays a profit of 3:2. Matching dealer and player naturals push. A natural beats an ordinary 21. A bust loses even if the dealer later busts. Half-chip payouts are exact."
+          "en": "Try to finish with a higher total than the dealer without going over 21. Number cards count as shown, face cards are worth ten, and an ace counts as eleven if that fits, otherwise as one. You play with virtual chips."
         }
       ]
     },
     {
       "id": "betting",
       "title": {
-        "en": "Opening contributions and betting"
+        "en": "Opening stake and betting"
       },
       "paragraphs": [
         {
-          "en": "Each round starts with an automatic opening contribution from every active player: ten chips by default, or the table setting. A player with less pays their entire balance and is all-in. Then players act in seat order: check if nothing is owed, call a raise, raise, fold, or go all-in. A raise makes the others respond again. Betting closes when all players who still have chips have responded and matched the current bet, or only one player has not folded. All-in players keep their right to play without further betting. A short all-in does not reopen raising for someone who already acted unless the cumulative increase reaches a full raise."
+          "en": "Each player pays an opening stake, normally ten chips. If you cannot cover the table’s opening stake, you put in what you have. Players then bet in turn."
         },
         {
-          "en": "Use C to check or call, F to fold, A for all-in, and R or B to type your own raise. The entered amount is the increase above the current bet; any amount needed to call is added to the payment. Raises start at one chip and later must match the last full raise; a smaller final all-in is allowed. Preset raises are also in the actions list. Cards or dice start only after betting closes."
+          "en": "Press C to check if you owe nothing or call to match the bet. F folds: you leave the round and give up what you have paid. A puts in all your chips. You stay in the round but cannot bet again."
+        },
+        {
+          "en": "To raise, press R and enter how much higher the bet should be. Any amount you need to call is added to your payment. The first raise is at least one chip; later raises must match the last full raise. A smaller all-in does not let a player who already acted raise again unless the smaller increases together make a full raise."
+        },
+        {
+          "en": "Betting ends when one player remains or everyone still in the round with chips has responded and matched the bet."
         }
       ]
     },
     {
       "id": "play",
       "title": {
-        "en": "Playing a hand"
+        "en": "Drawing cards"
       },
       "paragraphs": [
         {
-          "en": "Choose Hit or Stand in the actions list. In the extended variant, the original two-card hand can be doubled, receiving exactly one further card, or a matching-rank pair can be split once into two hands. Each requires an additional stake. Split aces receive one card each and stop; split hands never earn the natural bonus. There is no insurance, surrender, resplitting or double after splitting."
+          "en": "After betting, you get two cards and see one of the dealer’s. Press H to hear your cards and their total. On your turn, press Space to draw a card, or choose Keep your total in the actions list and press Enter. Your turn ends automatically at 21 or above."
         },
         {
-          "en": "The dealer reveals the hole card after all player decisions, then draws below 17 and stands on every 17, including soft 17. Player cards are open. The ordinary interface conceals the dealer hole card; the shared deterministic replay is not protection against a modified client. Bots use only their hand and the dealer upcard."
+          "en": "After the players finish, the dealer reveals the second card. The dealer draws below 17 and stops on 17 or above, even with an ace counted as eleven. If the dealer starts with 21, the round is settled immediately."
+        }
+      ]
+    },
+    {
+      "id": "settlement",
+      "title": {
+        "en": "Settling the hand"
+      },
+      "paragraphs": [
+        {
+          "en": "Going over 21 loses the bet, even if the dealer goes over too. Otherwise you win if the dealer goes over or has a lower total. An ordinary win returns the stake and pays the same amount in profit; equal totals return the stake."
+        },
+        {
+          "en": "An opening total of 21 from two cards is blackjack. It beats an ordinary 21 and pays three chips in profit for every two staked. If you and the dealer both have blackjack, you get your stake back."
         }
       ]
     },
     {
       "id": "variants",
       "title": {
-        "en": "Table settings and ending"
+        "en": "End of the match and extended play"
       },
       "paragraphs": [
         {
-          "en": "Choose Simple or Extended, rounds (1–100), initial chips (10–10000) and the opening contribution. Defaults are ten rounds, 100 chips and an opening contribution of ten. The dealer settles each remaining player’s actual hand stake separately; a fold loses the chips already paid. The last player after other folds still plays against the dealer. Any positive balance may fund a short all-in next round. The highest final balance wins; tied maxima draw. Previously recorded games keep their original betting rules."
+          "en": "After the last round, the highest chip balance wins. Equal highest balances draw. The default is ten rounds and 100 starting chips. The match ends early if nobody has chips left."
+        },
+        {
+          "en": "In the extended game, choose Double down in the actions list to double your stake and take exactly one card. A pair of the same rank can also be split into two hands by adding a second stake. Play those hands separately. Neither can be split or doubled again; split aces get one card each. A split hand does not pay the blackjack bonus."
         }
       ]
     },
@@ -61,18 +81,48 @@
       },
       "paragraphs": [
         {
-          "en": "The social variant has no house hand. Players take turns dealing, rotating the dealing seat every round. After the common ante and betting round, the dealing player presses D to deal. Everyone plays against the other players, with ordinary hit/stand decisions. There is no splitting, doubling, house payout or natural bonus. Contribution levels form pots; the highest eligible total up to 21 wins each layer, and exact ties split it. If all eligible hands bust, that layer is refunded. Chips are conserved. The dealer plays last and the next round moves to the next solvent seat. This is the Power Games social format, not the casino bank game."
+          "en": "There is no dealer hand. After betting, the player who is dealing presses D, then plays their own hand last. The dealing seat changes each round. There is no doubling, splitting or blackjack bonus."
+        },
+        {
+          "en": "The highest total up to 21 wins the pot; tied players split it. A player with a smaller stake can only win as much from each other player as they put in themselves. If all players eligible for a pot go over 21, the bets in that pot are returned."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "en": "Controls"
+        "en": "Keyboard shortcuts"
       },
       "paragraphs": [
         {
-          "en": "Use the arrows to choose an action and Enter to perform it. Tab changes fields. T reads the current turn; S reads scores. F1 opens the current shortcut reference; Ctrl+F1 opens the rules. Card hands preserve physical card identity and draw order. Their cards are for inspection, not play: choose decisions in the separate actions list."
+          "en": "Space: draw a card"
+        },
+        {
+          "en": "H: read your cards and total"
+        },
+        {
+          "en": "S: read chip balances"
+        },
+        {
+          "en": "T: read the current turn"
+        },
+        {
+          "en": "C: check or call"
+        },
+        {
+          "en": "F: fold in betting"
+        },
+        {
+          "en": "A: go all-in"
+        },
+        {
+          "en": "R: raise"
+        },
+        {
+          "en": "B: raise"
+        },
+        {
+          "en": "D: deal in social blackjack"
         }
       ]
     }

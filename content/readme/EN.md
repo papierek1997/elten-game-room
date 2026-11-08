@@ -246,6 +246,8 @@ In Settings → Lobby announcements, you separately choose which announcements a
 
 ## Sounds and playing in the background
 
+In Settings → Sounds, you can play your own background music. Choose a file and set the volume separately for the Power Games menus and for gameplay. Both tracks are off by default.
+
 You can adjust the volume without leaving the game:
 
 - F2 — quieter.

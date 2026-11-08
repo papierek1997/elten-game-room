@@ -17,7 +17,7 @@ check = ->(value, message) { raise message unless value }
 
 categories = GameRoomGames::Categories.new
 fresh = categories.table_creation_options('category_set' => 'custom',
-  'custom_categories' => %w[drink known_writer], 'round_category_count' => 2)
+  'custom_categories' => %w[soft_drink unit_of_measurement], 'round_category_count' => 2)
 check.call(submit.call(categories) == categories.table_creation_options, 'Creation lost canonical metadata')
 check.call(submit.call(categories, fresh) == fresh, 'Editing changed the new category dialect')
 legacy = categories.normalize_options('category_set' => 'custom',
@@ -29,12 +29,28 @@ changed = submit.call(categories, fresh) do |form|
   definition = categories.effective_option_definitions(fresh).find { |item| item.key == 'custom_categories' }
   control = form.fields.grep(ListBox).find { |item| item.header == definition.label }
   control.deselect_multiselection_indices(control.multiselections)
-  control.select_multiselection_indices(definition.choices.each_index.select { |index| %w[tool drink].include?(definition.choices[index].value) })
+  control.select_multiselection_indices(definition.choices.each_index.select { |index| %w[tool soft_drink].include?(definition.choices[index].value) })
 end
-check.call(changed['category_version'] == 2, 'Changing a visible field dropped the category dialect')
-check.call(categories.send(:selected_category_pool, changed).sort == %w[drink tool], 'New custom mask used legacy choices')
+check.call(changed['category_version'] == 3, 'Changing a visible field dropped the category dialect')
+check.call(categories.send(:selected_category_pool, changed) == %w[soft_drink tool], 'New custom checklist used legacy choices')
 check.call(fresh == categories.table_creation_options('category_set' => 'custom',
-  'custom_categories' => %w[drink known_writer], 'round_category_count' => 2), 'The initial options were mutated')
+  'custom_categories' => %w[soft_drink unit_of_measurement], 'round_category_count' => 2), 'The initial options were mutated')
+
+v2_preferences = 1 << GameRoomGames::Categories::V2_HARD_CATEGORY_IDS.index('tool')
+tool_mask = (1 << GameRoomGames::Categories::CATALOG_CATEGORY_IDS.index('tool')).to_s
+app.define_singleton_method(:read_json) do |path, default:|
+  path == 'game_option_preferences.json' ? { 'categories' => { 'custom_categories' => v2_preferences } } : default
+end
+remembered = submit.call(categories) do |form|
+  definition = categories.effective_option_definitions.find { |item| item.key == 'custom_categories' }
+  control = form.fields.grep(ListBox).find { |item| item.header == definition.label }
+  selected = control.multiselections.map { |index| definition.choices.fetch(index).value }
+  check.call(selected == ['tool'], 'The new-table editor did not show the migrated category preference')
+end
+check.call(remembered['custom_categories'] == tool_mask, 'Submitting the form rewrote the migrated choice')
+check.call(categories.remembered_table_creation_options('custom_categories'=>tool_mask)['custom_categories'] == tool_mask,
+  'Reopening a version-3 checklist lost its saved category')
+app.define_singleton_method(:read_json) { |_path, default:| default }
 
 miles = GameRoomGames::MilleBornes.new
 initial = miles.normalize_options(GameRoomTeams::OPTION_KEY => [0, 1, 0, 1],

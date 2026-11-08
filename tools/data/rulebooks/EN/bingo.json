@@ -4,53 +4,80 @@
     {
       "id": "aim",
       "title": {
-        "en": "Bingo tickets and goals"
+        "en": "Tickets and goals"
       },
       "paragraphs": [
         {
-          "en": "Each player receives one ticket. Balls are called without replacement. Complete the announced pattern. All tickets use the same calls; players completing the final goal together share a draw."
-        }
-      ]
-    },
-    {
-      "id": "variants",
-      "title": {
-        "en": "Variants"
-      },
-      "paragraphs": [
-        {
-          "en": "30-ball: a 3 by 3 ticket, three numbers from each range 1–10, 11–20 and 21–30. Cover all nine to win. There is no free square."
+          "en": "Each player gets one ticket and hears the same calls. The default game uses 90 balls. It plays for one complete row, then two rows, then a full ticket. The first full ticket wins; players who complete it on the same call share the win."
         },
         {
-          "en": "75-ball: a 5 by 5 ticket. B, I, N, G and O use ranges 1–15, 16–30, 31–45, 46–60 and 61–75. The centre is free. 80-ball uses a 4 by 4 ticket with columns 1–20, 21–40, 41–60 and 61–80. For these variants choose any horizontal, vertical or diagonal line, four corners or full house at table creation."
-        },
-        {
-          "en": "90-ball: three rows and nine columns, five numbers per row and fifteen per ticket. Columns cover 1–9, 10–19, through 70–79 and 80–90; numbers increase down each column. Play for one horizontal line, then two, then full house on the same ticket. Earlier winners are announced; full house decides the match."
+          "en": "Use the arrows to inspect your ticket. By default, numbers are marked as they are called and the game announces winners automatically. Numbers are not repeated. L reads the last ball; D opens the list of called numbers."
         }
       ]
     },
     {
       "id": "marking",
       "title": {
-        "en": "Marking and calling bingo"
+        "en": "Manual marking"
       },
       "paragraphs": [
         {
-          "en": "Automatic mode marks tickets and detects winning patterns. Calls are paced at 3–30 seconds, default five. Manual mode waits for every player to finish the call. Mark only called numbers on your ticket, then claim bingo or confirm ready. Claims from that call are checked together, so network speed does not select a winner. A wrong claim changes nothing."
+          "en": "In a manual game, move to a called number with the arrows and press Enter to mark it. You can also press M and type the number. A number called earlier may still be marked."
         },
         {
-          "en": "After a 90-ball stage win in manual mode, the next goal can be claimed on the same call; otherwise confirm ready again to continue drawing. Called numbers may be marked later. An empty drum without a valid claim ends in a draw. The per-call ready barrier is a Power Games accessibility adaptation. Tickets and calls use the shared server-backed game executor."
+          "en": "Press B if your marks complete the pattern. Otherwise press R when you have finished marking. The next ball waits for everyone. Claims on the same ball are checked together; pressing B faster does not break a tie."
+        },
+        {
+          "en": "After a line or two-line win in 90-ball bingo, check the next goal. If you already have that pattern, claim it on the same ball; otherwise press R again. If there are no balls left and nobody claims the final pattern, the game draws."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Bingo variants"
+      },
+      "paragraphs": [
+        {
+          "en": "When creating the table, you can change the interval between automatic calls. The default is five seconds."
+        },
+        {
+          "en": "- 90 balls: three rows with five numbers in each, spread across nine columns. The one- and two-row winners are announced on the way; the full ticket decides the game."
+        },
+        {
+          "en": "- 75 balls: five rows and five columns, B, I, N, G and O. The free centre counts from the start."
+        },
+        {
+          "en": "- 80 balls: four rows and four columns. In the 75- and 80-ball games, choose a row, column or diagonal, four corners, or a full ticket."
+        },
+        {
+          "en": "- 30 balls: three rows and three columns, with no free space. A full ticket wins."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "en": "Controls"
+        "en": "Keyboard shortcuts"
       },
       "paragraphs": [
         {
-          "en": "Use arrows to read the ticket. In manual mode Enter marks a called number, M enters a number, B claims bingo and R confirms ready. The actions list also has Claim bingo and Ready. L repeats the last ball; D browses calls. Tab changes fields. F1 shows current shortcuts, Ctrl+F1 the rules. History, chat and volume use the normal Power Games keys."
+          "en": "L: read the last ball"
+        },
+        {
+          "en": "D: browse called numbers"
+        },
+        {
+          "en": "Enter on a ticket: mark a number in manual mode"
+        },
+        {
+          "en": "M: enter a number to mark"
+        },
+        {
+          "en": "B: claim bingo"
+        },
+        {
+          "en": "R: finish marking"
         }
       ]
     }

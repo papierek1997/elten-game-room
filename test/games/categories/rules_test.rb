@@ -34,14 +34,11 @@ custom_options = game.normalize_options(
     "round_category_count" => 2
   )
 )
-assert(custom_options["custom_categories"] == 3, "custom categories were not stored as a compact selection")
+assert(custom_options["custom_categories"] == "5", "custom categories were not stored as a compact decimal mask")
 assert(game.validation_error(custom_options, player_count: 2) == nil, "a valid custom category pool was rejected")
 assert(game.options_from_json(JSON.generate(custom_options)) == custom_options, "custom categories did not survive an options round trip")
 invalid_custom_options = custom_options.merge("round_category_count" => 3)
 assert(game.validation_error(invalid_custom_options, player_count: 2) != nil, "a round larger than its custom pool was accepted")
-assert(GameRoomGames::Categories::EASY_CATEGORY_IDS.length == 9, "the easy category pool has the wrong size")
-assert(GameRoomGames::Categories::MEDIUM_CATEGORY_IDS.length == 18, "the medium category pool has the wrong size")
-assert(GameRoomGames::Categories::HARD_CATEGORY_IDS.length == 27, "the hard category pool has the wrong size")
 assert(JSON.generate(game.default_options).length <= 256, "default Categories options exceed the server field limit")
 assert(JSON.generate(custom_options).length <= 256, "custom Categories options exceed the server field limit")
 large_round_categories = GameRoomGames::Categories::CATEGORY_IDS.last(9)
@@ -258,7 +255,8 @@ assert(game.send(:contestants_for_round, %w[Alice Bob Carol Dave], judge, tie_st
 cycle_game = GameRoomGames::Categories.new
 cycle_players = ["Alice", "Bob"]
 cycle_repository = CategoriesRepository.new(cycle_players)
-cycle_options = cycle_game.default_options.merge("target_score" => 2, "tie_mode" => "shared")
+cycle_options = cycle_game.table_creation_options("category_set" => "custom", "custom_categories" => ["country"],
+  "round_category_count" => 1, "target_score" => 2, "tie_mode" => "shared")
 cycle_session = { "options" => JSON.generate(cycle_options) }
 cycle_context = GameRoomGames::ActionContext.new(
   session_id: 8,

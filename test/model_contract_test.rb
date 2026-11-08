@@ -65,8 +65,23 @@ previous_bridge = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1
 assert_equal(without_replay_hashes.call(previous_bridge), without_replay_hashes.call(bridge), 'Bridge hand storage must not replace the reference actions or RNG')
 cases << bridge
 cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/mahjong-model.json"), encoding: "UTF-8"))
-%w[bouillabaisse scopa mania_pisania blackjack blackjack_dice bingo dice_poker liars_dice go roulette].each do |id|
-  cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding:'UTF-8'))
+# The new-game presentation review changes history, not the moves, random
+# stream, options, state or result. Replaying the original inputs on both
+# versions confirmed that the complete replays agree with history removed.
+# Keep the original fixture and override only the reviewed replay hashes.
+new_games = %w[blackjack blackjack_dice bingo dice_poker liars_dice go roulette]
+presentations = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/new_games_presentation.json'), encoding: 'UTF-8'))
+assert((presentations.keys - new_games).empty?, 'Unexpected new-game presentation override')
+(%w[bouillabaisse scopa mania_pisania] + new_games).each do |id|
+  item = JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding: 'UTF-8'))
+  checkpoints = item.fetch('steps') + [item.fetch('final')]
+  presentations.fetch(id, {}).each do |index, hash|
+    position = Integer(index, 10)
+    assert(position.between?(0, checkpoints.size - 1) && hash.match?(/\A[0-9a-f]{64}\z/),
+      "Invalid #{id} presentation checkpoint #{index}")
+    checkpoints.fetch(position)['replay'] = hash
+  end
+  cases << item
 end
 duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/duck_racing.json'), encoding: 'UTF-8'))
 expected_ids = GameRoomGames::CATALOG.ids.reject { |id| %w[axel_pong audio_ball].include?(id) }.sort

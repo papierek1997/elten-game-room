@@ -22,11 +22,11 @@ end
 pack = GameRoomContent.registry.pack('quiz.harry_potter.books.pl')
 assert(pack && !pack.verified?, 'Registration must not read the new question database')
 assert(pack.set_id == 'quiz.harry_potter.books' && pack.language_id == 'pl-PL', 'Wrong set/language identity')
-assert(pack.title == 'Harry Potter' && pack.author.include?('LordKiller'), 'Missing readable title or contributor credit')
+assert(pack.title == 'Harry Potter' && %w[LordKiller Zuzler].all? { |name| pack.author.include?(name) }, 'Missing title or contributor credit')
 reference = JSON.parse(File.read(File.expand_path('../../fixtures/quiz/questions.json', __dir__), encoding:'UTF-8'))
 expected = reference.fetch('packs').fetch(pack.id)
 questions = pack.data.fetch('questions')
-assert(pack.verified? && questions.length == 985 && pack.entry_count == questions.length, 'Wrong verified question count')
+assert(pack.verified? && questions.length == expected.fetch('count') && pack.entry_count == questions.length, 'Wrong verified question count')
 assert(pack.version == expected.fetch('version') && pack.checksum == expected.fetch('checksum'), 'Reviewed data changed without updating its fixture')
 assert(questions.map { |q| q.fetch('id') }.uniq.length == questions.length, 'Repeated question ID')
 normalized = questions.map { |q| UnicodeNormalize.normalize(q.fetch('prompt'), :nfkc).downcase }
@@ -34,15 +34,21 @@ assert(normalized.uniq.length == normalized.length, 'Repeated question prompt')
 categories = ['Bohaterowie', 'Eliksiry', 'Zaklęcia', 'Magiczne stworzenia', 'Magiczne przedmioty', 'Hogwart i inne miejsca', 'Quidditch', 'Fabuła']
 assert(questions.map { |q| q.fetch('category') }.uniq.sort == categories.sort, 'Missing or renamed category')
 questions.each do |q|
-  assert(q.fetch('id').match?(/\Acommunity_hp_lk_\d{4}\z/) && q.fetch('id').length <= 32, 'ID cannot travel in a quiz event')
+  id = q.fetch('id')
+  contributor = if id.match?(/\Acommunity_hp_lk_\d{4}\z/)
+    'LordKiller'
+  elsif id.match?(/\Acommunity_hp_zz_20261108_\d{2}\z/)
+    'Zuzler'
+  end
+  assert(contributor && id.length <= 32, 'Unknown contributor or oversized quiz event ID')
   texts = [q.fetch('prompt'), q.fetch('correct'), *q.fetch('wrong')]
   assert(texts.length == 5 && texts.all? { |s| s.encoding == Encoding::UTF_8 && s.valid_encoding? && !s.strip.empty? && !s.match?(/[\r\n]/) }, 'Invalid display text')
   assert(texts.drop(1).map { |s| UnicodeNormalize.normalize(s, :nfkc).downcase }.uniq.length == 4, 'Repeated answers')
   assert(q.fetch('source').start_with?('J.K. Rowling:'), 'Missing literary attribution')
-  assert(q.fetch('author').include?('LordKiller') && q.fetch('source_license').include?('QUIZ_HARRY_POTTER_PL_SOURCES.md'), 'Lost contributor or rights notice')
+  assert(q.fetch('author').include?(contributor) && q.fetch('source_license').include?('QUIZ_HARRY_POTTER_PL_SOURCES.md'), 'Lost contributor or rights notice')
   assert(q['review_required'] == false, 'Unreviewed question imported')
 end
-by_position = questions.to_h { |q| [q.fetch('id').split('_').last.to_i, q] }
+by_position = questions.select { |q| q.fetch('id').start_with?('community_hp_lk_') }.to_h { |q| [q.fetch('id').split('_').last.to_i, q] }
 [97,438,559,836,839,954,955,982].each { |n| assert(!by_position.key?(n), "Excluded item returned: #{n}") }
 {
   7=>'Bilius', 11=>'Meropa Gaunt', 70=>'Bathilda Bagshot',
@@ -105,4 +111,4 @@ positions = questions.first(80).map do |question|
   choices.index(question.fetch('correct'))
 end
 assert(positions.uniq.size > 1, 'The correct answer stays at one fixed position')
-puts 'Harry Potter: reviewed content, exclusions, provenance, lazy loading, native quiz flow and shuffled answers: OK (985 questions)'
+puts "Harry Potter: reviewed content, exclusions, provenance, lazy loading, quiz flow and shuffled answers: OK (#{questions.length} questions)"

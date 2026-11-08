@@ -4,55 +4,94 @@
     {
       "id": "aim",
       "title": {
-        "cs": "Kostkový poker"
+        "cs": "Cíl a bodování"
       },
       "paragraphs": [
         {
-          "cs": "Každý hází pěti běžnými kostkami do limitu stolu a mezi hody může ponechat libovolné kostky. Můžeš skončit dříve. Po tazích všech hráčů získá nejlepší kombinace bod; při shodě dostane bod každý vítěz kola. Vyhrává nejvíce bodů po zvoleném počtu kol. Shoda konečných bodů znamená remízu. Toto bodování kol je formát zápasu Power Games."
-        }
-      ]
-    },
-    {
-      "id": "variants",
-      "title": {
-        "cs": "Varianty a kombinace"
-      },
-      "paragraphs": [
-        {
-          "cs": "S postupkami: pět stejných, čtyři stejné, full house, postupka, trojice, dva páry, pár, vysoká kostka. Postupka je 1–5 nebo 2–6; 2–6 je vyšší. Bez postupek se tyto hody hodnotí jako vysoké kostky. Obvykle jsou nejvyšší šestky; varianta s esy staví jedničky nad šestky a nemá postupky. Shodné kategorie rozhodují opakované hodnoty, potom zbývající kostky. Barvy se nehodnotí."
+          "cs": "S pěti kostkami sestav silnější kombinaci než soupeři. Jakmile všichni dohrají, nejlepší kombinace získá bod. Při shodě dostane bod každý z hráčů s nejlepší kombinací. Po dohodnutém počtu kol vyhrává nejvyšší skóre; při shodě je remíza."
         }
       ]
     },
     {
       "id": "turns",
       "title": {
-        "cs": "Hody a kola"
+        "cs": "Hody a výběr kostek"
       },
       "paragraphs": [
         {
-          "cs": "Zvol dva nebo tři hody na tah a 1–20 kol. Při limitu zahajujícího mají ostatní nejvýše tolik hodů, kolik použil první hráč kola. Zahajující místo se každé kolo posouvá. Kostky jsou veřejné a každý hod využívá náhodu serveru. Před dalším hodem můžeš změnit ponechané kostky."
+          "cs": "Poprvé hoď Enterem. Mezerník přečte kostky. Chceš-li některé hodit znovu, vybírej je klávesami 1–6 podle hozené hodnoty. Dvakrát stisknutá pětka vybere dvě kostky s pětkou, pokud je máš. Stisk stejné číslice se Shiftem jednu takovou kostku z výběru odebere."
+        },
+        {
+          "cs": "Enter znovu hodí vybranými kostkami a ostatní ponechá. Pokud ti kombinace vyhovuje, ponech ji klávesou K nebo ji po posledním hodu vyber ze seznamu. Obvykle máš nejvýš tři hody. Je-li zapnutý limit prvního hráče, ostatní mají nejvýš tolik hodů, kolik použil on. V dalším kole začíná jiný hráč."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Kombinace a varianty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Od nejsilnější: pět stejných, čtveřice, full house, postupka, trojice, dva páry, pár a nejvyšší kostka. Postupka je 1–5 nebo 2–6, z nichž vyhrává 2–6. U stejné kombinace porovnej nejprve hodnoty, které ji tvoří, potom zbývající kostky."
+        },
+        {
+          "cs": "Můžeš hrát bez postupek, případně bez postupek s jedničkami jako nejvyšší hodnotou. Jinak jsou nejvyšší šestky."
         }
       ]
     },
     {
       "id": "betting",
       "title": {
-        "cs": "Sázení žetonů"
+        "cs": "Hra o žetony"
       },
       "paragraphs": [
         {
-          "cs": "Zvolte body nebo virtuální žetony. Každý zaplatí ante, při nedostatku celý zbytek. Sázení proběhne před hody i po dokončení všech kombinací. Lze čekat, dorovnat, zvýšit vlastní částkou, složit nebo jít all-in. Složený hráč nehází, all-in stále ano. Hlavní a vedlejší banky se dělí podle krytých vkladů a nejlepších kombinací, shody podle pořadí míst. Nekryté části se vracejí. Jeden zbývající soupeř vyhrává bez hodů. Konec nastane po limitu kol nebo s jediným solventním hráčem. C čeká/dorovná, F složí, A all-in, B či R zadá zvýšení, S čte zůstatky."
+          "cs": "Při hře o žetony každý zaplatí vklad. Sází se před hody a po potvrzení všech kombinací. C vyčká nebo dorovná, R či B zvýší sázku, F odstoupí a A vsadí všechno. Kdo odstoupí, nehází a o bank nehraje. Kdo vsadí všechno, svůj tah dohraje."
+        },
+        {
+          "cs": "Bank získá nejlepší kombinace, při shodě se dělí. Zbylé žetony se přidělují podle pořadí v kole. Od soupeře nemůžeš vyhrát víc, než kolik jsi sám vsadil. Nedorovnaná část se vrací. Pokud ostatní odstoupí, poslední hráč získá bank bez dalších hodů. Po posledním kole nebo když zbývá jediný hráč se žetony vyhrává nejvyšší zůstatek. Pokud na bank nemá nárok nikdo, vklady se vrátí. Shodný nejvyšší zůstatek znamená remízu."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "cs": "Ovládání"
+        "cs": "Klávesové zkratky"
       },
       "paragraphs": [
         {
-          "cs": "Enter hází. Po hodu klávesy 1–6 vyberou další kostku s touto hodnotou k přehození; Shift+1–6 ji ponechá. Enter přehodí vybrané kostky, bez výběru otevře ponechání kombinace. K ji ponechá přímo. Mezerník čte kostky a výběr, S body. F1 zobrazí zkratky, Ctrl+F1 pravidla. Chat, historie a hlasitost používají společné ovládání."
+          "cs": "Enter: hodit nebo potvrdit"
+        },
+        {
+          "cs": "1–6: vybrat kostku s touto hodnotou k novému hodu"
+        },
+        {
+          "cs": "Shift+1–6: zrušit výběr takové kostky"
+        },
+        {
+          "cs": "Mezerník: přečíst kostky a výběr"
+        },
+        {
+          "cs": "K: ponechat kombinaci"
+        },
+        {
+          "cs": "S: zjistit body nebo zůstatky"
+        },
+        {
+          "cs": "C: vyčkat nebo dorovnat"
+        },
+        {
+          "cs": "F: odstoupit ze sázení"
+        },
+        {
+          "cs": "A: vsadit vše"
+        },
+        {
+          "cs": "R: zvýšit sázku"
+        },
+        {
+          "cs": "B: zvýšit sázku"
         }
       ]
     }

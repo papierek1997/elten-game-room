@@ -40,7 +40,7 @@ module GameRoomGames
         parsed = if input.source['__server_random'] || value.include?(',n:')
           parse_seeded_round(state,input.source)
         else
-          parse_round(value)
+          parse_round(value, options)
         end
         expected_round = state[:completed_rounds] + 1
         expected_attempt = state[:attempt] + 1

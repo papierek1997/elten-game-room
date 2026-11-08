@@ -101,6 +101,12 @@ module GameRoomGames
         normalize_options(source)
       end
 
+      # A default profile may hide a remembered control. Keep its saved
+      # value until shown unless the game migrates the preference itself.
+      def remembered_table_creation_options(values)
+        table_creation_options(values).merge(values)
+      end
+
       def content_language_option_key
         GameRoomContent::LANGUAGE_OPTION_KEY unless content_pack_kind.to_s.empty?
       end
@@ -472,16 +478,7 @@ module GameRoomGames
           selected ||= choices.find { |choice| choice.value.to_s == definition.default.to_s }
           selected == nil ? nil : selected.value
         when "multiple_choice"
-          choices = definition.choices.to_a
-          valid_mask = (1 << choices.length) - 1
-          if value.is_a?(Array)
-            requested = value.map(&:to_s)
-            choices.each_with_index.reduce(0) do |mask, (choice, index)|
-              requested.include?(choice.value.to_s) ? mask | (1 << index) : mask
-            end
-          else
-            GameRoomOptionValues.integer_value(value) & valid_mask
-          end
+          GameRoomOptionValues.normalize_mask(definition.choices.to_a, value)
         when "multiple_values"
           # Do not interpret numbers as a mask or discard unknown identifiers.
           # Validation reports incompatible data instead of picking a fallback.

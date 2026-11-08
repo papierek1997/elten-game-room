@@ -4,56 +4,92 @@
     {
       "id": "play",
       "title": {
-        "es": "Variantes de dados y puntos"
+        "es": "Tiradas y puntuación"
       },
       "paragraphs": [
         {
-          "es": "Por turnos, suma tiradas acercándote a 21. Dos dados usa dos por debajo de 16 y uno desde 16. Un dado usa siempre uno. Puedes plantarte después de la primera tirada. Llegar o superar 21 termina el turno."
+          "es": "En tu turno, pulsa Espacio para tirar y sumar el resultado. Por debajo de 16 tiras dos dados; a partir de 16, uno. Puedes volver a tirar o elegir Plantarse con este total y pulsar Intro. Con 21 o más termina tu turno. Si te pasas, no puedes ganar la ronda."
         },
         {
-          "es": "Se puntúa tras todos los turnos. El único mayor total hasta 21 gana un punto, o dos por 21 exactos. Un empate en el máximo, incluso con 21, o que todos se pasen no da puntos. Esta puntuación también se aplica a un dado, sustituyendo el desempate. Rota el primer jugador cada ronda. Gana quien alcance el objetivo elegido, diez por defecto."
-        }
-      ]
-    },
-    {
-      "id": "betting",
-      "title": {
-        "es": "Aportación inicial y apuestas"
-      },
-      "paragraphs": [
-        {
-          "es": "Cada ronda empieza cobrando automáticamente la aportación inicial a cada jugador activo: diez fichas por defecto o el ajuste de mesa. Quien tenga menos aporta todo su saldo y queda all-in. Después se actúa por orden: pasar si no se debe nada, igualar, subir, retirarse o ir all-in. Una subida exige otra respuesta de los demás. Se cierra cuando todos los que aún tienen fichas han respondido e igualado o solo queda uno sin retirarse. Los all-in siguen jugando sin apostar más. Un all-in corto no reabre las subidas a quien ya actuó hasta que el aumento acumulado alcance una subida completa."
+          "es": "Cuando todos han jugado, el mejor total que no pase de 21 vale un punto. Si es exactamente 21, vale dos. Un empate en cabeza o que todos se pasen deja la ronda sin puntos. El primer turno cambia en cada ronda. Gana quien alcance antes el objetivo, normalmente diez puntos."
         },
         {
-          "es": "C pasa o iguala, F se retira, A va all-in y R o B permite escribir una subida propia. Introduce el incremento sobre la apuesta actual; la cantidad necesaria para igualar se añade al pago. La primera subida es de al menos una ficha y las siguientes de al menos la última subida completa; se permite un all-in final menor. También hay propuestas en las acciones. Se reparten cartas o se tiran dados solo cuando se cierra la apuesta."
+          "es": "Al crear la mesa puedes elegir tirar un solo dado durante toda la partida."
         }
       ]
     },
     {
       "id": "chips",
       "title": {
-        "es": "Jugar con fichas"
+        "es": "Partida con fichas"
       },
       "paragraphs": [
         {
-          "es": "Al crear la mesa elige Fichas virtuales en Liquidación de ronda para aportaciones iniciales y apuestas antes de tirar. Configura saldo inicial, aportación y rondas. Por defecto son 100 fichas, aportación de diez y diez rondas. El modo de puntos conserva su puntuación sin apuestas de fichas."
+          "es": "Elige las fichas virtuales al configurar cómo se resuelve la ronda para apostar antes de tirar. En vez de una meta de puntos, fija el saldo inicial, la entrada y el número de rondas."
         },
         {
-          "es": "Tras apostar, tiran todos los no retirados, incluidos los all-in. Las aportaciones forman botes principales y laterales: solo se pueden ganar las capas cubiertas por la propia aportación. Cada capa va al mayor total válido hasta 21; los máximos iguales la dividen y las fichas sobrantes se asignan por orden de asiento de ronda. El exceso no igualado se devuelve. Una capa sin total válido elegible se devuelve a sus aportantes. Si todos salvo uno se retiran, el restante gana el bote disputado sin tirar. Se conserva el total de fichas entre saldos y botes."
+          "es": "El mejor total hasta 21 se lleva el bote. Los empatados lo reparten y las fichas sobrantes se asignan por orden de turno de la ronda. No puedes ganar de un rival más de lo que tú has puesto. Se devuelve lo que nadie igualó y las apuestas de un bote sin ningún resultado válido."
         },
         {
-          "es": "El primer jugador rota. Cero fichas elimina solo tras liquidar. Se termina al límite de rondas o con menos de dos jugadores con fichas. Gana el mayor saldo final; máximos iguales empatan. S lee saldos. Las partidas de fichas guardadas conservan sus apuestas originales."
+          "es": "Si después de resolver el bote no te quedan fichas, quedas fuera. La partida termina tras la última ronda o si quedan menos de dos jugadores con fichas. Gana el saldo más alto; los saldos iguales en cabeza empatan."
+        }
+      ]
+    },
+    {
+      "id": "betting",
+      "title": {
+        "es": "Apuestas antes de tirar"
+      },
+      "paragraphs": [
+        {
+          "es": "Al comenzar la ronda, todos aportan la entrada de la mesa, normalmente diez fichas. Si tienes menos, aportas todas las que te quedan. Después se apuesta por turnos."
+        },
+        {
+          "es": "Pulsa C para pasar si no tienes nada que añadir o igualar la apuesta. Con F te retiras y pierdes lo aportado. Con A apuestas todo: sigues en la ronda, pero no puedes volver a apostar."
+        },
+        {
+          "es": "Para subir, pulsa R e indica cuánto quieres aumentar la apuesta. El juego añade lo necesario para igualarla. La primera subida es de al menos una ficha; las siguientes deben alcanzar la última subida completa. Un envite inferior con todas tus fichas no permite volver a subir a quien ya actuó, salvo que la suma de subidas alcance el mínimo."
+        },
+        {
+          "es": "Las apuestas terminan cuando solo queda un jugador o cuando todos los que siguen en juego y tienen fichas han actuado e igualado la apuesta."
+        },
+        {
+          "es": "Después tiran quienes no se han retirado. Si solo queda uno, se lleva el bote sin tirar."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "es": "Controles"
+        "es": "Atajos de teclado"
       },
       "paragraphs": [
         {
-          "es": "Elige con las flechas y confirma con Intro. Tab cambia de campo. T lee el turno, S las puntuaciones, F1 los atajos actuales y Ctrl+F1 las reglas. La mano mantiene la identidad de las cartas y su orden de llegada. Las cartas se consultan; las decisiones se eligen en las acciones separadas."
+          "es": "Espacio: tirar los dados"
+        },
+        {
+          "es": "C: leer el total durante las tiradas; pasar o igualar en las apuestas"
+        },
+        {
+          "es": "D: leer la última tirada"
+        },
+        {
+          "es": "S: consultar puntos o saldos"
+        },
+        {
+          "es": "T: consultar el turno"
+        },
+        {
+          "es": "F: retirarse de las apuestas"
+        },
+        {
+          "es": "A: apostarlo todo"
+        },
+        {
+          "es": "R: tirar los dados o subir la apuesta, según la fase"
+        },
+        {
+          "es": "B: subir la apuesta"
         }
       ]
     }

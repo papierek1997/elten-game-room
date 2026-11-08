@@ -18,6 +18,8 @@ module GameRoomGames
     def minimum_players; 2; end
     def maximum_players; 8; end
     def supports_bots?; true; end
+    def player_spatial_audio?; true; end
+    def table_sound_event?(event); event["action"] == "deal"; end
     def bot_strategy; @bot_strategy ||= GameRoomBots::HeuristicStrategy.new; end
     def rule_sections; generated_rule_sections; end
     def notification_option_keys(_options); %w[variant]; end
@@ -72,7 +74,13 @@ module GameRoomGames
       when :committing then alive(state) - state[:commits].keys
       when :revealing then alive(state) - state[:reveals].keys
       when :bidding
-        optional = state[:options]["variant"] == "perudo" && state[:options]["calza"] ? alive(state).select { |player| exact_allowed?(state, player) } : []
+        optional = if state[:options]["variant"] == "perudo" && state[:options]["calza"]
+          # The normal bot runner acts on the first pending bot. An optional
+          # call would be its only choice out of turn, even on an impossible bid.
+          alive(state).select { |player| !GameRoomParticipants.bot?(player) && exact_allowed?(state, player) }
+        else
+          []
+        end
         ([state[:current_player]] + optional).uniq
       else []
       end
@@ -192,7 +200,11 @@ module GameRoomGames
     end
 
     def turn_announcement(replay, viewer)
-      super if replay.state[:phase] == :bidding
+      super if replay&.state&.[](:phase) == :bidding
+    end
+
+    def turn_transition_history_entry(before_replay, after_replay, event_id:)
+      super if after_replay&.state&.[](:phase) == :bidding
     end
 
     def move_error(status)
@@ -250,7 +262,9 @@ module GameRoomGames
         seed = GameRoomServerRandom.text_seed_value(event, template: "#{state[:round]}:{seed}")
         return false unless seed
         state.merge!(seed: seed, phase: :bidding, current_player: state[:starter])
-        history_entry(history, event_id, "", :dice_ready, _("Round %{round}: the hidden dice are ready. Palifico: %{palifico}.") % {round: state[:round], palifico: state[:palifico] ? _("Yes") : _("No")})
+        text = _("Round %{round}. The dice are ready.") % {round: state[:round]}
+        text += " " + _("Palifico: ones are not wild.") if state[:palifico]
+        history_entry(history, event_id, "", :dice_ready, text)
       elsif action == "reveal"
         return apply_reveal(state, event, actor, event_id, history)
       else
@@ -272,7 +286,13 @@ module GameRoomGames
           history_entry(history, event_id, actor, :bid, _("%{player} bids %{quantity} dice showing %{face}.") % {player: participant_name(actor), quantity: quantity, face: face})
         elsif parts.empty? && ((action == "challenge" && state[:bid]) || (action == "exact" && exact_allowed?(state, actor)))
           state.merge!(phase: :revealing, challenge: {actor: actor, exact: action == "exact"}, current_player: alive(state).first)
-          history_entry(history, event_id, actor, :challenge, _("%{player} calls %{call}. Reveal the dice.") % {player: participant_name(actor), call: action == "exact" ? _("exactly") : _("bluff")})
+          player = participant_name(actor)
+          text = if action == "exact"
+            _("%{player} says the bid is exact.") % {player: player}
+          else
+            _("%{player} challenges the bid.") % {player: player}
+          end
+          history_entry(history, event_id, actor, :challenge, text)
         else
           return false
         end
@@ -313,8 +333,10 @@ module GameRoomGames
         if state[:options]["variant"] == "rdr"
           alive(state) - [caller]
         else
-          state[:counts][caller] = [state[:counts][caller] + 1, state[:options]["starting_dice"]].min
-          history_entry(history, event_id, caller, :calza, _("%{player} calls Calza correctly and recovers a die, up to the starting limit.") % {player: participant_name(caller)})
+          room = state[:counts][caller] < state[:options]["starting_dice"]
+          state[:counts][caller] += 1 if room
+          text = room ? _("%{player} was right and gets one die back.") : _("%{player} was right and already has all their dice.")
+          history_entry(history, event_id, caller, :calza, text % {player: participant_name(caller)})
           []
         end
       else

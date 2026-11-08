@@ -4,7 +4,7 @@ require_relative '../../../games/categories'
 
 game = GameRoomGames::Categories.new
 options = game.normalize_options(game.default_options.merge('category_set' => 'custom',
-  'custom_categories' => %w[country city name], 'round_category_count' => 3, 'round_time' => 0))
+  'custom_categories' => %w[country city female_first_name], 'round_category_count' => 3, 'round_time' => 0))
 game.define_singleton_method(:default_options) { options }
 h, screen = screen_fixture(game)
 context = GameRoomGames::ActionContext.new(session_id: h.session['__id'], table_id: h.table['__id'],
@@ -12,7 +12,7 @@ context = GameRoomGames::ActionContext.new(session_id: h.session['__id'], table_
   random_source: GameRoomRandom::SequenceSource.new([1]), now: 1000)
 h.submit('Alice', context: context)
 h.submit('Bob', {'kind' => 'answer_sheet', 'action' => 'submit',
-  'answers' => {'country' => 'Austria', 'city' => 'Athens', 'name' => 'Alice'}}, context: context)
+  'answers' => {'country' => 'Austria', 'city' => 'Athens', 'female_first_name' => 'Alice'}}, context: context)
 h.submit('Alice', context: context)
 h.submit('Bob', context: context)
 h.submit('Alice', context: context)
