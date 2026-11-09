@@ -386,13 +386,14 @@ module GameRoomTyping
     end
 
     def echo_input(character)
-      return false if @practice.braille?
       mode = @settings.typing_echo
       text = if character == ' '
         @practice.buffer if %w[words characters_and_words].include?(mode)
       elsif %w[characters characters_and_words].include?(mode)
         character == "\b" ? (@practice.buffer[-1] if @practice.free?) : character
       end
+      return false if text.to_s.empty?
+      text = @practice.echo_text(text, character: character)
       return false if text.to_s.empty?
       # Speak now, before input can generate a new word prompt. Queue behind
       # an outstanding prompt, without blocking typing or the active UI clock.
