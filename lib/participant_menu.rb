@@ -255,7 +255,7 @@ module GameRoomParticipantMenu
 
   def participant_role_action(available:, room:, participant:, viewer: Session.name)
     return nil unless available.include?(:manage_roles) && room && GameRoomParticipants.human?(participant) &&
-      GameRoomParticipants.includes?(room.members, participant) && !GameRoomParticipants.same?(participant, viewer)
+      GameRoomParticipants.includes?(room.members, participant)
 
     room.observer?(participant) ? :make_player : :make_observer
   end

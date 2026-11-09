@@ -35,7 +35,8 @@ assert(table == before && app.opened_tables.empty?, 'A failed role choice replac
 snapshot.members.delete('Bob')
 item.last.call
 assert(actions.size == 1 && denied.last == 'This action is not available now.', 'Stale participant menu was dispatched twice')
-assert(GameRoomParticipantMenu.participant_role_action(available: [:manage_roles], room: snapshot, participant: 'Alice').nil?, 'Host shortcut targeted self')
+assert(GameRoomParticipantMenu.participant_role_action(available: [:manage_roles], room: snapshot, participant: 'Alice') == :make_observer,
+  'Host shortcut did not target self')
 assert(GameRoomParticipantMenu.participant_role_action(available: [], room: snapshot, participant: 'Bob').nil?, 'Non-host received role shortcut')
 
 # Only the explicitly typed operational conflicts are caught. Programming
