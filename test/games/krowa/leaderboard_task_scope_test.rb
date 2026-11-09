@@ -87,7 +87,7 @@ class RankingScopeFixture
         field.index = 1
         (@menus == 1 ? form.accept_button : form.cancel_button).trigger(:press)
       else
-        @views << {header: field.header, rows: Marshal.load(Marshal.dump(field.rows))}
+        @views << {header: field.header, rows: Marshal.load(Marshal.dump(field.rows)), index: field.index}
         if open_attempts && field.header.start_with?('Daily Krowa:')
           details = form.fields[1]
           assert(details.header == 'Attempt list', 'Tab field missing')
@@ -120,16 +120,18 @@ assert(normal.alerts.empty? && normal.unchanged?, 'Browsing changed data or repo
 
 past = RankingScopeFixture.new
 past.browse(select: 1)
-assert(past.views.size == 2 && past.views.last[:header] == 'Daily Krowa: 2026-10-17, kot', 'Past ranking lost its solution')
+assert(past.views.size == 3 && past.views[1][:header] == 'Daily Krowa: 2026-10-17, kot', 'Past ranking lost its solution')
+assert(past.views.last[:header] == 'Daily Krowa leaderboard' && past.views.last[:index] == 1,
+  'Closing a Daily Krowa result did not return to the selected day')
 assert(past.assignment_reads.size == 2 && past.calls.none? { |call| call[:on_ui] }, 'Past ranking header queried on the UI or twice')
 assert(past.unchanged?, 'Opening a ranking changed its records')
 
 current = RankingScopeFixture.new
 current.browse(select: 0)
-assert(current.views.last[:header] == 'Daily Krowa: 2026-10-18', 'Current solution appeared in the ranking header')
+assert(current.views[1][:header] == 'Daily Krowa: 2026-10-18', 'Current solution appeared in the ranking header')
 assert(current.assignment_reads.size == 1 && current.calls.none? { |call| call[:on_ui] }, 'Current ranking made a hidden solution query')
 
-[[1, 0], [2, 1]].each do |failure_at, expected_views|
+[[1, 0], [2, 2]].each do |failure_at, expected_views|
   failed = RankingScopeFixture.new(failure_at: failure_at)
   failed.browse(select: 1)
   assert(failed.views.size == expected_views && failed.menus == 2, 'Read failure escaped the public menu')
@@ -152,13 +154,13 @@ end
 
 histories = RankingScopeFixture.new(histories: true)
 histories.browse(select: 1, open_attempts: true)
-assert(histories.views.last[:attempts] == ['las. 0', 'dom. 1', 'sok. 1', 'kot. 3'], 'Past attempt list changed')
+assert(histories.views[1][:attempts] == ['las. 0', 'dom. 1', 'sok. 1', 'kot. 3'], 'Past attempt list changed')
 assert(histories.calls.none? { |call| call[:on_ui] } && histories.unchanged?, 'Attempt details queried on UI or wrote data')
 assert(histories.calls.any? { |call| call[:table] == 'krowa_attempt_lists' }, 'Attempt payload was not read')
 
 hidden_histories = RankingScopeFixture.new(histories: true)
 hidden_histories.browse(select: 0, open_attempts: true)
-assert(hidden_histories.views.last[:attempts].empty?, 'Today attempts reached the visible control')
+assert(hidden_histories.views[1][:attempts].empty?, 'Today attempts reached the visible control')
 assert(hidden_histories.calls.none? { |call| call[:table] == 'krowa_attempt_lists' || call[:on_ui] }, 'Hidden daily payload was downloaded')
 
 GameRoomClock.define_singleton_method(:synchronized?) { false }

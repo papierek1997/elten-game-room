@@ -165,11 +165,17 @@ module GameRoomGames
       end
       return if loaded == nil
       dates, rows = loaded
-      selected = show_table(
-        [_('Date'), _('Word')], rows, header: _("Daily Krowa leaderboard"),
-        empty_label: _("No daily results")
-      )
-      show_daily_ranking(dates[selected], today: today) if selected != nil
+      index = 0
+      loop do
+        selected = show_table(
+          [_('Date'), _('Word')], rows, header: _("Daily Krowa leaderboard"),
+          empty_label: _("No daily results"), index: index
+        )
+        return if selected == nil
+
+        index = selected
+        show_daily_ranking(dates[selected], today: today)
+      end
     end
 
     def show_daily_ranking(date_id, today: nil)
@@ -319,9 +325,9 @@ module GameRoomGames
       result ? result.first : :failed
     end
 
-    def show_table(columns, rows, header:, empty_label:, selectable: true, attempts: nil)
+    def show_table(columns, rows, header:, empty_label:, selectable: true, attempts: nil, index: 0)
       action = nil
-      table = TableBox.new(columns, rows, header: header, quiet: true, empty_label: empty_label)
+      table = TableBox.new(columns, rows, header: header, quiet: true, empty_label: empty_label, index: index)
       open_button = Button.new(selectable ? _("Open") : _("Close"))
       close_button = Button.new(_("Close"))
       controls = selectable ? [table, open_button, close_button] : [table, close_button]
