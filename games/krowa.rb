@@ -81,8 +81,7 @@ module GameRoomGames
     end
 
     def build_leaderboard_client(program, **services)
-      require_relative "krowa_support/leaderboards"
-      KrowaLeaderboardClient.new(program, self, server_tables: services[:server_tables])
+      build_client(program, **services)
     end
 
     def waiting_view_spec(_viewer, history_empty_label: nil)

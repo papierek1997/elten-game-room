@@ -19,11 +19,11 @@ GameRoomClock.define_singleton_method(:synchronized?) { true }
 GameRoomClock.define_singleton_method(:now) { Time.utc(2026, 10, 18, 12).to_f }
 
 class RankingScopeFixture
-  attr_reader :calls, :views, :alerts, :client, :menus
+  attr_reader :calls, :views, :alerts, :client, :menus, :definitions
 
   def initialize(failure_at: nil, cancel: false, histories: false)
     @ui_thread = Thread.current
-    @calls, @views, @alerts, @menus = [], [], [], 0
+    @calls, @views, @alerts, @menus, @definitions = [], [], [], 0, []
     bank = GameRoomGames::KrowaWordBank.default
     @tables = KrowaTestTables.new
     store = GameRoomGames::KrowaServerStore.new(server_tables: @tables, bank: bank, user: 'Alice')
@@ -51,7 +51,8 @@ class RankingScopeFixture
       end
     end
     @client = GameRoomGames::KrowaLeaderboardClient.new(KrowaTestProgram.new,
-      GameRoomGames::Krowa.new(bank: bank), store: store)
+      GameRoomGames::Krowa.new(bank: bank), store: store,
+      definition: ->(word) { @definitions << word })
     alerts = @alerts
     ui_thread = @ui_thread
     @client.define_singleton_method(:alert) do |message|
@@ -88,6 +89,13 @@ class RankingScopeFixture
         (@menus == 1 ? form.accept_button : form.cancel_button).trigger(:press)
       else
         @views << {header: field.header, rows: Marshal.load(Marshal.dump(field.rows))}
+        opening = select && @views.length == 1
+        field.index = select if opening
+        menu = FakeMenu.new
+        form.context(menu)
+        definition = menu.options.find { |option| option.first == 'Word definition' }
+        @views.last[:definition] = definition != nil
+        definition.last.call if definition
         if open_attempts && field.header.start_with?('Daily Krowa:')
           details = form.fields[1]
           assert(details.header == 'Attempt list', 'Tab field missing')
@@ -95,8 +103,7 @@ class RankingScopeFixture
           @views.last[:attempts] = details.options.dup
           @views.last[:empty_label] = details.empty_label
         end
-        if select && @views.length == 1
-          field.index = select
+        if opening
           form.accept_button.trigger(:press)
         else
           form.cancel_button.trigger(:press)
@@ -121,12 +128,15 @@ assert(normal.alerts.empty? && normal.unchanged?, 'Browsing changed data or repo
 past = RankingScopeFixture.new
 past.browse(select: 1)
 assert(past.views.size == 2 && past.views.last[:header] == 'Daily Krowa: 2026-10-17, kot', 'Past ranking lost its solution')
+assert(past.views.all? { |view| view[:definition] } && past.definitions == ['kot', 'kot'],
+  'Past word definition is not available from both the day list and player ranking')
 assert(past.assignment_reads.size == 2 && past.calls.none? { |call| call[:on_ui] }, 'Past ranking header queried on the UI or twice')
 assert(past.unchanged?, 'Opening a ranking changed its records')
 
 current = RankingScopeFixture.new
 current.browse(select: 0)
 assert(current.views.last[:header] == 'Daily Krowa: 2026-10-18', 'Current solution appeared in the ranking header')
+assert(!current.views.last[:definition] && current.definitions.empty?, 'Current ranking exposed the hidden word through its definition')
 assert(current.assignment_reads.size == 1 && current.calls.none? { |call| call[:on_ui] }, 'Current ranking made a hidden solution query')
 
 [[1, 0], [2, 1]].each do |failure_at, expected_views|
