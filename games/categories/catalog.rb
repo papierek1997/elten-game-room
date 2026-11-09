@@ -6,8 +6,8 @@ module GameRoomGames
   module CategoriesCatalog
     using GameRoomLocalization::Translations
 
-    # Keep the supplied order for the custom checklist and assign each
-    # category to exactly one difficulty. Translate labels at display time.
+    # Keep the supplied order and assign each category the first difficulty
+    # at which it can be drawn. Translate labels at display time.
     CATEGORIES = {
       "country" => ["easy", -> { _("Country") }],
       "capital_city" => ["medium", -> { p_("categories", "Capital city") }],
@@ -97,7 +97,12 @@ module GameRoomGames
       "unit_of_measurement" => ["hard", -> { p_("categories", "Unit of measurement") }]
     }.transform_values(&:freeze).freeze
     IDS = CATEGORIES.keys.freeze
-    POOLS = IDS.group_by { |id| CATEGORIES.fetch(id).first }.transform_values(&:freeze).freeze
+    BY_DIFFICULTY = IDS.group_by { |id| CATEGORIES.fetch(id).first }.transform_values(&:freeze).freeze
+    DIFFICULTIES = %w[easy medium hard].freeze
+    POOLS = DIFFICULTIES.each_with_index.to_h do |difficulty, index|
+      included = DIFFICULTIES.take(index + 1)
+      [difficulty, IDS.select { |id| included.include?(CATEGORIES.fetch(id).first) }.freeze]
+    end.freeze
 
     def self.label(id)
       CATEGORIES[id]&.last&.call

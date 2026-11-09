@@ -46,10 +46,8 @@ end
 
 # A server round still sends one text-seed recipe, with no local dice calls.
 require_relative '../../support/session_runner'
-%w[pl en].each do |language|
-  native = NativeRoomHarness.new(game:game, users:%w[Alice Bob],
-    options:game.table_creation_options('separate_letters'=>true, 'answer_language'=>language,
-      'round_category_count'=>9, 'category_set'=>'hard'))
+server_round = lambda do |options|
+  native = NativeRoomHarness.new(game:game, users:%w[Alice Bob], options:options)
   native.start
   random = Object.new
   def random.roll(**); raise 'Server variant requested local entropy'; end
@@ -60,8 +58,26 @@ require_relative '../../support/session_runner'
   native.assert_converged('separate category letters', expected_count:1)
   state = native.replay('Alice').state
   assert(state[:phase] == :answering && state[:category_letters].values.uniq.size == 9, 'Server letters missing')
-  assert(state[:round_categories] == (GameRoomGames::CategoriesCatalog::POOLS.fetch('hard') & state[:round_categories]),
-    'Server round did not preserve the catalogue order')
   assert(native.view('Alice').calls[:random] == 1, 'Per-category server requests')
+  state
 end
-puts 'PASS distinct category letters: local/server rounds, both alphabets, fields, judging, reminder, tampered wires and ordinary mode'
+
+catalog = GameRoomGames::CategoriesCatalog
+%w[pl en].product(%w[medium hard]).each do |language, tier|
+  options = game.table_creation_options('separate_letters'=>true, 'answer_language'=>language,
+    'round_category_count'=>9, 'category_set'=>tier)
+  drawn = server_round.call(options).fetch(:round_categories)
+  assert(drawn == (catalog::POOLS.fetch(tier) & drawn), 'Server round did not preserve the catalogue order')
+  assert((drawn & catalog::BY_DIFFICULTY.fetch('easy')).any?, "#{tier} server round could not draw inherited categories")
+  assert((drawn & catalog::BY_DIFFICULTY.fetch(tier)).any?, "#{tier} server round could not draw new categories")
+end
+
+# Same server seed and table options as before widening the catalogue.
+previous = game.default_options.merge('category_version'=>3, 'category_set'=>'hard',
+  'round_category_count'=>9, 'separate_letters'=>true, 'answer_language'=>'en')
+old_round = server_round.call(previous)
+old_categories = %w[cocktail_name alcohol_brand male_writer screen_character mythological_deity reality_show scientist radio_presenter sewing_material]
+assert(old_round.fetch(:round_categories) == old_categories &&
+  old_round.fetch(:category_letters) == old_categories.zip(%w[W T M C Y I Q O N]).to_h,
+  'Updating the pools changed the interpretation of a previous server seed')
+puts 'PASS category letters: local/server rounds, cumulative pools, original seeded replay and validation'

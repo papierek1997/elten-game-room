@@ -8,7 +8,7 @@ version_two = %w[drink known_athlete tool known_actor known_writer]
 historical_wire = klass::LEGACY_HARD_CATEGORY_IDS + version_two
 assert(klass::CATEGORY_IDS.first(historical_wire.size) == historical_wire, 'Historical category mask positions moved')
 assert((klass::CATALOG_CATEGORY_IDS & removed).empty?, 'A retired category is still offered')
-assert(game.default_options['category_version'] == 3, 'New default options did not select the new pools')
+assert(game.default_options['category_version'] == 4, 'New default options did not select the cumulative pools')
 
 legacy = {'category_set'=>'custom', 'custom_categories'=>1 << 9, 'round_category_count'=>1}
 old_options = game.normalize_options(legacy)
@@ -38,6 +38,10 @@ assert(game.send(:selected_category_pool, fresh) == %w[tool medical_equipment un
 assert(game.validation_error(fresh).nil?, 'New category selections are invalid')
 assert(JSON.generate(game.default_options).bytesize <= 256, 'New defaults exceed the option size budget')
 assert(game.options_from_json(JSON.generate(fresh)) == fresh, 'New selections changed on reload')
+old_v3 = fresh.merge('category_version'=>3)
+assert(game.options_from_json(JSON.generate(old_v3)) == old_v3, 'Version 3 options changed on reload')
+assert(game.send(:selected_category_pool, old_v3) == %w[tool medical_equipment unit_of_measurement], 'Version 3 wide custom mask changed')
+assert(game.table_creation_options(old_v3) == fresh, 'Creating a new table reinterpreted the previous wide custom mask')
 assert(game.send(:decode_round_categories, game.send(:encode_round_categories, removed)) == removed,
   'Old round categories no longer decode faithfully')
 assert(game.send(:decode_round_categories, game.send(:encode_round_categories, version_two)) == version_two,
@@ -45,7 +49,7 @@ assert(game.send(:decode_round_categories, game.send(:encode_round_categories, v
 
 players = %w[Alice Bob]
 repo = CategoriesRepository.new(players)
-[old_options, old_v2, fresh].each do |options|
+[old_options, old_v2, old_v3, fresh].each do |options|
   context = GameRoomGames::ActionContext.new(session_id: 7, table_id: 4, now: 100,
     hidden_submissions: HiddenSubmissions::Vault.new(HiddenSubmissions::MemoryStorage.new),
     random_source: GameRoomRandom::SequenceSource.new([1]))

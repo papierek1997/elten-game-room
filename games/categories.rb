@@ -35,7 +35,8 @@ module GameRoomGames
     CATEGORY_IDS = ((LEGACY_HARD_CATEGORY_IDS + %w[drink known_athlete tool known_actor known_writer]) | CATALOG_CATEGORY_IDS).freeze
     CATEGORY_INDEX = CATEGORY_IDS.each_with_index.to_h.freeze
     CATEGORY_VERSION_KEY = 'category_version'.freeze
-    CURRENT_CATEGORY_VERSION = 3
+    ORIGINAL_CATALOG_VERSION = 3
+    CURRENT_CATEGORY_VERSION = 4
     LEGACY_CATEGORY_SETS = {
       'easy' => LEGACY_EASY_CATEGORY_IDS,
       'medium' => LEGACY_MEDIUM_CATEGORY_IDS,
@@ -44,6 +45,8 @@ module GameRoomGames
     CATEGORY_SETS = {
       1 => LEGACY_CATEGORY_SETS,
       2 => { 'easy' => LEGACY_EASY_CATEGORY_IDS, 'medium' => V2_MEDIUM_CATEGORY_IDS, 'hard' => V2_HARD_CATEGORY_IDS }.freeze,
+      # Seeded rounds reconstruct their categories from the pool at creation.
+      ORIGINAL_CATALOG_VERSION => CategoriesCatalog::BY_DIFFICULTY,
       CURRENT_CATEGORY_VERSION => CategoriesCatalog::POOLS
     }.freeze
     CATEGORY_SET_CUSTOM = "custom".freeze
@@ -119,7 +122,7 @@ module GameRoomGames
     def table_creation_options(values = {})
       source = values.dup
       version = category_pool_version(source)
-      if version != CURRENT_CATEGORY_VERSION
+      unless catalog_version?(version)
         raw = option_source_value(source, 'custom_categories')
         if raw.is_a?(Integer)
           source['custom_categories'] = CATALOG_CATEGORY_IDS & categories_from_mask(custom_category_ids(version), raw)
@@ -144,7 +147,7 @@ module GameRoomGames
       result = super
       version = category_pool_version(source)
       result[CATEGORY_VERSION_KEY] = version if source.key?(CATEGORY_VERSION_KEY) || source.key?(:category_version)
-      if version != CURRENT_CATEGORY_VERSION
+      unless catalog_version?(version)
         raw = source.fetch('custom_categories') { source.fetch(:custom_categories, DEFAULT_CUSTOM_CATEGORY_MASK) }
         result['custom_categories'] = normalize_option_value(custom_category_definition(version), raw)
       end
@@ -1167,18 +1170,23 @@ module GameRoomGames
     end
 
     def category_set_definition(version)
-      current = version == CURRENT_CATEGORY_VERSION
+      easy = catalog_version?(version) ? _("Easy, 29 categories") : _("Easy, 9 categories")
+      medium, hard = case version
+      when CURRENT_CATEGORY_VERSION then [_("Medium, 58 categories"), _("Hard, 86 categories")]
+      when ORIGINAL_CATALOG_VERSION then [_("Medium, 29 categories"), _("Hard, 28 categories")]
+      else [_("Medium, 18 categories"), _("Hard, 27 categories")]
+      end
       OptionDefinition.new(key: "category_set", label: _("Category pool"), kind: :choice, default: "easy", choices: [
-        OptionChoice.new(value: "easy", label: current ? _("Easy, 29 categories") : _("Easy, 9 categories")),
-        OptionChoice.new(value: "medium", label: current ? _("Medium, 29 categories") : _("Medium, 18 categories")),
-        OptionChoice.new(value: "hard", label: current ? _("Hard, 28 categories") : _("Hard, 27 categories")),
+        OptionChoice.new(value: "easy", label: easy),
+        OptionChoice.new(value: "medium", label: medium),
+        OptionChoice.new(value: "hard", label: hard),
         OptionChoice.new(value: CATEGORY_SET_CUSTOM, label: _("Custom"))
       ])
     end
 
     def custom_category_definition(version)
       OptionDefinition.new(key: "custom_categories", label: _("Custom categories"),
-        kind: :multiple_choice, default: version == CURRENT_CATEGORY_VERSION ? "0".freeze : DEFAULT_CUSTOM_CATEGORY_MASK,
+        kind: :multiple_choice, default: catalog_version?(version) ? "0".freeze : DEFAULT_CUSTOM_CATEGORY_MASK,
         visible_if: { "category_set" => CATEGORY_SET_CUSTOM },
         choices: custom_category_ids(version).map do |category|
           OptionChoice.new(value: category, label: category_label(category))
@@ -1189,8 +1197,12 @@ module GameRoomGames
       CATEGORY_SETS.fetch(version, LEGACY_CATEGORY_SETS)
     end
 
+    def catalog_version?(version)
+      version == ORIGINAL_CATALOG_VERSION || version == CURRENT_CATEGORY_VERSION
+    end
+
     def custom_category_ids(version)
-      version == CURRENT_CATEGORY_VERSION ? CATALOG_CATEGORY_IDS : category_sets(version).fetch('hard')
+      catalog_version?(version) ? CATALOG_CATEGORY_IDS : category_sets(version).fetch('hard')
     end
 
     def selected_category_pool(options)
@@ -1273,7 +1285,7 @@ module GameRoomGames
 
       categories = decode_round_categories(parts[5])
       return nil if categories == nil
-      if category_pool_version(options) == CURRENT_CATEGORY_VERSION
+      if catalog_version?(category_pool_version(options))
         # The wire mask still uses historical bit positions. New rounds
         # assign separate letters in catalogue order, like server-seeded rounds.
         ordered = selected_category_pool(options) & categories

@@ -553,6 +553,8 @@ assert(entry_265 && entry_265.version == '2.0.6.2' && entry_265.changes.size == 
   '86 categories', '67 questions', 'two salaries'].each do |topic|
   assert(entry_265.changes.any? { |change| change.include?(topic) }, "build 265 lacks #{topic}")
 end
+categories_note = entry_265.changes.find { |change| change.include?('86 categories') }
+assert(categories_note.include?('Thanks to Peterman for suggesting a category!'), 'build 265 lacks the Categories credit')
 assert(GameRoomChangelog.pending_entries(264, 265).map(&:build) == [265], 'build 265 repeats earlier notes')
 assert(GameRoomChangelog.pending_entries(nil, 265).map(&:build) == [265], 'first build 265 launch repeats history')
 assert(GameRoomChangelog.pending_entries(265, 265).empty?, 'build 265 reopens after being read')
@@ -604,5 +606,6 @@ assert(runtime_release == [latest.version, latest.build] &&
     "build 262 has untranslated #{language} notes")
   assert(latest.changes.all? { |source| !release_catalog.fetch(source, '').empty? },
     "build #{latest.build} has untranslated #{language} notes")
+  assert(release_catalog.fetch(categories_note, '').include?('Peterman'), "build 265 lacks the Categories credit in #{language}")
 end
 puts "Changelog tests passed: first launch, updates, downgrade, Enter, storage, old notes and multilingual release metadata"

@@ -96,7 +96,9 @@ module PublicationTest
       game.effective_option_definitions(selected).each do |definition|
         next unless definition.kind.to_s == 'multiple_choice' && definition.visible_if
         next unless game.option_visible?(definition, selected)
-        selected[definition.key.to_s] = (1 << definition.choices.length) - 1
+        width = definition.choices.length
+        mask = (1 << width) - 1
+        selected[definition.key.to_s] = width > 63 ? mask.to_s : mask
       end
     end
     variants.uniq
@@ -301,11 +303,32 @@ PublicationTest.test('zależne domyślne nie nadpisują jawnego wyboru ani nie n
   PublicationTest.roundtrip(PublicationTest.draft('quiz').merge('game_options' => options),
     expected_options: quiz.normalize_options(options))
   PublicationTest.reject_options(PublicationTest.draft('quiz'), { definition.key => dependent.value })
-  # Normalizator nie może usunąć niezadeklarowanych bitów multiple_choice.
-  categories = PublicationTest.draft('categories')
-  multiple = GameRoomGames::CATALOG.build('categories').effective_option_definitions.find { |item| item.kind.to_s == 'multiple_choice' }
-  assert(multiple, 'Brak fixture multiple_choice')
-  PublicationTest.reject_options(categories, categories['game_options'].merge(multiple.key => 1 << multiple.choices.length))
+end
+
+PublicationTest.test('własna pula kategorii zachowuje format zapisu i odrzuca nieznane bity') do
+  game = GameRoomGames::CATALOG.build('categories')
+  draft = PublicationTest.draft('categories')
+  key = 'custom_categories'
+  width = game.effective_option_definitions(draft.fetch('game_options')).find { |item| item.key == key }.choices.length
+  assert_equal(86, width)
+
+  first_undefined = 1 << width
+  wide = draft.fetch('game_options').merge('category_set' => 'custom', key => (first_undefined - 1).to_s)
+  wide_draft = draft.merge('game_options' => wide)
+  PublicationTest.roundtrip(wide_draft)
+  # Tekst z nieznanym bitem mieści się w JSON-ie, ale nie jest poprawną opcją.
+  [first_undefined.to_s, '01', 1].each do |invalid|
+    PublicationTest.reject_options(wide_draft, wide.merge(key => invalid))
+  end
+  # Taka liczba jest odrzucana już na granicy dokumentu, przed walidacją opcji.
+  PublicationTest.reject_options(wide_draft, wide.merge(key => first_undefined), code: :invalid_json)
+
+  legacy = game.normalize_options('category_set' => 'custom', 'round_category_count' => 1, key => 1)
+  legacy_width = game.effective_option_definitions(legacy).find { |item| item.key == key }.choices.length
+  assert(legacy_width.between?(1, 62), 'Historyczny wybór powinien zmieścić się w liczbie całkowitej')
+  legacy_draft = draft.merge('game_options' => legacy)
+  PublicationTest.roundtrip(legacy_draft)
+  PublicationTest.reject_options(legacy_draft, legacy.merge(key => 1 << legacy_width))
 end
 
 PublicationTest.test('retry ogłoszenia zachowuje aliasy, minimum ID i różnych autorów') do

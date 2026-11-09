@@ -31,7 +31,7 @@ changed = submit.call(categories, fresh) do |form|
   control.deselect_multiselection_indices(control.multiselections)
   control.select_multiselection_indices(definition.choices.each_index.select { |index| %w[tool soft_drink].include?(definition.choices[index].value) })
 end
-check.call(changed['category_version'] == 3, 'Changing a visible field dropped the category dialect')
+check.call(changed['category_version'] == 4, 'Changing a visible field dropped the current category dialect')
 check.call(categories.send(:selected_category_pool, changed) == %w[soft_drink tool], 'New custom checklist used legacy choices')
 check.call(fresh == categories.table_creation_options('category_set' => 'custom',
   'custom_categories' => %w[soft_drink unit_of_measurement], 'round_category_count' => 2), 'The initial options were mutated')
@@ -49,7 +49,7 @@ remembered = submit.call(categories) do |form|
 end
 check.call(remembered['custom_categories'] == tool_mask, 'Submitting the form rewrote the migrated choice')
 check.call(categories.remembered_table_creation_options('custom_categories'=>tool_mask)['custom_categories'] == tool_mask,
-  'Reopening a version-3 checklist lost its saved category')
+  'Reopening the wide checklist lost its saved category')
 app.define_singleton_method(:read_json) { |_path, default:| default }
 
 miles = GameRoomGames::MilleBornes.new

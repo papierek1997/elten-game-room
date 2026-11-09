@@ -9,7 +9,7 @@ klass = GameRoomGames::Categories
 custom_definition = -> { game.effective_option_definitions.find { |item| item.key == 'custom_categories' } }
 ids = klass::CATALOG_CATEGORY_IDS
 assert(ids.size == 86 && ids.uniq == ids, 'The new catalogue must have 86 different categories')
-sizes = {'easy'=>29, 'medium'=>29, 'hard'=>28}
+sizes = {'easy'=>29, 'medium'=>58, 'hard'=>86}
 pools = sizes.to_h do |tier, count|
   options = game.table_creation_options('category_set'=>tier, 'round_category_count'=>9)
   pool = game.send(:selected_category_pool, options)
@@ -18,11 +18,18 @@ pools = sizes.to_h do |tier, count|
   assert(drawn.size == 9 && drawn.uniq == drawn && (drawn - pool).empty?, "Wrong draw for #{tier}")
   [tier, pool]
 end
-assert(pools.values.flatten.sort == ids.sort, 'The three difficulty pools must partition all 86 categories exactly once')
+assert((pools.fetch('easy') - pools.fetch('medium')).empty?, 'Medium must include every Easy category')
+assert(pools.fetch('hard') == ids, 'Hard must include all categories in catalogue order')
+pools.each do |tier, pool|
+  assert((ids & pool) == pool, "#{tier} contains duplicates, unknown categories or an incorrect order")
+end
+assert(pools.fetch('easy').include?('country') && !pools.fetch('easy').include?('capital_city') &&
+  pools.fetch('medium').include?('capital_city') && !pools.fetch('medium').include?('mythological_deity'),
+  'Representative categories are not unlocked at their assigned difficulty')
 
 GameRoomLocalization.boot(settings: {'interface_language'=>'en', 'known_languages'=>[]})
 english = custom_definition.call.choices.map(&:label)
-pool_labels = ['Easy, 29 categories', 'Medium, 29 categories', 'Hard, 28 categories']
+pool_labels = ['Easy, 29 categories', 'Medium, 58 categories', 'Hard, 86 categories']
 pool_definition = -> { game.effective_option_definitions.find { |item| item.key == 'category_set' } }
 assert(pool_definition.call.choices.first(3).map(&:label) == pool_labels, 'English difficulty labels have stale counts')
 %w[pl cs es ru].each do |language|
@@ -96,4 +103,4 @@ full_round = [9_999, 9_999, 7, ('A'..'I').to_a.join('.'), 2_000_000_000,
   game.send(:encode_round_categories, last)].join(',')
 assert(full_round.bytesize <= GameRoomEventProtocol::MAX_VALUE_LENGTH, 'A late round with nine separate letters exceeds the event limit')
 assert(game.send(:parse_round, full_round, options).fetch(:categories) == last, 'High category bits were lost on replay')
-puts 'PASS 86 exact Polish labels; disjoint 29/29/28 pools, all translations, full custom checklist and compact tournament options'
+puts 'PASS 86 exact Polish labels; cumulative 29/58/86 pools, all translations, full custom checklist and compact tournament options'

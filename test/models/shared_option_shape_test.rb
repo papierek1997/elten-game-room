@@ -3,6 +3,30 @@ require_relative '../../games/catalog'
 include GameRoomTest::Assertions
 GameRoomLocalization.boot(settings: {'interface_language' => 'en', 'known_languages' => ['en']})
 
+def assert_multiple_choice_shapes(game, options)
+  game.effective_option_definitions(options).each do |definition|
+    next unless definition.kind.to_sym == :multiple_choice
+
+    key = definition.key.to_s
+    width = definition.choices.length
+    full_mask = (1 << width) - 1
+    wide = width > 63
+    # Preserve scalar coercion, including finite floats. Wide checklists use
+    # the same bits but store them as decimal text instead of a JSON number.
+    [nil, 0, -1, 5.7, 1e22, '12', (1 << 80).to_s, 'not a number'].each do |value|
+      mask = value.to_i & full_mask
+      expected = wide ? mask.to_s : mask
+      actual = game.normalize_options(options.merge(key => value))
+      assert_equal(expected, actual[key], "#{game.id}/#{key}: incorrect #{width}-choice mask for #{value.inspect}")
+    end
+    [true, false, {}].each do |value|
+      actual = game.normalize_options(options.merge(key => value))
+      assert_equal(wide ? '0' : 0, actual[key], 'An unsupported mask type was not safely normalized')
+      assert(!GameRoomOptionValues.valid?(definition, value), 'Strict published option validation was weakened')
+    end
+  end
+end
+
 invalid = [true, false, 1, 'teams', {}, [true], [{}], [[]], [Float::INFINITY], [Float::NAN]]
 count = 0
 GameRoomGames::CATALOG.ids.each do |id|
@@ -22,22 +46,9 @@ GameRoomGames::CATALOG.ids.each do |id|
     assert_equal(seats.map(&:to_i), normalized['team_seats'], 'A nonthrowing historical conversion changed')
   end
 
-  # Compare the exact legacy scalar conversion, including finite Float values
-  # for which value.to_s.to_i would not preserve value.to_i.
-  [nil, 0, -1, 5.7, 1e22, '12', 'not a number'].each do |value|
-    game.effective_option_definitions(defaults).select { |item| item.kind.to_sym == :multiple_choice }.each do |definition|
-      expected = value.to_i & ((1 << definition.choices.length) - 1)
-      actual = game.normalize_options(defaults.merge(definition.key.to_s => value))
-      assert_equal(expected, actual[definition.key.to_s], 'A historical bitmask conversion changed')
-    end
-  end
-  game.effective_option_definitions(defaults).select { |item| item.kind.to_sym == :multiple_choice }.each do |definition|
-    [true, false, {}].each do |value|
-      actual = game.normalize_options(defaults.merge(definition.key.to_s => value))
-      assert_equal(0, actual[definition.key.to_s], 'An unsupported mask type was not safely normalized')
-      assert(!GameRoomOptionValues.valid?(definition, value), 'Strict published option validation was weakened')
-    end
-  end
+  assert_multiple_choice_shapes(game, defaults)
+  # An older Categories table still uses its original numeric mask.
+  assert_multiple_choice_shapes(game, game.normalize_options({})) if id == 'categories'
   next if game.content_pack_kind.to_s.empty?
 
   [true, false, {}, []].each do |version|
