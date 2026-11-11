@@ -1,9 +1,13 @@
 require_relative '../support/mille_private'
 
+# Keep the tiny pool (two draws after the opening hands), but enough unused
+# distance to reach 1000. A 13 x 25-mile deck now correctly settles an impasse
+# instead of remaining available for a many-recycling lifetime test.
 options = GameRoomGames::MilleBornes::DECK_COUNTS.keys.to_h do |type|
-  ["#{type}_cards", type == '25' ? 13 : (type == 'go' ? 1 : 0)]
+  ["#{type}_cards", type == '100' ? 13 : (type == 'go' ? 1 : 0)]
 end.merge('custom_deck' => true, 'include_safeties' => false, 'recycle_discard' => true)
 h, runners = MillePrivateTest.create(options: options)
+assert(!h.game.send(:distance_finish_impossible?, h.replay('Alice').state), 'retirement fixture cannot reach 1000 miles')
 70.times do
   h.users.each do |user|
     4.times { MillePrivateTest.tick(h, runners) }
@@ -30,9 +34,9 @@ end
 # without deleting anyone's hand or repeatedly requesting an impossible pool.
 state[:phase] = :awaiting_draw
 state[:draw_pile] = []
-state[:discard] = ['25:1']
+state[:discard] = ['100:1']
 state[:private_retired] = []
-state[:private_pools] = (1..32).to_h { |i| [i.to_s.rjust(32, '0'), {cards: ['25:1'], remaining: 0}] }
+state[:private_pools] = (1..32).to_h { |i| [i.to_s.rjust(32, '0'), {cards: ['100:1'], remaining: 0}] }
 state[:private_draws] = state[:private_pools].keys.to_h { |id| [id, {pool: id, count: 1, used: []}] }
 history = []
 h.game.send(:finish_private_replay, state, history, 100)
