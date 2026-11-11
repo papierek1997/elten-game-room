@@ -43,9 +43,13 @@ msgstr "%{action}: %{tiles}"
 msgid "%{answer}; status: %{status}"
 msgstr "%{answer}; stav: %{status}"
 
-#: games/roulette.rb:307
+#: games/roulette.rb:295
 msgid "%{bet}, pays %{odds} to 1"
 msgstr "%{bet}, výplata %{odds} ku 1"
+
+#: games/roulette.rb:151
+msgid "%{bet}. Number of chips to bet:"
+msgstr "%{bet}. Počet žetonů:"
 
 #: games/roulette.rb:131
 msgid "%{bet}; stake: %{amount}"
@@ -865,7 +869,7 @@ msgstr "%{player} začíná poslední kolo."
 msgid "%{player} bet %{chips} chips."
 msgstr "%{player} vsadil %{chips} žetonů."
 
-#: games/roulette.rb:342
+#: games/roulette.rb:330
 msgid "%{player} bets %{amount} on %{bet}."
 msgstr "%{player} sází %{amount} na %{bet}."
 
@@ -1237,7 +1241,7 @@ msgstr[2] "Hráči %{player} hrozí trest: vynechat %{count} tahů."
 msgid "%{player} finished exchanging cards."
 msgstr ""
 
-#: games/roulette.rb:349
+#: games/roulette.rb:337
 msgid "%{player} finishes betting."
 msgstr "%{player} končí sázení."
 
@@ -1257,7 +1261,7 @@ msgstr "Hráč %{player} nezískal žádné body."
 msgid "%{player} gave you %{card}."
 msgstr "Hráč %{player} vám předal kartu: %{card}."
 
-#: games/roulette.rb:405
+#: games/roulette.rb:393
 msgid "%{player} gets their stake back."
 msgstr "%{player} dostává sázku zpět."
 
@@ -1977,7 +1981,7 @@ msgstr "Hráč %{player} odebral počítačového hráče."
 msgid "%{player} removes %{letter} from %{field}."
 msgstr ""
 
-#: games/roulette.rb:345
+#: games/roulette.rb:333
 msgid "%{player} removes their bets."
 msgstr "%{player} ruší své sázky."
 
@@ -2379,7 +2383,7 @@ msgstr[0] "%{player} vynechá %{count} tah."
 msgstr[1] "%{player} vynechá %{count} tahy."
 msgstr[2] "%{player} vynechá %{count} tahů."
 
-#: games/roulette.rb:233
+#: games/roulette.rb:221
 msgid "%{player} will spin the wheel."
 msgstr "Kolo roztočí %{player}."
 
@@ -2469,7 +2473,7 @@ msgstr "Hráč %{player} vyhrál aukci nemovitosti %{property} za %{amount}."
 msgid "%{player} won the game with %{points} points."
 msgstr "Hráč %{player} vyhrál hru s bodovým ziskem %{points}."
 
-#: games/audio_ball.rb:152 games/audio_ball.rb:221 games/axel_pong.rb:145 games/axel_pong.rb:205 games/base.rb:489 games/base.rb:589 games/categories.rb:967 games/dealt_card_game.rb:176 games/ludo.rb:196 games/ludo.rb:375 games/mille_bornes/presentation.rb:127 games/quiz_party.rb:838 games/rummy.rb:582
+#: games/audio_ball.rb:152 games/audio_ball.rb:221 games/axel_pong.rb:145 games/axel_pong.rb:205 games/base.rb:495 games/base.rb:595 games/categories.rb:967 games/dealt_card_game.rb:176 games/ludo.rb:196 games/ludo.rb:375 games/mille_bornes/presentation.rb:127 games/quiz_party.rb:838 games/rummy.rb:582
 msgid "%{player} won the game."
 msgstr "Hráč %{player} vyhrál hru."
 
@@ -8135,11 +8139,11 @@ msgstr "Vsadit %{amount} na %{bet}"
 msgid "Bet %{chips} chips"
 msgstr "Vsadit %{chips} žetonů"
 
-#: games/roulette.rb:171
+#: games/roulette.rb:166
 msgid "Bet type"
 msgstr "Druh sázky"
 
-#: games/roulette.rb:294
+#: games/roulette.rb:282
 msgid "Bets including zero"
 msgstr "Sázky zahrnující nulu"
 
@@ -8289,7 +8293,7 @@ msgctxt "categories"
 msgid "Bird"
 msgstr "Pták"
 
-#: games/roulette.rb:299
+#: games/roulette.rb:287
 msgid "Black"
 msgstr "Černá"
 
@@ -9429,7 +9433,7 @@ msgstr "Chat"
 msgid "Chat history"
 msgstr "Historie chatu"
 
-#: lib/game_screen/input.rb:386
+#: lib/game_screen/input.rb:393
 msgid "Chat is not available."
 msgstr "Chat není dostupný."
 
@@ -9585,7 +9589,7 @@ msgstr ""
 msgid "Checking for Power Games updates"
 msgstr ""
 
-#: lib/game_screen/input.rb:510
+#: lib/game_screen/input.rb:517
 msgid "Checking for game updates"
 msgstr "Kontrola aktualizací hry"
 
@@ -10024,7 +10028,7 @@ msgstr "Vyberte kámen šipkami. Enter jej zahraje do jediného povoleného vlak
 msgid "Choose a trade proposal"
 msgstr "Vyberte návrh výměny"
 
-#: games/roulette.rb:246
+#: games/roulette.rb:234
 msgid "Choose a valid bet and a positive whole number of chips within your balance."
 msgstr "Zvolte platnou sázku a kladný celý počet žetonů v mezích zůstatku."
 
@@ -10606,11 +10610,11 @@ msgstr ""
 msgid "Color"
 msgstr "Barva"
 
-#: games/roulette.rb:293
+#: games/roulette.rb:281
 msgid "Colours"
 msgstr "Barvy"
 
-#: games/roulette.rb:293
+#: games/roulette.rb:281
 msgid "Columns"
 msgstr "Sloupce"
 
@@ -11330,6 +11334,10 @@ msgstr "Ctrl+D: otevřete nastavení hudby, efektů a vlastního slovníku hry K
 #: lib/game_history_navigation.rb:18
 msgid "Ctrl+End: read the last entry in the selected history category."
 msgstr "Ctrl+End: přečtěte poslední záznam ve vybrané kategorii historie."
+
+#: lib/game_room_changelog.rb:717
+msgid "Ctrl+F2 switches additional game sound effects on or off. Chat, notifications and the sounds needed for audio games and listening challenges are not muted."
+msgstr "Ctrl+F2 zapíná a vypíná doplňkové herní zvukové efekty. Neztlumí chat, oznámení ani zvuky potřebné ke hraní zvukových her a poslechových výzev."
 
 #: lib/game_room_ui.rb:36
 msgid "Ctrl+F2: enable or disable additional game sound effects."
@@ -12552,7 +12560,7 @@ msgstr "Šipka dolů: vyberte třetí dráhu nebo po přípravě proveďte třet
 msgid "Downloading recording"
 msgstr "Stahování záznamu"
 
-#: games/roulette.rb:292
+#: games/roulette.rb:280
 msgid "Dozens"
 msgstr "Tucty"
 
@@ -13963,7 +13971,7 @@ msgstr "Evropské kolo má 0–36, americké také 00. Francouzské vrací při 
 msgid "European: single zero"
 msgstr "Evropské: jedna nula"
 
-#: games/roulette.rb:299
+#: games/roulette.rb:287
 msgid "Even"
 msgstr "Sudá"
 
@@ -14498,7 +14506,7 @@ msgstr "Před přípravou další fáze dokončete všechny zápasy této fáze.
 msgid "Finish answering"
 msgstr "Ukončit odpovídání"
 
-#: games/roulette.rb:141
+#: games/roulette.rb:129
 msgid "Finish betting"
 msgstr "Ukončit sázení"
 
@@ -14574,11 +14582,11 @@ msgstr ""
 msgid "First betting round."
 msgstr "První sázkové kolo."
 
-#: games/roulette.rb:302
+#: games/roulette.rb:290
 msgid "First column"
 msgstr "První sloupec"
 
-#: games/roulette.rb:301
+#: games/roulette.rb:289
 msgid "First dozen"
 msgstr "První tucet"
 
@@ -15444,11 +15452,11 @@ msgstr "Nastavení hry"
 msgid "Game sounds"
 msgstr "Herní zvuky"
 
-#: games/base.rb:567
+#: games/base.rb:573
 msgid "Game started: %{first} versus %{second}."
 msgstr "Hra začala: %{first} proti %{second}."
 
-#: games/base.rb:572 games/ludo.rb:357 lib/game_table_background.rb:129
+#: games/base.rb:578 games/ludo.rb:357 lib/game_table_background.rb:129
 msgid "Game started: %{players}."
 msgstr "Hra byla zahájena. Hráči: %{players}."
 
@@ -15669,11 +15677,11 @@ msgstr "Skupiny a vyřazovací část nyní vyžadují dva jednotlivce nebo dvě
 msgid "Groups follow the participant list in rotation. This is not a draw or ranking-based seeding."
 msgstr ""
 
-#: games/roulette.rb:291
+#: games/roulette.rb:279
 msgid "Groups of four numbers"
 msgstr "Skupiny čtyř čísel"
 
-#: games/roulette.rb:292
+#: games/roulette.rb:280
 msgid "Groups of six numbers"
 msgstr "Skupiny šesti čísel"
 
@@ -15880,7 +15888,7 @@ msgstr "Vodní elektrárna Đerdap"
 msgid "High card"
 msgstr "Vysoká karta"
 
-#: games/roulette.rb:300
+#: games/roulette.rb:288
 msgid "High: 19-36"
 msgstr "Vysoká: 19–36"
 
@@ -16407,6 +16415,10 @@ msgstr "Rozhraní nyní při načítání žebříčku Denní Krowy reaguje plyn
 msgid "Improved notification cleanup for expired and resolved invitations. Tournament start and finish announcements no longer expire; the final announcement includes your place and the winner or joint winners."
 msgstr "Vylepšeno odstraňování oznámení o vypršelých a vyřízených pozvánkách. Oznámení o zahájení a ukončení turnaje už nevyprší. Závěrečné oznámení uvádí vaše umístění a vítěze, včetně případné remízy na prvním místě."
 
+#: lib/game_room_changelog.rb:719
+msgid "Improved performance when browsing long Monopoly games and evaluating trades."
+msgstr "Zrychlilo se prohlížení dlouhých partií Monopoly a vyhodnocování obchodních nabídek."
+
 #: lib/game_room_changelog.rb:298
 msgid "Improved rejoining tables and updating participants, hands and turns after replacing a player or changing the table master."
 msgstr ""
@@ -16430,6 +16442,10 @@ msgstr "Zlepšili jsme také jazyk a srozumitelnost anglických, českých, špa
 #: games/duck_racing_support/presentation.rb:114
 msgid "Impulsion"
 msgstr "Impuls"
+
+#: lib/game_room_changelog.rb:720
+msgid "In 1000 Miles with discard recycling, the round ends if no player can reach exactly 1000 miles with the remaining distance cards. Existing points count without a finish bonus."
+msgstr "Ve hře 1000 mil s opakovaným mícháním odhozených karet kolo skončí, pokud už nikdo se zbývajícími kartami vzdálenosti nemůže dosáhnout přesně 1000 mil. Dosavadní body se započítají bez prémie za dojetí do cíle."
 
 #: lib/game_room_changelog.rb:137
 msgid "In 99, exceeding the turn-time limit costs one token and passes the turn to the next player."
@@ -16536,6 +16552,10 @@ msgstr ""
 #: lib/game_room_changelog.rb:533
 msgid "In Mahjong tournament matches, concealed tiles are private to their owner. Ordinary matches retain computer players, player replacement and saved games."
 msgstr "V turnajových zápasech Mahjongu jsou skryté kameny dostupné jen svému majiteli. V běžných partiích zůstávají počítačoví hráči, nahrazování hráčů i ukládání hry."
+
+#: lib/game_room_changelog.rb:718
+msgid "In Monopoly, computer players accept legal gifts of money or properties when nothing is requested in return."
+msgstr "V Monopoly počítačoví hráči přijmou platný dar peněz nebo nemovitostí, pokud za něj nic nepožadujete."
 
 msgid "In Polish, use Shift+AltGr with A, C, E, L, N, O, S, X or Z for Ą, Ć, Ę, Ł, Ń, Ó, Ś, Ź or Ż."
 msgstr "V polštině použijte Shift+AltGr s klávesami A, C, E, L, N, O, S, X nebo Z pro písmena Ą, Ć, Ę, Ł, Ń, Ó, Ś, Ź nebo Ż."
@@ -16840,6 +16860,10 @@ msgstr "V rybníku"
 #: lib/game_room_changelog.rb:463
 msgid "In the question creator, Ctrl+N creates a set from the set list or adds a question from the question list. Enter opens a set or edits a question. Short selection lists accept both horizontal and vertical arrows. README now explains how to use the creator."
 msgstr "V editoru Ctrl+N vytvoří sadu v seznamu sad nebo přidá otázku v seznamu otázek. Enter otevře sadu nebo úpravu otázky. Krátké výběrové seznamy ovládáte šipkami nahoru a dolů i doleva a doprava. Použití editoru nyní popisuje README."
+
+#: lib/game_room_changelog.rb:716
+msgid "In the quiz question creator, Delete removes the selected question from a draft after confirmation."
+msgstr "V editoru kvízových otázek můžete klávesou Delete odstranit vybranou otázku z konceptu. Před odstraněním se zobrazí potvrzení."
 
 #: lib/game_room_changelog.rb:481
 msgid "In the quiz question creator, the first answer is now always the correct one, followed by the three incorrect answers. When editing an older draft, its correct answer moves to the first field."
@@ -17594,6 +17618,10 @@ msgstr "Žebříčky hry Krowa"
 msgid "Krowa leaderboards are temporarily unavailable."
 msgstr "Žebříčky hry Krowa jsou dočasně nedostupné."
 
+#: lib/game_room_changelog.rb:712
+msgid "Krowa leaderboards now offer word definitions in the context menu. Closing a daily leaderboard returns to the date list with the same day selected."
+msgstr "V žebříčcích Krowy si můžete z kontextové nabídky zobrazit význam slova. Po zavření výsledků dne se vrátíte do seznamu dat se zachovaným výběrem dne."
+
 #: lib/game_room_changelog.rb:541
 msgid "Krowa now clears the answer field after rejecting a word with the wrong length or one missing from the dictionary."
 msgstr "V Krowě se nyní pole odpovědi vymaže po odmítnutí slova s nesprávnou délkou nebo slova, které není ve slovníku."
@@ -17758,7 +17786,7 @@ msgstr ""
 msgid "Last game history"
 msgstr "Historie poslední hry"
 
-#: games/roulette.rb:148
+#: games/roulette.rb:135
 msgid "Last number: %{number}."
 msgstr "Poslední číslo: %{number}."
 
@@ -18370,7 +18398,7 @@ msgstr[2] "Ztratíte %{count} pírek."
 msgid "Loses by forfeit"
 msgstr "Prohrává kontumačně"
 
-#: games/roulette.rb:403
+#: games/roulette.rb:391
 msgid "Loss for %{player}: %{amount}."
 msgstr "Ztráta hráče %{player}: %{amount}."
 
@@ -18378,11 +18406,11 @@ msgstr "Ztráta hráče %{player}: %{amount}."
 msgid "Lost"
 msgstr "Prohry"
 
-#: games/roulette.rb:294
+#: games/roulette.rb:282
 msgid "Low or high"
 msgstr "Nízká nebo vysoká čísla"
 
-#: games/roulette.rb:300
+#: games/roulette.rb:288
 msgid "Low: 1-18"
 msgstr "Nízká: 1–18"
 
@@ -20411,7 +20439,7 @@ msgstr "Počet pokusů"
 msgid "Number of boards"
 msgstr "Počet rozdání"
 
-#: games/roulette.rb:179
+#: games/roulette.rb:174
 msgid "Number of chips to bet"
 msgstr "Počet sázených žetonů"
 
@@ -20484,11 +20512,11 @@ msgstr ""
 msgid "Occupied seats, including bots"
 msgstr "Počet hráčů včetně botů"
 
-#: games/roulette.rb:299
+#: games/roulette.rb:287
 msgid "Odd"
 msgstr "Lichá"
 
-#: games/roulette.rb:293
+#: games/roulette.rb:281
 msgid "Odd or even"
 msgstr "Lichá nebo sudá čísla"
 
@@ -20796,6 +20824,10 @@ msgstr "Otevřete Power Games, potom Uložené hry, Historie a záznamy a Import
 #: games/generated/rulebooks/mania_pisania.rb:32
 msgid "Open Saved games in the main menu to restore. All original players must join the restored table before it can start; observers are not required. Completed words, the current prefix, errors, scores and remaining time are restored. Time spent away does not count. A solo save includes its source text in a private account archive; shared multiplayer texts are already part of the table history. Keep the same word bank, braille table and Survival recordings when resuming."
 msgstr ""
+
+#: games/generated/rulebooks/roulette.rb:16
+msgid "Open a bet type with the arrows and Enter. Enter on a bet opens the amount field with up to ten chips suggested. Confirm that amount or change it. R finishes your betting turn, C removes and refunds your current bets, V reads them and S reads balances. Space spins in social mode when all are ready. T reads the turn; F1 lists shortcuts; Ctrl+F1 opens rules. Sounds play locally and respect Power Games volume."
+msgstr "Šipkami a Enterem otevři druh sázky. Enter na sázce otevře pole pro částku s návrhem nejvýše deseti žetonů. Částku potvrď nebo uprav. R ukončí sázení, C stáhne a vrátí tvé sázky, V je přečte a S přečte zůstatky. Mezerník roztočí kolo u společenského stolu, až jsou všichni připraveni. T přečte tah, F1 zkratky, Ctrl+F1 otevře pravidla. Zvuky se přehrávají místně a respektují hlasitost Power Games."
 
 #: lib/tournaments/proposal_notice_dialog.rb:24
 msgid "Open match table"
@@ -21206,7 +21238,7 @@ msgstr ""
 msgid "Pair: %{first} and %{second}."
 msgstr "Dvojice: %{first} a %{second}."
 
-#: games/roulette.rb:290
+#: games/roulette.rb:278
 msgid "Pairs of numbers"
 msgstr "Dvojice čísel"
 
@@ -21521,7 +21553,7 @@ msgstr "Položte alespoň jeden kámen a vytvořte nebo prodlužte slovo."
 msgid "Place at least two connected letters to form a word."
 msgstr "Vytvořte slovo z alespoň dvou propojených písmen."
 
-#: games/roulette.rb:181
+#: games/roulette.rb:150
 msgid "Place bet"
 msgstr "Vsadit"
 
@@ -21540,7 +21572,7 @@ msgstr "Pokládat písmena přímo na hrací desku"
 msgid "Place on an empty field beside an existing disc."
 msgstr "Položte kámen na prázdné pole vedle již položeného kamene."
 
-#: games/roulette.rb:181
+#: games/roulette.rb:176
 msgid "Place roulette bet"
 msgstr "Vsadit v ruletě"
 
@@ -22639,7 +22671,7 @@ msgstr "Při vytváření kterékoli hry lze zvolit soukromý stůl. Soukromé s
 msgid "Profession"
 msgstr "Povolání"
 
-#: games/roulette.rb:401
+#: games/roulette.rb:389
 msgid "Profit for %{player}: %{amount}."
 msgstr "Zisk hráče %{player}: %{amount}."
 
@@ -23383,7 +23415,7 @@ msgstr "Název záznamu"
 msgid "Recover a joker by replacing it"
 msgstr ""
 
-#: games/roulette.rb:299
+#: games/roulette.rb:287
 msgid "Red"
 msgstr "Červená"
 
@@ -23617,7 +23649,7 @@ msgstr "Odebrat počítačového hráče"
 msgid "Remove all 144 tiles in matching pairs. You play alone and win when you remove the last pair."
 msgstr ""
 
-#: games/roulette.rb:141
+#: games/roulette.rb:129
 msgid "Remove all my bets"
 msgstr "Zrušit všechny mé sázky"
 
@@ -24389,9 +24421,13 @@ msgstr ""
 msgid "Roulette"
 msgstr "Ruleta"
 
-#: games/roulette.rb:175
+#: games/roulette.rb:170
 msgid "Roulette bet"
 msgstr "Sázka v ruletě"
+
+#: lib/game_room_changelog.rb:715
+msgid "Roulette bets are grouped by type, making the lists easier to browse. The B form uses the same groups when you choose your own stake."
+msgstr "Sázky v ruletě jsou rozdělené podle typu, takže se v nich lépe orientuje. Stejné skupiny používá i formulář pod klávesou B, kde lze zadat vlastní částku."
 
 #: games/roulette.rb:29
 msgid "Roulette wheel"
@@ -24593,7 +24629,7 @@ msgstr "Kola"
 msgid "Rounds and multiplayer matches"
 msgstr ""
 
-#: games/roulette.rb:291
+#: games/roulette.rb:279
 msgid "Rows of three numbers"
 msgstr "Řady po třech číslech"
 
@@ -25210,11 +25246,11 @@ msgstr ""
 msgid "Second betting round."
 msgstr "Druhé kolo sázek."
 
-#: games/roulette.rb:302
+#: games/roulette.rb:290
 msgid "Second column"
 msgstr "Druhý sloupec"
 
-#: games/roulette.rb:301
+#: games/roulette.rb:289
 msgid "Second dozen"
 msgstr "Druhý tucet"
 
@@ -26114,7 +26150,7 @@ msgstr "Dvouhra"
 msgid "Single Double 6 contains 28 tiles, deals seven each and supports two to four players. Every other set deals ten. Double 9 and twice Double 6 support at most five players; all remaining sets support at most eight. The list also offers Double 12, 15 and 18, twice Double 9 or 12, and four times Double 6, 9 or 12. Identical copies remain separate tiles."
 msgstr ""
 
-#: games/roulette.rb:290
+#: games/roulette.rb:278
 msgid "Single numbers"
 msgstr "Jednotlivá čísla"
 
@@ -26532,7 +26568,7 @@ msgstr "Omezení rychlosti"
 msgid "Spell the current word (Ctrl+L)"
 msgstr "Hláskovat aktuální slovo (Ctrl+L)"
 
-#: games/roulette.rb:146
+#: games/roulette.rb:133
 msgid "Spin %{round} of %{total}."
 msgstr "Roztočení %{round} z %{total}."
 
@@ -26544,11 +26580,11 @@ msgstr "Roztočení %{round}; poslední číslo %{number}; tvé žetony %{chips}
 msgid "Spin %{round}; last number %{number}; your chips %{chips}. B opens a bet with a custom amount."
 msgstr "Roztočení %{round}; poslední číslo %{number}; tvé žetony %{chips}. B otevře sázku s vlastní částkou."
 
-#: games/roulette.rb:141
+#: games/roulette.rb:129
 msgid "Spin the wheel"
 msgstr "Roztočit kolo"
 
-#: games/roulette.rb:232
+#: games/roulette.rb:220
 msgid "Spin the wheel with Space."
 msgstr "Roztoč kolo mezerníkem."
 
@@ -27572,6 +27608,10 @@ msgstr "Texty a dokončení"
 msgid "Thank you to Zuzler for reporting problems with quiz questions!"
 msgstr "Děkujeme Zuzler za nahlášení chyb v kvízových otázkách!"
 
+#: lib/game_room_changelog.rb:721
+msgid "Thanks to td-programs for the Krowa, Braille echo and table-role improvements!"
+msgstr "Děkujeme td-programs za vylepšení Krowy, odezvy při psaní braillem a změn rolí u stolu!"
+
 #: games/poker.rb:482
 msgid "That betting action is not available now."
 msgstr "Tato sázková akce nyní není dostupná."
@@ -27831,7 +27871,7 @@ msgstr "Zvukovou hru se nepodařilo spustit. Výzva bude zrušena."
 msgid "The ball is invisible."
 msgstr "Míček je neviditelný."
 
-#: games/roulette.rb:396
+#: games/roulette.rb:384
 msgid "The ball lands on %{number}."
 msgstr "Kulička padla na číslo %{number}."
 
@@ -28452,7 +28492,7 @@ msgstr ""
 msgid "The game ended in a draw between %{players}."
 msgstr ""
 
-#: games/base.rb:491 games/base.rb:597 games/chess.rb:414 games/dealt_card_game.rb:177 games/mille_bornes/presentation.rb:125
+#: games/base.rb:497 games/base.rb:603 games/chess.rb:414 games/dealt_card_game.rb:177 games/mille_bornes/presentation.rb:125
 msgid "The game ended in a draw."
 msgstr "Hra skončila remízou."
 
@@ -28497,7 +28537,7 @@ msgstr "Hra skončila. Herní desku si můžete dál prohlížet."
 msgid "The game includes the agreed international board list and a Polish board. Every board uses the same rules engine and differs only in names and presentation."
 msgstr ""
 
-#: games/base.rb:542 games/ludo.rb:397 games/ninety_nine.rb:944 games/scientific_war.rb:824
+#: games/base.rb:548 games/ludo.rb:397 games/ninety_nine.rb:944 games/scientific_war.rb:824
 msgid "The game is finished."
 msgstr "Hra skončila."
 
@@ -29657,6 +29697,10 @@ msgstr "Historii stolu se nepodařilo uložit."
 msgid "The table history has been saved to %{path}."
 msgstr "Historie stolu byla uložena do %{path}."
 
+#: lib/game_room_changelog.rb:714
+msgid "The table host can use Ctrl+Shift+P on their own name to choose whether to play or observe the next game."
+msgstr "Hostitel stolu může pomocí Ctrl+Shift+P na svém jméně zvolit, zda bude příští partii hrát, nebo sledovat."
+
 #: games/domino.rb:185 lib/game_surfaces/tile_hand.rb:156
 msgid "The table is empty."
 msgstr "Stůl je prázdný."
@@ -29939,7 +29983,7 @@ msgstr "Ve stínu stromů je voda chladná."
 msgid "The water swirls around you."
 msgstr "Voda kolem tebe víří."
 
-#: games/roulette.rb:243
+#: games/roulette.rb:231
 msgid "The wheel is spinning."
 msgstr "Kolo se točí."
 
@@ -30128,7 +30172,7 @@ msgstr[0] "Aktuální počet uživatelů u stolu: %{current}."
 msgstr[1] "Aktuální počet uživatelů u stolu: %{current}."
 msgstr[2] "Aktuální počet uživatelů u stolu: %{current}."
 
-#: games/base.rb:543 games/board_game.rb:232
+#: games/base.rb:549 games/board_game.rb:232
 msgid "There is no active turn."
 msgstr "Právě není nikdo na tahu."
 
@@ -30353,11 +30397,11 @@ msgstr "Čas na rozmyšlenou musí být nula nebo v rozmezí %{minimum} až %{ma
 msgid "Thinking time must be zero or from 20 to 600 seconds."
 msgstr "Čas na rozmyšlenou musí být nula nebo 20 až 600 sekund."
 
-#: games/roulette.rb:302
+#: games/roulette.rb:290
 msgid "Third column"
 msgstr "Třetí sloupec"
 
-#: games/roulette.rb:301
+#: games/roulette.rb:289
 msgid "Third dozen"
 msgstr "Třetí tucet"
 
@@ -31860,7 +31904,7 @@ msgstr "Na dvojky a trojky lze vzájemně navazovat"
 msgid "Twos, threes, fours and kings"
 msgstr ""
 
-#: __app.rb:2170 lib/game_screen/input.rb:381
+#: __app.rb:2170 lib/game_screen/input.rb:388
 msgid "Type a chat message first."
 msgstr "Nejprve napište zprávu do chatu."
 
@@ -31984,6 +32028,10 @@ msgstr ""
 #: lib/mania_pisania/client.rb:340
 msgid "Typing echo during the game"
 msgstr "Odezva psaní ve hře"
+
+#: lib/game_room_changelog.rb:713
+msgid "Typing echo now works with Braille input in Typoholism. An incomplete Braille prefix no longer ends the attempt."
+msgstr "Odezva psaní v Psanománii nyní funguje i při zadávání braillem. Neúplný braillský zápis už neukončí celý pokus."
 
 #: games/mania_pisania.rb:312
 msgid "Typing finished."
@@ -32277,11 +32325,11 @@ msgstr "Upraveny ruské názvy a pokyny pro hlasový chat. Děkujeme uživateli 
 msgid "Updated the Russian translation by Danil (Kostenkov-2021) and corrected translations of River in Categories and Poker."
 msgstr ""
 
-#: lib/game_screen.rb:1061 lib/game_screen.rb:454 lib/game_screen/input.rb:563
+#: lib/game_screen.rb:1061 lib/game_screen.rb:454 lib/game_screen/input.rb:570
 msgid "Updating game"
 msgstr "Aktualizace hry"
 
-#: __app.rb:1647 __app.rb:2037 __app.rb:2289 __app.rb:2298 __app.rb:2309 __app.rb:2438 __app.rb:2487 __app.rb:3737 __app.rb:3746 __app.rb:3892 __app.rb:3909 __app.rb:3950 lib/game_screen.rb:1105 lib/game_screen/input.rb:531
+#: __app.rb:1647 __app.rb:2037 __app.rb:2289 __app.rb:2298 __app.rb:2309 __app.rb:2438 __app.rb:2487 __app.rb:3737 __app.rb:3746 __app.rb:3892 __app.rb:3909 __app.rb:3950 lib/game_screen.rb:1105 lib/game_screen/input.rb:538
 msgid "Updating table"
 msgstr "Aktualizace stolu"
 
@@ -34179,7 +34227,7 @@ msgstr "Nemáte žádné zlato."
 msgid "You have no active tournaments. The current tournaments are shown instead."
 msgstr "Neúčastníte se žádného aktuálního turnaje. Zobrazí se všechny aktuální turnaje."
 
-#: games/roulette.rb:164
+#: games/roulette.rb:166
 msgid "You have no bets on this spin."
 msgstr "Na toto roztočení nemáš sázky."
 
@@ -34639,7 +34687,7 @@ msgstr "Vaše hotovost: %{cash}."
 msgid "Your challenge attempt could not be saved. The challenge will be cancelled."
 msgstr "Váš pokus se nepodařilo uložit. Výzva bude zrušena."
 
-#: games/roulette.rb:150
+#: games/roulette.rb:137
 msgid "Your chips: %{chips}."
 msgstr "Tvoje žetony: %{chips}."
 
@@ -35774,7 +35822,7 @@ msgstr "fan"
 msgid "finish"
 msgstr "cíl"
 
-#: games/roulette.rb:184
+#: games/roulette.rb:172
 msgid "finish betting"
 msgstr "ukončit sázení"
 
@@ -36335,7 +36383,7 @@ msgstr "růžová"
 msgid "pink group"
 msgstr "růžová skupina"
 
-#: games/roulette.rb:180
+#: games/roulette.rb:175
 msgid "place a bet with your own amount"
 msgstr "vsadit vlastní částku"
 
@@ -36579,7 +36627,7 @@ msgstr "přečtěte částku k dorovnání"
 msgid "read the cards on the table"
 msgstr "přečíst karty na stole"
 
-#: games/roulette.rb:157
+#: games/roulette.rb:159
 msgid "read the chip balances"
 msgstr "přečíst zůstatky žetonů"
 
@@ -36882,7 +36930,7 @@ msgstr "přečíst vaši pozici a pírka"
 msgid "read your rack"
 msgstr "přečtěte svůj stojánek"
 
-#: games/roulette.rb:164
+#: games/roulette.rb:166
 msgid "read your roulette bets"
 msgstr "přečíst své sázky rulety"
 
@@ -36938,7 +36986,7 @@ msgstr "propuštění z vězení"
 msgid "remaining time"
 msgstr "zbývající čas"
 
-#: games/roulette.rb:184
+#: games/roulette.rb:172
 msgid "remove all your bets"
 msgstr "zrušit všechny své sázky"
 
@@ -37122,7 +37170,7 @@ msgstr "piky"
 msgid "spell the current word"
 msgstr "hláskovat aktuální slovo"
 
-#: games/roulette.rb:168
+#: games/roulette.rb:170
 msgid "spin the wheel"
 msgstr "roztočit kolo"
 

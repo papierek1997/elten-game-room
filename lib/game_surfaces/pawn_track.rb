@@ -95,7 +95,9 @@ module GameSurfaces
       position = position.to_h
       @control.index = @items.index { |item| item.id == position["item_id"] } ||
         position.fetch("index", 0).to_i.clamp(0, [@items.size - 1, 0].max)
-      @control.focus
+      # Changing a local menu is not entering the table again. Announce the
+      # selected entry, retaining native focus/braille without the full status.
+      @control.focus(nil, nil, "")
     end
 
     def emit_surface_action(action)

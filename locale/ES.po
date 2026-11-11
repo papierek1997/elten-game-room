@@ -43,9 +43,13 @@ msgstr "%{action}: %{tiles}"
 msgid "%{answer}; status: %{status}"
 msgstr "%{answer}; estado: %{status}"
 
-#: games/roulette.rb:307
+#: games/roulette.rb:295
 msgid "%{bet}, pays %{odds} to 1"
 msgstr "%{bet}, paga %{odds} a 1"
+
+#: games/roulette.rb:151
+msgid "%{bet}. Number of chips to bet:"
+msgstr "%{bet}. Fichas que quieres apostar:"
 
 #: games/roulette.rb:131
 msgid "%{bet}; stake: %{amount}"
@@ -846,7 +850,7 @@ msgstr "%{player} empieza la última vuelta."
 msgid "%{player} bet %{chips} chips."
 msgstr "%{player} apostó %{chips} fichas."
 
-#: games/roulette.rb:342
+#: games/roulette.rb:330
 msgid "%{player} bets %{amount} on %{bet}."
 msgstr "%{player} apuesta %{amount} a %{bet}."
 
@@ -1211,7 +1215,7 @@ msgstr[1] "%{player} se enfrenta a una penalización de %{count} turnos de esper
 msgid "%{player} finished exchanging cards."
 msgstr ""
 
-#: games/roulette.rb:349
+#: games/roulette.rb:337
 msgid "%{player} finishes betting."
 msgstr "%{player} termina de apostar."
 
@@ -1231,7 +1235,7 @@ msgstr "%{player} no ha ganado puntos."
 msgid "%{player} gave you %{card}."
 msgstr "%{player} te ha dado %{card}."
 
-#: games/roulette.rb:405
+#: games/roulette.rb:393
 msgid "%{player} gets their stake back."
 msgstr "%{player} recupera lo apostado."
 
@@ -1940,7 +1944,7 @@ msgstr "%{player} ha eliminado un ordenador."
 msgid "%{player} removes %{letter} from %{field}."
 msgstr ""
 
-#: games/roulette.rb:345
+#: games/roulette.rb:333
 msgid "%{player} removes their bets."
 msgstr "%{player} retira sus apuestas."
 
@@ -2336,7 +2340,7 @@ msgid_plural "%{player} will skip %{count} turns."
 msgstr[0] "%{player} se saltará %{count} turno."
 msgstr[1] "%{player} se saltará %{count} turnos."
 
-#: games/roulette.rb:233
+#: games/roulette.rb:221
 msgid "%{player} will spin the wheel."
 msgstr "%{player} girará la ruleta."
 
@@ -2421,7 +2425,7 @@ msgstr "%{player} ha ganado la subasta de %{property} por %{amount}."
 msgid "%{player} won the game with %{points} points."
 msgstr "%{player} ha ganado la partida con %{points} puntos."
 
-#: games/audio_ball.rb:152 games/audio_ball.rb:221 games/axel_pong.rb:145 games/axel_pong.rb:205 games/base.rb:489 games/base.rb:589 games/categories.rb:967 games/dealt_card_game.rb:176 games/ludo.rb:196 games/ludo.rb:375 games/mille_bornes/presentation.rb:127 games/quiz_party.rb:838 games/rummy.rb:582
+#: games/audio_ball.rb:152 games/audio_ball.rb:221 games/axel_pong.rb:145 games/axel_pong.rb:205 games/base.rb:495 games/base.rb:595 games/categories.rb:967 games/dealt_card_game.rb:176 games/ludo.rb:196 games/ludo.rb:375 games/mille_bornes/presentation.rb:127 games/quiz_party.rb:838 games/rummy.rb:582
 msgid "%{player} won the game."
 msgstr "%{player} ha ganado la partida."
 
@@ -8082,11 +8086,11 @@ msgstr "Apostar %{amount} a %{bet}"
 msgid "Bet %{chips} chips"
 msgstr "Apostar %{chips} fichas"
 
-#: games/roulette.rb:171
+#: games/roulette.rb:166
 msgid "Bet type"
 msgstr "Tipo de apuesta"
 
-#: games/roulette.rb:294
+#: games/roulette.rb:282
 msgid "Bets including zero"
 msgstr "Apuestas que incluyen el cero"
 
@@ -8236,7 +8240,7 @@ msgctxt "categories"
 msgid "Bird"
 msgstr "Ave"
 
-#: games/roulette.rb:299
+#: games/roulette.rb:287
 msgid "Black"
 msgstr "Negro"
 
@@ -9375,7 +9379,7 @@ msgstr "Chat"
 msgid "Chat history"
 msgstr "Historial del chat"
 
-#: lib/game_screen/input.rb:386
+#: lib/game_screen/input.rb:393
 msgid "Chat is not available."
 msgstr "El chat no está disponible."
 
@@ -9531,7 +9535,7 @@ msgstr ""
 msgid "Checking for Power Games updates"
 msgstr ""
 
-#: lib/game_screen/input.rb:510
+#: lib/game_screen/input.rb:517
 msgid "Checking for game updates"
 msgstr "Comprobando las actualizaciones de la partida"
 
@@ -9969,7 +9973,7 @@ msgstr "Elige una ficha con las flechas. Enter la juega en el único tren permit
 msgid "Choose a trade proposal"
 msgstr "Elige una propuesta de intercambio"
 
-#: games/roulette.rb:246
+#: games/roulette.rb:234
 msgid "Choose a valid bet and a positive whole number of chips within your balance."
 msgstr "Elija una apuesta válida y fichas enteras positivas dentro de su saldo."
 
@@ -10551,11 +10555,11 @@ msgstr ""
 msgid "Color"
 msgstr "Color"
 
-#: games/roulette.rb:293
+#: games/roulette.rb:281
 msgid "Colours"
 msgstr "Colores"
 
-#: games/roulette.rb:293
+#: games/roulette.rb:281
 msgid "Columns"
 msgstr "Columnas"
 
@@ -11274,6 +11278,10 @@ msgstr "Ctrl+D: abre los ajustes de Krowa para la música, los efectos y tu dicc
 #: lib/game_history_navigation.rb:18
 msgid "Ctrl+End: read the last entry in the selected history category."
 msgstr "Ctrl+End: leer la última entrada de la categoría del historial seleccionada."
+
+#: lib/game_room_changelog.rb:717
+msgid "Ctrl+F2 switches additional game sound effects on or off. Chat, notifications and the sounds needed for audio games and listening challenges are not muted."
+msgstr "Ctrl+F2 activa o desactiva los efectos de sonido adicionales de los juegos. No silencia el chat, las notificaciones ni los sonidos necesarios para los juegos de audio y los retos auditivos."
 
 #: lib/game_room_ui.rb:36
 msgid "Ctrl+F2: enable or disable additional game sound effects."
@@ -12495,7 +12503,7 @@ msgstr "Flecha abajo: seleccionar el tercer carril o realizar el tercer tipo de 
 msgid "Downloading recording"
 msgstr "Descargando registro"
 
-#: games/roulette.rb:292
+#: games/roulette.rb:280
 msgid "Dozens"
 msgstr "Docenas"
 
@@ -13905,7 +13913,7 @@ msgstr "Europa usa 0–36; América añade 00. Francia usa un cero y la partage:
 msgid "European: single zero"
 msgstr "Europea: un cero"
 
-#: games/roulette.rb:299
+#: games/roulette.rb:287
 msgid "Even"
 msgstr "Par"
 
@@ -14439,7 +14447,7 @@ msgstr "Termine todas las partidas de esta fase antes de preparar la siguiente."
 msgid "Finish answering"
 msgstr "Terminar de responder"
 
-#: games/roulette.rb:141
+#: games/roulette.rb:129
 msgid "Finish betting"
 msgstr "Terminar apuestas"
 
@@ -14515,11 +14523,11 @@ msgstr ""
 msgid "First betting round."
 msgstr "Primera ronda de apuestas."
 
-#: games/roulette.rb:302
+#: games/roulette.rb:290
 msgid "First column"
 msgstr "Primera columna"
 
-#: games/roulette.rb:301
+#: games/roulette.rb:289
 msgid "First dozen"
 msgstr "Primera docena"
 
@@ -15384,11 +15392,11 @@ msgstr "Ajustes del juego"
 msgid "Game sounds"
 msgstr "Sonidos de los juegos"
 
-#: games/base.rb:567
+#: games/base.rb:573
 msgid "Game started: %{first} versus %{second}."
 msgstr "Ha empezado la partida: %{first} contra %{second}."
 
-#: games/base.rb:572 games/ludo.rb:357 lib/game_table_background.rb:129
+#: games/base.rb:578 games/ludo.rb:357 lib/game_table_background.rb:129
 msgid "Game started: %{players}."
 msgstr "Ha empezado la partida: %{players}."
 
@@ -15609,11 +15617,11 @@ msgstr "Los grupos y eliminatorias requieren actualmente dos jugadores individua
 msgid "Groups follow the participant list in rotation. This is not a draw or ranking-based seeding."
 msgstr ""
 
-#: games/roulette.rb:291
+#: games/roulette.rb:279
 msgid "Groups of four numbers"
 msgstr "Grupos de cuatro números"
 
-#: games/roulette.rb:292
+#: games/roulette.rb:280
 msgid "Groups of six numbers"
 msgstr "Grupos de seis números"
 
@@ -15820,7 +15828,7 @@ msgstr "Central hidroeléctrica de Đerdap"
 msgid "High card"
 msgstr "Carta alta"
 
-#: games/roulette.rb:300
+#: games/roulette.rb:288
 msgid "High: 19-36"
 msgstr "Altos: 19–36"
 
@@ -16347,6 +16355,10 @@ msgstr "La interfaz responde con mayor fluidez mientras se carga la clasificaci�
 msgid "Improved notification cleanup for expired and resolved invitations. Tournament start and finish announcements no longer expire; the final announcement includes your place and the winner or joint winners."
 msgstr "Se ha mejorado la limpieza de notificaciones de invitaciones caducadas y resueltas. Los avisos de inicio y fin de torneo ya no caducan; el aviso final incluye tu puesto y el ganador o los ganadores empatados."
 
+#: lib/game_room_changelog.rb:719
+msgid "Improved performance when browsing long Monopoly games and evaluating trades."
+msgstr "Se ha agilizado la consulta de partidas largas de Monopoly y la valoración de intercambios."
+
 #: lib/game_room_changelog.rb:298
 msgid "Improved rejoining tables and updating participants, hands and turns after replacing a player or changing the table master."
 msgstr ""
@@ -16370,6 +16382,10 @@ msgstr "También hemos mejorado la redacción y la claridad de las reglas en ing
 #: games/duck_racing_support/presentation.rb:114
 msgid "Impulsion"
 msgstr "Impulso"
+
+#: lib/game_room_changelog.rb:720
+msgid "In 1000 Miles with discard recycling, the round ends if no player can reach exactly 1000 miles with the remaining distance cards. Existing points count without a finish bonus."
+msgstr "En 1000 millas con reciclaje de descartes, la ronda termina si nadie puede alcanzar exactamente 1000 millas con las cartas de distancia restantes. Se cuentan los puntos acumulados sin bonificación por llegar a la meta."
 
 #: lib/game_room_changelog.rb:137
 msgid "In 99, exceeding the turn-time limit costs one token and passes the turn to the next player."
@@ -16476,6 +16492,10 @@ msgstr ""
 #: lib/game_room_changelog.rb:533
 msgid "In Mahjong tournament matches, concealed tiles are private to their owner. Ordinary matches retain computer players, player replacement and saved games."
 msgstr "En los torneos de Mahjong, solo el propietario tiene acceso a sus fichas ocultas. Las partidas normales mantienen los bots, la sustitución de jugadores y el guardado de partidas."
+
+#: lib/game_room_changelog.rb:718
+msgid "In Monopoly, computer players accept legal gifts of money or properties when nothing is requested in return."
+msgstr "En Monopoly, los jugadores controlados por el ordenador aceptan regalos válidos de dinero o propiedades si no se les pide nada a cambio."
 
 msgid "In Polish, use Shift+AltGr with A, C, E, L, N, O, S, X or Z for Ą, Ć, Ę, Ł, Ń, Ó, Ś, Ź or Ż."
 msgstr "En polaco, usa Shift+AltGr con A, C, E, L, N, O, S, X o Z para escribir Ą, Ć, Ę, Ł, Ń, Ó, Ś, Ź o Ż."
@@ -16780,6 +16800,10 @@ msgstr "En el estanque"
 #: lib/game_room_changelog.rb:463
 msgid "In the question creator, Ctrl+N creates a set from the set list or adds a question from the question list. Enter opens a set or edits a question. Short selection lists accept both horizontal and vertical arrows. README now explains how to use the creator."
 msgstr "En el editor, Ctrl+N crea un conjunto desde la lista de conjuntos o añade una pregunta desde la lista de preguntas. Enter abre un conjunto o permite editar una pregunta. Las listas de selección cortas admiten tanto las flechas verticales como las horizontales. README explica ahora cómo usar el editor."
+
+#: lib/game_room_changelog.rb:716
+msgid "In the quiz question creator, Delete removes the selected question from a draft after confirmation."
+msgstr "En el creador de preguntas, la tecla Supr elimina la pregunta seleccionada del borrador tras pedir confirmación."
 
 #: lib/game_room_changelog.rb:481
 msgid "In the quiz question creator, the first answer is now always the correct one, followed by the three incorrect answers. When editing an older draft, its correct answer moves to the first field."
@@ -17534,6 +17558,10 @@ msgstr "Clasificaciones de Krowa"
 msgid "Krowa leaderboards are temporarily unavailable."
 msgstr "Las clasificaciones de Krowa no están disponibles temporalmente."
 
+#: lib/game_room_changelog.rb:712
+msgid "Krowa leaderboards now offer word definitions in the context menu. Closing a daily leaderboard returns to the date list with the same day selected."
+msgstr "Las clasificaciones de Krowa permiten consultar la definición de una palabra desde el menú contextual. Al cerrar los resultados de un día vuelves a la lista de fechas con ese día seleccionado."
+
 #: lib/game_room_changelog.rb:541
 msgid "Krowa now clears the answer field after rejecting a word with the wrong length or one missing from the dictionary."
 msgstr "En Krowa, el campo de respuesta se vacía tras rechazar una palabra de longitud incorrecta o que no figura en el diccionario."
@@ -17698,7 +17726,7 @@ msgstr ""
 msgid "Last game history"
 msgstr "Historial de la última partida"
 
-#: games/roulette.rb:148
+#: games/roulette.rb:135
 msgid "Last number: %{number}."
 msgstr "Último número: %{number}."
 
@@ -18309,7 +18337,7 @@ msgstr[1] "Pierde %{count} plumas."
 msgid "Loses by forfeit"
 msgstr "Pierde por incomparecencia"
 
-#: games/roulette.rb:403
+#: games/roulette.rb:391
 msgid "Loss for %{player}: %{amount}."
 msgstr "%{player} pierde %{amount}."
 
@@ -18317,11 +18345,11 @@ msgstr "%{player} pierde %{amount}."
 msgid "Lost"
 msgstr "Perdidos"
 
-#: games/roulette.rb:294
+#: games/roulette.rb:282
 msgid "Low or high"
 msgstr "Números bajos o altos"
 
-#: games/roulette.rb:300
+#: games/roulette.rb:288
 msgid "Low: 1-18"
 msgstr "Bajos: 1–18"
 
@@ -20347,7 +20375,7 @@ msgstr "Número de intentos"
 msgid "Number of boards"
 msgstr "Número de manos"
 
-#: games/roulette.rb:179
+#: games/roulette.rb:174
 msgid "Number of chips to bet"
 msgstr "Fichas que apostar"
 
@@ -20420,11 +20448,11 @@ msgstr ""
 msgid "Occupied seats, including bots"
 msgstr "Número de jugadores, incluidos los bots"
 
-#: games/roulette.rb:299
+#: games/roulette.rb:287
 msgid "Odd"
 msgstr "Impar"
 
-#: games/roulette.rb:293
+#: games/roulette.rb:281
 msgid "Odd or even"
 msgstr "Impares o pares"
 
@@ -20732,6 +20760,10 @@ msgstr "Abre Power Games, luego Partidas guardadas, Historiales y repeticiones e
 #: games/generated/rulebooks/mania_pisania.rb:32
 msgid "Open Saved games in the main menu to restore. All original players must join the restored table before it can start; observers are not required. Completed words, the current prefix, errors, scores and remaining time are restored. Time spent away does not count. A solo save includes its source text in a private account archive; shared multiplayer texts are already part of the table history. Keep the same word bank, braille table and Survival recordings when resuming."
 msgstr ""
+
+#: games/generated/rulebooks/roulette.rb:16
+msgid "Open a bet type with the arrows and Enter. Enter on a bet opens the amount field with up to ten chips suggested. Confirm that amount or change it. R finishes your betting turn, C removes and refunds your current bets, V reads them and S reads balances. Space spins in social mode when all are ready. T reads the turn; F1 lists shortcuts; Ctrl+F1 opens rules. Sounds play locally and respect Power Games volume."
+msgstr "Abre un tipo de apuesta con las flechas e Intro. Al pulsar Intro sobre una apuesta se abre el importe, con una propuesta de hasta diez fichas. Confirma o cambia la cantidad. R termina tu turno de apuestas; C retira tus apuestas y devuelve las fichas; V las lee y S lee los saldos. En el modo social, Espacio gira la rueda cuando todos están listos. T lee el turno, F1 los atajos y Ctrl+F1 abre las reglas. Los sonidos se reproducen localmente y respetan el volumen de Power Games."
 
 #: lib/tournaments/proposal_notice_dialog.rb:24
 msgid "Open match table"
@@ -21142,7 +21174,7 @@ msgstr ""
 msgid "Pair: %{first} and %{second}."
 msgstr "Pareja: %{first} y %{second}."
 
-#: games/roulette.rb:290
+#: games/roulette.rb:278
 msgid "Pairs of numbers"
 msgstr "Pares de números"
 
@@ -21457,7 +21489,7 @@ msgstr "Coloca al menos una ficha para formar o ampliar una palabra."
 msgid "Place at least two connected letters to form a word."
 msgstr "Coloca al menos dos letras conectadas para formar una palabra."
 
-#: games/roulette.rb:181
+#: games/roulette.rb:150
 msgid "Place bet"
 msgstr "Apostar"
 
@@ -21476,7 +21508,7 @@ msgstr "Colocar letras directamente en el tablero"
 msgid "Place on an empty field beside an existing disc."
 msgstr "Coloca la ficha en una casilla vacía junto a una ficha existente."
 
-#: games/roulette.rb:181
+#: games/roulette.rb:176
 msgid "Place roulette bet"
 msgstr "Apostar en la ruleta"
 
@@ -22575,7 +22607,7 @@ msgstr "Se pueden elegir mesas privadas al crear una partida de cualquier juego.
 msgid "Profession"
 msgstr "Profesión"
 
-#: games/roulette.rb:401
+#: games/roulette.rb:389
 msgid "Profit for %{player}: %{amount}."
 msgstr "%{player} gana %{amount}."
 
@@ -23318,7 +23350,7 @@ msgstr "Nombre del registro"
 msgid "Recover a joker by replacing it"
 msgstr ""
 
-#: games/roulette.rb:299
+#: games/roulette.rb:287
 msgid "Red"
 msgstr "Rojo"
 
@@ -23552,7 +23584,7 @@ msgstr "Eliminar un ordenador"
 msgid "Remove all 144 tiles in matching pairs. You play alone and win when you remove the last pair."
 msgstr ""
 
-#: games/roulette.rb:141
+#: games/roulette.rb:129
 msgid "Remove all my bets"
 msgstr "Retirar todas mis apuestas"
 
@@ -24324,9 +24356,13 @@ msgstr ""
 msgid "Roulette"
 msgstr "Ruleta"
 
-#: games/roulette.rb:175
+#: games/roulette.rb:170
 msgid "Roulette bet"
 msgstr "Apuesta de ruleta"
+
+#: lib/game_room_changelog.rb:715
+msgid "Roulette bets are grouped by type, making the lists easier to browse. The B form uses the same groups when you choose your own stake."
+msgstr "Las apuestas de la ruleta se agrupan por tipo para facilitar la búsqueda. El formulario de la tecla B usa los mismos grupos y permite elegir el importe de la apuesta."
 
 #: games/roulette.rb:29
 msgid "Roulette wheel"
@@ -24528,7 +24564,7 @@ msgstr "Rondas"
 msgid "Rounds and multiplayer matches"
 msgstr ""
 
-#: games/roulette.rb:291
+#: games/roulette.rb:279
 msgid "Rows of three numbers"
 msgstr "Filas de tres números"
 
@@ -25145,11 +25181,11 @@ msgstr ""
 msgid "Second betting round."
 msgstr "Segunda ronda de apuestas."
 
-#: games/roulette.rb:302
+#: games/roulette.rb:290
 msgid "Second column"
 msgstr "Segunda columna"
 
-#: games/roulette.rb:301
+#: games/roulette.rb:289
 msgid "Second dozen"
 msgstr "Segunda docena"
 
@@ -26049,7 +26085,7 @@ msgstr "Individual"
 msgid "Single Double 6 contains 28 tiles, deals seven each and supports two to four players. Every other set deals ten. Double 9 and twice Double 6 support at most five players; all remaining sets support at most eight. The list also offers Double 12, 15 and 18, twice Double 9 or 12, and four times Double 6, 9 or 12. Identical copies remain separate tiles."
 msgstr ""
 
-#: games/roulette.rb:290
+#: games/roulette.rb:278
 msgid "Single numbers"
 msgstr "Números individuales"
 
@@ -26465,7 +26501,7 @@ msgstr "Límite de velocidad"
 msgid "Spell the current word (Ctrl+L)"
 msgstr "Deletrear la palabra actual (Ctrl+L)"
 
-#: games/roulette.rb:146
+#: games/roulette.rb:133
 msgid "Spin %{round} of %{total}."
 msgstr "Tirada %{round} de %{total}."
 
@@ -26477,11 +26513,11 @@ msgstr "Giro %{round}; último número %{number}; sus fichas %{chips}."
 msgid "Spin %{round}; last number %{number}; your chips %{chips}. B opens a bet with a custom amount."
 msgstr "Giro %{round}; último número %{number}; sus fichas %{chips}. B abre apuesta con cantidad propia."
 
-#: games/roulette.rb:141
+#: games/roulette.rb:129
 msgid "Spin the wheel"
 msgstr "Girar la rueda"
 
-#: games/roulette.rb:232
+#: games/roulette.rb:220
 msgid "Spin the wheel with Space."
 msgstr "Pulsa Espacio para girar la ruleta."
 
@@ -27504,6 +27540,10 @@ msgstr "Textos y progreso"
 msgid "Thank you to Zuzler for reporting problems with quiz questions!"
 msgstr "¡Gracias a Zuzler por avisarnos de errores en las preguntas del concurso!"
 
+#: lib/game_room_changelog.rb:721
+msgid "Thanks to td-programs for the Krowa, Braille echo and table-role improvements!"
+msgstr "¡Gracias a td-programs por las mejoras de Krowa, del eco de escritura braille y de los cambios de rol en la mesa!"
+
 #: games/poker.rb:482
 msgid "That betting action is not available now."
 msgstr "Esa acción de apuesta no está disponible ahora."
@@ -27763,7 +27803,7 @@ msgstr "No se ha podido iniciar el juego de audio. Se cancelará el desafío."
 msgid "The ball is invisible."
 msgstr "La pelota es invisible."
 
-#: games/roulette.rb:396
+#: games/roulette.rb:384
 msgid "The ball lands on %{number}."
 msgstr "La bola cae en el %{number}."
 
@@ -28383,7 +28423,7 @@ msgstr ""
 msgid "The game ended in a draw between %{players}."
 msgstr ""
 
-#: games/base.rb:491 games/base.rb:597 games/chess.rb:414 games/dealt_card_game.rb:177 games/mille_bornes/presentation.rb:125
+#: games/base.rb:497 games/base.rb:603 games/chess.rb:414 games/dealt_card_game.rb:177 games/mille_bornes/presentation.rb:125
 msgid "The game ended in a draw."
 msgstr "La partida ha terminado en empate."
 
@@ -28428,7 +28468,7 @@ msgstr "La partida ha terminado. Puedes seguir examinando el tablero."
 msgid "The game includes the agreed international board list and a Polish board. Every board uses the same rules engine and differs only in names and presentation."
 msgstr ""
 
-#: games/base.rb:542 games/ludo.rb:397 games/ninety_nine.rb:944 games/scientific_war.rb:824
+#: games/base.rb:548 games/ludo.rb:397 games/ninety_nine.rb:944 games/scientific_war.rb:824
 msgid "The game is finished."
 msgstr "La partida está terminada."
 
@@ -29586,6 +29626,10 @@ msgstr "No se ha podido guardar el historial de la mesa."
 msgid "The table history has been saved to %{path}."
 msgstr "El historial de la mesa se ha guardado en %{path}."
 
+#: lib/game_room_changelog.rb:714
+msgid "The table host can use Ctrl+Shift+P on their own name to choose whether to play or observe the next game."
+msgstr "El anfitrión puede pulsar Ctrl+Mayús+P sobre su propio nombre para elegir si jugará u observará la siguiente partida."
+
 #: games/domino.rb:185 lib/game_surfaces/tile_hand.rb:156
 msgid "The table is empty."
 msgstr "La mesa está vacía."
@@ -29868,7 +29912,7 @@ msgstr "El agua está fresca a la sombra de los árboles."
 msgid "The water swirls around you."
 msgstr "El agua gira a tu alrededor."
 
-#: games/roulette.rb:243
+#: games/roulette.rb:231
 msgid "The wheel is spinning."
 msgstr "La ruleta está girando."
 
@@ -30056,7 +30100,7 @@ msgid_plural "There are currently %{current} users at the table."
 msgstr[0] "Actualmente hay %{current} usuario en la mesa."
 msgstr[1] "Actualmente hay %{current} usuarios en la mesa."
 
-#: games/base.rb:543 games/board_game.rb:232
+#: games/base.rb:549 games/board_game.rb:232
 msgid "There is no active turn."
 msgstr "No hay ningún turno activo."
 
@@ -30281,11 +30325,11 @@ msgstr "El tiempo para pensar debe ser cero o estar entre %{minimum} y %{maximum
 msgid "Thinking time must be zero or from 20 to 600 seconds."
 msgstr "El tiempo para pensar debe ser cero o estar entre 20 y 600 segundos."
 
-#: games/roulette.rb:302
+#: games/roulette.rb:290
 msgid "Third column"
 msgstr "Tercera columna"
 
-#: games/roulette.rb:301
+#: games/roulette.rb:289
 msgid "Third dozen"
 msgstr "Tercera docena"
 
@@ -31788,7 +31832,7 @@ msgstr "Los doses y los treses pueden responderse entre sí"
 msgid "Twos, threes, fours and kings"
 msgstr ""
 
-#: __app.rb:2170 lib/game_screen/input.rb:381
+#: __app.rb:2170 lib/game_screen/input.rb:388
 msgid "Type a chat message first."
 msgstr "Escribe primero un mensaje en el chat."
 
@@ -31912,6 +31956,10 @@ msgstr ""
 #: lib/mania_pisania/client.rb:340
 msgid "Typing echo during the game"
 msgstr "Eco de escritura durante el juego"
+
+#: lib/game_room_changelog.rb:713
+msgid "Typing echo now works with Braille input in Typoholism. An incomplete Braille prefix no longer ends the attempt."
+msgstr "El eco de escritura de Teclamanía también funciona con la entrada braille. Un prefijo braille incompleto ya no interrumpe el intento."
 
 #: games/mania_pisania.rb:312
 msgid "Typing finished."
@@ -32205,11 +32253,11 @@ msgstr "Actualizados los nombres y las instrucciones del chat de voz en ruso. ¡
 msgid "Updated the Russian translation by Danil (Kostenkov-2021) and corrected translations of River in Categories and Poker."
 msgstr ""
 
-#: lib/game_screen.rb:1061 lib/game_screen.rb:454 lib/game_screen/input.rb:563
+#: lib/game_screen.rb:1061 lib/game_screen.rb:454 lib/game_screen/input.rb:570
 msgid "Updating game"
 msgstr "Actualizando la partida"
 
-#: __app.rb:1647 __app.rb:2037 __app.rb:2289 __app.rb:2298 __app.rb:2309 __app.rb:2438 __app.rb:2487 __app.rb:3737 __app.rb:3746 __app.rb:3892 __app.rb:3909 __app.rb:3950 lib/game_screen.rb:1105 lib/game_screen/input.rb:531
+#: __app.rb:1647 __app.rb:2037 __app.rb:2289 __app.rb:2298 __app.rb:2309 __app.rb:2438 __app.rb:2487 __app.rb:3737 __app.rb:3746 __app.rb:3892 __app.rb:3909 __app.rb:3950 lib/game_screen.rb:1105 lib/game_screen/input.rb:538
 msgid "Updating table"
 msgstr "Actualizando la mesa"
 
@@ -34111,7 +34159,7 @@ msgstr "No tienes oro."
 msgid "You have no active tournaments. The current tournaments are shown instead."
 msgstr "No tienes torneos activos. Se muestra la lista de torneos actuales."
 
-#: games/roulette.rb:164
+#: games/roulette.rb:166
 msgid "You have no bets on this spin."
 msgstr "No tiene apuestas en este giro."
 
@@ -34566,7 +34614,7 @@ msgstr "Tu efectivo: %{cash}."
 msgid "Your challenge attempt could not be saved. The challenge will be cancelled."
 msgstr "No se ha podido guardar tu intento. Se cancelará el desafío."
 
-#: games/roulette.rb:150
+#: games/roulette.rb:137
 msgid "Your chips: %{chips}."
 msgstr "Tus fichas: %{chips}."
 
@@ -35697,7 +35745,7 @@ msgstr "fan"
 msgid "finish"
 msgstr "meta"
 
-#: games/roulette.rb:184
+#: games/roulette.rb:172
 msgid "finish betting"
 msgstr "terminar apuestas"
 
@@ -36256,7 +36304,7 @@ msgstr "rosa"
 msgid "pink group"
 msgstr "grupo rosa"
 
-#: games/roulette.rb:180
+#: games/roulette.rb:175
 msgid "place a bet with your own amount"
 msgstr "apostar cantidad propia"
 
@@ -36500,7 +36548,7 @@ msgstr "leer la cantidad necesaria para igualar"
 msgid "read the cards on the table"
 msgstr "leer las cartas de la mesa"
 
-#: games/roulette.rb:157
+#: games/roulette.rb:159
 msgid "read the chip balances"
 msgstr "leer saldos de fichas"
 
@@ -36803,7 +36851,7 @@ msgstr "consultar tu posición y tus plumas"
 msgid "read your rack"
 msgstr "leer tu atril"
 
-#: games/roulette.rb:164
+#: games/roulette.rb:166
 msgid "read your roulette bets"
 msgstr "leer sus apuestas de ruleta"
 
@@ -36859,7 +36907,7 @@ msgstr "salida de la cárcel"
 msgid "remaining time"
 msgstr "tiempo restante"
 
-#: games/roulette.rb:184
+#: games/roulette.rb:172
 msgid "remove all your bets"
 msgstr "retirar todas sus apuestas"
 
@@ -37043,7 +37091,7 @@ msgstr "picas"
 msgid "spell the current word"
 msgstr "deletrear la palabra actual"
 
-#: games/roulette.rb:168
+#: games/roulette.rb:170
 msgid "spin the wheel"
 msgstr "girar la rueda"
 

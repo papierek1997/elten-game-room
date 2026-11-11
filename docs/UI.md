@@ -120,6 +120,19 @@ menus locally with `surface/open_menu`, preserving each menu's stable item ID
 and returning to the parent category on Escape. Navigation writes no move;
 actual choices still pass through the ordinary executor and `action_for`.
 
+A game's `surface_action_shortcut` may supply an existing input shortcut
+for a selected list action. The shared surface callback opens it before
+capturing the completed move; cancellation emits nothing. Pending operations,
+an inactive wait and frozen/busy presentation prevent opening the dialog.
+The executor still checks the original view revision before any write.
+
+Number shortcuts use one native numeric EditBox in a GameRoomUI form. The form
+owns initial focus, after the default value has been selected; constructing
+the field must not speak first. Enter submits the edited value and Escape
+cancels without leaking a key to the game. Invalid input retains the value
+and reads its error with the field once. Local PawnTrack menu changes read
+only the new selection, not the table's spin, balance or other status.
+
 Choice questions may opt into `QuestionSpec#prompt_as_text`. The shared
 QuestionSurface then presents native read-only text followed by the answer
 list. Plain Down moves from the question to the list, and Up from its first

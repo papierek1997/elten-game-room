@@ -657,7 +657,7 @@ class GameScreen
       # Announce the error with the reopened field, rather than interrupting
       # an alert as soon as focus returns. No dependency on speech duration.
       prompt = error_text == nil ? shortcut.prompt : "#{GameRoomContent.utf8(error_text)} #{GameRoomContent.utf8(shortcut.prompt)}"
-      entered = input_text(
+      entered = number_shortcut_input(
         prompt,
         flags: EditBox::Flags::Numbers,
         text: value_text,
@@ -685,6 +685,30 @@ class GameScreen
       message = _("This value is not allowed.") if message.empty?
       error_text = _("%{message} Allowed values: %{values}.") % {message: message, values: allowed}
     end
+  end
+
+  # One native form owns the initial focus. The host's input_text focuses
+  # both in EditBox's constructor and explicitly, announcing the same field
+  # twice. Keep this local to game number prompts; do not patch host controls.
+  def number_shortcut_input(prompt, flags:, text:, escapable:, select_all:)
+    opened = false
+    dialog_open
+    opened = true
+    field = EditBox.new(GameRoomContent.utf8(prompt), type: flags, text: text, quiet: true)
+    field.select_all if select_all
+    accept = Button.new(_("Select"))
+    cancel = Button.new(_("Cancel"))
+    form = GameRoomUI::Form.new([field], program: @program, quiet: true)
+    form.accept_button = accept
+    form.cancel_button = cancel if escapable
+    entered = nil
+    accept.on(:press) { entered = field.text; form.resume }
+    cancel.on(:press) { form.resume }
+    form.wait
+    entered
+  ensure
+    dialog_close if opened
+    EltenAPI::KeyboardState.clear_current_frame if defined?(EltenAPI::KeyboardState)
   end
 
   def choice_shortcut_action(shortcut)

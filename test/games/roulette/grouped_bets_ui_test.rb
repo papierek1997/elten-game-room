@@ -39,24 +39,27 @@ end.new(%w[Alice Bob])
   screen = GameScreen.allocate
   screen.instance_variable_set(:@game, game)
   screen.instance_variable_set(:@program, EltenGameRoom.allocate)
-  shortcut = game.custom_game_shortcuts(replay, 'Alice').find { |entry| entry.key == 'b' }
-  Form.driver = lambda do |form|
-    category = form.fields.find { |field| field.header == 'Bet type' }
-    category.index = GameRoomRouletteBets::CATEGORIES.index('colours')
-    category.trigger(:move)
-    visible = form.fields.reject { |field| form.hidden_controls.include?(field) }
-    choices = visible.select { |field| field.header == 'Roulette bet' }
-    assert(choices.size == 1 && choices.first.options.first.start_with?('Red'), 'Own-amount form exposes other categories')
-    form.fields.find { |field| field.header == 'Number of chips to bet' }.set_text('17')
-    assert(form.accept_button.label == 'Place bet', 'Roulette still says Send proposal')
-    form.accept_button.trigger(:press)
+  assert(game.custom_game_shortcuts(replay, 'Alice').none? { |entry| entry.key == 'b' }, 'Redundant B shortcut remains')
+  shortcut = game.surface_action_shortcut(emitted.last.to_h, replay, 'Alice')
+  screen.define_singleton_method(:number_shortcut_input) do |prompt, **options|
+    assert(prompt.start_with?('Red.') && options[:text] == '10' && options[:select_all], 'Amount editor lost selected bet or suggested stake')
+    assert(options[:flags] == EditBox::Flags::Numbers, 'Stake is not a numeric editor')
+    '17'
   end
-  selection = screen.send(:form_shortcut_action, shortcut)
+  selection = screen.send(:activate_game_shortcut, shortcut, surface, replay: replay)
   status, plan = game.action_for(selection.to_h, replay, 'Alice')
-  assert(status == :ok && plan.events.first.value == '1|red|17', 'Grouped form changed the wire action or stake')
-  forged = selection.to_h.merge('bet_category' => 'numbers', 'bet_numbers' => 'red')
-  assert(game.action_for(forged, replay, 'Alice').first == :invalid_bet, 'Mismatched category accepted')
+  assert(status == :ok && plan.events.first.value == '1|red|17', 'Enter editor changed selected bet, wire action or stake')
+  assert(game.surface_action_shortcut(emitted.last.to_h, replay, 'Bob').nil?, 'Waiting player can open an amount editor')
+  assert(game.surface_action_shortcut(spec.items[colours].action.to_h, replay, 'Alice').nil?, 'Category opens an amount editor')
+  screen.define_singleton_method(:number_shortcut_input) { |*_args, **_options| nil }
+  assert(screen.send(:activate_game_shortcut, shortcut, surface, replay: replay).nil?, 'Escape places a bet')
+  poor = game.replay({'options' => JSON.generate(game.normalize_options('wheel' => wheel, 'starting_chips' => 10))},
+    [{'id' => 1, 'actor' => 'Alice', 'action' => 'bet', 'value' => '1|red|5'}], repo)
+  poor_shortcut = game.surface_action_shortcut(game.legal_actions(poor, 'Alice').first, poor, 'Alice')
+  assert(poor_shortcut.default_value == 5 && poor_shortcut.allowed_values == (1..5), 'Suggested amount exceeds the balance')
+  forged = selection.to_h.merge('bet' => 'unknown')
+  assert(game.action_for(forged, replay, 'Alice').first == :invalid_bet, 'Unknown bet accepted')
   assert(game.surface_spec(replay, 'Bob').menus.empty?, 'Waiting player has active betting menus')
 end
 Form.driver = nil
-puts 'PASS grouped roulette: complete bets, numeric order, local categories/back/refresh and own-stake form on all wheels'
+puts 'PASS grouped roulette: complete bets, local menus, Enter amount editor, cancel, limited balance and unchanged wire on all wheels'

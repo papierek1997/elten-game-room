@@ -4,6 +4,7 @@ require_relative '../../games/poker'
 require_relative '../../games/spades'
 require_relative '../../games/monopoly'
 require_relative '../../games/biblios'
+require_relative '../../games/roulette'
 require_relative '../../lib/game_screen'
 
 # Keep the native SpeechSequence and EditBox focus logic. Only the output
@@ -33,6 +34,7 @@ def numeric_frame(keys)
   $input_frame_serial = $input_frame_serial.to_i + 1
   $keyboard_state_frame_serial = $input_frame_serial
   $keyboard_state_frame_thread = Thread.current
+  $activecontrols = []
 end
 
 def replay_for(state)
@@ -67,6 +69,11 @@ state.update(phase: :auction, current_player: 'Alice', card: 'o1')
 state[:hands]['Alice'] = %w[ba bb bc]
 cases << ['Biblios', game.custom_game_shortcuts(replay_for(state), 'Alice').find { |item| item.kind == :number_input }]
 
+game = GameRoomGames::Roulette.new
+repository = Struct.new(:players) { def players_for(_session); players; end }.new(%w[Alice Bob])
+replay = game.replay({'options' => JSON.generate(game.default_options)}, [], repository)
+cases << ['Roulette Enter', game.surface_action_shortcut(game.legal_actions(replay, 'Alice').first, replay, 'Alice')]
+
 cases.each do |label, shortcut|
   assert(shortcut&.kind == :number_input, "#{label}: actual game has no numeric shortcut")
   allowed = shortcut.allowed_values
@@ -78,7 +85,16 @@ cases.each do |label, shortcut|
   seen = []
   previous_field = nil
   SpeechOutput.reset
-  screen.define_singleton_method(:loop_update) do |*|
+  driver = Object.new
+  $native_tutorial_driver = driver
+  frames = 0
+  driver.define_singleton_method(:tick) do |form|
+    frames += 1
+    raise "#{label}: numeric dialog did not finish" if frames > 30
+    unless form.instance_variable_get(:@wait)
+      numeric_frame([]) # Constructor/resume pumps are not new input turns.
+      next
+    end
     field = $numeric_native_fields.last
     if field.equal?(previous_field)
       numeric_frame([]) # The host's post-submit frame clears the old Enter.
@@ -90,8 +106,10 @@ cases.each do |label, shortcut|
     initial = index.zero? ? (shortcut.default_value&.to_i&.to_s || '') : invalid.to_s
     assert(field.text == initial, "#{label}: retry lost the entered value")
     assert([field.index, field.check].minmax == [0, initial.length], "#{label}: initial/retry value is not selected") unless initial.empty?
-    assert(dialog_opened, "#{label}: the actual host dialog was not opened")
+    assert(screen.send(:dialog_opened), "#{label}: the actual host dialog was not opened")
     assert(field.header.end_with?(shortcut.prompt), "#{label}: field no longer explains the requested value")
+    assert(SpeechOutput.calls.count { |call| call.first.include?(field.header) } == 1,
+      "#{label}: amount field was announced more than once: #{SpeechOutput.calls.inspect}")
     if index == 1
       assert(field.header.include?('Allowed values:') && SpeechOutput.calls.any? { |call| call.first.include?('Allowed values:') },
         "#{label}: native field focus did not read the validation error")
@@ -107,7 +125,12 @@ cases.each do |label, shortcut|
 
   # Escape is a cancellation, not a zero bid. It must not propagate into the
   # underlying game screen as a second Escape or a pending submit key.
-  screen.define_singleton_method(:loop_update) { |*| numeric_frame([0x1B]) }
+  frames = 0
+  driver.define_singleton_method(:tick) do |form|
+    frames += 1
+    raise "#{label}: Escape did not close the numeric dialog" if frames > 15
+    numeric_frame(form.instance_variable_get(:@wait) ? [0x1B] : [])
+  end
   assert(screen.send(:number_shortcut_action, shortcut).nil?, "#{label}: Escape submitted a number")
   assert(!screen.send(:dialog_opened), "#{label}: cancelled dialog stayed open")
   assert(!EltenAPI::KeyboardState.current.pressed[0x1B], "#{label}: Escape leaked out of the numeric dialog")
@@ -121,7 +144,7 @@ shortcut.prompt = 'Podbij o:'.b
 shortcut.invalid_message = 'Nieprawidłowa kwota.'.b
 screen = GameScreen.allocate
 prompts, answers = [], ['999999999', '10']
-screen.define_singleton_method(:input_text) { |prompt, **_| prompts << prompt; answers.shift }
+screen.define_singleton_method(:number_shortcut_input) { |prompt, **_| prompts << prompt; answers.shift }
 assert(screen.send(:number_shortcut_action, shortcut).payload['raise_by'] == 10, 'Binary translation prevented retry')
 assert(prompts.last.encoding == Encoding::UTF_8 && prompts.last.include?('Nieprawidłowa kwota.'), 'Retry corrupted translated text')
 

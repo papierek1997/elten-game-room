@@ -523,6 +523,14 @@ and `docs/PRIVATE_STATE.md`:
   change. Never replace expected values merely to make a test pass. Historical
   corpora keep their explicit original inputs and compatibility guarantees.
 - Run targeted tests during development.
+- After every UI fix, verify the resulting player interaction, not only the
+  submitted action or model state. Exercise the real native controls through
+  opening, editing, confirmation, cancellation and return; inspect focus,
+  cursor/default selection and the exact ordered speech output. Assert that
+  prompts occur once and local navigation does not reread unrelated table
+  status. A stubbed input dialog or handler-only test cannot establish this.
+  Keep a regression for the reported presentation defect and clearly separate
+  captured speech from actual listening or live-account verification.
 - Before a pull request, run `ruby test/run.rb`.
 - Transport changes require `live_sessions_*`, `test/transport/transport_test.rb`,
   `test/transport/game_sync_test.rb` and a multi-client scenario.

@@ -29,6 +29,13 @@ same move at more tables.
   allow it. Do not repeat the same cards, instruction or result in multiple
   spoken messages. Use complete, separate history lines for separate actions.
   Ensure refresh, catch-up and switching focus do not replay live cues.
+- Recheck the complete changed interaction after a fix, including the real
+  modal control, not a mocked return value. Inspect the ordered speech log:
+  one opening prompt, the edited/selected default, confirmation or Escape,
+  and return to the same list item. Local menu navigation must not repeat
+  the whole table status or interrupt the next prompt. Count announcements
+  as well as checking that the expected words appear. Retain this as a
+  targeted native regression; captured speech is not an audible listening test.
 - Prefer existing native lists, cards, dice, grids, edit controls and shortcuts.
   Compare at least one established game with the same action. For example,
   use the shared Space-to-draw binding when a card game offers an ordinary

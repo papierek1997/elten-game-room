@@ -427,6 +427,12 @@ module GameRoomGames
       GameRoomLayout::ViewSpec.new(surface: surface_spec(replay, viewer))
     end
 
+    # Complete a selected list action with an existing local input dialog.
+    # The resulting action still goes through the normal revision/write guard.
+    def surface_action_shortcut(_selection, _replay, _viewer)
+      nil
+    end
+
     # Load local, viewer-specific presentation data independently of automatic
     # moves. Never publish it or alter the authoritative replay here.
     def serial_event_presentation?

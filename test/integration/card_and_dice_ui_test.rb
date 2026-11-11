@@ -219,7 +219,7 @@ Form.on_wait = nil
   answers = ["9", "37"]
   errors = []
   prompts = []
-  screen.define_singleton_method(:input_text) do |prompt, **options|
+  screen.define_singleton_method(:number_shortcut_input) do |prompt, **options|
     assert(options[:select_all], "Missing selected default")
     prompts << prompt
     answers.shift
@@ -229,7 +229,7 @@ Form.on_wait = nil
   assert(action.payload == { "quoted_call" => 20, "raise_by" => 37 } && errors.empty?, "Wrong numeric input validation")
   assert(prompts.first == "Raise by:" && prompts.last.start_with?("This value is not allowed. Allowed values:") &&
     prompts.last.end_with?("Raise by:"), "Invalid raise was not explained with the reopened field")
-  screen.define_singleton_method(:input_text) { |_prompt, **_options| nil }
+  screen.define_singleton_method(:number_shortcut_input) { |_prompt, **_options| nil }
   assert(screen.send(:number_shortcut_action, shortcut) == nil, "Escape submitted a raise")
 end
 puts "Five-game UI tests passed"

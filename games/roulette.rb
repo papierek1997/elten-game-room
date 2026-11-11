@@ -93,13 +93,6 @@ module GameRoomGames
       case action
       when 'bet'
         amount, key = selection['amount'], selection['bet']
-        if key == nil
-          category = selection['bet_category']
-          return [:invalid_bet, nil] unless GameRoomRouletteBets::CATEGORIES.include?(category)
-          key = selection["bet_#{category}"]
-          chosen = bet_definitions(state).find { |bet| bet[:key] == key }
-          return [:invalid_bet, nil] unless chosen && GameRoomRouletteBets.category(chosen) == category
-        end
         amount = amount.to_i if amount.is_a?(String) && /\A[1-9]\d{0,9}\z/.match?(amount)
         return [:invalid_bet, nil] unless amount.is_a?(Integer) && amount.between?(1, 1_000_000_000) && amount * 2 <= state[:chips][player] &&
           bet_definitions(state).any? { |bet| bet[:key] == key }
@@ -128,8 +121,7 @@ module GameRoomGames
             action: GameSurfaces::Action.new(kind: 'surface', name: 'open_menu', payload: {'menu' => menu_id}))
           menus[menu_id] = choices.map do |action|
             bet = definitions.fetch(action['bet'])
-            label = _('%{bet}; stake: %{amount}') % {bet: bet_label(bet), amount: action['amount']}
-            GameSurfaces::PawnTrackItem.new(id: "bet:#{action['bet']}", label: GameRoomContent.utf8(label),
+            GameSurfaces::PawnTrackItem.new(id: "bet:#{action['bet']}", label: bet_label(bet),
               action: GameSurfaces::Action.from_h(action))
           end
         end
@@ -147,6 +139,21 @@ module GameRoomGames
         empty_label: GameRoomContent.utf8(current_turn_shortcut_text(replay, viewer)))
     end
 
+    def surface_action_shortcut(selection, replay, viewer)
+      return nil unless selection['kind'] == 'command' && selection['action'] == 'bet'
+      return nil if replay.finished? || !same_user?(replay.current_player, viewer)
+      state = replay.state
+      return nil unless state[:phase] == :betting && selection['round'] == state[:round]
+      bet = bet_definitions(state).find { |entry| entry[:key] == selection['bet'] }
+      maximum = [state[:chips][state[:current_player]] / 2, 1_000_000_000].min
+      return nil unless bet && maximum.positive?
+      GameShortcut.new(key: 'enter', label: _('Place bet'), kind: :number_input,
+        prompt: GameRoomContent.utf8(_('%{bet}. Number of chips to bet:')) % {bet: bet_name(bet)},
+        action_kind: 'command', action_name: 'bet', value_key: 'amount',
+        allowed_values: 1..maximum, default_value: [10, maximum].min,
+        payload: {'round' => state[:round], 'bet' => bet[:key]})
+    end
+
     def custom_game_shortcuts(replay, viewer)
       state = replay.state
       shortcuts = [announcement_shortcut(key: 's', label: _('read the chip balances'), message: state[:players].map { |p| "#{participant_name(p)}: #{roulette_amount(state[:chips][p])}" }.join('; '))]
@@ -162,20 +169,6 @@ module GameRoomGames
       if state[:phase] == :spinning && state[:options]['mode'] == 'social'
         shortcuts << GameShortcut.new(key: 'space', label: _('spin the wheel'), kind: :action, action_kind: 'command', action_name: 'spin', payload: {})
       elsif state[:phase] == :betting
-        if state[:chips][player] >= 2
-          fields = [OptionDefinition.new(key: 'bet_category', label: _('Bet type'), kind: :choice,
-            default: 'numbers', choices: GameRoomRouletteBets::CATEGORIES.map { |category| OptionChoice.new(value: category, label: category_label(category)) })]
-          GameRoomRouletteBets::CATEGORIES.each do |category|
-            choices = bet_definitions(state).select { |bet| GameRoomRouletteBets.category(bet) == category }
-            fields << OptionDefinition.new(key: "bet_#{category}", label: _('Roulette bet'), kind: :choice,
-              default: choices.first[:key], visible_if: {'bet_category' => category},
-              choices: choices.map { |bet| OptionChoice.new(value: bet[:key], label: bet_label(bet)) })
-          end
-          fields << OptionDefinition.new(key: 'amount', label: _('Number of chips to bet'), kind: :integer, default: [10, state[:chips][player] / 2].min)
-          shortcuts << GameShortcut.new(key: 'b', label: _('place a bet with your own amount'), kind: :form,
-            prompt: _('Place roulette bet'), fields: fields, submit_label: _('Place bet'),
-            action_kind: 'command', action_name: 'bet', payload: {'round' => state[:round]})
-        end
         [['r', 'ready', _('finish betting')], ['c', 'clear', _('remove all your bets')]].each do |key, action, label|
           next if action == 'clear' && state[:bets][player].empty?
 

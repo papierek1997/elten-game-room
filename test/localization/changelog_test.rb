@@ -559,6 +559,17 @@ assert(GameRoomChangelog.pending_entries(264, 265).map(&:build) == [265], 'build
 assert(GameRoomChangelog.pending_entries(nil, 265).map(&:build) == [265], 'first build 265 launch repeats history')
 assert(GameRoomChangelog.pending_entries(265, 265).empty?, 'build 265 reopens after being read')
 assert(GameRoomChangelog.list_items([entry_265]).first == 'Version 2.0.6.2, build 265', 'build 265 heading differs')
+entry_266 = entries.find { |entry| entry.build == 266 }
+assert(entry_266 && entry_266.version == '2.0.6.3' && entry_266.changes.size == 10 &&
+  entry_266.changes.uniq.size == 10, 'build 266 has incorrect release metadata or duplicate notes')
+['word definitions', 'date list', 'Braille', 'Ctrl+Shift+P', 'Roulette', 'Delete',
+  'Ctrl+F2', 'Monopoly', 'discard recycling', 'td-programs'].each do |topic|
+  assert(entry_266.changes.any? { |change| change.include?(topic) }, "build 266 lacks #{topic}")
+end
+assert(GameRoomChangelog.pending_entries(265, 266).map(&:build) == [266], 'build 266 repeats earlier notes')
+assert(GameRoomChangelog.pending_entries(nil, 266).map(&:build) == [266], 'first build 266 launch repeats history')
+assert(GameRoomChangelog.pending_entries(266, 266).empty?, 'build 266 reopens after being read')
+assert(GameRoomChangelog.list_items([entry_266]).first == 'Version 2.0.6.3, build 266', 'build 266 heading differs')
 latest = entries.max_by(&:build)
 manifest = JSON.parse(File.read(File.expand_path('../../manifest.json', __dir__)))
 runtime_release = [EltenGameRoom::GAME_ROOM_VERSION, EltenGameRoom::GAME_ROOM_BUILD_ID]

@@ -39,7 +39,7 @@ documented deviations, not silently substituted official tournament rules.
 
 Betting uses the shared PawnTrack local menus: categories open without a
 network move, Escape returns to the selected category, and selection survives
-replay refresh. The B form filters bets by category and accepts an own stake;
+replay refresh. Enter on a bet opens the shared numeric stake editor;
 only the final bet is written through the unchanged rule/action protocol.
 
 Casino tables allow 1–8 seats; social tables require 2–8. Bets use whole virtual
@@ -66,8 +66,9 @@ solvent players. Highest balance wins; tied maxima draw. A half-chip balance
 alone cannot fund a whole-chip bet. Each individual bet is bounded at one
 billion chips to keep the native event representation bounded.
 
-B opens the shared choice/amount form; the list offers quick bets up to ten
-chips. R finishes betting, C clears, V reads bets, S balances; Space spins in
+Enter on a bet opens the shared numeric editor with up to ten chips suggested.
+Confirm that amount or replace it; Escape cancels without placing a bet.
+R finishes betting, C clears, V reads bets, S balances; Space spins in
 social mode. F1 and Ctrl+F1 use the common help/rules controls.
 
 Payout source: [Singapore Gambling Regulatory Authority, RWS Roulette v2](https://www.gra.gov.sg/docs/default-source/game-rules/rws/roulette-games/rws_roulette_v2.pdf?sfvrsn=9f3ff898_3)

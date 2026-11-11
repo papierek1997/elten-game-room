@@ -322,6 +322,13 @@ class GameScreen
       form = layout.form
       back_button = layout.back_button
       surface.on_action do |selection|
+        shortcut = @game.surface_action_shortcut(selection, wait.replay, Session.name)
+        if shortcut
+          next if wait.action != nil || @session["__frozen"] || event_presentation_busy?
+          next form.game_room_pending_operation.reject_action if form.game_room_pending_operation
+          selection = activate_game_shortcut(shortcut, surface, replay: wait.replay)
+          next if selection == nil || wait.action != nil
+        end
         if (pending = form.game_room_pending_operation)
           next pending.reject_action unless pending.admits_move?
           next if selection['kind'] == 'surface' && selection['action'] == 'refresh'

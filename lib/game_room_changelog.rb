@@ -704,6 +704,22 @@ module GameRoomChangelog
         "Added 67 questions to the Polish General Knowledge and Harry Potter sets and corrected reported questions. Thanks to Zuzler for the submissions and reports!",
         "Corrected the Russian text in Monopoly. When two salaries are paid in a single move, both now appear separately in the history."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.3",
+      build: 266,
+      changes: [
+        "Krowa leaderboards now offer word definitions in the context menu. Closing a daily leaderboard returns to the date list with the same day selected.",
+        "Typing echo now works with Braille input in Typoholism. An incomplete Braille prefix no longer ends the attempt.",
+        "The table host can use Ctrl+Shift+P on their own name to choose whether to play or observe the next game.",
+        "Roulette bets are grouped by type, making the lists easier to browse. The B form uses the same groups when you choose your own stake.",
+        "In the quiz question creator, Delete removes the selected question from a draft after confirmation.",
+        "Ctrl+F2 switches additional game sound effects on or off. Chat, notifications and the sounds needed for audio games and listening challenges are not muted.",
+        "In Monopoly, computer players accept legal gifts of money or properties when nothing is requested in return.",
+        "Improved performance when browsing long Monopoly games and evaluating trades.",
+        "In 1000 Miles with discard recycling, the round ends if no player can reach exactly 1000 miles with the remaining distance cards. Existing points count without a finish bonus.",
+        "Thanks to td-programs for the Krowa, Braille echo and table-role improvements!"
+      ].freeze
     ).freeze
   ].freeze
 
