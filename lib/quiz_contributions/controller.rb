@@ -82,6 +82,7 @@ module GameRoomQuizContributions
         action, index = @views.questions(draft, index: index)
         return draft if action == :back
         draft = edit_question(draft, index) if action == :open
+        draft = remove_question(draft, index) if action == :delete
         if action == :new
           index = draft['items'].size
           draft = add_question(draft)
@@ -186,12 +187,7 @@ module GameRoomQuizContributions
           return draft if choice == 2
           action = choice == 0 ? :save : :continue
         end
-        if action == :remove
-          return draft unless @views.confirm(_('Remove this question from the draft?'))
-          value = Model.copy(draft)
-          value['items'].delete_at(index)
-          return persist(value)
-        end
+        return remove_question(draft, index) if action == :remove
         # A category added from the editor may have a newer server snapshot.
         # Keep that reference and all typed fields when saving the question.
         working = Model.copy(draft)
@@ -248,6 +244,15 @@ module GameRoomQuizContributions
     def forget_unsaved(value)
       key = Drafts.branch_key(value)
       @unsaved.delete(key) if @unsaved[key] && Drafts.same_version?(@unsaved[key], value)
+    end
+
+    def remove_question(draft, index)
+      return draft unless index.between?(0, draft['items'].size - 1)
+      return draft unless @views.confirm(_('Remove this question from the draft?'))
+
+      value = Model.copy(draft)
+      value['items'].delete_at(index)
+      persist(value)
     end
 
     def task(title, quiet: false, failure: nil)

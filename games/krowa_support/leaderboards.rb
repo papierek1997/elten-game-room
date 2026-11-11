@@ -11,9 +11,10 @@ module GameRoomGames
   # Event-driven leaderboard presentation. Persistent queries live in
   # KrowaServerStore; this class only owns forms and user-facing formatting.
   class KrowaLeaderboardClient
-    def initialize(program, game, store: nil, server_tables: nil)
+    def initialize(program, game, store: nil, server_tables: nil, definition: nil)
       @program = program
       @game = game
+      @definition = definition
       @store = store || KrowaServerStore.new(
         server_tables: server_tables,
         bank: KrowaWordBank.default,
@@ -78,6 +79,7 @@ module GameRoomGames
         header: _("Leaderboard: %{word}") % {word: normalized},
         empty_label: _("No published results"),
         selectable: false,
+        definition_word: normalized,
         attempts: ->(index) do
           result = results[index]
           load_attempt_list { @store.word_attempt_list(normalized, user: result['__insertion_user'], attempts: result['attempts']) } if result
@@ -165,11 +167,21 @@ module GameRoomGames
       end
       return if loaded == nil
       dates, rows = loaded
-      selected = show_table(
-        [_('Date'), _('Word')], rows, header: _("Daily Krowa leaderboard"),
-        empty_label: _("No daily results")
-      )
-      show_daily_ranking(dates[selected], today: today) if selected != nil
+      index = 0
+      loop do
+        selected = show_table(
+          [_('Date'), _('Word')], rows, header: _("Daily Krowa leaderboard"),
+          empty_label: _("No daily results"), index: index,
+          definition_word: ->(position) do
+            word = rows[position] && rows[position][1].to_s
+            word unless word.to_s.empty?
+          end
+        )
+        return if selected == nil
+
+        index = selected
+        show_daily_ranking(dates[selected], today: today)
+      end
     end
 
     def show_daily_ranking(date_id, today: nil)
@@ -183,10 +195,11 @@ module GameRoomGames
           raise "Unconfirmed server time" unless GameRoomClock.synchronized?
           today = GameRoomKrowa::WarsawDate.today_id(clock: -> { Time.at(GameRoomClock.now).utc })
         end
-        [results, daily_ranking_header(date, today)]
+        header, word = daily_ranking_details(date, today)
+        [results, header, word]
       end
       return if loaded == nil
-      results, header = loaded
+      results, header, word = loaded
 
       previous_attempts = nil
       previous_rank = 0
@@ -200,6 +213,7 @@ module GameRoomGames
       show_table(
         [_('Place'), _('User'), _('Attempts')], rows,
         header: header, empty_label: _("No published results"), selectable: false,
+        definition_word: word,
         attempts: ->(index) do
           result = results[index]
           if result
@@ -220,12 +234,13 @@ module GameRoomGames
     end
 
     def daily_ranking_header(date, today)
-      if date < today
-        word = @store.daily_word(date, today: today)
-        word ? _("Daily Krowa: %{date}, %{word}") % {date: date, word: word} : _("Daily Krowa: %{date}") % {date: date}
-      else
-        _("Daily Krowa: %{date}") % {date: date}
-      end
+      daily_ranking_details(date, today).first
+    end
+
+    def daily_ranking_details(date, today)
+      word = @store.daily_word(date, today: today) if date < today
+      header = word ? _("Daily Krowa: %{date}, %{word}") % {date: date, word: word} : _("Daily Krowa: %{date}") % {date: date}
+      [header, word]
     end
 
     def search_words
@@ -319,9 +334,9 @@ module GameRoomGames
       result ? result.first : :failed
     end
 
-    def show_table(columns, rows, header:, empty_label:, selectable: true, attempts: nil)
+    def show_table(columns, rows, header:, empty_label:, selectable: true, attempts: nil, definition_word: nil, index: 0)
       action = nil
-      table = TableBox.new(columns, rows, header: header, quiet: true, empty_label: empty_label)
+      table = TableBox.new(columns, rows, header: header, quiet: true, empty_label: empty_label, index: index)
       open_button = Button.new(selectable ? _("Open") : _("Close"))
       close_button = Button.new(_("Close"))
       controls = selectable ? [table, open_button, close_button] : [table, close_button]
@@ -330,6 +345,12 @@ module GameRoomGames
         controls.insert(1, details.field)
       end
       form = GameRoomUI::Form.new(controls, program: @program, quiet: true)
+      if @definition && definition_word
+        form.bind_context do |menu|
+          word = definition_word.respond_to?(:call) ? definition_word.call(table.index.to_i) : definition_word
+          menu.option(_("Word definition")) { @definition.call(word) } if word
+        end
+      end
       form.accept_button = selectable ? open_button : close_button
       form.cancel_button = close_button
       form.hide(open_button) if selectable

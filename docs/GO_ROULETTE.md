@@ -37,6 +37,11 @@ documented deviations, not silently substituted official tournament rules.
 
 ## Roulette
 
+Betting uses the shared PawnTrack local menus: categories open without a
+network move, Escape returns to the selected category, and selection survives
+replay refresh. The B form filters bets by category and accepts an own stake;
+only the final bet is written through the unchanged rule/action protocol.
+
 Casino tables allow 1–8 seats; social tables require 2–8. Bets use whole virtual
 chips, balances use exact integer half-chip units. Each player may add multiple
 bets, clear them or finish betting. All players finish before a single native

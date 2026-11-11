@@ -43,6 +43,7 @@ module GameRoomPreferences
       "invitation_blacklist" => [],
       "table_watch_contacts_only" => false,
       "game_sounds" => true,
+      "optional_game_sounds" => true,
       "room_membership_sounds" => true,
       "chat_sounds" => true,
       "invitation_sounds" => true,
@@ -99,6 +100,7 @@ module GameRoomPreferences
       background_table_speech
       background_turn_sound
       game_sounds
+      optional_game_sounds
       room_membership_sounds
       chat_sounds
       invitation_sounds

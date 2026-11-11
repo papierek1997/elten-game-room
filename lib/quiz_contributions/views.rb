@@ -59,8 +59,10 @@ module GameRoomQuizContributions
       labels = draft['items'].each_with_index.map do |q, i|
         text(_('%{number}. %{question}')) % {number: i + 1, question: q['prompt'].empty? ? text(_('Untitled question')) : q['prompt']}
       end
+      actions = [[:new, _('Add a question'), 'n']]
+      actions << [:delete, _('Remove question'), :del] unless labels.empty?
       selection(_('Browse questions'), labels, index: index,
-        empty: _('Press Ctrl+N to add a question.'), actions: [[:new, _('Add a question'), 'n']])
+        empty: _('Press Ctrl+N to add a question.'), actions: actions)
     end
 
     def edit_question(draft, index:, remove: index < draft['items'].size, &create_category)

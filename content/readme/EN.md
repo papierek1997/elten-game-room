@@ -106,7 +106,8 @@ inactivity; reading and spelling do not consume this time.
 Ctrl+L spells the word, Ctrl+O reads it, Ctrl+semicolon reads its remainder,
 and Ctrl+Shift+semicolon reads the remaining sentence in Free typing.
 Ctrl+P opens braille, sound and local typing echo settings. Echo applies only
-to the game field and follows Elten by default. Paste a text opens an edit field
+to the game field and follows Elten by default. It also works with braille input,
+reading translated characters and words. Paste a text opens an edit field
 without a file browser on the same screen as the table settings. Tab moves
 from the title to the content; editing settings preserves both fields.
 Imports are limited to 1,000,000 UTF-8 bytes (1000 kB).
@@ -254,6 +255,9 @@ You can adjust the volume without leaving the game:
 - F3 — louder.
 - Shift+F2 — previous sound group.
 - Shift+F3 — next sound group.
+- Ctrl+F2 — enable or disable additional game sound effects.
+
+Ctrl+F2 leaves the sounds needed to play audio games and listening challenges enabled.
 
 Choose all sounds together or separate groups: game sounds, people joining and leaving the table, chat, and invitations and notifications. The same levels are available in Settings → Sounds.
 
@@ -323,6 +327,10 @@ Choose Leaderboards in the main menu, then a game.
 - Word leaderboards favour fewer guesses. Search by a word or part of one.
 - Daily Krowa has a separate leaderboard for each day, also ordered by guesses. Today's word stays hidden; earlier solutions can be viewed once their day is over.
 - Word Tower ranks runs by completed rounds: more rounds means a higher place. Press Enter on a result to see each round's word and guesses.
+
+The context menu in a word leaderboard or a previous day's results lets you
+look up the word's definition. Escape from a daily leaderboard returns to
+the date list with the same day selected.
 
 After guessing a word in Random Word or Daily Krowa, choose “Publish”,
 “Publish without attempt list” or “Do not publish”. The same choices are
@@ -410,6 +418,7 @@ This list covers the program's common controls. Use F1 for a specific game's com
 - F3 — raise the selected sound group's volume.
 - Shift+F2 — select the previous sound group.
 - Shift+F3 — select the next sound group.
+- Ctrl+F2 — enable or disable additional game sound effects.
 - Ctrl+F4 — read connection latency.
 
 ### At a table
@@ -710,7 +719,7 @@ Open “Create your own quiz question sets” in the main window to see your set
 Press Enter on a set to open its menu:
 
 - “Add a question”: enter the question, the correct answer in the first field (A), and three wrong answers in B, C and D. Choose a category from the list. The source and editorial note are optional.
-- “Browse questions”: open the list of saved questions. Press Enter to edit the selected question or Ctrl+N to add one.
+- “Browse questions”: open the list of saved questions. Press Enter to edit the selected question, Ctrl+N to add one, or Delete to remove the selected question after confirmation.
 - “Add a category”: name a category to use in your questions.
 - “Delete draft”: remove the whole set after confirmation.
 - “Send to the author”: submit the whole set to papierek.

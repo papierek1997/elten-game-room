@@ -15,6 +15,9 @@ optional description; **Save** persists the empty set and returns to the library
 Enter opens a set with five actions, in order: **Add a question**, **Browse
 questions**, **Add a category**, **Delete draft**, **Send to the author**.
 Browsing opens a separate numbered list; Enter edits the selected question.
+Delete and the list's Remove question action share one confirmation and the
+ordinary draft save/recovery boundary. The empty-list placeholder has no
+deletion action; removing a row keeps selection beside it.
 Ctrl+N adds a question from either an empty or a populated question list; the
 empty-list message explains the shortcut. The set menu keeps its existing
 **Add a question** action. Yes/No and other short selectors accept both horizontal

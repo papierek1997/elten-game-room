@@ -2,6 +2,8 @@
 
 On the Users list, the host uses `Ctrl+Shift+P` to toggle the selected human's
 role for the next game. `Ctrl+Shift+O` still changes the viewer's own role.
+The selected human may also be the host; this changes the playing role, not
+table ownership.
 The selected-person menu and dynamic F1 help share `participant_role_action`;
 the callback preserves its original subject and rechecks the displayed action.
 Both repository and transport revalidate membership and ownership. Their typed
@@ -13,6 +15,11 @@ the table; arbitrary `ArgumentError` exceptions must still propagate.
 invitations/notifications. In a new program instance, the selected group starts
 at “wszystkie” (“all”). Levels are stored locally. The all-groups level is a
 multiplier; it does not overwrite group levels.
+
+`Ctrl+F2` toggles the persisted `optional_game_sounds` preference through the
+same settings transaction. It gates presentation effects, not essential
+realtime/listening audio, chat, membership, notifications or the turn ding.
+It is independent of the host's sound theme and does not change volume levels.
 
 Settings shows five lists of levels from 0–100%, without duplicate toggles.
 A previously disabled category migrates to 0%, and an enabled one to 100%.
@@ -74,7 +81,7 @@ Use `GameRoomUI::Form` or `GameSurfaces::RefreshAwareForm` and pass
 `program:` (in a shared layout, set `form.game_room_program`). Do not create
 new game-specific F1/F2/F3 handling. The host handles these keys before form
 events. A one-time bridge in the QuickActions dispatcher intercepts only F1,
-F2, F3 and Shift+F2/F3 when the active control belongs to a waiting Game Room
+F2, F3, Shift+F2/F3 and Ctrl+F2 when the active control belongs to a waiting Game Room
 form. It does not save ELTEN shortcut settings, intercept Ctrl+F1 or change
 host sources. It does not retain the program in the global bridge. After
 leaving or switching windows, host behavior resumes.
@@ -104,6 +111,14 @@ entire stack and tutorial audio. The real-time surface respects
 `game_room_background_help?` from the very frame that opens help.
 
 ## Navigating the rules
+
+Form shortcuts use declared choice defaults and may supply a localized
+`submit_label`; absent labels retain the usual proposal button. Conditional
+fields use the shared option editor's visibility rules and only visible
+values enter the submitted action. PawnTrack surfaces can navigate declared
+menus locally with `surface/open_menu`, preserving each menu's stable item ID
+and returning to the parent category on Escape. Navigation writes no move;
+actual choices still pass through the ordinary executor and `action_for`.
 
 Choice questions may opt into `QuestionSpec#prompt_as_text`. The shared
 QuestionSurface then presents native read-only text followed by the answer

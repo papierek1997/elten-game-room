@@ -41,6 +41,7 @@ class GameRoomAudio
 
   def play(asset)
     return unless asset && @settings["effects"]
+    return if @program.respond_to?(:game_room_optional_sounds?, true) && !@program.send(:game_room_optional_sounds?)
     volume = shared_volume(asset) * @settings["effects_volume"] / 100.0
     return unless volume.positive?
     GameRoomSoundOutput.play(@program, asset, sample: false, max_voices: 4, volume: volume)

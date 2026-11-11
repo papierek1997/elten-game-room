@@ -37,6 +37,11 @@ module GameRoomGames
       false
     end
 
+    def run
+      prepare_local_services
+      @leaderboards.run
+    end
+
     def open_gallery(replay: @last_replay)
       return gallery_unavailable if replay && !replay.finished?
       prepare_local_services
@@ -58,7 +63,8 @@ module GameRoomGames
         user: Session.name,
         program: @program
       )
-      @leaderboards = KrowaLeaderboardClient.new(@program, @game, store: @server_store)
+      @leaderboards = KrowaLeaderboardClient.new(@program, @game, store: @server_store,
+        definition: ->(word) { definition_dialog(word) })
       true
     end
 

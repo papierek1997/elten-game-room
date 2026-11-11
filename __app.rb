@@ -3972,6 +3972,24 @@ class EltenGameRoom < Program
     GameRoomPreferences.sound_enabled?(game_room_settings, name, GAME_REGISTRY.ids)
   end
 
+  def game_room_optional_sounds?
+    game_room_settings["optional_game_sounds"] != false
+  end
+
+  def toggle_optional_game_sounds
+    values = EltenAPI::Tasks.run(title: _("Saving sound settings"), ui: :none, cancellable: false) do
+      self.class.volume_settings(self).update do |settings|
+        settings["optional_game_sounds"] = settings["optional_game_sounds"] == false
+      end
+    end
+    speak(values["optional_game_sounds"] ? _("Additional game sound effects enabled.") : _("Additional game sound effects disabled."))
+    true
+  rescue IOError, SystemCallError => error
+    Log.warning("Power Games sound effects setting: #{error.class}: #{error.message}") if defined?(Log)
+    speak(_("The sound setting could not be saved."))
+    false
+  end
+
   def game_room_sound_volume(name)
     GameRoomPreferences.sound_volume(game_room_settings, name)
   end

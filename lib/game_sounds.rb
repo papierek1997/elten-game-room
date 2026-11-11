@@ -2,6 +2,7 @@ require_relative "game_participants"
 require_relative "game_turn_clock"
 require_relative "game_sound_output"
 require_relative "game_spatial_sound"
+require_relative "game_room_preferences"
 
 module GameRoomSounds
   ASSET_NAMES = %w[
@@ -162,6 +163,7 @@ module GameRoomSounds
   # `spatial` is an optional HRTF direction of the seat the cue belongs to.
   def play(program, name, spatial: nil)
     return nil if name == nil || !ASSET_NAMES.include?(name.to_s)
+    return nil if GameRoomPreferences.sound_group(name) == "game" && name.to_s != "ding" && !optional_effects_enabled?(program)
     if program.respond_to?(:game_room_sound_enabled?, true)
       return nil if !program.send(:game_room_sound_enabled?, name.to_s)
     end
@@ -178,6 +180,12 @@ module GameRoomSounds
   rescue Exception => error
     Log.warning("ELTEN Game Room sound #{name} failed: #{error.class}: #{error.message}") if defined?(Log)
     nil
+  end
+
+  # Only presentation effects pass here. Realtime engines and listening
+  # challenges keep their essential audio, clocks and existing volume gates.
+  def optional_effects_enabled?(program)
+    !program.respond_to?(:game_room_optional_sounds?, true) || program.send(:game_room_optional_sounds?)
   end
 
   def play_all(program, names)

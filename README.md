@@ -132,7 +132,8 @@ odczytywanie i literowanie nie zużywają tego limitu.
 Ctrl+L literuje słowo, Ctrl+O je odczytuje, Ctrl+średnik odczytuje jego resztę,
 a Ctrl+Shift+średnik resztę zdania w Swobodnym pisaniu. Ctrl+P otwiera
 ustawienia brajla, dźwięków i osobnego echa pisania. Echo dotyczy tylko pola
-gry; domyślnie korzysta z ustawienia Eltena. Opcja Wklej tekst otwiera pole edycyjne bez
+gry; domyślnie korzysta z ustawienia Eltena. Działa również przy pisaniu brajlem,
+odczytując litery i słowa zamiast znaków brajlowskich. Opcja Wklej tekst otwiera pole edycyjne bez
 przeglądarki plików na tym samym ekranie co ustawienia stołu. Tytuł poprzedza
 treść w kolejności Tab; zmiana ustawień zachowuje oba pola.
 Importy mają limit 1 000 000 bajtów UTF-8 (1000 kB).
@@ -351,6 +352,9 @@ Głośność można regulować bez opuszczania gry:
 - F3 — głośniej.
 - Shift+F2 — poprzednia grupa dźwięków.
 - Shift+F3 — następna grupa dźwięków.
+- Ctrl+F2 — włącz lub wyłącz dodatkowe efekty dźwiękowe gier.
+
+Ctrl+F2 nie wycisza dźwięków potrzebnych do gry, np. piłki w Pongu czy dźwięków w wyzwaniach słuchowych.
 
 Do wyboru są wszystkie dźwięki razem lub oddzielnie: dźwięki gry, wejścia
 i wyjścia ze stołu, czat oraz zaproszenia i powiadomienia. Te same poziomy
@@ -494,6 +498,10 @@ Domyślnie zaznaczone jest „Opublikuj”. Strzałka w prawo przechodzi kolejno
 do dwóch pozostałych opcji, a w lewo wraca do poprzedniej. Enter zatwierdza
 wybór; Escape zamyka okno bez publikowania.
 
+W rankingu słowa i w wynikach wcześniejszych dni możesz otworzyć definicję
+słowa z menu kontekstowego. Escape z rankingu dnia wraca do listy dat,
+z zachowaniem wybranej pozycji.
+
 W rankingu słowa lub dnia zaznacz wynik gracza i naciśnij Tab, aby przejść
 do jego listy prób. Każda pozycja zawiera słowo i liczbę zgodnych liter.
 W szczegółach Wieży słów wybierz rundę, a w swojej galerii — słowo, po czym
@@ -605,6 +613,7 @@ do wskazanej listy lub pola gry, nie do wpisywania wiadomości.
 - F3 — zwiększenie głośności wybranej grupy dźwięków.
 - Shift+F2 — wybór poprzedniej grupy dźwięków.
 - Shift+F3 — wybór następnej grupy dźwięków.
+- Ctrl+F2 — włączenie lub wyłączenie dodatkowych efektów dźwiękowych gier.
 - Ctrl+F4 — odczyt opóźnienia połączenia.
 
 ### Przy stole
@@ -919,7 +928,7 @@ Enter na zestawie otwiera menu:
   i trzy błędne w polach B, C, D. Wybierz kategorię z listy. Źródło i uwagi
   dla redaktora są opcjonalne.
 - „Przeglądaj pytania” — otwórz listę zapisanych pytań; Enter pozwala
-  edytować wybrane pytanie, a Ctrl+N dodać nowe.
+  edytować wybrane pytanie, Ctrl+N dodać nowe, a Delete usunąć zaznaczone po potwierdzeniu.
 - „Dodaj kategorię” — nadaj nazwę kategorii, którą będzie można wybierać
   w pytaniach.
 - „Usuń szkic” — usuń cały zestaw po potwierdzeniu.

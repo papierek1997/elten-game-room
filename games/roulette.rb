@@ -93,6 +93,13 @@ module GameRoomGames
       case action
       when 'bet'
         amount, key = selection['amount'], selection['bet']
+        if key == nil
+          category = selection['bet_category']
+          return [:invalid_bet, nil] unless GameRoomRouletteBets::CATEGORIES.include?(category)
+          key = selection["bet_#{category}"]
+          chosen = bet_definitions(state).find { |bet| bet[:key] == key }
+          return [:invalid_bet, nil] unless chosen && GameRoomRouletteBets.category(chosen) == category
+        end
         amount = amount.to_i if amount.is_a?(String) && /\A[1-9]\d{0,9}\z/.match?(amount)
         return [:invalid_bet, nil] unless amount.is_a?(Integer) && amount.between?(1, 1_000_000_000) && amount * 2 <= state[:chips][player] &&
           bet_definitions(state).any? { |bet| bet[:key] == key }
@@ -107,14 +114,27 @@ module GameRoomGames
       state = replay.state
       player = state[:players].find { |p| same_user?(p, viewer) }
       items = []
+      menus = {}
       if player && same_user?(replay.current_player, player) && !replay.finished?
-        legal_actions(replay, viewer).each do |action|
-          label = if action['action'] == 'bet'
-            bet = bet_definitions(state).find { |b| b[:key] == action['bet'] }
-            _('Bet %{amount} on %{bet}') % {amount: action['amount'], bet: bet_label(bet)}
-          else
-            {'ready' => _('Finish betting'), 'clear' => _('Remove all my bets'), 'spin' => _('Spin the wheel')}.fetch(action['action'])
+        actions = legal_actions(replay, viewer)
+        bets = actions.select { |action| action['action'] == 'bet' }
+        definitions = bet_definitions(state).to_h { |bet| [bet[:key], bet] }
+        grouped = bets.group_by { |action| GameRoomRouletteBets.category(definitions.fetch(action['bet'])) }
+        GameRoomRouletteBets::CATEGORIES.each do |category|
+          choices = grouped.fetch(category, [])
+          next if choices.empty?
+          menu_id = "bets:#{category}"
+          items << GameSurfaces::PawnTrackItem.new(id: menu_id, label: category_label(category),
+            action: GameSurfaces::Action.new(kind: 'surface', name: 'open_menu', payload: {'menu' => menu_id}))
+          menus[menu_id] = choices.map do |action|
+            bet = definitions.fetch(action['bet'])
+            label = _('%{bet}; stake: %{amount}') % {bet: bet_label(bet), amount: action['amount']}
+            GameSurfaces::PawnTrackItem.new(id: "bet:#{action['bet']}", label: GameRoomContent.utf8(label),
+              action: GameSurfaces::Action.from_h(action))
           end
+        end
+        actions.reject { |action| action['action'] == 'bet' }.each do |action|
+          label = {'ready' => _('Finish betting'), 'clear' => _('Remove all my bets'), 'spin' => _('Spin the wheel')}.fetch(action['action'])
           items << GameSurfaces::PawnTrackItem.new(id: "#{action['action']}:#{action['bet']}", label: GameRoomContent.utf8(label), action: GameSurfaces::Action.from_h(action))
         end
       end
@@ -123,7 +143,7 @@ module GameRoomGames
         header += ' ' + (_('Last number: %{number}.') % {number: GameRoomRouletteBets.display(state[:last_number])})
       end
       header += ' ' + (_('Your chips: %{chips}.') % {chips: roulette_amount(state[:chips][player])}) if player
-      GameSurfaces::PawnTrackSpec.new(id: 'roulette', header: GameRoomContent.utf8(header), items: items,
+      GameSurfaces::PawnTrackSpec.new(id: 'roulette', header: GameRoomContent.utf8(header), items: items, menus: menus,
         empty_label: GameRoomContent.utf8(current_turn_shortcut_text(replay, viewer)))
     end
 
@@ -143,11 +163,18 @@ module GameRoomGames
         shortcuts << GameShortcut.new(key: 'space', label: _('spin the wheel'), kind: :action, action_kind: 'command', action_name: 'spin', payload: {})
       elsif state[:phase] == :betting
         if state[:chips][player] >= 2
-          fields = [OptionDefinition.new(key: 'bet', label: _('Roulette bet'), kind: :choice,
-            default: 'red', choices: bet_definitions(state).map { |b| OptionChoice.new(value: b[:key], label: bet_label(b)) }),
-            OptionDefinition.new(key: 'amount', label: _('Number of chips to bet'), kind: :integer, default: [10, state[:chips][player] / 2].min)]
+          fields = [OptionDefinition.new(key: 'bet_category', label: _('Bet type'), kind: :choice,
+            default: 'numbers', choices: GameRoomRouletteBets::CATEGORIES.map { |category| OptionChoice.new(value: category, label: category_label(category)) })]
+          GameRoomRouletteBets::CATEGORIES.each do |category|
+            choices = bet_definitions(state).select { |bet| GameRoomRouletteBets.category(bet) == category }
+            fields << OptionDefinition.new(key: "bet_#{category}", label: _('Roulette bet'), kind: :choice,
+              default: choices.first[:key], visible_if: {'bet_category' => category},
+              choices: choices.map { |bet| OptionChoice.new(value: bet[:key], label: bet_label(bet)) })
+          end
+          fields << OptionDefinition.new(key: 'amount', label: _('Number of chips to bet'), kind: :integer, default: [10, state[:chips][player] / 2].min)
           shortcuts << GameShortcut.new(key: 'b', label: _('place a bet with your own amount'), kind: :form,
-            prompt: _('Place roulette bet'), fields: fields, action_kind: 'command', action_name: 'bet', payload: {'round' => state[:round]})
+            prompt: _('Place roulette bet'), fields: fields, submit_label: _('Place bet'),
+            action_kind: 'command', action_name: 'bet', payload: {'round' => state[:round]})
         end
         [['r', 'ready', _('finish betting')], ['c', 'clear', _('remove all your bets')]].each do |key, action, label|
           next if action == 'clear' && state[:bets][player].empty?
@@ -251,6 +278,16 @@ module GameRoomGames
     def bet_definitions(state)
       @bet_definitions ||= {}
       @bet_definitions[state[:options]['wheel']] ||= GameRoomRouletteBets.definitions(state[:options]['wheel'])
+    end
+
+    def category_label(category)
+      {
+        'numbers' => _('Single numbers'), 'splits' => _('Pairs of numbers'),
+        'streets' => _('Rows of three numbers'), 'corners' => _('Groups of four numbers'),
+        'lines' => _('Groups of six numbers'), 'dozens' => _('Dozens'),
+        'columns' => _('Columns'), 'colours' => _('Colours'), 'parity' => _('Odd or even'),
+        'range' => _('Low or high'), 'zero' => _('Bets including zero')
+      }.fetch(category)
     end
 
     def bet_name(bet)

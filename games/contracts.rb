@@ -68,6 +68,7 @@ module GameRoomGames
     :payload,
     :choices,
     :fields,
+    :submit_label,
     keyword_init: true
   ) do
     KINDS = [:announcement, :browse, :number_input, :choice, :staged_form, :form, :action, :surface].freeze
@@ -88,14 +89,11 @@ module GameRoomGames
       invalid_message: nil,
       payload: nil,
       choices: nil,
-      fields: nil
+      fields: nil,
+      submit_label: nil
     )
       normalized_key = key.to_s.downcase
-      normalized_modifiers = modifiers.to_a.map(&:to_sym).uniq.sort
-      supported_modifiers = [:alt, :control, :shift]
-      if normalized_modifiers.any? { |modifier| !supported_modifiers.include?(modifier) }
-        raise ArgumentError, "a game shortcut contains an unsupported modifier"
-      end
+      normalized_modifiers = normalize_shortcut_modifiers(modifiers)
       normalized_kind = kind.to_sym
       if !/\A[a-z0-9]\z/.match?(normalized_key) && !NAMED_KEYS.include?(normalized_key)
         raise ArgumentError, "a game shortcut requires one letter, digit or supported named key"
@@ -160,7 +158,8 @@ module GameRoomGames
         invalid_message: invalid_message == nil ? nil : invalid_message.to_s,
         payload: payload == nil ? {} : payload.to_h,
         choices: choices,
-        fields: fields
+        fields: fields,
+        submit_label: submit_label && GameRoomContent.utf8(submit_label)
       )
     end
 
@@ -170,6 +169,16 @@ module GameRoomGames
       allowed_values.include?(Integer(value.to_s, 10))
     rescue ArgumentError
       false
+    end
+
+    private
+
+    def normalize_shortcut_modifiers(modifiers)
+      normalized = modifiers.to_a.map(&:to_sym).uniq.sort
+      if normalized.any? { |modifier| ![:alt, :control, :shift].include?(modifier) }
+        raise ArgumentError, "a game shortcut contains an unsupported modifier"
+      end
+      normalized
     end
   end
 

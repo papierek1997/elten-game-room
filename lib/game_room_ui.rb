@@ -33,6 +33,7 @@ module GameRoomUI
     "F3: raise the selected Power Games sound volume.",
     "Shift+F2: select the previous sound group.",
     "Shift+F3: select the next sound group.",
+    "Ctrl+F2: enable or disable additional game sound effects.",
     "Ctrl+F4: read HTTP ping and available Communications relay or P2P ping."
   ].freeze
   HotkeyAction = Struct.new(:callback) do
@@ -296,6 +297,12 @@ module GameRoomUI
 
     def game_room_hotkey_action(key)
       return HotkeyAction.new(-> { show_game_room_help }) if key == 1
+      if key == 14 && @game_room_program&.respond_to?(:toggle_optional_game_sounds, true)
+        return HotkeyAction.new(lambda do
+          clear_game_room_key
+          @game_room_program.send(:toggle_optional_game_sounds)
+        end)
+      end
       if key == 16 && @game_room_program
         return HotkeyAction.new(-> { request_game_room_ping })
       end

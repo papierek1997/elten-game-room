@@ -734,14 +734,15 @@ class GameScreen
       when :boolean
         CheckBox.new(definition.label, checked: definition.default == true)
       when :choice
-        ListBox.new(definition.choices.map(&:label), header: definition.label, index: 0, quiet: true)
+        ListBox.new(definition.choices.map(&:label), header: definition.label,
+          index: definition.choices.index { |choice| choice.value == definition.default } || 0, quiet: true)
       when :multiple_choice
         ListBox.new(definition.choices.map(&:label), header: definition.label, index: 0,
           flags: ListBox::Flags::MultiSelection, quiet: true)
       end
       [definition, control]
     end
-    submit = Button.new(_("Send proposal"))
+    submit = Button.new(shortcut.submit_label || _("Send proposal"))
     cancel = Button.new(_("Cancel"))
     form = GameRoomUI::Form.new(bindings.map(&:last) + [submit, cancel], program: @program, quiet: true)
     form.accept_button = submit

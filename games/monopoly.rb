@@ -306,7 +306,8 @@ module GameRoomGames
     def monopoly_replay_result(state, players, accepted, history, session)
       GameRoomSessionClock.attach(state, session)
       Replay.new(board: state[:board], players: players, current_player: state[:current_player], winner: state[:winner],
-        draw: false, accepted_events: accepted, history: GameRoomSnapshot.copy(Array.new(history)), state: state)
+        draw: false, accepted_events: accepted,
+        history: Array.new(GameRoomSnapshot::Log.from_owned(history)), state: state)
     end
 
     def reduce_monopoly_events(state, positions, history, events, session, repository, offset: 0)

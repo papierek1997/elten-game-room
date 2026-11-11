@@ -52,10 +52,11 @@ require_relative '../../lib/tournaments/ordinary_match_results'
   puts "PASS private full game: #{count} players, #{teams} teams"
 end
 
-# Keep a tiny custom deck alive by discarding; it must recycle without making
-# the old private cards public, including after a fresh local reconstruction.
+# Keep a tiny, finishable custom deck alive by discarding; it must recycle
+# without making the old private cards public, including after a fresh local
+# reconstruction. An unfinishable deck now ends through the impasse rule.
 types = GameRoomGames::MilleBornes::DECK_COUNTS.keys
-options = types.to_h { |type| ["#{type}_cards", type == '25' ? 13 : (type == 'go' ? 1 : 0)] }.merge(
+options = types.to_h { |type| ["#{type}_cards", type == '100' ? 13 : (type == 'go' ? 1 : 0)] }.merge(
   'custom_deck' => true, 'include_safeties' => false, 'recycle_discard' => true)
 h, runners = MillePrivateTest.create(options: options)
 12.times do

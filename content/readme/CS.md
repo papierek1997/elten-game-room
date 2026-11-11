@@ -106,7 +106,8 @@ pěti sekundách nečinnosti; čtení a hláskování tento čas nespotřebováv
 Ctrl+L hláskuje slovo, Ctrl+O ho čte, Ctrl+středník čte jeho zbytek
 a Ctrl+Shift+středník zbytek věty ve Volném psaní. Ctrl+P otevře nastavení
 braillu, zvuků a samostatné odezvy psaní. Odezva platí jen pro herní pole
-a ve výchozím stavu používá nastavení Eltenu. Vložit text otevře pole přímo
+a ve výchozím stavu používá nastavení Eltenu. Funguje i při psaní braillem,
+kdy čte převedená písmena a slova. Vložit text otevře pole přímo
 v nastavení stolu: nejprve název, potom klávesou Tab obsah. Změna nastavení oba údaje zachová.
 Limit importu je 1 000 000 bajtů UTF-8 (1000 kB).
 Překročení limitu zobrazí chybu importu a zachová vložený text pro úpravu.
@@ -252,6 +253,9 @@ Hlasitost můžete měnit bez opuštění hry:
 - F3 — hlasitěji.
 - Shift+F2 — předchozí skupina zvuků.
 - Shift+F3 — další skupina zvuků.
+- Ctrl+F2 — zapnutí nebo vypnutí doplňkových zvukových efektů her.
+
+Ctrl+F2 nevypíná zvuky potřebné k hraní zvukových her a poslechových výzev.
 
 Lze ovládat všechny zvuky společně nebo zvlášť zvuky hry, příchody a odchody od stolu, chat a pozvánky s oznámeními. Stejné úrovně najdete v Nastavení → Zvuky.
 
@@ -321,6 +325,10 @@ V hlavním menu vyberte Žebříčky a potom hru.
 - V žebříčku slov je výše ten, kdo slovo uhodl na méně pokusů. Vyhledávat lze celé slovo i jeho část.
 - Denní Krowa má samostatný žebříček pro každý den, také podle počtu pokusů. Dnešní slovo zůstává skryté; řešení minulých dní lze zobrazit po jejich skončení.
 - Ve Slovní věži rozhoduje počet dokončených kol: čím více, tím lepší místo. Enter na výsledku zobrazí slova a pokusy v jednotlivých kolech.
+
+V kontextové nabídce žebříčku slova nebo výsledků minulého dne můžete
+vyhledat význam slova. Escape z denního žebříčku vrátí seznam dat
+se zachovaným výběrem dne.
 
 Po uhodnutí slova v náhodné hře nebo denní Krowě můžete vybrat „Zveřejnit“,
 „Zveřejnit bez seznamu pokusů“ nebo „Nezveřejňovat“. Stejná volba je
@@ -408,6 +416,7 @@ Následující přehled se týká společného ovládání programu. Příkazy k
 - F3 — zvýšení hlasitosti vybrané skupiny zvuků.
 - Shift+F2 — předchozí skupina zvuků.
 - Shift+F3 — další skupina zvuků.
+- Ctrl+F2 — zapnutí nebo vypnutí doplňkových zvukových efektů her.
 - Ctrl+F4 — přečtení odezvy spojení.
 
 ### U stolu
@@ -708,7 +717,7 @@ V hlavním okně najdete „Tvorbu vlastních sad kvízových otázek“. Otevř
 Enterem otevřete nabídku vybrané sady:
 
 - „Přidat otázku“: zadejte otázku, do prvního pole (A) správnou odpověď a do polí B, C a D tři nesprávné odpovědi. Ze seznamu vyberte kategorii. Zdroj i poznámka pro redaktora jsou nepovinné.
-- „Procházet otázky“: otevřete seznam uložených otázek. Enterem můžete vybranou otázku upravit, Ctrl+N přidat novou.
+- „Procházet otázky“: otevřete seznam uložených otázek. Enterem můžete vybranou otázku upravit, Ctrl+N přidat novou a klávesou Delete vybranou otázku po potvrzení smazat.
 - „Přidat kategorii“: pojmenujte kategorii, kterou budete moci vybírat u otázek.
 - „Smazat koncept“: po potvrzení odstraníte celou sadu.
 - „Odeslat autorovi“: odešlete celou sadu uživateli papierek.

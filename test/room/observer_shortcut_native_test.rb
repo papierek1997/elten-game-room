@@ -29,13 +29,19 @@ assert(actions == [[:make_observer, 'Bob']], 'Native Ctrl+Shift+P did not target
 snapshot.observers << 'Bob'
 press.call
 assert(actions.last == [:make_player, 'Bob'] && actions.size == 2, 'Native role shortcut did not offer returning to play')
+layout.users.index = 0
+press.call
+assert(actions.last == [:make_observer, 'Alice'] && actions.size == 3, 'Native role shortcut did not target the table master')
+snapshot.observers << 'Alice'
+press.call
+assert(actions.last == [:make_player, 'Alice'] && actions.size == 4, 'Native role shortcut did not return the table master to play')
 layout.form.index = layout.form.fields.index(layout.chat)
 layout.chat.set_text('Keep this draft')
 press.call
-assert(actions.size == 2 && layout.chat.text == 'Keep this draft', 'Role shortcut leaked to chat')
+assert(actions.size == 4 && layout.chat.text == 'Keep this draft', 'Role shortcut leaked to chat')
 layout.form.index = layout.form.fields.index(layout.users)
 available.clear
 press.call
-assert(actions.size == 2, 'Role shortcut remained active after the owner lost permission')
+assert(actions.size == 4, 'Role shortcut remained active after the owner lost permission')
 $activecontrols = []
 puts 'PASS native observer shortcut: selected identity, both roles, chat isolation and dynamic permissions'

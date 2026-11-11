@@ -63,6 +63,7 @@ assert_equal(before + (appended.last['action'] == 'roll' ? 1 : 0), calls, 'Appen
 
 # Caller-owned model edits must not poison either the checkpoint or input.
 view.state[:cash][players.first] = -999_999
+assert(view.history.first.frozen? && view.history.first.text.frozen?, 'Shared history rows are mutable')
 view.history.clear
 assert_equal(expected.call(appended).to_h, game.replay(session, appended, repository).to_h, 'Returned model leaked into cache')
 game.replay(session, appended.take(20), repository)

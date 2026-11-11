@@ -14,6 +14,7 @@ module GameSurfaces
       @spec = spec
       @player_labels = @spec.player_labels
       @menus = @spec.menus || {}
+      @menu_positions = state_value(state, "menu_positions", {}).to_h.select { |key, _| key == "" || @menus.key?(key) }.transform_values(&:dup)
       @menu = state_value(state, "menu", "").to_s
       @menu = "" if @menus[@menu].to_a.empty?
       @items = @menu.empty? ? @spec.items.to_a : @menus[@menu]
@@ -43,7 +44,8 @@ module GameSurfaces
         "index" => @control.index.to_i,
         "item_id" => item&.id.to_s,
         "menu" => @menu,
-        "player_labels" => @player_labels
+        "player_labels" => @player_labels,
+        "menu_positions" => @menu_positions.transform_values(&:dup)
       }
     end
 
@@ -59,8 +61,9 @@ module GameSurfaces
       return false unless command.to_s == "open_menu"
       menu = payload["menu"].to_s
       return false if @menus[menu].to_a.empty?
+      remember_menu_position
       @menu = menu
-      replace_items(@menus[menu])
+      replace_items(@menus[menu], position: @menu_positions[menu])
       true
     end
 
@@ -70,8 +73,9 @@ module GameSurfaces
 
     def cancel_pending_action!
       return false if @menu.empty?
+      remember_menu_position
       @menu = ""
-      replace_items(@spec.items.to_a)
+      replace_items(@spec.items.to_a, position: @menu_positions[""])
       true
     end
 
@@ -81,14 +85,21 @@ module GameSurfaces
 
     private
 
-    def replace_items(items)
+    def remember_menu_position
+      @menu_positions[@menu] = {"index" => @control.index.to_i, "item_id" => @items[@control.index.to_i]&.id}
+    end
+
+    def replace_items(items, position: nil)
       @items = items
       @control.options = items.map(&:label)
-      @control.index = 0
+      position = position.to_h
+      @control.index = @items.index { |item| item.id == position["item_id"] } ||
+        position.fetch("index", 0).to_i.clamp(0, [@items.size - 1, 0].max)
       @control.focus
     end
 
     def emit_surface_action(action)
+      return handle_command(action.name, action.payload) if action.kind == "surface" && action.name == "open_menu"
       emit_action(action.kind, action.name, action.payload, source: action.source)
     end
 

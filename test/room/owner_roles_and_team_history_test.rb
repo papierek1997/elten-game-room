@@ -97,7 +97,10 @@ h.as('Alice') do
   layout.users.index = snapshot.members.index('Alice')
   menu = FakeMenu.new
   layout.users.context(menu)
-  assert(menu.options.empty?, 'Owner self role duplicated participant commands')
+  role = menu.options.find { |item| item.first == 'Make Alice an observer for the next game' }
+  assert(role && menu.options.size == 1, 'Owner self role is missing or duplicated')
+  role.last.call
+  assert(actions.last == [:make_observer, 'Alice'], 'Owner self role targeted another participant')
 end
 
 # Team choice and its history use the same confirmed options record.

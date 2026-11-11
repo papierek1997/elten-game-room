@@ -163,7 +163,11 @@ module GameRoomGames
 
       def monopoly_trade_safe?(state, player)
         offer = state[:trade_offer]
-        return false unless offer && trade_gain(state, offer, player) >= 0
+        return false unless offer && same_user?(offer[:target], player) && valid_trade_offer?(state, offer)
+        # A legal unencumbered gift does not spend the recipient's reserve.
+        # Being poor must not turn a strictly beneficial gift into a refusal.
+        return true if offer_properties(offer, :receive).empty? && offer[:receive_cash].zero?
+        return false if trade_gain(state, offer, player) < 0
         cash = state[:cash][player] + offer[:give_cash] - offer[:receive_cash]
         after = state.merge(owners: state[:owners].dup)
         offer_properties(offer, :give).each { |index| after[:owners][index] = player }
@@ -212,9 +216,17 @@ module GameRoomGames
         after = state.merge(owners: state[:owners].dup)
         offer_properties(offer, :give).each { |index| after[:owners][index] = offer[:target] }
         offer_properties(offer, :receive).each { |index| after[:owners][index] = offer[:from] }
+        # Only the transferred colour groups, railroads or utilities change
+        # value. Repricing every unrelated holding for each hypothetical offer
+        # made a late turn considerably more expensive than an early turn.
+        affected = (offer_properties(offer, :give) + offer_properties(offer, :receive)).flat_map do |index|
+          square = state[:board][index]
+          square[:type] == :property ? colour_group_squares(state, square[:group]) :
+            state[:board].select { |other| other[:type] == square[:type] }
+        end.uniq { |square| square[:index] }
         offer["#{incoming}_cash".to_sym] - offer["#{outgoing}_cash".to_sym] +
-          owned_squares(after, player).sum { |s| trade_property_value(after, s[:index], player) } -
-          owned_squares(state, player).sum { |s| trade_property_value(state, s[:index], player) }
+          affected.sum { |s| same_user?(after[:owners][s[:index]], player) ? trade_property_value(after, s[:index], player) : 0 } -
+          affected.sum { |s| same_user?(state[:owners][s[:index]], player) ? trade_property_value(state, s[:index], player) : 0 }
       end
 
       def net_worth(state, player)

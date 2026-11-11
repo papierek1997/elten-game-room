@@ -106,7 +106,8 @@ deletrear no consumen este tiempo.
 Ctrl+L deletrea, Ctrl+O lee la palabra y Ctrl+punto y coma lee su resto.
 Ctrl+Mayús+punto y coma lee el resto de la frase en Escritura libre.
 Ctrl+P abre los ajustes de braille, sonidos y eco de escritura local. El eco
-solo afecta al campo del juego y usa el ajuste de Elten por defecto. Pegar un texto abre un campo
+solo afecta al campo del juego y usa el ajuste de Elten por defecto. También
+funciona al escribir en braille: lee las letras y palabras traducidas. Pegar un texto abre un campo
 en la misma pantalla de ajustes de la mesa: primero el título y, con Tab, el contenido.
 Ambos se conservan al cambiar los ajustes.
 El límite es 1 000 000 de bytes UTF-8 (1000 kB).
@@ -255,6 +256,9 @@ Puedes ajustar el volumen sin salir del juego:
 - F3 — subir el volumen.
 - Shift+F2 — grupo de sonidos anterior.
 - Shift+F3 — grupo de sonidos siguiente.
+- Ctrl+F2 — activar o desactivar los efectos de sonido adicionales de las partidas.
+
+Ctrl+F2 no desactiva los sonidos necesarios para jugar a juegos de audio o resolver desafíos auditivos.
 
 Puedes controlar todos los sonidos juntos o grupos separados: juego, entradas y salidas de la mesa, chat, e invitaciones y notificaciones. Encontrarás los mismos niveles en Ajustes → Sonidos.
 
@@ -324,6 +328,10 @@ En el menú principal, elige Clasificaciones y después un juego.
 - En las clasificaciones de palabras, cuantos menos intentos, mejor posición. Puedes buscar una palabra o parte de ella.
 - Krowa diaria tiene una clasificación para cada día, también por número de intentos. La palabra de hoy permanece oculta; las soluciones anteriores se pueden consultar una vez terminado su día.
 - En la Torre de palabras cuenta el número de rondas completadas: cuantas más, mejor posición. Pulsa Enter sobre un resultado para consultar las palabras y los intentos de cada ronda.
+
+El menú contextual de la clasificación de una palabra o de un día anterior
+permite consultar su definición. Escape desde la clasificación diaria vuelve
+a la lista de fechas y conserva el día seleccionado.
 
 Tras adivinar una palabra en Palabra aleatoria o Krowa diaria, puedes elegir
 «Publicar», «Publicar sin la lista de intentos» o «No publicar». Las mismas
@@ -412,6 +420,7 @@ Esta lista cubre los controles comunes del programa. Para las órdenes de un jue
 - F3 — subir el volumen del grupo de sonidos seleccionado.
 - Shift+F2 — seleccionar el grupo de sonidos anterior.
 - Shift+F3 — seleccionar el grupo de sonidos siguiente.
+- Ctrl+F2 — activar o desactivar los efectos de sonido adicionales de las partidas.
 - Ctrl+F4 — leer la latencia de conexión.
 
 ### En una mesa
@@ -712,7 +721,7 @@ En la ventana principal, abre «Crear tus propios conjuntos de preguntas de Quiz
 Pulsa Enter sobre un conjunto para abrir su menú:
 
 - «Añadir pregunta»: escribe la pregunta, la respuesta correcta en el primer campo (A) y tres respuestas incorrectas en B, C y D. Elige una categoría de la lista. La fuente y la nota para la revisión son opcionales.
-- «Ver preguntas»: abre la lista de preguntas guardadas. Pulsa Enter para editar la seleccionada o Ctrl+N para añadir una nueva.
+- «Ver preguntas»: abre la lista de preguntas guardadas. Pulsa Enter para editar la seleccionada, Ctrl+N para añadir una nueva o Delete para eliminar la seleccionada después de confirmarlo.
 - «Añadir categoría»: pon nombre a una categoría que puedas elegir en las preguntas.
 - «Eliminar borrador»: elimina todo el conjunto tras pedir confirmación.
 - «Enviar al autor»: envía todo el conjunto a papierek.

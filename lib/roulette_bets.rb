@@ -1,6 +1,25 @@
 module GameRoomRouletteBets
   RED = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36].freeze
+  CATEGORIES = %w[numbers splits streets corners lines dozens columns colours parity range zero].freeze
   module_function
+
+  def category(bet)
+    key = bet.fetch(:key)
+    case key
+    when /\An\d+\z/ then 'numbers'
+    when /\As\d+[hv]\z/ then 'splits'
+    when /\At\d+\z/ then 'streets'
+    when /\Ac\d+\z/ then 'corners'
+    when /\Al\d+\z/ then 'lines'
+    when /\Adozen/ then 'dozens'
+    when /\Acolumn/ then 'columns'
+    when 'red', 'black' then 'colours'
+    when 'odd', 'even' then 'parity'
+    when 'low', 'high' then 'range'
+    when /\Az\d+\z/ then 'zero'
+    else raise ArgumentError, 'Unknown roulette bet category'
+    end
+  end
 
   def definitions(wheel)
     bets = []

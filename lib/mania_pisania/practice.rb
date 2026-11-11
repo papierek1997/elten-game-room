@@ -47,6 +47,22 @@ module GameRoomTyping
     def braille?; braille_at?(free? ? @engine.correct_words + @engine.mistakes : (memory? ? @engine.word_index : @engine.typed_words)); end
     def errors; free? ? @engine.mistakes : @engine.errors; end
 
+    def echo_text(text, character:)
+      return text unless braille?
+      return partial_braille_text(text) if character == ' '
+
+      if character == "\b"
+        current = partial_braille_text(@buffer)
+        remaining = partial_braille_text(@buffer[0...-1])
+        return current[remaining.length..] if current && remaining && current.start_with?(remaining)
+        return partial_braille_text(text)
+      end
+
+      previous = partial_braille_text(@buffer).to_s
+      current = partial_braille_text(@buffer + character)
+      current && current.start_with?(previous) ? current[previous.length..] : current
+    end
+
     def start
       return if @started_at
       @started_at = @clock.call
@@ -219,6 +235,13 @@ module GameRoomTyping
     end
 
     private
+
+    def partial_braille_text(cells)
+      return '' if cells.empty?
+      @translator.back_translate(cells, table: @table)
+    rescue BrailleUnavailable
+      nil
+    end
 
     def error_notice
       @notices << [:error, _('Errors: %{count} of 5.') % {count: @engine.errors}, @engine.errors]

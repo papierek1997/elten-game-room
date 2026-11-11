@@ -49,6 +49,19 @@ class CreatorKeyDriver
 end
 
 views = GameRoomQuizContributions::Views.new(EltenGameRoom.allocate)
+
+with_question = GameRoomQuizContributions::Model.new_draft('set')
+with_question['items'] << GameRoomQuizContributions::Model.new_question('General')
+delete_driver = CreatorKeyDriver.new { views.questions(with_question) }
+delete_driver.tap([])
+delete_driver.tap([46])
+NativeOptionTest.assert(!delete_driver.waiting? && delete_driver.result == [:delete, 0],
+  'Native Delete did not remove the selected question from the browser')
+empty_driver = CreatorKeyDriver.new { views.questions(with_question.merge('items' => [])) }
+empty_driver.tap([])
+empty_driver.tap([46])
+NativeOptionTest.assert(empty_driver.waiting?, 'Delete operated on an empty question list')
+empty_driver.tap([27])
 driver = CreatorKeyDriver.new { views.choose('Choose', ['No', 'Yes'], index: 0) }
 driver.tap([39])
 NativeOptionTest.assert(driver.form.fields.first.index == 1, 'Right arrow did not change a creator choice')

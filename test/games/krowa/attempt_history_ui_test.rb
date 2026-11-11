@@ -121,14 +121,24 @@ tables = KrowaTestTables.new
 store = GameRoomGames::KrowaServerStore.new(server_tables: tables, bank: run.bank, user: 'Alice')
 store.publish_word('kot', 2, words: %w[las kot])
 store.publish_word('las', 1)
-ranking = GameRoomGames::KrowaLeaderboardClient.new(run.program, run.game, store: store)
+definitions = []
+leaderboard_client = run.game.build_leaderboard_client(run.program, server_tables: tables)
+leaderboard_client.define_singleton_method(:definition_dialog) { |word| definitions << word }
+leaderboard_client.start
+ranking = leaderboard_client.instance_variable_get(:@leaderboards)
 Form.driver = lambda do |form|
+  menu = FakeMenu.new
+  form.context(menu)
+  definition = menu.options.find { |option| option.first == 'Word definition' }
+  assert(definition, 'word ranking has no definition action')
+  definition.last.call
   assert(form.fields[1].header == 'Attempt list', 'Tab from ranking does not reach history')
   form.fields[1].trigger(:before_focus)
   assert(form.fields[1].options == ['las. 0', 'kot. 3'], 'ranking history for selected user')
   form.cancel_button.trigger(:press)
 end
 ranking.show_word_ranking('kot')
+assert(definitions == ['kot'], 'word ranking opened a definition for the wrong word')
 
 client = run.game.build_client(run.program, server_tables: tables)
 client.start
@@ -157,6 +167,9 @@ GameRoomClock.define_singleton_method(:synchronized?) { true }
 server_day = Time.utc(2026, 10, 29, 12)
 GameRoomClock.define_singleton_method(:now) { server_day.to_f }
 Form.driver = lambda do |form|
+  menu = FakeMenu.new
+  form.context(menu)
+  assert(menu.options.none? { |option| option.first == 'Word definition' }, 'current daily ranking exposed its definition')
   attempts = form.fields[1]
   before = tables.fetch('krowa_attempt_lists').queries.length
   attempts.trigger(:before_focus)
@@ -188,5 +201,5 @@ assert(tower_client.send(:tower_run_code, completed, rounds) == tower_client.sen
 tower_client.instance_variable_get(:@profile).observe(completed)
 assert(tower_client.instance_variable_get(:@profile).data['gallery'].empty?, 'tower words entered solo gallery')
 Form.driver = nil
-client.close; tower_client.close
+client.close; leaderboard_client.close; tower_client.close
 puts 'PASS Krowa attempt UI: publication choices/escape, lazy Tab lists, exact selections, legacy entries, server midnight and tower identity'

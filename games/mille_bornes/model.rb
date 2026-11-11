@@ -407,7 +407,51 @@ module GameRoomGames
 
     def round_over?(state)
       return false if state[:private_bonus]
-      state[:tracks].any? { |track| track[:miles] == 1000 } || state[:hands].values.any?(&:empty?)
+      state[:tracks].any? { |track| track[:miles] == 1000 } || state[:hands].values.any?(&:empty?) ||
+        distance_finish_impossible?(state)
+    end
+
+    # Use only the public initial deck and publicly played cards. Every
+    # unspent distance is generously available to every team, including cards
+    # in other people's private hands and in future recycled piles. Therefore
+    # failure to reach 1000 even in this optimistic model is a certain impasse,
+    # not a guess based on the current player's hand or temporary hazards.
+    def distance_finish_impossible?(state)
+      return false unless state[:options]["recycle_discard"]
+      return false unless [:awaiting_draw, :playing].include?(state[:phase])
+      return false if state[:reaction] || state[:private_error]
+
+      remaining = deck_counts_for(state[:options]).dup
+      state[:spent].each do |card|
+        type = card_type(card)
+        remaining[type] -= 1 if remaining.key?(type)
+      end
+      mask = (1 << 41) - 1 # Positions 0..1000, in steps of 25 miles.
+      state[:tracks].none? do |track|
+        reverse = state[:options]["counterflow"] &&
+          (track[:counterflow] || remaining.fetch("counterflow", 0) > 0)
+        distances = DISTANCES.map do |type|
+          count = [remaining.fetch(type, 0), 0].max
+          count = [count, [2 - track[:two_hundreds], 0].max].min if type == "200"
+          step = type.to_i / 25
+          count = [count, 40 / step].min unless reverse
+          [step, count]
+        end
+        # With reverse travel, use unrestricted signed sums, not a fixed
+        # card-play order clipped at the start/finish. Also allow a free reset
+        # to zero, overestimating every possible backwards overshoot.
+        padding = reverse ? distances.sum { |step, count| step * count } : 0
+        reachable = 1 << (padding + track[:miles] / 25)
+        reachable |= 1 << padding if reverse
+        distances.each do |step, count|
+          count.times do
+            previous = reachable
+            reachable |= previous << step
+            reverse ? reachable |= previous >> step : reachable &= mask
+          end
+        end
+        (reachable & (1 << (padding + 40))) != 0
+      end
     end
 
     def round_points(track)
@@ -429,8 +473,13 @@ module GameRoomGames
       state[:phase] = :round_complete
       state[:current_player] = nil
       state[:reaction] = nil
-      text = winner ? _("%{player} reached exactly 1000 miles and won the round.") % { player: unit_label(state, winner) } :
+      text = if winner
+        _("%{player} reached exactly 1000 miles and won the round.") % { player: unit_label(state, winner) }
+      elsif state[:hands].values.any?(&:empty?)
         _("The round is over: a player has no cards left.")
+      else
+        _("The round is over: no player can reach 1000 miles with the remaining distance cards.")
+      end
       add_history(history, event_id, nil, :round_result, text)
       points.each_with_index do |score, unit|
         add_history(history, event_id, nil, :score, _("%{player}: %{points} points this round; total %{total}.") % {
