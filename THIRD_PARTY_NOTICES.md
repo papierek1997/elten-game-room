@@ -634,5 +634,10 @@ English, Czech, Spanish and Russian word forms are generated from the pinned
 wooorm/dictionaries sources using native Hunspell affix expansion and spelling
 validation. Provenance, processing and source links are documented in
 `content/mania_pisania_words_SOURCES.md`. Full upstream licence/credit notices
-are included in `LICENSES/TYPING-WORDS-{EN,CS,ES,RU}.txt`. The existing Polish
-word pack is unchanged. Hunspell is a build-time tool, not a runtime dependency.
+are included in `LICENSES/TYPING-WORDS-{EN,CS,ES,RU}.txt`. Polish uses a selection
+of frequent inflected forms from IPI PAN's Corpus of Contemporary Polish (KWJP),
+with paulinux's final manual exclusions preserved in the reviewed source list,
+licensed under Creative Commons Attribution 4.0. Attribution, source and licence
+links are in `LICENSES/TYPING-WORDS-PL.txt`; the pinned input and selection policy
+are recorded with the other dictionaries. Hunspell is a build-time tool for the
+other languages, not a runtime dependency.

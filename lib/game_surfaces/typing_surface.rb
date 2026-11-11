@@ -30,6 +30,7 @@ module GameSurfaces
     end
 
     def display(buffer)
+      return if @shown == buffer
       @shown = buffer.dup
       set_text(@shown) unless text.to_s == @shown
       restore_selection(index: @shown.length, check: @shown.length)
@@ -85,7 +86,7 @@ module GameSurfaces
       end
       return if modified
       pending.each do |character|
-        next if DOT_KEYS.key?(character.downcase)
+        next unless GameRoomTyping::SixKeyChord.input?(character)
         @on_character&.call(character)
       end
     end
@@ -138,6 +139,7 @@ module GameSurfaces
     end
 
     def fields
+      return [@input, @information, *@commands] if @spec.own_text && !@spec.enabled
       @spec.enabled ? [@input, @spell, @repeat, (@word_rest if @spec.remaining_word), (@sentence if @spec.remaining_sentence), @finish].compact :
         [@information, (@choose_text if @spec.choose_text), *@commands].compact
     end
@@ -145,6 +147,7 @@ module GameSurfaces
     def state; {}; end
     def reusable_for?(spec)
       spec.is_a?(TypingSpec) && spec.round == @spec.round && spec.enabled == @spec.enabled &&
+        spec.own_text == @spec.own_text &&
         spec.remaining_sentence == @spec.remaining_sentence &&
         spec.remaining_word == @spec.remaining_word && spec.auto_commit == @spec.auto_commit && spec.choose_text == @spec.choose_text &&
         spec.commands.to_a.map(&:id) == @spec.commands.to_a.map(&:id)

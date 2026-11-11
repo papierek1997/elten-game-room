@@ -2,13 +2,12 @@
 require 'base64'
 require 'digest'
 require 'zlib'
-require_relative '../../content/mania_pisania_words'
 
 module GameRoomTyping
   using GameRoomLocalization::Translations
   # The supplied word list is identical on every Game Room client.
   # Compressed blocks are sampled deterministically and inflated
-  # on demand; no three-million-word Array is built during a round.
+  # on demand; no complete dictionary Array is built during a round.
   class WordBank
     MIN_LENGTH = 3
     MAX_LENGTH = 12
@@ -22,7 +21,9 @@ module GameRoomTyping
     def initialize(language: 'pl', blocks: nil, checksum: nil)
       @language = language
       data = case language
-      when 'pl' then WordData
+      when 'pl'
+        require_relative '../../content/mania_pisania_words_pl'
+        WordDataPL
       when 'en'
         require_relative '../../content/mania_pisania_words_en'
         WordDataEN

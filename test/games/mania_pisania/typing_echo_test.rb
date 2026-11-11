@@ -36,6 +36,9 @@ client.define_singleton_method(:prompt_speech_pending?) { false }
 client.define_singleton_method(:announce) { |text, stop:| spoken << [text, stop]; true }
 
 settings.typing_echo = 'characters'
+calls_before=translator.calls.length
+assert(!client.send(:echo_input, 'q'), 'A non-braille key was announced')
+assert(translator.calls.length==calls_before, 'A non-braille key reached Liblouis')
 assert(!client.send(:echo_input, '⠠'), 'Incomplete capital prefix was announced')
 practice.instance_variable_set(:@buffer, '⠠')
 assert(client.send(:echo_input, '⠁'), 'Braille capital letter echo was not announced')

@@ -7,9 +7,9 @@ require_relative '../../support/assertions'
 include GameRoomTest::Assertions
 
 manifest = JSON.parse(File.read(File.expand_path('../../../tools/data/typing-word-packs.json', __dir__)))
-examples = {'en'=>%w[play playing player players], 'cs'=>%w[kočka kočky kočkami],
+examples = {'pl'=>%w[kot kota koty dom domu domem domy], 'en'=>%w[play playing player players], 'cs'=>%w[kočka kočky kočkami],
   'es'=>%w[jugar jugando jugador jugadores], 'ru'=>%w[игра игры играми]}
-%w[en cs es ru].each do |language|
+%w[en pl cs es ru].each do |language|
   require_relative "../../../content/mania_pisania_words_#{language}"
   data = GameRoomTyping.const_get("WordData#{language.upcase}")
   checksum = Digest::SHA256.new
@@ -33,4 +33,4 @@ examples = {'en'=>%w[play playing player players], 'cs'=>%w[kočka kočky kočka
   assert(checksum.hexdigest == data::CHECKSUM && checksum.hexdigest == expected.fetch('runtime_sha256'), 'Word content differs from its identity')
   assert(missing.empty?, "Missing inflections for #{language}: #{missing}")
 end
-puts 'PASS complete word-pack integrity, sorted unique Unicode words and representative inflections in four languages.'
+puts 'PASS complete word-pack integrity, sorted unique Unicode words and representative inflections in five languages.'

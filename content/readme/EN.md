@@ -92,9 +92,15 @@ In Taboo, you need to communicate with the other players. You can use an ELTEN c
 
 Braille is available in all four variants. The game includes Liblouis for Windows and Polish, English, Czech, Spanish and Russian literary tables; NVDA is not required. The default table and stories follow the interface language. Select a local table in Elten's file browser; supported extensions are .ctb, .utb, .tbl and .uti. Memory Chain announces only the new word and disables reading the word remainder. Help contains instructions, a shortcut list and a separate touch-typing guide.
 
-Braille settings offer 32 literary, contracted, computer and regional tables for the five supported languages. The default is a literary table in the interface language; a saved choice is preserved. Random Words, Memory Chain and Survival mode use Polish, English, Czech, Spanish and Russian dictionaries, including inflected forms. Choose the word language in the table settings. A new table defaults to the host's interface language, and every participant receives words from the same dictionary. The game draws words of 3 to 12 letters. Letter case does not affect whether a word is correct; braille input does not require capital indicators.
+In Typoholism settings, choose the braille table directly from the list. Enter on a list or checkbox saves all settings and closes the window; Escape discards changes. To choose your own table file, select Local Liblouis table and press Enter.
+
+Braille settings offer 32 literary, contracted, computer and regional tables for the five supported languages. The default is a literary table in the interface language; a saved choice is preserved. Random Words, Memory Chain and Survival mode use Polish, English, Czech, Spanish and Russian dictionaries, including inflected forms. Choose the word language in the table settings. A new table defaults to the host's interface language, and every participant receives words from the same dictionary. The game draws words of 3 to 12 letters. Letter case does not affect whether a word is correct; braille capital indicators are optional, and correctly capitalized words are accepted too. Changing the braille table takes effect immediately when the field is empty. Finish a partially entered word using the previous table; the next word uses the new one.
 
 The lists of built-in texts, braille tables and dictionary languages include only languages marked as known in Power Games settings. With no known languages selected, only the interface language is offered and the word-language selector is hidden. The default table is literary. In mixed mode, reading a word also announces its input method. Free Typing reads the full sentence first, then the input method and the first word.
+
+With Write your own text (solo only), the text remains in the field during the current session, including after the round ends. You can read, select and copy it. The Polish dictionary contains 29,987 frequent word forms from the Corpus of Contemporary Polish, including inflected forms.
+
+When you return to the editing field, the partial word you have entered is read aloud, including when typing in braille.
 
 Typoholism offers Free typing, Random words, Memory chain and Survival mode,
 alone or with others. Survival mode confirms after the last correct character,

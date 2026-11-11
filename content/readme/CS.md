@@ -92,9 +92,15 @@ Ve hře Taboo potřebujete komunikovat s ostatními hráči. Můžete k tomu vyu
 
 Brajl je dostupný ve všech čtyřech variantách. Hra obsahuje Liblouis pro Windows a polské, anglické, české, španělské a ruské literární tabulky; NVDA není potřeba. Výchozí tabulka a příběhy odpovídají jazyku rozhraní. Místní tabulku vyberete v prohlížeči souborů Eltenu; podporované přípony jsou .ctb, .utb, .tbl a .uti. Paměťový řetězec oznamuje jen nové slovo a neumožňuje číst zbytek slova. Nápověda obsahuje pokyny, seznam zkratek a samostatný návod k psaní všemi deseti.
 
-Nastavení braillu nabízí 32 tabulek pro pět podporovaných jazyků: plnopisné, zkratkopisné, počítačové i regionální varianty. Výchozí je plnopisná tabulka jazyka rozhraní; uložená volba zůstává zachována. Náhodná slova, Paměťový řetězec a Režim přežití využívají polský, anglický, český, španělský a ruský slovník včetně skloňovaných a časovaných tvarů. Jazyk slov vyberete v nastavení stolu. Nový stůl používá jako výchozí jazyk rozhraní hostitele a všichni účastníci dostávají slova ze stejného slovníku. Hra vybírá slova o 3 až 12 písmenech. Velikost písmen nemá vliv na správnost zadaných slov; při psaní braillem nemusíš zadávat znaky pro velká písmena.
+V nastavení Psanománie vybereš braillskou tabulku přímo ze seznamu. Enter na seznamu nebo zaškrtávacím políčku uloží všechna nastavení a zavře okno, Escape změny zahodí. Chceš-li vybrat vlastní soubor tabulky, zvol Místní tabulka Liblouis a stiskni Enter.
+
+Nastavení braillu nabízí 32 tabulek pro pět podporovaných jazyků: plnopisné, zkratkopisné, počítačové i regionální varianty. Výchozí je plnopisná tabulka jazyka rozhraní; uložená volba zůstává zachována. Náhodná slova, Paměťový řetězec a Režim přežití využívají polský, anglický, český, španělský a ruský slovník včetně skloňovaných a časovaných tvarů. Jazyk slov vyberete v nastavení stolu. Nový stůl používá jako výchozí jazyk rozhraní hostitele a všichni účastníci dostávají slova ze stejného slovníku. Hra vybírá slova o 3 až 12 písmenech. Velikost písmen nemá vliv na správnost zadaných slov; při psaní braillem jsou znaky pro velká písmena volitelné a správný zápis s velkým písmenem je také přijat. Změna braillské tabulky platí ihned, pokud je pole prázdné. Rozepsané slovo dokončíš v původní tabulce a další slovo už píšeš v nové.
 
 Seznamy připravených textů, braillských tabulek a jazyků slovníku obsahují jen jazyky označené jako známé v nastavení Power Games. Pokud nejsou vybrány žádné známé jazyky, je dostupný pouze jazyk rozhraní a výběr jazyka slov je skrytý. Výchozí tabulka je plnopisná. Ve smíšeném režimu přečtení slova oznámí také způsob zadávání. Volné psaní nejprve přečte celou větu, potom oznámí způsob zadávání a první slovo.
+
+Při volbě Psaní vlastního textu (pouze sólo) zůstává napsaný text v poli po celou aktuální relaci, i po skončení kola. Můžeš jej číst, označit a zkopírovat. Polský slovník obsahuje 29 987 častých slovních tvarů z Korpusu současné polštiny, včetně skloňovaných a časovaných tvarů.
+
+Po návratu do editačního pole se přečte rozepsané slovo, i při psaní braillem.
 
 Psanománie nabízí Volné psaní, Náhodná slova, Paměťový řetězec a Režim přežití,
 sólo i s ostatními. Režim přežití potvrzuje posledním správným znakem bez Mezerníku.

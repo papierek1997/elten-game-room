@@ -31,6 +31,21 @@ library owns the UTF-8 byte limit for both file and pasted imports. Dialogs
 report validation errors while retaining the input for correction. Table
 options use the game's option-editor extension and carry a bounded text
 descriptor; shared-text preparation handles transfer separately.
+The practice buffer retains raw braille cells for validation; the editing field
+receives their back-translation so native focus and navigation can read the
+entered prefix. Presentation never replaces the engine's raw input.
+Braille grading accepts the lowercase, source, title-case and uppercase
+spellings produced by the selected Liblouis table. Word streams retain the
+actual accepted cell prefix, including optional capital indicators, in saves.
+A newly selected table applies at an empty input boundary; a pending word
+keeps its old table until completion or deletion. Applying the new table also
+invalidates the stream's cached expected spellings.
+Personal settings expose the braille table as an inline list. Draft values,
+including that table, are saved in one settings write through the native form's
+accept button; Escape/Cancel discard them. A new custom-table choice opens the
+existing file browser on save, while an unchanged custom table remains selected
+by filename without reopening that browser. Active practice receives the new
+table only after validation and successful persistence.
 
 `lib/use_cases/` handles invitation acceptance and game saving, while the
 application provides their UI. `game_screen/input.rb` stores the current

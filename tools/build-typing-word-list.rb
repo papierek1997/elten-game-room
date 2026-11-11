@@ -1,12 +1,12 @@
-# Builds a runtime pack from the complete UTF-8, one-word-per-line Hunspell
-# export. Keep the full list outside runtime; only 3..12-letter words are drawn.
+# Builds a runtime pack from a UTF-8, one-word-per-line list.
+# Keep plain exports outside runtime; only 3..12-letter words are drawn.
 require 'base64'
 require 'digest'
 require 'json'
 require 'zlib'
 abort 'Usage: ruby tools/build-typing-word-list.rb LANGUAGE EXPORTED_TXT SORTED_TXT' unless ARGV.length == 3
 language, source, target = ARGV
-abort 'Supported new packs: en cs es ru' unless %w[en cs es ru].include?(language)
+abort 'Supported packs: en pl cs es ru' unless %w[en pl cs es ru].include?(language)
 all = File.readlines(source, encoding: 'UTF-8', chomp: true).map(&:strip).reject(&:empty?).uniq.sort
 raise 'Invalid UTF-8 word' unless all.all?(&:valid_encoding?)
 File.binwrite(target, all.join("\n") + "\n")

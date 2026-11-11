@@ -1,7 +1,31 @@
 # Typoholism word dictionaries
 
-The Polish pack `mania_pisania_words.rb` was supplied by paulinux. Its checksum
-and ordering are retained for saved-game compatibility.
+The Polish pack `mania_pisania_words_pl.rb` contains the final 29,987 forms
+reviewed by paulinux in `tools/data/typing-polish-words.txt`. This plain list is
+the authoritative source: do not refill it from a corpus or restore removed
+entries. The runtime pack contains exactly its words, sorted and compressed.
+`tools/build-typing-polish-words.rb` validates the list without editing it and
+regenerates the pack and manifest hashes. Invalid or duplicate entries cause
+an error rather than silent filtering.
+
+The initial 30,000 inflected forms came from the
+[Corpus of Contemporary Polish (KWJP)](https://kwjp.pl).
+The source is `freqlists/kwjp100-slowa-orth-all.csv.gz` from
+[IPI PAN's data repository](https://github.com/ipipan/kwjp100-varia/tree/26d82bd8b906dfed1cfcf8f903b1650b56daeabf),
+commit `26d82bd8b906dfed1cfcf8f903b1650b56daeabf`, under CC BY 4.0.
+Attribution and licence links are in `LICENSES/TYPING-WORDS-PL.txt`.
+
+The historical starting selection kept lowercase forms of 3–12 Polish letters,
+with dispersion (`1-DP`) of at least 0.05 and explicit token exclusions, ranked
+by descending adjusted frequency (ARF), with Unicode order breaking ties.
+This policy is retained as `initial_selection` in the manifest for provenance;
+it no longer generates the current pool. The owner removed 13 forms from the
+starting selection. Inflections are attested in the corpus, not expanded from
+affixes. The removed automatic frequency generator must not replace this review.
+
+The former supplied Polish list and Polish Hunspell list have been removed,
+including their pack-selection metadata. All Polish games use this pack;
+previous Polish saved word sequences are intentionally unsupported.
 
 The English (`en`, US spelling), Czech (`cs`), Spanish (`es`, Spain) and Russian
 (`ru`) packs come from [wooorm/dictionaries](https://github.com/wooorm/dictionaries/tree/8cfea406b505e4d7df52d5a19bce525df98c54ab/dictionaries),
@@ -33,9 +57,8 @@ cache; it does not inflate the complete dictionaries during play.
 
 Language belongs to the table's options, independently of each participant's
 interface. The same pack checksum, seed and index produce the same word.
-Old tables without a word-language option keep the original Polish pack.
+Tables without a word-language option use Polish.
 
 Reproduction commands are in `docs/BUILDING.md`; input hashes, full-export
 hashes/counts and runtime hashes/counts are in `tools/data/typing-word-packs.json`.
-Keep existing packs immutable when updating dictionaries: changes to ordering
-or words require a new pack identity and a saved-game compatibility policy.
+Other language packs retain their existing contents and saved sequences.
