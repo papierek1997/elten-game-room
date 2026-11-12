@@ -66,6 +66,7 @@ module GameRoomContacts
   # Only live receipts are deferred, never mapping/list/history reads.
   class Pending
     LIMIT = 256
+    EMPTY_ENTRIES = [].freeze
 
     def initialize(clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
       @clock, @entries, @settled = clock, {}, {}
@@ -89,7 +90,8 @@ module GameRoomContacts
 
     def entries
       trim
-      @entries.values.dup
+      return EMPTY_ENTRIES if @entries.empty?
+      @entries.values
     end
 
     def finish(notification)

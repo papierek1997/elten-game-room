@@ -55,7 +55,7 @@ module GameRoomTableWatchRuntime
   def table_watch_start(refresh: false)
     receiver = table_watch_receiver
     sharing = @table_watch_loader && @table_watch_load_state == :loading
-    table_watch_preferences_snapshot
+    drain_table_watch_preferences(receiver)
     return if sharing
     return if receiver.user.empty? || @table_watch_loader&.busy?
     return if !refresh && @table_watch_loader
@@ -90,14 +90,7 @@ module GameRoomTableWatchRuntime
   # retain a form, and a pending/failed read never means an empty selection.
   def table_watch_preferences_snapshot
     receiver = table_watch_receiver
-    if @table_watch_loader && (result = @table_watch_loader.take)
-      games, error = result
-      receiver.games = games unless error
-      @table_watch_load_state = error ? :unavailable : :ready
-      # One attempt per startup, not a background preference poll. Opening
-      # Settings retries explicitly; no failed read can overwrite the server.
-      Log.warning("Game Room watched games could not be loaded: #{error.class}") if error && defined?(Log)
-    end
+    drain_table_watch_preferences(receiver)
     state = @table_watch_load_state || (receiver.games == nil ? :loading : :ready)
     { state: state, games: state == :ready ? receiver.games.to_a.dup : nil }
   end
@@ -109,17 +102,18 @@ module GameRoomTableWatchRuntime
     @table_watch_receipt_writer&.tick
     if (!GameRoomClock.server_available? || GameRoomClock.synchronized?) && defined?(EltenAPI::NotificationService) && EltenAPI::NotificationService.respond_to?(:active_notifications)
       GameRoomTableWatch::Timing.measure(:list_cleanup) do
-        ids = EltenAPI::NotificationService.active_notifications.filter_map do |row|
+        ids = nil
+        EltenAPI::NotificationService.active_notifications.each do |row|
           next unless row.cat.to_s == "app" && row.app_uuid.to_s.casecmp?(server_app_uuid.to_s)
           notification = Programs.app_notification_from(row)
           next unless notification.type.to_s == GameRoomTableWatch::TYPE
           next if receiver.visible?(notification) || @table_watch_pruned[row.id.to_i]
           @table_watch_pruned[row.id.to_i] = true
-          row.id.to_i
+          (ids ||= []) << row.id.to_i
         end
         # Only this new type; never change the deferred invitation expiration.
-        EltenAPI::NotificationService.revoke_active_notifications(ids) unless ids.empty?
-        @table_watch_pruned = @table_watch_pruned.to_a.last(2048).to_h
+        EltenAPI::NotificationService.revoke_active_notifications(ids) if ids
+        @table_watch_pruned.shift while @table_watch_pruned.size > 2048
       end
     end
   rescue StandardError => error
@@ -159,5 +153,17 @@ module GameRoomTableWatchRuntime
 
   def table_notice_visible?(notification)
     table_watch_receiver.visible?(notification) && contact_notification_allowed?(notification) == true
+  end
+
+  private
+
+  def drain_table_watch_preferences(receiver)
+    return unless @table_watch_loader && (result = @table_watch_loader.take)
+    games, error = result
+    receiver.games = games unless error
+    @table_watch_load_state = error ? :unavailable : :ready
+    # One attempt per startup, not a background preference poll. Opening
+    # Settings retries explicitly; no failed read can overwrite the server.
+    Log.warning("Game Room watched games could not be loaded: #{error.class}") if error && defined?(Log)
   end
 end

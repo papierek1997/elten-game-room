@@ -199,8 +199,20 @@ module GameRoomTournaments
       false
     end
     def tournament_starts_tick
-      return unless @tournament_start_inbox
-      inboxes=[@tournament_start_inbox,*(@tournament_event_inboxes || {}).values]
+      start_inbox=@tournament_start_inbox
+      return unless start_inbox
+      event_inboxes=@tournament_event_inboxes
+      work_pending=start_inbox.work_pending?
+      unless work_pending
+        event_inboxes&.each_value do |inbox|
+          if inbox.work_pending?
+            work_pending=true
+            break
+          end
+        end
+      end
+      return unless work_pending
+      inboxes=[start_inbox,*(event_inboxes || {}).values]
       inboxes.flat_map(&:tick).each do |id,_proof|
         row=EltenAPI::NotificationService.active_notifications.find{|value|value.id.to_i==id && value.cat.to_s=='app' && value.app_uuid.to_s.downcase==server_app_uuid.to_s.downcase}
         next unless row && row.revoked!=true
