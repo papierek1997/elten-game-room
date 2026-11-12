@@ -386,8 +386,19 @@ then other unfinished matches, then completed matches. There is no ownership
 or state filter. Opening the schedule selects the first unfinished own match. Later refreshes
 preserve the selected match instead of jumping ahead. In-place updates must not
 refocus controls: native navigation already announces the selected item.
-Team partners must choose each other; an owner
-can manage teams. Ctrl+Shift+T provides own-tournament access only from the main
+Partnerships use `PublicPartnershipOperations` and the authenticated
+`Partnerships` projection. Each participant may have one outgoing request;
+replacing it cancels the previous request. Acceptance names that exact request,
+both participants must still be unpaired, and an established pair must be
+dissolved before choosing another partner. Public organizers do not manually
+assign or break other people's confirmed pairs. Manual or scheduled Start
+completes the remaining even-sized unpaired roster through one recorded
+`pair_draw`, preserving established pairs. Odd unpaired counts produce the
+specific refusal before start, not an arbitrary leftover seat. Merely reading
+the directory, rules or results must not trigger that draw. The separate local
+participant-manager pilot is not the public pairing policy.
+
+Ctrl+Shift+T provides own-tournament access only from the main
 lobby and the widget, without acquiring another application instance. Explicit
 Refresh and Check pending changes remain available after uncertain operations.
 

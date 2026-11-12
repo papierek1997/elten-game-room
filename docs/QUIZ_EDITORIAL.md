@@ -13,6 +13,22 @@ databases. It does not authorise rewriting existing sets as part of unrelated
 changes or altering wording the user has asked to preserve. The user's
 specific instructions take precedence.
 
+## How to use this template
+
+This guide is mandatory even when a task says only “add these questions” or
+imports a contributor's ready-made set. Apply the review to every new or
+changed question and all four answers. It is a process and completeness
+template, not a fixed sentence pattern: do not generate a batch by replacing
+names in one formula. Use the wording a knowledgeable person would naturally
+use when asking that particular question in the target language.
+
+Verify facts and plausible alternatives first, then read the complete changed
+batch separately for language and meaning, with sources and implementation set
+aside. Revise awkward phrasing and recheck that the fact and sole correct answer
+have not changed. Valid fields, a compiled pack or a passing export check cannot
+replace that read-through. Keep uncertainty out of the active set; do not ask
+players to discover unfinished editing during a game.
+
 ## Scope and approach to the material
 
 First establish the sources, subject, language, audience and scope of changes.

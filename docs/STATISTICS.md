@@ -2,7 +2,14 @@
 
 ## User interface
 
-Statistics is directly below Leaderboards in the main menu. It offers today, the last 7/30/365 days (including today), calendar years, and all collected time. Dates use Europe/Warsaw. Game rows are ordered by completed matches, then started matches, then name; games without activity are last. Enter on a game opens the humans/bots/solo breakdown.
+Statistics is directly below Leaderboards in the main menu. Its General entry
+opens application activity; games with personal statistics have separate entries
+through the shared capability. The General screen offers today, the last
+7/30/365 days (including today), calendar years, and all collected time. Dates
+use Europe/Warsaw. Game rows are ordered by completed matches, then started
+matches, then name; games without activity are last. Enter on a game opens the
+humans/bots/solo breakdown. See [sports player statistics](SPORTS_LEADERBOARDS.md)
+for the game-specific counters, not a leaderboard.
 
 The main options context menu also offers Current room activity, available through native Ctrl+W. It shows public rooms, private rooms, and the sum of human room memberships. Observers count; virtual bot seats do not. A person participating in multiple rooms can contribute to several room membership totals. This is not a census of everyone signed into Elten, and it does not list names.
 

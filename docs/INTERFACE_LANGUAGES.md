@@ -88,8 +88,10 @@ is absent. Invalid/missing catalogs are not offered as installed translations.
 
 The current catalogs are Czech, Spanish, Polish and Russian, each with one
 editable `locale/<LANG>.po` and one compiled `<LANG>.mo`. English uses source
-messages. Historical JSON fragments and their exporter have been removed;
-Polish rulebook documents are refreshed from the PO. Release notes live in
+messages. Historical JSON fragments and their exporter have been removed.
+Only Polish fields in root-level fallback rulebooks are refreshed from PO;
+complete editions under `tools/data/rulebooks/<LANG>/` remain independently
+authored sources. Release notes live in
 `lib/game_room_changelog.rb` and use the same PO/MO translation workflow.
 See `docs/TRANSLATIONS.md` for editing, source updates and adding another language.
 

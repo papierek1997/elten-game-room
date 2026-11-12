@@ -27,6 +27,22 @@ It does not authorise rewriting unrelated rulebooks or overriding a ready-to-use
 text supplied or selected by its creator. The distinction below takes precedence
 over stylistic advice throughout this guide.
 
+## How to use this template
+
+Using this guide is mandatory for new rules, not just when the maintainer
+mentions it. Read it before drafting and use its outline to check completeness;
+do not turn the outline into fixed sentences with game names and numbers
+substituted. The finished explanation must read naturally in its own language,
+with the actions and connections a beginner needs. Neither identical chapter
+titles nor the shortest possible wording are goals.
+
+Treat verified mechanics, valid source/generated files and natural language as
+three separate completion checks. After the first two, read the whole changed
+book as a player, not as a developer following the implementation. A fluent
+sentence must still preserve the rule; a correct rule must still be explained
+clearly. The review process below applies in every language and to AI-assisted
+contributions too, within the creator-text protection below.
+
 ## Respect rules supplied by their creator
 
 All newly written rules must follow this guide, including rules written by AI

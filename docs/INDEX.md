@@ -7,6 +7,27 @@ Technical and contributor documentation is maintained in English, in the
 existing files. Player guides and game rules remain multilingual; their
 translations must be kept up to date together.
 
+## Start here for contributors and AI assistants
+
+Read [AGENTS.md](../AGENTS.md) and [CONTRIBUTING.md](../CONTRIBUTING.md) first.
+The contribution guide routes games, application features, UI fixes, bots and
+content work to their existing contracts; it does not replace reading them.
+
+- [New games](ADDING_A_GAME.md#tested-reference-game): a complete existing
+  reference game, an executable two-player scenario and capability-specific steps.
+- [Application features](../CONTRIBUTING.md#adding-or-changing-an-application-feature):
+  entry points, reuse, validation, failure, lifetime, presentation and completion.
+- [Interaction examples](GAME_ACCEPTANCE.md#record-the-interaction-not-just-the-result)
+  and [native modal](UI.md#single-choice-modal-dialogs): defaults, ordered speech,
+  confirmation, cancellation and return, not only a submitted action.
+- [Change-to-test map](TESTING.md#select-checks-from-the-change): select affected
+  scenarios and existing dependent tests; distinguish local, native and live proof.
+- [PR evidence template](../.github/pull_request_template.md): scope, exact
+  verification, player-visible behavior and remaining gaps.
+- [Question](QUIZ_EDITORIAL.md) and [rulebook](RULES_EDITORIAL.md) templates:
+  mandatory source and full language review; natural target-language writing,
+  not mechanically filled sentences or literal translation.
+
 ## For players
 
 - [Power Games — user guide](../content/readme/EN.md): getting started,
@@ -14,7 +35,12 @@ translations must be kept up to date together.
   The [Polish guide](../README.md) and the other translations in
   [content/readme/](../content/readme/) remain available.
 
-## Planned fixes
+## Implementation and audit plans
+
+These dated plans record agreed scope, past decisions and status at their last
+update. They are not a competing current API specification or instructions to
+restart old work. For new contributions, use the maintained contracts below and
+the current code; confirm any unresolved decision before changing behavior.
 
 - [Extended Power Games audit — 11 November 2026](AUDIT_PLAN_2026_11_11.md):
   correctness, cumulative costs, complete native interactions and speech,
@@ -71,6 +97,10 @@ translations must be kept up to date together.
 
 ## Feature contracts
 
+- [Tournament integration](TOURNAMENT_SERVER_INTEGRATION.md): publication,
+  participation, scheduling, invitations, match/results ownership and recovery;
+  [administrator handoff](TOURNAMENT_ADMIN_HANDOFF.md) separates local code from
+  authorized server deployment and diagnostic trials.
 - [Mahjong integration](MAHJONG.md): variants, scoring profiles, shared UI,
   ordinary games, server-private tournament hands and finite history budgets.
 

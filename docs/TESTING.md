@@ -151,3 +151,60 @@ question checksums, excluded IDs and selected media assignments.
 files and checksums; licenses are described in `THIRD_PARTY_NOTICES.md`. These expectations
 replace the tests' dependency on old reports; they are not automatically
 updated when a test fails.
+
+## Select checks from the change
+
+Choose tests before implementation, then update the selection from the actual
+diff and its callers. Follow a changed contract through its producer, executor,
+consumer and persisted/generated representation. Search dependent fixtures too:
+a new regression alone does not cover changed defaults or an older consumer.
+The map below provides starting points, not a command to run every listed
+directory for every task. Add the affected game's or feature's own scenarios.
+
+| Changed behavior | Starting checks and dependencies | Owning documentation |
+| --- | --- | --- |
+| New game, rule or variant | The game's directory, a complete default/variant outcome, refusal and deterministic replay; [model contracts](../test/model_contract_test.rb) when the shared model shape changes; [reference scenario](../test/integration/contributor_game_example_test.rb) for the integration pattern | [Adding a game](ADDING_A_GAME.md), [acceptance](GAME_ACCEPTANCE.md), affected rules |
+| Shared surface, layout or binding | [Surface framework](../test/ui/surface_framework_test.rb), [catalog surfaces](../test/ui/catalog_surface_contract_test.rb), [press snapshots](../test/ui/press_snapshot_native_test.rb), plus actual affected consumers and text-field scope | [UI](UI.md), [card hands](CARD_HAND.md), contextual help |
+| Dialog, option or list action | [Native choices](../test/ui/choice_dialog_native_test.rb), [application consumers](../test/ui/app_choice_dialog_native_test.rb), or [native option editor](../test/ui/game_option_editor_native_test.rb), according to control; open/edit/confirm/cancel/return with speech counts | [UI](UI.md), [interaction example](GAME_ACCEPTANCE.md#record-the-interaction-not-just-the-result) |
+| Execution, pending writes or background work | The owning `session/` or `transport/` cases and [pending-operation UI](../test/ui/game_screen_pending_operation_test.rb); concurrent input, own ACK, refusal/uncertainty, covered UI and close | [Architecture](ARCHITECTURE.md), [background execution](BACKGROUND_GAME_EXECUTION.md) |
+| LiveSessions or randomness/private state | [Transport](../test/transport/transport_test.rb), [synchronization](../test/transport/game_sync_test.rb), relevant `live_sessions_*` cases and affected multi-client/game tests; random recipes/private lifecycle tests when those contracts change | [Host API](HOST_API.md), [private state](PRIVATE_STATE.md) |
+| Archive, recording or other storage | The owner's `persistence/` cases: validate before side effects, roundtrip, failure/uncertain write, ownership, return/reopen and exact cleanup; also the relevant UI/transport consumer | [Private state](PRIVATE_STATE.md), [architecture](ARCHITECTURE.md), feature contract |
+| Invitation, notification or statistics feature | The owner's `room/`, `statistics/` or `tournaments/` tests plus its actual native screen/delivery path; empty/waiting/failure states, identity, expiry, cancel and repeated refresh | [UI](UI.md), [statistics](STATISTICS.md), relevant feature contract in [the index](INDEX.md) |
+| Sound or realtime presentation | Affected event/cue and client tests, [optional sound gating](../test/ui/optional_game_sounds_test.rb), manifest/licence checks if assets change; cue order, compound moves, background and resource closure | [Realtime](REALTIME.md), [audio tutorial](AUDIO_TUTORIAL.md), acceptance sound section |
+| Bot strategy | Fixed informative positions and counterexamples using identical permitted views/seeds; legal executor decisions and representative completed matches, not just win rate; hidden-input independence where relevant | [Bot training](BOT_TRAINING.md), game's contract and rules |
+| Cache, worker, cleanup or performance | The owning correctness tests plus repeated opens/rounds, growing realistic history/data, unchanged refresh, invalidation and failure→retry; compare bounded work/requests/resources as well as elapsed time | [Architecture](ARCHITECTURE.md), [ownership](SNAPSHOT_OWNERSHIP.md), [benchmarks](BENCHMARKS.md) |
+| Questions, rules or translations | The respective editorial template in full, source/meaning and complete language review, then affected data, registration, generation/export and native readout if its layout changed | [Quiz template](QUIZ_EDITORIAL.md), [rulebook template](RULES_EDITORIAL.md), [translations](TRANSLATIONS.md) |
+| Contributor docs or executable examples | [Documentation contracts](../test/tooling/contributor_documentation_test.rb) and each changed example's behavioral test; update local links and referenced commands together | This guide, [contributing](../CONTRIBUTING.md), [the index](INDEX.md) |
+
+For runtime Ruby changes, include `test/code_quality_test.rb` and
+`test/game_imports_test.rb` in the small common preflight. Resolve new quality
+findings rather than increasing the baseline merely to accept them. Include
+generated-content checks only for the inputs/consumers affected: for example
+`ruby tools/compile-rulebooks.rb --check`, `ruby tools/translations.rb check`
+or `ruby tools/export-quiz-text.rb --check`. Generation is a distinct step;
+`--check` must not silently repair the sources being verified.
+
+For a documentation-only change, start with:
+
+```console
+ruby test/run.rb test/tooling/contributor_documentation_test.rb --list
+ruby test/run.rb test/tooling/contributor_documentation_test.rb
+```
+
+Use `--list` on the selected scope to catch a misspelled path, empty selection
+or unexpected breadth before executing it. These checks cannot establish
+factual accuracy, natural language or whether a new player understands a text;
+those need the editorial review, not another regex or a prose score.
+
+For each selection, record why the existing dependent tests apply and which
+boundary requires native or authorized live evidence. A local broker is not
+the live service. A captured native speech call is not an audible listening
+test. If the risk depends on server authorization, real delivery or recovery,
+use the relevant live-account scenario when authorized and disclose any gap.
+Do not repeat unrelated game campaigns to inflate the evidence count.
+
+Before pushing, rerun the affected checks after the last meaningful edit,
+inspect the staged diff and report exact commands and outcomes. Keep CI suite
+discovery complete when adding tests. Observe the remote result for the pushed
+commit before calling CI successful; local success and matching Git SHAs do
+not establish that result. If the run is queued or in progress, say so.

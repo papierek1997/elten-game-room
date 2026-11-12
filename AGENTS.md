@@ -1,5 +1,27 @@
 # Instructions for agents working on ELTEN Game Room
 
+## Starting a contribution
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md), then use its task routes and the
+[documentation index](docs/INDEX.md) to find the existing owner. For new games,
+read [ADDING_A_GAME.md](docs/ADDING_A_GAME.md) and
+[GAME_ACCEPTANCE.md](docs/GAME_ACCEPTANCE.md). For other new features, follow
+the [application-feature workflow](CONTRIBUTING.md#adding-or-changing-an-application-feature);
+the same requirements for complete interactions, dependent tests, bounded
+cost and documentation apply outside game models too.
+
+Use the [change-to-test map](docs/TESTING.md#select-checks-from-the-change)
+as a starting point, not exhaustive coverage. Test real consumers when a shared
+contract changes. The tested reference game and modal example demonstrate
+existing mechanisms; they do not authorize a new framework or copying every
+capability into every feature.
+
+The question and rulebook editorial templates below are mandatory, not optional
+style suggestions. Apply their process and separate full language review, but
+write natural target-language prose rather than mechanically filling their
+outline. Technical validation cannot establish natural wording. Keep the
+existing creator-text protection and source restrictions intact.
+
 ## Current contract
 
 - The sources require the final ELTEN 3.0.5 release; the integration contract
@@ -729,7 +751,10 @@ and `docs/PRIVATE_STATE.md`:
   status. A stubbed input dialog or handler-only test cannot establish this.
   Keep a regression for the reported presentation defect and clearly separate
   captured speech from actual listening or live-account verification.
-- Before a pull request, run `ruby test/run.rb`.
+- Before a pull request, run the affected tests and their relevant dependencies
+  with `ruby test/run.rb <selected paths>`; follow the current scope restriction
+  above. Do not invoke the full runner without authorization. Include the
+  relevant common checks from [TESTING.md](docs/TESTING.md#select-checks-from-the-change).
 - Transport changes require `live_sessions_*`, `test/transport/transport_test.rb`,
   `test/transport/game_sync_test.rb` and a multi-client scenario.
 - Shared-surface changes require a test of the surface itself and at least

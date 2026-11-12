@@ -1,5 +1,11 @@
 # Testing and building
 
+For an ordinary contribution, begin with [dependencies and host setup below](#tests-without-elten),
+then use [the change-to-test map](TESTING.md#select-checks-from-the-change).
+Dictionary reconstruction is needed only when changing those resources;
+packaging is a separate, explicitly requested workflow. New games and ordinary
+features follow [CONTRIBUTING.md](../CONTRIBUTING.md).
+
 ## Reproducing Typoholism dictionaries and braille tables
 
 `tools/data/typing-word-packs.json` pins the Hunspell and wooorm/dictionaries
@@ -87,7 +93,7 @@ The current pin is `f29e82a0c32c66b1eca5e6fa5e5e7b858b61f480` (release 3.0.5).
 Use the final release, including its native notification and audio additions.
 
 ```console
-ruby test/run.rb --report tmp/test-results.json
+ruby test/run.rb test/games/tic_tac_toe/rules_test.rb --report tmp/test-results.json
 ```
 
 The runner executes scripts in separate processes and continues after a failure,
@@ -188,7 +194,12 @@ open ELTEN Game Room from the programs menu.
 Use a separate test profile if the test can change table data.
 Do not copy the profile, logs or MCP settings into the repository.
 
-## Unsigned package
+## Audio assets and installer staging
+
+The unsigned builder invocation below is for an explicitly requested disposable
+fixture or unsigned diagnostic package. The maintainer's normal build requests
+require a signed package, including test releases; use [Signed package](#signed-package)
+after staging. These commands do not authorize a release, install or publication.
 
 ### Default recording format
 

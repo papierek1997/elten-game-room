@@ -52,6 +52,20 @@ value, = native_choice(key: 0x1B) { GameRoomUI.choose_index('Choose a result', %
 assert(value.nil?, 'Escape returned a result')
 assert(GameRoomUI.choose_index('No choices', []).nil?, 'Empty choices invented a selection')
 
+# Execute the exact maintained documentation snippet, not a separate copy of
+# its call. Only this known local example is selected; never evaluate imports.
+document = File.read(File.expand_path('../../docs/UI.md', __dir__), encoding: 'UTF-8')
+section = document.split('### Single-choice modal dialogs', 2).last
+example = section && section.match(/^```ruby\r?\n(.*?)^```/m)
+assert(example, 'The documented local-choice example is missing')
+program = Object.new
+[[0x0D, nil, :second], [0x0D, 0, :first], [0x1B, nil, nil]].each do |key, index, expected|
+  value, = native_choice(key: key, index: index, before_input: ->(list) { assert(list.index == 1, 'Documented default changed') }) do
+    eval(example[1], binding, 'docs/UI.md local-choice example')
+  end
+  assert(value == expected, 'Documented choice did not retain its values/cancellation')
+end
+
 spec = GameSurfaces::TabooSpec.new(token: 'turn-1', phase: :review,
   lines: [], status: '', action: nil, master: true,
   review: [{word: 'Dog', forbidden: %w[animal bark], label: 'Unassessed'}],

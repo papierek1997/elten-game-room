@@ -1,5 +1,46 @@
 # Adding a game
 
+Read this guide with [the acceptance checklist](GAME_ACCEPTANCE.md). Ordinary
+application features use the [contribution workflow](../CONTRIBUTING.md#adding-or-changing-an-application-feature)
+instead; they should not acquire a game model just to reuse a form.
+
+## Tested reference game
+
+Use the existing Tic-tac-toe implementation as a small, complete vertical
+example, not a copied starter framework or a second demonstration game to ship.
+Read its pieces in this order:
+
+| Part | Working reference | What it demonstrates |
+| --- | --- | --- |
+| Registration | [Catalog](../games/catalog.rb) and [registry](../games/registry.rb) | One game ID, construction and rulebook validation |
+| Model | [TicTacToe](../games/tic_tac_toe.rb) | Identity, player limits, start, `replay`, `surface_spec`, `action_for`, legal moves and errors |
+| Start randomness | `automatic_action` and `tic_tac_toe_start` in that model | One shared server recipe, no client-only first-player draw |
+| Controls | `GridSpec` in that model and [surfaces](../lib/game_surfaces/specifications.rb) | A board description, not a private input loop; the shared layout adds chat/history/users/help |
+| Presentation | `HistoryEntry`, `describe_event` and `event_sound_cues` | One accepted move becomes a player/field announcement and the existing `play2` cue |
+| Rules | [English authored book](../tools/data/rulebooks/EN/tic_tac_toe.json), its other language editions and [source manifest](../tools/rulebook_sources.json) | Editable source, generated runtime rules and shared language dispatch |
+| Bot | `bot_strategy`, `bot_search_key`, `bot_action_score` | Bounded shared search using the legal-action path |
+| Executable example | [Contributor scenario](../test/integration/contributor_game_example_test.rb) | Registry → normal executor/start draw → two players' validated moves → replay/history/cue/result, including refusal |
+
+Run the small example and the game's existing start/model regressions:
+
+```console
+ruby test/run.rb test/integration/contributor_game_example_test.rb test/games/tic_tac_toe/rules_test.rb test/games/tic_tac_toe/random_start_test.rb
+```
+
+The example uses the native API test harness with a local broker, not live
+ELTEN accounts. It submits explicit player decisions through the normal session
+executors and repository and checks both clients; it does not exercise physical
+keys, actual listening or a live network. Shared native controls have their own tests; select them
+from [the change-to-test map](TESTING.md#select-checks-from-the-change).
+The separate exhaustive strategy test is not part of this quick example.
+
+Tic-tac-toe does not teach private hands, card transfers, rounds, teams or
+realtime physics. For those capabilities, follow the appropriate existing
+contract and consumer, such as `DealtCardGame`, [private state](PRIVATE_STATE.md),
+[teams](TEAMS_ROLES_AND_FOCUS.md) or [realtime](REALTIME.md). The steps below
+define the actual integration requirements; the example is not a rule to
+inherit from `TicTacToe` or copy its optional hooks.
+
 ## 1. Choose an existing model
 
 Check the shared classes first. A board game with piece-to-square moves should

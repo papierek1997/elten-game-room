@@ -1,5 +1,10 @@
 # Saved ordinary tournament matches
 
+Scope: an explicitly invoked developer archive/continuation pilot, not an
+available player feature. Ordinary tournament matches cannot be saved or resumed
+from files; [the current public policy](TOURNAMENT_SERVER_INTEGRATION.md#matches-results-and-recovery)
+takes precedence. Do not enable this pilot as a fallback after a refusal.
+
 The private saved-game archive optionally contains a checksummed `tournament`
 reference: publication, schedule, fixture, leg and the current binding digest.
 It is obtained from the explicitly bound creator service, not guessed from

@@ -30,8 +30,11 @@ The default implementation in `GameRoomGames::Base` returns an empty array.
 
 Use the existing asset name without `Audio/` or an extension. Declare any new
 assets in both release manifests as usual. Add UI messages with
-`ruby tools/translations.rb update`, edit only `locale/PL.po`, then run
-`ruby tools/translations.rb compile PL`. See `docs/TRANSLATIONS.md`.
+`ruby tools/translations.rb update`, translate them in each supported
+`locale/<LANG>.po`, then compile and check those catalogs. `PL` in
+`ruby tools/translations.rb compile PL` selects Polish, not the only language
+to maintain. Follow [the translation workflow](TRANSLATIONS.md) and review each
+changed description as an instruction the player will actually hear.
 No extra condition in the rules screen or game-specific UI class is needed.
 
 An entry can optionally supply `asset_resolver: ->(program) { asset_id }`.

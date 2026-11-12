@@ -1,5 +1,10 @@
 # Shared manual forfeits
 
+Scope: an explicitly invoked developer pilot, not the ordinary player flow.
+Current public settlements use complete place groups and the game's small-point
+policy; see [the current integration contract](TOURNAMENT_SERVER_INTEGRATION.md#matches-results-and-recovery).
+Do not copy this pilot's 2/0-only or active-game cancellation rules into that flow.
+
 The developer server trial offers an explicit organizer decision for an
 unstarted scheduled fixture. The organizer chooses the winning competitor
 (an individual or a complete team). An authenticated immutable document in

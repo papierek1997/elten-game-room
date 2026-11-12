@@ -1,5 +1,9 @@
 # Client sporting phases in the owned server trial
 
+Scope: the explicitly invoked developer pilot described below, including its
+test-only scheduling behavior. Use [the current integration contract](TOURNAMENT_SERVER_INTEGRATION.md)
+for the ordinary player's automatic coordination and optional dates.
+
 `ServerPhasePlan` reuses the existing group qualification, knockout round,
 rematch aggregation, replay and win-series policies. It receives already
 validated ordinary result receipts. Incomplete results never advance a phase;

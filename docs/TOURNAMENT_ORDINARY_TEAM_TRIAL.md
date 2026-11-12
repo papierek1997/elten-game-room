@@ -1,5 +1,9 @@
 # Ordinary native team match trial
 
+Scope: the explicitly invoked developer pilot described below. Its entry,
+coordination and verification limits are not a substitute for the
+[current public tournament flow](TOURNAMENT_SERVER_INTEGRATION.md).
+
 The owned developer server trial can bind one ordinary native game to a fixture
 between two fixed teams. It uses the existing append-only plan-document table;
 it is an explicitly operated trial with a trusted result author, not a global

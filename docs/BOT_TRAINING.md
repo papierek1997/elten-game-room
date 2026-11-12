@@ -9,9 +9,13 @@ One CLI handles training and independent evaluation of selected profiles:
 
 ```console
 ruby tools/spades.rb train --help
-ruby tools/spades.rb train --profiles standard_team_p4_t2 --output candidate.json
-ruby tools/spades.rb evaluate --report candidate.json --profiles standard_team_p4_t2 --output evaluation.json
+ruby tools/spades.rb train --profiles standard_team_p4_t2 --output tmp/candidate.json
+ruby tools/spades.rb evaluate --report tmp/candidate.json --profiles standard_team_p4_t2 --output tmp/evaluation.json
 ```
+
+Create the ignored `tmp/` directory if needed and choose new output names when
+rerunning a comparison. These reports are private working artifacts, not runtime
+profiles to commit. See [benchmark setup](BENCHMARKS.md).
 
 Profile names come from `SpadesLearning::ARRANGEMENT_PROFILES` in
 `spades_training.rb`. Without `--profiles`, training covers all arrangements,

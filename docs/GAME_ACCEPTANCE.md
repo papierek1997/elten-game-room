@@ -4,6 +4,33 @@ Use this for new games and variants, including contributed PRs. Agree on the
 rules before changing mechanics. Review the implementation and the actual
 player experience before declaring it ready, even if a simulation finishes.
 Apply the sections relevant to the change; record any unverified path.
+For application features rather than games, use the same interaction checks
+with the [feature workflow](../CONTRIBUTING.md#adding-or-changing-an-application-feature).
+
+## Record the interaction, not just the result
+
+For each changed path, write the expected interaction before testing and compare
+the actual ordered output after the fix. This example is a local single-choice
+dialog over an existing list; exact spoken strings belong to that control's
+language and native tests, not a universal transcript to paste into every UI.
+
+| Step | Expected behavior | A defect to catch |
+| --- | --- | --- |
+| Open from the selected parent item | One prompt; the intended default is selected | Header and focus both announce the same prompt |
+| Move to another choice | The newly selected choice is read | Whole parent status is read; selection jumps back |
+| Confirm | Return the actual selected value, including index zero | Selection writes immediately or a false/nil check loses the first item |
+| Cancel in a fresh attempt | No action or write; preserve the parent cursor/draft | Escape leaves the table or accepts the default underneath |
+| Return | Same relevant parent field; closing key is consumed | Prompt repeats or Enter activates a second action |
+| Context changes while open | Revalidate current token, role and authority before use | The old dialog submits a decision for a newer phase |
+
+The [native modal example](UI.md#single-choice-modal-dialogs) and
+[its regression](../test/ui/choice_dialog_native_test.rb) demonstrate this path.
+Numeric or text entry also needs native edit/copy/navigation checks, invalid
+input followed by correction, and confirmation without duplicate announcements.
+Use [the option-editor regression](../test/ui/game_option_editor_native_test.rb)
+for that different control, rather than treating a successful picker as proof.
+For asynchronous features add completion after cancel/close, refusal, retry
+and unchanged refresh. Record writes and cues as well as speech and focus.
 
 ## Walk through a round
 

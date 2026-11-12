@@ -59,6 +59,30 @@ blank and a corrupt canonical assignment remains an error, not a redraw.
 
 ### Single-choice modal dialogs
 
+For a local two-choice picker, the current shared call is:
+
+```ruby
+selected = GameRoomUI.choose_index(
+  _("Choose a result"), [_("First"), _("Second")],
+  program: program, index: 1
+)
+unless selected.nil?
+  chosen_value = [:first, :second].fetch(selected)
+  # Revalidate the current context before passing chosen_value to its owner.
+end
+```
+
+This snippet belongs inside the owning Program/translated context, not at
+application startup. It is only the local choice, not a complete persistence
+operation. Index zero is a valid choice; `nil` means no choice. The caller
+keeps the original candidate objects and validates the current context before
+acting. Use a `GameShortcut` choice for a game-field action instead of adding
+a second handler. The executable [native choice regression](../test/ui/choice_dialog_native_test.rb)
+executes this snippet with its default, index zero and Escape, and also checks
+the helper's prompt count, stale context and return behavior. The
+[interaction checklist](GAME_ACCEPTANCE.md#record-the-interaction-not-just-the-result)
+explains what to inspect in each new consumer.
+
 Use `GameRoomUI.choose_index(prompt, labels, program:, index: 0, flags: 0)`
 for a finite local single-choice list. It uses native controls, announces the
 prompt once, preserves the supplied default, accepts Enter and cancels with

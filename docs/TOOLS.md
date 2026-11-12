@@ -11,6 +11,9 @@ It is not part of the runtime or installer. Run commands from the repository roo
 | `build-scrabble-dictionaries.rb` | Build Scrabble EN/PL dictionaries in `content/`; argument: source directory containing `wordlist-20210729.txt` and `sjp/slowa.txt`. |
 | `build-taboo-cards.rb` | Validate and build Taboo EN/PL cards in `content/` from `content/taboo_editorial.txt`. |
 | `build-quiz-pack.rb` | Validate JSON questions and create the specified Quiz set; options in `--help`. |
+| `build-typing-polish-words.rb` | Build the Polish typing pack and manifest from the owner-reviewed word list, without rewriting that list. [Procedure](BUILDING.md#reproducing-typoholism-dictionaries-and-braille-tables). |
+| `build-typing-hunspell.ps1`, `build-typing-word-list.rb` | Build the pinned native dictionary exporter, then prepare other typing packs from its exports. See the same reconstruction procedure; these are not runtime dependencies. |
+| `build-typing-braille.rb` | Rebuild the pinned Liblouis table dependency closure; preserve approved original tables and DLLs. See the same reconstruction procedure. |
 | `export-quiz-text.rb` | Readable copies of Quiz questions in `docs/quiz-questions/`; `--check` makes no writes. |
 | `encode_audio.rb` | Encode an original recording to Opus; arguments: input, new output, optionally FFmpeg and FFprobe. [Profile](BUILDING.md). |
 | `generate-pong-echo.rb` | Generate Pong's echo effect from deterministic PCM to Opus. |
@@ -50,3 +53,9 @@ The UNO prototype requires an ordered trusted relay. Intake bounds packet bytes
 and sender metadata before buffering, including during recovery; a bound breach
 faults that prototype client without advancing its prefix. This is an offline
 experiment contract, not a claim about the native ELTEN transport.
+
+Before using a content generator, read the relevant
+[question](QUIZ_EDITORIAL.md) or [rulebook](RULES_EDITORIAL.md) template in full.
+Generators validate structure and produce outputs; they do not verify facts,
+teach the game or establish natural language. Keep the source authoritative,
+review the complete changed text separately and check the generated diff.

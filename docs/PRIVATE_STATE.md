@@ -226,7 +226,7 @@ until it returns. A cold return requests the same phrase again, not another draw
 Previous pools remain readable until their phrases are revealed, including when
 a turn crosses a reshuffle. Ordinary Taboo and its saved games are unchanged.
 
-## Account archive
+## Tournament Mahjong
 
 Tournament Mahjong table variants use the same native private-pool ledger,
 dealing and disclosure pipeline. Wall positions are assigned lazily; no host
@@ -234,6 +234,8 @@ receives a private copy of the future wall or dead wall. Public indicators use
 public pool takes. A complete known-card hand audit gates score commitment;
 see [MAHJONG.md](MAHJONG.md#current-livesessions-integration). Ordinary Mahjong
 and its archives still use the public server-seed path.
+
+## Account archive
 
 `AccountSavedGames` saves the standard history through the account's private
 files. `saved_game_schema_version` versions the format. A game defines
