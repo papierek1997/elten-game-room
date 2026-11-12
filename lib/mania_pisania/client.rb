@@ -26,7 +26,7 @@ module GameRoomTyping
       @progress_factory = progress_factory || ->(**options, &block) { GameRoomRealtime::Progress.new(**options, &block) }
       @library = TextLibrary.new(program)
       @settings = Settings.new(program)
-      @feedback = ErrorFeedback.new(program, @settings, speech: ->(text) { announce(text) })
+      @feedback = ErrorFeedback.new(program, @settings, speech: ->(text) { announce(text, stop: !@input_echo) })
       @round = nil
       @checkpoint_vault = checkpoint_vault
     end
@@ -420,8 +420,13 @@ module GameRoomTyping
       elsif %w[characters characters_and_words].include?(mode)
         character == "\b" ? (@practice.buffer[-1] if @practice.free?) : character
       end
-      return false if text.to_s.empty?
-      text = @practice.echo_text(text, character: character)
+      text = if text.to_s.empty?
+        # A rejected cell never enters the word stream's buffer. Even word-only
+        # echo must identify its points at the failed key, before it is lost.
+        @practice.undefined_braille_echo(character) if mode == 'words'
+      else
+        @practice.echo_text(text, character: character)
+      end
       return false if text.to_s.empty?
       # Speak now, before input can generate a new word prompt. Queue behind
       # an outstanding prompt, without blocking typing or the active UI clock.
