@@ -123,7 +123,7 @@ W ustawieniach brajla dostępne są 32 tablice: literackie, skrótowe, komputero
 
 Listy gotowych tekstów, tablic brajlowskich i języków słownika obejmują tylko języki zaznaczone jako znane w ustawieniach Power Games. Gdy lista znanych języków jest pusta, dostępny jest wyłącznie język interfejsu, a wybór języka słów jest ukryty. Domyślna tablica jest literacka. W trybie mieszanym odczyt słowa podaje też sposób wpisywania. W Swobodnym pisaniu najpierw słychać całe zdanie, potem sposób wpisywania i pierwsze słowo.
 
-W opcji Pisz własny tekst (tylko solo) wpisana treść pozostaje w polu podczas bieżącej sesji, również po zakończeniu rundy. Możesz ją odczytać, zaznaczyć i skopiować. Polski słownik zawiera 29 987 częstych form słów z Korpusu Współczesnego Języka Polskiego, w tym formy odmienione.
+W opcji Pisz własny tekst (tylko solo) wpisana treść pozostaje w polu podczas bieżącej sesji, również po zakończeniu rundy. Możesz ją odczytać, zaznaczyć i skopiować. Polski słownik zawiera 29 987 częstych form słów z Korpusu Współczesnego Języka Polskiego, w tym formy odmienione. Partii zapisanych z poprzednim polskim słownikiem nie można wznowić.
 
 Po powrocie do pola edycji odczytywane jest rozpoczęte słowo, również podczas pisania brajlem.
 

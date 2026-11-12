@@ -97,7 +97,7 @@ Los ajustes de braille ofrecen 32 tablas literarias, abreviadas, informáticas y
 
 Las listas de textos incluidos, tablas braille e idiomas del diccionario muestran solo los idiomas marcados como conocidos en los ajustes de Power Games. Si no se selecciona ninguno, solo se ofrece el idioma de la interfaz y se oculta el selector del idioma de las palabras. La tabla predeterminada es literaria. En el modo mixto, la lectura de una palabra también anuncia el método de entrada. Escritura libre lee primero la frase completa y después anuncia el método de entrada y la primera palabra.
 
-Con Escribe tu propio texto (solo en solitario), el texto permanece en el campo durante la sesión actual, incluso después de terminar la ronda. Puedes leerlo, seleccionarlo y copiarlo. El diccionario polaco contiene 29 987 formas frecuentes del Corpus del Polaco Contemporáneo, incluidas las formas flexionadas.
+Con Escribe tu propio texto (solo en solitario), el texto permanece en el campo durante la sesión actual, incluso después de terminar la ronda. Puedes leerlo, seleccionarlo y copiarlo. El diccionario polaco contiene 29 987 formas frecuentes del Corpus del Polaco Contemporáneo, incluidas las formas flexionadas. No se pueden reanudar las partidas guardadas con el diccionario polaco anterior.
 
 Al volver al campo de edición, se lee la parte de la palabra que ya has escrito, también al escribir en braille.
 

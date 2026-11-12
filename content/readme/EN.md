@@ -98,7 +98,7 @@ Braille settings offer 32 literary, contracted, computer and regional tables for
 
 The lists of built-in texts, braille tables and dictionary languages include only languages marked as known in Power Games settings. With no known languages selected, only the interface language is offered and the word-language selector is hidden. The default table is literary. In mixed mode, reading a word also announces its input method. Free Typing reads the full sentence first, then the input method and the first word.
 
-With Write your own text (solo only), the text remains in the field during the current session, including after the round ends. You can read, select and copy it. The Polish dictionary contains 29,987 frequent word forms from the Corpus of Contemporary Polish, including inflected forms.
+With Write your own text (solo only), the text remains in the field during the current session, including after the round ends. You can read, select and copy it. The Polish dictionary contains 29,987 frequent word forms from the Corpus of Contemporary Polish, including inflected forms. Games saved with the previous Polish dictionary cannot be resumed.
 
 When you return to the editing field, the partial word you have entered is read aloud, including when typing in braille.
 

@@ -720,6 +720,31 @@ module GameRoomChangelog
         "In 1000 Miles with discard recycling, the round ends if no player can reach exactly 1000 miles with the remaining distance cards. Existing points count without a finish bonus.",
         "Thanks to td-programs for the Krowa, Braille echo and table-role improvements!"
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.4",
+      build: 267,
+      changes: [
+        "Typoholism has a new Polish dictionary of 29,987 frequent word forms reviewed by paulinux. Games saved with the previous Polish dictionary cannot be resumed. Thanks to paulinux for the dictionary and braille improvements!",
+        "In Typoholism, your own text remains available for reading, selection and copying during the current session, including after the round ends.",
+        "Typoholism settings now offer a braille-table list. Enter saves the whole form; Escape cancels. A table change applies when the word buffer is empty, and correct braille capital indicators are accepted in all modes.",
+        "Reduced repeated work in long Mahjong and Duck Racing games and when playing successive games at the same table.",
+        "Improved dialog cancellation, focus and selection handling, and shortcuts using Shift or Ctrl in game fields and help.",
+        "Read-only quiz questions retain text navigation and copying, while Down still moves to the answer list.",
+        "Fixed Typoholism input after returning from another window. An unfinished Braille marker in own-text practice now counts as a mistake instead of cancelling practice.",
+        "Blackjack, Blackjack Dice and Dice Poker bots now account correctly for side pots and tied hands.",
+        "Improved Tysiac and 1000 Miles bots, and corrected decisions involving eliminated players in Farkle and Cat, Head, Tail.",
+        "UNO no longer blocks a required draw when optional drawing is disabled. Fixed round completion in the No Mercy variant.",
+        "Improved Poker bots with the 24-card deck and prevented excessive calculations at very high blind levels.",
+        "Fixed Mahjong getting stuck after a refused tile move and corrected deal numbering in single-hand games.",
+        "Fixed switching between Krowa attempt lists and loading word lists when the server returns results in smaller batches.",
+        "Duck Racing bots respect the move delay in Sound Pairs and the advertised number length in Guess the Number.",
+        "Tournament setup checks supported team sizes and the actual roster before starting, explains incompatible group settings more clearly and keeps bound match settings fixed.",
+        "Fixed tournament partnership updates, the Operations list and handling of cancelled scheduled starts.",
+        "Tournament results now count Audio Ball team goals correctly across sets and preserve tied winners in Mexican Train. Fixed team win and loss sounds in Audio Ball and Scopa.",
+        "Replay names and perspectives follow player replacements during the game. Improved validation of saved games and imported histories.",
+        "Fixed handling of expired table notifications and cleanup of table voice channels whose creation was not confirmed."
+      ].freeze
     ).freeze
   ].freeze
 

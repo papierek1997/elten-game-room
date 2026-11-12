@@ -98,7 +98,7 @@ Nastavení braillu nabízí 32 tabulek pro pět podporovaných jazyků: plnopisn
 
 Seznamy připravených textů, braillských tabulek a jazyků slovníku obsahují jen jazyky označené jako známé v nastavení Power Games. Pokud nejsou vybrány žádné známé jazyky, je dostupný pouze jazyk rozhraní a výběr jazyka slov je skrytý. Výchozí tabulka je plnopisná. Ve smíšeném režimu přečtení slova oznámí také způsob zadávání. Volné psaní nejprve přečte celou větu, potom oznámí způsob zadávání a první slovo.
 
-Při volbě Psaní vlastního textu (pouze sólo) zůstává napsaný text v poli po celou aktuální relaci, i po skončení kola. Můžeš jej číst, označit a zkopírovat. Polský slovník obsahuje 29 987 častých slovních tvarů z Korpusu současné polštiny, včetně skloňovaných a časovaných tvarů.
+Při volbě Psaní vlastního textu (pouze sólo) zůstává napsaný text v poli po celou aktuální relaci, i po skončení kola. Můžeš jej číst, označit a zkopírovat. Polský slovník obsahuje 29 987 častých slovních tvarů z Korpusu současné polštiny, včetně skloňovaných a časovaných tvarů. Hry uložené s předchozím polským slovníkem nelze obnovit.
 
 Po návratu do editačního pole se přečte rozepsané slovo, i při psaní braillem.
 
