@@ -16,8 +16,11 @@ module Programs
 end
 module EltenAPI::NotificationService
   class << self
-    attr_accessor :rows
-    def active_notifications; rows || []; end
+    attr_accessor :rows, :active_reads
+    def active_notifications
+      self.active_reads = active_reads.to_i + 1
+      rows || []
+    end
   end
 end
 user = "Alice"
@@ -80,7 +83,10 @@ wait_background_work(EltenGameRoom.contacts_cache.instance_variable_get(:@worker
 EltenGameRoom.contacts_tick
 assert(delivered.map { |e| e["id"] }.sort == [10, 12] && audio.length == 2, "first contact notification lost/duplicated after loading")
 assert(helper.build_notification_groups(rows).flat_map(&:ids).sort == [10, 12], "main/history list shows strangers or loses contacts")
+reads_before_idle = EltenAPI::NotificationService.active_reads.to_i
 20.times { EltenGameRoom.contacts_tick }
+assert(EltenAPI::NotificationService.active_reads.to_i == reads_before_idle,
+  "empty contact ticks scan active native notifications")
 rows.each { |row| Programs.receive_app_notification(row) }
 assert(delivered.length == 2 && audio.length == 2, "ticks or native redelivery repeated a deferred notice")
 
