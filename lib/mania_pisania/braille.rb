@@ -56,6 +56,10 @@ module GameRoomTyping
       @check = Fiddle::Function.new(@library['lou_checkTable'], [ptr], Fiddle::TYPE_INT)
     end
 
+    def close
+      @library.close
+    end
+
     def tables
       labels = BrailleCatalog.labels
       DEFAULT_TABLES.filter_map do |id, filename|
@@ -143,6 +147,10 @@ module GameRoomTyping
 
   module SixKeyChord
     KEY_DOTS = { 'f' => 1, 'd' => 2, 's' => 3, 'j' => 4, 'k' => 5, 'l' => 6, 'a' => 7, ';' => 8 }.freeze
+
+    def self.input?(character)
+      character.match?(/\A(?:[\u2800-\u28ff]| |\x08)\z/)
+    end
 
     def self.cell(keys)
       choices = keys.to_a.map { |key| KEY_DOTS[key.to_s.downcase] }

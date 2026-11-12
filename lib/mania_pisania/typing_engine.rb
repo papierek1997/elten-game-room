@@ -40,14 +40,24 @@ module GameRoomTyping
     end
 
     def current_expected
+      current_expectations.first
+    end
+
+    def current_expectations
       index = @variant == 'memory' ? @word_index : @next_word - 1
       key = [index, current_word]
       if @expected_key != key
-        @expected = @expected_transform.call(current_word, index).to_s
+        @expected = Array(@expected_transform.call(current_word, index)).map(&:to_s).uniq
         @expected_key = key
       end
       @expected
     end
+
+    def reset_expected
+      @expected_key = nil
+    end
+
+    def word_complete?; current_expectations.include?(@buffer); end
 
     def deadline; @deadline; end
     def finished?; @finished_at != nil; end
@@ -81,7 +91,7 @@ module GameRoomTyping
       return :invalid if value.each_char.count != 1
 
       if value == ' '
-        if @buffer == current_expected
+        if word_complete?
           finish_word(at.to_f)
         else
           :ignored
@@ -90,8 +100,13 @@ module GameRoomTyping
         :ignored
       else
         @first_key_at ||= at.to_f
-        expected = current_expected.each_char.to_a[@buffer.each_char.count]
-        if expected && KeyboardText.equivalent?(value, expected)
+        position = @buffer.each_char.count
+        spelling = current_expectations.find do |candidate|
+          candidate.start_with?(@buffer) && (next_character = candidate.each_char.to_a[position]) &&
+            KeyboardText.equivalent?(value, next_character)
+        end
+        expected = spelling && spelling.each_char.to_a[position]
+        if expected
           @buffer << expected
         else
           # A wrong press costs an error, not a letter. Keep the cursor on
@@ -143,7 +158,7 @@ module GameRoomTyping
         raise ArgumentError, _('The word bank has changed; this game cannot be resumed.')
       end
       @buffer = buffer.dup
-      raise ArgumentError, _('Invalid saved word prefix') unless current_expected.start_with?(@buffer)
+      raise ArgumentError, _('Invalid saved word prefix') unless current_expectations.any? { |candidate| candidate.start_with?(@buffer) }
       @errors, @correct_words, @typed_words, @levels = data.values_at('errors', 'correct_words', 'typed_words', 'levels')
       @active_seconds, @typing_seconds = data.values_at('active_seconds', 'typing_seconds')
       @started_at = at.to_f
@@ -194,7 +209,7 @@ module GameRoomTyping
       return :ignored if @buffer.empty?
 
       @typed_words += 1
-      @correct_words += 1 if @buffer == current_expected
+      @correct_words += 1 if word_complete?
       @buffer = +''
       finish_typing_segment(at)
       return :finished if finished?
@@ -257,7 +272,7 @@ module GameRoomTyping
       return :finished if finished?
 
       expected = current_word
-      if braille_expected ? word == braille_expected : KeyboardText.equivalent?(word, expected)
+      if braille_expected ? Array(braille_expected).include?(word) : KeyboardText.equivalent?(word, expected)
         @correct_words += 1
       else
         @mistakes += 1

@@ -25,11 +25,12 @@ module GameRoomTyping
       @prior_typing_seconds = 0.0
       @spelling_help = false
       @own_text = free? && text == nil
+      @written_text = +''
       if free?
         @engine = @own_text ? FreeWriting.new : FreeText.new(text, **progress.to_h.transform_keys(&:to_sym))
       else
         arguments = {word_source: word_bank, seed: seed, clock: clock,
-          expected_transform: ->(word, index) { braille_at?(index) ? @translator.translate(word.downcase, table: @table) : word }}
+          expected_transform: ->(word, index) { braille_at?(index) ? braille_spellings(word).values : word }}
         @engine = if survival?
           SurvivalStream.new(**arguments, difficulty: options.fetch('difficulty', 'easy'), recording_seconds: recording_seconds)
         else
@@ -47,8 +48,22 @@ module GameRoomTyping
     def braille?; braille_at?(free? ? @engine.correct_words + @engine.mistakes : (memory? ? @engine.word_index : @engine.typed_words)); end
     def errors; free? ? @engine.mistakes : @engine.errors; end
 
+    def select_braille_table(table)
+      # Never reinterpret an unfinished cell sequence using a different code.
+      @selected_table = table
+      apply_selected_table unless paused? || (braille? && !@buffer.empty?)
+    end
+
+    def display_buffer
+      # Native focus/navigation reads this text; keep raw cells only in the
+      # engine buffer, where braille validation and deletion need them.
+      text = braille? ? partial_braille_text(@buffer).to_s : @buffer
+      @own_text ? @written_text + text : text
+    end
+
     def echo_text(text, character:)
       return text unless braille?
+      return nil unless character == ' ' || character == "\b" || character.match?(/\A[\u2800-\u28ff]\z/)
       return partial_braille_text(text) if character == ' '
 
       if character == "\b"
@@ -87,7 +102,8 @@ module GameRoomTyping
           return if @buffer.empty?
           previous_errors = @engine.mistakes
           typed = braille? && @own_text ? @translator.back_translate(@buffer, table: @table) : @buffer
-          expected = braille? && !@own_text ? @translator.translate(current_word.downcase, table: @table) : nil
+          @written_text << typed << ' ' if @own_text && !typed.empty?
+          expected = braille? && !@own_text ? braille_spellings(current_word).values : nil
           @engine.submit(typed, braille_expected: expected, first_key_at: @first_key_at || now, space_at: now, prior_seconds: @prior_typing_seconds)
           @prior_typing_seconds = 0.0
           @notices << [:error, _('Incorrect word.'), @engine.mistakes] if @engine.mistakes > previous_errors
@@ -113,6 +129,7 @@ module GameRoomTyping
           end
         end
       end
+      apply_selected_table if @buffer.empty? && !paused?
     end
 
     def tick
@@ -124,6 +141,7 @@ module GameRoomTyping
         before = @engine.errors
         state = @engine.tick(at: @clock.call)
         @buffer = @engine.buffer.dup
+        apply_selected_table if @buffer.empty?
         error_notice if @engine.errors > before
         @engine.finished? ? finish : announce_prompt if [:word, :finished].include?(state)
       end
@@ -149,7 +167,8 @@ module GameRoomTyping
       return nil if finished? || @own_text || memory?
       skipped = @buffer.each_char.count
       if braille?
-        skipped = @translator.source_position(current_word.downcase, cells: skipped, table: @table)
+        spelling = braille_spellings(current_word).find { |_word, cells| cells.start_with?(@buffer) }&.first || current_word.downcase
+        skipped = @translator.source_position(spelling, cells: skipped, table: @table)
       end
       rest = current_word.each_char.drop(skipped).join
       rest.empty? ? _('The word is complete; press Space.') : @prompt.announcement(rest)
@@ -212,6 +231,7 @@ module GameRoomTyping
       @started_at = now - data['elapsed']
       @result = data['result']&.freeze if data['finished']
       @paused = false
+      apply_selected_table if @buffer.empty? || !braille?
       @notices.clear
       announce_prompt(initial: true) unless finished?
     end
@@ -235,6 +255,18 @@ module GameRoomTyping
     end
 
     private
+
+    def braille_spellings(word)
+      [word.downcase, word, word.upcase, word.capitalize].uniq.to_h do |spelling|
+        [spelling, @translator.translate(spelling, table: @table)]
+      end
+    end
+
+    def apply_selected_table
+      return unless @selected_table
+      @table, @selected_table = @selected_table, nil
+      @engine.reset_expected unless free?
+    end
 
     def partial_braille_text(cells)
       return '' if cells.empty?

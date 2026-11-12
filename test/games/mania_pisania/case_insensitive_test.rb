@@ -24,5 +24,5 @@ translator.define_singleton_method(:translate) { |word,table:| seen << word; wor
   practice.input(' ') unless variant=='survival'
   assert(practice.engine.correct_words==1 && practice.errors==0,'Braille required capital indicators')
 end
-assert(seen.none? { |word| word != word.downcase },'Braille source retains capitals')
-puts 'PASS case-insensitive keyboard and lowercase braille targets across all variants and five alphabets.'
+assert(seen.include?('hello') && seen.include?('Hello') && seen.include?('HELLO'),'Braille is missing an optional case spelling')
+puts 'PASS case-insensitive keyboard and optional braille capital indicators across all variants and five alphabets.'

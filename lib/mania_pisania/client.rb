@@ -124,7 +124,9 @@ module GameRoomTyping
       # Picking/pasting a private text belongs to the visible game, never to
       # the active UI bridge while the player is reading Messages or the forum.
       options = replay.state[:options]
-      @word_bank = WordBank.for_options(options) unless @word_bank&.language == options.fetch('word_language', 'pl')
+      unless @word_bank&.language == options.fetch('word_language', 'pl')
+        @word_bank = WordBank.for_options(options)
+      end
       return if covered? && options['variant'] == 'free' && %w[local pasted].include?(options['text']) &&
         !replay.state[:shared_text] && !(@restored_session && @restore_round == replay.state[:round])
 
@@ -241,6 +243,7 @@ module GameRoomTyping
 
     def input(character)
       return if !@practice || @practice.paused? || @practice.finished? || @result_confirmed || @presenting
+      return if @practice.braille? && !SixKeyChord.input?(character)
       @input_echo = echo_input(character)
       complete_prompt # A fresh key intentionally interrupts the word prompt.
       @practice.input(character)
@@ -330,7 +333,15 @@ module GameRoomTyping
 
     def show_settings
       texts = Button.new(_('Local texts and progress'))
-      table = Button.new(_('Braille table'))
+      labels = BrailleCatalog.labels
+      tables = BrailleCatalog::FILES.keys.select { |id| BrailleCatalog.visible?(id) }.map { |id| [id, labels.fetch(id)] }
+      current_table = @settings['braille_table']
+      unless BrailleCatalog::FILES.key?(current_table)
+        tables << [current_table, _('Local Liblouis table') + ': ' + File.basename(current_table)]
+      end
+      tables << [nil, _('Local Liblouis table')]
+      table = ListBox.new(tables.map { |_id, label| GameRoomContent.utf8(label) }, header: _('Braille table'),
+        index: tables.index { |id, _label| id == current_table } || 0, quiet: true)
       speech = CheckBox.new(_('Announce typing errors with speech'), checked: @settings['error_speech'])
       sounds = CheckBox.new(_('Announce typing errors with sounds'), checked: @settings['error_sounds'])
       # Native Elten settings use descending percentage lists: Up increases
@@ -341,17 +352,33 @@ module GameRoomTyping
         header: _('Typing echo during the game'), index: Settings::ECHO_MODES.index(@settings['typing_echo']), quiet: true)
       save, cancel = Button.new(_('Save')), Button.new(_('Cancel'))
       form = GameRoomUI::Form.new([table, speech, sounds, volume, echo, texts, save, cancel], program: @program, quiet: true)
-      form.cancel_button = cancel
+      form.accept_button, form.cancel_button = save, cancel
       texts.on(:press) { choose_text(select: false); texts.focus }
-      table.on(:press) { choose_braille_table; table.focus }
       save.on(:press) do
+        translator = nil
         begin
-          @settings.save('error_speech' => speech.checked, 'error_sounds' => sounds.checked,
+          value = tables.fetch(table.index).first || choose_local_braille_table
+          unless value
+            form.index = 0
+            table.focus
+            next
+          end
+          table_changed = value != @settings['braille_table']
+          if table_changed
+            translator = LibLouis.discover(program: @program)
+            translator.table_path(value)
+          end
+          @settings.save('braille_table' => value, 'error_speech' => speech.checked, 'error_sounds' => sounds.checked,
             'music_volume' => 100 - volume.index, 'typing_echo' => Settings::ECHO_MODES.fetch(echo.index))
+          @practice&.select_braille_table(value) if table_changed
           @music&.update_volume
           form.resume
+        rescue BrailleUnavailable, Fiddle::DLError => exception
+          alert(_('Braille is unavailable: %{reason}') % {reason: GameRoomContent.utf8(exception.message)})
         rescue IOError, SystemCallError
           alert(_('Could not save typing settings.'))
+        ensure
+          translator&.close
         end
       end
       cancel.on(:press) { form.resume }
@@ -525,7 +552,7 @@ module GameRoomTyping
         @music = nil
         GameRoomSounds.play(@program, 'typing_endgame')
       end
-      @surface&.present(buffer: @practice.buffer, braille: @practice.braille?) unless background || covered?
+      @surface&.present(buffer: @practice.display_buffer, braille: @practice.braille?) unless background || covered?
       if @focus_round && !background && !covered? && @focus_round == @round && @surface&.spec&.enabled && @surface.spec.round == @round
         target = @surface.fields.first
         index = @form&.fields&.index(target)
@@ -580,28 +607,6 @@ module GameRoomTyping
       end
       TextLibraryDialog.new(@program, @library, on_reset: reset,
         alert: ->(text) { alert(text) }, confirm: ->(text) { confirm(text) }).wait(select: select)
-    end
-
-    def choose_braille_table
-      translator = LibLouis.discover(program: @program)
-      tables = translator.tables.select { |id, _label, _path| BrailleCatalog.visible?(id) }
-      selected = nil
-      list = ListBox.new(tables.map { |_id, label, _path| GameRoomContent.utf8(label) } + [_('Local Liblouis table')],
-        header: _('Braille table'), index: tables.index { |id, _label, _path| id == @settings['braille_table'] } ||
-          tables.index { |id, _label, _path| id == BrailleCatalog.default(Languages.visible.first) } || 0, quiet: true)
-      close = Button.new(_('Cancel'))
-      form = GameRoomUI::Form.new([list, close], program: @program, quiet: true)
-      form.cancel_button = close
-      list.on(:select) { selected = list.index; form.resume }
-      close.on(:press) { form.resume }
-      form.wait
-      return if selected == nil
-      value = tables[selected] ? tables[selected][0] : choose_local_braille_table
-      return unless value
-      translator.table_path(value)
-      @settings.save('braille_table' => value)
-    rescue BrailleUnavailable, Fiddle::DLError, IOError, SystemCallError => exception
-      alert(_('Braille is unavailable: %{reason}') % {reason: exception.message})
     end
 
     def choose_local_braille_table

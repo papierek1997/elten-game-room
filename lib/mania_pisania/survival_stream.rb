@@ -60,7 +60,7 @@ module GameRoomTyping
       state = tick(at: at)
       return state if [:word, :finished].include?(state)
       state = super
-      if state == :character && !finished? && @buffer == current_expected
+      if state == :character && !finished? && word_complete?
         state = finish_word(at.to_f)
       end
       @word_deadline = nil if [:word, :finished].include?(state)

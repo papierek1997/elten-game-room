@@ -283,7 +283,8 @@ module GameRoomGames
       status = _('Waiting for all players to confirm their progress for the save.') if state[:saving]
       GameSurfaces::TypingSpec.new(round: state[:round], enabled: playing, status: status, commands: commands,
         remaining_sentence: sentence_help?(state[:options]), remaining_word: state[:options] && state[:options]['variant'] != 'memory' && !(state[:options]['variant'] == 'free' && state[:options]['text'] == 'own'),
-        auto_commit: state[:options] && state[:options]['variant'] == 'survival', choose_text: choosing && same_user?(viewer, state[:owner]))
+        auto_commit: state[:options] && state[:options]['variant'] == 'survival', choose_text: choosing && same_user?(viewer, state[:owner]),
+        own_text: state[:phase] != :setup && replay.players.length == 1 && same_user?(viewer, replay.players.first) && state[:options]['variant'] == 'free' && state[:options]['text'] == 'own')
     end
 
     def custom_game_shortcuts(replay, viewer)

@@ -35,6 +35,21 @@ failure. Unsupported encoding or `COMPLEXPREFIXES` is rejected before opening
 the destination. Export into a development staging file: a write failure after
 validation is not an atomic replacement of an earlier full export.
 
+Polish uses the final owner-reviewed list `tools/data/typing-polish-words.txt`.
+Do not regenerate it from KWJP or restore excluded words. Rebuild its runtime
+pack from that exact source with:
+
+```console
+ruby tools/build-typing-polish-words.rb
+```
+
+The generator rejects invalid or duplicate entries and updates the runtime
+pack and manifest hashes/counts without editing the reviewed source. Its
+optional argument selects a separate sorted TXT export; the default is
+`tmp/typing-polish-export.txt`. The reviewed list contains 29,987 playable forms.
+See `content/mania_pisania_words_SOURCES.md` for the historical corpus selection
+and subsequent manual review. The source TXT stays outside the installer.
+
 To refresh the dependency closure of the braille catalogue, use:
 
 ```console
@@ -42,8 +57,9 @@ ruby tools/build-typing-braille.rb path/to/liblouis-3.39.0/share/liblouis/tables
 ```
 
 The embedded original Polish tables and native DLLs are preserved byte for byte;
-new includes come from that Liblouis release. Do not replace historical dictionary
-packs in place: saved sequences depend on their checksum and ordering. Run the
+new includes come from that Liblouis release. Polish dictionary compatibility
+was explicitly discontinued when adopting KWJP; other packs remain unchanged.
+Saved sequences depend on their checksum and ordering. Run the
 targeted `test/games/mania_pisania/` tests, the word-pack integrity test and the
 binary package language test after rebuilding. The full TXT hashes and the
 runtime pack hashes must match the manifest for a reproducibility check.

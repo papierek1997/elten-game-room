@@ -6,6 +6,8 @@
 *.yaml text eol=lf
 docs/quiz-questions/*.txt text eol=lf
 tools/data/krowa_nouns.txt text eol=lf
+# Preserve the owner-reviewed Polish list and its source checksum exactly.
+tools/data/typing-polish-words.txt -text
 # Preserve upstream dictionary notices byte for byte, including their spacing.
 LICENSES/TYPING-WORDS-*.txt -text -whitespace
 *.ogg binary
