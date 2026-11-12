@@ -3,12 +3,12 @@ require "fileutils"
 require_relative "../../support/assertions"
 require_relative "../../support/elten_array_shuffle"
 require_relative "../../../games/duck_racing_support/numeric_bot"
-require_relative "../../../games/duck_racing_support/settlement"
+require_relative "../../../games/duck_racing_support/challenge_engine"
 
 include GameRoomTest::Assertions
 engine = GameRoomDuckRacing::NumericChallenges
 bot = GameRoomDuckRacing::NumericBot
-settlement = GameRoomDuckRacing::Settlement
+adapter = GameRoomDuckRacing::ChallengeEngine
 snapshot = {board_length: 30, laps: 3, racers: (0..7).to_h do |seat|
   [seat, {progress: seat * 7, feathers: 18 - seat, card_count: 3 + seat}]
 end}
@@ -26,7 +26,7 @@ engine::TYPES.each_key do |type|
         view = engine.public_view(state, viewer: seat)
         [seat, bot.reaction_ms(view) + streams[seat].rand(400)]
       end
-      steps, now = 0, 0
+      steps, now, first_correct = 0, 0, nil
       until state[:finished]
         eligible = state[:participants].reject { |seat| state[:players][seat][:done] }
         eligible = [state[:participants][state[:turn_index]]] if engine::TURN_TYPES.include?(type)
@@ -41,6 +41,7 @@ engine::TYPES.each_key do |type|
           assert(action, "#{type} bot did not propose an available action")
           action[:press_id] = state[:players].fetch(seat)[:last_press_id] + 1
           assert(engine.submit(state, seat: seat, action: action, now_ms: at), "#{type} rejected bot action #{action.inspect}")
+          first_correct ||= seat if engine::ANSWER_TYPES.include?(type) && state[:players].fetch(seat)[:status] == :correct
           now = at
         end
         due[seat] = now + bot.reaction_ms(engine.public_view(state, viewer: seat)) + streams[seat].rand(400)
@@ -54,17 +55,18 @@ engine::TYPES.each_key do |type|
       assert(state[:outcome][:settlement_ready], "#{type} bot outcome cannot settle")
       balances = state[:participants].to_h { |seat| [seat, 1_000] }
       outcome = state[:outcome]
-      paid = case outcome[:kind]
-      when :fixed
-        settlement.fixed(balances: balances, winner: outcome[:winner], amount: outcome[:amount])
-      when :speed
-        settlement.speed(balances: balances, times: state[:scores], time_limit: outcome[:time_limit])
-      when :guess_number
-        settlement.guess_number(balances: balances, target: state[:answer], distances: state[:scores])
-      else
-        settlement.difference(balances: balances, scores: state[:scores], ceiling: outcome[:ceiling])
+      boundary = {kind: type, participants: state[:participants], model: state}
+      verified = state[:participants].to_h { |seat| [seat, adapter.result_for(boundary, seat)] }
+      if engine::ANSWER_TYPES.include?(type)
+        # The standalone model can finish each attempt; the real session
+        # accepts only the first correct result in its ordered history.
+        verified.each { |seat, result| result[:correct] = seat == first_correct }
       end
-      assert_equal(outcome[:winner], paid.winner)
+      paid = adapter.settlement(type, balances: balances, results: verified, target: state[:answer])
+      expected_winner = engine::ANSWER_TYPES.include?(type) ? first_correct : outcome[:winner]
+      assert_equal(expected_winner, paid.winner)
+      assert(paid.transfers.all? { |transfer| transfer.amount == 4 }, 'First-answer stake changed') if engine::ANSWER_TYPES.include?(type)
+      assert(paid.transfers.all? { |transfer| transfer.amount <= 10 }, 'Ball transfer exceeded its cap') if type == 'numbered_balls'
       assert(paid.balances.values.all? { |balance| balance >= 0 })
       assert_equal(balances.values.sum, paid.balances.values.sum + paid.burned.values.sum)
       results << {type: type, participants: count, seed: seed, steps: steps, status: "PASS"}

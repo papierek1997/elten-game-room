@@ -55,12 +55,8 @@ assert(
   "an announcement shortcut reused the value frozen when the form opened"
 )
 
-shortcut_handlers = {}
-shortcut_form = Object.new
+shortcut_form = Form.new([])
 screen.define_singleton_method(:getkeychar) { "" }
-shortcut_form.define_singleton_method(:on) do |event, &handler|
-  shortcut_handlers[event] = handler
-end
 shortcut_field = Object.new
 shortcut_field.define_singleton_method(:game_shortcut_keys=) { |_keys| nil }
 shortcut_field.define_singleton_method(:add_tip) { |_tip| nil }
@@ -68,9 +64,9 @@ activated_shortcuts = []
 screen.send(:bind_game_shortcuts, shortcut_form, [shortcut_field], [initial_shortcut]) do |shortcut|
   activated_shortcuts << shortcut
 end
-shortcut_handlers.fetch(:key_t).call([false, false, false])
+shortcut_form.trigger(:key_t, [false, false, false])
 assert(activated_shortcuts.empty?, "an ordinary T activated the Ctrl+T announcement")
-shortcut_handlers.fetch(:key_t).call([false, true, false])
+shortcut_form.trigger(:key_t, [false, true, false])
 assert(activated_shortcuts == [initial_shortcut], "Ctrl+T was not handled after the form passed the key through")
 
 plain_c_shortcut = GameRoomGames::GameShortcut.new(
@@ -91,29 +87,27 @@ activated_shortcuts.clear
 screen.send(:bind_game_shortcuts, shortcut_form, [shortcut_field], [plain_c_shortcut, control_c_shortcut]) do |shortcut|
   activated_shortcuts << shortcut
 end
-shortcut_handlers.fetch(:key_c).call([false, false, false])
-shortcut_handlers.fetch(:key_c).call([false, true, false])
+shortcut_form.trigger(:key_c, [false, false, false])
+shortcut_form.trigger(:key_c, [false, true, false])
 assert(
   activated_shortcuts == [plain_c_shortcut, control_c_shortcut],
   "plain C and Ctrl+C were not distinguished by the shared shortcut handler"
 )
 
-history_handlers = {}
 history_form = GameRoomUI::Form.new([])
 history_signatures = nil
 history_form.define_singleton_method(:history_navigation_signatures=) { |value| history_signatures = value }
-history_form.define_singleton_method(:on) { |event, &handler| history_handlers[event] = handler }
 history_actions = []
 screen.send(:bind_history_navigation, history_form) { |operation, value| history_actions << [operation, value] }
-history_handlers.fetch(:key_comma).call([false, true, false])
-history_handlers.fetch(:key_period).call([true, true, false])
-history_handlers.fetch(:key_home).call([false, true, false])
+history_form.trigger(:key_comma, [false, true, false])
+history_form.trigger(:key_period, [true, true, false])
+history_form.trigger(:key_home, [false, true, false])
 assert(
   history_actions == [[:move, -1], [:category, 1], [:jump, :first]],
   "shared history navigation mapped punctuation/Home modifiers incorrectly"
 )
 assert(history_signatures.include?(['end', [:control]]) && history_signatures.include?(['>', [:control, :shift]]), "missing history key/shifted alias")
-assert(history_handlers.keys.none? { |key| [:key_left, :key_right].include?(key) }, "history still intercepts text arrows")
+assert(history_form.instance_variable_get(:@handlers).keys.none? { |key| [:key_left, :key_right].include?(key) }, "history still intercepts text arrows")
 assert(history_form.game_room_general_help_tips.length == 6, "history help needs one shortcut per line")
 
 surface_calls = []

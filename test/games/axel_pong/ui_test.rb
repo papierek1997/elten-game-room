@@ -24,6 +24,7 @@ native_dictionary = $rules_dictionary
   state['shields'] = [125, 0]
   surface.present(state, GameRoomLocalization.translate('Match in progress.'))
   field = surface.fields.first
+  field.model_keyboard_input! # This fixture supplies held/pressed keys, not native press snapshots.
   keys, pressed = [], []
   field.define_singleton_method(:key_held?) { |key| keys.include?(key) }
   field.define_singleton_method(:key_pressed?) { |key| pressed.include?(key) }
