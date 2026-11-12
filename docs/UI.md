@@ -413,3 +413,45 @@ selected identity and does not refocus or announce the list. Ordinary time
 boundaries do not read the server; retention expiry uses one fresh directory
 read. Closing the dashboard disposes its pending timer. Regression:
 `test/tournaments/public_preview_time_boundary_native_test.rb`.
+
+## Krowa word proposals
+
+`KrowaWordProposals` in `lib/krowa_word_proposals.rb` is a local client service.
+Ctrl+B posts the current answer-field text; Ctrl+Shift+B posts the most recent
+word rejected as `unknown_noun`, captured before the surface clears the draft.
+Chat text, private solutions and accepted guesses are not proposal sources.
+Both actions preserve the answer, cursor and game history and post immediately
+through `EltenLink::Forum.create_post` to thread 28245. The native server supplies
+the authenticated author; the post body contains only the normalized word.
+
+The first-use rules explain the nominative common-noun policy, excluded word
+classes, spelling review, Power Games membership and forum visibility. Accepting
+them is required before that first post; Escape returns without accepting or
+posting. The versioned acknowledgement and delivery state use a separate local,
+account-partitioned JSON file. Malformed JSON/shape is refused without replacement.
+The player reference belongs in Krowa's authored `vocabulary` chapter, with
+both keys also listed in `controls`; maintain all five complete editions.
+
+Every file/network operation runs in a finite managed task. The SDK wrapper
+passes cancellation and a 15-second timeout and rechecks the signed-in account
+before and after requests. Fresh structure verifies membership and that the
+thread/forum are open; the server still enforces write permissions. This never
+joins a group or changes its notification settings automatically.
+
+A pending marker is saved before posting. A confirmed post ID is retained in
+memory before persisting the receipt. An explicit uncertain retry examines the
+account's own posts, matching the exact word and target thread, without reading
+or marking the proposal thread. Acquisition is bounded to ten 50-post pages;
+an incomplete or malformed continuation refuses another send. Nonempty short
+pages continue according to the SDK's `more`/`next_before` contract. State retains
+up to 32 pending words and the latest 256 confirmed receipts. This reconciles
+ordinary retries, not concurrent exactly-once delivery across computers or
+external deletion/editing of the evidence. There is no automatic resend.
+
+The screen accepts optional client `local_shortcuts` and
+`handle_local_shortcut` hooks before the move pipeline. Its optional
+`action_rejected` callback receives only a guarded current-session submission,
+before clearing the corresponding surface. These hooks perform no move writes.
+Tests: `test/games/krowa/word_proposals_test.rb` and
+`word_proposals_native_test.rb`; the latter uses native controls and captured
+speech in all supported languages, without publishing a live forum post.

@@ -149,6 +149,7 @@ class GameScreen
       form = layout.form
       history = layout.history
       shortcuts = normalized_game_shortcuts(@game.game_shortcuts(wait.replay, Session.name))
+      shortcuts += @game_client.local_shortcuts if @game_client&.respond_to?(:local_shortcuts)
       reports = @question_reports if @game.respond_to?(:reportable_question)
       if reports
         reports.observe(@repository.session_id(@session), @game.reportable_question(wait.replay))
@@ -159,6 +160,10 @@ class GameScreen
         # It must not resume the form, move focus or enter the move pipeline.
         if reports && shortcut.action_kind == "question_report"
           speak(reports.mark(shortcut.action_name))
+          next
+        end
+        if @game_client&.respond_to?(:handle_local_shortcut) &&
+            @game_client.handle_local_shortcut(shortcut, surface: surface)
           next
         end
         pending = form.game_room_pending_operation

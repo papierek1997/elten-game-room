@@ -9,6 +9,7 @@ require_relative "sjp_definition_provider"
 require_relative "profile"
 require_relative 'attempt_list_view'
 require_relative "private_reveal"
+require_relative '../../lib/krowa_word_proposals'
 
 require_relative "../../lib/game_room_localization"
 
@@ -107,6 +108,22 @@ module GameRoomGames
 
     def error(status)
       @audio.play(@game.error_sound(status))
+    end
+
+    def word_proposals
+      @word_proposals ||= KrowaWordProposals.new(@program, user: Session.name)
+    end
+
+    def local_shortcuts; word_proposals.shortcuts; end
+
+    def handle_local_shortcut(shortcut, surface:)
+      return false unless shortcut.action_kind == 'krowa_word_proposal'
+      word_proposals.submit(shortcut.action_name, surface: surface)
+      true
+    end
+
+    def action_rejected(selection, status)
+      word_proposals.rejected(selection, status)
     end
 
     def automatic_error(status)
