@@ -117,11 +117,15 @@ module GameRoomTournaments
 
     def remember_binding(binding,candidate,id,match,usernames: nil)
       @lock.synchronize do
+        raise OrdinaryMatchService::Blocked,:account_changed if @closed
         table_id=binding['table']['__id']
         @bindings[table_id]=[Data.freeze_tree(Data.copy(binding)),candidate,id,match]
         @binding_usernames[table_id]=usernames
+        unless @managed
+          @program.class.manage(self) if @program.class.respond_to?(:manage)
+          @managed=true
+        end
       end
-      start_worker
     end
 
     def create_match_table(candidate,id,match,previous:nil)

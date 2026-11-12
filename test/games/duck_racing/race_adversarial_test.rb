@@ -476,7 +476,7 @@ a.check("backtracking every lap boundary and finish crossing do not allocate lap
   a.assert_equal([], state[:pending])
 end
 
-a.check("independent capped settlement oracle, including busts, ties and missing times") do
+a.check("independent difference and fixed-stake oracles, including busts, ties and no winner") do
   random = Random.new(1975)
   2_000.times do |index|
     count = random.rand(2..8)
@@ -502,21 +502,17 @@ a.check("independent capped settlement oracle, including busts, ties and missing
     a.assert_equal(expected, result.balances)
     a.assert_equal(balances.values.sum - result.burned.values.sum, result.balances.values.sum)
     a.assert_equal(before, Marshal.dump([balances, scores]))
-    times = balances.transform_values { random.rand(4).zero? ? nil : random.rand(0..150) }
-    completed = times.compact
-    leaders = completed.select { |_seat, time| time == completed.values.min }.keys
-    winner = leaders.one? ? leaders.first : nil
+    winner = balances.keys[random.rand(count + 1)]
     expected = balances.dup
     if winner
       expected.each_key do |loser|
         next if loser == winner
-        stake = times[loser] ? [((times[loser] - times[winner]) / 10.0).ceil, 5].min : 5
-        amount = [stake, balances[loser]].min
+        amount = [4, balances[loser]].min
         expected[loser] -= amount
         expected[winner] += amount
       end
     end
-    result = a::Settlement.speed(balances: balances, times: times, time_limit: 150)
+    result = a::Settlement.fixed(balances: balances, winner: winner, amount: 4)
     a.assert_equal(winner, result.winner)
     a.assert_equal(expected, result.balances)
     a.metrics[:settlement_oracle_cases] += 2

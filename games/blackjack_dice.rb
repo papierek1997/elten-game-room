@@ -156,10 +156,15 @@ module GameRoomGames
       two_dice = state[:options]["variant"] == "two_dice"
       chips = chip_game?(state[:options])
       bonus = !chips && state[:scores][actor] + 1 < state[:options]["score_limit"] ? 0.15 : 0.0
-      stand_value = GameRoomTwentyOneStrategy.contest_value(state[:totals].values,
-        state[:order].size - state[:totals].size - 1, GameRoomTwentyOneStrategy.dice_opponent(two_dice),
-        split_ties: chips, bonus: bonus)
-      plan = GameRoomTwentyOneStrategy::Plan.new(stand_value, cards: false) { |sum| GameRoomTwentyOneStrategy.dice_weights(two_dice, sum) }
+      opponent = GameRoomTwentyOneStrategy.dice_opponent(two_dice)
+      if chips && auction_rules?(state[:options])
+        stand_value, bust_value = GameRoomTwentyOneStrategy.pot_values(auction_pots(state), actor, state[:totals], opponent)
+      else
+        stand_value = GameRoomTwentyOneStrategy.contest_value(state[:totals].values,
+          state[:order].size - state[:totals].size - 1, opponent, split_ties: chips, bonus: bonus)
+        bust_value = 0
+      end
+      plan = GameRoomTwentyOneStrategy::Plan.new(stand_value, bust_value: bust_value, cards: false) { |sum| GameRoomTwentyOneStrategy.dice_weights(two_dice, sum) }
       total = state[:total]
       action["action"] == "stand" ? plan.stand(total, false) + 1e-9 : plan.draw(total, false)
     end

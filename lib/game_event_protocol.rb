@@ -7,6 +7,9 @@ module GameRoomEventProtocol
   MAX_ACTION_LENGTH = 32
   MAX_VALUE_LENGTH = 64
   NATIVE_PACKET_VERSION = 2
+  # Saved moves have no native proof or projection metadata. Both file and
+  # independently authenticated stack imports enforce this same boundary.
+  ARCHIVE_EVENT_FIELDS = %w[id sequence actor action value created_at game_time].freeze
   module_function
 
   def command_value(command, key)

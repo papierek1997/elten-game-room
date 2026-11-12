@@ -82,10 +82,12 @@ cards, after authenticated delivery in private-card games. It does not repeat
 on refresh or cold reconstruction. The final view is not overridden by hand
 announcements either.
 
-GameRoomLayout reuses only a marked hand, including when additional fields
-surround it. GameScreen queues the selected card's announcement without
-interrupting previously announced events. Other surfaces do not return such
-an announcement and use the existing path.
+For card-hand preservation, GameRoomLayout reuses a marked hand, including
+when additional fields surround it. GameScreen queues the selected card's
+announcement without interrupting previously announced events. Unmarked card
+lists do not opt into this behavior. This is not a restriction on other
+surface families: WordBoard, Taboo and DuckChallenge have their own reuse and
+announcement contracts.
 
 Manual sorting is declared through `hand_sorting_available?` and the shared
 `hand_sort_shortcuts`. Cards provide semantic `sort_keys` for

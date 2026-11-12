@@ -16,6 +16,16 @@ translations must be kept up to date together.
 
 ## Planned fixes
 
+- [Extended Power Games audit — 11 November 2026](AUDIT_PLAN_2026_11_11.md):
+  correctness, cumulative costs, complete native interactions and speech,
+  menu/shortcut consistency, concurrency/recovery and proven dead-code cleanup.
+  Includes an independent precision/consistency review of contributor and AI
+  guidance, not limited to documentation of newly extracted shared code.
+  Started with one primary auditor, one independent code/test reviewer and an
+  additional read-only game-model/cost analyst authorized by the maintainer;
+  changed-path live verification and one final clean full source pass.
+  Completed on 12 November after a clean full source pass and independent
+  evidence check. Includes instructions for a fresh run and hash-checked continuation.
 - [Partnerships, conferences and Audio Ball doubles — 23 October 2026](FIXES_PLAN_2026_10_23.md):
   partner invitation and notification design, automatic pairing at tournament
   start, actionable start failures, table-conference leave/microphone behavior
@@ -51,7 +61,7 @@ translations must be kept up to date together.
   virtual-chip boundaries and targeted verification.
 
 - [Architecture](ARCHITECTURE.md): data flow, layers and their responsibilities.
-- [Host API](HOST_API.md): the final ELTEN 3.0.4 contract.
+- [Host API](HOST_API.md): the required final ELTEN 3.0.5 contract.
 - [Building](BUILDING.md): dependencies, tests, generators and staging.
 - [Adding a game](ADDING_A_GAME.md): integrating the model, UI, content and bots.
 - [Snapshot ownership](SNAPSHOT_OWNERSHIP.md) and [benchmarks](BENCHMARKS.md).
@@ -96,8 +106,9 @@ implementation details remain outside the rules.
 [tools/data/rulebooks/](../tools/data/rulebooks/) contains rulebook sources for
 the `tools/compile-rulebooks.rb` compiler. The game loads generated Ruby from
 `games/generated/rulebooks/` and MO translations; JSON stays outside the package.
-Polish source text is refreshed from PO; the procedure is described in
-[docs/TRANSLATIONS.md](TRANSLATIONS.md).
+Only the Polish fallback text in root-level books is refreshed from PO.
+Independently authored editions in the language subdirectories are edited there,
+not in PO; see [the translation procedure](TRANSLATIONS.md).
 
 The application's changelog has a single source:
 [game_room_changelog.rb](../lib/game_room_changelog.rb), translated through PO/MO

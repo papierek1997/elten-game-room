@@ -313,6 +313,7 @@ module GameRoomTableWatch
     def receive(notification)
       return false unless visible?(notification) && !received?(notification)
       value = data(notification)
+      return false unless value
       @seen[value["live_session_id"]] = { "id" => notification.id.to_i, "expires" => value["expires_at"] }
       trim
       true

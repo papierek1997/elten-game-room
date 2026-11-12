@@ -73,7 +73,7 @@ module GameSurfaces
       button = Button.new((@spec.submit_label || _("Submit answers")).to_s)
       button.on(:press) do
         action = submission_action
-        @action_handler&.call(action) if action != nil
+        emit_action(action.kind, action.name, action.payload, source: action.source) if action != nil
       end
       button
     end

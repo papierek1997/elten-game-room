@@ -171,6 +171,7 @@ module GameRoomTournaments
           @result_jobs[key]=job
           @jobs << job
           @seen[key] = true
+          start_worker
         end
       end
       true
@@ -367,10 +368,17 @@ module GameRoomTournaments
     def take_error
       # Opening Matches is an explicit retry opportunity, not a polling loop.
       # Only a failed LOCAL retain is queued again, with its original capture.
-      @lock.synchronize { @result_jobs.each_value { |job| queue_result_retry(job) } unless @closed }
-      @errors.pop(true)
-    rescue ThreadError
-      nil
+      @lock.synchronize do
+        unless @closed
+          @result_jobs.each_value { |job| queue_result_retry(job) }
+          start_worker unless @jobs.empty?
+        end
+      end
+      begin
+        @errors.pop(true)
+      rescue ThreadError
+        nil
+      end
     end
     def operations; account!; @journal.list; end
     def reconcile(id)
@@ -451,8 +459,13 @@ module GameRoomTournaments
         end).reconcile(record.fetch('id')).tap { notify_sports_rankings(candidate,id,match) }
     end
     def close
-      @lock.synchronize { return if @closed; @closed=true; @jobs << nil }
-      @thread&.join(2) unless @thread == Thread.current
+      thread=@lock.synchronize do
+        return if @closing
+        @closing=@closed=true
+        @thread
+      end
+      thread&.join(2) unless thread == Thread.current
+      release_management unless thread&.alive?
     end
 
     # Public for deterministic tests of the queue consumer, never a game executor.
@@ -507,6 +520,7 @@ module GameRoomTournaments
       job[:queued]=true
       job[:retryable]=false
       @jobs << job
+      start_worker
       true
     end
 
@@ -531,15 +545,25 @@ module GameRoomTournaments
       document
     end
 
+    # Called under @lock after admission. Checking for an empty queue and
+    # relinquishing this worker slot use the same lock as enqueue/retry, so
+    # a result arriving at the drain boundary cannot be left without a worker.
     def start_worker
-      return if @thread
-      @program.class.manage(self) if @program.class.respond_to?(:manage)
+      return if @thread || @closed
       runtime = @program.class.app_runtime if @program.class.respond_to?(:app_runtime)
       @thread = Thread.new do
         Thread.current.report_on_exception=false
         work = -> do
-          while (job=@jobs.pop)
-            break if @closed
+          loop do
+            job=@lock.synchronize do
+              if @closed || @jobs.empty?
+                @thread=nil if @thread.equal?(Thread.current)
+                nil
+              else
+                @jobs.pop(true)
+              end
+            end
+            break unless job
             failure=nil
             stop=false
             begin
@@ -569,8 +593,17 @@ module GameRoomTournaments
         end
         runtime && defined?(Programs) ? Programs.with_runtime(runtime,&work) : work.call
       ensure
-        @program.class.release(self) if @program.class.respond_to?(:release)
+        closed_and_idle=@lock.synchronize do
+          @thread=nil if @thread.equal?(Thread.current)
+          @closed && @thread.nil?
+        end
+        release_management if closed_and_idle
       end
+    end
+
+    def release_management
+      managed=@lock.synchronize { value=@managed; @managed=false; value }
+      @program.class.release(self) if managed && @program.class.respond_to?(:release)
     end
     def source!(reader:@source)
       account!

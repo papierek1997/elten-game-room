@@ -3,6 +3,7 @@ require_relative 'session_runner'
 require_relative 'tournament_server_plan_table'
 require_relative '../../games/catalog'
 require_relative '../../lib/tournaments/ordinary_match_service'
+require_relative 'tournament_legacy_forfeit_fixture'
 
 module TournamentForfeitNative
   class Fixture
@@ -28,7 +29,8 @@ module TournamentForfeitNative
       GameRoomTournaments::OrdinaryMatchService.new(program:program,registry:GameRoomGames::CATALOG,
         lobby:lobby,games:h.repositories.fetch(user),transport:h.transports.fetch(user),table:documents.for_user(user),
         journal:GameRoomTournaments::OperationJournal.new(directory:File.join(@directory,user),owner:user.downcase,backend_identity:'forfeit-v2-native'),
-        source:-> {{'candidate'=>candidate,'tournament_id'=>5}},user:-> {user},changed:->(ref) {changes<<[user,ref]})
+        source:-> {{'candidate'=>candidate,'tournament_id'=>5}},user:-> {user},changed:->(ref) {changes<<[user,ref]}).
+        extend(GameRoomTournaments::LegacyForfeitFixture)
     end
     def start
       table=h.as(h.users.first) { services.fetch(h.users.first).open_match(match_id:match['match_id'],leg:1) }

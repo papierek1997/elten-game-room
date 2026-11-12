@@ -1,4 +1,5 @@
 require_relative 'game_room_localization'
+require_relative 'game_room_key_modifiers'
 
 # One source for validation, key matching and game-field help. It does not
 # know a session or submit moves; the screen supplies key consumption/action.
@@ -41,8 +42,9 @@ module GameRoomShortcutBindings
       form.game_shortcut_keys = shortcut_keys
     end
     shortcut_by_key.each do |key, candidates|
-      form.on(("key_" + key).to_sym) do |parameters|
-        shortcut = candidates.find { |candidate| modifiers_match?(candidate, parameters) }
+      form.on(("key_" + key).to_sym) do
+        modifiers = GameRoomUI.modifiers_when_pressed(form, key.to_sym)
+        shortcut = candidates.find { |candidate| candidate.modifiers.to_a.sort == modifiers }
         next if shortcut == nil
 
         consume.call(key)
@@ -66,15 +68,6 @@ module GameRoomShortcutBindings
     prefixes << _("Alt") if modifiers.include?(:alt)
     prefixes << _("Shift") if modifiers.include?(:shift) && shifted_character == nil
     (prefixes + [key]).join("+")
-  end
-
-  def self.modifiers_match?(shortcut, parameters)
-    shift, control, alt = parameters.to_a
-    active = []
-    active << :shift if shift == true
-    active << :control if control == true
-    active << :alt if alt == true
-    active.sort == shortcut.modifiers.to_a.sort
   end
 
 end

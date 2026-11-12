@@ -1,7 +1,7 @@
 require_relative 'background_help_native'
 require_relative 'native_tasks'
 require EltenTestHost.file('src/ui/controls/grid_box.rb')
-GridBox = EltenAPI::Controls::GridBox
+GridBox = EltenAPI::Controls::GridBox unless defined?(GridBox) && GridBox.equal?(EltenAPI::Controls::GridBox)
 require_relative '../../lib/game_surfaces'
 require_relative 'duck_challenge_ui'
 

@@ -53,3 +53,32 @@ cases.run("presentation avoids bot trade enumeration") do
   shortcuts = game.custom_game_shortcuts(replay, 'Alice')
   assert(shortcuts.any? { |shortcut| shortcut.key == 'e' && shortcut.kind == :staged_form }, 'manual trade editor disappeared')
 end
+
+cases.run("observer has public inspection without fictitious personal finances or holdings") do
+  game = GameRoomGames::Monopoly.new
+  state = game.send(:initial_state, %w[Alice Bob], game.default_options)
+  replay = GameRoomGames::Replay.new(state: state, players: state[:players], current_player: 'Alice')
+  [false, true].each do |owned|
+    state[:owners].merge!(1 => 'Alice', 3 => 'Alice', 5 => 'Bob') if owned
+    before = Marshal.dump(replay)
+    shortcuts = game.game_shortcuts(replay, 'Observer')
+    own_keys = %w[c f v h k]
+    assert(shortcuts.none? { |shortcut| own_keys.include?(shortcut.key) && shortcut.modifiers.empty? },
+      'Observer was offered personal cash/deed/holdings/property management')
+    assert(shortcuts.none? { |shortcut| %w[h k].include?(shortcut.key) }, 'Observer was offered shifted personal management')
+    %w[i s d].each { |key| assert(shortcuts.any? { |shortcut| shortcut.key == key }, 'Public inspection was lost') }
+    others = shortcuts.find { |shortcut| shortcut.key == 'v' && shortcut.modifiers == [:shift] }
+    assert(others && others.choices.count { |choice| !choice.value.nil? } == (owned ? 3 : 0),
+      'Observer public holdings include unowned property or omit an actual owner')
+    assert(others.choices.none? { |choice| choice.label.include?('owner none') }, 'Unowned property masquerades as a holding')
+    assert(game.legal_actions(replay, 'Observer').empty?, 'Observer acquired game actions')
+    assert(Marshal.dump(replay) == before, 'Read-only inspection mutated the match')
+    %w[Alice Bob].each do |viewer|
+      personal = game.game_shortcuts(replay, viewer)
+      %w[c f v h k].each do |key|
+        assert(personal.any? { |shortcut| shortcut.key == key && shortcut.modifiers.empty? },
+          "Actual player's personal shortcut disappeared: #{viewer}/#{key}")
+      end
+    end
+  end
+end

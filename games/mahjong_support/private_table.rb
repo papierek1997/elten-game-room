@@ -16,15 +16,62 @@ module GameRoomGames
 
   module MahjongPrivateTable
     include MahjongPrivateTableReplay
+    AUDIT_TAPES = %i[private_audit_events private_audit_sources].freeze
 
     def replay(session, events, repository)
       return super unless GameRoomPrivateCards.enabled?(session)
-      initial = super(session, [], repository)
-      state = initial.state.dup
-      GameRoomPrivateCardLedger.initialize_state(state, session)
-      state[:hands] = state[:players].to_h { |player| [player, []] }
-      state[:private_flowers] = state[:players].to_h { |player| [player, []] }
-      private_table_reduce(state, [], initial.history.dup, events, session, repository)
+      # Input/resource and the bounded checkpoint are one adapter-local cache.
+      # Keep admission and refusal together; this pure reducer performs no I/O.
+      (@mahjong_private_replay_lock ||= Mutex.new).synchronize do
+        replay_private_table(session, events, repository)
+      end
+    end
+
+    private def replay_private_table(session, events, repository)
+      players, profile, session_id = mahjong_table_replay_context(session, repository)
+      source = events.is_a?(Array) ? events : events.to_a
+      context = session.reject { |key, _| key == '__game_revision' }
+      resource = repository.replay_resource_identity(session) if repository.respond_to?(:replay_resource_identity)
+      context_bytes = Marshal.dump([context, players]).bytesize
+      if !resource || context_bytes > GameRoomReplayCache::MAX_BYTES
+        clear_private_table_cache
+        return cold_private_table_replay(context, source, repository, players, profile, session_id)
+      end
+      previous = @mahjong_private_input if @mahjong_private_resource.equal?(resource)
+      input = GameRoomReplayCache::Input.new(context, source, repository, previous: previous)
+      if input.retention_bytes + context_bytes > GameRoomReplayCache::MAX_BYTES
+        clear_private_table_cache
+        return cold_private_table_replay(context, source, repository, players, profile, session_id)
+      end
+      cache = @mahjong_private_cache ||= GameRoomReplayCache.new
+      checkpoint = cache.reduce(input, context: [profile, session_id, :private_mahjong],
+        identities: [repository, resource, GameRoomLocalization.cache_token]) do |saved, prefix|
+        if saved
+          state, positions, history = restore_private_table_checkpoint(saved, input)
+        else
+          state, _, history = mahjong_table_initial_checkpoint(input.players, profile, session_id)
+          state = initial_private_table_state(state, input.session)
+          positions = []
+        end
+        accepted = positions.map { |position| input.events.fetch(position) }
+        current = private_table_reduce(state, accepted, history.dup, input.events.drop(prefix), input.session, input)
+        checkpoint_state = current.state.reject { |key, _| AUDIT_TAPES.include?(key) }
+        tapes = AUDIT_TAPES.each_with_object({}) do |key, result|
+          result[key] = current.state[key]&.map { |event| input.index_of(event) } if current.state.key?(key)
+        end
+        [checkpoint_state, GameRoomSnapshot::Log.from_owned(current.accepted_events.map { |event| input.index_of(event) }),
+          GameRoomSnapshot::Log.from_owned(current.history, previous: history), tapes]
+      end
+      # The two independent budgets are serialized retention limits, not RSS:
+      # input + full context <=8MiB, owned checkpoint <=8MiB in the shared cache.
+      if cache.retained_bytes.positive?
+        @mahjong_private_input, @mahjong_private_resource = input, resource
+      else
+        clear_private_table_cache
+      end
+      state, positions, history = restore_private_table_checkpoint(checkpoint, input)
+      accepted = GameRoomSnapshot::Log.from_sealed(positions.map { |position| input.events.fetch(position) }, bytes: input.retained_bytes)
+      private_table_replay(state.freeze, accepted, history)
     end
 
     def incremental_replay(previous, session, events, repository)
@@ -142,6 +189,31 @@ module GameRoomGames
     end
 
     private
+
+    def clear_private_table_cache
+      @mahjong_private_input = @mahjong_private_resource = @mahjong_private_cache = nil
+    end
+
+    def initial_private_table_state(initial, session)
+      state = initial.dup
+      GameRoomPrivateCardLedger.initialize_state(state, session)
+      state[:hands] = state[:players].to_h { |player| [player, []] }
+      state[:private_flowers] = state[:players].to_h { |player| [player, []] }
+      state
+    end
+
+    def cold_private_table_replay(session, events, repository, players, profile, session_id)
+      initial, _, history = mahjong_table_initial_checkpoint(players, profile, session_id)
+      private_table_reduce(initial_private_table_state(initial, session), [], history, events, session, repository)
+    end
+
+    def restore_private_table_checkpoint(checkpoint, input)
+      state, positions, history, tapes = checkpoint
+      # Only the shared cache's full authenticated prefix match allows these
+      # positions to refer to current canonical records. Never recover by ID.
+      restored = state.merge(tapes.transform_values { |indexes| indexes&.map { |index| input.events.fetch(index) } })
+      [restored, positions, history]
+    end
 
     def private_table_command(action, state, actor)
       case action

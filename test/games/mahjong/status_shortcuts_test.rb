@@ -5,6 +5,7 @@ require_relative '../../support/mahjong_round'
 require_relative '../../../games/mahjong'
 include GameRoomTest::Assertions
 include MahjongRoundFixture
+include MahjongTableGameTest
 
 def shortcut(game, replay, key)
   game.game_shortcuts(replay, replay.players.first).find { |item| item.key == key && item.modifiers.to_a.empty? }
@@ -17,6 +18,7 @@ end
   repo = MahjongTableGameTest::Repository.new
   session = {'id'=>45, 'players'=>%w[Alice Bob Carol Dave].first(seats), 'options'=>JSON.generate(options)}
   initial = game.replay(session, [], repo)
+  assert_equal(0, initial.state[:hand_number]) unless variant == 'solitaire'
   assert(shortcut(game, initial, 's').message.include?(variant == 'riichi' ? '30000' : '0'))
   assert_equal(nil, shortcut(game, initial, 'm'))
   context = GameRoomGames::ActionContext.new(session_id:45, random_source:MahjongTableGameTest::RandomSource.new)
@@ -33,6 +35,15 @@ end
     assert(shortcut(game,moved,'m').message.include?('142'))
     assert(shortcut(game,dealt,'m').message.include?('144'), 'Readout changed an earlier board')
   else
+    assert_equal(1, dealt.state[:hand_number], 'The first accepted public hand must be numbered one')
+    assert_equal(nil, JSON.parse(event.fetch('value'))['h'], 'A single-hand deal must keep its unscoped wire format')
+    assert(shortcut(game, dealt, 'r').message.include?('Hand number: 1.'))
+    cold = GameRoomGames::Mahjong.new.replay(session, [event], repo)
+    assert_equal(dealt.state[:hand_number], cold.state[:hand_number])
+    assert_equal(round_snapshot(dealt.state[:round]), round_snapshot(cold.state[:round]))
+    repeated = game.incremental_replay(dealt, session, [event], repo)
+    assert_equal(1, repeated.state[:hand_number], 'A duplicate deal cannot advance the hand counter')
+    assert_equal(0, initial.state[:hand_number], 'Dealing must not mutate the initial checkpoint')
     assert(shortcut(game,dealt,'m').message.include?(dealt.state[:round].flow.wall.length.to_s))
     assert(shortcut(game,dealt,'s').message.include?(variant == 'riichi' ? '30000' : '0'))
   end

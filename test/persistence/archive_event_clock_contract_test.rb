@@ -67,10 +67,9 @@ ClockEventContract.with_server_time do |time|
   assert(ClockEventContract.clock.now(restored.session) == 1003, 'Archive metadata changed the current clock')
   assert(game.replay(restored.session, restored.events, h.repositories['Alice']).board == f.replay.board, 'Clock metadata changed the position')
 
-  # Older archives remain readable without inventing an event offset. A raw
-  # internal key is not allowed to impersonate the validated public field.
+  # Older canonical archives remain readable without inventing an event offset.
   legacy = JSON.parse(JSON.generate(row))
-  legacy['events'].each { |event| event.delete('game_time'); event['__game_time'] = 9999 }
+  legacy['events'].each { |event| event.delete('game_time') }
   legacy['checksum'] = saves.send(:checksum, legacy)
   saves.validate(legacy, game: game)
   _legacy_h, old = restored_clock_snapshot(game, saves, legacy)

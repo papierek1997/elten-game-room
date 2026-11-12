@@ -4,12 +4,12 @@ require_relative '../../lib/tournaments/operations_screen'
 include GameRoomTest::Assertions
 GameRoomLocalization.boot(settings: {'interface_language' => 'en', 'known_languages' => ['en']})
 
-header = 'Local test operations'
+header = 'Tournament operations'
 notice = 'The tournament changed. Refresh its view before changing it again.'
-[false, true, nil].each do |applied|
+%w[pairing partnership pair_draw].product([false, true, nil]).each do |kind, applied|
   record = TournamentPublicUI.record('attempted')
   record = GameRoomTournaments::Publication::Data.copy(record)
-  record['kind'] = 'pairing'
+  record['kind'] = kind
   record['values']['account'] = 'Alpha'
   record['values']['partner'] = 'Beta'
   confirmed = GameRoomTournaments::Publication::Data.copy(record)

@@ -293,7 +293,8 @@ module GameRoomGames
           accepted_event = true
           history << history_entry(
             event_id,
-            _("%{player} scored %{points} points in this round.") % {
+            n_("%{player} scored %{points} point in this round.",
+              "%{player} scored %{points} points in this round.", parsed[:points]) % {
               player: participant_name(player),
               points: parsed[:points]
             },

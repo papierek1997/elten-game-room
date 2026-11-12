@@ -64,6 +64,12 @@ module GameRoomParticipants
     unique(participants).select { |participant| human?(participant) }
   end
 
+  # Preserve seat order and original spellings while excluding identities.
+  # Array subtraction is case-sensitive, unlike the shared account contract.
+  def excluding(participants, excluded)
+    participants.reject { |participant| includes?(excluded, participant) }
+  end
+
   def unique(participants)
     result = []
     participants.to_a.each do |participant|

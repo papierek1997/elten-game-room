@@ -141,9 +141,9 @@ Provenance, transformations and license status of current recordings are in
 
 T distinguishes waiting for a durable point, ordinary point/set breaks, and
 connection/readiness waits. These statuses are not automatic speech.
-The automatic service announcement and T both name the server and the receiving
-opponent, using the same doubles rotation as the engine. Service announcements
-remain deduplicated within each two-point block.
+The automatic service announcement and T name only the server in singles.
+In doubles they also name the receiving opponent, using the engine's rotation.
+Service announcements remain deduplicated within each two-point block.
 
 The durable start and point records are owner-authored and reject duplicates,
 wrong sequence and foreign authors. This is not an independent anti-cheat
@@ -193,6 +193,6 @@ on reload, including old boolean installation markers. It does not accumulate
 wrappers, retain old closures or replay stale input. Validate old-to-new and
 repeated reloads in one process through `test/games/audio_ball/keyboard_reload_test.rb`;
 a clean start does not cover this lifecycle. Other Audio Ball regressions are
-in the same directory. Native tests require final ELTEN 3.0.4 via
+in the same directory. Native tests require final ELTEN 3.0.5 via
 `ELTEN_HOST_SOURCE`; fake sound handles and relay fixtures do not verify
 physical audio or multiplayer on different networks.

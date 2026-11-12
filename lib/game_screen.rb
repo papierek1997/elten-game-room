@@ -210,6 +210,11 @@ class GameScreen
         signal_received_at,
         stage_started_at: snapshot_started_at
       )
+      if payload && payload.first == :new_session
+        @new_session_id = payload.last
+        return :back if switch_to_new_session == false
+        next
+      end
       if payload == nil
         # nil from the network boundary means an unavailable read, NOT a
         # confirmed room closure. Keep the last complete projection.
@@ -712,30 +717,9 @@ class GameScreen
   end
 
   def choice_shortcut_action(shortcut)
-    selected_index = 0
-    result = nil
     choices = shortcut.choices.to_a
-    list = ListBox.new(
-      choices.map(&:label),
-      header: shortcut.prompt,
-      index: selected_index,
-      quiet: true
-    )
-    select_button = Button.new(_("Select"))
-    cancel_button = Button.new(_("Cancel"))
-    form = GameRoomUI::Form.new([list, select_button, cancel_button], program: @program, quiet: true)
-    form.accept_button = select_button
-    form.cancel_button = cancel_button
-    form.hide(select_button)
-    form.hide(cancel_button)
-    select_button.on(:press) do
-      selected_index = list.index.to_i
-      result = choices[selected_index]
-      form.resume
-    end
-    cancel_button.on(:press) { form.resume }
-    form.wait
-    EltenAPI::KeyboardState.clear_current_frame if defined?(EltenAPI::KeyboardState)
+    selected_index = GameRoomUI.choose_index(shortcut.prompt, choices.map(&:label), program: @program)
+    result = choices[selected_index] unless selected_index.nil?
     return nil if result == nil
 
     GameSurfaces::Action.new(
@@ -1088,8 +1072,18 @@ class GameScreen
         room = @room_snapshot || @room_snapshot_provider.call
         # Notifications carry persisted events. Only failed/uncertain reads
         # bypass local stack metadata; retain the complete room projection.
-        snapshot = @repository.snapshot_for(@session, read_only: true,
-          force_events: @automatic_recovery_pending && !@synchronizer.reconciled?)
+        begin
+          snapshot = @repository.snapshot_for(@session, read_only: true,
+            force_events: @automatic_recovery_pending && !@synchronizer.reconciled?)
+        rescue GameRoomNetworkErrors::GamePaused
+          # A covered/just-opened screen may have missed the rematch wake-up.
+          # Retired moves must not become an empty replay of the old game.
+          # Use the existing full session switch; never reuse its old client.
+          latest = @repository.session_for_table(@table)
+          latest_id = @repository.session_id(latest)
+          raise unless latest_id.positive? && latest_id != @repository.session_id(@session)
+          next [:new_session, latest_id]
+        end
         [snapshot, room, @activity_entries || activity_entries_for(room)]
       end
     end

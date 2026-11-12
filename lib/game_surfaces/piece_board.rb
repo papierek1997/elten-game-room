@@ -201,7 +201,7 @@ module GameSurfaces
 
     def emit_move(destination)
       action = move_action(@selected, destination)
-      @action_handler&.call(action)
+      emit_action(action.kind, action.name, action.payload, source: action.source)
     end
 
     def move_action(origin, destination, source: nil)

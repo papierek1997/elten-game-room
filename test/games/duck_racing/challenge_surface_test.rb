@@ -9,6 +9,7 @@ EditBox::Flags::Numbers = 4
 def connect_surface(model, seat: 0)
   surface = challenge_surface(model, seat: seat)
   field = surface.fields.first
+  field.model_keyboard_input!
   @pressed, @held = [], []
   field.define_singleton_method(:key_pressed?) { |key, **| @test_pressed.include?(key) }
   field.define_singleton_method(:key_held?) { |key| @test_held.include?(key) }

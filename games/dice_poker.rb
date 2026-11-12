@@ -182,11 +182,18 @@ module GameRoomGames
 
       variant = state[:options]["variant"]
       order = state[:round_order] || tournament_contenders(state)
-      best = state[:hands].values.map { |dice| GameRoomDicePokerHands.rank(dice, variant) }.max
+      completed = state[:hands].transform_values { |dice| GameRoomDicePokerHands.rank(dice, variant) }
       pending = order.size - state[:turn] - 1
-      key = [variant, best, pending]
+      split_ties = chip_rules?(state[:options])
+      pots = auction_pots(state) if split_ties
+      key = [variant, completed, pending, split_ties, actor, pots]
       if @bot_plan_key != key
-        @bot_plan_key, @bot_plan = key, GameRoomDicePokerStrategy::Plan.new(variant, best, pending)
+        utility = if split_ties
+          GameRoomDicePokerStrategy.pot_value(variant, pots, actor, completed)
+        else
+          GameRoomDicePokerStrategy.contest_value(variant, completed.values, pending, split_ties: false)
+        end
+        @bot_plan_key, @bot_plan = key, GameRoomDicePokerStrategy::Plan.new(variant, utility)
       end
       return @bot_plan.stand(state[:dice].sort) + 1e-9 if action["action"] == "score"
 

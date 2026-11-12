@@ -73,14 +73,15 @@ module FarklePlanning
       @memo = @value_cache
       @evaluations = 0
       @catalog = (@catalogs[game.class.name] ||= OutcomeCatalog.new(game))
-      player = state[:players].find { |candidate| game.send(:same_user?, candidate, actor) }
+      players = game.tournament_remaining_players(state)
+      player = players.find { |candidate| game.send(:same_user?, candidate, actor) }
       banked = state[:scores].fetch(player, 0).to_i
       limit = state[:options]["score_limit"].to_i
       minimum = banked.zero? ? state[:options]["entry_minimum"].to_i : state[:options]["turn_minimum"].to_i
-      leader = state[:scores].reject { |candidate, _| candidate == player }.values.max.to_i
+      leader = GameRoomParticipants.excluding(players, [player]).map { |candidate| state[:scores].fetch(candidate) }.max.to_i
       @new_rules = state[:options]["farkle_rules_version"].to_i >= 2
       @leader = leader
-      @remaining_turns = state[:players].length - state[:players].index(player).to_i - 1
+      @remaining_turns = players.length - players.index(player).to_i - 1
       @last_player = @remaining_turns == 0
       @final_round = state[:final_round] == true
       @terminal_race = @new_rules && @last_player && (@final_round || banked + state[:turn_points].to_i >= limit)

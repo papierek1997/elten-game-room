@@ -163,7 +163,7 @@ assert(EltenGameRoom::MAIN_OPTIONS.include?('Turnieje'), 'Brak nowej polskiej po
       inspected('Local tournament tests') { |form| press(form, 'Advanced local test tools'); press(form, 'Change test participant'); press(form, 'Publish a draft in local test'); close(form) },
       actor_step(alice),
       inspected('Choose a local draft') { |form| press(form, 'Publish'); close(form) },
-      inspected('Local test operations') do |form|
+      inspected('Tournament operations') do |form|
         assert(field(form, 'Operation details').text.include?(old_operation['id']), 'Zmieniono ID operacji')
         close(form)
       end

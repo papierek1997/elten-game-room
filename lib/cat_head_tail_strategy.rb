@@ -15,17 +15,18 @@ module CatHeadTailPlanning
       return roll || bank || choices.first if roll == nil || bank == nil
 
       state = replay.state
-      player = state[:players].find { |candidate| GameRoomParticipants.same?(candidate, actor) }
+      players = GameRoomParticipants.excluding(state[:players], state.fetch(:tournament_eliminations, []).flatten)
+      player = players.find { |candidate| GameRoomParticipants.same?(candidate, actor) }
       score = state[:scores].fetch(player, 0).to_i
       turn_points = state[:turn_points].to_i
       banked_total = score + turn_points
 
       if state[:final_round]
-        leader = state[:scores].reject { |candidate, _score| GameRoomParticipants.same?(candidate, actor) }.values.max.to_i
+        leader = GameRoomParticipants.excluding(players, [actor]).map { |candidate| state[:scores].fetch(candidate) }.max.to_i
         # Only the last seat settles the final result now. If the bank already
         # secures at least a tie, a bust cannot lose it; a positive roll can win.
         # A tie made from still-unbanked points is different and stays bankable.
-        if GameRoomParticipants.same?(state[:players].last, actor) && score >= leader && banked_total == leader
+        if GameRoomParticipants.same?(players.last, actor) && score >= leader && banked_total == leader
           return roll
         end
         return bank if banked_total >= leader

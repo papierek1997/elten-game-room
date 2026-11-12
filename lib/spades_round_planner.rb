@@ -1009,7 +1009,9 @@ module SpadesPlanning
       exact_limit
     )
       [
-        player_key(state, root_actor).to_s,
+        # Cache identity is bytes, like the digest below. Do not force Ruby
+        # to combine a non-ASCII UTF-8 participant name with a binary hash.
+        player_key(state, root_actor).to_s.b,
         variant.to_i % 4,
         allow_lookahead == true ? 1 : 0,
         exact_limit.to_i,

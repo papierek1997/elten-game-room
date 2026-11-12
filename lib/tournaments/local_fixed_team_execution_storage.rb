@@ -431,7 +431,7 @@ module GameRoomTournaments
     end
 
     def validate_records!(document)
-      unless document.is_a?(Hash) && document['records'].is_a?(Hash) && document['records'].size <= 8 && document['readiness'].is_a?(Array)
+      unless document.is_a?(Hash) && document['records'].is_a?(Hash) && document['records'].size <= MAX_RECORDS && document['readiness'].is_a?(Array)
         raise Invalid, :sandbox_corrupt
       end
       document['records'].each do |key, record|

@@ -108,7 +108,8 @@ module GameRoomPresence
           fresh["seen_slot"] == row["seen_slot"] && fresh["reporter_key"] == row["reporter_key"]
         network(token) { table.delete(row["__id"]) }
       end
-      @cleanup_cursor = 0 if rows.length < CLEANUP_PAGE
+      # The server may shorten a page; only an empty tail completes the scan.
+      @cleanup_cursor = 0 if rows.empty?
     end
 
     def write_row(table, values, cancellation_token)

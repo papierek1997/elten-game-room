@@ -4,7 +4,6 @@ module GameRoomDuckRacing
   module Settlement
     Transfer = Data.define(:from, :to, :amount)
     Result = Data.define(:winner, :balances, :transfers, :burned, :grants, :outcome)
-    SPEED_STAKE_LIMIT = 5
 
     module_function
 
@@ -24,23 +23,6 @@ module GameRoomDuckRacing
       settle(balances, winner, penalties: penalties, draw: winner.nil? && valid.length > 1) do |loser|
         amount = (scores.fetch(winner) - scores.fetch(loser)).abs
         max_transfer.nil? ? amount : [amount, max_transfer].min
-      end
-    end
-
-    # Values are integer tenths of a second, not server arrival timestamps.
-    # A missing/incorrect answer pays the fixed maximum but cannot win.
-    # Successful answers pay by seconds of difference, up to that same cap.
-    def speed(balances:, times:, time_limit: nil)
-      unless time_limit.nil? || (time_limit.is_a?(Integer) && time_limit.positive?)
-        raise ArgumentError, "Invalid challenge time limit"
-      end
-      validate_scores!(balances, times) do |time|
-        time.nil? ? !time_limit.nil? : (time.is_a?(Integer) && time >= 0 && (time_limit.nil? || time <= time_limit))
-      end
-      winner = unique_best(times.compact, higher: false)
-      settle(balances, winner, draw: winner.nil? && times.compact.length > 1) do |loser|
-        slower = times.fetch(loser)
-        slower.nil? ? SPEED_STAKE_LIMIT : [(slower - times.fetch(winner) + 9) / 10, SPEED_STAKE_LIMIT].min
       end
     end
 

@@ -116,7 +116,6 @@ module GameRoomGames
     def waiting_view_spec(_viewer, history_empty_label: nil)
       GameRoomLayout::ViewSpec.new(history_empty_label: history_empty_label)
     end
-    def room_shortcuts; []; end
     def run_room_command(_program, _command, viewer:, **_services); false; end
     def leave_confirmation(_replay, _viewer, own_table:); nil; end
     def saved_game_requires_private_data?; false; end

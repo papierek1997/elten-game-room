@@ -5,6 +5,7 @@ require_relative 'publication'
 require_relative 'tournament_datetime_field'
 require_relative 'tournament_dates_editor'
 require_relative 'scoring_text'
+require_relative 'server_capacity'
 
 module GameRoomTournaments
   # Game selection, game options, then tournament rules; no write before publish.
@@ -36,7 +37,8 @@ module GameRoomTournaments
           choosing=true
           begin
             game=@registry.build(ids.fetch(games.index))
-            options=@configure.call(game,copy(game.default_options))
+            initial=game.new_game_options(game.table_creation_options({}))
+            options=@configure.call(game,copy(initial))
             if options
               @setup_game_id=game.id
               @prepared_options=copy(options)
@@ -126,7 +128,7 @@ module GameRoomTournaments
       game = selected_game
       return unless game
       previous = @seat_counts[@seats.index]
-      @seat_counts = game.tournament_capabilities(options: options_for(game)).fetch(:player_counts).select { |n| n.between?(2, 8) }
+      @seat_counts = ServerCapacity.supported_player_counts(game: game, options: options_for(game)).select { |n| n.between?(2, 8) }
       @seats.options = @seat_counts.map(&:to_s)
       @seats.index = @seat_counts.index(previous) || 0
       @seat_counts.size == 1 ? @form.hide(@seats) : @form.show(@seats)
@@ -155,6 +157,10 @@ module GameRoomTournaments
           @alert.call(text(_("Groups and knockout currently require two individual players or two fixed pairs per match. Choose round robin for other match sizes.")))
           return nil
         end
+      end
+      unless @initial_publication
+        game = @registry.build(attributes.fetch('game_id'))
+        attributes = attributes.merge('game_options' => game.new_game_options(copy(attributes.fetch('game_options'))))
       end
       draft = attributes.merge('players_per_match' => count,
         'pairing' => %w[all_combinations balanced_cycle].fetch(@pairing.index),

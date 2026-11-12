@@ -17,7 +17,7 @@ module GameRoomTournaments
     def configure(intent_id:, max_tables:,consent_before_table:false)
       raise Publication::Invalid,:invalid_availability unless [true,false].include?(consent_before_table)
       raise Publication::Invalid, :invalid_table_limit unless Data.integer?(max_tables, 1) && max_tables <= 32
-      record = record!(intent_id)
+      record, intent_id = target!(intent_id)
       raise C::Blocked, :not_author unless record['preview']['actor'] == actor
       access(record) do |document|
         raise C::Blocked, :tables_in_use if LocalDispatchContract.active(document, intent_id).size > max_tables
@@ -30,7 +30,8 @@ module GameRoomTournaments
     end
     def available(intent_id:, available:)
       raise Publication::Invalid, :invalid_availability unless [true, false].include?(available)
-      record = record!(intent_id)
+      requested_intent = intent_id
+      record, intent_id = target!(intent_id)
       participant!(record)
       row = access(record) do |document|
         policy!(document, intent_id)
@@ -44,7 +45,7 @@ module GameRoomTournaments
         @storage.write(document)
         Data.freeze_tree(Data.copy(people[actor]))
       end
-      @availability_lock.synchronize { @own_availability = [intent_id, row].freeze }
+      @availability_lock.synchronize { @own_availability = [requested_intent, row].freeze }
       row
     end
     # A lease heartbeat is an own-account write, not a presence query. Never
@@ -56,7 +57,7 @@ module GameRoomTournaments
     def refresh_availability(intent_id:)
       own = @availability_lock.synchronize { @own_availability }
       raise C::Blocked, :availability_changed unless own && own[0] == intent_id && own[1]['available']
-      record = record!(intent_id)
+      record, intent_id = target!(intent_id)
       row = access(record) do |document|
         policy!(document, intent_id)
         people = document['dispatch']['availability'][intent_id]
@@ -68,18 +69,18 @@ module GameRoomTournaments
         @storage.write(document)
         Data.freeze_tree(Data.copy(people[actor]))
       end
-      @availability_lock.synchronize { @own_availability = [intent_id, row].freeze }
+      @availability_lock.synchronize { @own_availability = [own[0], row].freeze }
       {state: :confirmed, effect: row}.freeze
     rescue C::Blocked, ReadinessContract::Blocked => error
       @availability_lock.synchronize { @own_availability = nil if @own_availability.equal?(own) }
       {state: :blocked, reason: error.code}.freeze
     end
     def snapshot(intent_id:)
-      record = record!(intent_id)
+      record, = target!(intent_id)
       access(record) { |document| projection(document, record) }
     end
     def advance(intent_id:)
-      record = record!(intent_id)
+      record, intent_id = target!(intent_id)
       participant!(record)
       view, idle_reason = access(record) do |document|
         projected = projection(document, record)
@@ -141,7 +142,7 @@ module GameRoomTournaments
       {state: :blocked, reason: error.code}.freeze
     end
     def accept(intent_id:,rematch_only:false,expected_proposal:nil,require_expected:false)
-      record = record!(intent_id)
+      record, intent_id = target!(intent_id)
       participant!(record)
       proposed=access(record) do |document|
         pending=document.dig('dispatch','proposals',intent_id) || {}
@@ -176,7 +177,7 @@ module GameRoomTournaments
       execution.admission(action: :enter, consent_id: consent[:effect]['id'])
     end
     def decline(intent_id:,rematch_only:false,expected_proposal:nil,require_expected:false)
-      record=record!(intent_id)
+      record, intent_id = target!(intent_id)
       participant!(record)
       access(record) do |document|
         if rematch_only
@@ -189,7 +190,7 @@ module GameRoomTournaments
       end
     end
     def renew_invitation(intent_id:, account:, invitation_id:)
-      record = record!(intent_id)
+      record, intent_id = target!(intent_id)
       participant!(record)
       own = snapshot(intent_id: intent_id)['active'].find { |row| row['players'].include?(actor) }
       raise C::Blocked, :invitation_required unless own && own['bound']
@@ -199,7 +200,7 @@ module GameRoomTournaments
       {state: :blocked, reason: error.code}.freeze
     end
     def renew_expired(intent_id:)
-      record = record!(intent_id)
+      record, intent_id = target!(intent_id)
       participant!(record)
       own = snapshot(intent_id: intent_id)['active'].find { |row| row['players'].include?(actor) }
       raise C::Blocked, :not_coordinator unless own && own['bound'] && own['coordinator'] == actor
@@ -225,11 +226,15 @@ module GameRoomTournaments
       raise Publication::Invalid, :invalid_clock unless Data.integer?(value)
       value
     end
-    def record!(id)
+    # Accepted previews may alias an existing immutable plan. Only its original
+    # intent owns dispatch policies, leases, proposals and execution records.
+    # Keep this resolution at the operation boundary, not in the UI tick that
+    # checks whether the already captured own lease needs renewal.
+    def target!(id)
       guard!
       record = @backend.current(intent_id: id)
       raise Publication::Invalid, :missing_plan unless record
-      record
+      [record, record.fetch('preview').fetch('intent_id')]
     end
     def participant!(record)
       raise C::Blocked, :not_participant unless record['evidence']['source']['roster'].any? { |person| person['account'] == actor }

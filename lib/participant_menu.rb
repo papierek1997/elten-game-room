@@ -152,6 +152,13 @@ module GameRoomParticipantMenu
       actions << :personal_settings if settings && game&.personal_settings_action
       actions -= [:invite_online, :invite_contacts] if game && !game.table_invitations_allowed?(options.to_h)
       actions -= [:observe_next_game, :play_next_game, :manage_roles] if game && !game.role_selection_allowed?(options.to_h)
+      if actions.include?(:edit_options) || actions.include?(:edit_teams)
+        current_room = room&.call
+        current_control = control&.call
+        if GameRoomTournamentMarker.present?(current_room&.table, current_control.to_h[:session])
+          actions -= [:edit_options, :edit_teams]
+        end
+      end
       actions
     end
     layout.form.bind_context do |menu|

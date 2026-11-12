@@ -13,9 +13,21 @@ module GameSurfaces
       @parts = @spec.parts.to_a
       validate_parts!
       remembered = state_value(state, "parts", {})
+      candidates = if previous.is_a?(Array)
+        previous.dup
+      elsif previous.respond_to?(:reuse_candidates)
+        previous.reuse_candidates.dup
+      else
+        [previous].compact
+      end
       @surfaces = @parts.map do |part|
         child_state = remembered_value(remembered, part.id)
-        surface = GameSurfaces.reconcile(part.surface, previous: previous, state: child_state)
+        prior = previous.is_a?(CompositeSurface) ? previous.surface_for_part(part.id) : candidates
+        surface = GameSurfaces.reconcile(part.surface, previous: prior, state: child_state)
+        # A native field can belong to one child only, even when siblings use
+        # the same compatible specification. Nested parts claim their leaves.
+        claimed = surface.respond_to?(:reuse_candidates) ? surface.reuse_candidates : [surface]
+        candidates.reject! { |candidate| claimed.any? { |child| child.equal?(candidate) } }
         surface.on_action do |action|
           @action_handler&.call(action.with_source(part.id))
         end
@@ -45,6 +57,14 @@ module GameSurfaces
 
     def program=(program)
       @surfaces.each { |surface| surface.program = program if surface.respond_to?(:program=) }
+    end
+
+    def attach_form(form)
+      @surfaces.each { |surface| surface.attach_form(form) if surface.respond_to?(:attach_form) }
+    end
+
+    def sound_player=(player)
+      @surfaces.each { |surface| surface.sound_player = player if surface.respond_to?(:sound_player=) }
     end
 
     # Layout may place selected game controls after the shared chat/history.
@@ -132,6 +152,11 @@ module GameSurfaces
         offset += surface.fields.length
       end
       false
+    end
+
+    protected def surface_for_part(id)
+      index = @parts.index { |part| part.id.to_s == id.to_s }
+      @surfaces[index] unless index.nil?
     end
 
     private

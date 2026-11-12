@@ -1203,17 +1203,20 @@ module GameRoomGames
         @exchange_plan_key = key
         random = Random.new(Digest::SHA256.hexdigest(key).to_i(16))
         unknown = poker_deck(state[:options]) - own
+        maximum = state[:options]["draw_five"] ? 5 : 3
         @exchange_samples = Array.new(96) do
           sample = unknown.dup
           sample.length.times do |index|
             other = index + random.rand(sample.length - index)
             sample[index], sample[other] = sample[other], sample[index]
           end
-          draw = sample.shift(5)
+          # Keep five cards for every rival before reserving our draw. On a
+          # full deck this preserves the same sampled worlds; with 24 cards
+          # and four seats only four unknown cards remain outside the hands.
+          draw = sample.shift([5, sample.length - opponents.length * 5].min)
           hands = Array.new(opponents.length) { sample.shift(5) }
           weight = 1.0
           ranks = hands.each_with_index.map do |hand, index|
-            maximum = state[:options]["draw_five"] ? 5 : 3
             discard = poker_model_discards(hand, maximum)
             observed = exchanges[opponents[index]]
             if observed
@@ -1233,7 +1236,6 @@ module GameRoomGames
         end
         @exchange_scores = {}
         @exchange_outcomes = {}
-        maximum = state[:options]["draw_five"] ? 5 : 3
         @exchange_reference = poker_model_discards(own, maximum).sort
       end
       @exchange_scores[discards.sort] ||= begin
@@ -1364,11 +1366,35 @@ module GameRoomGames
     end
 
     def current_small_blind(state)
-      state[:options]["small_blind"].to_i * (state[:options]["blind_multiplier"].to_i**blind_level(state))
+      current_blind(state, "small_blind")
     end
 
     def current_big_blind(state)
-      state[:options]["big_blind"].to_i * (state[:options]["blind_multiplier"].to_i**blind_level(state))
+      current_blind(state, "big_blind")
+    end
+
+    def current_blind(state, key)
+      nominal = state[:options][key].to_i
+      multiplier = state[:options]["blind_multiplier"].to_i
+      level = blind_level(state)
+      return nominal if nominal.zero? || level.zero? || multiplier == 1
+      return nominal * (level.odd? ? -1 : 1) if multiplier == -1
+      return nominal * multiplier**level if multiplier.zero?
+
+      # Keep all reachable nominal blinds exact. Beyond this exponent even
+      # 2**limit exceeds the immutable chip pool (and the initial blind), so
+      # every possible stack is already all-in. A timestamp is not a licence
+      # to allocate a multiplier raised to billions of digits on every replay.
+      pool = state[:options]["starting_chips"].to_i * state[:players].length
+      limit = [pool, nominal.abs, 1].max.bit_length + 1
+      bounded = [[level, -limit].max, limit].min
+      # Historical hidden settings can have negative levels/multipliers.
+      # Preserve their sign; an equally bounded negative power is still less
+      # than one chip, just like the original economically unreachable value.
+      if multiplier.negative? && bounded.odd? != level.odd?
+        bounded += bounded.positive? ? -1 : 1
+      end
+      nominal * multiplier**bounded
     end
 
     def player_key(state, actor)

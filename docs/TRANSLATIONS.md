@@ -27,6 +27,15 @@ Edit `msgstr` in Poedit or another Gettext editor. Preserve English `msgid`,
 contexts, `%{name}` placeholders and plural variants. Empty translations use
 the existing fallback; fuzzy and obsolete entries are not compiled.
 
+Counts in announcements and table summaries use `n_`, including zero and
+single-item cases; do not interpolate an arbitrary count into one fixed
+plural noun. Reuse an existing localized count fragment when it has the same
+meaning, checking that every supported catalog actually translates it. Verify
+the real formatted messages in binary-loaded language runtimes, not just PO
+syntax or the English fallback. See
+`test/games/categories/count_messages_translation_test.rb` for category counts,
+target scores and actual accepted score reductions in all five languages.
+
 After changing English messages or rulebook structure:
 
 ```console
@@ -125,7 +134,7 @@ an existing PO. Ordinary compilation reads only PO.
 ruby test/run.rb test/tooling/locale_build_contract_test.rb
 ```
 
-Set `ELTEN_HOST_SOURCE` to the pinned ELTEN 3.0.4 checkout described in
+Set `ELTEN_HOST_SOURCE` to the pinned final ELTEN 3.0.5 checkout described in
 [BUILDING.md](BUILDING.md). The test runs its unmodified
 `build-eltenapp.rb` and `build-eltsetup.rb` on a disposable fixture, reads both
 with the native loader and compares every MO byte and language ID. It also

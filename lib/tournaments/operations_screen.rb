@@ -50,8 +50,8 @@ module GameRoomTournaments
     private
 
     def show
-      @list = ListBox.new([], header: text(_("Local test operations")), quiet: true,
-        empty_label: text(_("No local test operations.")))
+      @list = ListBox.new([], header: text(_("Tournament operations")), quiet: true,
+        empty_label: text(_("No tournament operations.")))
       @details = GameRoomUI::HelpText.new(text(_("Operation details")),
         type: EditBox::Flags::ReadOnly | EditBox::Flags::MultiLine, text: '', quiet: true)
       check = Button.new(text(_("Check selected operation")))
@@ -134,6 +134,10 @@ module GameRoomTournaments
         text(_("Removal of %{player} from tournament %{id}")) % {player: text(row.fetch('values').fetch('account')), id: row.fetch('values').fetch('tournament_id')}
       when 'pairing'
         text(_("Tournament pair: %{players}")) % {players: [row['values']['account'], row['values']['partner']].compact.join(' — ')}
+      when 'partnership'
+        text(_("Partner choice: %{players}")) % {players: [row['values']['account'], row['values']['partner']].compact.join(' — ')}
+      when 'pair_draw'
+        text(_("Tournament pair draw: %{id}")) % {id: row['values']['tournament_id']}
       when 'amendment'
         text(_("Tournament edit: %{id}")) % {id: row['values']['tournament_id']}
       when 'cancellation'
@@ -175,7 +179,7 @@ module GameRoomTournaments
     end
 
     def outcome_notice(row)
-      return unless row['kind'] == 'pairing' && row['status'] == 'confirmed' &&
+      return unless %w[pairing partnership pair_draw].include?(row['kind']) && row['status'] == 'confirmed' &&
         row.dig('evidence', 'pairing_applied') == false
 
       text(_("The tournament changed. Refresh its view before changing it again."))

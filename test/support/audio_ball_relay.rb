@@ -24,6 +24,7 @@ class AudioBallRelayHarness < AudioBallHarness
     client.before_wait(@replay, name)
     @surfaces[name] = GameSurfaces.build(@game.surface_spec(@replay, name))
     field = @surfaces[name].fields.first
+    field.model_keyboard_input!
     @keys[name] = []
     keys = @keys
     field.define_singleton_method(:key_pressed?) { |code| keys[name].include?(code) }

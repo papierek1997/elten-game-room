@@ -3,9 +3,9 @@ require_relative "../support/native_live_sessions"
 class RetentionRaceSession
   attr_reader :metadata, :discovery_metadata, :id, :stack_callback
 
-  def initialize(table_id)
+  def initialize(table_id, native_id: nil)
     @metadata, @discovery_metadata = {"owner" => "Alice"}, {}
-    @id, @closed = "session-#{table_id}-#{object_id}", false
+    @id, @closed = native_id || "session-#{table_id}-#{object_id}", false
   end
 
   def owner?; false; end
@@ -16,8 +16,8 @@ class RetentionRaceSession
   def on_stack_gap; end
 end
 
-def race_attach(store, id)
-  native = RetentionRaceSession.new(id)
+def race_attach(store, id, native_id: nil)
+  native = RetentionRaceSession.new(id, native_id: native_id)
   store.send(:attach_session, id, native)
   native
 end
@@ -94,11 +94,11 @@ failures << "old validator published into the new collection" unless current == 
 # A retained collection can outlive membership. A validation without a current
 # owner must not become the cache for a subsequent native membership.
 store = GameRoomLiveSessionStore.new(Object.new)
-race_attach(store, 1)
+original = race_attach(store, 1)
 race_start(store, 1, 789)
 store.deactivate_room(1)
 store.send(:records_for, 1)
-race_attach(store, 1)
+race_attach(store, 1, native_id: original.id)
 current = store.send(:records_for, 1).map { |record| record.packet.dig("data", "session_id") }
 puts "Rejoined retained collection: #{current.inspect}"
 failures << "inactive validation hid the rejoined game" unless current == [789]

@@ -100,6 +100,15 @@ class GameRoomLiveSessionStore
       end
       records = records_for(table_id, read_only: true)
       ledger = control_ledger(table_id)
+      floor, current_id = @mutex.synchronize do
+        state = @rooms[table_id]
+        [state&.compacted_game_through.to_i, state&.compacted_game_id]
+      end
+      if floor.positive? && session_id != current_id && records.any? { |record|
+          record.sequence <= floor && record.packet['kind'] == 'game_started' &&
+            record.packet.dig('data', 'session_id') == session_id }
+        raise GameRoomNetworkErrors::GamePaused, 'A new game has replaced this game'
+      end
       identity = [session_id, session['__archive_id'].to_s]
       same_source = cached && cached[:source].equal?(source) && cached[:native].equal?(native) && cached[:identity] == identity
       if same_source && cached[:generation] == generation && cached[:ledger].equal?(ledger) && cached[:records].equal?(records)

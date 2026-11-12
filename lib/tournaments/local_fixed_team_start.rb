@@ -95,7 +95,7 @@ module GameRoomTournaments
         unless entries.keys.sort == people.map { |p| p['account'] }.sort && entries.values.all? { |r| r['epoch'] == execution['epoch'] }
           raise C::Blocked, :entries_required
         end
-        receipt = with_native(document, execution, writing: true) do |transaction, transport, table, repository|
+        receipt = with_native(document, execution) do |transaction, transport, table, repository|
           raise C::Blocked, :game_already_started if repository.session_for_table(table, force: true)
           session = transport.start_game(table: table, game: @request['game_id'], players: @native['players'],
             options: JSON.generate(@native['options']), actor: core['owner'])
@@ -116,33 +116,13 @@ module GameRoomTournaments
       end
     end
 
-    def status
-      @port.transaction do |document|
-        execution = execution!(document)
-        receipt = execution['start']
-        value = {'receipt' => receipt, 'binding' => execution['target']['binding'], 'mode' => 'local_test'}
-        if receipt
-          with_native(document, execution, writing: false) do |_transaction, _transport, table, repository|
-            session = repository.session_for_table(table, force: true)
-            raise C::Blocked, :start_unconfirmed unless session && session['__id'] == receipt['session_id']
-            snapshot = repository.snapshot_for(session, force_events: true)
-            replay = @registry.build(@request['game_id']).replay(snapshot.session, snapshot.events, repository)
-            value['session_id'], value['players'], value['phase'] = session['__id'], replay.players,
-              replay.finished? ? 'finished' : (replay.state.is_a?(Hash) ? replay.state[:phase].to_s : 'playing')
-            value['event_count'] = snapshot.events.size
-          end
-        end
-        detached(value)
-      end
-    end
-
     private
 
-    def with_native(document, execution, writing:)
+    def with_native(document, execution)
       uuid = execution['target']['binding']['native_uuid']
       owner = core!(document, execution)['owner']
       provider = LocalFixedTeamNativeProvider.new
-      transaction = writing ? provider.open_for_start(state: document['native'], owner: owner, native_uuid: uuid) : provider.open(state: document['native'], owner: owner)
+      transaction = provider.open_for_start(state: document['native'], owner: owner, native_uuid: uuid)
       transport = primary = nil
       begin
         transport = GameRoomTransport.new(transaction.program, **transaction.transport_options)

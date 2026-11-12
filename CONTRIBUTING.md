@@ -9,13 +9,52 @@ important as implementing the game rules correctly.
 1. Create a branch from the current `main`.
 2. Each branch and pull request should address one coherent problem.
 3. Add or update a test that reproduces the behavior being changed.
-4. Run `ruby test/run.rb`.
+4. Run the affected scripts with `ruby test/run.rb test/path_test.rb ...`,
+   including their relevant native/host dependencies. Follow the current
+   `AGENTS.md` scope; do not start the entire runner unless authorized.
 5. In the pull request description, explain the cause, the scope of the change,
    and how to check it manually in ELTEN.
 
 For a new game or variant, use the [game acceptance checklist](docs/GAME_ACCEPTANCE.md).
 Include evidence for the player-facing flow, keyboard, sound, bot decisions
 and rules, as applicable; distinguish automated checks from a live playthrough.
+
+### Working with an AI coding assistant
+
+Give the assistant the current checkout and require it to read `AGENTS.md`,
+this guide and the contracts relevant to the change before implementing it.
+For a game, start with [ADDING_A_GAME](docs/ADDING_A_GAME.md) and
+[GAME_ACCEPTANCE](docs/GAME_ACCEPTANCE.md); host setup and exact dependencies
+come from [BUILDING](docs/BUILDING.md) and [HOST_API](docs/HOST_API.md). A copied
+game is an example, not an API specification or proof that every path is right.
+
+State the intended rules, variants, players/teams, defaults and user-visible
+flow; identify decisions still requiring the maintainer instead of letting the
+assistant invent them. Ask it to reuse existing game/surface/shortcut, audio,
+randomness/private-state, executor and persistence mechanisms. Model code
+describes rules; UI describes controls; the ordinary validated executor writes
+moves. A new timer, worker, backend or game-ID exception needs a concrete reason.
+
+Before proposing completion, have it check the actual open/edit/confirm/cancel/
+return path and ordered announcements, not only the model's outcome. Require
+dependent existing tests as well as a new regression, sensible bounded bot
+decisions using permitted information, and complete affected translations and
+rules. Changes to defaults or fixture assumptions need an explained contract
+change, not merely new expected values to obtain a green test.
+
+Bots should use the same public hints and input constraints as human players,
+not merely any value accepted by a broad model API. For example, an announced
+number width narrows a guessing interval without revealing the answer. Compare
+identical permitted inputs and RNG streams; unrelated hidden/future keys must
+not change the choice or subsequent RNG state.
+
+The handoff must list changed behavior, exact commands/results, native or live
+scenarios actually performed, unverified paths and remaining decisions. A test
+that bypasses the modal or supplies its own expected response is not evidence
+of working native controls, speech delivery or network recovery. Do not claim
+CI passed before observing that commit's remote result. Keep private logs,
+keys, profiles, signed packages and test reports out of the PR. Publication,
+installation, server changes and a release number require separate authority.
 
 ## Important project constraints
 
@@ -27,8 +66,11 @@ and rules, as applicable; distinguish automated checks from a live playthrough.
 - Find public tables through LiveSessions discovery and store their state in
   the session stack. Do not add auxiliary tables or Signals for joining,
   room synchronization or moves.
-- Messages should be short, unambiguous and available for review in the
-  history. Avoid unnecessary form rebuilds and focus changes.
+- Messages should be short and unambiguous. Keep public durable game events
+  available in history, but do not log private information or deliberately
+  transient memory-challenge clues: replaying those would change the game.
+  Use the existing presentation-only path for such clues. Avoid unnecessary
+  form rebuilds and focus changes.
 - Do not change the version or build number in an ordinary pull request.
   The author does this when preparing a release.
 

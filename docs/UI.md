@@ -57,6 +57,31 @@ blank and a corrupt canonical assignment remains an error, not a redraw.
 
 ## Option editor
 
+### Single-choice modal dialogs
+
+Use `GameRoomUI.choose_index(prompt, labels, program:, index: 0, flags: 0)`
+for a finite local single-choice list. It uses native controls, announces the
+prompt once, preserves the supplied default, accepts Enter and cancels with
+Escape. It returns a zero-based Integer, including `0`, or `nil` on cancellation
+or an empty list. Do not treat zero as cancellation or write a game event from
+the dialog. The helper clears the closing input frame even after an exception.
+
+For example, `GameRoomUI.choose_index(_("Choose a player"), player_labels,
+program: program)` selects an index into that exact displayed list. Retain the
+selected identity, then recheck the turn/token/authority and pass the ordinary
+action through the executor; the modal does not make an old view current.
+Pass `ListBox::Flags::AnyDir` only when both arrow directions are appropriate.
+Never call the helper from a worker. For multiple selection or a turn deadline,
+keep the dedicated form and its lifecycle, as in WordBoardSurface; those are
+not interchangeable single-choice dialogs.
+
+Taboo review/restart, game choice shortcuts and card-action confirmation share
+this helper. Regression: `test/ui/choice_dialog_native_test.rb` exercises the
+native modal, one prompt, Enter, Escape, default/index zero, stale Taboo tokens
+and card authority changed while the dialog is open.
+
+### Editing table options
+
 The option editor changes the contents of a numeric `EditBox` through the
 native `set_text`, not the nonexistent `text=`. This also applies to values
 hidden when the form is built and to resetting the deck after custom mode is
@@ -65,6 +90,31 @@ that adds a `text=` setter masks the error as early as table creation.
 Regression test: `test/ui/game_option_editor_native_test.rb` (binary sources
 or an `.eltsetup` path as an argument; EN/PL forms, creation, saving,
 cancellation, custom mode and dependent Rummy settings).
+
+### Press-time modifiers
+
+Game shortcuts, history navigation and editable-field gating use
+`GameRoomUI.modifiers_when_pressed(control, key)`. It reads the required native
+3.0.5 press snapshot without consuming the frame. Returned `:control` means
+the keyboard scheme's main modifier, and `:alt` means its option modifier.
+Question-boundary navigation also requests `include_insert: true` so that
+screen-reader Insert+arrows stay native. A key can be a numeric code, a letter,
+a native key name, or the comma/period/semicolon aliases used by the bindings.
+
+Read modifiers before consuming the key or opening a modal. Native Form event
+parameters describe the state at dispatch and can already differ from the
+state when the action key was pressed. Likewise, final `key_held?` cannot
+decide whether Enter meant ordinary play or Shift+Enter packet selection.
+Do not patch the host's global event dispatch to correct an application binding.
+Regression: `test/ui/press_snapshot_native_test.rb` covers release within one
+frame, modifiers added after the key, text scope, punctuation/history and both
+directions of the question/answer boundary using actual native controls.
+Use the same helper for non-game bindings: the rules' Ctrl+F1 passes its
+numeric `CTRL_F1_KEY` (not an unsupported `:f1` alias), and channel-space
+Shift+Left/Right reads the arrow's press snapshot before rotating. Regressions:
+`test/ui/rules_shortcut_press_snapshot_native_test.rb` and
+`test/ui/table_conference_controls_native_test.rb`. Do not keep a second
+modifier matcher in a document or conference control.
 
 An `OptionChoice` can include a localized `description`, normalized to UTF-8
 like its label. The editor opts only described lists into `ChoiceDescriptions`:
@@ -77,11 +127,40 @@ Regression: `test/games/duck_racing/challenge_descriptions_native_test.rb`
 
 ## F1 and extending the interface
 
+### Composite controls and reuse
+
+Keep sibling `SurfacePart` IDs unique. A composite forwards the program,
+attached form, sound player and action guard to its children; do not duplicate
+those capabilities in a game-specific wrapper. During reconciliation each
+prior native child can be claimed once. Compatible siblings may use the same
+zone ID in their separate specifications without sharing one mutable control.
+Nested groups claim their reused leaves from the same operation's remaining
+candidates; a caller-supplied candidate array is not mutated.
+When a prior composite exists, part IDs scope reuse to the same logical part,
+including across reordering, removal and insertion. A new part must not steal a
+compatible sibling's control or cursor. Preserve that context until the child
+is reconciled instead of flattening it prematurely into an unkeyed pool.
+Regression: `test/ui/composite_reuse_ownership_native_test.rb` uses actual
+layout updates, independent cursors and emitted cards for flat/nested groups.
+
+Reuse must preserve command semantics, not only command IDs. If a retained
+button captures a command whose label or payload changes, refresh both the
+label and callback or rebuild that surface. `TypingSurface` compares complete
+command definitions; equivalent definitions and status-only changes keep the
+native controls. Regression: `test/ui/typing_command_reuse_native_test.rb`.
+
+Keep submission-owning parts flat when their draft cleanup depends on
+`action_accepted`/`action_rejected`: the current public `Action.source` is one
+part ID, not a nested acknowledgement route. Do not add an ad hoc path field
+to game packets to work around this limitation. Current game compositions
+use flat parts for these inputs; read-only grouping/capability forwarding is
+not evidence that a nested submission ACK is supported.
+
 Use `GameRoomUI::Form` or `GameSurfaces::RefreshAwareForm` and pass
 `program:` (in a shared layout, set `form.game_room_program`). Do not create
 new game-specific F1/F2/F3 handling. The host handles these keys before form
 events. A one-time bridge in the QuickActions dispatcher intercepts only F1,
-F2, F3, Shift+F2/F3 and Ctrl+F2 when the active control belongs to a waiting Game Room
+F2, F3, Shift+F2/F3, Ctrl+F2 and Ctrl+F4 when the active control belongs to a waiting Game Room
 form. It does not save ELTEN shortcut settings, intercept Ctrl+F1 or change
 host sources. It does not retain the program in the global bridge. After
 leaving or switching windows, host behavior resumes.
@@ -89,8 +168,11 @@ leaving or switching windows, host behavior resumes.
 F1 collects `GameShortcut` entries and the screen's dynamic actions through
 `GameRoomContextHelp`. The list order is game, screen, control help, history
 and volume. Duplicates are removed while preserving order; replacing phase
-definitions removes old entries. Chat does not receive letter-based game
-shortcuts or history shortcuts that override normal text editing. The list has
+definitions removes old entries. Editable chat retains unmodified letter keys
+and native text-editing navigation. Explicitly declared Ctrl/Alt+letter commands,
+such as question reporting, may work there through the shared bindings; this
+does not enable game shortcuts over read-only history's native copy commands.
+The list has
 one visible control; Enter/Escape closes it, and the previous cursor position
 returns without rebuilding the form.
 
@@ -141,6 +223,22 @@ stay native. GameRoomLayout attaches that navigation to the current form;
 the question cursor/selection and answer index survive ordinary refreshes.
 Quiz uses this capability; category selection and other choice lists keep
 their existing presentation. Regression: `question_text_native_test.rb`.
+
+`QuestionSpec#read_only` prevents every submission route, including immediate
+`submit_on_select` choices. Immediate choices use the same `submission_action`
+as explicit submission, then the ordinary action guard; do not maintain a
+second payload/permission path. This is separate from a read-only prompt:
+`prompt_as_text` can display read-only question text while its answers remain
+writable. See `test/ui/question_read_only_native_test.rb`.
+
+Tournament Operations must render every journal kind exposed by its workspace,
+including current `partnership` and `pair_draw` records, not only historical
+`pairing`. Confirmed storage and an applied semantic choice are distinct: retain
+the original status and show its stale-choice explanation when
+`pairing_applied` is false. Opening details must retain the exact operation ID
+and must not reconcile or resend it. Regressions use actual service-produced
+records in `test/tournaments/modern_operations_native_test.rb` and native
+readback in `pairing_operations_feedback_native_test.rb`.
 
 `GameRoomRules::Document` preserves sections and plain text, while
 `GameRoomRules::View` adds native heading and link elements to `EditBox`.
@@ -229,7 +327,8 @@ Previous/Next moves to another boundary instead of selecting the same cue.
 Ctrl+R reads `table_options_announcement`, based on the same definitions as
 the settings document. The board game's S counter uses
 `remaining_piece_counts(replay)` and the actual board, in player order.
-Letter-based game shortcuts do not apply in editable chat.
+Unmodified letter-based game shortcuts do not apply in editable chat; explicitly
+declared modified shortcuts still use the shared text-scope rules above.
 Read-only history keeps native text selection and copying, including Ctrl+C;
 it is not a game shortcut field. The same key still operates the game when
 its actual playfield is focused. Explicit history-navigation shortcuts retain

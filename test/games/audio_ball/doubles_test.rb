@@ -89,7 +89,7 @@ end
   h.commit
   assert(h.replay.state[:server]==3,'Third point did not rotate service')
   assert(h.game.participant_scores(h.replay)=={'Alice'=>0,'Bob'=>0,'Carol'=>0,'Dave'=>0},'A multi-set match must rank by completed sets')
-  assert(h.game.tournament_export_small_scores(h.replay,options:h.replay.state[:options])[:scores]=={'Alice'=>2,'Bob'=>0,'Carol'=>2,'Dave'=>0},'Small scores were indexed by seat rather than team')
+  assert(h.game.tournament_export_small_scores(h.replay,options:h.replay.state[:options])[:scores]=={'team:0'=>2,'team:1'=>0},'Small scores must use one value per team unit')
   h.close
   assert(h.rig.endpoints.values.all?(&:closed?),'Doubles leaked a channel')
 end

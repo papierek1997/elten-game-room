@@ -793,6 +793,8 @@ module GameRoomTournaments
           else
             _("Some participants still need partners. Complete the pairs before creating matches.")
           end
+        when :invalid_group_configuration
+          _("The confirmed roster does not fit the group settings. Check the number of groups, players per match and qualifying places.")
         when :partner_already_set then _("Dissolve your current partnership before choosing someone else.")
         when :partner_unavailable then _("This participant already has a partner.")
         when :own_partnership_only then _("You can only choose your own partner.")

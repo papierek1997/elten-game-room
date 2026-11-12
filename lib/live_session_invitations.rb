@@ -47,6 +47,7 @@ class GameRoomLiveSessionStore
       stored = take_invitation(table_id, invitation_id)
       return false if stored == nil
 
+      verify_room_resource!(stored[:table_id], stored[:native_id])
       session = stored[:invitation].accept(participant_metadata: participant_metadata(table_id).merge(participant_metadata.to_h))
       account = [stored[:endpoint], stored[:recipient]]
       return false unless invitation_account_current?(account)

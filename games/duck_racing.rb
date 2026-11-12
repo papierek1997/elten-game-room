@@ -154,7 +154,12 @@ module GameRoomGames
     end
 
     def replay(session, events, repository)
-      input = Logic::ReplayCache::Input.new(session, events, repository)
+      # The native CAS changes on every write, not the meaning of the game.
+      # Reuse only the shared cache's sealed authenticated prefix, with the
+      # same bounded admission as other replay-cache consumers.
+      input = Logic::ReplayCache::Input.new(session.reject { |key, _| key == '__game_revision' }, events, repository,
+        previous: @duck_replay_input)
+      @duck_replay_input = input.retention_bytes <= Logic::ReplayCache::MAX_BYTES ? input : nil
       session, players = input.session, input.players
       options = options_from_json(session["options"])
       resources = resources_for(options)
@@ -536,12 +541,12 @@ module GameRoomGames
         checked = (@duck_cleanup_checked ||= {})[key]
         next if checked && checked[0].equal?(hidden_submissions) && checked[1] == signature
         begin
-          Logic::LocalResult.cleanup(replay.state, user: actor, vault: hidden_submissions)
+          result_cleaned = Logic::LocalResult.cleanup(replay.state, user: actor, vault: hidden_submissions)
         rescue HiddenSubmissions::StorageError
           next
         end
         if Logic::PrivateRound.cleanup_confirmed(session_id: session_id, user: actor,
-            receipts: receipts, vault: hidden_submissions)
+            receipts: receipts, vault: hidden_submissions) && result_cleaned
           @duck_cleanup_checked[key] = [hidden_submissions, Logic::Session.copy(signature)]
         end
       end

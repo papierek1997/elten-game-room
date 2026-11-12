@@ -14,7 +14,7 @@ confirmed.merge!('status' => 'confirmed', 'evidence' => {'pairing_applied' => fa
 T::Publication::Data.freeze_tree(confirmed)
 reads, reconciles, alerts = 0, [], []
 driver = TournamentNativeDriver.new
-driver.step('Local test operations') do |form|
+driver.step('Tournament operations') do |form|
   TournamentPublicUI.button(form, 'Check selected operation').press
   assert(form.fields.first.options.first.end_with?('; confirmed'), 'Durable result stays confirmed')
   assert(form.fields[1].text.include?(notice), 'Successful readback must survive a failed following refresh')
@@ -24,7 +24,7 @@ driver.step('Local test operations') do |form|
   assert(form.fields[1].text.include?(notice), 'A repeated failed refresh retains the reason')
   assert_equal(1, reconciles.size, 'Refresh cannot resubmit or reconcile implicitly')
 end
-driver.step('Local test operations', [27])
+driver.step('Tournament operations', [27])
 T::OperationsScreen.new(program: Object.new,
   load: -> { reads += 1; reads == 1 ? [record] : nil },
   reconcile: ->(id) { reconciles << id; confirmed }, alert: ->(value) { alerts << value },

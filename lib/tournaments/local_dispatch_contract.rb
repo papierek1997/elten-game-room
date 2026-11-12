@@ -12,7 +12,8 @@ module GameRoomTournaments
       return unless document.key?('dispatch')
       value = document['dispatch']
       unless value.is_a?(Hash) && (value.keys-['proposals']).sort == %w[availability policies] &&
-          value.values.all? { |part| part.is_a?(Hash) } && value['policies'].size <= 8 && value['availability'].size <= 8
+          value.values.all? { |part| part.is_a?(Hash) } && value['policies'].size <= document['records'].size &&
+          value['availability'].size <= document['records'].size
         raise Publication::Invalid, :sandbox_corrupt
       end
       value['policies'].each do |intent, policy|

@@ -24,6 +24,7 @@ module GameRoomRecordings
     def metadata; @document.fetch('metadata'); end
     def duration; metadata.fetch('duration_ms'); end
     def frame; @frame; end
+    def players; @frame && @frame['players'] || metadata.fetch('players'); end
 
     def play
       seek(0) if @position>=duration
@@ -208,7 +209,7 @@ module GameRoomRecordings
     end
 
     def team_viewer
-      (@frame && @frame['teams'] || (metadata['players'].size==4 ? [0,1,0,1] : [0,1]))[@seat]
+      Document.frame_teams(@frame,player_count:metadata['players'].size)[@seat]
     end
     def frame_viewer; metadata['game']=='audio_ball' ? team_viewer : @seat; end
 

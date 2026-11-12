@@ -32,8 +32,10 @@ module GameRoomTournaments
     def load_candidate
       @candidate = nil
       @first_legs = []
-      @preview = @shown_input = nil
-      @accepted = @uncertain = false
+      unless @uncertain
+        @preview = @shown_input = nil
+        @accepted = false
+      end
       row = @rows[@list.index]
       if row
         candidate = @workspace.schedule_candidate(publication_ref: {'author' => row['__insertion_user'],
@@ -43,7 +45,8 @@ module GameRoomTournaments
       @first_legs = @candidate ? @candidate['matches'].select { |match| match['leg'] == 1 } : []
       @match_roster.set_text(@first_legs.each_with_index.map { |match, index| "#{index + 1}: #{match['players'].join(', ')}" }.join("\r\n"))
       @seats.set_text(@first_legs.map { |match| match['players'].join(', ') }.join("\r\n"))
-      @details.set_text(instructions)
+      @details.set_text(@uncertain ? [preview_text,
+        text(_("Acceptance is uncertain. Use Check plan acceptance; do not send a new plan."))].join("\r\n") : instructions)
     end
     def form_input
       row = @rows[@list.index]

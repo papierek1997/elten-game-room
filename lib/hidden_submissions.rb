@@ -138,7 +138,7 @@ module HiddenSubmissions
         validate_root!(read_snapshot_file(path))
       end
       snapshots.max_by { |root| root.fetch(REVISION_KEY, 0) }
-    rescue SystemCallError, IOError
+    rescue SystemCallError, IOError, JSON::ParserError
       raise StorageError, "Cannot read hidden answers on this device."
     end
 
@@ -166,7 +166,7 @@ module HiddenSubmissions
 
     def read_snapshot_file(path)
       JSON.parse(File.binread(path))
-    rescue Errno::ENOENT, JSON::ParserError
+    rescue Errno::ENOENT
       { "entries" => {} }
     end
 

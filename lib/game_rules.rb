@@ -1,5 +1,6 @@
 require_relative "game_content"
 require_relative "context_help"
+require_relative "game_room_key_modifiers"
 
 require_relative "game_room_localization"
 
@@ -120,16 +121,12 @@ module GameRoomRules
       field.add_tip(tip) if field.respond_to?(:add_tip)
     end
     GameRoomContextHelp.exclude_from_game_help(fields, [tip])
-    form.on(:key_f1) do |parameters|
-      next if !ctrl_f1_event?(parameters)
+    form.on(:key_f1) do
+      next unless GameRoomUI.modifiers_when_pressed(form, CTRL_F1_KEY) == [:control]
 
       EltenAPI::KeyboardState.clear_current_frame if defined?(EltenAPI::KeyboardState)
       handler.call
     end
   end
 
-  def self.ctrl_f1_event?(parameters)
-    shift, main_modifier, option = parameters.to_a
-    shift != true && main_modifier == true && option != true
-  end
 end

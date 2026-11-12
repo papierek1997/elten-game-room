@@ -183,6 +183,13 @@ class GameRepository
       [GameRoomParticipants.method(:same?), GameRoomParticipants.method(:bot?), GameRoomParticipantReplay.method(:roster_at)]
   end
 
+  # A pure local visit identity, never discovery, reconnection or card I/O.
+  # Detached adapters without a membership token simply do not opt into a
+  # resource-bound replay optimization.
+  def replay_resource_identity(session)
+    @transport.membership_token(session.fetch('table_id')) if @transport.respond_to?(:membership_token)
+  end
+
   def next_sequence(session, accepted_events)
     accepted_events.to_a.map { |event| event["sequence"].to_i + 1 }.max.to_i
   end

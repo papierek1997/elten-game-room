@@ -203,6 +203,7 @@ puts 'PASS unordered fallback: one control works, ambiguous chords are ignored, 
 probe = AudioBallKeyboardProbe.new
 probe.frame(probe.tap(0x26, 0x10))
 double = GameSurfaces::AudioBallField.new('UI double beside loaded host')
+double.model_keyboard_input!
 double.define_singleton_method(:key_pressed?) { |code| code == 0x26 }
 double.define_singleton_method(:key_held?) { |_code| false }
 double.update

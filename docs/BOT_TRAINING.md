@@ -29,6 +29,13 @@ overwritten. Progress messages go to stderr.
 formatting. `spades_training.rb` contains the scenario matrix, arena and training.
 Changing production weights requires a separate edit and verification; the CLI does not write them.
 
+Planner cache identities may contain binary digests. Compose their other string
+components as binary copies too; joining a UTF-8 participant name directly with
+arbitrary digest bytes can raise and silently select a fallback policy. Preserve
+the original actor's encoding and the existing digest/bounds. Compare actual
+same-deal plans, not just successful key creation. Ordinary named bots use ASCII
+technical IDs; a Unicode-actor fixture alone does not prove a named-bot incident.
+
 ## Bouillabaisse
 
 The runtime policy uses the acting seat's own hand, public cards, scoring and
@@ -120,6 +127,13 @@ Strategy regressions are under `test/games/scopa/`, `test/games/mahjong/`,
   seat rotation and result reports; the policy supports JSON serialization.
 - `learned_strategy.rb`: a learning strategy used by self-play,
   unavailable when only the runtime is loaded.
+
+Only completed matches call `finish_episode` and update learned values/visits.
+Action limits, missing legal continuations and invalid strategy actions are
+unfinished attempts, not zero-reward draws; the runner discards their actor
+trajectories through `reset_episode`. This also matters when one learner is
+reused across several matches. Reports keep unfinished attempts separate from
+completed results and Elo ratings.
 
 These libraries are neither games nor separate CLI commands. Regression scenarios
 are in `test/tooling/training_test.rb`, `test/games/spades/learning_test.rb`,

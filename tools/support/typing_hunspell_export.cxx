@@ -48,12 +48,14 @@ class ManiaWordExporter {
   }
 public:
   ManiaWordExporter(const char* aff, const char* dic, const char* target)
-      : checker(aff, dic), output(target, std::ios::binary) {
-    if (!output) throw std::runtime_error("Cannot open word-list output");
+      : checker(aff, dic) {
     dictionaries.emplace_back(new HashMgr(dic, aff));
     affixes.reset(new AffixMgr(aff, dictionaries));
     if (affixes->get_encoding() != "UTF-8" || affixes->get_complexprefixes())
       throw std::runtime_error("Exporter requires a UTF-8 dictionary without COMPLEXPREFIXES");
+    // Reject unsupported inputs before opening/truncating a previous export.
+    output.open(target, std::ios::binary);
+    if (!output) throw std::runtime_error("Cannot open word-list output");
   }
   void run() {
     int column = -1;

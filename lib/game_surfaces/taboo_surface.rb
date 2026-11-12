@@ -83,12 +83,7 @@ module GameSurfaces
       send_action("restart_turn") if choice == 1 && token == @spec.token
     end
     def choose(prompt, choices)
-      result = nil
-      list = ListBox.new(choices, header: prompt, index: 0)
-      form = GameRoomUI::Form.new([list],index: 0,quiet: true,program: @program)
-      list.on(:select) { result = list.index.to_i; form.resume }
-      form.wait
-      result
+      GameRoomUI.choose_index(prompt, choices, program: @program)
     end
   end
 end

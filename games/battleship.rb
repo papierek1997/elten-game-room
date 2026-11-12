@@ -524,7 +524,10 @@ module GameRoomGames
       return false if player == nil || state[:fleets].key?(player) || !state[:nonces].key?(player)
 
       ships = decode_fleet(event["value"])
-      return false unless legal_fleet?(state, ships)
+      # This is final evidence, not setup admission. A structurally complete
+      # but illegal fleet must reach honest? and lose verification; rejecting
+      # it here would leave the match waiting for an impossible legal reveal.
+      return false unless fleet_shape?(ships)
 
       state[:fleets][player] = ships
       event_id = repository.event_id(event)

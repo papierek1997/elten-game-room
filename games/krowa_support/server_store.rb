@@ -68,7 +68,7 @@ module GameRoomGames
         page = daily_table.select(order: [["__id", "asc"]], limit: 500, offset: offset).to_a
         page.each { |row| present[row["day_key"].to_i] = true }
         offset += page.length
-        break if page.length < 500
+        break if page.empty?
       end
       missing = dates.reject { |date| present.key?(date_key(date)) }
       missing.each_slice(100) do |batch|
@@ -165,7 +165,7 @@ module GameRoomGames
         ).to_a
         rows.concat(page)
         offset += page.length
-        break if page.length < page_limit || (limit && rows.length >= limit.to_i)
+        break if page.empty? || (limit && rows.length >= limit.to_i)
       end
       rows
     end
@@ -184,7 +184,7 @@ module GameRoomGames
         ).to_a
         days.concat(page.filter_map { |row| date_from_key(row["day_key"]) })
         offset += page.length
-        break if page.length < page_limit || (limit && days.length >= limit.to_i)
+        break if page.empty? || (limit && days.length >= limit.to_i)
       end
       days.uniq
     end
@@ -242,7 +242,7 @@ module GameRoomGames
             first_rows[key] ||= row if by_key.key?(key)
           end
           offset += page.length
-          break if keys.all? { |key| first_rows.key?(key) } || page.length < 500
+          break if keys.all? { |key| first_rows.key?(key) } || page.empty?
         end
       end
       first_rows.to_h do |key, row|
@@ -321,17 +321,24 @@ module GameRoomGames
     def ranked_words(limit: MAX_WORD_RESULTS)
       return [] unless available?
 
-      word_table.select(
-        columns: ["word"],
-        group_by: ["word"],
-        aggregates: {
-          "last_result_at" => {"function" => "max", "column" => "__insertion_time"},
-          "best_attempts" => {"function" => "min", "column" => "attempts"},
-          "result_count" => {"function" => "count", "column" => "__id"}
-        },
-        order: [["last_result_at", "desc"], ["word", "asc"]],
-        limit: [[limit.to_i, 1].max, MAX_WORD_RESULTS].min
-      ).to_a.select { |row| normalized_ranked_word(row["word"]) != nil }
+      limit = [[limit.to_i, 1].max, MAX_WORD_RESULTS].min
+      rows = []
+      loop do
+        page = word_table.select(
+          columns: ["word"],
+          group_by: ["word"],
+          aggregates: {
+            "last_result_at" => {"function" => "max", "column" => "__insertion_time"},
+            "best_attempts" => {"function" => "min", "column" => "attempts"},
+            "result_count" => {"function" => "count", "column" => "__id"}
+          },
+          order: [["last_result_at", "desc"], ["word", "asc"]],
+          limit: [1000, limit - rows.length].min, offset: rows.length
+        ).to_a
+        rows.concat(page)
+        break if page.empty? || rows.length >= limit
+      end
+      rows.select { |row| normalized_ranked_word(row["word"]) != nil }
     end
 
     # Search joins published days with their canonical saved assignments, not
@@ -357,7 +364,7 @@ module GameRoomGames
           assignments[date] = word
         end
         offset += page.length
-        break if page.length < 500
+        break if page.empty?
       end
       assignments.select! { |_date, word| word && word.include?(needle) }
       return matches if assignments.empty?
@@ -376,7 +383,7 @@ module GameRoomGames
           matches << row.merge('word' => word, 'daily_date' => date) if word
         end
         offset += page.length
-        break if page.length < 500
+        break if page.empty?
       end
       matches.sort_by { |row| [-row['last_result_at'].to_i, row['word'], row['daily_date'].to_s] }
     end
@@ -460,7 +467,7 @@ module GameRoomGames
         page = tower_rounds_table.select(where: where, order: [["__id", "asc"]],
           limit: 500, offset: rows.length).to_a
         rows.concat(page)
-        break if page.length < 500
+        break if page.empty?
       end
       rows.uniq { |row| [row["__insertion_user"].to_s.downcase, row["round"]] }.sort_by { |row| row["round"].to_i }
     end

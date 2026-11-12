@@ -173,6 +173,8 @@ module GameRoomTournaments
       fields += ['groups'] if data['format'] == 'groups_knockout'
       fields += ['group_advancement'] if data.key?('group_advancement')
       fields += Publication::ROUND_SETTINGS if data.key?('knockout_rematch')
+      fields += Publication::WIN_SETTINGS.select { |key| data.key?(key) }
+      fields += %w[starts_at daily_hours].select { |key| data.key?(key) }
       fields += ['knockout'] if data['format'] == 'knockout'
       C.fields!(data, fields)
       C::Data.copy(data, max_bytes: ScheduleCandidate::MAX_RESULT_BYTES,
@@ -200,6 +202,26 @@ module GameRoomTournaments
         raise C::Blocked, :sandbox_corrupt
       end
       DraftDetails.validate!({'windows' => data['windows']})
+      # Keep the complete current candidate, including optional schedule and
+      # series settings. These are source identity, not permission to start:
+      # this diagnostic port still leaves its gate closed and roles unassigned.
+      if data.key?('starts_at')
+        start = data['starts_at']
+        unless C::Data.integer?(start) && (start.zero? || start >= data['registration_closes_at'])
+          raise C::Blocked, :sandbox_corrupt
+        end
+      end
+      if data.key?('daily_hours')
+        raise C::Blocked, :sandbox_corrupt unless data.key?('starts_at') && data['windows'].empty?
+        TournamentTiming.validate_daily_hours!(data['daily_hours'])
+      end
+      Publication::WIN_SETTINGS.each do |key|
+        next unless data.key?(key)
+        unless %w[groups_knockout knockout].include?(data['format']) &&
+            C::Data.integer?(data[key], 1) && data[key] <= 99 && data[key.sub('wins_to', 'rematch')] == false
+          raise C::Blocked, :sandbox_corrupt
+        end
+      end
       data['roster'].each { |actor| C.text!(actor); raise C::Blocked, :sandbox_corrupt unless actor == actor.downcase }
       ids = []
       data['matches'].each do |match|

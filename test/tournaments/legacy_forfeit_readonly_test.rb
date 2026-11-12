@@ -1,6 +1,11 @@
 require_relative '../support/tournament_forfeit_native'
 T=GameRoomTournaments
 
+%i[build_forfeit_preview map_forfeit_checkpoint session_for_forfeit].each do |name|
+  assert(!T::OrdinaryMatchService.method_defined?(name) && !T::OrdinaryMatchService.private_method_defined?(name),
+    "Historical fixture generator #{name} leaked into the production service")
+end
+
 %w[ordinary-match-forfeit-v1 ordinary-match-cancel-forfeit-v1].each do |kind|
   TournamentForfeitNative.with_fixture do |f|
     f.start if kind.include?('cancel')

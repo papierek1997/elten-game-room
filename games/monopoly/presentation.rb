@@ -51,15 +51,15 @@ module GameRoomGames
         actions = legal_actions(replay, viewer, include_trade_offers: false)
         shortcuts = [
           announcement_shortcut(key: "i", label: _("read player positions"), message: positions_text(state)),
-          announcement_shortcut(key: "c", label: _("read your cash"), message: _("Your cash: %{cash}.") % { cash: state[:cash][player].to_i }),
+          (announcement_shortcut(key: "c", label: _("read your cash"), message: _("Your cash: %{cash}.") % { cash: state[:cash][player].to_i }) if player != nil),
           announcement_shortcut(key: "s", label: _("read finances"), message: finances_text(state)),
-          announcement_shortcut(key: "f", label: _("read the current deed"), message: deed_text(state, current_square(state, player))),
+          (announcement_shortcut(key: "f", label: _("read the current deed"), message: deed_text(state, current_square(state, player))) if player != nil),
           browse_shortcut(key: "d", label: _("browse unowned property"), prompt: _("Unowned property"), choices: property_choices(state) { |square| state[:owners][square[:index]] == nil }),
           browse_shortcut(key: "d", modifiers: [:shift], label: _("browse the board"), prompt: _("Board"), choices: board_choices(state)),
-          browse_shortcut(key: "v", label: _("browse your holdings"), prompt: _("Your holdings"), choices: property_choices(state, group_progress: true) { |square| same_user?(state[:owners][square[:index]], player) }),
+          (browse_shortcut(key: "v", label: _("browse your holdings"), prompt: _("Your holdings"), choices: property_choices(state, group_progress: true) { |square| same_user?(state[:owners][square[:index]], player) }) if player != nil),
           browse_shortcut(key: "v", modifiers: [:shift], label: _("browse other holdings"), prompt: _("Other holdings"), choices: property_choices(state, group_progress: true) { |square| state[:owners][square[:index]] != nil && !same_user?(state[:owners][square[:index]], player) })
-        ]
-        shortcuts.concat(property_action_shortcuts(actions, state, viewer))
+        ].compact
+        shortcuts.concat(property_action_shortcuts(actions, state, viewer)) if player != nil
         {
           "pay_jail" => ["p", _("pay to leave jail")],
           "use_jail_card" => ["j", _("use a Get out of jail card")],

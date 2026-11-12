@@ -117,7 +117,7 @@ GameRoomTest::TemporaryDirectory.create('native-local-hub-') do |directory|
   F.actor(driver, 'Testowa Alicja')
   F.action(driver, HUB, 'Publish a draft in local test')
   F.action(driver, DRAFTS, 'Publish')
-  driver.step('Local test operations', [27])
+  driver.step('Tournament operations', [27])
   driver.step(DRAFTS, [27])
   driver.step(HUB, [27])
   G::LocalTestHub.new(**args).run
@@ -321,7 +321,7 @@ GameRoomTest::TemporaryDirectory.create('hub-uncertain-') do |directory|
   driver.step(EDITOR, [27]) { |form| assert(T.field(form, 'Status').text.include?('not confirmed'), 'Niepewny wynik udaje sukces') }
   # Ponownie ta sama rewizja jeszcze w tej samej liście i potem po restarcie.
   F.action(driver, DRAFTS, 'Publish')
-  driver.step('Local test operations', [27])
+  driver.step('Tournament operations', [27])
   driver.step(DRAFTS, [27])
   driver.step(HUB, [27])
   $local_hub_inserts = []
@@ -361,11 +361,11 @@ GameRoomTest::TemporaryDirectory.create('hub-uncertain-') do |directory|
   F.actor(driver, 'Testowa Alicja')
   F.action(driver, HUB, 'Publish a draft in local test')
   F.action(driver, DRAFTS, 'Publish')
-  F.action(driver, 'Local test operations', 'Check selected operation')
-  driver.step('Local test operations', [27])
+  F.action(driver, 'Tournament operations', 'Check selected operation')
+  driver.step('Tournament operations', [27])
   driver.step(DRAFTS, [27])
   F.action(driver, HUB, 'Operations')
-  driver.step('Local test operations', [27])
+  driver.step('Tournament operations', [27])
   driver.step(HUB, [27])
   G::LocalTestHub.new(**args).run
   driver.finish

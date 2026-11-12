@@ -387,6 +387,7 @@ check('Both listening sides preserve real key preparation, attacks, defense, mis
         surface = GameSurfaces.build(spec)
         field = surface.fields.first
         keys = []
+        field.model_keyboard_input!
         field.define_singleton_method(:key_pressed?) { |key| keys.include?(key) }
         field.define_singleton_method(:key_held?) { |key| keys.include?(key) }
         [surface, Form.new([field, EditBox.new('Chat')]), keys]

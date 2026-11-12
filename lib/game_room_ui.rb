@@ -1,4 +1,5 @@
 require_relative 'host_bridge'
+require_relative 'game_room_key_modifiers'
 require_relative "game_room_preferences"
 require_relative "context_help"
 require_relative "game_room_ping"
@@ -64,6 +65,29 @@ module GameRoomUI
   end
 
   module_function
+
+  # A finite local choice, not a game action. Callers still revalidate their
+  # turn/token/authority before using the selected index. One form owns focus;
+  # every consumer has the same Escape and key-cleanup behavior.
+  def choose_index(prompt, labels, program: nil, index: 0, flags: 0)
+    labels = labels.to_a.map { |label| GameRoomContent.utf8(label) }
+    return nil if labels.empty?
+
+    list = ListBox.new(labels, header: GameRoomContent.utf8(prompt),
+      index: index.to_i.clamp(0, labels.length - 1), flags: flags, quiet: true)
+    accept, cancel = Button.new(_("Select")), Button.new(_("Cancel"))
+    form = Form.new([list, accept, cancel], program: program, quiet: true)
+    form.accept_button, form.cancel_button = accept, cancel
+    form.hide(accept)
+    form.hide(cancel)
+    result = nil
+    accept.on(:press) { result = list.index.to_i; form.resume }
+    cancel.on(:press) { form.resume }
+    form.wait
+    result
+  ensure
+    EltenAPI::KeyboardState.clear_current_frame if form && defined?(EltenAPI::KeyboardState)
+  end
 
   def install_hotkeys
     return unless defined?(EltenAPI::QuickActions)

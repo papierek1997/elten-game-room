@@ -20,7 +20,7 @@ module TournamentRestartProcess
   HUB = 'Local tournament tests'.freeze
   DRAFTS = 'Choose a local draft'.freeze
   EDITOR = 'Publish draft in local test'.freeze
-  OPERATIONS = 'Local test operations'.freeze
+  OPERATIONS = 'Tournament operations'.freeze
   CHILD_SECONDS = 15
   module_function
 

@@ -6,6 +6,23 @@ require_relative 'player'
 require_relative 'controls'
 
 module GameRoomRecordings
+  class PlayerForm < GameRoomUI::Form
+    attr_accessor :refresh_perspectives
+
+    def initialize(*args,**options)
+      @ui_thread=Thread.current
+      super
+    end
+
+    def update
+      super
+      # Progress can advance playback while this form is covered. Native
+      # controls belong only to this form's active UI update, not that worker.
+      refresh_perspectives&.call if Thread.current.equal?(@ui_thread) &&
+        !game_room_background_help? && $activecontrols.to_a.include?(self)
+    end
+  end
+
   class UI
     using GameRoomLocalization::Translations
 
@@ -142,12 +159,21 @@ module GameRoomRecordings
         index:controls.information.perspective_index,quiet:true)
       speed=ListBox.new(Player::SPEEDS.map { |rate| "#{rate}×" },header:text(_('Playback speed')),index:Player::SPEEDS.index(1.0),quiet:true)
       close=Button.new(text(_('Close')))
-      form=GameRoomUI::Form.new([field,perspective,speed,close],program:@program,quiet:true)
+      form=PlayerForm.new([field,perspective,speed,close],program:@program,quiet:true)
       form.cancel_button=close
+      form.refresh_perspectives=-> do
+        current=controls.information.perspectives
+        unless current==perspectives
+          perspectives=current
+          perspective.update_options(current.map { |_,name| text(name) },keys:current.map(&:first))
+        end
+        index=controls.information.perspective_index
+        perspective.index=index unless perspective.index==index
+      end
       activate=->(action) do
         EltenAPI::KeyboardState.clear_current_frame if defined?(EltenAPI::KeyboardState)
         controls.perform(action)
-        perspective.index=controls.information.perspective_index
+        form.refresh_perspectives.call
       end
       field.on(:press) do
         code=field.send(:key_pressed?,:key_enter) ? 0x0D : 0x20

@@ -180,6 +180,10 @@ module GameRoomTournaments
       context=notification_context!(reference,broadcast:broadcast,sender:sender)
       visible={'directory'=>context.slice('publication','members','pairs','pair_requests','invitations')}
       row=context['publication']
+      # Only a successfully authenticated observation supersedes the previous
+      # timer. Cancelled, started or no-longer-scheduled publications must not
+      # retain a stale future wake; failed/unauthorized reads never reach here.
+      @lock.synchronize{@deadlines.delete(reference)}
       if !row || !TournamentTiming.started?(row,@clock.call)
         deadline=row && TournamentLifecycle.next_change(row,now:@clock.call)
         schedule(reference,deadline-@clock.call) if deadline

@@ -67,7 +67,7 @@ module GameRoomTournaments
     def validate!(document)
       root=document.dig('dispatch','proposals')
       return unless root
-      raise Publication::Invalid,:sandbox_corrupt unless root.is_a?(Hash) && root.size<=8
+      raise Publication::Invalid,:sandbox_corrupt unless root.is_a?(Hash) && root.size<=document['records'].size
       root.each do |intent,pending|
         roster=document.dig('records',intent,'evidence','source','roster')&.map{|row|row['account']}
         raise Publication::Invalid,:sandbox_corrupt unless roster && pending.is_a?(Hash) && pending.size<=128

@@ -1402,14 +1402,7 @@ module GameRoomGames
       events = replay.accepted_events.to_a
       deal = events.rindex { |event| event["action"].to_s == "deal" }
       events = events[(deal + 1)..] if deal != nil
-      events.filter_map do |event|
-        next if event["action"].to_s != "play"
-
-        _mode, card = parse_play(event["value"])
-        card
-      rescue ArgumentError
-        nil
-      end
+      events.filter_map { |event| TysiacPlanning.public_play(event)&.fetch(:card) }
     end
 
     def bot_higher_unseen_count(replay, actor, card)
@@ -1757,17 +1750,6 @@ module GameRoomGames
 
     def round_up_five(value)
       (value.to_f / 5.0).ceil * 5
-    end
-
-    def score_change_text(player, delta)
-      name = participant_name(player)
-      if delta.to_i > 0
-        _("%{player} gained %{points} points.") % { player: name, points: delta.to_i }
-      elsif delta.to_i < 0
-        _("%{player} lost %{points} points.") % { player: name, points: -delta.to_i }
-      else
-        _("%{player} gained no points.") % { player: name }
-      end
     end
 
     def round_score_text(player, collected, delta)

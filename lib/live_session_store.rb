@@ -23,6 +23,7 @@ require_relative "private_cards"
 require_relative 'tournament_marker'
 
 class GameRoomLiveSessionStore
+  ResourceConflict = Class.new(GameRoomNetworkErrors::GamePaused)
   KIND = "elten_game_room_table".freeze
   PROTOCOL = GameRoomEventProtocol::NATIVE_PACKET_VERSION
   FEATURE_DISCOVERY_PROTOCOL = 3
@@ -348,10 +349,12 @@ class GameRoomLiveSessionStore
   def room_snapshot(table_or_id, force: false, read_only: false, **read_options)
     table_id = table_identifier(table_or_id)
     return nil if table_id == nil
+    expected = native_resource_id(table_or_id)
+    return nil if expected && active_session(table_id)&.id.to_s != expected
 
     ensure_current(table_id, force: force, **read_options)
     session = active_session(table_id)
-    return nil if session == nil
+    return nil if session == nil || (expected && session.id.to_s != expected)
 
     reconcile_control_owner(table_id) unless read_only
     table = table_for(table_id)
@@ -398,7 +401,10 @@ class GameRoomLiveSessionStore
     return :closed if table_id == nil
     account = invitation_account_identity
     return :closed unless same_user?(account.last, user)
+    expected = native_resource_id(table)
     existing = active_session(table_id)
+    return :closed if existing && expected && existing.id.to_s != expected
+    verify_room_resource!(table_id, expected) if expected
     # Another endpoint for the same account owns a different native visit.
     # The local SDK collection is authoritative here and does not perform I/O.
     if existing && account.first.sessions.to_a.any? { |session| session.equal?(existing) }
@@ -410,8 +416,10 @@ class GameRoomLiveSessionStore
     # instance. Resolve through this store, whose callback queue the game owns.
     endpoint
     discovered = @mutex.synchronize { @discovered[table_id] }
-    discovered ||= discover_item(table_id)
+    discovered = nil if discovered && expected && discovered.id.to_s != expected
+    discovered ||= discover_item(table_id, native_id: expected)
     return :closed if discovered == nil
+    verify_room_resource!(table_id, discovered.id.to_s)
     # Refresh only at the explicit join boundary, not while navigating a list.
     # A cached full table may have gained a free place since it was displayed.
     if discovered.respond_to?(:refresh) && discovered.respond_to?(:limits) && discovered.limits.to_h["discovery_refresh"] == true
@@ -748,6 +756,7 @@ class GameRoomLiveSessionStore
     current = table_for(table_id)
     latest = game_sessions(table_id).max_by { |row| row["__stack_sequence"].to_i }
     return false unless current && same_user?(endpoint.user, current["owner"])
+    return false if GameRoomTournamentMarker.present?(current, latest)
     return false unless latest.to_h["__id"].to_i == expected_session_id.to_i
     return true if current["game_options"].to_s == options.to_s
     return false unless current["game_options"].to_s == expected_options.to_s
@@ -961,6 +970,15 @@ class GameRoomLiveSessionStore
     end
     release_joined_session(table_id, session) if status != :joined
     status
+  rescue ResourceConflict => conflict
+    # A concurrent admission may win after the join preflight. Release only
+    # this just-joined membership, never the retained resource or its owner.
+    begin
+      session.leave if invitation_account_current?(account) && !session.closed?
+    rescue StandardError => error
+      log_warning('conflicting membership cleanup', table_id, error)
+    end
+    raise conflict
   rescue StandardError
     begin
       if invitation_account_current?(account)
@@ -1072,10 +1090,11 @@ class GameRoomLiveSessionStore
     result
   end
 
-  def discover_item(table_id)
+  def discover_item(table_id, native_id: nil)
     discover_pages.find do |item|
       metadata = item.discovery_metadata
-      supported_metadata?(metadata) && metadata["table_id"].to_i == table_id.to_i
+      supported_metadata?(metadata) && metadata["table_id"].to_i == table_id.to_i &&
+        (!native_id || item.id.to_s == native_id)
     end
   end
 
@@ -1089,6 +1108,15 @@ class GameRoomLiveSessionStore
 
   def attach_session(table_id, session)
     existing = @mutex.synchronize { @sessions[table_id] }
+    return existing if existing.equal?(session)
+    # Pin the state through callback registration/initial read. Existing IO
+    # and subscription leases remain numeric and must never hit a replacement.
+    io_started = true
+    begin_room_io(table_id)
+    existing = @mutex.synchronize do
+      room_state(table_id).bind_resource!(session.id.to_s)
+      @sessions[table_id]
+    end
     return existing if existing.equal?(session)
 
     attachment = Object.new
@@ -1138,12 +1166,13 @@ class GameRoomLiveSessionStore
           # discard the new membership's pending move/private messages.
           current = @sessions[table_id]
           next false if current && !current.equal?(session)
-          next false unless room_state(table_id).attachment.equal?(attachment)
+          room = @rooms[table_id]
+          next false unless room && room.attachment.equal?(attachment)
           @sessions.delete(table_id)
-          (room_state(table_id).pending_move = nil)
-          room_state(table_id).take_recovered_moves
-          room_state(table_id).take_private_game_messages
-          room_state(table_id).take_public_game_previews
+          room.pending_move = nil
+          room.take_recovered_moves
+          room.take_private_game_messages
+          room.take_public_game_previews
           @native_session_ids.delete(session.id.to_s) if session.respond_to?(:id)
           retain_inactive_room(table_id)
           true
@@ -1163,6 +1192,8 @@ class GameRoomLiveSessionStore
     ensure_current(table_id, force: true) if session.respond_to?(:stack_read)
     emit_presence_change
     session
+  ensure
+    end_room_io(table_id) if io_started
   end
 
   def attach_game_message_handler(table_id, session)
@@ -1296,7 +1327,9 @@ class GameRoomLiveSessionStore
     metadata = native&.metadata.to_h
     key = [generation, native, anchor]
     if cache && cache[:source].equal?(source) && cache[:key] == key && cache[:metadata] == metadata
-      return read_only ? cache[:records] : cache[:records].dup
+      accepted = compact_previous_game_records(table_id, cache[:records], raw: raw,
+        source: source, generation: generation, native: native, metadata: metadata)
+      return read_only ? accepted : accepted.dup
     end
     ledger = control_ledger(table_id, raw: raw, native: native)
     return [] unless ledger.complete
@@ -1332,7 +1365,62 @@ class GameRoomLiveSessionStore
           source: source, input: raw.freeze, corrections: corrections, metadata: owned_metadata, validator: checkpoint}
       end
     end
-    read_only ? accepted.freeze : accepted.dup
+    accepted = compact_previous_game_records(table_id, accepted.freeze, raw: raw,
+      source: source, generation: generation, native: native, metadata: metadata)
+    read_only ? accepted : accepted.dup
+  end
+
+  # A confirmed server trim is irreversible. Retaining every previous game's
+  # moves locally would make a long-lived room grow after every rematch. Keep
+  # the already authenticated room history, not obsolete game payloads. This
+  # uses native cached state only; it neither trims nor reads the network.
+  def compact_previous_game_records(table_id, accepted, raw:, source:, generation:, native:, metadata:)
+    return accepted unless native && source && native.respond_to?(:stack_state)
+    floor = native.stack_state['trimmed_through'].to_i
+    eligible = @mutex.synchronize do
+      room = @rooms[table_id]
+      room && room.records.equal?(source) && room.record_generation == generation &&
+        @sessions[table_id].equal?(native) && floor > room.compacted_game_through &&
+        !room.pending_move && room.recovered_moves.empty?
+    end
+    return accepted unless eligible
+    latest = accepted.reverse.find { |record| record.packet['kind'] == 'game_started' }
+    return accepted unless latest
+    ledger = control_ledger(table_id)
+    return accepted unless ledger.complete
+    root = ledger.records.first
+    if ledger.anchor
+      return accepted unless root && root.packet.dig('data', 'previous').nil? &&
+        root.packet.dig('data', 'from').to_i > floor &&
+        root.packet.dig('data', 'from').to_i <= latest.sequence
+    end
+    through = [floor, latest.sequence - 1].min
+    current_id, archive_id = latest.packet['data'].values_at('session_id', 'archive_id')
+    obsolete = lambda do |record|
+      record.sequence <= through &&
+        ((record.packet['kind'] == 'game_action' && record.packet.dig('data', 'session_id') != current_id) ||
+         (record.packet['kind'] == 'game_archive' && record.packet.dig('data', 'archive_id') != archive_id))
+    end
+    rows = raw.reject(&obsolete)
+    kept = accepted.reject(&obsolete).freeze
+    validator = GameRoomSnapshot.capture(RecordValidator.new(kept, metadata: metadata)) if rows.length != raw.length
+    @mutex.synchronize do
+      room = @rooms[table_id]
+      return accepted unless room && room.records.equal?(source) && room.record_generation == generation &&
+        @sessions[table_id].equal?(native) && !room.pending_move && room.recovered_moves.empty?
+      room.compacted_game_through, room.compacted_game_id, room.compacted_archive_id = through, current_id, archive_id
+      return accepted if rows.length == raw.length
+      room.records = rows
+      room.record_keys = rows.to_h { |record| [[record.sequence, record.message_id], true] }
+      room.message_records = rows.to_h { |record| [[record.sender.downcase, record.message_id], record] }
+      room.record_generation += 1
+      room.history_corrections += 1
+      room.control_projection = room.game_projection = nil
+      room.validated_records = {key: [room.record_generation, native, GameRoomSnapshot.copy(ledger.anchor)],
+        source: rows, input: rows.dup.freeze, records: kept, corrections: room.history_corrections,
+        metadata: GameRoomSnapshot.copy(metadata), validator: validator}
+    end
+    kept
   end
 
   def control_metadata(native)
@@ -1474,6 +1562,21 @@ class GameRoomLiveSessionStore
     positive_identifier(raw)
   end
 
+  def native_resource_id(table)
+    return unless table.is_a?(Hash)
+    value = table['__live_session_id']
+    value if value.is_a?(String) && !value.empty?
+  end
+
+  def verify_room_resource!(table_id, native_id)
+    @mutex.synchronize do
+      resource = @rooms[table_id]&.resource_id
+      if resource && resource != native_id
+        raise ResourceConflict, 'The table connection changed'
+      end
+    end
+  end
+
   def positive_identifier(value)
     number = Integer(value.to_s, 10)
     number if number.positive?
@@ -1484,12 +1587,14 @@ class GameRoomLiveSessionStore
   def unused_identifier
     loop do
       id = SecureRandom.random_number(2_000_000_000) + 1
-      return id if !active_table_ids.include?(id)
+      return id unless @mutex.synchronize { @rooms.key?(id) || @sessions.key?(id) }
     end
   end
 
   def unused_game_identifier(table_id)
-    used = game_sessions(table_id).map { |row| row["__id"].to_i }
+    # Old imported game payloads may already be compacted. Their accepted
+    # start markers still reserve IDs even when the archive cannot materialize.
+    used = game_start_records(table_id).map { |record| record.packet['data']['session_id'] }
     loop do
       id = SecureRandom.random_number(2_000_000_000) + 1
       return id if !used.include?(id)

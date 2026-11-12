@@ -2,22 +2,6 @@ require_relative "../../support/assertions"
 require_relative "../../../games/duck_racing_support/settlement"
 
 include GameRoomTest::Assertions
-missing_speed = GameRoomDuckRacing::Settlement.speed(balances: {a: 20, b: 20}, times: {a: 51, b: nil}, time_limit: 200)
-assert_equal(:a, missing_speed.winner)
-assert_equal({a: 25, b: 15}, missing_speed.balances)
-no_speed = GameRoomDuckRacing::Settlement.speed(balances: {a: 20, b: 20}, times: {a: nil, b: nil}, time_limit: 200)
-assert_equal(nil, no_speed.winner)
-assert_equal({a: 20, b: 20}, no_speed.balances)
-assert_equal(:no_winner, no_speed.outcome)
-rounded_speed = GameRoomDuckRacing::Settlement.speed(balances: {a: 20, b: 20}, times: {a: 200, b: nil}, time_limit: 200)
-assert_equal(:a, rounded_speed.winner, "a missing answer tied a rounded successful answer")
-assert_equal([5], rounded_speed.transfers.map(&:amount))
-assert_raises(ArgumentError) do
-  GameRoomDuckRacing::Settlement.speed(balances: {a: 20}, times: {a: nil})
-end
-assert_raises(ArgumentError) do
-  GameRoomDuckRacing::Settlement.speed(balances: {a: 20}, times: {a: 201}, time_limit: 200)
-end
 settlement = GameRoomDuckRacing::Settlement
 balances = {"A" => 20, "B" => 20, "C" => 20}.freeze
 result = settlement.difference(balances: balances, scores: {"A" => 16, "B" => 10, "C" => 8})
@@ -69,19 +53,6 @@ assert_equal([], settlement.difference(balances: balances,
     scores: {0 => 30, 1 => 0}, max_transfer: invalid) }
 end
 
-{0 => 0, 1 => 1, 9 => 1, 10 => 1, 11 => 2, 20 => 2, 21 => 3, 50 => 5, 51 => 5, 140 => 5, 449 => 5}.each do |gap, expected|
-  outcome = settlement.speed(balances: {"A" => 100, "B" => 100}, times: {"A" => 3, "B" => 3 + gap})
-  assert_equal({"A" => 100 + expected, "B" => 100 - expected}, outcome.balances)
-end
-speed_tie = settlement.speed(balances: balances, times: {"A" => 15, "B" => 15, "C" => 99})
-assert_equal(balances, speed_tie.balances)
-assert_equal(:draw, speed_tie.outcome)
-eight = settlement.speed(balances: (0...8).to_h { |seat| [seat, seat] },
-  times: (0...8).to_h { |seat| [seat, seat.zero? ? 1 : (seat.odd? ? nil : 200)] }, time_limit: 200)
-assert_equal(0, eight.winner)
-assert(eight.transfers.all? { |transfer| transfer.amount <= 5 })
-assert_equal(28, eight.balances.values.sum)
-assert_equal({0 => 25, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 1, 7 => 2}, eight.balances)
 [[90, 60, 3], [100, 40, 6], [83, 79, 1], [Rational(501, 10), 50, 1], [0, 0, 0]].each do |best, other, expected|
   outcome = settlement.accuracy(balances: {"A" => 20, "B" => 20}, percentages: {"A" => best, "B" => other})
   assert_equal({"A" => 20 + expected, "B" => 20 - expected}, outcome.balances)
@@ -103,8 +74,6 @@ assert_raises(ArgumentError) { settlement.fixed(balances: {0 => 10, 1 => 10}, wi
 
 assert_raises(ArgumentError) { settlement.difference(balances: {"A" => -1}, scores: {"A" => 1}) }
 assert_raises(ArgumentError) { settlement.difference(balances: {"A" => 1}, scores: {"B" => 1}) }
-assert_raises(ArgumentError) { settlement.speed(balances: {"A" => 1}, times: {"A" => nil}) }
-assert_raises(ArgumentError) { settlement.speed(balances: {"A" => 1}, times: {"A" => -1}) }
 assert_raises(ArgumentError) { settlement.accuracy(balances: {"A" => 1}, percentages: {"A" => Float::NAN}) }
 assert_raises(ArgumentError) { settlement.accuracy(balances: {"A" => 1}, percentages: {"A" => 101}) }
 assert_raises(ArgumentError) { settlement.fixed(balances: {"A" => 1}, winner: "B", amount: 3) }
@@ -121,4 +90,4 @@ random = Random.new(203)
   assert_equal(funds.values.sum, outcome.balances.values.sum + outcome.burned.values.sum)
   assert_equal(outcome, settlement.difference(balances: funds, scores: scores, ceiling: 25))
 end
-puts "PASS Duck Racing difference, ties, busts, speed, accuracy, fixed stakes, quiz and conservation"
+puts "PASS Duck Racing difference, ties, busts, accuracy, fixed stakes, quiz and conservation"

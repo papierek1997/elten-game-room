@@ -29,9 +29,9 @@ GameRoomTest::TemporaryDirectory.create('notice-journal-') do |directory|
   children=2.times.map{Process.spawn(*command)}
   statuses=children.map{|pid|Process.waitpid2(pid).last}
   assert(statuses.all?(&:success?),'Concurrent publisher failed')
-  assert_equal(1,File.readlines(File.join(directory,'sent.txt')).size,'Two processes sent one proposal twice')
+  assert_equal(1,File.readlines(File.join(directory,'sent.txt')).size,'Two processes sent one start event twice')
   system(*command)
   assert($?.success?,'Cold publisher failed')
-  assert_equal(1,File.readlines(File.join(directory,'sent.txt')).size,'Cold publisher resent a confirmed proposal')
+  assert_equal(1,File.readlines(File.join(directory,'sent.txt')).size,'Cold publisher resent a confirmed start event')
 end
 puts 'PASS actual notification journal: SDK corrupt fallback/duplicate JSON refused without overwrite, cross-process claim and cold restart without duplicate delivery'

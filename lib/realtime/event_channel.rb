@@ -223,6 +223,7 @@ module GameRoomRealtime
         reconnect(reason: 'ReliableInboxFull')
         return
       end
+      return unless sequence_history_available?(@event_sequences, key)
       @event_sequences[key] = packet['n']
       @event_inbox << [key, packet, @clock.call]
       @last_packet_at = @clock.call

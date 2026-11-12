@@ -7,6 +7,25 @@ require_relative "participant_decision_events"
 # complete deals consistent with the bot's own hand, public plays, auction
 # information and suits in which a player has publicly shown a void.
 module TysiacPlanning
+  # Private-card writes may combine the contract and opening play into one
+  # accepted event. Both histories expose the same public card and mode; keep
+  # the immutable records intact and normalize only this decision view.
+  def self.public_play(event)
+    value = event['value'].to_s
+    case event['action'].to_s
+    when 'play'
+      # Ordinary play is already mode|card.
+    when 'contract_play'
+      _contract, value = value.split('|', 2)
+    else
+      return nil
+    end
+    mode, card = value.to_s.split('|', 2)
+    return nil unless card && /\A[9JQKTA][CDHS]\z/.match?(card)
+
+    { player: event['actor'], mode: mode, card: card }
+  end
+
   class Strategy
     include GameRoomBots::ReplayOnlyStrategy
 
@@ -1071,21 +1090,18 @@ module TysiacPlanning
       voids = @players.to_h { |player| [player, []] }
       trick = []
       trump = nil
-      events_after_last_deal.each do |event|
-        next if event["action"].to_s != "play"
-
-        mode, card = event["value"].to_s.split("|", 2)
-        next if card == nil
+      public_plays.each do |play|
+        mode, card = play.values_at(:mode, :card)
         trump = card_suit(card) if trick.empty? && mode == "marriage"
         if !trick.empty?
           led = card_suit(trick.first[:card])
-          player = player_key(event["actor"])
+          player = player_key(play[:player])
           if card_suit(card) != led
             voids[player] << led
             voids[player] << trump if trump != nil && card_suit(card) != trump
           end
         end
-        trick << { player: player_key(event["actor"]), card: card }
+        trick << { player: player_key(play[:player]), card: card }
         trick = [] if trick.length == @players.length
       end
       voids.transform_values(&:uniq)
@@ -1102,11 +1118,11 @@ module TysiacPlanning
     def public_played_cards
       return @public_played_cards if defined?(@public_played_cards) && @public_played_cards != nil
 
-      events_after_last_deal.filter_map do |event|
-        next if event["action"].to_s != "play"
+      public_plays.map { |play| play[:card] }
+    end
 
-        event["value"].to_s.split("|", 2)[1]
-      end
+    def public_plays
+      @public_plays ||= events_after_last_deal.filter_map { |event| TysiacPlanning.public_play(event) }
     end
 
     def known_passed_cards

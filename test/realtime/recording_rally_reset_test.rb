@@ -20,7 +20,7 @@ module RecordingRallyResetTest
     scene = RecordingTest.scene
     scene['b']['y'] = 10.0
     if doubles
-      scene.merge!('p'=>[15.0]*4, 'shields'=>[0]*4, 'edges'=>[0]*4, 'teams'=>[0,1,0,1])
+      scene.merge!('p'=>[15.0]*4, 'shields'=>[0]*4, 'edges'=>[0]*4, 'teams'=>[0,1,0,1], 'receiver'=>1)
     end
     context = RecordingTest.context.merge('players'=>players, 'teams'=>doubles ? [0,1,0,1] : [0,1])
     frame = ->(time, generation, effects, stopped) {

@@ -287,17 +287,16 @@ module GameRoomTyping
   end
 
   class FreeWriting
-    attr_reader :correct_words, :active_seconds
-    def initialize; @correct_words = 0; @active_seconds = 0.0; end
+    attr_reader :correct_words, :active_seconds, :mistakes
+    def initialize; @correct_words = @mistakes = 0; @active_seconds = 0.0; end
     def current_word; nil; end
     def finished?; false; end
-    def mistakes; 0; end
-    def submit(_word, braille_expected: nil, first_key_at:, space_at:, prior_seconds: 0)
-      @correct_words += 1
+    def submit(word, braille_expected: nil, first_key_at:, space_at:, prior_seconds: 0)
+      word.empty? ? @mistakes += 1 : @correct_words += 1
       @active_seconds += [space_at - first_key_at, 0].max + prior_seconds
     end
-    def snapshot; {'position' => 0, 'correct_words' => @correct_words, 'mistakes' => 0, 'active_seconds' => @active_seconds}; end
-    def restore_snapshot(data); @correct_words, @active_seconds = data.values_at('correct_words', 'active_seconds'); end
+    def snapshot; {'position' => 0, 'correct_words' => @correct_words, 'mistakes' => @mistakes, 'active_seconds' => @active_seconds}; end
+    def restore_snapshot(data); @correct_words, @mistakes, @active_seconds = data.values_at('correct_words', 'mistakes', 'active_seconds'); end
     def wpm; @active_seconds > 0 ? (@correct_words * 60.0 / @active_seconds).round(1) : 0.0; end
   end
 end

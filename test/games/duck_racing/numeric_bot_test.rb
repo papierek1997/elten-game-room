@@ -77,6 +77,7 @@ end
 state = engine.start("guess_number", seats: [0, 1], seed: 543, now_ms: 0)
 view = engine.public_view(state, viewer: 0)
 view[:answer] = 1
+view[:answer_digits] = 2 # Keep the public width consistent with the 60..90 feedback fixture.
 view[:own][:attempts] = [{value: 60, feedback: :higher}, {value: 90, feedback: :lower}]
 before = Marshal.dump(view)
 100.times do |seed|

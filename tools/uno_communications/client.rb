@@ -178,10 +178,13 @@ module GameRoomUnoCommunicationsPrototype
     def receive(receipt)
       return unless receipt.is_a?(Receipt) && receipt.identity == @identity
       seq = receipt.sequence
-      unless seq.is_a?(Integer) && seq.positive? && receipt.sender.is_a?(String) && !receipt.sender.empty? &&
+      unless seq.is_a?(Integer) && seq.positive? && receipt.sender.is_a?(String) && receipt.sender.length.between?(1, 64) &&
           receipt.request_id.is_a?(String) && receipt.request_id.length.between?(1, 128) && receipt.data.is_a?(String)
         raise ProtocolError, 'Invalid ordered receipt'
       end
+      # A trusted transport violating the packet bound cannot supply a usable
+      # ordered prefix. Fail as for journal/gap overflow before copying bytes.
+      raise CapacityExceeded, 'The ordered receipt packet is too large' if receipt.data.bytesize > MAX_PACKET_BYTES
       raise CapacityExceeded, 'Prototype journal limit reached' if seq > MAX_RECEIPTS
       prior = @receipts[seq] || @buffer[seq]
       raise ProtocolError, 'The relay changed an assigned receipt' if prior && prior != receipt
@@ -211,7 +214,6 @@ module GameRoomUnoCommunicationsPrototype
     end
 
     def apply_command(receipt)
-      return :malformed if receipt.data.bytesize > MAX_PACKET_BYTES
       begin
         packet = JSON.parse(receipt.data, max_nesting: 8)
       rescue JSON::ParserError

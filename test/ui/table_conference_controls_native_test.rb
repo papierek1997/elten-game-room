@@ -81,6 +81,18 @@ state.setbyte(16,0x80)
 EltenAPI::KeyboardState.update(raw_state:state,events:[[16,true]],now:99,pressed_implies_held:false,synthesize_repeats:false)
 space.trigger(:key_left)
 assert(Conference.turns==[-45],'Shift+arrow does not delegate native rotation')
+# The Shift state attached to the arrow press survives release in that frame.
+released="\0"*256
+held=released.dup
+held.setbyte(16,0x80)
+held.setbyte(37,0x80)
+EltenAPI::KeyboardState.update(raw_state:released,events:[],now:100,pressed_implies_held:false,synthesize_repeats:false)
+EltenAPI::KeyboardState.update(raw_state:released,
+  events:[[16,true,held],[37,true,held],[37,false,released],[16,false,released]],
+  now:101,pressed_implies_held:false,synthesize_repeats:false)
+space.trigger(:key_left)
+assert(Conference.turns==[-45,-45] && Conference.moves==[[0,-1],[1,0]],
+  'Releasing Shift before dispatch changed a native rotation into movement')
 menu=Menu.new
 space.context(menu,false)
 position=menu.items.find { |row|row.first=='Read current position' }

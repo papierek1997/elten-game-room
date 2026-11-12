@@ -1,6 +1,8 @@
 require_relative 'host_controls'
 require_relative 'native_tasks'
 require_relative 'program_settings'
+require EltenTestHost.file('src/eapi/keyboard.rb')
+require EltenTestHost.file('src/ui/input.rb')
 
 def _(text)
   text
@@ -18,6 +20,27 @@ def speech_wait
 end
 
 class FakeControl
+  # Model-only UI scenarios do not dispatch native input frames. Reuse the
+  # actual key resolver and model only event modifiers here; ordered press /
+  # release behavior is covered separately with the real native controls.
+  define_method(:keyboard_code, EltenAPI::UI.instance_method(:keyboard_code))
+  define_method(:keycode, EltenAPI::UI.instance_method(:keycode))
+
+  def keyboard_modifier_held_when_pressed?(_key, modifier)
+    modifiers = @test_event_modifiers || @held_modifiers.to_a
+    modifier = :main_modifier if modifier == EltenAPI::KeyboardScheme.main_modifier
+    modifiers.include?(modifier) || (modifier == :main_modifier && modifiers.include?(:control)) ||
+      (modifier == :option && modifiers.include?(:alt))
+  end
+
+  # A fixture injecting only key_pressed?/key_held? must explicitly select
+  # the model-only realtime input path. Advertising native snapshots while
+  # feeding unrelated fake keys makes those scenarios silently ignore input.
+  def model_keyboard_input!
+    singleton_class.send(:undef_method, :keyboard_modifier_held_when_pressed?)
+    self
+  end
+
   Registration = Struct.new(:dispose) do
     def close
       callback, self.dispose = dispose, nil
@@ -40,7 +63,15 @@ class FakeControl
   end
 
   def trigger(event, payload = nil)
+    previous = @test_event_modifiers
+    if event.to_s.start_with?('key_') && payload.is_a?(Array)
+      @test_event_modifiers = [:shift, :main_modifier, :option].each_with_index.filter_map do |modifier, index|
+        modifier if payload[index] == true
+      end
+    end
     @handlers[event].to_a.each { |handler| handler.call(payload) }
+  ensure
+    @test_event_modifiers = previous
   end
 
   def bind_context(header = "", &handler)

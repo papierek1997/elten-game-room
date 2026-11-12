@@ -285,13 +285,23 @@ module GameRoomTournaments
       # Nie pozwalamy normalizatorom zamieniać obcych typów w pozornie zdrowe opcje.
       options.each do |key, value|
         definition = definitions[key]
-        if definition
-          raise Invalid, :invalid_options unless GameRoomOptionValues.valid?(definition, value)
-          next
+        raise Invalid, :invalid_options if definition && !GameRoomOptionValues.valid?(definition, value)
+      end
+      metadata = options.reject { |key, _value| definitions.key?(key) }
+      prototypes = [defaults]
+      unless (metadata.keys - defaults.keys - ['team_seats']).empty?
+        # New-game markers need not be editable controls or replay defaults.
+        # Never let untrusted metadata authorize itself through a permissive
+        # normalizer. Only validated controls seed these game-owned prototypes.
+        controls = Data.copy(options.select { |key, _value| definitions.key?(key) })
+        creation = Data.copy(game.table_creation_options(controls))
+        prototypes << creation << Data.copy(game.new_game_options(Data.copy(creation)))
+      end
+      metadata.each do |key, value|
+        same_type = prototypes.any? do |values|
+          values.key?(key) && (values[key].class == value.class ||
+            ([true, false].include?(values[key]) && [true, false].include?(value)))
         end
-        prototype = defaults[key]
-        same_type = defaults.key?(key) && (prototype.class == value.class ||
-          ([true, false].include?(prototype) && [true, false].include?(value)))
         seats = key == 'team_seats' && Array === value && value.all? { |seat| Integer === seat }
         raise Invalid, :invalid_options unless same_type || seats
       end

@@ -46,21 +46,9 @@ module GameSurfaces
       return true if message.to_s.empty?
       return false unless action_allowed?
 
-      choice = RefreshAwareListBox.new([_("No"), _("Yes")].map { |label| GameRoomContent.utf8(label) },
-        header: GameRoomContent.utf8(message), index: 0, flags: ListBox::Flags::AnyDir, quiet: true)
-      accept = Button.new(GameRoomContent.utf8(_("Confirm")))
-      cancel = Button.new(GameRoomContent.utf8(_("Cancel")))
-      form = GameRoomUI::Form.new([choice, accept, cancel], program: @program, quiet: true)
-      form.accept_button, form.cancel_button = accept, cancel
-      form.hide(accept)
-      form.hide(cancel)
-      accepted = false
-      accept.on(:press) { accepted = choice.index == 1; form.resume }
-      cancel.on(:press) { form.resume }
-      form.wait
-      accepted && action_allowed?
-    ensure
-      EltenAPI::KeyboardState.clear_current_frame if form != nil && defined?(EltenAPI::KeyboardState)
+      choice = GameRoomUI.choose_index(message, [_("No"), _("Yes")], program: @program,
+        flags: ListBox::Flags::AnyDir)
+      choice == 1 && action_allowed?
     end
   end
 end

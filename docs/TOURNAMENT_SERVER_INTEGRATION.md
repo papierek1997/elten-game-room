@@ -5,6 +5,21 @@ application UUID returned by `EltenGameRoom.server_app`. Local trial adapters
 remain available to source tests; release staging excludes their unreachable
 modules. Server refusal never selects a local-storage fallback.
 
+New tournament drafts use the game's current creation defaults, including the
+interface-dependent content language and non-control rule-version markers:
+`new_game_options(table_creation_options({}))`. Prepare the selected options
+again before their first publication, since the user may have changed a variant
+or returned through Back. Editing an existing publication and starting its fixed
+bound matches must preserve their recorded options; neither is a new-game upgrade.
+
+`Publication.validate_game` checks declared control types before generating any
+additional metadata prototypes. Only detached, already validated controls seed
+the game-owned creation/new-game hooks; unknown input keys never seed their own
+schema. The existing normalized-unchanged and game semantic checks still decide
+whether each value is canonical. Known ordinary rows need no extra prototype
+generation. Regressions: `new_draft_game_options_native_test.rb` and
+`game_owned_option_metadata_test.rb` in `test/tournaments/`.
+
 ## Storage and authentication
 
 `ServerSchema::PROPOSED_TABLES` declares three append-only tables:
@@ -59,7 +74,51 @@ bytes each, up to 171 parts plus a header, within the 2,048-byte field limit.
 Only complete digest-checked documents can be used; missing parts are not an
 empty document.
 
+## Game-owned results and bound policies
+
+New bindings use `GameResult::CURRENT_RESULT_POLICY` (v8). The game's
+`tournament_winning_units_result(replay, options:)` returns the complete public
+winning units; by default it delegates to `tournament_placement_result`. Tile
+games share an implementation using `tournament_result_from_public_winners`,
+so a blocked Mexican Train game can retain every public co-winner. A complete
+team is one unit; arbitrary private state fields are not a generic result API.
+
+The binding retains its policy. v1-v7 results still use their original hooks,
+including pending old games, and no stored receipt is migrated or recomputed
+under v8. Placement scores and the explicit small-point capability remain
+separate from the winning-unit export. Verify tied winners, a full draw, teams,
+standings, unchanged historical exports and creation/reuse of old bindings.
+Regression: `test/tournaments/tile_winning_units_policy_test.rb`.
+
 ## Coordination through the existing API
+
+Public registration currently assembles fixed pairs, not larger fixed teams.
+`ServerCapacity.supported_player_counts(game:, options:)` is the shared public
+match-size capability used by setup, publication preflight and Start. Keep
+generic `game.tournament_capabilities` intact: the separate local declared-team
+planner supports larger units. Do not publish a six/eight-seat Taboo tournament
+as individual players and discover the unsupported format only at match entry.
+Reject before preparing a publication intent, using the existing localized
+players-per-match refusal. Regressions: `public_match_sizes_test.rb` and
+`public_match_sizes_native_test.rb`.
+
+Start validates the actual currently registered roster with `ServerCapacity`,
+the same bounded planners used for advertised capacity. A valid maximum does
+not imply that every smaller group roster is playable. Only exactly two units
+can use the automatic direct final; three must satisfy the real group planner.
+Validate before preparing the Start amendment, without fabricating a closed
+publication or dropping same-second registrations. Normal source and entry
+gates still read their authenticated history. Regressions:
+`start_schedule_capacity_test.rb` and `start_current_roster_groups_test.rb`.
+The latter also checks the specific localized group-settings refusal; a known
+invalid roster must not be reported as a network or uncertain-write failure.
+
+An authenticated successful coordination observation replaces its previous
+scheduled wake, even when the publication is now cancelled or has no next
+change. Do not retire a timer on a failed or unauthorized read; keep the normal
+retry job. `coordination_cancelled_deadline_test.rb` checks the actual workspace
+cancellation, a retained timer through read failure/recovery, and no future work
+for the cancelled tournament.
 
 Editing publication metadata preserves existing concrete playing windows and
 their stored timezone. Opening and saving the optional dates dialog does not
@@ -203,6 +262,23 @@ announce a successful result. The receiving view still revalidates the server
 records; a signal contains no score or authorization.
 
 Matches use ordinary LiveSessions, game executors and immutable history.
+
+First-to-wins history spans multiple phases: draws do not consume a required
+win. Validate the whole series and each pairing with
+`Standings.validated_results(max_results: 4096)`, retaining its byte/node and
+identity/score checks. Do not use the ordinary `Standings.calculate` aggregate
+as a history validator: its unchanged 256-result limit belongs to one phase.
+Regressions: `knockout_win_series_capacity_test.rb` and
+`knockout_single_pair_history_test.rb` in `test/tournaments/`.
+
+An ordinary-match service retains its validated bindings for later result
+reconciliation, but opening/attaching a match does not start an idle thread.
+Its result consumer starts lazily when a terminal result or explicit local-retain
+retry is queued and exits after draining. Queue admission, retry and handing off
+the worker slot share one lock. The service remains a managed runtime resource
+until close, rather than re-registering itself on every finite worker run.
+Do not evict uncertain bindings or change result authority to reduce idle cost.
+Regression: `test/tournaments/ordinary_result_worker_lifetime_test.rb`.
 
 Started individual matches share a cumulative 300-second absence allowance per
 player. The current host records observed native membership loss through the
@@ -371,3 +447,35 @@ HTTP traffic. `server_read_scope_documents_test.rb` covers short SDK pages,
 complete subset/union reuse, author/account/cursor isolation, uncertain writes
 and later-page failures. Keep the source-change, continuation, cancellation
 and result-recovery tests alongside these performance checks.
+
+## Local diagnostic plan identity
+
+The isolated local planning tools are not the official server tournament flow.
+Their team and individual forms share `LocalFixedTeamPlanScreen`: the accepted
+preview is bound to the entire displayed input. A changed tournament, seating
+or team template needs a new preview before configuration. An uncertain write
+retains its original intent and shown input for Check; changing the selector
+must not replace or discard that pending operation.
+
+Accepting the same assignment again can intentionally produce an alias to one
+immutable plan record. `LocalTournamentDispatcher#target!` resolves that record
+before policies, availability, proposals and execution selection use its original
+intent. The storage validator still rejects foreign policy keys. The locally
+captured own heartbeat retains its original lookup token; its due check performs
+no backend I/O, and renewal revalidates the canonical target before writing.
+
+Regressions: `local_plan_target_native_test.rb` covers changed selections and
+lost replies after durable replacement; `local_plan_alias_native_test.rb`
+covers two ordinary native form visits in both families; `dispatch_plan_alias_test.rb`
+covers alias configuration, renewal, invitations, admission and exactly one Start.
+These scripts live under `test/tournaments/` and use isolated local storage,
+not authenticated remote account trials.
+
+The local K03 readiness adapter also accepts the complete current
+`ScheduleCandidate`, not a historical field subset. Optional `starts_at`,
+`daily_hours` and series win targets are preserved in source identity and
+validated on cold read. The gate remains closed, roles unassigned and the
+original source is rechecked before a write. The native regression
+`local_readiness_current_setup_native_test.rb` covers the real current
+Hub/setup/dates/join/Prepare/Accept path; `local_readiness_optional_candidate_test.rb`
+adds daily hours, group-series targets, typed corruption and idempotent readback.

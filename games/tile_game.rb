@@ -19,6 +19,9 @@ module GameRoomGames
     include PublicHistoryAnnouncements
     Tiles = GameRoomDominoTiles
     def maximum_players; 8; end
+    def tournament_winning_units_result(replay, options:)
+      tournament_result_from_public_winners(replay, options: options, winners: replay.state[:winners])
+    end
     def supports_bots?; true; end
     def thinking_time_range; 1..600; end
     def perfect_information?; false; end
@@ -44,6 +47,9 @@ module GameRoomGames
       events.each do |event|
         event_id = repository.event_id(event)
         next if seen[event_id] || state[:phase] == :finished
+        # A refused rule move cannot undo an authenticated native disclosure.
+        # Retain that knowledge before the transactional candidate is copied.
+        GameRoomPrivateCardLedger.observe_reveal(state, event, repository.actor_of(event, session)) if state[:private_cards]
         candidate, additions = copy_state(state), []
         next unless apply_replay_event(candidate, event, session, repository, additions)
         state = candidate

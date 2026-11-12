@@ -12,6 +12,7 @@ module GameRoomRealtime
   # background UI calls, application notifications, or original Pong service.
   class Channel
     RECEIVE_BATCH = 128
+    SEQUENCE_HISTORY_LIMIT = 256
     attr_reader :epoch, :last_error, :last_exception, :internal_error
 
     def initialize(program:, match:, owner:, viewer:, clock:, members:, work: nil, work_factory: nil)
@@ -157,7 +158,9 @@ module GameRoomRealtime
         end
       elsif host? && connected?
         present = @session.participants.map { |p| p.user.downcase }
-        candidates = allowed_members.select do |name|
+        members = allowed_members
+        prune_invitation_history(members)
+        candidates = members.select do |name|
           !present.include?(name.downcase) && !name.casecmp?(@viewer) && now >= @invite_after.fetch(name.downcase, 0.0)
         end
         priorities = invitation_priority_names
@@ -339,6 +342,23 @@ module GameRoomRealtime
     def invitation_priority_names; []; end
     def authorized?(name); allowed_members.any? { |candidate| candidate.casecmp?(name.to_s) }; end
 
+    def prune_invitation_history(members)
+      return if @invite_after.empty? && @invite_attempts.empty? && @invite_order.empty?
+      current = members.map(&:downcase)
+      [@invite_after, @invite_attempts, @invite_order].each do |history|
+        history.delete_if { |name, _value| !current.include?(name) }
+      end
+    end
+
+    # A departed user can return while an old authenticated packet is still
+    # queued. Never evict its watermark within the same epoch. Bound historical
+    # identities by using the existing recovery path before admitting another.
+    def sequence_history_available?(sequences, key)
+      return true if sequences.key?(key) || sequences.length < SEQUENCE_HISTORY_LIMIT
+      reconnect(reason: 'SequenceHistoryFull')
+      false
+    end
+
     def drain_invitations
       # Invitations can precede registration of the UI callback while the
       # endpoint is being created. timeout: 0 is a verified non-pumping poll.
@@ -396,6 +416,7 @@ module GameRoomRealtime
       return unless packet && packet['k'] == (host? ? 'input' : 'state')
       key = sender.downcase
       return if packet['n'] <= @received_sequences.fetch(key, -1)
+      return unless sequence_history_available?(@received_sequences, key)
       @received_sequences[key] = packet['n']
       @incoming[key] = packet
       @last_packet_at = @clock.call

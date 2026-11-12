@@ -5,6 +5,7 @@ require_relative 'tables_gateway'
 require_relative 'operation_journal'
 require_relative 'schedule_candidate'
 require_relative 'fixed_team_schedule_candidate'
+require_relative 'server_capacity'
 require_relative 'public_invitation_operations'
 require_relative 'public_partnership_operations'
 
@@ -175,14 +176,12 @@ module GameRoomTournaments
           if @registry.build(row['game']).team_size(settings['game_options'],player_count:settings['players_per_match'])==2
             pairs=(view[:model].to_h['pairs'] || []).select{|pair|pair['tournament_id']==row['__id']}.flat_map{|pair|pair['accounts']}.sort
             raise Error,:incomplete_pairs unless pairs==members.map{|person|person['account']}.sort
-          else
-            names=members.map{|person|person['username']}
-            if settings['format']=='groups_knockout' && names.size>2
-              GroupSchedule.build(roster:names,settings:settings,players_per_match:settings['players_per_match'])
-            else
-              LeaguePlan.build(participants:names,players_per_match:settings['players_per_match'],pairing:settings['pairing'],rematch:settings['rematch'])
-            end
           end
+          # Reuse publication's real planner limits for the CURRENT roster.
+          # Never manufacture a closed projection: same-second joins retain
+          # their authenticated chronology, and invalid Start remains unsent.
+          ServerCapacity.validate!(registry: @registry, game_id: row['game'],
+            settings: settings.merge('participant_limit' => members.size))
         end
         revised
       end

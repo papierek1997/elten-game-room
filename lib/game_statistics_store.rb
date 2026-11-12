@@ -160,7 +160,7 @@ module GameRoomStatistics
             visitors[row["person"]] = true
             next
           end
-          game = games[row["game"]] ||= {"id" => row["game"], "players" => 0, "started" => 0, "completed" => 0,
+          game = games[row["game"]] ||= {"id" => row["game"].dup, "players" => 0, "started" => 0, "completed" => 0,
             "modes" => MODES.to_h { |mode| [mode, {"started" => 0, "completed" => 0}] }}
           if kind == "player"
             people[row["person"]] = true

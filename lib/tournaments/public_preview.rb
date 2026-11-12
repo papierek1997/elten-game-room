@@ -80,7 +80,7 @@ module GameRoomTournaments
         when :results
           @results.call(@publication) if @results
           refresh_snapshot
-        when :partner then choose_partner
+        when :partner, :participants then execute_action(action)
         when :manage then manage_tournament
         when :edit,:delete
           if @publication['__insertion_user'].downcase==@actor.downcase
@@ -152,7 +152,7 @@ module GameRoomTournaments
         when :partner, :participants
           # A drawn/confirmed team's notice remains useful after start, when
           # choosing a new partner is no longer permitted.
-          execute_action(@action_keys.include?(@initial_action) ? @initial_action : :participants)
+          execute_action(@initial_action)
         when :manage then manage_tournament
         when :edit,:delete
           if @publication['__insertion_user'].downcase==@actor.downcase
@@ -171,7 +171,8 @@ module GameRoomTournaments
       when :withdraw then request_withdrawal
       when :overview then @overview.call(@publication);refresh_snapshot
       when :results then @results.call(@publication);refresh_snapshot
-      when :partner then choose_partner
+      when :partner
+        partner_choice_available? ? choose_partner : execute_action(:participants)
       when :participants
         @manage_participants.call(@publication) if @manage_participants
         refresh_snapshot
@@ -354,7 +355,7 @@ module GameRoomTournaments
         actions << [:results,_("Standings")] if @results
         actions << [:participants,_("Participants")]
         actions << [:rules,_("Information and rules")]
-        actions << [:partner,_("Team partner")] if registered? && @pair_game && @set_partner && [:soon,:registration,:waiting].include?(state)
+        actions << [:partner,_("Team partner")] if partner_choice_available?(state)
         actions << [:manage,_("Manage tournament")] if @publication['__insertion_user'].downcase==@actor.downcase
         actions << [:withdraw,_("Leave tournament")] if registered? && @withdraw && [:soon,:registration,:waiting].include?(state)
       end
@@ -380,6 +381,10 @@ module GameRoomTournaments
         expired=@publication['expires_at'] && @publication['expires_at']<=@clock.call
         expired ? refresh_snapshot : render_status
       end
+    end
+
+    def partner_choice_available?(state = TournamentLifecycle.classify(@publication, now: @clock.call)[:state])
+      !@stale && registered? && @pair_game && @set_partner && [:soon, :registration, :waiting].include?(state)
     end
 
     def choose_partner

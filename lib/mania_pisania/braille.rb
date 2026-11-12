@@ -85,7 +85,9 @@ module GameRoomTyping
       input_length, output_length = [input.bytesize / @char_size].pack('l<'), [capacity].pack('l<')
       ok = @back_translate.call(path + "\0", input, input_length, output, output_length, 0, 0, 4 | 64)
       used = output_length.unpack1('l<')
-      raise BrailleUnavailable, _('Liblouis could not translate this word.') unless ok == 1 && used.between?(1, capacity) && input_length.unpack1('l<') == input.bytesize / @char_size
+      # A consumed standalone number/capital marker can successfully produce
+      # no text. That is invalid word input, not a broken braille provider.
+      raise BrailleUnavailable, _('Liblouis could not translate this word.') unless ok == 1 && used.between?(0, capacity) && input_length.unpack1('l<') == input.bytesize / @char_size
       output.byteslice(0, used * @char_size).force_encoding(encoding).encode(Encoding::UTF_8)
     end
 

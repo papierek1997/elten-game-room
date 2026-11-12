@@ -21,6 +21,7 @@ end
 assert_equal(tournaments, ci_parts.sort, 'CI shard coverage must be complete and disjoint')
 assert_equal(5400, GameRoomTestSuites.timeout_for('test/tournaments/individual_quiz_finish_test.rb', fallback: 180))
 assert_equal(600, GameRoomTestSuites.timeout_for('test/tournaments/execution_native_suite_test.rb', fallback: 180))
+assert_equal(900, GameRoomTestSuites.timeout_for('test/tournaments/local_phase_record_capacity_test.rb', fallback: 180))
 assert_equal(300, GameRoomTestSuites.timeout_for('test/tournaments/fixed_team_dispatch_test.rb', fallback: 180))
 assert_equal(600, GameRoomTestSuites.timeout_for('test/transport/rummy_private_cards_test.rb', fallback: 180))
 assert_equal(180, GameRoomTestSuites.timeout_for('test/games/quiz/model_test.rb', fallback: 180))

@@ -13,6 +13,7 @@ require_relative "tournament_marker"
 class GameRoomSavedGameArchive
   FORMAT = 1
   MAX_EVENTS = GameRoomLiveSessionStore::MAX_ARCHIVE_EVENTS
+  EVENT_FIELDS = GameRoomEventProtocol::ARCHIVE_EVENT_FIELDS
 
   class ReplayRepository
     def players_for(session); session["__players"]; end
@@ -108,7 +109,11 @@ class GameRoomSavedGameArchive
     raise ArgumentError, "The saved game is too large to restore safely" if events.length + changes.length > MAX_EVENTS
     last_id = 0
     events.each do |event|
-      raise ArgumentError, "Invalid saved event" unless event.is_a?(Hash) && event["id"].is_a?(Integer) && event["id"] > last_id &&
+      # Only the saved representation may enter a replay. Native proof and
+      # projection fields are reconstructed by the live transport, never
+      # supplied by a JSON file, even one with a matching checksum.
+      raise ArgumentError, "Invalid saved event" unless event.is_a?(Hash) && (event.keys - EVENT_FIELDS).empty? &&
+        event["id"].is_a?(Integer) && event["id"] > last_id &&
         event["sequence"].is_a?(Integer) && event["sequence"] >= 0 &&
         event['actor'].is_a?(String) && GameRoomParticipants.includes?(GameRoomParticipantReplay.roster_at(replay_session, event['id']), event["actor"]) &&
         event["action"].is_a?(String) && event["action"].length.between?(1, 32) && event["value"].is_a?(String) && event["value"].length <= 64 &&

@@ -21,6 +21,16 @@ ClockEventContract.with_server_time do |time|
     event['__game_time'] = 44
     event['__clock_offset'] = internal_offset
     row['checksum'] = saves.send(:checksum,row)
+    rejected = false
+    begin
+      saves.validate(row,game:game)
+    rescue ArgumentError => error
+      rejected = error.message == 'Invalid saved event'
+    end
+    assert(rejected, 'Serialized native-only clock fields passed the canonical archive boundary')
+    event.delete('__game_time')
+    event.delete('__clock_offset')
+    row['checksum'] = saves.send(:checksum,row)
     saves.validate(row,game:game)
     time.call(2000)
     h = NativeRoomHarness.new(game:game, users:%w[Alice Bob])

@@ -109,6 +109,13 @@ class GameRoomReplayCache
     @entry = nil
   end
 
+  # Serialized owned checkpoint/log budget, not a process-memory measurement.
+  # Consumers retaining additional prepared inputs can drop those too when
+  # the bounded checkpoint was refused, without inspecting private Entry state.
+  def retained_bytes
+    @lock.synchronize { @entry ? @entry.checkpoint.bytesize : 0 }
+  end
+
   # Reducer checkpoints precede any presentation-only pending transitions.
   # A historical view may be read without evicting the longer current prefix.
   def reduce(input, context:, identities: [])

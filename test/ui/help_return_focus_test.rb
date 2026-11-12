@@ -66,7 +66,7 @@ class HelpReturnProbeError < StandardError; end
   armed = false
   error = HelpReturnProbeError.new('Celowy błąd powrotu F1')
   header = {default: 'Zwykły formularz', public_list: 'Tournaments', preview: /\APróba 11 — Łódź — /,
-    operations: 'Local test operations'}.fetch(kind)
+    operations: 'Tournament operations'}.fetch(kind)
   snapshot = TournamentPublicUI.snapshot
   rows = [TournamentPublicUI.record('attempted')].freeze
   driver.step(header) do |form|

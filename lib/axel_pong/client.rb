@@ -1,4 +1,5 @@
 require_relative 'client_state'
+require_relative 'snapshot_effects'
 require_relative 'engine'
 require_relative 'bot'
 require_relative 'audio'
@@ -476,10 +477,10 @@ module GameRoomPong
 
     def valid_snapshot_effect?(fx)
       return false unless fx.is_a?(Array) && fx.length == 5 && fx[0].is_a?(Integer) && fx[0] >= 0
-      return false unless %w[step edge serve hit wall shield_on shield_off shield_hit invisible goal].include?(fx[1])
+      return false unless SnapshotEffects::KINDS.include?(fx[1])
       # Paddle/contact effects index the participant's position in Audio;
       # wall/invisibility (and ignored effects) legitimately have no player.
-      return false if fx[2] == nil && %w[serve hit shield_on shield_off shield_hit].include?(fx[1])
+      return false if fx[2] == nil && SnapshotEffects.player_required?(fx[1])
       (fx[2] == nil || @players.each_index.include?(fx[2])) && finite?(fx[3], 0, 30) && finite?(fx[4], -1000, 1020)
     end
 

@@ -108,12 +108,18 @@ end
 
 state = Marshal.load(Marshal.dump(revealing.state))
 assert(game.send(:apply_open, state, { "value" => opening.events.first.value }, "Alice"), "nonce refused")
-bad_values = ["[0]", "null", "{}", "[[0.5]]", "[[\"0\"]]", "[[100]]", "1:", "1:00.", "1:zz", "1:" + "00" * 100,
-  JSON.generate(sample.drop(1)), JSON.generate(sample.map { |ship| [ship.first] * ship.length })]
+bad_values = ["[0]", "null", "{}", "[]", "[[0.5]]", "[[\"0\"]]", "[[100]]", "1:", "1:00.", "1:zz", "1:" + "00" * 100]
 bad_values.each do |value|
   original = Marshal.dump(state)
   assert(!game.send(:apply_fleet, state, { "id" => 5, "value" => value }, "Alice", repo, []), "malformed reveal accepted")
   assert(Marshal.dump(state) == original, "malformed reveal changed state")
+end
+invalid_fleets = [sample.drop(1), sample.map { |ship| [ship.first] * ship.length }]
+invalid_fleets.each do |ships|
+  audit = Marshal.load(Marshal.dump(state))
+  assert(game.send(:apply_fleet, audit, { "id" => 5, "value" => JSON.generate(ships) }, "Alice", repo, []),
+    "a structurally complete illegal reveal did not reach final audit")
+  assert(!game.send(:honest?, audit, "Alice"), "an illegal or mismatched fleet passed final verification")
 end
 assert(game.send(:apply_fleet, state, { "id" => 5, "value" => opening.events.last.value }, "Alice", repo, []), "valid compact reveal refused")
 

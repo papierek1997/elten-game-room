@@ -16,9 +16,13 @@ module GameRoomGames
 
     def refresh
       identity = @selection.call
-      return if identity == @identity
+      return if @loaded && identity == @identity
       value = @load.call(identity)
-      @identity = identity unless [:failed, :hidden].include?(value)
+      # The cached identity belongs to the displayed contents. A failed or
+      # hidden selection replaces those contents, so it must invalidate an
+      # earlier successful selection as well as allow retrying the current one.
+      @loaded = ![:failed, :hidden].include?(value)
+      @identity = identity
       options = if value.is_a?(Hash)
         value.fetch(:words).map do |trial|
           _("%{word}. %{matches}") % {word: trial, matches: @game.attempt_matches(trial, value.fetch(:word))}

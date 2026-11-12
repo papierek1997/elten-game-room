@@ -317,11 +317,12 @@ module GameRoomGames
 
     def blackjack_bot_plan(state, observation)
       if social?(state)
-        others = state[:hands].reject { |player, _| player == state[:current_player] }.values.flatten
-        done, pending = others.partition { |hand| hand[:done] }
-        stand_value = GameRoomTwentyOneStrategy.contest_value(done.map { |hand| hand_total(hand[:cards]) },
-          pending.size, GameRoomTwentyOneStrategy.card_opponent, split_ties: true)
-        return GameRoomTwentyOneStrategy::Plan.new(stand_value) { GameRoomTwentyOneStrategy::CARDS }
+        completed = state[:hands].filter_map do |player, hands|
+          [player, hand_total(hands.first[:cards])] if hands.first[:done]
+        end.to_h
+        stand_value, bust_value = GameRoomTwentyOneStrategy.pot_values(auction_pots(state),
+          state[:current_player], completed, GameRoomTwentyOneStrategy.card_opponent)
+        return GameRoomTwentyOneStrategy::Plan.new(stand_value, bust_value: bust_value) { GameRoomTwentyOneStrategy::CARDS }
       end
       upcard = bot_card_value(observation["dealer_upcard"])
       dealer = GameRoomTwentyOneStrategy.card_dealer(upcard)

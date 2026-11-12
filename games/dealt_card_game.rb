@@ -170,6 +170,11 @@ module GameRoomGames
       unit_for(replay.state, first) == unit_for(replay.state, second)
     end
 
+    def bot_reward(replay, actor)
+      return 0.0 if !replay.finished? || replay.draw
+      same_user?(replay.winner, unit_for(replay.state, actor)) ? 1.0 : -1.0
+    end
+
     def result_text(replay)
       return nil unless replay.finished?
       winners = winning_units(replay.state).map { |unit| unit_label(replay.state, unit) }

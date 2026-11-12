@@ -214,7 +214,7 @@ module GameSurfaces
 
       card = @cards[index]
       return if card == nil
-      if shift_pressed? && @spec.allow_packet != false
+      if @spec.allow_packet != false && GameRoomUI.modifiers_when_pressed(@control, :enter).include?(:shift)
         toggle_card(card)
         return
       end
@@ -305,12 +305,6 @@ module GameSurfaces
     def card_choice_header(card)
       value = card.respond_to?(:choice_header) ? card.choice_header.to_s : ""
       value.empty? ? _("Choose how to play %{card}") % { card: card_label(card) } : value
-    end
-
-    def shift_pressed?
-      key_held?(0x10) == true
-    rescue Exception
-      false
     end
 
     def bounded_index(value)

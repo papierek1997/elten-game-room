@@ -15,8 +15,10 @@ module GameRoomTournaments
     RANKING_RESULT_POLICY = 'game-owned-result-v5'.freeze
     SELECTED_SMALL_RESULT_POLICY = 'game-owned-result-v6'.freeze
     PLACEMENT_RESULT_POLICY = 'game-owned-result-v7'.freeze
-    CURRENT_RESULT_POLICY = PLACEMENT_RESULT_POLICY
-    SELECTED_SMALL_POLICIES = [SELECTED_SMALL_RESULT_POLICY, PLACEMENT_RESULT_POLICY].freeze
+    WINNING_UNITS_RESULT_POLICY = 'game-owned-result-v8'.freeze
+    CURRENT_RESULT_POLICY = WINNING_UNITS_RESULT_POLICY
+    PLACEMENT_POLICIES = [PLACEMENT_RESULT_POLICY, WINNING_UNITS_RESULT_POLICY].freeze
+    SELECTED_SMALL_POLICIES = [SELECTED_SMALL_RESULT_POLICY, *PLACEMENT_POLICIES].freeze
     ORDERED_POLICIES = [SCORE_ORDER_POLICY, RANKING_RESULT_POLICY, *SELECTED_SMALL_POLICIES].freeze
     RESULT_POLICIES = [RESULT_EXPORT_POLICY, DRAW_RESULT_POLICY, *ORDERED_POLICIES].freeze
     EXPORT_POLICIES = [SCORE_EXPORT_POLICY, *RESULT_POLICIES].freeze
@@ -58,7 +60,9 @@ module GameRoomTournaments
           replay.players.map { |name| Data.account(name).downcase }.sort == players.map { |p| p['account'] }.sort
         raise Publication::Invalid, :invalid_game_result
       end
-      outcome = if result_policy == PLACEMENT_RESULT_POLICY
+      outcome = if result_policy == WINNING_UNITS_RESULT_POLICY
+        game.tournament_winning_units_result(replay, options: options)
+      elsif result_policy == PLACEMENT_RESULT_POLICY
         game.tournament_placement_result(replay, options: options)
       elsif [RANKING_RESULT_POLICY, SELECTED_SMALL_RESULT_POLICY].include?(result_policy)
         game.tournament_ranking_result(replay,options:options)
@@ -125,7 +129,7 @@ module GameRoomTournaments
     # Use the policy's game-owned ranking export only to project places; never
     # publish its numbers or use them as a cross-match small-point tie-break.
     def self.ranking_places(game:, replay:, options:, outcome:, mapping:, result_policy:)
-      ranked = if result_policy == PLACEMENT_RESULT_POLICY
+      ranked = if PLACEMENT_POLICIES.include?(result_policy)
         game.tournament_placement_scores(replay, options: options)
       else
         game.tournament_ranking_scores(replay, options: options)

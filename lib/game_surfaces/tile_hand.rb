@@ -98,7 +98,8 @@ module GameSurfaces
       if kind == "card"
         data = payload["card"]
         return unavailable unless data.is_a?(Hash)
-        @action_handler&.call(Action.from_h(data, source: source))
+        action = Action.from_h(data, source: source)
+        super(action.kind, action.name, action.payload, source: action.source)
       else
         super
       end

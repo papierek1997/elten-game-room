@@ -4,7 +4,7 @@ host = EltenTestHost.root
 %w[
   ri/__ri eapi/structs eapi/keyboard eapi/speech eltenlink/__eltenlink
   ui/input eapi/common/input ui/form ui/controls/form_field
-  ui/controls/list_box ui/controls/edit_box ui/controls/button
+  ui/controls/list_box ui/controls/edit_box ui/controls/button ui/controls/grid_box
 ].each { |source| require File.join(host, 'src', source) }
 
 Object.include(EltenAPI::UI)
@@ -17,7 +17,7 @@ Configuration.listtype = :linear
 Configuration.controlspresentation = :voice_only
 Configuration.soundthemeactivation = false
 Configuration.voicepitch = 50
-%w[Form ListBox EditBox Button].each do |name|
+%w[Form ListBox EditBox Button GridBox].each do |name|
   Object.const_set(name, EltenAPI::Controls.const_get(name))
 end
 

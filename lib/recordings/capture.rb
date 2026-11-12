@@ -289,7 +289,9 @@ module GameRoomRecordings
     def recording_context
       state=@replay&.state || {}
       {'rally'=>state[:rally].to_i,'scores'=>state[:scores] || [0,0], 'sets'=>state[:sets] || [0,0],
-        'set_number'=>state[:set_number] || 1,'players'=>@players.dup,'teams'=>@teams || [0,1]}
+        'set_number'=>state[:set_number] || 1,
+        'players'=>@players.map { |player| GameRoomContent.utf8(GameRoomParticipants.display_name(player)) },
+        'teams'=>@teams || [0,1]}
     end
   end
 end

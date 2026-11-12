@@ -270,13 +270,15 @@ module GameRoomGames
       language = normalized["answer_language"] == "pl" ? _("Polish") : _("English")
       pool = category_set_label(normalized["category_set"])
       time = normalized["round_time"].to_i == 0 ? _("no time limit") : _("%{seconds} seconds") % { seconds: normalized["round_time"] }
-      _("%{judge}; answers in %{language}; %{pool}; %{categories} categories per round; %{time}; target: %{target} points") % {
+      count = normalized["round_category_count"]
+      categories = n_("%{count} category per round", "%{count} categories per round", count) % { count: count }
+      _("%{judge}; answers in %{language}; %{pool}; %{categories}; %{time}; target: %{target}") % {
         judge: judge,
         language: language,
         pool: pool,
-        categories: normalized["round_category_count"],
+        categories: categories,
         time: time,
-        target: normalized["target_score"]
+        target: notification_points(normalized, "target_score")
       }
     end
 

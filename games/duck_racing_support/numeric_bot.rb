@@ -43,7 +43,7 @@ module GameRoomDuckRacing
         save_at = 25 - (sides + 1)
         {kind: own.fetch(:rolls).empty? || own.fetch(:total) < save_at ? :roll : :save}
       when "guess_number"
-        guess_number(own, random)
+        guess_number(own, view.fetch(:answer_digits), random)
       when "copy_number", "arithmetic", "race_question"
         answer_question(view, random, race_snapshot)
       when "numbered_balls"
@@ -52,8 +52,11 @@ module GameRoomDuckRacing
       end
     end
 
-    def guess_number(own, random)
-      low, high = 1, 999
+    def guess_number(own, digits, random)
+      raise ArgumentError, 'Invalid public guess width' unless digits.is_a?(Integer) && digits.between?(1, 3)
+      # The width is announced to every participant, not a hidden answer.
+      # Start in that public interval instead of wasting attempts outside it.
+      low, high = 10**(digits - 1), 10**digits - 1
       own.fetch(:attempts).each do |attempt|
         case attempt[:feedback]
         when :higher then low = [low, attempt.fetch(:value) + 1].max

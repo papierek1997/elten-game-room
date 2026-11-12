@@ -14,8 +14,7 @@ require_relative '../mahjong_rules'
 module GameRoomGames
   using GameRoomLocalization::Translations
 
-  # Internal table session adapter, with optional whole-match progression.
-  # Independent profile audits and release/catalog integration remain pending.
+  # Table session adapter, with optional whole-match progression.
   module MahjongTableGame
     include MahjongTablePresentation
     include MahjongRules
@@ -35,15 +34,7 @@ module GameRoomGames
     def build_presentation_game; build_session_game; end
 
     def replay(session, events, repository)
-      players = repository.players_for(session).dup.freeze
-      profile = mahjong_table_profile(session)
-      unless %w[mcr riichi hong_kong].include?(profile['variant']) && players.length == profile['seats'] &&
-          players.map { |player| player.to_s.downcase }.uniq.length == players.length
-        raise ArgumentError, 'Unsupported internal mahjong table profile'
-      end
-      session_id = repository.respond_to?(:session_id) ? repository.session_id(session) : (session['__id'] || session['id'])
-      identity_supplied = repository.respond_to?(:session_id) || session.key?('__id') || session.key?('id')
-      raise ArgumentError, 'Invalid mahjong session' if identity_supplied && !(session_id.is_a?(Integer) && session_id.positive?)
+      _players, profile, session_id = mahjong_table_replay_context(session, repository)
       @mahjong_table_repository = repository
       # The CAS token changes after every write, but is not game semantics.
       # The cache still authenticates the complete event prefix and actors.
@@ -54,12 +45,7 @@ module GameRoomGames
       @mahjong_table_cache ||= GameRoomReplayCache.new
       checkpoint = @mahjong_table_cache.reduce(input, context: [profile, session_id],
         identities: [repository, GameRoomLocalization.cache_token]) do |previous, prefix|
-        unless previous
-          match = profile['match_winds'].positive? ? GameRoomMahjong::MatchState.new(variant: profile['variant'], seats: profile['seats'], winds: profile['match_winds']) : nil
-          state = {session_id: session_id, players: input.players, profile: profile, phase: :awaiting_deal, round: nil,
-            match: match, hand_number: 0, ready_seats: [].freeze}.freeze
-          previous = [state, [], [starting_history(input.players)]]
-        end
+        previous ||= mahjong_table_initial_checkpoint(input.players, profile, session_id)
         state, accepted_positions, history = previous
         accepted = accepted_positions.map { |position| input.events.fetch(position) }
         current = reduce_mahjong_table(state, accepted, history.dup, input.events.drop(prefix), input.session, input)
@@ -242,6 +228,29 @@ module GameRoomGames
 
     private
 
+    # Public/private adapters share the same validated start, without preparing
+    # a second empty-log cache which could retain an unbudgeted private map.
+    def mahjong_table_replay_context(session, repository)
+      players = repository.players_for(session).dup.freeze
+      profile = mahjong_table_profile(session)
+      unless %w[mcr riichi hong_kong].include?(profile['variant']) && players.length == profile['seats'] &&
+          players.map { |player| player.to_s.downcase }.uniq.length == players.length
+        raise ArgumentError, 'Unsupported internal mahjong table profile'
+      end
+      session_id = repository.respond_to?(:session_id) ? repository.session_id(session) : (session['__id'] || session['id'])
+      identity_supplied = repository.respond_to?(:session_id) || session.key?('__id') || session.key?('id')
+      raise ArgumentError, 'Invalid mahjong session' if identity_supplied && !(session_id.is_a?(Integer) && session_id.positive?)
+      [players, profile, session_id]
+    end
+
+    def mahjong_table_initial_checkpoint(players, profile, session_id)
+      match = profile['match_winds'].positive? ? GameRoomMahjong::MatchState.new(
+        variant: profile['variant'], seats: profile['seats'], winds: profile['match_winds']) : nil
+      state = {session_id: session_id, players: players, profile: profile, phase: :awaiting_deal, round: nil,
+        match: match, hand_number: 0, ready_seats: [].freeze}.freeze
+      [state, [], [starting_history(players)]]
+    end
+
     def mahjong_table_profile(session)
       options = options_from_json(session['options'])
       winds = options.fetch('match_winds', 0)
@@ -324,7 +333,6 @@ module GameRoomGames
           profile = state[:profile]
           if match
             round = match.next_round(seed: seed)
-            hand_number += 1
           else
             flow = case profile['variant']
             when 'mcr' then GameRoomMahjong::MCRDeal.shuffled(seed: seed)
@@ -333,6 +341,7 @@ module GameRoomGames
             end
             round = GameRoomMahjong::TableRound.new(flow: flow, variant: profile['variant'], dealer: 0)
           end
+          hand_number += 1
           phase, ready_seats = :playing, [].freeze
           text = _('The mahjong tiles have been dealt.')
         elsif event['action'] == 'mahjong_ready' && state[:phase] == :between_hands

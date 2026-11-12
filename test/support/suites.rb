@@ -26,6 +26,10 @@ module GameRoomTestSuites
     # Three complete games (win, draw, win) and immutable series ancestry:
     # measured 220 s on Windows; retain every match and result assertion.
     'knockout_win_series_execution_test.rb' => 360,
+    # Nine legally produced local phases/results and a cold reopen: measured
+    # 442 s on Windows alongside direct dependencies. Preserve the complete
+    # producer/history proof with a bounded fifteen-minute CI budget.
+    'local_phase_record_capacity_test.rb' => 900,
     'generic_team_replay_execution_test.rb' => 600,
     'realtime_team_multi_table_test.rb' => 600,
     'automatic_phase_lifecycle_test.rb' => 600,

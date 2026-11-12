@@ -221,6 +221,12 @@ module GameRoomGames
       _('%{player} won the game.')%{player:score_labels(replay.state[:options],replay.players)[assignment.team_ids.index(replay.winner)]}
     end
 
+    def bot_reward(replay, actor)
+      return 0.0 if !replay.finished? || replay.draw || !GameRoomParticipants.includes?(replay.players, actor)
+      assignment = team_assignment(replay.state[:options], players: replay.players)
+      assignment ? (replay.winner == assignment.team_ids[assignment.team_index_for(actor)] ? 1.0 : -1.0) : super
+    end
+
     def participant_scores(replay)
       scores = replay.state[replay.state[:options]['sets_to_win'] > 1 ? :sets : :scores]
       assignment=team_assignment(replay.state[:options],players:replay.players)
@@ -239,7 +245,8 @@ module GameRoomGames
         scores[side[1].to_i] += 1
       end
       assignment=team_assignment(options,players:replay.players)
-      {scores: replay.players.each_with_index.to_h { |player, index| [player, scores[assignment ? assignment.team_index_for(player) : index]] }, order: 'higher'}
+      units = assignment ? assignment.team_ids : replay.players
+      {scores: units.each_with_index.to_h { |unit, side| [unit, scores.fetch(side)] }, order: 'higher'}
     end
 
     def tournament_selected_small_scores(replay, options:)

@@ -19,9 +19,8 @@ module GameSurfaces
       def update
         if @question_navigation
           form, target, key = @question_navigation
-          unmodified = !raw_key_held?(:key_shift) && !raw_key_held?(:key_control) &&
-            !raw_key_held?(:key_alt) && !raw_key_held?(:key_insert)
-          if key_pressed?(key) && unmodified && (key == :key_down || index.to_i == 0) &&
+          if key_pressed?(key) && GameRoomUI.modifiers_when_pressed(self, key, include_insert: true).empty? &&
+              (key == :key_down || index.to_i == 0) &&
               form.fields[form.index.to_i].equal?(self) && (target_index = form.fields.index(target))
             trigger(:blur)
             blur
@@ -140,18 +139,8 @@ module GameSurfaces
       return if @mode != :single_choice || @spec.submit_on_select != true
 
       @answer.on(:select) do
-        answer = answer_value
-        next if answer == nil
-
-        emit_action(
-          "question",
-          "submit",
-          {
-            "question_id" => @spec.id.to_s,
-            "answer" => answer,
-            "required" => @spec.required == true
-          }
-        )
+        action = submission_action
+        emit_action(action.kind, action.name, action.payload) if action
       end
     end
 

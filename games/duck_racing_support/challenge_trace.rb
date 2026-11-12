@@ -164,12 +164,13 @@ module GameRoomDuckRacing
       proofs = state.fetch(:result_closures, []).dup
       round = state[:round]
       proofs << {id: round[:challenge][:id], seats: round[:results].keys} if round && round[:results]
-      vault.envelopes(session_id: state[:session_id], user: user, round_prefix: 'duck-score:').each do |envelope|
+      receipts = vault.envelopes(session_id: state[:session_id], user: user, round_prefix: 'duck-score:').filter_map do |envelope|
         payload = envelope.payload
         next unless vault.verify(envelope) && payload.is_a?(Hash) && payload['session'] == state[:session_id] &&
           envelope.round_id == key(payload['round']) && proofs.any? { |proof| proof[:id] == payload['round'] && proof[:seats].include?(payload['seat']) }
-        vault.discard(session_id: state[:session_id], round_id: envelope.round_id, user: user)
+        [envelope.round_id, user, envelope.commitment]
       end
+      receipts.empty? || vault.discard_confirmed(session_id: state[:session_id], receipts: receipts)
     end
 
     def scope(state, seat)

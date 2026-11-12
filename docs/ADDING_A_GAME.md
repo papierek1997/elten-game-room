@@ -58,6 +58,29 @@ History, the user list, F1 help, Ctrl+F1 rules and the overall screen layout are
 shared. Add shortcuts specific to a game family to the shared
 framework only when their meaning is genuinely the same.
 
+Use `GameShortcut` declarations for common action, number and choice prompts
+rather than binding a second game-specific handler. A local single-choice
+picker outside a shortcut uses `GameRoomUI.choose_index`; see the exact return,
+cancellation and stale-view contract in [UI.md](UI.md#single-choice-modal-dialogs).
+The game retains result semantics and revalidation after the picker closes.
+Do not copy a bare ListBox/Form loop: it may miss Escape, speak twice or let
+the closing key trigger the underlying game. Multiple-choice and timed forms
+have additional requirements and are not equivalent to a simple picker.
+
+Waiting-room local buttons use `waiting_view_spec` with `status_commands` and
+the game's `run_room_command`; Krowa's gallery is a working example. The layout
+owns their bindings and clears them on rebind. During play, declare
+`game_shortcuts` through the existing shared shortcut/surface integration, not
+a second waiting-room key dispatcher. Do not copy the retired empty
+`room_shortcuts` hook from an older source snapshot.
+
+Before implementing a new UI mechanism, inspect the current surface specs,
+base hooks and [acceptance checklist](GAME_ACCEPTANCE.md). Reuse an existing
+capability when its semantics match. If it needs extension, update real
+consumers, the contract and native tests together; do not add a game-ID branch
+to the screen or transport. Demonstrate the whole interaction, not just a
+returned action, and state separately what was not verified on live accounts.
+
 ### Finding playable cards
 
 An actual card hand should implement `playable_card_navigation` and
@@ -96,8 +119,9 @@ plans durable actions, checks freshness and writes the decision. Realtime
 clients own their separate physics, input and bot loop, while the shared runner
 still records agreed points and handles presence boundaries. Do not disable
 that durable runner merely because a game has a realtime client, or add a
-second executor to `GameScreen` or the game control. Keep training tools and
-reports in `tools/`, not in libraries loaded by the installed game.
+second executor to `GameScreen` or the game control. Keep reusable training
+code in `tools/`, outside the installed runtime. One-off probes, reports and
+audit results belong in ignored `tmp/`, not in tracked tools or game libraries.
 
 Check separately:
 
@@ -112,6 +136,31 @@ Add `require_relative` and the class to `GameRoomGames::CATALOG` in
 `games/catalog.rb`. `__app.rb` uses the same catalog through
 `GAME_REGISTRY`. The registry calls `rule_book`, so missing rules will be
 detected at startup.
+
+## Tournament results
+
+The shared tournament runner uses game-owned results, not an independent game
+rules implementation. The base result is sufficient for a single winning unit
+or a complete draw. If the game's public result can name several winning units,
+provide `tournament_winning_units_result(replay, options:)` in the game or its
+shared family. It returns the same units/winners/draw/scores shape as the base
+contract. Use `tournament_result_from_public_winners` when the game publicly
+names winning people; that helper requires complete confirmed teams. TileGame
+is a current example. Do not guess results from arbitrary private state fields.
+
+New bindings use result policy v8. Existing v1-v7 bindings retain their earlier
+hooks and exact exports, even if unfinished. Do not alter those historical
+hooks or silently upgrade stored match identities to repair a new result.
+Numeric small points remain a separate opt-in `tournament_small_point_policy`;
+finishing places alone do not enable them. Test actual completed accepted
+histories, shared winners, a full draw, teams, standings and the relevant
+historical policies. See [the integration contract](TOURNAMENT_SERVER_INTEGRATION.md)
+and `test/tournaments/tile_winning_units_policy_test.rb`.
+Numeric score keys must name the same units as the result: one entry per team,
+not one per teammate or the sum of repeated team totals. Count all accepted
+sets when the public scoreboard resets between sets; preserve the game's
+ordinary displayed score and personal statistics. The realtime regression in
+`test/tournaments/realtime_small_scores_test.rb` covers both sports and layouts.
 
 ## Interface and rulebook translations
 
@@ -129,16 +178,38 @@ only the text; terse card-effect formulas are not a substitute for teaching.
 Review the whole changed text in every affected language, not just a sample.
 
 Mark English messages with `_`, `n_`, `p_` or `np_`, and enable
-`using GameRoomLocalization::Translations` inside the file's root module. Rulebooks have a separate
-English structure in `tools/data/rulebooks` and an option-to-chapter mapping
-in `tools/rulebook_option_chapters.json`; generate them with
-`ruby tools/compile-rulebooks.rb`. Then `ruby tools/translations.rb update`
-adds messages to the catalogs. Translators edit only `locale/PL.po`
-or another language's PO; `compile PL` creates MO and the Polish compatibility views.
-Complete rulebooks with their own language-specific chapter layout belong in
-`tools/data/rulebooks/<LANG>/<game>.json`, including their `option_chapters`
-mapping. All current language editions (EN, PL, CS, ES and RU) use this path;
-edit them there, not in PO. A new game needs a complete book in every supported
+`using GameRoomLocalization::Translations` inside the file's root module.
+For interface messages, `ruby tools/translations.rb update` updates the PO
+catalogs; edit `locale/PL.po` or the relevant language's PO and compile it with
+`ruby tools/translations.rb compile PL` (substitute the language code).
+Do not edit generated MO or Ruby translation views.
+
+The compiler needs both its root source/registration and the authored language
+editions. For a new game:
+
+1. Add `tools/data/rulebooks/<game>.json` with `source: "games/<game>.rb"`
+   and the English fallback sections, following an existing root book's schema.
+2. Register `<game>.json` in `tools/rulebook_sources.json` with `kind` (`class`
+   or `module`), the exact Ruby container `class`, the same `source`, and
+   `output: "games/generated/rulebooks/<game>.rb"`. The set of root files must
+   exactly match the manifest; localized files alone cannot register a game.
+3. Add complete editions in `tools/data/rulebooks/<LANG>/<game>.json` for EN,
+   PL, CS, ES and RU, each with that same `source` and its `option_chapters`
+   mapping. These books may have their own natural wording and chapter layout;
+   edit them here, not in PO or generated Ruby. The root fallback's separate
+   option mapping belongs in `tools/rulebook_option_chapters.json`.
+4. Run `ruby tools/compile-rulebooks.rb`, require the generated file from the
+   model (for example `require_relative 'generated/rulebooks/scopa'`), and have
+   `rule_sections` return `generated_rule_sections` unless the shared family
+   already supplies that method. `Base#rule_book` selects the localized edition;
+   do not duplicate its language dispatch in the game. Verify the generated
+   require and all editions using the registry/rulebook tests and
+   `ruby tools/compile-rulebooks.rb --check`.
+
+Root fallback text is a compiler input, not a second independent edition to
+maintain instead of the authored language books. Keep its fallback rules
+consistent when changing a rule, without duplicating authored prose in PO.
+A new game needs a complete book in every supported
 language. Write naturally for that language instead of copying another language's
 sentence patterns. New rules follow the editorial guide regardless of author
 credits. Preserve ready-to-use rules supplied or selected by the creator unless
@@ -154,10 +225,19 @@ The minimum set covers:
 - a legal and an illegal move;
 - a match played through to completion;
 - deterministic replay;
-- the surface and basic shortcuts;
+- the actual native surface and basic shortcuts, with selected defaults,
+  Enter, Escape, editable text keys, stable focus and the ordered speech/cues;
 - both directions of playable-card navigation, no move, list wrapping, and
   the cases of one and multiple actions for the same physical card;
 - the bot, if supported;
 - a regression for every bug being fixed.
 
-Finally, run `ruby test/run.rb`.
+These are categories of evidence, not permission to replace a native/live
+walkthrough with an all-bot simulation. Complete the applicable
+[acceptance checklist](GAME_ACCEPTANCE.md), including an ordinary player round,
+waiting/observer behavior and the variant's distinct path. Check long-session
+cost/resource lifetime if the implementation retains history, workers, timers
+or search state. Use current `AGENTS.md` test-scope instructions: run affected
+game/shared scenarios during development, and the full runner for a new-game
+PR when that broader run is authorized. Report an unavailable dependency,
+timeout, skipped scenario or unperformed live path explicitly, never as a pass.

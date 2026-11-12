@@ -9,7 +9,7 @@ GameRoomLocalization.boot(settings: {'interface_language' => 'en', 'known_langua
 
 module TournamentOperationsScreenTest
   extend GameRoomTest::Assertions
-  HEADER = 'Local test operations'.freeze
+  HEADER = 'Tournament operations'.freeze
   module_function
 
   def records

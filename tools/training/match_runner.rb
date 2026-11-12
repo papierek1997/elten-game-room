@@ -54,7 +54,7 @@ module GameRoomSimulation
       rewards = @players.each_with_object({}) do |actor, result|
         result[actor.to_s] = environment.reward(actor)
       end
-      finish_strategies(rewards)
+      finish_strategies(rewards, finished: reason == :finished)
       MatchResult.new(
         game_id: @game.id,
         players: @players.dup,
@@ -75,10 +75,14 @@ module GameRoomSimulation
       @strategies[actor] || @strategies[actor.to_s] || @strategies[:default] || @default_strategy
     end
 
-    def finish_strategies(rewards)
+    def finish_strategies(rewards, finished:)
       @players.each do |actor|
         strategy = strategy_for(actor)
-        strategy.finish_episode(actor, rewards[actor.to_s]) if strategy.respond_to?(:finish_episode)
+        if finished
+          strategy.finish_episode(actor, rewards[actor.to_s]) if strategy.respond_to?(:finish_episode)
+        elsif strategy.respond_to?(:reset_episode)
+          strategy.reset_episode(actor)
+        end
       end
     end
   end

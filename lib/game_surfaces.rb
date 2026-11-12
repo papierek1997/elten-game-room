@@ -688,7 +688,7 @@ module GameSurfaces
           next if card == nil
 
           choices = card_choices(card)
-          if shift_pressed?
+          if GameRoomUI.modifiers_when_pressed(control, :enter).include?(:shift)
             quick_choice = shifted_choice(card, choices)
             if quick_choice != nil
               emit_action(
@@ -955,12 +955,6 @@ module GameSurfaces
         card["shift_choice"] || card[:shift_choice]
       end
       value.to_s
-    end
-
-    def shift_pressed?
-      key_held?(0x10) == true
-    rescue Exception
-      false
     end
 
     def validate_card_choices!(cards)
@@ -1313,11 +1307,13 @@ module GameSurfaces
   end
 
   def self.reconcile(spec, previous: nil, state: {})
+    if spec.is_a?(CompositeSpec)
+      # The composite owns the part IDs. Keep that context instead of reducing
+      # it to unkeyed compatible leaves before its children can be matched.
+      return CompositeSurface.new(spec, state: state, previous: previous)
+    end
     candidates = previous.to_a if previous.is_a?(Array)
     candidates ||= previous.respond_to?(:reuse_candidates) ? previous.reuse_candidates : [previous].compact
-    if spec.is_a?(CompositeSpec)
-      return CompositeSurface.new(spec, state: state, previous: candidates)
-    end
     match = candidates.find { |surface| surface.respond_to?(:reusable_for?) && surface.reusable_for?(spec) }
     match ? match.update_spec(spec) : build(spec, state: state)
   end

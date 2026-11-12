@@ -113,7 +113,9 @@ class LobbyRepository
 
   def join_table(row, user, announce: true)
     current = current_table_for(user)
-    if current != nil && table_id(current) != table_id(row)
+    same_room = current != nil && table_id(current) == table_id(row) &&
+      current['__live_session_id'] == row['__live_session_id']
+    if current != nil && !same_room
       snapshot = snapshot_for(current)
       return JoinResult.new(table: current, status: :already_at_another_table, members: snapshot&.members.to_a)
     end
@@ -121,7 +123,7 @@ class LobbyRepository
     newly_joined = @transport.respond_to?(:consume_new_join) && @transport.consume_new_join(table_id(row), user)
     status = if newly_joined
       :joined
-    elsif current != nil && table_id(current) == table_id(row)
+    elsif same_room
       :already_here
     else
       @transport.join_room(row, user)
@@ -162,10 +164,6 @@ class LobbyRepository
 
   def current_table_for(user)
     @transport.current_room(user)
-  end
-
-  def single_open_table_for(owner)
-    open_tables.find { |row| owner_of(row).casecmp(owner.to_s) == 0 }
   end
 
   def close_table(row)

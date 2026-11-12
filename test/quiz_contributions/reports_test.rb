@@ -99,7 +99,8 @@ own.send_and_clean(own.packet(second, 'Self-addressed test'))
 assert(mail.rows.size == 4 && mail.deleted == [1, 2, 3], 'Deleted author inbox copy')
 Session.name = 'guest'
 
-# Exercise the native Form event shape, not only the modifier predicate.
+# Dispatch parameters are not press-time modifier snapshots. Supply actual
+# native press/release frames; full focused-layout routing has its own test.
 native_tracker = R::Tracker.new(user: 'guest', current_user: -> { Session.name })
 native_tracker.observe('native', tracker.questions.first)
 native_tracker.observe('native', second)
@@ -108,11 +109,26 @@ native_form = GameRoomUI::Form.new([native_field], program: program, quiet: true
 consumed = []
 GameRoomShortcutBindings.bind(native_form, [native_field], native_tracker.shortcuts,
   consume: ->(key) { consumed << key }) { |shortcut| native_tracker.mark(shortcut.action_name) }
-native_form.trigger(:key_b, false, false, false)
+press_report_key = lambda do |modifiers|
+  released = "\0" * 256
+  EltenAPI::KeyboardState.update(raw_state: released,
+    active: true, synthesize_repeats: false)
+  held = released.dup
+  modifiers.each { |modifier| held.setbyte(EltenAPI::KeyboardScheme.key_code(modifier), 0x80) }
+  code = 'B'.ord
+  held.setbyte(code, 0x80)
+  EltenAPI::KeyboardState.update(raw_state: released,
+    events: [[code, true, held], [code, false, released]],
+    active: true, synthesize_repeats: false)
+  native_form.trigger(:key_b, false, false, false)
+  EltenAPI::KeyboardState.clear_current_frame
+end
+press_report_key.call([])
 assert(native_tracker.empty?, 'Typing B marks a question')
-native_form.trigger(:key_b, false, true, false)
-native_form.trigger(:key_b, true, true, false)
-native_form.trigger(:key_b, true, true, false)
+main = EltenAPI::KeyboardScheme.main_modifier
+press_report_key.call([main])
+press_report_key.call([main, :shift])
+press_report_key.call([main, :shift])
 assert(native_tracker.questions.map { |q| q['id'] } == %w[q2 q1], 'Native current/previous shortcut failed')
 assert(consumed == %w[b b b] && native_field.text == 'Unsent chat', 'Shortcut damaged chat input')
 

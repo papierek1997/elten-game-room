@@ -46,3 +46,7 @@ selection. `uno_communications/` is an in-memory ordered-relay experiment, not
 an available native transport. `tournaments/` contains schema-export and
 administrator review-bundle commands; these do not deploy server changes.
 None is loaded by the application or included by the release allowlist.
+The UNO prototype requires an ordered trusted relay. Intake bounds packet bytes
+and sender metadata before buffering, including during recovery; a bound breach
+faults that prototype client without advancing its prefix. This is an offline
+experiment contract, not a claim about the native ELTEN transport.

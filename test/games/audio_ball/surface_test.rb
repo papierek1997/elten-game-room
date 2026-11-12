@@ -15,6 +15,7 @@ spec = GameSurfaces::AudioBallSpec.new(game_id: 'audio_ball', header: 'Audio Bal
 surface = GameSurfaces.build(spec)
 assert(surface.fields.length == 1 && surface.fields.first.is_a?(Button), 'Audio Ball has no keyboard playfield')
 field = surface.fields.first
+field.model_keyboard_input!
 assert(field.recorded_tips.map { |tip| tip.split(': ', 2).first } == ['Up arrow', 'W', 'Left arrow', 'D', 'Down arrow', 'S', 'Right arrow', 'A'], 'F1 does not expose each gameplay key as its own help row')
 rules = JSON.parse(File.read(File.expand_path("../../../tools/data/rulebooks/audio_ball.json", __dir__)))
 controls = rules.fetch('sections').find { |section| section['id'] == 'controls' }.fetch('paragraphs')
@@ -67,6 +68,7 @@ surface.handle_command('hurry')
 assert(commands == ['hurry'], 'Ctrl+W did not reach the Audio Ball client')
 observer = GameSurfaces.build(GameSurfaces::AudioBallSpec.new(**spec.to_h.merge(viewer: nil)))
 observer_field = observer.fields.first
+observer_field.model_keyboard_input!
 observer_field.define_singleton_method(:key_pressed?) { |code| code == 0x26 }
 observer_field.define_singleton_method(:key_held?) { |_code| false }
 $activecontrols = [observer_field]

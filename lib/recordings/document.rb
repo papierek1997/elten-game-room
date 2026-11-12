@@ -2,6 +2,7 @@ require 'json'
 require 'securerandom'
 require 'time'
 require 'digest'
+require_relative '../axel_pong/snapshot_effects'
 
 module GameRoomRecordings
   class Invalid < StandardError; end
@@ -137,20 +138,28 @@ module GameRoomRecordings
       raise Invalid,'Invalid recording frame' unless state.is_a?(Hash) && [true,false].include?(data['paused']) &&
         integer?(data['rally'],0,10_000_000) && integer?(data['generation'],0,10_000_000) &&
         pair?(data['scores']) && pair?(data['sets']) && integer?(data['set_number'],1,100_000)
+      if data.key?('players')
+        raise Invalid,'Invalid recording players' unless data['players'].is_a?(Array) &&
+          data['players'].size==meta['players'].size && data['players'].all? { |name| text?(name,256) }
+      end
+      [data['teams'],state['teams']].each do |teams|
+        raise Invalid,'Invalid recording team mapping' unless teams.nil? || teams?(teams,player_count:meta['players'].size)
+      end
+      if meta['game']=='axel_pong' || state.key?('fx')
+        raise Invalid,'Invalid recording effects' unless effects?(state['fx'],player_count:meta['players'].size)
+      end
       if meta['game']=='axel_pong'
         raise Invalid,'Invalid Pong recording scene' unless state['p'].is_a?(Array) && state['p'].length==meta['players'].length &&
           state['p'].all? { |n| number?(n,-1000,1000) } && state['b'].is_a?(Hash) &&
           %w[x y dx dy].all? { |key| number?(state['b'][key],-1_000_000,1_000_000) } &&
-          state['fx'].is_a?(Array) && state['fx'].size<=64 && state['fx'].all? { |fx|
-            fx.is_a?(Array) && fx.size==5 && integer?(fx[0],0,2**53) && text?(fx[1],64) &&
-              (fx[2].nil? || integer?(fx[2],0,3)) && number?(fx[3],-1_000_000,1_000_000) && number?(fx[4],-1_000_000,1_000_000)
-          } && state['shields'].is_a?(Array) && state['shields'].length==meta['players'].length &&
+          state['shields'].is_a?(Array) && state['shields'].length==meta['players'].length &&
           state['shields'].all? { |n| number?(n,0,1_000_000) }
         raise Invalid,'Invalid Pong recording controls' unless [true,false].include?(state['invisible']) &&
           integer?(state['server'],0,meta['players'].size-1) && state['edges'].is_a?(Array) && state['edges'].size==meta['players'].size &&
           state['edges'].all? { |n| integer?(n,0,2**53) }
         if meta['players'].length==4
-          raise Invalid,'Invalid Pong recording teams' unless teams?(state['teams'])
+          raise Invalid,'Invalid Pong recording teams' unless teams?(state['teams']) &&
+            integer?(state['receiver'],0,meta['players'].size-1)
         end
       else
         raise Invalid,'Invalid Audio Ball recording scene' unless %w[waiting prepared flying over].include?(state['phase']) &&
@@ -190,6 +199,25 @@ module GameRoomRecordings
     def integer?(value,minimum,maximum); value.is_a?(Integer) && value.between?(minimum,maximum); end
     def number?(value,minimum,maximum); value.is_a?(Numeric) && value.finite? && value.between?(minimum,maximum); end
     def pair?(value); value.is_a?(Array) && value.size==2 && value.all? { |n| integer?(n,0,10_000_000) }; end
-    def teams?(value); value.is_a?(Array) && value.size==4 && value.sort==[0,0,1,1]; end
+    def teams?(value,player_count:4)
+      [2,4].include?(player_count) && value.is_a?(Array) && value.size==player_count &&
+        value.all? { |team| integer?(team,0,1) } &&
+        (player_count==2 ? value[0]==0 && value[1]==1 : value.count(0)==2)
+    end
+
+    def effects?(value,player_count:)
+      value.is_a?(Array) && value.size<=64 && value.all? do |effect|
+        effect.is_a?(Array) && effect.size==5 && integer?(effect[0],0,2**53) && text?(effect[1],64) &&
+          (effect[2].nil? ? !GameRoomPong::SnapshotEffects.player_required?(effect[1]) : integer?(effect[2],0,player_count-1)) &&
+          number?(effect[3],-1_000_000,1_000_000) && number?(effect[4],-1_000_000,1_000_000)
+      end
+    end
+
+    # Snapshot mapping is what the spatial renderer uses. Information and
+    # recorded audio-event perspectives must resolve that same mapping.
+    def frame_teams(frame,player_count:)
+      value=frame && (frame.dig('snapshot','teams') || frame['teams'])
+      teams?(value,player_count:player_count) ? value : (player_count==4 ? [0,1,0,1] : [0,1])
+    end
   end
 end

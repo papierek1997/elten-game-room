@@ -180,26 +180,8 @@ assert(shortcut_events.include?([:key_a, :a]), "the rules shortcut replaced stan
 shortcut_source.pressed_key = nil
 assert(!shortcut_source.send(:keyevents).include?([:key_f1, :f1]), "an idle form reported F1")
 
-assert(GameRoomRules.ctrl_f1_event?([false, true, false]), "Ctrl+F1 was not recognized")
-assert(!GameRoomRules.ctrl_f1_event?([false, false, false]), "F1 without Ctrl opened the rules")
-assert(!GameRoomRules.ctrl_f1_event?([true, true, false]), "Ctrl+Shift+F1 opened the rules")
-assert(!GameRoomRules.ctrl_f1_event?([false, true, true]), "Ctrl+Alt+F1 opened the rules")
-
-tip_field = Object.new
-tips = []
-tip_field.define_singleton_method(:add_tip) { |tip| tips << tip }
-bound_handler = nil
-fake_form = Object.new
-fake_form.define_singleton_method(:extend) { |_mod| self }
-fake_form.define_singleton_method(:on) do |event, &handler|
-  bound_handler = [event, handler]
-end
-called = false
-GameRoomRules.bind_ctrl_f1(fake_form, [tip_field]) { called = true }
-assert(tips == ["Ctrl+F1, Game rules."], "F1 help does not advertise Ctrl+F1")
-assert(bound_handler[0] == :key_f1, "Ctrl+F1 was bound to the wrong form event")
-bound_handler[1].call([false, true, false])
-assert(called, "the Ctrl+F1 handler was not called")
+# The actual binding, help tip and modifier timing are exercised by
+# ui/rules_shortcut_press_snapshot_native_test.rb, not a fake dispatch tuple.
 
 invalid_game = Class.new(GameRoomGames::Base) do
   def id

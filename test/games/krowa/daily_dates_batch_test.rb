@@ -24,7 +24,9 @@ shown = client.send(:daily_date_rows, [today] + dates, today)
 assert(shown == [[today, ''], [dates.first, '']] + dates.drop(1).map { |date| [date, 'kot'] },
   'Date order, blank missing/current solution or earliest assignment changed')
 puts "Assignment reads for 365 past dates: #{table.queries.size}"
-assert(table.queries.size <= 4, 'Daily date browser still issues one assignment read per day')
+# Four 100-key batches plus an empty-page confirmation for the missing date.
+# A short nonempty page alone cannot prove that this batch is exhausted.
+assert(table.queries.size <= 5, 'Daily date browser still issues one assignment read per day')
 assert(Marshal.dump(table.rows) == before, 'Date browsing wrote or mutated assignment rows')
 table.queries.each do |query|
   assert(query.fetch(:where).fetch('day_key').fetch('in').all? { |key| key < 20261022 },
@@ -62,4 +64,4 @@ begin
   raise 'Corrupt first assignment silently replaced or skipped'
 rescue ArgumentError
 end
-puts 'PASS daily date batches: 365-to-4 query budget, canonical first rows, paging, missing dates, current privacy and unavailable/corrupt data'
+puts 'PASS daily date batches: 365 dates in at most 5 reads including missing-date EOF, canonical first rows, paging, current privacy and unavailable/corrupt data'

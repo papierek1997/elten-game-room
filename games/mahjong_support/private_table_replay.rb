@@ -11,12 +11,20 @@ module GameRoomGames
         number = repository.event_id(event).to_i
         next if number <= 0 || seen[number] || state[:phase] == :finished || state[:private_error]
         actor = repository.actor_of(event, session)
-        GameRoomPrivateCardLedger.observe_reveal(state, event, actor)
+        observed = GameRoomPrivateCardLedger.observe_reveal(state, event, actor)
         candidate = private_table_copy(state)
         additions = []
-        next unless private_table_apply(candidate, event, actor, session, repository, additions)
+        unless private_table_apply(candidate, event, actor, session, repository, additions)
+          # A native reveal can be valid evidence even when its associated
+          # rule action is refused. Replay it at its original position during
+          # audit, without adding it to accepted moves or consuming a card.
+          if observed && state[:private_audit_sources] && !state[:private_finish_pending]
+            state[:private_audit_sources] = state[:private_audit_sources] + [event]
+          end
+          next
+        end
         if candidate[:private_audit_events] && !candidate[:private_finish_pending] && event['action'] != 'mahjong_begin'
-          candidate[:private_audit_events] = candidate[:private_audit_events] + [event]
+          private_table_record_audit_move(candidate, event)
         end
         private_table_audit(candidate, session, repository, additions) if candidate[:private_audit_ready] && !candidate[:private_auditing]
         state = candidate
@@ -33,7 +41,8 @@ module GameRoomGames
     def private_table_copy(state)
       # Immutable audit inputs are shared, never recursively copied for every
       # receipt. Mutable hands and pool ledgers still have independent snapshots.
-      audit = state.slice(:private_audit_start, :private_audit_events, :round, :match, :profile, :players, :private_values)
+      audit = state.slice(:private_audit_start, :private_audit_events, :private_audit_sources,
+        :round, :match, :profile, :players, :private_values)
       GameRoomSnapshot.copy(state.reject { |key, _| audit.key?(key) }).merge(audit)
     end
 
@@ -44,6 +53,7 @@ module GameRoomGames
         return false unless state[:phase] == :awaiting_deal && event['value'] == (state[:hand_number] + 1).to_s
         state[:private_audit_start] = state.slice(:session_id, :players, :profile, :match, :hand_number, :ready_seats)
         state[:private_audit_events] = [event]
+        state[:private_audit_sources] = [event]
         state[:hand_number] += 1
         state[:private_deal_key] = state[:hand_number].to_s
         state[:round] = nil
@@ -339,7 +349,7 @@ module GameRoomGames
     end
 
     def private_table_finish(state, event)
-      state[:private_audit_events] = state[:private_audit_events] + [event] unless state[:private_audit_events].last.equal?(event)
+      private_table_record_audit_move(state, event)
       if state[:private_auditing]
         private_table_commit_result(state)
         return
@@ -362,9 +372,8 @@ module GameRoomGames
       initial = state[:private_audit_start].merge(phase: :awaiting_deal, round: nil)
       GameRoomPrivateCardLedger.initialize_state(initial, audit_session)
       initial.merge!(hands: initial[:players].to_h { |player| [player, []] }, private_auditing: true)
-      events = state[:private_audit_events]
-      replay = private_table_reduce(initial, [], [], events, audit_session, repository)
-      unless replay.accepted_events.size == events.size && !replay.state[:private_error] &&
+      replay = private_table_reduce(initial, [], [], state[:private_audit_sources], audit_session, repository)
+      unless replay.accepted_events == state[:private_audit_events] && !replay.state[:private_error] &&
           %i[finished between_hands].include?(replay.state[:phase])
         state[:private_error] = :invalid_round
         return
@@ -374,6 +383,12 @@ module GameRoomGames
       state.delete(:private_audit_ready)
       state.delete(:private_empty_move)
       state.delete(:private_empty_draw)
+    end
+
+    def private_table_record_audit_move(state, event)
+      %i[private_audit_events private_audit_sources].each do |key|
+        state[key] = state.fetch(key) + [event] unless state.fetch(key).last.equal?(event)
+      end
     end
 
     def private_table_commit_result(state)

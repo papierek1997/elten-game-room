@@ -89,7 +89,6 @@ waiting = GameRoomLayout::Screen.new(view_spec: game.waiting_view_spec("Alice"),
 commands = []
 waiting.begin_bindings
 waiting.bind_status_commands { |name| commands << name }
-app.send(:bind_game_room_shortcuts, waiting.form, game) { |name| commands << name }
 app.define_singleton_method(:show_krowa_settings) { commands << "settings" }
 GameRoomParticipantMenu.bind(waiting, available: -> { [] }, game: game,
   settings: GameRoomParticipantMenu.settings_callback(game, program: app)) { raise "settings became a game action" }

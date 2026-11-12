@@ -83,6 +83,27 @@ module GameRoomTwentyOneStrategy
     end
   end
 
+  # Side pots compete only among their eligible contributors. Completed totals
+  # are public; unresolved players retain the same generic opponent model.
+  # If everybody busts, settlement returns this layer's slice, not its whole pot.
+  def pot_values(pots, actor, completed, opponent)
+    layers = pots.filter_map do |pot|
+      next unless pot[:eligible].include?(actor)
+      if pot[:contributors].one?
+        refund = pot[:slice].to_f
+        next [->(_sum) { refund }, refund]
+      end
+
+      others = pot[:eligible] - [actor]
+      known = others.filter_map { |player| completed[player] if completed.key?(player) }
+      pending = others.count { |player| !completed.key?(player) }
+      contest = contest_value(known, pending, opponent, split_ties: true)
+      bust = known.all? { |sum| sum > 21 } ? pot[:slice] * opponent.fetch(BUST, 0.0)**pending : 0.0
+      [->(sum) { pot[:amount] * contest.call(sum) }, bust]
+    end
+    [->(sum) { layers.sum { |stand, _bust| stand.call(sum) } }, layers.sum { |_stand, bust| bust }]
+  end
+
   class Plan
     def initialize(stand_value, bust_value: 0, cards: true, &draws)
       @stand_value, @bust_value, @cards, @draws = stand_value, bust_value, cards, draws

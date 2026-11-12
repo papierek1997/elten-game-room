@@ -9,6 +9,14 @@ share the Communications connection, queues, ping and delivery. The game
 client is responsible for physics, resetting its own fields and transition
 legality. LiveSessions stores the table, game start and durable outcomes.
 
+A background-capable client may be created by an active covering UI before its
+game view is visible again. `attach_view` must adopt the current UI thread for
+the client's own coverage checks as well as attach its progress driver. Retain
+the ongoing practice/game, not the old UI owner. Test both return-to-view input
+presentation and suppression behind a different form; an isolated progress
+driver test cannot prove the client's separate presentation gate is correct.
+Regression: `test/games/mania_pisania/reattach_owner_native_test.rb`.
+
 ## Action path and authority
 
 1. The active game field accepts fresh input; the engine validates the transition.
@@ -37,6 +45,17 @@ the network or disk does not belong in the UI frame. A new game creates a new
 client; old tasks, channel closures and repeated invitations must not disrupt
 the new connection. Reconnect restores ping registration and channel settings
 without requiring Enter.
+
+Current session capacity is not a bound on historical account names. Invitation
+retry/order metadata follows the current Power Games roster. Sequence watermarks
+must instead survive departure and return within an epoch: a delayed authenticated
+packet can still arrive after rejoining. Each lane remembers at most 256 account
+names; a new 257th name requests the ordinary generation-safe reconnect before
+admission. Do not prune replay authority on leave or replace name authorization
+with an unproven current-native-participant-ID gate: the host can decrypt and ACK
+a valid sender before its local participant list catches up. Preserve current
+sender, match/epoch, sequence and delivery checks during recovery. Regression:
+`test/realtime/channel_roster_history_test.rb`.
 
 Pong's Inferno difficulty adds `-inferno-1` to its existing event dialect,
 including mixed and doubles matches. Earlier clients normalize an unknown

@@ -1,4 +1,5 @@
 require_relative "game_room_localization"
+require_relative "game_room_key_modifiers"
 
 module GameRoomHistory
   using GameRoomLocalization::Translations
@@ -19,13 +20,13 @@ module GameRoomHistory
     ]
     form.game_room_text_help_tips = form.game_room_general_help_tips.first(4)
     keys.merge('home' => :first, 'end' => :last).each do |key, value|
-      form.on(("key_" + key).to_sym) do |parameters|
-        shift, control, alt = parameters.to_a
-        next unless control == true && alt != true
-        next if [:first, :last].include?(value) && shift == true
+      form.on(("key_" + key).to_sym) do
+        modifiers = GameRoomUI.modifiers_when_pressed(form, key.to_sym)
+        next unless modifiers.include?(:control) && !modifiers.include?(:alt)
+        next if [:first, :last].include?(value) && modifiers.include?(:shift)
         field = form.fields[form.index.to_i]
         next if value.is_a?(Symbol) && field.is_a?(EditBox) && (field.flags.to_i & EditBox::Flags::ReadOnly) == 0
-        operation = value.is_a?(Symbol) ? :jump : (shift == true ? :category : :move)
+        operation = value.is_a?(Symbol) ? :jump : (modifiers.include?(:shift) ? :category : :move)
         form.send(:getkeychar) if %w[comma period , . < >].include?(key) && form.respond_to?(:getkeychar, true)
         EltenAPI::KeyboardState.clear_current_frame if defined?(EltenAPI::KeyboardState)
         handler.call(operation, value)

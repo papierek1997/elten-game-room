@@ -1,5 +1,6 @@
 require_relative '../game_surfaces/specifications'
 require_relative '../game_surfaces/realtime_information'
+require_relative 'document'
 
 module GameRoomRecordings
   class Information
@@ -10,14 +11,11 @@ module GameRoomRecordings
     end
 
     def players
-      @player.metadata.fetch('players')
+      @player.players
     end
 
     def teams
-      frame=@player.frame
-      source=frame && (frame.dig('snapshot','teams') || frame['teams'])
-      valid=source==[0,1] || (source.is_a?(Array) && source.size==4 && source.count(0)==2 && source.count(1)==2)
-      valid && source.size==players.size ? source : (players.size==4 ? [0,1,0,1] : [0,1])
+      Document.frame_teams(@player.frame,player_count:players.size)
     end
 
     def score_labels

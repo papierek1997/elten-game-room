@@ -1,4 +1,5 @@
 require_relative 'game_room_localization'
+require_relative 'game_room_key_modifiers'
 
 # Local controls for the native Conference, with no second audio/mute state.
 module GameRoomConferenceControls
@@ -31,7 +32,7 @@ module GameRoomConferenceControls
       field.on(key) do
         next unless connected?
         play_sound('listbox_focus')
-        if y.zero? && field.__send__(:raw_key_held?, :key_shift)
+        if y.zero? && GameRoomUI.modifiers_when_pressed(field, key).include?(:shift)
           Conference.turn(x * 45)
         else
           Conference.move(x, y)

@@ -233,8 +233,8 @@ G::TablesGateway.prepend(PreflightSnapshotFailure)
         end
         driver.step('Local tournament tests', [13]) { |form| form.index = form.fields.index(T.button(form, 'Publish a draft in local test')) }
         driver.step('Choose a local draft', [13]) { |form| form.index = form.fields.index(T.button(form, 'Publish')) }
-        driver.step('Local test operations', [13]) { |form| form.index = form.fields.index(T.button(form, 'Check selected operation')) }
-        driver.step('Local test operations', [27])
+        driver.step('Tournament operations', [13]) { |form| form.index = form.fields.index(T.button(form, 'Check selected operation')) }
+        driver.step('Tournament operations', [27])
         driver.step('Choose a local draft', [27])
         driver.step('Local tournament tests', [27])
         G::LocalTestHub.new(**args, clock: -> { 100 }).run

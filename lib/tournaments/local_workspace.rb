@@ -213,6 +213,10 @@ module GameRoomTournaments
         begin
           snapshot = @service.list
           publication = snapshot['announcements'].find { |row| row['__insertion_user'].downcase == reference['author'].downcase && row['publication_key'] == reference['publication_key'] }
+          starts = publication && RegistrationProjection.local_start(publication)
+          if publication && !starts
+            raise Publication::Invalid, TournamentTiming.registration_closed?(publication, @clock.call) ? :tournament_not_started : :registration_open
+          end
           settings = publication && JSON.parse(publication['settings_json'])
           team_game = publication && @registry.build(publication['game']).team_size(settings['game_options'], player_count: settings['players_per_match']) == 2
           if team_game
@@ -244,7 +248,7 @@ module GameRoomTournaments
           end
           connection = individual_connection(context: context, lease: lease, session: session)
           rows = connection.tournament_catalog(publication_ref: reference)
-          if publication && @clock.call < RegistrationProjection.local_start(publication) && @clock.call >= publication['registration_closes_at']
+          if publication && @clock.call < starts && @clock.call >= publication['registration_closes_at']
             candidate = @service.schedule_candidate(publication_ref: reference).to_h
             # Keep old records for reconciliation, but do not present stale fixtures
             # as the current schedule after a pre-start withdrawal or removal.

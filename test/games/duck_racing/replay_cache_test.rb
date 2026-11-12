@@ -64,6 +64,66 @@ check.call('unchanged history reuses checked private attempts; one appended acti
   assert_equal(canonical(cold(h)), canonical(again))
 end
 
+check.call('native CAS-only changes preserve semantic prefix reuse without changing caller CAS') do
+  h = Harness.new
+  h.start
+  h.session['__game_revision'] = 'native-cas-1'
+  expected = canonical(h.replay)
+  h.session['__game_revision'] = 'native-cas-2'
+  original_session = Marshal.dump(h.session)
+  calls, again = counted { h.replay }
+  assert_equal(0, calls, 'A write-only native CAS invalidated the existing game prefix')
+  assert_equal(expected, canonical(again))
+  assert_equal(original_session, Marshal.dump(h.session), 'Replay modified the caller CAS/session')
+  status, plan = h.plan({'action' => 'race', 'input' => {'kind' => 'roll'}}, actor: h.players.first)
+  assert_equal(:ok, status)
+  h.append(plan, actor: h.players.first)
+  h.session['__game_revision'] = 'native-cas-3'
+  calls, appended = counted { h.replay }
+  assert_equal(1, calls, 'Native append reduced old game actions again')
+  assert_equal(canonical(cold(h)), canonical(appended))
+end
+
+check.call('sealed native input reuses only the same authenticated generation and enforces retention cap') do
+  h = Harness.new
+  h.start
+  repository_class = Class.new do
+    attr_accessor :generation
+    attr_reader :actor_calls
+    def initialize(delegate)
+      @delegate, @generation, @actor_calls = delegate, 'generation-1', 0
+    end
+    def players_for(session); @delegate.players_for(session); end
+    def event_id(row); @delegate.event_id(row); end
+    def actor_of(row, session)
+      @actor_calls += 1
+      @delegate.actor_of(row, session)
+    end
+    def replay_authentication_identity; generation; end
+  end
+  repository = repository_class.new(h.repository)
+  events = GameRoomSnapshot::Log.from_owned(copy(h.events))
+  game = GameRoomGames::DuckRacing.new(resources: h.resources)
+  session = h.session.merge('__game_revision' => 'native-cas-1')
+  expected = canonical(game.replay(session, events, repository))
+  previous_calls = repository.actor_calls
+  actual = game.replay(session.merge('__game_revision' => 'native-cas-2'), events, repository)
+  assert_equal(previous_calls, repository.actor_calls, 'Unchanged sealed native log reauthenticated all rows')
+  assert_equal(expected, canonical(actual))
+  repository.generation = 'generation-2'
+  game.replay(session, events, repository)
+  assert_equal(previous_calls + events.length, repository.actor_calls, 'A new authority generation reused old authentication')
+  assert(game.instance_variable_get(:@duck_replay_input).retention_bytes <= LOGIC::ReplayCache::MAX_BYTES)
+  huge = {'id' => events.length + 1, 'actor' => 'Alice', 'action' => 'unrelated',
+    'value' => 'x' * (LOGIC::ReplayCache::MAX_BYTES + 1)}
+  # Mutable caller rows must be copied and count against cache ownership;
+  # sealed rows are already owned/accounted for by the native bounded log.
+  huge_events = copy(h.events) + [huge]
+  game.replay(session, huge_events, repository)
+  assert(game.instance_variable_get(:@duck_replay_input).nil?, 'Oversized owned input remained retained')
+  assert_equal(expected, canonical(game.replay(session, events, repository)))
+end
+
 check.call('every partial fragment boundary remains inert until a complete authenticated action') do
   h = finished_fixture
   game = GameRoomGames::DuckRacing.new(resources: h.resources)

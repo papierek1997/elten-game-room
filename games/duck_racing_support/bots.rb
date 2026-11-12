@@ -175,7 +175,7 @@ module GameRoomDuckRacing
       scope = duck_bot_scope(replay)
       @bot_cache.activate(scope)
       round = replay.state[:round]
-      decision = round ? [round[:phase], round[:engine]&.values_at(:last_press, :last_time), round.dig(:engine, :model, :turn_started_at_ms)] : replay.state[:race]&.fetch(:revision)
+      decision = round ? [round[:phase], round[:engine]&.values_at(:last_press, :last_time), duck_turn_started_ms(round)] : replay.state[:race]&.fetch(:revision)
       [duck_bot_hash([scope, decision]), @bot_cache.version(scope)]
     end
 
@@ -239,7 +239,7 @@ module GameRoomDuckRacing
         last_action = if round[:challenge][:kind] == 'sound_order'
           [round[:engine][:last_time].fetch(seat), view[:started_ms].to_i].max
         else
-          [round[:engine][:last_time].values.max || 0, view[:turn_started_at_ms].to_i].max
+          [round[:engine][:last_time].values.max || 0, duck_turn_started_ms(round).to_i].max
         end
         value = {ready_ms: round[:started_at] + last_action + choice[:delay_ms],
           input: choice[:action].to_h { |key, item| [key.to_s, key == :kind ? item.to_s : item] }}
@@ -271,7 +271,14 @@ module GameRoomDuckRacing
         return [seat, actor.to_s.downcase, round.dig(:engine, :last_press, seat), round.dig(:engine, :last_time, seat)]
       end
       [seat, actor.to_s.downcase, round&.dig(:engine, :last_press), round&.dig(:engine, :last_time),
-        round&.dig(:engine, :model, :turn_started_at_ms)]
+        duck_turn_started_ms(round)]
+    end
+
+    # Numeric challenges and public audio turns keep the same boundary in
+    # different model-owned fields. Expiry can move it without a new input.
+    def duck_turn_started_ms(round)
+      round&.dig(:engine, :model, :turn_started_at_ms) ||
+        round&.dig(:engine, :model, :public, :turn_started_ms)
     end
 
     def duck_bot_hash(value)

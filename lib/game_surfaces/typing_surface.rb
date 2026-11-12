@@ -147,7 +147,7 @@ module GameSurfaces
       spec.is_a?(TypingSpec) && spec.round == @spec.round && spec.enabled == @spec.enabled &&
         spec.remaining_sentence == @spec.remaining_sentence &&
         spec.remaining_word == @spec.remaining_word && spec.auto_commit == @spec.auto_commit && spec.choose_text == @spec.choose_text &&
-        spec.commands.to_a.map(&:id) == @spec.commands.to_a.map(&:id)
+        spec.commands.to_a == @spec.commands.to_a
     end
     def update_spec(spec)
       @spec = spec

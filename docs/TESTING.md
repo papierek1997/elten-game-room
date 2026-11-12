@@ -39,7 +39,10 @@ ruby test/run.rb --suite tournaments --shard 1/4 --report tmp/tournaments-1.json
 
 The runner accepts directories, file paths and patterns. It searches directories
 recursively, excluding `support/` and `fixtures/`; overlapping selections of the
-same scenario are merged. With no arguments, it selects all scenarios.
+same scenario are merged, including absolute and relative spellings. The first
+spelling is kept in reports. Different arguments, environment or Ruby preloads
+are distinct variants; omitted and empty defaults are equivalent. With no
+arguments, it selects all scenarios.
 During the current cleanup, we run only targeted cases, as required by
 the restriction in `AGENTS.md`.
 
@@ -59,8 +62,10 @@ checks suite completeness and disjointness, as well as default discovery.
 
 CI runs the tournament suite in four disjoint parts. `--shard INDEX/TOTAL`
 assigns every selected scenario to exactly one part, balancing the declared
-timeout budgets with a stable filename tie-break. It keeps each scenario's
-arguments, environment and preloads. Run all parts to cover the whole selection;
+timeout budgets with stable path and complete scenario-identity tie-breaks.
+Arguments, environment and preloads are retained and also distinguish variants
+of the same file; changing enumeration or hash-key order does not change their
+partition. Run all parts to cover the whole selection;
 `--list` can inspect a part without executing it. Ordinary invocations without
 `--shard` still run the complete selection. Full historical tournament simulations
 have longer bounded timeouts in `test/support/suites.rb`; `--timeout` overrides them.

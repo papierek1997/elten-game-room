@@ -26,7 +26,10 @@ module GameRoomTournaments
       unless target.is_a?(Integer) && target.between?(1,99) && units.is_a?(Array) && units.size==2
         raise Publication::Invalid,:invalid_win_target
       end
-      Standings.calculate(units:units,results:results,points:Standings::MATCH_POINTS)
+      # One pairing can span many phases when draws do not consume wins.
+      # Reuse the full-history validator, not the ordinary256-result aggregate.
+      # Its identity, shape and byte/node budgets still apply to every row.
+      results=Standings.validated_results(units:units,results:results,max_results:4096)
       wins=units.to_h{|unit|[unit,0]}
       champion=nil
       no_winner=false

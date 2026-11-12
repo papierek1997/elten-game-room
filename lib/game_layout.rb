@@ -4,6 +4,7 @@ require_relative "table_activity_repository"
 
 require_relative "game_room_localization"
 require_relative "table_voice_protocol"
+require_relative "game_room_key_modifiers"
 
 module GameRoomLayout
   using GameRoomLocalization::Translations
@@ -72,7 +73,9 @@ module GameRoomLayout
 
     def key_processed(key)
       normalized = key.to_s.sub(/\Akey_/, "").downcase
-      modifiers = active_shortcut_modifiers
+      relevant = @game_shortcut_keys.to_a.include?(normalized) ||
+        @history_navigation_signatures.to_a.any? { |name, _modifiers| name == normalized }
+      modifiers = relevant ? GameRoomUI.modifiers_when_pressed(self, key) : []
       if @history_navigation_signatures.to_a.include?([normalized, modifiers])
         return true if editable_text_field? && !%w[comma period , . < >].include?(normalized)
 
@@ -111,13 +114,6 @@ module GameRoomLayout
       (flags & EditBox::Flags::ReadOnly) == 0
     end
 
-    def active_shortcut_modifiers
-      modifiers = []
-      modifiers << :shift if respond_to?(:raw_key_held?, true) && raw_key_held?(:key_shift)
-      modifiers << :control if respond_to?(:modifier_held?, true) && modifier_held?(:main_modifier)
-      modifiers << :alt if respond_to?(:modifier_held?, true) && modifier_held?(:option)
-      modifiers.sort
-    end
   end
 
   # These controls survive game updates. Native registrations scope screen

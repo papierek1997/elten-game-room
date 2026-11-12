@@ -111,7 +111,8 @@ class GameRoomLiveSessionStore
         nonempty_text?(data["archive_id"]) && data["archive_id"].length <= 64 && integer_between?(data["index"], 0, STACK_ENTRIES - 8) &&
           events.is_a?(Array) && events.length.between?(1, ARCHIVE_EVENTS_PER_RECORD) && events.all? do |event|
             next event.keys.sort == %w[id players] && positive_integer?(event['id']) && GameRoomTableControl.valid_players?(event['players']) if event.is_a?(Hash) && event.key?('players')
-            event.is_a?(Hash) && positive_integer?(event["id"]) && event["sequence"].is_a?(Integer) && event["sequence"] >= 0 &&
+            event.is_a?(Hash) && (event.keys - GameRoomEventProtocol::ARCHIVE_EVENT_FIELDS).empty? &&
+              positive_integer?(event["id"]) && event["sequence"].is_a?(Integer) && event["sequence"] >= 0 &&
               nonempty_text?(event["actor"]) && event["actor"].length <= 64 && GameRoomEventProtocol.valid_wire_command?(event) &&
               event["created_at"].is_a?(Integer) && event["created_at"] >= 0 &&
               (!event.key?('game_time') || GameRoomSessionClock.valid_event_time?(event['game_time']))

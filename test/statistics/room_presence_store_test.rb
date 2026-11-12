@@ -735,6 +735,42 @@ presence_test("real host Apps/AppTable offline transport") do
   assert(!JSON.generate(client.requests).include?(REPORTER_KEY), "The private secret leaked through actual SDK serialization")
 end
 
+presence_test("retention advances across server-shortened foreign pages") do
+  now, elapsed = 6000.0, 0.0
+  store, api = presence_fixture(clock: -> { now }, monotonic: -> { elapsed })
+  api.server_select_limit = 16
+  api.rows.concat((1..17).map { |id| presence_row(id, seen_slot: 0) })
+  api.after_call = lambda do |kind, rows, query|
+    next unless kind == :select && query[:include_access]
+    rows.each { |row| row['__access']['owner'] = row['__id'] > 16 }
+  end
+
+  assert(store.publish([]), 'First bounded cleanup publication failed')
+  assert(api.rows.length == 17 && api.writes.empty?, 'Foreign prefix was deleted')
+  now += GameRoomPresence::Store::CLEANUP_INTERVAL
+  elapsed += GameRoomPresence::Store::CLEANUP_INTERVAL
+  assert(store.publish([]), 'Next cleanup interval failed')
+  assert(api.rows.map { |row| row['__id'] } == (1..16).to_a,
+    'Short foreign page reset the cursor and stranded the later owned report')
+  assert(api.writes == [[:delete, 17]], 'Cleanup changed foreign rows or exceeded its owned work')
+  pages = api.calls.select { |kind, query| kind == :select && query[:where].key?('seen_slot') }.map(&:last)
+  assert(pages.map { |query| query[:where]['__id']['gte'] } == [1, 17],
+    'Cleanup did not continue after the actual short page')
+  assert(pages.all? { |query| query[:limit] == GameRoomPresence::Store::CLEANUP_PAGE },
+    'Cleanup changed the existing bounded page budget')
+
+  # An empty page completes the scan; only then revisit older foreign IDs.
+  2.times do
+    now += GameRoomPresence::Store::CLEANUP_INTERVAL
+    elapsed += GameRoomPresence::Store::CLEANUP_INTERVAL
+    assert(store.publish([]), 'Cleanup wraparound failed')
+  end
+  pages = api.calls.select { |kind, query| kind == :select && query[:where].key?('seen_slot') }.map(&:last)
+  assert(pages.map { |query| query[:where]['__id']['gte'] } == [1, 17, 18, 1],
+    'Cleanup did not wrap exactly after the empty tail')
+  assert(api.rows.map { |row| row['__id'] } == (1..16).to_a, 'Wraparound removed foreign reports')
+end
+
 presence_test("bounded retention preserves recent and foreign reports") do
   now = 6000.0
   elapsed = 0.0

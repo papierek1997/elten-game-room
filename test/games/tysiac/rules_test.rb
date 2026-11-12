@@ -183,9 +183,6 @@ assert(round_summaries.count { |text| text.include?("collected") } == players.le
 assert(round_summaries.count { |text| text.include?("awarded") || text.include?("lost") } == players.length, "round summaries do not contain awarded score changes")
 assert(game.send(:round_score_text, "Bob", 63, 60) == "Bob, collected 63, awarded 60.", "positive round scoring is not concise")
 assert(game.send(:round_score_text, "Bob", 63, -100) == "Bob, collected 63, lost 100.", "negative round scoring is not concise")
-assert(game.send(:score_change_text, "Bob", 100) == "Bob gained 100 points.", "positive score changes are described incorrectly")
-assert(game.send(:score_change_text, "Bob", -120) == "Bob lost 120 points.", "negative score changes are described incorrectly")
-assert(game.send(:score_change_text, "Bob", 0) == "Bob gained no points.", "zero score changes are described incorrectly")
 
 auction_state = game.send(:initial_state, players, game.default_options)
 auction_state[:phase] = :bidding

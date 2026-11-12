@@ -931,7 +931,7 @@ module GameRoomGames
       return false if !same_user?(actor, state[:current_player])
       return true if state[:pending_type] == "C" && state[:pending_colour] != nil
       return true if state[:pending_draw] > 0
-      return false if !state[:options]["allow_optional_draw"] && has_playable_card?(state, actor)
+      return !has_playable_card?(state, actor) if !state[:options]["allow_optional_draw"]
       state[:optional_draws].to_i < state[:options]["maximum_optional_draws"].to_i
     end
 
@@ -1218,6 +1218,8 @@ module GameRoomGames
     def finish_round(state, winner, event_id, history)
       clear_straight(state)
       clear_colour_choice(state)
+      state[:pending_finisher] = nil
+      state.delete(:pending_finishers)
       history << HistoryEntry.new(key: "round:#{event_id}", text: _("%{player} won the round.") % {
         player: participant_name(winner)
       }, event_id: event_id, actor: winner, kind: :round_result)

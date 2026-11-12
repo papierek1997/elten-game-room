@@ -55,6 +55,7 @@ module GameRoomTournaments
         names = row ? snapshot.fetch('members').select { |member| member['tournament_id'] == row['__id'] }.map { |member| member['username'] } : []
         roster.set_text(names.join(', '))
         update_team_fields(row) if @pairs && @template
+        reset_confirmed_preview_for(row)
       end
       @pairs = EditBox.new(text(_("Teams: two accounts per line, separated by a comma")), type: EditBox::Flags::MultiLine, text: '', quiet: true)
       @template = ListBox.new(TEMPLATES.map { |value| value.map { |side| side + 1 }.join(', ') },
@@ -78,7 +79,11 @@ module GameRoomTournaments
     end
 
     def configure_dispatch
-      return unless @accepted && @preview && current?
+      return unless @accepted && @preview && !@uncertain && current?
+      unless form_input == @shown_input
+        @details.set_text(text(_("Settings changed. Preview the plan again before accepting.")))
+        return
+      end
       raw = @table_limit.text.strip
       return show_failure(state: :blocked, reason: :invalid_table_limit) unless raw.match?(/\A[0-9]{1,2}\z/)
       result = operation(:dispatch_configure, {'intent_id' => @preview.fetch('intent_id'), 'max_tables' => raw.to_i})
@@ -117,9 +122,11 @@ module GameRoomTournaments
     end
 
     def create_preview
-      return if @accepted || @uncertain || !current?
+      return if @uncertain || !current?
       input = form_input
       return unless input
+      return if @accepted && input == @shown_input
+      @accepted = false
       @preview = @shown_input = nil
       result = operation(:preview, input.merge('intent_id' => SecureRandom.uuid))
       if result && result[:state] == :confirmed && current?
@@ -129,6 +136,15 @@ module GameRoomTournaments
       else
         show_failure(result)
       end
+    end
+
+    def reset_confirmed_preview_for(row)
+      return if @uncertain || !@preview
+      reference = row && {'author' => row['__insertion_user'], 'publication_key' => row['publication_key']}
+      return if @shown_input && reference == @shown_input['publication_ref']
+      @preview = @shown_input = nil
+      @accepted = false
+      @details.set_text(instructions)
     end
 
     def accept_preview

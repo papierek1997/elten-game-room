@@ -203,6 +203,7 @@ module GameRoomTyping
     def attach_view(form, surface)
       detach_view
       return unless surface.is_a?(GameSurfaces::TypingSurface)
+      @ui_thread = Thread.current
       @form, @surface = form, surface
       surface.on_character = method(:input)
       surface.on_command = method(:command)

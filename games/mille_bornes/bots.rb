@@ -55,7 +55,10 @@ module GameRoomGames
       end
       return -100_000 unless action["action"] == "play"
       if DISTANCES.include?(type)
-        return -10_000 - [track[:miles], type.to_i].min if track[:counterflow]
+        if track[:counterflow]
+          return 2000 - type.to_i if bot_reverse_finish_possible?(state, actor, track, action["card"])
+          return -10_000 - [track[:miles], type.to_i].min
+        end
         if recycling && !replay.state[:options]["counterflow"] && !bot_finish_possible?(replay, track, type)
           return -20_000
         end
@@ -73,6 +76,34 @@ module GameRoomGames
     end
 
     private
+
+    # Only a held cure and a different held mileage card can justify reversing
+    # before curing. This bounded three-card plan does not simulate foreign
+    # hands or future draws, and the normal reducer still validates each turn.
+    def bot_reverse_finish_possible?(state, actor, track, card)
+      hand = hand_for(state, actor)
+      return false if bot_held_finish?(hand, track, track[:miles], track[:two_hundreds])
+
+      miles = [track[:miles] - card_type(card).to_i, 0].max
+      used_two_hundreds = track[:two_hundreds] + (card_type(card) == "200" ? 1 : 0)
+      return false unless bot_held_finish?(hand, track, miles, used_two_hundreds, except: card)
+
+      hand.any? do |candidate|
+        type = card_type(candidate)
+        type == "end_counterflow" ||
+          (type == "instant_repair" && state[:options]["include_instant_repairs"]) ||
+          (type == "driving_ace" && !track[:safeties].include?(type))
+      end
+    end
+
+    def bot_held_finish?(hand, track, miles, used_two_hundreds, except: nil)
+      finish = 1000 - miles
+      return false unless DISTANCES.include?(finish.to_s)
+      return false if track[:speed_limit] && finish > 50
+      return false if finish == 200 && used_two_hundreds >= 2
+
+      hand.any? { |candidate| candidate != except && card_type(candidate) == finish.to_s }
+    end
 
     def bot_finish_possible?(replay, track, type)
       remaining = 1000 - track[:miles] - type.to_i

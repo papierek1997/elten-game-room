@@ -113,7 +113,7 @@ module GameRoomGames
 
       def tournament_remaining_players(state, players: state.fetch(:players))
         removed = state.fetch(:tournament_eliminations, []).flatten
-        players.reject { |player| GameRoomParticipants.includes?(removed, player) }
+        GameRoomParticipants.excluding(players, removed)
       end
 
       # Called only at a game-owned, fully scored round/deal boundary. Copy the
@@ -162,6 +162,12 @@ module GameRoomGames
 
       def tournament_placement_scores(replay, options:)
         tournament_ranking_scores(replay, options: options)
+      end
+
+      # v8 may export all publicly winning units without changing the earlier
+      # placement/result hooks used to verify already bound v1-v7 receipts.
+      def tournament_winning_units_result(replay, options:)
+        tournament_placement_result(replay, options: options)
       end
 
       # Opt-in for new tournament receipts. Legacy score hooks above are kept

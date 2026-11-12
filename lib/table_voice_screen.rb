@@ -47,6 +47,8 @@ class GameRoomTableVoiceScreen
       return
     end
     return unless same_account?
+    created_voice=claim.slice('head','creator').merge('status'=>'ready',
+      'channel_id'=>channel,'name'=>values[:name],'password'=>values[:password].to_s)
     # Confirm a new native update, not an old cached channel with a reused ID.
     # The existing native update loop owns I/O; this wait only observes it.
     ready=-> { observed && observed.id==channel && observed.name==values[:name] &&
@@ -64,7 +66,9 @@ class GameRoomTableVoiceScreen
     end
     return unless published && same_account?
     voice=published[:voice]
-    if voice && voice['status']=='ready'
+    if published[:accepted] && voice && voice['status']=='ready' &&
+        voice.values_at('channel_id','name','creator')==created_voice.values_at('channel_id','name','creator')
+      creation_published=true
       remember(voice)
       true
     else
@@ -77,6 +81,14 @@ class GameRoomTableVoiceScreen
     alert(_("The voice conversation is temporarily unavailable."))
   ensure
     @conference.remove_hook(conference_hook) if conference_hook
+    # Native create has already joined us, even if its :update is delayed or
+    # publication loses its claim. Never leak that unpublished membership;
+    # an unrelated conference (including a reused numeric ID) stays untouched.
+    if created_voice && !creation_published && same_account?
+      # If even the cached channel view is still delayed, retain only the
+      # exact local identity so ordinary table departure can clean it later.
+      remember(created_voice) unless GameRoomTableVoice.connected?(created_voice,@conference) && disconnect_native(created_voice)
+    end
   end
 
   private

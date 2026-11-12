@@ -11,6 +11,7 @@ compiler; in PowerShell, with `g++` on PATH:
 
 ```powershell
 ./tools/build-typing-hunspell.ps1 -Source path/to/hunspell -Output path/to/typing-hunspell-export.exe
+ruby test/tooling/check_typing_hunspell_export.rb path/to/typing-hunspell-export.exe
 path/to/typing-hunspell-export.exe path/to/en/index.aff path/to/en/index.dic tmp/en-raw.txt
 ruby tools/build-typing-word-list.rb en tmp/en-raw.txt path/to/words-en.txt
 ```
@@ -27,6 +28,12 @@ matching, Unicode handling or spelling validation. It handles the pinned
 dictionaries' one-prefix/two-suffix model and continuation classes. Arbitrary
 compound combinations are not enumerated. `-CompilerFlags` accepts extra
 compiler arguments where required by a local toolchain.
+The explicit native exporter check requires the newly built executable; it is
+not a skipped or stubbed test in the ordinary Ruby suite. It checks refusals
+without changing an existing export, successful affix expansion and output-open
+failure. Unsupported encoding or `COMPLEXPREFIXES` is rejected before opening
+the destination. Export into a development staging file: a write failure after
+validation is not an atomic replacement of an earlier full export.
 
 To refresh the dependency closure of the braille catalogue, use:
 

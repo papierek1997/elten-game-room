@@ -43,7 +43,7 @@ GameRoomTest::TemporaryDirectory.create('deadline-binding-') do |directory|
     end
   end
   binding=services['Alice'].instance_variable_get(:@bindings).fetch(table['__id']).first
-  expected_policy=ARGV.include?('--legacy-v6') ? 'game-owned-result-v6' : 'game-owned-result-v7'
+  expected_policy=ARGV.include?('--legacy-v6') ? 'game-owned-result-v6' : 'game-owned-result-v8'
   assert_equal(expected_policy,binding.fetch('result_policy'))
   existing=Marshal.dump(docs.rows)
   services.delete('Alice').close

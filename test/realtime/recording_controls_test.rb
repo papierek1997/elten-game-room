@@ -95,6 +95,7 @@ player.close
   data=game=='axel_pong' ? document : GameRoomRecordings::Document.copy(ball)
   data['metadata']['players']=%w[Alice Bob Carol Dave]
   data['timeline'].select { |event| event['kind']=='frame' }.each do |event|
+    event['data']['players']=data['metadata']['players'].dup
     event['data']['teams']=[0,1,0,1]
     next if game=='audio_ball'
     event['data']['snapshot'].merge!('p'=>[10,20,30,40],'shields'=>[0,0,0,0],

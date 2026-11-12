@@ -28,6 +28,8 @@ module GameRoomTournaments
       if required.eql?(C::WRITE)
         @record_reader.call(true)
         access do |document|
+          C.accepted_match!(@accepted, actor)
+          raise C::Blocked, :already_started if started?(document)
           raise C::Blocked, :sandbox_limit if document['readiness'].size >= 2048
           preflight_declaration(document)
         end
@@ -43,7 +45,7 @@ module GameRoomTournaments
         C.accepted_match!(@accepted, own)
         {'status' => 'confirmed', 'identity' => identity, 'scope' => scope, 'match_ref' => match_ref, 'account' => own,
           'accepted_match' => @accepted, 'policy' => {'status' => 'confirmed', 'ref' => @policy_ref, 'allows' => %w[ready withdrawn]},
-          'current' => current_for(document, own), 'phase' => 'not_started'}
+          'current' => current_for(document, own), 'phase' => started?(document) ? 'started' : 'not_started'}
       end
     end
 
@@ -59,7 +61,8 @@ module GameRoomTournaments
         end
         raise C::Blocked, :sandbox_limit if document['readiness'].size >= 2048
         current = current_for(document, actor)
-        status = current['ready_revision'].eql?(operation['request']['expected_ready_revision']) ? 'confirmed' : 'conflict'
+        already_started = started?(document)
+        status = !already_started && current['ready_revision'].eql?(operation['request']['expected_ready_revision']) ? 'confirmed' : 'conflict'
         result = nil
         if status == 'confirmed'
           now = @clock.call
@@ -79,7 +82,7 @@ module GameRoomTournaments
             'state' => operation['request']['availability'], 'server_time' => [now, current['server_time']].max, 'invalidated_grants' => invalidated}
         end
         receipt = C.response!({'status' => status, 'operation' => operation, 'request_digest' => operation['request_digest'],
-          'reason' => status, 'result' => result}, operation)
+          'reason' => already_started ? 'already_started' : status, 'result' => result}, operation)
         document['readiness'] << receipt
         @storage.remember_record(document, @record)
         @storage.write(document, receipt: receipt)
@@ -121,6 +124,10 @@ module GameRoomTournaments
     end
 
     private
+
+    def started?(document)
+      self.class.started_match?(document, scope: scope, match_ref: match_ref, plan_digest: @accepted['plan_digest'])
+    end
 
     # Maksymalny lokalny wynik nowej deklaracji; nie jest utrwalanym receiptem.
     def preflight_declaration(document)
@@ -203,9 +210,32 @@ module GameRoomTournaments
             raise C::Blocked, :sandbox_corrupt
           end
           revisions[key] += 1
+        elsif receipt['reason'] == 'already_started'
+          unless started_match?(document, scope: request['scope'], match_ref: request['match_ref'],
+              plan_digest: operation['accepted_match']['plan_digest'])
+            raise C::Blocked, :sandbox_corrupt
+          end
         elsif request['expected_ready_revision'] == revisions[key]
           raise C::Blocked, :sandbox_corrupt
         end
+      end
+    end
+
+    # Storage has already authenticated complete Start/native lineage. Match
+    # its exact scope/plan/fixture and parent proof, never another started table.
+    def self.started_match?(document, scope:, match_ref:, plan_digest:)
+      records, executions = document.values_at('records', 'executions')
+      return false unless records.is_a?(Hash) && executions.is_a?(Hash)
+      executions.values.any? do |execution|
+        next false unless execution.is_a?(Hash) && execution['start'].is_a?(Hash)
+        request = execution['request']
+        record = records[execution['record_intent']]
+        next false unless request.is_a?(Hash) && request['scope'].is_a?(Hash) && record.is_a?(Hash) &&
+          record['evidence'].is_a?(Hash) && record['expected_source'].is_a?(Hash)
+        request['scope'].slice('app_uuid', 'backend_identity', 'tournament_id').eql?(scope) &&
+          request.values_at('plan_id', 'match_id', 'leg').eql?(match_ref.values_at('plan_id', 'match_id', 'leg')) &&
+          record['evidence']['plan_digest'].eql?(plan_digest) &&
+          record['expected_source']['roster_generation'].eql?(match_ref['roster_generation'])
       end
     end
   end

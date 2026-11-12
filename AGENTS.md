@@ -19,6 +19,22 @@
   Encryption protects the ordinary view, not against a modified client.
 - Preserve both stale-closure guards, participant epochs, immutable history,
   reconciliation of uncertain writes and protection of private phases.
+- A valid native card reveal remains evidence even if its associated rule
+  move is refused. A strict hand audit must replay that evidence in its original
+  chronology separately from accepted moves, and reproduce the exact accepted
+  sequence, not merely its length. Never seed a whole round with knowledge
+  learned only at the end or turn a rejected observation into an accepted move.
+  Transactional tile reducers must retain the authenticated disclosure before
+  copying the candidate model: the server cannot undo it after a rule refusal.
+  Retry that known tile with a claim, not a second native reveal. The refused
+  rule move must still leave the hand, turn and accepted history unchanged.
+- Reducer checkpoints must keep canonical authenticated event identity, including
+  private audit tapes. Cache positions and restore them from the current verified
+  input on both append and warm-return paths; copied event Hashes are not a safe
+  substitute. Bound the full private context/prepared input as well as the model,
+  and publish/drop related cache fields together. See `docs/ARCHITECTURE.md` and
+  `test/games/mahjong/private_replay_cache_test.rb` for historical/raw/native,
+  concurrent admission and refusal regressions.
 - An ordinary game has one executor, planning outside the write lock,
   revalidation before writing and a presentation bridge on the active UI
   thread. Realtime has a separate loop. Do not add UI/keyboard work to the
@@ -37,6 +53,10 @@
   retrying the faulty action. Any intentional fallback must be explicit and bounded.
 - Presentation caches must not skip events or share mutable models; also
   test `nil` state in board games, participant changes and new sessions.
+- A lazy details cache belongs to the contents currently displayed, not the
+  last successful selection. Failure/hidden placeholders invalidate that
+  success; test A loaded -> B failed/hidden -> A, retrying B, and unchanged
+  successful selection/cursor reuse. Never leave A's private contents under B.
 - Keep training/experiments outside the runtime, in `tools/`. Tests share
   helpers from `test/support/`, not scenarios from other `*_test.rb` files.
 - Host tests use a single `ELTEN_HOST_SOURCE`. A missing dependency, skip or
@@ -62,6 +82,33 @@
   in progress or an unreconciled write. At callbacks and when publishing
   validation, check session/collection identity under the lock: a repeated
   counter value does not prove that the generation is the same.
+  A `RoomState` belongs to an immutable native resource ID, not just the
+  application table number. Rejoining that same native ID preserves history
+  and unresolved work; a different resource cannot reuse the retained alias,
+  even when inactive. Native session IDs are opaque, not application UUIDs.
+  Refuse that collision before native join/accept when possible; never clear
+  pending data or swap a state while numeric IO/subscription leases exist.
+  Row-bound snapshot/join and lobby admission must check `__live_session_id`.
+- Successive rematches must not retain every previous game's move/archive
+  payload in local records, receipt indexes or projection caches after a
+  confirmed native trim. Compact only below the cached authenticated floor,
+  with a later accepted start and complete authority ledger; keep current
+  imports, chat, room/control/start/boundary records and all unresolved or
+  unconsumed recovery evidence. Publish the collection, indexes and caches
+  atomically against exact source/generation/native identity. Late callbacks
+  must not resurrect retired payloads. A retired snapshot fails closed, never
+  as an empty old game; the screen uses its existing complete session switch.
+  Accepted start markers reserve IDs even after their archive is compacted.
+- Exponential schedules derived from timestamps or event counters need an
+  economic/work bound before exponentiation, not a rescue after allocation.
+  Poker preserves every achievable nominal blind exactly, then bounds powers
+  above the immutable chip pool where every possible stack is already all-in.
+  Test accepted ordinary/private deal transitions, chip conservation and cold
+  replay; a safe baseline guard must intercept huge powers before computing them.
+- Cache entry counts do not bound variable-sized text payloads. Bound owned
+  key/value bytes as well, including inputs rejected after normalization.
+  Serialize competing admissions when promising an exact count; keep ordinary
+  hits and expensive pure computation outside that admission lock.
 - The option editor and shortcut bindings have separate responsibilities.
   Do not add move writes or a second session executor to them. Games declare
   phase rules, local options and sound effects instead of adding another
@@ -78,6 +125,19 @@
   already bound tournament match. Its published options and identity must
   not be upgraded through `new_game_options`; ordinary starts still use
   the current new-game defaults.
+  New tournament drafts are different: initialize them through
+  `new_game_options(table_creation_options({}))`, then prepare the selected
+  options once more before first publication, after variant changes/Back.
+  Editing an existing publication is not a new draft. Publication validation
+  admits game-owned non-control markers using prototypes generated from
+  already validated controls only; never feed raw metadata back to a permissive
+  normalizer to discover its own allowed keys. Preserve semantic validation,
+  strict declared types and the existing byte/node limits.
+- Bound tournament tables keep their published game settings and team seats.
+  Filter settings/team edits from the shared menu and dynamic help, recheck
+  retained callbacks and direct editors, and refuse the fresh native write
+  when the table or session has a tournament marker. Keep read-only inspection
+  and personal settings available; never weaken the match binding instead.
 - Realtime clients reset their own fields; shared code manages channel
   lifetime, ping and announcement sequencing, not shared physics. Test player
   replacement, a spectator acting as host, stale-channel closure and ping re-registration.
@@ -117,11 +177,16 @@
   authenticated sender, recipient and exact event scope. Native lifecycle
   checks use existing local evidence only: missing verification or a cold
   clock is not proof of expiry. Keep the original invitation deadlines.
+  A later validation may cross the expiry boundary: check optional parsed
+  notice data again before indexing it, even after an earlier visible? check.
   Tournament match invitations bypass contact/blacklist filters, not sender
   authentication, quiet mode or sound settings. Start/final information has
   no expiry; per-publication journals preserve previous attempted sends.
   Final notice snapshots carry the recipient's place and winning unit names.
   Notice refresh is driven by verified tournament changes, not timer polling.
+  Partnership notification shortcuts share the menu's current-phase dispatch:
+  confirmed/drawn team information after start opens participants, not a partner
+  editor whose mutations are already prohibited by the service.
   Hide resolved notices locally without dropping their native lifecycle entry
   before the host has revoked the server notification.
 
@@ -129,14 +194,54 @@
   the base policy is disabled. Keep finishing places separate from numeric
   small-point exports, and preserve all earlier policies when verifying old
   receipts. A team is one unit. Do not turn missing scores into zeros.
+  Small-score keys must match result unit IDs, not each teammate's name; count
+  a repeated team total once. For games resetting their scoreboard each set,
+  derive match totals from accepted public events, without changing the normal
+  player display or personal statistics. Verify full singles/team results, not
+  only an isolated score dictionary.
+  Shared end-of-game feedback also uses game-owned `bot_reward`: when the
+  winner is a team ID, resolve the viewer's team before choosing a win/loss cue.
+  Cover both teams, spectators and silent cold reconstruction; do not compare
+  a team result ID directly with an account name or change the match result.
   v7 adds game-owned placement hooks for newly bound matches only. Keep v1-v6
   exports unchanged, including unfinished old bindings; never migrate them
   silently or enable numeric small points merely to distinguish finishing places.
+  v8 adds `tournament_winning_units_result` for complete public winning units;
+  its default delegates to the existing placement hook. Tile games opt in
+  through their shared family. Preserve v1-v7 receipt verification; changing
+  the current default must not rewrite an already bound match's policy.
+- Validate a tournament's actual roster with the existing shared planner/capacity
+  policy before committing Start; a legal advertised maximum does not prove every
+  smaller group roster is plannable. Keep the original registration chronology,
+  reject before preparing the Start amendment, and preserve the normal strict
+  schedule/entry gates. The automatic direct-final exception is exactly two
+  competing units, never three. No additional polling or table reads are needed.
+  Known roster/group refusals must explain that configuration using the existing
+  localized message, never masquerade as a connection failure.
+  Public setup/publication/Start share `ServerCapacity.supported_player_counts`:
+  public registration assembles fixed pairs, not larger teams. Preserve generic
+  game capabilities and the separate local larger-team planner; reject an
+  unsupported public size before a publication intent or write is prepared.
+  A new journal operation kind must also render in Operations, including its
+  confirmed-but-not-applied notice; do not hide its record or change its durable
+  status to avoid an unsupported UI case. Test real service-produced records in
+  the native list/details controls, not only an isolated label helper.
+  A verified coordination observation replaces its old scheduled wake, including
+  after cancellation or removal of a future start. Failed or unauthorized reads
+  must retain the previous timer and the existing bounded retry job.
 - New organizer settlements use v3 receipts and complete place groups outside
   active play only. A waiting table is not a start; unavailable native history
   is not proof of an unstarted match. All-zero is a resolved fixture, not a
   draw, and advances nobody from its knockout pairing. Preserve empty bracket
   positions and the original automatic cumulative 300-second absence boundary.
+  Historical receipt builders used only by tests belong in explicit test
+  support, extended only onto fixture instances. Keep the actual old receipt
+  readers/validators and the active v3 writer unchanged; do not restore an
+  unused production writer merely to construct a historical test document.
+  A composed knockout series progress view uses the same bounded copy budget
+  as its series plan, not the smaller generic publication default. Exercise
+  the actual maximum roster with legal long account names and scored results;
+  testing only short fixture names misses the combined-output byte boundary.
 - Table voice uses native Conference channels, not voice calls. The shared
   Program entry point must be public to GameScreen. Claims, publication and
   reset use ordered authenticated room records; record native host handover
@@ -146,6 +251,13 @@
   update before publishing a ready invitation; never issue a redundant join
   while the local channel cache is stale. Release the previous native membership
   before creation, and clear an unconfirmed creation claim without announcing it.
+  Creation already owns native membership even when its update is delayed.
+  On cancellation or unconfirmed/rejected publication, remove the observer and
+  leave only the created ID+name under the same account. If the cached view is
+  still delayed or leave fails, retain that exact local identity for ordinary
+  table departure; never guess a channel or leave a foreign reused ID.
+  A ready response alone is not confirmation: require accepted publication and
+  the exact created channel/name/creator before retaining it as published.
   The creator's Disconnect leaves only that conference and clears the exact
   table invitation head; it must not leave an unrelated native conference.
   A connected guest also gets Disconnect, but leaves locally without clearing
@@ -161,8 +273,18 @@
   checkpoints. Recheck actors and IDs, all earlier changed records, resource
   identities and session context; retain bounded memory and generation guards.
   Never let a shorter historical view evict the latest checkpoint.
+  Game adapters omit only the transport-only `__game_revision` from the copied
+  reducer input, not from the real session/write CAS. Retain a bounded previous
+  `Input` for opt-in native immutable-log authentication reuse; mutable rows or
+  a changed authority generation still need revalidation.
 - The default paced bot delay is one second; retain explicit choices and do
-  not apply sleeps or turn pacing to realtime physics. Categories use append-only
+  not apply sleeps or turn pacing to realtime physics. Sequential challenge
+  planning, scheduling and cached-plan identity must all use the reducer's
+  actual current-turn boundary. A timeout can change it without a player input
+  (audio memory keeps it in `model.public.turn_started_ms`, numeric challenges
+  in `model.turn_started_at_ms`). Test timeout after a first reveal, two empty
+  turns and unchanged-turn cache reuse through actual action/expiry transitions.
+  Categories use append-only
   wire IDs and versioned pools: old masks/options/rounds keep their old meanings.
 
 - Tournaments use the official `ServerWorkspace`; local trial adapters and
@@ -223,6 +345,33 @@
   write boundary. Team absence policy is separate, not inferred from singles.
   See [TOURNAMENT_SERVER_INTEGRATION.md](docs/TOURNAMENT_SERVER_INTEGRATION.md).
 
+- Local tournament diagnostic windows must bind an accepted preview to its
+  displayed full assignment input, not just a list index. Changing the selected
+  tournament, seats or team assignment requires a new preview before
+  configuration; changing only the table limit does not. Keep an uncertain original
+  intent and its shown input until readback resolves it. Reopening and accepting
+  the same assignment may create an alias: resolve its canonical accepted plan
+  at the dispatcher operation boundary for policies, availability, proposals
+  and executions. Do not relax document validation or add I/O to the UI's own
+  lease-due check. These local diagnostic APIs are not the ordinary player
+  tournament invitation flow described above.
+  Accepted descendant phases share the existing bounded execution document;
+  its record guard uses the document's MAX_RECORDS, not the separate eight-root
+  producer limit. Dispatch policy, availability and proposal maps cannot exceed
+  its canonical record count and must still validate every intent/roster key.
+  Preserve the root-plan, descendant-store, byte/node and execution limits.
+  Local readiness must retain and strictly validate the complete current
+  ScheduleCandidate, including optional dates, daily hours and series win
+  targets. Accepting that metadata must not open its gate or assign game roles.
+  Readiness phase comes from the exact persisted Start lineage, not a constant
+  or the UI. Reject new declarations after Start both at negotiation/snapshot
+  and atomically at store, without revoking its grant; still read back earlier
+  receipts idempotently. A phase conflict with an equal readiness revision
+  needs its specific reason and matching started scope/plan/fixture/parent proof,
+  not a blanket relaxation of corrupt-receipt validation. Test the actual local
+  port through Start and another legal move: a correct fake port alone is not
+  evidence that the real composition enforces this gate.
+
 - Legacy participant-lease recovery checkpoints summarize an authenticated observed prefix,
   not a CAS. Replay every row after their boundary; preserve original server
   timestamps, release markers and expiry of incomplete uploads. Do not use
@@ -252,6 +401,17 @@
 - Coordinate private answers between instances of the same native Program
   that share a file. Removing a Krowa word must survive replay: associate
   the addition marker with its source event, not an aggregate for the entire session.
+- An existing malformed hidden-answer snapshot is not a missing file. Reject
+  invalid JSON/shape as StorageError before choosing an older sidecar or writing
+  another envelope. Confirmed cleanup may return false; it must preserve bytes.
+  Regressions: `hidden_submissions_shape_test.rb` and
+  `hidden_submissions_corrupt_json_test.rb` in `test/persistence/`.
+  A false cleanup return is not successful completion: propagate it through
+  every adapter and memoize only after all applicable cleanup paths succeed.
+  Compact local Duck results use the existing atomic commitment-checked
+  removal, scoped to accepted closures, session and local account. Preserve
+  unresolved entries and replacements made between enumeration and deletion;
+  retry a transient storage refusal against the same replay.
 - Recheck host transfer and replacement at the write boundary, not just
   before opening the participant selector: a bot or human may confirm a
   private choice while the dialog is open. Replacement distinguishes the
@@ -303,6 +463,11 @@ Details: `docs/UI.md`.
   or input. Menus and covering windows neutralize keys but do not stop
   synchronization. When changing this, test multiple instances,
   backoff/uncertain writes, returning, deadlines, freeze/rematches and completion.
+  A retained background client must adopt the current UI owner when attaching
+  its visible view, just as its progress driver does. Coverage/presentation
+  checks must not keep the thread which originally created it behind another
+  window. Verify accepted input reaches the surface after return and remains
+  suppressed while the form is actually covered.
   Tests: game_session_runner*_test.rb and game_session_screen_test.rb.
 - Open the leave-table confirmation before `GameScreen#run` ends.
   Keep the executor, realtime client and presentation alive until leaving
@@ -383,7 +548,19 @@ Details: `docs/UI.md`.
 - Use ELTEN's new event-driven API. Do not write manual UI loops.
 - Extend the shared framework when behavior is common to a family of games;
   do not copy the same handling into several game classes.
+- A finite single-choice modal uses `GameRoomUI.choose_index`, not a copied
+  ListBox/Form loop. It returns an index (zero is valid) or nil; callers still
+  validate their token, selected identity and authority after it closes.
+  Do not force multi-selection/deadline forms into that simpler contract.
+  When introducing or extending shared capabilities, document exact current
+  entry points, ownership, defaults, cancellation/errors and required tests;
+  verify examples and migrate genuinely equivalent consumers in the same batch.
 - Do not move game rules into `GameScreen` or UI details into transport.
+- Match action-key modifiers at the press boundary, not from final held state
+  or native Form event parameters. Shared bindings/text gating use
+  `GameRoomUI.modifiers_when_pressed` before consuming input; keep modified
+  text navigation native. Test modifier release and addition after the key
+  inside one frame, not just a modifier held through the next UI update.
 - Do not bypass `action_for`, `GameRepository` or event replay.
 - New card games must use the shared hand handling rather than copy cursor
   logic: stable unique card IDs, `hand_order` in actual draw order, and
@@ -458,6 +635,13 @@ Details: `docs/UI.md`.
   delivery requirements. A new game gets a new client; stale tasks and
   repeated invitations must not affect the new connection. Recovery must
   work without the player pressing Enter.
+- Bound historical identities as well as inboxes. Invitation retry metadata may
+  follow the current roster; sequence watermarks must survive leave/rejoin in
+  the same epoch. Use Channel's shared history limit/generation-safe reconnect,
+  not in-place watermark eviction. Native messages can be authenticated and
+  ACKed before their sender appears in the local native roster; requiring that
+  roster ID without a recovery design can silently drop valid delivered input.
+  Regression: `test/realtime/channel_roster_history_test.rb`.
 - LiveSessions stores durable table state and results; do not make every
   movement or safe local presentation depend on a durable write. Do not
   improve speed at the expense of scoring permissions or consistent decisions.
@@ -502,6 +686,13 @@ and `docs/PRIVATE_STATE.md`:
   through `supports_saved_games?`. If event values contain controller names,
   implement `restored_event_value` for those specific fields. Do not replace
   players or close the table before the account archive write is confirmed.
+  Validate the exact canonical saved-event fields before replay. Native-only
+  proof/payload metadata belongs to the authenticated transport, not an imported
+  archive, even when its checksum is correct. Unknown fields must produce the
+  existing controlled archive-validation error, not reach game reducers.
+  The independent native `game_archive` validator enforces the same canonical
+  field allowlist; an authenticated room owner does not authenticate imported
+  native proof fields. Preserve normal moves, roster changes and `game_time`.
 
 - History/replay files (`lib/recordings`) are passive records, not resumable
   saves. Observe existing renderers; never rerun physics, publish results or
@@ -513,6 +704,13 @@ and `docs/PRIVATE_STATE.md`:
   sender copy, never the library file. Preview never removes received messages;
   ask about removal only after persistent import succeeds. Preserve the delivery
   journal on an uncertain send and reconcile rather than duplicate it.
+  The header describes the starting participants; same-session replacements
+  belong in the current frame roster using the same participant display names.
+  Validate an explicit roster against the fixed seat count before rendering.
+  Information, context actions and perspective labels follow that frame while
+  preserving the listening seat. Refresh native controls quietly on their own
+  active UI update, never in covered/background Progress work. A roster change
+  must neither discard the existing capture nor create another match opening.
 
 - Update affected tests in the same change as the behavior they verify, not
   after a failed GitHub run. Search existing tests, shared fixtures, snapshots
@@ -634,15 +832,22 @@ Procedure: `docs/BUILDING.md`. Preserve licensing and attribution.
   a fresh schema on every read; explicit Refresh and a write attempt
   invalidate the snapshot. Regressions: `statistics_audit_regressions_test.rb`,
   `game_room_analytics_client_test.rb`.
-- Statistics and presence reads do not stop at a short page. The server
+- Statistics, presence and Krowa table scans do not stop at a short page. The server
   may return 1000 records despite a schema limit of 2000, or fewer still.
   Request at most 1000 (or the table's lower limit), advance the offset/ID
   by the records actually received and stop only on an empty response or
-  a confirmed snapshot boundary. Preserve deduplication, canonical dates,
+  a confirmed snapshot boundary or the reader's explicit total acquisition cap.
+  Preserve deduplication, canonical dates,
   progress and cancellation checks; a later-page failure is not partial
   success. Test servers must be able to shorten pages independently of
   the schema. Regressions: `statistics_pagination_test.rb`,
   `room_presence_store_test.rb` and `game_room_analytics_client_test.rb`.
+  Krowa's grouped word browser retains its 2000-raw-row cap and canonical
+  daily assignments; `test/games/krowa/short_page_search_test.rb` covers short
+  responses independently from requested limits, plus later-page failure.
+  The bounded presence cleanup carries its cursor across nonempty short pages
+  between existing cleanup intervals; only an empty tail resets it. Preserve
+  native ownership and immediate renewed-row checks before deletion.
   Do not “fix” counts by inventing starts or capping completions at starts.
 - Board presentation is local. Save only explicitly allowed flags, and
   orientation relative to the player's seat; do not save cursors or drafts.
@@ -767,6 +972,13 @@ such as Henryk VIII, Jan Paweł II, II wojna światowa and Balet XX Wieku.
   (`test/realtime/covered_start_return_test.rb`).
   The ordinary executor writes agreed points. A Pong point proposal must
   match the current rally even before the validator is called.
+- Typing input validity is not provider availability. A Liblouis call that
+  succeeds and consumes its whole input may produce zero characters for an
+  unfinished number/capital marker. Space must then reject that word, not
+  cancel practice or count an empty word. Cover own-text as well as source-text
+  practice with the real bundled DLL, and preserve mistakes in checkpoints.
+  Failed calls, partial consumption and invalid output lengths remain errors;
+  do not hide them behind a blanket rescue.
 - The Scrabble preview client implements the full GameScreen client
   contract, not just message reception. Test its actual start/loop/close
   lifecycle. The draft contains only placed tiles, not the rest of the rack

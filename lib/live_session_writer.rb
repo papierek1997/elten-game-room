@@ -300,6 +300,7 @@ class GameRoomLiveSessionStore
         # The callback/read may have passed its earlier membership check just
         # before leave and cache pruning. Never recreate that old collection.
         next false if source_session && !@sessions[table_id].equal?(source_session)
+        next false if room_state(table_id).compacted_game_record?(record)
 
         key = [seq, identity]
         if room_state(table_id).record_keys.key?(key)

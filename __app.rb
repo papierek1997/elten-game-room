@@ -1129,28 +1129,6 @@ class EltenGameRoom < Program
     end
   end
 
-  def bind_game_room_shortcuts(form, game, &dispatch)
-    return if game == nil
-    form.game_shortcut_signatures = game.room_shortcuts.map { |shortcut| [shortcut.key, shortcut.modifiers] } if form.respond_to?(:game_shortcut_signatures=)
-    game.room_shortcuts.each do |shortcut|
-      form.on(:"key_#{shortcut.key}") do |parameters|
-        shift, control, alt = parameters.to_a
-        held = []
-        held << :shift if shift == true
-        held << :control if control == true
-        held << :alt if alt == true
-        next unless held.sort == shortcut.modifiers.sort
-        dispatch.call(shortcut.action_name)
-      end
-      prefixes = []
-      prefixes << _("Ctrl") if shortcut.modifiers.include?(:control)
-      prefixes << _("Alt") if shortcut.modifiers.include?(:alt)
-      prefixes << _("Shift") if shortcut.modifiers.include?(:shift)
-      key = shortcut.key == "space" ? _("Space") : shortcut.key.upcase
-      form.add_tip(GameRoomContextHelp.shortcut_tip((prefixes + [key]).join("+"), shortcut.label))
-    end
-  end
-
   def game_join_allowed?(table)
     game = game_definition(table["game"])
     return true unless game
@@ -1415,19 +1393,7 @@ class EltenGameRoom < Program
   end
 
   def select_saved_game_item(labels, header)
-    list = ListBox.new(labels, header: header, quiet: true)
-    open = Button.new(_("Open"))
-    back = Button.new(_("Back"))
-    form = GameRoomUI::Form.new([list, open, back], program: self, quiet: true)
-    selected = nil
-    form.accept_button = open
-    form.cancel_button = back
-    form.hide(open)
-    form.hide(back)
-    open.on(:press) { selected = list.index.to_i; form.resume }
-    back.on(:press) { form.resume }
-    form.wait
-    selected
+    GameRoomUI.choose_index(header, labels, program: self)
   end
 
   def create_saved_game_table(saved)
@@ -1868,30 +1834,9 @@ class EltenGameRoom < Program
   end
 
   def select_game(header, game_ids, descriptions: false)
-    selected_index = 0
-    action = nil
-    games = ListBox.new(
-      game_ids.map { |game_id| descriptions ? game_lobby_label(game_id) : game_name(game_id) },
-      header: header,
-      index: selected_index,
-      quiet: true
-    )
-    select_button = Button.new(_("Select"))
-    back_button = Button.new(_("Back"))
-    form = GameRoomUI::Form.new([games, select_button, back_button], program: self, quiet: true)
-    form.accept_button = select_button
-    form.cancel_button = back_button
-    form.hide(select_button)
-    form.hide(back_button)
-    select_button.on(:press) do
-      selected_index = games.index.to_i
-      action = :select
-      form.resume
-    end
-    back_button.on(:press) { form.resume }
-
-    form.wait
-    action == :select ? game_ids[selected_index] : nil
+    labels = game_ids.map { |game_id| descriptions ? game_lobby_label(game_id) : game_name(game_id) }
+    selected = GameRoomUI.choose_index(header, labels, program: self)
+    selected.nil? ? nil : game_ids[selected]
   end
 
   def configure_game_options(game, **options)
@@ -2144,7 +2089,6 @@ class EltenGameRoom < Program
     end
     layout.primary_button.on(:press) { dispatch.call(:start_game) }
     layout.bind_status_commands { |command| dispatch.call(:local_game_command, command) }
-    bind_game_room_shortcuts(form, state.game) { |command| dispatch.call(:local_game_command, command) }
     layout.back_button.on(:press) { dispatch.call(:leave) }
     layout.voice_button.on(:press) { dispatch.call(:voice) }
     bind_waiting_table_chat(layout, row, selection, chat_sends, chat_context, dispatch)
@@ -2500,22 +2444,11 @@ class EltenGameRoom < Program
   end
 
   def choose_table_participant(candidates, header)
-    return nil if candidates.empty?
     labels = candidates.map do |person|
       person == :new_bot ? _("Add a new computer in this place") : GameRoomParticipants.display_name(person)
     end.map { |label| GameRoomContent.utf8(label) }
-    selected = nil
-    list = ListBox.new(labels, header: GameRoomContent.utf8(header), index: 0, quiet: true)
-    accept = Button.new(_("Accept"))
-    cancel = Button.new(_("Cancel"))
-    form = GameRoomUI::Form.new([list, accept, cancel], program: self, quiet: true)
-    form.accept_button, form.cancel_button = accept, cancel
-    form.hide(accept)
-    form.hide(cancel)
-    accept.on(:press) { selected = candidates[list.index.to_i]; form.resume }
-    cancel.on(:press) { form.resume }
-    form.wait
-    selected
+    selected = GameRoomUI.choose_index(header, labels, program: self)
+    selected.nil? ? nil : candidates[selected]
   end
 
   def show_invite_users(row, source:)
@@ -2587,24 +2520,8 @@ class EltenGameRoom < Program
   end
 
   def select_invitation_recipient(users, header)
-    action = nil
-    selected_index = 0
-    list = ListBox.new(users, header: header, index: selected_index, quiet: true)
-    invite_button = Button.new(_("Invite"))
-    back_button = Button.new(_("Back"))
-    form = GameRoomUI::Form.new([list, invite_button, back_button], program: self, quiet: true)
-    form.accept_button = invite_button
-    form.cancel_button = back_button
-    form.hide(invite_button)
-    form.hide(back_button)
-    invite_button.on(:press) do
-      selected_index = list.index.to_i
-      action = :invite
-      form.resume
-    end
-    back_button.on(:press) { form.resume }
-    form.wait
-    action == :invite ? users[selected_index] : nil
+    selected = GameRoomUI.choose_index(header, users, program: self)
+    selected.nil? ? nil : users[selected]
   end
 
   def deliver_invitation_response(invitation, response)
@@ -2699,29 +2616,10 @@ class EltenGameRoom < Program
   end
 
   def select_pending_invitation(choices, mode: :accept)
-    action = nil
-    selected_index = 0
-    invitations = ListBox.new(
-      choices.map { |choice| pending_invitation_label(choice) },
-      header: _("Invitations"),
-      index: selected_index,
-      quiet: true
-    )
-    join_button = Button.new(mode == :reject ? _("Reject") : _("Accept"))
-    back_button = Button.new(_("Back"))
-    form = GameRoomUI::Form.new([invitations, join_button, back_button], program: self, quiet: true)
-    form.accept_button = join_button
-    form.cancel_button = back_button
-    form.hide(join_button)
-    form.hide(back_button)
-    join_button.on(:press) do
-      selected_index = invitations.index.to_i
-      action = mode
-      form.resume
-    end
-    back_button.on(:press) { form.resume }
-    form.wait
-    [:accept, :reject].include?(action) ? choices[selected_index] : nil
+    return nil unless [:accept, :reject].include?(mode)
+    labels = choices.map { |choice| pending_invitation_label(choice) }
+    selected = GameRoomUI.choose_index(_("Invitations"), labels, program: self)
+    selected.nil? ? nil : choices[selected]
   end
 
   def pending_invitation_label(choice)
@@ -2896,23 +2794,9 @@ class EltenGameRoom < Program
   end
 
   def select_notification_invitation_action
-    action = nil
     choices = [_("Accept invitation"), _("Reject invitation")]
-    actions = ListBox.new(choices, header: _("Invitation"), index: 0, quiet: true)
-    select_button = Button.new(_("Select"))
-    back_button = Button.new(_("Back"))
-    form = GameRoomUI::Form.new([actions, select_button, back_button], program: self, quiet: true)
-    form.accept_button = select_button
-    form.cancel_button = back_button
-    form.hide(select_button)
-    form.hide(back_button)
-    select_button.on(:press) do
-      action = actions.index.to_i == 0 ? :accept : :reject
-      form.resume
-    end
-    back_button.on(:press) { form.resume }
-    form.wait
-    action
+    selected = GameRoomUI.choose_index(_("Invitation"), choices, program: self)
+    selected.nil? ? nil : [:accept, :reject][selected]
   end
 
   def revoke_invitation_notification(invitation_id, notification_id: nil)
@@ -3296,8 +3180,7 @@ class EltenGameRoom < Program
     initialize_services
     result = run_network_task(_("Checking table")) do
       @transport.start
-      if receiver.visible?(notification)
-        metadata = receiver.data(notification)
+      if receiver.visible?(notification) && (metadata = receiver.data(notification))
         [metadata, @lobby.open_table_snapshots(game: metadata["game"])]
       else
         [nil, nil]
@@ -3513,10 +3396,6 @@ class EltenGameRoom < Program
     @lobby.playing?(row) ? _("game in progress") : _("open")
   end
 
-  def active_game?(state)
-    state.active?
-  end
-
   def start_new_game(row, state: nil)
     state ||= load_room_state(row, title: _("Checking the table before starting"))
     return if state == nil
@@ -3712,25 +3591,8 @@ class EltenGameRoom < Program
   end
 
   def choose_team(assignment, current)
-    teams = ListBox.new(
-      Array.new(assignment.team_count) { |index| _("Team %{team}") % { team: index + 1 } },
-      header: _("Choose a team"),
-      index: current.to_i,
-      quiet: true
-    )
-    select_button = Button.new(_("Select"))
-    cancel_button = Button.new(_("Cancel"))
-    form = GameRoomUI::Form.new([teams, select_button, cancel_button], program: self, quiet: true)
-    form.accept_button = select_button
-    form.cancel_button = cancel_button
-    selected = nil
-    select_button.on(:press) do
-      selected = teams.index.to_i
-      form.resume
-    end
-    cancel_button.on(:press) { form.resume }
-    form.wait
-    selected
+    labels = Array.new(assignment.team_count) { |index| _("Team %{team}") % { team: index + 1 } }
+    GameRoomUI.choose_index(_("Choose a team"), labels, program: self, index: current)
   end
 
   def change_table_teams(table, state: nil)
@@ -3938,6 +3800,7 @@ class EltenGameRoom < Program
 
   def editable_table_state?(state)
     state.is_a?(GameRoomLifecycle::State) && state.available? && !state.active? && state.game != nil &&
+      !GameRoomTournamentMarker.present?(state.room.table, state.session) &&
       !legacy_table?(state.room.table) &&
       GameRoomParticipants.same?(Session.name, @lobby.owner_of(state.room.table)) &&
       !(state.session == nil && !state.room.table["resume_save_id"].to_s.empty?) &&

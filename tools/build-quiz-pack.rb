@@ -35,14 +35,6 @@ abort "the JSON file contains no questions" if !questions.is_a?(Array) || questi
 
 LEVELS = %w[easy medium hard].freeze
 
-def ruby_string(text)
-  JSON.generate(text.to_s).gsub("#", '\\#')
-end
-
-def comment_text(text)
-  text.to_s.gsub(/[[:cntrl:]]+/, " ").strip
-end
-
 seen_ids = {}
 problems = []
 prepared = questions.each_with_index.map do |question, index|

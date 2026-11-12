@@ -36,7 +36,6 @@ handler.call(marks.first)
 handler.call(marks.last)
 assert(wait.action.nil? && wait.revision == 123, 'Bookmark resumes game or changes revision')
 assert(reports.questions.size == 1, 'Current question not marked')
-assert(GameRoomShortcutBindings.modifiers_match?(marks.first, [false, true, false]), 'Ctrl+B not recognized')
-assert(!GameRoomShortcutBindings.modifiers_match?(marks.first, [true, true, false]), 'Shift+B marks current instead of previous')
-assert(!GameRoomShortcutBindings.modifiers_match?(marks.first, [false, false, false]), 'Typing B triggers report')
+# Native press-time routing, focused chat and key consumption are exercised
+# by report_press_snapshot_native_test.rb, not a removed private matcher.
 puts 'PASS Quiz bookmarks use visible replay without move, cursor or timer changes'

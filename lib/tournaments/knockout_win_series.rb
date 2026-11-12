@@ -17,7 +17,7 @@ module GameRoomTournaments
       end
       summaries=series.filter_map{|row|row['summary']}
       sports=KnockoutRound.progress(seeds:base['seeds'],players_per_match:2,round_number:base['round'],results:summaries,bracket_groups:base['bracket_groups'])
-      Publication::Data.freeze_tree(Publication::Data.copy({'series'=>series,'sports'=>sports,'summaries'=>summaries}))
+      Publication::Data.freeze_tree(Publication::Data.copy({'series'=>series,'sports'=>sports,'summaries'=>summaries},max_bytes:1_048_576,max_nodes:65_536,max_depth:16))
     end
     def build(base:,history:,target:,attempt:)
       raise Publication::Invalid,:invalid_knockout_configuration unless attempt.is_a?(Integer) && attempt.between?(1,4096)

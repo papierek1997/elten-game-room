@@ -20,8 +20,17 @@ module GameRoomTestRunner
         matches = glob(pattern).sort
         raise ArgumentError, "No tests matched: #{pattern}" if matches.empty?
         matches.map { |script| specification.merge(script: script) }
-      end.uniq
+      end.uniq { |entry| entry_identity(entry, root: root) }
     end
+  end
+
+  # Preserve the caller's first path spelling for execution and reports, but
+  # compare the actual scenario independently of path/hash spelling. Arguments,
+  # environment and Ruby preloads remain distinct execution variants.
+  def self.entry_identity(entry, root: ROOT)
+    entry.merge(script: File.expand_path(entry.fetch(:script), root),
+      args: entry.fetch(:args, []), ruby_args: entry.fetch(:ruby_args, []),
+      env: entry.fetch(:env, {}).sort.to_h).sort_by { |key, _| key.to_s }
   end
 
   def self.glob(pattern)
@@ -113,7 +122,10 @@ module GameRoomTestRunner
     parts = Array.new(total) { [] }
     weights = Array.new(total, 0)
     budget = ->(job) { timeout || GameRoomTestSuites.timeout_for(job.fetch(:script), fallback: DEFAULT_TIMEOUT) }
-    jobs.sort_by { |job| [-budget.call(job), job.fetch(:script)] }.each do |job|
+    jobs.sort_by do |job|
+      [-budget.call(job), File.expand_path(job.fetch(:script), root),
+        JSON.generate(entry_identity(job, root: root))]
+    end.each do |job|
       part = weights.each_with_index.min.last
       parts[part] << job
       weights[part] += budget.call(job)
