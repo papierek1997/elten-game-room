@@ -370,6 +370,10 @@ class GameScreen
       end
     end
   ensure
+    close_game_runtime
+  end
+
+  private def close_game_runtime
     @program.background_music.leave_game(event_presenter) if @program.respond_to?(:background_music)
     @chat_sends&.clear
     @layout&.computer_changes&.clear

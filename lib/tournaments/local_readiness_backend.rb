@@ -202,26 +202,7 @@ module GameRoomTournaments
         raise C::Blocked, :sandbox_corrupt
       end
       DraftDetails.validate!({'windows' => data['windows']})
-      # Keep the complete current candidate, including optional schedule and
-      # series settings. These are source identity, not permission to start:
-      # this diagnostic port still leaves its gate closed and roles unassigned.
-      if data.key?('starts_at')
-        start = data['starts_at']
-        unless C::Data.integer?(start) && (start.zero? || start >= data['registration_closes_at'])
-          raise C::Blocked, :sandbox_corrupt
-        end
-      end
-      if data.key?('daily_hours')
-        raise C::Blocked, :sandbox_corrupt unless data.key?('starts_at') && data['windows'].empty?
-        TournamentTiming.validate_daily_hours!(data['daily_hours'])
-      end
-      Publication::WIN_SETTINGS.each do |key|
-        next unless data.key?(key)
-        unless %w[groups_knockout knockout].include?(data['format']) &&
-            C::Data.integer?(data[key], 1) && data[key] <= 99 && data[key.sub('wins_to', 'rematch')] == false
-          raise C::Blocked, :sandbox_corrupt
-        end
-      end
+      validate_candidate_timing!(data)
       data['roster'].each { |actor| C.text!(actor); raise C::Blocked, :sandbox_corrupt unless actor == actor.downcase }
       ids = []
       data['matches'].each do |match|
@@ -246,6 +227,29 @@ module GameRoomTournaments
         end
         schedule, fixtures = KnockoutSchedule.matches(metadata: metadata, generation: data['roster_generation'])
         raise C::Blocked, :sandbox_corrupt unless schedule == data['schedule_id'] && fixtures.eql?(data['matches']) && metadata['seeds'].sort == data['roster'].sort
+      end
+    end
+
+    def validate_candidate_timing!(data)
+      # Keep the complete current candidate, including optional schedule and
+      # series settings. These are source identity, not permission to start:
+      # this diagnostic port still leaves its gate closed and roles unassigned.
+      if data.key?('starts_at')
+        start = data['starts_at']
+        unless C::Data.integer?(start) && (start.zero? || start >= data['registration_closes_at'])
+          raise C::Blocked, :sandbox_corrupt
+        end
+      end
+      if data.key?('daily_hours')
+        raise C::Blocked, :sandbox_corrupt unless data.key?('starts_at') && data['windows'].empty?
+        TournamentTiming.validate_daily_hours!(data['daily_hours'])
+      end
+      Publication::WIN_SETTINGS.each do |key|
+        next unless data.key?(key)
+        unless %w[groups_knockout knockout].include?(data['format']) &&
+            C::Data.integer?(data[key], 1) && data[key] <= 99 && data[key.sub('wins_to', 'rematch')] == false
+          raise C::Blocked, :sandbox_corrupt
+        end
       end
     end
 

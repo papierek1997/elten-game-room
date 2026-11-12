@@ -81,6 +81,10 @@ class GameRoomTableVoiceScreen
     alert(_("The voice conversation is temporarily unavailable."))
   ensure
     @conference.remove_hook(conference_hook) if conference_hook
+    cleanup_unpublished_voice(created_voice, creation_published)
+  end
+
+  private def cleanup_unpublished_voice(created_voice, creation_published)
     # Native create has already joined us, even if its :update is delayed or
     # publication loses its claim. Never leak that unpublished membership;
     # an unrelated conference (including a reused numeric ID) stays untouched.

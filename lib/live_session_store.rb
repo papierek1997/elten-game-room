@@ -1123,27 +1123,7 @@ class GameRoomLiveSessionStore
 
     attach_game_message_handler(table_id, session) if session.respond_to?(:on_message)
 
-    if session.respond_to?(:on_stack_message)
-      session.on_stack_message(with_metadata: true) do |sender, packet, info|
-        next unless @mutex.synchronize { @sessions[table_id].equal?(session) }
-        ingest_record(
-          table_id,
-          sequence: info.sequence,
-          message_id: info.id,
-          sender: sender.user,
-          packet: packet,
-          native_metadata: info,
-          created_at: info.created_at,
-          source_session: session
-        )
-      end
-      session.on_stack_gap do |_gap|
-        next unless @mutex.synchronize { @sessions[table_id].equal?(session) }
-        # Wake the normal synchronizer; do not run a blocking read inside a
-        # native callback. A read failure must retain the recovery wake-up.
-        emit_change(table_id, :recovery, nil)
-      end
-    end
+    attach_stack_handlers(table_id, session)
     session.on_participant_joined { |_participant| emit_change(table_id, :table, nil); emit_presence_change } if session.respond_to?(:on_participant_joined)
     session.on_participant_left { |_participant, _reason = nil| emit_change(table_id, :table, nil); emit_presence_change } if session.respond_to?(:on_participant_left)
     if session.respond_to?(:on_owner_changed)
@@ -1194,6 +1174,30 @@ class GameRoomLiveSessionStore
     session
   ensure
     end_room_io(table_id) if io_started
+  end
+
+  private def attach_stack_handlers(table_id, session)
+    return unless session.respond_to?(:on_stack_message)
+
+    session.on_stack_message(with_metadata: true) do |sender, packet, info|
+      next unless @mutex.synchronize { @sessions[table_id].equal?(session) }
+      ingest_record(
+        table_id,
+        sequence: info.sequence,
+        message_id: info.id,
+        sender: sender.user,
+        packet: packet,
+        native_metadata: info,
+        created_at: info.created_at,
+        source_session: session
+      )
+    end
+    session.on_stack_gap do |_gap|
+      next unless @mutex.synchronize { @sessions[table_id].equal?(session) }
+      # Wake the normal synchronizer; do not run a blocking read inside a
+      # native callback. A read failure must retain the recovery wake-up.
+      emit_change(table_id, :recovery, nil)
+    end
   end
 
   def attach_game_message_handler(table_id, session)

@@ -154,12 +154,7 @@ module GameRoomGames
     end
 
     def replay(session, events, repository)
-      # The native CAS changes on every write, not the meaning of the game.
-      # Reuse only the shared cache's sealed authenticated prefix, with the
-      # same bounded admission as other replay-cache consumers.
-      input = Logic::ReplayCache::Input.new(session.reject { |key, _| key == '__game_revision' }, events, repository,
-        previous: @duck_replay_input)
-      @duck_replay_input = input.retention_bytes <= Logic::ReplayCache::MAX_BYTES ? input : nil
+      input = prepared_duck_replay_input(session, events, repository)
       session, players = input.session, input.players
       options = options_from_json(session["options"])
       resources = resources_for(options)
@@ -234,6 +229,16 @@ module GameRoomGames
         bot_controller_epoch: session["__control_epoch"], controllers: session.fetch("__controllers", {}).dup,
         duck_challenge_events: challenge_events)
       replay_from_state(state, session, accepted, history)
+    end
+
+    private def prepared_duck_replay_input(session, events, repository)
+      # The native CAS changes on every write, not the meaning of the game.
+      # Reuse only the shared cache's sealed authenticated prefix, with the
+      # same bounded admission as other replay-cache consumers.
+      input = Logic::ReplayCache::Input.new(session.reject { |key, _| key == '__game_revision' }, events, repository,
+        previous: @duck_replay_input)
+      @duck_replay_input = input.retention_bytes <= Logic::ReplayCache::MAX_BYTES ? input : nil
+      input
     end
 
     def replay_from_state(state, session, accepted, history)

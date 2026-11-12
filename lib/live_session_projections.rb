@@ -134,13 +134,8 @@ class GameRoomLiveSessionStore
         intent_epochs: incremental ? cached[:intent_epochs].transform_values(&:dup) : {}}
       imported = if incremental
         cached[:imported]
-      elsif !session["__archive_id"].to_s.empty?
-        (game_record == nil ? [] : archive_events_for(game_record).to_a).reject { |item| item.key?('players') }.map do |event|
-              GameRoomSessionClock.archived_event(event).merge("__id" => event["id"], "session_id" => session_id, "table_id" => table_id,
-                "__insertion_user" => game_record.sender, "__controller" => true, "move_id" => "archive:#{game_record.message_id}:#{event['id']}")
-        end
       else
-        []
+        archive_projection_events(session, session_id, table_id, game_record)
       end
       current = (incremental ? records.drop(cached[:records].length) : records).flat_map do |record|
         project_game_record(record,session_id:session_id,game_record:action_game_record,ledger:ledger,
@@ -171,6 +166,15 @@ class GameRoomLiveSessionStore
         @mutex.synchronize { room.game_projection = nil if @rooms[table_id].equal?(room) && room.record_generation == generation }
       end
       read_only ? events : GameRoomSnapshot.copy(Array.new(events))
+    end
+
+    private def archive_projection_events(session, session_id, table_id, game_record)
+      return [] if session["__archive_id"].to_s.empty?
+
+      (game_record == nil ? [] : archive_events_for(game_record).to_a).reject { |item| item.key?('players') }.map do |event|
+        GameRoomSessionClock.archived_event(event).merge("__id" => event["id"], "session_id" => session_id, "table_id" => table_id,
+          "__insertion_user" => game_record.sender, "__controller" => true, "move_id" => "archive:#{game_record.message_id}:#{event['id']}")
+      end
     end
 
     def game_aborted?(table_id, session_id)
