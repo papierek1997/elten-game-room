@@ -98,7 +98,8 @@ module GameRoomGames
     end
 
     def playable_card_navigation(replay, viewer)
-      actions = legal_actions(replay, viewer).group_by { |action| action['card_id'] }
+      actions = legal_actions(replay, viewer).select { |action| action['kind'] == 'card' }
+      actions = actions.group_by { |action| action['card_id'] }
       return nil if actions.empty?
       card_navigation_spec(hand_id: 'hand', card_actions: actions, automatic_card_ids: actions.keys)
     end
@@ -248,9 +249,11 @@ module GameRoomGames
           player: participant_name(actor), card: playing_card_label(card)}, actor: actor, value: card)
         play_card(state, actor, card, event, repository, history)
         true
-      else false
+      else apply_extra_card_event(state, event, session, repository, history)
       end
     end
+
+    def apply_extra_card_event(_state, _event, _session, _repository, _history); false; end
 
     def legal_cards(state, actor); hand_for(state, actor); end
     def valid_roster?(state)
@@ -281,6 +284,10 @@ module GameRoomGames
       cards = table_cards(state)
       cards.empty? ? _("No cards on the table") : cards_text(cards)
     end
+    def round_information_text(state)
+      table_information_text(state)
+    end
+
     def winning_units(state)
       best = score_order == 'lower' ? state[:scores].values.min : state[:scores].values.max
       state[:units].select { |unit| state[:scores][unit] == best }
