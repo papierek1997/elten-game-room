@@ -1,13 +1,13 @@
-Power Games to zestaw gier dla
-użytkowników ELTEN-a. Możesz spotkać się przy stole ze znajomymi, dołączyć
-do otwartej rozgrywki, kibicować innym albo zmierzyć się z botami w grach,
-które je obsługują.
+# Power Games
 
-Karty, plansze, wyniki
-i zdarzenia są odczytywane przez ELTEN-a, a dźwięki pomagają śledzić to,
-co dzieje się w grze. Wszystkie gry korzystają ze wspólnych stołów, czatu,
-historii oraz pomocy, więc przy poznawaniu kolejnego tytułu wiele rzeczy
-będzie już znajomych.
+Power Games to zestaw gier dla użytkowników ELTEN-a. Możesz spotkać się
+przy stole ze znajomymi, dołączyć do otwartej rozgrywki, obserwować innych
+albo zmierzyć się z botami w grach, które je obsługują.
+
+ELTEN odczytuje karty, plansze, wyniki i zdarzenia, a dźwięki pomagają śledzić
+przebieg gry. Wspólna obsługa stołów, czatu, historii i pomocy ułatwia
+poznawanie kolejnych tytułów. Ten przewodnik opisuje korzystanie z programu;
+reguły, punktację i sterowanie poszczególnych gier znajdziesz w ich zasadach.
 
 ## Spis treści
 
@@ -22,7 +22,6 @@ będzie już znajomych.
 - [Zapis partii i historia](#zapis-partii-i-historia)
 - [Rankingi](#rankingi)
 - [Statystyki](#statystyki)
-- [Funkcje, które łatwo przeoczyć](#funkcje-które-łatwo-przeoczyć)
 - [Ściągawka ze skrótów](#ściągawka-ze-skrótów)
 - [Turnieje](#turnieje)
 - [Pomoc w rozwoju programu](#pomoc-w-rozwoju-programu)
@@ -32,414 +31,332 @@ będzie już znajomych.
 
 ## Pierwsze kroki
 
-Power Games wymaga ELTEN-a w wersji 3.0.5 lub nowszej.
-
-Do gier audio warto używać słuchawek stereo — kierunek dźwięku ma w nich
-znaczenie.
+Power Games wymaga ELTEN-a w wersji 3.0.5 lub nowszej. Do gier audio warto
+używać słuchawek stereo, ponieważ kierunek dźwięku ma znaczenie.
 
 1. Uruchom Power Games z listy programów ELTEN-a.
 2. Wybierz „Utwórz nowy stół”, wskaż grę i ustaw jej wariant. W tym samym
-   formularzu możesz zdecydować, czy stół ma być prywatny.
-3. Zaproś innych graczy lub dodaj boty, jeśli dana gra je obsługuje.
+   formularzu możesz zdecydować, czy stół będzie prywatny.
+3. Zaproś innych graczy lub dodaj boty, jeśli gra je obsługuje.
    W grze drużynowej wybierz i zatwierdź drużyny.
-4. Wybierz „Rozpocznij grę”. W razie wątpliwości naciśnij F1, aby poznać
-   dostępne skróty, albo Ctrl+F1, aby przeczytać zasady.
+4. Wybierz „Rozpocznij grę”. F1 przypomni dostępne czynności,
+   a Ctrl+F1 otworzy zasady gry.
 
-Nie musisz zakładać własnego stołu. „Dołącz do stołu” pozwala wybrać grę
-i przejrzeć istniejące stoły. Możesz też skorzystać z zaproszenia lub widgetu
-na ekranie głównym ELTEN-a.
-Na listach wyboru gry przy tworzeniu i dołączaniu do stołu po nazwie
-usłyszysz krótki opis tego, na czym polega gra.
-Na liście wyzwań w ustawieniach Wyścigów kaczek po nazwie i stanie
-zaznaczenia usłyszysz też krótkie wyjaśnienie, na czym polega dane wyzwanie.
-Ponowne uruchomienie Power Games w tej samej kopii ELTEN-a wraca do już
-otwartego okna programu, zamiast tworzyć drugą niezależną instancję.
+Nie musisz tworzyć własnego stołu. „Dołącz do stołu” pozwala wybrać grę
+i przejrzeć istniejące stoły. Możesz też przyjąć zaproszenie lub skorzystać
+z widgetu na ekranie głównym ELTEN-a. Przy wyborze gry do utworzenia stołu
+lub dołączenia do niego po nazwie usłyszysz jej krótki opis.
 
-Przy uruchamianiu program może zaproponować pobranie nowszej wersji.
-Odmowa nie blokuje wejścia, ale przed wspólną grą warto zadbać o aktualną
-wersję u wszystkich uczestników. Opis zmian znajdziesz w „Co nowego”.
-Jest to tekst do odczytu z nagłówkiem przy każdej wersji. H przechodzi do
-następnego nagłówka, a Shift+H — do poprzedniego. Escape zamyka dokument.
+Ponowne uruchomienie Power Games w tej samej kopii ELTEN-a przywraca otwarte
+okno programu, zamiast otwierać drugie. Przy uruchamianiu program może
+zaproponować aktualizację. Odmowa nie blokuje wejścia, ale przed wspólną
+grą warto zadbać o aktualną wersję u wszystkich uczestników.
+
+Opis zmian znajdziesz w „Co nowego”. Podobnie jak w tym przewodniku,
+H przechodzi tam do następnego nagłówka, Shift+H do poprzedniego,
+a Escape zamyka dokument.
 
 ## W co można zagrać
 
-Obecnie Power Games zawiera 46 gier:
+Power Games zawiera 48 gier: od karcianek i planszówek po zabawy słowne,
+ćwiczenia pisania i gry, w których najważniejsze są słuch i refleks.
 
-- Karcianki: 3-5-8, 99, 1000 mil, Biblios, Bouillabaisse, Brydż, Makao, Piki, Poker, Remik, Scopa, Tysiąc,
-  UNO, Wojna i Wojna naukowa.
-- Gry planszowe i strategiczne: Chińczyk, Cztery w rzędzie,
-  Kółko i krzyżyk, Mankala, Monopoly, Reversi, Statki, Szachy, Warcaby
-  i Wyścigi kaczek.
-- Kości i domino: Cat, head, tail, Domino, Farkle, Mexican Train i Yahtzee.
-
-W obu blackjackach gra o żetony zaczyna się od automatycznej wpłaty wejściowej (domyślnie po dziesięć, a przy niższym saldzie za wszystko), potem następuje licytacja przed grą. R albo B pozwala wpisać własne podbicie, C czekać lub sprawdzić, F spasować, A wejść za wszystko. Kasynowy wariant karcianego rozlicza stawki z krupierem, kościany używa puli głównej i pul bocznych.
-
-Bingo ma odmiany 30-, 75-, 80- i 90-kulowe, wybierane przy tworzeniu stołu. W 75 i 80 kulkach wybierasz też wzór zwycięstwa. Domyślnie liczby zaznaczane są automatycznie; można wybrać zaznaczanie ręczne. Strzałki przeglądają kupon, Enter zaznacza wywołaną liczbę, M pozwala ją wpisać, B zgłasza bingo, R potwierdza gotowość do następnej kulki. L powtarza ostatnią kulkę, D przegląda losowania. Losowaniu towarzyszy dźwięk bębna bingo.
-
-Poker kościany pozwala zatrzymywać kości i walczyć o najlepszy układ w kilku rundach. Przy tworzeniu stołu wybierasz strity, najwyższe jedynki lub szóstki, dwa albo trzy rzuty oraz limit rzutów otwierającego. Enter rzuca, 1–6 wybiera kości do przerzutu, Shift+1–6 je zatrzymuje, K zachowuje układ, S czyta wyniki. Kłamczuch to gra ukrytymi kośćmi: wybierz odmianę klasyczną, w stylu Red Dead albo Perudo z opcjonalnym Palifico i Calzą. B wpisuje deklarację, K sprawdza blef, D zgłasza dokładną liczbę, V czyta własne kości, L deklarację. Obie gry obsługują boty. Używaj tego samego profilu Eltena, aby zachować sekrety kłamczucha.
-
-W pokerze karcianym wybierzesz pełną talię 52 kart albo 24 karty od dziewiątek do asów. Z krótką talią poker dobierany ma najwyżej czterech graczy, a przy wymianie wszystkich pięciu kart — trzech. Hold’em nadal obsługuje osiem miejsc. Poker kościany oferuje także żetony: wspólne wpisowe, licytację przed rzutami i po nich, własne podbicia, all-in i pule boczne. Blackjack towarzyski nie ma ręki krupiera: gracze rozdają kolejno, D rozdaje, a najlepsza ręka do 21 wygrywa wspólną pulę.
-
-Go: wybierz planszę 9×9, 13×13 lub 19×19, liczenie obszaru, uzgadniane liczenie terytorium albo Atari Go na pierwsze zbicie. P pasuje; po dwóch pasach Enter oznacza martwe grupy lub neutralne obszary, A zatwierdza wynik, R wznawia grę, Q poddaje. Liczenie terytorialne nie rozstrzyga automatycznie wszystkich japońskich wyjątków życia i śmierci.
-
-Ruletka: koło europejskie, amerykańskie albo francuskie z la partage. Wybierz kasyno z automatycznym krupierem i stałymi wypłatami albo stół towarzyski ze wspólną pulą i zmiennym kręcącym. Towarzysko wygrane dzielą pulę proporcjonalnie do nominalnych zwrotów kasynowych; gdy nikt nie trafi, stawki wracają. B otwiera zakład z własną kwotą, R kończy obstawianie, C usuwa zakłady, V je czyta, S podaje salda, Spacja kręci towarzysko. Używamy tylko wirtualnych żetonów. Słychać koło i stawiane żetony.
-
-W Ustawienia → Dźwięki dodano Tło Power Games i Tło podczas rozgrywki. Każde ma osobne włączenie, wybór lokalnego pliku audio lub MIDI oraz głośność. Początkowo oba są wyłączone. Tło ogólne gra w menu i innych częściach aplikacji; rozpoczęcie gry zastępuje je tłem rozgrywki, a zakończenie przywraca ogólne. Ustawienia dotyczą wyłącznie twojego klienta i uwzględniają poziom Wszystkie dźwięki Power Games.
-
-
+- Karcianki: 3-5-8, 99, 1000 mil, Biblios, Blackjack, Bouillabaisse,
+  Brydż, Makao, Piki, Poker, Remik, Scopa, Tysiąc, UNO, Wojna i Wojna naukowa.
+- Gry planszowe i strategiczne: Chińczyk, Cztery w rzędzie, Go,
+  Kółko i krzyżyk, Mahjong, Mankala, Monopoly, Reversi, Statki, Szachy,
+  Warcaby i Wyścigi kaczek.
+- Kości i domino: Balut, Blackjack kościany, Cat, head, tail, Domino, Farkle,
+  Kłamczuch kościany, Kościany Generał, Mexican Train, Poker kościany i Yahtzee.
+- Pozostałe gry losowe: Bingo i Ruletka.
 - Słowa i wiedza: Krowa, Mania pisania, Państwa-miasta, Quiz, Scrabble i Taboo.
 - Gry zręcznościowe audio: Axel Pong i Audio Ball.
 
-Mahjong ma jedną pozycję na liście gier. W jego opcjach najpierw wybierz pasjansa, Hong Kong, Riichi albo MCR; poniżej pojawią się ustawienia tej odmiany. W pasjansa grasz sam. Hong Kong i MCR wymagają czterech graczy, a Riichi czterech lub trzech w sanmie; brakujące miejsca uzupełnisz botami przez Ctrl+O przy stole. Po rozdaniu dłuższego meczu każdy potwierdza gotowość do kolejnego. Zasady i obsługę otworzysz przez Ctrl+F1.
+Żetony używane w grach są wyłącznie wirtualne.
 
-Dźwięki rozróżniają rozdanie, dobranie i odrzucenie kamienia, wyłożenie układu oraz zakończenie rozdania. W pasjansie słychać zdjęcie pary i cofnięcie ruchu. Pas i samo przeglądanie kamieni są ciche. Opis słowny nadal podaje rodzaj kamienia i wynik.
-
-D podczas odpowiedzi na cudzy kamień odczytuje kamień, którego dotyczy Pas, Chow, Pung, Kong lub Mahjong. Nie zmienia wyboru ani nie zatwierdza odpowiedzi. W pasjansie D nadal odczytuje współrzędne.
-
-W odczytuje wartość legalnej wygranej: fan albo han i fu oraz przyrost punktów. Bez legalnej wygranej nie podaje końcowej wartości ręki. Przed wygraną w Riichi pomija ukryte ura-dora, więc końcowa wartość może być wyższa. U odczytuje twoje wyłożone układy, Shift+U układy pozostałych graczy, a R numer rozdania, wiatry i bieżącą sytuację. W Riichi I odczytuje wskaźniki i kamienie dora, liczbę twoich dora, zgłoszenia Riichi, depozyty, honba oraz blokadę furiten. Te klawisze tylko odczytują informacje.
-
-W Hongkongu, Riichi i MCR klawisz W odczytuje też sumę podstawowych premii, które już masz: pungów smoków i punktowanych wiatrów oraz odpowiednich bonusów lub przyjętego zgłoszenia Riichi. Pungi na ręce liczą się, dopóki zachowasz je jako trójki. To nie jest wartość niepełnej ręki: większy układ może zastąpić podstawowe premie. W MCR kwiaty są podawane osobno i nie pomagają osiągnąć 8 fan; w Riichi widoczne dora również są osobno, bo wymagają yaku. Przy tworzeniu stołu opcja Podgląd podstawowej punktacji pod W ma domyślnie wartość Tak. Wybierz Nie, jeśli chcesz odczytywać tylko wartość legalnej wygranej. Ustawienie nie zmienia punktacji ani warunków wygranej.
-
-Każda odmiana ma osobne zestawienie punktacji: Hongkong podaje pełny katalog fanów i bonusów według wiatru, MCR wszystkie 81 pozycji pogrupowane według fanów, a Riichi yaku z wartością odkrytej i zakrytej ręki, yakumany oraz fu. Przy MCR podano też wykluczenia premii i dwa mieszane kongi za 6 fan. W pasjansie punktami są usunięte pary, nie fany.
-
-S odczytuje bieżące punkty wszystkich graczy. M podaje liczbę kamieni pozostałych do dobrania w murze. Te skróty tylko mówią: nie dobierają, nie odrzucają i nie pasują, ani nie ujawniają cudzych rąk. W pasjansie S odczytuje usunięte pary, a M pozostałe kamienie układu.
-
-Instrukcja opisuje kolejno pasjansa, Hong Kong, Riichi i MCR; każda odmiana stołowa opisuje cel, pojęcia, przygotowanie, przebieg, punktację i długość meczu. W grze wszystkie dostępne działania są zaraz za opisem sytuacji, przed twoimi kamieniami. Gdy jesteś w polach gry, nowa twoja tura ustawia fokus na Dobierz kamień, a po dobraniu zaznaczony jest nowy kamień. Samo przeniesienie fokusu nie wykonuje ruchu.
-
-W pasjansie sam wybierasz kamienie: strzałkami zmieniasz wiersz i kolumnę, klawiszami 1–3 warstwę, a D odczytuje współrzędne. Enter zaznacza pierwszy kamień i zatwierdza pasujący drugi; Escape anuluje zaznaczenie.
-
-Wiele gier ma kilka wariantów. Ich wybór, liczba uczestników, dostępność botów
-i dodatkowe ustawienia zależą od konkretnego tytułu. Szczegółowe reguły,
-punktację i sterowanie opisuje dostępna w programie sekcja „Zasady gry”.
+Dostępne warianty, liczba uczestników i możliwość gry z botami zależą od
+tytułu. Zasady każdej gry możesz przeczytać w programie jeszcze przed
+utworzeniem stołu.
 
 W grze taboo potrzebujesz komunikacji z innymi graczami. Możesz użyć do tego
 konferencji w eltenie, innego komunikatora lub grać na żywo.
-
-Brajl jest dostępny we wszystkich czterech wariantach. Gra zawiera Liblouis dla Windows i tablice literackie polskie, angielskie, czeskie, hiszpańskie i rosyjskie; NVDA nie jest wymagane. Domyślna tablica i teksty odpowiadają językowi interfejsu. Lokalną tablicę wybierzesz w przeglądarce plików Eltena; obsługiwane rozszerzenia to .ctb, .utb, .tbl i .uti. W Łańcuchu pamięciowym słychać samo nowe słowo, a odczyt reszty słowa jest niedostępny. Pomoc zawiera instrukcję, listę skrótów oraz osobny tekst o pisaniu bezwzrokowym.
-
-W ustawieniach Manii pisania tablicę brajlowską wybierasz bezpośrednio z listy. Enter na liście lub polu wyboru zapisuje wszystkie ustawienia i zamyka okno, a Escape odrzuca zmiany. Aby wybrać własny plik tablicy, zaznacz pozycję Lokalna tablica Liblouis i naciśnij Enter.
-
-W ustawieniach brajla dostępne są 32 tablice: literackie, skrótowe, komputerowe i regionalne dla pięciu obsługiwanych języków. Domyślnie wybierana jest tablica literacka języka interfejsu; zapisany wybór pozostaje bez zmian. Losowe słowa, Łańcuch pamięciowy i Tryb przetrwania korzystają ze słowników polskiego, angielskiego, czeskiego, hiszpańskiego i rosyjskiego, wraz z odmianami słów. Język słów wybierzesz w ustawieniach stołu. Nowy stół domyślnie używa języka interfejsu gospodarza, a wszyscy uczestnicy dostają słowa z tego samego słownika. Gra losuje wyrazy od 3 do 12 liter. Wielkość liter nie wpływa na poprawność wpisywanych słów; w brajlu oznaczenia wielkich liter są opcjonalne, a poprawny zapis z wielką literą również jest akceptowany. Zmiana tablicy brajlowskiej działa od razu, gdy pole jest puste. Rozpoczęte słowo kończysz dotychczasową tablicą, a kolejny wyraz wpisujesz już nową.
-
-Listy gotowych tekstów, tablic brajlowskich i języków słownika obejmują tylko języki zaznaczone jako znane w ustawieniach Power Games. Gdy lista znanych języków jest pusta, dostępny jest wyłącznie język interfejsu, a wybór języka słów jest ukryty. Domyślna tablica jest literacka. W trybie mieszanym odczyt słowa podaje też sposób wpisywania. W Swobodnym pisaniu najpierw słychać całe zdanie, potem sposób wpisywania i pierwsze słowo.
-
-W opcji Pisz własny tekst (tylko solo) wpisana treść pozostaje w polu podczas bieżącej sesji, również po zakończeniu rundy. Możesz ją odczytać, zaznaczyć i skopiować. Polski słownik zawiera 29 987 częstych form słów z Korpusu Współczesnego Języka Polskiego, w tym formy odmienione. Partii zapisanych z poprzednim polskim słownikiem nie można wznowić.
-
-Po powrocie do pola edycji odczytywane jest rozpoczęte słowo, również podczas pisania brajlem.
-
-Mania pisania oferuje Swobodne pisanie, Losowe słowa, Łańcuch pamięciowy
-i Tryb przetrwania, solo lub z innymi osobami. Tryb przetrwania zatwierdza słowo po
-ostatnim poprawnym znaku, bez Spacji. Każde poprawne słowo przyspiesza muzykę
-o 2,5%. W pozostałych wariantach słownych
-przedwczesna Spacja jest ignorowana i nie dodaje błędu. Kara za bezczynność w wieloosobowych
-Losowych słowach i Łańcuchu pamięciowym następuje po pięciu sekundach;
-odczytywanie i literowanie nie zużywają tego limitu.
-
-Ctrl+L literuje słowo, Ctrl+O je odczytuje, Ctrl+średnik odczytuje jego resztę,
-a Ctrl+Shift+średnik resztę zdania w Swobodnym pisaniu. Ctrl+P otwiera
-ustawienia brajla, dźwięków i osobnego echa pisania. Echo dotyczy tylko pola
-gry; domyślnie korzysta z ustawienia Eltena. Działa również przy pisaniu brajlem,
-odczytując litery i słowa zamiast znaków brajlowskich. Opcja Wklej tekst otwiera pole edycyjne bez
-przeglądarki plików na tym samym ekranie co ustawienia stołu. Tytuł poprzedza
-treść w kolejności Tab; zmiana ustawień zachowuje oba pola.
-Importy mają limit 1 000 000 bajtów UTF-8 (1000 kB).
-Przekroczenie limitu wyświetla błąd importu; wklejona treść pozostaje do poprawienia.
-Pozostają lokalne, chyba że gospodarz wybierze konkretny tekst do wspólnej
-gry. Rozpoczęcie tej gry udostępnia wybrany tekst uczestnikom przez serwer
-i historię stołu, bez dodatkowego potwierdzenia.
-
-Tekst wybierasz przed utworzeniem stołu. Jego tytuł i liczba znaków ze spacjami
-są widoczne wraz z limitem czasu w opisie stołu i na widgecie przed dołączeniem do gry.
-
-Wygrywa ocena uwzględniająca błędy: WPM w Swobodnym pisaniu lub liczbę
-poprawnych słów w pozostałych wariantach mnożymy dwukrotnie przez
-współczynnik: poprawne słowa / (poprawne słowa + błędy). Dokładne zasady
-i przykład znajdziesz w pomocy gry. Każda nowa runda ustawia fokus w polu pisania.
-
-Partię Manii pisania można zapisać solo i multiplayer przez Ctrl+S lub menu
-kontekstowe stołu. Gospodarz zatrzymuje pisanie u graczy, a po potwierdzeniu zapisuje
-postęp na swoim koncie i zamyka stół. Nieudany zapis nie zamyka stołu.
-Zapisane partie w menu głównym przywracają także rozpoczęte słowo i pozostały
-czas. W multiplayerze muszą dołączyć wszyscy pierwotni gracze, bez obserwatorów.
-Tekst solo trafia do prywatnego archiwum konta, nie do publicznej biblioteki.
 
 ## Stoły i wspólna gra
 
 ### Stoły publiczne i prywatne
 
-Stół publiczny można znaleźć na liście stołów. Prywatny nie jest na niej
-pokazywany i służy do gry z zaproszonymi osobami. Opis stołu zawiera grę,
-gospodarza, najważniejsze informacje o wariancie i stanie rozgrywki.
+Stół publiczny jest widoczny na liście stołów. Prywatny nie pojawia się na
+tej liście i służy do gry z zaproszonymi osobami. Opis stołu podaje grę,
+gospodarza, najważniejsze ustawienia i stan rozgrywki.
 
-Na liście stołów oraz w widgecie możesz dowiedzieć się więcej przed wejściem:
+Jeszcze przed dołączeniem, na liście stołów lub w widgecie, możesz użyć:
 
-- Ctrl+R — odczytuje wariant i ustawienia zaznaczonego stołu.
-- Ctrl+W — wymienia jego graczy i obserwatorów.
+- Ctrl+R — aby odczytać wariant i ustawienia zaznaczonego stołu.
+- Ctrl+W — aby sprawdzić jego graczy i obserwatorów.
 
 ### Zapraszanie i obserwowanie
 
-Przy stole Ctrl+I otwiera zapraszanie użytkowników będących online,
-a Ctrl+Shift+I pozwala wybrać osobę z kontaktów. Otrzymane zaproszenia
-przyjmiesz przez powiadomienie ELTEN-a, menu kontekstowe albo Ctrl+J.
-Ten ostatni skrót działa w całym Power Games, również w widgecie.
+Przy stole Ctrl+I otwiera zapraszanie osób będących online, a Ctrl+Shift+I
+pozwala wybrać kogoś z kontaktów. Zaproszenie przyjmiesz przez powiadomienie
+ELTEN-a, menu kontekstowe albo Ctrl+J. Ten ostatni skrót działa w całym
+Power Games, również w widgecie.
 
-W grach dopuszczających obserwatorów można śledzić partię bez zajmowania
-miejsca gracza. To przydatne zarówno do kibicowania, jak i poznawania zasad.
-W Axel Pongu obserwator może także wybrać perspektywę słuchania.
+Jeśli gra dopuszcza obserwatorów, możesz śledzić partię bez zajmowania
+miejsca gracza. Obserwowanie nie daje dostępu do ukrytych kart ani odpowiedzi.
 
-W Wyścigach kaczek możesz śledzić wyzwania zarówno jako obserwator stołu,
-jak i gracz, który nie bierze udziału w danym wyzwaniu. Usłyszysz publiczne
-rzuty, zagrania i wybory, a w indywidualnych próbach, takich jak Simon,
-rytm czy strzelanie do kaczek — tylko wyniki końcowe. Prywatne odpowiedzi
-pozostają ukryte do rozstrzygnięcia. Obserwator nie potwierdza gotowości
-ani nie słyszy odliczania przeznaczonego dla uczestników.
+Ctrl+Shift+O zmienia Twoją rolę na gracza lub obserwatora następnej partii,
+jeśli taki wybór jest dostępny. Gospodarz może zmienić rolę innej osoby:
+na liście użytkowników zaznacza ją i używa Ctrl+Shift+P albo odpowiedniej
+opcji menu kontekstowego. Zmiana roli na następną partię nie jest tym samym
+co zastąpienie kogoś w trwającej grze.
 
-Ctrl+Shift+O pozwala zgłosić się do gry lub obserwowania następnej partii,
-o ile dana gra udostępnia taki wybór. Ten skrót zmienia Twoją rolę.
-Gospodarz może zmienić rolę innej osoby w menu kontekstowym listy użytkowników;
-odpowiednia opcja zawiera nick wybranej osoby.
-
-Na liście użytkowników Enter otwiera zwykłe menu użytkownika ELTEN-a.
-Stamtąd możesz między innymi wysłać wiadomość, dodać osobę do kontaktów
+Enter na liście użytkowników otwiera zwykłe menu użytkownika ELTEN-a.
+Możesz z niego między innymi wysłać wiadomość, dodać osobę do kontaktów
 lub do niej zadzwonić.
 
 ### Rozmowa głosowa
 
-Przycisk „Utwórz rozmowę głosową” przy stole pozwala utworzyć kanał konferencji ELTEN-a. Wpisz nazwę, wybierz kanał publiczny lub ukryty i opcjonalnie ustaw hasło. Ukryty kanał nie pojawia się na zwykłej liście, ale sam ten wybór nie zastępuje hasła.
+Przycisk „Utwórz rozmowę głosową” tworzy kanał konferencji ELTEN-a.
+Podaj nazwę, wybierz kanał publiczny lub ukryty i ewentualnie ustaw hasło.
+Ukryty kanał nie pojawia się na zwykłej liście konferencji; samo ukrycie
+nie zastępuje hasła.
 
-Pozostali usłyszą krótkie zaproszenie, a przy stole pojawi się „Dołącz do rozmowy głosowej”. Po dołączeniu przycisk zmienia się na „Rozłącz rozmowę głosową”. Możesz nim wyjść z konferencji i później dołączyć ponownie. Gdy rozłącza się twórca, usuwa też zaproszenie przy stole; osoby, które już dołączyły, mogą nadal rozmawiać. Nic nie otwiera się samo w trakcie partii. Dołączenie do innej rozmowy wymaga potwierdzenia, jeśli jesteś już na konferencji. Twoje ustawienia mikrofonu i push-to-talk pozostają bez zmian.
+Pozostali usłyszą zaproszenie i znajdą przy stole przycisk „Dołącz do
+rozmowy głosowej”. Nie otwiera się przy tym żaden dodatkowy dialog.
+Po dołączeniu przycisk zmienia się na „Rozłącz rozmowę głosową”.
+Możesz wyjść z konferencji bez opuszczania stołu i później dołączyć ponownie.
 
-Jeśli jesteś na konferencji stołu, przy wychodzeniu możesz wybrać „Tak”, żeby opuścić stół i rozmowę, albo „Wyjdź tylko ze stołu”, żeby nadal rozmawiać. Ctrl+Shift+M wycisza lub włącza twój mikrofon w trwającej konferencji.
+Gdy rozłącza się twórca kanału, znika też zaproszenie przy stole.
+Osoby już połączone mogą nadal rozmawiać. Jeśli jesteś na innej konferencji,
+program poprosi o potwierdzenie zmiany. Ustawienia mikrofonu i funkcji
+push-to-talk pozostają bez zmian.
 
-Wyciszenie mikrofonu możesz też przełączyć w menu kontekstowym stołu. Usłyszysz, czy mikrofon jest wyciszony, czy włączony. Gdy jesteś na konferencji, za przyciskiem rozmowy pojawia się „Przestrzeń kanału”. Strzałkami zmieniasz w niej położenie, a Shift+strzałka w lewo lub w prawo obraca cię tak samo jak w oknie konferencji.
+Przy opuszczaniu stołu połączonego z konferencją masz trzy możliwości:
+„Nie” pozostawia Cię przy stole, „Tak” opuszcza stół i rozmowę, a „Wyjdź
+tylko ze stołu” pozwala nadal rozmawiać.
+
+Ctrl+Shift+M lub opcja menu kontekstowego stołu wycisza albo włącza mikrofon;
+komunikat potwierdza jego stan. Podczas połączenia za przyciskiem rozmowy
+pojawia się „Przestrzeń kanału”. Strzałkami zmieniasz w niej położenie,
+a Shift+strzałka w lewo lub w prawo obraca Cię jak w oknie konferencji.
 
 ### Gospodarz, boty i drużyny
 
-Gospodarz przygotowuje stół, rozpoczyna partię i zarządza obsadą.
-W grach z botami może dodać komputerowego przeciwnika pod Ctrl+O.
-Bot otrzymuje imię i jest widoczny na tej samej liście co pozostali gracze.
+Gospodarz przygotowuje stół, rozpoczyna partie i zarządza obsadą.
+W grach obsługujących boty może dodać komputerowego przeciwnika przez Ctrl+O.
+Bot otrzymuje imię i pojawia się na liście użytkowników.
 
-Na liście użytkowników gospodarz ma również dwa polecenia dotyczące
-zaznaczonej osoby:
+Na tej liście gospodarz może też wskazać osobę i użyć:
 
-- Ctrl+M — przekazanie jej roli gospodarza.
-- Ctrl+Shift+R — zastąpienie grającej osoby obecnym obserwatorem lub botem,
-  jeśli gra i bieżący etap pozwalają na taką zmianę.
+- Ctrl+M — aby przekazać jej rolę gospodarza.
+- Ctrl+Shift+R — aby zastąpić gracza obecnym obserwatorem lub botem,
+  jeśli gra i jej bieżący etap na to pozwalają.
 
 Po odejściu gospodarza stół może przejąć kolejny uczestnik. W obsługiwanych
-grach program zastępuje wychodzącego gracza botem, dzięki czemu pozostali
-mogą kontynuować partię.
+grach odchodzącego gracza zastępuje bot. Ograniczenia zastępstw i zachowanie
+gry po rozłączeniu opisują jej zasady; mecze turniejowe mają dodatkowe
+ograniczenia opisane w rozdziale o turniejach.
 
-W zwykłej partii Państw-miast potwierdzone odejście usuwa gracza z bieżącej
-rozgrywki; nie trzeba czekać na jego odpowiedzi. Jeśli odchodzi sędzia,
-niedokończona runda zostaje anulowana i rozpoczyna się nowa. Przy mniej
-niż dwóch uczestnikach gra zostaje przerwana, bez przyznawania zwycięstwa.
-Osoba, która wróci, może obserwować i dołączyć do następnej partii.
-Chwilowy błąd połączenia sam w sobie nie powoduje usunięcia gracza.
+Drużyny ustawiasz w osobnym oknie. Możesz je wylosować, zmienić przydział
+Enterem lub przestawić osoby przez Shift+strzałka w górę albo w dół.
+Zatwierdzenie wraca do stołu; dopiero „Rozpocznij grę” rozpoczyna partię.
+Przy kolejnej partii z tym samym składem nie trzeba ustawiać drużyn od nowa.
 
-Drużyny wybiera się w osobnym oknie. Możesz je wylosować, zmienić przydział
-Enterem lub przestawiać osoby skrótami Shift+strzałka w górę i Shift+strzałka
-w dół. Zatwierdzenie drużyn wraca do stołu; dopiero „Rozpocznij grę” uruchamia
-partię. Przy kolejnej partii z tym samym składem nie trzeba ustawiać drużyn
-od nowa.
+Aby zagrać ponownie, nie musisz zamykać stołu. Gospodarz może zakończyć
+bieżącą partię pod Ctrl+Q, a w przerwie zmienić ustawienia następnej
+przez Ctrl+X. Oba polecenia są też w menu stołu.
 
-Nie trzeba też zamykać stołu tylko po to, by zagrać jeszcze raz. Gospodarz
-może zakończyć bieżącą partię pod Ctrl+Q, a w przerwie zmienić ustawienia
-następnej pod Ctrl+X. Te same polecenia są dostępne w menu stołu.
+W wielu grach ustawisz limit czasu na ruch i opóźnienie ruchów botów.
+Domyślne opóźnienie bota to jedna sekunda: reguluje tempo, nie poziom
+trudności. Skutki przekroczenia czasu zależą od zasad gry.
 
-W ustawieniach wielu gier można określić limit czasu na ruch oraz opóźnienie
-ruchów botów. Domyślne opóźnienie ruchu bota wynosi 1 sekundę. Opóźnienie bota reguluje tempo, nie jest wyborem jego poziomu
-trudności. Skutek przekroczenia czasu zależy od zasad gry, dlatego opisano
-go w jej pomocy, zamiast stosować jedną karę do wszystkich tytułów.
-
-„Opuść” i „Zamknij stół dla wszystkich” to różne czynności. Pierwsza oznacza
-Twoje wyjście; druga kończy działanie całego stołu i jest poleceniem
-gospodarza. Samo otwarcie pomocy, menu czy pytania o wyjście nie zatrzymuje
-rozgrywki.
+„Opuść” oznacza Twoje wyjście. „Zamknij stół dla wszystkich” to polecenie
+gospodarza, które zamyka cały stół. Otwarcie menu, pomocy lub pytania
+o wyjście samo w sobie nie zatrzymuje rozgrywki.
 
 ## Obsługa i pomoc
 
-Tab i Shift+Tab przełączają między częściami okna, takimi jak pole gry,
-czat, historia i lista użytkowników. Strzałki służą do poruszania się po
-listach lub planszy, a sposób wykonania ruchu zależy już od danej gry.
+Tab i Shift+Tab przełączają między polem gry, czatem, historią, listą
+użytkowników i pozostałymi częściami okna. Strzałki służą do poruszania się
+po listach lub planszy. Ruch wykonujesz zgodnie z zasadami wybranej gry.
 
-W polu „Czat” wpisz wiadomość i wyślij ją Enterem. Jedna wiadomość może
-mieć do 2000 znaków, zarówno przed rozpoczęciem partii, jak i w jej trakcie.
+W polu „Czat” wpisz wiadomość i wyślij ją Enterem. Jedna wiadomość może mieć
+do 2000 znaków, zarówno przed partią, jak i w jej trakcie. Pola tekstowe
+zachowują zwykłą obsługę odczytywania, zaznaczania i kopiowania tekstu.
 
-Nie trzeba uczyć się wszystkich skrótów naraz:
+Nie musisz zapamiętywać wszystkich skrótów:
 
-- F1 pokazuje pomoc dla bieżącego miejsca i aktualnie dostępnych czynności.
-- Ctrl+F1 otwiera zasady wybranej gry, wraz z opisem sterowania.
-- Ctrl+R przypomina wariant i ustawienia stołu, przy którym jesteś.
-- Menu kontekstowe udostępnia czynności związane ze stołem.
-- Ctrl+F4 odczytuje opóźnienie połączenia, rozróżniając HTTP oraz dostępne
-  połączenie Communications lub P2P.
+- F1 pokazuje pomoc dla bieżącego miejsca i dostępnych w nim czynności.
+- Ctrl+F1 otwiera zasady gry przy stole, wraz z opisem sterowania.
+- Ctrl+R przypomina wariant i ustawienia stołu.
+- Menu kontekstowe pokazuje dostępne działania i ich skróty.
+- Ctrl+F4 odczytuje opóźnienie połączenia, rozróżniając HTTP,
+  Communications oraz połączenia P2P, jeśli są używane.
 
-W Tysiącu R odczytuje tylko bieżącą wartość kontraktu i licytującego.
-Shift+R poddaje rozdanie, jeśli pozwalają na to zasady gry.
-Shift+D pozwala poprosić o ponowne rozdanie z czterema dziewiątkami w początkowej ręce. Osobna, domyślnie wyłączona opcja pozwala poprosić o powtórkę po odkryciu co najmniej dwóch dziewiątek w musiku, przed przekazaniem lub odrzuceniem pierwszej karty. Rozdaje ponownie ta sama osoba, bez zmiany punktów i liczników kar.
+Biblioteka zasad w głównym menu pozwala poznać grę przed utworzeniem stołu.
+Po nazwie gry usłyszysz krótki opis. W tekście H i Shift+H przechodzą między
+nagłówkami, K i Shift+K między odnośnikami, a Enter na odnośniku spisu treści
+przenosi do rozdziału. Escape wraca do poprzedniego okna. Skróty danej gry
+mają też własną listę w jej pomocy.
 
-W Quizie pytanie jest polem tekstowym tylko do odczytu. Ctrl+strzałka w lewo lub w prawo pozwala czytać je po słowach. Strzałką w dół przejdziesz do listy odpowiedzi, a strzałką w górę z pierwszej odpowiedzi wrócisz do pytania.
+Niektóre gry udostępniają osobiste ustawienia lub przełączniki pod Ctrl+P
+i w menu stołu. Zmieniają one Twój sposób korzystania z gry, nie wspólny
+wariant wybrany przez gospodarza.
 
-Zasady można czytać przed utworzeniem stołu. Mają rozdziały i spis treści,
-po którym można przejść do wybranego fragmentu. Opis skrótów gry jest
-osobną listą — po jednej pozycji na skrót.
-Lista gier w bibliotece zasad zawiera również krótki opis każdej gry.
-W tekście zasad H i Shift+H przechodzą między nagłówkami, K i Shift+K
-między odnośnikami, a Enter na odnośniku spisu treści przenosi do rozdziału.
+### Porządkowanie kart i wyszukiwanie zagrania
 
-Niektóre gry mają także osobiste ustawienia pod Ctrl+P, dostępne z menu
-stołu. Dotyczy to między innymi Axel Ponga, Audio Balla i Krowy.
-Są to ustawienia Twojego sposobu korzystania z gry, odrębne od wspólnego
-wariantu wybranego przez gospodarza.
+W karciankach udostępniających wspólne sortowanie ręki:
 
-Efekty dźwiękowe Krowy są domyślnie włączone, a muzyka wyłączona. Możesz to zmienić w jej ustawieniach pod Ctrl+P.
+- Shift+C porządkuje karty według koloru.
+- Shift+H porządkuje karty według wartości.
+- Shift+M przywraca kolejność otrzymywania kart.
+
+Ponowne użycie skrótu sortowania odwraca kolejność. Z i Shift+Z przechodzą
+do następnej lub poprzedniej karty albo kostki, którą można zagrać.
+Jeśli istnieje tylko jedno jednoznaczne zagranie, skrót może od razu wykonać
+ruch. Dostępność tej pomocy zależy od gry i wariantu; sprawdzisz ją pod F1
+w polu gry.
 
 ## Widget i szybkie tworzenie stołów
 
-Widget Power Games na ekranie głównym ELTEN-a pozwala przeglądać stoły
-bez wcześniejszego otwierania głównego menu programu. Wybierzesz w nim stół,
-sprawdzisz jego ustawienia lub obsadę i przyjmiesz zaproszenie.
-Ctrl+N przenosi od razu do wyboru gry przy tworzeniu nowego stołu.
-Ctrl+O odczytuje krótki opis gry zaznaczonego stołu. To samo robi
-„Opis gry” w menu kontekstowym widgetu.
-R odświeża listę ręcznie. Widget odświeża ją także przy wejściu i co pięć
-sekund, gdy z niego korzystasz.
+Widget na ekranie głównym ELTEN-a pozwala przeglądać stoły bez otwierania
+głównego menu Power Games. Możesz wybrać stół, sprawdzić jego ustawienia
+i obsadę lub przyjąć zaproszenie.
 
-W Ustawienia → Widget możesz włączyć widget, wybrać widoczne gry
-i ograniczyć listę do stołów utworzonych przez osoby z kontaktów.
+Ctrl+N otwiera wybór gry dla nowego stołu. Ctrl+O odczytuje krótki opis gry
+zaznaczonego stołu; to samo robi „Opis gry” w menu kontekstowym.
+R odświeża listę. Widget odświeża ją też przy wejściu i co pięć sekund,
+gdy z niego korzystasz.
+
+W Ustawienia → Widget włączysz widget, wybierzesz pokazywane gry
+i ewentualnie ograniczysz listę do stołów osób z kontaktów.
 
 ### Własne skróty tworzenia stołów
 
-Jeśli często grasz z tymi samymi ustawieniami, zapisz je pod jednym
-z 30 skrótów: Ctrl+1 do Ctrl+0, Alt+1 do Alt+0 albo Shift+1 do Shift+0.
+Często używaną konfigurację możesz zapisać pod jednym z 30 skrótów:
+Ctrl+1 do Ctrl+0, Alt+1 do Alt+0 lub Shift+1 do Shift+0.
 
 1. Otwórz Ustawienia → Widget.
 2. Tabem przejdź do listy „Skróty tworzenia stołów”.
-3. Wybierz pozycję i naciśnij Enter. Możesz też nacisnąć dany skrót,
+3. Wybierz pozycję i naciśnij Enter. Możesz też nacisnąć sam skrót,
    aby od razu wskazać go na liście.
 4. Wybierz grę, skonfiguruj stół i zatwierdź przypisanie.
 
-Od tej chwili naciśnięcie skrótu w widgecie utworzy stół z zapamiętanymi
-ustawieniami. Nie rozpoczyna automatycznie partii. Przypisanie zapisuje się
-od razu, również wtedy, gdy później zamkniesz całe okno ustawień przyciskiem
-„Anuluj”. Ponowne użycie Entera na tej pozycji pozwala ją zmienić.
-Niepotrzebne przypisanie usuniesz w menu tej listy.
+Skrót użyty w widgecie tworzy stół z zapamiętanymi ustawieniami, ale nie
+rozpoczyna partii. Przypisanie zapisuje się od razu, nawet jeśli potem
+zamkniesz całe okno ustawień przyciskiem „Anuluj”. Enter pozwala je zmienić,
+a menu listy — usunąć.
 
-Menu kontekstowe widgetu pokazuje skróty swoich poleceń. Zapisane makra są wymienione pod nazwami konfiguracji, obok ich skrótów; nieprzypisane makra nie pojawiają się w tym menu.
+Zapisane konfiguracje pojawiają się także w menu kontekstowym widgetu,
+z nazwami i skrótami. Nieprzypisane pozycje nie są tam pokazywane.
 
 ## Powiadomienia
 
-W Ustawienia → Ustawienia powiadomień wybierzesz gry, o których nowych
-publicznych stołach chcesz być informowany. Możesz na przykład obserwować
-tylko Tysiąca i Państwa-miasta, bez komunikatów o pozostałych grach.
-Opcjonalnie powiadomienia można ograniczyć do stołów osób z kontaktów.
+W Ustawienia → Ustawienia powiadomień wybierz gry, o których nowych
+publicznych stołach chcesz być informowany. Możesz ograniczyć te komunikaty
+do stołów osób z kontaktów.
 
-Osobno wybierasz, czy pokazywać zaproszenia od wszystkich, tylko od kontaktów,
-czy od nikogo. Powiadomienia o zaproszeniach i o nowych stołach mają różne
-dźwięki. Ich opisy zawierają krótką informację o grze i jej najważniejszych
-ustawieniach; pełny opis stołu jest dostępny pod Ctrl+R.
+Osobno określasz, czy pokazywać zaproszenia od wszystkich, tylko od
+kontaktów, czy od nikogo. Zaproszenia i powiadomienia o nowych stołach
+mają różne dźwięki. Opis podaje grę i jej najważniejsze ustawienia;
+pełne ustawienia stołu sprawdzisz przez Ctrl+R.
 
-W ustawieniach powiadomień znajdziesz też Czarną listę. Dodaj do niej nazwy
-użytkowników, od których nie chcesz widzieć zaproszeń. Na liście Ctrl+N dodaje
-osobę, a Delete usuwa wybraną. Zmiany zatwierdź przyciskiem Zapisz.
+W Czarnej liście dodasz nazwy użytkowników, od których nie chcesz widzieć
+zaproszeń. Ctrl+N dodaje osobę, Delete usuwa zaznaczoną, a „Zapisz”
+zatwierdza zmiany.
 Filtry zaproszeń i czarna lista nie blokują zaproszeń do meczów turniejowych.
 
-W Ustawienia → Komunikaty lobby osobno wybierasz, jakie komunikaty
-mają być odczytywane podczas przebywania w głównym oknie programu.
+W Ustawienia → Komunikaty lobby wybierzesz, jakie komunikaty mają być
+odczytywane w głównym oknie programu.
 
 ## Dźwięki i gra w tle
 
-W Ustawieniach → Dźwięki możesz włączyć własną muzykę w tle. Wybierz plik i ustaw głośność osobno dla menu Power Games i dla rozgrywki. Domyślnie obie opcje są wyłączone.
-
-Głośność można regulować bez opuszczania gry:
+Głośność możesz zmieniać bez opuszczania gry:
 
 - F2 — ciszej.
 - F3 — głośniej.
 - Shift+F2 — poprzednia grupa dźwięków.
 - Shift+F3 — następna grupa dźwięków.
-- Ctrl+F2 — włącz lub wyłącz dodatkowe efekty dźwiękowe gier.
+- Ctrl+F2 — włączenie lub wyłączenie dodatkowych efektów dźwiękowych gier.
 
-Ctrl+F2 nie wycisza dźwięków potrzebnych do gry, np. piłki w Pongu czy dźwięków w wyzwaniach słuchowych.
+Najpierw wybierz grupę, potem zmień jej głośność. Możesz regulować wszystkie
+dźwięki razem lub osobno dźwięki gry, czatu, wejść i wyjść oraz zaproszeń
+i powiadomień. Te same poziomy znajdziesz w Ustawienia → Dźwięki.
+Ctrl+F2 nie wycisza dźwięków niezbędnych do gry, takich jak piłka
+czy sygnały w wyzwaniach słuchowych.
 
-Do wyboru są wszystkie dźwięki razem lub oddzielnie: dźwięki gry, wejścia
-i wyjścia ze stołu, czat oraz zaproszenia i powiadomienia. Te same poziomy
-znajdziesz w Ustawienia → Dźwięki.
+W tej samej kategorii ustawisz własną muzykę w tle: wybierz lokalny plik
+audio lub MIDI i głośność osobno dla menu oraz rozgrywki. Obie opcje są
+domyślnie wyłączone. Po rozpoczęciu partii tło rozgrywki zastępuje tło menu;
+po jej zakończeniu wraca tło menu. To ustawienia tylko Twojego odsłuchu.
 
-Na początku tej kategorii jest pole dźwięku 3D (HRTF), domyślnie włączone.
-Dzięki niemu dźwięki ruchów
-innych graczy dochodzą z ich miejsc przy stole: siebie słyszysz na środku,
-a pozostałych graczy przed sobą: najpierw gracza po Twojej lewej — z przodu
-po lewej, a kolejnych zgodnie z ruchem wskazówek zegara aż do przodu po
-prawej. W grze we dwoje przeciwnik jest na wprost, a we czworo gracze siedzą
-z przodu po lewej, naprzeciwko i z przodu po prawej. Gracz naprzeciwko w grze
-we dwoje, we czworo i w sześć osób brzmi trochę głośniej i jakby z drugiego
-końca pokoju, żeby łatwo było odróżnić go od własnych dźwięków. Pod polem
-wyboru znajdziesz
-listę gier, w których dźwięk 3D ma działać; jej dwie pierwsze pozycje
-zaznaczają lub odznaczają wszystkie gry. Na liście nie ma gier, w których
-dźwięki nie pochodzą od ruchów poszczególnych graczy: Audio Ball i Axel Pong
-mają własny układ dźwięku, a w Krowie, Wyścigach kaczek, Państwach-miastach
-i Quizie dźwięki nie są przypisane do miejsc przy stole. Wygrana,
-przegrana, tasowanie i zgarnięcie puli w pokerze zawsze brzmią na środku.
-Najlepiej słychać to w słuchawkach.
+Dźwięk 3D (HRTF) jest domyślnie włączony. W obsługiwanych grach pozwala
+rozpoznawać graczy po kierunku ich ruchów: siebie słyszysz na środku,
+pozostałych przed sobą, od lewej do prawej zgodnie z miejscami przy stole.
+Pod przełącznikiem wybierzesz gry, w których ma działać. Gry audio mają
+własny układ dźwięku, niezależny od tego ustawienia. Efekty wspólne,
+takie jak wygrana lub tasowanie, pozostają na środku.
 
-Przejście do wiadomości, konferencji lub innego okna ELTEN-a nie oznacza
-wstrzymania partii. To ważne szczególnie w grach zręcznościowych i przy
-włączonym limicie czasu na ruch.
+Przejście do wiadomości, konferencji lub innego programu nie wstrzymuje
+partii. W Ustawienia → Ogólne wybierzesz osobno:
 
-W Ustawienia → Ogólne osobno określisz:
+- czy odczytywać komunikaty stołu poza jego oknem;
+- czy odtwarzać sygnał Twojej tury;
+- czy po zmianie okna wyciszać wszystkie gry, tylko gry audio,
+  czy nie wyciszać żadnych.
 
-- czy poza oknem stołu mają być odczytywane jego komunikaty;
-- czy ma być odtwarzany sygnał Twojej tury;
-- czy po przejściu do innego okna wyciszać dźwięki wszystkich gier, tylko
-  gier audio, czy nie wyciszać ich wcale.
+Domyślnie dźwięki gier nie są wyciszane. Wyciszenie w tle nie wyłącza
+osobnego sygnału tury ani dźwięków czatu, zaproszeń i zmian obsady.
+Te ustawienia działają zarówno poza oknem Power Games w ELTEN-ie,
+jak i po przejściu do innego programu.
 
-Domyślnie dźwięki gier nie są wyciszane. Wyciszanie ich w tle nie zastępuje
-osobnego ustawienia sygnału tury i nie wyłącza dźwięków czatu, zaproszeń
-ani wejść i wyjść ze stołu. Ustawienia działania poza oknem dotyczą zarówno
-innych części ELTEN-a, jak i przejścia do innego programu.
+### Połączenie w grach audio
+
+Przy tworzeniu stołu Axel Ponga lub Audio Balla możesz włączyć „Full P2P”:
+bezpośrednie połączenia między uczestnikami, jeśli ich sieci na to pozwalają.
+Opcja jest domyślnie wyłączona. Po włączeniu pojawia się limit uczestników
+P2P, domyślnie osiem, łącznie z obserwatorami. Jeśli połączenie bezpośrednie
+jest niedostępne, ELTEN może korzystać z serwera pośredniczącego.
+Ctrl+F4 pozwala sprawdzić rodzaj połączenia i jego opóźnienie.
 
 ## Języki
 
-Power Games ma własny wybór języka interfejsu w Ustawienia → Ogólne.
-Dostępne są angielski, polski, czeski, hiszpański i rosyjski. Wybór nie
-zmienia języka całego ELTEN-a. Aby zastosować go we wszystkich częściach
-Power Games, także w widgecie, zamknij całkowicie ELTEN-a i uruchom go ponownie. Restart klawiszem F12 nie przeładowuje Power Games.
+Język Power Games wybierzesz w Ustawienia → Ogólne. Dostępne są angielski,
+polski, czeski, hiszpański i rosyjski; wybór nie zmienia języka ELTEN-a.
+Aby zastosować go w całym Power Games, także w widgecie, całkowicie zamknij
+ELTEN-a i uruchom go ponownie. Restart przez F12 nie przeładowuje programu.
 
-Opcjonalna lista „Znane języki” służy do uzupełniania brakujących tłumaczeń.
-Jeśli tekstu nie ma w głównym języku, program może sięgnąć po jeden
-z zaznaczonych języków, a ostatecznie po angielski.
+Opcjonalna lista „Znane języki” pozwala wskazać języki, które rozumiesz.
+Jeśli brakuje tłumaczenia w głównym języku, program szuka go wśród
+zaznaczonych, a na końcu sięga po angielski.
 
-Język pytań, kart i słownika możesz wybrać w ustawieniach gier, które
-udostępniają taką możliwość. Przy tworzeniu nowego stołu program proponuje
-język interfejsu gospodarza, a jeśli nie ma odpowiedniego zestawu — angielski.
-Własne zapisane ustawienia mają pierwszeństwo. Dołączenie do stołu ani
-wznowienie zapisanej partii nie zmienia jej języka.
+Język pytań, kart lub słownika wybierzesz osobno w ustawieniach gry,
+jeśli udostępnia taki wybór. Nowy stół domyślnie korzysta z języka interfejsu
+gospodarza, a gdy odpowiedniego zestawu nie ma — z angielskiego.
+Własne zapisane ustawienia mają pierwszeństwo. Dołączenie do stołu lub
+wznowienie partii nie zmienia jej języka.
 
 ## Zapis partii i historia
 
-### Przerwij teraz, dokończ później
+### Zapis do wznowienia
 
-W zwykłych partiach gier obsługujących zapis gospodarz może użyć Ctrl+S,
-aby zapisać partię i zamknąć stół. Zapis jest przypisany do jego konta i przechowywany na
-serwerze, więc można wrócić do niego także na innym komputerze.
+W obsługiwanych zwykłych partiach gospodarz może użyć Ctrl+S, aby zapisać
+grę na swoim koncie i zamknąć stół. Stół zamyka się dopiero po udanym
+zapisie. Plik jest przechowywany na serwerze, więc partię można wznowić
+także na innym komputerze. Nie każdą grę i nie każdy jej etap można zapisać.
 
-Partii turniejowych nie można zapisywać ani wznawiać z zapisu.
+W głównym menu wybierz „Zapisane gry” → „Gry do wznowienia”. Program
+utworzy stół, przy którym ponownie zbierzecie uczestników. Zapis znika
+z konta dopiero po wznowieniu gry, nie podczas oczekiwania na graczy.
+Jeśli później zechcesz znów przerwać partię, zapisz jej aktualny stan.
 
-Do wznowienia służy „Zapisane gry” → „Gry do wznowienia” w głównym menu. Odtworzenie
-tworzy stół, przy którym można ponownie zebrać uczestników i kontynuować
-rozgrywkę. Nie każdą grę można zapisać i nie każdy moment jest do tego
-odpowiedni — dostępność polecenia zależy od gry oraz bieżącego etapu.
+Partii turniejowych nie można zapisywać ani wznawiać z pliku. Historia
+i powtórka to inne rodzaje zapisu: służą do przeglądania, nie do dalszej gry.
 
-Po wznowieniu partii jej zapis znika z konta. Samo utworzenie stołu i oczekiwanie
-na graczy jeszcze go nie usuwa. Jeśli chcesz znów przerwać grę, zapisz jej
-aktualny stan skrótem Ctrl+S.
+### Historia przy stole
 
-### Wróć do rozmowy lub wcześniejszego ruchu
-
-Historia przy stole zawiera zdarzenia gry, rozmowę i zmiany przy stole.
-Można czytać ją jak zwykły tekst albo korzystać ze skrótów:
+Historia zawiera zdarzenia gry, czat i zmiany przy stole. Możesz czytać ją
+jak zwykły tekst albo przeglądać skrótami:
 
 - Ctrl+przecinek — poprzedni wpis wybranej kategorii.
 - Ctrl+kropka — następny wpis wybranej kategorii.
@@ -448,159 +365,111 @@ Można czytać ją jak zwykły tekst albo korzystać ze skrótów:
 - Ctrl+Home — pierwszy wpis kategorii.
 - Ctrl+End — ostatni wpis kategorii.
 
-Kategorie pozwalają oddzielić rozmowę od zdarzeń gry lub czytać wszystko
-razem. Skróty z przecinkiem i kropką działają również podczas pisania
-wiadomości. Ctrl+Home i Ctrl+End w edytowanym polu zachowują zwykłą
-nawigację po tekście.
+Kategorie pozwalają czytać sam czat, same zdarzenia gry lub wszystko razem.
+Skróty z przecinkiem i kropką działają także podczas wpisywania wiadomości.
+Ctrl+Home i Ctrl+End w edytowanym polu zachowują zwykłą nawigację po tekście.
 
 ### Historie i powtórki
 
-Ctrl+Shift+S dodaje historię do biblioteki, nie zamykając stołu. W grach turowych
-zapisuje tekst, a w Axel Pongu i Audio Ballu — powtórkę dźwiękową od chwili,
-w której zacząłeś śledzić partię, do momentu zapisu. Nie służy ona do wznowienia gry.
-Nagranie trzeba zachować tym skrótem; samo rozegranie meczu nie dodaje go do biblioteki.
+Ctrl+Shift+S dodaje zapis do biblioteki bez zamykania stołu. W grach turowych
+jest to historia tekstowa, a w Axel Pongu i Audio Ballu — powtórka dźwiękowa
+od chwili, w której zacząłeś śledzić partię, do momentu zapisu.
+Samo rozegranie meczu nie zachowuje powtórki: trzeba użyć tego polecenia.
 
-Otwórz „Zapisane gry” → „Historie i powtórki”. Enter otwiera tekst lub odtwarzacz.
-Na polu odtwarzacza Spacja włącza i zatrzymuje odtwarzanie. S odczytuje wynik
-tak jak w danej grze, T przypomina serwującego, a L — miejsce w nagraniu.
-Cyfry 1 i 2 zmieniają perspektywę; w deblu Axel Ponga dostępne są też 3 i 4.
-Tabem przejdziesz do wyboru perspektywy i tempa.
+Otwórz „Zapisane gry” → „Historie i powtórki”. Enter na pozycji otwiera tekst
+lub odtwarzacz. W polu odtwarzacza Spacja uruchamia albo zatrzymuje
+odtwarzanie, S podaje wynik, T przypomina serwującego, a L — miejsce
+w nagraniu. Cyfry 1 i 2 zmieniają perspektywę; w deblu Axel Ponga dostępne
+są też 3 i 4. Tabem przejdziesz do wyboru perspektywy i tempa.
 
-Strzałki w lewo i w prawo cofają lub przesuwają nagranie o pięć sekund. A i N przechodzą do poprzedniej
-lub następnej akcji, G i H — punktu, a U i J — seta, jeśli nagranie je zawiera.
-K wraca do początku, E przechodzi do końca. Te skróty działają bez Ctrl na polu
-odtwarzacza. Menu kontekstowe i pomoc pod F1 pokazują dostępne w danej chwili opcje.
+Strzałki w lewo i w prawo przewijają o pięć sekund. A i N przechodzą do
+poprzedniej lub następnej akcji, G i H — punktu, a U i J — seta,
+jeśli nagranie je zawiera. K wraca do początku, E do końca.
+Skróty działają bez Ctrl tylko w polu odtwarzacza. Menu kontekstowe i F1
+pokazują czynności dostępne dla otwartej powtórki.
 
-Pliki trafiają do stałego folderu Power Games na tym komputerze, osobno dla każdego
-konta. Biblioteka wykrywa pliki dodane do tego folderu i pomija te, które zniknęły.
-W menu kontekstowym możesz zmienić nazwę, wyeksportować kopię, wysłać grę lub ją
-usunąć. Usunięcie z biblioteki kasuje jej plik, ale nie wyeksportowane kopie.
+Biblioteka korzysta ze stałego folderu Power Games na tym komputerze,
+osobnego dla każdego konta. Przy otwieraniu wykrywa dodane pliki i usuwa
+z listy brakujące. W menu kontekstowym możesz zmienić nazwę, wyeksportować
+kopię, wysłać zapis lub go usunąć. Usunięcie kasuje plik w bibliotece,
+ale nie jego wyeksportowane kopie.
 
-Przesłaną grę znajdziesz przez Ctrl+M — „Importuj z wiadomości”. Możesz najpierw ją
-odsłuchać lub przeczytać, a potem dodać do biblioteki. Po dodaniu program zapyta,
-czy usunąć wiadomość. U nadawcy wysłana wiadomość znika automatycznie po potwierdzeniu
-wysłania, ale plik pozostaje w bibliotece. Ctrl+I importuje plik z dysku.
-Przed udostępnieniem historii pamiętaj, że tekst może zawierać rozmowę przy stole.
+Ctrl+M otwiera „Importuj z wiadomości”. Najpierw możesz obejrzeć lub
+odsłuchać otrzymany zapis, a następnie dodać go do biblioteki.
+Dopiero po dodaniu program zapyta, czy usunąć wiadomość. U nadawcy wysłana
+wiadomość znika automatycznie po potwierdzeniu wysłania, lecz plik
+w bibliotece pozostaje. Ctrl+I importuje plik z dysku.
+Przed wysłaniem historii pamiętaj, że może zawierać czat ze stołu.
 
 ## Rankingi
 
-W głównym menu wybierz „Rankingi”, a następnie grę.
+W głównym menu wybierz „Rankingi”, a następnie grę. Rankingi porównują
+wyniki graczy; zestawienia wygranych, przegranych i bramek znajdziesz
+osobno w „Statystykach”.
 
 ### Krowa
 
-- W rankingu słowa wyżej jest ten, kto odgadł je w mniejszej liczbie prób.
-  Wyszukiwarka pozwala znaleźć słowo lub jego fragment.
-- Dzienna Krowa ma osobny ranking na każdy dzień, również według liczby prób.
-  Słowo z bieżącego dnia pozostaje ukryte; rozwiązania wcześniejszych dni
-  można sprawdzić po ich zakończeniu.
-- W Wieży słów liczy się liczba ukończonych rund: im więcej, tym wyższe miejsce.
-  Enter na wyniku pokazuje słowa i próby z poszczególnych rund.
+- W rankingu słowa lepszy jest wynik z mniejszą liczbą prób.
+  Wyszukiwarka przyjmuje całe słowo lub jego fragment.
+- Dzienna Krowa ma osobny ranking na każdy dzień, również według liczby
+  prób. Dzisiejsze słowo pozostaje ukryte; wcześniejsze rozwiązania można
+  sprawdzać po zakończeniu danego dnia.
+- W Wieży słów liczy się liczba ukończonych rund: więcej rund daje wyższe
+  miejsce. Enter na wyniku pokazuje słowa i próby z kolejnych rund.
 
-Po odgadnięciu słowa w grze losowej lub dziennej Krowie możesz wybrać:
-„Opublikuj”, „Opublikuj bez listy prób” albo „Nie publikuj”. Taki sam wybór
-jest dostępny przy publikowaniu wyniku Wieży słów. Lista obejmuje tylko
-sprawdzone próby, w kolejności ich wykonania.
-Domyślnie zaznaczone jest „Opublikuj”. Strzałka w prawo przechodzi kolejno
-do dwóch pozostałych opcji, a w lewo wraca do poprzedniej. Enter zatwierdza
-wybór; Escape zamyka okno bez publikowania.
+Po odgadnięciu słowa w grze losowej lub Dziennej Krowie możesz wybrać
+„Opublikuj”, „Opublikuj bez listy prób” albo „Nie publikuj”. Te same opcje
+są dostępne przy publikowaniu wyniku Wieży słów.
+Lista obejmuje sprawdzone próby w kolejności ich wykonania.
+Domyślnie wybrane jest „Opublikuj”; strzałki w lewo i w prawo zmieniają
+wybór, Enter go zatwierdza, a Escape zamyka okno bez publikacji.
 
-W rankingu słowa i w wynikach wcześniejszych dni możesz otworzyć definicję
-słowa z menu kontekstowego. Escape z rankingu dnia wraca do listy dat,
-z zachowaniem wybranej pozycji.
+W rankingu słowa lub dnia zaznacz wynik gracza i naciśnij Tab,
+aby przejrzeć jego próby wraz z liczbą zgodnych liter. W szczegółach
+Wieży słów najpierw wybierz rundę. Listy prób z Dziennej Krowy są publiczne
+dopiero następnego dnia, według daty serwera w Polsce.
+Przy wynikach bez zapisanej listy pojawia się odpowiednia informacja.
 
-W rankingu słowa lub dnia zaznacz wynik gracza i naciśnij Tab, aby przejść
-do jego listy prób. Każda pozycja zawiera słowo i liczbę zgodnych liter.
-W szczegółach Wieży słów wybierz rundę, a w swojej galerii — słowo, po czym
-również naciśnij Tab. Galeria zapisuje własne próby niezależnie od publikacji.
-Na liście galerii widać słowo i liczbę prób, bez liczby liter.
-Listy prób z dziennej Krowy są dostępne w rankingu dopiero następnego dnia,
-według daty serwera w Polsce. Starsze wyniki oraz wyniki opublikowane bez
-listy pokazują informację o braku zapisanych prób.
-Jeśli serwer nie obsługuje jeszcze list prób, możesz opublikować sam wynik.
+Menu kontekstowe rankingu słowa lub wcześniejszego dnia pozwala sprawdzić
+definicję. Escape z wyników dnia wraca do listy dat z zachowaniem wyboru.
+Własna galeria przechowuje próby niezależnie od publikacji: wybierz słowo
+i przejdź Tabem do listy prób.
 
 ## Statystyki
 
-W głównym menu wybierz „Statystyki”, a następnie „Ogólne”, „Axel Pong” lub „Audio Ball”.
+W głównym menu wybierz „Statystyki”, a następnie „Ogólne”, „Axel Pong”
+lub „Audio Ball”. Statystyki nie ustalają miejsc w rankingu.
 
 ### Ogólne
 
-Tutaj sprawdzisz aktywność w Power Games: między innymi rozpoczęte i ukończone partie, z podziałem na gry oraz rozgrywki z ludźmi, z botami i samotne. Można wybrać okres, na przykład ostatnie siedem dni lub cały czas zbierania danych.
+Zestawienie pokazuje aktywność w Power Games, w tym rozpoczęte i ukończone
+partie. Możesz wybrać okres oraz sprawdzić podział na gry i partie
+z ludźmi, z botami lub solo.
 
-W głównym menu Power Games Ctrl+W otwiera „Obecnie w pokojach”:
-zestawienie liczby stołów i przebywających przy nich osób. To inne
-zastosowanie tego skrótu niż na liście stołów, gdzie odczytuje konkretną
-obsadę.
+Ctrl+W w głównym menu otwiera „Obecnie w pokojach”: liczbę stołów
+i przebywających przy nich osób. Na liście stołów ten sam skrót ma inne
+znaczenie — odczytuje obsadę zaznaczonego stołu.
 
 ### Axel Pong i Audio Ball
 
-Wybierz singiel lub debel. Domyślnie zobaczysz własne wyniki ze wszystkich zapisanych meczów: rozegrane mecze, wygrane, przegrane, bilans meczów, strzelone i stracone bramki oraz bilans bramek.
+Wybierz singiel lub debel. Na początku zobaczysz własne wyniki ze wszystkich
+zapisanych meczów: rozegrane mecze, wygrane, przegrane, bilans meczów,
+strzelone i stracone bramki oraz bilans bramek. Bilans to różnica między
+wygranymi a przegranymi albo między bramkami strzelonymi a straconymi.
 
-Pod wynikami jest lista przeciwników: osób, z którymi grał wyświetlany gracz, a w deblu par przeciwników. Przy każdej pozycji widać liczbę rozegranych, wygranych i przegranych meczów w wybranym okresie. Enter na przeciwniku pokazuje wygrane i przegrane mecze z nim w każdym okresie.
+Pod wynikami jest lista przeciwników, a w deblu — par przeciwników.
+Przy każdej pozycji widzisz liczbę rozegranych, wygranych i przegranych
+meczów w wybranym okresie. Enter pokazuje wyniki przeciwko tej osobie
+lub parze w poszczególnych okresach.
 
-Kolejnym Tabem przejdziesz do wyboru okresu. Możesz sprawdzić ostatnie 7 dni, 30 dni, pół roku, rok albo cały okres. Przycisk „Wybierz gracza” pozwala wskazać inną osobę, a „Moje statystyki” wraca do Twoich wyników. „Odśwież” pobiera aktualne dane.
+Tabem przejdziesz do wyboru okresu: ostatnie 7 dni, 30 dni, pół roku,
+rok lub cały czas. „Wybierz gracza” otwiera statystyki innej osoby,
+„Moje statystyki” przywraca Twoje, a „Odśwież” pobiera aktualne dane.
 
-W Audio Ballu sumują się bramki ze wszystkich setów. W deblu każdy gracz otrzymuje pełny wynik swojej drużyny. Wyniki zapisują się automatycznie po zakończeniu meczu, jeżeli obie strony składają się wtedy wyłącznie z ludzi. Liczą się także mecze turniejowe, a walkowery uwzględniają bramki przyznane w turnieju.
-
-## Funkcje, które łatwo przeoczyć
-
-### Porządkowanie kart i wyszukiwanie możliwego zagrania
-
-W karciankach, które udostępniają wspólne sortowanie ręki:
-
-- Shift+C porządkuje karty według koloru.
-- Shift+H porządkuje karty według wartości.
-- Shift+M przywraca kolejność otrzymywania kart.
-
-Ponowne użycie skrótu sortowania odwraca kolejność. 
-
-Z i Shift+Z w obsługiwanych grach przechodzą do następnej lub poprzedniej
-karty albo kostki, którą można zagrać. Przy jednym jednoznacznym zagraniu
-skrót może od razu wykonać ruch, jeśli dana gra na to pozwala. Nie jest to
-więc zawsze wyłącznie przeglądanie. W niektórych szybkich wariantach UNO
-ta pomoc jest wyłączona. Dokładne zachowanie opisuje F1 w polu danej gry.
-
-### Własny sposób odczytywania planszy
-
-W Chińczyku Ctrl+C przełącza opisy między nickami a  kolorami, a C przypomina,
-kto gra danym kolorem. W Szachach i Warcabach Ctrl+Shift+H obraca widok
-planszy; w Warcabach Ctrl+H zmienia numerację pól na współrzędne szachowe
-lub odwrotnie. Te wybory są zapamiętywane lokalnie na następne stoły
-i nie zmieniają widoku pozostałych osób.
-
-### Dźwięki, samouczki i podgląd ruchów
-
-W zasadach Audio Balla jest samouczek audio, w którym można posłuchać
-dźwięków przed rozpoczęciem gry. Pod Ctrl+P można też wybrać alternatywny
-pakiet dźwięków znanych z Audiodisca. Axel Pong ma własne ustawienia
-lokalne pod tym samym skrótem.
-
-W Scrabble inni uczestnicy widzą dokładane i zdejmowane litery jeszcze
-przed zatwierdzeniem słowa. Ctrl+P włącza lub wyłącza lokalne komunikaty
-o tych zmianach. Domyślnie są wyłączone; nie trzeba włączać ich wszystkim
-przy stole.
-
-### Ocenianie odpowiedzi w Państwach-miastach
-
-Odpowiedzi są ułożone kategoriami, dzięki czemu łatwiej porównać podobne
-wpisy. Jako sędzia przechodź między nimi Tabem, wybieraj ocenę strzałkami
-i potwierdzaj Enterem. Przy wejściu na odpowiedź usłyszysz przypomnienie
-„Enter zatwierdza ocenę”, a po jej przyjęciu — „Oceniono”. Po ocenieniu
-wszystkich odpowiedzi wybierz „Zakończ ocenę”.
-
-Pola odpowiedzi dopowiadają przykład dla liter M i N, aby łatwiej je
-rozróżnić. Dźwięk sygnalizuje wysłanie odpowiedzi, a przy grze z limitem
-czasu osobne sygnały oznaczają ostatnie 20 sekund i koniec czasu.
-Po podliczeniu punktów jest przerwa przed następną rundą; jej czas
-na odpowiedzi zaczyna się dopiero po przerwie.
-
-### Połączenie w grach audio
-
-Przy tworzeniu stołu Axel Ponga lub Audio Balla można opcjonalnie włączyć
-„Full P2P”, czyli bezpośrednie połączenia między uczestnikami, jeśli sieć
-na nie pozwala. Opcja jest domyślnie wyłączona. Po jej zaznaczeniu pojawia
-się limit uczestników P2P, domyślnie osiem. ELTEN zachowuje możliwość
-korzystania z serwera pośredniczącego, gdy połączenie bezpośrednie nie
-jest dostępne. Ctrl+F4 rozróżnia mierzone połączenia.
+Wyniki zapisują się automatycznie po meczu, jeśli obie strony składają się
+wtedy wyłącznie z ludzi. W deblu każdemu graczowi liczy się pełny wynik
+drużyny, a w Audio Ballu sumują się bramki ze wszystkich setów.
+Uwzględniane są też mecze turniejowe i bramki przyznane za walkower.
 
 ## Ściągawka ze skrótów
 
@@ -629,6 +498,7 @@ do wskazanej listy lub pola gry, nie do wpisywania wiadomości.
 - Ctrl+Shift+I — zaproszenie osoby z kontaktów.
 - Ctrl+O — dodanie bota; dla gospodarza, gdy jest to dostępne.
 - Ctrl+Shift+O — wybór roli gracza lub obserwatora na następną partię.
+- Ctrl+Shift+M — wyciszenie lub włączenie mikrofonu w konferencji stołu.
 - Ctrl+P — ustawienia lub przełącznik osobisty, w grach, które go mają.
 - Ctrl+S — zapis partii i zamknięcie stołu; dla gospodarza, w obsługiwanych grach poza turniejami.
 - Ctrl+Shift+S — historia tekstowa lub powtórka gry audio w bibliotece, bez zamykania partii.
@@ -653,7 +523,7 @@ do wskazanej listy lub pola gry, nie do wpisywania wiadomości.
 - Alt+1 do Alt+0 — kolejnych dziesięć konfiguracji; w widgecie.
 - Shift+1 do Shift+0 — ostatnich dziesięć konfiguracji; w widgecie.
 
-Przeglądanie wpisów i kategorii opisuje [rozdział o historii](#wróć-do-rozmowy-lub-wcześniejszego-ruchu).
+Przeglądanie wpisów i kategorii opisuje [rozdział o historii](#historia-przy-stole).
 Przypisywanie własnych skrótów opisuje [rozdział o widgecie](#własne-skróty-tworzenia-stołów).
 
 ## Turnieje
@@ -671,16 +541,23 @@ W bieżących turniejach najpierw zobaczysz te, w których uczestniczysz lub kt�
 
 Po upływie terminu turniej pozostaje w tym samym miejscu w „Bieżących”, ze statusem „Termin minął”. Do „Zakończonych” trafia dopiero po rozstrzygnięciu wszystkich wymaganych meczów.
 
-Porzucony turniej znika po 14 dniach bez aktywności przed rozpoczęciem lub po 30 dniach bez postępu po rozpoczęciu. Zapisy i zmiany organizatora przedłużają ważność przed startem, a wyniki meczów — po starcie. Samo przeglądanie jej nie przedłuża. Jeśli zapisy lub start zaplanowano na przyszłość, turniej nie zniknie przed tym terminem. Wyniki ukończonych turniejów pozostają dostępne.
+Porzucony turniej znika po 14 dniach bez aktywności przed rozpoczęciem lub po 30 dniach bez postępu po rozpoczęciu. Przed startem zapisy i edycja turnieju odnawiają tę ważność; po starcie robią to wyniki meczów. Samo przeglądanie turnieju nie przedłuża terminu jego przechowywania. Jeśli zapisy lub start zaplanowano na przyszłość, turniej nie zniknie przed tym terminem. Wyniki ukończonych turniejów pozostają dostępne.
 
 Przy nazwie turnieju znajdziesz grę, liczbę uczestników i stan rozgrywek. Na liście dostępne są też skróty:
 
 - Ctrl+N — utwórz turniej.
-- Ctrl+R — odśwież listę turniejów.
-- Ctrl+O — otwórz turniej; Ctrl+D — dołącz; Ctrl+M — mecze; Ctrl+W — tabela wyników; Ctrl+E — zarządzanie; Ctrl+L — wypisz się. Dostępne działania wraz ze skrótami znajdziesz również w menu kontekstowym.
-- Ctrl+T — otwórz moduł turniejów z lobby lub widgetu.
-- Ctrl+Shift+T — otwórz listę własnych turniejów. Lista pozostaje ograniczona do Twoich turniejów także wtedy, gdy jest pusta.
-- Ctrl+J — otwórz zwykłą listę zaproszeń, również tych do meczów turniejowych.
+- Ctrl+R — odśwież listę.
+- Ctrl+O — otwórz zaznaczony turniej.
+- Ctrl+D — dołącz do turnieju.
+- Ctrl+M — otwórz mecze.
+- Ctrl+W — otwórz tabelę wyników.
+- Ctrl+E — przejdź do zarządzania.
+- Ctrl+L — wypisz się z turnieju.
+
+Menu kontekstowe pokazuje tylko dostępne działania wraz ze skrótami.
+Z lobby i widgetu Ctrl+T otwiera moduł turniejów, a Ctrl+Shift+T listę
+własnych turniejów. Ta lista nie zmienia się w listę cudzych turniejów,
+gdy jest pusta. Ctrl+J otwiera zwykłe zaproszenia, także do meczów turniejowych.
 
 F1 przypomina obsługę bieżącego okna, a Escape wraca do poprzedniego. Samo zamknięcie okna nie wypisuje Cię z turnieju.
 
@@ -726,9 +603,18 @@ Możesz mieć jedną wysłaną propozycję. Wybranie innej osoby wymaga potwierd
 
 Przy rozpoczęciu turnieju program zachowuje uzgodnione pary, a pozostałe osoby łączy losowo. Organizator nie wybiera tych par. Jeśli bez partnera pozostanie nieparzysta liczba osób albo uczestników będzie za mało, otrzyma wyjaśnienie, dlaczego turniej nie może ruszyć. Po starcie drużyny pozostają stałe, a wynik liczy się dla Was wspólnie.
 
-Powiadomienie o rozpoczęciu turnieju otwiera jego mecze. Po zakończeniu fazy otrzymasz jeden komunikat z informacją o następnej, prowadzący do tabeli wyników zakończonej fazy. Po finale przychodzi już tylko powiadomienie o zakończeniu całego turnieju. Podaje Twoje miejsce — w grze drużynowej miejsce drużyny — oraz zwycięzcę lub wspólnych zwycięzców i otwiera końcową tabelę wyników. W części pucharowej osoby, które odpadły na tym samym etapie, mają wspólne miejsce. Nie porównuje się punktów osób wyeliminowanych z różnych grup.
+### Powiadomienia turniejowe
 
-Informacje o rozpoczęciu i zakończeniu turnieju nie wygasają automatycznie. Zaproszenia do meczów turniejowych są widoczne niezależnie od filtrów zaproszeń i czarnej listy. Ich pięciominutowy termin pozostaje bez zmian. Dźwięki tych powiadomień nadal zależą od ustawień dźwięku i wyciszenia powiadomień w ELTEN-ie.
+Powiadomienie o rozpoczęciu turnieju otwiera jego mecze. Po zakończeniu fazy
+otrzymasz jeden komunikat: zapowiada następną fazę i otwiera tabelę wyników
+właśnie zakończonej fazy. Po finale przychodzi już tylko powiadomienie o zakończeniu
+całego turnieju. Podaje Twoje miejsce — w grze drużynowej miejsce drużyny —
+oraz zwycięzcę lub wspólnych zwycięzców. Otwiera końcową tabelę wyników.
+
+Informacje o rozpoczęciu i zakończeniu turnieju nie wygasają automatycznie.
+Zaproszenia do meczów są ważne pięć minut i nie podlegają filtrom zaproszeń
+ani czarnej liście. Dźwięki wszystkich tych powiadomień nadal zależą
+od ustawień dźwięku i wyciszenia powiadomień w ELTEN-ie.
 
 ### Jak rozpocząć mecz
 
@@ -745,9 +631,9 @@ Osoby spoza składu tego meczu dołączają automatycznie jako obserwatorzy, tak
 
 Zaproszenie jest ważne przez pięć minut. Odrzucenie go, jego wygaśnięcie ani wyjście ze stołu przed rozpoczęciem meczu nie oznacza przegranej i nie wypisuje z turnieju. Wybierając ponownie „Zagraj”, wrócisz do istniejącego stołu i zaprosisz brakujące osoby. Po rozpoczęciu meczu obowiązują opisane niżej zasady powrotu.
 
-Zanim wejdziesz do meczu, opuść inną partię. Nie możesz jednocześnie zająć miejsca przy dwóch stołach. Jeśli pusty stół zamknięto przed rozpoczęciem gry, możesz otworzyć mecz ponownie. Rozpoczętej partii nie zastępujemy automatycznie nową. Po utracie połączenia wróć do tego samego, nadal otwartego stołu.
+Zanim wejdziesz do meczu, opuść swój dotychczasowy stół w tej kopii Power Games. Jeśli pusty stół zamknięto przed rozpoczęciem gry, możesz otworzyć mecz ponownie. Rozpoczętej partii nie zastępujemy automatycznie nową. Po utracie połączenia wróć do tego samego, nadal otwartego stołu.
 
-### Spotkania, wyniki i przerwana partia
+### Lista meczów
 
 „Mecze turnieju” otwierają się na bieżącej fazie turnieju. Pierwsza pozycja listy podaje jej nazwę, np. „Ćwierćfinały”, oraz liczbę zakończonych meczów. Pod nią są najpierw Twoje nierozegrane mecze, potem nierozegrane mecze pozostałych uczestników, a na końcu wszystkie zakończone spotkania. Każdy widzi pełną listę.
 
@@ -757,29 +643,54 @@ Enter na zakończonym meczu informuje, że został już rozegrany. Jego wynik ot
 
 Wpis zakończonego meczu zawiera też wynik samej gry, jeśli gra go udostępnia. Jeśli masz jeszcze zaplanowany rewanż z tymi przeciwnikami, w menu tego meczu pojawi się „Zagraj rewanż” pod Ctrl+G. Wysyła zwykłe zaproszenia i nie rozpoczyna partii automatycznie.
 
+### Tabela wyników
+
 „Tabela wyników” pokazuje od razu miejsce, uczestnika, punkty turniejowe i liczbę rozegranych meczów. Tabem przejdziesz do wyboru fazy. Wyniki zapisują się automatycznie; nie musisz przepisywać ich z historii gry.
 
-W grach obsługujących małe punkty tabela pokazuje dostępne sumy zdobyte i stracone oraz ich różnicę. Brak wyniku z jednego meczu nie ukrywa pozostałych sum i nie jest liczony jako zero. W UNO, Domino, Mexican Train i eliminacyjnym Remiku lepszy jest niższy wynik. W Audio Ballu sumowane są punkty ze wszystkich setów. Uczestnicy nadal dzielący miejsce są wyświetlani od najmniejszej liczby rozegranych meczów; ta kolejność nie rozstrzyga awansu.
+Małe punkty to wynik samej gry, na przykład bramki, a nie punkty turniejowe.
+W grach, które je obsługują, tabela pokazuje dostępne sumy zdobyte i stracone oraz ich różnicę. Brak wyniku z jednego meczu nie ukrywa pozostałych sum i nie jest liczony jako zero. W UNO, Domino, Mexican Train i eliminacyjnym Remiku lepszy jest niższy wynik. W Audio Ballu sumowane są punkty ze wszystkich setów. Uczestnicy nadal dzielący miejsce są wyświetlani od najmniejszej liczby rozegranych meczów; ta kolejność nie rozstrzyga awansu.
+
+### Zapis i powrót po rozłączeniu
 
 Żadnej partii turniejowej nie można zapisać ani wznowić z pliku. Polecenie zapisu i Ctrl+S nie są tu dostępne, ale Ctrl+Shift+S nadal pozwala zachować historię tekstową lub powtórkę gry audio.
 
 W rozpoczętym meczu indywidualnym gra zatrzymuje się, gdy gracz zostanie rozłączony. Ma łącznie pięć minut na powrót w ciągu całego meczu: powrót zatrzymuje odliczanie, ale nie odnawia limitu. Wróć na to samo konto i do tego samego stołu, aby grać dalej z zachowanymi kartami, wynikiem i czasem na ruch.
 
-Po wyczerpaniu limitu w meczu jeden na jednego wygrywa przeciwnik. Przy większej obsadzie rozłączony zajmuje ostatnie miejsce. Jeśli gra pozwala kontynuować bez niego, pozostali grają dalej; w przeciwnym razie o ich miejscach decydują wyniki ukończonych rund. Bez ukończonej rundy pozostali dzielą pierwsze miejsce. Automatyczny limit dotyczy meczów indywidualnych, nie drużynowych. Nieodebrane zaproszenie nie oznacza przegranej.
+Po wyczerpaniu limitu w meczu jeden na jednego wygrywa przeciwnik.
+Przy większej obsadzie rozłączony zajmuje ostatnie miejsce. Jeśli gra
+pozwala kontynuować bez niego, pozostali grają dalej. W przeciwnym razie
+o ich miejscach decydują wyniki ukończonych rund; jeśli żadnej nie ukończono,
+pozostali dzielą pierwsze miejsce.
 
-### Prywatne karty w turniejach
+Ten automatyczny limit dotyczy meczów indywidualnych, nie drużynowych.
+Nieodebrane zaproszenie nie oznacza przegranej.
 
-W turniejowym Mahjongu każdy otrzymuje tylko własne kamienie. Ukryta pozostaje też dalsza część ściany. Kamienie potrzebne do sprawdzenia wyniku są ujawniane po zakończeniu rozdania.
+### Ochrona ukrytych kart
 
-W turniejach 1000 mil, Pików, Brydża, Tysiąca, 3-5-8, 99, Pokera, Wojny, Remika, Makao, Biblios i UNO serwer rozdaje karty osobno każdemu graczowi. Tak samo działa rozdawanie kostek w Domino i Mexican Train oraz liter w Scrabble. Inni gracze, obserwatorzy i gospodarz nie otrzymują zawartości Twojej ręki. Potrzebne karty, kostki lub litery są ujawniane przy zagrywaniu, przekazywaniu i rozliczaniu punktów. W brydżu ręka dziadka staje się widoczna po pierwszym zagraniu, a pozostałe karty są ujawniane po zakończeniu rozdania.
+W turniejach 1000 mil, Pików, Brydża, Tysiąca, 3-5-8, 99, Pokera, Wojny,
+Remika, Makao, Biblios, Bouillabaisse, Scopy i UNO serwer rozdaje karty prywatnie każdemu graczowi.
+Tak samo działa rozdawanie kostek w Domino i Mexican Train, liter
+w Scrabble oraz kamieni w Mahjongu. Inni gracze, obserwatorzy i gospodarz
+nie otrzymują Twojej nieujawnionej ręki ani dalszej części talii lub ściany.
+Karty i kamienie są odkrywane wtedy, gdy wymaga tego zagranie lub rozliczenie.
 
-Karty przekazywane innym graczom nie zachowują tej ochrony, choć zwykły interfejs nadal nie pokazuje cudzych rąk. Dotyczy to także całej przekazywanej ręki w UNO, kart zdobytych w Wojnie i kart zwracanych do talii. W UNO rozdający zna też dzikie karty pominięte przy wyborze pierwszej karty na stole. W Domino porównywana jest najwyższa kostka każdego gracza, żeby ustalić, kto zaczyna. Zasady gier pozostają bez zmian.
+Ta ochrona ma ograniczenia. Karty przekazane innemu graczowi, zdobyte
+w Wojnie lub zwrócone do talii nie pozostają w pełni prywatne, choć zwykły
+interfejs nadal nie pokazuje cudzych rąk. Dotyczy to także przekazania
+całej ręki w UNO. Ustalenie pierwszej karty lub rozpoczynającego gracza
+może wymagać ujawnienia części kart albo kostek. Zasady gier się nie zmieniają.
 
-W takim meczu nie można zastępować graczy, dodawać botów ani zapisywać partii do wznowienia przy innym stole. Po rozłączeniu wróć na to samo konto i do tego samego stołu — odzyskasz swoją rękę. Zmiana gospodarza nie ujawnia kart. Pozostawienie stołu otwartego nie przedłuża pięciominutowego limitu powrotu w rozpoczętym meczu indywidualnym.
+W takich meczach nie można dodawać botów ani zastępować uczestników.
+Powrót na to samo konto i do tego samego stołu przywraca Twoją rękę;
+zmiana gospodarza jej nie ujawnia. Obowiązują opisane wcześniej zasady
+zapisu i limit powrotu. Samo pozostawienie stołu otwartego nie wydłuża limitu.
 
-W turniejowym Taboo hasło i zakazane słowa otrzymują tylko opisujący oraz przeciwna drużyna. Gospodarz, który zgaduje, również ich nie widzi. Po zakończeniu tury hasła są ujawniane do przeglądu. Jeżeli opisujący straci połączenie, trzeba poczekać na jego powrót, aby zatwierdzić wynik. Takiego meczu również nie można zapisać do wznowienia przy innym stole ani zastąpić uczestnika.
+W turniejowym Taboo hasło i zakazane słowa otrzymują tylko opisujący oraz
+przeciwna drużyna, nie zgadujący gospodarz. Po turze hasła są dostępne
+do przeglądu. Jeśli opisujący straci połączenie, przed zatwierdzeniem wyniku
+trzeba poczekać na jego powrót; uczestnika nie można zastąpić.
 
-Zwykłe partie nadal obsługują boty, zastępstwa i zapis gry tam, gdzie dana gra na to pozwala.
+Zwykłe partie zachowują boty, zastępstwa i zapis tam, gdzie gra je obsługuje.
 
 ### Tworzenie turnieju
 
@@ -793,7 +704,7 @@ Na liście turniejów naciśnij Ctrl+N. Najpierw wybierz grę, potem jej wariant
 - Mecze rewanżowe — dodatkowe spotkanie w tym samym składzie, ze zmienioną kolejnością miejsc. Ta opcja dotyczy rozgrywek każdy z każdym i grup; puchar oraz finał mają osobne ustawienia.
 - „Daty i godziny gry” — opcjonalne terminy zapisów, rozpoczęcia i rozgrywania spotkań.
 
-Dodatkowe pola zależą od formatu i gry. Rewanże są domyślnie wyłączone. Na końcu wybierz publikację turnieju; samo wypełnianie formularza nie udostępnia go innym.
+Dodatkowe pola zależą od formatu i gry. Rewanże są domyślnie wyłączone. Na końcu opublikuj turniej; samo wypełnianie formularza nie udostępnia go innym.
 
 Przycisk „Wstecz” pozwala wrócić do ustawień gry bez utraty danych wpisanych w formularzu turnieju.
 
@@ -855,11 +766,14 @@ Kolejność w meczu wynika z rozstrzygnięcia gry i jej wyników. Jeśli gra nie
 
 Przy równej liczbie punktów program porównuje kolejno bezpośrednie spotkania remisujących, różnicę punktów zdobytych i straconych w grze, a potem punkty zdobyte. Bierze pod uwagę, czy w danej grze lepszy jest wynik wyższy, czy niższy. Nie korzysta z niepełnego porównania bezpośrednich spotkań ani nie zastępuje brakującego wyniku zerem. Jeśli dostępne kryteria nie rozstrzygają remisu, uczestnicy dzielą miejsce; gdy potrzebne jest rozstrzygnięcie awansu, odbywają się dodatkowe mecze. Przy wspólnym miejscu następny numer uwzględnia wszystkie poprzedzające osoby: po dwóch pierwszych miejscach jest trzecie, nie drugie.
 
+W części pucharowej osoby wyeliminowane na tym samym etapie dzielą miejsce.
+Nie porównuje się punktów osób, które odpadły z różnych grup.
+
 ### Daty i godziny gry
 
 W formularzu turnieju otwórz „Daty i godziny gry”. Nie musisz planować żadnych terminów: możesz otworzyć zapisy od razu, a zamknąć je i rozpocząć turniej ręcznie.
 
-- Otwarcie zapisów — od razu po publikacji, o wybranym terminie albo dopiero na Twoje polecenie.
+- Otwarcie zapisów — od razu po publikacji, w wybranym terminie albo dopiero na Twoje polecenie.
 - Zamknięcie zapisów — opcjonalna data, po której nowe osoby już się nie zapiszą. Samo zamknięcie nie uruchamia turnieju.
 - Rozpoczęcie turnieju — opcjonalna data automatycznego startu. Rozpoczęcie kończy również zapisy.
 - Termin końcowy — po tej dacie nie można rozpoczynać nowych meczów. Trwające partie można dokończyć; samo upłynięcie terminu nie rozstrzyga spotkań ani nie przyznaje walkowerów.
@@ -922,73 +836,66 @@ Wybór „Nie” usuwa oznaczenia; nie ma szkiców zgłoszeń na później.
 
 ### Własne zestawy pytań
 
-W głównym oknie znajdziesz „Tworzenie własnych zestawów pytań do quizu”. Otwiera się lista Twoich zestawów. Ctrl+N pozwala stworzyć własny
-zestaw albo przygotować pytania do jednego z zestawów dostępnych w grze.
-Dla własnego zestawu podaj nazwę, język i ewentualny opis, a następnie wybierz
-„Zapisz”. Jeśli dodajesz pytania do istniejącego zestawu, najpierw wybierz
-język i zatwierdź Enterem. W osobnym oknie wybierz zestaw w tym języku.
+W głównym menu otwórz „Tworzenie własnych zestawów pytań do quizu”.
+Zobaczysz listę swoich szkiców. Ctrl+N pozwala utworzyć nowy zestaw
+albo przygotować pytania do zestawu dostępnego w grze.
 
-Enter na zestawie otwiera menu:
+Dla własnego zestawu podaj nazwę, język i opcjonalny opis, a następnie
+wybierz „Zapisz”. Aby dodać pytania do istniejącego zestawu, najpierw
+wybierz język i zatwierdź Enterem, a w kolejnym oknie wskaż zestaw
+w tym języku.
+
+Enter na zapisanym szkicu otwiera menu:
 
 - „Dodaj pytanie” — wpisz pytanie, poprawną odpowiedź w pierwszym polu (A)
-  i trzy błędne w polach B, C, D. Wybierz kategorię z listy. Źródło i uwagi
-  dla redaktora są opcjonalne.
-- „Przeglądaj pytania” — otwórz listę zapisanych pytań; Enter pozwala
-  edytować wybrane pytanie, Ctrl+N dodać nowe, a Delete usunąć zaznaczone po potwierdzeniu.
-- „Dodaj kategorię” — nadaj nazwę kategorii, którą będzie można wybierać
-  w pytaniach.
-- „Usuń szkic” — usuń cały zestaw po potwierdzeniu.
-- „Wyślij do autora” — wyślij cały zestaw do użytkownika papierek.
+  i trzy błędne w polach B, C i D. Wybierz kategorię z listy.
+  Źródło i uwagi dla redaktora są opcjonalne.
+- „Przeglądaj pytania” — Enter edytuje zaznaczone pytanie,
+  Ctrl+N dodaje nowe, a Delete usuwa zaznaczone po potwierdzeniu.
+- „Dodaj kategorię” — utwórz kategorię do przypisywania pytaniom.
+- „Usuń szkic” — po potwierdzeniu usuń cały szkic.
+- „Wyślij do autora” — prześlij wszystkie pytania ze szkicu do papierka.
 
-Przed dodaniem pierwszego pytania utwórz przynajmniej jedną kategorię.
-Kolejne możesz dodawać także podczas pisania pytania: na końcu listy kategorii
-wybierz „Dodaj nową kategorię” i naciśnij Enter. Wpisana treść pozostaje
-w formularzu, a nowa kategoria jest od razu zaznaczona.
+Pierwsza odpowiedź jest poprawna w formularzu kreatora, ale podczas gry
+odpowiedzi pojawiają się w zmienionej kolejności.
 
-Przycisk „Zapisz” zachowuje Twoją pracę jako szkic. Możesz do niego wrócić
-później, także na innym komputerze po zalogowaniu na to samo konto.
-Możesz zachować także nieukończone pytania. Menu kontekstowe pozwala usunąć
-pytanie lub zestaw oraz zmienić szczegóły własnego zestawu. Na liście zestawów
-klawisz Delete usuwa zaznaczony szkic po potwierdzeniu.
+Przed pierwszym pytaniem utwórz przynajmniej jedną kategorię.
+Kolejne dodasz też w trakcie pisania: wybierz „Dodaj nową kategorię”
+na końcu listy kategorii. Tekst pytania pozostanie w formularzu,
+a nowa kategoria zostanie zaznaczona.
 
-Uszkodzony szkic jest oznaczony na liście i nie blokuje pozostałych zestawów.
-Jeśli nie chcesz go zachować, możesz usunąć go klawiszem Delete.
+„Zapisz” zachowuje pracę jako szkic, również z nieukończonymi pytaniami.
+Wrócisz do niej później, także na innym komputerze na tym samym koncie.
+Menu kontekstowe pozwala edytować szczegóły własnego zestawu lub usuwać
+pytania i szkice. Delete na liście szkiców usuwa zaznaczony po potwierdzeniu.
+Uszkodzony szkic jest oznaczony; nie blokuje pozostałych i też można go usunąć.
 
-Gdy pytania będą gotowe, wybierz „Wyślij do autora”. Jeśli czegoś brakuje,
-program wskaże numer pytania i pola do uzupełnienia. Pytania trafiają do autora
-do sprawdzenia, nie od razu do gry. Po udanej wysyłce szkic znika z listy;
-jeśli wysyłka się nie uda, możesz do niego wrócić i spróbować ponownie.
+Gdy skończysz, wybierz „Wyślij do autora”. Jeśli brakuje danych,
+program wskaże numer pytania i pola do uzupełnienia.
+Wysyłka przekazuje propozycję do sprawdzenia — nie dodaje jej od razu do gry.
+Po udanym wysłaniu szkic znika z listy. Nieudana wysyłka zachowuje go,
+aby można było wrócić do pracy lub spróbować ponownie.
 
 ### Dla twórców gier, tłumaczeń i poprawek
 
-Jeśli chcesz zajrzeć do kodu lub dodać własną grę, zacznij od
+Jeśli chcesz pomóc w kodzie, tłumaczeniach lub dodawaniu gier, zacznij od
 [zasad współpracy](CONTRIBUTING.md) i [indeksu dokumentacji](docs/INDEX.md).
-Najważniejsze przewodniki to:
-
-- [Architektura programu](docs/ARCHITECTURE.md).
-- [Dodawanie nowej gry](docs/ADDING_A_GAME.md).
-- [Testy i sposób ich uruchamiania](docs/TESTING.md).
-- [Tłumaczenia](docs/TRANSLATIONS.md).
-- [Budowanie i podpisywanie paczki](docs/BUILDING.md).
-
-Do lokalnych testów potrzebny jest Ruby 4.0, zależności opisane w dokumentacji
-i źródła zgodnego ELTEN-a. Nie są one potrzebne graczom korzystającym
-z gotowej paczki. Nowe gry powinny korzystać ze wspólnych mechanizmów stołu,
-czatu, historii i pomocy, aby nie wymagały uczenia się całego interfejsu
-od początku.
+Znajdziesz tam przewodniki dotyczące interfejsu, testów, tłumaczeń, zasad
+i przygotowania paczek. Dokumentacja dla twórców jest po angielsku;
+do grania nie potrzebujesz narzędzi programistycznych.
 
 ## Autorzy i licencja
 
-Projekt prowadzi papierek, przy udziale autorów gier, tłumaczeń,
-poprawek i osób testujących kolejne wersje. Wkład poszczególnych autorów
-jest opisany w historii zmian i dokumentacji składników.
+Projekt prowadzi papierek. W jego rozwoju pomagają autorzy gier, tłumacze,
+twórcy poprawek i osoby testujące kolejne wersje. Ich wkład jest opisany
+w historii zmian i dokumentacji składników.
 
-Axel Pong nie jest autorskim projektem papierka. Gra pierwotnie nazywała
-się Dragon-Pong, następnie została ulepszona przez Axela i balteama,
-a ostatecznie przeportowana do ELTEN-a za ich zgodą.
+Axel Pong wywodzi się z gry Dragon-Pong, rozwiniętej przez Axela i balteama.
+Do ELTEN-a został przeniesiony za ich zgodą. Nie jest autorskim projektem
+papierka.
 
 Kod Power Games jest udostępniany na licencji GNU General Public License
-version 3. Pełny tekst znajduje się w pliku [LICENSE](LICENSE).
+w wersji 3. Pełny tekst znajduje się w pliku [LICENSE](LICENSE).
 Dźwięki, pytania i inne materiały mogą mieć odrębne warunki wykorzystania;
 ich pochodzenie i informacje licencyjne opisuje
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

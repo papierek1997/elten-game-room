@@ -1,6 +1,12 @@
-Power Games is a collection of games for ELTEN users. You can meet friends at a table, join an open game, watch others play or take on bots in games that support them.
+# Power Games
 
-ELTEN reads out cards, boards, scores and events, while sounds help you follow the action. All games share the same tables, chat, history and help, so much of the interface will already feel familiar when you try another title.
+Power Games is a collection of games for ELTEN users. Meet friends at a table,
+join an open game, watch others play or take on bots in games that support them.
+
+ELTEN reads out cards, boards, scores and events, while sounds help you follow
+the action. Tables, chat, history and help work in a familiar way across games.
+This guide explains how to use the program; each game's rules explain its
+gameplay, scoring and controls.
 
 ## Contents
 
@@ -15,7 +21,6 @@ ELTEN reads out cards, boards, scores and events, while sounds help you follow t
 - [Saved games and history](#saved-games-and-history)
 - [Leaderboards](#leaderboards)
 - [Statistics](#statistics)
-- [Features you might miss](#features-you-might-miss)
 - [Shortcut reference](#shortcut-reference)
 - [Tournaments](#tournaments)
 - [Helping improve the program](#helping-improve-the-program)
@@ -25,358 +30,172 @@ ELTEN reads out cards, boards, scores and events, while sounds help you follow t
 
 ## Getting started
 
-Power Games requires ELTEN 3.0.5 or later.
-
-Stereo headphones are recommended for audio games, where the direction of sound matters.
+Power Games requires ELTEN 3.0.5 or later. Stereo headphones are recommended
+for audio games, where the direction of sound matters.
 
 1. Open Power Games from ELTEN's program list.
-2. Select “Create a new table”, choose a game and set its variant. In the same form you can decide whether the table should be private.
-3. Invite other players or add bots if the game supports them. For a team game, choose and confirm the teams.
-4. Select “Start game”. If you need help, press F1 for the available shortcuts or Ctrl+F1 to read the rules.
+2. Select “Create a new table”, choose a game and configure its variant.
+   You can also make the table private in this form.
+3. Invite other players or add bots if the game supports them.
+   For a team game, choose and confirm the teams.
+4. Select “Start game”. F1 explains the available actions;
+   Ctrl+F1 opens the game's rules.
 
-You do not have to create your own table. “Join a table” lets you choose a game and browse existing tables. You can also use an invitation or the widget on ELTEN's main screen.
-When choosing a game to create or join a table, you will hear a short description after its name.
-In Duck Racing's challenge settings, each item's name and checked state are followed by a short explanation of the challenge.
-Opening Power Games again in the same copy of ELTEN takes you back to its existing window instead of starting a second independent instance.
+You do not have to create a table. “Join a table” lets you choose a game
+and browse existing tables. You can also accept an invitation or use
+the widget on ELTEN's main screen. When choosing a game to create or join
+a table, you hear a short description after its name.
 
-On startup, the program may offer to download a newer version. Declining does not stop you from opening it, but it is worth making sure everyone has an up-to-date version before playing together. You can read about changes in “What's new”.
-This is a read-only document with a heading for each version. H moves to the next heading and Shift+H to the previous one. Escape closes the document.
+Opening Power Games again in the same copy of ELTEN returns to its existing
+window rather than opening another one. At startup, the program may offer
+an update. Declining does not prevent you from entering, but make sure
+everyone has an up-to-date version before playing together.
+
+Read about changes in “What's new”. As in this guide, H moves to the next
+heading, Shift+H to the previous one, and Escape closes the document.
 
 ## What you can play
 
-Power Games currently includes 46 games:
+Power Games includes 48 games, ranging from cards and board games to word
+games, typing practice and games built around listening and quick reactions.
 
-- Card games: 3-5-8, 99, 1000 miles, Biblios, Bouillabaisse, Bridge, Makao, Spades, Poker, Rummy, Scopa, Thousand, UNO, War and Scientific War.
-- Board and strategy games: Ludo, Four in a Row, Tic Tac Toe, Mancala, Monopoly, Reversi, Battleships, Chess, Checkers and Duck Racing.
-- Dice and dominoes: Cat, head, tail, Dominos, Farkle, Mexican Train and Yahtzee.
-
-Both blackjack chip games collect an opening contribution automatically (default ten, or all remaining chips if fewer), then offer checking/calling, raising, folding and all-in before play. R or B enters a custom raise; C checks/calls, F folds, A goes all-in. Casino card blackjack settles against the dealer; Blackjack Dice uses main and side pots.
-
-Bingo offers 30-, 75-, 80- and 90-ball variants at table creation, with selectable winning patterns in 75/80-ball games. Automatic marking is the default; manual marking is also available. Arrows browse the ticket, Enter marks a called number, M enters a number, B claims bingo and R confirms readiness for the next call. L repeats the last ball; D browses calls. A bingo-drum sound accompanies each draw.
-
-Dice poker lets you keep dice and compete for the best hand across rounds. Table settings choose straights, ones or sixes high, two or three throws and an opener throw limit. Enter rolls, 1–6 selects dice to reroll, Shift+1–6 keeps them, K stands and S reads scores. Liar's dice uses hidden cups: choose Classic, Red Dead style or Perudo with optional Palifico and Calza. B enters a bid, K challenges, D calls exact, V reads your dice and L the bid. Both games support bots. Keep the same Elten profile to retain your Liar's dice secrets.
-
-Card Poker offers the full 52-card deck or 24 cards from nine through ace. Short-deck draw poker supports four seats, or three when all-five exchange is allowed; Hold’em still supports eight. Dice poker also offers chips, a common ante, betting before and after throws, custom raises, all-in and side pots. Social blackjack has no house hand: the dealing seat rotates, D deals, and the best eligible hand up to 21 wins the shared pot.
-
-Go offers 9×9, 13×13 and 19×19 boards, area scoring, agreed territory scoring and first-capture Atari Go. P passes. After two passes, Enter marks dead groups or neutral regions, A agrees the score, R resumes and Q resigns. Territory mode does not automatically adjudicate every Japanese life-and-death exception.
-
-Roulette offers European, American and French la partage wheels. Choose an automatic casino croupier with fixed payouts or a social shared pool with a rotating spinner. Social winners share the pool in proportion to nominal casino returns; no winning claims means stakes are refunded. B opens a custom-amount bet, R finishes betting, C clears, V reads bets, S balances and Space spins socially. Only virtual chips are used. Local wheel and chip effects accompany play.
-
-Settings → Sounds adds Power Games background and In-game background. Each has its own enable switch, local audio/MIDI file picker and volume. Both start disabled. The general loop covers menus and the rest of the app; starting a game switches to the game loop and finishing restores the general loop. These settings affect only your client and respect All Power Games sounds volume.
-
-
-- Words and knowledge: Krowa, Typoholism, Categories, Quiz Party, Scrabble and Taboo.
+- Card games: 3-5-8, 99, 1000 miles, Biblios, Blackjack, Bouillabaisse,
+  Bridge, Makao, Spades, Poker, Rummy, Scopa, 1000 card game (Thousand), UNO, War and Scientific War.
+- Board and strategy games: Ludo, Four in a Row, Go, Tic-tac-toe, Mahjong,
+  Mancala, Monopoly, Reversi, Battleships, Chess, Checkers and Duck Racing.
+- Dice and dominoes: Balut, Blackjack Dice, Cat, head, tail, Dice General,
+  Domino, Farkle, Liar's dice, Mexican Train, Dice poker and Yahtzee.
+- Other games of chance: Bingo and Roulette.
+- Words and knowledge: Krowa, Typoholism, Countries and cities, Quiz Party,
+  Scrabble and Taboo.
 - Audio action games: Axel Pong and Audio Ball.
 
-Mahjong has one entry in the game list. Choose Solitaire, Hong Kong, Riichi or MCR first; the options for that variant appear below it. Solitaire is solo. Hong Kong and MCR need four players; Riichi needs four or three in sanma. At the table, use Ctrl+O to add bots for missing seats. In a longer match, everyone confirms readiness after each hand. Open the rules and controls with Ctrl+F1.
+Games use virtual chips only.
 
-Sounds distinguish dealing, drawing and discarding a tile, declaring a set and ending a hand. Solitaire also sounds pair removal and undo. Passing and browsing tiles are silent. Spoken descriptions still identify the tile and result.
+Variants, player counts and bot support depend on the game. You can read
+each game's rules in the program before creating a table.
 
-While responding to a tile, D reads the tile to which Pass, Chow, Pung, Kong or Mahjong applies. It does not change or submit your choice. In Solitaire, D still reads coordinates.
-
-W reads a legal winning hand value: fan or han and fu, and the points gained. Without a legal win it does not give a final hand value. Before a Riichi win it excludes hidden ura-dora, so the final value may be higher. U reads your exposed sets, Shift+U those of the other players, and R the hand number, winds and current situation. In Riichi, I reads dora indicators and tiles, your dora count, Riichi declarations, deposits, honba and your furiten restriction. These keys only read information.
-
-In Hong Kong, Riichi and MCR, W also reads a subtotal of basic bonuses already present: dragon and scoring-wind triplets, plus the applicable bonus tiles or an accepted Riichi declaration. Concealed triplets count while you keep them together. This is not the value of an unfinished hand: whole-hand patterns may replace basic bonuses. In MCR, flowers are listed separately and do not help reach 8 fan; Riichi lists visible dora separately because dora require yaku. When creating a table, Basic scoring preview under W defaults to Yes; choose No to keep only the legal-win readout. The setting never changes scoring or permission to win.
-
-Each variant has its own scoring reference: Hong Kong lists every awarded fan and seat-wind bonus, MCR all 81 entries grouped by fan value, and Riichi the open/closed yaku values, yakuman and fu. MCR also explains exclusions and the 6-fan mixed-kong combination. Solitaire scores removed pairs rather than fan.
-
-Press S to hear the current points of every player. Press M to hear how many tiles remain in the wall for drawing. These are read-only announcements: they do not draw, discard or pass, and do not reveal other hands. In Solitaire, S reads removed pairs and M remaining layout tiles.
-
-The book teaches Solitaire, Hong Kong, Riichi and MCR in sequence; each table variant explains its aim, terms, preparation, play, scoring and match length. All available game actions follow the situation description and precede your tiles. In game fields, a new personal turn focuses Draw a tile, then drawing selects the new tile. Focus alone never submits a move.
-
-In Solitaire you choose individual tiles: arrows move between rows and columns, 1–3 switch layers, and D reads coordinates. Enter marks the first tile and confirms a matching second tile; Escape cancels the selection.
-
-Many games have several variants. The choices, player counts, bot support and additional settings depend on the game. Detailed rules, scoring and controls are described in the program's “Game rules” section.
-
-In Taboo, you need to communicate with the other players. You can use an ELTEN conference, another messaging app or play in person.
-
-Braille is available in all four variants. The game includes Liblouis for Windows and Polish, English, Czech, Spanish and Russian literary tables; NVDA is not required. The default table and stories follow the interface language. Select a local table in Elten's file browser; supported extensions are .ctb, .utb, .tbl and .uti. Memory Chain announces only the new word and disables reading the word remainder. Help contains instructions, a shortcut list and a separate touch-typing guide.
-
-In Typoholism settings, choose the braille table directly from the list. Enter on a list or checkbox saves all settings and closes the window; Escape discards changes. To choose your own table file, select Local Liblouis table and press Enter.
-
-Braille settings offer 32 literary, contracted, computer and regional tables for the five supported languages. The default is a literary table in the interface language; a saved choice is preserved. Random Words, Memory Chain and Survival mode use Polish, English, Czech, Spanish and Russian dictionaries, including inflected forms. Choose the word language in the table settings. A new table defaults to the host's interface language, and every participant receives words from the same dictionary. The game draws words of 3 to 12 letters. Letter case does not affect whether a word is correct; braille capital indicators are optional, and correctly capitalized words are accepted too. Changing the braille table takes effect immediately when the field is empty. Finish a partially entered word using the previous table; the next word uses the new one.
-
-The lists of built-in texts, braille tables and dictionary languages include only languages marked as known in Power Games settings. With no known languages selected, only the interface language is offered and the word-language selector is hidden. The default table is literary. In mixed mode, reading a word also announces its input method. Free Typing reads the full sentence first, then the input method and the first word.
-
-With Write your own text (solo only), the text remains in the field during the current session, including after the round ends. You can read, select and copy it. The Polish dictionary contains 29,987 frequent word forms from the Corpus of Contemporary Polish, including inflected forms. Games saved with the previous Polish dictionary cannot be resumed.
-
-When you return to the editing field, the partial word you have entered is read aloud, including when typing in braille.
-
-Typoholism offers Free typing, Random words, Memory chain and Survival mode,
-alone or with others. Survival mode confirms after the last correct character,
-without Space. Each correct word speeds the music up by 2.5%.
-An early Space in the other word variants is ignored without an error.
-Multiplayer Random words and Memory chain penalise five seconds of
-inactivity; reading and spelling do not consume this time.
-
-Ctrl+L spells the word, Ctrl+O reads it, Ctrl+semicolon reads its remainder,
-and Ctrl+Shift+semicolon reads the remaining sentence in Free typing.
-Ctrl+P opens braille, sound and local typing echo settings. Echo applies only
-to the game field and follows Elten by default. It also works with braille input,
-reading translated characters and words. Paste a text opens an edit field
-without a file browser on the same screen as the table settings. Tab moves
-from the title to the content; editing settings preserves both fields.
-Imports are limited to 1,000,000 UTF-8 bytes (1000 kB).
-Exceeding the limit displays an import error and keeps the pasted text for editing.
-They stay local unless the host selects a particular text for shared play
-Starting that game sends the selected text to participants through the server
-and table history, without another confirmation.
-
-Select the text before the table is created. Its title and character count,
-including spaces, and the time limit appear in the table description and widget before joining.
-
-The highest error-adjusted score wins: multiply WPM in Free typing, or correct
-words in the other variants, twice by the factor correct words / (correct words + errors).
-The game rules explain this with an example. Every new round returns
-focus to the typing field.
-
-Save solo and multiplayer Typoholism with Ctrl+S or the table's context
-menu. The host pauses everyone's typing, then confirms storing progress
-on their account and closing the table. A failed save keeps the table open.
-Saved games in the main menu restores the current word and remaining time.
-All original multiplayer players must join, but observers are not required.
-Solo source text goes into a private account archive, not a public library.
+Taboo requires communication with the other players. You can use an ELTEN
+conference, another communication app or play in person.
 
 ## Tables and playing together
 
 ### Public and private tables
 
-A public table can be found in the table list. A private table does not appear there and is intended for invited players. A table's description includes the game, host, key variant details and game status.
+Public tables appear in the table list. Private tables stay off that list
+and are intended for invited players. Each table's description gives the
+game, host, main settings and current state of play.
 
-In the table list and widget, you can find out more before joining:
+In the table list or widget, you can check a table before joining:
 
 - Ctrl+R reads the selected table's variant and settings.
 - Ctrl+W lists its players and spectators.
 
 ### Inviting and watching
 
-At a table, Ctrl+I opens invitations to online users, while Ctrl+Shift+I lets you choose someone from your contacts. You can accept invitations through an ELTEN notification, the context menu or Ctrl+J. The last shortcut works throughout Power Games, including the widget.
+At a table, Ctrl+I lets you invite someone who is online; Ctrl+Shift+I lets
+you choose a contact. Accept invitations through an ELTEN notification,
+the context menu or Ctrl+J. Ctrl+J works throughout Power Games,
+including the widget.
 
-In games that allow spectators, you can follow a game without taking a player's seat. This is useful both for cheering people on and for learning the rules. Axel Pong spectators can also choose their listening perspective.
+Where spectators are supported, you can watch without taking a player's
+seat. Watching does not give you access to hidden cards or answers.
 
-In Duck Racing you can follow challenges both as a table spectator and as a racer who is not taking part in that challenge. You hear public rolls, plays and selections. Individual exercises such as Simon, Rhythm and Hit the duck show only the final results. Private answers stay hidden until the result is announced. Spectators do not confirm readiness or hear the participants' countdown.
+Ctrl+Shift+O changes your own role to player or spectator for the next game,
+where available. To change someone else's role, the host selects them
+on the user list and uses Ctrl+Shift+P or the corresponding context-menu
+action. Choosing a role for the next game is different from replacing
+someone during the current game.
 
-Ctrl+Shift+O lets you ask to play or spectate in the next game, where that choice is available.
-This shortcut changes your own role. To change someone else's role, the host uses the Users list's context menu; the action names the selected person.
-
-On the user list, Enter opens ELTEN's usual user menu. From there you can, for example, send a message, add someone to your contacts or call them.
+Enter on the user list opens ELTEN's usual user menu. From there you can
+send a message, add someone to your contacts or call them.
 
 ### Voice conversation
 
-Use the table's “Create voice conversation” button to create an ELTEN conference channel. Choose a name, public or hidden visibility and an optional password. A hidden channel stays off the ordinary channel list; hiding it does not replace password protection.
+“Create voice conversation” creates an ELTEN conference channel.
+Enter a name, choose public or hidden visibility and optionally set a password.
+A hidden channel stays off the ordinary conference list; hiding it does not
+replace password protection.
 
-The others hear a short invitation and get a “Join voice conversation” button at the table. Once you join, it changes to “Disconnect voice conversation”. You can leave the conference and join again later. When the creator disconnects, the table invitation is removed too; people who have already joined can keep talking. No dialog opens on its own during play. If you are already in another conference, switching requires confirmation. Your microphone and push-to-talk settings stay unchanged.
+The others hear an invitation and get a “Join voice conversation” button
+at the table. No extra dialog opens automatically. After joining, the button
+changes to “Disconnect voice conversation”. You can leave the conference
+without leaving the table, then join again later.
 
-If you are connected to the table's conference, choose “Yes” when leaving to leave both the table and the conversation, or “Leave only the table” to keep talking. Ctrl+Shift+M mutes or unmutes your microphone in the current conference.
+When the channel creator disconnects, the table invitation disappears.
+People already connected can keep talking. Switching from another conference
+requires confirmation. Your microphone and push-to-talk settings stay unchanged.
 
-You can also mute or unmute from the table's context menu; a message confirms the microphone's state. While connected to a conference, “Channel space” appears immediately after the voice conversation button. Use the arrow keys to move and Shift+Left/Right Arrow to turn, just as in the conference window.
+When leaving a table whose conference you are connected to, there are three
+choices: “No” keeps you at the table, “Yes” leaves both the table and the
+conversation, and “Leave only the table” lets you keep talking.
 
-### The host and managing bots and teams
+Ctrl+Shift+M or the table's context menu mutes or unmutes your microphone;
+a message confirms its state. While connected, “Channel space” appears after
+the conversation button. Use the arrow keys to move and Shift+Left or
+Shift+Right to turn, just as in the conference window.
 
-The host prepares the table, starts games and manages the participants. In games with bots, the host can add a computer opponent with Ctrl+O. The bot receives a name and appears on the same list as the other players.
+### The host, bots and teams
 
-On the user list, the host also has two commands for the selected person:
+The host prepares the table, starts games and manages its participants.
+In games with bot support, Ctrl+O adds a named computer opponent
+to the user list.
 
-- Ctrl+M transfers the host role to that person.
-- Ctrl+Shift+R replaces a player with a present spectator or a bot, if the game and its current stage allow it.
+On that list, the host can select a person and use:
 
-When the host leaves, another participant can take over the table. In supported games, the program replaces a departing player with a bot so the others can continue.
+- Ctrl+M to transfer hosting to them.
+- Ctrl+Shift+R to replace a player with a present spectator or a bot,
+  if the game and its current stage allow it.
 
-In an ordinary Categories game, a confirmed departure removes that player from the current game, so nobody has to wait for their answers. If the judge leaves, the unfinished round is cancelled and a new one begins. With fewer than two participants, the game ends as interrupted, without awarding a win. A returning player can spectate and join the next game. A temporary connection error alone does not remove anyone.
+Another participant can take over when the host leaves. Supported games
+replace a departing player with a bot. Each game's rules explain replacement
+limits and what happens after a disconnection; tournament matches also have
+the restrictions described in the tournament chapter.
 
-Teams are selected in a separate window. You can randomise them, change a person's team with Enter or move people with Shift+Up and Shift+Down. Confirming teams returns you to the table; the game only begins when you select “Start game”. You do not have to set up teams again for the next game with the same participants.
+Choose teams in a separate window. You can randomise them, change an
+assignment with Enter or move people with Shift+Up and Shift+Down.
+Confirming returns to the table; “Start game” begins play.
+Teams need not be set up again for another game with the same participants.
 
-Nor do you have to close the table just to play again. The host can end the current game with Ctrl+Q and change the next game's settings with Ctrl+X between games. These commands are also in the table menu.
+You do not have to close the table to play again. The host can end the
+current game with Ctrl+Q and change the next game's settings with Ctrl+X
+between games. Both actions are also in the table menu.
 
-Many games let you set a turn time limit and a delay for bot moves. The default bot delay is one second. The bot delay controls the pace; it does not select a difficulty level. The consequence of running out of time depends on the game's rules and is explained in its help, rather than applying one penalty to every title.
+Many games offer a turn time limit and a bot delay. The default bot delay
+is one second; it controls pace, not difficulty. The consequence of running
+out of time depends on the game's rules.
 
-“Leave” and “Close the table for everyone” are different actions. The first means that you leave; the second closes the entire table and is a host command. Simply opening help, a menu or a leave confirmation does not pause play.
+“Leave” means that you leave. “Close the table for everyone” is a host action
+that closes the whole table. Opening a menu, help or a leave confirmation
+does not itself pause play.
 
 ## Controls and help
 
-Tab and Shift+Tab move between parts of the window, such as the game area, chat, history and user list. Arrow keys navigate lists or the board; how you make a move depends on the game.
-
-Type a message in the Chat field and press Enter to send it. Each message can contain up to 2000 characters, both before and during a game.
-
-You do not need to learn every shortcut at once:
-
-- F1 shows help for your current location and the actions available there.
-- Ctrl+F1 opens the selected game's rules, including its controls.
-- Ctrl+R reminds you of your table's variant and settings.
-- The context menu provides table-related actions.
-- Ctrl+F4 reads connection latency, distinguishing HTTP from an available Communications or P2P connection.
-
-In Thousand, R reads just the current contract amount and bidder. Shift+R surrenders the deal when the rules allow it.
-Shift+D requests a redeal when your initial hand contains all four nines. A separate option, off by default, allows a redeal when the revealed talon contains at least two nines, before the first card is passed or discarded. The same player deals again, without changing scores or penalty counters.
-
-In Quiz, the question is a read-only text field. Use Ctrl+Left or Ctrl+Right to read it word by word. Down moves to the answer list; Up from the first answer returns to the question.
-
-You can read the rules before creating a table. They have chapters and a table of contents linking to each section. Game shortcuts appear in a separate list, with one item per shortcut.
-The game list in the rules library includes a short description of each game.
-In the rules text, H and Shift+H move between headings, K and Shift+K between links, and Enter on a contents link takes you to the chapter.
-
-Some games also have personal settings under Ctrl+P, available in the table menu. These include Axel Pong, Audio Ball and Krowa. They control your own experience and are separate from the shared variant chosen by the host.
-
-Krowa starts with sound effects on and music off. You can change this in its personal settings with Ctrl+P.
-
-## The widget and quick table creation
-
-The Power Games widget on ELTEN's main screen lets you browse tables without opening the program's main menu first. You can select a table, check its settings or participants and accept an invitation.
-Ctrl+N goes straight to the game picker for a new table. R refreshes the list manually. The widget also refreshes when you enter it and every five seconds while you are using it.
-Ctrl+O reads a short description of the game at the selected table. You can also choose “Game description” from the widget's context menu.
-
-In Settings → Widget, you can enable the widget, choose which games it shows and restrict the list to tables created by your contacts.
-
-### Your own table creation shortcuts
-
-If you often play with the same settings, save them under one of 30 shortcuts: Ctrl+1 through Ctrl+0, Alt+1 through Alt+0 or Shift+1 through Shift+0.
-
-1. Open Settings → Widget.
-2. Tab to the table creation shortcuts list.
-3. Select an entry and press Enter. You can also press the shortcut itself to jump straight to it in the list.
-4. Choose a game, configure the table and confirm the assignment.
-
-From then on, pressing the shortcut in the widget creates a table with the saved settings. It does not start the game automatically. The assignment is saved immediately, even if you later close the settings window with “Cancel”. Pressing Enter on the entry again lets you change it. You can remove an unwanted assignment through that list's menu.
-
-The widget context menu shows command shortcuts. Assigned presets appear under their configuration names, alongside their shortcuts; unassigned presets are not shown in this menu.
-
-## Notifications
-
-In Settings → Notification settings, choose the games whose new public tables you want to hear about. For example, you can follow just Thousand and Categories, without notices about other games. Optionally, you can restrict these notifications to tables created by your contacts.
-
-Separately, choose whether to show invitations from everyone, only contacts or nobody. Invitations and new table notifications have different sounds. Their descriptions include brief information about the game and its main settings; Ctrl+R gives you the full table settings.
-
-Notification settings also contain the Blacklist. Add the user names of people whose invitations you do not want to see. On the list, Ctrl+N adds a person and Delete removes the selected one. Confirm your changes with Save.
-Invitation filters and the blacklist do not block invitations to tournament matches.
-
-In Settings → Lobby announcements, you separately choose which announcements are read while you are in the program's main window.
-
-## Sounds and playing in the background
-
-In Settings → Sounds, you can play your own background music. Choose a file and set the volume separately for the Power Games menus and for gameplay. Both tracks are off by default.
-
-You can adjust the volume without leaving the game:
-
-- F2 — quieter.
-- F3 — louder.
-- Shift+F2 — previous sound group.
-- Shift+F3 — next sound group.
-- Ctrl+F2 — enable or disable additional game sound effects.
-
-Ctrl+F2 leaves the sounds needed to play audio games and listening challenges enabled.
-
-Choose all sounds together or separate groups: game sounds, people joining and leaving the table, chat, and invitations and notifications. The same levels are available in Settings → Sounds.
-
-The same category starts with the 3D sound (HRTF) check box, which is on by default. With it, other players' moves are heard from their seats at the table: you hear yourself in the centre, and the others in front of you: the player on your left from the front left, then the rest clockwise to the front right. In a two-player game your opponent is straight ahead; with four players they sit front left, opposite you and front right. In games of two, four or six players, the player opposite you sounds a little louder and as if from across the room, so their sounds are easy to tell from your own. Below the check box is the list of games that use 3D sound; its first two items select or deselect all games. Games whose sounds do not come from individual players' moves are not listed: Audio Ball and Axel Pong have their own sound layout, and Krowa, Duck Racing, Countries and cities and Quiz Party do not tie their sounds to seats. Winning, losing, shuffling and taking the poker pot always sound in the centre. Headphones give the best result.
-
-Moving to messages, a conference or another ELTEN window does not pause the game. This matters particularly in action games and when a turn time limit is enabled.
-
-In Settings → General, you can separately choose:
-
-- whether table announcements are spoken outside the table window;
-- whether to play your turn signal;
-- whether switching to another window should mute all games, only audio games or no games.
-
-Game sounds are not muted by default. Muting them in the background does not replace the separate turn signal setting, nor does it silence chat, invitations or people joining and leaving. Background settings apply both to other parts of ELTEN and to switching to another program.
-
-## Languages
-
-Power Games has its own interface language selection in Settings → General. English, Polish, Czech, Spanish and Russian are available. This does not change the language of ELTEN itself. Close ELTEN completely and start it again to apply the choice throughout Power Games, including the widget. Restarting with F12 does not reload Power Games.
-
-The optional “Known languages” list provides fallback translations. If text is missing in the main language, the program can use one of the selected languages and ultimately English.
-
-You can choose the language of questions, cards or a dictionary in games that offer this setting. A new table defaults to its creator's interface language, or English if matching content is unavailable. Your saved settings take precedence. Joining a table or resuming a saved game does not change its language.
-
-## Saved games and history
-
-### Stop now and finish later
-
-Outside tournaments, the host can use Ctrl+S in games that support saving to save the game and close the table. The save belongs to the host's account and is stored on the server, so it can also be resumed on another computer.
-
-Tournament games cannot be saved or resumed from a saved game.
-
-Use “Saved games” → “Games to resume” in the main menu. Restoring a save creates a table where you can gather the participants again and continue playing. Not every game can be saved, and not every moment is suitable: the command depends on the game and its current stage.
-
-Once the game resumes, its save is removed from your account. Creating the table and waiting for players does not remove it yet. To stop again, save your current progress with Ctrl+S.
-
-### Revisit a conversation or an earlier move
-
-Table history includes game events, chat and changes at the table. You can read it as ordinary text or use shortcuts:
-
-- Ctrl+Comma — previous entry in the selected category.
-- Ctrl+Period — next entry in the selected category.
-- Ctrl+Shift+Comma — previous category.
-- Ctrl+Shift+Period — next category.
-- Ctrl+Home — first entry in the category.
-- Ctrl+End — last entry in the category.
-
-Categories let you separate chat from game events or read everything together. The comma and period shortcuts also work while you type a message. In an editable field, Ctrl+Home and Ctrl+End retain their usual text navigation.
-
-### Histories and replays
-
-Ctrl+Shift+S adds a record to your library without closing the table: text for turn-based games, or a sound replay for Axel Pong and Audio Ball. A replay covers the play you have followed up to the moment you save it. It cannot resume a game, and matches are not kept permanently unless you use this shortcut.
-
-Choose Saved games → Histories and replays. Enter opens the text or player. On the player field, Space plays or pauses. S reads the score using the game's usual announcement, T names the server, and L reads your position in the recording. Use 1 and 2 to change perspective; Axel Pong doubles also offers 3 and 4. Tab takes you to perspective and speed.
-
-Left and Right arrows seek back or forward five seconds. A and N jump to the previous or next action, G and H to a point, and U and J to a set when the recording contains them. K returns to the beginning and E goes to the end. These keys work without Ctrl on the player field. The context menu and F1 help show the actions currently available.
-
-Files stay in Power Games' own folder on this computer, separately for each account. Opening the library detects files added or removed there. The context menu lets you rename, export a copy, send or delete an entry. Deleting an entry removes its file, not any exported copies.
-
-Ctrl+M opens Import from messages. You can preview a received game or add it to the library; only after adding it are you asked whether to delete the message. The sender's sent copy is removed automatically after delivery is confirmed, while their library file remains. Ctrl+I imports a file from disk. Before sharing text history, remember that it may include the table chat.
-
-## Leaderboards
-
-Choose Leaderboards in the main menu, then a game.
-
-### Krowa
-
-- Word leaderboards favour fewer guesses. Search by a word or part of one.
-- Daily Krowa has a separate leaderboard for each day, also ordered by guesses. Today's word stays hidden; earlier solutions can be viewed once their day is over.
-- Word Tower ranks runs by completed rounds: more rounds means a higher place. Press Enter on a result to see each round's word and guesses.
-
-The context menu in a word leaderboard or a previous day's results lets you
-look up the word's definition. Escape from a daily leaderboard returns to
-the date list with the same day selected.
-
-After guessing a word in Random Word or Daily Krowa, choose “Publish”,
-“Publish without attempt list” or “Do not publish”. The same choices are
-available when publishing a Word Tower result. Lists contain only checked
-guesses, in the order they were made.
-“Publish” is selected by default. Right Arrow moves through the other two
-choices, and Left Arrow moves back. Enter confirms your choice; Escape closes
-the window without publishing.
-
-Select a player's result in a word or daily leaderboard and press Tab to
-read its attempt list. Each item gives the word and the number of matching
-letters. In Word Tower details, select a round; in your gallery, select a
-word, then press Tab. The gallery saves your own attempts whether or not
-you publish them. Daily Krowa attempt lists become available in leaderboards
-on the following day, using the server's date in Poland. Older results and
-results published without a list show that no attempts were recorded.
-Gallery entries show the word and attempt count, without the number of letters.
-If the server does not support attempt lists yet, you can publish just the score.
-
-## Statistics
-
-Choose Statistics in the main menu, then General, Axel Pong or Audio Ball.
-
-### General
-
-This section shows activity in Power Games, including games started and completed, broken down by game and by playing with people, with bots or alone. You can choose a period, such as the last seven days or all recorded time.
-
-In Power Games' main menu, Ctrl+W opens the overview of people currently at tables, with table and participant counts. This differs from its use in the table list, where it reads the participants at one selected table.
-
-### Axel Pong and Audio Ball
-
-Choose Single or Doubles. Your statistics initially cover all recorded matches: matches played, wins, losses, match balance, goals scored, goals conceded and goal balance.
-
-Below them is the list of opponents: everyone the shown player has played against, or opposing pairs in doubles. Each entry shows matches played, won and lost in the selected period. Press Enter on an opponent to see the wins and losses against them in every period.
-
-Press Tab again to reach the period selector. Choose the last 7 days, 30 days, six months, year or all time. Choose player opens another person's statistics; My statistics returns to your own. Refresh retrieves the latest data.
-
-Audio Ball counts goals from every set. In doubles, each teammate receives the team's full result. Results are saved automatically after a match if both sides consist entirely of people at the end. Tournament matches count too, including the technical goal scores awarded for forfeits.
-
-## Features you might miss
+Tab and Shift+Tab move between the game area, chat, history, user list
+and other parts of the window. Arrow keys navigate lists or the board.
+Use the chosen game's controls to make a move.
+
+Type in the Chat field and press Enter to send a message of up to
+2000 characters, before or during a game. Text fields retain their usual
+reading, selection and copying controls.
+
+You do not need to memorise every shortcut:
+
+- F1 shows help for your current location and the available actions.
+- Ctrl+F1 opens the rules for the game at the table, including its controls.
+- Ctrl+R reads the table's variant and settings.
+- The context menu shows available actions and their shortcuts.
+- Ctrl+F4 reads connection latency, distinguishing HTTP, Communications
+  and P2P connections where used.
+
+The rules library in the main menu lets you learn a game before creating
+a table. Each game name is followed by a short description. In the text,
+H and Shift+H move between headings, K and Shift+K between links,
+and Enter on a contents link goes to that chapter. Escape returns to
+the previous window. Each game's help also has a separate shortcut list.
+
+Some games provide personal settings or toggles through Ctrl+P and the table
+menu. These change your own experience, not the shared variant set by the host.
 
 ### Sorting cards and finding a playable move
 
@@ -386,29 +205,258 @@ In card games that support shared hand sorting:
 - Shift+H sorts cards by rank or value.
 - Shift+M restores the order in which you received them.
 
-Using a sorting shortcut again reverses the order.
+Repeating a sorting shortcut reverses the order. Z and Shift+Z move to
+the next or previous playable card or tile. If there is only one unambiguous
+play, the shortcut may make that move immediately. Availability depends
+on the game and variant; check F1 in the game area.
 
-In supported games, Z and Shift+Z move to the next or previous playable card or tile. If there is just one unambiguous play, the shortcut may make the move immediately where the game permits it. It is therefore not always just a browsing command. This assistance is disabled in some fast UNO variants. F1 in the game area explains the exact behaviour.
+## The widget and quick table creation
 
-### Your own way of reading the board
+The widget on ELTEN's main screen lets you browse tables without opening
+Power Games' main menu. Select a table, check its settings and participants
+or accept an invitation.
 
-In Ludo, Ctrl+C switches descriptions between nicknames and colours, while C tells you who plays each colour. In Chess and Checkers, Ctrl+Shift+H rotates the board view; in Checkers, Ctrl+H switches between numbered squares and chess-style coordinates. These choices are remembered locally for future tables and do not change anyone else's view.
+Ctrl+N opens the game picker for a new table. Ctrl+O reads a short description
+of the selected table's game; “Game description” in the context menu does
+the same. R refreshes the list. It also refreshes on entry and every five
+seconds while you use the widget.
 
-### Sound tutorials and move previews
+In Settings → Widget, enable the widget, choose the games shown and,
+if you prefer, restrict the list to tables created by your contacts.
 
-Audio Ball's rules include an audio tutorial where you can listen to the sounds before playing. Ctrl+P also lets you choose an alternative sound pack from Audiodisc. Axel Pong has its own local settings under the same shortcut.
+### Your own table creation shortcuts
 
-In Scrabble, other participants can see letters being placed and removed before the word is confirmed. Ctrl+P turns local announcements of those changes on or off. They are off by default; you do not need to enable them for everyone at the table.
+Save a frequently used configuration under one of 30 shortcuts:
+Ctrl+1 through Ctrl+0, Alt+1 through Alt+0 or Shift+1 through Shift+0.
 
-### Reviewing answers in Categories
+1. Open Settings → Widget.
+2. Tab to the table creation shortcuts list.
+3. Select an entry and press Enter, or press the shortcut itself
+   to select its entry directly.
+4. Choose a game, configure the table and confirm the assignment.
 
-Answers are grouped by category so that similar entries are easier to compare. As judge, use Tab to move between answers, choose an assessment with the arrows and confirm it with Enter. Focusing an answer gives the reminder “Enter confirms the assessment”; once your assessment is accepted, you hear “Assessed”. When every answer has been assessed, choose “Finish review”.
+Using the shortcut in the widget creates a table with those settings;
+it does not start play. The assignment is saved immediately, even if
+you later close Settings with “Cancel”. Enter changes an assignment;
+the list's menu lets you remove it.
 
-Answer fields give an example word for M and N to help distinguish the letters. A sound marks submitted answers; in timed games, separate cues mark 20 seconds remaining and time running out. After the scores are announced, there is a pause before the next round; its answering time starts after that pause.
+Assigned configurations also appear in the widget's context menu,
+with their names and shortcuts. Unassigned entries are not shown.
+
+## Notifications
+
+In Settings → Notification settings, choose the games whose new public
+tables you want to hear about. You can restrict these notices to tables
+created by your contacts.
+
+Separately, choose whether to show invitations from everyone, contacts only
+or nobody. Invitations and new-table notices have different sounds.
+The description gives the game and its main settings; Ctrl+R reads
+the full table settings.
+
+Use the Blacklist to hide invitations from particular users.
+Ctrl+N adds a person, Delete removes the selected one, and Save confirms
+your changes.
+Invitation filters and the blacklist do not block invitations to tournament matches.
+
+In Settings → Lobby announcements, choose which announcements are read
+in the program's main window.
+
+## Sounds and playing in the background
+
+Adjust volume without leaving the game:
+
+- F2 — quieter.
+- F3 — louder.
+- Shift+F2 — previous sound group.
+- Shift+F3 — next sound group.
+- Ctrl+F2 — enable or disable additional game sound effects.
+
+Select a group, then adjust its volume. Control all sounds together or
+separate groups for gameplay, chat, people joining and leaving, and invitations
+and notifications. The same levels are in Settings → Sounds.
+Ctrl+F2 does not silence sounds essential to play, such as the ball
+or cues in listening challenges.
+
+In the same category, choose your own background music: select a local audio
+or MIDI file and a volume separately for menus and gameplay. Both are off
+by default. During a game, the gameplay track replaces the menu track;
+afterwards the menu track returns. These choices affect only what you hear.
+
+3D sound (HRTF) is on by default. In supported games, it helps identify
+players by the direction of their moves: you hear yourself in the centre
+and others in front of you, from left to right according to their seats.
+Use the list below its switch to choose the games where it applies.
+Audio games have their own sound layout, independent of this setting.
+Shared effects, such as winning or shuffling, stay in the centre.
+
+Moving to messages, a conference or another program does not pause play.
+In Settings → General, choose separately:
+
+- whether table announcements are spoken outside the table window;
+- whether to play your turn signal;
+- whether switching windows mutes all games, only audio games or none.
+
+Game sounds are not muted by default. Background muting does not silence
+the separate turn signal, chat, invitations or people joining and leaving.
+These settings apply both elsewhere in ELTEN and in other programs.
 
 ### Connections in audio games
 
-When creating an Axel Pong or Audio Ball table, you can optionally enable “Full P2P”: direct connections between participants where their networks allow it. The option is off by default. Enabling it reveals the P2P participant limit, which defaults to eight. ELTEN can still use a relay server when a direct connection is unavailable. Ctrl+F4 distinguishes the connections being measured.
+When creating an Axel Pong or Audio Ball table, you can enable “Full P2P”:
+direct connections between participants where their networks allow them.
+It is off by default. Enabling it shows the P2P participant limit,
+initially eight, including spectators. ELTEN can use a relay server
+when a direct connection is unavailable. Ctrl+F4 reports the connection
+type and latency.
+
+## Languages
+
+Choose Power Games' interface language in Settings → General. English,
+Polish, Czech, Spanish and Russian are available; this does not change
+ELTEN's language. To apply the choice throughout Power Games, including
+the widget, close ELTEN completely and start it again. F12 does not reload
+the program.
+
+The optional “Known languages” list lets you select other languages you
+understand. If a translation is missing in the main language, the program
+tries those selected languages, then English.
+
+In games that offer the choice, select the language of questions, cards
+or dictionaries separately in the game settings. New tables default to
+the host's interface language, or English if matching content is unavailable.
+Your saved settings take precedence. Joining a table or resuming a game
+does not change its language.
+
+## Saved games and history
+
+### Saving a game to resume later
+
+In supported ordinary games, the host can use Ctrl+S to save progress
+to their account and close the table. The table closes only after saving
+succeeds. Saves are stored on the server, so you can resume on another
+computer. Not every game or stage supports saving.
+
+Choose “Saved games” → “Games to resume” in the main menu. The program
+creates a table where the participants can gather again. The save is removed
+from the account only once play resumes, not while waiting for players.
+To stop again later, save the current progress.
+
+Tournament games cannot be saved or resumed from a file. Histories and
+replays are different: they let you review a game, not continue playing it.
+
+### History at the table
+
+History contains game events, chat and changes at the table. Read it
+as ordinary text or use these shortcuts:
+
+- Ctrl+Comma — previous entry in the selected category.
+- Ctrl+Period — next entry in the selected category.
+- Ctrl+Shift+Comma — previous category.
+- Ctrl+Shift+Period — next category.
+- Ctrl+Home — first entry in the category.
+- Ctrl+End — last entry in the category.
+
+Categories let you read chat, game events or everything together.
+The comma and period shortcuts also work while typing a message.
+Ctrl+Home and Ctrl+End retain their usual text navigation in editable fields.
+
+### Histories and replays
+
+Ctrl+Shift+S adds a record to the library without closing the table.
+Turn-based games save text history; Axel Pong and Audio Ball save a sound
+replay from when you started following the game to the moment you save.
+Playing a match does not keep its replay permanently: use this command
+to retain it.
+
+Open “Saved games” → “Histories and replays”. Enter opens the selected text
+or replay player. On the player field, Space plays or pauses, S reads
+the score, T names the server and L reads your position in the recording.
+Use 1 and 2 for perspective; Axel Pong doubles also offers 3 and 4.
+Tab moves to the perspective and speed controls.
+
+Left and Right seek back or forward five seconds. A and N jump to the
+previous or next action, G and H to a point, and U and J to a set,
+where present. K returns to the beginning and E goes to the end.
+These keys work without Ctrl only on the player field. The context menu
+and F1 show the actions available for the open replay.
+
+The library uses Power Games' own folder on this computer, separately
+for each account. Opening it detects added files and removes missing files
+from the list. The context menu lets you rename, export a copy, send
+or delete a record. Deleting removes the library file, not its exported copies.
+
+Ctrl+M opens “Import from messages”. Preview a received record before adding
+it to the library. Only after it has been added does the program ask
+whether to delete the message. The sender's sent copy is removed automatically
+after delivery is confirmed, but their library file remains.
+Ctrl+I imports a file from disk. Before sharing a history, remember
+that it may contain the table chat.
+
+## Leaderboards
+
+Choose “Leaderboards” in the main menu, then a game. Leaderboards compare
+players' results; win, loss and goal totals are listed separately
+under “Statistics”.
+
+### Krowa
+
+- Word leaderboards favour fewer guesses. Search by a word or part of one.
+- Daily Krowa has a separate leaderboard for each day, also ordered by guesses.
+  Today's word stays hidden; earlier solutions become available after their day ends.
+- Word Tower ranks runs by completed rounds: more rounds give a higher place.
+  Enter on a result shows the words and guesses from each round.
+
+After guessing a word in Random Word or Daily Krowa, choose “Publish”,
+“Publish without attempt list” or “Do not publish”. The same choices
+are offered when publishing a Word Tower result. Lists contain checked guesses in the order made.
+“Publish” is selected by default; Left and Right change the choice,
+Enter confirms and Escape closes the window without publishing.
+
+Select a player's result in a word or daily leaderboard and press Tab
+to read their guesses and matching-letter counts. In Word Tower details,
+select a round first. Daily attempt lists become public the following day,
+using the server's date in Poland. Results without a recorded list say so.
+
+The context menu for a word or a previous day's results lets you look up
+its definition. Escape from a daily leaderboard returns to the date list
+with the selection preserved. Your gallery keeps your attempts whether
+or not you publish them: select a word and press Tab to read its list.
+
+## Statistics
+
+Choose “Statistics” in the main menu, then “General”, “Axel Pong”
+or “Audio Ball”. Statistics do not assign leaderboard places.
+
+### General
+
+The overview shows activity in Power Games, including games started
+and completed. Choose a period and view the breakdown by game
+and by play with people, bots or alone.
+
+Ctrl+W in the main menu opens the overview of people currently at tables,
+with table and participant counts. In the table list, the same shortcut
+has a different purpose: it reads the selected table's participants.
+
+### Axel Pong and Audio Ball
+
+Choose Single or Doubles. Initially, you see your own results across all
+recorded matches: matches played, wins, losses, match balance, goals scored,
+goals conceded and goal balance. A balance is the difference between wins
+and losses, or between goals scored and conceded.
+
+Below the results is a list of opponents, or opposing pairs in doubles.
+Each entry gives matches played, won and lost in the selected period.
+Enter shows results against that person or pair across the available periods.
+
+Tab moves to the period selector: the last 7 days, 30 days, six months,
+year or all time. “Choose player” opens someone else's statistics,
+“My statistics” returns to yours, and “Refresh” retrieves current data.
+
+Results are saved automatically after a match if both sides consist entirely
+of people at the end. In doubles, each teammate receives the full team result;
+Audio Ball sums goals across all sets. Tournament matches also count,
+including the goal scores awarded for forfeits.
 
 ## Shortcut reference
 
@@ -434,6 +482,7 @@ This list covers the program's common controls. Use F1 for a specific game's com
 - Ctrl+Shift+I — invite a contact.
 - Ctrl+O — add a bot; for the host, where available.
 - Ctrl+Shift+O — choose to play or spectate in the next game.
+- Ctrl+Shift+M — mute or unmute your microphone in the table conference.
 - Ctrl+P — personal settings or a personal toggle, in games that provide one.
 - Ctrl+S — save the game and close the table; for the host, in supported games outside tournaments.
 - Ctrl+Shift+S — keep text history or an audio-game replay in the library without closing the game.
@@ -458,7 +507,7 @@ This list covers the program's common controls. Use F1 for a specific game's com
 - Alt+1 through Alt+0 — the next ten configurations; in the widget.
 - Shift+1 through Shift+0 — the final ten configurations; in the widget.
 
-Browsing entries and categories is covered in [the history chapter](#revisit-a-conversation-or-an-earlier-move).
+Browsing entries and categories is covered in [the history chapter](#history-at-the-table).
 Assigning your own shortcuts is covered in [the widget chapter](#your-own-table-creation-shortcuts).
 
 ## Tournaments
@@ -476,16 +525,23 @@ Current tournaments put the ones you have joined or organise first, followed by 
 
 A tournament whose deadline has passed stays in the same place in “Current”, labelled “Deadline passed”. It moves to “Completed” only when all required matches have been resolved.
 
-An abandoned tournament disappears after 14 days without activity before it starts, or 30 days without progress once it has started. Registrations and organiser changes renew that period before the start; match results renew it afterwards. Simply viewing a tournament does not. A future registration opening or start date is respected, so the tournament will not disappear before then. Completed tournaments keep their results.
+An abandoned tournament disappears after 14 days without activity before it starts, or 30 days without progress once it has started. Registrations and edits by the organiser renew that period before the start; match results renew it afterwards. Simply viewing a tournament does not. A future registration opening or start date is respected, so the tournament will not disappear before then. Completed tournaments keep their results.
 
 Each entry includes the game, participant count and tournament status. These shortcuts are also available:
 
 - Ctrl+N — create a tournament.
-- Ctrl+R — refresh the tournament list.
-- Ctrl+O — open tournament; Ctrl+D — join; Ctrl+M — matches; Ctrl+W — standings; Ctrl+E — manage; Ctrl+L — leave. Available actions and their shortcuts also appear in the context menu.
-- Ctrl+T — open tournaments from the lobby or widget.
-- Ctrl+Shift+T — open your tournament list. It keeps that scope even when the list is empty.
-- Ctrl+J — open the usual invitation list, which also includes tournament match invitations.
+- Ctrl+R — refresh the list.
+- Ctrl+O — open the selected tournament.
+- Ctrl+D — join it.
+- Ctrl+M — open its matches.
+- Ctrl+W — open its standings.
+- Ctrl+E — manage it.
+- Ctrl+L — withdraw from it.
+
+The context menu shows the actions currently available, with their shortcuts.
+From the lobby or widget, Ctrl+T opens tournaments and Ctrl+Shift+T opens
+your tournaments only. An empty list stays limited to your tournaments.
+Ctrl+J opens the usual invitations, including tournament match invitations.
 
 F1 explains the controls in the current window; Escape goes back. Closing a window does not withdraw you from a tournament.
 
@@ -531,9 +587,18 @@ You can have one outgoing proposal. Choosing someone else asks you to cancel the
 
 At the start, the program keeps agreed pairs and randomly pairs the remaining entrants. The organiser cannot choose those partners. If an odd number remains without partners, or too few people have registered, the organiser gets a reason why the tournament cannot start. Once it starts, you keep the same partner and share a team result.
 
-The start notification opens the tournament matches. At the end of a phase, one notification names the next phase and opens the standings for the phase just completed. The final produces only the tournament completion notice. It gives your finishing place — your team's place in a team tournament — and the winner or joint winners, and opens the final standings. Players eliminated at the same knockout stage share a place. Scores are not compared between players eliminated from different groups.
+### Tournament notifications
 
-Start and completion notices do not expire automatically. Tournament match invitations remain visible regardless of invitation filters and the blacklist; their five-minute lifetime is unchanged. Notification sounds still follow your sound settings and ELTEN's notification mute.
+The start notification opens the tournament matches. At the end of a phase,
+one notification names the next phase and opens the standings for the phase
+just completed. After the final, you receive only the tournament completion
+notice. It gives your finishing place — your team's place in a team event —
+and the winner or joint winners. Opening it shows the final standings.
+
+Start and completion notices do not expire automatically.
+Match invitations last five minutes and bypass invitation filters
+and the blacklist. All these notifications still respect sound settings
+and ELTEN's notification mute.
 
 ### Starting a match
 
@@ -550,9 +615,9 @@ Anyone not assigned to that match automatically joins as a spectator, even befor
 
 An invitation lasts five minutes. Declining it, letting it expire or leaving the table before the match starts does not count as a loss or withdraw you from the tournament. Choose “Play” again to return to the existing table and invite anyone still missing. Once play begins, the return rules below apply.
 
-Leave any other game before entering the match. You cannot take a seat at two tables at once. If an empty table was closed before play began, you can open the match again. A game that has already started is not automatically replaced with a new one. After losing your connection, return to the same table while it is still open.
+Leave your current table in this copy of Power Games before entering the match. If an empty table was closed before play began, you can open the match again. A game that has already started is not automatically replaced with a new one. After losing your connection, return to the same table while it is still open.
 
-### Matches, results and interrupted games
+### Match list
 
 “Tournament matches” opens on the current tournament phase. The first item gives its name, such as “Quarterfinals”, and the number of completed matches. Your unfinished matches come next, followed by everyone else's unfinished matches, then all completed matches. Everyone sees the full list.
 
@@ -562,29 +627,53 @@ Enter on a completed match tells you it has already been played. Open its result
 
 Completed match entries also show the game score when available. If a return match with the same opponents is still scheduled, the context menu offers “Play return match” on Ctrl+G. It sends the usual invitations without starting play automatically.
 
+### Standings
+
 “Standings” opens directly on a standings list showing place, participant, tournament points and matches played. Tab moves to the phase selector. Completed game results are recorded automatically; you do not need to copy them from the game history.
 
-Games supporting small points show the available totals scored and conceded, and their difference. A missing score from one match neither hides the other totals nor counts as zero. Lower scores are better in UNO, Domino, Mexican Train and elimination Rummy. Audio Ball counts points across all sets. Participants still sharing a place are listed with fewer matches played first; this display order does not decide qualification.
+Game scores, sometimes called small points, are the scores within a game,
+such as goals, rather than tournament points. Games supporting them show the available totals scored and conceded, and their difference. A missing score from one match neither hides the other totals nor counts as zero. Lower scores are better in UNO, Domino, Mexican Train and elimination Rummy. Audio Ball counts points across all sets. Participants still sharing a place are listed with fewer matches played first; this display order does not decide qualification.
+
+### Saving and returning after a disconnection
 
 No tournament game can be saved or resumed from a file. The save command and Ctrl+S are unavailable, but Ctrl+Shift+S still keeps text history or an audio-game replay.
 
 Once an individual match has started, play pauses if a player disconnects. Each player has a total of five minutes to return during that match. Returning stops the clock but does not reset the allowance. Rejoin the same table on the same account to continue with your cards, score and remaining turn time intact.
 
-In a one-on-one match, exceeding the allowance gives the opponent the win. With more players, the disconnected player places last. If the game can continue without them, the others play on; otherwise their places come from completed rounds. With no completed round, the remaining players share first place. This automatic allowance applies to individual matches, not team matches. An unanswered invitation does not count as a defeat.
+In a one-on-one match, exceeding the allowance gives the opponent the win.
+With more players, the disconnected player places last. The others play on
+if the game allows it. Otherwise their places come from completed rounds;
+with no completed round, the remaining players share first place.
 
-### Private hands in tournaments
+This automatic allowance applies to individual matches, not team matches.
+An unanswered invitation does not count as a defeat.
 
-In tournament Mahjong, each player receives only their own tiles. The undrawn wall also stays hidden. Tiles needed to verify the result are revealed at the end of the hand.
+### Protecting hidden hands
 
-In tournament Mille Bornes, Spades, Bridge, Thousand, 3-5-8, 99, Poker, War, Rummy, Makao, Biblios and UNO, the server deals cards privately to each player. Domino, Mexican Train and Scrabble tiles are dealt the same way. Other players, spectators and the table host do not receive your hand. Cards or tiles are revealed as needed when played, transferred or scored. In Bridge, dummy is exposed after the opening lead; the remaining cards are revealed when the deal ends.
+In tournament 1000 miles, Spades, Bridge, 1000 card game, 3-5-8, 99, Poker, War,
+Rummy, Makao, Biblios, Bouillabaisse, Scopa and UNO, the server deals cards privately to each
+player. The same applies to Domino and Mexican Train tiles, Scrabble letters
+and Mahjong tiles. Other players, spectators and the host do not receive
+your unrevealed hand or the undealt deck or wall. Cards and tiles are revealed
+when needed for a play or scoring.
 
-Cards passed to another player lose this protection, although the ordinary interface still hides other players' hands. This includes an entire transferred UNO hand, captured cards in War and cards returned to the deck. In UNO, the dealer also knows any wild cards skipped while choosing the opening card. Domino compares each player's highest tile to determine who starts. The game rules remain unchanged.
+This protection has limits. Cards passed to another player, captured in War
+or returned to the deck do not remain fully private, although the ordinary
+interface still hides other hands. This also applies to a whole hand passed
+in UNO. Choosing an opening card or starting player may require some cards
+or tiles to be revealed. The game rules do not change.
 
-These matches do not allow player replacements, bots or saving to resume at another table. If you disconnect, rejoin the same table using the same account to recover your hand. Changing the host does not expose anyone's cards. Keeping the table open does not extend the five-minute return allowance in a started individual match.
+These matches do not allow bots or replacement players. Rejoin the same
+table on the same account to recover your hand; a change of host does not
+expose it. The saving restrictions and return allowance described above
+still apply. Keeping a table open does not extend that allowance.
 
-In tournament Taboo, only the describer and the opposing team receive the phrase and forbidden words. A guessing host cannot see them either. Phrases are revealed for review after the turn. If the describer disconnects, they must return before the score can be approved. These matches also cannot be saved for another table or use replacement players.
+In tournament Taboo, only the describer and opposing team receive the phrase
+and forbidden words, not a guessing host. Phrases are available for review
+after the turn. If the describer disconnects, they must return before
+the score can be approved; they cannot be replaced.
 
-Ordinary games still support bots, replacements and saved games where the game allows them.
+Ordinary games retain bots, replacements and saving where supported.
 
 ### Creating a tournament
 
@@ -660,6 +749,9 @@ Match placings follow the game's outcome and scores. If the game does not provid
 
 When tournament points are equal, the program compares results between the tied participants, then the difference between scores for and against, then scores for. It accounts for games where a lower score is better. An incomplete head-to-head comparison is skipped, and missing scores are not treated as zero. If the available criteria cannot break the tie, participants share a place; where qualification needs a decision, extra matches settle it. Shared places leave the following numbers unused: two participants tied for first are followed by third place, not second.
 
+Players eliminated at the same knockout stage share a place. Scores are
+not compared between players eliminated from different groups.
+
 ### Dates and playing hours
 
 Open “Dates and playing hours” in the tournament form. You do not have to schedule anything: registration can open immediately, with you closing it and starting the tournament later.
@@ -720,39 +812,58 @@ In Quiz and Duck Racing questions, Ctrl+B marks the current question and Ctrl+Sh
 
 ### Your own question sets
 
-Open “Create your own quiz question sets” in the main window to see your sets. Press Ctrl+N to create a new set or prepare questions for an existing one. For your own set, enter the title, language and an optional description, then choose “Save”. To add questions to an existing set, choose the language first, press Enter, then choose a set in that language in the next window.
+Open “Create your own quiz question sets” in the main menu to see your drafts.
+Ctrl+N creates a new set or prepares questions for a set already in the game.
 
-Press Enter on a set to open its menu:
+For your own set, enter a name, language and optional description, then choose
+“Save”. To add questions to an existing set, choose its language and press
+Enter, then select the set in the next window.
 
-- “Add a question”: enter the question, the correct answer in the first field (A), and three wrong answers in B, C and D. Choose a category from the list. The source and editorial note are optional.
-- “Browse questions”: open the list of saved questions. Press Enter to edit the selected question, Ctrl+N to add one, or Delete to remove the selected question after confirmation.
-- “Add a category”: name a category to use in your questions.
-- “Delete draft”: remove the whole set after confirmation.
-- “Send to the author”: submit the whole set to papierek.
+Enter on a saved draft opens its menu:
 
-Create at least one category before adding the first question. To add another while writing a question, select “Add a new category” at the end of the category list and press Enter. Your question stays in the form, and the new category is selected automatically.
+- “Add a question” — enter the question, the correct answer in the first field
+  (A) and three wrong answers in B, C and D. Select a category.
+  The source and editorial note are optional.
+- “Browse questions” — Enter edits the selected question, Ctrl+N adds one,
+  and Delete removes the selection after confirmation.
+- “Add a category” — create a category to assign to questions.
+- “Delete draft” — remove the entire draft after confirmation.
+- “Send to the author” — submit all questions in the draft to papierek.
 
-“Save” keeps your work as a draft. You can return to it later, including on another computer using the same account. Unfinished questions can be saved too. The context menu lets you remove a question or set, or edit a new set's details. On the set list, Delete removes the selected draft after confirmation.
+The first answer is correct in the creator form; during a game,
+the answers appear in a different order.
 
-A damaged draft is marked in the list without blocking your other sets. If you no longer want to keep it, press Delete to remove it.
+Create at least one category before your first question. You can add more
+while writing: choose “Add a new category” at the end of the category list.
+Your question stays in the form and the new category is selected.
 
-When your questions are ready, choose “Send to the author”. If anything is missing, the creator lists the question numbers and fields to complete. The author reviews your questions before they can be added to the game. After a successful send, the draft leaves your list; if sending fails, you can return to it and try again.
+“Save” keeps your work as a draft, including unfinished questions.
+Return to it later, even on another computer using the same account.
+The context menu lets you edit a new set's details or remove questions
+and drafts. Delete on the draft list removes the selected draft after
+confirmation. A damaged draft is marked without blocking the others
+and can also be deleted.
+
+When ready, choose “Send to the author”. If anything is missing, the program
+identifies the question number and fields to complete.
+Sending submits a proposal for review; it does not add the questions
+to the game immediately. A successful send removes the draft from your list.
+If sending fails, it stays available so you can continue or try again.
 
 ### For developers and translators
 
-To explore the code or add a game, start with the [contribution guidelines](https://github.com/papierek1997/elten-game-room/blob/main/CONTRIBUTING.md) and [documentation index](https://github.com/papierek1997/elten-game-room/blob/main/docs/INDEX.md). The main guides cover:
-
-- [Program architecture](https://github.com/papierek1997/elten-game-room/blob/main/docs/ARCHITECTURE.md).
-- [Adding a new game](https://github.com/papierek1997/elten-game-room/blob/main/docs/ADDING_A_GAME.md).
-- [Tests and how to run them](https://github.com/papierek1997/elten-game-room/blob/main/docs/TESTING.md).
-- [Translations](https://github.com/papierek1997/elten-game-room/blob/main/docs/TRANSLATIONS.md).
-- [Building and signing packages](https://github.com/papierek1997/elten-game-room/blob/main/docs/BUILDING.md).
-
-Local tests require Ruby 4.0, the documented dependencies and compatible ELTEN sources. Players using the ready-made package do not need these. New games should use the shared table, chat, history and help mechanisms so players do not have to learn the whole interface again.
+To contribute code, translations or games, start with the
+[contribution guidelines](https://github.com/papierek1997/elten-game-room/blob/main/CONTRIBUTING.md)
+and [documentation index](https://github.com/papierek1997/elten-game-room/blob/main/docs/INDEX.md).
+They lead to guides for the interface, tests, translations, rulebooks
+and packaging. Contributor documentation is in English;
+you do not need development tools to play.
 
 ## Authors and licence
 
-The project is led by papierek, with contributions from game authors, translators, contributors and people testing each version. Individual contributions are described in the changelog and component documentation.
+papierek leads the project, with help from game authors, translators,
+developers and testers. Individual contributions are acknowledged
+in the changelog and component documentation.
 
 Axel Pong is not an original project by papierek. It was originally called Dragon-Pong, then improved by Axel and balteam, and finally ported to ELTEN with their permission.
 

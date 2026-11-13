@@ -1062,6 +1062,19 @@ passages. Do not reintroduce removed text while updating translations.
 Adding an interface language also requires a complete README, document
 selection wiring, an explicit installer resource list and extended tests.
 
+README is the player guide to the application, not a second rulebook. Keep
+the complete, briefly introduced game catalogue in its own section; explain
+individual games' rules, variants, scoring and controls in their rulebooks.
+The guide owns shared table/chat/help controls and complete instructions for
+application modules such as tournaments, statistics, recordings and question
+creation. Describe their current use, not implementation details or release
+history. When removing a duplicated game instruction, check its rulebook first;
+do not discard essential guidance or copy every redundant paragraph there.
+Keep leaderboards and statistics separate, and the detailed tournament chapter
+immediately before the contribution chapter. Preserve selected author wording
+and credits. Review every changed language as natural prose, not just as a
+matching outline; update the native README/navigation coverage alongside it.
+
 In README, rules and other documentation, maintain correct Markdown,
 heading hierarchy and order, paragraphs, lists, spacing, working links and
 tables of contents. Do not flatten the content into one continuous block.
