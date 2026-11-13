@@ -518,12 +518,60 @@ module GameSurfaces
     end
 
     def emit_selection(x, y)
-      if @spec.row_actions
+      if @spec.point_moves
+        select_move_point(x, y)
+      elsif @spec.row_actions
         action = @spec.row_actions[y]
         emit_action(action.kind, action.name, action.payload) if action
       else
         emit_action("grid", "select", { "x" => x, "y" => y })
       end
+    end
+
+    def select_move_point(x, y)
+      point = x.zero? ? (y.zero? ? 25 : 0) : (y.zero? ? 25 - x : x)
+      moves = @spec.point_moves
+      from_bar = moves.any? { |from, _, _| from == 25 }
+      if from_bar
+        if point == 25
+          speak("Wybierz pole wej\u015bcia z bandy.")
+          return
+        end
+        origin = 25
+      elsif @move_origin.nil?
+        unless moves.any? { |from, _, _| from == point }
+          speak("Z tego pola nie mo\u017cna wykona\u0107 ruchu.")
+          return
+        end
+        @move_origin = point
+        if moves.select { |from, _, _| from == point }.all? { |_, to, _| to.zero? }
+          speak("Wybrano pionek. Naci\u015bnij Enter ponownie, aby go zdj\u0105\u0107.")
+        else
+          speak("Wybrano pionek. Wybierz pole docelowe.")
+        end
+        return
+      else
+        origin = @move_origin
+      end
+
+      available = moves.select { |from, _, _| from == origin }
+      point = 0 if point == origin && available.all? { |_, to, _| to.zero? }
+      move = available.select { |_, to, _| to == point }.max_by(&:last)
+      unless move
+        speak("Tu nie mo\u017cna przesun\u0105\u0107 wybranego pionka.")
+        return
+      end
+
+      @move_origin = nil
+      emit_action("pawn", "move", {"move" => move.join(",")})
+    end
+
+    def cancel_pending_action?
+      !@move_origin.nil?
+    end
+
+    def cancel_pending_action!
+      @move_origin = nil
     end
 
     def fields

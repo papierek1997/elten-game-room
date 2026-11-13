@@ -65,7 +65,7 @@ module GameSurfaces
     :height,
     :header,
     :cells,
-    :row_origin, :row_actions, :hide_coordinates, :shortcuts,
+    :row_origin, :row_actions, :hide_coordinates, :shortcuts, :point_moves,
     keyword_init: true
   )
 
