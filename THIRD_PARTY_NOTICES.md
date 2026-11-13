@@ -1,5 +1,10 @@
 # Third-party notices
 
+Billiards uses CC0 ball/rail recordings by Za-Games and mccarthy@bedmas.com,
+and a CC BY 4.0 pool recording by cmusounddesign. Sources and edits are documented in
+`LICENSES/BILLIARDS-SOUNDS.txt`; the CC BY license is included in
+`LICENSES/CC-BY-4.0.txt`.
+
 Roulette wheel and casino-chip effects use CC0 sounds by Joao_Janz and reg7783.
 Sources and edits are documented in `LICENSES/ROULETTE-SOUNDS.txt`.
 
@@ -641,3 +646,18 @@ licensed under Creative Commons Attribution 4.0. Attribution, source and licence
 links are in `LICENSES/TYPING-WORDS-PL.txt`; the pinned input and selection policy
 are recorded with the other dictionaries. Hunspell is a build-time tool for the
 other languages, not a runtime dependency.
+
+### Cash Auction — gavel and chest
+
+`Audio/auction_gavel.opus` uses “Wooden Gavel Hits” by Stefan021,
+[Freesound](https://freesound.org/people/Stefan021/sounds/798872/), under
+[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+`Audio/auction_chest.opus` uses “Open Chest” by spookymodem,
+[OpenGameArt](https://opengameart.org/content/open-chest), under
+[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+Both are short excerpts with normalized gain and edge fades, encoded as
+48 kHz Opus at 144 kbit/s VBR using the project's audio tool. Attribution,
+modifications and source links are in
+[LICENSES/AUCTION-SOUNDS.txt](LICENSES/AUCTION-SOUNDS.txt); full licences are
+[CC0](LICENSES/CC0-1.0.txt) and [CC BY 3.0](LICENSES/CC-BY-3.0.txt).
+The authors do not endorse this application.

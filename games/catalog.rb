@@ -24,6 +24,7 @@ require_relative "uno"
 require_relative "poker"
 require_relative "makao"
 require_relative "quiz_party"
+require_relative "cash_auction"
 require_relative "rummy"
 require_relative "domino"
 require_relative "mexican_train"
@@ -49,6 +50,7 @@ require_relative "balut"
 require_relative "liars_dice"
 require_relative "go"
 require_relative "roulette"
+require_relative "billiards"
 require_relative "registry"
 
 module GameRoomGames
@@ -76,6 +78,7 @@ module GameRoomGames
     GameRoomGames::Poker,
     GameRoomGames::Makao,
     GameRoomGames::QuizParty,
+    GameRoomGames::CashAuction,
     GameRoomGames::Rummy,
     GameRoomGames::Domino,
     GameRoomGames::MexicanTrain,
@@ -100,6 +103,7 @@ module GameRoomGames
     GameRoomGames::Balut,
     GameRoomGames::LiarsDice,
     GameRoomGames::Go,
-    GameRoomGames::Roulette
+    GameRoomGames::Roulette,
+    GameRoomGames::Billiards
   ])
 end

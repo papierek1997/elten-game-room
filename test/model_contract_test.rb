@@ -84,11 +84,13 @@ assert((presentations.keys - new_games).empty?, 'Unexpected new-game presentatio
   cases << item
 end
 duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/duck_racing.json'), encoding: 'UTF-8'))
+cash_auction = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/cash_auction.json'), encoding: 'UTF-8'))
+cases << JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/billiards.json'), encoding: 'UTF-8'))
 %w[kosciane balut].each do |id|
   cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding:'UTF-8'))
 end
 expected_ids = GameRoomGames::CATALOG.ids.reject { |id| %w[axel_pong audio_ball].include?(id) }.sort
-assert_equal(expected_ids, (cases.map { |item| item.fetch('game') } + [duck.fetch('game')]).sort, 'corpus must explicitly cover every turn-based game')
+assert_equal(expected_ids, (cases.map { |item| item.fetch('game') } + [duck.fetch('game'), cash_auction.fetch('game')]).sort, 'corpus must explicitly cover every turn-based game')
 assert((ARGV - expected_ids).empty?, 'unknown game requested for contract verification')
 cases = cases.select { |item| ARGV.include?(item.fetch('game')) } unless ARGV.empty?
 cases.each do |item|
@@ -106,6 +108,12 @@ cases.each do |item|
   assert_equal(item.fetch('final'), GameRoomTest::ModelContract.checkpoint(env), "#{game.id}: final checkpoint changed")
   assert_equal(item.fetch('events'), env.events, "#{game.id}: serialized history changed")
   puts "#{game.id}: #{item.fetch('steps').length} transitions, full/incremental replay, input ownership, action order and RNG OK"
+end
+
+if ARGV.empty? || ARGV.include?('cash_auction')
+  require_relative 'support/cash_auction_model_contract'
+  assert_equal(cash_auction, GameRoomTest::CashAuctionModelContract.capture, 'Cash Auction native public protocol contract changed')
+  puts 'cash_auction: eight auctions, competing bids, questions, carryover, chest settlement, cold/incremental replay, legal order and RNG OK'
 end
 
 if ARGV.empty? || ARGV.include?('duck_racing')

@@ -1,0 +1,569 @@
+{
+  "source": "games/billiards.rb",
+  "sections": [
+    {
+      "id": "competition",
+      "title": {
+        "en": "Social billiards: your first game"
+      },
+      "paragraphs": [
+        {
+          "en": "New billiards tables select Social billiards for two to eight players, including computer players. The default layout is a diamond of balls 1–9 plus the white cue ball. Clear balls 1–8, then pot the 9-ball legally to win the round. The match is decided by round wins."
+        },
+        {
+          "en": "Select an object ball with L or Shift+L and hear its position with I. Press A to aim at it, adjust direction and power with the arrows, then strike with Enter or Space on the Cue control. You do not call a ball or pocket in Social billiards. After the shot, listen to the outcome and whose turn comes next. The next chapter explains rounds, fouls and scoring; aiming controls follow."
+        }
+      ]
+    },
+    {
+      "id": "friendly",
+      "title": {
+        "en": "Social rounds and fouls"
+      },
+      "paragraphs": [
+        {
+          "en": "Social billiards is for two to eight players, including computer players. Choose a total of 1 to 30 rounds. The match ends after that many rounds have been settled; the player with the most round wins wins the match. If several players share the most round wins, the match is a draw."
+        },
+        {
+          "en": "The default diamond contains nine object balls, numbered 1–9, and the white cue ball. The 9-ball is the final ball. While other object balls remain, the cue ball must hit one of those first. A legal ordinary pot keeps your turn; without a pot, play passes to the next player. After contact, a ball must reach a cushion or an object ball must be potted."
+        },
+        {
+          "en": "A scratch, wrong first ball or missing cushion gives the next player cue ball in hand anywhere: use M to place it. Other balls stay where they finish. If the final ball falls early or on a foul, the round ends and the next player in table order receives the round win. A legal final pot wins the round for the shooter. P starts the next round when offered. Arbitrary placement, undo and resetting an exercise are not part of this game."
+        },
+        {
+          "en": "Alongside round wins, each legal object-ball pot earns 1 point, including a legal final ball. The cue ball earns no points. A foul shot or an early final-ball pot earns no pot points. These points accumulate across every round of the match; they do not decide round wins or break a tied match. S reads round wins and pot points aloud without opening a window; Shift+P includes both in the current match status."
+        }
+      ]
+    },
+    {
+      "id": "table",
+      "title": {
+        "en": "Reading the table"
+      },
+      "paragraphs": [
+        {
+          "en": "X is measured from the left end and Y from the bottom cushion. Zero degrees points right, 90 up, 180 left and 270 down. C switches spoken directions to clock positions: three, twelve, nine and six. Pocket numbers run from 1 to 6: lower left, lower middle, lower right, upper left, upper middle, upper right. Carom tables have no pockets."
+        },
+        {
+          "en": "O opens all ball positions, ordered by distance from the active cue ball, with pocketed balls last. L and Shift+L select an object ball; I describes its number or colour, sector, coordinates, distance and any obstruction. You can also reach the ball list with Tab and explore it with the arrows. The active cue is white in pool, your assigned white or yellow in English billiards and carom, or your chosen ball in Free Pyramid."
+        },
+        {
+          "en": "In pool, the head string crosses the left quarter of the table; the foot spot is on the centre line at the right quarter. In snooker and English billiards, Baulk is the area to the left of the line 73.7 cm from the left end. The D is the semicircle of radius 29.2 cm on that side of the line. Carom’s corner triangles extend 71 cm along the long cushion and 35.5 cm along the short cushion. The head spot is the centre of the head string; the area to its left is called the kitchen."
+        },
+        {
+          "en": "- Pool: 254 by 127 cm."
+        },
+        {
+          "en": "- Snooker and English billiards: 356.9 by 177.8 cm."
+        },
+        {
+          "en": "- Carom: 284 by 142 cm, with no pockets."
+        },
+        {
+          "en": "- Free Pyramid: 355 by 177.5 cm."
+        }
+      ]
+    },
+    {
+      "id": "aim",
+      "title": {
+        "en": "Aiming and striking"
+      },
+      "paragraphs": [
+        {
+          "en": "Return to the Cue control with Tab. Left and Right turn anticlockwise and clockwise by one degree. Hold Shift for 0.1-degree steps or Ctrl for 0.01 degree. Up and Down change power by one percent, or 0.1 percent with Shift. Releasing an aiming arrow reads a short ball, cushion or pocket description. K reads the exact angle and F the power."
+        },
+        {
+          "en": "While you turn the cue, short beeps guide your aim: 5000 Hz at the centre of the first ball on the shot line, falling to 500 Hz at either edge. Outside balls there is silence, except when aiming into a pocket. The tone follows side spin and your game sound settings, and stops when you leave the Cue control or open a dialog. These cues are local to your computer."
+        },
+        {
+          "en": "Select an object ball and press A to aim at its centre. To aim for a pocket, choose that pocket with J, then press Shift+A. This geometric aid sets an angle; cushions, other balls, power and spin can still prevent the pot. G reports the first obstacle on the current line, including the side of a ball that will be contacted. H lists nearby balls within five degrees, including blocked ones."
+        },
+        {
+          "en": "Press E to enter exact numbers. Both a decimal point and a decimal comma are accepted. Angle ranges from 0 to 359.99 degrees and power from 0.1 to 100 percent. Choose Apply to keep the settings or Cancel to retain the earlier ones. Enter or Space on the Cue control commits the shot."
+        }
+      ]
+    },
+    {
+      "id": "spin",
+      "title": {
+        "en": "Spin"
+      },
+      "paragraphs": [
+        {
+          "en": "W adds follow spin; Shift+B adds draw spin. N adds left spin and D adds right spin. Each press changes the value by five. R returns to a centre-ball strike. Positive top spin helps the cue ball follow an object ball after contact; backspin can draw it back. Side spin changes cushion rebounds and slightly deflects the initial shot. These effects depend on power and distance: cloth friction can remove draw before the cue ball reaches its target."
+        },
+        {
+          "en": "The two spin values range from -100 to 100. Together they must describe a point within the cue ball: maximum top spin cannot be combined with maximum side spin. The form rejects such a setting."
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "title": {
+        "en": "Listening to a shot"
+      },
+      "paragraphs": [
+        {
+          "en": "During play you hear the cue, ball collisions, cushions and pocket drops. The spoken outcome tells you what was hit and pocketed and gives the referee’s decision. U opens the chronological contacts of the last shot, with angle, power and spin. Y calculates the current whole shot and shows its outcome and final positions without moving the real balls. Escape closes a report."
+        },
+        {
+          "en": "With 3D sound (HRTF), cue strikes, ball collisions, cushions and pocket drops come from their positions on the table. The layout stays fixed: the table’s left and right remain on your left and right, and the far side is in front of you. Aiming beeps always sound in the centre, including when HRTF is enabled. In Power Games Settings → Sounds, enable HRTF and select Billiards in the list of games using 3D sound. With HRTF off or unavailable, sounds remain in stereo."
+        },
+        {
+          "en": "When the aiming line enters a pocket opening, a short 3000 Hz tone accompanies its number. The number is not repeated while you stay over that opening. Ball descriptions begin with the number or colour; pool balls 9 to 15 are striped."
+        },
+        {
+          "en": "Point at a cushion and press V to calculate the active cue ball’s rebound at your current power and spin. You hear the first cushion, the number of cushion contacts and any later ball contact or pocket entry. A shot too weak to reach the cushion is reported as such. This is a preview, not a played shot."
+        },
+        {
+          "en": "B reads the objects farther along the aiming line, behind the first ball: other balls in order, then a cushion or pocket. Off-axis and rearward balls are omitted. B names a cushion or pocket directly if no ball is before it. This is the straight geometric line; use Y or Comma to calculate physical motion."
+        }
+      ]
+    },
+    {
+      "id": "object_prediction",
+      "title": {
+        "en": "Predicting the ball you are aiming at"
+      },
+      "paragraphs": [
+        {
+          "en": "Point at an object ball and press Comma. This calculates the whole shot with the current angle, power and spin, then reports what happens to the first ball on your aiming line: its contacts and whether it enters a pocket or stops on the table. It does not replace that ball’s motion with a straight aiming ray and does not play the shot. If no ball is on the line, you are told so. Y reports the whole shot with final positions, and V describes the active cue ball’s cushion rebound."
+        }
+      ]
+    },
+    {
+      "id": "match",
+      "title": {
+        "en": "Choosing a discipline and making decisions"
+      },
+      "paragraphs": [
+        {
+          "en": "The table settings select the discipline. Competitive pool, snooker, English billiards and carom require two players; Cutthroat requires three. The first listed player starts, and later racks or frames alternate the start. Competitive matches normally end at the chosen number of game wins. Points within a game are separate from those wins."
+        },
+        {
+          "en": "P opens declarations and pending decisions. Choose the ball, pocket or other required details, confirm the choice, then use Enter or Space on the Cue control to strike. Enter asks for missing declarations. Shift+P reads the current rules situation, T whose turn it is, and S the scores without a separate window. M places the active cue only when the rules grant ball in hand. Q offers to concede the current game. A stalemate rerack proposed with P needs every other player’s agreement; any refusal returns play to the proposer."
+        }
+      ]
+    },
+    {
+      "id": "pool_eight",
+      "title": {
+        "en": "Pool: 8-ball"
+      },
+      "paragraphs": [
+        {
+          "en": "The table starts open. The break does not assign groups. On a later legal called pot you receive solids 1 to 7 or stripes 9 to 15, and your opponent receives the other group. Continue after pocketing your called ball in the called pocket. Hit your group first; after clearing it, play the 8-ball. On an open table, the 8-ball may be played only if an entire group is already absent and you declare the 8-ball."
+        },
+        {
+          "en": "Except on the break, declare the ball and pocket before striking. P changes the declaration; Enter asks for any missing declaration. Safety ends your turn even if an object ball drops. Pocketing the 8-ball too early, with a foul or in the wrong pocket loses the rack. A scratch without potting the 8-ball is an ordinary foul. A wrong first ball or no pot and no cushion after contact is also a foul; the opponent receives cue ball in hand anywhere."
+        },
+        {
+          "en": "If the break pots nothing, at least four different object balls must reach cushions. Otherwise the incoming player may accept the position or choose who reracks and breaks. An 8-ball potted on a legal break is spotted or the breaker may rerack. An 8-ball potted with a break foul gives those choices to the opponent, with cue ball in hand behind the head string if the position is retained. Other break fouls offer the current position or cue ball in hand behind that string. From there you cannot directly hit a ball in the head area without first crossing the string. P can request spotting the nearest legal ball if every legal ball is in that area."
+        }
+      ]
+    },
+    {
+      "id": "pool_nine",
+      "title": {
+        "en": "Pool: 9-ball"
+      },
+      "paragraphs": [
+        {
+          "en": "Always hit the lowest numbered ball remaining first. Any legal object-ball pot continues your turn; a legal 9-ball pot wins, including a combination. Calls are not required. A foul gives the opponent cue ball in hand anywhere. The 9-ball returns to the foot spot if pocketed on a foul or push-out; other object balls stay down. Three consecutive fouls by the same player lose the rack; two are announced as a warning. A legal shot resets that player's foul count."
+        },
+        {
+          "en": "The rack has the 9-ball on the foot spot and the 1-ball at the front. A break that pots nothing must send four object balls to cushions. The three-ball break rule also requires at least three different balls to be pocketed or cross the head string. If it fails without a foul, the opponent accepts the position or returns the shot; a potted 9-ball is spotted. Only a returned breaker may then push out. After an otherwise legal break, the second shot may be a push-out, declared with P: hitting the lowest ball and reaching a cushion are suspended. After a legal push-out the opponent chooses who plays next."
+        }
+      ]
+    },
+    {
+      "id": "pool_ten",
+      "title": {
+        "en": "Pool: 10-ball"
+      },
+      "paragraphs": [
+        {
+          "en": "Hit the lowest remaining number first, but call a ball and pocket with P before each ordinary shot. There is no safety declaration. Making the call legally keeps your turn. The 10-ball wins only when it was the sole object ball remaining before the shot and enters the called pocket without a foul; earlier 10-balls are spotted."
+        },
+        {
+          "en": "The break needs a pot or four different object balls at cushions. After a legal break, P can declare a push-out on the second shot; a legal push-out lets the opponent accept or return the shot. In ordinary play, pocketing a ball without making the call also gives the opponent that choice. A foul gives cue ball in hand anywhere; three consecutive fouls lose the rack."
+        }
+      ]
+    },
+    {
+      "id": "straight_pool",
+      "title": {
+        "en": "Straight pool 14.1"
+      },
+      "paragraphs": [
+        {
+          "en": "Call a ball and pocket with P. When you make the call legally, every object ball potted on the shot scores 1 point and your turn continues. Reach the point target to win. A missed call or declared safety ends your turn and returns pocketed balls."
+        },
+        {
+          "en": "The opening break starts behind the head string. Make your called pot or send the cue and at least two object balls to cushions after contact. Failure costs 2 points; the opponent accepts the position or requires another break. Ordinary fouls cost 1 point and may make your score negative. A scratch gives the opponent cue ball in hand behind the head string. The third consecutive ordinary foul costs 16 on that stroke and forces a fresh full-rack break; breaking fouls do not count in that sequence."
+        },
+        {
+          "en": "After fourteen balls have scored, they are reracked with the apex empty, leaving the cue and last object ball where they are. Play continues without the opening spread requirement. If the last ball also fell, or both remaining balls obstruct the rack, all fifteen return. An obstructing object ball alone goes to the head spot, or centre if occupied. When only the cue obstructs, a last ball on or beyond the head string gives kitchen ball in hand; one behind the string sends the cue to the head spot, or centre if blocked."
+        },
+        {
+          "en": "After an agreed stalemate rerack, scores and debts are retained and P offers the choice of new breaker. A new match game starts from zero."
+        }
+      ]
+    },
+    {
+      "id": "one_pocket",
+      "title": {
+        "en": "One Pocket"
+      },
+      "paragraphs": [
+        {
+          "en": "Each player owns one of the two corner pockets at the right end. The breaker chooses theirs with P before the break. Each legal ball into your pocket gives you 1 point, even if the opponent pots it; the first to 8 wins. Your own legal pot keeps your turn. Other pockets’ balls return after the turn, or immediately if the table empties before a win. A break needs contact followed by a rail or a pot, not four balls at cushions."
+        },
+        {
+          "en": "A foul costs you 1 point and returns one of your scored balls. If none is available, you owe a ball: a future scoring pot repays the debt and is returned. Opponent-pocket balls still score on a foul unless the only foul was pocketing the cue ball. A cue ball off the table or a scratch with another foul does not cancel those opponent points. A scratch gives kitchen ball in hand. Three consecutive fouls lose the game. If both players reach 8 on the same shot, the shooter wins. An agreed stalemate keeps scores and debts and asks for a new breaker and pockets."
+        }
+      ]
+    },
+    {
+      "id": "bank",
+      "title": {
+        "en": "Bank Pool: short and full rack"
+      },
+      "paragraphs": [
+        {
+          "en": "A scoring bank needs a declared ball, pocket and ordered cushion route. Under P choose the ball and pocket, then add each next cushion: left, right, top or bottom. Finish the route when complete; one to twelve contacts may be declared. Cancelling leaves the previous declaration intact. The cue must hit the called ball before any cushion or other ball. The called ball may not then hit another ball or the cue again. Its cushions must follow the call; incidental jaw contacts while entering the destination pocket are omitted."
+        },
+        {
+          "en": "A valid bank gives 1 point and keeps your turn. Short-rack Bank Pool uses 9 balls and a target of 5; full-rack Bank Pool uses 15 and a target of 8. Extra pocketed balls wait until your turn ends before returning, or return immediately if the table empties before a win. Do not declare a bank on the break: any pot continues but earns no point. With no pot, four different object balls must reach cushions; an inadequate break lets the opponent accept or require another break."
+        },
+        {
+          "en": "A foul costs 1 point and returns a scored ball. Without one, your debt is repaid by returning a later scoring ball; scores may be negative. A scratch gives kitchen ball in hand. Three consecutive fouls lose the game. Scores and debts survive an agreed stalemate rerack, followed by a P choice of new breaker."
+        }
+      ]
+    },
+    {
+      "id": "cutthroat",
+      "title": {
+        "en": "Cutthroat for three players"
+      },
+      "paragraphs": [
+        {
+          "en": "This club variant assigns fixed groups in seat order: 1–5, 6–10 and 11–15. Protect your own group and remove the others. Any object ball may be hit first, and you may sacrifice one of your own balls. A legal pot continues your turn unless it removed your last ball. Players with no balls are temporarily skipped; the last group remaining wins."
+        },
+        {
+          "en": "A foul gives the next player cue ball in hand anywhere and returns one pocketed ball for each opponent, choosing the lowest absent number in that group. This can bring a skipped player back into play. Three-foul rack loss is not used. If one legal shot removes every group, the round is a draw. This fixed-group version does not use a negotiation to claim groups. Conceding with Q removes all balls in your group and prevents their revival for the rest of this rack; the remaining players continue."
+        }
+      ]
+    },
+    {
+      "id": "blackball",
+      "title": {
+        "en": "Blackball"
+      },
+      "paragraphs": [
+        {
+          "en": "Play your group of solids or stripes, then black. Calls are not required. The table stays open after the break and free shots; groups are assigned by a later legal ordinary pot. A legal pot keeps your turn. Potting the last of your group and black together is a legal win; potting black with a foul or before clearing your group loses the rack. Black on the break instead reracks for the same breaker."
+        },
+        {
+          "en": "A legal break pots a ball or sends at least two different object balls across the centre line. A foul grants one free shot followed by one normal shot. For the free shot, play from the current position or use M to move the cue into baulk, the leftmost fifth of the table. The free shot suspends wrong-first-ball only: potting only the opponent’s balls is still a foul. After the normal shot, continuation again needs a legal pot. When fully snookered with no path to any part of a ball on, the usual cushion requirement is suspended. A touching ball on must be played away from without pushing it."
+        }
+      ]
+    },
+    {
+      "id": "snooker",
+      "title": {
+        "en": "Snooker"
+      },
+      "paragraphs": [
+        {
+          "en": "There are fifteen reds, worth one point each, and yellow 2, green 3, brown 4, blue 5, pink 6 and black 7. Red balls have IDs 1 to 15; colours have IDs 16 to 21 in that order. Pot a red, nominate a colour with P or when Enter asks, then alternate red and colour. Multiple reds may score in one stroke. Colours return to their spots during this phase, including after a foul. Reds normally remain pocketed. After the last red you may still play one colour, then clear yellow through black in order without replacing legally potted colours."
+        },
+        {
+          "en": "A foul gives the opponent 4 to 7 points: use the highest applicable value among the ball on and illegally contacted or pocketed balls. No points are scored by the offender on that stroke. The opponent chooses to play or asks the offender to play again. Cue-ball scratches give placement inside the D only; M moves only the cue ball and leaves all other final positions alone. Occupied colour spots use the highest free spot, then the nearest legal position toward the black end, with the pink/black exception toward the other end when necessary."
+        },
+        {
+          "en": "After a foul, a snooker on every ball on permits nomination of a free ball with P. Both extreme edges of a ball on must be available to avoid a snooker; a cushion does not count as a blocking ball. If the cue ball is in hand, the whole D is checked at the recorded placement precision. A nominated free ball takes the value of the ball on and returns to its spot if potted. It may not itself leave a non-scoring snooker except in the final two-ball exception."
+        },
+        {
+          "en": "If a direct path was available but the first required contact was missed, the referee may call Foul and a Miss. The opponent can restore the previous balls and ask the offender to retry; penalty points remain. Two restored full-ball misses cause a warning, and another failure loses the frame. Ordinary Miss is not called when penalty points are already needed or become needed after the stroke. When only black remains, the first pot or foul settles the frame. A tied score respots black, draws a choice of player and gives cue ball in hand in the D; the next pot or foul decides it."
+        }
+      ]
+    },
+    {
+      "id": "english",
+      "title": {
+        "en": "English billiards"
+      },
+      "paragraphs": [
+        {
+          "en": "Each player keeps their own white or yellow cue ball; red is shared. On the opening turn red is on its spot and the starting cue ball is played from the D. The other player’s ball is initially off the table and enters when that player first needs it. Score up to the chosen point target, or lead when the selected time ends. A scoring stroke keeps your turn."
+        },
+        {
+          "en": "One stroke can combine several scores:"
+        },
+        {
+          "en": "- A cannon means your cue ball contacts both other balls. It scores 2 points, once per stroke."
+        },
+        {
+          "en": "- Potting red scores 3; potting the other player’s ball scores 2."
+        },
+        {
+          "en": "- Your cue ball entering a pocket after contacting red scores 3; after the opponent’s ball it scores 2. When both were hit, the first contact decides; an unresolved simultaneous first contact gives 2."
+        },
+        {
+          "en": "After an in-off, use M to place your cue in the D. You must play out of Baulk before directly playing a ball whose centre is in Baulk, including on the line; when returning into Baulk, a cushion or ball outside it must have been contacted first. A legal English Miss when all targets are in Baulk gives the opponent 2 points and play from the resulting position. A foul instead gives 2 points, cancels that stroke’s scores and offers P decisions: accept the position or reset red and the opponent’s ball, then play from the D."
+        },
+        {
+          "en": "Red is respotted after a pot. Repeated red-only pots from its spot follow two pots on the normal spot, then one from the centre, with substitute spots when occupied. The opponent’s potted ball usually stays off the table until needed. A cue ball touching another ball triggers red’s spot, the opponent’s centre spot if that ball is present, and cue ball in hand in the D."
+        },
+        {
+          "en": "A run may contain at most 75 cannon-only strokes or 15 hazard strokes without a cannon; a hazard is a pot or in-off. Warnings come at 70 and 10. Combining a cannon and hazard breaks both sequences. A special fifteenth-hazard respot applies when the opponent’s ball was left off the table by that opponent’s last turn. If Baulk crossing is enabled in settings, you must make the required inward crossing during each break’s 80–100 point interval; failure is a foul."
+        }
+      ]
+    },
+    {
+      "id": "carom",
+      "title": {
+        "en": "Carom: straight rail, one cushion and three cushions"
+      },
+      "paragraphs": [
+        {
+          "en": "There are three balls on a pocketless table. Keep your assigned white or yellow cue throughout the game. A cannon means your cue contacts both other balls in one stroke. A legal cannon gives 1 point and keeps your inning; a miss or foul passes play without a point penalty. Reach the selected point target to win, subject to the equalizing-inning setting. With equalizing enabled, if the opening player reaches the target after one more inning, the other player gets one final inning from the starting position. Reaching the target then draws the game; ending that inning short of it gives the opening player the win. With equalizing disabled, reaching the target wins immediately."
+        },
+        {
+          "en": "At the start, P lets you choose the lower or upper starting spot. Your first attack must be directly on red. The disciplines then differ as follows:"
+        },
+        {
+          "en": "- Straight rail needs no cushion contact. Its four marked corner triangles restrict repeated cannons."
+        },
+        {
+          "en": "- One cushion needs at least one contact by your cue with a cushion before it touches the second different object ball."
+        },
+        {
+          "en": "- Three cushions needs at least three such contacts. Separate impacts on the same cushion count, and impacts before the first object ball also count. Impacts after the second object ball do not repair a missed cannon."
+        },
+        {
+          "en": "In a straight-rail corner, after both object balls enter, you may make one cannon without either leaving. On the following cannon at least one must leave that triangle; it may return during the same stroke. A ball on the boundary is treated against the player. The programme follows the whole movement, not only where the balls stop."
+        },
+        {
+          "en": "If your cue touches an object ball, straight rail restores all three to the opening position. In the cushion games P offers playing away without pushing the touching ball or respotting. One cushion resets all three; three cushions replaces only the touching balls on their assigned spots. Driving a frozen cue directly into its cushion is a foul. An off-table ball resets all three in straight rail and one cushion, but only the escaped balls in three cushions."
+        }
+      ]
+    },
+    {
+      "id": "pyramid",
+      "title": {
+        "en": "Free Pyramid"
+      },
+      "paragraphs": [
+        {
+          "en": "Score 8 points before your opponent. All sixteen balls have the same value: 1 point for every legal pot, including your cue ball after it contacts another ball. No ball or pocket call is needed. Before each shot after the break, use P and Choose the cue ball to select any ball still on the table. A legal pot keeps your turn and gives you a fresh choice of cue."
+        },
+        {
+          "en": "The opening shot uses the coloured ball from behind the home line at the left quarter. After hitting an object ball, either pot a ball, send three different object balls to cushions, or send two to cushions and an object ball across the centre line."
+        },
+        {
+          "en": "In later shots, after the required ball contact, one of the following must happen:"
+        },
+        {
+          "en": "- A ball is potted."
+        },
+        {
+          "en": "- A ball rebounds from a cushion and then reaches another cushion, directly or by driving another ball there. Contact with a ball frozen to that other cushion can also satisfy the condition."
+        },
+        {
+          "en": "- A ball crosses the centre and then reaches a cushion, directly or by transmitting movement to another ball; a frozen ball at that cushion also counts."
+        },
+        {
+          "en": "- After a cushion rebound, a ball crosses the centre, drives another across, or contacts a ball on the opposite half or centre line; the corresponding transmitted contacts also count."
+        },
+        {
+          "en": "If you foul, all illegally potted and escaped balls are spotted first. Under P your opponent selects any table ball as the penalty ball, removes it and gains 1 point. They then choose to play or return the shot. After an illegal break they can also rerack and choose who breaks; the penalty point stays and the new pyramid is incomplete. An ordinary cue-ball pot is not automatically a foul here: it scores when made legally after contact. Multiple fouls in one shot incur one penalty."
+        },
+        {
+          "en": "Spotted balls go from the foot spot toward the right end along the centre line, then backward if space runs out. They may become the next cue ball. The larger balls and narrow jaws need more precise aim than pool; a line toward a pocket is not a promise that the ball will pass its jaws."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "en": "Match settings"
+      },
+      "paragraphs": [
+        {
+          "en": "Before play, choose the discipline and its winning target. Social billiards uses a total of 1 to 30 rounds and one of three layouts. Where the discipline permits it, choose its point target; its match target counts game wins. English billiards can instead run for the selected time: a shot already started when time expires is allowed to finish, and equal final scores are a draw. Carom’s equalizing-inning option gives the second player a final inning from the starting position when needed to equal the number of innings. In timed English billiards, an accepted shot must reach the table before the time limit; pressing a key before it expires is not enough."
+        },
+        {
+          "en": "Social billiards starts with the nine-ball diamond. In table settings you can instead select one object ball or the fifteen-ball triangle; their final balls are 1 and 15 respectively. An explicit layout choice and an older saved game keep their selected layout."
+        },
+        {
+          "en": "The match target is 1 to 25 game wins. Adjustable point targets range from 1 to 1000; English time limits range from 1 to 180 minutes."
+        },
+        {
+          "en": "More accurate physics uses smaller calculation steps and may change the result of a close contact. Computer strength controls how many candidate shots a bot compares. Spin and power remain part of every shot, including previews."
+        },
+        {
+          "en": "Only older saved practice games use the limit of 1 to 500 shots; it does not apply to new games."
+        }
+      ]
+    },
+    {
+      "id": "referee",
+      "title": {
+        "en": "Rules and digital adaptations"
+      },
+      "paragraphs": [
+        {
+          "en": "Pool follows WPA Rules and Regulations effective 21 October 2026; snooker and English billiards use WPBSA 2024–25, carom uses UMB rules, and Free Pyramid uses IPC’s 2025 revision. Cutthroat and Social billiards use the club rules described here. Table order replaces a physical lag. Agreement to rerack does not itself award a game win. The snooker referee calls automatic Miss only with a direct path; entirely obstructed attempts remain ordinary fouls without restoration."
+        },
+        {
+          "en": "The simulation is two-dimensional: no jumps, cue elevation or massé controls. Frozen-ball pushes and pocket jaws are approximations. First contacts unresolved within the same physics step are treated as simultaneous. Pyramid uses a documented training geometry with large balls and tight pockets; this is not certification of current federation equipment. Directional aids and previews use the active cue and the same physics as play."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard shortcuts"
+      },
+      "paragraphs": [
+        {
+          "en": "K: Read cue direction."
+        },
+        {
+          "en": "F: Read shot power."
+        },
+        {
+          "en": "G: Read the first contact on the shot line."
+        },
+        {
+          "en": "H: List balls near the shot line."
+        },
+        {
+          "en": "I: Describe the selected ball."
+        },
+        {
+          "en": "O: List all balls and their positions."
+        },
+        {
+          "en": "L: Select the next object ball."
+        },
+        {
+          "en": "Shift+L: Select the previous object ball."
+        },
+        {
+          "en": "J: Choose a target pocket."
+        },
+        {
+          "en": "A: Aim at the centre of the selected ball."
+        },
+        {
+          "en": "Shift+A: Aim the selected ball towards the chosen pocket."
+        },
+        {
+          "en": "E: Enter exact angle, power and spin."
+        },
+        {
+          "en": "W: Increase follow spin."
+        },
+        {
+          "en": "Shift+B: Increase draw spin."
+        },
+        {
+          "en": "N: Increase left spin."
+        },
+        {
+          "en": "D: Increase right spin."
+        },
+        {
+          "en": "R: Remove spin."
+        },
+        {
+          "en": "C: Switch between degrees and clock directions."
+        },
+        {
+          "en": "Y: Predict this shot without moving the balls."
+        },
+        {
+          "en": "U: Read contacts from the last shot."
+        },
+        {
+          "en": "Left: turn anticlockwise by 1 degree."
+        },
+        {
+          "en": "Right: turn clockwise by 1 degree."
+        },
+        {
+          "en": "Shift+Left: turn anticlockwise by 0.1 degree."
+        },
+        {
+          "en": "Shift+Right: turn clockwise by 0.1 degree."
+        },
+        {
+          "en": "Ctrl+Left: turn anticlockwise by 0.01 degree."
+        },
+        {
+          "en": "Ctrl+Right: turn clockwise by 0.01 degree."
+        },
+        {
+          "en": "Up: increase power by 1 percent."
+        },
+        {
+          "en": "Down: decrease power by 1 percent."
+        },
+        {
+          "en": "Shift+Up: increase power by 0.1 percent."
+        },
+        {
+          "en": "Shift+Down: decrease power by 0.1 percent."
+        },
+        {
+          "en": "Enter or Space: play the current shot."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "V: Predict the cushion rebound and next ball contact."
+        },
+        {
+          "en": "B: Describe objects behind the aimed ball."
+        },
+        {
+          "en": "S: Read scores aloud, including Social round wins and pot points."
+        },
+        {
+          "en": "M: Place the active cue ball when in hand."
+        },
+        {
+          "en": "P: Open declarations, cue choice or a pending match decision."
+        },
+        {
+          "en": "Shift+P: Read the current match situation."
+        },
+        {
+          "en": "Q: Concede the current round, rack or frame after confirmation."
+        },
+        {
+          "en": "Comma: Predict the first aimed ball with the current power and spin."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "discipline": "competition",
+    "rounds": "friendly",
+    "layout": "settings",
+    "race_to": "match",
+    "point_target": "settings",
+    "english_limit": "english",
+    "time_limit_minutes": "english",
+    "equalizing": "carom",
+    "baulk_crossing": "english",
+    "accurate": "settings",
+    "bot_skill": "settings",
+    "shots": "settings"
+  }
+}

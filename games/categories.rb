@@ -540,6 +540,12 @@ module GameRoomGames
       entries.map(&:text)
     end
 
+    def live_name_protected_texts(_event, _repository, replay, _viewer)
+      state = replay.state
+      review_items(state).map { |item| item[:answer] } +
+        round_category_ids(state).map { |category| round_category_label(state, category) }
+    end
+
     def result_text(replay)
       state = replay.state
       winners = state[:winners].to_a

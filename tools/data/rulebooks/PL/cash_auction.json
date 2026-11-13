@@ -1,0 +1,192 @@
+{
+  "source": "games/cash_auction.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Na czym polega gra"
+      },
+      "paragraphs": [
+        {
+          "pl": "Awantura o kasę łączy licytację z quizem. Każde pytanie ma cztery odpowiedzi, z których dokładnie jedna jest poprawna. Może w niej grać od dwóch do ośmiu osób, także z botami. Każdy zaczyna z 1000 punktów. Wygrywa osoba, która po otwarciu wszystkich czarnych skrzyń ma najwięcej punktów spośród graczy pozostających w meczu."
+        },
+        {
+          "pl": "Rundę rozpoczyna losowanie kategorii i wspólna wpłata do puli. Następnie licytujecie prawo do odpowiedzi na pytanie. Dobra odpowiedź daje całą pulę, a po błędnej pula zostaje na kolejną rundę."
+        }
+      ]
+    },
+    {
+      "id": "rounds",
+      "title": {
+        "pl": "Początek rundy"
+      },
+      "paragraphs": [
+        {
+          "pl": "Koło ogłasza kategorię pytania. Każdy gracz pozostający w meczu wpłaca wtedy 10 punktów do wspólnej puli. Kto nie ma na tę wpłatę, odpada na stałe. Punkty zgromadzone wcześniej w puli pozostają w niej."
+        },
+        {
+          "pl": "Licytujecie równocześnie, bez czekania na swoją kolej. Na początku licytacji jesteś w polu kwoty. Wpisz ofertę i zatwierdź ją Enterem. Słyszysz numer rundy, pulę, najwyższą ofertę i osobę prowadzącą."
+        },
+        {
+          "pl": "Po ofercie prowadzący wywołuje jej kwotę po raz pierwszy i drugi, w odstępach dwóch sekund. Trzecie wywołanie, po sześciu sekundach bez przebicia, zamyka licytację. Każda wyższa oferta rozpoczyna odliczanie od nowa. Jeśli przez początkowe sześć sekund nikt nie zalicytuje, runda się kończy, a pula przechodzi dalej."
+        }
+      ]
+    },
+    {
+      "id": "bidding",
+      "title": {
+        "pl": "Ile kosztuje oferta"
+      },
+      "paragraphs": [
+        {
+          "pl": "Oferta oznacza łączną kwotę, którą przeznaczasz na tę licytację, poza wpłatą na początku rundy. Musi być wyższa od dotychczasowej najwyższej oferty. Każdy licytujący płaci od razu. Punkty nie wracają, nawet jeśli później przegrasz licytację albo spasujesz."
+        },
+        {
+          "pl": "Przy podnoszeniu własnej oferty dopłacasz tylko różnicę. Jeśli zaoferowałeś 100, podniesienie do 250 kosztuje jeszcze 150. Najwyżej możesz przeznaczyć pozostałe punkty oraz to, co już wpłaciłeś w ofertach w tej rundzie."
+        },
+        {
+          "pl": "Aby zagrać za wszystko, wpisz A w polu kwoty i naciśnij Enter. Przeznaczysz całe pozostałe saldo; wcześniejsza wpłata z ofert doliczy się do łącznej kwoty. Taka oferta również musi przebić najwyższą."
+        },
+        {
+          "pl": "Osoba z najwyższą ofertą nie może pasować: jej oferta jest wiążąca. Nadal ma pole kwoty i może przebić własną ofertę przed zamknięciem licytacji. Wygrywa ostatnia przyjęta najwyższa oferta."
+        }
+      ]
+    },
+    {
+      "id": "passing",
+      "title": {
+        "pl": "Pasowanie i kara"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jeśli nie prowadzisz, przejdź Tabem do przycisku Pas i zatwierdź Enterem. Wycofujesz się z tej licytacji; ponownie zalicytujesz dopiero w następnej rundzie. Wpłacone punkty pozostają w puli."
+        },
+        {
+          "pl": "Co trzeci pas w całym meczu kosztuje 200 punktów: kara przypada na trzeci, szósty, dziewiąty pas i tak dalej. Trafia do puli. Jeśli zostało ci mniej niż 200 punktów, płacisz tylko tę pozostałą kwotę."
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "title": {
+        "pl": "Odpowiedź na pytanie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po licytacji wszyscy mogą przeczytać pytanie i odpowiedzi A–D, ale odpowiedzieć może tylko zwycięzca licytacji. Pytanie jest polem tekstowym do odczytu. Strzałką w dół przejdź do listy odpowiedzi, wybierz strzałkami i zatwierdź Enterem. Nie ma limitu czasu na odpowiedź."
+        },
+        {
+          "pl": "Za poprawną odpowiedź zwycięzca licytacji otrzymuje całą pulę, a nowa pula zaczyna się od zera. Po błędnej odpowiedzi wszystko zostaje na następną rundę. Jeśli zagrałeś za wszystko i po błędnej odpowiedzi nie masz już punktów, odpadasz na stałe."
+        }
+      ]
+    },
+    {
+      "id": "chests",
+      "title": {
+        "pl": "Czarne skrzynie"
+      },
+      "paragraphs": [
+        {
+          "pl": "W 5% losowań zamiast kategorii i pytania pojawia się czarna skrzynia. Licytujecie ją tak samo. Zwycięzca zachowuje zamkniętą skrzynię, ale nie otrzymuje puli; ta przechodzi do kolejnej rundy."
+        },
+        {
+          "pl": "Przed rozstrzygnięciem meczu każdy otwiera wszystkie swoje skrzynie, również gdy wcześniej odpadł. Gdy pojawi się przycisk Otwórz czarną skrzynię, przejdź do niego Tabem w razie potrzeby i naciśnij Enter. Powtórz to dla kolejnych skrzyń."
+        },
+        {
+          "pl": "Skrzynia ma siedem równie prawdopodobnych wyników:"
+        },
+        {
+          "pl": "- Zysk 100 punktów."
+        },
+        {
+          "pl": "- Zysk 2500 punktów."
+        },
+        {
+          "pl": "- Zysk 10000 punktów."
+        },
+        {
+          "pl": "- Strata 100 punktów."
+        },
+        {
+          "pl": "- Strata 500 punktów."
+        },
+        {
+          "pl": "- Strata 1000 punktów."
+        },
+        {
+          "pl": "- Bankructwo."
+        },
+        {
+          "pl": "Strata nie obniża salda poniżej zera. Bankructwo zabiera wszystkie punkty i eliminuje na stałe. Późniejsza nagroda nie przywraca do gry osoby, która już odpadła."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "pl": "Koniec meczu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zwykły mecz obejmuje osiem rund. Przechodzi też do zakończenia, gdy zostaje najwyżej jeden gracz. Zawsze najpierw otwieracie wszystkie posiadane skrzynie: nawet pozorny lider może zbankrutować. S odczytuje punkty wszystkich osób i liczbę ich zamkniętych skrzyń."
+        },
+        {
+          "pl": "Po otwarciu wszystkich skrzyń wygrywa gracz z największą liczbą punktów spośród osób nadal w meczu. Jeśli kilka z nich ma równy najwyższy wynik, rozgrywacie dodatkową rundę z udziałem wszystkich pozostających graczy, nie tylko liderów. Przed kolejnym porównaniem otwieracie nowe skrzynie; w razie potrzeby rozgrywacie dalsze rundy. Gdy nikt nie pozostaje w grze, mecz kończy się remisem."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "pl": "Ustawienia stołu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed rozpoczęciem wybierz w ustawieniach stołu język pytań i zestaw. Korzystasz z tych samych zestawów co w Quizie; wybrany zestaw określa dostępne kategorie. Język pytań może być inny niż język interfejsu."
+        },
+        {
+          "pl": "Zamiast 1000 punktów początkowych możesz ustawić dowolną liczbę całkowitą od 10 do 1000000. Wpłata na początku rundy może wynosić od 1 punktu do całego początkowego salda. Kara co trzeci pas może wynosić od 0 do 1000000. Zero wyłącza odejmowanie punktów, ale pas nadal wycofuje z bieżącej licytacji."
+        },
+        {
+          "pl": "Możesz wybrać od 8 do 32 zwykłych rund zamiast ośmiu oraz od 1 do 5 sekund między wywołaniami zamiast dwóch. Licytacja zamknie się po trzech takich odstępach bez przebicia. Szansę na czarną skrzynię można zwiększyć z 5% do 10%. Boty licytują w ramach budżetu opartego na jawnych saldach, a odpowiedź wybierają losowo spośród czterech możliwości."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Sterowanie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Enter w polu kwoty: wyślij wpisaną ofertę."
+        },
+        {
+          "pl": "A, potem Enter w polu kwoty: zagraj za wszystko."
+        },
+        {
+          "pl": "Tab, potem Enter na Pas: wycofaj się z bieżącej licytacji, gdy nie prowadzisz."
+        },
+        {
+          "pl": "Strzałka w dół z pytania: przejdź do odpowiedzi. Strzałki wybierają, a Enter zatwierdza, jeśli wygrałeś licytację."
+        },
+        {
+          "pl": "Enter na Otwórz czarną skrzynię: otwórz jedną ze swoich skrzyń."
+        },
+        {
+          "pl": "S: odczytaj salda i liczbę zamkniętych skrzyń."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "starting_points": "settings",
+    "ante": "rounds",
+    "pass_penalty": "passing",
+    "rounds": "finish",
+    "count_interval": "settings",
+    "black_chest_chance": "chests",
+    "content_language_id": "settings",
+    "content_set_id": "settings"
+  }
+}

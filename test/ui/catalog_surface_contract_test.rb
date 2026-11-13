@@ -38,7 +38,9 @@ catalog.ids.each do |id|
   assert_equal(options_before, GameRoomTest::ContractValues.digest(original_options), "#{id}: validation mutated defaults")
   next if id == 'duck_racing'
 
-  assert_equal(false, game.paced_event_presentation?, "#{id}: inherited Duck pacing")
+  unless game.class.instance_methods(false).include?(:paced_event_presentation?)
+    assert_equal(false, game.paced_event_presentation?, "#{id}: inherited unrelated event pacing")
+  end
   assert_equal(false, game.replay_participant_transitions?, "#{id}: inherited Duck seat replay")
   presentation = game.build_presentation_game
   if !presentation.equal?(game)
@@ -54,7 +56,7 @@ assert_equal(%w[audio_ball axel_pong duck_racing krowa mania_pisania scrabble], 
 cases = JSON.parse(File.read(File.join(__dir__, '../fixtures/contracts/v1/histories.json'), encoding: 'UTF-8')).fetch('cases')
 cases.reject! { |item| item.fetch('game') == 'tysiac' }
 %w[v2/tysiac v1/mille_bornes v2/bridge v1/mahjong v1/bouillabaisse v1/scopa
-  v1/bingo v1/blackjack v1/blackjack_dice v1/dice_poker v1/go v1/liars_dice v1/roulette].each do |name|
+  v1/bingo v1/blackjack v1/blackjack_dice v1/dice_poker v1/go v1/liars_dice v1/roulette v1/billiards].each do |name|
   cases << JSON.parse(File.read(File.join(__dir__, "../fixtures/contracts/#{name}.json"), encoding: 'UTF-8'))
 end
 
@@ -96,6 +98,16 @@ cases.each do |item|
   assert_equal(item.fetch('events'), game.replay(env.session, item.fetch('events'), env.repository).accepted_events,
     "#{game.id}: surface coverage must use an accepted history, not a rejected fixture")
 end
+
+cash = JSON.parse(File.read(File.join(__dir__, '../fixtures/contracts/v1/cash_auction.json'), encoding: 'UTF-8'))
+cash_game = catalog.build('cash_auction')
+cash_repository = GameRoomSimulation::Repository.new(cash.fetch('players'))
+cash.fetch('events').length.succ.times do |length|
+  replay = cash_game.replay(cash.fetch('session'), cash.fetch('events').first(length), cash_repository)
+  (cash.fetch('players') + ['Spectator']).each { |viewer| inspect_view.call(cash_game, replay, viewer) }
+end
+assert_equal(cash.fetch('events'), cash_game.replay(cash.fetch('session'), cash.fetch('events'), cash_repository).accepted_events,
+  'Cash Auction surface coverage must use an accepted native history')
 
 %w[axel_pong audio_ball duck_racing mania_pisania].each do |id|
   game = catalog.build(id)

@@ -101,6 +101,7 @@ class InvitationNotifications
       "table_id" => hash_value(metadata, "table_id").to_i,
       "live_session_id" => hash_value(metadata, "live_session_id").to_s,
       "sender" => GameRoomInvitationIdentity.notification_sender(notification, metadata),
+      "sender_display_name" => hash_value(metadata, "sender_display_name"),
       "recipient" => recipient.to_s,
       "created_at" => GameRoomNotificationTime.created_at(notification) || hash_value(metadata, "created_at").to_i,
       "expires_at" => expiration,

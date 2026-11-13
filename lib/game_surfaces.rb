@@ -1113,6 +1113,7 @@ module GameSurfaces
 
   require_relative "game_surfaces/command_panel"
   require_relative "game_surfaces/pong_surface"
+  require_relative "game_surfaces/billiards_surface"
   require_relative "game_surfaces/audio_ball_surface"
   require_relative "game_surfaces/duck_challenge_surface"
   require_relative "game_surfaces/typing_surface"
@@ -1339,6 +1340,8 @@ module GameSurfaces
 
   def self.build(spec, state: {})
     case spec
+    when BilliardsSpec
+      BilliardsSurface.new(spec, state: state)
     when TabooSpec
       TabooSurface.new(spec, state: state)
     when WordBoardSpec

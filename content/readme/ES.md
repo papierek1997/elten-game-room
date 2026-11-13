@@ -58,7 +58,7 @@ encabezado, Shift+H al anterior y Escape cierra el documento.
 
 ## A qué puedes jugar
 
-Power Games incluye 48 juegos: cartas, juegos de tablero, palabras
+Power Games incluye 50 juegos: cartas, juegos de tablero, palabras
 y conocimientos, práctica de escritura y juegos basados en el oído
 y los reflejos.
 
@@ -69,9 +69,9 @@ y los reflejos.
 - Dados y dominó: Balut, Blackjack de dados, Cat, head, tail, General de dados,
   Dominó, Farkle, Dados mentirosos, Tren mexicano, Póquer de dados y Yahtzee.
 - Otros juegos de azar: Bingo y Ruleta.
-- Palabras y conocimientos: Krowa, Teclamanía, Países y ciudades, Quiz Party,
+- Palabras y conocimientos: Subasta por el bote, Krowa, Teclamanía, Países y ciudades, Quiz Party,
   Scrabble y Tabú.
-- Acción con audio: Axel Pong y Audio Ball.
+- Acción con audio: Billar, Axel Pong y Audio Ball.
 
 Las fichas de los juegos son solo virtuales.
 
@@ -315,6 +315,8 @@ en segundo plano no desactiva la señal de turno independiente ni los sonidos
 del chat, las invitaciones o los cambios de participantes.
 Estos ajustes se aplican tanto al pasar a otra parte de ELTEN
 como al cambiar de programa.
+
+El campo Nombre para mostrar permite escribir tu nombre y apellidos, hasta 64 caracteres. Déjalo vacío para usar tu nombre de usuario de ELTEN. El nombre completo aparece en el vestíbulo, las mesas, las listas de participantes, los resultados con S, el historial y las notificaciones. Las acciones actuales, los repartos, las pujas y los nombres de las fichas usan solo el primer nombre. Pulsa Guardar para aplicar el cambio o Cancelar para descartarlo. Los demás jugadores pueden ver este nombre; el usuario de la cuenta, los permisos y las estadísticas no cambian. Si el nombre de un jugador no está configurado o disponible, se muestra su usuario.
 
 ### Conexión en los juegos de audio
 

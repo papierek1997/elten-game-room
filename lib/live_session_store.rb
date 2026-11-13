@@ -247,7 +247,8 @@ class GameRoomLiveSessionStore
       metadata['private_cards'] = GameRoomPrivateCards::VERSION
     end
     count = [[bot_count.to_i, 0].max, maximum - 1].min
-    discovery = metadata.merge("status" => "waiting", "bot_count" => count,
+    discovery = metadata.merge("owner_display_name" => GameRoomParticipants.local_display_name,
+      "status" => "waiting", "bot_count" => count,
       "player_count" => 1 + count, "max_players" => maximum)
     wire_discovery = compact_discovery(discovery)
     packet = GameRoomEventProtocol.record_packet(kind: 'room_created', actor: owner,
@@ -273,6 +274,7 @@ class GameRoomLiveSessionStore
     end
     attach_session(table_id, session)
     append_packet(table_id, packet)
+    publish_initial_profile(table_id, session)
     table_for(table_id)
   rescue Exception => error
     raise unless @local_view || error.is_a?(StandardError)
@@ -483,6 +485,10 @@ class GameRoomLiveSessionStore
       end
       metadata['last_activity_at'] = activity if activity.positive?
       metadata['roster'] = discovery_roster(table_id, session, row)
+      names = room_display_names(table_id, session)
+      metadata['owner_display_name'] = names.find { |account, _| same_user?(account, row['owner']) }&.last.to_s
+      members = connected_users(table_id)
+      metadata['display_names'] = names.select { |account, _| members.any? { |member| same_user?(account, member) } }.first(MAX_CAPACITY).to_h unless row['private'] || (session.respond_to?(:hide_participants?) && session.hide_participants?)
       metadata.delete('roster') unless metadata['roster']
       return false if @published_discovery[table_id] == metadata
       if now < @discovery_retry_at.fetch(table_id, 0)
@@ -969,6 +975,7 @@ class GameRoomLiveSessionStore
       :joined
     end
     release_joined_session(table_id, session) if status != :joined
+    publish_initial_profile(table_id, session) if status == :joined
     status
   rescue ResourceConflict => conflict
     # A concurrent admission may win after the join preflight. Release only
@@ -1515,6 +1522,7 @@ class GameRoomLiveSessionStore
   # defaults just to fit the public description.
   def compact_discovery(metadata)
     result = metadata.dup
+    result.delete('display_names') if JSON.generate(result).bytesize > DISCOVERY_BYTES
     if result.key?('tournament_match')
       result['match_ref']=GameRoomTournamentMarker.pack(result.delete('tournament_match'))
     end
@@ -1531,6 +1539,7 @@ class GameRoomLiveSessionStore
       end
     end
     result.delete('roster') if JSON.generate(result).bytesize > DISCOVERY_BYTES
+    result.delete('owner_display_name') if JSON.generate(result).bytesize > DISCOVERY_BYTES
     raise ArgumentError, 'Table discovery metadata is too large' if JSON.generate(result).bytesize > DISCOVERY_BYTES
     result
   end
@@ -1554,7 +1563,7 @@ class GameRoomLiveSessionStore
   end
 
   def participant_metadata(table_id)
-    { "table_id" => table_id.to_i, "client" => "elten_game_room" }
+    { "table_id" => table_id.to_i, "client" => "elten_game_room", "display_name" => GameRoomParticipants.local_display_name }
   end
 
   def table_identifier(value)
@@ -1660,3 +1669,4 @@ require_relative "live_session_invitations"
 
 require_relative "live_session_archive"
 require_relative "live_session_voice"
+require_relative "live_session_profiles"

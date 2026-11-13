@@ -1,0 +1,192 @@
+{
+  "source": "games/cash_auction.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Aukce o peníze spojuje dražbu s kvízovými otázkami se čtyřmi možnostmi, z nichž je právě jedna správná. Hrát mohou dva až osm hráčů, včetně botů. Každý začíná s 1000 body. Cílem je mít po otevření všech černých truhel nejvíce bodů z hráčů, kteří zůstali ve hře."
+        },
+        {
+          "cs": "Kolo začíná vylosováním kategorie a povinným vkladem všech zbývajících hráčů. Potom dražíte právo odpovědět na otázku. Za správnou odpověď získáš celý bank, po chybné odpovědi se bank převádí do dalšího kola."
+        }
+      ]
+    },
+    {
+      "id": "rounds",
+      "title": {
+        "cs": "Začátek kola"
+      },
+      "paragraphs": [
+        {
+          "cs": "Kolo štěstí oznámí kategorii otázky. Každý hráč, který je dosud ve hře, vloží do společného banku 10 bodů. Kdo na vklad nemá, je trvale vyřazen. Body, které už v banku jsou, v něm zůstávají."
+        },
+        {
+          "cs": "Nabídky podáváte současně, nečekáte na tah. Při zahájení aukce je kurzor v poli pro částku. Napiš nabídku a potvrď ji Enterem. Uslyšíš číslo kola, výši banku, nejvyšší nabídku a jméno vedoucího hráče."
+        },
+        {
+          "cs": "Po nabídce zazní její částka poprvé a podruhé, vždy po dvou sekundách. Třetí vyvolání po šesti sekundách bez vyšší nabídky aukci uzavře. Každá vyšší nabídka spustí odpočítávání znovu. Pokud nikdo během úvodních šesti sekund nepřihodí, kolo skončí a bank se převede dál."
+        }
+      ]
+    },
+    {
+      "id": "bidding",
+      "title": {
+        "cs": "Kolik stojí nabídka"
+      },
+      "paragraphs": [
+        {
+          "cs": "Nabídka udává celkovou částku, kterou dáváš do této aukce navíc k počátečnímu vkladu. Musí převýšit dosud nejvyšší nabídku. Každý dražící platí okamžitě. Body se nevracejí ani hráčům, kteří později aukci prohrají nebo odstoupí."
+        },
+        {
+          "cs": "Při zvýšení vlastní nabídky doplatíš pouze rozdíl. Po nabídce 100 tedy zvýšení na 250 stojí dalších 150. Nabídnout můžeš nejvýše součet zbývajících bodů a bodů, které už jsi v tomto kole zaplatil za nabídky."
+        },
+        {
+          "cs": "Chceš-li vsadit vše, napiš do pole částky A a stiskni Enter. Vložíš celý zbývající zůstatek; dřívější platby za nabídky se přičtou k celkové nabídce. I ta musí překonat dosud nejvyšší částku."
+        },
+        {
+          "cs": "Hráč s nejvyšší nabídkou nemůže odstoupit, protože jeho nabídka je závazná. Pole částky má dál k dispozici a před koncem aukce může nabídku ještě zvýšit. Vyhrává poslední přijatá nejvyšší nabídka."
+        }
+      ]
+    },
+    {
+      "id": "passing",
+      "title": {
+        "cs": "Odstoupení a pokuta"
+      },
+      "paragraphs": [
+        {
+          "cs": "Pokud nevedeš, přejdi Tabem na tlačítko Pas a potvrď Enterem. Z této aukce odstoupíš a znovu můžeš dražit až v příštím kole. Zaplacené body zůstávají v banku."
+        },
+        {
+          "cs": "Za každé třetí odstoupení v celém zápase zaplatíš 200 bodů: pokuta přijde při třetím, šestém, devátém odstoupení a tak dále. Jde do banku. Zbývá-li ti méně než 200 bodů, zaplatíš jen zbývající zůstatek."
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "title": {
+        "cs": "Odpověď na otázku"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po aukci si všichni mohou přečíst otázku a odpovědi A až D, odpovídat však může jen vítěz aukce. Otázka je v textovém poli pouze pro čtení. Šipkou dolů přejdi na seznam odpovědí, šipkami vyber možnost a potvrď Enterem. Na odpověď není časový limit."
+        },
+        {
+          "cs": "Za správnou odpověď dostane vítěz aukce celý bank a nový bank začíná na nule. Po chybné odpovědi se vše převede do dalšího kola. Pokud jsi vsadil vše a po chybné odpovědi nemáš žádné body, jsi trvale vyřazen."
+        }
+      ]
+    },
+    {
+      "id": "chests",
+      "title": {
+        "cs": "Černé truhly"
+      },
+      "paragraphs": [
+        {
+          "cs": "V 5 % losování nahradí kategorii a otázku černá truhla. Draží se stejně. Vítěz si nechá zavřenou truhlu, ale bank nedostane; ten se převádí do dalšího kola."
+        },
+        {
+          "cs": "Před vyhodnocením zápasu otevře každý všechny své truhly, i když už byl vyřazen. Jakmile se objeví tlačítko Otevřít černou truhlu, přejdi na něj podle potřeby Tabem a stiskni Enter. Postup opakuj u dalších truhel."
+        },
+        {
+          "cs": "Truhla má sedm stejně pravděpodobných výsledků:"
+        },
+        {
+          "cs": "- Zisk 100 bodů."
+        },
+        {
+          "cs": "- Zisk 2500 bodů."
+        },
+        {
+          "cs": "- Zisk 10000 bodů."
+        },
+        {
+          "cs": "- Ztráta 100 bodů."
+        },
+        {
+          "cs": "- Ztráta 500 bodů."
+        },
+        {
+          "cs": "- Ztráta 1000 bodů."
+        },
+        {
+          "cs": "- Bankrot."
+        },
+        {
+          "cs": "Odečet nesníží zůstatek pod nulu. Bankrot vezme všechny body a trvale tě vyřadí. Pozdější odměna už vyřazeného hráče do hry nevrátí."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "cs": "Konec zápasu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Běžný zápas má osm kol. K závěru přejde také tehdy, když zbývá nejvýše jeden hráč. Vždy se nejprve otevřou všechny získané truhly, protože i zdánlivý vítěz může zbankrotovat. S přečte body všech hráčů a počty neotevřených truhel."
+        },
+        {
+          "cs": "Po otevření všech truhel vyhrává hráč s nejvíce body z těch, kteří zůstali ve hře. Má-li několik zbývajících hráčů stejný nejvyšší zůstatek, následuje dodatečné kolo pro všechny zbývající hráče, nejen pro shodně vedoucí. Před dalším porovnáním otevřete i nově získané truhly; podle potřeby se hrají další kola. Nezůstane-li nikdo ve hře, zápas končí remízou."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "cs": "Nastavení stolu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před začátkem vyber v nastavení stolu jazyk otázek a sadu. Používají se stejné sady jako v Kvízu a vybraná sada určuje dostupné kategorie. Jazyk otázek se může lišit od jazyka rozhraní."
+        },
+        {
+          "cs": "Místo počátečních 1000 bodů lze nastavit celé číslo od 10 do 1000000. Povinný vklad na začátku kola může být od 1 bodu až po celý počáteční zůstatek. Pokuta za každé třetí odstoupení může být od 0 do 1000000. Nula vypne odečet, ale odstoupení tě i nadále vyřadí z právě probíhající aukce."
+        },
+        {
+          "cs": "Místo osmi běžných kol lze zvolit 8–32 kol a místo dvou sekund mezi vyvoláními 1–5 sekund. Aukce končí po třech takových intervalech bez vyšší nabídky. Pravděpodobnost černé truhly lze zvýšit z 5 % až na 10 %. Boti draží v rámci rozpočtu podle veřejných zůstatků a odpověď vybírají náhodně ze čtyř možností."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Ovládání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Enter v poli částky: odeslat napsanou nabídku."
+        },
+        {
+          "cs": "A a potom Enter v poli částky: vsadit vše."
+        },
+        {
+          "cs": "Tab a potom Enter na tlačítku Pas: odstoupit z aktuální aukce, pokud nevedeš."
+        },
+        {
+          "cs": "Šipka dolů z otázky: přejít k odpovědím. Šipky vybírají možnost, Enter ji odešle, pokud jsi vyhrál aukci."
+        },
+        {
+          "cs": "Enter na tlačítku Otevřít černou truhlu: otevřít jednu vlastní truhlu."
+        },
+        {
+          "cs": "S: přečíst zůstatky a počty neotevřených truhel."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "starting_points": "settings",
+    "ante": "rounds",
+    "pass_penalty": "passing",
+    "rounds": "finish",
+    "count_interval": "settings",
+    "black_chest_chance": "chests",
+    "content_language_id": "settings",
+    "content_set_id": "settings"
+  }
+}

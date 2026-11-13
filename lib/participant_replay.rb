@@ -58,7 +58,7 @@ module GameRoomParticipantReplay
     # A corrected earlier event must invalidate its historical presentation,
     # even if the event count and final ID did not change. Keep fingerprints,
     # not references to mutable input hashes. Model replay is never cached.
-    key = Digest::SHA256.digest(Marshal.dump([session['__id'], session['options'], session['__initial_players'], changes]))
+    key = Digest::SHA256.digest(Marshal.dump([session['__id'], session['options'], session['__initial_players'], changes, GameRoomParticipants.names_revision]))
     cache = @participant_history_cache
     cache = {key: key, segments: {}} unless cache && cache[:key] == key
     @participant_history_cache = cache

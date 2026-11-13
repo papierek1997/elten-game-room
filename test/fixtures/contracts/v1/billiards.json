@@ -1,0 +1,146 @@
+{
+  "game": "billiards",
+  "players": [
+    "Alice",
+    "Bob"
+  ],
+  "seed": 137,
+  "options": {
+    "discipline": "friendly",
+    "race_to": 1,
+    "point_target": 100,
+    "english_limit": "points",
+    "time_limit_minutes": 30,
+    "baulk_crossing": false,
+    "equalizing": true,
+    "rounds": 1,
+    "layout": "diamond",
+    "shots": 30,
+    "accurate": false,
+    "bot_skill": "medium",
+    "bot_delay": 1,
+    "rack_seed": 137
+  },
+  "steps": [
+    {
+      "events": 0,
+      "replay": "505814e2659a752c53831f6cb308f731da9ba700cdd0c955748dc575168326b6",
+      "actor": "Alice",
+      "legal": "135349e240ffeaa8c5ab3b4e0a05eb60c7a56cd49fbad53ecf6facfd274bcb5b",
+      "rng": [
+        735,
+        295,
+        590,
+        148,
+        241,
+        332,
+        335,
+        130
+      ],
+      "action": {
+        "kind": "billiards",
+        "action": "shot",
+        "revision": 0,
+        "call": 0,
+        "pocket": 0,
+        "mode": 0,
+        "shot": {
+          "angle": 0,
+          "power": 350,
+          "top": 0,
+          "side": 0
+        }
+      }
+    },
+    {
+      "events": 1,
+      "replay": "b0de50588fc65b27001e3d54c23c21a6c145baf8a37b321dc520535f3c473ab2",
+      "actor": "Bob",
+      "legal": "b85df73fbb6cdf840ffa8cb83770bd1ad39522597b5e037cee606c465f866658",
+      "rng": [
+        735,
+        295,
+        590,
+        148,
+        241,
+        332,
+        335,
+        130
+      ],
+      "action": {
+        "kind": "billiards",
+        "action": "shot",
+        "revision": 1,
+        "call": 0,
+        "pocket": 0,
+        "mode": 0,
+        "shot": {
+          "angle": 0,
+          "power": 350,
+          "top": 0,
+          "side": 0
+        }
+      }
+    },
+    {
+      "events": 2,
+      "replay": "07bc88638236288eaa17e3b309244fbf525f33f735d18d995c3bd74cedcb4c42",
+      "actor": "Alice",
+      "legal": "8f19dc4f2817c16df296b34d4e1c75bcdac6ebc4c7938c28a0db71e959a3c6ef",
+      "rng": [
+        735,
+        295,
+        590,
+        148,
+        241,
+        332,
+        335,
+        130
+      ],
+      "action": {
+        "kind": "billiards",
+        "action": "concede",
+        "revision": 2
+      }
+    }
+  ],
+  "final": {
+    "events": 3,
+    "replay": "8ea430372c2703cf5293a5b8548204fbf119f4f4b518511c406c7ac83ef5d17c",
+    "actor": null,
+    "legal": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "rng": [
+      735,
+      295,
+      590,
+      148,
+      241,
+      332,
+      335,
+      130
+    ]
+  },
+  "events": [
+    {
+      "id": 1,
+      "sequence": 1,
+      "actor": "Alice",
+      "action": "shot",
+      "value": "[2,0,0,350,0,0,0,0,0]"
+    },
+    {
+      "id": 2,
+      "sequence": 2,
+      "actor": "Bob",
+      "action": "shot",
+      "value": "[2,1,0,350,0,0,0,0,0]"
+    },
+    {
+      "id": 3,
+      "sequence": 3,
+      "actor": "Alice",
+      "action": "concede",
+      "value": "[1,2]"
+    }
+  ]
+}

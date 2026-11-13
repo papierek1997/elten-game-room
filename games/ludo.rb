@@ -193,7 +193,7 @@ module GameRoomGames
 
     def result_text(replay)
       return super unless replay.winner
-      _("%{player} won the game.") % {player: display_player(replay.state, replay.winner)}
+      _("%{player} won the game.") % {player: full_player(replay.state, replay.winner)}
     end
 
     def action_for(selection, replay, actor, context: nil)
@@ -311,14 +311,14 @@ module GameRoomGames
     def shortcut_features; super + [:last_roll]; end
     def shortcut_feature_data(feature, replay, viewer)
       if feature == :turn && replay.finished? && replay.winner
-        return {message: _("%{player} wins the game.") % {player: display_player(replay.state, replay.winner)}}
+        return {message: _("%{player} wins the game.") % {player: full_player(replay.state, replay.winner)}}
       end
       if feature == :turn && !replay.finished?
         return {message: _("Turn: %{player}.") % {player: display_player(replay.state, replay.current_player)}}
       end
       if feature == :material
         return {message: replay.players.each_with_index.map { |name, index|
-          _("%{player}: %{count} at the finish") % {player: display_player(replay.state, name), count: replay.state[:pawns][index].count(FINISH_PROGRESS)}
+          _("%{player}: %{count} at the finish") % {player: full_player(replay.state, name), count: replay.state[:pawns][index].count(FINISH_PROGRESS)}
         }.join("; ")}
       end
       return super unless feature == :last_roll
@@ -335,6 +335,12 @@ module GameRoomGames
     end
 
     def display_player(state, name)
+      index = player_index(state[:players], name)
+      mode = board_presentation_preferences.to_h.fetch('player_labels', 'names')
+      mode == 'colours' && index != nil ? player_colour(index) : participant_short_name(name)
+    end
+
+    def full_player(state, name)
       index = player_index(state[:players], name)
       historical_player(name, index)
     end

@@ -27,6 +27,10 @@ class GameRoomTransport
     @live_store.start
   end
 
+  def publish_display_name
+    @live_store.publish_display_name
+  end
+
   def local_actor
     @live_store.local_actor
   end

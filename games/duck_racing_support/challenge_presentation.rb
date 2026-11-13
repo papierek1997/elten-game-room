@@ -165,7 +165,7 @@ module GameRoomDuckRacing
       end
       instruction = _('Waiting for others.') if ready
       if ready && view[:waiting]&.any? && view[:player_names]
-        names = view[:waiting].map { |seat| text(view[:player_names].fetch(seat)) }.join(', ')
+        names = view[:waiting].map { |seat| text(GameRoomParticipants.display_name(view[:player_names].fetch(seat))) }.join(', ')
         instruction = _('Ready. Waiting for: %{players}.') % {players: names}
       end
       instruction = _('You are watching.') unless participating
@@ -227,6 +227,7 @@ module GameRoomDuckRacing
       when "race_question"
         question = view.fetch(:question)
         name = view.dig(:player_names, question.fetch(:seat))
+        name = GameRoomParticipants.display_name(name) unless name.nil?
         name = _('Player %{number}') % {number: question.fetch(:seat) + 1} if name.nil?
         template = {square: _('Which square is %{player} on?'), lap: _('Which lap is %{player} on?'),
           feathers: _('How many feathers does %{player} have?'), card_count: _('How many cards does %{player} have?')}.fetch(question.fetch(:field))
@@ -368,7 +369,7 @@ module GameRoomDuckRacing
 
     def memory_feedback(event, players)
       result = {announcement: _('%{player}: %{position}.') % {
-        player: text(GameRoomParticipants.display_name(players.fetch(event.fetch(:seat)))),
+        player: text(GameRoomParticipants.short_name(players.fetch(event.fetch(:seat)))),
         position: event.fetch(:position)}}
       result[:result_announcement] = event[:matched] ? _('Correct!') : _('Wrong!') if event.key?(:matched)
       result

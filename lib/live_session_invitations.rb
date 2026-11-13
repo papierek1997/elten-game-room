@@ -33,6 +33,7 @@ class GameRoomLiveSessionStore
             "table_id" => stored[:table_id],
             "live_session_id" => stored[:native_id],
             "sender" => stored[:sender],
+            "sender_display_name" => invitation.invitation_metadata.to_h['sender_display_name'],
             "recipient" => stored[:recipient],
             "status" => "pending",
             "created_at" => stored[:created_at],

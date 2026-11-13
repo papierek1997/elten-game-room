@@ -6,6 +6,10 @@ require_relative "game_room_preferences"
 
 module GameRoomSounds
   ASSET_NAMES = %w[
+    auction_gavel
+    auction_chest
+    auction_call_low
+    auction_call_high
     connect
     disconnect
     chatmsg
@@ -19,6 +23,10 @@ module GameRoomSounds
     bingo_draw
     roulette_spin
     roulette_chips
+    billiards_cue
+    billiards_collision
+    billiards_cushion
+    billiards_pocket
     duck_challenge
     duck_question
     duck_correct
