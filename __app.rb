@@ -26,7 +26,7 @@
       "auction_gavel", "auction_chest", "auction_call_low", "auction_call_high",
       "billiards_cue", "billiards_collision", "billiards_cushion", "billiards_pocket",
       "connect", "disconnect", "chatmsg", "notice", "table_notice", "invitation_rejected", "conference_created", "buzzer", "buzzer2", "quiz_wrong_answer", "bingo_draw", "roulette_spin", "roulette_chips", "duck_challenge", "duck_question", "duck_countdown", "duck_quack", "duck_correct", "duck_frozen",
-      "duck_final_lap", "duck_shot", "darts_hit_1", "darts_hit_2", "darts_hit_3", "darts_hit_4", "darts_hit_5", "darts_applause", "duck_note_c", "duck_memory_bark", "duck_memory_bell", "duck_memory_drop", "duck_memory_clap", "duck_memory_zip",
+      "duck_final_lap", "duck_shot", "darts_hit_1", "darts_hit_2", "darts_hit_3", "darts_hit_4", "darts_hit_5", "darts_throw", "darts_applause", "darts_consolation", "duck_note_c", "duck_memory_bark", "duck_memory_bell", "duck_memory_drop", "duck_memory_clap", "duck_memory_zip",
       "duck_rhythm_f", "duck_rhythm_j", "war_open", "ding", "shuffle", "scopa", "scopa_deal", "scopa_take", "draw", "draw2", "bouillabaisse_rank", "bouillabaisse_card",
       "farkle", "cht-roll-dice", "cht-bank", "cht-lost-points", "cht-cat-minus-8", "cht-cat-plus-8",
       "hit1", "hit_ship1", "hit_ship2", "rocket_launch1", "rocket_launch2", "rocket_launch3", "rocket_miss",

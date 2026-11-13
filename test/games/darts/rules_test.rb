@@ -96,10 +96,8 @@ assert(GameRoomDarts::Scoring.points(300, 0) == 75, 'second zone does not score 
 assert(GameRoomDarts::Scoring.points(600, 0) == 50, 'third zone does not score 50')
 assert(GameRoomDarts::Scoring.points(900, 0) == 25, 'outer zone does not score 25')
 assert(GameRoomDarts::Scoring.points(1_000, 1_000).zero?, 'outside square corner did not miss the circular board')
-assert(game.result_sound_cue(before_replay: nil, after_replay: finished, viewer: 'Alice', default_cue: 'win_party') ==
-  'darts_applause', 'a Darts winner did not receive the terminal applause')
-assert(game.result_sound_cue(before_replay: nil, after_replay: finished, viewer: 'Bob', default_cue: 'lose_party') ==
-  'lose_party', 'the applause replaced the losing result cue')
+assert(game.result_sound_cue(before_replay: nil, after_replay: finished, viewer: 'Alice', default_cue: 'win_party') == nil,
+  'the shared presenter can reveal the result before the delayed impact')
 
 source = File.read(File.expand_path('../../../lib/darts/client.rb', __dir__), encoding: 'UTF-8')
 assert(!source.match?(/speech_stop|NVDA|screenreader.*(?:off|disable)/i), 'ordinary Darts aiming changes global screen-reader speech')

@@ -10,6 +10,9 @@ module GameRoomDarts
   using GameRoomLocalization::Translations
 
   class Client
+    FLIGHT_PAUSE = 1.0
+    MAX_PRESENTATIONS = 32
+
     def initialize(program, game, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) }, mouse: nil, audio: nil,
       progress_factory: nil, **_services)
       @program, @game, @clock = program, game, clock
@@ -17,6 +20,7 @@ module GameRoomDarts
       @mouse = mouse || Mouse.new
       @audio = audio || Audio.new(program)
       @progress_factory = progress_factory || ->(**options, &block) { GameRoomRealtime::Progress.new(**options, &block) }
+      @presentations = []
     end
 
     def _(source); GameRoomContent.utf8(super(source)); end
@@ -37,17 +41,36 @@ module GameRoomDarts
     def refresh_due?; false; end
     def action(_selection, _replay, _viewer); false; end
     def error(_status); end
-    def event(event, _before, _after, _viewer, _repository)
+    def event(event, before, after, viewer, repository)
       match = GameRoomGames::Darts::THROW_PATTERN.match(event['value'].to_s)
       return unless event['action'].to_s == 'darts_throw' && match
+
       x, y = match[2].to_i, match[3].to_i
-      @audio.impact(Scoring.points(x, y), x: x, y: y)
+      now = @clock.call.to_f
+      local = @local_throw && @local_throw[:value] == event['value'].to_s
+      impact_at = if local
+        [@local_throw[:impact_at], now].max
+      else
+        now + @audio.throw_dart.to_f + FLIGHT_PAUSE
+      end
+      terminal = terminal_result(before, after, viewer)
+      descriptions = Array(@game.describe_event(event, repository, after, viewer)).compact
+      result_text = @game.result_text(after) if terminal
+      schedule_presentation({kind: :impact, due: impact_at, points: Scoring.points(x, y), x: x, y: y,
+        descriptions: descriptions, result: terminal, result_text: result_text})
+      @owned_result_index = after.state[:throw_index].to_i if terminal
+      @local_throw = nil if local
+    end
+    def presents_game_event?(event); event['action'].to_s == 'darts_throw'; end
+    def presents_game_result?(replay)
+      replay.finished? && @owned_result_index == replay.state[:throw_index].to_i
     end
     def after_events(replay, viewer, context:); before_wait(replay, viewer); end
 
     def automatic_error(_status)
       @pending = nil
       @aim_identity = nil
+      @local_throw = nil
     end
 
     def context_data
@@ -60,24 +83,7 @@ module GameRoomDarts
       if @pending && pending_index(@pending) < replay.state[:throw_index].to_i
         @pending = nil
       end
-      active = !replay.finished? && replay.state[:phase] != :opening &&
-        replay.current_player.to_s.casecmp?(@viewer) && !GameRoomParticipants.bot?(replay.current_player)
-      unless active
-        @aim_identity = nil
-        @mouse.suspend
-        @audio.silence
-        return
-      end
-
-      difficulty = active_difficulty(replay.state)
-      identity = [replay.state[:throw_index], replay.current_player.to_s.downcase, difficulty]
-      if @aim_identity != identity && @pending == nil
-        @aim_identity = identity
-        @ready_announced = false
-        @engine.reset(seed: replay.state[:seed], throw_index: replay.state[:throw_index], difficulty: difficulty,
-          time_limit: replay.state[:options]['time_limit'], timeout_result: replay.state[:options]['timeout_result'])
-      end
-      present_audio
+      prepare_aim
     end
 
     def attach_view(form, surface)
@@ -101,8 +107,12 @@ module GameRoomDarts
     end
 
     def frame(background: false)
-      return if @closed || !active_aim?
+      return if @closed
       now = @clock.call.to_f
+      presentation_was_pending = !@presentations.empty?
+      process_presentations(now)
+      prepare_aim if presentation_was_pending && @presentations.empty?
+      return unless active_aim?
       @engine.step(now)
       if @engine.ready?(now) && !@ready_announced
         @ready_announced = true
@@ -134,10 +144,33 @@ module GameRoomDarts
       @closed = true
       @progress&.close
       detach_view
+      @presentations.clear
       @audio.close
     end
 
     private
+
+    def prepare_aim
+      active = @replay && !@replay.finished? && @replay.state[:phase] != :opening &&
+        @replay.current_player.to_s.casecmp?(@viewer) && !GameRoomParticipants.bot?(@replay.current_player) &&
+        @pending == nil && @presentations.empty?
+      unless active
+        @aim_identity = nil
+        @mouse.suspend
+        @audio.silence
+        return
+      end
+
+      difficulty = active_difficulty(@replay.state)
+      identity = [@replay.state[:throw_index], @replay.current_player.to_s.downcase, difficulty]
+      if @aim_identity != identity && @pending == nil
+        @aim_identity = identity
+        @ready_announced = false
+        @engine.reset(seed: @replay.state[:seed], throw_index: @replay.state[:throw_index], difficulty: difficulty,
+          time_limit: @replay.state[:options]['time_limit'], timeout_result: @replay.state[:options]['timeout_result'])
+      end
+      present_audio
+    end
 
     def active_aim?
       @replay && @aim_identity && @pending == nil && !@replay.finished?
@@ -161,7 +194,35 @@ module GameRoomDarts
       @pending = [result[:index], result[:x], result[:y], result[:time_ms], result[:automatic] ? 'a' : 'm'].join(':')
       @mouse.suspend
       @audio.silence
+      @local_throw = {value: @pending, impact_at: now.to_f + @audio.throw_dart.to_f + FLIGHT_PAUSE}
       true
+    end
+
+    def schedule_presentation(item)
+      @presentations.shift while @presentations.length >= MAX_PRESENTATIONS
+      @presentations << item
+    end
+
+    def process_presentations(now)
+      due, @presentations = @presentations.partition { |item| item[:due] <= now }
+      due.sort_by { |item| item[:due] }.each do |item|
+        if item[:kind] == :impact
+          tail = @audio.impact(item[:points], x: item[:x], y: item[:y]).to_f
+          schedule_presentation(item.merge(kind: :announcement, due: now + tail))
+        else
+          @audio.result(won: item[:result] == :win) if [:win, :loss].include?(item[:result])
+          (item[:descriptions].to_a + [item[:result_text]].compact).each do |text|
+            speak(GameRoomContent.utf8(text.to_s), stop: false, break_sequence: false) unless text.to_s.empty?
+          end
+        end
+      end
+    end
+
+    def terminal_result(before, after, viewer)
+      return nil unless before && after && !before.finished? && after.finished?
+      return :observer unless GameRoomParticipants.includes?(after.players, viewer)
+
+      GameRoomParticipants.same?(after.winner, viewer) ? :win : :loss
     end
 
     def present_audio

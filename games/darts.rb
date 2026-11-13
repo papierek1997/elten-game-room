@@ -221,12 +221,9 @@ module GameRoomGames
     # play a second generic impact over that pair.
     def event_sound_cues(event:, **_arguments); nil; end
 
-    # Keep the ordinary losing cue, but let a winning participant hear the
-    # supplied applause once at the real terminal transition. Observers and
-    # replay reconstruction remain silent through the shared result policy.
-    def result_sound_cue(before_replay:, after_replay:, viewer:, default_cue:)
-      default_cue == 'win_party' ? 'darts_applause' : default_cue
-    end
+    # The local client delays impact, score and the terminal cue until after
+    # the audible flight. The shared presenter must not reveal the result first.
+    def result_sound_cue(**_context); nil; end
 
     def rule_sections
       [

@@ -78,11 +78,38 @@ normalization, gain or channel changes to Ogg Opus, target 144 kb/s VBR,
 endorse the application. Preserve this attribution, source link,
 modification notice and license when distributing the recordings.
 
+### Darts — throwing sound
+
+`Audio/darts_throw.opus` uses the complete Freesound HQ Ogg preview of
+“Axe Throwing Hitting Flesh.wav” by **SoundFlakes**, Freesound
+[492225](https://freesound.org/s/492225/), under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The user
+supplied the preview and its license notice on 13 November 2026. It was
+converted without trimming, normalization, gain or channel changes to Ogg
+Opus, target 144 kb/s VBR, 48 kHz, 20 ms frames, audio mode and complexity
+10. In Darts it is presented as the throw/release sound and followed by a
+separately licensed board-impact recording. The author does not endorse the
+application. Preserve this attribution, source link, modification notice and
+license when distributing the recording.
+
 ### Darts — applause
 
 `Audio/darts_applause.opus` uses the complete Freesound HQ Ogg preview of
 “Applause Clapping” by **dersuperanton**, Freesound
 [435877](https://freesound.org/s/435877/), under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The user
+supplied the preview and its license notice on 13 November 2026. It was
+converted without trimming, normalization, gain or channel changes to Ogg
+Opus, target 144 kb/s VBR, 48 kHz, 20 ms frames, audio mode and complexity
+10. The author does not endorse the application. Preserve this attribution,
+source link, modification notice and license when distributing the recording.
+
+### Darts — consolation applause
+
+`Audio/darts_consolation.opus` uses the complete Freesound HQ Ogg preview
+of “Clapping, hands, slap, Four spaced claps close
+up_96Khz_Mono_ZoomH4n_NT5-001.wav” by **MattRuthSound**, Freesound
+[561558](https://freesound.org/s/561558/), under
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The user
 supplied the preview and its license notice on 13 November 2026. It was
 converted without trimming, normalization, gain or channel changes to Ogg

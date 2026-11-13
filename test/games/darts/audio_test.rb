@@ -18,6 +18,7 @@ class DartsTestSound
   def play; @playing = true; @plays += 1; end
   def pause; @playing = false; end
   def playing?; @playing; end
+  def length; 0.4; end
   def close; @playing = false; @closes += 1; end
 end
 
@@ -40,9 +41,12 @@ end
 program = DartsAudioProgram.new
 audio = GameRoomDarts::Audio.new(program)
 audio.load
-expected = %w[pong_ball ding notice darts_hit_1 darts_hit_2 darts_hit_3 darts_hit_4 darts_hit_5]
-assert(program.created.map(&:first).sort == expected.sort, 'Darts did not allocate the locator, ready, quality and five impact assets once')
+expected = %w[pong_ball ding notice darts_throw darts_applause darts_consolation darts_hit_1 darts_hit_2 darts_hit_3 darts_hit_4 darts_hit_5]
+assert(program.created.map(&:first).sort == expected.sort,
+  'Darts did not allocate the locator, release, result, quality and five impact assets once')
 assert(program.managed == program.sounds.values, 'Darts left audio streams outside host resource management')
+assert(audio.throw_dart == 0.4 && program.sounds['darts_throw'].plays == 1,
+  'the release cue did not expose its duration for non-blocking impact scheduling')
 
 {
   [500, 0] => 'darts_hit_1', [500, 500] => 'darts_hit_2', [0, 500] => 'darts_hit_3',
@@ -62,6 +66,10 @@ assert(program.sounds.select { |name, _sound| name.start_with?('darts_hit_') }.v
   'a dart outside the circular board made a board-impact sound')
 assert(program.sounds['notice'].plays == 6 && program.sounds['notice'].frequency < 48_000,
   'a miss lost its separate low quality cue')
+audio.result(won: true)
+audio.result(won: false)
+assert(program.sounds['darts_applause'].plays == 1 && program.sounds['darts_consolation'].plays == 1,
+  'winner and consolation applause were not distinct')
 
 audio.close
 assert(program.released == program.managed && program.sounds.values.all? { |sound| sound.closes == 1 },
