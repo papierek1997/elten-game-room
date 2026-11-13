@@ -60,7 +60,51 @@ begin
   room.assert_converged('answered auction', expected_count: 7)
   assert(room.replay('Alice').state[:cash] == [890, 1110], 'Executor payout differs from cold native replay')
   assert(room.replay('Alice').accepted_events.length == room.events('Alice').length, 'The executor wrote a refused event')
+  [false, true].each do |chest|
+    clock.value = room.replay('Alice').state[:resume_at]
+    value = (1..256).find { |candidate| (Random.new((('%02x' % (candidate - 1)) * 16).to_i(16)).rand(100) < 5) == chest }
+    assert(value, 'No bounded native wheel seed for the all-in scenario')
+    room.view('Alice').next_random_values = Array.new(16, value)
+    before_count = room.events('Alice').length
+    step(room, host)
+    clock.value += 3
+    step(room, host)
+    actor, bidder, opponent, other = chest ? ['Bob', guest, 'Alice', host] : ['Alice', host, 'Bob', guest]
+    current, stale = room.replay(actor), room.replay(opponent)
+    assert(current.state[:chest] == chest, 'Native wheel did not select the requested auction')
+    late = {'kind'=>'question', 'action'=>'submit', 'question_id'=>game.surface_spec(stale, opponent).id,
+      'answer'=>stale.state[:cash][stale.players.index(opponent)].to_s}
+    selection = {'kind'=>'question', 'action'=>'submit', 'question_id'=>game.surface_spec(current, actor).id, 'answer'=>'A'}
+    room.as(actor) do
+      status, = bidder.submit(session: room.session, replay: current, selection: selection, actor: actor)
+      assert(status == :ok, 'Native all-in was refused')
+    end
+    room.assert_converged('immediate all-in', expected_count: before_count + 3)
+    awarded = room.replay(actor)
+    assert(awarded.state[:phase] == (chest ? :drawing : :question_pending), 'All-in waited for the third call')
+    assert(room.events(actor).last['action'] == 'all_in', 'Native all-in lost its terminal identity')
+    room.as(opponent) do
+      assert_raises(GameRoomSessionRunner::StaleView) do
+        other.submit(session: room.session, replay: stale, selection: late, actor: opponent)
+      end
+    end
+    assert(room.events(actor).length == before_count + 3, 'A later bidder wrote after all-in')
+    if chest
+      assert(awarded.state[:chests][1] == 1, 'All-in did not award the chest immediately')
+      assert(room.events(actor).count { |event| event['action'] == 'question' } == 2, 'Chest requested a question')
+    else
+      room.view('Alice').next_random_values = Array.new(16, 2)
+      step(room, host)
+      answering = room.replay(actor)
+      assert(answering.state[:phase] == :answering, 'Question did not follow all-in at the same clock time')
+      selection = {'kind'=>'question', 'action'=>'submit', 'question_id'=>game.surface_spec(answering, actor).id,
+        'answer'=>answering.state[:question][:correct_index].to_s}
+      room.as(actor) { assert(bidder.submit(session: room.session, replay: answering, selection: selection, actor: actor).first == :ok) }
+      room.assert_converged('answered all-in', expected_count: before_count + 5)
+    end
+  end
   puts 'Cash Auction ordinary executors: native random wheel/question, no guest caller, concurrent stale-view bids, strict deadline, answer/payout and two-client cold replay convergence passed.'
+  puts 'Cash Auction native all-in: immediate question/chest award, stale competing write refusal and same-clock question progression passed.'
 ensure
   runners.each(&:close)
   Time.define_singleton_method(:now, original_now)

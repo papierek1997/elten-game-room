@@ -942,7 +942,7 @@ msgstr[0] "Hráč %{player} navíc odhazuje %{count} kartu; barva: %{colour}."
 msgstr[1] "Hráč %{player} navíc odhazuje %{count} karty; barva: %{colour}."
 msgstr[2] "Hráč %{player} navíc odhazuje %{count} karet; barva: %{colour}."
 
-#: games/cash_auction/presentation.rb:118
+#: games/cash_auction/presentation.rb:120
 msgid "%{player} answered correctly and takes the pool: %{amount}."
 msgstr "%{player} odpovídá správně a získává bank: %{amount}."
 
@@ -954,11 +954,11 @@ msgstr "Hráč %{player} odpověděl správně."
 msgid "%{player} answered incorrectly."
 msgstr "Hráč %{player} odpověděl nesprávně."
 
-#: games/cash_auction/presentation.rb:120
+#: games/cash_auction/presentation.rb:122
 msgid "%{player} answered incorrectly. Correct answer: %{answer}. The pool carries over."
 msgstr "%{player} odpovídá chybně. Správná odpověď: %{answer}. Bank se převádí dál."
 
-#: games/cash_auction/presentation.rb:159
+#: games/cash_auction/presentation.rb:161
 msgid "%{player} answers the question."
 msgstr "%{player} odpovídá na otázku."
 
@@ -1148,11 +1148,11 @@ msgstr "Hráč %{player} získal jackpot z Bezplatného parkování ve výši %{
 msgid "%{player} completed the %{group}."
 msgstr "Hráč %{player} zkompletoval skupinu %{group}."
 
-#: games/billiards.rb:451
+#: games/billiards.rb:454
 msgid "%{player} concedes the rack or frame."
 msgstr "%{player} vzdává partii nebo frame."
 
-#: games/billiards.rb:452
+#: games/billiards.rb:455
 msgid "%{player} confirms the decision."
 msgstr "%{player} potvrzuje rozhodnutí."
 
@@ -1367,7 +1367,7 @@ msgstr ""
 msgid "%{player} finishes betting."
 msgstr "%{player} končí sázení."
 
-#: games/billiards.rb:475
+#: games/billiards.rb:478
 msgid "%{player} finishes practice."
 msgstr "%{player} ukončuje trénink."
 
@@ -1394,6 +1394,10 @@ msgstr "%{player} dostává sázku zpět."
 #: lib/blackjack_auction.rb:259
 msgid "%{player} goes all in and raises the bet to %{amount}."
 msgstr "%{player} sází vše a zvyšuje na %{amount}."
+
+#: games/cash_auction/presentation.rb:97
+msgid "%{player} goes all-in for %{amount} and wins the auction."
+msgstr "%{player} sází vše za %{amount} a vyhrává aukci."
 
 #: games/duck_racing_support/presentation.rb:632
 msgid "%{player} goes over 21."
@@ -1502,7 +1506,7 @@ msgstr "Karty hráče %{player}: %{hand}"
 msgid "%{player} is eliminated by forfeit. The remaining participants continue playing."
 msgstr "%{player} je vyřazen kontumačně. Ostatní hráči pokračují ve hře."
 
-#: games/cash_auction/presentation.rb:134 games/rummy.rb:565
+#: games/cash_auction/presentation.rb:136 games/rummy.rb:565
 msgid "%{player} is eliminated."
 msgstr "Hráč %{player} vypadává."
 
@@ -1774,11 +1778,11 @@ msgstr "%{player} musí čekat. Počet tahů: %{count}."
 msgid "%{player} opened the fleet."
 msgstr "Hráč %{player} odhalil svou flotilu."
 
-#: games/cash_auction/presentation.rb:127
+#: games/cash_auction/presentation.rb:129
 msgid "%{player} opens a black chest: %{amount} points. Balance: %{balance}."
 msgstr "%{player} otevírá černou truhlu: %{amount} bodů. Zůstatek: %{balance}."
 
-#: games/cash_auction/presentation.rb:125
+#: games/cash_auction/presentation.rb:127
 msgid "%{player} opens a black chest: bankrupt."
 msgstr "%{player} otevírá černou truhlu: bankrot."
 
@@ -1804,11 +1808,11 @@ msgstr "Hráč %{player} odstupuje z dražby."
 msgid "%{player} passes on this auction."
 msgstr "Hráč %{player} v této aukci pasuje."
 
-#: games/billiards.rb:474
+#: games/billiards.rb:477
 msgid "%{player} passes the cue to the next player."
 msgstr "%{player} předává tágo dalšímu hráči."
 
-#: games/cash_auction/presentation.rb:97 games/domino.rb:275 games/go.rb:261 games/mexican_train.rb:309 games/reversi.rb:276 games/scrabble.rb:254
+#: games/cash_auction/presentation.rb:99 games/domino.rb:275 games/go.rb:261 games/mexican_train.rb:309 games/reversi.rb:276 games/scrabble.rb:254
 msgid "%{player} passes."
 msgstr "Hráč %{player} vynechává tah."
 
@@ -1853,7 +1857,7 @@ msgstr "%{player} pokládá kámen na %{field}; počet otočených kamenů: %{co
 msgid "%{player} placed a piece on %{field}."
 msgstr "Hráč %{player} umístil figurku na pole %{field}."
 
-#: games/billiards.rb:470
+#: games/billiards.rb:473
 msgid "%{player} places %{ball} at X %{x} cm, Y %{y} cm."
 msgstr "%{player} umisťuje kouli: %{ball}; X %{x} cm, Y %{y} cm."
 
@@ -1877,7 +1881,7 @@ msgstr ""
 msgid "%{player} places a stone at %{field}."
 msgstr "%{player} pokládá kámen na %{field}."
 
-#: games/billiards.rb:453
+#: games/billiards.rb:456
 msgid "%{player} places the cue ball."
 msgstr "%{player} umisťuje bílou."
 
@@ -1961,7 +1965,7 @@ msgstr "Hráč %{player} přikládá kámen %{tile} ke svému vlaku."
 msgid "%{player} plays %{words}: %{points} points."
 msgstr "Hráč %{player} skládá %{words}; počet bodů: %{points}."
 
-#: games/billiards.rb:450 games/billiards.rb:469
+#: games/billiards.rb:453 games/billiards.rb:472
 msgid "%{player} plays a shot. %{summary}"
 msgstr "%{player} provádí strk. %{summary}"
 
@@ -1989,7 +1993,7 @@ msgstr "%{player} navrhl kong: %{tile}."
 msgid "%{player} proposed a trade to %{target}: %{offer}."
 msgstr "Hráč %{player} navrhl hráči %{target} výměnu: %{offer}."
 
-#: games/billiards.rb:454
+#: games/billiards.rb:457
 msgid "%{player} proposes reracking without a winner."
 msgstr "%{player} navrhuje nové rozestavení bez vítěze."
 
@@ -2155,7 +2159,7 @@ msgstr "%{player} žádá o nové rozdání se čtyřmi devítkami."
 msgid "%{player} requests a redeal: at least two nines in the talon."
 msgstr "%{player} žádá o nové rozdání: v talonu jsou alespoň dvě devítky."
 
-#: games/billiards.rb:455
+#: games/billiards.rb:458
 msgid "%{player} requests spotting the nearest legal object ball."
 msgstr "%{player} žádá o vrácení nejbližší povolené koule na bod."
 
@@ -2170,7 +2174,7 @@ msgstr "%{player} vyhodnotil kartu herního plánu. Hotovost: %{cash}."
 msgid "%{player} restores territory scoring for the region at %{field}."
 msgstr "%{player} obnovuje počítání území u %{field}."
 
-#: games/billiards.rb:472
+#: games/billiards.rb:475
 msgid "%{player} restores the position before the last shot."
 msgstr "%{player} obnovuje pozici před posledním strkem."
 
@@ -2376,7 +2380,7 @@ msgstr "Hráč %{player} stanovil závazek na %{contract}."
 msgid "%{player} set the final contract at %{contract} and leads the first trick."
 msgstr "%{player} stanovuje konečný závazek na %{contract} a vynáší do prvního zdvihu."
 
-#: games/billiards.rb:473
+#: games/billiards.rb:476
 msgid "%{player} sets up the original practice layout."
 msgstr "%{player} obnovuje počáteční tréninkové rozestavení."
 
@@ -2586,7 +2590,7 @@ msgstr "%{player} vyhrává výzvu."
 msgid "%{player} wins the game."
 msgstr ""
 
-#: games/billiards.rb:260
+#: games/billiards.rb:263
 msgid "%{player} wins the match, %{score}."
 msgstr "%{player} vyhrává zápas, %{score}."
 
@@ -2594,7 +2598,7 @@ msgstr "%{player} vyhrává zápas, %{score}."
 msgid "%{player} wins the pot of %{amount}."
 msgstr "Hráč %{player} vyhrává bank ve výši %{amount}."
 
-#: games/billiards.rb:462
+#: games/billiards.rb:465
 msgid "%{player} wins the rack or frame. Score: %{score}."
 msgstr "%{player} vyhrává partii nebo frame. Skóre: %{score}."
 
@@ -2742,7 +2746,7 @@ msgstr "Na tahu je %{player}."
 msgid "%{player}'s waters"
 msgstr "Vody hráče %{player}"
 
-#: games/cash_auction/presentation.rb:103
+#: games/cash_auction/presentation.rb:105
 msgid "%{player}, %{amount}, for the third time. Sold!"
 msgstr "%{player}, %{amount}, potřetí. Prodáno!"
 
@@ -3113,11 +3117,11 @@ msgstr ""
 msgid "%{player}: zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "Hráč %{player}: nuly %{zeros}/3, vzdání %{surrenders}/3%{barrel}"
 
-#: games/billiards.rb:42
+#: games/billiards.rb:45
 msgid "%{player}; points: %{points}"
 msgstr "%{player}; body: %{points}"
 
-#: games/billiards.rb:35
+#: games/billiards.rb:38
 msgid "%{player}; rounds won: %{count}"
 msgstr "%{player}; vyhraná kola: %{count}"
 
@@ -6190,6 +6194,10 @@ msgid "A technical restart is for a disrupted turn, not for correcting just one 
 msgstr ""
 
 #: games/generated/rulebooks/cash_auction.rb:48
+msgid "A then Enter in the bid field: go all-in and win the auction immediately."
+msgstr "A a potom Enter v poli částky: vsadit vše a okamžitě vyhrát aukci."
+
+#: games/generated/rulebooks/cash_auction.rb:48
 msgid "A then Enter in the bid field: go all-in."
 msgstr ""
 
@@ -6916,6 +6924,10 @@ msgstr ""
 msgid "After an offer, the auctioneer calls the amount once and twice, two seconds apart. The third call, after six seconds without a new offer, closes the auction. Each higher offer starts this countdown again. If nobody bids within the opening six seconds, the round ends and the pool carries over."
 msgstr ""
 
+#: games/generated/rulebooks/cash_auction.rb:15
+msgid "After an ordinary offer, the auctioneer calls the amount once and twice, two seconds apart. The third call, after six seconds without a new offer, closes the auction. Each higher offer starts this countdown again. If nobody bids within the opening six seconds, the round ends and the pool carries over."
+msgstr "Po běžné nabídce zazní její částka poprvé a podruhé, vždy po dvou sekundách. Třetí vyvolání po šesti sekundách bez vyšší nabídky aukci uzavře. Každá vyšší nabídka spustí odpočítávání znovu. Pokud nikdo během úvodních šesti sekund nepřihodí, kolo skončí a bank se převede dál."
+
 #: games/generated/rulebooks/mahjong.rb:158 games/generated/rulebooks/mahjong.rb:277 games/generated/rulebooks/mahjong.rb:62
 msgid "After another player discards, listen to the tile and read the response list. Pass means you do not claim that tile; it does not end your participation or concede the hand. If everyone passes, the next player draws. Passing several times does not mean you must draw each time: it may still be another player’s turn."
 msgstr ""
@@ -7299,7 +7311,7 @@ msgstr "Povolit nové rozdání se čtyřmi devítkami v počáteční ruce"
 msgid "Allow a shared victory"
 msgstr "Povolit společné vítězství"
 
-#: games/billiards.rb:74
+#: games/billiards.rb:77
 msgid "Allow an equalizing inning"
 msgstr "Povolit vyrovnávací náběh"
 
@@ -7661,7 +7673,7 @@ msgstr ""
 msgid "Ante in five-card draw"
 msgstr "Ante v pětikaretním pokeru s výměnou"
 
-#: games/cash_auction.rb:44
+#: games/cash_auction.rb:45
 msgid "Ante paid by each player"
 msgstr "Povinný vklad každého hráče"
 
@@ -8511,7 +8523,7 @@ msgstr "Koule 1, žlutá"
 msgid "Ball 2, red"
 msgstr "Koule 2, červená"
 
-#: games/billiards.rb:77
+#: games/billiards.rb:80
 msgid "Ball layout"
 msgstr "Rozestavení koulí"
 
@@ -8558,7 +8570,7 @@ msgstr "Koule k umístění"
 msgid "Balls on the table"
 msgstr "Koule na stole"
 
-#: games/billiards.rb:38
+#: games/billiards.rb:41
 msgid "Balls remaining: %{count}"
 msgstr "Zbývající koule: %{count}"
 
@@ -8595,11 +8607,11 @@ msgctxt "cat_head_tail"
 msgid "Bank %{points} points"
 msgstr "Uložit body: %{points}"
 
-#: games/billiards.rb:57 lib/billiards/match_presentation.rb:105
+#: games/billiards.rb:60 lib/billiards/match_presentation.rb:105
 msgid "Bank Pool: 15 balls"
 msgstr "Bank Pool: 15 koulí"
 
-#: games/billiards.rb:56 lib/billiards/match_presentation.rb:105
+#: games/billiards.rb:59 lib/billiards/match_presentation.rb:105
 msgid "Bank Pool: 9 balls"
 msgstr "Bank Pool: 9 koulí"
 
@@ -8929,7 +8941,7 @@ msgstr "Velká povinná sázka"
 msgid "Billiards"
 msgstr "Kulečník"
 
-#: games/billiards.rb:48
+#: games/billiards.rb:51
 msgid "Billiards discipline"
 msgstr "Kulečníková disciplína"
 
@@ -8970,7 +8982,7 @@ msgstr "Černý %{black}; bílý %{white}, včetně komi."
 msgid "Black chest"
 msgstr "Černá truhla"
 
-#: games/cash_auction.rb:48
+#: games/cash_auction.rb:49
 msgid "Black chest probability in percent (5 to 10)"
 msgstr "Pravděpodobnost černé truhly v procentech (5 až 10)"
 
@@ -8986,7 +8998,7 @@ msgstr "Černá spadla při rozstřelu. Stejný hráč rozstřeluje znovu."
 msgid "Black stone"
 msgstr "Černý kámen"
 
-#: games/billiards.rb:59 games/generated/rulebooks/billiards.rb:69 lib/billiards/match_presentation.rb:106
+#: games/billiards.rb:62 games/generated/rulebooks/billiards.rb:69 lib/billiards/match_presentation.rb:106
 msgid "Blackball"
 msgstr "Blackball"
 
@@ -9917,11 +9929,11 @@ msgstr ""
 msgid "Cards: %{cards}. Total: %{total}."
 msgstr "Karty: %{cards}. Součet: %{total}."
 
-#: games/billiards.rb:62 lib/billiards/match_presentation.rb:107
+#: games/billiards.rb:65 lib/billiards/match_presentation.rb:107
 msgid "Carom: one cushion"
 msgstr "Karambol: jednoband"
 
-#: games/billiards.rb:61 lib/billiards/match_presentation.rb:106
+#: games/billiards.rb:64 lib/billiards/match_presentation.rb:106
 msgid "Carom: straight rail"
 msgstr "Karambol: volná hra"
 
@@ -9929,7 +9941,7 @@ msgstr "Karambol: volná hra"
 msgid "Carom: straight rail, one cushion and three cushions"
 msgstr ""
 
-#: games/billiards.rb:63 lib/billiards/match_presentation.rb:107
+#: games/billiards.rb:66 lib/billiards/match_presentation.rb:107
 msgid "Carom: three cushions"
 msgstr "Karambol: trojband"
 
@@ -10464,6 +10476,10 @@ msgid "Choose"
 msgstr "Vybrat"
 
 #: games/generated/rulebooks/cash_auction.rb:45
+msgid "Choose 8–32 regular rounds instead of eight, and 1–5 seconds between calls instead of two. An auction without all-in closes after three such intervals without a higher offer. You can also raise the black-chest chance from 5% up to 10%. Bots bid within a budget based on public balances and choose an answer at random from the four choices."
+msgstr "Místo osmi běžných kol lze zvolit 8–32 kol a místo dvou sekund mezi vyvoláními 1–5 sekund. Aukce bez sázky všech bodů končí po třech takových intervalech bez vyšší nabídky. Pravděpodobnost černé truhly lze zvýšit z 5 % až na 10 %. Boti draží v rámci rozpočtu podle veřejných zůstatků a odpověď vybírají náhodně ze čtyř možností."
+
+#: games/generated/rulebooks/cash_auction.rb:45
 msgid "Choose 8–32 regular rounds instead of eight, and 1–5 seconds between calls instead of two. The auction closes after three such intervals without a higher offer. You can also raise the black-chest chance from 5% up to 10%. Bots bid within a budget based on public balances and choose an answer at random from the four choices."
 msgstr ""
 
@@ -10886,7 +10902,7 @@ msgstr "Zvolte 1 až 100 roztočení."
 msgid "Choose from 1 to 20 rounds."
 msgstr "Zvol 1 až 20 kol."
 
-#: games/cash_auction.rb:58
+#: games/cash_auction.rb:59
 msgid "Choose from 1 to 5 seconds between auction calls."
 msgstr "Vyber 1 až 5 sekund mezi vyvoláními."
 
@@ -10902,11 +10918,11 @@ msgstr "Zvolte 1 až 6 sloupců bodování."
 msgid "Choose from 10 to 10000 starting chips."
 msgstr "Zvolte 10 až 10000 počátečních žetonů."
 
-#: games/cash_auction.rb:53
+#: games/cash_auction.rb:54
 msgid "Choose from 2 to 8 players."
 msgstr "Vyber 2 až 8 hráčů."
 
-#: games/cash_auction.rb:57
+#: games/cash_auction.rb:58
 msgid "Choose from 8 to 32 auction rounds."
 msgstr "Vyber 8 až 32 aukčních kol."
 
@@ -11473,7 +11489,7 @@ msgstr "Vodárenská společnost"
 msgid "Compañía Distribución de electricidad"
 msgstr "Společnost pro distribuci elektřiny"
 
-#: games/billiards.rb:97
+#: games/billiards.rb:100
 msgid "Competitive billiards requires exactly two players."
 msgstr "Soutěžní kulečník vyžaduje přesně dva hráče."
 
@@ -11533,7 +11549,7 @@ msgstr ""
 msgid "Computer %{number}"
 msgstr "Počítač %{number}"
 
-#: games/billiards.rb:83
+#: games/billiards.rb:86
 msgid "Computer aiming strength"
 msgstr "Síla míření počítače"
 
@@ -12505,11 +12521,11 @@ msgstr ""
 msgid "Cutthroat for three players"
 msgstr ""
 
-#: games/billiards.rb:95
+#: games/billiards.rb:98
 msgid "Cutthroat requires exactly three players."
 msgstr "Cutthroat vyžaduje přesně tři hráče."
 
-#: games/billiards.rb:58 lib/billiards/match_presentation.rb:105
+#: games/billiards.rb:61 lib/billiards/match_presentation.rb:105
 msgid "Cutthroat: three players"
 msgstr "Cutthroat: tři hráči"
 
@@ -14103,7 +14119,7 @@ msgstr "Východ–Západ"
 msgid "East-West vulnerable"
 msgstr "Východ–Západ ve druhé hře"
 
-#: games/axel_pong.rb:48 games/billiards.rb:84 games/mania_pisania.rb:74
+#: games/axel_pong.rb:48 games/billiards.rb:87 games/mania_pisania.rb:74
 msgid "Easy"
 msgstr "Snadná"
 
@@ -14464,11 +14480,11 @@ msgstr "Anglický (USA), braill pro meziřádkový zápis"
 msgid "English (US), mathematical text"
 msgstr "Anglický (USA), matematický text"
 
-#: games/billiards.rb:60 lib/billiards/match_presentation.rb:106
+#: games/billiards.rb:63 lib/billiards/match_presentation.rb:106
 msgid "English Billiards"
 msgstr "Anglický kulečník"
 
-#: games/billiards.rb:69
+#: games/billiards.rb:72
 msgid "English Billiards match limit"
 msgstr "Anglický kulečník: ukončení partie"
 
@@ -14499,6 +14515,10 @@ msgstr "Anglický brajl bez zkratek"
 #: lib/mania_pisania/braille_catalog.rb:49
 msgid "English, grade 3"
 msgstr "Anglický, stupeň 3"
+
+#: games/cash_auction/actions.rb:111
+msgid "Enter %{maximum} or A to go all-in."
+msgstr "Pro sázku všech bodů zadej %{maximum} nebo A."
 
 #: games/generated/rulebooks/mahjong.rb:456
 msgid "Enter (Solitaire): mark the first tile or remove a matching second tile."
@@ -14558,7 +14578,7 @@ msgstr "Enter provede vybranou akci. I přečte pozice, T fázi, C vaši hotovos
 msgid "Enter always operates the roll field: before the first roll it rolls all dice; afterwards it rerolls selected dice. If none are selected, or the third roll has been used, Enter opens the scoring list. Arrow keys choose a category and Enter saves it; Escape cancels the choice."
 msgstr "Enter vždy ovládá pole hodu: před prvním hodem hodí všemi kostkami, poté znovu hodí vybranými kostkami. Pokud není vybrána žádná kostka nebo již proběhl třetí hod, Enter otevře seznam bodování. Šipkami vyberete kategorii a klávesou Enter ji uložíte; Escape výběr zruší."
 
-#: games/cash_auction/actions.rb:109
+#: games/cash_auction/actions.rb:112
 msgid "Enter an amount above %{minimum} and at most %{maximum}, or A for all-in."
 msgstr "Zadej částku vyšší než %{minimum} a nejvýše %{maximum}, nebo napiš A, chceš-li vsadit vše."
 
@@ -15456,7 +15476,7 @@ msgctxt "categories"
 msgid "Field of science"
 msgstr "Vědní obor"
 
-#: games/billiards.rb:80
+#: games/billiards.rb:83
 msgid "Fifteen-ball triangle, without competition rules"
 msgstr "Trojúhelník z patnácti koulí, bez soutěžních pravidel"
 
@@ -16247,7 +16267,7 @@ msgstr "Čtvrtý set."
 msgid "Frankfurt airport"
 msgstr "Letiště Frankfurt"
 
-#: games/billiards.rb:64 games/generated/rulebooks/billiards.rb:94 lib/billiards/match_presentation.rb:107
+#: games/billiards.rb:67 games/generated/rulebooks/billiards.rb:94 lib/billiards/match_presentation.rb:107
 msgid "Free Pyramid"
 msgstr "Volná pyramida"
 
@@ -16963,7 +16983,7 @@ msgstr ""
 msgid "Hands or minutes between blind increases"
 msgstr "Počet rozdání nebo minut mezi zvýšeními blindů"
 
-#: games/axel_pong.rb:48 games/billiards.rb:85 games/mania_pisania.rb:74
+#: games/axel_pong.rb:48 games/billiards.rb:88 games/mania_pisania.rb:74
 msgid "Hard"
 msgstr "Těžká"
 
@@ -20329,7 +20349,7 @@ msgstr "Zdravotnické vybavení"
 msgid "Medieval bluff: one random card"
 msgstr "Středověký bluf: ztráta jedné náhodné karty"
 
-#: games/billiards.rb:84 games/mania_pisania.rb:74
+#: games/billiards.rb:87 games/mania_pisania.rb:74
 msgid "Medium"
 msgstr "Střední"
 
@@ -20551,7 +20571,7 @@ msgstr "Měsíc"
 msgid "More about the modes:"
 msgstr ""
 
-#: games/billiards.rb:82
+#: games/billiards.rb:85
 msgid "More accurate physics (480 steps per second)"
 msgstr "Přesnější fyzika (480 kroků za sekundu)"
 
@@ -21017,7 +21037,7 @@ msgstr "Následující set"
 msgid "Nightmare"
 msgstr "Noční můra"
 
-#: games/billiards.rb:79
+#: games/billiards.rb:82
 msgid "Nine-ball diamond, without competition rules"
 msgstr "Kosočtverec z devíti koulí, bez soutěžních pravidel"
 
@@ -21167,11 +21187,11 @@ msgstr "Žádná koule nebyla potopena."
 msgid "No battle has been decided yet."
 msgstr ""
 
-#: games/cash_auction/presentation.rb:107
+#: games/cash_auction/presentation.rb:109
 msgid "No bid was made. The pool carries over to the next round."
 msgstr "Nikdo nepřihodil. Bank se převádí do dalšího kola."
 
-#: games/cash_auction/presentation.rb:155
+#: games/cash_auction/presentation.rb:157
 msgid "No bids yet"
 msgstr "Zatím bez nabídek"
 
@@ -21813,7 +21833,7 @@ msgstr "Číslo od 1 do 999."
 msgid "Number of attempts"
 msgstr "Počet pokusů"
 
-#: games/cash_auction.rb:46
+#: games/cash_auction.rb:47
 msgid "Number of auction rounds (8 to 32)"
 msgstr "Počet aukčních kol (8 až 32)"
 
@@ -21851,7 +21871,7 @@ msgstr ""
 msgid "Number of rounds"
 msgstr "Počet kol"
 
-#: games/billiards.rb:76
+#: games/billiards.rb:79
 msgid "Number of social rounds (1 to 30)"
 msgstr "Počet kol společenského kulečníku (1–30)"
 
@@ -22106,7 +22126,7 @@ msgstr ""
 msgid "One letter, several kinds of answer"
 msgstr ""
 
-#: games/billiards.rb:78
+#: games/billiards.rb:81
 msgid "One object ball"
 msgstr "Jedna cílová koule"
 
@@ -22271,7 +22291,7 @@ msgstr "Otevřít bodovací tabulku"
 msgid "Open tournament"
 msgstr "Otevřít turnaj"
 
-#: games/cash_auction/presentation.rb:138 games/cash_auction/presentation.rb:160
+#: games/cash_auction/presentation.rb:140 games/cash_auction/presentation.rb:162
 msgid "Open your black chests before the final result."
 msgstr "Před vyhodnocením otevři své černé truhly."
 
@@ -22767,7 +22787,7 @@ msgstr "Pas"
 msgid "Pass in the auction"
 msgstr "Odstupte z aukce"
 
-#: games/cash_auction/presentation.rb:99
+#: games/cash_auction/presentation.rb:101
 msgid "Pass penalty paid into the pool: %{amount}."
 msgstr "Pokuta za odstoupení vložená do banku: %{amount}."
 
@@ -22918,7 +22938,7 @@ msgstr "Postih za nezaplacenou nabídku"
 msgid "Penalty for an unpaid bid has two settings. Medieval bluff, the default, discards one random card from the nonpayer's hand. Full penalty gives one random hand card to each other player, in order starting after the nonpayer, until everyone has received one or the hand is empty. Neither setting lets the nonpayer keep the auctioned card."
 msgstr ""
 
-#: games/cash_auction.rb:45
+#: games/cash_auction.rb:46
 msgid "Penalty for every third pass"
 msgstr "Pokuta za každé třetí odstoupení"
 
@@ -23545,7 +23565,7 @@ msgstr "Změny bodů"
 msgid "Point penalty: %{points}."
 msgstr "Odečtené body: %{points}."
 
-#: games/billiards.rb:70
+#: games/billiards.rb:73
 msgid "Points"
 msgstr "Body"
 
@@ -23561,7 +23581,7 @@ msgstr ""
 msgid "Points in cards are not the same as the score you receive"
 msgstr ""
 
-#: games/billiards.rb:67
+#: games/billiards.rb:70
 msgid "Points needed to win (1 to 1000)"
 msgstr "Body potřebné k výhře (1–1000)"
 
@@ -23584,7 +23604,7 @@ msgstr ""
 msgid "Points, without betting"
 msgstr "Body bez sázení"
 
-#: games/billiards.rb:36
+#: games/billiards.rb:39
 msgid "Points: %{points}"
 msgstr "Body: %{points}"
 
@@ -23725,23 +23745,23 @@ msgstr "Pohyb, odrazy, chování botů a prostorový zvuk Pongu byly přiblíže
 msgid "Pool follows WPA Rules and Regulations effective 21 October 2026; snooker and English billiards use WPBSA 2024–25, carom uses UMB rules, and Free Pyramid uses IPC’s 2025 revision. Cutthroat and Social billiards use the club rules described here. Table order replaces a physical lag. Agreement to rerack does not itself award a game win. The snooker referee calls automatic Miss only with a direct path; entirely obstructed attempts remain ordinary fouls without restoration."
 msgstr ""
 
-#: games/billiards.rb:53 games/generated/rulebooks/billiards.rb:51 lib/billiards/match_presentation.rb:104
+#: games/billiards.rb:56 games/generated/rulebooks/billiards.rb:51 lib/billiards/match_presentation.rb:104
 msgid "Pool: 10-ball"
 msgstr "Pool: 10-ball"
 
-#: games/billiards.rb:54 lib/billiards/match_presentation.rb:104
+#: games/billiards.rb:57 lib/billiards/match_presentation.rb:104
 msgid "Pool: 14.1 continuous"
 msgstr "Pool: 14.1 nekonečná hra"
 
-#: games/billiards.rb:50 games/generated/rulebooks/billiards.rb:44 lib/billiards/match_presentation.rb:103
+#: games/billiards.rb:53 games/generated/rulebooks/billiards.rb:44 lib/billiards/match_presentation.rb:103
 msgid "Pool: 8-ball"
 msgstr "Pool: 8-ball"
 
-#: games/billiards.rb:51 games/generated/rulebooks/billiards.rb:48 lib/billiards/match_presentation.rb:103
+#: games/billiards.rb:54 games/generated/rulebooks/billiards.rb:48 lib/billiards/match_presentation.rb:103
 msgid "Pool: 9-ball"
 msgstr "Pool: 9-ball"
 
-#: games/billiards.rb:55 lib/billiards/match_presentation.rb:104
+#: games/billiards.rb:58 lib/billiards/match_presentation.rb:104
 msgid "Pool: One Pocket"
 msgstr "Pool: One Pocket"
 
@@ -23837,7 +23857,7 @@ msgstr ""
 msgid "Power in percent (0.1 to 100)"
 msgstr "Síla v procentech (0,1 až 100)"
 
-#: games/billiards.rb:258
+#: games/billiards.rb:261
 msgid "Practice finished."
 msgstr "Trénink skončil."
 
@@ -23845,7 +23865,7 @@ msgstr "Trénink skončil."
 msgid "Practice regularly. Start with short sessions lasting around 10-15 minutes."
 msgstr ""
 
-#: games/billiards.rb:81
+#: games/billiards.rb:84
 msgid "Practice shot limit (1 to 500)"
 msgstr "Limit tréninkových strků (1 až 500)"
 
@@ -24815,7 +24835,7 @@ msgstr ""
 msgid "Rack positions exchanged."
 msgstr "Pozice v zásobníku byly prohozeny."
 
-#: games/billiards.rb:65
+#: games/billiards.rb:68
 msgid "Racks or frames needed to win (1 to 25)"
 msgstr "Počet partií či framů potřebných k výhře (1–25)"
 
@@ -25608,7 +25628,7 @@ msgstr "Nemovitosti požadované od hráče %{player}"
 msgid "Requested rank: %{rank}"
 msgstr "Požadovaná hodnota: %{rank}"
 
-#: games/billiards.rb:73
+#: games/billiards.rb:76
 msgid "Require baulk crossing during long English billiards breaks"
 msgstr "Vyžadovat překročení čáry baulk při dlouhých nábězích v anglickém kulečníku"
 
@@ -26366,7 +26386,7 @@ msgstr "Kolo %{round}; rozhodčí: %{judge}"
 msgid "Round %{round}; letter %{letter}; judge: %{judge}"
 msgstr "Kolo %{round}; písmeno %{letter}; rozhodčí: %{judge}"
 
-#: games/cash_auction/presentation.rb:156
+#: games/cash_auction/presentation.rb:158
 msgid "Round %{round}; pool: %{pool}; highest bid: %{amount}; leader: %{player}."
 msgstr "Kolo %{round}; bank: %{pool}; nejvyšší nabídka: %{amount}; vede: %{player}."
 
@@ -27112,7 +27132,7 @@ msgstr "Druhý set."
 msgid "Second talon"
 msgstr "Druhý talon"
 
-#: games/cash_auction.rb:47
+#: games/cash_auction.rb:48
 msgid "Seconds between auction calls (1 to 5)"
 msgstr "Sekundy mezi vyvoláními (1 až 5)"
 
@@ -28199,11 +28219,11 @@ msgstr "Pravý břeh lemují hladké oblázky."
 msgid "Snooker"
 msgstr "Snooker"
 
-#: games/billiards.rb:52 lib/billiards/match_presentation.rb:103
+#: games/billiards.rb:55 lib/billiards/match_presentation.rb:103
 msgid "Snooker: 15 reds"
 msgstr "Snooker: 15 červených"
 
-#: games/billiards.rb:49 lib/billiards/match_presentation.rb:103
+#: games/billiards.rb:52 lib/billiards/match_presentation.rb:103
 msgid "Social billiards"
 msgstr "Společenský kulečník"
 
@@ -28211,7 +28231,7 @@ msgstr "Společenský kulečník"
 msgid "Social billiards is for two to eight players, including computer players. Choose a total of 1 to 30 rounds. The match ends after that many rounds have been settled; the player with the most round wins wins the match. If several players share the most round wins, the match is a draw."
 msgstr ""
 
-#: games/billiards.rb:92
+#: games/billiards.rb:95
 msgid "Social billiards requires 2 to 8 players."
 msgstr "Společenský kulečník vyžaduje 2 až 8 hráčů."
 
@@ -28804,11 +28824,11 @@ msgstr "Počáteční kostky na hráče (1–5)"
 msgid "Starting game"
 msgstr "Zahajování hry"
 
-#: games/cash_auction.rb:43
+#: games/cash_auction.rb:44
 msgid "Starting points (10 to 1000000)"
 msgstr "Počáteční body (10 až 1000000)"
 
-#: games/cash_auction.rb:54
+#: games/cash_auction.rb:55
 msgid "Starting points must be from 10 to 1000000."
 msgstr "Počáteční počet bodů musí být od 10 do 1000000."
 
@@ -29902,7 +29922,7 @@ msgstr "Čas na odpověď musí být mezi %{minimum} a %{maximum} sekundami."
 msgid "The ante must be positive and cannot exceed the starting stack."
 msgstr "Ante musí být kladné a nesmí přesáhnout počáteční počet žetonů."
 
-#: games/cash_auction.rb:55
+#: games/cash_auction.rb:56
 msgid "The ante must be positive and no greater than the starting points."
 msgstr "Povinný vklad musí být kladný a nesmí překročit počáteční počet bodů."
 
@@ -29990,7 +30010,7 @@ msgstr ""
 msgid "The bidder leads the first trick. Everyone taking part in the deal plays one card, and the trick's winner leads next. A trick contains two cards with two players, three in the individual three- or four-player variants, or four in teams. You must follow the first card's suit if possible. If you have none of that suit, you must use a trump if a trump suit has been established and you hold one. Only otherwise may you discard any card. You do not have to beat a higher card merely because you can. These rules also apply when your partner is winning the trick."
 msgstr ""
 
-#: games/billiards.rb:282
+#: games/billiards.rb:285
 msgid "The billiards position or input has changed. Check the current table and try again."
 msgstr "Pozice koulí nebo údaje strku se změnily. Zkontrolujte stůl a zkuste to znovu."
 
@@ -29998,7 +30018,7 @@ msgstr "Pozice koulí nebo údaje strku se změnily. Zkontrolujte stůl a zkuste
 msgid "The bingo caller is drawing balls."
 msgstr "Probíhá losování koulí binga."
 
-#: games/cash_auction.rb:59
+#: games/cash_auction.rb:60
 msgid "The black chest probability must be from 5 to 10 percent."
 msgstr "Pravděpodobnost černé truhly musí být od 5 do 10 procent."
 
@@ -30078,7 +30098,7 @@ msgstr ""
 msgid "The categories for the next round are being drawn."
 msgstr "Losují se kategorie pro další kolo."
 
-#: games/cash_auction/presentation.rb:153 games/cash_auction/presentation.rb:86
+#: games/cash_auction/presentation.rb:155 games/cash_auction/presentation.rb:86
 msgid "The category wheel is spinning."
 msgstr "Kolo kategorií se točí."
 
@@ -30741,6 +30761,10 @@ msgid "The highest average across the five shots wins. Each ten percentage point
 msgstr ""
 
 #: games/generated/rulebooks/cash_auction.rb:20
+msgid "The highest bidder cannot pass: their offer is binding. Their bid field remains available, so they may raise again before the auction closes. If the auction ends with the third call, the last accepted highest offer wins."
+msgstr "Hráč s nejvyšší nabídkou nemůže odstoupit, protože jeho nabídka je závazná. Pole částky má dál k dispozici a před koncem aukce může nabídku ještě zvýšit. Pokud aukci ukončí třetí vyvolání, vyhrává poslední přijatá nejvyšší nabídka."
+
+#: games/generated/rulebooks/cash_auction.rb:20
 msgid "The highest bidder cannot pass: their offer is binding. Their bid field remains available, so they may raise again before the auction closes. The last accepted highest offer wins."
 msgstr ""
 
@@ -30943,7 +30967,7 @@ msgstr "Na prvním místě je remíza. Odehraje se další úplný cyklus rozhod
 msgid "The lead is tied. Another round will be played: %{players}."
 msgstr "Na prvním místě je remíza. Odehraje se další kolo: %{players}."
 
-#: games/cash_auction/presentation.rb:141
+#: games/cash_auction/presentation.rb:143
 msgid "The leaders are tied. An extra round will decide the match."
 msgstr "Vedoucí hráči mají stejný výsledek. O zápase rozhodne dodatečné kolo."
 
@@ -31068,7 +31092,7 @@ msgstr ""
 msgid "The match had not started. The remaining participants share first place."
 msgstr "Zápas ještě nezačal. Ostatní účastníci se dělí o první místo."
 
-#: games/billiards.rb:259
+#: games/billiards.rb:262
 msgid "The match is tied, %{score}."
 msgstr "Zápas skončil remízou, %{score}."
 
@@ -31088,7 +31112,7 @@ msgstr "Stůl pro zápas je otevřený."
 msgid "The match target is 1 to 25 game wins. Adjustable point targets range from 1 to 1000; English time limits range from 1 to 180 minutes."
 msgstr ""
 
-#: games/billiards.rb:100
+#: games/billiards.rb:103
 msgid "The match target must be from 1 to 25."
 msgstr "Cíl zápasu musí být od 1 do 25."
 
@@ -31159,7 +31183,7 @@ msgstr "Počet partií musí být od 1 do 10."
 msgid "The number of rounds must be from 1 to 100."
 msgstr "Počet rozdání musí být od 1 do 100."
 
-#: games/billiards.rb:93
+#: games/billiards.rb:96
 msgid "The number of rounds must be from 1 to 30."
 msgstr "Počet kol musí být od 1 do 30."
 
@@ -31274,7 +31298,7 @@ msgstr ""
 msgid "The partner choice could not be confirmed. Refresh to check its status."
 msgstr "Výběr spoluhráče se nepodařilo potvrdit. Obnovte zobrazení a ověřte jeho stav."
 
-#: games/cash_auction.rb:56
+#: games/cash_auction.rb:57
 msgid "The pass penalty must be from 0 to 1000000."
 msgstr "Pokuta za odstoupení musí být od 0 do 1000000."
 
@@ -31362,7 +31386,7 @@ msgstr ""
 msgid "The playing area is 25 steps wide. Each player hears their own end on the right and the opponent's end on the left. This listening perspective is the same for both players: your own end is always on the right."
 msgstr ""
 
-#: games/billiards.rb:104
+#: games/billiards.rb:107
 msgid "The point target must be from 1 to 1000."
 msgstr "Bodový cíl musí být od 1 do 1000."
 
@@ -31374,7 +31398,7 @@ msgstr ""
 msgid "The pond stretches out before you."
 msgstr "Před tebou se rozprostírá rybník."
 
-#: games/billiards.rb:110
+#: games/billiards.rb:113
 msgid "The practice shot limit must be from 1 to 500."
 msgstr "Limit strků musí být od 1 do 500."
 
@@ -31462,7 +31486,7 @@ msgstr "Závod na přesně 1000 mil"
 msgid "The rack has the 9-ball on the foot spot and the 1-ball at the front. A break that pots nothing must send four object balls to cushions. The three-ball break rule also requires at least three different balls to be pocketed or cross the head string. If it fails without a foul, the opponent accepts the position or returns the shot; a potted 9-ball is spotted. Only a returned breaker may then push out. After an otherwise legal break, the second shot may be a push-out, declared with P: hitting the lowest ball and reaching a cushion are suspended. After a legal push-out the opponent chooses who plays next."
 msgstr "V kosočtverci stojí devítka na bodu a jednička vpředu. Rozbití bez potopení musí poslat čtyři koule k mantinelům. Pravidlo tří koulí navíc vyžaduje alespoň tři různé koule potopené nebo za čarou rozbití. Nesplní-li se bez dalšího faulu, soupeř přijme pozici nebo vrátí strk; potopená devítka se vrátí na bod. Push-out pak smí hrát jen rozbíjející, jemuž byl strk vrácen. Po platném rozbití může být druhý strk push-outem, ohlášeným přes P: nejnižší číslo ani mantinel nejsou povinné. Po platném push-outu soupeř zvolí, kdo pokračuje."
 
-#: games/billiards.rb:460
+#: games/billiards.rb:463
 msgid "The rack or frame is tied. Score: %{score}."
 msgstr "Partie či frame končí remízou. Skóre: %{score}."
 
@@ -32093,18 +32117,18 @@ msgstr ""
 msgid "The tiles have been dealt."
 msgstr "Kameny byly rozdány."
 
-#: games/billiards.rb:449
+#: games/billiards.rb:452
 msgid "The time limit has been reached."
 msgstr "Časový limit vypršel."
 
-#: games/billiards.rb:107
+#: games/billiards.rb:110
 msgid "The time limit must be from 1 to 180 minutes."
 msgstr "Časový limit musí být od 1 do 180 minut."
 
 msgid "The time to accept this match has expired."
 msgstr "Čas na přijetí nabídky zápasu vypršel."
 
-#: games/billiards.rb:448
+#: games/billiards.rb:451
 msgid "The timed frame has started."
 msgstr "Začala partie na čas."
 
@@ -33157,7 +33181,7 @@ msgstr "Tento serverový test má limit 2048 bajtů na pole. Zkraťte pravidla n
 msgid "This sheet: %{points}."
 msgstr "Tento bodovací list: %{points}."
 
-#: games/billiards.rb:281 lib/game_surfaces/billiards_surface.rb:201 lib/game_surfaces/billiards_surface.rb:428
+#: games/billiards.rb:284 lib/game_surfaces/billiards_surface.rb:201 lib/game_surfaces/billiards_surface.rb:428
 msgid "This shot could not be simulated. The table has not changed."
 msgstr "Tento strk se nepodařilo vypočítat. Stůl se nezměnil."
 
@@ -33425,7 +33449,7 @@ msgstr "Kameny v rozkladu"
 msgid "Tiles left: %{count}."
 msgstr "Zbývající kameny: %{count}."
 
-#: games/billiards.rb:70
+#: games/billiards.rb:73
 msgid "Time"
 msgstr "Čas"
 
@@ -33467,7 +33491,7 @@ msgstr "Čas vypršel. Hostitel stolu hodnotí tento tah."
 msgid "Time limit"
 msgstr "Časový limit"
 
-#: games/billiards.rb:71
+#: games/billiards.rb:74
 msgid "Time limit in minutes (1 to 180)"
 msgstr "Časový limit v minutách (1–180)"
 
@@ -33535,6 +33559,10 @@ msgstr ""
 #: games/generated/rulebooks/poker.rb:59
 msgid "To exchange cards, browse them with the arrows and mark each one with Shift+Enter. Leave the selection on one of the marked cards and press Enter to exchange them together. If you press Enter on an unmarked card, that card is included too. With no cards marked, Enter exchanges just the selected card."
 msgstr ""
+
+#: games/generated/rulebooks/cash_auction.rb:19
+msgid "To go all-in while you still have points, type A in the bid field and press Enter. You commit every remaining point, with earlier bid payments this round counted in the total offer. You can also type that total amount instead of A. All-in immediately closes the auction and wins the question or black chest, even if its amount does not exceed the current highest offer. Nobody can raise after it."
+msgstr "Pokud ti ještě zbývají body, můžeš vsadit vše: do pole částky napiš A a stiskni Enter. Vsadíš všechny zbývající body; platby za dřívější nabídky v tomto kole se přičtou k celkové částce. Místo A můžeš zadat i tuto celkovou částku. Vsazením všech bodů aukci okamžitě ukončíš a získáš otázku nebo černou truhlu, i když tvá částka nepřevyšuje dosud nejvyšší nabídku. Nikdo už nemůže přihodit."
 
 #: games/generated/rulebooks/cash_auction.rb:19
 msgid "To go all-in, type A in the bid field and press Enter. This commits your entire available balance, adding any earlier bid payment to give your total offer. The offer still has to beat the highest bid."
@@ -36785,7 +36813,7 @@ msgstr "Nemáte žádnou kartu, kterou lze zahrát."
 msgid "You have no playable tile."
 msgstr "Nemáte žádný kámen, který lze zahrát."
 
-#: games/cash_auction/actions.rb:108
+#: games/cash_auction/actions.rb:110
 msgid "You have no points available to raise the bid."
 msgstr "Nemáš dost bodů na vyšší nabídku."
 
@@ -37410,6 +37438,10 @@ msgstr ""
 #: games/poker.rb:553
 msgid "Your move."
 msgstr "Tvůj tah."
+
+#: games/generated/rulebooks/cash_auction.rb:17
+msgid "Your offer is the total amount you commit to this auction, in addition to the opening payment. An ordinary offer must beat the current highest offer. Every bidder pays immediately, including players who later lose the auction or pass; those payments are not refunded."
+msgstr "Nabídka udává celkovou částku, kterou dáváš do této aukce navíc k počátečnímu vkladu. Běžná nabídka musí převýšit dosud nejvyšší nabídku. Každý dražící platí okamžitě. Body se nevracejí ani hráčům, kteří později aukci prohrají nebo odstoupí."
 
 #: games/generated/rulebooks/cash_auction.rb:17
 msgid "Your offer is the total amount you commit to this auction, in addition to the opening payment. It must beat the current highest offer. Every bidder pays immediately, including players who later lose the auction or pass; those payments are not refunded."

@@ -28,7 +28,7 @@
           "pl": "Licytujecie równocześnie, bez czekania na swoją kolej. Na początku licytacji jesteś w polu kwoty. Wpisz ofertę i zatwierdź ją Enterem. Słyszysz numer rundy, pulę, najwyższą ofertę i osobę prowadzącą."
         },
         {
-          "pl": "Po ofercie prowadzący wywołuje jej kwotę po raz pierwszy i drugi, w odstępach dwóch sekund. Trzecie wywołanie, po sześciu sekundach bez przebicia, zamyka licytację. Każda wyższa oferta rozpoczyna odliczanie od nowa. Jeśli przez początkowe sześć sekund nikt nie zalicytuje, runda się kończy, a pula przechodzi dalej."
+          "pl": "Po zwykłej ofercie prowadzący wywołuje jej kwotę po raz pierwszy i drugi, w odstępach dwóch sekund. Trzecie wywołanie, po sześciu sekundach bez przebicia, zamyka licytację. Każda wyższa oferta rozpoczyna odliczanie od nowa. Jeśli przez początkowe sześć sekund nikt nie zalicytuje, runda się kończy, a pula przechodzi dalej."
         }
       ]
     },
@@ -39,16 +39,16 @@
       },
       "paragraphs": [
         {
-          "pl": "Oferta oznacza łączną kwotę, którą przeznaczasz na tę licytację, poza wpłatą na początku rundy. Musi być wyższa od dotychczasowej najwyższej oferty. Każdy licytujący płaci od razu. Punkty nie wracają, nawet jeśli później przegrasz licytację albo spasujesz."
+          "pl": "Oferta oznacza łączną kwotę, którą przeznaczasz na tę licytację, poza wpłatą na początku rundy. Zwykła oferta musi być wyższa od dotychczasowej najwyższej oferty. Każdy licytujący płaci od razu. Punkty nie wracają, nawet jeśli później przegrasz licytację albo spasujesz."
         },
         {
           "pl": "Przy podnoszeniu własnej oferty dopłacasz tylko różnicę. Jeśli zaoferowałeś 100, podniesienie do 250 kosztuje jeszcze 150. Najwyżej możesz przeznaczyć pozostałe punkty oraz to, co już wpłaciłeś w ofertach w tej rundzie."
         },
         {
-          "pl": "Aby zagrać za wszystko, wpisz A w polu kwoty i naciśnij Enter. Przeznaczysz całe pozostałe saldo; wcześniejsza wpłata z ofert doliczy się do łącznej kwoty. Taka oferta również musi przebić najwyższą."
+          "pl": "Gdy masz jeszcze punkty, możesz zagrać vabank: wpisz A w polu kwoty i naciśnij Enter. Przeznaczasz wszystkie pozostałe punkty, a wcześniejsze wpłaty za oferty w tej rundzie doliczają się do łącznej kwoty. Możesz wpisać tę łączną kwotę zamiast A. Vabank natychmiast kończy licytację i daje ci pytanie albo czarną skrzynię, nawet gdy nie przebija dotychczasowej najwyższej oferty. Nikt nie może już podbić stawki."
         },
         {
-          "pl": "Osoba z najwyższą ofertą nie może pasować: jej oferta jest wiążąca. Nadal ma pole kwoty i może przebić własną ofertę przed zamknięciem licytacji. Wygrywa ostatnia przyjęta najwyższa oferta."
+          "pl": "Osoba z najwyższą ofertą nie może pasować: jej oferta jest wiążąca. Nadal ma pole kwoty i może przebić własną ofertę przed zamknięciem licytacji. Jeśli licytację kończy trzecie wywołanie, wygrywa ostatnia przyjęta najwyższa oferta."
         }
       ]
     },
@@ -148,7 +148,7 @@
           "pl": "Zamiast 1000 punktów początkowych możesz ustawić dowolną liczbę całkowitą od 10 do 1000000. Wpłata na początku rundy może wynosić od 1 punktu do całego początkowego salda. Kara co trzeci pas może wynosić od 0 do 1000000. Zero wyłącza odejmowanie punktów, ale pas nadal wycofuje z bieżącej licytacji."
         },
         {
-          "pl": "Możesz wybrać od 8 do 32 zwykłych rund zamiast ośmiu oraz od 1 do 5 sekund między wywołaniami zamiast dwóch. Licytacja zamknie się po trzech takich odstępach bez przebicia. Szansę na czarną skrzynię można zwiększyć z 5% do 10%. Boty licytują w ramach budżetu opartego na jawnych saldach, a odpowiedź wybierają losowo spośród czterech możliwości."
+          "pl": "Możesz wybrać od 8 do 32 zwykłych rund zamiast ośmiu oraz od 1 do 5 sekund między wywołaniami zamiast dwóch. Licytacja bez vabanku zamknie się po trzech takich odstępach bez przebicia. Szansę na czarną skrzynię można zwiększyć z 5% do 10%. Boty licytują w ramach budżetu opartego na jawnych saldach, a odpowiedź wybierają losowo spośród czterech możliwości."
         }
       ]
     },
@@ -162,7 +162,7 @@
           "pl": "Enter w polu kwoty: wyślij wpisaną ofertę."
         },
         {
-          "pl": "A, potem Enter w polu kwoty: zagraj za wszystko."
+          "pl": "A, potem Enter w polu kwoty: zagraj vabank i od razu wygraj licytację."
         },
         {
           "pl": "Tab, potem Enter na Pas: wycofaj się z bieżącej licytacji, gdy nie prowadzisz."

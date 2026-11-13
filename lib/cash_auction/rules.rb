@@ -58,17 +58,19 @@ module GameRoomCashAuction
       true
     end
 
-    def bid!(state, seat, amount, now:, revision:)
+    def bid!(state, seat, amount, now:, revision:, all_in: false)
       return false unless state[:phase] == :auction && active?(state, seat) && !state[:passed][seat]
       return false unless time?(now) && now < state[:auction_deadline] && revision.is_a?(Integer) && revision >= 0
-      return false unless amount.is_a?(Integer) && amount > state[:highest] && amount <= state[:cash][seat] + state[:contributions][seat]
+      maximum = state[:cash][seat] + state[:contributions][seat]
+      return false unless amount.is_a?(Integer) && amount <= maximum &&
+        (all_in ? amount == maximum && state[:cash][seat].positive? : amount > state[:highest])
       difference = amount - state[:contributions][seat]
       state[:cash][seat] -= difference
       state[:pot] += difference
       state[:contributions][seat] = amount
       state[:highest], state[:leader], state[:bid_revision] = amount, seat, revision
-      state[:auction_deadline] = now + 3 * state[:options]['count_interval']
-      true
+      state[:auction_deadline] = all_in ? now : now + 3 * state[:options]['count_interval']
+      all_in ? award!(state, now: now) : true
     end
 
     def pass!(state, seat)

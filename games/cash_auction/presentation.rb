@@ -55,7 +55,7 @@ module GameRoomGames
         case event['action']
         when 'wheel' then 'roulette_spin'
         when 'auction_start' then 'roulette_chips'
-        when 'bid'
+        when 'bid', 'all_in'
           seat = after_replay.state[:leader]
           seat && after_replay.state[:cash][seat].zero? ? 'poker_all_in' : 'poker_raise'
         when 'pass' then 'poker_fold'
@@ -66,7 +66,7 @@ module GameRoomGames
       end
 
       def event_speech_tail_sound(event:, before_replay:, after_replay:, viewer:)
-        'auction_gavel' if event['action'] == 'auction_closed' && before_replay&.state&.[](:leader)
+        'auction_gavel' if event['action'] == 'all_in' || event['action'] == 'auction_closed' && before_replay&.state&.[](:leader)
       end
 
       def live_name_protected_texts(event, repository, replay, viewer)
@@ -93,6 +93,8 @@ module GameRoomGames
           end
         when 'bid'
           _('%{player} bids %{amount}.') % {player: player, amount: state[:highest]}
+        when 'all_in'
+          _('%{player} goes all-in for %{amount} and wins the auction.') % {player: player, amount: state[:highest]}
         when 'pass'
           text = _('%{player} passes.') % {player: player}
           penalty = before[:cash][seat] - state[:cash][seat]

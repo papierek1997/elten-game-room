@@ -152,7 +152,7 @@ module CashAuctionModelTest
     f.bid('Alice', 'A')
     assert_equal([0, 990], [f.replay.state[:cash][0], f.replay.state[:contributions][0]])
     assert_equal(1030, f.replay.state[:pot])
-    f.close_auction
+    assert_equal(:question_pending, f.replay.state[:phase])
     f.reveal_question
     wrong = (f.replay.state[:question][:correct_index] + 1) % 4
     f.now += 1
@@ -218,7 +218,7 @@ module CashAuctionModelTest
     f.begin_round(chest: true)
     f.now += 1
     f.bid('Alice', all_in ? 'A' : 1)
-    f.close_auction
+    f.close_auction unless all_in
     assert_equal([1, 0, 0, 0], f.replay.state[:chests])
     assert_equal(:drawing, f.replay.state[:phase])
     assert_equal(0, f.events.count { |event| event['action'] == 'question' })

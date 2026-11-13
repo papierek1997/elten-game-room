@@ -55,13 +55,15 @@ module GameRoomGames
           end
           return [:invalid, nil] unless selection['action'] == 'submit'
           text = selection['answer'].to_s.strip
+          maximum = state[:cash][seat] + state[:contributions][seat]
           amount = if text.match?(/\Aa\z/i)
-            state[:cash][seat] + state[:contributions][seat]
+            maximum
           elsif text.match?(/\A[0-9]{1,8}\z/)
             text.to_i
           end
-          return [:invalid_bet, nil] unless amount && amount > state[:highest] && amount <= state[:cash][seat] + state[:contributions][seat]
-          return [:ok, event_plan('bid', "#{state[:round]}|#{amount}")]
+          all_in = amount == maximum && state[:cash][seat].positive?
+          return [:invalid_bet, nil] unless amount && amount <= maximum && (all_in || amount > state[:highest])
+          return [:ok, event_plan(all_in ? 'all_in' : 'bid', "#{state[:round]}|#{amount}")]
         end
         if state[:phase] == :answering && seat == state[:leader] && selection['kind'] == 'question' &&
             selection['question_id'] == question_id(state) && selection['action'] == 'submit' && selection['answer'].to_s.match?(/\A[0-3]\z/)
@@ -83,7 +85,7 @@ module GameRoomGames
           maximum = state[:cash][seat] + state[:contributions][seat]
           amount = [state[:highest] + [state[:options]['ante'], 1].max, maximum].min
           actions << base.merge('action'=>'submit', 'answer'=>amount.to_s) if amount > state[:highest]
-          actions << base.merge('action'=>'submit', 'answer'=>'A') if maximum > amount
+          actions << base.merge('action'=>'submit', 'answer'=>'A') if state[:cash][seat].positive? && (maximum > amount || amount <= state[:highest])
           return actions
         elsif state[:phase] == :answering && seat == state[:leader]
           return (0..3).map { |index| {'kind'=>'question', 'action'=>'submit', 'question_id'=>question_id(state), 'answer'=>index.to_s} }
@@ -105,7 +107,8 @@ module GameRoomGames
         seat = player_index(replay.players, actor)
         return super unless seat
         maximum = replay.state[:cash][seat] + replay.state[:contributions][seat]
-        return _('You have no points available to raise the bid.') if maximum <= replay.state[:highest]
+        return _('You have no points available to raise the bid.') unless replay.state[:cash][seat].positive?
+        return _('Enter %{maximum} or A to go all-in.') % {maximum: maximum} if maximum <= replay.state[:highest]
         _('Enter an amount above %{minimum} and at most %{maximum}, or A for all-in.') % {
           minimum: replay.state[:highest], maximum: maximum}
       end

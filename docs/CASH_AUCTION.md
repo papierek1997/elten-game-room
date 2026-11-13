@@ -25,7 +25,10 @@ to this auction, excluding the ante. The reducer deducts only the difference
 from that bidder's earlier bid. All bidders pay, and losing or passing does
 not refund their contributions. The current leader cannot pass, but retains
 the same bid editor and may raise voluntarily. All-in is the remaining cash
-plus that participant's earlier bid contributions. Every third pass pays
+plus that participant's earlier bid contributions. An accepted all-in ends
+the auction immediately and awards its question or unopened chest, even below
+another player's offer. Typing the full available total has the same effect
+as A. Every third pass pays
 the configured penalty into the pool, capped at the participant's balance.
 
 The ordinary auction winner answers one four-choice question. A correct
@@ -107,7 +110,11 @@ uses the existing logical session clock to advance the wheel, begin auctions,
 close them and obtain post-award questions. There is no game-specific timer
 thread, polling loop or UI work on the worker. Accepted native event time is
 monotonic within the game. Each accepted higher bid replaces the auction
-deadline with three call intervals from that bid.
+deadline with three call intervals from that bid. All-in bypasses the calls:
+one accepted `all_in` event both pays the bid and awards the auction. The
+first accepted all-in closes admission for later offers; no second executor
+or timer is introduced. Earlier `bid` records keep their original timed
+semantics, so previously accepted closing events remain valid in cold replay.
 
 The first and second calls are local timer announcements, keyed by game,
 round, bid revision and ordinal; historical reconstruction skips these
@@ -115,6 +122,7 @@ expired cues. Their low/high tones precede the respective spoken calls.
 The third call is an accepted auction-close event with its recorded round,
 bid revision and deadline. Its gavel is scheduled after the complete spoken
 “for the third time. Sold!” announcement through the native speech sequence.
+An immediate all-in uses its winning announcement followed by the same gavel.
 User interruption may cancel a pending cue; sound completion does not hold
 the model or create a game-clock barrier. Application sounds keep the normal
 effect buffering.
@@ -141,6 +149,8 @@ The source tests relevant to the shared adapter and native controls are:
   deduplicated pending-decision alerts.
 - `test/games/cash_auction/rules_test.rb`: bid contributions, recurring pass
   penalties, carried pools, permanent elimination, chests and final settlement.
+- `test/games/cash_auction/all_in_test.rb`: immediate question/chest award,
+  numeric maximums and poorer bidders, late/forged refusal and unchanged old bids.
 - `test/games/cash_auction/runner_test.rb`: the active shared executor, native
   seed evidence, host-only automatic progression and concurrent bid admission.
 - `test/games/cash_auction/native_surface_test.rb`: actual native bid field,

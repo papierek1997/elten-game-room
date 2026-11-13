@@ -33,7 +33,7 @@ module GameRoomGames
     def notification_option_keys(_options); %w[content_language_id content_set_id]; end
     def supports_bots?; true; end
     def player_spatial_audio?; true; end
-    def table_sound_event?(event); !%w[bid pass].include?(event['action']); end
+    def table_sound_event?(event); !%w[bid all_in pass].include?(event['action']); end
     def perfect_information?; false; end
     def actions_during_bot_turn?; true; end
     def session_history_capacity(_options); 32_768; end

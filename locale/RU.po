@@ -962,7 +962,7 @@ msgstr[0] "%{player} также сбрасывает %{count} карту; цве
 msgstr[1] "%{player} также сбрасывает %{count} карты; цвет: %{colour}."
 msgstr[2] "%{player} также сбрасывает %{count} карт; цвет: %{colour}."
 
-#: games/cash_auction/presentation.rb:118
+#: games/cash_auction/presentation.rb:120
 msgid "%{player} answered correctly and takes the pool: %{amount}."
 msgstr "%{player} отвечает верно и получает банк: %{amount}."
 
@@ -974,11 +974,11 @@ msgstr "%{player} ответил правильно."
 msgid "%{player} answered incorrectly."
 msgstr "%{player} ответил неправильно."
 
-#: games/cash_auction/presentation.rb:120
+#: games/cash_auction/presentation.rb:122
 msgid "%{player} answered incorrectly. Correct answer: %{answer}. The pool carries over."
 msgstr "%{player} отвечает неверно. Правильный ответ: %{answer}. Банк переходит дальше."
 
-#: games/cash_auction/presentation.rb:159
+#: games/cash_auction/presentation.rb:161
 msgid "%{player} answers the question."
 msgstr "%{player} отвечает на вопрос."
 
@@ -1168,11 +1168,11 @@ msgstr "%{player} забрал приз бесплатной парковки: %
 msgid "%{player} completed the %{group}."
 msgstr "%{player} собрал группу: %{group}."
 
-#: games/billiards.rb:451
+#: games/billiards.rb:454
 msgid "%{player} concedes the rack or frame."
 msgstr "%{player} сдаёт партию или фрейм."
 
-#: games/billiards.rb:452
+#: games/billiards.rb:455
 msgid "%{player} confirms the decision."
 msgstr "%{player} подтверждает решение."
 
@@ -1391,7 +1391,7 @@ msgstr "%{player} завершил обмен картами."
 msgid "%{player} finishes betting."
 msgstr "%{player} завершает ставки."
 
-#: games/billiards.rb:475
+#: games/billiards.rb:478
 msgid "%{player} finishes practice."
 msgstr "%{player} завершает тренировку."
 
@@ -1418,6 +1418,10 @@ msgstr "%{player} получает ставку обратно."
 #: lib/blackjack_auction.rb:259
 msgid "%{player} goes all in and raises the bet to %{amount}."
 msgstr "%{player} ставит всё и повышает ставку до %{amount}."
+
+#: games/cash_auction/presentation.rb:97
+msgid "%{player} goes all-in for %{amount} and wins the auction."
+msgstr "%{player} идёт ва-банк со ставкой %{amount} и выигрывает торги."
 
 #: games/duck_racing_support/presentation.rb:632
 msgid "%{player} goes over 21."
@@ -1526,7 +1530,7 @@ msgstr "Карты игрока %{player}: %{hand}"
 msgid "%{player} is eliminated by forfeit. The remaining participants continue playing."
 msgstr "%{player} выбывает из-за технического поражения. Остальные участники продолжают играть."
 
-#: games/cash_auction/presentation.rb:134 games/rummy.rb:565
+#: games/cash_auction/presentation.rb:136 games/rummy.rb:565
 msgid "%{player} is eliminated."
 msgstr "%{player} выбывает."
 
@@ -1810,11 +1814,11 @@ msgstr "%{player} должен пропустить ходов: %{count}."
 msgid "%{player} opened the fleet."
 msgstr "%{player} раскрыл расстановку флота."
 
-#: games/cash_auction/presentation.rb:127
+#: games/cash_auction/presentation.rb:129
 msgid "%{player} opens a black chest: %{amount} points. Balance: %{balance}."
 msgstr "%{player} открывает чёрный сундук: %{amount} очков. Баланс: %{balance}."
 
-#: games/cash_auction/presentation.rb:125
+#: games/cash_auction/presentation.rb:127
 msgid "%{player} opens a black chest: bankrupt."
 msgstr "%{player} открывает чёрный сундук: банкротство."
 
@@ -1840,11 +1844,11 @@ msgstr "%{player} пасует на аукционе."
 msgid "%{player} passes on this auction."
 msgstr "%{player} пасует на этом аукционе."
 
-#: games/billiards.rb:474
+#: games/billiards.rb:477
 msgid "%{player} passes the cue to the next player."
 msgstr "%{player} передаёт ход следующему игроку."
 
-#: games/cash_auction/presentation.rb:97 games/domino.rb:275 games/go.rb:261 games/mexican_train.rb:309 games/reversi.rb:276 games/scrabble.rb:254
+#: games/cash_auction/presentation.rb:99 games/domino.rb:275 games/go.rb:261 games/mexican_train.rb:309 games/reversi.rb:276 games/scrabble.rb:254
 msgid "%{player} passes."
 msgstr "%{player} пасует."
 
@@ -1889,7 +1893,7 @@ msgstr "%{player} поставил фишку на поле %{field}; перев
 msgid "%{player} placed a piece on %{field}."
 msgstr "%{player} поставил фигуру на поле %{field}."
 
-#: games/billiards.rb:470
+#: games/billiards.rb:473
 msgid "%{player} places %{ball} at X %{x} cm, Y %{y} cm."
 msgstr "%{player} устанавливает шар: %{ball}; X %{x} см, Y %{y} см."
 
@@ -1913,7 +1917,7 @@ msgstr "%{player} кладёт карту в закрытую и играет %{
 msgid "%{player} places a stone at %{field}."
 msgstr "%{player} ставит камень на %{field}."
 
-#: games/billiards.rb:453
+#: games/billiards.rb:456
 msgid "%{player} places the cue ball."
 msgstr "%{player} выставляет биток."
 
@@ -1997,7 +2001,7 @@ msgstr "%{player} кладёт %{tile} в свой поезд."
 msgid "%{player} plays %{words}: %{points} points."
 msgstr "%{player} разыгрывает %{words}: %{points} очков."
 
-#: games/billiards.rb:450 games/billiards.rb:469
+#: games/billiards.rb:453 games/billiards.rb:472
 msgid "%{player} plays a shot. %{summary}"
 msgstr "%{player} выполняет удар. %{summary}"
 
@@ -2025,7 +2029,7 @@ msgstr "%{player} предложил конг: %{tile}."
 msgid "%{player} proposed a trade to %{target}: %{offer}."
 msgstr "%{player} предложил обмен игроку %{target}. %{offer}."
 
-#: games/billiards.rb:454
+#: games/billiards.rb:457
 msgid "%{player} proposes reracking without a winner."
 msgstr "%{player} предлагает переигровку без победителя."
 
@@ -2195,7 +2199,7 @@ msgstr "%{player} просит пересдачу с четырьмя девят
 msgid "%{player} requests a redeal: at least two nines in the talon."
 msgstr "%{player} просит пересдачу: в прикупе две или более девятки."
 
-#: games/billiards.rb:455
+#: games/billiards.rb:458
 msgid "%{player} requests spotting the nearest legal object ball."
 msgstr "%{player} просит выставить ближайший разрешённый шар на точку."
 
@@ -2210,7 +2214,7 @@ msgstr "%{player} выполнил действие карточки. Налич
 msgid "%{player} restores territory scoring for the region at %{field}."
 msgstr "%{player} восстанавливает подсчёт территории у %{field}."
 
-#: games/billiards.rb:472
+#: games/billiards.rb:475
 msgid "%{player} restores the position before the last shot."
 msgstr "%{player} восстанавливает позицию перед последним ударом."
 
@@ -2416,7 +2420,7 @@ msgstr "%{player} назначил контракт: %{contract}."
 msgid "%{player} set the final contract at %{contract} and leads the first trick."
 msgstr "%{player} назначил окончательный контракт: %{contract}, и заходит в первой взятке."
 
-#: games/billiards.rb:473
+#: games/billiards.rb:476
 msgid "%{player} sets up the original practice layout."
 msgstr "%{player} восстанавливает начальную тренировочную расстановку."
 
@@ -2638,7 +2642,7 @@ msgstr "%{player} выигрывает испытание."
 msgid "%{player} wins the game."
 msgstr "%{player} выигрывает игру."
 
-#: games/billiards.rb:260
+#: games/billiards.rb:263
 msgid "%{player} wins the match, %{score}."
 msgstr "%{player} выигрывает матч, %{score}."
 
@@ -2646,7 +2650,7 @@ msgstr "%{player} выигрывает матч, %{score}."
 msgid "%{player} wins the pot of %{amount}."
 msgstr "%{player} выигрывает банк: %{amount}."
 
-#: games/billiards.rb:462
+#: games/billiards.rb:465
 msgid "%{player} wins the rack or frame. Score: %{score}."
 msgstr "%{player} выигрывает партию или фрейм. Счёт: %{score}."
 
@@ -2794,7 +2798,7 @@ msgstr "Ходит %{player}."
 msgid "%{player}'s waters"
 msgstr "Воды игрока %{player}"
 
-#: games/cash_auction/presentation.rb:103
+#: games/cash_auction/presentation.rb:105
 msgid "%{player}, %{amount}, for the third time. Sold!"
 msgstr "%{player}, %{amount}, три. Продано!"
 
@@ -3173,11 +3177,11 @@ msgstr "%{player}: взяток — %{tricks}, цель — %{target}, очко�
 msgid "%{player}: zeros %{zeros}/3, surrenders %{surrenders}/3%{barrel}"
 msgstr "%{player}: болтов %{zeros}/3, росписей %{surrenders}/3%{barrel}"
 
-#: games/billiards.rb:42
+#: games/billiards.rb:45
 msgid "%{player}; points: %{points}"
 msgstr "%{player}; очки: %{points}"
 
-#: games/billiards.rb:35
+#: games/billiards.rb:38
 msgid "%{player}; rounds won: %{count}"
 msgstr "%{player}; выиграно раундов: %{count}"
 
@@ -6259,6 +6263,10 @@ msgid "A technical restart is for a disrupted turn, not for correcting just one 
 msgstr "Технический перезапуск предназначен для прерванного хода, а не для исправления всего одной карты. Он аннулирует все очки за этот ход и даёт тому же объявителю новый ход с новыми картами. Уже открытые карты считаются использованными. Перетасованная колода избегает повторов, пока она не закончится, и предотвращает немедленное повторение при перетасовке. Вы можете сохраняться между ходами после того, как обзор был одобрен."
 
 #: games/generated/rulebooks/cash_auction.rb:48
+msgid "A then Enter in the bid field: go all-in and win the auction immediately."
+msgstr "A, затем Enter в поле суммы: пойти ва-банк и немедленно выиграть торги."
+
+#: games/generated/rulebooks/cash_auction.rb:48
 msgid "A then Enter in the bid field: go all-in."
 msgstr ""
 
@@ -6991,6 +6999,10 @@ msgstr ""
 msgid "After an offer, the auctioneer calls the amount once and twice, two seconds apart. The third call, after six seconds without a new offer, closes the auction. Each higher offer starts this countdown again. If nobody bids within the opening six seconds, the round ends and the pool carries over."
 msgstr ""
 
+#: games/generated/rulebooks/cash_auction.rb:15
+msgid "After an ordinary offer, the auctioneer calls the amount once and twice, two seconds apart. The third call, after six seconds without a new offer, closes the auction. Each higher offer starts this countdown again. If nobody bids within the opening six seconds, the round ends and the pool carries over."
+msgstr "После обычной ставки ведущий объявляет её первый и второй раз с интервалом в две секунды. Третье объявление, через шесть секунд без повышения, завершает торги. Каждая более высокая ставка запускает отсчёт заново. Если за первые шесть секунд никто не сделает ставку, раунд закончится, а банк сохранится для следующего."
+
 #: games/generated/rulebooks/mahjong.rb:158 games/generated/rulebooks/mahjong.rb:277 games/generated/rulebooks/mahjong.rb:62
 msgid "After another player discards, listen to the tile and read the response list. Pass means you do not claim that tile; it does not end your participation or concede the hand. If everyone passes, the next player draws. Passing several times does not mean you must draw each time: it may still be another player’s turn."
 msgstr "После чужого сброса прослушайте кость и просмотрите список ответов. Пас означает отказ от этой кости, а не выход из раздачи или признание поражения. Если все пасуют, следующий игрок берёт кость. Несколько пасов подряд не означают, что вы каждый раз должны добирать: ход всё ещё может принадлежать другому."
@@ -7374,7 +7386,7 @@ msgstr "Разрешить пересдачу с четырьмя девятка
 msgid "Allow a shared victory"
 msgstr "Разрешить совместную победу"
 
-#: games/billiards.rb:74
+#: games/billiards.rb:77
 msgid "Allow an equalizing inning"
 msgstr "Разрешить уравнивающий подход"
 
@@ -7736,7 +7748,7 @@ msgstr "Ответы скрыты до завершения ввода. Ввод
 msgid "Ante in five-card draw"
 msgstr "Анте в пятикарточном дро-покере"
 
-#: games/cash_auction.rb:44
+#: games/cash_auction.rb:45
 msgid "Ante paid by each player"
 msgstr "Начальный взнос каждого игрока"
 
@@ -8586,7 +8598,7 @@ msgstr "Шар 1, жёлтый"
 msgid "Ball 2, red"
 msgstr "Шар 2, красный"
 
-#: games/billiards.rb:77
+#: games/billiards.rb:80
 msgid "Ball layout"
 msgstr "Расстановка шаров"
 
@@ -8633,7 +8645,7 @@ msgstr "Шар для установки"
 msgid "Balls on the table"
 msgstr "Шары на столе"
 
-#: games/billiards.rb:38
+#: games/billiards.rb:41
 msgid "Balls remaining: %{count}"
 msgstr "Осталось шаров: %{count}"
 
@@ -8670,11 +8682,11 @@ msgctxt "cat_head_tail"
 msgid "Bank %{points} points"
 msgstr "Записать %{points} очков"
 
-#: games/billiards.rb:57 lib/billiards/match_presentation.rb:105
+#: games/billiards.rb:60 lib/billiards/match_presentation.rb:105
 msgid "Bank Pool: 15 balls"
 msgstr "Банк-пул: 15 шаров"
 
-#: games/billiards.rb:56 lib/billiards/match_presentation.rb:105
+#: games/billiards.rb:59 lib/billiards/match_presentation.rb:105
 msgid "Bank Pool: 9 balls"
 msgstr "Банк-пул: 9 шаров"
 
@@ -9004,7 +9016,7 @@ msgstr "Большой блайнд"
 msgid "Billiards"
 msgstr "Бильярд"
 
-#: games/billiards.rb:48
+#: games/billiards.rb:51
 msgid "Billiards discipline"
 msgstr "Дисциплина бильярда"
 
@@ -9045,7 +9057,7 @@ msgstr "Чёрные %{black}; белые %{white}, включая коми."
 msgid "Black chest"
 msgstr "Чёрный сундук"
 
-#: games/cash_auction.rb:48
+#: games/cash_auction.rb:49
 msgid "Black chest probability in percent (5 to 10)"
 msgstr "Вероятность чёрного сундука в процентах (от 5 до 10)"
 
@@ -9061,7 +9073,7 @@ msgstr "Чёрный шар забит при разбое. Тот же игро
 msgid "Black stone"
 msgstr "Чёрный камень"
 
-#: games/billiards.rb:59 games/generated/rulebooks/billiards.rb:69 lib/billiards/match_presentation.rb:106
+#: games/billiards.rb:62 games/generated/rulebooks/billiards.rb:69 lib/billiards/match_presentation.rb:106
 msgid "Blackball"
 msgstr "Блэкбол"
 
@@ -9996,11 +10008,11 @@ msgstr "Карты: %{cards}."
 msgid "Cards: %{cards}. Total: %{total}."
 msgstr "Карты: %{cards}. Сумма: %{total}."
 
-#: games/billiards.rb:62 lib/billiards/match_presentation.rb:107
+#: games/billiards.rb:65 lib/billiards/match_presentation.rb:107
 msgid "Carom: one cushion"
 msgstr "Карамболь: однобортный"
 
-#: games/billiards.rb:61 lib/billiards/match_presentation.rb:106
+#: games/billiards.rb:64 lib/billiards/match_presentation.rb:106
 msgid "Carom: straight rail"
 msgstr "Карамболь: свободная партия"
 
@@ -10008,7 +10020,7 @@ msgstr "Карамболь: свободная партия"
 msgid "Carom: straight rail, one cushion and three cushions"
 msgstr ""
 
-#: games/billiards.rb:63 lib/billiards/match_presentation.rb:107
+#: games/billiards.rb:66 lib/billiards/match_presentation.rb:107
 msgid "Carom: three cushions"
 msgstr "Карамболь: трёхбортный"
 
@@ -10543,6 +10555,10 @@ msgid "Choose"
 msgstr "Выбрать"
 
 #: games/generated/rulebooks/cash_auction.rb:45
+msgid "Choose 8–32 regular rounds instead of eight, and 1–5 seconds between calls instead of two. An auction without all-in closes after three such intervals without a higher offer. You can also raise the black-chest chance from 5% up to 10%. Bots bid within a budget based on public balances and choose an answer at random from the four choices."
+msgstr "Вместо восьми обычных раундов можно выбрать от 8 до 32, а вместо двух секунд между объявлениями — от 1 до 5. Если никто не идёт ва-банк, торги закрываются после трёх таких интервалов без повышения. Вероятность чёрного сундука можно увеличить с 5 % до 10 %. Боты делают ставки в пределах бюджета, основанного на открытых балансах, а ответ выбирают случайно из четырёх вариантов."
+
+#: games/generated/rulebooks/cash_auction.rb:45
 msgid "Choose 8–32 regular rounds instead of eight, and 1–5 seconds between calls instead of two. The auction closes after three such intervals without a higher offer. You can also raise the black-chest chance from 5% up to 10%. Bots bid within a budget based on public balances and choose an answer at random from the four choices."
 msgstr ""
 
@@ -10965,7 +10981,7 @@ msgstr "Выберите от 1 до 100 вращений."
 msgid "Choose from 1 to 20 rounds."
 msgstr "Выбери от 1 до 20 раундов."
 
-#: games/cash_auction.rb:58
+#: games/cash_auction.rb:59
 msgid "Choose from 1 to 5 seconds between auction calls."
 msgstr "Выберите от 1 до 5 секунд между объявлениями."
 
@@ -10981,11 +10997,11 @@ msgstr "Выберите от 1 до 6 столбцов счёта."
 msgid "Choose from 10 to 10000 starting chips."
 msgstr "Выберите от 10 до 10000 начальных фишек."
 
-#: games/cash_auction.rb:53
+#: games/cash_auction.rb:54
 msgid "Choose from 2 to 8 players."
 msgstr "Выберите от 2 до 8 игроков."
 
-#: games/cash_auction.rb:57
+#: games/cash_auction.rb:58
 msgid "Choose from 8 to 32 auction rounds."
 msgstr "Выберите от 8 до 32 раундов торгов."
 
@@ -11560,7 +11576,7 @@ msgstr "Водоснабжающая компания"
 msgid "Compañía Distribución de electricidad"
 msgstr "Электроснабжающая компания"
 
-#: games/billiards.rb:97
+#: games/billiards.rb:100
 msgid "Competitive billiards requires exactly two players."
 msgstr "Соревновательный бильярд требует ровно двух игроков."
 
@@ -11620,7 +11636,7 @@ msgstr "Завершение последовательности захвата
 msgid "Computer %{number}"
 msgstr "Бот %{number}"
 
-#: games/billiards.rb:83
+#: games/billiards.rb:86
 msgid "Computer aiming strength"
 msgstr "Уровень прицеливания компьютера"
 
@@ -12599,11 +12615,11 @@ msgstr "Свои слова можно добавлять только в оди
 msgid "Cutthroat for three players"
 msgstr ""
 
-#: games/billiards.rb:95
+#: games/billiards.rb:98
 msgid "Cutthroat requires exactly three players."
 msgstr "Для Cutthroat нужны ровно три игрока."
 
-#: games/billiards.rb:58 lib/billiards/match_presentation.rb:105
+#: games/billiards.rb:61 lib/billiards/match_presentation.rb:105
 msgid "Cutthroat: three players"
 msgstr "Cutthroat: три игрока"
 
@@ -14205,7 +14221,7 @@ msgstr "Восток–Запад"
 msgid "East-West vulnerable"
 msgstr "Восток–Запад в зоне"
 
-#: games/axel_pong.rb:48 games/billiards.rb:84 games/mania_pisania.rb:74
+#: games/axel_pong.rb:48 games/billiards.rb:87 games/mania_pisania.rb:74
 msgid "Easy"
 msgstr "Лёгкий"
 
@@ -14569,11 +14585,11 @@ msgstr "Английский (США), межстрочный брайль"
 msgid "English (US), mathematical text"
 msgstr "Английский (США), математический текст"
 
-#: games/billiards.rb:60 lib/billiards/match_presentation.rb:106
+#: games/billiards.rb:63 lib/billiards/match_presentation.rb:106
 msgid "English Billiards"
 msgstr "Английский бильярд"
 
-#: games/billiards.rb:69
+#: games/billiards.rb:72
 msgid "English Billiards match limit"
 msgstr "Английский бильярд: условие завершения"
 
@@ -14604,6 +14620,10 @@ msgstr "Английский Брайль без сокращений"
 #: lib/mania_pisania/braille_catalog.rb:49
 msgid "English, grade 3"
 msgstr "Английский, третья степень"
+
+#: games/cash_auction/actions.rb:111
+msgid "Enter %{maximum} or A to go all-in."
+msgstr "Введите %{maximum} или A, чтобы пойти ва-банк."
 
 #: games/generated/rulebooks/mahjong.rb:456
 msgid "Enter (Solitaire): mark the first tile or remove a matching second tile."
@@ -14663,7 +14683,7 @@ msgstr "Enter выполняет выбранное действие. I чита
 msgid "Enter always operates the roll field: before the first roll it rolls all dice; afterwards it rerolls selected dice. If none are selected, or the third roll has been used, Enter opens the scoring list. Arrow keys choose a category and Enter saves it; Escape cancels the choice."
 msgstr "Enter всегда действует на поле броска: сначала бросает все кубики, затем перебрасывает выбранные. Если ничего не выбрано или использован третий бросок, Enter открывает список категорий. Стрелки выбирают категорию, Enter записывает её; Escape отменяет выбор."
 
-#: games/cash_auction/actions.rb:109
+#: games/cash_auction/actions.rb:112
 msgid "Enter an amount above %{minimum} and at most %{maximum}, or A for all-in."
 msgstr "Введите сумму больше %{minimum}, но не больше %{maximum}, или A для ва-банка."
 
@@ -15572,7 +15592,7 @@ msgctxt "categories"
 msgid "Field of science"
 msgstr "Область науки"
 
-#: games/billiards.rb:80
+#: games/billiards.rb:83
 msgid "Fifteen-ball triangle, without competition rules"
 msgstr "Треугольник из пятнадцати шаров, без соревновательных правил"
 
@@ -16367,7 +16387,7 @@ msgstr "Четвёртый сет."
 msgid "Frankfurt airport"
 msgstr "Аэропорт Франкфурта"
 
-#: games/billiards.rb:64 games/generated/rulebooks/billiards.rb:94 lib/billiards/match_presentation.rb:107
+#: games/billiards.rb:67 games/generated/rulebooks/billiards.rb:94 lib/billiards/match_presentation.rb:107
 msgid "Free Pyramid"
 msgstr "Свободная пирамида"
 
@@ -17087,7 +17107,7 @@ msgstr "Раздачи продолжаются со сменой дилера, 
 msgid "Hands or minutes between blind increases"
 msgstr "Раздач или минут между повышениями блайндов"
 
-#: games/axel_pong.rb:48 games/billiards.rb:85 games/mania_pisania.rb:74
+#: games/axel_pong.rb:48 games/billiards.rb:88 games/mania_pisania.rb:74
 msgid "Hard"
 msgstr "Сложный"
 
@@ -20498,7 +20518,7 @@ msgstr "Медицинское оборудование"
 msgid "Medieval bluff: one random card"
 msgstr "Средневековый блеф: одна случайная карта"
 
-#: games/billiards.rb:84 games/mania_pisania.rb:74
+#: games/billiards.rb:87 games/mania_pisania.rb:74
 msgid "Medium"
 msgstr "Средний"
 
@@ -20720,7 +20740,7 @@ msgstr "Месяц"
 msgid "More about the modes:"
 msgstr "Подробнее о режимах:"
 
-#: games/billiards.rb:82
+#: games/billiards.rb:85
 msgid "More accurate physics (480 steps per second)"
 msgstr "Более точная физика (480 шагов в секунду)"
 
@@ -21196,7 +21216,7 @@ msgstr "Следующий сет"
 msgid "Nightmare"
 msgstr "Кошмарный"
 
-#: games/billiards.rb:79
+#: games/billiards.rb:82
 msgid "Nine-ball diamond, without competition rules"
 msgstr "Ромб из девяти шаров, без соревновательных правил"
 
@@ -21346,11 +21366,11 @@ msgstr "Ни один шар не забит."
 msgid "No battle has been decided yet."
 msgstr "Ещё ни одно сражение не завершено."
 
-#: games/cash_auction/presentation.rb:107
+#: games/cash_auction/presentation.rb:109
 msgid "No bid was made. The pool carries over to the next round."
 msgstr "Ставок не было. Банк переходит в следующий раунд."
 
-#: games/cash_auction/presentation.rb:155
+#: games/cash_auction/presentation.rb:157
 msgid "No bids yet"
 msgstr "Ставок пока нет"
 
@@ -21992,7 +22012,7 @@ msgstr "Число от 1 до 999."
 msgid "Number of attempts"
 msgstr "Количество попыток"
 
-#: games/cash_auction.rb:46
+#: games/cash_auction.rb:47
 msgid "Number of auction rounds (8 to 32)"
 msgstr "Число раундов торгов (от 8 до 32)"
 
@@ -22030,7 +22050,7 @@ msgstr "Число матчей по умолчанию 1, диапазон 1–
 msgid "Number of rounds"
 msgstr "Количество раундов"
 
-#: games/billiards.rb:76
+#: games/billiards.rb:79
 msgid "Number of social rounds (1 to 30)"
 msgstr "Число товарищеских раундов (1–30)"
 
@@ -22285,7 +22305,7 @@ msgstr "Один прыжок или целая последовательнос
 msgid "One letter, several kinds of answer"
 msgstr "Одна буква, несколько категорий"
 
-#: games/billiards.rb:78
+#: games/billiards.rb:81
 msgid "One object ball"
 msgstr "Один прицельный шар"
 
@@ -22450,7 +22470,7 @@ msgstr "Открыть таблицу счёта"
 msgid "Open tournament"
 msgstr "Открыть турнир"
 
-#: games/cash_auction/presentation.rb:138 games/cash_auction/presentation.rb:160
+#: games/cash_auction/presentation.rb:140 games/cash_auction/presentation.rb:162
 msgid "Open your black chests before the final result."
 msgstr "Откройте свои чёрные сундуки перед подведением итогов."
 
@@ -22946,7 +22966,7 @@ msgstr "Пас"
 msgid "Pass in the auction"
 msgstr "Спасовать на аукционе"
 
-#: games/cash_auction/presentation.rb:99
+#: games/cash_auction/presentation.rb:101
 msgid "Pass penalty paid into the pool: %{amount}."
 msgstr "В банк поступает штраф за пас: %{amount}."
 
@@ -23097,7 +23117,7 @@ msgstr "Штраф за неоплаченную ставку"
 msgid "Penalty for an unpaid bid has two settings. Medieval bluff, the default, discards one random card from the nonpayer's hand. Full penalty gives one random hand card to each other player, in order starting after the nonpayer, until everyone has received one or the hand is empty. Neither setting lets the nonpayer keep the auctioned card."
 msgstr "Для штрафа за неоплаченную ставку доступны два варианта. При используемом по умолчанию «Средневековом блефе» с руки неплательщика сбрасывается одна случайная карта. При полном штрафе каждый другой игрок по очереди, начиная со следующего после неплательщика, получает случайную карту с его руки, пока все не возьмут по карте или рука не опустеет. Ни в одном из вариантов неплательщик не получает выставленную на аукцион карту."
 
-#: games/cash_auction.rb:45
+#: games/cash_auction.rb:46
 msgid "Penalty for every third pass"
 msgstr "Штраф за каждый третий пас"
 
@@ -23727,7 +23747,7 @@ msgstr "Изменения очков"
 msgid "Point penalty: %{points}."
 msgstr "Снято очков: %{points}."
 
-#: games/billiards.rb:70
+#: games/billiards.rb:73
 msgid "Points"
 msgstr "Очки"
 
@@ -23743,7 +23763,7 @@ msgstr "Очки за контракт"
 msgid "Points in cards are not the same as the score you receive"
 msgstr "Стоимость карт отличается от начисляемого счёта"
 
-#: games/billiards.rb:67
+#: games/billiards.rb:70
 msgid "Points needed to win (1 to 1000)"
 msgstr "Очки для победы (1–1000)"
 
@@ -23766,7 +23786,7 @@ msgstr "Очки, споры и конец"
 msgid "Points, without betting"
 msgstr "Очки без ставок"
 
-#: games/billiards.rb:36
+#: games/billiards.rb:39
 msgid "Points: %{points}"
 msgstr "Очки: %{points}"
 
@@ -23907,23 +23927,23 @@ msgstr "Движение, возвраты, поведение ботов и п�
 msgid "Pool follows WPA Rules and Regulations effective 21 October 2026; snooker and English billiards use WPBSA 2024–25, carom uses UMB rules, and Free Pyramid uses IPC’s 2025 revision. Cutthroat and Social billiards use the club rules described here. Table order replaces a physical lag. Agreement to rerack does not itself award a game win. The snooker referee calls automatic Miss only with a direct path; entirely obstructed attempts remain ordinary fouls without restoration."
 msgstr ""
 
-#: games/billiards.rb:53 games/generated/rulebooks/billiards.rb:51 lib/billiards/match_presentation.rb:104
+#: games/billiards.rb:56 games/generated/rulebooks/billiards.rb:51 lib/billiards/match_presentation.rb:104
 msgid "Pool: 10-ball"
 msgstr "Пул: десятка"
 
-#: games/billiards.rb:54 lib/billiards/match_presentation.rb:104
+#: games/billiards.rb:57 lib/billiards/match_presentation.rb:104
 msgid "Pool: 14.1 continuous"
 msgstr "Пул: 14.1 с продолжением"
 
-#: games/billiards.rb:50 games/generated/rulebooks/billiards.rb:44 lib/billiards/match_presentation.rb:103
+#: games/billiards.rb:53 games/generated/rulebooks/billiards.rb:44 lib/billiards/match_presentation.rb:103
 msgid "Pool: 8-ball"
 msgstr "Пул-8"
 
-#: games/billiards.rb:51 games/generated/rulebooks/billiards.rb:48 lib/billiards/match_presentation.rb:103
+#: games/billiards.rb:54 games/generated/rulebooks/billiards.rb:48 lib/billiards/match_presentation.rb:103
 msgid "Pool: 9-ball"
 msgstr "Пул-9"
 
-#: games/billiards.rb:55 lib/billiards/match_presentation.rb:104
+#: games/billiards.rb:58 lib/billiards/match_presentation.rb:104
 msgid "Pool: One Pocket"
 msgstr "Пул: в одну лузу"
 
@@ -24019,7 +24039,7 @@ msgstr "Игровая комната использует эту версию 3
 msgid "Power in percent (0.1 to 100)"
 msgstr "Сила в процентах (от 0,1 до 100)"
 
-#: games/billiards.rb:258
+#: games/billiards.rb:261
 msgid "Practice finished."
 msgstr "Тренировка завершена."
 
@@ -24027,7 +24047,7 @@ msgstr "Тренировка завершена."
 msgid "Practice regularly. Start with short sessions lasting around 10-15 minutes."
 msgstr "Тренируйтесь регулярно. Начните с коротких занятий по 10–15 минут."
 
-#: games/billiards.rb:81
+#: games/billiards.rb:84
 msgid "Practice shot limit (1 to 500)"
 msgstr "Лимит тренировочных ударов (от 1 до 500)"
 
@@ -24997,7 +25017,7 @@ msgstr "«Гонка»: все соревнуются в угадывании о
 msgid "Rack positions exchanged."
 msgstr "Позиции стоек обменяны."
 
-#: games/billiards.rb:65
+#: games/billiards.rb:68
 msgid "Racks or frames needed to win (1 to 25)"
 msgstr "Число партий или фреймов для победы (1–25)"
 
@@ -25841,7 +25861,7 @@ msgstr "Запрашиваемые участки игрока %{player}"
 msgid "Requested rank: %{rank}"
 msgstr "Заказанное достоинство: %{rank}"
 
-#: games/billiards.rb:73
+#: games/billiards.rb:76
 msgid "Require baulk crossing during long English billiards breaks"
 msgstr "Требовать пересечения линии болкера при длинных сериях в английском бильярде"
 
@@ -26606,7 +26626,7 @@ msgstr "Раунд %{round}; судья: %{judge}"
 msgid "Round %{round}; letter %{letter}; judge: %{judge}"
 msgstr "Раунд %{round}; буква %{letter}; судья: %{judge}"
 
-#: games/cash_auction/presentation.rb:156
+#: games/cash_auction/presentation.rb:158
 msgid "Round %{round}; pool: %{pool}; highest bid: %{amount}; leader: %{player}."
 msgstr "Раунд %{round}; банк: %{pool}; самая высокая ставка: %{amount}; лидер: %{player}."
 
@@ -27352,7 +27372,7 @@ msgstr "Второй сет."
 msgid "Second talon"
 msgstr "Второй прикуп"
 
-#: games/cash_auction.rb:47
+#: games/cash_auction.rb:48
 msgid "Seconds between auction calls (1 to 5)"
 msgstr "Секунды между объявлениями (от 1 до 5)"
 
@@ -28450,11 +28470,11 @@ msgstr "На правом берегу лежат гладкие камешки.
 msgid "Snooker"
 msgstr "Снукер"
 
-#: games/billiards.rb:52 lib/billiards/match_presentation.rb:103
+#: games/billiards.rb:55 lib/billiards/match_presentation.rb:103
 msgid "Snooker: 15 reds"
 msgstr "Снукер: 15 красных"
 
-#: games/billiards.rb:49 lib/billiards/match_presentation.rb:103
+#: games/billiards.rb:52 lib/billiards/match_presentation.rb:103
 msgid "Social billiards"
 msgstr "Товарищеский бильярд"
 
@@ -28462,7 +28482,7 @@ msgstr "Товарищеский бильярд"
 msgid "Social billiards is for two to eight players, including computer players. Choose a total of 1 to 30 rounds. The match ends after that many rounds have been settled; the player with the most round wins wins the match. If several players share the most round wins, the match is a draw."
 msgstr ""
 
-#: games/billiards.rb:92
+#: games/billiards.rb:95
 msgid "Social billiards requires 2 to 8 players."
 msgstr "Для товарищеского бильярда нужно от 2 до 8 игроков."
 
@@ -29060,11 +29080,11 @@ msgstr "Начальные кости на игрока (1–5)"
 msgid "Starting game"
 msgstr "Начало партии"
 
-#: games/cash_auction.rb:43
+#: games/cash_auction.rb:44
 msgid "Starting points (10 to 1000000)"
 msgstr "Начальные очки (от 10 до 1000000)"
 
-#: games/cash_auction.rb:54
+#: games/cash_auction.rb:55
 msgid "Starting points must be from 10 to 1000000."
 msgstr "Начальное число очков должно быть от 10 до 1000000."
 
@@ -30164,7 +30184,7 @@ msgstr "Время на ответы должно быть от %{minimum} до 
 msgid "The ante must be positive and cannot exceed the starting stack."
 msgstr "Анте должно быть положительным и не превышать начальный стек."
 
-#: games/cash_auction.rb:55
+#: games/cash_auction.rb:56
 msgid "The ante must be positive and no greater than the starting points."
 msgstr "Начальный взнос должен быть положительным и не превышать начальное число очков."
 
@@ -30252,7 +30272,7 @@ msgstr "Участник аукциона начинает первый взят
 msgid "The bidder leads the first trick. Everyone taking part in the deal plays one card, and the trick's winner leads next. A trick contains two cards with two players, three in the individual three- or four-player variants, or four in teams. You must follow the first card's suit if possible. If you have none of that suit, you must use a trump if a trump suit has been established and you hold one. Only otherwise may you discard any card. You do not have to beat a higher card merely because you can. These rules also apply when your partner is winning the trick."
 msgstr "Первым ходит победитель торгов. Каждый участник раздачи кладёт по одной карте, а следующую взятку начинает победитель предыдущей. При игре вдвоём во взятке две карты, в индивидуальных вариантах на троих и четверых — три, а в командном — четыре. Если у вас есть масть первой карты, необходимо ходить в масть. Если её нет, нужно сыграть козырем, когда козырная масть уже установлена и у вас есть такая карта. Только в остальных случаях можно сбросить любую карту. Перебивать старшей картой лишь потому, что она у вас есть, не обязательно. Эти правила действуют и тогда, когда взятку выигрывает ваш партнёр."
 
-#: games/billiards.rb:282
+#: games/billiards.rb:285
 msgid "The billiards position or input has changed. Check the current table and try again."
 msgstr "Позиция шаров или параметры удара изменились. Проверьте стол и повторите попытку."
 
@@ -30260,7 +30280,7 @@ msgstr "Позиция шаров или параметры удара изме�
 msgid "The bingo caller is drawing balls."
 msgstr "Идёт розыгрыш шаров бинго."
 
-#: games/cash_auction.rb:59
+#: games/cash_auction.rb:60
 msgid "The black chest probability must be from 5 to 10 percent."
 msgstr "Вероятность чёрного сундука должна быть от 5 до 10 процентов."
 
@@ -30344,7 +30364,7 @@ msgstr "Категории: страна, город, имя, животное, 
 msgid "The categories for the next round are being drawn."
 msgstr "Выбираются категории следующего раунда."
 
-#: games/cash_auction/presentation.rb:153 games/cash_auction/presentation.rb:86
+#: games/cash_auction/presentation.rb:155 games/cash_auction/presentation.rb:86
 msgid "The category wheel is spinning."
 msgstr "Колесо категорий вращается."
 
@@ -31007,6 +31027,10 @@ msgid "The highest average across the five shots wins. Each ten percentage point
 msgstr "Побеждает наибольшая средняя оценка пяти выстрелов. Каждые десять процентных пунктов преимущества с округлением вверх приносят одно перо от соперника."
 
 #: games/generated/rulebooks/cash_auction.rb:20
+msgid "The highest bidder cannot pass: their offer is binding. Their bid field remains available, so they may raise again before the auction closes. If the auction ends with the third call, the last accepted highest offer wins."
+msgstr "Лидер торгов не может пасовать: его ставка обязательна. Поле суммы остаётся доступным, поэтому до конца торгов можно ещё раз повысить свою ставку. Если торги заканчиваются третьим объявлением, выигрывает последняя принятая самая высокая ставка."
+
+#: games/generated/rulebooks/cash_auction.rb:20
 msgid "The highest bidder cannot pass: their offer is binding. Their bid field remains available, so they may raise again before the auction closes. The last accepted highest offer wins."
 msgstr ""
 
@@ -31209,7 +31233,7 @@ msgstr "Лидеры равны. Будет сыгран ещё полный ц�
 msgid "The lead is tied. Another round will be played: %{players}."
 msgstr "Несколько игроков делят первое место. Будет сыгран ещё раунд: %{players}."
 
-#: games/cash_auction/presentation.rb:141
+#: games/cash_auction/presentation.rb:143
 msgid "The leaders are tied. An extra round will decide the match."
 msgstr "Лидеры набрали поровну. Дополнительный раунд определит исход матча."
 
@@ -31337,7 +31361,7 @@ msgstr "Матч заканчивается после раунда, в кото
 msgid "The match had not started. The remaining participants share first place."
 msgstr "Матч ещё не начался. Остальные участники делят первое место."
 
-#: games/billiards.rb:259
+#: games/billiards.rb:262
 msgid "The match is tied, %{score}."
 msgstr "Матч завершился вничью, %{score}."
 
@@ -31357,7 +31381,7 @@ msgstr "Стол матча открыт."
 msgid "The match target is 1 to 25 game wins. Adjustable point targets range from 1 to 1000; English time limits range from 1 to 180 minutes."
 msgstr ""
 
-#: games/billiards.rb:100
+#: games/billiards.rb:103
 msgid "The match target must be from 1 to 25."
 msgstr "Цель матча должна быть от 1 до 25."
 
@@ -31428,7 +31452,7 @@ msgstr "Число матчей должно быть от 1 до 10."
 msgid "The number of rounds must be from 1 to 100."
 msgstr "Число раздач должно быть от 1 до 100."
 
-#: games/billiards.rb:93
+#: games/billiards.rb:96
 msgid "The number of rounds must be from 1 to 30."
 msgstr "Число раундов должно быть от 1 до 30."
 
@@ -31543,7 +31567,7 @@ msgstr "Участник уже вошёл в матч."
 msgid "The partner choice could not be confirmed. Refresh to check its status."
 msgstr "Не удалось подтвердить выбор напарника. Обновите экран, чтобы проверить результат."
 
-#: games/cash_auction.rb:56
+#: games/cash_auction.rb:57
 msgid "The pass penalty must be from 0 to 1000000."
 msgstr "Штраф за пас должен быть от 0 до 1000000."
 
@@ -31631,7 +31655,7 @@ msgstr "Игровое поле шириной 25 шагов. По умолча�
 msgid "The playing area is 25 steps wide. Each player hears their own end on the right and the opponent's end on the left. This listening perspective is the same for both players: your own end is always on the right."
 msgstr "Игровое поле шириной 25 шагов. Каждый игрок слышит свой конец справа и конец противника слева. Эта перспектива прослушивания одинакова для обоих игроков: ваш конец всегда справа."
 
-#: games/billiards.rb:104
+#: games/billiards.rb:107
 msgid "The point target must be from 1 to 1000."
 msgstr "Целевой счёт должен быть от 1 до 1000."
 
@@ -31643,7 +31667,7 @@ msgstr "Победитель розыгрыша очка получает пят
 msgid "The pond stretches out before you."
 msgstr "Перед тобой раскинулся пруд."
 
-#: games/billiards.rb:110
+#: games/billiards.rb:113
 msgid "The practice shot limit must be from 1 to 500."
 msgstr "Лимит ударов должен быть от 1 до 500."
 
@@ -31731,7 +31755,7 @@ msgstr "Гонка ровно на 1000 миль"
 msgid "The rack has the 9-ball on the foot spot and the 1-ball at the front. A break that pots nothing must send four object balls to cushions. The three-ball break rule also requires at least three different balls to be pocketed or cross the head string. If it fails without a foul, the opponent accepts the position or returns the shot; a potted 9-ball is spotted. Only a returned breaker may then push out. After an otherwise legal break, the second shot may be a push-out, declared with P: hitting the lowest ball and reaching a cushion are suspended. After a legal push-out the opponent chooses who plays next."
 msgstr "В ромбе девятка стоит на точке, единица спереди. Разбитие без забития должно довести четыре шара до бортов. Правило трёх шаров дополнительно требует минимум три разных забитых шара или пересечения линии дома. Если оно нарушено без другого фола, соперник принимает позицию или возвращает удар; забитая девятка выставляется. Push-out тогда разрешён лишь разбивающему, которому вернули удар. После правильного разбития второй удар может быть push-out, объявленным через P: требования первого касания младшего шара и борта отменяются. После правильного push-out соперник выбирает следующего игрока."
 
-#: games/billiards.rb:460
+#: games/billiards.rb:463
 msgid "The rack or frame is tied. Score: %{score}."
 msgstr "Ничья в партии или фрейме. Счёт: %{score}."
 
@@ -32365,18 +32389,18 @@ msgstr "Три числовые масти — символы, бамбуки и
 msgid "The tiles have been dealt."
 msgstr "Фишки розданы."
 
-#: games/billiards.rb:449
+#: games/billiards.rb:452
 msgid "The time limit has been reached."
 msgstr "Время игры истекло."
 
-#: games/billiards.rb:107
+#: games/billiards.rb:110
 msgid "The time limit must be from 1 to 180 minutes."
 msgstr "Лимит времени должен быть от 1 до 180 минут."
 
 msgid "The time to accept this match has expired."
 msgstr "Время принятия предложения матча истекло."
 
-#: games/billiards.rb:448
+#: games/billiards.rb:451
 msgid "The timed frame has started."
 msgstr "Началась партия с ограничением времени."
 
@@ -33442,7 +33466,7 @@ msgstr "В этом серверном тесте поле ограничено 
 msgid "This sheet: %{points}."
 msgstr "Очков в этой таблице: %{points}."
 
-#: games/billiards.rb:281 lib/game_surfaces/billiards_surface.rb:201 lib/game_surfaces/billiards_surface.rb:428
+#: games/billiards.rb:284 lib/game_surfaces/billiards_surface.rb:201 lib/game_surfaces/billiards_surface.rb:428
 msgid "This shot could not be simulated. The table has not changed."
 msgstr "Не удалось рассчитать этот удар. Стол не изменился."
 
@@ -33710,7 +33734,7 @@ msgstr "Кости в раскладе"
 msgid "Tiles left: %{count}."
 msgstr "Осталось костей: %{count}."
 
-#: games/billiards.rb:70
+#: games/billiards.rb:73
 msgid "Time"
 msgstr "Время"
 
@@ -33752,7 +33776,7 @@ msgstr "Время вышло. Хозяин стола проверяет ито
 msgid "Time limit"
 msgstr "Ограничение времени"
 
-#: games/billiards.rb:71
+#: games/billiards.rb:74
 msgid "Time limit in minutes (1 to 180)"
 msgstr "Лимит времени в минутах (1–180)"
 
@@ -33822,6 +33846,10 @@ msgstr ""
 #: games/generated/rulebooks/poker.rb:59
 msgid "To exchange cards, browse them with the arrows and mark each one with Shift+Enter. Leave the selection on one of the marked cards and press Enter to exchange them together. If you press Enter on an unmarked card, that card is included too. With no cards marked, Enter exchanges just the selected card."
 msgstr ""
+
+#: games/generated/rulebooks/cash_auction.rb:19
+msgid "To go all-in while you still have points, type A in the bid field and press Enter. You commit every remaining point, with earlier bid payments this round counted in the total offer. You can also type that total amount instead of A. All-in immediately closes the auction and wins the question or black chest, even if its amount does not exceed the current highest offer. Nobody can raise after it."
+msgstr "Если у вас ещё остались очки, можно пойти ва-банк: введите A в поле суммы и нажмите Enter. Вы отдаёте все оставшиеся очки; к общей ставке добавляются и очки, уже внесённые вами в этих торгах. Вместо A можно ввести эту общую сумму. Ва-банк немедленно завершает торги и даёт вам вопрос или чёрный сундук, даже если сумма не превышает текущую самую высокую ставку. После этого повысить ставку уже нельзя."
 
 #: games/generated/rulebooks/cash_auction.rb:19
 msgid "To go all-in, type A in the bid field and press Enter. This commits your entire available balance, adding any earlier bid payment to give your total offer. The offer still has to beat the highest bid."
@@ -37086,7 +37114,7 @@ msgstr "У вас нет подходящей для розыгрыша карт
 msgid "You have no playable tile."
 msgstr "У вас нет подходящей кости для хода."
 
-#: games/cash_auction/actions.rb:108
+#: games/cash_auction/actions.rb:110
 msgid "You have no points available to raise the bid."
 msgstr "Вам не хватает очков, чтобы повысить ставку."
 
@@ -37721,6 +37749,10 @@ msgstr "Самый важный выбор — режим игры. Каждый
 #: games/poker.rb:553
 msgid "Your move."
 msgstr "Ваш ход."
+
+#: games/generated/rulebooks/cash_auction.rb:17
+msgid "Your offer is the total amount you commit to this auction, in addition to the opening payment. An ordinary offer must beat the current highest offer. Every bidder pays immediately, including players who later lose the auction or pass; those payments are not refunded."
+msgstr "Ставка — это общая сумма, которую вы отдаёте в этих торгах сверх начального взноса. Обычная ставка должна превышать текущую самую высокую ставку. Каждый участник торгов платит сразу. Очки не возвращаются, даже если позднее вы проиграете торги или спасуете."
 
 #: games/generated/rulebooks/cash_auction.rb:17
 msgid "Your offer is the total amount you commit to this auction, in addition to the opening payment. It must beat the current highest offer. Every bidder pays immediately, including players who later lose the auction or pass; those payments are not refunded."

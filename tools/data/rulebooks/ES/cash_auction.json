@@ -28,7 +28,7 @@
           "es": "Las pujas son simultáneas: no tienes que esperar un turno. Al empezar la subasta, el foco está en el campo del importe. Escribe tu oferta y pulsa Intro. Se anuncian la ronda, el bote, la mayor oferta y el jugador que va ganando."
         },
         {
-          "es": "Tras una oferta, el subastador la anuncia a la una y a las dos, con dos segundos entre avisos. A las tres, después de seis segundos sin una oferta mayor, cierra la subasta. Cada puja mayor reinicia la cuenta. Si nadie puja durante los seis segundos iniciales, termina la ronda y el bote se conserva para la siguiente."
+          "es": "Tras una puja normal, el subastador la anuncia a la una y a las dos, con dos segundos entre avisos. A las tres, después de seis segundos sin una oferta mayor, cierra la subasta. Cada puja mayor reinicia la cuenta. Si nadie puja durante los seis segundos iniciales, termina la ronda y el bote se conserva para la siguiente."
         }
       ]
     },
@@ -39,16 +39,16 @@
       },
       "paragraphs": [
         {
-          "es": "Tu oferta es el importe total que comprometes en esta subasta, aparte de la aportación inicial. Debe superar la oferta más alta. Todos los que pujan pagan en el acto, aunque después pierdan la subasta o pasen; esos puntos no se devuelven."
+          "es": "Tu oferta es el importe total que comprometes en esta subasta, aparte de la aportación inicial. Una puja normal debe superar la oferta más alta. Todos los que pujan pagan en el acto, aunque después pierdan la subasta o pasen; esos puntos no se devuelven."
         },
         {
           "es": "Al subir tu propia oferta solo pagas la diferencia. Si ofreciste 100, subir a 250 cuesta otros 150. Como máximo puedes ofrecer tu saldo restante más lo que ya hayas pagado en pujas durante esta ronda."
         },
         {
-          "es": "Para ir con todo, escribe A en el campo del importe y pulsa Intro. Así comprometes todo tu saldo disponible; las pujas que ya pagaste se suman para formar tu oferta total. También esta oferta debe superar la mayor puja."
+          "es": "Si todavía te quedan puntos, puedes ir con todo: escribe A en el campo del importe y pulsa Intro. Comprometes todos los puntos restantes; lo ya pagado en pujas durante esta ronda se suma para formar la oferta total. También puedes escribir ese importe total en vez de A. Ir con todo cierra la subasta al instante y te da la pregunta o el cofre negro, aunque el importe no supere la mayor oferta. Nadie puede volver a subirla."
         },
         {
-          "es": "Quien tiene la oferta más alta no puede pasar, porque su puja es vinculante. Sigue disponiendo del campo del importe y puede volver a subir antes del cierre. Gana la última oferta más alta que se haya aceptado."
+          "es": "Quien tiene la oferta más alta no puede pasar, porque su puja es vinculante. Sigue disponiendo del campo del importe y puede volver a subir antes del cierre. Si la subasta termina a las tres, gana la última oferta más alta aceptada."
         }
       ]
     },
@@ -148,7 +148,7 @@
           "es": "En lugar de los 1000 puntos iniciales puedes elegir cualquier número entero entre 10 y 1000000. La aportación al empezar cada ronda puede ir de 1 punto hasta todo el saldo inicial. La penalización por cada tercera vez que se pasa puede ser de 0 a 1000000. El cero anula la deducción, pero pasar sigue retirándote de esa subasta."
         },
         {
-          "es": "Puedes elegir entre 8 y 32 rondas regulares en lugar de ocho, y entre 1 y 5 segundos entre avisos en lugar de dos. La subasta se cierra después de tres de esos intervalos sin una oferta mayor. También puedes aumentar la probabilidad de un cofre negro del 5 % al 10 %. Los bots pujan dentro de un presupuesto basado en los saldos públicos y eligen al azar entre las cuatro respuestas."
+          "es": "Puedes elegir entre 8 y 32 rondas regulares en lugar de ocho, y entre 1 y 5 segundos entre avisos en lugar de dos. Si nadie va con todo, la subasta se cierra después de tres de esos intervalos sin una oferta mayor. También puedes aumentar la probabilidad de un cofre negro del 5 % al 10 %. Los bots pujan dentro de un presupuesto basado en los saldos públicos y eligen al azar entre las cuatro respuestas."
         }
       ]
     },
@@ -162,7 +162,7 @@
           "es": "Intro en el campo del importe: enviar la oferta escrita."
         },
         {
-          "es": "A y después Intro en el campo del importe: ir con todo."
+          "es": "A y después Intro en el campo del importe: ir con todo y ganar la subasta al instante."
         },
         {
           "es": "Tab y después Intro en Pasar: retirarte de la subasta actual si no vas ganando."

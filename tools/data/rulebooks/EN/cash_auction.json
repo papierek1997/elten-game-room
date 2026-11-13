@@ -28,7 +28,7 @@
           "en": "Bidding is simultaneous: you do not wait for a turn. The bid field has focus when the auction starts. Enter an amount and press Enter to make an offer. The current round, pool, highest offer and leading player are announced."
         },
         {
-          "en": "After an offer, the auctioneer calls the amount once and twice, two seconds apart. The third call, after six seconds without a new offer, closes the auction. Each higher offer starts this countdown again. If nobody bids within the opening six seconds, the round ends and the pool carries over."
+          "en": "After an ordinary offer, the auctioneer calls the amount once and twice, two seconds apart. The third call, after six seconds without a new offer, closes the auction. Each higher offer starts this countdown again. If nobody bids within the opening six seconds, the round ends and the pool carries over."
         }
       ]
     },
@@ -39,16 +39,16 @@
       },
       "paragraphs": [
         {
-          "en": "Your offer is the total amount you commit to this auction, in addition to the opening payment. It must beat the current highest offer. Every bidder pays immediately, including players who later lose the auction or pass; those payments are not refunded."
+          "en": "Your offer is the total amount you commit to this auction, in addition to the opening payment. An ordinary offer must beat the current highest offer. Every bidder pays immediately, including players who later lose the auction or pass; those payments are not refunded."
         },
         {
           "en": "When you raise your own offer, pay only the difference. For example, after offering 100, raising to 250 costs another 150. You may commit at most your remaining balance plus what you have already paid in bids this round."
         },
         {
-          "en": "To go all-in, type A in the bid field and press Enter. This commits your entire available balance, adding any earlier bid payment to give your total offer. The offer still has to beat the highest bid."
+          "en": "To go all-in while you still have points, type A in the bid field and press Enter. You commit every remaining point, with earlier bid payments this round counted in the total offer. You can also type that total amount instead of A. All-in immediately closes the auction and wins the question or black chest, even if its amount does not exceed the current highest offer. Nobody can raise after it."
         },
         {
-          "en": "The highest bidder cannot pass: their offer is binding. Their bid field remains available, so they may raise again before the auction closes. The last accepted highest offer wins."
+          "en": "The highest bidder cannot pass: their offer is binding. Their bid field remains available, so they may raise again before the auction closes. If the auction ends with the third call, the last accepted highest offer wins."
         }
       ]
     },
@@ -148,7 +148,7 @@
           "en": "You can change the starting balance from 1000 to any whole number from 10 to 1000000. The opening payment can be from 1 point up to that starting balance. The penalty for every third pass can be from 0 to 1000000; zero disables the deduction, while passing still withdraws you from that auction."
         },
         {
-          "en": "Choose 8–32 regular rounds instead of eight, and 1–5 seconds between calls instead of two. The auction closes after three such intervals without a higher offer. You can also raise the black-chest chance from 5% up to 10%. Bots bid within a budget based on public balances and choose an answer at random from the four choices."
+          "en": "Choose 8–32 regular rounds instead of eight, and 1–5 seconds between calls instead of two. An auction without all-in closes after three such intervals without a higher offer. You can also raise the black-chest chance from 5% up to 10%. Bots bid within a budget based on public balances and choose an answer at random from the four choices."
         }
       ]
     },
@@ -162,7 +162,7 @@
           "en": "Enter in the bid field: submit the amount you typed."
         },
         {
-          "en": "A then Enter in the bid field: go all-in."
+          "en": "A then Enter in the bid field: go all-in and win the auction immediately."
         },
         {
           "en": "Tab, then Enter on Pass: withdraw from the current auction while you are not leading."

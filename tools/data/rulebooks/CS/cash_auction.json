@@ -28,7 +28,7 @@
           "cs": "Nabídky podáváte současně, nečekáte na tah. Při zahájení aukce je kurzor v poli pro částku. Napiš nabídku a potvrď ji Enterem. Uslyšíš číslo kola, výši banku, nejvyšší nabídku a jméno vedoucího hráče."
         },
         {
-          "cs": "Po nabídce zazní její částka poprvé a podruhé, vždy po dvou sekundách. Třetí vyvolání po šesti sekundách bez vyšší nabídky aukci uzavře. Každá vyšší nabídka spustí odpočítávání znovu. Pokud nikdo během úvodních šesti sekund nepřihodí, kolo skončí a bank se převede dál."
+          "cs": "Po běžné nabídce zazní její částka poprvé a podruhé, vždy po dvou sekundách. Třetí vyvolání po šesti sekundách bez vyšší nabídky aukci uzavře. Každá vyšší nabídka spustí odpočítávání znovu. Pokud nikdo během úvodních šesti sekund nepřihodí, kolo skončí a bank se převede dál."
         }
       ]
     },
@@ -39,16 +39,16 @@
       },
       "paragraphs": [
         {
-          "cs": "Nabídka udává celkovou částku, kterou dáváš do této aukce navíc k počátečnímu vkladu. Musí převýšit dosud nejvyšší nabídku. Každý dražící platí okamžitě. Body se nevracejí ani hráčům, kteří později aukci prohrají nebo odstoupí."
+          "cs": "Nabídka udává celkovou částku, kterou dáváš do této aukce navíc k počátečnímu vkladu. Běžná nabídka musí převýšit dosud nejvyšší nabídku. Každý dražící platí okamžitě. Body se nevracejí ani hráčům, kteří později aukci prohrají nebo odstoupí."
         },
         {
           "cs": "Při zvýšení vlastní nabídky doplatíš pouze rozdíl. Po nabídce 100 tedy zvýšení na 250 stojí dalších 150. Nabídnout můžeš nejvýše součet zbývajících bodů a bodů, které už jsi v tomto kole zaplatil za nabídky."
         },
         {
-          "cs": "Chceš-li vsadit vše, napiš do pole částky A a stiskni Enter. Vložíš celý zbývající zůstatek; dřívější platby za nabídky se přičtou k celkové nabídce. I ta musí překonat dosud nejvyšší částku."
+          "cs": "Pokud ti ještě zbývají body, můžeš vsadit vše: do pole částky napiš A a stiskni Enter. Vsadíš všechny zbývající body; platby za dřívější nabídky v tomto kole se přičtou k celkové částce. Místo A můžeš zadat i tuto celkovou částku. Vsazením všech bodů aukci okamžitě ukončíš a získáš otázku nebo černou truhlu, i když tvá částka nepřevyšuje dosud nejvyšší nabídku. Nikdo už nemůže přihodit."
         },
         {
-          "cs": "Hráč s nejvyšší nabídkou nemůže odstoupit, protože jeho nabídka je závazná. Pole částky má dál k dispozici a před koncem aukce může nabídku ještě zvýšit. Vyhrává poslední přijatá nejvyšší nabídka."
+          "cs": "Hráč s nejvyšší nabídkou nemůže odstoupit, protože jeho nabídka je závazná. Pole částky má dál k dispozici a před koncem aukce může nabídku ještě zvýšit. Pokud aukci ukončí třetí vyvolání, vyhrává poslední přijatá nejvyšší nabídka."
         }
       ]
     },
@@ -148,7 +148,7 @@
           "cs": "Místo počátečních 1000 bodů lze nastavit celé číslo od 10 do 1000000. Povinný vklad na začátku kola může být od 1 bodu až po celý počáteční zůstatek. Pokuta za každé třetí odstoupení může být od 0 do 1000000. Nula vypne odečet, ale odstoupení tě i nadále vyřadí z právě probíhající aukce."
         },
         {
-          "cs": "Místo osmi běžných kol lze zvolit 8–32 kol a místo dvou sekund mezi vyvoláními 1–5 sekund. Aukce končí po třech takových intervalech bez vyšší nabídky. Pravděpodobnost černé truhly lze zvýšit z 5 % až na 10 %. Boti draží v rámci rozpočtu podle veřejných zůstatků a odpověď vybírají náhodně ze čtyř možností."
+          "cs": "Místo osmi běžných kol lze zvolit 8–32 kol a místo dvou sekund mezi vyvoláními 1–5 sekund. Aukce bez sázky všech bodů končí po třech takových intervalech bez vyšší nabídky. Pravděpodobnost černé truhly lze zvýšit z 5 % až na 10 %. Boti draží v rámci rozpočtu podle veřejných zůstatků a odpověď vybírají náhodně ze čtyř možností."
         }
       ]
     },
@@ -162,7 +162,7 @@
           "cs": "Enter v poli částky: odeslat napsanou nabídku."
         },
         {
-          "cs": "A a potom Enter v poli částky: vsadit vše."
+          "cs": "A a potom Enter v poli částky: vsadit vše a okamžitě vyhrát aukci."
         },
         {
           "cs": "Tab a potom Enter na tlačítku Pas: odstoupit z aktuální aukce, pokud nevedeš."

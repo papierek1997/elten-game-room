@@ -75,9 +75,9 @@ module GameRoomGames
           return false unless R.draw!(state, category: state[:drawn_category], chest: state[:drawn_chest], now: now)
           state[:category_label] = bank.category_label(state[:category])
           true
-        when 'bid'
+        when 'bid', 'all_in'
           match = /\A#{round}\|([0-9]{1,8})\z/.match(value)
-          match && R.bid!(state, seat, match[1].to_i, now: now, revision: event_id)
+          match && R.bid!(state, seat, match[1].to_i, now: now, revision: event_id, all_in: event['action'] == 'all_in')
         when 'pass'
           value == round.to_s && now < state[:auction_deadline] && R.pass!(state, seat)
         when 'auction_closed'
