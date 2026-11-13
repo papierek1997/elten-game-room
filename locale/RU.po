@@ -182,7 +182,7 @@ msgstr "%{category}: %{answer}; судья отменил оценку: %{previo
 msgid "%{category}: %{player} with %{total}"
 msgstr "%{category}: %{player} с %{total}"
 
-#: games/yahtzee.rb:194
+#: games/kosciane.rb:124 games/yahtzee.rb:194
 msgid "%{category}: %{points} points"
 msgstr "%{category}: %{points} очков"
 
@@ -233,6 +233,10 @@ msgstr "%{challenge}: %{players}."
 #: games/uno.rb:1147
 msgid "%{colour} %{value}"
 msgstr "%{colour} %{value}"
+
+#: games/kosciane.rb:36
+msgid "%{columns} score columns"
+msgstr ""
 
 #: games/bridge/presentation.rb:472
 msgid "%{contract} by %{declarer} %{result}"
@@ -5691,6 +5695,10 @@ msgstr "Выиграв гейм, пара становится уязвимой 
 msgid "A pair that has won a game is vulnerable for the rest of the rubber. Winning the rubber earns 700 if the opponents won no game and 500 if they won one."
 msgstr "Пара, выигравшая гейм, остаётся в зоне до конца роббера. Победа в роббере приносит 700 очков, если соперники не выиграли ни одного гейма, и 500, если выиграли один."
 
+#: games/generated/rulebooks/kosciane.rb:14
+msgid "A pair, two pairs of different values, three or four of a kind count only the matching dice. Straights count four or five consecutive values. A full house is three dice of one value and two of another. Five of a kind, full house and Chance count all five dice."
+msgstr ""
+
 #: lib/tournaments/local_dispatch_screen.rb:113
 msgid "A participant is already assigned to another match."
 msgstr "Участник уже назначен в другой матч."
@@ -8506,12 +8514,20 @@ msgstr "Бонус за повторные ятзи включён по умол
 msgid "Bonus tile: %{tile}"
 msgstr "Бонусная кость: %{tile}"
 
+#: games/generated/rulebooks/kosciane.rb:17
+msgid "Bonuses"
+msgstr ""
+
 #: games/generated/rulebooks/bridge.rb:42
 msgid "Bonuses and penalties are recorded above the line. They count towards your total but not towards the 100 points needed to win a game."
 msgstr "Премии и штрафы записываются над чертой. Они входят в общий счёт, но не приближают к ста очкам, нужным для гейма."
 
 msgid "Bonuses and the Joker are separate options"
 msgstr "Бонусы и джокер — отдельные настройки"
+
+#: games/kosciane.rb:151
+msgid "Bonuses: %{points}"
+msgstr ""
 
 #: games/categories.rb:1348
 msgid "Book"
@@ -10230,6 +10246,10 @@ msgstr "Выбери от 1 до 20 раундов."
 msgid "Choose from 1 to 5 starting dice."
 msgstr "Выбери от 1 до 5 начальных костей."
 
+#: games/kosciane.rb:32
+msgid "Choose from 1 to 6 score columns."
+msgstr ""
+
 #: games/roulette.rb:40
 msgid "Choose from 10 to 10000 starting chips."
 msgstr "Выберите от 10 до 10000 начальных фишек."
@@ -10737,6 +10757,10 @@ msgstr "Перестройка комбинаций — можно забира�
 #: games/generated/rulebooks/rummy.rb:27
 msgid "Combination manipulations is off by default. With it enabled, and after drawing and completing your first meld, you may take a whole combination without a joker, remove an end card from a run or a card from a set if what remains is still valid, and merge compatible combinations. The remaining combination must still contain at least three cards; existing joker assignments cannot silently change. To take a whole combination containing a joker, recover the joker first."
 msgstr "По умолчанию перестройка комбинаций отключена. Если она включена, после добора и выполнения первого выкладывания можно забирать целую комбинацию без джокера, брать крайнюю карту серии или карту группы, а также объединять совместимые комбинации. После взятия карты на столе должна остаться допустимая комбинация хотя бы из трёх карт; значение уже выложенного джокера при этом меняться не должно. Чтобы забрать целую комбинацию с джокером, сначала замените и заберите джокера."
+
+#: games/generated/rulebooks/kosciane.rb:13
+msgid "Combinations"
+msgstr ""
 
 #: games/categories/catalog.rb:81
 msgctxt "categories"
@@ -11379,6 +11403,10 @@ msgstr "Создание стола"
 #: __app.rb:923
 msgid "Creating tournament table"
 msgstr "Создание турнирного стола"
+
+#: games/kosciane.rb:123
+msgid "Cross out %{category}"
+msgstr ""
 
 #: lib/tournaments/local_tournament_overview.rb:86
 msgid "Cross-group comparison: %{player}, points %{points}, counted matches %{played}"
@@ -12638,6 +12666,10 @@ msgstr "Двойное риичи"
 msgid "Double salary when landing on Start"
 msgstr "Двойная выплата при попадании на «Старт»"
 
+#: games/kosciane.rb:25
+msgid "Double the first roll score"
+msgstr ""
+
 #: games/audio_ball.rb:31 games/audio_ball.rb:82 games/axel_pong.rb:46 games/generated/rulebooks/axel_pong.rb:20 lib/sports_rankings/screen.rb:34
 msgid "Doubles"
 msgstr "Парная игра"
@@ -13801,6 +13833,10 @@ msgstr "Enter бросает кубик или подтверждает выбр
 msgid "Enter rolls the dice. Down, then Enter saves your result."
 msgstr "Enter — бросок. Стрелка вниз, затем Enter — сохранить результат."
 
+#: games/generated/rulebooks/kosciane.rb:22
+msgid "Enter rolls the dice. Use 1 to 6 to select a die showing that face, and Shift with the same digit to keep it instead. Space reads the dice. With no dice selected, Enter opens scoring after a roll. V opens your sheet, Shift+V another player's sheet, and S reads the totals."
+msgstr ""
+
 #: games/generated/rulebooks/dice_poker.rb:18
 msgid "Enter rolls. After a throw, keys 1–6 select another die with that face to reroll; Shift+1–6 keeps it. Enter rerolls selected dice; without a selection it opens the Keep hand choice. K keeps the current hand directly. Space reads dice and selection; S reads scores. F1 lists current shortcuts, Ctrl+F1 opens rules. Chat, history and volume use shared controls."
 msgstr ""
@@ -14106,9 +14142,13 @@ msgstr "Европейское колесо имеет 0–36, американ�
 msgid "European: single zero"
 msgstr "Европейское: один ноль"
 
-#: games/roulette.rb:287
+#: games/kosciane.rb:168 games/roulette.rb:287
 msgid "Even"
 msgstr "Чётное"
+
+#: games/kosciane.rb:23
+msgid "Even and odd"
+msgstr ""
 
 #: lib/tournaments/local_fixed_team_plan_screen.rb:189
 msgid "Every assigned participant must compete for the result. Choose a mode without a permanent non-playing judge."
@@ -14575,6 +14615,10 @@ msgstr "Заполните любое число категорий и отпр�
 msgid "Fill every category on the score sheet and finish with the highest total score."
 msgstr "Заполните все категории листа и завершите игру с наибольшей суммой очков."
 
+#: games/kosciane.rb:13
+msgid "Fill your score sheet by rolling five dice."
+msgstr ""
+
 #: games/categories/catalog.rb:46
 msgid "Film"
 msgstr "Фильм"
@@ -14783,7 +14827,7 @@ msgstr "Пять кубиков, до трёх бросков"
 msgid "Five new games: Rummy, Domino, Mexican Train, Scrabble and Taboo. Each has detailed rules and keyboard help in Polish and English."
 msgstr "Пять новых игр: Рамми, Домино, Мексиканский поезд, Слово и Табу. Каждая игра имеет подробные правила и помощь по клавиатуре на польском и английском языках."
 
-#: games/dice_poker.rb:308
+#: games/dice_poker.rb:308 games/kosciane.rb:170
 msgid "Five of a kind"
 msgstr "Пять одинаковых"
 
@@ -14933,6 +14977,10 @@ msgstr "Исправлено восстановление собственных
 #: lib/game_room_changelog.rb:321
 msgid "Fixed resuming larger saved games, including Scrabble, and a case where a failed save left the game paused."
 msgstr "Исправлено возобновление крупных сохранённых партий, в том числе Scrabble, а также ошибка, из-за которой после неудачного сохранения партия оставалась приостановленной."
+
+#: games/kosciane.rb:24
+msgid "Fixed scores for combinations"
+msgstr ""
 
 #: lib/game_room_changelog.rb:322
 msgid "Fixed selecting the next table master after successive games at one table, and safeguards when switching to another table through an invitation."
@@ -15746,6 +15794,7 @@ msgstr "Го возникло в Китае. Два игрока ставят ч
 msgid "Go to jail"
 msgstr "Отправляйтесь в тюрьму"
 
+#: games/generated/rulebooks/kosciane.rb:9
 msgid "Goal"
 msgstr "Цель"
 
@@ -17671,7 +17720,7 @@ msgstr "Аэропорт имени Кеннеди"
 msgid "Kept dice from separate rolls cannot be combined into a new scoring set. If all six dice score, you have hot dice and may roll all six again while keeping the accumulated turn points. A roll with no scoring combination is a Farkle: the entire unbanked turn score is lost and the turn ends."
 msgstr "Отложенные в разных бросках кубики нельзя объединять в новую комбинацию. Если очки принесли все шесть, можно бросить все снова, сохранив накопленное за ход. Бросок без зачётной комбинации — фаркл: все незаписанные очки хода сгорают, ход заканчивается."
 
-#: games/mania_pisania.rb:73
+#: games/generated/rulebooks/kosciane.rb:21 games/mania_pisania.rb:73
 msgid "Keyboard"
 msgstr "Клавиатура"
 
@@ -20757,7 +20806,7 @@ msgstr "Наблюдатели: %{players}."
 msgid "Occupied seats, including bots"
 msgstr "Количество игроков, включая ботов"
 
-#: games/roulette.rb:287
+#: games/kosciane.rb:169 games/roulette.rb:287
 msgid "Odd"
 msgstr "Нечётное"
 
@@ -20952,6 +21001,10 @@ msgstr "Одна буква, несколько категорий"
 #: games/makao.rb:431
 msgid "One of these cards is not in your hand."
 msgstr "Одной из этих карт нет у вас на руках."
+
+#: games/generated/rulebooks/kosciane.rb:20
+msgid "One or two columns disable bonuses. Optional even and odd rows require every die to have the chosen parity. Fixed scoring replaces points for triple, small straight, large straight, full house, four of a kind and five of a kind with 20, 25, 30, 35, 40 and 50. First-roll doubling never applies to school. Strict school crosses also block future bonuses."
+msgstr ""
 
 #: games/dice_poker.rb:308 games/yahtzee.rb:28
 msgid "One pair"
@@ -24201,6 +24254,10 @@ msgstr "Заказанное достоинство: %{rank}"
 msgid "Required wins: enter a number from 1 to 99."
 msgstr "Необходимое число побед: введите число от 1 до 99."
 
+#: games/kosciane.rb:148
+msgid "Reserve: %{count}"
+msgstr ""
+
 #: lib/mania_pisania/text_library_dialog.rb:43
 msgid "Reset progress for %{title}?"
 msgstr "Сбросить прогресс для %{title}?"
@@ -24606,6 +24663,10 @@ msgstr "Повторный бросок после шестёрки"
 msgid "Roll again after a 6 is on by default. After resolving a six you get another roll, even if that six could not move a pawn. Turning it off makes a six end the turn like any other result."
 msgstr "Повторный бросок после шестёрки включён по умолчанию. После обработки шестёрки игрок бросает снова, даже если ни одна фишка не могла пойти. Если параметр отключить, шестёрка завершает ход, как любой другой результат."
 
+#: games/generated/rulebooks/kosciane.rb:12
+msgid "Roll all five dice first. You can reroll selected dice up to twice, or record a result immediately. After the third roll, you may also cross out an open cell. A cross scores nothing."
+msgstr ""
+
 #: games/yahtzee.rb:47
 msgid "Roll five dice and choose how to score them, remembering that each category can only be used once."
 msgstr "Бросай пять костей и выбирай, за что записать очки, помня, что каждую категорию можно использовать только один раз."
@@ -24618,6 +24679,10 @@ msgstr "Бросайте пять кубиков до трёх раз. Посл�
 
 msgid "Roll five dice up to three times. After every roll, the dice are sorted and all are kept. Press 1 through 6 to select one die showing that value for reroll. Repeated presses select further matching dice. Press !, @, #, $, % or ^ to keep one selected die showing 1 through 6. Enter rolls selected dice. If none are selected, Enter opens the unused scoring categories."
 msgstr "Бросайте пять кубиков до трёх раз. После броска они сортируются и все отложены. Клавиши 1–6 выбирают один кубик соответствующего значения для переброса; повторные нажатия выбирают следующие такие же. !, @, #, $, % и ^ откладывают один выбранный кубик со значением от 1 до 6. Enter перебрасывает выбранные; если их нет, открывает неиспользованные категории."
+
+#: games/kosciane.rb:20
+msgid "Roll five dice. You may reroll selected dice twice, then record one result. After the third roll you may cross out a cell."
+msgstr ""
 
 #: games/blackjack_dice.rb:246
 msgid "Roll one die"
@@ -24634,7 +24699,7 @@ msgstr "Бросить кубики"
 msgid "Roll the dice before choosing a category."
 msgstr "Бросьте кубики перед выбором категории."
 
-#: games/dice_poker.rb:147
+#: games/dice_poker.rb:147 games/kosciane.rb:130
 msgid "Roll the dice first"
 msgstr "Сначала брось кости"
 
@@ -25384,6 +25449,22 @@ msgstr "Назначить время начала турнира"
 msgid "Schiphol airport"
 msgstr "Аэропорт Схипхол"
 
+#: games/kosciane.rb:21
+msgid "School"
+msgstr ""
+
+#: games/generated/rulebooks/kosciane.rb:15
+msgid "School and reserve"
+msgstr ""
+
+#: games/kosciane.rb:26
+msgid "School crosses prevent future bonuses"
+msgstr ""
+
+#: games/generated/rulebooks/kosciane.rb:16
+msgid "School has one row for each face. Three matching dice qualify. Each die above three goes into that face's reserve. Two sixes and one reserve six qualify later, but score only twelve."
+msgstr ""
+
 #: games/scientific_war.rb:49
 msgid "Scientific War"
 msgstr "Научная война"
@@ -25433,6 +25514,10 @@ msgstr "Результат: %{result}; эталон: %{reference}. %{comparison}
 msgid "Score announcements under S are ordered from highest to lowest, with eliminated players or teams last. Their actual scores are preserved."
 msgstr "При нажатии S результаты объявляются от наибольшего к наименьшему; выбывшие игроки и команды перечисляются последними. Их фактический счёт сохраняется."
 
+#: games/kosciane.rb:22
+msgid "Score columns"
+msgstr ""
+
 msgid "Score every word formed in the move. New letter bonuses apply first, then word multipliers; multiple word multipliers multiply. A shared letter scores in each word. Covered bonuses never apply again. A blank can activate a word bonus. Using seven rack tiles in one move adds 50 points after the other calculations."
 msgstr "Засчитывайте очки за каждое слово, составленное в ходе хода. Сначала применяются бонусы за новые буквы, затем множители слова; несколько множителей умножаются друг на друга. Общая буква засчитывается для каждого слова. Покрытые бонусы больше не применяются. Пустая клетка может активировать бонус слова. Использование всех семи плиток одной раздачи добавляет 50 очков после остальных расчётов."
 
@@ -25460,6 +25545,10 @@ msgstr "Лимит очков: %{points}"
 msgctxt "cat_head_tail"
 msgid "Score limit: %{points}"
 msgstr "Лимит очков: %{points}"
+
+#: games/kosciane.rb:140
+msgid "Score sheet: %{player}"
+msgstr ""
 
 #: lib/audio_ball/audio.rb:108
 msgid "Score: %{own} to %{opponent}."
@@ -27570,6 +27659,10 @@ msgstr "Списки столов и виджет точнее показыва�
 msgid "Table master judges every round"
 msgstr "Ведущий судит каждый раунд"
 
+#: games/generated/rulebooks/kosciane.rb:19
+msgid "Table settings"
+msgstr ""
+
 #: games/generated/rulebooks/blackjack.rb:18
 msgid "Table settings and ending"
 msgstr ""
@@ -28706,6 +28799,14 @@ msgstr "Первый указанный игрок должен создать �
 #: __app.rb:826
 msgid "The first player listed in this match must create its table. Then the other players can join here."
 msgstr "Первый игрок в списке матча должен создать стол. Затем остальные могут присоединиться здесь."
+
+#: games/kosciane.rb:24
+msgid "The first player to complete a row without a cross earns its last score again. The first player to complete a column without a cross earns 60 points. Crossing out a school cell removes earned bonuses. Games with fewer than three columns have no bonuses."
+msgstr ""
+
+#: games/generated/rulebooks/kosciane.rb:18
+msgid "The first player to complete a row without a cross gets its last score again. The first to complete a column without crosses gets 60 points for that column. A school cross removes bonuses you already earned."
+msgstr ""
 
 msgid "The first player to place all four pawns at the finish wins."
 msgstr "Побеждает первый, приведший все четыре фишки на финиш."
@@ -31380,6 +31481,10 @@ msgstr "Три независимые настройки бонусов"
 msgid "Three marks in a line"
 msgstr "Три знака в линию"
 
+#: games/kosciane.rb:22
+msgid "Three matching dice qualify for a number row. Extra matching dice go into that number's reserve. Reserve dice can complete a later result but do not score."
+msgstr ""
+
 #: games/dice_poker.rb:308 games/yahtzee.rb:25
 msgid "Three of a kind"
 msgstr "Тройка"
@@ -31672,6 +31777,10 @@ msgstr "Верхняя карта: %{card}; объявленная масть: %
 #: games/yahtzee.rb:290
 msgid "Total across matches: %{points}."
 msgstr "Всего за все матчи: %{points}."
+
+#: games/kosciane.rb:152
+msgid "Total: %{points}"
+msgstr ""
 
 #: games/bridge/presentation.rb:478
 msgid "Total: %{scores}."
@@ -32246,6 +32355,10 @@ msgstr "От двух до восьми игроков начинают с су�
 
 msgid "Two to eight players take turns filling a score sheet. At the beginning of a turn roll all five dice. After each roll the dice are sorted in ascending order and all are initially kept. You may select any of them for another roll, up to three rolls in total. You can score earlier; you do not have to use all three rolls."
 msgstr "От двух до восьми игроков по очереди заполняют лист счёта. В начале хода бросьте все пять кубиков. После броска они сортируются по возрастанию и считаются отложенными. Можно выбрать любые для переброса, всего до трёх бросков. Записать очки можно раньше; все три броска необязательны."
+
+#: games/generated/rulebooks/kosciane.rb:10
+msgid "Two to eight players take turns filling a score sheet. Each turn fills one cell, from left to right within the chosen row. When all sheets are full, add scores and bonuses; the highest total wins."
+msgstr ""
 
 msgid "Two to eight players take turns rolling five dice and filling their own score sheets. Each row on the sheet is a category, such as Fours or Full house. You must use exactly one unused row on each turn. Once written, even a zero stays there for the rest of that sheet."
 msgstr "От двух до восьми игроков по очереди бросают пять кубиков и заполняют свои собственные таблицы результатов. Каждая строка в таблице — это категория, например, «Четвёрки» или «Фулл-хаус». За каждый ход необходимо использовать ровно одну неиспользованную строку. После записи, даже если это ноль, он остаётся в таблице до конца игры."
@@ -33920,6 +34033,10 @@ msgstr "Победитель: %{player}"
 msgid "Winner: %{winner}; game points: %{scores}"
 msgstr "Победитель: %{winner}; игровые очки: %{scores}"
 
+#: games/kosciane.rb:136
+msgid "Winners: %{players}"
+msgstr ""
+
 #: games/generated/rulebooks/mahjong.rb:24
 msgid "Winning a hand"
 msgstr "Победа в раздаче"
@@ -35450,7 +35567,7 @@ msgstr "Ваш результат: %{total}."
 msgid "Your train and the trains you share"
 msgstr "Личные и общие поезда"
 
-#: games/generated/rulebooks/duck_racing.rb:13 games/generated/rulebooks/scopa.rb:11
+#: games/generated/rulebooks/duck_racing.rb:13 games/generated/rulebooks/kosciane.rb:11 games/generated/rulebooks/scopa.rb:11
 msgid "Your turn"
 msgstr "Ваш ход"
 
@@ -36060,6 +36177,10 @@ msgstr "управляется ботом"
 
 msgid "corporación eléctrica"
 msgstr "электрическая компания"
+
+#: games/kosciane.rb:177
+msgid "crossed out"
+msgstr ""
 
 #: games/ninety_nine.rb:584
 msgid "crossing %{limit}"
@@ -36709,7 +36830,7 @@ msgstr "нет"
 msgid "not bid yet"
 msgstr "заявки ещё нет"
 
-#: games/yahtzee.rb:283
+#: games/kosciane.rb:176 games/yahtzee.rb:283
 msgid "not filled"
 msgstr "не заполнено"
 

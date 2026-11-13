@@ -75,7 +75,7 @@ module GameRoomUI
     end
 
     def safe_shortcut?(shortcut)
-      [:announcement, :browse].include?(shortcut.kind) ||
+      [:announcement, :browse, :grid_preview].include?(shortcut.kind) ||
         (shortcut.kind == :surface && LOCAL_COMMANDS.include?(shortcut.action_name.to_s))
     end
 

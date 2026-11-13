@@ -107,11 +107,12 @@ module GameSurfaces
 
 
   class OrientedGridBox < GridBox
-    def initialize(width, height, row_origin:, column_origin: :left, coordinate_labels: nil, coordinate_first: false, **options)
+    def initialize(width, height, row_origin:, column_origin: :left, coordinate_labels: nil, coordinate_first: false, hide_coordinates: false, **options)
       @row_origin = row_origin.to_sym
       @column_origin = column_origin.to_sym
       @coordinate_labels = coordinate_labels
       @coordinate_first = coordinate_first == true
+      @hide_coordinates = hide_coordinates
       super(width, height, **options)
     end
 
@@ -223,7 +224,7 @@ module GameSurfaces
         NVDA.braille("") if defined?(NVDA) && NVDA.check
         return true
       end
-      return super(index, count, spk, include_header: include_header) if !@coordinate_first
+      return super(index, count, spk, include_header: include_header) unless @coordinate_first || @hide_coordinates
 
       position = respond_to?(:lpos) ? lpos : (@width <= 1 ? 50 : @x.to_f / (@width - 1).to_f * 100.0)
       if spk && !@silent && defined?(Configuration) && Configuration.controlspresentation != :voice_only && respond_to?(:play_sound, true)
@@ -247,6 +248,8 @@ module GameSurfaces
     end
 
     def cell_announcement(label)
+      return label if @hide_coordinates
+
       label.empty? ? coordinate_label : "#{coordinate_label}, #{label}"
     end
 
@@ -502,6 +505,7 @@ module GameSurfaces
         @spec.height,
         row_origin: row_origin,
         header: @spec.header.to_s,
+        hide_coordinates: @spec.hide_coordinates,
         x: x,
         y: internal_y(y),
         quiet: true
@@ -514,7 +518,12 @@ module GameSurfaces
     end
 
     def emit_selection(x, y)
-      emit_action("grid", "select", { "x" => x, "y" => y })
+      if @spec.score_categories
+        category = @spec.score_categories[y]
+        emit_action("dice", "score", {"category" => category}) if category
+      else
+        emit_action("grid", "select", { "x" => x, "y" => y })
+      end
     end
 
     def fields

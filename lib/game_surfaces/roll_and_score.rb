@@ -26,7 +26,7 @@ module GameSurfaces
       end
       @selected_ids.select! { |id| @dice.any? { |die| die.id.to_s == id } }
       remembered_mode = state_value(state, "mode", "dice").to_s
-      @mode = spec.force_categories == true ? :categories : remembered_mode.to_sym
+      @mode = spec.force_categories == true && !spec.score_grid ? :categories : remembered_mode.to_sym
       @mode = :dice if @mode != :categories || @categories.empty?
       @index = state_value(state, "index", 0).to_i
       @control = RefreshAwareListBox.new(
@@ -103,7 +103,7 @@ module GameSurfaces
         switch_mode(:categories, speak: true)
       elsif !@selected_ids.empty?
         emit_roll(@selected_ids)
-      elsif !@categories.empty?
+      elsif @spec.score_grid || !@categories.empty?
         switch_mode(:categories, speak: true)
       end
     end
@@ -138,11 +138,17 @@ module GameSurfaces
       else
         @selected_ids.delete(die.id.to_s)
       end
+      @control.options = labels if @spec.score_grid
       speak(dice_status_text)
       true
     end
 
     def switch_mode(mode, speak:)
+      if mode == :categories && @spec.score_grid
+        emit_action("dice", "open_score_grid", {}, source: @spec.id)
+        return
+      end
+
       @mode = mode
       @control.options = labels
       @control.header = current_header
@@ -152,6 +158,8 @@ module GameSurfaces
 
     def labels
       return @categories.map { |category| category.label.to_s } if @mode == :categories
+
+      return ["Zapisz w tabeli"] if @spec.score_grid && @dice.none? { |die| die.value.nil? } && @selected_ids.empty?
 
       [_('Roll the dice')]
     end

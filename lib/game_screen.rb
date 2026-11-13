@@ -587,6 +587,8 @@ class GameScreen
     when :announcement
       speak(shortcut.message) if !shortcut.message.to_s.empty?
       nil
+    when :grid_preview
+      show_shortcut_grid(shortcut, replay)
     when :browse
       browse_shortcut_choices(shortcut)
       nil
@@ -651,8 +653,8 @@ class GameScreen
     end
   end
 
-  def refreshed_announcement_shortcut(shortcut, replay, viewer)
-    return shortcut if shortcut.kind != :announcement
+  def refreshed_game_shortcut(shortcut, replay, viewer)
+    return shortcut unless %i[announcement grid_preview].include?(shortcut.kind)
 
     normalized_game_shortcuts(@game.game_shortcuts(replay, viewer)).find do |candidate|
       candidate.key == shortcut.key && candidate.modifiers.to_a == shortcut.modifiers.to_a
@@ -791,6 +793,37 @@ class GameScreen
     EltenAPI::KeyboardState.clear_current_frame if defined?(EltenAPI::KeyboardState)
     return nil if result == nil
     GameSurfaces::Action.new(kind: shortcut.action_kind, name: shortcut.action_name, payload: shortcut.payload.merge(result), source: "shortcut:#{shortcut.key}")
+  end
+
+  def show_shortcut_grid(shortcut, replay)
+    surface = GameSurfaces.build(shortcut.default_value)
+    back = Button.new(_("Back"))
+    form = GameRoomUI::Form.new(surface.fields + [back], program: @program, quiet: true)
+    form.cancel_button = back
+    form.hide(back)
+    back.on(:press) { form.resume }
+    result = nil
+    surface.on_action do |selection|
+      next if @layout&.form&.game_room_pending_operation || @session&.fetch("__frozen", false)
+      result = selection
+      form.resume
+    end
+    if replay && @game
+      announcements = @game.game_shortcuts(replay, Session.name).select { |key| key.kind == :announcement && key.key != "space" }
+      dice = replay.state.fetch(:dice).compact
+      unless dice.empty?
+        announcements << GameRoomGames::GameShortcut.new(key: "space", kind: :announcement,
+          label: "Odczytaj ko\u015bci", message: dice.join(", "))
+      end
+      bind_game_shortcuts(form, surface.fields, announcements) { |key| speak(key.message) }
+    end
+    if @layout&.form&.game_room_pending_operation
+      @layout.form.open_game_room_background_help(form)
+    else
+      form.wait
+    end
+    EltenAPI::KeyboardState.clear_current_frame if defined?(EltenAPI::KeyboardState)
+    result
   end
 
   def browse_shortcut_choices(shortcut)
