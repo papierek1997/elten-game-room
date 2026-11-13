@@ -900,6 +900,9 @@ class GameScreen
   def confirm_surface_action(surface, selection, session_id:, status: :ok)
     return unless surface && @layout&.surface.equal?(surface) && @layout.session_id == session_id &&
       @repository.session_id(@session) == session_id
+    if status != :ok && @game_client&.respond_to?(:action_rejected)
+      @game_client.action_rejected(selection.to_h, status)
+    end
     changed = status == :ok ? surface.action_accepted(selection) : surface.action_rejected(selection, status)
     remember_layout_position if changed
   end
