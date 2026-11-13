@@ -16,7 +16,9 @@ assert_equal(standalone, embedded, 'Runtime and release manifests disagree')
 audio = GameRoomDuckRacing::ChallengeAudio
 stimuli = [audio::TONE_ASSET, audio::QUACK_ASSET, audio::SHOT_ASSET,
   audio::COUNTDOWN_ASSET, *audio::MEMORY_ASSETS, *audio::RHYTHM_ASSETS.values,
-  'replay', 'buzzer', 'audio_ball_wrong_turn', 'scopa', 'scopa_deal', 'scopa_take'].uniq
+  'replay', 'buzzer', 'audio_ball_wrong_turn', 'scopa', 'scopa_deal', 'scopa_take',
+  'billiards_cue', 'billiards_collision', 'billiards_cushion', 'billiards_pocket',
+  'auction_gavel', 'auction_chest', 'auction_call_low', 'auction_call_high'].uniq
 available = Dir.glob('*.opus', base: File.join(root, 'Audio')).to_h do |name|
   [File.basename(name, '.opus'), Object.new]
 end

@@ -45,6 +45,8 @@ module GameRoomGames
     def audio_game?; false; end
     # Shared HRTF placement of move sounds by seat. A game opts in only when its
     # event cues come from the moving player; audio and realtime games own their sound scene.
+    # A physical game may instead implement event_sound_positions(history:, replay:)
+    # returning per-cue directions from the current stage's copied public contacts.
     def player_spatial_audio?; false; end
     # Turn-based model/actions can continue behind another native scene. A
     # realtime client owns its simulation, focus and pause protocol separately.
@@ -340,27 +342,27 @@ module GameRoomGames
         return _("You are bidding.") if same_user?(replay.current_player, viewer)
 
         return _("%{player} is bidding.") % {
-          player: participant_name(replay.current_player)
+          player: participant_short_name(replay.current_player)
         }
       end
       if turn_phase_kind(replay) == :review
         return _("You are reviewing the answers.") if same_user?(replay.current_player, viewer)
 
         return _("%{player} is reviewing the answers.") % {
-          player: participant_name(replay.current_player)
+          player: participant_short_name(replay.current_player)
         }
       end
       if turn_phase_kind(replay) == :choice
         return _("Choose a category.") if same_user?(replay.current_player, viewer)
 
         return _("%{player} is choosing a category.") % {
-          player: participant_name(replay.current_player)
+          player: participant_short_name(replay.current_player)
         }
       end
       return _("It is your turn.") if same_user?(replay.current_player, viewer)
 
       _("It is %{player}'s turn.") % {
-        player: participant_name(replay.current_player)
+        player: participant_short_name(replay.current_player)
       }
     end
 
@@ -408,6 +410,11 @@ module GameRoomGames
       else
         _("This move is not available.")
       end
+    end
+
+    # An optional local cue follows an event's speech, without delaying play.
+    def event_speech_tail_sound(event:, before_replay:, after_replay:, viewer:)
+      nil
     end
 
     def move_error_for(status, selection: nil, replay: nil, actor: nil)
@@ -487,6 +494,12 @@ module GameRoomGames
     # presentation without changing the stored, canonical history entry.
     def describe_event_for_display(event, repository, replay, viewer, surface_state: {})
       describe_event(event, repository, replay, viewer)
+    end
+
+    # A game which quotes player/content-set text protects those literal
+    # fragments before the shared live presenter abbreviates participant names.
+    def live_name_protected_texts(_event, _repository, _replay, _viewer)
+      []
     end
 
     def result_text(replay)
@@ -625,6 +638,10 @@ module GameRoomGames
 
     def participant_name(participant)
       GameRoomParticipants.display_name(participant)
+    end
+
+    def participant_short_name(participant)
+      GameRoomParticipants.short_name(participant)
     end
 
     def selection_value(selection, key)

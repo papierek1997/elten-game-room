@@ -169,7 +169,7 @@ class GameRoomEventPresenter
         repository: @repository.call, viewer: @viewer.call, history: stage&.[](:history), include_result: include_result
       )
       position = GameRoomSpatialSound.event_position(@program.call, @game.call, event, before_replay, after_replay,
-        @repository.call, @viewer.call, @presentation_session) if cues
+        @repository.call, @viewer.call, @presentation_session, history: stage&.[](:history)) if cues
       Array(cues).map do |cue|
         spatial = GameRoomSpatialSound.cue_position(cue, position)
         # Keep ordinary centred playback on its original two-argument path.
@@ -188,6 +188,15 @@ class GameRoomEventPresenter
     # owns its automatic announcement (also after serialized sound playback).
     result = @game.call.result_text(after_replay) if after_replay != nil
     descriptions = descriptions.reject { |text| GameRoomContent.utf8(text) == GameRoomContent.utf8(result) } if result != nil
+    descriptions = descriptions.map { |description| short_live_names(description, event, description_replay) }
+    tail = @game.call.event_speech_tail_sound(event: event, before_replay: before_replay,
+      after_replay: after_replay, viewer: @viewer.call)
+    if tail && !descriptions.empty?
+      @trace.call('speech_queued', signal_received_at,
+        details: "event_id=#{@repository.call.event_id(event)} items=#{descriptions.length} tail=#{tail}")
+      present_speech_with_tail(descriptions, tail)
+      descriptions = []
+    end
     descriptions.each_with_index do |description, index|
       @trace.call("speech_queued", signal_received_at,
         details: "event_id=#{@repository.call.event_id(event)} item=#{index + 1}/#{descriptions.length}")
@@ -199,11 +208,31 @@ class GameRoomEventPresenter
     sounds
   end
 
+  def present_speech_with_tail(descriptions, asset)
+    program, session = @program.call, @presentation_session_id
+    if !GameRoomBackgroundPolicy.speech?(program, covered: @covered.call)
+      GameRoomSounds.play(program, asset)
+      return
+    end
+    output, runtime = GameRoomSoundOutput.current(program), program.class.app_runtime
+    tail = EltenAPI::Speech::SpeechCommands::CustomCommand.new do
+      next unless output && @presentation_session_id == session && GameRoomSoundOutput.current(program).equal?(output)
+      Programs.with_runtime(runtime) { GameRoomSounds.play(program, asset) }
+    end
+    @speech.call(EltenAPI::Speech::SpeechSequence.new(descriptions.join("\n"), tail))
+  end
+
   def present_turn_transition(turn_entry, replay)
     return if turn_entry == nil
 
     message = @game.call.turn_announcement(replay, @viewer.call)
-    @speech.call(message) if !message.to_s.empty?
+    @speech.call(short_live_names(message, nil, replay)) if !message.to_s.empty?
+  end
+
+  def short_live_names(message, event, replay)
+    return message unless replay
+    protected = event ? @game.call.live_name_protected_texts(event, @repository.call, replay, @viewer.call) : []
+    GameRoomParticipants.shorten_announcement(message, participants: replay.players, protected_texts: protected)
   end
 
   def present_initial_decision(replay)

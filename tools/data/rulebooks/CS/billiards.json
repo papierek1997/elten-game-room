@@ -1,0 +1,569 @@
+{
+  "source": "games/billiards.rb",
+  "sections": [
+    {
+      "id": "competition",
+      "title": {
+        "cs": "Společenský kulečník: první hra"
+      },
+      "paragraphs": [
+        {
+          "cs": "Nové kulečníkové stoly mají předvolený společenský kulečník pro dva až osm hráčů včetně počítačových. Výchozí rozestavení je kosočtverec koulí 1–9 a bílá hrací koule. Odstraňte koule 1–8 a potom správně potopte devítku, abyste vyhráli kolo. O vítězi zápasu rozhodují vyhraná kola."
+        },
+        {
+          "cs": "Vyberte hranou kouli klávesou L nebo Shift+L a přečtěte její polohu pomocí I. Stiskněte A pro zamíření, upravte směr a sílu šipkami a proveďte strk Enterem nebo mezerníkem na prvku tága. Ve společenském kulečníku se koule ani kapsa nehlásí. Po strku uslyšíte výsledek i dalšího hráče. Následující kapitola vysvětluje kola, fauly a bodování, další pak míření."
+        }
+      ]
+    },
+    {
+      "id": "friendly",
+      "title": {
+        "cs": "Společenská kola a fauly"
+      },
+      "paragraphs": [
+        {
+          "cs": "Společenský kulečník je pro dva až osm hráčů včetně počítačových. Vyberte celkem 1 až 30 kol. Zápas končí po rozhodnutí tohoto počtu kol; vyhraje hráč s největším počtem vítězných kol. Při stejném nejvyšším počtu vyhraných kol skončí zápas remízou."
+        },
+        {
+          "cs": "Výchozí kosočtverec obsahuje devět hraných koulí s čísly 1–9 a bílou hrací kouli. Závěrečnou koulí je devítka. Dokud zbývají jiné hrané koule, musí bílá nejprve zasáhnout některou z nich. Správné potopení běžné koule vám zachová tah; bez potopení hraje další hráč. Po kontaktu musí některá koule zasáhnout mantinel nebo musí být potopena hraná koule."
+        },
+        {
+          "cs": "Potopení bílé, zásah nesprávné koule jako první nebo chybějící mantinel dávají dalšímu hráči bílou do ruky kdekoli na stole; umístí ji pomocí M. Ostatní koule zůstávají na svých místech. Předčasné potopení závěrečné koule nebo její potopení s faulem ukončí kolo a vítězství připadne následujícímu hráči v pořadí u stolu. Správné potopení závěrečné koule vyhraje kolo střelci. P nabízí zahájení dalšího kola. Libovolné přesouvání koulí, vracení strků a obnovení cvičného rozestavení zde nejsou dostupné."
+        },
+        {
+          "cs": "Vedle vyhraných kol získáváte 1 bod za každou správně potopenou hranou kouli, včetně správně potopené závěrečné. Bílá body nedává. Strk s faulem nebo předčasným potopením závěrečné koule nepřináší body za potopení. Body se sčítají přes všechna kola zápasu; nerozhodují o vítězství v kole. Při shodném nejvyšším počtu vyhraných kol zůstává zápas remízou i při rozdílném počtu bodů. S přečte vyhraná kola i body za potopení bez otevření okna; Shift+P uvede obě hodnoty v aktuálním stavu zápasu."
+        }
+      ]
+    },
+    {
+      "id": "table",
+      "title": {
+        "cs": "Orientace na stole"
+      },
+      "paragraphs": [
+        {
+          "cs": "X udává vzdálenost od levého konce, Y od dolního mantinelu. Nula stupňů míří doprava, 90 nahoru, 180 doleva a 270 dolů. C přepíná směry na hodiny: tři, dvanáct, devět a šest. Kapsy 1 až 6 jsou dole vlevo, dole uprostřed, dole vpravo, nahoře vlevo, nahoře uprostřed a nahoře vpravo. Karambolový stůl kapsy nemá."
+        },
+        {
+          "cs": "O otevře přehled poloh všech koulí, seřazený podle vzdálenosti od aktivní hrací koule; potopené koule jsou na konci. L a Shift+L vybírají hranou kouli; I popíše její číslo či barvu, sektor, souřadnice, vzdálenost a překážky. Na seznam koulí můžete přejít i Tabem a procházet jej šipkami. V poolu hrajete bílou, v anglickém kulečníku a karambolu přidělenou bílou nebo žlutou; ve volné pyramidě si hrací kouli vybíráte."
+        },
+        {
+          "cs": "V poolu vede přední čára přes levou čtvrtinu stolu a zadní bod leží na podélné ose v pravé čtvrtině. Ve snookeru a anglickém kulečníku je baulk oblast vlevo od čáry vzdálené 73,7 cm od levého konce. D je půlkruh s poloměrem 29,2 cm na této straně čáry. Rohové trojúhelníky karambolu sahají 71 cm podél dlouhého mantinelu a 35,5 cm podél krátkého. Přední bod je střed přední čáry, nazývané také čárou rozbití."
+        },
+        {
+          "cs": "- Pool: 254 krát 127 cm."
+        },
+        {
+          "cs": "- Snooker a anglický kulečník: 356,9 krát 177,8 cm."
+        },
+        {
+          "cs": "- Karambol: 284 krát 142 cm, bez kapes."
+        },
+        {
+          "cs": "- Volná pyramida: 355 krát 177,5 cm."
+        }
+      ]
+    },
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Míření a strk"
+      },
+      "paragraphs": [
+        {
+          "cs": "Vraťte se Tabem na prvek tága. Vlevo a Vpravo otáčejí proti směru a po směru hodinových ručiček o jeden stupeň. Shift zmenší krok na 0,1 stupně, Ctrl na 0,01. Nahoru a Dolů mění sílu o jedno procento, se Shiftem o 0,1 procenta. Po uvolnění mířicí šipky zazní krátký popis koule, mantinelu či kapsy. K přečte přesný úhel, F sílu."
+        },
+        {
+          "cs": "Při otáčení tága pomáhají krátká pípnutí najít kouli: střed první koule v dráze strku má tón 5000 Hz, který směrem k oběma okrajům klesá až na 500 Hz. Mimo koule je ticho, kromě míření do kapsy. Tón zohledňuje boční rotaci a nastavení zvuků hry. Ztichne po opuštění prvku Tágo nebo otevření dialogu. Slyšíte jej pouze na svém počítači."
+        },
+        {
+          "cs": "Vyberte kouli a stiskněte A pro zamíření na její střed. Pro pokus o potopení vyberte kapsu klávesou J a stiskněte Shift+A. Tato geometrická pomůcka nastaví úhel; mantinel, jiné koule, síla a rotace mohou potopení stále zabránit. G popisuje první překážku na záměrné přímce včetně strany kontaktu s koulí. H přečte koule do pěti stupňů od této přímky, i ty zakryté."
+        },
+        {
+          "cs": "Klávesa E otevře formulář přesných hodnot. Lze použít desetinnou tečku i čárku. Úhel je od 0 do 359,99 stupně, síla od 0,1 do 100 procent. Tlačítkem Použít nastavení zachováte, tlačítkem Zrušit ponecháte původní. Enter nebo mezerník na ovládacím prvku Tágo provede strk."
+        }
+      ]
+    },
+    {
+      "id": "spin",
+      "title": {
+        "cs": "Rotace"
+      },
+      "paragraphs": [
+        {
+          "cs": "W přidává horní rotaci, Shift+B spodní. N přidává levou boční rotaci, D pravou. Každý stisk mění hodnotu o pět. R obnoví úder do středu bez rotace. Horní rotace pomáhá hrací kouli pokračovat za zasaženou koulí, spodní ji může vrátit zpět. Boční rotace mění odrazy od mantinelů a mírně vychyluje počáteční směr. Účinek závisí na síle a vzdálenosti: tření o plátno může spodní rotaci vyčerpat ještě před kontaktem."
+        },
+        {
+          "cs": "Obě hodnoty rotace jsou od -100 do 100. Společně musí odpovídat bodu uvnitř hrací koule: maximální horní rotaci nelze spojit s maximální boční. Formulář takové nastavení odmítne."
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "title": {
+        "cs": "Poslech strku"
+      },
+      "paragraphs": [
+        {
+          "cs": "Při hře slyšíte tágo, srážky koulí, mantinely a pády do kapes. Slovní výsledek oznámí zásahy, potopení a rozhodnutí rozhodčího. U otevře časový seznam kontaktů posledního strku včetně úhlu, síly a rotace. Y vypočte celý aktuální strk a ukáže výsledek i konečné polohy bez pohybu skutečných koulí. Escape zprávu zavře."
+        },
+        {
+          "cs": "Při 3D zvuku (HRTF) slyšíte úder tága, srážky koulí, mantinely a pády do kapes z jejich míst na stole. Rozložení je stálé: levá a pravá strana stolu zůstávají po vaší levici a pravici, vzdálená část je před vámi. Pípání při míření zní vždy uprostřed, i při zapnutém HRTF. V Power Games otevřete Nastavení → Zvuky, zapněte HRTF a v seznamu her s 3D zvukem označte Kulečník. Při vypnutém nebo nedostupném HRTF zůstává zvuk stereofonní."
+        },
+        {
+          "cs": "Když přímka míření vstoupí do otvoru kapsy, zazní její číslo s krátkým tónem 3000 Hz. Číslo se neopakuje, dokud zůstáváte u stejného otvoru. Popisy koulí začínají číslem či barvou; poolové koule 9–15 jsou půlené."
+        },
+        {
+          "cs": "Zamiřte na mantinel a stiskněte V pro výpočet odrazu aktivní hrací koule při aktuální síle a rotaci. Uslyšíte první mantinel, počet kontaktů a pozdější zásah koule nebo vstup do kapsy. Příliš slabý strk, který k mantinelu nedojde, je oznámen. Jde o předpověď, nikoli provedený strk."
+        },
+        {
+          "cs": "B přečte objekty dále po přímce míření za první koulí: další koule v pořadí, potom mantinel či kapsu. Koule mimo směr a za hrací koulí vynechá. Není-li před mantinelem či kapsou koule, B je přímo pojmenuje. Jde o geometrickou přímku; fyzikální pohyb vypočtete pomocí Y nebo čárky."
+        }
+      ]
+    },
+    {
+      "id": "object_prediction",
+      "title": {
+        "cs": "Předpověď zaměřené koule"
+      },
+      "paragraphs": [
+        {
+          "cs": "Zamiřte na hranou kouli a stiskněte čárku. Vypočítá se celý strk při aktuálním úhlu, síle a rotaci; potom uslyšíte pohyb první koule ve směru míření: její kontakty a to, zda spadne do kapsy, nebo se zastaví na stole. Jde o výsledek fyziky strku, nikoli o pouhé prodloužení přímky. Předpověď strk neprovede. Pokud ve směru míření koule není, dostanete tuto informaci. Y popisuje celý strk i konečné polohy, V odraz aktivní hrací koule od mantinelu."
+        }
+      ]
+    },
+    {
+      "id": "match",
+      "title": {
+        "cs": "Volba disciplíny a rozhodování"
+      },
+      "paragraphs": [
+        {
+          "cs": "Disciplínu zvolíte v nastavení stolu. Soutěžní pool, snooker, anglický kulečník a karambol vyžadují dva hráče, Cutthroat tři. Začíná první hráč v seznamu, v dalších partiích či framech se začátek střídá. Zápas obvykle končí dosažením zvoleného počtu vítězných partií. Body uvnitř partie se počítají zvlášť."
+        },
+        {
+          "cs": "P otevírá hlášení strků a čekající rozhodnutí. Vyberte kouli, kapsu či další požadované údaje a potvrďte volbu; samotný strk potom zahrajte Enterem nebo mezerníkem na prvku tága. Enter si vyžádá chybějící hlášení. Shift+P přečte stav podle pravidel, T hráče na tahu a S skóre bez dalšího okna. M umísťuje aktivní hrací kouli pouze při hře z ruky. Q nabízí vzdání aktuální partie. Nové rozestavení při patu navržené přes P musí schválit všichni ostatní hráči; při jediném odmítnutí se hra vrací navrhovateli."
+        }
+      ]
+    },
+    {
+      "id": "pool_eight",
+      "title": {
+        "cs": "Pool: 8-ball"
+      },
+      "paragraphs": [
+        {
+          "cs": "Stůl je zpočátku otevřený. Rozbití neurčuje skupiny. Pozdější platné ohlášené potopení přiřadí plné koule 1–7 nebo půlené 9–15; soupeř získá druhou skupinu. Po potopení ohlášené koule do ohlášené kapsy pokračujete. Nejprve zasahujte vlastní skupinu, po jejím odstranění osmičku. Na otevřeném stole lze hlásit osmičku pouze tehdy, když již celá jedna skupina chybí."
+        },
+        {
+          "cs": "Kromě rozbití předem ohlaste kouli a kapsu. P hlášení mění, Enter se zeptá na chybějící údaje. Jistota ukončí tah i při potopení koule. Předčasné potopení osmičky, s faulem nebo do nesprávné kapsy znamená prohru. Samotná bílá bez osmičky je běžný faul. Faulem je i první zásah nesprávné koule nebo žádné potopení a žádný mantinel po kontaktu. Soupeř má bílou v ruce na celém stole."
+        },
+        {
+          "cs": "Nepotopí-li rozbití nic, musí nejméně čtyři různé barevné koule zasáhnout mantinel. Jinak může soupeř přijmout pozici nebo určit, kdo znovu rozestaví a rozbije. Osmička potopená při platném rozbití se vrátí na bod, nebo rozbíjející zvolí nové rozbití. Při faulu s osmičkou volí soupeř; při ponechání pozice dostane bílou v ruce za čarou rozbití. Jiné fauly při rozbití nabízejí současnou pozici nebo bílou za čarou. Z tohoto prostoru nelze přímo zasáhnout kouli ve stejném prostoru bez předchozího překročení čáry. Jsou-li tam všechny povolené koule, P umožní požádat o přesun nejbližší na bod."
+        }
+      ]
+    },
+    {
+      "id": "pool_nine",
+      "title": {
+        "cs": "Pool: 9-ball"
+      },
+      "paragraphs": [
+        {
+          "cs": "Vždy nejprve zasáhněte nejnižší číslo na stole. Každé platné potopení barevné koule prodlužuje tah; platná devítka vyhrává i v kombinaci. Kapsa se nehlásí. Faul dává soupeři bílou v ruce kdekoliv. Devítka se po faulu či push-outu vrací na bod, ostatní koule zůstávají v kapsách. Tři po sobě jdoucí fauly téhož hráče znamenají prohru, dva vyvolají varování. Platný strk jeho počet faulů vynuluje."
+        },
+        {
+          "cs": "V kosočtverci stojí devítka na bodu a jednička vpředu. Rozbití bez potopení musí poslat čtyři koule k mantinelům. Pravidlo tří koulí navíc vyžaduje alespoň tři různé koule potopené nebo za čarou rozbití. Nesplní-li se bez dalšího faulu, soupeř přijme pozici nebo vrátí strk; potopená devítka se vrátí na bod. Push-out pak smí hrát jen rozbíjející, jemuž byl strk vrácen. Po platném rozbití může být druhý strk push-outem, ohlášeným přes P: nejnižší číslo ani mantinel nejsou povinné. Po platném push-outu soupeř zvolí, kdo pokračuje."
+        }
+      ]
+    },
+    {
+      "id": "pool_ten",
+      "title": {
+        "cs": "Pool: 10-ball"
+      },
+      "paragraphs": [
+        {
+          "cs": "Nejprve zasáhněte nejnižší zbývající číslo, ale před běžným strkem pod P nahlaste kouli a kapsu. Hlášení safety zde není. Správné splnění hlášení zachová váš tah. Desítka vyhrává jen tehdy, byla-li před strkem jedinou zbývající hranou koulí a spadla bez faulu do nahlášené kapsy; dřívější desítky se vracejí na bod."
+        },
+        {
+          "cs": "Rozbití vyžaduje potopení nebo dotyk čtyř různých hraných koulí s mantinely. Po správném rozbití může být druhý strk push-out nahlášený pod P; po správném push-outu soupeř přijme pozici nebo vrátí strk. V běžné hře dává potopení bez splnění hlášení soupeři stejnou volbu. Faul přidělí bílou do ruky kdekoli, tři po sobě jdoucí fauly prohrávají partii."
+        }
+      ]
+    },
+    {
+      "id": "straight_pool",
+      "title": {
+        "cs": "Průběžný pool 14.1"
+      },
+      "paragraphs": [
+        {
+          "cs": "Pod P nahlaste kouli a kapsu. Pokud hlášení správně splníte, každá hraná koule potopená tímto strkem dává 1 bod a pokračujete. Partii vyhrajete dosažením bodového cíle. Nesplněné hlášení nebo nahlášená safety ukončí tah a vrátí potopené koule."
+        },
+        {
+          "cs": "První rozbití hrajete zpoza přední čáry. Splňte hlášené potopení nebo po kontaktu pošlete bílou a alespoň dvě hrané koule k mantinelům. Chyba stojí 2 body; soupeř přijme pozici nebo požaduje nové rozbití. Běžný faul stojí 1 bod, skóre tedy může být záporné. Po potopení bílé ji soupeř dostane do ruky za přední čárou. Třetí po sobě jdoucí běžný faul stojí v tomto strku 16 bodů a vyžádá nové rozbití plného trojúhelníku; chyby rozbití do této série nepatří."
+        },
+        {
+          "cs": "Po započtení čtrnácti koulí se vrátí do trojúhelníku s prázdným vrcholem; bílá a poslední hraná koule zůstávají. Pokračujete bez požadavků prvního rozbití. Spadla-li i poslední koule nebo obě zbývající překážejí trojúhelníku, vrátí se všech patnáct. Samotná překážející hraná koule jde na přední bod, případně na střed. Překáží-li jen bílá, poslední koule na přední čáře či za ní směrem k trojúhelníku dá bílou do ruky za čárou; koule před čárou pošle bílou na přední bod, případně na střed."
+        },
+        {
+          "cs": "Při dohodnutém novém rozestavení kvůli patu zůstávají body a dluhy zachovány; P nabídne výběr nového rozbíjejícího. Nová partie zápasu začíná od nuly."
+        }
+      ]
+    },
+    {
+      "id": "one_pocket",
+      "title": {
+        "cs": "One Pocket"
+      },
+      "paragraphs": [
+        {
+          "cs": "Každý hráč má jednu ze dvou rohových kapes na pravém konci. Rozbíjející si svou vybere pod P před rozbitím. Každá správně potopená koule do vaší kapsy vám dává 1 bod, i když ji potopí soupeř; první s 8 body vyhraje. Vlastní správné potopení prodlužuje tah. Koule z jiných kapes se vracejí po náběhu, nebo ihned při vyprázdnění stolu před vítězstvím. Rozbití vyžaduje kontakt a následný mantinel nebo potopení, nikoli čtyři koule u mantinelů."
+        },
+        {
+          "cs": "Faul vás stojí 1 bod a vrátí jednu získanou kouli. Nemáte-li ji, vznikne dluh: budoucí bodovaná koule jej splatí a vrátí se na stůl. Koule v soupeřově kapse bodují i při faulu, ledaže jediným faulem bylo potopení bílé. Vyletění bílé ze stolu ani potopení bílé s dalším faulem tyto soupeřovy body neruší. Po potopení bílé dostane soupeř hru z ruky za přední čárou. Tři po sobě jdoucí fauly prohrávají partii. Dosáhnou-li oba 8 ve stejném strku, vyhraje střelec. Dohodnuté nové rozestavení zachová body i dluhy a vyžádá nového rozbíjejícího a kapsy."
+        }
+      ]
+    },
+    {
+      "id": "bank",
+      "title": {
+        "cs": "Bank Pool: krátký a plný"
+      },
+      "paragraphs": [
+        {
+          "cs": "Bodované potopení od mantinelu vyžaduje nahlášení koule, kapsy a pořadí mantinelů. Pod P vyberte kouli a kapsu, potom postupně přidávejte levý, pravý, horní či dolní mantinel a hotovou trasu ukončete. Lze nahlásit jeden až dvanáct kontaktů. Zrušení zachová předchozí hlášení. Bílá musí zasáhnout hlášenou kouli před jakýmkoli mantinelem či jinou koulí. Hlášená koule pak nesmí zasáhnout jinou kouli ani znovu bílou. Odrazy musí odpovídat hlášení; náhodné kontakty s čelistmi cílové kapsy při vstupu se nezapočítávají."
+        },
+        {
+          "cs": "Správný bank dává 1 bod a zachová tah. Krátká varianta má 9 koulí a cíl 5 bodů, plná 15 koulí a cíl 8. Další potopené koule čekají do konce náběhu, nebo se vracejí ihned při vyprázdnění stolu před vítězstvím. Při rozbití bank nehlašte: potopení prodlouží tah, ale neboduje. Bez potopení musí čtyři různé hrané koule zasáhnout mantinely; po chybném rozbití soupeř přijme pozici nebo vyžádá opakování."
+        },
+        {
+          "cs": "Faul stojí 1 bod a vrácení získané koule. Nemáte-li ji, dluh splatíte vrácením pozdější bodované koule; skóre může být záporné. Potopení bílé dává hru z ruky za přední čárou. Tři po sobě jdoucí fauly prohrávají partii. Dohodnuté nové rozestavení při patu zachová body i dluhy a pod P se potom vybere nový rozbíjející."
+        }
+      ]
+    },
+    {
+      "id": "cutthroat",
+      "title": {
+        "cs": "Cutthroat pro tři hráče"
+      },
+      "paragraphs": [
+        {
+          "cs": "Tato klubová varianta přiděluje pevné skupiny podle míst u stolu: 1–5, 6–10 a 11–15. Chraňte svou skupinu a odstraňujte ostatní. Jako první smíte zasáhnout kteroukoli hranou kouli a můžete obětovat i vlastní. Správné potopení zachová tah, pokud neodstranilo vaši poslední kouli. Hráči bez koulí se dočasně přeskakují; vyhraje poslední zbývající skupina."
+        },
+        {
+          "cs": "Faul dává dalšímu hráči bílou do ruky kdekoli a vrací jednu potopenou kouli každého soupeře: nejnižší chybějící číslo dané skupiny. Tím se může přeskočený hráč vrátit. Ztráta partie za tři fauly zde není. Odstraní-li jediný správný strk všechny skupiny, kolo skončí remízou. Skupiny jsou v této variantě pevné, bez dohody o jejich přidělení. Vzdání přes Q odstraní všechny koule vaší skupiny a do konce partie zabrání jejich návratu; zbývající hráči pokračují."
+        }
+      ]
+    },
+    {
+      "id": "blackball",
+      "title": {
+        "cs": "Blackball"
+      },
+      "paragraphs": [
+        {
+          "cs": "Hrajte svou skupinu plných nebo půlených koulí a potom černou. Kapsy se nehlásí. Stůl zůstává otevřený po rozbití a volných strcích; skupiny určí pozdější správné běžné potopení. Správné potopení prodlužuje tah. Současné potopení poslední vlastní koule a černé je správné vítězství; potopení černé s faulem nebo před odstraněním vlastní skupiny znamená prohru. Černá na rozbití místo toho obnoví rozestavení pro stejného rozbíjejícího."
+        },
+        {
+          "cs": "Správné rozbití potopí kouli nebo pošle alespoň dvě různé hrané koule přes středovou čáru. Faul poskytne jeden volný strk a po něm jeden běžný. Volný strk zahrajte z aktuální pozice nebo přes M přesuňte hrací kouli do baulku, levé pětiny stolu. Volný strk ruší jen požadavek správné první koule: potopení pouze soupeřových koulí je stále faul. Po běžném strku další pokračování opět vyžaduje správné potopení. Při úplném snookeru bez cesty k jakékoli části povolené koule se nevyžaduje běžný kontakt s mantinelem. Od dotýkané povolené koule musíte hrát pryč bez jejího postrčení."
+        }
+      ]
+    },
+    {
+      "id": "snooker",
+      "title": {
+        "cs": "Snooker"
+      },
+      "paragraphs": [
+        {
+          "cs": "Hraje se s patnácti červenými po bodu a se žlutou za 2, zelenou za 3, hnědou za 4, modrou za 5, růžovou za 6 a černou za 7. Červené mají čísla 1–15, barvy 16–21 v uvedeném pořadí. Potopte červenou, přes P nebo při dotazu Enteru určete barvu, pak střídejte červenou a barvu. Jedním strkem lze bodovat více červených. Barvy se v této fázi vracejí na body i po faulu; červené obvykle zůstávají dole. Po poslední červené lze hrát ještě jednu barvu, potom se hraje od žluté po černou; správně potopené barevné koule se už nevracejí."
+        },
+        {
+          "cs": "Faul přidá soupeři 4 až 7 bodů podle nejvyšší příslušné hodnoty hrané a nesprávně zasažené či potopené koule. Hříšník za daný strk neboduje. Soupeř buď hraje, nebo vyzve hříšníka znovu. Po potopení bílé se umisťuje pouze do D; M přesouvá jen bílou a ostatní konečné pozice zachová. Obsazený bod barvy nahradí nejvyšší volný bod, jinak nejbližší povolená pozice směrem k černé; růžová a černá mají při nutnosti výjimku opačným směrem."
+        },
+        {
+          "cs": "Po faulu lze při snookeru na všech hraných koulích přes P určit volnou kouli. Aby nešlo o snooker, musí být přístupné oba krajní okraje alespoň jedné hrané koule; mantinel se jako blokující koule nepočítá. Při bílé v ruce se prověřuje celé D s přesností ukládaných pozic. Volná koule má hodnotu hrané koule a po potopení se vrací na bod. Po nebodujícím strku nesmí sama zanechat snooker kromě výjimky posledních dvou koulí."
+        },
+        {
+          "cs": "Byla-li volná přímá cesta, ale první povinný kontakt se nezdařil, rozhodčí může hlásit Foul and a Miss. Soupeř může obnovit předchozí pozici a požadovat opakování; trestné body zůstávají. Po dvou obnovených neúspěších s plným přístupem ke kouli přijde varování, další neúspěch ztratí frame. Běžný Miss se nehlásí, pokud byly nebo po strku jsou potřeba body z faulů. Zbývá-li jen černá, rozhodne první potopení či faul. Remíza vrátí černou, vylosuje právo zvolit hráče a dá bílou v ruce v D; další potopení či faul rozhodne."
+        }
+      ]
+    },
+    {
+      "id": "english",
+      "title": {
+        "cs": "Anglický kulečník"
+      },
+      "paragraphs": [
+        {
+          "cs": "Každý hráč používá svou bílou nebo žlutou hrací kouli, červená je společná. Na začátku stojí červená na bodě a první hráč hraje svou koulí z D. Koule druhého hráče je zpočátku mimo stůl a vrátí se, až ji bude potřebovat. Vyhraje dosažení bodového cíle nebo vedení po uplynutí zvoleného času. Bodovaný strk vám zachová náběh."
+        },
+        {
+          "cs": "Jeden strk může spojit několik bodovaných akcí:"
+        },
+        {
+          "cs": "- Karambol neboli cannon znamená, že vlastní hrací koule zasáhne obě ostatní. Dává 2 body, nejvýše jednou za strk."
+        },
+        {
+          "cs": "- Potopení červené dává 3 body, soupeřovy koule 2."
+        },
+        {
+          "cs": "- Potopení vlastní koule po kontaktu s červenou dává 3 body, po soupeřově kouli 2. Při zásahu obou rozhoduje první kontakt; nerozlišitelný současný první zásah má hodnotu 2."
+        },
+        {
+          "cs": "Po potopení vlastní koule ji umístěte klávesou M do D. Odtud musíte hrát ven z baulku dříve, než přímo zahrajete na kouli, jejíž střed je v baulku nebo na jeho čáře. Před návratem do baulku musíte zasáhnout mantinel nebo kouli mimo něj. Řádný English Miss při všech cílech v baulku přidá soupeři 2 body a hraje se z výsledné pozice. Faul také přidá 2 body, ale zruší bodování daného strku a pod P nabídne ponechání pozice nebo nové postavení červené a soupeřovy koule a hru z D."
+        },
+        {
+          "cs": "Červená se po potopení vrací na bod. Při opakovaném samostatném potápění červené z bodu se dvakrát hraje z běžného bodu a pak jednou ze středu; obsazené body mají náhradní místa. Potopená soupeřova koule obvykle zůstává mimo stůl, dokud není potřeba. Dotýká-li se hrací koule jiné, červená se vrátí na svůj bod, přítomná soupeřova koule na střed a vlastní se hraje z D."
+        },
+        {
+          "cs": "Za náběh lze zahrát nejvýše 75 samotných karambolů po sobě nebo 15 hazardových strků bez karambolu; hazard je potopení cílové či vlastní koule po kontaktu. Varování zazní při 70 a 10. Kombinace karambolu s hazardem obě série přeruší. Po patnáctém hazardu platí zvláštní vrácení soupeřovy koule, pokud zůstala mimo stůl po jeho posledním náběhu. Pokud je v nastavení zapnuto překračování baulku, musí hrací koule překročit čáru dovnitř v rozmezí 80–100 bodů každé stovky náběhu; jinak jde o faul."
+        }
+      ]
+    },
+    {
+      "id": "carom",
+      "title": {
+        "cs": "Karambol: volná hra, jednoband a trojband"
+      },
+      "paragraphs": [
+        {
+          "cs": "Na stole bez kapes jsou tři koule. Po celou partii hrajete přidělenou bílou nebo žlutou. Karambol znamená kontakt vlastní koule s oběma ostatními v jednom strku. Správný karambol dává 1 bod a prodlužuje náběh; chyba či faul předají hru bez bodového trestu. Vyhraje dosažení zvoleného cíle s ohledem na nastavení vyrovnávacího náběhu. Je-li vyrovnávací náběh zapnutý a začínající hráč dosáhne cíle po jednom náběhu navíc, druhý hráč dostane poslední náběh z počáteční pozice. Dosažení cíle v něm znamená remízu partie; skončí-li náběh pod cílem, vyhraje začínající hráč. Bez vyrovnávání dosažení cíle vyhrává okamžitě."
+        },
+        {
+          "cs": "Na začátku si pod P vyberte dolní nebo horní počáteční bod. První útok musí vést přímo na červenou. Disciplíny se potom liší:"
+        },
+        {
+          "cs": "- Volná hra nevyžaduje zásah mantinelu. Opakování karambolů omezují čtyři vyznačené rohové trojúhelníky."
+        },
+        {
+          "cs": "- Jednoband vyžaduje alespoň jeden kontakt vlastní koule s mantinelem před zásahem druhé různé hrané koule."
+        },
+        {
+          "cs": "- Trojband vyžaduje alespoň tři takové kontakty. Jednotlivé odrazy od stejného mantinelu se počítají, stejně jako odrazy před první hranou koulí. Odrazy po druhé kouli už nezdařený karambol nezachrání."
+        },
+        {
+          "cs": "V rohu volné hry smíte po vstupu obou hraných koulí jednou bodovat, aniž by některá vyjela. Při dalším karambolu musí alespoň jedna trojúhelník opustit; během stejného strku se smí vrátit. Koule na hranici se posuzuje v neprospěch hráče. Sleduje se celý pohyb, ne jen konečná poloha."
+        },
+        {
+          "cs": "Dotýká-li se hrací koule jiné, volná hra obnoví celé počáteční rozestavení. V bandových disciplínách P nabídne hru od dotyku bez postrčení dotýkané koule nebo nové postavení na body. Jednoband obnovuje všechny tři, trojband pouze dotýkající se koule na příslušných bodech. Přímý úder do mantinelu, kterého se hrací koule dotýká, je faul. Vyletí-li koule ze stolu, ve volné hře a jednobandu se obnoví všechny tři, v trojbandu jen vyletělé."
+        }
+      ]
+    },
+    {
+      "id": "pyramid",
+      "title": {
+        "cs": "Volná pyramida"
+      },
+      "paragraphs": [
+        {
+          "cs": "Získejte 8 bodů dříve než soupeř. Všech šestnáct koulí má stejnou hodnotu: 1 bod za každé správné potopení včetně vlastní hrací koule po kontaktu s jinou. Koule ani kapsa se nehlásí. Před každým strkem po rozbití pod P otevřete volbu hrací koule a vyberte kteroukoli přítomnou. Správné potopení zachová tah a dovolí novou volbu."
+        },
+        {
+          "cs": "Rozbití hrajete barevnou koulí zpoza čáry domu v levé čtvrtině stolu. Po zásahu hrané koule buď potopte kouli, pošlete tři různé hrané koule k mantinelům, nebo dvě k mantinelům a jednu hranou přes středovou čáru."
+        },
+        {
+          "cs": "Při dalších strcích musí po požadovaném kontaktu nastat některá z těchto situací:"
+        },
+        {
+          "cs": "- Některá koule je potopena."
+        },
+        {
+          "cs": "- Koule se odrazí od mantinelu a potom dosáhne jiného mantinelu, přímo nebo předáním pohybu jiné kouli. Podmínku může splnit i zásah koule přilepené k onomu druhému mantinelu."
+        },
+        {
+          "cs": "- Koule překročí střed a poté dosáhne mantinelu přímo či prostřednictvím jiné koule; počítá se i koule přilepená k danému mantinelu."
+        },
+        {
+          "cs": "- Po odrazu od mantinelu koule překročí střed, pošle přes něj jinou kouli nebo zasáhne kouli na protější polovině či na středové čáře. Počítají se i odpovídající kontakty předané dalšími koulemi."
+        },
+        {
+          "cs": "Po faulu se nejprve vrátí nesprávně potopené a vyletělé koule. Soupeř pod P vybere libovolnou kouli ze stolu jako trestnou, odebere ji a získá 1 bod. Potom hraje sám nebo vrátí strk. Po chybném rozbití může také obnovit rozestavení a vybrat rozbíjejícího; trestný bod zůstává a pyramida je neúplná. Potopení samotné hrací koule tu není automaticky faul: při správném provedení po kontaktu boduje. Více porušení v jednom strku znamená jediný trest."
+        },
+        {
+          "cs": "Vracené koule se staví od zadního bodu doprava po podélné ose a při nedostatku místa opačným směrem. Smějí se stát příští hrací koulí. Větší koule a těsné čelisti vyžadují přesnější míření než pool; směr do kapsy nezaručuje průchod mezi čelistmi."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "cs": "Nastavení zápasu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před hrou vyberte disciplínu a podmínku vítězství. Společenský kulečník má celkem 1 až 30 kol a jedno ze tří rozestavení. Pokud to disciplína umožňuje, určíte bodový cíl partie; cíl zápasu udává počet vyhraných partií. Anglický kulečník lze hrát i na zvolený čas: již zahájený strk se dokončí a stejný konečný počet bodů znamená remízu. Volba vyrovnávacího náběhu v karambolu dá druhému hráči závěrečný náběh z počáteční pozice, pokud je třeba vyrovnat počet náběhů. V anglickém kulečníku na čas musí být strk přijat u stolu před limitem; pouhé dřívější stisknutí klávesy nestačí."
+        },
+        {
+          "cs": "Společenský kulečník začíná s kosočtvercem devíti hraných koulí. V nastavení stolu můžete místo něj zvolit jednu hranou kouli nebo trojúhelník patnácti; závěrečnou koulí pak bude jednička, nebo patnáctka. Výslovně zvolené rozestavení i rozestavení starší uložené hry zůstávají zachována."
+        },
+        {
+          "cs": "Cíl zápasu je 1 až 25 vyhraných partií. Nastavitelný bodový cíl je 1 až 1000 a časový limit anglického kulečníku 1 až 180 minut."
+        },
+        {
+          "cs": "Přesnější fyzika používá menší výpočetní kroky a může změnit výsledek těsného kontaktu. Síla počítače určuje počet porovnávaných návrhů strku. Síla úderu i rotace se počítají také v předpovědích."
+        },
+        {
+          "cs": "Limit 1 až 500 strků se týká pouze starších uložených tréninků, nikoli nových her."
+        }
+      ]
+    },
+    {
+      "id": "referee",
+      "title": {
+        "cs": "Pravidla a digitální úpravy"
+      },
+      "paragraphs": [
+        {
+          "cs": "Pool vychází z pravidel a předpisů WPA z 21. října 2026, snooker a anglický kulečník z WPBSA 2024–25, karambol z UMB a volná pyramida z vydání IPC 2025. Cutthroat a společenský kulečník používají zde popsaná klubová pravidla. Pořadí u stolu nahrazuje fyzický rozstřel o začátek. Samotná dohoda o novém rozestavení nepřidává vítěznou partii. Automatický rozhodčí snookeru hlásí Miss jen při přímé cestě; zcela zakryté pokusy zůstávají běžnými fauly bez obnovy pozice."
+        },
+        {
+          "cs": "Simulace je dvourozměrná: nemá ovládání skoků, zvednutí tága ani massé. Postrčení dotýkajících se koulí a čelisti kapes jsou přibližné. První kontakty nerozlišené v jednom fyzikálním kroku se považují za současné. Pyramida používá popsanou tréninkovou geometrii s velkými koulemi a těsnými kapsami, nikoli certifikaci současného vybavení federace. Pomůcky a předpovědi používají aktivní hrací kouli a stejnou fyziku jako hra."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Klávesové zkratky"
+      },
+      "paragraphs": [
+        {
+          "cs": "K: Přečíst směr tága."
+        },
+        {
+          "cs": "F: Přečíst sílu strku."
+        },
+        {
+          "cs": "G: Přečíst první kontakt na záměrné přímce."
+        },
+        {
+          "cs": "H: Vypsat koule poblíž záměrné přímky."
+        },
+        {
+          "cs": "I: Popsat vybranou kouli."
+        },
+        {
+          "cs": "O: Vypsat všechny koule a jejich pozice."
+        },
+        {
+          "cs": "L: Vybrat další cílovou kouli."
+        },
+        {
+          "cs": "Shift+L: Vybrat předchozí cílovou kouli."
+        },
+        {
+          "cs": "J: Vybrat cílovou kapsu."
+        },
+        {
+          "cs": "A: Zamířit na střed vybrané koule."
+        },
+        {
+          "cs": "Shift+A: Zamířit vybranou kouli do zvolené kapsy."
+        },
+        {
+          "cs": "E: Zadat přesný úhel, sílu a rotaci."
+        },
+        {
+          "cs": "W: Zvýšit horní rotaci."
+        },
+        {
+          "cs": "Shift+B: Zvýšit spodní rotaci."
+        },
+        {
+          "cs": "N: Zvýšit levou rotaci."
+        },
+        {
+          "cs": "D: Zvýšit pravou rotaci."
+        },
+        {
+          "cs": "R: Odstranit rotaci."
+        },
+        {
+          "cs": "C: Přepnout směry mezi stupni a ciferníkem."
+        },
+        {
+          "cs": "Y: Předpovědět strk bez pohybu koulí."
+        },
+        {
+          "cs": "U: Přečíst kontakty posledního strku."
+        },
+        {
+          "cs": "Vlevo: otočit proti směru hodinových ručiček o 1 stupeň."
+        },
+        {
+          "cs": "Vpravo: otočit po směru hodinových ručiček o 1 stupeň."
+        },
+        {
+          "cs": "Shift+vlevo: otočit proti směru hodinových ručiček o 0,1 stupně."
+        },
+        {
+          "cs": "Shift+vpravo: otočit po směru hodinových ručiček o 0,1 stupně."
+        },
+        {
+          "cs": "Ctrl+vlevo: otočit proti směru hodinových ručiček o 0,01 stupně."
+        },
+        {
+          "cs": "Ctrl+vpravo: otočit po směru hodinových ručiček o 0,01 stupně."
+        },
+        {
+          "cs": "Nahoru: zvýšit sílu o 1 procento."
+        },
+        {
+          "cs": "Dolů: snížit sílu o 1 procento."
+        },
+        {
+          "cs": "Shift+nahoru: zvýšit sílu o 0,1 procenta."
+        },
+        {
+          "cs": "Shift+dolů: snížit sílu o 0,1 procenta."
+        },
+        {
+          "cs": "Enter nebo mezerník: provést nynější strk."
+        },
+        {
+          "cs": "T: přečíst, kdo je na tahu."
+        },
+        {
+          "cs": "V: Předpovědět odraz od mantinelu a další zásah koule."
+        },
+        {
+          "cs": "B: Popsat objekty za zaměřenou koulí."
+        },
+        {
+          "cs": "S: Přečíst výsledky, ve společenské hře vyhraná kola a body za potopení."
+        },
+        {
+          "cs": "M: Umístěte aktivní hrací kouli při hře z ruky."
+        },
+        {
+          "cs": "P: Otevřete hlášení, volbu hrací koule nebo čekající rozhodnutí."
+        },
+        {
+          "cs": "Shift+P: Přečtěte aktuální stav zápasu."
+        },
+        {
+          "cs": "Q: Po potvrzení vzdejte aktuální kolo, partii či frame."
+        },
+        {
+          "cs": "Čárka: Vypočtěte pohyb první zaměřené koule při aktuální síle a rotaci."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "discipline": "competition",
+    "rounds": "friendly",
+    "layout": "settings",
+    "race_to": "match",
+    "point_target": "settings",
+    "english_limit": "english",
+    "time_limit_minutes": "english",
+    "equalizing": "carom",
+    "baulk_crossing": "english",
+    "accurate": "settings",
+    "bot_skill": "settings",
+    "shots": "settings"
+  }
+}

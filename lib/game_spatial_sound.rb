@@ -1,11 +1,12 @@
 require_relative "game_participants"
 require_relative "game_sound_output"
 
-# Optional HRTF placement of other players' move sounds around the table.
-# The listener sits at six o'clock; the next player in seat order is heard
+# Optional HRTF placement of move sounds by seat or game-owned contact positions.
+# In the seat mapping the listener sits at six o'clock; the next player is heard
 # front-left and the rest follow clockwise to front-right (two players: the
 # opponent in front; see FRONT_SPREAD). The listener's own sounds
-# and table-wide cues stay ordinary centred stereo.
+# and table-wide cues stay ordinary centred stereo. Physical games can instead
+# return a per-cue direction map for the current presentation stage.
 module GameRoomSpatialSound
   # Steam Audio renders direction only; others sound slightly farther away.
   REMOTE_GAIN = 0.8
@@ -56,8 +57,10 @@ module GameRoomSpatialSound
     180.0 - spread + 2.0 * spread * (step - 1) / (others - 1)
   end
 
-  def event_position(program, game, event, before_replay, after_replay, repository, viewer, session)
+  def event_position(program, game, event, before_replay, after_replay, repository, viewer, session, history: nil)
     return nil if after_replay == nil || !enabled?(program, game)
+    # Physical games place individual cue types using this stage's public contacts.
+    return game.event_sound_positions(history: history, replay: after_replay) if game.respond_to?(:event_sound_positions)
     # The host can commit a shared event without being the source of its sound.
     return nil if game.respond_to?(:table_sound_event?) && game.table_sound_event?(event)
     source = repository.actor_of(event, session).to_s
@@ -114,7 +117,8 @@ module GameRoomSpatialSound
   end
 
   def cue_position(cue, position)
-    CENTRED_CUES.include?(cue.to_s) ? nil : position
+    return nil if CENTRED_CUES.include?(cue.to_s)
+    position.is_a?(Hash) ? position[cue.to_s] : position
   end
 
   def clean(value)

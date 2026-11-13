@@ -1,0 +1,569 @@
+{
+  "source": "games/billiards.rb",
+  "sections": [
+    {
+      "id": "competition",
+      "title": {
+        "es": "Billar social: tu primera partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Las mesas nuevas tienen seleccionado el billar social, en el que pueden participar entre dos y ocho jugadores, incluidos los de ordenador. El montaje predeterminado es un rombo con las bolas 1–9 y la blanca. Elimina las bolas 1–8 y después emboca legalmente la 9 para ganar la ronda. El encuentro se decide por las rondas ganadas."
+        },
+        {
+          "es": "Selecciona una bola objetivo con L o Mayús+L y escucha su posición con I. Pulsa A para apuntarle, ajusta dirección y fuerza con las flechas y tira con Intro o Espacio en el control del taco. En el billar social no declaras bola ni tronera. Tras el tiro escucharás el resultado y a quién le toca. El próximo capítulo explica rondas, faltas y puntuación; después se enseñan los controles de puntería."
+        }
+      ]
+    },
+    {
+      "id": "friendly",
+      "title": {
+        "es": "Rondas sociales y faltas"
+      },
+      "paragraphs": [
+        {
+          "es": "El billar social admite de dos a ocho jugadores, incluidos los de ordenador. Elige un total de 1 a 30 rondas. El encuentro termina al resolverse ese número de rondas y gana quien haya ganado más. Si varios jugadores comparten el mayor número de rondas ganadas, el encuentro acaba en empate."
+        },
+        {
+          "es": "El rombo predeterminado contiene nueve bolas objetivo, numeradas del 1 al 9, y la blanca. La bola final es la 9. Mientras queden otras, la blanca debe golpear primero una de ellas. Embocar legalmente una bola normal mantiene tu turno; si no embocas, juega la siguiente persona. Tras el contacto, alguna bola debe tocar banda o debe entrar una bola objetivo."
+        },
+        {
+          "es": "Embocar la blanca, golpear primero una bola incorrecta o incumplir el contacto con banda da al siguiente jugador bola en mano en cualquier lugar: colócala con M. Las demás conservan su posición. Si entra la bola final antes de tiempo o en un tiro con falta, termina la ronda y la gana el siguiente jugador en el orden de la mesa. Un tiro final legal gana la ronda para quien lo realiza. P permite iniciar la siguiente ronda cuando se ofrece. No se pueden reorganizar bolas libremente, deshacer tiros ni reiniciar ejercicios."
+        },
+        {
+          "es": "Además de las rondas ganadas, recibes 1 punto por cada bola objetivo embocada legalmente, incluida la final si es legal. La blanca no da puntos. Un tiro con falta o con la bola final antes de tiempo no da puntos por embocadas. Se acumulan durante todas las rondas del encuentro; no deciden quién gana una ronda ni deshacen un empate del encuentro. S lee las rondas ganadas y los puntos por embocadas sin abrir otra ventana; Mayús+P incluye ambas cifras en el estado del encuentro."
+        }
+      ]
+    },
+    {
+      "id": "table",
+      "title": {
+        "es": "Orientarte en la mesa"
+      },
+      "paragraphs": [
+        {
+          "es": "X mide la distancia desde el extremo izquierdo; Y, desde la banda inferior. Cero grados apunta a la derecha, 90 arriba, 180 a la izquierda y 270 abajo. C cambia la lectura a horas del reloj: tres, doce, nueve y seis. Las troneras 1 a 6 están abajo a la izquierda, abajo en el centro, abajo a la derecha, arriba a la izquierda, arriba en el centro y arriba a la derecha. Las mesas de carambola no tienen troneras."
+        },
+        {
+          "es": "O abre las posiciones de todas las bolas, ordenadas por distancia a la bola de tiro activa; las embocadas van al final. L y Mayús+L eligen una bola objetivo; I describe su número o color, zona, coordenadas, distancia y obstáculos. También puedes llegar a la lista con Tab y recorrerla con las flechas. En pool tiras con la blanca; en billar inglés y carambola, con tu blanca o amarilla asignada; en pirámide libre eliges la bola de tiro."
+        },
+        {
+          "es": "En pool, la línea de cabeza cruza el cuarto izquierdo de la mesa y el punto de pie está en el eje longitudinal, en el cuarto derecho. En snooker y billar inglés, baulk es la zona a la izquierda de la línea situada a 73,7 cm del extremo izquierdo. La D es el semicírculo de radio 29,2 cm a ese lado de la línea. Los triángulos de esquina de carambola se extienden 71 cm por la banda larga y 35,5 cm por la corta. El punto de cabeza es el centro de la línea de cabeza."
+        },
+        {
+          "es": "- Pool: 254 por 127 cm."
+        },
+        {
+          "es": "- Snooker y billar inglés: 356,9 por 177,8 cm."
+        },
+        {
+          "es": "- Carambola: 284 por 142 cm, sin troneras."
+        },
+        {
+          "es": "- Pirámide libre: 355 por 177,5 cm."
+        }
+      ]
+    },
+    {
+      "id": "aim",
+      "title": {
+        "es": "Apuntar y tirar"
+      },
+      "paragraphs": [
+        {
+          "es": "Vuelve con Tab al control del taco. Izquierda y Derecha giran un grado en sentido antihorario y horario. Mantén Mayús para pasos de 0,1 grados o Ctrl para 0,01. Arriba y Abajo cambian la fuerza un uno por ciento, o un 0,1 con Mayús. Al soltar una flecha de puntería oyes una descripción breve de bola, banda o tronera. K lee el ángulo exacto y F la fuerza."
+        },
+        {
+          "es": "Al girar el taco, unos pitidos cortos ayudan a apuntar: el centro de la primera bola en la línea de tiro suena a 5000 Hz y el tono baja hasta 500 Hz al acercarse a cualquiera de sus bordes. Fuera de las bolas hay silencio, salvo al apuntar a una tronera. El tono tiene en cuenta el efecto lateral y los ajustes de sonido del juego. Se detiene al salir del control Taco o abrir un diálogo. Solo se oye en tu ordenador."
+        },
+        {
+          "es": "Selecciona una bola y pulsa A para apuntar a su centro. Para intentar embocarla, elige una tronera con J y pulsa Mayús+A. Esta ayuda geométrica ajusta el ángulo; las bandas, otras bolas, la fuerza y el efecto aún pueden impedir que entre. G describe el primer obstáculo de la trayectoria, incluido el lado de la bola que recibirá el golpe. H enumera las bolas situadas a cinco grados o menos de esa línea, incluso las bloqueadas."
+        },
+        {
+          "es": "E abre un formulario para introducir valores exactos. Se acepta tanto el punto como la coma decimal. El ángulo va de 0 a 359,99 grados y la fuerza de 0,1 a 100 por ciento. Elige Aplicar para conservar los ajustes o Cancelar para mantener los anteriores. Intro o Espacio en el control Taco ejecuta el tiro."
+        }
+      ]
+    },
+    {
+      "id": "spin",
+      "title": {
+        "es": "Efecto"
+      },
+      "paragraphs": [
+        {
+          "es": "W añade efecto de avance y Mayús+B de retroceso. N añade efecto a la izquierda y D a la derecha. Cada pulsación cambia el valor en cinco unidades. R vuelve al golpe centrado sin efecto. El efecto de avance ayuda a la bola de tiro a seguir a la bola golpeada; el de retroceso puede hacerla volver. El lateral modifica los rebotes y desvía ligeramente la dirección inicial. El resultado depende de la fuerza y la distancia: el rozamiento puede agotar el retroceso antes del contacto."
+        },
+        {
+          "es": "Los dos valores van de -100 a 100. Juntos deben representar un punto dentro de la bola de tiro: no se puede combinar el máximo efecto de avance con el máximo lateral. El formulario rechaza esa combinación."
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "title": {
+        "es": "Escuchar el tiro"
+      },
+      "paragraphs": [
+        {
+          "es": "Durante el juego oyes el taco, las colisiones, las bandas y las bolas que entran. El resultado hablado indica los contactos, las embocadas y la decisión arbitral. U abre la lista cronológica del último tiro con ángulo, fuerza y efecto. Y calcula todo el tiro actual y muestra su resultado y posiciones finales sin mover las bolas reales. Escape cierra el informe."
+        },
+        {
+          "es": "Con sonido 3D (HRTF), oyes el taco, las colisiones, las bandas y las embocadas desde sus posiciones en la mesa. La distribución es fija: izquierda y derecha de la mesa siguen a tu izquierda y derecha, y la parte lejana queda delante de ti. Los pitidos de puntería siempre suenan en el centro, incluso con HRTF activado. En Power Games, abre Ajustes → Sonidos, activa HRTF y marca Billar en la lista de juegos con sonido 3D. Con HRTF desactivado o no disponible, los sonidos siguen en estéreo."
+        },
+        {
+          "es": "Cuando la línea de puntería entra en la abertura de una tronera, un tono breve de 3000 Hz acompaña su número. No se repite el número mientras sigas sobre esa abertura. Las descripciones empiezan por el número o color de la bola; en pool, las bolas 9–15 son rayadas."
+        },
+        {
+          "es": "Apunta a una banda y pulsa V para calcular el rebote de la bola de tiro activa con la fuerza y el efecto actuales. Oirás la primera banda, el número de contactos y un posterior contacto con bola o entrada en tronera. Se indica también si el tiro es demasiado débil para alcanzar la banda. Es una predicción, no un tiro ejecutado."
+        },
+        {
+          "es": "B lee los objetos más allá de la primera bola en la línea de puntería: otras bolas en orden y después banda o tronera. Omite las bolas fuera de línea y las que quedan detrás de la bola de tiro. Si no hay bola antes de una banda o tronera, B la nombra directamente. Es una línea geométrica recta; usa Y o Coma para calcular el movimiento físico."
+        }
+      ]
+    },
+    {
+      "id": "object_prediction",
+      "title": {
+        "es": "Predecir la bola a la que apuntas"
+      },
+      "paragraphs": [
+        {
+          "es": "Apunta a una bola objetivo y pulsa Coma. Se calcula el tiro completo con el ángulo, la fuerza y el efecto actuales; después se describe lo que le ocurre a la primera bola de la línea de tiro: sus contactos y si entra en una tronera o se detiene en la mesa. Es el movimiento calculado por la física del tiro, no una prolongación recta de la puntería. La predicción no ejecuta el tiro. Si no hay ninguna bola en la línea, se te indica. Y ofrece el informe del tiro completo con posiciones finales; V describe el rebote de la bola de tiro activa."
+        }
+      ]
+    },
+    {
+      "id": "match",
+      "title": {
+        "es": "Elegir modalidad y tomar decisiones"
+      },
+      "paragraphs": [
+        {
+          "es": "La modalidad se elige en los ajustes de la mesa. El pool competitivo, el snooker, el billar inglés y la carambola requieren dos jugadores; Cutthroat requiere tres. Empieza la primera persona de la lista y los jugadores alternan el inicio de las siguientes partidas. El encuentro suele terminar al alcanzar el número elegido de partidas ganadas. Los puntos dentro de cada partida se cuentan por separado."
+        },
+        {
+          "es": "P abre las declaraciones y decisiones pendientes. Elige la bola, la tronera y los demás datos necesarios y confirma la elección; después tira con Intro o Espacio en el control del taco. Intro solicita las declaraciones que falten. Mayús+P lee la situación reglamentaria, T el turno y S los resultados sin otra ventana. M coloca la bola de tiro activa solo cuando tienes bola en mano. Q permite conceder la partida actual. Una propuesta de recolocar por bloqueo, abierta con P, necesita la aceptación de todos los demás jugadores; un solo rechazo devuelve el turno a quien la propuso."
+        }
+      ]
+    },
+    {
+      "id": "pool_eight",
+      "title": {
+        "es": "Pool: bola 8"
+      },
+      "paragraphs": [
+        {
+          "es": "La mesa empieza abierta y el saque no asigna grupos. Una bola anunciada y embocada legalmente te asigna lisas 1–7 o rayadas 9–15; el rival recibe el otro grupo. Continúas si embocas la bola anunciada en la tronera anunciada. Golpea primero tu grupo y, una vez eliminado, la 8. En una mesa abierta solo puedes anunciar la 8 si ya falta un grupo entero."
+        },
+        {
+          "es": "Salvo en el saque, anuncia la bola y la tronera antes del golpe. P cambia la declaración y Enter solicita los datos que faltan. Una defensa termina el turno aunque caiga una bola. Embocar la 8 antes de tiempo, con falta o en otra tronera pierde la partida. Embocar solo la blanca sin la 8 es una falta normal. También lo son tocar primero una bola incorrecta o no embocar ni alcanzar una banda después del contacto. El rival recibe blanca en mano en toda la mesa."
+        },
+        {
+          "es": "Si el saque no emboca nada, al menos cuatro bolas objetivo distintas deben tocar banda. Si no, el rival puede aceptar la posición o elegir quién vuelve a colocar y sacar. Una 8 embocada en un saque legal se repone o el sacador puede repetir. Con falta y 8, decide el rival, con blanca en mano detrás de la línea de cabeza si conserva la posición. Otras faltas de saque permiten aceptar la posición o tomar blanca detrás de esa línea. Desde allí no puedes tocar directamente una bola de esa zona sin cruzar primero la línea. Si todas las bolas válidas están allí, P permite solicitar que la más cercana vuelva al punto de pie."
+        }
+      ]
+    },
+    {
+      "id": "pool_nine",
+      "title": {
+        "es": "Pool: bola 9"
+      },
+      "paragraphs": [
+        {
+          "es": "Golpea primero la bola de menor número que quede. Cualquier bola objetivo embocada legalmente prolonga el turno y una 9 legal gana, incluso mediante combinación. No hace falta anunciar tronera. Una falta da al rival blanca en mano en toda la mesa. La 9 vuelve al punto de pie si cae con falta o push-out; las demás quedan fuera. Tres faltas consecutivas del mismo jugador pierden la partida; tras dos se anuncia una advertencia. Un golpe legal reinicia su contador."
+        },
+        {
+          "es": "En el rombo, la 9 queda en el punto de pie y la 1 delante. Un saque sin embocar debe llevar cuatro bolas a banda. La regla de tres bolas exige además que al menos tres bolas distintas caigan o crucen la línea de cabeza. Si no se cumple sin otra falta, el rival acepta la posición o devuelve el tiro; una 9 embocada se repone. Solo el sacador que recibe el tiro devuelto puede entonces hacer push-out. Tras un saque legal, el segundo golpe puede ser un push-out declarado con P: se suspenden la obligación de tocar la menor y la de alcanzar banda. Después, el rival elige quién sigue."
+        }
+      ]
+    },
+    {
+      "id": "pool_ten",
+      "title": {
+        "es": "Pool: bola 10"
+      },
+      "paragraphs": [
+        {
+          "es": "Golpea primero el número más bajo que quede, pero declara con P una bola y una tronera antes de cada tiro normal. No hay declaración de defensa. Cumplir legalmente la declaración mantiene tu turno. La 10 solo gana si era la única bola objetivo antes del tiro y entra legalmente en la tronera declarada; las dieces anteriores se reponen."
+        },
+        {
+          "es": "La apertura necesita una embocada o cuatro bolas objetivo distintas en las bandas. Tras una apertura legal puedes declarar con P un push-out para el segundo tiro; después de un push-out legal el rival acepta o devuelve el tiro. En juego normal, embocar sin cumplir la declaración también ofrece esa elección al rival. Una falta da bola en mano en cualquier lugar; tres faltas consecutivas pierden la partida."
+        }
+      ]
+    },
+    {
+      "id": "straight_pool",
+      "title": {
+        "es": "Pool continuo 14.1"
+      },
+      "paragraphs": [
+        {
+          "es": "Declara bola y tronera con P. Si cumples legalmente el tiro, cada bola objetivo embocada en él vale 1 punto y continúas. Gana la partida quien alcanza el objetivo de puntos. Fallar la declaración o declarar defensa acaba el turno y repone las bolas embocadas."
+        },
+        {
+          "es": "La apertura se juega desde detrás de la línea de cabeza. Cumple la embocada declarada o, después del contacto, envía la blanca y al menos dos bolas objetivo a las bandas. Fallar cuesta 2 puntos; el rival acepta la posición o exige repetir la apertura. Una falta normal cuesta 1 y puede dejar un resultado negativo. Un scratch da al rival bola en mano detrás de la línea de cabeza. La tercera falta normal consecutiva cuesta 16 puntos en ese tiro y obliga a abrir de nuevo el triángulo completo; las faltas de apertura no entran en esa serie."
+        },
+        {
+          "es": "Tras puntuar catorce bolas, se montan de nuevo con el vértice vacío y se dejan la blanca y la última bola en sus posiciones. Continúas sin el requisito de dispersión inicial. Si entró también la última bola o ambas restantes estorban al triángulo, vuelven las quince. Una bola objetivo que estorbe sola va al punto de cabeza o al centro si está ocupado. Si solo estorba la blanca, una última bola en la línea de cabeza o más allá da bola en mano detrás de ella; si está antes, la blanca va al punto de cabeza o al centro."
+        },
+        {
+          "es": "Una recolocación acordada por bloqueo conserva puntos y deudas; P ofrece elegir quién abre. Cada nueva partida del encuentro empieza desde cero."
+        }
+      ]
+    },
+    {
+      "id": "one_pocket",
+      "title": {
+        "es": "One Pocket"
+      },
+      "paragraphs": [
+        {
+          "es": "Cada jugador tiene una de las dos troneras de esquina del extremo derecho. Quien abre elige la suya con P antes de tirar. Cada bola legal que entre en tu tronera te da 1 punto, aunque la embocara el rival; el primero en llegar a 8 gana. Embocar legalmente en tu tronera mantiene tu turno. Las bolas de otras troneras se reponen al acabar la entrada, o inmediatamente si se vacía la mesa antes de la victoria. La apertura exige contacto y después banda o embocada, sin dispersar cuatro bolas."
+        },
+        {
+          "es": "Una falta te quita 1 punto y devuelve una de tus bolas ganadas. Si no tienes ninguna, debes una bola: una futura embocada puntuable paga la deuda y se repone. Las bolas de la tronera rival puntúan incluso con falta, salvo que la única falta fuera embocar la blanca. Sacar la blanca de la mesa o embocarla junto con otra falta no anula esos puntos del rival. Un scratch da bola en mano detrás de la línea de cabeza. Tres faltas consecutivas pierden la partida. Si ambos llegan a 8 en el mismo tiro, gana quien tira. Recolocar de mutuo acuerdo conserva puntos y deudas y exige elegir de nuevo quién hace el saque y las troneras."
+        }
+      ]
+    },
+    {
+      "id": "bank",
+      "title": {
+        "es": "Bank Pool: corto y completo"
+      },
+      "paragraphs": [
+        {
+          "es": "Para que una embocada puntúe, declara bola, tronera y orden de bandas. Con P elige bola y tronera y añade cada banda siguiente: izquierda, derecha, superior o inferior. Termina la ruta cuando esté lista; admite de uno a doce contactos. Cancelar conserva la declaración anterior. La blanca debe golpear la bola declarada antes de tocar otra bola o banda. La bola declarada no puede tocar otra bola ni volver a tocar la blanca. Sus bandas deben coincidir con la ruta; no cuentan los contactos accidentales con las mandíbulas de la tronera de destino al entrar."
+        },
+        {
+          "es": "Una embocada válida de banco da 1 punto y mantiene el turno. La variante corta usa 9 bolas y un objetivo de 5; la completa, 15 bolas y un objetivo de 8. Las bolas extra se reponen al acabar la entrada, o inmediatamente si se vacía la mesa antes de ganar. No declares banco en la apertura: embocar mantiene el turno, pero no puntúa. Sin embocada, cuatro bolas objetivo distintas deben alcanzar las bandas; una apertura insuficiente permite al rival aceptar o exigir repetirla."
+        },
+        {
+          "es": "Una falta cuesta 1 punto y devuelve una bola ganada. Si no tienes ninguna, pagas la deuda reponiendo una futura bola puntuable; el resultado puede ser negativo. Un scratch da bola en mano detrás de la línea de cabeza. Tres faltas consecutivas pierden la partida. Una recolocación acordada por bloqueo conserva puntos y deudas, y P permite elegir de nuevo quién hace el saque."
+        }
+      ]
+    },
+    {
+      "id": "cutthroat",
+      "title": {
+        "es": "Cutthroat para tres jugadores"
+      },
+      "paragraphs": [
+        {
+          "es": "Esta variante de club asigna grupos fijos por asiento: 1–5, 6–10 y 11–15. Protege tu grupo y elimina los demás. Puedes tocar primero cualquier bola objetivo y sacrificar una propia. Una embocada legal mantiene el turno salvo que retire tu última bola. Se salta temporalmente a quien no tenga bolas; gana el último grupo que permanezca."
+        },
+        {
+          "es": "Una falta da al siguiente jugador bola en mano en cualquier lugar y repone una bola embocada de cada rival: el número más bajo que falte en su grupo. Así puede volver alguien que estaba siendo saltado. No se pierde por tres faltas. Si un tiro legal elimina todos los grupos, la ronda termina en empate. Los grupos son fijos y no se negocian durante la partida. Conceder con Q retira todas las bolas de tu grupo e impide que vuelvan durante esa partida; los demás jugadores continúan."
+        }
+      ]
+    },
+    {
+      "id": "blackball",
+      "title": {
+        "es": "Blackball"
+      },
+      "paragraphs": [
+        {
+          "es": "Juega tu grupo de lisas o rayadas y después la negra. No se declaran troneras. La mesa sigue abierta tras la apertura y los tiros libres; un tiro normal legal posterior asigna los grupos. Una embocada legal mantiene el turno. Embocar la última bola propia junto con la negra gana legalmente; embocar la negra con falta o antes de eliminar tu grupo pierde la partida. La negra en la apertura, en cambio, provoca otro montaje para la misma persona."
+        },
+        {
+          "es": "Una apertura legal emboca o hace cruzar la línea central a dos bolas objetivo distintas como mínimo. Una falta concede un tiro libre seguido de uno normal. Juega el libre desde la posición actual o usa M para mover la bola de tiro a baulk, la quinta parte izquierda. El tiro libre solo suspende la primera bola obligatoria: embocar únicamente bolas rivales sigue siendo falta. Tras el tiro normal, continuar vuelve a exigir una embocada legal. En un snooker completo, sin camino a ninguna parte de una bola válida, se suspende el requisito habitual de banda. Debes alejarte de una bola válida que estés tocando sin empujarla."
+        }
+      ]
+    },
+    {
+      "id": "snooker",
+      "title": {
+        "es": "Snooker"
+      },
+      "paragraphs": [
+        {
+          "es": "Hay quince rojas de un punto y amarilla 2, verde 3, marrón 4, azul 5, rosa 6 y negra 7. Las rojas tienen identificadores 1–15 y los colores 16–21 en ese orden. Emboca una roja, nomina un color con P o cuando Enter lo pida y alterna roja y color. Varias rojas pueden puntuar en un golpe. En esta fase los colores vuelven a sus puntos, incluso tras falta; las rojas normalmente quedan fuera. Tras la última roja aún puedes jugar un color; después elimina de amarilla a negra en orden sin reponer los colores embocados legalmente."
+        },
+        {
+          "es": "Una falta concede al rival de 4 a 7 puntos: se aplica el mayor valor pertinente de la bola válida y las tocadas o embocadas ilegalmente. El infractor no puntúa ese golpe. El rival juega o pide que repita el infractor. Tras embocar la blanca solo se coloca dentro de la D; M mueve únicamente la blanca y conserva las posiciones finales de las demás. Un punto de color ocupado se sustituye por el libre de mayor valor o por la posición legal más cercana hacia la negra; rosa y negra pueden usar la dirección opuesta cuando sea necesario."
+        },
+        {
+          "es": "Tras una falta, un snooker sobre todas las bolas válidas permite nominar bola libre con P. Deben verse ambos extremos de alguna bola válida para evitar un snooker; la banda no cuenta como obstáculo. Con blanca en mano se comprueba toda la D a la precisión de posición registrada. La bola libre toma el valor de la válida y vuelve a su punto si cae. No puede dejar por sí misma un snooker tras un golpe sin puntos, salvo la excepción de las dos últimas bolas."
+        },
+        {
+          "es": "Si había una trayectoria directa pero no se alcanzó el primer contacto debido, el árbitro puede declarar Foul and a Miss. El rival puede restaurar la posición y pedir repetición; los puntos de penalización se conservan. Dos fallos repetidos con acceso a bola completa generan aviso; otro pierde el frame. No se declara un Miss ordinario si ya se necesitan puntos de faltas o pasan a necesitarse tras el golpe. Cuando solo queda negra, la primera bola o falta resuelve el frame. Un empate repone la negra, sortea el derecho a elegir quién juega y da blanca en mano en la D; la siguiente bola o falta decide."
+        }
+      ]
+    },
+    {
+      "id": "english",
+      "title": {
+        "es": "Billar inglés"
+      },
+      "paragraphs": [
+        {
+          "es": "Cada jugador conserva su bola de tiro blanca o amarilla; la roja es común. Al inicio, la roja está en su punto y quien empieza juega desde la D. La bola del otro jugador está inicialmente fuera de la mesa y entra cuando la necesita. Gana quien alcanza el objetivo de puntos o va por delante al terminar el tiempo elegido. Un tiro puntuado mantiene tu entrada."
+        },
+        {
+          "es": "Un mismo tiro puede sumar varias jugadas:"
+        },
+        {
+          "es": "- Una carambola, o cannon, ocurre cuando tu bola toca las otras dos. Vale 2 puntos, una sola vez por tiro."
+        },
+        {
+          "es": "- Embocar la roja vale 3 puntos; embocar la bola del rival, 2."
+        },
+        {
+          "es": "- Embocar tu propia bola después de tocar la roja vale 3; después de la bola rival, 2. Si toca ambas, decide el primer contacto; un primer contacto simultáneo que no se pueda separar vale 2."
+        },
+        {
+          "es": "Después de embocar tu bola, colócala en la D con M. Debes jugar fuera de baulk antes de jugar directamente una bola cuyo centro esté en baulk, incluida su línea. Antes de regresar a baulk debes haber tocado una banda o bola fuera de él. Un English Miss legal con todos los objetivos en baulk da 2 puntos al rival y se juega desde la posición resultante. Una falta también da 2, anula los puntos de ese tiro y ofrece con P aceptar la posición o recolocar la roja y la bola rival para jugar desde la D."
+        },
+        {
+          "es": "La roja vuelve a su punto tras ser embocada. En embocadas consecutivas de solo la roja desde el punto, se juega dos veces desde el punto normal y una desde el centro; hay puntos alternativos si están ocupados. La bola rival embocada suele quedar fuera hasta que se necesita. Si tu bola queda tocando otra, se coloca la roja en su punto, la rival en el centro si estaba en la mesa y tú juegas desde la D."
+        },
+        {
+          "es": "Una entrada admite como máximo 75 carambolas puras consecutivas o 15 tiros de hazard sin carambola; un hazard es una embocada de bola objetivo o de la propia tras un contacto. Hay avisos en 70 y 10. Combinar carambola y hazard interrumpe ambas series. Tras el decimoquinto hazard puede recolocarse la bola rival si quedó fuera por la última entrada de ese rival. Si activas el cruce de baulk, el cruce hacia su interior debe hacerse entre los puntos 80 y 100 de cada centena de la entrada; omitirlo es falta."
+        }
+      ]
+    },
+    {
+      "id": "carom",
+      "title": {
+        "es": "Carambola libre, a una banda y a tres bandas"
+      },
+      "paragraphs": [
+        {
+          "es": "Hay tres bolas en una mesa sin troneras. Conservas tu bola blanca o amarilla asignada durante toda la partida. Haces carambola cuando tu bola toca las otras dos en un tiro. Una carambola legal da 1 punto y mantiene tu entrada; fallar o cometer falta cede el turno sin descontar puntos. Gana quien alcanza el objetivo elegido, con la entrada de compensación si está activada. Con la compensación activada, si quien comenzó alcanza el objetivo tras una entrada más, el otro jugador recibe una última entrada desde la posición inicial. Si también alcanza el objetivo, la partida es un empate; si termina esa entrada sin alcanzarlo, gana quien comenzó. Sin compensación, alcanzar el objetivo gana inmediatamente."
+        },
+        {
+          "es": "Al comenzar, P permite elegir el punto de salida inferior o superior. El primer ataque debe ser directamente a la roja. Después se aplican estas diferencias:"
+        },
+        {
+          "es": "- La carambola libre no exige bandas. Sus cuatro triángulos marcados en las esquinas limitan las carambolas repetidas."
+        },
+        {
+          "es": "- A una banda, tu bola debe tocar al menos una banda antes de tocar la segunda bola objetivo distinta."
+        },
+        {
+          "es": "- A tres bandas, necesita al menos tres contactos de ese tipo. Cuentan los rebotes separados en la misma banda y los anteriores a la primera bola objetivo. Los rebotes posteriores a la segunda no corrigen una carambola fallida."
+        },
+        {
+          "es": "En una esquina de carambola libre, después de entrar ambas bolas objetivo puedes puntuar una vez sin que salga ninguna. En la siguiente carambola debe salir al menos una del triángulo; puede regresar durante el mismo tiro. La bola sobre la línea se interpreta en contra del jugador. Se comprueba el movimiento completo, no solo las posiciones finales."
+        },
+        {
+          "es": "Si tu bola toca otra, la modalidad libre restaura las tres posiciones iniciales. En las modalidades de bandas, P ofrece jugar alejándote sin empujar la bola tocada o recolocar en los puntos. A una banda se recolocan las tres; a tres bandas, solo las que se tocan, en sus puntos correspondientes. Tirar directamente contra una banda a la que está pegada tu bola es falta. Si una bola sale de la mesa, se recolocan las tres en libre y a una banda, pero solo las que salieron a tres bandas."
+        }
+      ]
+    },
+    {
+      "id": "pyramid",
+      "title": {
+        "es": "Pirámide libre"
+      },
+      "paragraphs": [
+        {
+          "es": "Consigue 8 puntos antes que tu rival. Las dieciséis bolas valen lo mismo: 1 punto por cada embocada legal, incluida la bola de tiro tras tocar otra. No se declaran bola ni tronera. Antes de cada tiro posterior a la apertura, abre P y la elección de bola de tiro para escoger cualquiera que quede en la mesa. Embocar legalmente mantiene el turno y permite elegir de nuevo."
+        },
+        {
+          "es": "La apertura usa la bola de color desde detrás de la línea de casa, en el cuarto izquierdo. Después de tocar una bola objetivo, emboca una bola, envía tres bolas objetivo distintas a las bandas o dos a las bandas y una bola objetivo al otro lado de la línea central."
+        },
+        {
+          "es": "En los tiros siguientes, tras el contacto obligatorio debe ocurrir una de estas situaciones:"
+        },
+        {
+          "es": "- Se emboca una bola."
+        },
+        {
+          "es": "- Una bola rebota en banda y después alcanza otra banda, directamente o enviando otra bola allí. También puede servir tocar una bola pegada a esa segunda banda."
+        },
+        {
+          "es": "- Una bola cruza el centro y después alcanza una banda, por sí misma o transmitiendo movimiento a otra; también cuenta una bola pegada a esa banda."
+        },
+        {
+          "es": "- Después de rebotar en banda, una bola cruza el centro, envía otra al otro lado o toca una bola de la mitad opuesta o de la línea central. También cuentan los contactos correspondientes transmitidos por otras bolas."
+        },
+        {
+          "es": "Tras una falta se reponen primero las bolas embocadas ilegalmente y las que salieron. Con P el rival elige cualquier bola de la mesa como penalización, la retira y gana 1 punto. Después juega o devuelve el tiro. Tras una apertura ilegal también puede recolocar y elegir quién abre; el punto se conserva y la pirámide queda incompleta. Embocar solo tu bola de tiro no es automáticamente falta: puntúa si se hace legalmente tras un contacto. Varias infracciones en un tiro reciben una sola penalización."
+        },
+        {
+          "es": "Las bolas repuestas se colocan desde el punto de pie hacia la derecha por el eje central, y en sentido contrario si falta espacio. Pueden ser la siguiente bola de tiro. Las bolas grandes y las mandíbulas estrechas requieren más precisión que el pool; apuntar a una tronera no garantiza pasar entre sus mandíbulas."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "es": "Ajustes del encuentro"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de jugar, elige la modalidad y su condición de victoria. El billar social tiene un total de 1 a 30 rondas y uno de tres montajes. Cuando la modalidad lo permite, se fija un objetivo de puntos para cada partida; el objetivo del encuentro indica cuántas partidas hay que ganar. El billar inglés también puede jugarse por tiempo: se termina el tiro que ya haya comenzado y, si las puntuaciones finales son iguales, hay empate. La opción de entrada de compensación en carambola concede al segundo jugador una última entrada desde la posición inicial cuando haga falta igualar las entradas. En el billar inglés por tiempo, el tiro debe aceptarse en la mesa antes del límite; pulsar la tecla antes no basta."
+        },
+        {
+          "es": "El billar social empieza con el rombo de nueve bolas objetivo. En los ajustes de mesa puedes elegir una sola bola objetivo o el triángulo de quince; sus bolas finales serán la 1 y la 15, respectivamente. Una elección expresa y una partida guardada antigua conservan el montaje elegido."
+        },
+        {
+          "es": "El objetivo del encuentro va de 1 a 25 partidas ganadas. Los objetivos de puntos ajustables van de 1 a 1000; el tiempo del billar inglés, de 1 a 180 minutos."
+        },
+        {
+          "es": "La física más precisa usa pasos de cálculo menores y puede cambiar un contacto ajustado. La fuerza del ordenador determina cuántas propuestas de tiro compara. La fuerza y el efecto también se tienen en cuenta en las predicciones."
+        },
+        {
+          "es": "El límite de 1 a 500 tiros solo se aplica a entrenamientos guardados antiguos, no a partidas nuevas."
+        }
+      ]
+    },
+    {
+      "id": "referee",
+      "title": {
+        "es": "Reglamentos y adaptación digital"
+      },
+      "paragraphs": [
+        {
+          "es": "El pool sigue las reglas y regulaciones WPA del 21 de octubre de 2026; el snooker y el billar inglés, WPBSA 2024–25; la carambola, UMB; y la pirámide libre, la revisión IPC de 2025. Cutthroat y el billar social usan las reglas de club descritas aquí. El orden de la mesa sustituye la prueba física de salida. Acordar una recolocación no da por sí mismo una partida ganada. El árbitro automático de snooker declara Miss solo con camino directo; los intentos totalmente obstruidos siguen siendo faltas normales sin restauración."
+        },
+        {
+          "es": "La simulación es bidimensional: no hay controles de salto, elevación del taco ni massé. Los empujones entre bolas en contacto y las mandíbulas son aproximaciones. Los primeros contactos no separables dentro de un paso físico se consideran simultáneos. La pirámide usa una geometría de entrenamiento documentada con bolas grandes y troneras estrechas, no una certificación actual del equipo de federación. Las ayudas y predicciones usan la bola de tiro activa y la misma física que el juego."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Atajos de teclado"
+      },
+      "paragraphs": [
+        {
+          "es": "K: Leer la dirección del taco."
+        },
+        {
+          "es": "F: Leer la fuerza del tiro."
+        },
+        {
+          "es": "G: Leer el primer contacto en la línea de tiro."
+        },
+        {
+          "es": "H: Enumerar las bolas próximas a la línea de tiro."
+        },
+        {
+          "es": "I: Describir la bola seleccionada."
+        },
+        {
+          "es": "O: Enumerar todas las bolas y sus posiciones."
+        },
+        {
+          "es": "L: Seleccionar la siguiente bola objetivo."
+        },
+        {
+          "es": "Shift+L: Seleccionar la bola objetivo anterior."
+        },
+        {
+          "es": "J: Elegir la tronera de destino."
+        },
+        {
+          "es": "A: Apuntar al centro de la bola seleccionada."
+        },
+        {
+          "es": "Shift+A: Apuntar la bola seleccionada hacia la tronera elegida."
+        },
+        {
+          "es": "E: Introducir el ángulo, la fuerza y el efecto exactos."
+        },
+        {
+          "es": "W: Aumentar el efecto de avance."
+        },
+        {
+          "es": "Shift+B: Aumentar el efecto de retroceso."
+        },
+        {
+          "es": "N: Aumentar el efecto a la izquierda."
+        },
+        {
+          "es": "D: Aumentar el efecto a la derecha."
+        },
+        {
+          "es": "R: Quitar el efecto."
+        },
+        {
+          "es": "C: Alternar entre grados y posiciones del reloj."
+        },
+        {
+          "es": "Y: Predecir el tiro sin mover las bolas."
+        },
+        {
+          "es": "U: Leer los contactos del último tiro."
+        },
+        {
+          "es": "Izquierda: girar 1 grado en sentido antihorario."
+        },
+        {
+          "es": "Derecha: girar 1 grado en sentido horario."
+        },
+        {
+          "es": "Mayús+Izquierda: girar 0,1 grados en sentido antihorario."
+        },
+        {
+          "es": "Mayús+Derecha: girar 0,1 grados en sentido horario."
+        },
+        {
+          "es": "Ctrl+Izquierda: girar 0,01 grados en sentido antihorario."
+        },
+        {
+          "es": "Ctrl+Derecha: girar 0,01 grados en sentido horario."
+        },
+        {
+          "es": "Arriba: aumentar la fuerza un 1 por ciento."
+        },
+        {
+          "es": "Abajo: reducir la fuerza un 1 por ciento."
+        },
+        {
+          "es": "Mayús+Arriba: aumentar la fuerza un 0,1 por ciento."
+        },
+        {
+          "es": "Mayús+Abajo: reducir la fuerza un 0,1 por ciento."
+        },
+        {
+          "es": "Intro o Espacio: ejecutar el tiro actual."
+        },
+        {
+          "es": "T: leer de quién es el turno."
+        },
+        {
+          "es": "V: Predecir el rebote en la banda y el siguiente contacto con una bola."
+        },
+        {
+          "es": "B: Describir los objetos detrás de la bola apuntada."
+        },
+        {
+          "es": "S: Leer los resultados, incluidas rondas ganadas y puntos por embocadas en el modo social."
+        },
+        {
+          "es": "M: Coloca la bola de tiro activa cuando tienes bola en mano."
+        },
+        {
+          "es": "P: Abre declaraciones, elección de bola de tiro o decisiones pendientes."
+        },
+        {
+          "es": "Mayús+P: Lee la situación actual del encuentro."
+        },
+        {
+          "es": "Q: Concede la ronda o partida actual tras confirmarlo."
+        },
+        {
+          "es": "Coma: Predice la primera bola apuntada con la fuerza y el efecto actuales."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "discipline": "competition",
+    "rounds": "friendly",
+    "layout": "settings",
+    "race_to": "match",
+    "point_target": "settings",
+    "english_limit": "english",
+    "time_limit_minutes": "english",
+    "equalizing": "carom",
+    "baulk_crossing": "english",
+    "accurate": "settings",
+    "bot_skill": "settings",
+    "shots": "settings"
+  }
+}

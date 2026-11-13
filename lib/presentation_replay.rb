@@ -68,7 +68,7 @@ class GameRoomPresentationReplay
   def session_key(session)
     # The write-CAS token changes with every action. The exact accepted-event
     # prefix already guards that history; keep all semantic session metadata.
-    Marshal.dump(session.reject { |key, _value| key == '__game_revision' })
+    Marshal.dump([session.reject { |key, _value| key == '__game_revision' }, GameRoomParticipants.names_revision])
   rescue TypeError
     nil
   end

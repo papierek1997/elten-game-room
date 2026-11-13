@@ -3,7 +3,8 @@ registry = EltenGameRoom::GAME_REGISTRY
 empty = %w[balut mexican_train war scientific_war battleship ludo reversi yahtzee biblios chess four_in_a_row tic_tac_toe]
 registry.ids.each do |id|
   game = registry.build(id)
-  options = game.default_options.merge("__secret" => "secret", "thinking_time" => 123, "bot_delay" => 5, "full_p2p" => true)
+  # Reader defaults may retain historical modes that new tables no longer offer.
+  options = game.table_creation_options.merge("__secret" => "secret", "thinking_time" => 123, "bot_delay" => 5, "full_p2p" => true)
   payload = GameRoomTableVariant.payload(game, JSON.generate(options))
   message = GameRoomTableVariant.text(game, payload)
   assert(message.encoding == Encoding::UTF_8 && message.valid_encoding?, "invalid variant encoding: #{id}")
@@ -17,6 +18,15 @@ registry.ids.each do |id|
   puts "#{id}: #{message}"
 end
 read = ->(id, options) { GameRoomTableVariant.text(registry.build(id), GameRoomTableVariant.payload(registry.build(id), options)) }
+assert(read.call('billiards', {'discipline'=>'nine'}) == 'Pool: 9-ball', 'Billiards discipline summary missing')
+assert(read.call('billiards', {'discipline'=>'friendly', 'layout'=>'diamond'}).include?('Social billiards'), 'Social billiards summary missing')
+%w[billiards cash_auction].each do |id|
+  assert(read.call(id, {}).empty?, "#{id}: absent notification options became defaults")
+  options = registry.build(id).table_creation_options.merge('__private'=>'secret', 'bot_delay'=>5)
+  keys = GameRoomTableVariant.payload(registry.build(id), options).fetch('options').keys
+  expected = id == 'billiards' ? %w[discipline layout] : %w[content_language_id content_set_id]
+  assert(keys.sort == expected.sort, "#{id}: unexpected notification metadata")
+end
 assert(read.call('kosciane', {'columns'=>1})=='1 score column', 'Dice General singular column summary missing')
 assert(read.call('kosciane', {'columns'=>6})=='6 score columns', 'Dice General selected column count missing')
 [nil,0,7,'3',true].each { |value| assert(read.call('kosciane', {'columns'=>value}).empty?, 'Malformed column count printed') }

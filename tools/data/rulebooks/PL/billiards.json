@@ -1,0 +1,569 @@
+{
+  "source": "games/billiards.rb",
+  "sections": [
+    {
+      "id": "competition",
+      "title": {
+        "pl": "Bilard towarzyski: pierwsza gra"
+      },
+      "paragraphs": [
+        {
+          "pl": "Nowy stół domyślnie wybiera bilard towarzyski. Może w nim grać od dwóch do ośmiu graczy, także komputerowych. Domyślny układ to romb bil 1–9 i biała rozgrywająca. Usuń bile 1–8, a potem prawidłowo wbij dziewiątkę, aby wygrać rundę. O wyniku meczu decydują wygrane rundy."
+        },
+        {
+          "pl": "Wybierz bilę obiektową klawiszem L lub Shift+L i sprawdź jej położenie pod I. Naciśnij A, aby skierować na nią kij, popraw kierunek i siłę strzałkami, a potem uderz Enterem lub Spacją na polu kija. W bilardzie towarzyskim nie deklarujesz bili ani łuzy. Po strzale wysłuchaj wyniku i informacji, kto gra dalej. Następny rozdział opisuje rundy, faule i punktację, a kolejne uczą celowania."
+        }
+      ]
+    },
+    {
+      "id": "friendly",
+      "title": {
+        "pl": "Rundy towarzyskie i faule"
+      },
+      "paragraphs": [
+        {
+          "pl": "W bilardzie towarzyskim gra od dwóch do ośmiu graczy, także komputerowych. Wybierz łącznie od 1 do 30 rund. Mecz kończy się po rozstrzygnięciu tej liczby rund i wygrywa osoba z największą liczbą zwycięstw. Jeśli kilka osób ma tę samą największą liczbę wygranych rund, mecz kończy się remisem."
+        },
+        {
+          "pl": "W domyślnym rombie jest dziewięć bil obiektowych o numerach 1–9 oraz biała rozgrywająca. Bilą końcową jest dziewiątka. Dopóki zostają inne bile obiektowe, rozgrywająca musi najpierw trafić którąś z nich. Prawidłowe wbicie zwykłej bili przedłuża twoją kolejkę, a brak wbicia oddaje ją następnej osobie. Po kontakcie któraś bila musi dojść do bandy albo musi nastąpić wbicie bili obiektowej."
+        },
+        {
+          "pl": "Wbicie rozgrywającej, trafienie najpierw niewłaściwej bili lub brak wymaganej bandy daje następnemu graczowi bilę w ręce na całym stole; ustaw ją pod M. Pozostałe bile zachowują pozycje. Wczesne wbicie ostatniej bili albo wbicie jej z faulem kończy rundę i przyznaje zwycięstwo następnej osobie w kolejności przy stole. Prawidłowe wbicie wygrywa rundę strzelającemu. Pod P rozpoczniesz kolejną rundę, gdy pojawi się ta decyzja. Dowolne ustawianie bil, cofanie i reset ćwiczenia nie należą do tej gry."
+        },
+        {
+          "pl": "Obok wygranych rund zbierasz po 1 punkcie za każdą prawidłowo wbitą bilę obiektową, także prawidłowo wbitą ostatnią bilę. Biała nie daje punktów. Uderzenie z faulem lub przedwczesnym wbiciem ostatniej bili nie daje punktów za wbicia. Punkty sumują się przez wszystkie rundy meczu; nie decydują o wygranej w rundzie ani nie rozstrzygają remisu w meczu. S wypowiada wygrane rundy i punkty za wbicia bez otwierania okna, a Shift+P podaje oba liczniki w opisie sytuacji w meczu."
+        }
+      ]
+    },
+    {
+      "id": "table",
+      "title": {
+        "pl": "Odczytywanie stołu"
+      },
+      "paragraphs": [
+        {
+          "pl": "X mierzy odległość od lewego końca, a Y od dolnej bandy. Kierunki to: 0 stopni w prawo, 90 w górę, 180 w lewo, 270 w dół. C przełącza odczyt na godziny zegara: odpowiednio trzecią, dwunastą, dziewiątą i szóstą. Łuzy 1–6 leżą kolejno: na dole po lewej, na dole pośrodku, na dole po prawej, na górze po lewej, na górze pośrodku i na górze po prawej. Stoły karambolowe nie mają łuz."
+        },
+        {
+          "pl": "O otwiera pozycje wszystkich bil, od najbliższych aktywnej bili rozgrywającej; wbite są na końcu. L i Shift+L wybierają bilę obiektową, a I opisuje jej numer lub kolor, sektor, współrzędne, odległość i przeszkody. Do listy bil możesz też dojść Tabem i przeglądać ją strzałkami. W poolu rozgrywa biała; w bilardzie angielskim i karambolu własna biała lub żółta, a w wolnej piramidzie wybrana przez ciebie bila."
+        },
+        {
+          "pl": "W poolu linia bazy przecina lewą ćwiartkę stołu, a punkt tylny leży na osi podłużnej w prawej ćwiartce. W snookerze i bilardzie angielskim baulk to obszar na lewo od linii oddalonej o 73,7 cm od lewego końca. D jest półkolem o promieniu 29,2 cm po tej stronie linii. Trójkąty narożne karambolu sięgają 71 cm wzdłuż długiej bandy i 35,5 cm wzdłuż krótkiej. Punkt bazy to środek linii bazy, nazywanej też linią rozbicia."
+        },
+        {
+          "pl": "- Pool: 254 na 127 cm."
+        },
+        {
+          "pl": "- Snooker i bilard angielski: 356,9 na 177,8 cm."
+        },
+        {
+          "pl": "- Karambol: 284 na 142 cm, bez łuz."
+        },
+        {
+          "pl": "- Wolna piramida: 355 na 177,5 cm."
+        }
+      ]
+    },
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Celowanie i uderzenie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Wróć Tabem na pole kija. Lewo i Prawo obracają go przeciwnie do wskazówek zegara i zgodnie z nimi o jeden stopień. Shift zmniejsza krok do 0,1 stopnia, a Ctrl do 0,01. Góra i Dół zmieniają siłę o jeden procent, z Shiftem o 0,1 procenta. Puszczenie strzałki celowania odczytuje krótki opis bili, bandy lub łuzy. K podaje dokładny kąt, a F siłę."
+        },
+        {
+          "pl": "Podczas obracania kija krótkie piknięcia pomagają namierzyć bilę: środek pierwszej bili na linii uderzenia daje ton 5000 Hz, a zbliżanie się do dowolnej krawędzi obniża go aż do 500 Hz. Poza bilami jest cisza, z wyjątkiem celowania do łuzy. Sygnał uwzględnia rotację boczną i ustawienia dźwięków gry. Cichnie po opuszczeniu pola Kij lub otwarciu formularza. Słyszysz go tylko na swoim komputerze."
+        },
+        {
+          "pl": "Wybierz bilę i naciśnij A, aby skierować kij na jej środek. Żeby przygotować wbicie, wybierz łuzę klawiszem J, a potem naciśnij Shift+A. Ta pomoc ustawia kąt; banda, inne bile, siła i rotacja nadal mogą przeszkodzić we wbiciu. Klawisz G opisuje pierwszą przeszkodę na linii celowania, w tym stronę kontaktu z bilą. H odczytuje bile w sąsiedztwie pięciu stopni od tej linii, również te zasłonięte."
+        },
+        {
+          "pl": "Klawisz E otwiera formularz dokładnych wartości. Możesz używać kropki lub przecinka dziesiętnego. Kąt mieści się od 0 do 359,99 stopnia, a siła od 0,1 do 100 procent. Wybierz Zastosuj, aby zachować ustawienia, albo Anuluj, aby pozostać przy poprzednich. Enter lub Spacja w polu Kij wykonuje uderzenie."
+        }
+      ]
+    },
+    {
+      "id": "spin",
+      "title": {
+        "pl": "Rotacja"
+      },
+      "paragraphs": [
+        {
+          "pl": "W zwiększa rotację górną, a Shift+B dolną. N zwiększa rotację w lewo, D w prawo. Każde naciśnięcie zmienia wartość o pięć. R przywraca uderzenie bez rotacji. Rotacja górna pomaga rozgrywającej podążyć za trafioną bilą, a dolna może ją cofnąć. Boczna zmienia odbicia od band i nieznacznie odchyla początkowy kierunek uderzenia. Efekt zależy od siły i odległości: tarcie o sukno może wytracić rotację dolną, zanim rozgrywająca dotrze do celu."
+        },
+        {
+          "pl": "Obie wartości rotacji mieszczą się od -100 do 100. Łącznie muszą odpowiadać punktowi wewnątrz bili rozgrywającej: maksymalnej rotacji górnej nie można połączyć z maksymalną boczną. Formularz odrzuci takie ustawienie."
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "title": {
+        "pl": "Słuchanie uderzenia"
+      },
+      "paragraphs": [
+        {
+          "pl": "Podczas gry słychać kij, zderzenia bil, bandy i wpadanie do łuz. Opis po strzale podaje trafienia, wbicia i decyzję sędziego. U otwiera chronologiczną listę kontaktów ostatniego strzału wraz z kątem, siłą i rotacją. Y oblicza całe bieżące uderzenie oraz pokazuje wynik i końcowe pozycje bez poruszania rzeczywistych bil. Escape zamyka raport."
+        },
+        {
+          "pl": "Przy dźwięku 3D (HRTF) kij, zderzenia bil, bandy i wpadanie do łuz słychać z ich miejsc na stole. Układ jest stały: lewa i prawa strona stołu pozostają po twojej lewej i prawej, a dalsza część stołu znajduje się przed tobą. Piknięcia celowania zawsze brzmią na środku, także przy włączonym HRTF. W Power Games otwórz Ustawienia → Dźwięki, włącz HRTF i zaznacz Bilard na liście gier z dźwiękiem 3D. Przy wyłączonym lub niedostępnym HRTF dźwięki pozostają stereofoniczne."
+        },
+        {
+          "pl": "Gdy linia celowania wejdzie w otwór łuzy, krótki ton 3000 Hz towarzyszy jej numerowi. Numer nie powtarza się podczas pozostawania nad tym samym otworem. Opisy bil zaczynają się od numeru lub koloru; poolowe bile 9–15 mają pasy."
+        },
+        {
+          "pl": "Skieruj kij na bandę i naciśnij V, aby obliczyć odbicie aktywnej rozgrywającej przy bieżącej sile i rotacji. Usłyszysz pierwszą bandę, liczbę kontaktów oraz późniejsze trafienie bili albo wpadnięcie do łuzy. Program powie też, gdy strzał jest za słaby, aby dojść do bandy. To prognoza, nie wykonany strzał."
+        },
+        {
+          "pl": "B odczytuje obiekty dalej na linii celowania, za pierwszą bilą: następne bile po kolei, potem bandę lub łuzę. Pomija bile poza linią i za rozgrywającą. Gdy przed bandą lub łuzą nie ma bili, B nazywa ją bezpośrednio. Jest to prosta linia geometryczna; ruch wynikający z fizyki obliczysz pod Y albo przecinkiem."
+        }
+      ]
+    },
+    {
+      "id": "object_prediction",
+      "title": {
+        "pl": "Prognoza namierzonej bili"
+      },
+      "paragraphs": [
+        {
+          "pl": "Wyceluj w bilę obiektową i naciśnij przecinek. Program obliczy całe uderzenie przy bieżącym kącie, sile i rotacji, po czym opisze ruch pierwszej bili na linii celowania: jej kontakty oraz to, czy wpada do łuzy, czy zatrzymuje się na stole. Jest to wynik fizyki uderzenia, a nie proste przedłużenie linii celowania. Prognoza nie wykonuje strzału. Gdy na linii nie ma bili, usłyszysz tę informację. Y podaje raport całego uderzenia z końcowymi pozycjami, a V opisuje odbicie aktywnej bili rozgrywającej od bandy."
+        }
+      ]
+    },
+    {
+      "id": "match",
+      "title": {
+        "pl": "Wybór odmiany i decyzje przy stole"
+      },
+      "paragraphs": [
+        {
+          "pl": "Odmianę wybierasz w ustawieniach stołu. Rozgrywki poolowe, snooker, bilard angielski i karambol wymagają dwóch graczy, a Cutthroat trzech. Rozpoczyna pierwsza osoba na liście; później gracze zaczynają partie lub frejmy naprzemiennie. Mecz zwykle kończy osiągnięcie wybranej liczby zwycięstw w partiach. Punkty zdobyte wewnątrz partii są liczone osobno."
+        },
+        {
+          "pl": "P otwiera deklaracje i oczekujące decyzje. Wskaż bilę, łuzę lub inne wymagane szczegóły, zatwierdź wybór, a następnie uderz Enterem lub Spacją na polu kija. Enter pyta o brakującą deklarację. Shift+P odczytuje sytuację wynikającą z zasad, T kolejkę, a S wyniki bez dodatkowego okna. M ustawia aktywną bilę rozgrywającą tylko wtedy, gdy przysługuje bila w ręce. Q proponuje poddanie bieżącej partii. Ponowne ustawienie przy zastoju, zaproponowane pod P, wymaga zgody wszystkich pozostałych graczy; jedna odmowa oddaje grę proponującemu."
+        }
+      ]
+    },
+    {
+      "id": "pool_eight",
+      "title": {
+        "pl": "Pool: 8 bil"
+      },
+      "paragraphs": [
+        {
+          "pl": "Początkowo stół jest otwarty. Rozbicie nie przypisuje grup. Późniejsze prawidłowe wbicie zadeklarowanej bili przypisuje ci pełne 1–7 albo pasy 9–15; przeciwnik otrzymuje drugą grupę. Kontynuujesz po wbiciu zadeklarowanej bili do zadeklarowanej łuzy. Najpierw trafiaj własną grupę, a po jej usunięciu graj ósemkę. Przy otwartym stole wolno zadeklarować ósemkę tylko wtedy, gdy cała jedna grupa już zniknęła."
+        },
+        {
+          "pl": "Poza rozbiciem zadeklaruj bilę i łuzę przed uderzeniem. P zmienia deklarację, a Enter pyta o brakującą. Zagranie bezpieczne kończy kolejkę nawet po wbiciu bili. Wbicie ósemki za wcześnie, z faulem lub do niewłaściwej łuzy oznacza przegraną. Wbicie samej białej bez ósemki jest zwykłym faulem. Faul to również pierwsze trafienie niewłaściwej bili albo brak wbicia i brak bandy po kontakcie. Przeciwnik dostaje białą w ręce na całym stole."
+        },
+        {
+          "pl": "Gdy rozbicie nic nie wbije, co najmniej cztery różne bile obiektowe muszą dotknąć band. W przeciwnym razie przeciwnik może przyjąć pozycję albo wskazać, kto ponownie ustawi i rozbije bile. Ósemka wbita przy prawidłowym rozbiciu wraca na punkt lub rozbijający wybiera ponowne rozbicie. Ósemka wbita z faulem daje ten wybór przeciwnikowi, z białą w ręce za linią rozbicia przy zachowaniu pozycji. Przy innych faulach rozbicia wybiera on zastaną pozycję albo białą za linią. Nie wolno stamtąd trafić bezpośrednio bili pozostającej za tą linią bez jej uprzedniego przekroczenia. Jeśli wszystkie dozwolone bile są w tym obszarze, P pozwala poprosić o przeniesienie najbliższej na punkt."
+        }
+      ]
+    },
+    {
+      "id": "pool_nine",
+      "title": {
+        "pl": "Pool: 9 bil"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zawsze traf najpierw najniższy numer pozostający na stole. Każde prawidłowe wbicie bili obiektowej przedłuża kolejkę, a prawidłowa dziewiątka wygrywa, także po kombinacji. Nie trzeba deklarować łuzy. Faul daje przeciwnikowi białą w ręce na całym stole. Dziewiątka wraca na punkt po wbiciu z faulem lub push-oucie; pozostałe bile zostają w łuzach. Trzy kolejne faule tej samej osoby przegrywają partię, a dwa wywołują ostrzeżenie. Prawidłowy strzał zeruje jej licznik fauli."
+        },
+        {
+          "pl": "W rombie dziewiątka stoi na punkcie, a jedynka z przodu. Rozbicie bez wbicia musi posłać cztery bile do band. Reguła trzech bil wymaga ponadto, aby co najmniej trzy różne bile zostały wbite lub przekroczyły linię rozbicia. Jeśli nie spełniono jej bez innego faulu, przeciwnik przyjmuje pozycję albo oddaje zagranie; wbita dziewiątka wraca na punkt. Push-out przysługuje wtedy tylko rozbijającemu, któremu oddano zagranie. Po prawidłowym rozbiciu drugi strzał może być zadeklarowanym pod P push-outem: nie trzeba trafiać najniższego numeru ani dochodzić do bandy. Po prawidłowym push-oucie przeciwnik wybiera, kto gra dalej."
+        }
+      ]
+    },
+    {
+      "id": "pool_ten",
+      "title": {
+        "pl": "Pool: 10 bil"
+      },
+      "paragraphs": [
+        {
+          "pl": "Najpierw trafiaj najniższy pozostały numer, lecz przed zwykłym strzałem zadeklaruj pod P bilę i łuzę. Nie ma deklaracji zagrania bezpiecznego. Prawidłowe wykonanie deklaracji przedłuża kolejkę. Dziesiątka wygrywa tylko wtedy, gdy przed strzałem była jedyną bilą obiektową i wpadła do zadeklarowanej łuzy bez faulu; wcześniejsze dziesiątki wracają na punkt."
+        },
+        {
+          "pl": "Rozbicie wymaga wbicia albo kontaktu czterech różnych bil obiektowych z bandami. Po prawidłowym rozbiciu drugi strzał może być push-outem zadeklarowanym pod P; po prawidłowym push-oucie przeciwnik przyjmuje strzał albo oddaje go sprawcy. W zwykłej grze wbicie bili bez spełnienia deklaracji też daje przeciwnikowi ten wybór. Faul daje białą w ręce na całym stole, a trzy kolejne faule przegrywają partię."
+        }
+      ]
+    },
+    {
+      "id": "straight_pool",
+      "title": {
+        "pl": "Bilard ciągły 14.1"
+      },
+      "paragraphs": [
+        {
+          "pl": "Pod P zadeklaruj bilę i łuzę. Jeśli prawidłowo spełnisz deklarację, każda bila obiektowa wbita tym strzałem daje 1 punkt i grasz dalej. Osiągnij cel punktowy, aby wygrać partię. Niespełniona deklaracja lub zadeklarowane zagranie bezpieczne kończy kolejkę i przywraca wbite bile."
+        },
+        {
+          "pl": "Pierwsze rozbicie wykonujesz zza linii bazy. Prawidłowo wbij zadeklarowaną bilę albo po kontakcie posyłaj do bandy białą i co najmniej dwie bile obiektowe. Błąd kosztuje 2 punkty; przeciwnik przyjmuje pozycję albo każe rozbić ponownie. Zwykły faul kosztuje 1 punkt, więc wynik może być ujemny. Po wbiciu białej przeciwnik dostaje ją w rękę za linią bazy. Trzeci kolejny zwykły faul kosztuje 16 punktów w tym uderzeniu i wymusza nowe rozbicie pełnego trójkąta; błędy rozbicia nie należą do tej serii."
+        },
+        {
+          "pl": "Po zdobyciu punktów za czternaście bil wracają one do trójkąta z wolnym wierzchołkiem; biała i ostatnia bila pozostają na miejscach. Grasz dalej bez wymagań pierwszego rozbicia. Gdy ostatnia bila też wpadła lub obie pozostawione bile przeszkadzają w ustawieniu, wraca pełne piętnaście. Sama przeszkadzająca bila obiektowa trafia na punkt bazy, ewentualnie na środek. Gdy przeszkadza tylko biała, ostatnia bila na linii bazy lub dalej daje białą w ręce za linią; bila po lewej stronie tej linii wysyła białą na punkt bazy, a przy zajęciu na środek."
+        },
+        {
+          "pl": "Przy zaakceptowanym ponownym ustawieniu z powodu zastoju punkty i długi zostają, a P pozwala wybrać nowego rozbijającego. Nowa partia meczu zaczyna się od zera."
+        }
+      ]
+    },
+    {
+      "id": "one_pocket",
+      "title": {
+        "pl": "One Pocket"
+      },
+      "paragraphs": [
+        {
+          "pl": "Każdy gracz ma jedną z dwóch narożnych łuz po prawej stronie stołu. Rozbijający wybiera swoją pod P przed rozbiciem. Każda prawidłowo wbita do twojej łuzy bila daje ci 1 punkt, nawet po strzale przeciwnika; pierwsza osoba z 8 punktami wygrywa. Własne prawidłowe wbicie przedłuża kolejkę. Bile z innych łuz wracają po podejściu albo od razu, gdy stół opróżni się przed zwycięstwem. Rozbicie wymaga kontaktu i późniejszej bandy albo wbicia, bez czterech bil przy bandach."
+        },
+        {
+          "pl": "Faul odbiera ci 1 punkt i przywraca jedną zdobytą bilę. Gdy jej nie masz, powstaje dług: przyszłe punktujące wbicie spłaca go, a bila wraca. Bile wbite przeciwnikowi punktują także przy faulu, chyba że jedynym faulem było wbicie białej. Wypadnięcie białej poza stół albo jej wbicie połączone z innym faulem nie kasuje tych punktów przeciwnika. Po wbiciu białej przysługuje bila w ręce za linią bazy. Trzy kolejne faule przegrywają partię. Gdy obie osoby osiągną 8 w tym samym strzale, wygrywa strzelający. Uzgodnione ponowne ustawienie zachowuje punkty i długi oraz pyta o nowego rozbijającego i łuzy."
+        }
+      ]
+    },
+    {
+      "id": "bank",
+      "title": {
+        "pl": "Bank Pool: krótki i pełny"
+      },
+      "paragraphs": [
+        {
+          "pl": "Punktujące wbicie od bandy wymaga deklaracji bili, łuzy i kolejności band. Pod P wskaż bilę oraz łuzę, a następnie dodawaj kolejne bandy: lewą, prawą, górną lub dolną. Zakończ gotową trasę; można wskazać od jednego do dwunastu kontaktów. Anulowanie zachowuje wcześniejszą deklarację. Biała musi trafić zadeklarowaną bilę przed jakąkolwiek bandą lub inną bilą. Wskazana bila nie może potem trafić innej bili ani ponownie białej. Jej odbicia muszą odpowiadać deklaracji; przypadkowe kontakty ze szczękami docelowej łuzy podczas wpadania są pomijane."
+        },
+        {
+          "pl": "Prawidłowy bank daje 1 punkt i przedłuża kolejkę. Wariant krótki ma 9 bil i cel 5 punktów, pełny 15 bil i cel 8. Dodatkowe wbite bile czekają na powrót do końca podejścia albo wracają od razu, gdy stół opróżni się przed zwycięstwem. Przy rozbiciu nie deklarujesz banku: wbicie przedłuża kolejkę, ale nie daje punktu. Bez wbicia cztery różne bile obiektowe muszą dotknąć band; po błędnym rozbiciu przeciwnik przyjmuje układ albo nakazuje powtórkę."
+        },
+        {
+          "pl": "Faul kosztuje 1 punkt i powrót zdobytej bili. Gdy jej nie masz, dług spłacasz przywróceniem późniejszej punktującej bili; wynik może być ujemny. Wbicie białej daje ją w rękę za linią bazy. Trzy kolejne faule przegrywają partię. Uzgodnione ponowne ustawienie przy zastoju zachowuje punkty i długi, po czym pod P wybiera się nowego rozbijającego."
+        }
+      ]
+    },
+    {
+      "id": "cutthroat",
+      "title": {
+        "pl": "Cutthroat dla trzech graczy"
+      },
+      "paragraphs": [
+        {
+          "pl": "Ten wariant klubowy przypisuje stałe grupy według miejsc przy stole: 1–5, 6–10 i 11–15. Chroń własną grupę i usuwaj pozostałe. Pierwszy kontakt może nastąpić z dowolną bilą obiektową; wolno poświęcić własną bilę. Prawidłowe wbicie przedłuża kolejkę, chyba że usunęło twoją ostatnią bilę. Osoby bez bil są chwilowo pomijane; wygrywa ostatnia grupa pozostająca na stole."
+        },
+        {
+          "pl": "Faul daje następnemu graczowi białą w ręce na całym stole i przywraca po jednej wbitej bili każdego przeciwnika — najniższy brakujący numer z jego grupy. Może to przywrócić do gry wcześniej pomijaną osobę. Nie ma przegranej za trzy faule. Jeśli jedno prawidłowe uderzenie usunie wszystkie grupy, runda kończy się remisem. W tym wariancie grupy są stałe, bez negocjowania ich wyboru. Poddanie pod Q usuwa wszystkie bile twojej grupy i blokuje ich przywracanie do końca partii; pozostali gracze dogrywają."
+        }
+      ]
+    },
+    {
+      "id": "blackball",
+      "title": {
+        "pl": "Blackball"
+      },
+      "paragraphs": [
+        {
+          "pl": "Graj własną grupę pełnych albo pasów, a potem czarną. Nie trzeba deklarować łuz. Stół pozostaje otwarty po rozbiciu i wolnych uderzeniach; grupy przypisuje późniejsze prawidłowe zwykłe wbicie. Prawidłowe wbicie przedłuża kolejkę. Jednoczesne wbicie ostatniej własnej bili i czarnej jest prawidłową wygraną; wbicie czarnej z faulem albo przed usunięciem własnej grupy oznacza przegraną. Czarna na rozbiciu zamiast tego powoduje nowe ustawienie dla tego samego rozbijającego."
+        },
+        {
+          "pl": "Prawidłowe rozbicie wbija bilę albo posyła co najmniej dwie różne bile obiektowe przez środek. Faul daje jedno wolne uderzenie, po nim jedno zwykłe. Wolne wykonaj z zastanej pozycji lub przenieś rozgrywającą pod M do baulk — lewej jednej piątej stołu. Wolne uderzenie zawiesza tylko wymaganie właściwej pierwszej bili: wbicie wyłącznie bil przeciwnika nadal jest faulem. Po zwykłym uderzeniu dalsza gra znowu wymaga prawidłowego wbicia. Przy pełnym snookerze bez drogi do jakiejkolwiek części dozwolonej bili nie wymaga się zwykłego kontaktu z bandą. Od stykającej się dozwolonej bili trzeba odchodzić bez jej pchnięcia."
+        }
+      ]
+    },
+    {
+      "id": "snooker",
+      "title": {
+        "pl": "Snooker"
+      },
+      "paragraphs": [
+        {
+          "pl": "Jest piętnaście czerwonych po jednym punkcie oraz żółta za 2, zielona za 3, brązowa za 4, niebieska za 5, różowa za 6 i czarna za 7. Czerwone mają numery 1–15, a kolorowe 16–21 w podanej kolejności. Wbij czerwoną, wskaż kolor pod P lub na pytanie po Enterze, po czym graj naprzemiennie czerwoną i kolor. W jednym strzale można punktować kilka czerwonych. Kolory w tej fazie wracają na punkty, również po faulu. Czerwone zwykle pozostają wbite. Po ostatniej czerwonej przysługuje jeszcze jeden kolor, następnie usuwasz kolory od żółtej do czarnej; prawidłowo wbite kolory nie wracają na stół."
+        },
+        {
+          "pl": "Faul daje przeciwnikowi od 4 do 7 punktów: bierze się najwyższą należną wartość bili granej oraz nieprawidłowo trafionych lub wbitych. Sprawca nie punktuje tego strzału. Przeciwnik gra sam albo każe sprawcy zagrać ponownie. Po wbiciu białej ustawia się ją wyłącznie w D; M przesuwa tylko białą i zachowuje końcowe pozycje innych bil. Zajęty punkt koloru zastępuje najwyższy wolny punkt, a gdy wszystkie są zajęte — najbliższe dozwolone miejsce w stronę czarnej, z wyjątkiem różowej i czarnej, które w razie potrzeby mogą trafić w przeciwną stronę."
+        },
+        {
+          "pl": "Po faulu zasłonięcie wszystkich bil granych pozwala wskazać pod P wolną bilę, czyli free ball. Aby nie było snookera, muszą być dostępne oba skrajne brzegi co najmniej jednej bili granej; banda nie jest bilą zasłaniającą. Przy białej w ręce sprawdzane jest całe D z dokładnością zapisu pozycji. Wolna bila przyjmuje wartość bili granej i wraca na punkt po wbiciu. Po niepunktującym strzale nie może sama zostawić snookera, poza wyjątkiem końcowych dwóch bil."
+        },
+        {
+          "pl": "Jeśli była dostępna bezpośrednia droga, lecz nie nastąpiło wymagane pierwsze trafienie, sędzia może orzec Foul and a Miss. Przeciwnik może odtworzyć pozycje sprzed strzału i nakazać powtórkę; punkty karne zostają. Dwa przywrócone nieudane strzały przy pełnym dostępie do bili wywołują ostrzeżenie, a kolejny przegrywa frejm. Zwykłego Miss nie orzeka się, gdy punkty z fauli były już potrzebne albo stają się potrzebne po strzale. Gdy zostaje czarna, pierwsze wbicie lub faul rozstrzyga frejm. Remis przywraca czarną, losuje prawo wyboru grającego i daje białą w ręce w D; kolejne wbicie lub faul rozstrzyga wynik."
+        }
+      ]
+    },
+    {
+      "id": "english",
+      "title": {
+        "pl": "Bilard angielski"
+      },
+      "paragraphs": [
+        {
+          "pl": "Każdy gracz ma własną białą albo żółtą bilę rozgrywającą; czerwona jest wspólna. Na początku czerwona stoi na punkcie, a rozpoczynający gra swoją bilą z D. Bila drugiego gracza początkowo jest poza stołem i wchodzi do gry, gdy będzie jej potrzebował. Wygrywasz po osiągnięciu celu punktowego albo prowadząc po upływie wybranego czasu. Punktujące uderzenie przedłuża podejście."
+        },
+        {
+          "pl": "W jednym uderzeniu można połączyć kilka zdobyczy:"
+        },
+        {
+          "pl": "- Karambol, nazywany cannon, to kontakt własnej rozgrywającej z obiema pozostałymi bilami. Daje 2 punkty, najwyżej raz w jednym uderzeniu."
+        },
+        {
+          "pl": "- Wbicie czerwonej daje 3 punkty, a bili przeciwnika 2."
+        },
+        {
+          "pl": "- Wpadnięcie własnej bili po kontakcie z czerwoną daje 3 punkty, a po bili przeciwnika 2. Gdy dotknięto obu, decyduje pierwszy kontakt; nierozstrzygalny kontakt jednoczesny daje 2."
+        },
+        {
+          "pl": "Po wbiciu własnej bili ustaw ją pod M w D. Z tego pola trzeba zagrać poza baulk przed bezpośrednim graniem bili, której środek pozostaje w baulk, także na linii. Przed powrotem do baulk musi nastąpić kontakt z bandą lub bilą poza nim. Prawidłowy English Miss przy wszystkich celach w baulk daje przeciwnikowi 2 punkty i grę z pozostałej pozycji. Faul także daje 2 punkty, lecz usuwa zdobycze tego uderzenia i udostępnia pod P wybór: przyjąć pozycję albo ustawić czerwoną oraz bilę przeciwnika na punktach i zagrać z D."
+        },
+        {
+          "pl": "Czerwona po wbiciu wraca na punkt. Przy kolejnych wbiciach wyłącznie czerwonej ze spotu dwa razy gra się ją z normalnego punktu, a następnie raz ze środka; zajęte punkty mają zastępcze miejsca. Wbita bila przeciwnika zwykle pozostaje poza stołem do chwili, gdy będzie potrzebna. Styk rozgrywającej z inną bilą wymusza czerwoną na jej punkt, obecną bilę przeciwnika na środek i własną bilę w ręce w D."
+        },
+        {
+          "pl": "W podejściu wolno wykonać najwyżej 75 samych karamboli z rzędu albo 15 uderzeń typu hazard bez karambolu; hazard oznacza wbicie bili obiektowej lub własnej po kontakcie. Ostrzeżenia pojawiają się przy 70 i 10. Połączenie karambolu z hazardem przerywa obie serie. Po piętnastym hazardzie istnieje szczególne przywrócenie bili przeciwnika, jeżeli pozostała poza stołem po jego ostatnim podejściu. Gdy w ustawieniach włączono przekraczanie baulk, wymagany ruch do wnętrza baulk musi nastąpić w przedziale 80–100 punktów każdej setki punktów w podejściu; brak przekroczenia to faul."
+        }
+      ]
+    },
+    {
+      "id": "carom",
+      "title": {
+        "pl": "Karambol: klasyczny, jednobandowy i trzybandowy"
+      },
+      "paragraphs": [
+        {
+          "pl": "Na stole bez łuz są trzy bile. Przez całą partię grasz przydzieloną białą albo żółtą. Karambol oznacza kontakt własnej bili z obiema pozostałymi w jednym uderzeniu. Prawidłowy karambol daje 1 punkt i przedłuża podejście; pudło lub faul oddaje grę bez odejmowania punktów. Wygrywa osiągnięcie wybranego celu punktowego, z uwzględnieniem ustawienia wyrównującego podejścia. Przy włączonym wyrównującym podejściu, jeżeli rozpoczynający osiągnie cel po jednym podejściu więcej, drugi gracz dostaje ostatnie podejście z układu początkowego. Osiągnięcie w nim celu oznacza remis partii; zakończenie podejścia poniżej celu daje wygraną rozpoczynającemu. Przy wyłączonym wyrównywaniu osiągnięcie celu od razu wygrywa partię."
+        },
+        {
+          "pl": "Na początku pod P wybierz dolny albo górny punkt startowy. Pierwszy atak musi być skierowany bezpośrednio na czerwoną. Potem odmiany różnią się następująco:"
+        },
+        {
+          "pl": "- Karambol klasyczny nie wymaga band. Cztery wyznaczone trójkąty w narożnikach ograniczają powtarzane karambole."
+        },
+        {
+          "pl": "- W odmianie jednobandowej własna bila musi co najmniej raz dotknąć bandy, zanim dotknie drugiej różnej bili obiektowej."
+        },
+        {
+          "pl": "- W odmianie trzybandowej wymagane są co najmniej trzy takie kontakty. Osobne odbicia od tej samej bandy liczą się, podobnie jak odbicia przed pierwszą bilą obiektową. Bandy po drugiej bili nie naprawiają nieudanego karambolu."
+        },
+        {
+          "pl": "W narożniku klasycznego karambolu, po wejściu obu bil obiektowych, wolno raz zapunktować bez wyjścia żadnej z nich. Przy następnym karambolu co najmniej jedna musi opuścić ten trójkąt; może wrócić w tym samym uderzeniu. Bila na granicy jest rozpatrywana na niekorzyść gracza. Program sprawdza cały ruch, a nie tylko miejsca zatrzymania."
+        },
+        {
+          "pl": "Przy styku rozgrywającej z inną bilą karambol klasyczny odtwarza cały układ początkowy. W odmianach bandowych P pozwala zagrać w stronę od styku, bez pchnięcia dotykanej bili, albo zażądać ustawienia na punktach. Jedna banda ustawia wszystkie trzy, a trzy bandy tylko stykające się bile na właściwych punktach. Uderzenie przyklejonej rozgrywającej bezpośrednio w dotykaną bandę jest faulem. Wypadnięcie poza stół przywraca wszystkie trzy bile w odmianie klasycznej i jednobandowej, lecz tylko wypadnięte w trzybandowej."
+        }
+      ]
+    },
+    {
+      "id": "pyramid",
+      "title": {
+        "pl": "Wolna piramida"
+      },
+      "paragraphs": [
+        {
+          "pl": "Zdobądź 8 punktów przed przeciwnikiem. Wszystkie szesnaście bil ma tę samą wartość: 1 punkt za każde prawidłowe wbicie, także rozgrywającej po kontakcie z inną bilą. Nie deklaruje się bili ani łuzy. Przed każdym strzałem po rozbiciu pod P wybierz opcję wyboru rozgrywającej i wskaż dowolną bilę na stole. Prawidłowe wbicie przedłuża kolejkę i pozwala wybrać ją na nowo."
+        },
+        {
+          "pl": "Rozbicie wykonujesz kolorową bilą zza linii domu, w lewej ćwiartce stołu. Po trafieniu bili obiektowej wbij bilę, doprowadź trzy różne obiektowe do band albo doprowadź dwie do band i jedną obiektową przez linię środkową."
+        },
+        {
+          "pl": "W późniejszych strzałach po wymaganym kontakcie musi nastąpić jedno z poniższych zdarzeń:"
+        },
+        {
+          "pl": "- Któraś bila wpada do łuzy."
+        },
+        {
+          "pl": "- Bila odbija się od bandy, a potem dociera do innej bandy, sama albo posyłając tam inną bilę. Kontakt z bilą przyklejoną do tej drugiej bandy także może spełnić warunek."
+        },
+        {
+          "pl": "- Bila przekracza środek i potem dociera do bandy, sama albo przekazując ruch innej bili; liczy się również bila przyklejona do tej bandy."
+        },
+        {
+          "pl": "- Po odbiciu od bandy bila przekracza środek, posyła przezeń inną bilę albo dotyka bili na przeciwnej połowie lub linii środkowej. Liczą się także odpowiednie kontakty przekazane przez dalsze bile."
+        },
+        {
+          "pl": "Po faulu najpierw wracają nieprawidłowo wbite i wypadnięte bile. Przeciwnik wybiera pod P dowolną bilę ze stołu jako karną, zdejmuje ją i dostaje 1 punkt. Następnie gra sam albo oddaje strzał. Po błędnym rozbiciu może też ponownie ustawić bile i wybrać rozbijającego; punkt karny zostaje, a piramida jest niepełna. Wbicie samej rozgrywającej nie jest tu automatycznie faulem: daje punkt przy prawidłowym wykonaniu po kontakcie. Kilka naruszeń w jednym strzale oznacza jedną karę."
+        },
+        {
+          "pl": "Przywracane bile ustawia się od tylnego punktu w prawo wzdłuż osi stołu, a po wyczerpaniu miejsca w przeciwną stronę. Można wybrać je jako następną rozgrywającą. Większe bile i ciasne szczęki wymagają dokładniejszego celowania niż pool; skierowanie ku łuzie nie gwarantuje przejścia między szczękami."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "pl": "Ustawienia meczu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przed grą wybierz odmianę i warunek zwycięstwa. Bilard towarzyski obejmuje łącznie od 1 do 30 rund i jeden z trzech układów bil. W odmianach, które na to pozwalają, ustalasz cel punktowy partii; cel meczu oznacza liczbę wygranych partii. Bilard angielski może zamiast tego trwać wybrany czas: rozpoczęte przed jego upływem uderzenie zostaje dokończone, a równy wynik końcowy daje remis. Opcja wyrównującego podejścia w karambolu pozwala drugiemu graczowi zagrać na koniec z układu początkowego, gdy trzeba wyrównać liczbę podejść. W bilardzie angielskim na czas strzał musi zostać przyjęty przy stole przed limitem; samo wcześniejsze naciśnięcie klawisza nie wystarcza."
+        },
+        {
+          "pl": "Bilard towarzyski domyślnie zaczyna się od rombu dziewięciu bil obiektowych. W ustawieniach stołu możesz zamiast niego wybrać jedną bilę obiektową albo trójkąt piętnastu; bilą końcową będzie wtedy odpowiednio 1 albo 15. Wskazany przez ciebie układ oraz układ starszego zapisu pozostają zachowane."
+        },
+        {
+          "pl": "Cel meczu wynosi od 1 do 25 wygranych partii. Ustawiany cel punktowy mieści się od 1 do 1000, a limit czasu bilardu angielskiego od 1 do 180 minut."
+        },
+        {
+          "pl": "Dokładniejsza fizyka używa mniejszych kroków obliczeń i może zmienić wynik bliskiego kontaktu. Siła gry komputera określa liczbę porównywanych propozycji strzału. Siła uderzenia i rotacja są uwzględniane także w prognozach."
+        },
+        {
+          "pl": "Limit od 1 do 500 uderzeń dotyczy wyłącznie dawnych zapisów treningu, nie nowych gier."
+        }
+      ]
+    },
+    {
+      "id": "referee",
+      "title": {
+        "pl": "Przepisy i dostosowania cyfrowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Pool opiera się na przepisach i regulacjach WPA z 21 października 2026; snooker i bilard angielski na WPBSA 2024–25, karambol na UMB, a wolna piramida na redakcji IPC 2025. Cutthroat i bilard towarzyski stosują opisane tu zasady klubowe. Kolejność przy stole zastępuje fizyczną próbę o pierwszeństwo. Samo uzgodnienie ponownego ustawienia nie daje zwycięstwa w partii. Sędzia snookera orzeka automatyczny Miss tylko przy drodze bezpośredniej; całkowicie zasłonięte próby pozostają zwykłymi faulami bez przywracania układu."
+        },
+        {
+          "pl": "Symulacja jest dwuwymiarowa: nie ma sterowania skokiem, uniesieniem kija ani massé. Pchnięcia stykających się bil i szczęki łuz są przybliżeniami. Pierwsze kontakty nierozróżnione w jednym kroku fizyki uznaje się za jednoczesne. Piramida używa opisanego profilu treningowego z dużymi bilami i ciasnymi łuzami; nie jest to certyfikat aktualnego sprzętu federacyjnego. Pomoce celowania i prognozy korzystają z aktywnej rozgrywającej i tej samej fizyki co gra."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "K: Odczytaj kierunek kija."
+        },
+        {
+          "pl": "F: Odczytaj siłę uderzenia."
+        },
+        {
+          "pl": "G: Odczytaj pierwszy kontakt na linii uderzenia."
+        },
+        {
+          "pl": "H: Odczytaj bile w pobliżu linii uderzenia."
+        },
+        {
+          "pl": "I: Opisz wybraną bilę."
+        },
+        {
+          "pl": "O: Odczytaj wszystkie bile i ich pozycje."
+        },
+        {
+          "pl": "L: Wybierz następną bilę."
+        },
+        {
+          "pl": "Shift+L: Wybierz poprzednią bilę."
+        },
+        {
+          "pl": "J: Wybierz łuzę docelową."
+        },
+        {
+          "pl": "A: Wyceluj w środek wybranej bili."
+        },
+        {
+          "pl": "Shift+A: Wyceluj wybraną bilę do wskazanej łuzy."
+        },
+        {
+          "pl": "E: Wpisz dokładny kąt, siłę i rotację."
+        },
+        {
+          "pl": "W: Zwiększ rotację górną."
+        },
+        {
+          "pl": "Shift+B: Zwiększ rotację dolną."
+        },
+        {
+          "pl": "N: Zwiększ rotację w lewo."
+        },
+        {
+          "pl": "D: Zwiększ rotację w prawo."
+        },
+        {
+          "pl": "R: Wyłącz rotację."
+        },
+        {
+          "pl": "C: Przełącz kierunki między stopniami a zegarem."
+        },
+        {
+          "pl": "Y: Przewiduj uderzenie bez ruszania bil."
+        },
+        {
+          "pl": "U: Odczytaj kontakty ostatniego uderzenia."
+        },
+        {
+          "pl": "W lewo: obróć przeciwnie do wskazówek zegara o 1 stopień."
+        },
+        {
+          "pl": "W prawo: obróć zgodnie ze wskazówkami zegara o 1 stopień."
+        },
+        {
+          "pl": "Shift+w lewo: obróć przeciwnie do wskazówek zegara o 0,1 stopnia."
+        },
+        {
+          "pl": "Shift+w prawo: obróć zgodnie ze wskazówkami zegara o 0,1 stopnia."
+        },
+        {
+          "pl": "Ctrl+w lewo: obróć przeciwnie do wskazówek zegara o 0,01 stopnia."
+        },
+        {
+          "pl": "Ctrl+w prawo: obróć zgodnie ze wskazówkami zegara o 0,01 stopnia."
+        },
+        {
+          "pl": "W górę: zwiększ siłę o 1 procent."
+        },
+        {
+          "pl": "W dół: zmniejsz siłę o 1 procent."
+        },
+        {
+          "pl": "Shift+w górę: zwiększ siłę o 0,1 procenta."
+        },
+        {
+          "pl": "Shift+w dół: zmniejsz siłę o 0,1 procenta."
+        },
+        {
+          "pl": "Enter lub Spacja: wykonaj bieżące uderzenie."
+        },
+        {
+          "pl": "T: odczytaj, czyja jest kolej."
+        },
+        {
+          "pl": "V: Przewiduj odbicie od bandy i kolejne trafienie w bilę."
+        },
+        {
+          "pl": "B: Opisz obiekty za wskazywaną bilą."
+        },
+        {
+          "pl": "S: Odczytaj wyniki, w towarzyskim wygrane rundy i punkty za wbicia."
+        },
+        {
+          "pl": "M: Ustaw aktywną rozgrywającą, gdy przysługuje bila w ręce."
+        },
+        {
+          "pl": "P: Otwórz deklaracje, wybór rozgrywającej lub oczekującą decyzję."
+        },
+        {
+          "pl": "Shift+P: Odczytaj bieżącą sytuację w meczu."
+        },
+        {
+          "pl": "Q: Po potwierdzeniu poddaj bieżącą rundę, partię lub frejm."
+        },
+        {
+          "pl": "Przecinek: Oblicz ruch pierwszej namierzonej bili przy bieżącej sile i rotacji."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "discipline": "competition",
+    "rounds": "friendly",
+    "layout": "settings",
+    "race_to": "match",
+    "point_target": "settings",
+    "english_limit": "english",
+    "time_limit_minutes": "english",
+    "equalizing": "carom",
+    "baulk_crossing": "english",
+    "accurate": "settings",
+    "bot_skill": "settings",
+    "shots": "settings"
+  }
+}

@@ -21,7 +21,7 @@ using GameRoomLocalization::Translations
     raise "Wrong initial settings category" unless form.fields.first.index.to_i == 0 &&
       form.fields.first.options.first == _("General")
     visible = form.fields - form.hidden_controls
-    controls = visible[3..4]
+    controls = visible.select { |field| field.is_a?(CheckBox) }.first(2)
     raise "Background controls not in General" unless controls.map(&:label) == expected
     controls.each do |control|
       raise "Background option default disabled" unless control.checked

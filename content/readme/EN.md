@@ -56,7 +56,7 @@ heading, Shift+H to the previous one, and Escape closes the document.
 
 ## What you can play
 
-Power Games includes 48 games, ranging from cards and board games to word
+Power Games includes 50 games, ranging from cards and board games to word
 games, typing practice and games built around listening and quick reactions.
 
 - Card games: 3-5-8, 99, 1000 miles, Biblios, Blackjack, Bouillabaisse,
@@ -66,9 +66,9 @@ games, typing practice and games built around listening and quick reactions.
 - Dice and dominoes: Balut, Blackjack Dice, Cat, head, tail, Dice General,
   Domino, Farkle, Liar's dice, Mexican Train, Dice poker and Yahtzee.
 - Other games of chance: Bingo and Roulette.
-- Words and knowledge: Krowa, Typoholism, Countries and cities, Quiz Party,
+- Words and knowledge: Cash Auction, Krowa, Typoholism, Countries and cities, Quiz Party,
   Scrabble and Taboo.
-- Audio action games: Axel Pong and Audio Ball.
+- Audio action games: Billiards, Axel Pong and Audio Ball.
 
 Games use virtual chips only.
 
@@ -300,6 +300,8 @@ In Settings → General, choose separately:
 Game sounds are not muted by default. Background muting does not silence
 the separate turn signal, chat, invitations or people joining and leaving.
 These settings apply both elsewhere in ELTEN and in other programs.
+
+The Display name field accepts your first name and surname, up to 64 characters. Leave it empty to use your ELTEN login. Your full name appears in the lobby, at tables, in participant lists, S scores, history and notifications. Current actions, deals, bidding and pawn labels use the first name. Choose Save to apply the change or Cancel to discard it. Other players can see this name; your account login, permissions and statistics stay unchanged. Players without a set or available name still appear under their login.
 
 ### Connections in audio games
 

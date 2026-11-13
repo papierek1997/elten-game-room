@@ -167,6 +167,29 @@ authorize its own withdrawn answer; it does not authorize other retired nouns.
 Do not replace that whitelist with arbitrary public table text or recalculate
 an existing daily answer after changing the active dictionary.
 
+### Display names
+
+Human display names are presentation metadata, separate from account identity.
+Native `participant_metadata` carries a name at create/join/accept; later
+`room_profile` stack records accept only the authenticated sender's own actor
+and normalized display name. They are not game actions or control amendments.
+Cold reconstruction can retain a departed player's label without replacing any
+login in rosters, event actors, authorization, invitations, statistics or CAS.
+The existing registry and subscription schemas remain unchanged.
+
+Native public discovery exposes participant IDs/logins, not participant
+metadata. The table owner therefore republishes `owner_display_name` and an
+optional bounded `display_names` roster through existing discovery metadata.
+These labels stay scoped to that public table view and its native roster;
+they never enter the global participant-name directory. Direct participant
+metadata and accepted self-authored profiles take precedence, including an
+explicit empty profile that restores the login. Discovery has no native owner
+identity field, so its claimed owner cannot authorize a global profile change.
+The labels remain within its 1024-byte JSON budget; optional names never evict
+game settings or control anchors. Invitation and
+new-table notification metadata similarly carries `sender_display_name`, while
+the native envelope sender still owns identity checks and notification keys.
+
 ### Access to auxiliary tables
 
 Every `program_main` call and entry through a notification rechecks access to

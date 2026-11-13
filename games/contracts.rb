@@ -72,7 +72,7 @@ module GameRoomGames
     keyword_init: true
   ) do
     KINDS = [:announcement, :browse, :grid_preview, :number_input, :choice, :staged_form, :form, :action, :surface].freeze
-    NAMED_KEYS = ["space", "enter", "delete", "backspace", "semicolon"].freeze
+    NAMED_KEYS = ["space", "enter", "delete", "backspace", "semicolon", "comma"].freeze
 
     def initialize(
       key:,

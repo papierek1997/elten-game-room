@@ -35,6 +35,9 @@ content work to their existing contracts; it does not replace reading them.
   The [Polish guide](../README.md) and the other translations in
   [content/readme/](../content/readme/) remain available.
 
+The [billiards implementation contract](BILLIARDS.md) describes the practice
+stage, physics and wire units, module ownership and remaining disciplines.
+
 ## Implementation and audit plans
 
 These dated plans record agreed scope, past decisions and status at their last

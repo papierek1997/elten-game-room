@@ -57,7 +57,7 @@ na další nadpis, Shift+H na předchozí a Escape dokument zavře.
 
 ## Co si můžete zahrát
 
-Power Games obsahuje 48 her: karetní a deskové hry, slovní a vědomostní
+Power Games obsahuje 50 her: karetní a deskové hry, slovní a vědomostní
 hry, procvičování psaní i hry založené na sluchu a postřehu.
 
 - Karetní hry: 3-5-8, 99, 1000 mil, Biblios, Blackjack, Bouillabaisse,
@@ -68,9 +68,9 @@ hry, procvičování psaní i hry založené na sluchu a postřehu.
 - Kostky a domino: Balut, Kostkový blackjack, Cat, head, tail, Kostkový generál,
   Domino, Farkle, Lhářské kostky, Mexican Train, Kostkový poker a Yahtzee.
 - Další hry založené na náhodě: Bingo a Ruleta.
-- Slova a vědomosti: Krowa, Psanománie, Státy a města, Quiz Party,
+- Slova a vědomosti: Aukce o peníze, Krowa, Psanománie, Státy a města, Quiz Party,
   Scrabble a Taboo.
-- Zvukové akční hry: Axel Pong a Audio Ball.
+- Zvukové akční hry: Kulečník, Axel Pong a Audio Ball.
 
 Žetony ve hrách jsou pouze virtuální.
 
@@ -298,6 +298,8 @@ V Nastavení → Obecné vyberete samostatně:
 Ve výchozím stavu se hry neztlumují. Ztlumení na pozadí nevypíná samostatné
 upozornění na tah ani zvuky chatu, pozvánek a změn účastníků.
 Volby platí jak v jiných oknech ELTENu, tak při přechodu do jiného programu.
+
+Do pole Zobrazované jméno můžete zadat jméno a příjmení, nejvýše 64 znaků. Prázdné pole ponechá přihlašovací jméno ELTENu. Celé jméno se ukazuje v lobby, u stolů, v seznamu účastníků, ve výsledcích pod S, v historii a oznámeních. Aktuální akce, rozdání, licitace a názvy figurek používají křestní jméno. Změnu potvrďte tlačítkem Uložit, nebo ji zahoďte tlačítkem Zrušit. Toto jméno vidí i ostatní hráči; přihlašovací jméno, oprávnění a statistiky účtu se nemění. Hráči bez nastaveného nebo dostupného jména se nadále zobrazují pod přihlašovacím jménem.
 
 ### Spojení ve zvukových hrách
 

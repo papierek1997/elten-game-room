@@ -290,6 +290,7 @@ class GameRoomLiveSessionStore
       metadata = session&.metadata.to_h
       base = fallback || table_from_metadata(metadata || {}, table_id)
       return nil if base == nil
+      room_display_names(table_id, session)
 
       row, _changes = project_room_records(table_id, base.dup)
       row["__id"] = table_id
@@ -406,6 +407,7 @@ class GameRoomLiveSessionStore
       return nil if table_id == nil
 
       row = table_from_metadata(metadata, table_id)
+      row['__display_names'] = discovery_display_names(metadata, members: item.participants)
       if item.respond_to?(:created_at) && item.created_at.to_i > 0
         row["created_at"] = row["updated_at"] = item.created_at.to_i
       end

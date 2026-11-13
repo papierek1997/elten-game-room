@@ -58,7 +58,7 @@ a Escape zamyka dokument.
 
 ## W co można zagrać
 
-Power Games zawiera 48 gier: od karcianek i planszówek po zabawy słowne,
+Power Games zawiera 50 gier: od karcianek i planszówek po zabawy słowne,
 ćwiczenia pisania i gry, w których najważniejsze są słuch i refleks.
 
 - Karcianki: 3-5-8, 99, 1000 mil, Biblios, Blackjack, Bouillabaisse,
@@ -69,8 +69,8 @@ Power Games zawiera 48 gier: od karcianek i planszówek po zabawy słowne,
 - Kości i domino: Balut, Blackjack kościany, Cat, head, tail, Domino, Farkle,
   Kłamczuch kościany, Kościany Generał, Mexican Train, Poker kościany i Yahtzee.
 - Pozostałe gry losowe: Bingo i Ruletka.
-- Słowa i wiedza: Krowa, Mania pisania, Państwa-miasta, Quiz, Scrabble i Taboo.
-- Gry zręcznościowe audio: Axel Pong i Audio Ball.
+- Słowa i wiedza: Awantura o kasę, Krowa, Mania pisania, Państwa-miasta, Quiz, Scrabble i Taboo.
+- Gry zręcznościowe audio: Bilard, Axel Pong i Audio Ball.
 
 Żetony używane w grach są wyłącznie wirtualne.
 
@@ -309,6 +309,8 @@ Domyślnie dźwięki gier nie są wyciszane. Wyciszenie w tle nie wyłącza
 osobnego sygnału tury ani dźwięków czatu, zaproszeń i zmian obsady.
 Te ustawienia działają zarówno poza oknem Power Games w ELTEN-ie,
 jak i po przejściu do innego programu.
+
+Pole „Nazwa wyświetlana” pozwala wpisać imię i nazwisko (najwyżej 64 znaki). Pozostaw je puste, aby używać loginu ELTEN. Pełna nazwa pojawia się w lobby, przy stole, na liście uczestników, w wynikach pod S, historii i powiadomieniach. Bieżące akcje, rozdania, licytacje i nazwy pionków używają pierwszego imienia. Wybierz Zapisz, aby zastosować zmianę, lub Anuluj, aby ją odrzucić. To nazwa widoczna dla innych graczy; login konta, uprawnienia i statystyki pozostają bez zmian. Uczestnicy bez ustawionej lub dostępnej nazwy nadal są pokazywani pod loginem.
 
 ### Połączenie w grach audio
 

@@ -1,0 +1,72 @@
+Auction quiz effects
+====================
+
+Sources and licence declarations checked on 13 November 2026.
+These are independently published sound effects, not audio from a television
+programme. The authors do not endorse this application.
+
+Audio/auction_gavel.opus
+  Original title: "Wooden Gavel Hits"
+  Author: Stefan021 (15 April 2025)
+  Source: https://freesound.org/people/Stefan021/sounds/798872/
+  Public HQ preview downloaded:
+  https://cdn.freesound.org/previews/798/798872_3821443-hq.mp3
+  Licence: CC0 1.0 Universal
+  https://creativecommons.org/publicdomain/zero/1.0/
+  Full legal text: LICENSES/CC0-1.0.txt
+
+  A recorded wooden gavel striking its wooden sound block. One isolated
+  strike was selected from 7.97 to 8.65 seconds of the public preview.
+  Original mono channel retained. Gain -2.158981 dB; 5 ms opening and
+  70 ms closing fades. No extra reverb or synthesized impact was added.
+  Decoded duration: 0.68 seconds. Decoded sample peak: -4.02 dBFS.
+  Downloaded preview SHA-256:
+  c33d5709c1be779548d74707f249612db4facf7d3bb9ebea86580e6947d3d0bb
+  Application asset SHA-256:
+  a576c316f623c7c65693fb11fe28e071bded3c4f68b5d50caf8cad5825d9144b
+
+Audio/auction_chest.opus
+  Original title: "Open Chest" (file "Chest Creak.wav")
+  Author: spookymodem (25 September 2014)
+  Source: https://opengameart.org/content/open-chest
+  Original WAV downloaded:
+  https://opengameart.org/sites/default/files/Chest%20Creak.wav
+  Licence: Creative Commons Attribution 3.0 Unported (CC BY 3.0)
+  https://creativecommons.org/licenses/by/3.0/
+  Full legal text: LICENSES/CC-BY-3.0.txt
+
+  Opening a creaking chest. Excerpt from 0.15 to 1.55 seconds of the
+  source, retaining its stereo channels. Gain +3.416015 dB; 10 ms opening
+  and 100 ms closing fades. No extra musical or magical cue was added.
+  Decoded duration: 1.40 seconds. Decoded sample peak: -3.93 dBFS.
+  Downloaded source SHA-256:
+  6a4b5758067803612f56749bb7943e4fa72e75f908639b1de50920300561463e
+  Application asset SHA-256:
+  d0a8bdb7184117cb3afce43226e3879fca4795c79b1dd5ff4b27d8e54d9cbb5e
+
+Both effects were prepared as 48 kHz floating-point WAV excerpts with edge
+fades and a sample-peak target of -4 dBFS, then encoded with the project's
+tools/encode_audio.rb: Opus, 144 kbit/s VBR, audio mode, 20 ms frames,
+complexity 10. The output preserves the selected source's channel count.
+Source audio metadata was replaced with the title, author, source link,
+licence and modification note above; these credits are also embedded in
+the Opus files. The original downloaded files were not modified.
+
+When distributing auction_chest.opus, retain the title, author, source,
+licence link and modification notice. The adaptation remains under
+CC BY 3.0; the application's code licence does not replace it.
+
+Audio/auction_call_low.opus
+Audio/auction_call_high.opus
+  Original generated countdown cues, prepared for this contribution on
+  13 November 2026. These contain no downloaded recording, third-party
+  sample or television-programme audio. Dedicated under CC0 1.0 Universal:
+  https://creativecommons.org/publicdomain/zero/1.0/
+  Full legal text: LICENSES/CC0-1.0.txt
+
+  Low: 600 Hz sine; high: 1000 Hz sine. Each cue is 70 ms, mono, 48 kHz,
+  with a source sample peak of -16 dBFS and 3 ms linear ramps at both ends.
+  Encoded through tools/encode_audio.rb with the same 144 kbit/s VBR Opus
+  settings above. Complete decoded durations are 70 ms; decoded peaks are
+  approximately -15.97 dBFS because Opus is lossy. No attribution to an
+  external artist is claimed or required for these generated tones.

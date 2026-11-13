@@ -33,7 +33,7 @@ require_relative "../../lib/invitation_repository"
 require_relative "../../games/base"
 
 class NativeLiveSessionsBroker
-  Participant = Struct.new(:id, :user, keyword_init: true)
+  Participant = Struct.new(:id, :user, :metadata, keyword_init: true)
   Info = Struct.new(:sequence, :id, :created_at, :origin, :min, :max, :count, :operation, :pool_id, keyword_init: true) do
     def server_random?; origin == 'server'; end
     def server_pool?; origin == 'server_pool'; end
@@ -110,7 +110,7 @@ class NativeLiveSessionsBroker
         mutex: Mutex.new, dedup: {}, visibility: visibility, invitations: {}
       )
       @broker.cores[id] = core
-      add_view(core)
+      add_view(core, participant_metadata: participant_metadata)
     end
 
     def discover_sessions(sources: [:created, :invited, :public], **_options)
@@ -158,7 +158,7 @@ class NativeLiveSessionsBroker
       @invitation_callbacks.each { |callback| callback.call(invitation) }
     end
 
-    def add_view(core)
+    def add_view(core, participant_metadata: {})
       raise EltenAPI::LiveSessions::SessionClosed if core.closed
       if core.visibility == :private && core.owner.casecmp(@user) != 0 && core.invitations[@user.downcase].to_i <= Time.now.to_i
         raise EltenLink::Error.new("not_invited")
@@ -168,7 +168,7 @@ class NativeLiveSessionsBroker
       view = View.new(self, core)
       @sessions << view
       core.views << view
-      participant = Participant.new(id: SecureRandom.uuid, user: @user)
+      participant = Participant.new(id: SecureRandom.uuid, user: @user, metadata: JSON.parse(JSON.generate(participant_metadata)))
       core.participants[@user.downcase] = participant
       core.views.each { |candidate| candidate.participant_joined(participant) unless candidate.equal?(view) }
       view
@@ -215,7 +215,7 @@ class NativeLiveSessionsBroker
     def join(participant_metadata: {})
       raise "full" if !can_join?
 
-      @endpoint.add_view(@core)
+      @endpoint.add_view(@core, participant_metadata: participant_metadata)
     end
   end
 
@@ -239,7 +239,7 @@ class NativeLiveSessionsBroker
 
     def accept(participant_metadata: {})
       @pending = false
-      @target.add_view(@core)
+      @target.add_view(@core, participant_metadata: participant_metadata)
     end
 
     def reject

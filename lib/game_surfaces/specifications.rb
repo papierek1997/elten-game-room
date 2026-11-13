@@ -1,5 +1,6 @@
 # Pure presentation values: safe to load without native ELTEN controls.
 module GameSurfaces
+  BilliardsSpec = Struct.new(:game_id, :epoch, :balls, :enabled, :options, :last, :last_shot, :undo, :shots, :rules, keyword_init: true)
   TypingSpec = Struct.new(:round, :enabled, :status, :commands, :remaining_sentence, :remaining_word, :auto_commit, :choose_text, :own_text, keyword_init: true)
   MovementCommandResult = Struct.new(:action, :message, keyword_init: true)
 
