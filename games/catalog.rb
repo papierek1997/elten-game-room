@@ -39,6 +39,7 @@ require_relative "krowa"
 require_relative "mania_pisania"
 require_relative "axel_pong"
 require_relative "audio_ball"
+require_relative "darts"
 require_relative "war"
 require_relative "scientific_war"
 require_relative "duck_racing"
@@ -95,6 +96,7 @@ module GameRoomGames
     GameRoomGames::ManiaPisania,
     GameRoomGames::AxelPong,
     GameRoomGames::AudioBall,
+    GameRoomGames::Darts,
     GameRoomGames::War,
     GameRoomGames::ScientificWar,
     GameRoomGames::DuckRacing,

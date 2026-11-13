@@ -129,6 +129,9 @@ module GameSurfaces
 
   AudioBallSpec = Struct.new(:game_id, :header, :players, :viewer, :scores, :sets, :set_number, :finished, :teams, :score_labels, keyword_init: true)
 
+  DartsSpec = Struct.new(:game_id, :header, :players, :viewer, :current_player, :throw_index,
+    :round, :dart, :difficulty, :scores, :active, :finished, :training, keyword_init: true)
+
   Command = Struct.new(:id, :label, :enabled, :payload, keyword_init: true)
 
   CommandPanelSpec = Struct.new(:commands, keyword_init: true)

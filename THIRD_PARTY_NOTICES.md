@@ -60,6 +60,36 @@ a statement that the PRs have been merged on GitHub.
 
 ## Sounds
 
+### Darts — dartboard impact
+
+`Audio/darts_hit_1.opus`, `Audio/darts_hit_2.opus`,
+`Audio/darts_hit_3.opus`, `Audio/darts_hit_4.opus` and
+`Audio/darts_hit_5.opus` use the complete Freesound HQ Ogg previews of
+“Dartboard 1.aif” through “Dartboard 5.aif” by **tonnonic**, Freesound
+[332200](https://freesound.org/s/332200/),
+[332199](https://freesound.org/s/332199/),
+[332198](https://freesound.org/s/332198/),
+[332197](https://freesound.org/s/332197/) and
+[332201](https://freesound.org/s/332201/), under
+[CC BY 3.0](LICENSES/CC-BY-3.0.txt). The user supplied the preview and its
+license notices on 13 November 2026. They were converted without trimming,
+normalization, gain or channel changes to Ogg Opus, target 144 kb/s VBR,
+48 kHz, 20 ms frames, audio mode and complexity 10. The author does not
+endorse the application. Preserve this attribution, source link,
+modification notice and license when distributing the recordings.
+
+### Darts — applause
+
+`Audio/darts_applause.opus` uses the complete Freesound HQ Ogg preview of
+“Applause Clapping” by **dersuperanton**, Freesound
+[435877](https://freesound.org/s/435877/), under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The user
+supplied the preview and its license notice on 13 November 2026. It was
+converted without trimming, normalization, gain or channel changes to Ogg
+Opus, target 144 kb/s VBR, 48 kHz, 20 ms frames, audio mode and complexity
+10. The author does not endorse the application. Preserve this attribution,
+source link, modification notice and license when distributing the recording.
+
 ### Bouillabaisse — scoring-card cues
 
 `audio/bouillabaisse_rank.opus` and `audio/bouillabaisse_card.opus`
