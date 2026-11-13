@@ -1,4 +1,5 @@
 module GameRoomGames
+  using GameRoomLocalization::Translations
   module BalutScoreGrid
     SLOT_COUNT = 4
 
@@ -6,7 +7,7 @@ module GameRoomGames
 
     def balut_totals_text(state, player)
       result = BalutScoring.current_result(state.fetch(:sheets).fetch(player))
-      "Wynik gry: #{result.fetch(:points)}. Suma punkt\u00f3w: #{result.fetch(:raw)}."
+      _("Game points: %{points}. Sum of recorded scores: %{total}.") % {points: result.fetch(:points), total: result.fetch(:raw)}
     end
 
     def score_grid(state, player, writable: false)
@@ -23,18 +24,19 @@ module GameRoomGames
         label = category_label(category)
         if writable
           points = BalutScoring.score(category, state.fetch(:dice))
-          label += ", do zapisu: #{points}"
+          label = _("%{category}: record %{points}") % {category: label, points: points}
         end
-        label += ", suma #{values.sum}" if BalutScoring::TARGETS.key?(category)
-        [label, *Array.new(SLOT_COUNT) { |index| values.fetch(index, "puste").to_s },
-         "Suma: #{values.sum}", remaining.nil? ? "" : "Do premii: #{remaining}"]
+        [label, *Array.new(SLOT_COUNT) { |index| values.fetch(index, _("not filled")).to_s },
+         _("Total: %{points}") % {points: values.sum}, remaining.nil? ? "" : _("Needed for the bonus: %{count}") % {count: remaining}]
       end
       result = BalutScoring.current_result(sheet)
-      rows << [balut_totals_text(state, player), "Wynik gry: #{result.fetch(:points)}",
-        "Suma punkt\u00f3w: #{result.fetch(:raw)}",
+      rows << [balut_totals_text(state, player), _("Game points: %{points}") % {points: result.fetch(:points)},
+        _("Total: %{points}") % {points: result.fetch(:raw)},
         "", "", "", ""]
       GameSurfaces::GridSpec.new(width: rows.first.size, height: rows.size,
-        header: score_sheet_title(state, player), cells: rows, row_origin: :top, hide_coordinates: true, score_categories: writable ? categories.map(&:to_s) : nil)
+        header: score_sheet_title(state, player), cells: rows, row_origin: :top, hide_coordinates: true,
+        row_actions: writable ? categories.map { |category| GameSurfaces::Action.new(kind: 'dice', name: 'score', payload: {'category' => category.to_s}) } : [],
+        shortcuts: [announcement_shortcut(key: 'space', label: _("read the dice"), message: dice_text(state))])
     end
   end
 end

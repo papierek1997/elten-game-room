@@ -55,12 +55,27 @@ module GameRoomGames
       true
     end
 
-    def preview(category)
+    def preview(category, dice: @dice, rolls: @rolls)
       return unless @current_player && @rolls.positive?
       row = @sheets.fetch(@current_player)[category]
       return unless row && row.size < @columns
-      FiveDiceScoring.score(category, @dice, reserve: reserve(@current_player, category),
-        fixed: @fixed, double_first: @double_first, rolls: @rolls)
+      FiveDiceScoring.score(category, dice, reserve: reserve(@current_player, category),
+        fixed: @fixed, double_first: @double_first, rolls: rolls)
+    end
+
+    def planning_key
+      Marshal.dump([@players, @columns, @fixed, @double_first, @strict_school,
+        @sheets, @reserves, @bonuses, @claimed, @blocked, @current_player])
+    end
+
+    def preview_bonus(category, points)
+      return 0 unless FiveDiceScoring.bonuses_enabled?(@columns) && !@blocked[@current_player]
+      rows = @sheets.fetch(@current_player)
+      row = rows.fetch(category)
+      bonus = row.size == @columns - 1 && !row.include?(:cross) && !@claimed[[:row, category]] ? points : 0
+      column = row.size
+      complete = rows.all? { |key, entries| key == category || entries[column].is_a?(Integer) }
+      bonus + (complete && !@claimed[[:column, column]] ? 60 : 0)
     end
 
     def record(player, category, cross: false)

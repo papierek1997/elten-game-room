@@ -84,6 +84,9 @@ assert((presentations.keys - new_games).empty?, 'Unexpected new-game presentatio
   cases << item
 end
 duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/duck_racing.json'), encoding: 'UTF-8'))
+%w[kosciane balut].each do |id|
+  cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding:'UTF-8'))
+end
 expected_ids = GameRoomGames::CATALOG.ids.reject { |id| %w[axel_pong audio_ball].include?(id) }.sort
 assert_equal(expected_ids, (cases.map { |item| item.fetch('game') } + [duck.fetch('game')]).sort, 'corpus must explicitly cover every turn-based game')
 assert((ARGV - expected_ids).empty?, 'unknown game requested for contract verification')

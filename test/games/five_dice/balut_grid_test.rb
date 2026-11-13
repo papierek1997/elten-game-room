@@ -24,9 +24,16 @@ puts "PASS Balut: Enter opens score grid and submits Czwórki"
 
 sheet[:fours].replace([16, 16, 12, 8])
 shortcut = game.game_shortcuts(replay, "Alice").find { |key| key.key == "b" }
-row = shortcut.default_value.cells.first
-raise "Full row remains writable" if shortcut.payload.fetch("cells").key?("6,0")
-raise "Missing full row total" unless row[5].include?("52") && row.last.end_with?("2")
+raise "Full row remains writable" if shortcut.default_value.row_actions.any? { |action| action['category'] == 'fours' }
+readonly = game.send(:score_grid, state, 'Alice', writable: false)
+row = readonly.cells.first
+raise "Missing full row total or remaining threshold" unless row[5].include?("52") && row.last.end_with?("0")
+inspector = GameSurfaces.build(readonly)
+inspected_action = nil
+inspector.on_action { |input| inspected_action = input }
+inspector.fields.first.trigger(:select, [0, 0])
+raise 'Inspecting a read-only sheet created a move' if inspected_action
+raise 'A chat coordinate bypassed the read-only sheet' if inspector.movement_command(['A1']).action
 raise "Wrong game total after row bonus" unless game.total_score(state, "Alice").zero?
 puts "PASS Balut: full Czwórki row, total 52, two game points"
 
@@ -42,6 +49,9 @@ def parent_form.game_room_pending_operation; true; end
 def parent_form.open_game_room_background_help(form); form.wait; end
 screen.instance_variable_set(:@layout, Struct.new(:form).new(parent_form))
 shortcut = game.surface_action_shortcut(intent, replay, "Alice")
-raise "Expected writable cell before pending guard" unless shortcut.payload.fetch("cells").key?("6,0")
+raise "Expected writable row before pending guard" unless shortcut.default_value.row_actions.any? { |action| action['category'] == 'fours' }
+chat_surface = GameSurfaces.build(shortcut.default_value)
+chat_action = chat_surface.movement_command(['G1']).action
+raise 'Chat coordinates did not use the same declared row action' unless chat_action['kind']=='dice' && chat_action['category']=='fours' && chat_action.source=='chat_command'
 raise "Pending write allowed another score" if screen.send(:activate_game_shortcut, shortcut)
 puts "PASS Balut: pending write prevents grid submission"

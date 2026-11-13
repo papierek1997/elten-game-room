@@ -85075,5 +85075,7 @@ module GameRoomKrowa
       ociekacze
     KROWA_NOUNS
     WORDS.freeze
+    # Historical reads only; these words never enter a new draw.
+    RETIRED_WORDS = "calvados\ncalvadosy\nchevrolet\nchevrolety\ncollectivum\ncollectiva\ncolt\ncolty\nconcertino\nconcertina\nconradysta\nconradyści\ncontinuum\ncontinua\ncorrida\ncorridy\ncorso\ncorsa\ncosecans\ncosecansy\ncosinus\ncosinusy\ncosinusoida\ncosinusoidy\ncotangens\ncotangensy\ncotangensoida\ncotangensoidy\ncowboy\ncowboye\ncracoviana\ncrawle\ndiuszesa\ndiuszesy\ndivertimento\ndivertimenta\nexodus\nexodusy\nexpres\nexpresy\nfractocumulus\nfractostratus\nhiszpański\nhiszpańskie\nhitlerowiec\nhitlerowcy\nhitleryzm\nhitleryzmy\nhiw\nhiwy\nhizop\nhizopy\nquadrivium\nquadrivia\nquantum\nquanta\nquattrocento\nquattrocenta\nquebracho\nquebracha\nquiz\nquizy\nsollux\nsolluksy\nstradivarius\nstradivariusy\nvacat\nvacaty\nvaria\nvarsaviana\nvarsavianista\nvarsavianiści\nvedetta\nvedetty\nvendetta\nvendetty\nveto\nveta\nvis\nvisy\nvolksdeutsch\nvolksdeutsche\nvolkswagen\nvolkswageny\nvolley\nvolleye\nvolt\nvolty\nvolta\nvolvo".freeze
   end
 end

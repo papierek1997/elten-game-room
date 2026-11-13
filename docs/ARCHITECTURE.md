@@ -160,6 +160,13 @@ download today's or future payloads. The local solo gallery retains its
 own best-result attempts independently of public sharing. Match state and
 saved games remain based exclusively on the existing accepted event log.
 
+Withdrawn Krowa nouns have a separate authored list, compiled with the active
+dictionary. They remain recognizable for historical scores, but never enter
+new draws or ordinary guesses. A canonical saved daily assignment may still
+authorize its own withdrawn answer; it does not authorize other retired nouns.
+Do not replace that whitelist with arbitrary public table text or recalculate
+an existing daily answer after changing the active dictionary.
+
 ### Access to auxiliary tables
 
 Every `program_main` call and entry through a notification rechecks access to

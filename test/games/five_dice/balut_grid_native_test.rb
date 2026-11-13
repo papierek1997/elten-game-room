@@ -15,7 +15,7 @@ driver.root = root
 driver.keys = [[39], [], [40], [], [37], [], [38], [], [13]]
 positions = [[1, 0], [1, 1], [0, 1], [0, 0]]
 selected = nil
-surface.on_action { |action| selected = [action["x"], action["y"]] }
+surface.on_action { |action| selected = action.to_h }
 9.times do |index|
   driver.tick(root)
   control.update
@@ -27,5 +27,5 @@ surface.on_action { |action| selected = [action["x"], action["y"]] }
   raise "Missing speech for #{expected.inspect}: #{spoken.inspect}" unless spoken.include?(expected)
   raise "Wrong grid position: #{surface.state.inspect}" unless surface.state.values_at("x", "y") == positions[index / 2]
 end
-raise "Native Enter did not select the focused cell" unless selected == [0, 0]
+raise "Native Enter did not select the focused row" unless selected == {"kind" => "dice", "action" => "score", "category" => "fours"}
 puts "PASS Balut: all four native arrow bindings and Enter"

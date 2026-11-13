@@ -49,7 +49,7 @@ shortcut_game.define_singleton_method(:game_shortcuts) do |_replay, _viewer|
 end
 screen.instance_variable_set(:@game, shortcut_game)
 initial_shortcut = shortcut_game.game_shortcuts(Object.new, "Alice").first
-refreshed_shortcut = screen.send(:refreshed_announcement_shortcut, initial_shortcut, Object.new, "Alice")
+refreshed_shortcut = screen.send(:refreshed_game_shortcut, initial_shortcut, Object.new, "Alice")
 assert(
   refreshed_shortcut.message == "58 seconds remaining.",
   "an announcement shortcut reused the value frozen when the form opened"

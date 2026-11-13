@@ -159,7 +159,7 @@ module GameSurfaces
     def labels
       return @categories.map { |category| category.label.to_s } if @mode == :categories
 
-      return ["Zapisz w tabeli"] if @spec.score_grid && @dice.none? { |die| die.value.nil? } && @selected_ids.empty?
+      return [_('Record the score')] if @spec.score_grid && @dice.none? { |die| die.value.nil? } && @selected_ids.empty?
 
       [_('Roll the dice')]
     end

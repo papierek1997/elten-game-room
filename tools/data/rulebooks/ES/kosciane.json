@@ -8,7 +8,7 @@
       },
       "paragraphs": [
         {
-          "es": "De dos a ocho jugadores rellenan sus tablas por turnos. Anota en la primera casilla libre de la fila elegida. Gana quien sume más puntos y bonificaciones. Si hay empate, se comparte la victoria."
+          "es": "De dos a ocho jugadores tiran cinco dados y rellenan sus propias tablas por turnos. Cada fila tiene tres casillas. En tu turno anotas en la primera casilla libre de la fila elegida. Cuando todas las tablas están llenas, gana quien sume más puntos y bonificaciones. Si varios jugadores alcanzan la puntuación más alta, comparten la victoria."
         }
       ]
     },
@@ -19,7 +19,10 @@
       },
       "paragraphs": [
         {
-          "es": "Tira los cinco dados. Puedes anotar el resultado o volver a tirar los dados elegidos hasta dos veces. Después de la tercera tirada también puedes tachar una casilla libre por cero puntos."
+          "es": "Pulsa Intro para tirar los cinco dados. Puedes anotar el resultado o volver a tirar algunos dados hasta dos veces. Una cifra del 1 al 6 selecciona un dado de ese valor para repetir la tirada. Mayús con la misma cifra desmarca uno. Intro vuelve a tirar los dados seleccionados; si no has seleccionado ninguno, abre la tabla de anotación."
+        },
+        {
+          "es": "Después de la tercera tirada, la tabla aparece en el campo de juego. Usa las flechas arriba y abajo para elegir una fila, e izquierda y derecha para consultar sus anotaciones, suma y reserva. Intro en cualquier columna anota el resultado en la primera casilla libre de la fila. La tirada debe cumplir la condición de esa combinación. Tras la tercera tirada también puedes elegir tachar una casilla: se ocupa sin dar puntos."
         }
       ]
     },
@@ -30,7 +33,16 @@
       },
       "paragraphs": [
         {
-          "es": "Para una pareja, dos parejas distintas, un trío o un póquer suma solo los dados que forman la combinación. La escalera corta tiene cuatro valores consecutivos y la larga cinco. Suma los dados de la escalera. Un full consta de un trío y una pareja. En el full, los cinco iguales y la casilla de azar, suma todos los dados. Azar acepta cualquier tirada."
+          "es": "- Una pareja, dos parejas distintas, un trío o un póquer dan la suma de los dados que forman la combinación."
+        },
+        {
+          "es": "- La escalera corta tiene cuatro valores consecutivos y la larga cinco. Suma los valores de la escalera. Si hay dos escaleras cortas posibles, cuenta la más alta."
+        },
+        {
+          "es": "- Un full consta de un trío y una pareja. En el full y en los cinco iguales se suman los cinco dados."
+        },
+        {
+          "es": "- Azar acepta cualquier tirada y da la suma de los cinco dados."
         }
       ]
     },
@@ -41,7 +53,7 @@
       },
       "paragraphs": [
         {
-          "es": "Cada valor tiene una fila en la escuela. Para anotar necesitas tres dados de ese valor. Con cuatro seises anotas 24 y añades un seis a la reserva. Si después sacas dos seises, puedes gastar uno de la reserva y anotar 12 por los dados de la tirada."
+          "es": "Cada valor tiene una fila en la escuela. Para anotar necesitas tres dados de ese valor, pero puedes completar los que falten con la reserva. Al menos uno debe proceder de la tirada actual. Solo puntúan los dados que has sacado. Con cuatro seises anotas 24 y añades un seis a la reserva. Si después sacas dos seises, puedes gastar el de la reserva y anotar 12."
         }
       ]
     },
@@ -52,7 +64,7 @@
       },
       "paragraphs": [
         {
-          "es": "El primero en completar una fila sin tachaduras gana una bonificación igual a la última anotación. Completar primero una columna sin tachaduras da 60 puntos. Tachar una casilla de la escuela hace perder las bonificaciones ganadas."
+          "es": "El primero en completar una fila sin tachaduras gana una bonificación igual a la última anotación. El primero en completar cada columna sin tachaduras recibe 60 puntos. Para ello necesita una anotación en todas las categorías, no solo en la escuela. Tachar una casilla de la escuela hace perder las bonificaciones ganadas."
         }
       ]
     },
@@ -74,12 +86,52 @@
       },
       "paragraphs": [
         {
-          "es": "Pulsa Intro para tirar. Una cifra del 1 al 6 selecciona un dado con ese valor para repetir la tirada. Pulsa Mayús con esa cifra para deshacer una selección. La barra espaciadora lee los dados. Tras tirar, Intro sin dados seleccionados abre la lista de resultados. V abre tu tabla, Mayús+V la de otro jugador y S lee los totales."
+          "es": "Intro: comenzar el turno tirando cinco dados. Después, volver a tirar los dados seleccionados o abrir la tabla si no hay ninguno seleccionado. En la tabla, anotar en la fila elegida. Tras la tercera tirada, la tabla aparece automáticamente."
+        },
+        {
+          "es": "1–6: seleccionar un dado de ese valor para volver a tirarlo."
+        },
+        {
+          "es": "Mayús+1–6: desmarcar un dado seleccionado de ese valor."
+        },
+        {
+          "es": "Flechas: arriba y abajo eligen la fila; izquierda y derecha recorren sus anotaciones y totales. Las filas completas no aparecen al anotar."
+        },
+        {
+          "es": "B: abrir la tabla en una ventana aparte."
+        },
+        {
+          "es": "Escape: cerrar la ventana aparte de la tabla sin anotar el resultado."
+        },
+        {
+          "es": "Espacio: oír los dados y, en el campo de tirada, cuáles están seleccionados."
+        },
+        {
+          "es": "D: oír la última tirada."
+        },
+        {
+          "es": "V: consultar tu tabla."
+        },
+        {
+          "es": "Mayús+V: consultar la tabla de otro jugador."
+        },
+        {
+          "es": "F: consultar tus filas sin completar."
+        },
+        {
+          "es": "S: oír los resultados con bonificaciones."
+        },
+        {
+          "es": "Mayús+S: oír la suma de las anotaciones."
         }
       ]
     }
   ],
   "option_chapters": {
-    "columns": "options"
+    "columns": "options",
+    "parity": "options",
+    "fixed": "options",
+    "double_first": "options",
+    "strict_school": "options"
   }
 }

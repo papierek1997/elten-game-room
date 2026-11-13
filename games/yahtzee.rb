@@ -1,5 +1,6 @@
 require_relative "base"
 require_relative "../lib/game_bots"
+require_relative "../lib/five_dice_planner"
 require_relative "../lib/server_random"
 
 require_relative "../lib/game_room_localization"
@@ -317,10 +318,12 @@ module GameRoomGames
       key = [state[:sheets][actor], state[:options], state[:turn_rolls]].inspect
       if @dice_plan_key != key
         @dice_plan_key = key
-        @dice_expectations = {}
-        @dice_decisions = {}
+        @dice_planner = GameRoomFiveDicePlanner.new do |dice, _roll_number|
+          simulated = state.merge(dice: dice)
+          available_scoring_categories(simulated, actor).map { |category| bot_category_value(category, dice, simulated, actor) }.max
+        end
       end
-      bot_roll_value(kept.sort, 3 - state[:turn_rolls], state, actor) - 0.0001
+      @dice_planner.roll_value(kept.sort, 3 - state[:turn_rolls]) - 0.0001
     end
 
     def move_error(status)
@@ -589,35 +592,6 @@ module GameRoomGames
       sheet = state[:sheets][player].merge(category => score_category(category, state[:dice], state, player))
       after = state.merge(sheets: state[:sheets].merge(player => sheet))
       others.all? { |other| total_score(after, player) > total_score(state, other) }
-    end
-
-    def bot_roll_value(kept, rolls, state, actor)
-      key = [rolls, kept]
-      return @dice_expectations[key] if @dice_expectations.key?(key)
-      value = if kept.length == 5
-        bot_best_value(kept, rolls - 1, state, actor)
-      else
-        (1..6).sum { |face| bot_roll_value((kept + [face]).sort, rolls, state, actor) } / 6.0
-      end
-      @dice_expectations[key] = value
-    end
-
-    def bot_best_value(dice, rolls, state, actor)
-      key = [rolls, dice]
-      return @dice_decisions[key] if @dice_decisions.key?(key)
-      simulated = state.merge(dice: dice)
-      best = available_scoring_categories(simulated, actor).map { |category| bot_category_value(category, dice, simulated, actor) }.max
-      if rolls > 0
-        subsets = [[]]
-        dice.tally.each do |face, count|
-          subsets = subsets.flat_map { |subset| (0..count).map { |number| subset + Array.new(number, face) } }
-        end
-        subsets.each do |kept|
-          next if kept.length == 5
-          best = [best, bot_roll_value(kept, rolls, state, actor)].max
-        end
-      end
-      @dice_decisions[key] = best
     end
 
     def match_summary(state)

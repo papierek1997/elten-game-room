@@ -1,16 +1,18 @@
 require_relative "yahtzee"
 require_relative "kosciane_support/five_dice_match"
+require_relative "score_sheet_results"
 
 module GameRoomGames
   using GameRoomLocalization::Translations
 
   class Kosciane < Yahtzee
+    include ScoreSheetResults
     GameRoomServerRandom.register("kosciane", ["roll"])
     LABEL_KEYS = {triple: "three_kind", four: "four_kind", poker: "yahtzee"}.freeze
 
     def id; "kosciane"; end
-    def name; "Ko\u015bciany Genera\u0142"; end
-    def short_description; GameRoomLocalization.primary_language == "pl" ? "Uk\u0142adaj kombinacje z pi\u0119ciu ko\u015bci i zdobywaj premie za pe\u0142ne wiersze i kolumny." : _("Fill your score sheet by rolling five dice."); end
+    def name; _("Dice General"); end
+    def short_description; _("Roll five dice and fill rows and columns to earn bonuses."); end
     def supports_bots?; true; end
     def tournament_capabilities(options: {}); super.merge(player_counts: [].freeze).freeze; end
     def shortcut_features; []; end
@@ -33,7 +35,15 @@ module GameRoomGames
     end
 
     def options_summary(options)
-      _("%{columns} score columns") % {columns: normalize_options(options)["columns"]}
+      columns = normalize_options(options)["columns"]
+      n_("%{count} score column", "%{count} score columns", columns) % {count: columns}
+    end
+
+    def notification_option_keys(_options); ['columns']; end
+    def notification_variant(options)
+      columns = options['columns']
+      return '' unless columns.is_a?(Integer) && columns.between?(1,6)
+      options_summary(options)
     end
 
     def replay(session, events, repository)
@@ -77,33 +87,25 @@ module GameRoomGames
       match = replay.state[:match_model]
       if action["action"] == "score"
         category, cross = decode_choice(match, action["category"])
-        return category.is_a?(Integer) ? -100.0 : -30.0 if cross
-        points, reserve_delta = match.preview(category)
-        return points + reserve_delta * 3 + (category == :chance ? -12 : 0)
+        return cross_value(match, actor, category) if cross
+        return category_value(match, category, match.dice, match.rolls)
       end
       return 100.0 if match.rolls.zero?
 
       indices = parse_die_ids(action["die_ids"])
       kept = match.dice.each_with_index.filter_map { |face, index| face unless indices.include?(index) }
-      counts = kept.tally
-      open = match.sheet(actor).select { |_category, row| row.size < replay.state[:options]["columns"] }.keys
-      targets = open.filter_map do |category|
-        if category.is_a?(Integer)
-          count = counts.fetch(category, 0)
-          next if count.zero?
-          need = [3 - match.reserve(actor, category) - count, 0].max
-          next if need > indices.size
-          category * (count + 1.0) - 6 * need - 2 * (kept.size - count)
-        elsif %i[pair triple four poker].include?(category)
-          size = {pair: 2, triple: 3, four: 4, poker: 5}.fetch(category)
-          counts.map do |face, count|
-            need = [size - count, 0].max
-            next if need > indices.size
-            face * size - 7 * need - 2 * (kept.size - count)
-          end.compact.max
+      key = match.planning_key
+      if key != @score_plan_key
+        @score_plan_key = key
+        model = Marshal.load(Marshal.dump(match))
+        open = model.sheet(actor).select { |_category, row| row.size < replay.state[:options]["columns"] }.keys
+        @score_planner = GameRoomFiveDicePlanner.new do |dice, rolls|
+          open.filter_map do |category|
+            category_value(model, category, dice, rolls) || (cross_value(model, actor, category) if rolls == 3)
+          end.max
         end
       end
-      (targets.max || 2.0) + indices.size * 0.05 - (match.rolls == 2 ? 2 : 0)
+      @score_planner.roll_value(kept.sort, 3 - match.rolls) - 0.0001
     end
 
 
@@ -144,26 +146,26 @@ module GameRoomGames
       if owner
         missing = score_sheet_choices(state, owner, incomplete_only: true)
         shortcuts << if missing.empty?
-          announcement_shortcut(key: "f", label: "Sprawdź wolne pola", message: "Tabela jest pełna.")
+          announcement_shortcut(key: "f", label: _("View unfilled categories"), message: _("The score sheet is full."))
         else
-          browse_shortcut(key: "f", label: "Pokaż wiersze z wolnymi polami",
-            prompt: "Wiersze z wolnymi polami", choices: missing)
+          browse_shortcut(key: "f", label: _("View unfilled categories"),
+            prompt: _("Unfilled categories"), choices: missing)
         end
         writable = !replay.finished? && same_user?(owner, replay.current_player) && state[:turn_rolls].positive?
-        shortcuts << GameShortcut.new(key: "b", kind: :grid_preview, label: "Otwórz tabelę wyników",
+        shortcuts << GameShortcut.new(key: "b", kind: :grid_preview, label: _("Open the score sheet"),
           default_value: score_grid(state, owner, writable: writable))
       end
       if state[:turn_rolls] == 3
         shortcuts.reject! { |shortcut| shortcut.key == "space" }
-        shortcuts << announcement_shortcut(key: "space", label: "Odczytaj kości", message: dice_text(state))
+        shortcuts << announcement_shortcut(key: "space", label: _("read the dice"), message: dice_text(state))
       end
-      shortcuts << announcement_shortcut(key: "d", label: "Odczytaj wyrzucone kości", message: dice_text(state))
+      shortcuts << announcement_shortcut(key: "d", label: _("read the dice"), message: dice_text(state))
       entries = replay.players.map do |player|
         match = state[:match_model]
         "#{participant_name(player)}: #{match.total(player) - match.bonuses(player).values.sum}"
       end
       shortcuts << GameShortcut.new(key: "s", modifiers: [:shift], kind: :announcement,
-        label: "Odczytaj sumę wpisów bez premii", message: entries.join(". "))
+        label: _("read the sum of recorded scores"), message: entries.join("\n"))
     end
 
     def score_grid(state, player, writable:)
@@ -175,22 +177,19 @@ module GameRoomGames
         entries = match.sheet(player).fetch(category)
         label = category_label(category)
         if writable
-          label = cross ? _("Cross out %{category}") % {category: label} : "#{label}, do zapisu #{match.preview(category).first}"
+          label = cross ? _("Cross out %{category}") % {category: label} :
+            _("%{category}: record %{points}") % {category: label, points: match.preview(category).first}
         end
         total = entries.grep(Integer).sum
         reserve = category.is_a?(Integer) ? (_("Reserve: %{count}") % {count: match.reserve(player, category)}) : ""
-        [label, *Array.new(columns) { |index| cell_label(entries[index]) }, "Suma #{total}", reserve]
+        [label, *Array.new(columns) { |index| cell_label(entries[index]) }, _("Total: %{points}") % {points: total}, reserve]
       end
-      rows << ["Suma punktów #{match.total(player)}", *Array.new(columns, ""),
+      rows << [_("Total: %{points}") % {points: match.total(player)}, *Array.new(columns, ""),
         _("Bonuses: %{points}") % {points: match.bonuses(player).values.sum}, ""]
       GameSurfaces::GridSpec.new(width: columns + 3, height: rows.size, header: score_sheet_title(state, player),
-        cells: rows, row_origin: :top, hide_coordinates: true, score_categories: writable ? choices : nil)
-    end
-
-    def result_text(replay)
-      winners = replay.state[:match_model].winners
-      return super unless winners && winners.length.between?(2, replay.players.length - 1)
-      _("Winners: %{players}") % {players: winners.map { |player| participant_name(player) }.join(", ")}
+        cells: rows, row_origin: :top, hide_coordinates: true,
+        row_actions: writable ? choices.map { |choice| GameSurfaces::Action.new(kind: 'dice', name: 'score', payload: {'category' => choice}) } : [],
+        shortcuts: [announcement_shortcut(key: 'space', label: _("read the dice"), message: dice_text(state))])
     end
 
     def score_sheet_title(_state, player)
@@ -220,6 +219,20 @@ module GameRoomGames
 
     private
 
+    def category_value(match, category, dice, rolls)
+      result = match.preview(category, dice: dice, rolls: rolls)
+      return unless result
+      points, reserve_delta = result
+      target = category.is_a?(Integer) ? category * 3 :
+        {pair: 6, two_pairs: 12, triple: 9, four: 10, small_straight: 6,
+         large_straight: 10, full_house: 10, poker: 12, chance: 23, even: 20, odd: 15}.fetch(category)
+      points + reserve_delta * (category.is_a?(Integer) ? category : 0) + match.preview_bonus(category, points) - target
+    end
+
+    def cross_value(match, actor, category)
+      category.is_a?(Integer) ? -100.0 - match.bonuses(actor).values.sum : -30.0
+    end
+
     def decode_choice(match, value)
       raw = value.to_s
       [match.categories.find { |category| category.to_s == raw.delete_prefix("cross:") }, raw.start_with?("cross:")]
@@ -228,7 +241,6 @@ module GameRoomGames
     def category_label(category)
       return _("Even") if category == :even
       return _("Odd") if category == :odd
-      return "Genera\u0142" if category == :poker && GameRoomLocalization.primary_language == "pl"
       return _("Five of a kind") if category == :poker
       key = category.is_a?(Integer) ? STANDARD_CATEGORIES.fetch(category - 1) : LABEL_KEYS.fetch(category, category.to_s)
       CATEGORY_LABELS.fetch(key)

@@ -1,11 +1,13 @@
 require_relative "yahtzee"
 require_relative "balut_support/balut_scoring"
 require_relative "balut_support/balut_score_grid"
+require_relative "score_sheet_results"
 
 module GameRoomGames
   using GameRoomLocalization::Translations
 
   class Balut < Yahtzee
+    include ScoreSheetResults
     include BalutScoreGrid
     GameRoomServerRandom.register("balut", ["roll"])
 
@@ -17,11 +19,11 @@ module GameRoomGames
     end
 
     def id; "balut"; end
-    def name; "Balut"; end
-    def short_description; "Wype\u0142nij siedem wierszy po cztery pola."; end
+    def name; _("Balut"); end
+    def short_description; _("Roll five dice and fill seven categories to earn points for combinations and completed rows."); end
     def option_definitions; []; end
     def options_error(options, player_count: nil); nil; end
-    def options_summary(options); "28 tur"; end
+    def options_summary(options); _("28 turns per player"); end
     def tournament_capabilities(options: {}); super.merge(player_counts: [].freeze).freeze; end
 
     def rule_sections; generated_rule_sections; end
@@ -80,14 +82,15 @@ module GameRoomGames
         empty_label: _("Roll the dice first"), roll_number: state[:turn_rolls], score_grid: true)
     end
 
-    def score_sheet_title(_state, player); "Tabela: #{participant_name(player)}"; end
+    def score_sheet_title(_state, player); _("Score sheet: %{player}") % {player: participant_name(player)}; end
     def score_sheet_choices(state, player, incomplete_only: false)
       sheet = state[:sheets].fetch(player)
       rows = sheet.filter_map do |category, values|
         next if incomplete_only && values.size >= SLOT_COUNT
-        cells = Array.new(4) { |index| values.fetch(index, "puste") }
+        cells = Array.new(4) { |index| values.fetch(index, _("not filled")) }
         points = BalutScoring.row_points(category, values)
-        "#{category_label(category)}: #{cells.join(', ')}. Suma: #{values.sum}. Punkty za wiersz: #{points}."
+        _("%{category}: %{entries}. Total: %{total}. Row points: %{points}.") % {
+          category: category_label(category), entries: cells.join(', '), total: values.sum, points: points}
       end
       rows << balut_totals_text(state, player) unless incomplete_only
       rows.map { |label| ShortcutChoice.new(label: label, value: nil) }
@@ -113,21 +116,21 @@ module GameRoomGames
       if owner
         missing = score_sheet_choices(state, owner, incomplete_only: true)
         shortcuts << if missing.empty?
-          announcement_shortcut(key: "f", label: "Sprawdź wolne pola", message: "Tabela jest pełna.")
+          announcement_shortcut(key: "f", label: _("View unfilled categories"), message: _("The score sheet is full."))
         else
-          browse_shortcut(key: "f", label: "Pokaż wiersze z wolnymi polami",
-            prompt: "Wiersze z wolnymi polami", choices: missing)
+          browse_shortcut(key: "f", label: _("View unfilled categories"),
+            prompt: _("Unfilled categories"), choices: missing)
         end
         writable = same_user?(owner, replay.current_player) && state[:turn_rolls].to_i.positive?
         shortcuts << GameShortcut.new(key: "b", kind: :grid_preview,
-          label: "Otw\u00f3rz tabel\u0119 wynik\u00f3w", default_value: score_grid(state, owner, writable: writable))
+          label: _("Open the score sheet"), default_value: score_grid(state, owner, writable: writable))
       end
       shortcuts = shortcuts.reject { |shortcut| shortcut.key == "space" } if state[:turn_rolls] == 3
-      shortcuts << announcement_shortcut(key: "space", label: "Odczytaj ko\u015bci", message: dice_text(state)) if state[:turn_rolls] == 3
+      shortcuts << announcement_shortcut(key: "space", label: _("read the dice"), message: dice_text(state)) if state[:turn_rolls] == 3
       shortcuts + [
-        announcement_shortcut(key: "s", label: "Odczytaj wynik gry", message: points.join(". ")),
+        announcement_shortcut(key: "s", label: _("read the scores"), message: points.join("\n")),
         GameShortcut.new(key: "s", modifiers: [:shift], kind: :announcement,
-          label: "Odczytaj sum\u0119 punkt\u00f3w", message: entries.join(". "))
+          label: _("read the sum of recorded scores"), message: entries.join("\n"))
       ]
     end
     def scores_text(state, sorted: false)
@@ -148,21 +151,56 @@ module GameRoomGames
       state = replay.state
       if action["action"] == "score"
         category = action["category"].to_sym
-        points = BalutScoring.score(category, state[:dice])
-        return points + (points.positive? && [:straight, :full_house].include?(category) ? 12 : 0)
+        return bot_category_value(state[:sheets].fetch(actor), category, state[:dice])
       end
       return 100 if state[:turn_rolls].zero?
       indices = parse_die_ids(action["die_ids"])
       kept = state[:dice].each_with_index.filter_map { |face, i| face unless indices.include?(i) }
-      count = kept.tally.values.max || 0
-      8 + count * 5 - (kept.size - count) * 5
+      sheet = state[:sheets].fetch(actor)
+      key = Marshal.dump([actor, sheet])
+      if key != @score_plan_key
+        @score_plan_key = key
+        own_sheet = sheet.transform_values(&:dup)
+        open = own_sheet.select { |_category, row| row.size < 4 }.keys
+        @score_planner = GameRoomFiveDicePlanner.new do |dice, _rolls|
+          open.map { |category| bot_category_value(own_sheet, category, dice) }.max
+        end
+      end
+      @score_planner.roll_value(kept.sort, 3 - state[:turn_rolls]) - 0.0001
     end
 
     private
 
+    def bot_category_value(sheet, category, dice)
+      points = BalutScoring.score(category, dice)
+      after = sheet.merge(category => sheet.fetch(category) + [points])
+      if sheet.values.sum(&:length) == 27
+        return 40 * (BalutScoring.current_result(after)[:points] - BalutScoring.current_result(sheet)[:points]) + points * 0.001
+      end
+      reserve = BalutScoring::TARGETS.fetch(category, {straight: 20, full_house: 22, balut: 25}[category]).to_f
+      reserve /= 4 if BalutScoring::TARGETS.key?(category)
+      40 * (bot_progress(after) - bot_progress(sheet)) + points - reserve
+    end
+
+    def bot_progress(sheet)
+      progress = sheet.sum do |category, row|
+        if (target = BalutScoring::TARGETS[category])
+          2 * [row.sum.to_f / target, 1.0].min
+        elsif category == :balut
+          2 * row.count(&:positive?)
+        elsif row.include?(0)
+          0
+        else
+          row.length * (category == :straight ? 1.0 : 0.75)
+        end
+      end
+      progress + BalutScoring.adjustment(sheet.values.sum(&:sum))
+    end
+
     def category_label(category)
-      {fours: "Czw\u00f3rki", fives: "Pi\u0105tki", sixes: "Sz\u00f3stki", choice: "Szansa",
-       straight: "Strit", full_house: "Full", balut: "Balut"}.fetch(category)
+      return _("Straight") if category == :straight
+      return _("Balut") if category == :balut
+      CATEGORY_LABELS.fetch(category == :choice ? 'chance' : category.to_s)
     end
   end
 end

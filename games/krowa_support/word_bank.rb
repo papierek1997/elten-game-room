@@ -21,6 +21,10 @@ module GameRoomGames
       @repository.include?(word)
     end
 
+    def historical?(word)
+      @repository.historical?(word)
+    end
+
     def index_of(word)
       @repository.index_of(word)
     end
@@ -33,7 +37,7 @@ module GameRoomGames
 
     def assigned_daily(day, assignment)
       word = GameRoomKrowa::DailyAssignment.open(day, assignment)
-      raise ArgumentError, "Update the dictionary to play this daily word" unless include?(word)
+      raise ArgumentError, "Update the dictionary to play this daily word" unless historical?(word)
       [day, word]
     end
 

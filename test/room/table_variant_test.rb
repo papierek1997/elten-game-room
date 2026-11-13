@@ -1,6 +1,6 @@
 require_relative "../support/table_watch_runtime"
 registry = EltenGameRoom::GAME_REGISTRY
-empty = %w[mexican_train war scientific_war battleship ludo reversi yahtzee biblios chess four_in_a_row tic_tac_toe]
+empty = %w[balut mexican_train war scientific_war battleship ludo reversi yahtzee biblios chess four_in_a_row tic_tac_toe]
 registry.ids.each do |id|
   game = registry.build(id)
   options = game.default_options.merge("__secret" => "secret", "thinking_time" => 123, "bot_delay" => 5, "full_p2p" => true)
@@ -17,6 +17,9 @@ registry.ids.each do |id|
   puts "#{id}: #{message}"
 end
 read = ->(id, options) { GameRoomTableVariant.text(registry.build(id), GameRoomTableVariant.payload(registry.build(id), options)) }
+assert(read.call('kosciane', {'columns'=>1})=='1 score column', 'Dice General singular column summary missing')
+assert(read.call('kosciane', {'columns'=>6})=='6 score columns', 'Dice General selected column count missing')
+[nil,0,7,'3',true].each { |value| assert(read.call('kosciane', {'columns'=>value}).empty?, 'Malformed column count printed') }
 assert(read.call("spades", {"quicksand" => true, "team_size" => 2, "score_limit" => 500}) == "Quicksand, 500 points", "Spades missing score or including team")
 assert(read.call("audio_ball", {"difficulty" => 3, "sets_to_win" => 3}) == "Normal, first to 3 sets", "Audio Ball lost difficulty or winning-set count")
 assert(read.call("categories", {"answer_language" => "pl", "target_score" => 100}) == "Polish, 100 points", "Categories missing language or score")

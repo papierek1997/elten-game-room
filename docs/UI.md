@@ -202,6 +202,19 @@ returns without rebuilding the form.
 
 ## Help during a game
 
+Score-sheet games may use `GameShortcut` kind `grid_preview` with a `GridSpec`
+as `default_value`. The shared modal uses the ordinary native grid and returns
+its action through the existing move validation; Escape returns no action.
+`GridSpec#row_actions` is an array of ordinary `GameSurfaces::Action` values:
+each row activates its declared action regardless of the inspected column.
+An empty array makes the grid read-only; nil preserves ordinary board-coordinate
+selection. Summary rows without an action are inert. `hide_coordinates` affects
+presentation only. A grid may declare read-only announcement `shortcuts`, such
+as the dice readout; the shared modal never reads game-specific state fields.
+Pending writes and frozen sessions still prohibit submission, not inspection.
+Tests cover native opening, navigation, Enter/Escape, one prompt and unchanged
+parent focus/drafts, as well as an ordinary coordinate board.
+
 The live in-game shortcut reference also includes a game's declared personal
 settings command (Ctrl+P), using the same entry as its table menu. Do not
 drop that command when replacing the authored shortcut reference with current

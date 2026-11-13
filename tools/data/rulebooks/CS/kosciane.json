@@ -8,7 +8,7 @@
       },
       "paragraphs": [
         {
-          "cs": "Dva až osm hráčů se střídá ve vyplňování tabulek. V tahu zapíšete výsledek do prvního volného políčka zvoleného řádku. Vyhrává nejvyšší součet bodů a prémií. Při shodě se hráči o vítězství dělí."
+          "cs": "Dva až osm hráčů se střídá v házení pěti kostkami a vyplňování vlastních tabulek. Každý řádek má tři políčka. V tahu zapíšete výsledek do prvního volného políčka zvoleného řádku. Až budou všechny tabulky plné, vyhrává nejvyšší součet bodů a prémií. Při shodě se hráči o vítězství dělí."
         }
       ]
     },
@@ -19,7 +19,10 @@
       },
       "paragraphs": [
         {
-          "cs": "Nejdřív hoďte všemi pěti kostkami. Výsledek můžete zapsat hned nebo vybrané kostky až dvakrát přehodit. Po třetím hodu můžete volné políčko také škrtnout za nula bodů."
+          "cs": "Klávesou Enter hoďte všemi pěti kostkami. Výsledek můžete zapsat hned nebo vybrané kostky ještě dvakrát přehodit. Číslicí od 1 do 6 vyberete jednu kostku s danou hodnotou k přehození. Shift s touto číslicí výběr jedné takové kostky zruší. Enter přehodí vybrané kostky. Pokud žádné nevyberete, otevře tabulku zápisu."
+        },
+        {
+          "cs": "Po třetím hodu se tabulka objeví přímo v herním poli. Šipkami nahoru a dolů zvolte řádek, vlevo a vpravo můžete prohlížet jeho zápisy, součet a rezervu. Enter v kterémkoli sloupci zapíše výsledek do prvního volného políčka řádku. Hod musí splňovat podmínku dané kombinace. Po třetím hodu můžete také zvolit škrtnutí: políčko se obsadí bez bodů."
         }
       ]
     },
@@ -30,7 +33,16 @@
       },
       "paragraphs": [
         {
-          "cs": "U páru, dvou různých párů, trojice a čtveřice sečtěte jen kostky tvořící kombinaci. Malá postupka má čtyři po sobě jdoucí hodnoty, velká pět. Sečtěte hodnoty v postupce. U full house (trojice a pár), pěti stejných kostek a šance sečtěte všechny kostky. Do šance lze zapsat libovolný hod."
+          "cs": "- Pár, dva různé páry, trojice a čtveřice dávají součet hodnot na kostkách tvořících kombinaci."
+        },
+        {
+          "cs": "- Malá postupka má čtyři po sobě jdoucí hodnoty, velká pět. Sečtěte hodnoty v postupce. Pokud lze vytvořit dvě malé postupky, počítá se vyšší."
+        },
+        {
+          "cs": "- Full house tvoří trojice a pár. U full house a pěti stejných kostek sečtěte všech pět kostek."
+        },
+        {
+          "cs": "- Šance přijímá libovolný hod a dává součet všech pěti kostek."
         }
       ]
     },
@@ -41,7 +53,7 @@
       },
       "paragraphs": [
         {
-          "cs": "Ve škole má každá hodnota vlastní řádek. K zápisu potřebujete tři kostky dané hodnoty. Za čtyři šestky zapíšete 24 a jedna šestka přibude do rezervy. Když později hodíte dvě šestky, můžete třetí vzít z rezervy a zapsat 12 bodů za hozené kostky."
+          "cs": "Ve škole má každá hodnota vlastní řádek. K zápisu potřebujete tři kostky dané hodnoty; chybějící lze doplnit z rezervy. Alespoň jednu ale musíte hodit právě teď. Body získáte pouze za hozené kostky. Za čtyři šestky zapíšete 24 a jedna šestka přibude do rezervy. Když později hodíte dvě šestky, můžete třetí vzít z rezervy a zapsat 12 bodů."
         }
       ]
     },
@@ -52,7 +64,7 @@
       },
       "paragraphs": [
         {
-          "cs": "Kdo první vyplní řádek bez škrtnutí, získá prémii ve výši posledního zápisu. Za první sloupec vyplněný bez škrtnutí je prémie 60 bodů. Škrtnutím ve škole o dosavadní prémie přijdete."
+          "cs": "Kdo první vyplní daný řádek bez škrtnutí, získá prémii ve výši posledního zápisu. Kdo jako první dokončí daný sloupec bez škrtnutí, získá 60 bodů. Sloupec musí mít zápis v každé kategorii, nejen ve škole. Škrtnutím ve škole o dosavadní prémie přijdete."
         }
       ]
     },
@@ -74,12 +86,52 @@
       },
       "paragraphs": [
         {
-          "cs": "Enter hází. Číslicí od 1 do 6 vyberete jednu kostku s danou hodnotou k přehození. Shift s touto číslicí její výběr zruší. Mezerník přečte kostky. Po hodu otevře Enter bez vybraných kostek nabídku zápisu. V otevře vaši tabulku, Shift+V tabulku jiného hráče a S přečte součty."
+          "cs": "Enter: začněte tah hodem pěti kostkami. Poté přehoďte vybrané kostky, nebo otevřete zápis, pokud nejsou žádné vybrány. V tabulce zapište výsledek do zvoleného řádku. Po třetím hodu se tabulka zobrazí automaticky."
+        },
+        {
+          "cs": "1–6: vybrat jednu kostku s touto hodnotou k přehození."
+        },
+        {
+          "cs": "Shift+1–6: zrušit výběr jedné kostky s touto hodnotou."
+        },
+        {
+          "cs": "Šipky: nahoru a dolů volí řádek, vlevo a vpravo procházejí zápisy a součty. Plné řádky se v nabídce zápisu vynechávají."
+        },
+        {
+          "cs": "B: otevřít tabulku v samostatném okně."
+        },
+        {
+          "cs": "Escape: zavřít samostatné okno tabulky bez zápisu výsledku."
+        },
+        {
+          "cs": "Mezerník: přečíst kostky a v poli hodu také jejich výběr."
+        },
+        {
+          "cs": "D: přečíst poslední hod."
+        },
+        {
+          "cs": "V: prohlédnout vlastní tabulku."
+        },
+        {
+          "cs": "Shift+V: prohlédnout tabulku jiného hráče."
+        },
+        {
+          "cs": "F: prohlédnout vlastní nevyplněné řádky."
+        },
+        {
+          "cs": "S: přečíst výsledky včetně prémií."
+        },
+        {
+          "cs": "Shift+S: přečíst součet zapsaných bodů."
         }
       ]
     }
   ],
   "option_chapters": {
-    "columns": "options"
+    "columns": "options",
+    "parity": "options",
+    "fixed": "options",
+    "double_first": "options",
+    "strict_school": "options"
   }
 }

@@ -799,22 +799,23 @@ class GameScreen
     surface = GameSurfaces.build(shortcut.default_value)
     back = Button.new(_("Back"))
     form = GameRoomUI::Form.new(surface.fields + [back], program: @program, quiet: true)
+    form.extend(GameRoomLayout::ShortcutFormBehavior)
     form.cancel_button = back
     form.hide(back)
     back.on(:press) { form.resume }
     result = nil
     surface.on_action do |selection|
-      next if @layout&.form&.game_room_pending_operation || @session&.fetch("__frozen", false)
+      next if @layout&.form&.game_room_pending_operation || @session&.fetch("__frozen", false) || event_presentation_busy?
       result = selection
       form.resume
     end
+    announcements = shortcut.default_value.shortcuts.to_a
     if replay && @game
-      announcements = @game.game_shortcuts(replay, Session.name).select { |key| key.kind == :announcement && key.key != "space" }
-      dice = replay.state.fetch(:dice).compact
-      unless dice.empty?
-        announcements << GameRoomGames::GameShortcut.new(key: "space", kind: :announcement,
-          label: "Odczytaj ko\u015bci", message: dice.join(", "))
-      end
+      announcements += @game.game_shortcuts(replay, Session.name).select { |key| key.kind == :announcement }
+    end
+    unless announcements.empty?
+      raise ArgumentError, 'Grid inspection accepts announcement shortcuts only' unless announcements.all? { |key| key.kind == :announcement }
+      announcements = announcements.uniq { |key| [key.key, key.modifiers] }
       bind_game_shortcuts(form, surface.fields, announcements) { |key| speak(key.message) }
     end
     if @layout&.form&.game_room_pending_operation

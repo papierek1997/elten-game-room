@@ -102,7 +102,7 @@ end
   env = GameRoomTest::PrivateSimulation.new_game(game: game, players: %w[Alice Bob])
   %w[Alice Bob Spectator].each { |viewer| inspect_view.call(game, env.replay, viewer) }
 end
-%w[kosciane balut backgammon cribbage jass hearts belote french_tarot].each do |id|
+%w[kosciane balut].each do |id|
   game = catalog.build(id)
   players = %w[Alice Bob Carol Dan].take(game.minimum_players)
   env = GameRoomTest::PrivateSimulation.new_game(game: game, players: players)

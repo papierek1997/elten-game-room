@@ -371,7 +371,12 @@ module GameRoomGames
     end
 
     def known_word?(state, word)
-      @bank.include?(word) || state[:vocabulary].include?(word)
+      return true if @bank.include?(word) || state[:vocabulary].include?(word)
+      # A canonical daily assignment survives withdrawing its answer from
+      # future draws. It authorizes only that answer, not all retired nouns.
+      options = state[:options]
+      options["variant"] == "daily" && @bank.historical?(word) && options["__daily_assignment"] &&
+        @bank.assigned_daily(options["__daily_day"], options["__daily_assignment"]).last == word
     end
 
     def guess_status(state, player, word, extra: [])
@@ -523,7 +528,7 @@ module GameRoomGames
         return false unless owner?(state, actor) && state[:phase] == :revealing && /\A[0-9a-f]{64}\z/.match?(value)
         state[:nonce] = value
       when "krowa_word"
-        return false unless owner?(state, actor) && state[:phase] == :revealing && @bank.include?(value) && value.length == state[:length]
+        return false unless owner?(state, actor) && state[:phase] == :revealing && @bank.historical?(value) && value.length == state[:length]
         return false unless HiddenSubmissions::Commitment.valid?(payload: {"word" => value, "day" => state[:day]}, nonce: state[:nonce], commitment: state[:commitment])
         return false unless state[:attempts].all? { |trial| @bank.matches(trial[:word], value) == trial[:matches] }
         return false unless state[:surrender_words].values.compact.all? { |word| word == value }

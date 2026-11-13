@@ -26,7 +26,7 @@ include MahjongRoundFixture
     screen=GameScreen.allocate
     screen.instance_variable_set(:@game,game)
     screen.define_singleton_method(:speak) { |text,**_options| heard << text }
-    updated=screen.send(:refreshed_announcement_shortcut,stock,after,'Alice')
+    updated=screen.send(:refreshed_game_shortcut,stock,after,'Alice')
     assert(updated.message!=stock.message, 'Stock announcement retained the pre-draw count')
     assert(updated.message.include?(round.flow.wall.length.to_s))
     assert_equal(nil,screen.send(:activate_game_shortcut,updated,nil,replay:after))

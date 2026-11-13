@@ -4,6 +4,10 @@ include GameRoomTest::Assertions
 
 result = GameRoomNounGenerator.run(check: true)
 assert_equal(85_069, result[:entries])
+retired = File.read(File.join(GameRoomNounGenerator::ROOT, 'tools/data/krowa_retired_nouns.txt'), encoding: 'UTF-8')
+assert_equal(90, retired.lines.length)
+assert_raises(RuntimeError) { GameRoomNounGenerator.render("kot\n", retired: "kot\n") }
+assert_raises(RuntimeError) { GameRoomNounGenerator.render("kot\n", retired: "pies\npies\n") }
 source = File.read(File.join(GameRoomNounGenerator::ROOT, 'tools/data/krowa_nouns.txt'), encoding: 'UTF-8')
 lines = source.lines
 additions = %w[łam zacios zaciosy prosię silnia silnie afro szmat ksero

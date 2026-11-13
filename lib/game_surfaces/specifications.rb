@@ -64,7 +64,7 @@ module GameSurfaces
     :height,
     :header,
     :cells,
-    :row_origin, :score_categories, :hide_coordinates,
+    :row_origin, :row_actions, :hide_coordinates, :shortcuts,
     keyword_init: true
   )
 

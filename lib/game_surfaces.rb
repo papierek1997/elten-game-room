@@ -518,9 +518,9 @@ module GameSurfaces
     end
 
     def emit_selection(x, y)
-      if @spec.score_categories
-        category = @spec.score_categories[y]
-        emit_action("dice", "score", {"category" => category}) if category
+      if @spec.row_actions
+        action = @spec.row_actions[y]
+        emit_action(action.kind, action.name, action.payload) if action
       else
         emit_action("grid", "select", { "x" => x, "y" => y })
       end
@@ -552,6 +552,11 @@ module GameSurfaces
         return MovementCommandResult.new(
           message: _("Field %{field} is outside this board.") % { field: values.first }
         )
+      end
+
+      if @spec.row_actions
+        action = @spec.row_actions[position[1]]
+        return MovementCommandResult.new(action: action&.with_source('chat_command'))
       end
 
       MovementCommandResult.new(
@@ -588,6 +593,11 @@ module GameSurfaces
         raise ArgumentError, "grid cells must match its width"
       end
       raise ArgumentError, "unsupported row origin" if ![:top, :bottom].include?(row_origin)
+      actions = @spec.row_actions
+      if actions && (!actions.is_a?(Array) || actions.length > @spec.height.to_i ||
+          actions.any? { |action| action && !action.is_a?(Action) })
+        raise ArgumentError, 'grid row actions must contain ordinary surface actions'
+      end
     end
 
     def display_rows

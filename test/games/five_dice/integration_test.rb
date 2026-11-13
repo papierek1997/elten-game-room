@@ -8,7 +8,7 @@ events = [cht_event(1, "Bob", "roll", "2,2,5,5,5"),
           cht_event(2, "Alice", "roll", "2,2,5,5,5")]
 replay = game.replay(session, events, repo)
 assert(replay.accepted_events.size == 1, "Out-of-turn roll was accepted")
-assert(game.custom_game_shortcuts(replay, "Alice").find { |shortcut| shortcut.key == "b" }.default_value.score_categories.include?("full_house"), "Full house is missing")
+assert(game.custom_game_shortcuts(replay, "Alice").find { |shortcut| shortcut.key == "b" }.default_value.row_actions.any? { |action| action['category'] == 'full_house' }, "Full house is missing")
 assert(game.action_for({"action" => "score", "category" => "full_house"}, replay, "Alice").first == :ok, "Score action was refused")
 assert(game.action_for({"action" => "score", "category" => "cross:1"}, replay, "Alice").first != :ok, "Early cross was accepted")
 events << cht_event(3, "Alice", "score", "full_house")

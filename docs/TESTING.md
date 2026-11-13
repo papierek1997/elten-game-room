@@ -134,6 +134,13 @@ Battleships, Categories, Krowa, Scrabble and Taboo have only an initial
 checkpoint; they also require dedicated choice and data tests. The corpus
 does not replace tests of UI, networking, realtime, complete matches or all options.
 
+The separate `v1/kosciane.json` and `v1/balut.json` references cover 16
+reviewed transitions each: initial rolls, partial rerolls, third rolls and
+scoring by both players. They were added with the new models, not used to
+replace any older game's expected state. Complete matches, row/column bonuses,
+joint wins, native randomness, saves and replacement remain separate tests in
+`test/games/five_dice/`.
+
 `fixtures/polish_messages.json` contains independent expected text for
 translation regressions, grouped by the behavior being checked. It comes
 from existing wording checks and release history; the translation CLI never
