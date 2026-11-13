@@ -7,6 +7,19 @@ require_relative 'braille_catalog'
 module GameRoomTyping
   class BrailleUnavailable < StandardError; end
 
+  # Undefined input is a typing error, distinct from a failed native provider.
+  class UndefinedBraille < StandardError
+    PATTERN = /\\([1-8]+)\//
+    attr_reader :translation
+
+    def initialize(translation)
+      @translation = translation
+      super('Undefined braille input')
+    end
+
+    def patterns; @translation.scan(PATTERN).flatten; end
+  end
+
   # Native Liblouis is optional. Never silently substitute a hard-coded
   # alphabet: it would give wrong answers for user-selected translation tables.
   class LibLouis
@@ -82,17 +95,13 @@ module GameRoomTyping
 
     def back_translate(cells, table:)
       path = table_path(table)
-      encoding = @char_size == 2 ? Encoding::UTF_16LE : Encoding::UTF_32LE
-      input = cells.encode(encoding)
-      capacity = cells.length * 16 + 128
-      output = "\0".b * (capacity * @char_size)
-      input_length, output_length = [input.bytesize / @char_size].pack('l<'), [capacity].pack('l<')
-      ok = @back_translate.call(path + "\0", input, input_length, output, output_length, 0, 0, 4 | 64)
-      used = output_length.unpack1('l<')
-      # A consumed standalone number/capital marker can successfully produce
-      # no text. That is invalid word input, not a broken braille provider.
-      raise BrailleUnavailable, _('Liblouis could not translate this word.') unless ok == 1 && used.between?(0, capacity) && input_length.unpack1('l<') == input.bytesize / @char_size
-      output.byteslice(0, used * @char_size).force_encoding(encoding).encode(Encoding::UTF_8)
+      text = back_translation(cells, path: path, mode: 4 | 64)
+      # noUndefined suppresses only undefined-dot output. Compare native
+      # results so a literal text such as "\\13457/" is not mistaken for it.
+      if text.match?(UndefinedBraille::PATTERN) && text != back_translation(cells, path: path, mode: 4 | 64 | 128)
+        raise UndefinedBraille, text
+      end
+      text
     end
 
     def translate(word, table: 'polish_integral')
@@ -110,6 +119,20 @@ module GameRoomTyping
     end
 
     private
+
+    def back_translation(cells, path:, mode:)
+      encoding = @char_size == 2 ? Encoding::UTF_16LE : Encoding::UTF_32LE
+      input = cells.encode(encoding)
+      capacity = cells.length * 16 + 128
+      output = "\0".b * (capacity * @char_size)
+      input_length, output_length = [input.bytesize / @char_size].pack('l<'), [capacity].pack('l<')
+      ok = @back_translate.call(path + "\0", input, input_length, output, output_length, 0, 0, mode)
+      used = output_length.unpack1('l<')
+      # A consumed standalone number/capital marker can successfully produce
+      # no text. That is invalid word input, not a broken braille provider.
+      raise BrailleUnavailable, _('Liblouis could not translate this word.') unless ok == 1 && used.between?(0, capacity) && input_length.unpack1('l<') == input.bytesize / @char_size
+      output.byteslice(0, used * @char_size).force_encoding(encoding).encode(Encoding::UTF_8)
+    end
 
     def translation(word, table:, positions: false)
       path = table_path(table)

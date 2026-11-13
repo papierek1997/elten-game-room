@@ -69,13 +69,22 @@ module GameRoomTyping
       if character == "\b"
         current = partial_braille_text(@buffer)
         remaining = partial_braille_text(@buffer[0...-1])
-        return current[remaining.length..] if current && remaining && current.start_with?(remaining)
+        return current[remaining.length..].lstrip if current && remaining && current.start_with?(remaining)
         return partial_braille_text(text)
       end
 
       previous = partial_braille_text(@buffer).to_s
       current = partial_braille_text(@buffer + character)
-      current && current.start_with?(previous) ? current[previous.length..] : current
+      current && current.start_with?(previous) ? current[previous.length..].lstrip : current
+    end
+
+    def undefined_braille_echo(character)
+      return unless braille? && character.match?(/\A[\u2800-\u28ff]\z/)
+      @translator.back_translate(@buffer + character, table: @table)
+      nil
+    rescue UndefinedBraille => exception
+      dots = (1..8).select { |dot| ((character.ord - 0x2800) & (1 << (dot - 1))) != 0 }.join
+      dots_speech(dots) if exception.patterns.include?(dots)
     end
 
     def start
@@ -101,7 +110,7 @@ module GameRoomTyping
         elsif character == ' '
           return if @buffer.empty?
           previous_errors = @engine.mistakes
-          typed = braille? && @own_text ? @translator.back_translate(@buffer, table: @table) : @buffer
+          typed = braille? && @own_text ? own_braille_word : @buffer
           @written_text << typed << ' ' if @own_text && !typed.empty?
           expected = braille? && !@own_text ? braille_spellings(current_word).values : nil
           @engine.submit(typed, braille_expected: expected, first_key_at: @first_key_at || now, space_at: now, prior_seconds: @prior_typing_seconds)
@@ -271,8 +280,20 @@ module GameRoomTyping
     def partial_braille_text(cells)
       return '' if cells.empty?
       @translator.back_translate(cells, table: @table)
+    rescue UndefinedBraille => exception
+      exception.translation.gsub(UndefinedBraille::PATTERN) { " #{dots_speech(Regexp.last_match(1))} " }.strip
     rescue BrailleUnavailable
       nil
+    end
+
+    def dots_speech(dots)
+      _('Dots: %{dots}.') % {dots: dots.chars.join(', ')}
+    end
+
+    def own_braille_word
+      @translator.back_translate(@buffer, table: @table)
+    rescue UndefinedBraille
+      '' # Reject the whole word; never silently accept its defined prefix.
     end
 
     def error_notice
