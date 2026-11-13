@@ -176,7 +176,7 @@ class GameScreen
         next if event_presentation_busy? && ![:announcement, :browse, :surface].include?(shortcut.kind)
         next if @session["__frozen"] && ![:announcement, :browse, :surface].include?(shortcut.kind)
 
-        active_shortcut = refreshed_announcement_shortcut(shortcut, wait.replay, Session.name)
+        active_shortcut = refreshed_game_shortcut(shortcut, wait.replay, Session.name)
         selection = activate_game_shortcut(active_shortcut, surface, replay: wait.replay)
         if active_shortcut.kind == :staged_form && @latest_wait_replay != nil
           # Preparing an offer has already committed a real event. Continue from

@@ -64,7 +64,7 @@ module GameSurfaces
     :height,
     :header,
     :cells,
-    :row_origin,
+    :row_origin, :score_categories, :hide_coordinates,
     keyword_init: true
   )
 
@@ -240,7 +240,7 @@ module GameSurfaces
 
   RollAndScoreSpec = Struct.new(
     :id, :header, :dice, :categories, :can_roll, :force_categories,
-    :empty_label, :roll_number, keyword_init: true
+    :empty_label, :roll_number, :score_grid, keyword_init: true
   )
 
   TabooSpec = Struct.new(:token, :phase, :lines, :status, :action, :master, :review, :results, :opponent, keyword_init: true)

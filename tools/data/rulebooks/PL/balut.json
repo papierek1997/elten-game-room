@@ -1,0 +1,109 @@
+{
+  "source": "games/balut.rb",
+  "sections": [
+    {
+      "paragraphs": [
+        {
+          "pl": "Każdy ma własną tabelę z siedmioma kategoriami po cztery pola. W każdej z 28 tur wpisujesz jeden wynik. Pierwszy rzut obejmuje wszystkie pięć kości. Potem możesz zapisać wynik albo dwa razy przerzucić wybrane kości. Po zapełnieniu tabel wygrywa najwyższy wynik gry."
+        }
+      ],
+      "id": "play",
+      "title": {
+        "pl": "Balut"
+      }
+    },
+    {
+      "paragraphs": [
+        {
+          "pl": "Pięć jednakowych kości daje wpis 50 i dwa punkty końcowe. Po czterech Balutach wykorzystaj kolejne takie rzuty w innych wierszach. Najwyższy wynik końcowy to 29."
+        },
+        {
+          "pl": "W Czwórkach, Piątkach i Szóstkach sumujesz tylko kości o nazwanej wartości. W Szansie sumujesz wszystkie pięć kości. Możesz wpisać zero w wolnym polu, gdy rzut nie daje punktów w wybranej kategorii."
+        }
+      ],
+      "id": "points",
+      "title": {
+        "pl": "Punktacja"
+      }
+    },
+    {
+      "paragraphs": [
+        {
+          "pl": "Za co najmniej 52 w Czwórkach, 65 w Piątkach, 78 w Szóstkach i 100 w Szansie otrzymujesz po dwa punkty końcowe."
+        },
+        {
+          "pl": "Cztery strity dają cztery punkty, a cztery fulle dają trzy. Strit to pięć kolejnych wartości, a full to trójka i para. W obu wierszach wpisujesz sumę oczek."
+        },
+        {
+          "pl": "Po wypełnieniu wiersza Balut pięć szóstek nadal możesz wpisać jako 30 w Szóstkach lub Szansie, jeśli masz tam wolne pole."
+        },
+        {
+          "pl": "Przykład. Cztery czwórki w jednym rzucie dają wpis 16. Jeśli powtórzysz ten wynik, suma Czwórek wzrośnie do 32, a punkty za kategorię pozostaną na zerze. Dopiero po osiągnięciu 52 oczek w tym wierszu dostaniesz dwa punkty do wyniku gry."
+        }
+      ],
+      "id": "thresholds",
+      "title": {
+        "pl": "Premie za kategorie"
+      }
+    },
+    {
+      "paragraphs": [
+        {
+          "pl": "Do wyniku gry doliczasz punkty zależne od sumy wszystkich wpisów."
+        },
+        {
+          "pl": "- 0–299 — minus 2 punkty"
+        },
+        {
+          "pl": "- 300–349 — minus 1 punkt"
+        },
+        {
+          "pl": "- 350–399 — 0 punktów"
+        },
+        {
+          "pl": "- 400–449 — 1 punkt"
+        },
+        {
+          "pl": "- 450–499 — 2 punkty"
+        },
+        {
+          "pl": "- 500–549 — 3 punkty"
+        },
+        {
+          "pl": "- 550–599 — 4 punkty"
+        },
+        {
+          "pl": "- 600–649 — 5 punktów"
+        },
+        {
+          "pl": "- 650 i więcej — 6 punktów"
+        }
+      ],
+      "id": "total",
+      "title": {
+        "pl": "Suma punktów"
+      }
+    },
+    {
+      "paragraphs": [
+        {
+          "pl": "Enter rozpoczyna rzut. Cyfrą od 1 do 6 zaznacz jedną kość o tej wartości do przerzutu. Shift z tą samą cyfrą cofa zaznaczenie. Spacja odczytuje kości. Po rzucie Enter przerzuca zaznaczone kości albo otwiera tabelę, gdy żadna nie jest zaznaczona. Po trzecim rzucie tabela otwiera się od razu."
+        },
+        {
+          "pl": "Klawisz B otwiera tabelę. Strzałkami w górę i w dół zmieniasz kategorię, a w lewo i w prawo przechodzisz między wpisami, sumą i liczbą brakującą do premii. W swojej turze po rzucie wybierz kategorię i zatwierdź Enterem w dowolnej kolumnie tego wiersza. Escape zamyka tabelę. Przy wyborze wiersza gra podaje, ile punktów zapisze za bieżący rzut. Pełne wiersze są pomijane w tabeli zapisu."
+        },
+        {
+          "pl": "Klawisz S odczytuje wynik gry po premiach i korekcie. Shift+S odczytuje sumę punktów. Obie liczby znajdziesz w ostatnim wierszu tabeli. Na początku wynik gry to minus dwa, a suma punktów to zero."
+        },
+        {
+          "pl": "V pokazuje własną tabelę, a Shift+V tabelę innego gracza. F pokazuje tylko własne wiersze z wolnymi polami."
+        }
+      ],
+      "id": "controls",
+      "title": {
+        "pl": "Klawiatura"
+      }
+    }
+  ],
+  "option_chapters": {}
+}

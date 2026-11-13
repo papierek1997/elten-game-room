@@ -174,7 +174,7 @@ msgstr "%{category}: %{answer}; sędzia usunął ocenę %{previous}."
 msgid "%{category}: %{player} with %{total}"
 msgstr "%{category}: %{player}, suma %{total}"
 
-#: games/yahtzee.rb:194
+#: games/kosciane.rb:124 games/yahtzee.rb:194
 msgid "%{category}: %{points} points"
 msgstr "%{category}: %{points} punktów"
 
@@ -225,6 +225,10 @@ msgstr "%{challenge}: %{players}."
 #: games/uno.rb:1147
 msgid "%{colour} %{value}"
 msgstr "%{colour} %{value}"
+
+#: games/kosciane.rb:36
+msgid "%{columns} score columns"
+msgstr "Liczba kolumn: %{columns}"
 
 #: games/bridge/presentation.rb:472
 msgid "%{contract} by %{declarer} %{result}"
@@ -5676,6 +5680,10 @@ msgstr "Para, która wygrała partię, jest odtąd „po partii”. Do końca ro
 msgid "A pair that has won a game is vulnerable for the rest of the rubber. Winning the rubber earns 700 if the opponents won no game and 500 if they won one."
 msgstr ""
 
+#: games/generated/rulebooks/kosciane.rb:14
+msgid "A pair, two pairs of different values, three or four of a kind count only the matching dice. Straights count four or five consecutive values. A full house is three dice of one value and two of another. Five of a kind, full house and Chance count all five dice."
+msgstr ""
+
 #: lib/tournaments/local_dispatch_screen.rb:113
 msgid "A participant is already assigned to another match."
 msgstr "Uczestnik jest już przydzielony do innego meczu."
@@ -8491,12 +8499,20 @@ msgstr "Premia za kolejne Yahtzee jest domyślnie włączona. Po zapisaniu 50 w 
 msgid "Bonus tile: %{tile}"
 msgstr "Kamień bonusowy — %{tile}"
 
+#: games/generated/rulebooks/kosciane.rb:17
+msgid "Bonuses"
+msgstr "Premie"
+
 #: games/generated/rulebooks/bridge.rb:42
 msgid "Bonuses and penalties are recorded above the line. They count towards your total but not towards the 100 points needed to win a game."
 msgstr "Premie i kary zapisuje się nad kreską. Powiększają wynik całego meczu, ale nie przybliżają do 100 punktów potrzebnych do wygrania partii."
 
 msgid "Bonuses and the Joker are separate options"
 msgstr "Premie i Joker to oddzielne opcje"
+
+#: games/kosciane.rb:151
+msgid "Bonuses: %{points}"
+msgstr "Premie: %{points}"
 
 #: games/categories.rb:1348
 msgid "Book"
@@ -10215,6 +10231,10 @@ msgstr "Wybierz od 1 do 20 rund."
 msgid "Choose from 1 to 5 starting dice."
 msgstr "Wybierz od 1 do 5 kości początkowych."
 
+#: games/kosciane.rb:32
+msgid "Choose from 1 to 6 score columns."
+msgstr "Wybierz od 1 do 6 kolumn."
+
 #: games/roulette.rb:40
 msgid "Choose from 10 to 10000 starting chips."
 msgstr "Wybierz od 10 do 10000 początkowych żetonów."
@@ -10722,6 +10742,10 @@ msgstr "Manipulowanie układami — zabieranie i przebudowa"
 #: games/generated/rulebooks/rummy.rb:27
 msgid "Combination manipulations is off by default. With it enabled, and after drawing and completing your first meld, you may take a whole combination without a joker, remove an end card from a run or a card from a set if what remains is still valid, and merge compatible combinations. The remaining combination must still contain at least three cards; existing joker assignments cannot silently change. To take a whole combination containing a joker, recover the joker first."
 msgstr "Manipulacje układami są domyślnie wyłączone. Po ich włączeniu, dobraniu karty i spełnieniu pierwszego wyłożenia można zabrać cały układ bez jokera, zdjąć skrajną kartę sekwensu lub kartę zestawu, jeśli reszta nadal jest poprawna, a także łączyć zgodne układy. Pozostawiony układ musi nadal mieć co najmniej trzy karty. Nie można przy tym po cichu zmienić znaczenia leżącego jokera. Chcąc zabrać cały układ z jokerem, najpierw odzyskaj jokera."
+
+#: games/generated/rulebooks/kosciane.rb:13
+msgid "Combinations"
+msgstr ""
 
 #: games/categories/catalog.rb:81
 msgctxt "categories"
@@ -11364,6 +11388,10 @@ msgstr "Tworzenie stołu"
 #: __app.rb:923
 msgid "Creating tournament table"
 msgstr "Tworzenie stołu turniejowego"
+
+#: games/kosciane.rb:123
+msgid "Cross out %{category}"
+msgstr "Skreśl: %{category}"
 
 #: lib/tournaments/local_tournament_overview.rb:86
 msgid "Cross-group comparison: %{player}, points %{points}, counted matches %{played}"
@@ -12627,6 +12655,10 @@ msgstr "Podwójne Riichi"
 msgid "Double salary when landing on Start"
 msgstr "Podwójna pensja przy zatrzymaniu na Starcie"
 
+#: games/kosciane.rb:25
+msgid "Double the first roll score"
+msgstr "Podwój wynik wpisany po pierwszym rzucie"
+
 #: games/audio_ball.rb:31 games/audio_ball.rb:82 games/axel_pong.rb:46 games/generated/rulebooks/axel_pong.rb:20 lib/sports_rankings/screen.rb:34
 msgid "Doubles"
 msgstr "Debel"
@@ -13794,6 +13826,10 @@ msgstr "Enter rzuca kością albo zatwierdza wybrany legalny ruch pionka. Strza�
 msgid "Enter rolls the dice. Down, then Enter saves your result."
 msgstr "Enter — rzut. Strzałka w dół, potem Enter — zapisz wynik."
 
+#: games/generated/rulebooks/kosciane.rb:22
+msgid "Enter rolls the dice. Use 1 to 6 to select a die showing that face, and Shift with the same digit to keep it instead. Space reads the dice. With no dice selected, Enter opens scoring after a roll. V opens your sheet, Shift+V another player's sheet, and S reads the totals."
+msgstr ""
+
 #: games/generated/rulebooks/dice_poker.rb:18
 msgid "Enter rolls. After a throw, keys 1–6 select another die with that face to reroll; Shift+1–6 keeps it. Enter rerolls selected dice; without a selection it opens the Keep hand choice. K keeps the current hand directly. Space reads dice and selection; S reads scores. F1 lists current shortcuts, Ctrl+F1 opens rules. Chat, history and volume use shared controls."
 msgstr ""
@@ -14099,9 +14135,13 @@ msgstr "Koło europejskie ma 0–36, amerykańskie dodatkowo 00. Francuskie ma j
 msgid "European: single zero"
 msgstr "Europejskie: jedno zero"
 
-#: games/roulette.rb:287
+#: games/kosciane.rb:168 games/roulette.rb:287
 msgid "Even"
 msgstr "Parzyste"
+
+#: games/kosciane.rb:23
+msgid "Even and odd"
+msgstr "Kategorie parzyste i nieparzyste"
 
 #: lib/tournaments/local_fixed_team_plan_screen.rb:189
 msgid "Every assigned participant must compete for the result. Choose a mode without a permanent non-playing judge."
@@ -14568,6 +14608,10 @@ msgstr "Wypełnij dowolną liczbę pól kategorii i wyślij formularz. Puste odp
 msgid "Fill every category on the score sheet and finish with the highest total score."
 msgstr "Wypełnij wszystkie kategorie w tabeli wyników i zakończ grę z najwyższą łączną punktacją."
 
+#: games/kosciane.rb:13
+msgid "Fill your score sheet by rolling five dice."
+msgstr "Rzucaj pięcioma kośćmi i wypełniaj tabelę wyników."
+
 #: games/categories/catalog.rb:46
 msgid "Film"
 msgstr "Film"
@@ -14776,7 +14820,7 @@ msgstr "Pięć kości, najwyżej trzy rzuty"
 msgid "Five new games: Rummy, Domino, Mexican Train, Scrabble and Taboo. Each has detailed rules and keyboard help in Polish and English."
 msgstr "Pięć nowych gier: Rummy, Domino, Mexican Train, Scrabble i Taboo. Każda ma szczegółowe zasady i opis skrótów po polsku i angielsku."
 
-#: games/dice_poker.rb:308
+#: games/dice_poker.rb:308 games/kosciane.rb:170
 msgid "Five of a kind"
 msgstr "Pięć jednakowych"
 
@@ -14926,6 +14970,10 @@ msgstr "Poprawiono przywracanie własnych ustawień Makao przy tworzeniu kolejne
 #: lib/game_room_changelog.rb:321
 msgid "Fixed resuming larger saved games, including Scrabble, and a case where a failed save left the game paused."
 msgstr "Poprawiono wznawianie większych zapisów, m.in. Scrabble, oraz przypadek pozostawienia partii wstrzymanej po nieudanym zapisie."
+
+#: games/kosciane.rb:24
+msgid "Fixed scores for combinations"
+msgstr "Stałe punkty za wybrane układy"
 
 #: lib/game_room_changelog.rb:322
 msgid "Fixed selecting the next table master after successive games at one table, and safeguards when switching to another table through an invitation."
@@ -15739,6 +15787,7 @@ msgstr "Go powstało w Chinach; znane jest też jako baduk i igo. Dwaj gracze k�
 msgid "Go to jail"
 msgstr "Idź do więzienia"
 
+#: games/generated/rulebooks/kosciane.rb:9
 msgid "Goal"
 msgstr "Cel"
 
@@ -17663,7 +17712,7 @@ msgstr "Lotnisko Kennedy'ego"
 msgid "Kept dice from separate rolls cannot be combined into a new scoring set. If all six dice score, you have hot dice and may roll all six again while keeping the accumulated turn points. A roll with no scoring combination is a Farkle: the entire unbanked turn score is lost and the turn ends."
 msgstr "Kości zachowanych z osobnych rzutów nie można łączyć w nowy układ punktujący. Jeśli wszystkie sześć kości punktuje, otrzymujesz gorące kości i możesz ponownie rzucić wszystkimi sześcioma, zachowując zgromadzone punkty tury. Rzut bez kombinacji punktującej to Farkle: wszystkie niezapisane punkty tury przepadają, a tura się kończy."
 
-#: games/mania_pisania.rb:73
+#: games/generated/rulebooks/kosciane.rb:21 games/mania_pisania.rb:73
 msgid "Keyboard"
 msgstr "Klawiatura"
 
@@ -20747,7 +20796,7 @@ msgstr "Obserwatorzy: %{players}."
 msgid "Occupied seats, including bots"
 msgstr "Liczba graczy, łącznie z botami"
 
-#: games/roulette.rb:287
+#: games/kosciane.rb:169 games/roulette.rb:287
 msgid "Odd"
 msgstr "Nieparzyste"
 
@@ -20942,6 +20991,10 @@ msgstr "Jedna litera, kilka rodzajów odpowiedzi"
 #: games/makao.rb:431
 msgid "One of these cards is not in your hand."
 msgstr "Jednej z tych kart nie ma w twojej ręce."
+
+#: games/generated/rulebooks/kosciane.rb:20
+msgid "One or two columns disable bonuses. Optional even and odd rows require every die to have the chosen parity. Fixed scoring replaces points for triple, small straight, large straight, full house, four of a kind and five of a kind with 20, 25, 30, 35, 40 and 50. First-roll doubling never applies to school. Strict school crosses also block future bonuses."
+msgstr ""
 
 #: games/dice_poker.rb:308 games/yahtzee.rb:28
 msgid "One pair"
@@ -24203,6 +24256,10 @@ msgstr "Żądana wartość: %{rank}"
 msgid "Required wins: enter a number from 1 to 99."
 msgstr "Wymagane zwycięstwa: wpisz liczbę od 1 do 99."
 
+#: games/kosciane.rb:148
+msgid "Reserve: %{count}"
+msgstr "Rezerwa: %{count}"
+
 #: lib/mania_pisania/text_library_dialog.rb:43
 msgid "Reset progress for %{title}?"
 msgstr "Wyzerować postęp tekstu %{title}?"
@@ -24608,6 +24665,10 @@ msgstr "Dodatkowy rzut po wyrzuceniu 6"
 msgid "Roll again after a 6 is on by default. After resolving a six you get another roll, even if that six could not move a pawn. Turning it off makes a six end the turn like any other result."
 msgstr "Dodatkowy rzut po szóstce jest domyślnie włączony. Po rozpatrzeniu szóstki rzucasz ponownie, nawet jeśli nie dało się nią poruszyć pionkiem. Po wyłączeniu tej opcji szóstka kończy turę tak samo jak inne wyniki."
 
+#: games/generated/rulebooks/kosciane.rb:12
+msgid "Roll all five dice first. You can reroll selected dice up to twice, or record a result immediately. After the third roll, you may also cross out an open cell. A cross scores nothing."
+msgstr ""
+
 #: games/yahtzee.rb:47
 msgid "Roll five dice and choose how to score them, remembering that each category can only be used once."
 msgstr "Rzucaj pięcioma kośćmi i wybieraj, za co policzyć punkty, pamiętając, że każdą kategorię możesz wykorzystać tylko raz."
@@ -24620,6 +24681,10 @@ msgstr "Rzuć pięcioma kośćmi maksymalnie trzy razy. Po każdym rzucie kości
 
 msgid "Roll five dice up to three times. After every roll, the dice are sorted and all are kept. Press 1 through 6 to select one die showing that value for reroll. Repeated presses select further matching dice. Press !, @, #, $, % or ^ to keep one selected die showing 1 through 6. Enter rolls selected dice. If none are selected, Enter opens the unused scoring categories."
 msgstr "Rzuć pięcioma kośćmi maksymalnie trzy razy. Po każdym rzucie kości są sortowane, a wszystkie pozostają zachowane. Naciśnij od 1 do 6, aby zaznaczyć do ponownego rzutu jedną kość o tej wartości. Kolejne naciśnięcia zaznaczają dalsze pasujące kości. Naciśnij !, @, #, $, % albo ^, aby zachować jedną zaznaczoną kość o wartości od 1 do 6. Enter rzuca zaznaczonymi kośćmi. Jeśli żadna nie jest zaznaczona, Enter otwiera niewykorzystane kategorie punktacji."
+
+#: games/kosciane.rb:20
+msgid "Roll five dice. You may reroll selected dice twice, then record one result. After the third roll you may cross out a cell."
+msgstr "Rzuć pięcioma kośćmi. Możesz dwa razy przerzucić wybrane kości. Po dowolnym rzucie wpisz wynik do pierwszego wolnego pola wybranej kategorii. Po trzecim rzucie możesz też skreślić pole. Gdy wszystkie tabele są pełne, wygrywa najwyższy wynik."
 
 #: games/blackjack_dice.rb:246
 msgid "Roll one die"
@@ -24636,7 +24701,7 @@ msgstr "Rzuć kośćmi"
 msgid "Roll the dice before choosing a category."
 msgstr "Rzuć kośćmi przed wybraniem kategorii."
 
-#: games/dice_poker.rb:147
+#: games/dice_poker.rb:147 games/kosciane.rb:130
 msgid "Roll the dice first"
 msgstr "Najpierw rzuć kośćmi"
 
@@ -25386,6 +25451,22 @@ msgstr "Ustal termin rozpoczęcia turnieju"
 msgid "Schiphol airport"
 msgstr "Lotnisko Schiphol"
 
+#: games/kosciane.rb:21
+msgid "School"
+msgstr "Szkoła"
+
+#: games/generated/rulebooks/kosciane.rb:15
+msgid "School and reserve"
+msgstr ""
+
+#: games/kosciane.rb:26
+msgid "School crosses prevent future bonuses"
+msgstr "Skreślenie w szkole blokuje dalsze premie"
+
+#: games/generated/rulebooks/kosciane.rb:16
+msgid "School has one row for each face. Three matching dice qualify. Each die above three goes into that face's reserve. Two sixes and one reserve six qualify later, but score only twelve."
+msgstr ""
+
 #: games/scientific_war.rb:49
 msgid "Scientific War"
 msgstr "Wojna naukowa"
@@ -25435,6 +25516,10 @@ msgstr "Wynik: %{result}, wynik odniesienia: %{reference}. %{comparison}"
 msgid "Score announcements under S are ordered from highest to lowest, with eliminated players or teams last. Their actual scores are preserved."
 msgstr "Punktacja pod S jest odczytywana od najwyższego wyniku do najniższego, a wyeliminowani gracze lub drużyny na końcu. Ich rzeczywiste wyniki pozostają bez zmian."
 
+#: games/kosciane.rb:22
+msgid "Score columns"
+msgstr "Liczba kolumn"
+
 msgid "Score every word formed in the move. New letter bonuses apply first, then word multipliers; multiple word multipliers multiply. A shared letter scores in each word. Covered bonuses never apply again. A blank can activate a word bonus. Using seven rack tiles in one move adds 50 points after the other calculations."
 msgstr "Punkty przyznawane są za każde słowo utworzone w ruchu. Najpierw liczone są nowe premie literowe, potem mnożniki słowa; kilka mnożników słowa mnoży się przez siebie. Wspólna litera punktuje w każdym słowie. Zajęte wcześniej pola premiowe nie działają ponownie. Blank może uruchomić premię słowną. Wykorzystanie siedmiu płytek ze stojaka w jednym ruchu daje dodatkowe 50 punktów, doliczane na końcu."
 
@@ -25462,6 +25547,10 @@ msgstr "Limit punktów: %{points}"
 msgctxt "cat_head_tail"
 msgid "Score limit: %{points}"
 msgstr ""
+
+#: games/kosciane.rb:140
+msgid "Score sheet: %{player}"
+msgstr "Tabela wyników: %{player}"
 
 #: lib/audio_ball/audio.rb:108
 msgid "Score: %{own} to %{opponent}."
@@ -27571,6 +27660,10 @@ msgstr "Listy stołów i widget pokazują dokładniejszą obsadę oraz informacj
 msgid "Table master judges every round"
 msgstr "Założyciel stołu sędziuje każdą rundę"
 
+#: games/generated/rulebooks/kosciane.rb:19
+msgid "Table settings"
+msgstr ""
+
 #: games/generated/rulebooks/blackjack.rb:18
 msgid "Table settings and ending"
 msgstr ""
@@ -28707,6 +28800,14 @@ msgstr "Pierwszy gracz wymieniony w tym meczu musi utworzyć stół. Potem drugi
 #: __app.rb:826
 msgid "The first player listed in this match must create its table. Then the other players can join here."
 msgstr "Pierwszy gracz na liście tego meczu musi utworzyć stół. Potem pozostali gracze mogą tutaj dołączyć."
+
+#: games/kosciane.rb:24
+msgid "The first player to complete a row without a cross earns its last score again. The first player to complete a column without a cross earns 60 points. Crossing out a school cell removes earned bonuses. Games with fewer than three columns have no bonuses."
+msgstr "Pierwszy gracz, który wypełni wiersz bez skreśleń, dostaje premię równą wynikowi z ostatniego pola. Za pierwszą pełną kolumnę bez skreśleń można zdobyć 60 punktów. Skreślenie w szkole odbiera zdobyte premie. Przy jednej lub dwóch kolumnach premii nie ma."
+
+#: games/generated/rulebooks/kosciane.rb:18
+msgid "The first player to complete a row without a cross gets its last score again. The first to complete a column without crosses gets 60 points for that column. A school cross removes bonuses you already earned."
+msgstr ""
 
 msgid "The first player to place all four pawns at the finish wins."
 msgstr "Wygrywa pierwszy gracz, który umieści wszystkie cztery pionki na mecie."
@@ -31399,6 +31500,10 @@ msgstr "Trzy niezależne ustawienia premii"
 msgid "Three marks in a line"
 msgstr "Trzy znaki w jednej linii"
 
+#: games/kosciane.rb:22
+msgid "Three matching dice qualify for a number row. Extra matching dice go into that number's reserve. Reserve dice can complete a later result but do not score."
+msgstr "Aby wpisać wynik w szkole, potrzebujesz trzech kości z liczbą odpowiadającą danemu wierszowi. Za cztery szóstki dostajesz 24 punkty i jedną szóstkę do rezerwy. Jeśli później wyrzucisz dwie szóstki, możesz dołożyć trzecią z rezerwy i wpisać 12 punktów za dwie wyrzucone."
+
 #: games/dice_poker.rb:308 games/yahtzee.rb:25
 msgid "Three of a kind"
 msgstr "Trójka"
@@ -31693,6 +31798,10 @@ msgstr "Karta na stole: %{card}; zadeklarowany kolor: %{suit}%{request}."
 #: games/yahtzee.rb:290
 msgid "Total across matches: %{points}."
 msgstr "Suma wszystkich partii: %{points}."
+
+#: games/kosciane.rb:152
+msgid "Total: %{points}"
+msgstr "Razem: %{points}"
 
 #: games/bridge/presentation.rb:478
 msgid "Total: %{scores}."
@@ -32267,6 +32376,10 @@ msgstr "Od dwóch do ośmiu graczy zaczyna z kapitałem określonym przez wybran
 
 msgid "Two to eight players take turns filling a score sheet. At the beginning of a turn roll all five dice. After each roll the dice are sorted in ascending order and all are initially kept. You may select any of them for another roll, up to three rolls in total. You can score earlier; you do not have to use all three rolls."
 msgstr "Od dwóch do ośmiu graczy wypełnia kolejno tabelę wyników. Na początku tury rzucasz wszystkimi pięcioma kośćmi. Po każdym rzucie są sortowane rosnąco i początkowo wszystkie są zachowane. Możesz wybrać dowolne do ponownego rzutu, łącznie najwyżej trzy rzuty. Wolno zapisać wynik wcześniej, nie trzeba wykorzystywać trzech rzutów."
+
+#: games/generated/rulebooks/kosciane.rb:10
+msgid "Two to eight players take turns filling a score sheet. Each turn fills one cell, from left to right within the chosen row. When all sheets are full, add scores and bonuses; the highest total wins."
+msgstr ""
 
 msgid "Two to eight players take turns rolling five dice and filling their own score sheets. Each row on the sheet is a category, such as Fours or Full house. You must use exactly one unused row on each turn. Once written, even a zero stays there for the rest of that sheet."
 msgstr "Dwie do ośmiu osób na zmianę rzuca pięcioma kośćmi i wypełnia własne karty punktacji. Każdy wiersz karty to kategoria, na przykład Czwórki albo Ful. W każdej turze musisz zapisać dokładnie jedną jeszcze niewykorzystaną kategorię. Zapis, nawet zero, pozostaje w niej do końca tej karty."
@@ -33937,6 +34050,10 @@ msgstr "Zwycięzca: %{player}"
 msgid "Winner: %{winner}; game points: %{scores}"
 msgstr "Zwycięzca: %{winner}; punkty z gry: %{scores}"
 
+#: games/kosciane.rb:136
+msgid "Winners: %{players}"
+msgstr "Wygrywają: %{players}"
+
 #: games/generated/rulebooks/mahjong.rb:24
 msgid "Winning a hand"
 msgstr ""
@@ -35473,7 +35590,7 @@ msgstr "Twój wynik: %{total}."
 msgid "Your train and the trains you share"
 msgstr "Twój pociąg i pociągi dostępne dla innych"
 
-#: games/generated/rulebooks/duck_racing.rb:13 games/generated/rulebooks/scopa.rb:11
+#: games/generated/rulebooks/duck_racing.rb:13 games/generated/rulebooks/kosciane.rb:11 games/generated/rulebooks/scopa.rb:11
 msgid "Your turn"
 msgstr ""
 
@@ -36083,6 +36200,10 @@ msgstr "steruje komputer"
 
 msgid "corporación eléctrica"
 msgstr "Zakład energetyczny"
+
+#: games/kosciane.rb:177
+msgid "crossed out"
+msgstr "skreślone"
 
 #: games/ninety_nine.rb:584
 msgid "crossing %{limit}"
@@ -36732,7 +36853,7 @@ msgstr "brak"
 msgid "not bid yet"
 msgstr "jeszcze nie zadeklarowano"
 
-#: games/yahtzee.rb:283
+#: games/kosciane.rb:176 games/yahtzee.rb:283
 msgid "not filled"
 msgstr "niewypełnione"
 

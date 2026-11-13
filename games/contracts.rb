@@ -71,7 +71,7 @@ module GameRoomGames
     :submit_label,
     keyword_init: true
   ) do
-    KINDS = [:announcement, :browse, :number_input, :choice, :staged_form, :form, :action, :surface].freeze
+    KINDS = [:announcement, :browse, :grid_preview, :number_input, :choice, :staged_form, :form, :action, :surface].freeze
     NAMED_KEYS = ["space", "enter", "delete", "backspace", "semicolon"].freeze
 
     def initialize(
@@ -102,6 +102,8 @@ module GameRoomGames
       raise ArgumentError, "a game shortcut requires a label" if label.to_s.empty?
       if normalized_kind == :announcement
         raise ArgumentError, "an announcement shortcut requires a message" if message.to_s.empty?
+      elsif normalized_kind == :grid_preview
+        raise ArgumentError, "a grid preview requires a grid" unless default_value.is_a?(GameSurfaces::GridSpec)
       elsif normalized_kind == :form
         raise ArgumentError, "a form shortcut requires fields and an action" if fields.to_a.empty? || action_kind.to_s.empty? || action_name.to_s.empty?
         raise ArgumentError, "invalid form field" if fields.any? { |field| !field.is_a?(OptionDefinition) || ![:integer, :choice, :multiple_choice, :boolean].include?(field.kind.to_sym) }

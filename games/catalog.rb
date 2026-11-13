@@ -44,6 +44,8 @@ require_relative "blackjack"
 require_relative "blackjack_dice"
 require_relative "bingo"
 require_relative "dice_poker"
+require_relative "kosciane"
+require_relative "balut"
 require_relative "liars_dice"
 require_relative "go"
 require_relative "roulette"
@@ -94,6 +96,8 @@ module GameRoomGames
     GameRoomGames::BlackjackDice,
     GameRoomGames::Bingo,
     GameRoomGames::DicePoker,
+    GameRoomGames::Kosciane,
+    GameRoomGames::Balut,
     GameRoomGames::LiarsDice,
     GameRoomGames::Go,
     GameRoomGames::Roulette

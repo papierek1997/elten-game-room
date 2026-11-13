@@ -31,7 +31,7 @@ module GameRoomTest
       else
         # Mahjong uses value objects for ownership/round state. Marshal-based
         # owned snapshots need not retain frozen flags; compare every field.
-        if value.class.name&.start_with?('GameRoomMahjong::')
+        if value.class.name == 'GameRoomGames::FiveDiceMatch' || value.class.name&.start_with?('GameRoomMahjong::')
           [value.class.name, value.instance_variables.sort.map { |key| [key.to_s, canonical(value.instance_variable_get(key))] }]
         else
           raise TypeError, "Unsupported contract value: #{value.class}"

@@ -102,6 +102,12 @@ end
   env = GameRoomTest::PrivateSimulation.new_game(game: game, players: %w[Alice Bob])
   %w[Alice Bob Spectator].each { |viewer| inspect_view.call(game, env.replay, viewer) }
 end
+%w[kosciane balut backgammon cribbage jass hearts belote french_tarot].each do |id|
+  game = catalog.build(id)
+  players = %w[Alice Bob Carol Dan].take(game.minimum_players)
+  env = GameRoomTest::PrivateSimulation.new_game(game: game, players: players)
+  (players + ["Spectator"]).each { |viewer| inspect_view.call(game, env.replay, viewer) }
+end
 assert_equal(catalog.ids.sort, checks.keys.sort, 'Every catalog game must cross the shared UI boundary')
 puts "PASS catalog clients: #{catalog.ids.length} factories; #{client_ids.length} real clients accept optional services"
 puts "PASS catalog start validation: #{roster_checks} empty/valid/overfull rosters"

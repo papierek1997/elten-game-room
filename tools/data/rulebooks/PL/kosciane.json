@@ -1,0 +1,98 @@
+{
+  "source": "games/kosciane.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "pl": "Kościany Generał"
+      },
+      "paragraphs": [
+        {
+          "pl": "Od dwóch do ośmiu graczy na zmianę wypełnia swoje tabele. W turze wypełniasz jedno pole: pierwsze wolne w wybranym wierszu. Gdy wszyscy skończą, wygrywa najwyższa suma punktów i premii. Jeśli kilka osób ma najwyższy wynik, wygrywają wspólnie."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "pl": "Twoja tura"
+      },
+      "paragraphs": [
+        {
+          "pl": "Naciśnij Enter, aby rzucić wszystkimi pięcioma kośćmi. Potem możesz wykonać jeszcze dwa rzuty wybranymi kośćmi. Cyfrą od 1 do 6 zaznaczasz kolejną kość o tej wartości do przerzutu. Shift z tą cyfrą odznacza jedną taką kość. Enter przerzuca zaznaczone kości. Gdy żadna nie jest zaznaczona, Enter otwiera tabelę zapisu."
+        },
+        {
+          "pl": "Po trzecim rzucie tabela zapisu pojawia się od razu. Strzałkami w górę i w dół wybierasz kategorię, a gra podaje punkty za bieżący rzut. Strzałki w lewo i w prawo pozwalają sprawdzić wpisy i rezerwę. Enter zapisuje wynik w pierwszym wolnym polu wybranego wiersza. Po trzecim rzucie możesz wybrać też pozycję skreślenia, która zajmuje pole bez punktów."
+        }
+      ]
+    },
+    {
+      "id": "scores",
+      "title": {
+        "pl": "Układy i punktacja"
+      },
+      "paragraphs": [
+        {
+          "pl": "Za parę, dwie różne pary, trójkę i karetę liczysz tylko oczka na kościach tworzących układ. Mały strit to cztery kolejne wartości, a duży to pięć; sumujesz oczka w stricie. Full to trzy kości jednej wartości i dwie innej. W fullu, generale (pięciu jednakowych kościach) i szansie sumujesz wszystkie oczka. Szansa przyjmuje każdy rzut."
+        }
+      ]
+    },
+    {
+      "id": "school",
+      "title": {
+        "pl": "Szkoła i rezerwa"
+      },
+      "paragraphs": [
+        {
+          "pl": "W szkole jest po jednym wierszu na każdą liczbę oczek. Do wpisu potrzeba trzech kości tej wartości. Przy czterech szóstkach wpisujesz 24 punkty, a jedna szóstka trafia do rezerwy. Gdy później wyrzucisz dwie szóstki, możesz zużyć jedną z rezerwy i wpisać 12 punktów za wyrzucone kości."
+        }
+      ]
+    },
+    {
+      "id": "bonuses",
+      "title": {
+        "pl": "Premie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Pierwszy gracz, który wypełni dany wiersz bez skreśleń, dostaje premię równą wynikowi z ostatniego pola. Pierwszy, kto wypełni daną kolumnę bez skreśleń, dostaje 60 punktów. Skreślenie w szkole odbiera zdobyte premie. Do premii za kolumnę potrzebujesz wpisu w każdej kategorii, również poza szkołą."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "pl": "Ustawienia stołu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Przy jednej lub dwóch kolumnach nie ma premii. Opcjonalne kategorie parzyste i nieparzyste liczą sumę oczek, jeśli wszystkie kości są odpowiednio parzyste albo nieparzyste. Stała punktacja daje 20 za trójkę, 25 za małego strita, 30 za dużego, 35 za fulla, 40 za karetę i 50 za generała. Opcja podwajania wyniku z pierwszego rzutu nie obejmuje szkoły. W surowym wariancie skreślenie w szkole blokuje także przyszłe premie."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Klawiatura"
+      },
+      "paragraphs": [
+        {
+          "pl": "D odczytuje wyrzucone kości. Spacja odczytuje także zaznaczenie do przerzutu na ekranie rzutu."
+        },
+        {
+          "pl": "B otwiera tabelę wyników. Po rzucie w swojej turze możesz z niej zapisać wynik. V pokazuje pełną własną tabelę, Shift+V tabelę innego gracza, a F tylko własne wiersze z wolnymi polami."
+        },
+        {
+          "pl": "S odczytuje wynik z premiami, a Shift+S sumę wpisów bez premii."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "double_first": "options",
+    "columns": "options",
+    "strict_school": "options",
+    "fixed": "options",
+    "parity": "options"
+  }
+}
