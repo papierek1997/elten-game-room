@@ -498,6 +498,7 @@ module GameSurfaces
     def initialize(spec, state: {})
       @spec = spec
       validate_spec!
+      @cell_labels = @spec.cells.to_a.map { |row| row.to_a.map { |label| GameRoomContent.utf8(label.to_s) } }
       origin = GameSurfaces::StateReader.fetch(state, 'move_origin', nil)
       if @spec.move_actions && !@spec.row_actions && !@spec.forced_origin &&
           GameSurfaces::StateReader.fetch(state, 'selection_epoch', nil) == @spec.selection_epoch &&
@@ -542,17 +543,25 @@ module GameSurfaces
       origin = @move_origin || @spec.forced_origin
       unless origin
         available = @spec.move_actions.select { |move| move.origin == cell }
-        return MovementCommandResult.new(message: _("You cannot move from this field.")) if available.empty?
-        @move_origin = cell
-        message = available.one? ? _("Piece selected. Choose its destination or press Enter again for its only move.") :
-          _("Piece selected. Choose its destination.")
+        if available.empty?
+          message = @spec.origin_error&.call(cell)
+          return MovementCommandResult.new(message: message.to_s.empty? ? _("You cannot move from this field.") : message)
+        end
+        set_move_origin(cell)
+        message = @spec.selection_message&.call(cell)
+        if message.to_s.empty?
+          message = _("Piece selected. Choose its destination.")
+        end
         return MovementCommandResult.new(message: message)
       end
       available = @spec.move_actions.select { |move| move.origin == origin }
       move = available.find { |choice| choice.destination == cell }
-      move ||= available.first if cell == origin && available.one?
-      return MovementCommandResult.new(message: _("You cannot move the selected piece to this field.")) unless move
-      @move_origin = nil
+      unless move
+        message = @spec.destination_error&.call(origin, cell)
+        set_move_origin(nil) if @spec.clear_selection_on_error
+        return MovementCommandResult.new(message: message.to_s.empty? ? _("You cannot move the selected piece to this field.") : message)
+      end
+      set_move_origin(nil)
       MovementCommandResult.new(action: move.action)
     end
 
@@ -561,7 +570,7 @@ module GameSurfaces
     end
 
     def cancel_pending_action!
-      @move_origin = nil
+      set_move_origin(nil)
     end
 
     def fields
@@ -648,19 +657,45 @@ module GameSurfaces
       valid_cell = ->(cell) { cell.is_a?(Array) && cell.size == 2 &&
         cell[0].is_a?(Integer) && cell[0].between?(0, @spec.width.to_i - 1) &&
         cell[1].is_a?(Integer) && cell[1].between?(0, @spec.height.to_i - 1) }
+      valid_origin = ->(origin) { valid_cell.call(origin) || @spec.forced_origin == :external && origin == :external }
       if moves && (!moves.is_a?(Array) || moves.length > 4096 || moves.any? do |move|
-          !move.is_a?(GridMove) || !valid_cell.call(move.origin) || !valid_cell.call(move.destination) || !move.action.is_a?(Action)
+          !move.is_a?(GridMove) || !valid_origin.call(move.origin) || !valid_cell.call(move.destination) || !move.action.is_a?(Action)
         end)
         raise ArgumentError, 'grid moves must contain bounded coordinates and ordinary surface actions'
       end
-      if @spec.forced_origin && (!moves || !valid_cell.call(@spec.forced_origin) ||
+      if @spec.forced_origin && (!moves || !valid_origin.call(@spec.forced_origin) ||
           moves.any? { |move| move.origin != @spec.forced_origin })
         raise ArgumentError, 'forced grid origin must match every available move'
       end
+      if [@spec.origin_error, @spec.destination_error, @spec.selection_message].any? { |handler| handler && !handler.respond_to?(:call) }
+        raise ArgumentError, 'grid move explanations must be callable'
+      end
+      unless [nil, true, false].include?(@spec.clear_selection_on_error)
+        raise ArgumentError, 'grid selection cleanup must be Boolean or nil'
+      end
+    end
+
+    def set_move_origin(cell)
+      return if @move_origin == cell
+
+      previous = @move_origin
+      @move_origin = cell
+      [previous, cell].compact.uniq.each do |x, y|
+        @control.set_cell(x, internal_y(y), move_cell_label(x, y))
+      end
+    end
+
+    def move_cell_label(x, y)
+      label = @cell_labels[y][x]
+      return label unless @move_origin == [x, y]
+
+      _("%{field}. Selected.") % {field: label}
     end
 
     def display_rows
-      rows = @spec.cells.to_a.map { |row| row.to_a.map(&:to_s) }
+      rows = @cell_labels.each_with_index.map do |row, y|
+        row.to_a.each_index.map { |x| move_cell_label(x, y) }
+      end
       row_origin == :bottom ? rows.reverse : rows
     end
 

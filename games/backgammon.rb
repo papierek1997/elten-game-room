@@ -15,7 +15,7 @@ module GameRoomGames
       return {'double' => 'poker_raise', 'take' => 'poker_call', 'drop' => 'poker_fold'}[event['action']] if %w[double take drop].include?(event['action'])
       return unless event["action"] == "move"
 
-      history.find { |entry| entry.kind == :move }&.value
+      'play2' if history.any? { |entry| entry.kind == :move }
     end
 
     def id; "backgammon"; end
@@ -29,6 +29,7 @@ module GameRoomGames
         (options['doubling_cube'] == true ? _("Doubling cube") : nil)].compact.join(', ')
     end
     def supports_bots?; true; end
+    def player_spatial_audio?; true; end
     def bot_strategy; @bot_strategy ||= GameRoomBots::HeuristicStrategy.new; end
     def tournament_capabilities(options: {}); super.merge(player_counts: [].freeze).freeze; end
 
@@ -98,7 +99,7 @@ module GameRoomGames
               text: roll_history_text(phase, players, dice, actor, state[:turn]))
             unless phase == :opening && dice.uniq.one?
               state[:dice] = dice.uniq.one? ? dice * 2 : dice
-              advance(state)
+              advance(state, history, players[state[:turn]], key)
             end
           elsif phase == :move && event["action"] == "move"
             move = choices(state).find { |candidate| candidate.join(",") == event["value"] }
@@ -108,12 +109,12 @@ module GameRoomGames
             state[:board] = BackgammonRules.apply(state[:board], state[:turn], move)
             state[:dice].delete_at(state[:dice].index(move.last))
             history << HistoryEntry.new(key: "move:#{key}", event_id: key, actor: actor, kind: :move,
-              value: hit ? "play2" : (destination.zero? ? "domino_take_chip" : 'play'),
-              text: _("%{player}: %{move}.") % {player: participant_name(actor), move: move_label(move)} + (hit ? ' ' + _("The opponent's checker goes to the bar.") : ''))
+              value: {backgammon_seat: state[:turn], move: move.dup.freeze, hit: hit}.freeze,
+              text: move_history_text(actor, move) + (hit ? ' ' + _("The opponent's checker goes to the bar.") : ''))
             if state[:board][state[:turn]].fetch(0, 0) == state[:checker_count]
               settle_game(state, players, variant, BackgammonRules.stake(state[:board], state[:turn]) * state[:cube], history, key)
             else
-              advance(state)
+              advance(state, history, players[state[:turn]], key)
             end
           else
             next
@@ -188,8 +189,33 @@ module GameRoomGames
         items: items, activation_action: activation)
     end
 
+    def history_entries_for_display(replay, viewer, surface_state: {})
+      side = presentation_side(replay, viewer)
+      replay.history.map { |entry| displayed_history_entry(entry, side) }
+    end
+
+    def describe_event_for_display(event, repository, replay, viewer, surface_state: {})
+      event_id = repository.event_id(event).to_i
+      side = presentation_side(replay, viewer)
+      replay.history.filter_map do |entry|
+        next unless entry.event_id.to_i == event_id
+        next if [:start, :turn, :result].include?(entry.kind)
+
+        text = displayed_history_entry(entry, side).text
+        text unless text.to_s.empty?
+      end
+    end
+
+    def turn_transition_history_entry(before_replay, after_replay, event_id:)
+      # The opening roll already names the starter after reading both dice.
+      # Keep the shared transition for all later turns, not a second start.
+      return nil if before_replay&.state&.dig(:phase) == :opening && after_replay&.state&.dig(:phase) == :move
+
+      super
+    end
+
     def board_grid(replay, viewer, point_moves: nil)
-      side = replay.players.index { |player| same_user?(player, viewer) } || 0
+      side = presentation_side(replay, viewer)
       own, opponent = replay.board.values_at(side, 1 - side)
       names = replay.players.values_at(side, 1 - side).map { |player| GameRoomContent.utf8(participant_name(player)) }
       rows = [24.downto(13).to_a, (1..12).to_a].map do |points|
@@ -199,20 +225,22 @@ module GameRoomGames
           _("Point %{point}: %{pieces}") % {point: point, pieces: pieces.empty? ? _("empty") : pieces.join('. ')}
         end
       end
-      bar = _("Bar. %{first}: %{one}. %{second}: %{two}.") % {first: names[0], one: own.fetch(25, 0), second: names[1], two: opponent.fetch(25, 0)}
-      off = _("Borne off. %{first}: %{one}. %{second}: %{two}.") % {first: names[0], one: own.fetch(0, 0), second: names[1], two: opponent.fetch(0, 0)}
-      rows[0].unshift(bar)
-      rows[1].unshift(off)
       moves = point_moves&.group_by { |from, to, _die| [from, to] }&.values&.map do |alternatives|
         move = alternatives.max_by(&:last)
-        GameSurfaces::GridMove.new(origin: board_cell(move[0]), destination: board_cell(move[1]),
+        origin = move[0] == 25 ? :external : board_cell(move[0])
+        destination = board_cell(move[1].zero? ? move[0] : move[1])
+        GameSurfaces::GridMove.new(origin: origin, destination: destination,
           action: GameSurfaces::Action.new(kind: 'pawn', name: 'move', payload: {'move' => move.join(',')}))
       end
-      GameSurfaces::GridSpec.new(width: 13, height: 2,
+      GameSurfaces::GridSpec.new(width: 12, height: 2,
         header: _("Dice: %{dice}. Board.") % {dice: replay.state[:dice].join(', ')},
         cells: rows, row_origin: :top, hide_coordinates: true, move_actions: moves,
         selection_epoch: replay.accepted_events.length,
-        forced_origin: point_moves&.any? { |from, _, _| from == 25 } ? board_cell(25) : nil,
+        forced_origin: point_moves&.any? { |from, _, _| from == 25 } ? :external : nil,
+        clear_selection_on_error: true,
+        selection_message: ->(_cell) { _("Selected.") },
+        origin_error: ->(cell) { board_origin_error(replay, side, board_point(cell), point_moves) },
+        destination_error: ->(origin, destination) { board_destination_error(replay, side, board_point(origin), board_point(destination), point_moves) },
         shortcuts: replay.state[:dice].empty? ? [] : [GameShortcut.new(key: "space", kind: :announcement,
           label: _("Read the dice"), message: replay.state[:dice].join(", "))])
     end
@@ -256,6 +284,25 @@ module GameRoomGames
 
     private
 
+    def presentation_side(replay, viewer)
+      replay.players.index { |player| same_user?(player, viewer) } || 0
+    end
+
+    def displayed_history_entry(entry, side)
+      data = entry.value
+      return entry unless entry.kind == :move && data.is_a?(Hash) && data.key?(:backgammon_seat)
+
+      move = data.fetch(:move)
+      if data.fetch(:backgammon_seat) != side
+        from, to, die = move
+        move = [from.between?(1, 24) ? 25 - from : from, to.between?(1, 24) ? 25 - to : to, die]
+      end
+      displayed = entry.dup
+      displayed.text = move_history_text(entry.actor, move)
+      displayed.text += ' ' + _("The opponent's checker goes to the bar.") if data.fetch(:hit)
+      displayed
+    end
+
     def initial_game_state(options)
       variant = options['variant']
       board = BackgammonRules.initial(variant)
@@ -290,9 +337,75 @@ module GameRoomGames
     end
 
     def board_cell(point)
-      return [0, 0] if point == 25
-      return [0, 1] if point.zero?
-      point >= 13 ? [25 - point, 0] : [point, 1]
+      raise ArgumentError, 'Only board points have grid coordinates' unless point.is_a?(Integer) && point.between?(1, 24)
+      point >= 13 ? [24 - point, 0] : [point - 1, 1]
+    end
+
+    def board_point(cell)
+      return 25 if cell == :external
+      cell[1].zero? ? 24 - cell[0] : cell[0] + 1
+    end
+
+    def board_origin_error(replay, side, point, legal_moves)
+      own = replay.board.fetch(side)
+      return _("Checkers already borne off cannot be moved.") if point.zero?
+      if point != 25 && own.fetch(25, 0).positive?
+        return _("Return your checkers from the bar before moving another checker.")
+      end
+      return _("You have no checkers on the bar.") if point == 25 && own.fetch(25, 0).zero?
+      return _("You have no checker on point %{point}.") % {point: point} if own.fetch(point, 0).zero?
+
+      replay.state[:dice].uniq.map do |die|
+        board_destination_error(replay, side, point, [point - die, 0].max, legal_moves)
+      end.uniq.join(' ')
+    end
+
+    def board_destination_error(replay, side, from, to, legal_moves)
+      if from == to
+        return _("Piece selection cancelled.") unless from.between?(1, 6)
+
+        return bearing_off_error(replay.board.fetch(side), from, replay.state[:dice]) ||
+          dice_order_error(replay, side, legal_moves)
+      end
+      return _("Choose an entry point from 19 to 24 for your checker on the bar.") if from == 25 && to < 19
+      return _("Checkers move toward lower-numbered points.") if to > from
+
+      own, other = replay.board.values_at(side, 1 - side)
+      dice = replay.state[:dice]
+      if to.zero?
+        message = bearing_off_error(own, from, dice)
+        return message if message
+      end
+      if to.positive? && !dice.include?(from - to)
+        return _("A single move must match one of your remaining dice: %{dice}.") % {dice: dice.join(', ')}
+      end
+      if to.positive? && other.fetch(25 - to, 0) >= 2
+        return _("Point %{point} is blocked by %{count} opposing checkers.") % {point: to, count: other.fetch(25 - to)}
+      end
+      limit = replay.state[:point_limit]
+      if to.positive? && limit && own.fetch(to, 0) >= limit
+        return _("Point %{point} already has the maximum of %{count} checkers.") % {point: to, count: limit}
+      end
+      dice_order_error(replay, side, legal_moves)
+    end
+
+    def dice_order_error(replay, side, legal_moves)
+      dice = replay.state[:dice]
+      maximum = BackgammonRules.continuation(replay.board, side, dice, {}, replay.state[:point_limit])
+      if maximum == 1 && dice.size == 2 && dice.uniq.size == 2
+        return _("You must use the higher die, %{die}.") % {die: legal_moves.map(&:last).max}
+      end
+      _("Choose a move that lets you use as many dice as possible.")
+    end
+
+    def bearing_off_error(own, from, dice)
+      if own.any? { |point, count| point > 6 && count.positive? }
+        return _("Bring all your checkers into points 1 to 6 before bearing off.")
+      end
+      return _("None of the remaining dice can bear off this checker.") if dice.none? { |die| die >= from }
+      if !dice.include?(from) && own.any? { |point, count| point > from && count.positive? }
+        _("With a larger die, you must first move a checker farther from the exit.")
+      end
     end
 
     def score_text(players, state)
@@ -326,8 +439,12 @@ module GameRoomGames
       BackgammonRules.legal(state[:board], state[:turn], state[:dice], point_limit: state[:point_limit])
     end
 
-    def advance(state)
+    def advance(state, history, actor, event_id)
       if choices(state).empty?
+        unless state[:dice].empty?
+          history << HistoryEntry.new(key: "blocked:#{event_id}", event_id: event_id, actor: actor, kind: :notice,
+            text: _("%{player} cannot move. The turn ends.") % {player: participant_name(actor)})
+        end
         state[:turn] = 1 - state[:turn]
         state[:dice] = []
         state[:phase] = :roll
@@ -345,6 +462,18 @@ module GameRoomGames
     def move_label(move)
       from, to, die = move
       _("%{from} to %{to}, die %{die}") % {from: point_label(from), to: point_label(to), die: die}
+    end
+
+    def move_history_text(actor, move)
+      from, to, = move
+      player = participant_name(actor)
+      if to.zero?
+        _("%{player} bears off a checker from point %{point}.") % {player: player, point: from}
+      elsif from == 25
+        _("%{player} enters a checker from the bar on point %{point}.") % {player: player, point: to}
+      else
+        _("%{player} moves a checker from point %{from} to point %{to}.") % {player: player, from: from, to: to}
+      end
     end
   end
 end

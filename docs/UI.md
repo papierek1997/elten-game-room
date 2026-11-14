@@ -178,6 +178,48 @@ Regression: `test/games/duck_racing/challenge_descriptions_native_test.rb`
 
 ## F1 and extending the interface
 
+### Grid move explanations
+
+`GridSpec#move_actions` defines legal origin/destination pairs; `GridBoard`
+selects them through the same path for native Enter and movement commands.
+Optional `origin_error.call(cell)` and `destination_error.call(origin, cell)`
+return a localized explanation for a refused selection. Coordinates are logical
+`[x, y]` cells. A nil or empty message retains the shared generic explanation.
+These pure callbacks never write a move, and
+do not run when input is guarded or the grid has read-only `row_actions: []`.
+They do not replace the game's ordinary action validation. Backgammon uses
+them for blocked points, dice restrictions, bar entry and bearing off.
+
+An obligatory incoming piece need not occupy a selectable board cell. Set
+`forced_origin: :external` and use that same origin in every `GridMove`;
+destinations must still be bounded `[x, y]` cells. An external origin without
+that declaration, or an external destination, is invalid. The first Enter
+then chooses the destination directly. Read-only previews remain read-only.
+
+Optional `selection_message.call(cell)` overrides the first-Enter prompt;
+nil or empty text retains the shared prompt. It is a pure presentation callback,
+with the same guard as the refusal callbacks. A second Enter on the origin
+performs only an explicitly declared self-destination move; it never chooses
+an ordinary move implicitly, even when there is only one available.
+The selected origin's native cell label also
+includes the localized "Selected" state, so it remains readable after moving
+the cursor away and back, in speech and braille. Local selection changes update
+only the affected cell labels, without refocusing or reannouncing the grid.
+Quiet reconstruction restores that label from the same validated epoch; a
+refusal cleanup, accepted selection or Escape removes it. Read-only previews
+and externally forced origins never mark a board cell.
+Backgammon uses a self-destination move for bearing off, without inventing an
+extra board cell. Repeating Enter on its selected checker outside home instead
+cancels selection, with the existing localized cancellation message; bearing-off
+errors apply only to its home points 1 to 6. A refused destination retains
+selection by default. Set `clear_selection_on_error: true` to clear the local origin after its refusal
+explanation, as Backgammon does. Guarded input does not clear it, and a forced
+external origin remains obligatory after a refusal. Selection survives a quiet refresh only within the same
+`selection_epoch`; a new accepted move clears it. All emitted actions still
+pass through the ordinary game validator.
+Regression: `test/ui/grid_moves_native_test.rb` and
+`test/games/backgammon/presentation_native_test.rb`.
+
 ### Composite controls and reuse
 
 Keep sibling `SurfacePart` IDs unique. A composite forwards the program,
@@ -358,6 +400,16 @@ History uses `GameRoomHistory::View` and `GameRoomHistory.bind`.
 `index`/`check` refer to character positions; `entry_index` identifies an entry.
 Shortcuts for previous tricks or battles read historical authors without
 substituting the names of the current participants.
+
+Backgammon projects move coordinates through `history_entries_for_display`
+and `describe_event_for_display`, using the same viewer seat as `board_grid`.
+Each move retains its event-time seat, coordinates and capture flag in
+`HistoryEntry#value`; historical authors and the canonical replay remain unchanged.
+Do not resolve a historical actor against today's roster after replacement.
+Observers use the first seat's numbering, as on the board. The shared history
+and TXT export consume the same projected entries as the visible view.
+The opening roll already names the starter after both dice, so its shared
+turn-transition hook suppresses only that duplicate, not later turns.
 
 Ctrl+Shift+S or “Zapisz historię stołu” (“Save table history”) in the menu saves
 the available event and chat history as UTF-8 TXT in the account's local

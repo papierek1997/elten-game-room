@@ -113,7 +113,7 @@ module GameRoomBilliards
         on = Rules.targets(state)
         labels = if Rules.snooker?(state) && state[:on] == :red then _('Red')
         elsif Rules.snooker?(state) && state[:on] == :colour then _('Choose a colour')
-        else on.map { |id| Presentation.ball(id, discipline: discipline) }.join('; ')
+        else target_group_label(state, on) || on.map { |id| Presentation.ball(id, discipline: discipline) }.join('; ')
         end
         parts << _('Ball on: %{balls}.') % {balls: labels}
         hand = {d: _('Cue ball in hand in the D.'), kitchen: _('Cue ball in hand behind the head string.'), any: _('Cue ball in hand anywhere.'), baulk: _('Cue ball in hand in baulk.')}
@@ -122,15 +122,24 @@ module GameRoomBilliards
         parts << _('Push-out available.') if state[:push_available]
         parts << _('Free shot available; M optionally moves the cue ball into baulk.') if state[:blackball_free]
         if state[:groups] && discipline == 'blackball' || state[:groups] && discipline == 'eight'
-          parts << _('Your group: %{group}.') % {group: state[:groups][state[:turn]].zero? ? _('solid balls') : _('striped balls')}
+          parts << _("Current player's group: %{group}.") % {group: state[:groups][state[:turn]].zero? ? _('solid balls') : _('striped balls')}
         end
         if state[:point_pockets] && state[:point_pockets][state[:turn]]
-          parts << _('Your scoring pocket: %{pocket}.') % {pocket: Presentation.pocket(state[:point_pockets][state[:turn]])}
+          parts << _("Current player's scoring pocket: %{pocket}.") % {pocket: Presentation.pocket(state[:point_pockets][state[:turn]])}
         end
         parts << _('Current break: %{points}.') % {points: state[:break_points]} if Rules.snooker?(state)
       end
       parts << ruling(state)
       GameRoomContent.utf8(parts.reject(&:empty?).join(' '))
+    end
+
+    def target_group_label(state, targets)
+      return nil if targets.size < 2
+      live = state[:balls].select { |ball| ball.on_table? && !ball.id.zero? }.map(&:id).sort
+      return _('Any object ball') if targets.sort == live
+      return _('Solid balls') if targets.sort == live.select { |id| id.between?(1, 7) }
+      return _('Striped balls') if targets.sort == live.select { |id| id.between?(9, 15) }
+      nil
     end
   end
 end

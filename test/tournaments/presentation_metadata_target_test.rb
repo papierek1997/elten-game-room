@@ -13,6 +13,23 @@ GameRoomParticipants.define_singleton_method(:local_display_name) { 'Anna Kowals
 begin
   N.ready(fixture, 0)
   N.execute(fixture, 0) do |execution|
+    selection = execution.selection
+    provider = N::Provider.new
+    adapter = T::FixedTeamNativeTargetAdapter.new(provider: provider, registry: N::F::REGISTRY)
+    projection = adapter.budget_readback(native: selection[:native], request: selection[:request].to_h,
+      owner: selection[:request].to_h.fetch('players').first.fetch('username'))
+    native_projection = adapter.budget_native(projection)
+    assert_equal(2, projection['stack'].size, 'Named owners need space for the initial profile packet')
+    assert_equal(2, native_projection['cores'].first['last_seq'])
+    assert_equal(2, native_projection['cores'].first['dedup'].size)
+    assert_equal('Anna Kowalska', native_projection['creates'].first['arguments']['participant_metadata']['display_name'])
+    provider.advertised_limits = {
+      'options_bytes' => JSON.generate(selection[:native].to_h['options']).bytesize,
+      'discovery_bytes' => JSON.generate(projection['discovery']).bytesize,
+      'stack_entry_bytes' => projection['stack'].map { |entry| JSON.generate(entry['packet']).bytesize }.max,
+      'core_bytes' => JSON.generate(native_projection).bytesize
+    }
+    execution.native_provider = provider
     result = execution.request_match
     assert_equal(:bound, result[:state], result.inspect)
     target = result.fetch(:target).to_h
@@ -22,6 +39,8 @@ begin
     assert_equal('room_profile', readback['stack'].last['packet']['kind'])
     assert_equal(target, execution.reconcile[:target].to_h, 'Cosmetic profile broke the persisted native capture')
     document = JSON.parse(File.binread(execution.instance_variable_get(:@storage).path))
+    assert(JSON.generate(document.fetch('native')).bytesize <= provider.limits.fetch('core_bytes'),
+      'Named owners exceeded the advertised native storage budget')
     operation = document.fetch('executions').values.first.fetch('operations').fetch('create_bind')
     build = lambda { |value| T::FixedTeamBoundTarget.build(record: fixture[:record], response: operation,
       readback: value, registry: N::F::REGISTRY) }
