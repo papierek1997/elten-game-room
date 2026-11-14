@@ -24,8 +24,6 @@ module GameRoomTournaments
       end
       binding = C.binding!(response, registry: registry)
       readback = C.copy(readback)
-      complete_readback = C.copy(readback)
-      normalize_presentation_metadata!(readback, request, op)
       C.fields!(readback, %w[metadata discovery stack visibility participants table game_instance])
       table = readback['table']
       C.fields!(table, %w[created_at game game_options name owner bot_count bot_names max_players status player_count private resume_save_id id __id __insertion_user __live_session_id __statistics_room_id __discovery_protocol last_activity_at updated_at])
@@ -54,7 +52,7 @@ module GameRoomTournaments
       end
       new(Data.freeze_tree(C.copy({'binding' => binding.to_h, 'native' => native.to_h,
         'receipt' => {'operation_id' => op['operation_id'], 'proof_ref' => response['receipt'], 'request_digest' => expected.digest,
-          'operation_digest' => op['request_digest'], 'native_digest' => native.digest}, 'readback' => complete_readback})))
+          'operation_digest' => op['request_digest'], 'native_digest' => native.digest}, 'readback' => readback})))
     end
 
     def self.native_payload_class; FixedTeamNativePayload; end
@@ -65,43 +63,6 @@ module GameRoomTournaments
       game.prepared_team_assignment(options, players: players)
     end
 
-    # Cosmetic, authenticated profiles do not change a match's sealed native
-    # identity. Validate their exact shape before excluding them from it.
-    def self.normalize_presentation_metadata!(readback, request, operation)
-      discovery = readback['discovery']
-      if discovery.is_a?(Hash)
-        if discovery.key?('owner_display_name')
-          value = discovery.delete('owner_display_name')
-          raise C::Invalid, :invalid_fields unless value.is_a?(String) &&
-            GameRoomParticipants.normalize_display_name(value) == value
-        end
-      end
-      owner = request['players'].find { |person| person['account'] == operation['actor'] }
-      return unless owner && readback['stack'].is_a?(Array)
-      stack = readback['stack']
-      unless stack.each_with_index.all? { |entry, index| entry.is_a?(Hash) && entry['seq'] == index + 1 } &&
-          stack.map { |entry| entry['message_id'] }.uniq.size == stack.size
-        raise C::Blocked, :native_target_mismatch
-      end
-      readback['stack'] = stack.reject do |entry|
-        next false unless entry.is_a?(Hash) && entry.dig('packet', 'kind') == 'room_profile'
-        C.fields!(entry, %w[created_at message_id packet sender sender_id seq])
-        C.fields!(entry['packet'], %w[version kind actor data])
-        data = entry['packet']['data']
-        C.fields!(data, ['display_name'])
-        person = readback.dig('participants', owner['account'])
-        unless person && entry['packet']['version'] == 2 &&
-            entry['packet']['actor'] == owner['username'] && entry['sender'] == {'user' => owner['username']} &&
-            entry['sender_id'] == person['id'] && Data.integer?(entry['seq'], 2) &&
-            Data.integer?(entry['created_at']) && data['display_name'].is_a?(String) &&
-            GameRoomParticipants.normalize_display_name(data['display_name']) == data['display_name']
-          raise C::Blocked, :native_target_mismatch
-        end
-        Data.text!(entry['message_id'], bytes: 256)
-        true
-      end
-    end
-    private_class_method :normalize_presentation_metadata!
 
     def self.validate_readback!(readback, owner, capacity:)
       table = readback['table']

@@ -369,7 +369,7 @@ module GameRoomTableWatch
       now = @clock.call.to_i
       @queue << { metadata: { "format" => 1, "game" => row["game"], "table_id" => row["__id"].to_i,
         "live_session_id" => key, "created_at" => now, "expires_at" => now + 300, "variant" => @variant.call(row),
-        "sender_display_name" => GameRoomParticipants.local_display_name }, recipients: nil }
+      }, recipients: nil }
       true
     end
 

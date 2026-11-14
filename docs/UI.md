@@ -55,32 +55,13 @@ Ascending native IDs retain the first assignment even across duplicate-filled
 pages; current/future dates are excluded before querying. Missing history stays
 blank and a corrupt canonical assignment remains an error, not a redraw.
 
-## Display names
+## Participant labels
 
-Settings → General stages `display_name` alongside other local preferences.
-Save validates a single-line Unicode name of at most 64 characters / 256 UTF-8
-bytes; Cancel leaves both the saved preference and published name unchanged.
-An empty value uses the complete ELTEN login. The confirmed settings snapshot
-updates the Runtime's bounded in-memory name directory, then an existing finite
-network task publishes the changed profile to joined LiveSessions. A failed
-profile write does not undo the local save and is reported separately.
-
-`GameRoomParticipants.display_name` and `Base#participant_name` return full
-labels for participant lists, scores, history and results. `short_name` and
-`Base#participant_short_name` return the first whitespace-separated part only
-for a configured human label; login fallbacks and computer labels keep their
-complete spelling. The shared event presenter abbreviates only live game and
-turn announcements, including staged and covered presentation. It does not
-rewrite stored history, results or table/chat announcements. Games quoting
-verbatim text implement `live_name_protected_texts(event, repository, replay,
-viewer)`; Quiz protects question/answer text and Categories protects submitted
-answers and category labels. Pawn and board-owner labels use the explicit short
-API. A name revision invalidates presentation/reducer history caches without
-changing authenticated event identities or move CAS.
-
-The name directory belongs to the application's Runtime namespace and is
-cleared when its local account changes. It stores at most 4096 labels and
-512 KiB of owned key/value UTF-8 bytes. Formatting never performs network I/O.
+Human participants are always shown under their complete ELTEN account name,
+including in live speech, lists, history and invitations. Saved or remote custom
+aliases are ignored. `GameRoomParticipants.display_name` and
+`Base#participant_name` only decode computer-player labels; they return a human
+account name unchanged. Do not shorten logins or rewrite announcement text.
 
 ## Option editor
 
@@ -552,7 +533,7 @@ speech in all supported languages, without publishing a live forum post.
 
 Games may declare `event_speech_tail_sound(event:, before_replay:,
 after_replay:, viewer:)`; the base returns `nil`. The shared event presenter
-puts the event's complete, shortened live announcement and a non-immediate
+puts the event's complete live announcement and a non-immediate
 native `SpeechCommands::CustomCommand` into one `SpeechSequence`. The callback
 enters the owning program Runtime and rechecks its session and sound-output
 gate before playing the ordinary configured effect. Canonical history remains

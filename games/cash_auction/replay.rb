@@ -11,7 +11,7 @@ module GameRoomGames
         bank = question_bank(options)
         @auction_replay_cache ||= GameRoomReplayCache.new
         state, positions, history = @auction_replay_cache.reduce(input, context: options,
-          identities: [GameRoomLocalization.cache_token, GameRoomParticipants.names_revision]) do |checkpoint, prefix|
+          identities: [GameRoomLocalization.cache_token]) do |checkpoint, prefix|
           initial = R.initial(input.players, options).merge(game_id: input.session['__id'] || input.session['id'],
             seen: {}, used_questions: [], revision: 0, resume_at: 0, time: 0)
           state, positions, history = checkpoint || [initial, [], [starting_history(input.players)]]

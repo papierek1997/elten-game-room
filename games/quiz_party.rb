@@ -461,11 +461,6 @@ module GameRoomGames
       history_entries_for_display(replay, viewer).select { |entry| entry.event_id.to_i == event_id }.map(&:text)
     end
 
-    def live_name_protected_texts(_event, _repository, replay, _viewer)
-      question = current_question(replay.state)
-      question ? [question['prompt'], question['correct'], *question['wrong'].to_a] : []
-    end
-
     def result_text(replay)
       state = replay.state
       winners = state[:winners].to_a

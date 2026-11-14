@@ -300,7 +300,7 @@ class TableActivityRepository
   def formatted_activities(activities, names)
     # Formatting room/chat entries is independent of new game moves. Retain
     # that work, and its owned input snapshot, across subsequent game turns.
-    context = [GameRoomLocalization.cache_token, GameRoomParticipants.names_revision]
+    context = [GameRoomLocalization.cache_token]
     cached = @formatted_activity_projection
     cached = nil unless cached && cached[:context] == context && cached[:names] == names
     known = cached ? cached[:items] : {}

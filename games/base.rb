@@ -342,27 +342,27 @@ module GameRoomGames
         return _("You are bidding.") if same_user?(replay.current_player, viewer)
 
         return _("%{player} is bidding.") % {
-          player: participant_short_name(replay.current_player)
+          player: participant_name(replay.current_player)
         }
       end
       if turn_phase_kind(replay) == :review
         return _("You are reviewing the answers.") if same_user?(replay.current_player, viewer)
 
         return _("%{player} is reviewing the answers.") % {
-          player: participant_short_name(replay.current_player)
+          player: participant_name(replay.current_player)
         }
       end
       if turn_phase_kind(replay) == :choice
         return _("Choose a category.") if same_user?(replay.current_player, viewer)
 
         return _("%{player} is choosing a category.") % {
-          player: participant_short_name(replay.current_player)
+          player: participant_name(replay.current_player)
         }
       end
       return _("It is your turn.") if same_user?(replay.current_player, viewer)
 
       _("It is %{player}'s turn.") % {
-        player: participant_short_name(replay.current_player)
+        player: participant_name(replay.current_player)
       }
     end
 
@@ -494,12 +494,6 @@ module GameRoomGames
     # presentation without changing the stored, canonical history entry.
     def describe_event_for_display(event, repository, replay, viewer, surface_state: {})
       describe_event(event, repository, replay, viewer)
-    end
-
-    # A game which quotes player/content-set text protects those literal
-    # fragments before the shared live presenter abbreviates participant names.
-    def live_name_protected_texts(_event, _repository, _replay, _viewer)
-      []
     end
 
     def result_text(replay)
@@ -638,10 +632,6 @@ module GameRoomGames
 
     def participant_name(participant)
       GameRoomParticipants.display_name(participant)
-    end
-
-    def participant_short_name(participant)
-      GameRoomParticipants.short_name(participant)
     end
 
     def selection_value(selection, key)

@@ -420,11 +420,6 @@ module GameRoomTournaments
         args = call['arguments']
         participant = args['participant_metadata']
         expected_participant = {'client' => 'elten_game_room', 'table_id' => readback['table']['__id']}
-        if participant.is_a?(Hash) && participant.key?('display_name')
-          label = participant['display_name']
-          raise Invalid, :sandbox_corrupt unless label.is_a?(String) && GameRoomParticipants.normalize_display_name(label) == label
-          expected_participant['display_name'] = label
-        end
         expected_args = {'metadata' => readback['metadata'], 'discovery_metadata' => readback['discovery'],
           'visibility' => 'private', 'capacity' => execution['request']['players'].size, 'participant_metadata' => expected_participant,
           'pool_count' => 1, 'private_messages' => true, 'stack_entries' => GameRoomLiveSessionStore::STACK_ENTRIES,

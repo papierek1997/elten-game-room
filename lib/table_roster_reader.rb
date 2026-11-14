@@ -64,8 +64,8 @@ class GameRoomTableRosterReader < GameRoomTableDetailsReader
   using GameRoomLocalization::Translations
   def initialize(**options)
     super(**options, unavailable: -> { _('The table participants are currently unavailable.') }, formatter: ->(value) {
-      players = value.fetch(:players).map { |person| GameRoomParticipants.scoped_display_name(person, value[:display_names]) }
-      observers = value.fetch(:observers).map { |person| GameRoomParticipants.scoped_display_name(person, value[:display_names]) }
+      players = value.fetch(:players).map { |person| GameRoomParticipants.display_name(person) }
+      observers = value.fetch(:observers).map { |person| GameRoomParticipants.display_name(person) }
       message = players.empty? ? _('No players at this table.') : _('Players: %{players}.') % {players: players.join(', ')}
       message += ' ' + (_('Observers: %{players}.') % {players: observers.join(', ')}) unless observers.empty?
       message

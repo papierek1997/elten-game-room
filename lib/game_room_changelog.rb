@@ -762,6 +762,13 @@ module GameRoomChangelog
         "Reduced unnecessary background work while Power Games is idle.",
         "Many thanks to guliwer, paulinux, postukujący and turekcom (Grzegorz Turek) for the new games and other contributions!"
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.6",
+      build: 269,
+      changes: [
+        "Removed custom display names. Player lists, game announcements, history and invitations now use ELTEN account names."
+      ].freeze
     ).freeze
   ].freeze
 

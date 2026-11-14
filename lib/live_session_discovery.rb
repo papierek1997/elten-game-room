@@ -76,8 +76,7 @@ class GameRoomLiveSessionStore
         bots.map(&:first).uniq.length == bots.length
       players = roles.select { |_, role| role == 0 }.map { |id, _| users[id] }
       bots.each { |number, name| players << GameRoomParticipants.bot_id(table_identifier(table), number, name_token: name) }
-      {status: :ready, players: players, observers: roles.select { |_, role| role == 1 }.map { |id, _| users[id] },
-        display_names: discovery_display_names(metadata, members: members)}
+      {status: :ready, players: players, observers: roles.select { |_, role| role == 1 }.map { |id, _| users[id] }}
     end
 
     def activity_record?(record)

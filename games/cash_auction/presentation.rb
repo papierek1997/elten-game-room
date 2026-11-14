@@ -46,7 +46,7 @@ module GameRoomGames
         ordinal = ((now - started) / interval).floor
         return [] unless ordinal.between?(1, 2)
         message = (ordinal == 1 ? _('%{player}, %{amount}, going once.') : _('%{player}, %{amount}, going twice.')) % {
-          player: GameRoomParticipants.short_name(replay.players[state[:leader]]), amount: state[:highest]}
+          player: GameRoomParticipants.display_name(replay.players[state[:leader]]), amount: state[:highest]}
         [["cash-auction:#{state[:game_id]}:#{state[:round]}:#{state[:bid_revision]}:#{ordinal}", message,
           ordinal == 1 ? 'auction_call_low' : 'auction_call_high', :skip_on_reconstruction]]
       end
@@ -67,13 +67,6 @@ module GameRoomGames
 
       def event_speech_tail_sound(event:, before_replay:, after_replay:, viewer:)
         'auction_gavel' if event['action'] == 'all_in' || event['action'] == 'auction_closed' && before_replay&.state&.[](:leader)
-      end
-
-      def live_name_protected_texts(event, repository, replay, viewer)
-        return [replay.state[:category_label]].compact if event['action'] == 'auction_start'
-        return [] unless %w[question answer].include?(event['action'])
-        question = replay.state[:question]
-        question ? [question[:prompt], *question[:choices]] : []
       end
 
       private

@@ -369,7 +369,7 @@ module GameRoomDuckRacing
 
     def memory_feedback(event, players)
       result = {announcement: _('%{player}: %{position}.') % {
-        player: text(GameRoomParticipants.short_name(players.fetch(event.fetch(:seat)))),
+        player: text(GameRoomParticipants.display_name(players.fetch(event.fetch(:seat)))),
         position: event.fetch(:position)}}
       result[:result_announcement] = event[:matched] ? _('Correct!') : _('Wrong!') if event.key?(:matched)
       result

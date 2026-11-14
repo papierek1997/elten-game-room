@@ -370,8 +370,8 @@ data. Unresolved expired tournaments remain in Current with the usual ordering;
 only sporting completion moves them to Completed. Existing schema-1
 publications retain their recorded dated contract.
 
-Registration projections retain authenticated display names separately from
-canonical account keys. Notice delivery uses those display names without
+Registration projections retain authenticated account-name spelling separately from
+canonical account keys. Notice delivery uses that original spelling without
 rewriting schedule candidates, bindings, operation keys or historical results.
 Organizer notes use the existing publication `rules` field; no schema change is
 needed. Returning to game settings preserves the tournament form. Automatic

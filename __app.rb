@@ -3,8 +3,8 @@
   "id": "c24d98cc-9ccd-4d50-b801-459da324ff60",
   "name": "Power Games",
   "description": "Accessible multiplayer games for ELTEN users.",
-  "version": "2.0.6.5",
-  "build_id": "268",
+  "version": "2.0.6.6",
+  "build_id": "269",
   "EltenAPIVersion": "3.0.5",
   "main_language": "en",
   "supported_languages": ["en", "pl", "cs", "es", "ru"],
@@ -214,8 +214,8 @@ class EltenGameRoom < Program
   extend GameRoomContactFiltersRuntime
   extend GameRoomAnalyticsRuntime
   extend GameRoomSportsRankings::Runtime
-  GAME_ROOM_VERSION = "2.0.6.5".freeze
-  GAME_ROOM_BUILD_ID = 268
+  GAME_ROOM_VERSION = "2.0.6.6".freeze
+  GAME_ROOM_BUILD_ID = 269
   GAME_ROOM_CAPABILITIES = ["invitations", "live_sessions", "live_session_stack"].freeze
   LOBBY_ACTIVITY_POLL_INTERVAL = 5.0
 
@@ -322,9 +322,6 @@ class EltenGameRoom < Program
     # or sees a partially edited hash; explicit reads/successful saves refresh it.
     normalized = GameRoomPreferences.normalize(values, GAME_REGISTRY.ids)
     @normalized_settings = JSON.parse(JSON.generate(normalized), freeze: true)
-    if defined?(Session) && !Session.name.to_s.empty?
-      GameRoomParticipants.configure_display_name(account: Session.name.to_s, name: normalized.fetch("display_name"))
-    end
     @volume_settings&.remember(@normalized_settings)
     @normalized_settings
   end
@@ -392,7 +389,7 @@ class EltenGameRoom < Program
       if receiver.visible?(notification)
         sound = nil if receiver.received?(notification)
         variant = GameRoomTableVariant.text(GAME_REGISTRY.build(metadata["game"]), metadata["variant"])
-        title = [GameRoomParticipants.metadata_display_name(notification.sender, metadata["sender_display_name"]), GAME_REGISTRY.name(metadata["game"]), variant].map { |text| GameRoomContent.utf8(text) }.reject(&:empty?).join(", ")
+        title = [notification.sender, GAME_REGISTRY.name(metadata["game"]), variant].map { |text| GameRoomContent.utf8(text) }.reject(&:empty?).join(", ")
         notification.presentation(title: title, body: GameRoomContent.utf8(_("New table")),
           sound: sound, action: :open_new_table)
       else
@@ -414,7 +411,7 @@ class EltenGameRoom < Program
       presentation = notification.presentation(
         title: _("Game invitation"),
         body: invitation_text % {
-          sender: GameRoomParticipants.metadata_display_name(GameRoomInvitationIdentity.notification_sender(notification, metadata).to_s, metadata["sender_display_name"]),
+          sender: GameRoomInvitationIdentity.notification_sender(notification, metadata).to_s,
           table: metadata["table_name"].to_s,
           game: game_label
         },
@@ -2634,7 +2631,7 @@ class EltenGameRoom < Program
     _("%{game}; %{table}; invited by %{sender}; %{count}/%{maximum}") % {
       game: game_name(snapshot.table["game"]),
       table: snapshot.table["name"].to_s,
-      sender: GameRoomParticipants.metadata_display_name(invitation.sender, invitation.invitation['sender_display_name']),
+      sender: invitation.sender,
       count: snapshot.participant_count,
       maximum: @lobby.capacity_of(snapshot.table)
     }
@@ -2855,7 +2852,6 @@ class EltenGameRoom < Program
       "game_name" => game_name(row["game"]),
       "variant" => GameRoomTableVariant.payload(game_definition(row["game"]), row["game_options"]),
       "sender" => Session.name.to_s,
-      "sender_display_name" => GameRoomParticipants.local_display_name,
       "created_at" => now,
       "expires_at" => now + InvitationRepository::DEFAULT_TTL
     }
@@ -3158,7 +3154,6 @@ class EltenGameRoom < Program
       { id: game_id, name: game_name(game_id), spatial_audio: GAME_REGISTRY.build(game_id).player_spatial_audio? }
     end
     screen = GameRoomScreens::Settings.new(settings, games: games, program: self,
-      alert: method(:alert),
       table_watch_available: false, table_watch_loader: preferences_loader,
       preset_editor: ->(entry) { edit_table_preset(entry) },
       preset_writer: ->(slot, entry) { save_table_preset(slot, entry) })
@@ -3178,23 +3173,18 @@ class EltenGameRoom < Program
 
     normalized = GameRoomPreferences.normalize(updated, GAME_REGISTRY.ids)
     update_game_room_settings do |state|
+      state.delete("display_name")
       normalized.each { |key, value| state[key] = value }
       state
     end
     @game_room_settings = nil
     @pong_preferences = nil
-    name_save_failed = false
-    if @transport && (settings["display_name"] != normalized["display_name"] || @display_name_publish_pending)
-      name_save_failed = run_network_task(_("Updating display name"), silent: true) { @transport.publish_display_name } != true
-      @display_name_publish_pending = name_save_failed
-    end
     background_music.update(retry_failed: true)
     self.class.contacts_settings_changed(normalized)
     Programs::Extensions.refresh_ui if defined?(Programs::Extensions) && Programs::Extensions.respond_to?(:refresh_ui)
     language_changed = GameRoomLocalization.normalize_settings(settings) != GameRoomLocalization.normalize_settings(normalized)
-    if watch_save_failed || name_save_failed
-      message = watch_save_failed ? _("Local settings saved. New-table notification subscriptions could not be saved.") : _("Settings saved.")
-      message += " " + _("The display name could not be updated at the current table.") if name_save_failed
+    if watch_save_failed
+      message = _("Local settings saved. New-table notification subscriptions could not be saved.")
       message += " " + _("Close ELTEN completely and start it again to apply the interface language preferences. Restarting with F12 does not reload Power Games.") if language_changed
       alert(message)
     elsif language_changed
@@ -3337,7 +3327,7 @@ class EltenGameRoom < Program
 
   def table_join_label(snapshot)
     label = GameRoomContent.utf8(_("%{owner}, %{count}/%{maximum}, %{status}")) % {
-      owner: GameRoomContent.utf8(GameRoomParticipants.scoped_display_name(@lobby.owner_of(snapshot.table), snapshot.table['__display_names'])),
+      owner: GameRoomContent.utf8(@lobby.owner_of(snapshot.table)),
       count: snapshot.participant_count, maximum: @lobby.capacity_of(snapshot.table),
       status: table_status_label(snapshot.table)
     }
@@ -3357,7 +3347,7 @@ class EltenGameRoom < Program
       status: table_status_label(row),
       name: table_display_name(row),
       game: game_name(row["game"]),
-      owner: GameRoomParticipants.scoped_display_name(@lobby.owner_of(row), row['__display_names']),
+      owner: @lobby.owner_of(row),
       count: snapshot.participant_count,
       maximum: @lobby.capacity_of(row)
     }

@@ -301,8 +301,6 @@ Game sounds are not muted by default. Background muting does not silence
 the separate turn signal, chat, invitations or people joining and leaving.
 These settings apply both elsewhere in ELTEN and in other programs.
 
-The Display name field accepts your first name and surname, up to 64 characters. Leave it empty to use your ELTEN login. Your full name appears in the lobby, at tables, in participant lists, S scores, history and notifications. Current actions, deals, bidding and pawn labels use the first name. Choose Save to apply the change or Cancel to discard it. Other players can see this name; your account login, permissions and statistics stay unchanged. Players without a set or available name still appear under their login.
-
 ### Connections in audio games
 
 When creating an Axel Pong or Audio Ball table, you can enable “Full P2P”:
