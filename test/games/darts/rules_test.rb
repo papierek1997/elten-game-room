@@ -1,5 +1,6 @@
 # encoding: UTF-8
 def _(text); text; end
+def n_(singular, plural, count); count == 1 ? singular : plural; end
 
 require_relative '../../../games/darts'
 require_relative '../../support/sequence_random'
@@ -36,6 +37,13 @@ assert(game.default_options == {'mode'=>'game', 'difficulty'=>'normal', 'rounds'
   'time_limit'=>10, 'timeout_result'=>'auto', 'mouse_input'=>false, 'bot_delay'=>1}, 'Darts defaults changed')
 assert(game.options_error(game.default_options.merge('mode'=>'training'), player_count: 2), 'multiplayer training was accepted')
 assert(game.options_error(game.default_options.merge('mode'=>'training'), player_count: 1) == nil, 'solo training was rejected')
+assert(game.notification_variant(game.default_options.merge('rounds'=>1)).include?('1 round'),
+  'one-round table notification uses a plural English label')
+assert(game.notification_variant(game.default_options.merge('rounds'=>3)).include?('3 rounds'),
+  'multi-round table notification uses a singular English label')
+assert(game.training_position_text(1_000, 0) == 'right' &&
+  !game.training_position_text(1_000, 0).include?('point'),
+  'training cursor speech still exposes a score instead of only its sector')
 
 session = darts_session(game, options: {'rounds'=>1})
 start = darts_event('darts_start', 'a' * 32, actor: 'Alice', id: 1)
@@ -44,6 +52,8 @@ assert(opening.state[:phase] == :opening && opening.current_player == nil, 'game
 started = game.replay(session, [start], repo)
 assert(started.state[:phase] == :playing && started.current_player == 'Alice' && started.state[:seed] == 'a' * 32,
   'durable seed did not start the match')
+assert(game.throw_prompt_text(started) == 'Round 1 throw 1', 'Darts does not expose the concise round and throw prompt')
+assert(game.surface_spec(started, 'Alice').header == 'Round 1 throw 1', 'active Darts playfield lost its repeatable stage label')
 
 events = [start]
 3.times do |index|
@@ -67,6 +77,7 @@ assert(one_tiebreak_dart.state[:scores] == {'Alice'=>300, 'Bob'=>300}, 'tie-brea
 events << darts_event('darts_throw', throw_value(7, 1_000, 1_000), actor: 'Bob', id: events.length + 1)
 finished = game.replay(session, events, repo)
 assert(finished.winner == 'Alice' && finished.finished?, 'one-dart sudden death did not resolve the tie')
+assert(game.surface_spec(finished, 'Alice') == nil, 'finished Darts retained an actionless playfield button')
 assert(finished.state[:throws]['Alice'].last[:tiebreak] && finished.state[:throws]['Bob'].last[:tiebreak],
   'tie-break darts cannot be separated from ordinary ranking throws')
 
@@ -92,10 +103,17 @@ status, plan = game.action_for(actions.first, bot_started, 'bot:1:1', context: b
 assert(status == :ok && plan.events.first.value.bytesize <= 64, 'bot did not use the ordinary bounded action path')
 
 assert(GameRoomDarts::Scoring.points(0, 0) == 100, 'centre does not score 100')
-assert(GameRoomDarts::Scoring.points(300, 0) == 75, 'second zone does not score 75')
-assert(GameRoomDarts::Scoring.points(600, 0) == 50, 'third zone does not score 50')
-assert(GameRoomDarts::Scoring.points(900, 0) == 25, 'outer zone does not score 25')
+radial_scores = [100, 300, 600, 900, 1_000].map { |radius| GameRoomDarts::Scoring.points(radius, 0) }
+assert(radial_scores.each_cons(2).all? { |closer, farther| closer > farther },
+  'radial score does not fall continuously with distance')
+assert(radial_scores.uniq.length == radial_scores.length && radial_scores.last == 1,
+  'inside-board scoring still collapses hits into broad 25-point zones')
+assert((0..1_000).step(10).map { |radius| GameRoomDarts::Scoring.points(radius, 0) }.uniq.length > 50,
+  'Darts exposes too few distinct distance scores')
 assert(GameRoomDarts::Scoring.points(1_000, 1_000).zero?, 'outside square corner did not miss the circular board')
+one_point_replay = game.replay(session, [start,
+  darts_event('darts_throw', throw_value(0, 1_000, 0), actor: 'Alice', id: 2)], repo)
+assert(one_point_replay.history.last.text.include?('1 point.'), 'a one-point throw uses a plural English announcement')
 assert(game.result_sound_cue(before_replay: nil, after_replay: finished, viewer: 'Alice', default_cue: 'win_party') == nil,
   'the shared presenter can reveal the result before the delayed impact')
 

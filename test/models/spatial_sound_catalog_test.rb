@@ -8,7 +8,7 @@ def assert(value, message); raise message unless value; end
 # Bingo draws come from the table, never from the host's seat.
 catalog = GameRoomGames::CATALOG
 placed = catalog.ids.select { |id| catalog.build(id).player_spatial_audio? }
-excluded = %w[audio_ball axel_pong krowa duck_racing categories quiz mania_pisania bingo]
+excluded = %w[audio_ball axel_pong darts krowa duck_racing categories quiz mania_pisania bingo]
 assert((excluded & catalog.ids).sort == excluded.sort, "Excluded game ids changed: #{excluded - catalog.ids}")
 assert((placed & excluded).empty?, "Games without seat-based sounds offer 3D sound: #{placed & excluded}")
 assert((catalog.ids - excluded - placed).empty?, "Turn-based games lost 3D sound: #{catalog.ids - excluded - placed}")

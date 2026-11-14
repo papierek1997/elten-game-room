@@ -14,7 +14,7 @@ module GameSurfaces
 
     def update
       super
-      return if modifier_held?
+      return if game_modifier_held?
       queue(:up) if unmodified_press?(:key_up, 0x26)
       queue(:down) if unmodified_press?(:key_down, 0x28)
       queue(:left) if unmodified_press?(:key_left, 0x25)
@@ -51,13 +51,17 @@ module GameSurfaces
       @pending << command
     end
 
-    def modifier_held?
+    # Do not override Elten's modifier_held?(modifier) input helper.  The
+    # host calls that method while resolving Control/Command and expects one
+    # argument; shadowing it with a zero-argument game helper breaks every
+    # update of this field before input can be read.
+    def game_modifier_held?
       [0x10, 0x11, 0x12, 0x5b, 0x5c].any? { |code| key_held?(code) }
     end
 
     def unmodified_press?(name, code)
       return false unless key_pressed?(name)
-      return !modifier_held? unless respond_to?(:keyboard_modifier_held_when_pressed?, true)
+      return !game_modifier_held? unless respond_to?(:keyboard_modifier_held_when_pressed?, true)
       ![:shift, :control, :option, :command].any? do |modifier|
         keyboard_modifier_held_when_pressed?(code, modifier)
       end
@@ -75,14 +79,18 @@ module GameSurfaces
       @spec = spec
       @field = DartsField.new(spec.header)
       @field.add_tip(_('Arrow keys: correct the audio cursor.'))
-      @field.add_tip(_('Space: throw after the ready sound.'))
+      @field.add_tip(_('Space: start aiming; after the ready sound, throw.'))
       @field.add_tip(_('The screen reader remains available; ordinary aiming uses positional sounds instead of spoken coordinates.'))
     end
 
     def fields; [@field]; end
     def state; {}; end
     def reusable_for?(spec); spec.is_a?(DartsSpec) && spec.game_id == @spec.game_id; end
-    def update_spec(spec); @spec = spec; self; end
+    def update_spec(spec)
+      @spec = spec
+      @field.label = spec.header
+      self
+    end
 
     def input_active?(form)
       return false if form.respond_to?(:game_room_background_help?) && form.game_room_background_help?

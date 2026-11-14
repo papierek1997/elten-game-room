@@ -24,6 +24,8 @@ module GameRoomGames
     def audio_game?; true; end
     def precise_action_clock?; true; end
     def shortcut_features; []; end
+    def personal_settings_label; _('Darts settings'); end
+    def personal_settings_action; :show_darts_settings; end
 
     def option_definitions
       [
@@ -62,7 +64,8 @@ module GameRoomGames
     def notification_option_keys(_options); %w[mode difficulty rounds progressive time_limit]; end
     def notification_variant(options)
       parts = [notification_choice(options, 'mode'), notification_choice(options, 'difficulty')]
-      parts << _('%{count} rounds') % {count: options['rounds']}
+      round_count = options['rounds'].to_i
+      parts << n_('%{count} round', '%{count} rounds', round_count) % {count: round_count}
       parts << _('progressive difficulty') if options['progressive']
       parts << notification_choice(options, 'time_limit')
       parts.compact.join(', ')
@@ -189,28 +192,38 @@ module GameRoomGames
     def participant_scores(replay); replay.state[:scores].dup; end
 
     def surface_spec(replay, viewer)
-      GameSurfaces::DartsSpec.new(game_id: id, header: _('Darts playfield'),
+      return nil if replay.finished?
+
+      active = same_user?(viewer, replay.current_player)
+      header = active ? throw_prompt_text(replay) : _('Darts playfield')
+      GameSurfaces::DartsSpec.new(game_id: id, header: header,
         players: replay.players.map { |player| participant_name(player) },
         viewer: player_index(replay.players, viewer), current_player: player_index(replay.players, replay.current_player),
         throw_index: replay.state[:throw_index], round: replay.state[:round], dart: replay.state[:dart],
         difficulty: active_difficulty(replay.state), scores: replay.players.map { |player| replay.state[:scores][player] },
-        active: same_user?(viewer, replay.current_player) && !replay.finished?, finished: replay.finished?,
+        active: active, finished: false,
         training: replay.state[:options]['mode'] == 'training')
+    end
+
+    def throw_prompt_text(replay)
+      _('Round %{round} throw %{dart}') % {round: replay.state[:round], dart: replay.state[:dart]}
     end
 
     def custom_game_shortcuts(replay, viewer)
       shortcuts = [surface_shortcut(key: 's', label: _('read scores'), command: 'scores')]
       if replay.state[:options]['mode'] == 'training' && same_user?(viewer, replay.current_player)
-        shortcuts << surface_shortcut(key: 'c', label: _('read the training cursor position'), command: 'position')
+        shortcuts << surface_shortcut(key: 'c', label: _('read the training cursor sector'), command: 'position')
       end
       shortcuts
     end
 
     def result_text(replay)
       if replay.players.length == 1 && replay.finished?
-        _('%{player} completed the game with %{score} points.') % {
-          player: participant_name(replay.players.first), score: replay.state[:scores][replay.players.first]
-        }
+        score = replay.state[:scores][replay.players.first]
+        n_('%{player} completed the game with %{score} point.',
+          '%{player} completed the game with %{score} points.', score) % {
+            player: participant_name(replay.players.first), score: score
+          }
       else
         super
       end
@@ -226,27 +239,16 @@ module GameRoomGames
     def result_sound_cue(**_context); nil; end
 
     def rule_sections
-      [
-        rule_section(:rules, _('Rules'),
-          _('Each round gives every player three darts. The closest score zone is worth 100 points, followed by 75, 50 and 25 points. A dart outside the circular board scores zero.'),
-          _('After the selected rounds, the highest total wins. Tied leaders throw one dart each until one player has the best result.')),
-        rule_section(:controls, _('Controls'),
-          _('The audio cursor begins in the centre and immediately drifts. Throwing is locked for one second; a sound announces when Space or the left mouse button can throw.'),
-          _('Use the arrow keys to correct the cursor. Horizontal position is heard by stereo balance, vertical position by pitch, and distance from the centre by loudness. The game does not speak cursor coordinates during an ordinary throw.'),
-          _('Sound training may announce the cursor sector and score zone. It does not disable NVDA or other screen-reader speech in the interface.'))
-      ]
+      generated_rule_sections
     end
 
     def training_position_text(x, y)
       sector = GameRoomDarts::Scoring.sector(x, y)
-      zone = GameRoomDarts::Scoring.zone(x, y)
-      sector_text = {
+      {
         center: _('centre'), east: _('right'), north_east: _('upper right'), north: _('up'),
         north_west: _('upper left'), west: _('left'), south_west: _('lower left'),
         south: _('down'), south_east: _('lower right')
       }.fetch(sector)
-      zone_text = zone == :outside ? _('outside the board') : _('%{points}-point zone') % {points: zone}
-      _('%{sector}, %{zone}.') % {sector: sector_text, zone: zone_text}
     end
 
     private
@@ -368,14 +370,19 @@ module GameRoomGames
 
     def throw_history(event_id, throw)
       text = if throw[:automatic]
-        _('%{player} throws automatically and scores %{points} points.') % {
+        n_('%{player} throws automatically and scores %{points} point.',
+          '%{player} throws automatically and scores %{points} points.', throw[:points]) % {
+            player: participant_name(throw[:player]), points: throw[:points]
+          }
+      else
+        n_('%{player} scores %{points} point.', '%{player} scores %{points} points.', throw[:points]) % {
           player: participant_name(throw[:player]), points: throw[:points]
         }
-      else
-        _('%{player} scores %{points} points.') % {player: participant_name(throw[:player]), points: throw[:points]}
       end
       HistoryEntry.new(key: "darts:#{event_id}", event_id: event_id, actor: throw[:player],
         kind: :move, text: text, value: throw[:points])
     end
   end
 end
+
+require_relative 'generated/rulebooks/darts'

@@ -58,7 +58,7 @@ encabezado, Shift+H al anterior y Escape cierra el documento.
 
 ## A qué puedes jugar
 
-Power Games incluye 52 juegos: cartas, juegos de tablero, palabras
+Power Games incluye 53 juegos: cartas, juegos de tablero, palabras
 y conocimientos, práctica de escritura y juegos basados en el oído
 y los reflejos.
 
@@ -71,7 +71,7 @@ y los reflejos.
 - Otros juegos de azar: Bingo y Ruleta.
 - Palabras y conocimientos: Subasta por el bote, Krowa, Teclamanía, Países y ciudades, Quiz Party,
   Scrabble y Tabú.
-- Acción con audio: Billar, Axel Pong y Audio Ball.
+- Acción con audio: Billar, Axel Pong, Audio Ball y Dardos.
 
 Las fichas de los juegos son solo virtuales.
 

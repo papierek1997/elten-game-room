@@ -78,6 +78,28 @@ normalization, gain or channel changes to Ogg Opus, target 144 kb/s VBR,
 endorse the application. Preserve this attribution, source link,
 modification notice and license when distributing the recordings.
 
+### Darts — board edge
+
+`Audio/darts_edge.opus` uses “Wood Block.wav” by **jimbo555**, Freesound
+[630492](https://freesound.org/s/630492/), dedicated to the public domain
+under [CC0 1.0](LICENSES/CC0-1.0.txt). The user supplied the Freesound HQ
+Ogg preview and its license notice. The first 4–220 ms were retained to
+remove the long silent tail while preserving the attack, stereo channels
+and source level. It was encoded as Ogg Opus, target 144 kb/s VBR, 48 kHz,
+20 ms frames and audio mode.
+
+### Darts — hard cursor limit
+
+`Audio/darts_limit.opus` uses the complete “SFX_MetalPing-01.wav” recording
+by **Wavewire**, Freesound [837452](https://freesound.org/s/837452/),
+dedicated to the public domain under
+[CC0 1.0](LICENSES/CC0-1.0.txt). The user supplied the copy used as the
+“Słup standardowy” navigation cue in the Budowlańcy project. It was encoded
+without trimming or gain changes as Ogg Opus, target 144 kb/s VBR, 48 kHz,
+20 ms frames and audio mode, preserving both stereo channels. In Darts it
+marks an attempted movement beyond the outer coordinate limit, separately
+from the circular dartboard-edge cue.
+
 ### Darts — throwing sound
 
 `Audio/darts_throw.opus` uses the complete Freesound HQ Ogg preview of

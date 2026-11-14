@@ -1,14 +1,20 @@
 # encoding: UTF-8
 require_relative '../game_sound_output'
 require_relative 'scoring'
+require_relative 'preferences'
 
 module GameRoomDarts
   # The locator is deliberately sound-only. It never changes global speech or
   # asks NVDA to stop; ordinary interface and post-throw announcements remain
   # available to the screen reader.
   class Audio
-    LOCATOR = 'pong_ball'.freeze
+    LOCATOR_EDGE_PITCH = 0.82
+    LOCATOR_PITCH_SPAN_SEMITONES = 16.0
+    LOCATOR_CURVE_EXPONENT = 1.6
     READY = 'ding'.freeze
+    COUNTDOWN = 'duck_note_c'.freeze
+    EDGE = 'darts_edge'.freeze
+    LIMIT = 'darts_limit'.freeze
     THROW = 'darts_throw'.freeze
     WIN = 'darts_applause'.freeze
     LOSS = 'darts_consolation'.freeze
@@ -19,6 +25,17 @@ module GameRoomDarts
       south: 'darts_hit_3', south_east: 'darts_hit_2',
       center: 'darts_hit_1'
     }.freeze
+    # The supplied board recordings contain different amounts of leading
+    # quiet.  Start the score-quality cue only after the audible attack of the
+    # selected impact has had a short, consistent lead.
+    IMPACT_ATTACK_SECONDS = {
+      'darts_hit_1' => 0.371,
+      'darts_hit_2' => 0.539,
+      'darts_hit_3' => 0.511,
+      'darts_hit_4' => 0.194,
+      'darts_hit_5' => 0.253
+    }.freeze
+    IMPACT_QUALITY_LEAD_SECONDS = 0.10
     QUALITY = 'notice'.freeze
 
     def initialize(program)
@@ -28,35 +45,78 @@ module GameRoomDarts
 
     def load
       return if @loaded
-      ([[LOCATOR, true], [READY, false], [THROW, false], [WIN, false], [LOSS, false], [QUALITY, false]] +
-        IMPACTS.values.uniq.map { |asset| [asset, false] }).each do |asset, looped|
-        sound = @program.create_sound_from_asset(asset, loop: looped, sample: false)
-        next unless sound
-        @program.manage(sound) if @program.respond_to?(:manage)
-        @sounds[asset] = sound
+      ([READY, COUNTDOWN, EDGE, LIMIT, THROW, WIN, LOSS, QUALITY] + IMPACTS.values.uniq).each do |asset|
+        load_asset(asset, looped: false)
       end
-      @locator_frequency = @sounds[LOCATOR]&.frequency
+      @countdown_frequency = @sounds[COUNTDOWN]&.frequency
       @quality_frequency = @sounds[QUALITY]&.frequency
       @impact_frequencies = IMPACTS.values.uniq.to_h { |asset| [asset, @sounds[asset]&.frequency] }
       @loaded = true
+      refresh_preferences
+    end
+
+    def refresh_preferences
+      asset = Preferences.locator_asset(Preferences.read(@program))
+      return asset unless @loaded
+      return asset if @locator_asset == asset && @sounds[asset]
+
+      release_asset(@locator_asset) if @locator_asset
+      @locator_asset = asset
+      sound = load_asset(asset, looped: true)
+      @locator_frequency = sound&.frequency
+      asset
     end
 
     def update(x, y, active:)
-      sound = @sounds[LOCATOR]
+      sound = @sounds[@locator_asset]
       return unless sound
       return silence unless active
 
       x = x.to_f.clamp(-Scoring::BOARD_LIMIT, Scoring::BOARD_LIMIT)
       y = y.to_f.clamp(-Scoring::BOARD_LIMIT, Scoring::BOARD_LIMIT)
       radius = Math.sqrt(x * x + y * y)
+      proximity = 1.0 - [radius / Scoring::BOARD_LIMIT, 1.0].min
       sound.pan = x / Scoring::BOARD_LIMIT
-      sound.frequency = @locator_frequency * (1.0 + y / Scoring::BOARD_LIMIT * 0.25) if @locator_frequency
-      level = 0.18 + 0.72 * (1.0 - [radius / (Scoring::BOARD_LIMIT * Math.sqrt(2)), 1.0].min)
+      # Pitch describes radial accuracy, not vertical position. A fractional
+      # exponent keeps the inner board more distinct without the harder feel of
+      # a quadratic curve. Frequency remains continuous, below quarter tones.
+      semitones = LOCATOR_PITCH_SPAN_SEMITONES * proximity**LOCATOR_CURVE_EXPONENT
+      pitch = LOCATOR_EDGE_PITCH * 2.0**(semitones / 12.0)
+      sound.frequency = @locator_frequency * pitch if @locator_frequency
+      level = 0.55 + 0.45 * proximity
       GameRoomSoundOutput.apply(@program, sound, level, continuous: true)
       sound.play unless sound.playing?
     end
 
     def ready; play_once(READY); end
+
+    def deadline_warning(seconds)
+      ratio = {3 => 0.72, 2 => 0.86, 1 => 1.00}[seconds.to_i]
+      return false unless ratio
+
+      sound = @sounds[COUNTDOWN]
+      return false unless sound
+      sound.frequency = @countdown_frequency * ratio if @countdown_frequency
+      sound.pan = 0
+      play_once(COUNTDOWN)
+      true
+    end
+
+    def edge
+      return false unless @sounds[EDGE]
+
+      @sounds[EDGE].pan = 0
+      play_once(EDGE, level: 0.9)
+      true
+    end
+
+    def limit
+      return false unless @sounds[LIMIT]
+
+      @sounds[LIMIT].pan = 0
+      play_once(LIMIT, level: 0.9)
+      true
+    end
 
     def throw_dart
       play_once(THROW)
@@ -64,35 +124,40 @@ module GameRoomDarts
     end
 
     def impact(points, x:, y:)
-      durations = []
-      if points.to_i.positive?
-        asset = IMPACTS.fetch(Scoring.sector(x, y))
-        impact = @sounds[asset]
-        if impact
-          impact.pan = x.to_f.clamp(-Scoring::BOARD_LIMIT, Scoring::BOARD_LIMIT) / Scoring::BOARD_LIMIT
-          base = @impact_frequencies[asset]
-          impact.frequency = base * (1.0 + y.to_f.clamp(-Scoring::BOARD_LIMIT, Scoring::BOARD_LIMIT) /
-            Scoring::BOARD_LIMIT * 0.12) if base
-          play_once(asset)
-          durations << sound_length(impact)
-        end
-      end
+      return 0.0 unless points.to_i.positive?
+
+      asset = IMPACTS.fetch(Scoring.sector(x, y))
+      impact = @sounds[asset]
+      return 0.0 unless impact
+
+      impact.pan = x.to_f.clamp(-Scoring::BOARD_LIMIT, Scoring::BOARD_LIMIT) / Scoring::BOARD_LIMIT
+      base = @impact_frequencies[asset]
+      pitch_ratio = 1.0 + y.to_f.clamp(-Scoring::BOARD_LIMIT, Scoring::BOARD_LIMIT) /
+        Scoring::BOARD_LIMIT * 0.12
+      impact.frequency = base * pitch_ratio if base
+      play_once(asset)
+      IMPACT_ATTACK_SECONDS.fetch(asset) / pitch_ratio + IMPACT_QUALITY_LEAD_SECONDS
+    end
+
+    def quality(points)
       sound = @sounds[QUALITY]
-      return durations.max.to_f unless sound
-      ratio = {100 => 1.50, 75 => 1.25, 50 => 1.0, 25 => 0.80, 0 => 0.58}.fetch(points.to_i, 0.58)
+      return 0.0 unless sound
+      score = points.to_i.clamp(0, 100)
+      ratio = score.zero? ? 0.58 : 0.58 + score / 100.0 * 0.92
       sound.frequency = @quality_frequency * ratio if @quality_frequency
       sound.pan = 0
       play_once(QUALITY)
-      durations << sound_length(sound)
-      durations.max.to_f
+      sound_length(sound)
     end
 
     def result(won:)
-      play_once(won ? WIN : LOSS)
+      asset = won ? WIN : LOSS
+      play_once(asset)
+      sound_length(@sounds[asset])
     end
 
     def silence
-      sound = @sounds[LOCATOR]
+      sound = @sounds[@locator_asset]
       sound.pause if sound&.playing?
     end
 
@@ -103,15 +168,32 @@ module GameRoomDarts
         sound.close
       end
       @sounds.clear
+      @locator_asset = nil
+      @loaded = false
     end
 
     private
 
-    def play_once(asset)
+    def load_asset(asset, looped:)
+      sound = @program.create_sound_from_asset(asset, loop: looped, sample: false)
+      return nil unless sound
+      @program.manage(sound) if @program.respond_to?(:manage)
+      @sounds[asset] = sound
+    end
+
+    def release_asset(asset)
+      sound = @sounds.delete(asset)
+      return unless sound
+      sound.pause if sound.respond_to?(:pause) && sound.playing?
+      @program.release(sound) if @program.respond_to?(:release)
+      sound.close
+    end
+
+    def play_once(asset, level: 1.0)
       sound = @sounds[asset]
       return unless sound
       sound.position = 0
-      GameRoomSoundOutput.apply(@program, sound, 1.0, restart: true)
+      GameRoomSoundOutput.apply(@program, sound, level, restart: true)
       sound.play
     end
 

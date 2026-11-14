@@ -107,6 +107,10 @@ class FakeControl
   def key_processed(_key)
     true
   end
+
+  def key_held?(_key)
+    false
+  end
 end
 
 class GridBox < FakeControl
@@ -223,10 +227,11 @@ end
 
 class Button < FakeControl
   attr_accessor :label
-  attr_reader :last_focus_spoken
+  attr_reader :last_focus_spoken, :last_focus_label
 
   def focus(_index = nil, _count = nil, spk = true)
     @last_focus_spoken = spk
+    @last_focus_label = @label
   end
 
   def initialize(label)
@@ -308,11 +313,12 @@ class Form < FakeControl
   def raw_key_held?(key)
     key == :key_shift && @held_modifiers.to_a.include?(:shift)
   end
+
 end
 
 class EditBox < FakeControl
-  attr_accessor :text, :index, :check, :flags
-  attr_reader :header, :last_focus_spoken
+  attr_accessor :text, :index, :check, :flags, :header
+  attr_reader :last_focus_spoken, :last_focus_header
 
   module Flags
     ReadOnly = 1
@@ -342,6 +348,7 @@ class EditBox < FakeControl
 
   def focus(_index = nil, _count = nil, spk = true)
     @last_focus_spoken = spk
+    @last_focus_header = @header
   end
 
   def set_text(text, reset = true, **_options)

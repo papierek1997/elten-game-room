@@ -1,0 +1,157 @@
+{
+  "source": "games/darts.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim",
+        "pl": "Na czym polega gra"
+      },
+      "paragraphs": [
+        {
+          "en": "Darts is an audio aiming game for one to eight players. Guide the moving sound towards the centre of the target and score as many points as possible. Each round gives every player three darts.",
+          "pl": ""
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "A throw",
+        "pl": ""
+      },
+      "paragraphs": [
+        {
+          "en": "Press Space to begin aiming a dart. The cursor starts at a random position away from the centre and immediately begins to drift. For the first second you can correct it, but you cannot throw. A short ready cue tells you when the throw is unlocked.",
+          "pl": ""
+        },
+        {
+          "en": "Use the arrow keys to correct the cursor, then press Space again to throw. The release sound is followed by the dart striking the target and a separate cue whose pitch represents the points scored. The next dart waits for another press of Space, so its aiming sound does not begin while the previous result is still being announced.",
+          "pl": ""
+        }
+      ]
+    },
+    {
+      "id": "aiming",
+      "title": {
+        "en": "Finding the centre by sound",
+        "pl": ""
+      },
+      "paragraphs": [
+        {
+          "en": "The aiming sound moves left and right in stereo. Its pitch and volume describe distance from the centre: it becomes higher and stronger as you get closer, and lower and softer as you move away. This relationship is the same in every direction.",
+          "pl": ""
+        },
+        {
+          "en": "Every arrow press moves the cursor by a slightly different distance. After a correction it stays steadier for a short time, then continues to drift, usually outwards. The drift becomes faster near the valuable centre, so listening and timing matter more than repeating a fixed sequence of keys.",
+          "pl": ""
+        },
+        {
+          "en": "A wooden cue marks the edge of the circular target. You can still move in the square playfield outside it, but a dart thrown there scores nothing. A different metallic cue means that the cursor has reached the outer limit and cannot move farther in that direction.",
+          "pl": ""
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "title": {
+        "en": "Time for a dart",
+        "pl": ""
+      },
+      "paragraphs": [
+        {
+          "en": "With a time limit, three low cues count down the final three seconds. If time runs out, the table setting either throws from the cursor's current position or awards zero points. The clock starts only after the ready cue, not when you first press Space.",
+          "pl": ""
+        },
+        {
+          "en": "You can also choose no time limit. In that case the cursor keeps drifting until you throw.",
+          "pl": ""
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "en": "Scoring and the winner",
+        "pl": ""
+      },
+      "paragraphs": [
+        {
+          "en": "A hit scores from 1 to 100 points according to its distance from the centre. The exact centre is worth 100 points; the value falls continuously towards the edge. A dart outside the circular target scores zero.",
+          "pl": ""
+        },
+        {
+          "en": "After the selected number of rounds, the player with the highest total wins. If several leaders are tied, each of them throws one additional dart. Further one-dart tie-breaks continue only among players who remain tied until one player has the best result. In a solo game, the final total is your result.",
+          "pl": ""
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "en": "Difficulty and match options",
+        "pl": ""
+      },
+      "paragraphs": [
+        {
+          "en": "Easy, normal and hard difficulty change the cursor's correction accuracy, how long it remains steady after a correction and how quickly it drifts. Progressive difficulty begins easy, changes to normal and finishes hard as the selected rounds pass.",
+          "pl": ""
+        },
+        {
+          "en": "A match can last 1, 3, 5 or 10 rounds. You can separately choose the time for one dart and what happens when it expires.",
+          "pl": ""
+        }
+      ]
+    },
+    {
+      "id": "training",
+      "title": {
+        "en": "Sound training",
+        "pl": "Trening dźwiękowy"
+      },
+      "paragraphs": [
+        {
+          "en": "Sound training is available at a one-player table. It uses the same aiming and scoring, but speech also announces the sector when you enter a different one, the start and final seconds of the clock, both boundaries, manual or automatic throws, hits and misses. Press C to repeat the current sector.",
+          "pl": ""
+        },
+        {
+          "en": "Training does not turn off your screen reader. Ordinary game mode leaves the cursor itself sound-only, while normal interface labels, scores and results remain spoken.",
+          "pl": ""
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard and mouse controls",
+        "pl": ""
+      },
+      "paragraphs": [
+        {
+          "en": "Space: start aiming or throw after the ready cue.",
+          "pl": ""
+        },
+        {
+          "en": "Arrows: correct the audio cursor.",
+          "pl": ""
+        },
+        {
+          "en": "S: read the scores.",
+          "pl": "S: odczyt wyniku."
+        },
+        {
+          "en": "C: repeat the current sector in Sound training.",
+          "pl": ""
+        },
+        {
+          "en": "Ctrl+P: open personal Darts settings and choose one of the three aiming sounds.",
+          "pl": ""
+        },
+        {
+          "en": "Optional mouse control: relative movement corrects the cursor and the left button starts aiming or throws. Enable it in the table settings before play.",
+          "pl": ""
+        }
+      ]
+    }
+  ]
+}

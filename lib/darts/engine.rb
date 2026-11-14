@@ -7,15 +7,19 @@ module GameRoomDarts
   # published; replay never depends on frame rate or a private input trace.
   class Engine
     LOCK_SECONDS = 1.0
+    DEADLINE_WARNING_SECONDS = 3
     STEP_SECONDS = 0.02
     MAX_CATCH_UP_STEPS = 600
+    START_RADIUS_MIN = 650.0
+    START_RADIUS_MAX = 800.0
     PROFILES = {
       'easy' => {step: 78.0, jitter: 5.0, hold: 0.45, drift: 31.0},
       'normal' => {step: 82.0, jitter: 12.0, hold: 0.25, drift: 47.0},
       'hard' => {step: 86.0, jitter: 22.0, hold: 0.10, drift: 67.0}
     }.freeze
 
-    attr_reader :x, :y, :throw_index, :started_at, :ready_at, :difficulty
+    attr_reader :x, :y, :throw_index, :started_at, :ready_at, :difficulty,
+      :last_nudge_blocked
 
     def initialize(clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
       @clock = clock
@@ -29,14 +33,17 @@ module GameRoomDarts
       @timeout_result = timeout_result.to_s == 'zero' ? 'zero' : 'auto'
       material = "#{seed}:#{@throw_index}:darts"
       @random = Random.new(Digest::SHA256.hexdigest(material)[0, 16].to_i(16))
-      @x = @y = 0.0
+      @heading = @random.rand * Math::PI * 2
+      start_radius = START_RADIUS_MIN + @random.rand * (START_RADIUS_MAX - START_RADIUS_MIN)
+      @x = Math.cos(@heading) * start_radius
+      @y = Math.sin(@heading) * start_radius
       @started_at = @clock.call.to_f
       @ready_at = @started_at + LOCK_SECONDS
       @last_step = @started_at
       @stable_until = @started_at
       @inward_until = 0.0
-      @heading = @random.rand * Math::PI * 2
       @finished = false
+      @last_nudge_blocked = false
       self
     end
 
@@ -58,6 +65,15 @@ module GameRoomDarts
       @time_limit.positive? && now.to_f >= @ready_at + @time_limit
     end
 
+    def deadline_warning(now = @clock.call)
+      return nil unless @time_limit.positive? && ready?(now)
+
+      remaining = @ready_at + @time_limit - now.to_f
+      return nil unless remaining.positive? && remaining <= DEADLINE_WARNING_SECONDS
+
+      remaining.ceil.clamp(1, DEADLINE_WARNING_SECONDS)
+    end
+
     def step(now = @clock.call)
       return self if @finished
       now = now.to_f
@@ -73,14 +89,17 @@ module GameRoomDarts
     end
 
     def nudge(dx, dy, now = @clock.call)
+      @last_nudge_blocked = false
       return false if @finished
       dx, dy = dx.to_i.clamp(-1, 1), dy.to_i.clamp(-1, 1)
       return false if dx.zero? && dy.zero?
 
+      before_x, before_y = @x, @y
       magnitude = @profile[:step] + random_signed(@profile[:jitter])
       diagonal = !dx.zero? && !dy.zero? ? Math.sqrt(0.5) : 1.0
       @x = (@x + dx * magnitude * diagonal).clamp(-Scoring::BOARD_LIMIT.to_f, Scoring::BOARD_LIMIT.to_f)
       @y = (@y + dy * magnitude * diagonal).clamp(-Scoring::BOARD_LIMIT.to_f, Scoring::BOARD_LIMIT.to_f)
+      @last_nudge_blocked = (!dx.zero? && @x == before_x) || (!dy.zero? && @y == before_y)
       @stable_until = now.to_f + @profile[:hold]
       true
     end
