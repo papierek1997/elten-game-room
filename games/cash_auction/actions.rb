@@ -118,12 +118,32 @@ module GameRoomGames
         return 0.0 unless state[:phase] == :auction && action['action'] == 'submit'
         maximum = state[:cash][seat] + state[:contributions][seat]
         amount = action['answer'] == 'A' ? maximum : action['answer'].to_i
-        # With no future question, risk only a modest part of the bankroll.
-        budget = [maximum / 3, state[:pot] / 2 + state[:options]['ante']].min
-        amount <= budget ? 10.0 : -10.0
+        budget = bot_bid_budget(state, seat, maximum)
+        return -10.0 if amount > budget
+
+        # Prefer the cheaper legal bid, not an unnecessary all-in. The limit
+        # applies to the full stake so repeated small raises cannot evade it.
+        1.0 + (budget - amount).to_f / [budget, 1].max
       end
 
       private
+
+      def bot_bid_budget(state, seat, maximum)
+        rounds_left = [state[:options]['rounds'] - state[:completed_rounds], 1].max
+        active = R.active_seats(state)
+        # On the last round, passing cannot rescue a player who is behind.
+        trailing = active.any? { |other| state[:cash][other] + state[:contributions][other] > maximum }
+        return maximum if rounds_left == 1 && trailing
+
+        reserve = [state[:options]['ante'] * (rounds_left - 1), maximum / 2].min
+        pool = [state[:pot] - state[:contributions][seat], 0].max
+        budget = [maximum / [rounds_left, 4].max, pool / 3].max
+        if (state[:pass_counts][seat] + 1) % 3 == 0
+          penalty = [state[:cash][seat], state[:options]['pass_penalty']].min
+          budget = [budget, state[:contributions][seat] + penalty].max
+        end
+        [budget, [maximum - reserve, 0].max].min
+      end
 
       def action_time(state, context); (context&.now || GameRoomSessionClock.for_state(state)).to_i; end
     end

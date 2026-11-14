@@ -72,6 +72,12 @@ cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/mahjong-
 new_games = %w[blackjack blackjack_dice bingo dice_poker liars_dice go roulette]
 presentations = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/new_games_presentation.json'), encoding: 'UTF-8'))
 assert((presentations.keys - new_games).empty?, 'Unexpected new-game presentation override')
+feedback = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v3/new_games_feedback.json'), encoding: 'UTF-8'))
+assert((feedback.keys - %w[kosciane balut backgammon]).empty?, 'Unexpected new-game feedback override')
+# Compared with 2943170 on the exact original inputs: only presentation history
+# differs, including move metadata. Full state, moves, legal ordering and RNG agree.
+presentations.merge!(feedback)
+new_games += %w[kosciane balut french_tarot backgammon]
 (%w[bouillabaisse scopa mania_pisania] + new_games).each do |id|
   item = JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding: 'UTF-8'))
   checkpoints = item.fetch('steps') + [item.fetch('final')]
@@ -86,9 +92,6 @@ end
 duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/duck_racing.json'), encoding: 'UTF-8'))
 cash_auction = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/cash_auction.json'), encoding: 'UTF-8'))
 cases << JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/billiards.json'), encoding: 'UTF-8'))
-%w[kosciane balut french_tarot backgammon].each do |id|
-  cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding:'UTF-8'))
-end
 expected_ids = GameRoomGames::CATALOG.ids.reject { |id| %w[axel_pong audio_ball].include?(id) }.sort
 assert_equal(expected_ids, (cases.map { |item| item.fetch('game') } + [duck.fetch('game'), cash_auction.fetch('game')]).sort, 'corpus must explicitly cover every turn-based game')
 assert((ARGV - expected_ids).empty?, 'unknown game requested for contract verification')

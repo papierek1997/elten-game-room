@@ -14,6 +14,9 @@ module GameRoomGames
     def name; _("Dice General"); end
     def short_description; _("Roll five dice and fill rows and columns to earn bonuses."); end
     def supports_bots?; true; end
+    def event_sound_cues(event:, **arguments)
+      event['action'] == 'score' ? 'cht-bank' : super
+    end
     def tournament_capabilities(options: {}); super.merge(player_counts: [].freeze).freeze; end
     def shortcut_features; []; end
 
@@ -63,9 +66,9 @@ module GameRoomGames
           match.roll(player, (0...5).to_a, roll_state[:dice])
         elsif event["action"] == "score"
           category, cross = decode_choice(match, event["value"])
+          before_bonuses = match.bonuses(player)
           next unless category && match.record(player, category, cross: cross)
-          history << HistoryEntry.new(key: "score:#{key}", event_id: key, actor: player, kind: :score,
-            text: "#{participant_name(player)}: #{category_label(category)}, #{cell_label(match.sheet(player)[category].last)}.")
+          history.concat(recorded_score_history(match, player, category, cross, key, before_bonuses))
         else
           next
         end
@@ -218,6 +221,35 @@ module GameRoomGames
     end
 
     private
+
+    def recorded_score_history(match, player, category, cross, event_id, before_bonuses)
+      row = match.sheet(player).fetch(category)
+      values = {player: participant_name(player), category: category_label(category), column: row.size}
+      text = if cross
+        _("%{player} crosses out %{category}, column %{column}.") % values
+      else
+        _("%{player} records %{points} in %{category}, column %{column}.") % values.merge(points: row.last)
+      end
+      entries = [HistoryEntry.new(key: "score:#{event_id}", event_id: event_id, actor: player, kind: :score, text: text)]
+      bonuses = match.bonuses(player)
+      bonuses.each do |(kind, completed), points|
+        next if before_bonuses.key?([kind, completed]) || points.zero?
+        message = if kind == :row
+          _("%{player} earns %{points} bonus points for completing %{category}.") % {
+            player: participant_name(player), points: points, category: category_label(completed)}
+        else
+          _("%{player} earns %{points} bonus points for completing column %{column}.") % {
+            player: participant_name(player), points: points, column: completed + 1}
+        end
+        entries << HistoryEntry.new(key: "bonus:#{event_id}:#{kind}", event_id: event_id, actor: player, kind: :bonus, text: message)
+      end
+      lost = before_bonuses.values.sum - bonuses.values.sum
+      if lost.positive?
+        entries << HistoryEntry.new(key: "bonus:#{event_id}:lost", event_id: event_id, actor: player, kind: :bonus,
+          text: _("%{player} loses %{points} bonus points.") % {player: participant_name(player), points: lost})
+      end
+      entries
+    end
 
     def category_value(match, category, dice, rolls)
       result = match.preview(category, dice: dice, rolls: rolls)

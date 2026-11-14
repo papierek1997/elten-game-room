@@ -12,6 +12,7 @@ module GameRoomGames
     GameRoomServerRandom.register("balut", ["roll"])
 
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
+      return 'cht-bank' if event['action'] == 'score'
       dice = after_replay&.state&.fetch(:dice, [])
       return ["roll", "win1"] if event["action"] == "roll" && dice&.size == 5 && dice.none?(&:nil?) && dice.uniq.one?
 
@@ -43,9 +44,17 @@ module GameRoomGames
           next unless apply_roll(state, event, player, repository, history)
         when "score"
           category = BalutScoring::CATEGORIES.find { |c| c.to_s == event["value"] }
+          before_points = total_score(state, player)
           next unless state[:turn_rolls].positive? && category && BalutScoring.record(sheets[player], category, state[:dice])
           history << HistoryEntry.new(key: "score:#{key}", event_id: key, actor: player, kind: :score,
-            text: "#{participant_name(player)}: #{category_label(category)}, #{sheets[player][category].last}.")
+            text: _("%{player} records %{score} in %{category}, entry %{entry}.") % {
+              player: participant_name(player), score: sheets[player][category].last,
+              category: category_label(category), entry: sheets[player][category].size})
+          points = total_score(state, player)
+          if points != before_points
+            history << HistoryEntry.new(key: "points:#{key}", event_id: key, actor: player, kind: :score,
+              text: _("%{player}: game points: %{points}.") % {player: participant_name(player), points: points})
+          end
           state[:current_player] = players.rotate(players.index(player) + 1).find { |p| !BalutScoring.result(sheets[p]) }
           state[:turn_rolls] = 0
           state[:dice] = Array.new(5)

@@ -745,6 +745,23 @@ module GameRoomChangelog
         "Replay names and perspectives follow player replacements during the game. Improved validation of saved games and imported histories.",
         "Fixed handling of expired table notifications and cleanup of table voice channels whose creation was not confirmed."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.5",
+      build: 268,
+      changes: [
+        "Added Dice General and Balut: two five-dice games with different score sheets and bonuses.",
+        "Added Billiards, with pool, snooker, English billiards and carom variants, spoken aiming and sounds of ball contacts.",
+        "Added Cash Auction: bid for questions from selected quiz sets and try your luck with black chests.",
+        "Added French Tarot, a four-player card game in which the declarer plays against three defenders.",
+        "Added Backgammon, with several variants, an optional doubling cube and matches played to a chosen score.",
+        "You can set a display name in General settings. Player lists and history use the full name, while game announcements use the first name.",
+        "In Krowa, Ctrl+B proposes the word from the answer field for the Polish dictionary. Ctrl+Shift+B proposes the last word rejected as unknown. Proposals go to the Power Games forum for review. The Polish noun list has also been expanded.",
+        "Improved handling of unrecognised Braille input and typing mistakes in Typoholism.",
+        "Reorganised and edited the README in all five languages. Game rules remain in the separate rulebooks.",
+        "Reduced unnecessary background work while Power Games is idle.",
+        "Many thanks to guliwer, paulinux, postukujący and turekcom (Grzegorz Turek) for the new games and other contributions!"
+      ].freeze
     ).freeze
   ].freeze
 

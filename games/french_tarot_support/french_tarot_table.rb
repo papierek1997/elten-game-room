@@ -115,6 +115,22 @@ module GameRoomGames
       super
     end
 
+    def move_error_for(status, selection: nil, replay: nil, actor: nil)
+      state = replay&.state
+      return super unless state && selection && same_user?(replay.current_player, actor)
+      card = FrenchTarotCards::DECODED[selection['card']]
+      return super unless card && hand_for(state, actor).include?(selection['card'])
+      if status == :invalid && state[:phase] == :discard
+        return _("Kings and the three oudlers cannot be discarded.") if card.last == 14 && card.first != :trump || FrenchTarotScoring.oudler?(card)
+        if card.first == :trump && !discardable_cards(state, actor).include?(selection['card'])
+          return _("Discard an ordinary suited card while you still have one that can be discarded.")
+        end
+      elsif status == :must_follow_suit
+        return tarot_play_error(state, actor)
+      end
+      super
+    end
+
     def legal_actions(replay, actor, context: nil)
       state = replay.state
       return super unless state[:phase] == :discard
@@ -139,6 +155,21 @@ module GameRoomGames
     end
 
     protected
+
+    def tarot_play_error(state, actor)
+      cards = hand_for(state, actor).filter_map { |value| FrenchTarotCards::DECODED[value] }
+      lead = table_cards(state).map { |value| FrenchTarotCards.decode(value) }.find { |card| card.first != :excuse }&.first
+      if lead && lead != :trump && cards.any? { |card| card.first == lead }
+        labels = {clubs: _("clubs"), diamonds: _("diamonds"), hearts: _("hearts"), spades: _("spades")}
+        return _("You must follow %{suit}.") % {suit: labels.fetch(lead)}
+      end
+      highest = table_cards(state).filter_map { |value| card = FrenchTarotCards::DECODED[value]; card.last if card.first == :trump }.max
+      if highest && cards.any? { |suit, rank| suit == :trump && rank > highest }
+        _("You must play a trump higher than %{rank}.") % {rank: highest}
+      else
+        _("You must play a trump.")
+      end
+    end
 
     def round_information_text(state)
       return super unless state[:taker]

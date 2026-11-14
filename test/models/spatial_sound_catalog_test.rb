@@ -25,7 +25,7 @@ position = ->(id, action) do
   GameRoomSpatialSound.event_position(program, catalog.build(id), {"action" => action, "actor" => "Bob"},
     replay, replay, repository, "Alice", {})
 end
-%w[go/place liars_dice/bid liars_dice/challenge roulette/bet cash_auction/bid cash_auction/all_in cash_auction/pass].each do |path|
+%w[go/place liars_dice/bid liars_dice/challenge roulette/bet cash_auction/bid cash_auction/all_in cash_auction/pass backgammon/roll backgammon/move].each do |path|
   assert(position.call(*path.split("/")), "#{path}: player action lost its seat")
 end
 %w[bingo/draw liars_dice/deal roulette/spin cash_auction/wheel cash_auction/auction_start cash_auction/question cash_auction/answer].each do |path|

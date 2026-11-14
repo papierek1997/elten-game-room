@@ -67,6 +67,7 @@ module GameSurfaces
     :header,
     :cells,
     :row_origin, :row_actions, :hide_coordinates, :shortcuts, :move_actions, :forced_origin, :selection_epoch,
+    :origin_error, :destination_error, :selection_message, :clear_selection_on_error,
     keyword_init: true
   )
 
