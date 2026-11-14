@@ -33,6 +33,7 @@ repo = DartsRepository.new
 
 assert(game.id == 'darts' && game.minimum_players == 1 && game.maximum_players == 8, 'Darts identity or roster limits changed')
 assert(game.supports_bots? && game.background_client? && game.audio_game?, 'Darts lacks its declared runtime capabilities')
+assert(game.paced_event_presentation?, 'Darts bot turns can overtake the audible throw presentation')
 assert(game.default_options == {'mode'=>'game', 'difficulty'=>'normal', 'rounds'=>3, 'progressive'=>false,
   'time_limit'=>10, 'timeout_result'=>'auto', 'mouse_input'=>false, 'bot_delay'=>1}, 'Darts defaults changed')
 assert(game.options_error(game.default_options.merge('mode'=>'training'), player_count: 2), 'multiplayer training was accepted')
@@ -53,7 +54,16 @@ started = game.replay(session, [start], repo)
 assert(started.state[:phase] == :playing && started.current_player == 'Alice' && started.state[:seed] == 'a' * 32,
   'durable seed did not start the match')
 assert(game.throw_prompt_text(started) == 'Round 1 throw 1', 'Darts does not expose the concise round and throw prompt')
-assert(game.surface_spec(started, 'Alice').header == 'Round 1 throw 1', 'active Darts playfield lost its repeatable stage label')
+assert(game.surface_spec(started, 'Alice').header == 'Round 1 throw 1 player Alice',
+  'active Darts playfield does not identify the current player')
+assert(game.surface_spec(started, 'Watcher').header == 'Round 1 throw 1 player Alice',
+  'observed Darts playfield does not identify the current player')
+own_turn = game.game_shortcuts(started, 'Alice').find { |shortcut| shortcut.key == 't' }
+observed_turn = game.game_shortcuts(started, 'Watcher').find { |shortcut| shortcut.key == 't' }
+assert(own_turn&.message == 'It is your turn.' && observed_turn&.message == "It is Alice's turn.",
+  'T does not identify the current Darts player before aiming begins')
+stage = game.event_presentation_stages({'action'=>'darts_throw'}, repo, started, started, 'Alice').first
+assert(stage[:wait_for_client] && stage[:wait_for_sounds], 'Darts throw did not join the shared presentation queue')
 
 events = [start]
 3.times do |index|

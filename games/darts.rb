@@ -22,8 +22,9 @@ module GameRoomGames
     def supports_bots?; true; end
     def background_client?; true; end
     def audio_game?; true; end
+    def paced_event_presentation?; true; end
     def precise_action_clock?; true; end
-    def shortcut_features; []; end
+    def shortcut_features; [:turn]; end
     def personal_settings_label; _('Darts settings'); end
     def personal_settings_action; :show_darts_settings; end
 
@@ -74,7 +75,7 @@ module GameRoomGames
 
     def build_client(program, **services)
       require_relative '../lib/darts/client'
-      GameRoomDarts::Client.new(program, self, **services.slice(:clock, :mouse, :audio))
+      GameRoomDarts::Client.new(program, self, **services.slice(:clock, :mouse, :audio, :channel_factory))
     end
 
     def replay(session, events, repository)
@@ -195,7 +196,7 @@ module GameRoomGames
       return nil if replay.finished?
 
       active = same_user?(viewer, replay.current_player)
-      header = active ? throw_prompt_text(replay) : _('Darts playfield')
+      header = replay.current_player ? throw_status_text(replay) : _('Darts playfield')
       GameSurfaces::DartsSpec.new(game_id: id, header: header,
         players: replay.players.map { |player| participant_name(player) },
         viewer: player_index(replay.players, viewer), current_player: player_index(replay.players, replay.current_player),
@@ -207,6 +208,22 @@ module GameRoomGames
 
     def throw_prompt_text(replay)
       _('Round %{round} throw %{dart}') % {round: replay.state[:round], dart: replay.state[:dart]}
+    end
+
+    def throw_status_text(replay)
+      _('Round %{round} throw %{dart} player %{player}') % {
+        round: replay.state[:round], dart: replay.state[:dart], player: participant_name(replay.current_player)
+      }
+    end
+
+    # The local client owns the complete audible throw sequence. Keep the
+    # shared presentation queue busy until its flight, impact, score cue and
+    # announcement have completed; this also prevents a controlling host from
+    # submitting the next bot throw ahead of the result currently being heard.
+    def event_presentation_stages(event, _repository, _before, _after, _viewer)
+      return nil unless event['action'].to_s == 'darts_throw'
+
+      [{descriptions: [], wait_for_client: true, wait_for_sounds: true}]
     end
 
     def custom_game_shortcuts(replay, viewer)

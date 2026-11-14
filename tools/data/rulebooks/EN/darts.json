@@ -21,6 +21,7 @@
       "title": {"en": "Finding the centre by sound"},
       "paragraphs": [
         {"en": "The aiming sound moves left and right in stereo. Its pitch and volume describe distance from the centre: it becomes higher and stronger as you get closer, and lower and softer as you move away. This relationship is the same in every direction."},
+        {"en": "At a multiplayer table, the other players and observers hear the active player's moving aiming sound live. Each listener uses their own selected aiming sound. This is only a temporary audio view: the saved throw and score still come from the normal game event, and an interrupted transmission silences the remote cursor instead of leaving it at an old position."},
         {"en": "Every arrow press moves the cursor by a slightly different distance. After a correction it stays steadier for a short time, then continues to drift, usually outwards. The drift becomes faster near the valuable centre, so listening and timing matter more than repeating a fixed sequence of keys."},
         {"en": "A wooden cue marks the edge of the circular target. You can still move in the square playfield outside it, but a dart thrown there scores nothing. A different metallic cue means that the cursor has reached the outer limit and cannot move farther in that direction."}
       ]
@@ -46,7 +47,8 @@
       "title": {"en": "Difficulty and match options"},
       "paragraphs": [
         {"en": "Easy, normal and hard difficulty change the cursor's correction accuracy, how long it remains steady after a correction and how quickly it drifts. Progressive difficulty begins easy, changes to normal and finishes hard as the selected rounds pass."},
-        {"en": "A match can last 1, 3, 5 or 10 rounds. You can separately choose the time for one dart and what happens when it expires."}
+        {"en": "A match can last 1, 3, 5 or 10 rounds. You can separately choose the time for one dart and what happens when it expires."},
+        {"en": "Optional relative mouse control can be enabled before play. Mouse movement then corrects the cursor and the left button performs the same start or throw action as Space."}
       ]
     },
     {
@@ -64,6 +66,7 @@
         {"en": "Space: start aiming or throw after the ready cue."},
         {"en": "Arrows: correct the audio cursor."},
         {"en": "S: read the scores."},
+        {"en": "T: read whose turn it is."},
         {"en": "C: repeat the current sector in Sound training."},
         {"en": "Ctrl+P: open personal Darts settings and choose one of the three aiming sounds."},
         {"en": "Optional mouse control: relative movement corrects the cursor and the left button starts aiming or throws. Enable it in the table settings before play."}
@@ -77,6 +80,6 @@
     "progressive": "options",
     "time_limit": "time",
     "timeout_result": "time",
-    "mouse_input": "controls"
+    "mouse_input": "options"
   }
 }

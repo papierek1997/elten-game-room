@@ -65,8 +65,10 @@ after = DartsPresentationReplay.new(true, 'Alice', %w[Alice Bob], {throw_index: 
 event = {'__id' => 1, 'action' => 'darts_throw', 'value' => '0:300:0:500:m'}
 score = GameRoomDarts::Scoring.points(300, 0)
 
-client.event(event, before, after, 'Bob', DartsPresentationRepository.new)
+remote_playback = client.event(event, before, after, 'Bob', DartsPresentationRepository.new)
 assert(audio.calls == [:throw], 'a remote throw did not start with its release cue')
+assert(remote_playback.respond_to?(:finished?) && !remote_playback.finished?,
+  'shared presentation queue cannot wait for the Darts result')
 assert(client.presents_game_event?(event) && client.presents_game_result?(after),
   'shared speech can reveal a delayed Darts result early')
 assert(client.presentation_pending?, 'finished view was exposed before the delayed throw presentation')
@@ -102,6 +104,7 @@ assert(client.presentation_pending?, 'result recording tail was shortened')
 now = 1.86
 client.frame
 assert(!client.presentation_pending?, 'finished view remained deferred after the audible result ended')
+assert(remote_playback.finished?, 'Darts did not release the shared queue after the audible result')
 
 local_audio = DartsPresentationAudio.new
 local = GameRoomDarts::Client.new(Object.new, DartsPresentationGame.new, clock: clock,
