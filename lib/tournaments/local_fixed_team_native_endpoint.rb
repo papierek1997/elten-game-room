@@ -197,19 +197,14 @@ module GameRoomTournaments
             next @endpoint.detached({'entry' => entry, 'seq' => entry['seq']})
           end
           creation = core['entries'].empty? && value['kind'] == 'room_created'
-          prefix = core['entries'].take_while { |row| %w[room_created room_profile].include?(row.dig('packet', 'kind')) }
-          profile = !prefix.empty? && prefix.size == core['entries'].size &&
-            core['owner'] == @endpoint.user && value.keys.sort == %w[actor data kind version] &&
-            value['version'] == 2 && value['kind'] == 'room_profile' && value['data'].is_a?(Hash) &&
-            value['data'].keys == ['display_name'] && value['data']['display_name'].is_a?(String) &&
-            GameRoomParticipants.normalize_display_name(value['data']['display_name']) == value['data']['display_name']
+          prefix = core['entries'].take_while { |row| row.dig('packet', 'kind') == 'room_created' }
           start = @endpoint.instance_variable_get(:@start_target) == id && core['owner'] == @endpoint.user &&
             [[prefix.size, 'room_state'], [prefix.size + 1, 'game_started']].include?([core['last_seq'], value['kind']])
           target = @endpoint.instance_variable_get(:@move_target)
           move = target && target[:native_uuid] == id && target[:after] == core['last_seq'] &&
             value['kind'] == 'game_action' && value.dig('data', 'session_id') == target[:session_id] &&
             value.dig('data', 'controller').equal?(false)
-          unless (creation || profile || start || move) && value['actor'] == @endpoint.user
+          unless (creation || start || move) && value['actor'] == @endpoint.user
             raise C::Blocked, :local_create_only
           end
           raise C::Blocked, :native_limits if JSON.generate(value).bytesize > core['stack_entry_bytes']

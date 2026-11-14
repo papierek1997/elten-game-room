@@ -301,9 +301,8 @@ module GameRoomScreens
     attr_reader :table_watch_baseline
 
     def initialize(values, games:, program: nil, preset_editor: nil, preset_writer: nil,
-      table_watch_available: true, table_watch_loader: nil, alert: nil)
+      table_watch_available: true, table_watch_loader: nil)
       @program = program
-      @display_name_alert = alert || ->(message) { raise ArgumentError, message }
       @values = values.to_h
       @games = games.to_a
       @hrtf_games = @games.select { |game| game[:spatial_audio] == true }
@@ -362,9 +361,6 @@ module GameRoomScreens
       save_button = Button.new(_("Save"))
       cancel_button = Button.new(_("Cancel"))
 
-      display_name = EditBox.new(GameRoomContent.utf8(_("Display name")), text: @values["display_name"].to_s)
-      display_name.add_tip(GameRoomContent.utf8(_("Leave empty to use your ELTEN login. Your full name is shown in lists and history; current game actions use the first name.")))
-
       background_speech = CheckBox.new(GameRoomContent.utf8(_("Read table messages outside the table window")),
         checked: setting_enabled?("background_table_speech"))
       background_turn = CheckBox.new(GameRoomContent.utf8(_("Play a sound for my turn outside the table window")),
@@ -390,7 +386,7 @@ module GameRoomScreens
         writer: @preset_writer) if @preset_editor && @preset_writer
 
       groups = [
-        [display_name, primary_language, known_languages, background_speech, background_turn, background_sounds],
+        [primary_language, known_languages, background_speech, background_turn, background_sounds],
         [lobby_games, created, joined, left, computers],
         [invitation_policy, watched_games, watched_contacts, invitation_blacklist],
         hrtf + volume_fields.values + background_fields.values.flatten,
@@ -446,8 +442,6 @@ module GameRoomScreens
           presets.edit
           next
         end
-        next unless validate_display_name(display_name, sections: sections,
-          form: form, refresh_section: refresh_section)
         action = :save
         form.resume
       end
@@ -457,8 +451,7 @@ module GameRoomScreens
 
       # Assignments are independent, immediately saved operations. Returning
       # an opening-time copy here could undo them when Settings is accepted.
-      result = @values.reject { |key, _| %w[table_presets table_watch_games].include?(key) }.merge(hrtf_values(*hrtf)).merge({
-        "display_name" => GameRoomParticipants.normalize_display_name(display_name.text),
+      result = @values.reject { |key, _| %w[table_presets table_watch_games display_name].include?(key) }.merge(hrtf_values(*hrtf)).merge({
         "interface_language" => languages.fetch(primary_language.index).fetch(:id),
         "background_table_speech" => background_speech.checked,
         "background_turn_sound" => background_turn.checked,
@@ -491,16 +484,6 @@ module GameRoomScreens
     end
 
     private
-
-    def validate_display_name(field, sections:, form:, refresh_section:)
-      return true if GameRoomParticipants.normalize_display_name(field.text)
-      @display_name_alert.call(GameRoomContent.utf8(_("Enter a single-line display name of at most 64 characters.")))
-      sections.index = 0
-      refresh_section.call
-      form.index = form.fields.index(field)
-      field.focus
-      false
-    end
 
     def background_music_controls
       backgrounds = GameRoomPreferences.background_music(@values)

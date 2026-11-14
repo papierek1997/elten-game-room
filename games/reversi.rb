@@ -92,7 +92,7 @@ module GameRoomGames
 
     def surface_spec(replay, viewer)
       cells = replay.board.map do |row|
-        row.map { |marker| marker == nil ? "" : _("%{player}'s disc") % { player: participant_short_name(replay.players[marker]) } }
+        row.map { |marker| marker == nil ? "" : _("%{player}'s disc") % { player: participant_name(replay.players[marker]) } }
       end
       GameSurfaces::GridSpec.new(width: SIZE, height: SIZE, header: game_field_header(replay, viewer), cells: cells, row_origin: :bottom)
     end

@@ -120,7 +120,7 @@ class GameRoomReplayCache
   # Reducer checkpoints precede any presentation-only pending transitions.
   # A historical view may be read without evicting the longer current prefix.
   def reduce(input, context:, identities: [])
-    key = Digest::SHA256.digest(Marshal.dump([input.session, input.players, context, GameRoomParticipants.names_revision])).freeze
+    key = Digest::SHA256.digest(Marshal.dump([input.session, input.players, context])).freeze
     entry, ticket = @lock.synchronize { [@entry, @generation += 1] }
     count = input.events.length
     prefix = 0

@@ -78,10 +78,6 @@ class GameRoomLiveSessionStore
       return false if sender.to_s.empty? || !kind.is_a?(String) || !nonempty_text?(actor) || !data.is_a?(Hash)
 
       case kind
-      when "room_profile"
-        same_user?(sender, actor) && actor.length <= 64 && GameRoomParticipants.human?(actor) &&
-          data.keys == ['display_name'] && data['display_name'].is_a?(String) &&
-          GameRoomParticipants.normalize_display_name(data['display_name']) == data['display_name']
       when "room_created"
         return false if !same_user?(sender, owner) || !same_user?(actor, owner)
 

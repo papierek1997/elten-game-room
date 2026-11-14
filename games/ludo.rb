@@ -337,7 +337,7 @@ module GameRoomGames
     def display_player(state, name)
       index = player_index(state[:players], name)
       mode = board_presentation_preferences.to_h.fetch('player_labels', 'names')
-      mode == 'colours' && index != nil ? player_colour(index) : participant_short_name(name)
+      mode == 'colours' && index != nil ? player_colour(index) : participant_name(name)
     end
 
     def full_player(state, name)

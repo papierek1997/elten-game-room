@@ -37,11 +37,9 @@ changed = C.copy(first_target['readback'])
 end
 # Shape, wewnętrzna zgodność core i natywny konsument nadal są legalne.
 owner = operation['request']['players'].find { |person| person['account'] == operation['actor'] }
-# Validate the same authenticated cosmetic projection used by build, while
-# retaining the complete, unmodified readback for the exact-target refusal.
-structural = C.copy(changed)
-T::FixedTeamBoundTarget.send(:normalize_presentation_metadata!, structural, operation['request'], operation)
-T::FixedTeamBoundTarget.send(:validate_readback!, structural, owner, capacity: operation['request']['players'].size)
+# The complete readback remains structurally legal, but belongs to another
+# exact native target. There is no cosmetic profile projection to strip.
+T::FixedTeamBoundTarget.send(:validate_readback!, changed, owner, capacity: operation['request']['players'].size)
 game = REGISTRY.build('spades')
 assert_equal(options, game.options_for_team_roster(game.new_game_options(options), players: other['native']['players']))
 assert(game.prepared_team_assignment(options, players: other['native']['players']))

@@ -188,7 +188,6 @@ class GameRoomEventPresenter
     # owns its automatic announcement (also after serialized sound playback).
     result = @game.call.result_text(after_replay) if after_replay != nil
     descriptions = descriptions.reject { |text| GameRoomContent.utf8(text) == GameRoomContent.utf8(result) } if result != nil
-    descriptions = descriptions.map { |description| short_live_names(description, event, description_replay) }
     tail = @game.call.event_speech_tail_sound(event: event, before_replay: before_replay,
       after_replay: after_replay, viewer: @viewer.call)
     if tail && !descriptions.empty?
@@ -226,13 +225,7 @@ class GameRoomEventPresenter
     return if turn_entry == nil
 
     message = @game.call.turn_announcement(replay, @viewer.call)
-    @speech.call(short_live_names(message, nil, replay)) if !message.to_s.empty?
-  end
-
-  def short_live_names(message, event, replay)
-    return message unless replay
-    protected = event ? @game.call.live_name_protected_texts(event, @repository.call, replay, @viewer.call) : []
-    GameRoomParticipants.shorten_announcement(message, participants: replay.players, protected_texts: protected)
+    @speech.call(message) if !message.to_s.empty?
   end
 
   def present_initial_decision(replay)

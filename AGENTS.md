@@ -41,6 +41,10 @@ existing creator-text protection and source restrictions intact.
   Encryption protects the ordinary view, not against a modified client.
 - Preserve both stale-closure guards, participant epochs, immutable history,
   reconciliation of uncertain writes and protection of private phases.
+- Show human participants under their complete ELTEN account names everywhere,
+  including live speech and invitations. Ignore former custom aliases, even
+  from saved settings or remote metadata. The participant-name formatter only
+  decodes bot labels; do not restore name profiles or first-name shortening.
 - New games use one production rule reducer. Complete-round and bot tests must
   drive that reducer, not a parallel Round/Match model unused by the table.
   Private trick/discard audits must actually gate scoring; native ownership
@@ -735,7 +739,7 @@ and `docs/PRIVATE_STATE.md`:
   ask about removal only after persistent import succeeds. Preserve the delivery
   journal on an uncertain send and reconcile rather than duplicate it.
   The header describes the starting participants; same-session replacements
-  belong in the current frame roster using the same participant display names.
+  belong in the current frame roster using account names and existing bot labels.
   Validate an explicit roster against the fixed seat count before rendering.
   Information, context actions and perspective labels follow that frame while
   preserving the listening seat. Refresh native controls quietly on their own

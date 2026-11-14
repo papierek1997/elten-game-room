@@ -77,9 +77,8 @@ module GameRoomTournaments
         'resume_save_id' => '', 'statistics_room_id' => uuid, 'table_id' => Publication::MAX_INTEGER}
       room = metadata.slice('created_at', 'game', 'game_options', 'name', 'owner').merge(
         'bot_count' => 0, 'bot_names' => [], 'max_players' => match_capacity(request), 'status' => 'waiting')
-      display_name = GameRoomParticipants.local_display_name
       discovery = metadata.reject { |key, _| key == 'statistics_room_id' }.merge(room.slice('bot_count', 'max_players', 'status'))
-        .merge('player_count' => 1, 'owner_display_name' => display_name)
+        .merge('player_count' => 1)
       table = room.merge('player_count' => 1, 'private' => true, 'resume_save_id' => '', 'id' => Publication::MAX_INTEGER,
         '__id' => Publication::MAX_INTEGER, '__insertion_user' => owner, '__live_session_id' => uuid,
         '__statistics_room_id' => uuid, '__discovery_protocol' => GameRoomLiveSessionStore::CURRENT_DISCOVERY_PROTOCOL,
@@ -87,11 +86,6 @@ module GameRoomTournaments
       stack = [{'created_at' => Publication::MAX_INTEGER, 'message_id' => uuid,
         'packet' => {'version' => 2, 'kind' => 'room_created', 'actor' => owner, 'data' => room},
         'sender' => {'user' => owner}, 'sender_id' => uuid, 'seq' => 1}]
-      unless display_name.empty?
-        stack << {'created_at' => Publication::MAX_INTEGER, 'message_id' => 'ffffffff-ffff-4fff-bfff-fffffffffffe',
-          'packet' => {'version' => 2, 'kind' => 'room_profile', 'actor' => owner, 'data' => {'display_name' => display_name}},
-          'sender' => {'user' => owner}, 'sender_id' => uuid, 'seq' => 2}
-      end
       {'metadata' => metadata, 'discovery' => discovery, 'table' => table, 'visibility' => 'private',
         'participants' => {owner.downcase => {'id' => uuid, 'user' => owner}}, 'stack' => stack, 'game_instance' => nil}
     end
@@ -101,7 +95,7 @@ module GameRoomTournaments
       uuid = table['__live_session_id']
       args = {'metadata' => readback['metadata'], 'discovery_metadata' => readback['discovery'],
         'capacity' => table['max_players'], 'visibility' => 'private',
-        'participant_metadata' => {'client' => 'elten_game_room', 'table_id' => table['__id'], 'display_name' => readback['discovery'].fetch('owner_display_name', '')},
+        'participant_metadata' => {'client' => 'elten_game_room', 'table_id' => table['__id']},
         'stack_entries' => GameRoomLiveSessionStore::STACK_ENTRIES, 'stack_entry_bytes' => GameRoomLiveSessionStore::STACK_ENTRY_BYTES,
         'pool_count' => 1, 'private_messages' => true}
       core = args.slice('metadata', 'discovery_metadata', 'capacity', 'visibility', 'stack_entries', 'stack_entry_bytes').merge(

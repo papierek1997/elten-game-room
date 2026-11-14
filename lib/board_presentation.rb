@@ -3,7 +3,7 @@ require_relative "game_room_localization"
 module GameRoomBoardPresentation
   using GameRoomLocalization::Translations
   def board_owner_label(replay, marker)
-    marker == nil ? "" : participant_short_name(replay.players[marker])
+    marker == nil ? "" : participant_name(replay.players[marker])
   end
 
   def board_move_text(actor, field)

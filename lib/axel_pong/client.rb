@@ -530,13 +530,13 @@ module GameRoomPong
         # its final speech index; it must not gate the match or extend the
         # ordinary score + SINGLE_SERVE_DELAY deadline for any participant.
         announce_progress(_('%{server} will serve against %{receiver}.') % {
-          server: GameRoomContent.utf8(GameRoomParticipants.short_name(@players[rally_state.rotation.server])),
-          receiver: GameRoomContent.utf8(GameRoomParticipants.short_name(@players[rally_state.rotation.receiver])) })
+          server: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[rally_state.rotation.server])),
+          receiver: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[rally_state.rotation.receiver])) })
       else
         text = if @single_point && @side.nil?
           single_point_spectator_announcement
         else
-          _('%{player} serves.') % { player: GameRoomContent.utf8(GameRoomParticipants.short_name(@players[rally_state.snapshot['server']])) }
+          _('%{player} serves.') % { player: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[rally_state.snapshot['server']])) }
         end
         announce_progress(text)
       end
@@ -546,7 +546,7 @@ module GameRoomPong
     def single_point_spectator_announcement
       _("Watching %{player}. %{server} serves.") % {
         player: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[observer_side])),
-        server: GameRoomContent.utf8(GameRoomParticipants.short_name(@players[rally_state.snapshot['server']]))}
+        server: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[rally_state.snapshot['server']]))}
     end
 
     def peer_service_waiting?

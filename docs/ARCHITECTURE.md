@@ -167,28 +167,13 @@ authorize its own withdrawn answer; it does not authorize other retired nouns.
 Do not replace that whitelist with arbitrary public table text or recalculate
 an existing daily answer after changing the active dictionary.
 
-### Display names
+### Participant names
 
-Human display names are presentation metadata, separate from account identity.
-Native `participant_metadata` carries a name at create/join/accept; later
-`room_profile` stack records accept only the authenticated sender's own actor
-and normalized display name. They are not game actions or control amendments.
-Cold reconstruction can retain a departed player's label without replacing any
-login in rosters, event actors, authorization, invitations, statistics or CAS.
-The existing registry and subscription schemas remain unchanged.
-
-Native public discovery exposes participant IDs/logins, not participant
-metadata. The table owner therefore republishes `owner_display_name` and an
-optional bounded `display_names` roster through existing discovery metadata.
-These labels stay scoped to that public table view and its native roster;
-they never enter the global participant-name directory. Direct participant
-metadata and accepted self-authored profiles take precedence, including an
-explicit empty profile that restores the login. Discovery has no native owner
-identity field, so its claimed owner cannot authorize a global profile change.
-The labels remain within its 1024-byte JSON budget; optional names never evict
-game settings or control anchors. Invitation and
-new-table notification metadata similarly carries `sender_display_name`, while
-the native envelope sender still owns identity checks and notification keys.
+Human labels use the complete ELTEN account name, not a configurable alias.
+The participant formatter only decodes computer-player IDs into their existing
+names. Native membership, discovery, invitations and game records do not publish
+custom human names. Obsolete profile records and alias metadata are ignored;
+there is no separate name directory or profile-publication task.
 
 ### Access to auxiliary tables
 
@@ -551,7 +536,7 @@ the live audio guards later requests at every rally. Playback and navigation
 indexes likewise ignore repeated opening requests in a passive timeline, so
 creating a new renderer after seeking cannot announce another match start.
 The header retains the starting participant names. Each current frame may
-contain its own display-name roster for a same-session participant replacement;
+contain its own participant roster for a same-session participant replacement;
 an explicit roster is validated against the fixed seat count. Playback readouts,
 contextual perspective actions and the native perspective list resolve that
 same current frame, including backward and forward seeking. A quiet keyed list

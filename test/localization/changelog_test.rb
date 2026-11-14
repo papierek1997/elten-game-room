@@ -597,6 +597,14 @@ assert(GameRoomChangelog.pending_entries(nil, 268).map(&:build) == [268], 'first
 assert(GameRoomChangelog.pending_entries(268, 268).empty?, 'build 268 reopens after being read')
 assert(GameRoomChangelog.list_items([entry_268]).first == 'Version 2.0.6.5, build 268', 'build 268 heading differs')
 assert(GameRoomChangelog.available_entries(268).first.equal?(entry_268), 'build 268 is not the newest entry')
+entry_269 = entries.find { |entry| entry.build == 269 }
+assert(entry_269 && entry_269.version == '2.0.6.6' && entry_269.changes.size == 1 &&
+  entry_269.changes.first.include?('Removed custom display names'), 'build 269 has incorrect removal notes')
+assert(GameRoomChangelog.pending_entries(268, 269).map(&:build) == [269], 'build 269 repeats earlier notes')
+assert(GameRoomChangelog.pending_entries(nil, 269).map(&:build) == [269], 'first build 269 launch repeats history')
+assert(GameRoomChangelog.pending_entries(269, 269).empty?, 'build 269 reopens after being read')
+assert(GameRoomChangelog.list_items([entry_269]).first == 'Version 2.0.6.6, build 269', 'build 269 heading differs')
+assert(GameRoomChangelog.available_entries(269).first.equal?(entry_269), 'build 269 is not the newest entry')
 latest = entries.max_by(&:build)
 manifest = JSON.parse(File.read(File.expand_path('../../manifest.json', __dir__)))
 runtime_release = [EltenGameRoom::GAME_ROOM_VERSION, EltenGameRoom::GAME_ROOM_BUILD_ID]

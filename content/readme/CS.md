@@ -299,8 +299,6 @@ Ve výchozím stavu se hry neztlumují. Ztlumení na pozadí nevypíná samostat
 upozornění na tah ani zvuky chatu, pozvánek a změn účastníků.
 Volby platí jak v jiných oknech ELTENu, tak při přechodu do jiného programu.
 
-Do pole Zobrazované jméno můžete zadat jméno a příjmení, nejvýše 64 znaků. Prázdné pole ponechá přihlašovací jméno ELTENu. Celé jméno se ukazuje v lobby, u stolů, v seznamu účastníků, ve výsledcích pod S, v historii a oznámeních. Aktuální akce, rozdání, licitace a názvy figurek používají křestní jméno. Změnu potvrďte tlačítkem Uložit, nebo ji zahoďte tlačítkem Zrušit. Toto jméno vidí i ostatní hráči; přihlašovací jméno, oprávnění a statistiky účtu se nemění. Hráči bez nastaveného nebo dostupného jména se nadále zobrazují pod přihlašovacím jménem.
-
 ### Spojení ve zvukových hrách
 
 Při vytváření stolu Axel Ponga nebo Audio Ballu můžete zapnout „Full P2P“:

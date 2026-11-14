@@ -561,7 +561,7 @@ module GameRoomAudioBall
       return false unless rally_state.engine.warn(data['side']) || (!host? && @side == nil && rally_state.engine.warning)
       presentation_state.warning_key = key
       @clock_reset = true
-      @audio.hurry(GameRoomParticipants.short_name(@players[rally_state.engine.holder]))
+      @audio.hurry(GameRoomParticipants.display_name(@players[rally_state.engine.holder]))
       true
     end
 
@@ -657,8 +657,8 @@ module GameRoomAudioBall
       @announced_service = service
       template = @players.length == 2 ? _('%{player} serves.') : _('%{player} serves to %{receiver}.')
       text = GameRoomContent.utf8(template) % {
-        player: GameRoomContent.utf8(GameRoomParticipants.short_name(@players[server])),
-        receiver: GameRoomContent.utf8(GameRoomParticipants.short_name(@players[receiver]))}
+        player: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[server])),
+        receiver: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[receiver]))}
       if @audio.respond_to?(:announce)
         @audio.announce(text)
       else
