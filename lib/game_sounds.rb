@@ -87,6 +87,7 @@ module GameRoomSounds
     mille_extra_tank
     mille_end_counterflow
     mille_instant_repair
+    duck_memory_bell
     hit1
     hit_ship1
     hit_ship2

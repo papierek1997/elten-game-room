@@ -4,6 +4,7 @@ require_relative "card_game"
 require_relative "four_in_a_row"
 require_relative "tic_tac_toe"
 require_relative "chess"
+require_relative "hearts_support/hearts_table"
 require_relative "french_tarot_support/french_tarot_table"
 require_relative "backgammon"
 require_relative "checkers"
@@ -60,6 +61,7 @@ module GameRoomGames
     GameRoomGames::FourInARow,
     GameRoomGames::TicTacToe,
     GameRoomGames::Chess,
+    GameRoomGames::HeartsTable,
     GameRoomGames::FrenchTarotTable,
     GameRoomGames::Backgammon,
     GameRoomGames::Checkers,
