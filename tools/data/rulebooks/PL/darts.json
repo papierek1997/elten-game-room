@@ -1,0 +1,85 @@
+{
+  "source": "games/darts.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {"pl": "Cel gry"},
+      "paragraphs": [
+        {"pl": "Darts to dźwiękowa gra zręcznościowa dla jednej do ośmiu osób. Naprowadzaj ruchomy dźwięk na środek tarczy i zdobywaj jak najwięcej punktów. W każdej rundzie każdy gracz rzuca trzema lotkami."}
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {"pl": "Wykonanie rzutu"},
+      "paragraphs": [
+        {"pl": "Naciśnij spację, żeby rozpocząć celowanie. Celownik pojawia się w losowym miejscu z dala od środka i od razu zaczyna dryfować. Przez pierwszą sekundę możesz go poprawiać, ale nie możesz jeszcze rzucić. Krótki sygnał gotowości oznacza, że rzut został odblokowany."},
+        {"pl": "Naprowadzaj celownik strzałkami, a po sygnale ponownie naciśnij spację, żeby rzucić. Po dźwięku wypuszczenia lotki usłyszysz jej uderzenie w tarczę, a potem osobny sygnał, którego wysokość odpowiada zdobytym punktom. Następna lotka czeka na kolejne naciśnięcie spacji, więc celowanie nie zaczyna się podczas ogłaszania poprzedniego wyniku."}
+      ]
+    },
+    {
+      "id": "aiming",
+      "title": {"pl": "Odnajdywanie środka po dźwięku"},
+      "paragraphs": [
+        {"pl": "Położenie w poziomie słychać dzięki panoramie stereo. Wysokość i głośność dźwięku wskazują odległość od środka: im bliżej niego jesteś, tym dźwięk jest wyższy i mocniejszy. Gdy się oddalasz, staje się niższy i cichszy. Zależność jest taka sama w każdym kierunku."},
+        {"pl": "Przy stole wieloosobowym pozostali gracze i widzowie na żywo słyszą ruchomy celownik aktywnego gracza. Każda osoba słyszy go za pomocą wybranego przez siebie dźwięku celownika. Jest to tylko tymczasowy odsłuch: zapisany rzut i punkty nadal pochodzą ze zwykłego zdarzenia gry, a przerwanie transmisji wycisza zdalny celownik zamiast pozostawiać go w nieaktualnym miejscu."},
+        {"pl": "Każde naciśnięcie strzałki przesuwa celownik o nieco inną odległość. Po poprawce przez krótki czas utrzymuje on stabilniejszą pozycję, a potem nadal dryfuje, zwykle na zewnątrz. W pobliżu wysoko punktowanego środka dryf przyspiesza, dlatego liczą się słuch i wyczucie chwili, a nie powtarzanie stałej sekwencji klawiszy."},
+        {"pl": "Drewniany sygnał oznacza krawędź okrągłej tarczy. Nadal możesz poruszać się po kwadratowej planszy poza tarczą, ale rzut z tego obszaru daje zero punktów. Inny, metaliczny sygnał oznacza granicę całej planszy; dalej w tym kierunku nie można przesunąć celownika."}
+      ]
+    },
+    {
+      "id": "time",
+      "title": {"pl": "Czas na lotkę"},
+      "paragraphs": [
+        {"pl": "Jeśli włączono limit czasu, trzy niskie sygnały odliczają ostatnie trzy sekundy. Po upływie czasu gra, zależnie od ustawienia stołu, rzuca z bieżącego położenia celownika albo przyznaje zero punktów. Odliczanie zaczyna się dopiero po sygnale gotowości, a nie przy pierwszym naciśnięciu spacji."},
+        {"pl": "Możesz też wyłączyć limit. Wtedy celownik dryfuje do chwili wykonania rzutu."}
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {"pl": "Punktacja i zwycięstwo"},
+      "paragraphs": [
+        {"pl": "Trafienie daje od 1 do 100 punktów zależnie od odległości od środka. Dokładny środek jest wart 100 punktów, a wartość maleje płynnie w stronę krawędzi. Lotka poza okrągłą tarczą daje zero punktów."},
+        {"pl": "Po wybranej liczbie rund wygrywa gracz z największą sumą punktów. Jeśli prowadzi kilka osób z takim samym wynikiem, każda rzuca jedną dodatkową lotką. Kolejne dogrywki po jednym rzucie obejmują tylko nadal remisujących i trwają, aż jedna osoba uzyska najlepszy wynik. W grze jednoosobowej rezultatem jest końcowa suma punktów."}
+      ]
+    },
+    {
+      "id": "options",
+      "title": {"pl": "Poziom trudności i ustawienia rozgrywki"},
+      "paragraphs": [
+        {"pl": "Łatwy, normalny i trudny poziom wpływają na dokładność przesunięć celownika, czas jego stabilniejszego zachowania po poprawce oraz szybkość dryfu. Przy rosnącym poziomie trudności rozgrywka zaczyna się łatwo, następnie przechodzi na poziom normalny, a kończy na trudnym."},
+        {"pl": "Rozgrywka może mieć 1, 3, 5 albo 10 rund. Osobno wybierasz czas na jedną lotkę oraz skutek jego upływu."},
+        {"pl": "Przed rozpoczęciem gry można włączyć opcjonalne względne sterowanie myszą. Ruch myszy poprawia wtedy położenie celownika, a lewy przycisk rozpoczyna celowanie lub wykonuje rzut tak jak spacja."}
+      ]
+    },
+    {
+      "id": "training",
+      "title": {"pl": "Trening dźwięków"},
+      "paragraphs": [
+        {"pl": "Trening dźwięków jest dostępny przy stole jednoosobowym. Celowanie i punktacja pozostają takie same, ale mowa dodatkowo ogłasza zmianę sektora, rozpoczęcie i ostatnie sekundy czasu, obie granice, rzut ręczny lub automatyczny oraz trafienie albo pudło. Klawiszem C możesz powtórzyć bieżący sektor."},
+        {"pl": "Trening nie wyłącza czytnika ekranu. W zwykłej rozgrywce sam celownik pozostaje dźwiękowy, natomiast etykiety interfejsu, punkty i wyniki nadal są wypowiadane."}
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {"pl": "Sterowanie klawiaturą i myszą"},
+      "paragraphs": [
+        {"pl": "Spacja: rozpocznij celowanie albo rzuć po sygnale gotowości."},
+        {"pl": "Strzałki: popraw położenie dźwiękowego celownika."},
+        {"pl": "S: odczytaj wyniki."},
+        {"pl": "T: odczytaj, czyja jest kolej."},
+        {"pl": "C: powtórz bieżący sektor w treningu dźwięków."},
+        {"pl": "Ctrl+P: otwórz osobiste ustawienia Dartsa i wybierz jeden z trzech dźwięków celownika."},
+        {"pl": "Opcjonalne sterowanie myszą: względny ruch poprawia położenie celownika, a lewy przycisk rozpoczyna celowanie lub wykonuje rzut. Włącz tę możliwość w ustawieniach stołu przed rozpoczęciem gry."}
+      ]
+    }
+  ],
+  "option_chapters": {
+    "mode": "training",
+    "difficulty": "options",
+    "rounds": "scoring",
+    "progressive": "options",
+    "time_limit": "time",
+    "timeout_result": "time",
+    "mouse_input": "options"
+  }
+}

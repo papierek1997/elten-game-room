@@ -60,6 +60,85 @@ a statement that the PRs have been merged on GitHub.
 
 ## Sounds
 
+### Darts — dartboard impact
+
+`Audio/darts_hit_1.opus`, `Audio/darts_hit_2.opus`,
+`Audio/darts_hit_3.opus`, `Audio/darts_hit_4.opus` and
+`Audio/darts_hit_5.opus` use the complete Freesound HQ Ogg previews of
+“Dartboard 1.aif” through “Dartboard 5.aif” by **tonnonic**, Freesound
+[332200](https://freesound.org/s/332200/),
+[332199](https://freesound.org/s/332199/),
+[332198](https://freesound.org/s/332198/),
+[332197](https://freesound.org/s/332197/) and
+[332201](https://freesound.org/s/332201/), under
+[CC BY 3.0](LICENSES/CC-BY-3.0.txt). The user supplied the preview and its
+license notices on 13 November 2026. They were converted without trimming,
+normalization, gain or channel changes to Ogg Opus, target 144 kb/s VBR,
+48 kHz, 20 ms frames, audio mode and complexity 10. The author does not
+endorse the application. Preserve this attribution, source link,
+modification notice and license when distributing the recordings.
+
+### Darts — board edge
+
+`Audio/darts_edge.opus` uses “Wood Block.wav” by **jimbo555**, Freesound
+[630492](https://freesound.org/s/630492/), dedicated to the public domain
+under [CC0 1.0](LICENSES/CC0-1.0.txt). The user supplied the Freesound HQ
+Ogg preview and its license notice. The first 4–220 ms were retained to
+remove the long silent tail while preserving the attack, stereo channels
+and source level. It was encoded as Ogg Opus, target 144 kb/s VBR, 48 kHz,
+20 ms frames and audio mode.
+
+### Darts — hard cursor limit
+
+`Audio/darts_limit.opus` uses the complete “SFX_MetalPing-01.wav” recording
+by **Wavewire**, Freesound [837452](https://freesound.org/s/837452/),
+dedicated to the public domain under
+[CC0 1.0](LICENSES/CC0-1.0.txt). The user supplied the copy used as the
+“Słup standardowy” navigation cue in the Budowlańcy project. It was encoded
+without trimming or gain changes as Ogg Opus, target 144 kb/s VBR, 48 kHz,
+20 ms frames and audio mode, preserving both stereo channels. In Darts it
+marks an attempted movement beyond the outer coordinate limit, separately
+from the circular dartboard-edge cue.
+
+### Darts — throwing sound
+
+`Audio/darts_throw.opus` uses the complete Freesound HQ Ogg preview of
+“Axe Throwing Hitting Flesh.wav” by **SoundFlakes**, Freesound
+[492225](https://freesound.org/s/492225/), under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The user
+supplied the preview and its license notice on 13 November 2026. It was
+converted without trimming, normalization, gain or channel changes to Ogg
+Opus, target 144 kb/s VBR, 48 kHz, 20 ms frames, audio mode and complexity
+10. In Darts it is presented as the throw/release sound and followed by a
+separately licensed board-impact recording. The author does not endorse the
+application. Preserve this attribution, source link, modification notice and
+license when distributing the recording.
+
+### Darts — applause
+
+`Audio/darts_applause.opus` uses the complete Freesound HQ Ogg preview of
+“Applause Clapping” by **dersuperanton**, Freesound
+[435877](https://freesound.org/s/435877/), under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The user
+supplied the preview and its license notice on 13 November 2026. It was
+converted without trimming, normalization, gain or channel changes to Ogg
+Opus, target 144 kb/s VBR, 48 kHz, 20 ms frames, audio mode and complexity
+10. The author does not endorse the application. Preserve this attribution,
+source link, modification notice and license when distributing the recording.
+
+### Darts — consolation applause
+
+`Audio/darts_consolation.opus` uses the complete Freesound HQ Ogg preview
+of “Clapping, hands, slap, Four spaced claps close
+up_96Khz_Mono_ZoomH4n_NT5-001.wav” by **MattRuthSound**, Freesound
+[561558](https://freesound.org/s/561558/), under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The user
+supplied the preview and its license notice on 13 November 2026. It was
+converted without trimming, normalization, gain or channel changes to Ogg
+Opus, target 144 kb/s VBR, 48 kHz, 20 ms frames, audio mode and complexity
+10. The author does not endorse the application. Preserve this attribution,
+source link, modification notice and license when distributing the recording.
+
 ### Bouillabaisse — scoring-card cues
 
 `audio/bouillabaisse_rank.opus` and `audio/bouillabaisse_card.opus`

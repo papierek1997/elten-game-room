@@ -51,7 +51,7 @@ catalog.ids.each do |id|
     assert_equal(game, presentation, "#{id}: replaced a custom presentation model")
   end
 end
-assert_equal(%w[audio_ball axel_pong duck_racing krowa mania_pisania scrabble], client_ids.sort)
+assert_equal(%w[audio_ball axel_pong darts duck_racing krowa mania_pisania scrabble], client_ids.sort)
 
 cases = JSON.parse(File.read(File.join(__dir__, '../fixtures/contracts/v1/histories.json'), encoding: 'UTF-8')).fetch('cases')
 cases.reject! { |item| item.fetch('game') == 'tysiac' }
@@ -109,7 +109,7 @@ end
 assert_equal(cash.fetch('events'), cash_game.replay(cash.fetch('session'), cash.fetch('events'), cash_repository).accepted_events,
   'Cash Auction surface coverage must use an accepted native history')
 
-%w[axel_pong audio_ball duck_racing mania_pisania].each do |id|
+%w[axel_pong audio_ball darts duck_racing mania_pisania].each do |id|
   game = catalog.build(id)
   env = GameRoomTest::PrivateSimulation.new_game(game: game, players: %w[Alice Bob])
   %w[Alice Bob Spectator].each { |viewer| inspect_view.call(game, env.replay, viewer) }

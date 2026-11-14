@@ -58,7 +58,7 @@ a Escape zamyka dokument.
 
 ## W co można zagrać
 
-Power Games zawiera 52 gier: od karcianek i planszówek po zabawy słowne,
+Power Games zawiera 53 gry: od karcianek i planszówek po zabawy słowne,
 ćwiczenia pisania i gry, w których najważniejsze są słuch i refleks.
 
 - Karcianki: 3-5-8, 99, 1000 mil, Biblios, Blackjack, Bouillabaisse,
@@ -70,7 +70,7 @@ Power Games zawiera 52 gier: od karcianek i planszówek po zabawy słowne,
   Kłamczuch kościany, Kościany Generał, Mexican Train, Poker kościany i Yahtzee.
 - Pozostałe gry losowe: Bingo i Ruletka.
 - Słowa i wiedza: Awantura o kasę, Krowa, Mania pisania, Państwa-miasta, Quiz, Scrabble i Taboo.
-- Gry zręcznościowe audio: Bilard, Axel Pong i Audio Ball.
+- Gry zręcznościowe audio: Bilard, Axel Pong, Audio Ball i Darts.
 
 Żetony używane w grach są wyłącznie wirtualne.
 

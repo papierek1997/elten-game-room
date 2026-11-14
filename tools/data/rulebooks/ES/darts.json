@@ -1,0 +1,85 @@
+{
+  "source": "games/darts.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {"es": "Objetivo"},
+      "paragraphs": [
+        {"es": "Darts es un juego sonoro de puntería para una a ocho personas. Guía el sonido móvil hacia el centro de la diana y consigue tantos puntos como puedas. En cada ronda, cada participante lanza tres dardos."}
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {"es": "Lanzar un dardo"},
+      "paragraphs": [
+        {"es": "Pulsa Espacio para empezar a apuntar. La mira aparece en una posición aleatoria alejada del centro y comienza a desviarse de inmediato. Durante el primer segundo puedes corregirla, pero todavía no puedes lanzar. Una señal breve indica cuándo queda habilitado el lanzamiento."},
+        {"es": "Corrige la mira con las flechas y vuelve a pulsar Espacio después de la señal. Tras el sonido de soltar el dardo oirás el impacto en la diana y otra señal cuya altura representa los puntos obtenidos. El siguiente dardo espera a que vuelvas a pulsar Espacio, por lo que no empieza a apuntar mientras se anuncia el resultado anterior."}
+      ]
+    },
+    {
+      "id": "aiming",
+      "title": {"es": "Encontrar el centro mediante el sonido"},
+      "paragraphs": [
+        {"es": "La posición horizontal se oye mediante el estéreo. El tono y el volumen indican la distancia al centro: cuanto más te acercas, más agudo e intenso se vuelve el sonido; al alejarte, se hace más grave y suave. Esta relación es igual en todas las direcciones."},
+        {"es": "En una mesa multijugador, los demás jugadores y espectadores oyen en directo el movimiento de la mira del jugador activo. Cada oyente utiliza el sonido de mira que haya elegido. Es solo una representación sonora temporal: el lanzamiento y la puntuación guardados siguen procediendo del evento normal del juego, y si se interrumpe la transmisión la mira remota se silencia en vez de quedarse en una posición antigua."},
+        {"es": "Cada pulsación de una flecha desplaza la mira una distancia ligeramente distinta. Después de una corrección se mantiene más estable durante un momento y luego continúa desviándose, normalmente hacia fuera. La deriva se acelera cerca del valioso centro, así que importan la escucha y el momento elegido, no repetir una secuencia fija de teclas."},
+        {"es": "Una señal de madera marca el borde de la diana circular. Puedes seguir moviéndote por la zona cuadrada que queda fuera, pero un dardo lanzado desde allí no puntúa. Otra señal metálica indica el límite exterior de toda la zona de juego; la mira no puede avanzar más en esa dirección."}
+      ]
+    },
+    {
+      "id": "time",
+      "title": {"es": "Tiempo para cada dardo"},
+      "paragraphs": [
+        {"es": "Si hay un límite de tiempo, tres tonos graves cuentan los últimos tres segundos. Cuando se agota, la opción de la mesa hace que se lance desde la posición actual o concede cero puntos. El tiempo comienza después de la señal de preparado, no al pulsar Espacio por primera vez."},
+        {"es": "También puedes jugar sin límite. En ese caso, la mira sigue desviándose hasta que lances."}
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {"es": "Puntuación y victoria"},
+      "paragraphs": [
+        {"es": "Un acierto concede entre 1 y 100 puntos según la distancia al centro. El centro exacto vale 100 puntos y el valor disminuye de forma continua hacia el borde. Un dardo fuera de la diana circular concede cero puntos."},
+        {"es": "Tras el número de rondas elegido, gana quien tenga la suma más alta. Si varias personas empatan en cabeza, cada una lanza un dardo adicional. Los desempates de un solo dardo continúan únicamente entre quienes sigan empatados hasta que una persona obtenga el mejor resultado. En una partida individual, el resultado es la suma final."}
+      ]
+    },
+    {
+      "id": "options",
+      "title": {"es": "Dificultad y opciones de la partida"},
+      "paragraphs": [
+        {"es": "Las dificultades fácil, normal y difícil cambian la precisión de las correcciones, el tiempo que la mira permanece más estable después de corregirla y la velocidad de la deriva. Con la dificultad progresiva, la partida empieza en fácil, pasa a normal y termina en difícil a medida que avanzan las rondas."},
+        {"es": "La partida puede durar 1, 3, 5 o 10 rondas. El tiempo para cada dardo y lo que ocurre al agotarse se eligen por separado."},
+        {"es": "Antes de jugar se puede activar el control relativo opcional con ratón. El movimiento del ratón corrige entonces la mira y el botón izquierdo inicia la puntería o lanza igual que la tecla Espacio."}
+      ]
+    },
+    {
+      "id": "training",
+      "title": {"es": "Entrenamiento de sonidos"},
+      "paragraphs": [
+        {"es": "El entrenamiento de sonidos está disponible en una mesa individual. La puntería y la puntuación son las mismas, pero la voz también anuncia el cambio de sector, el inicio y los últimos segundos del tiempo, ambos límites, los lanzamientos manuales o automáticos y los aciertos o fallos. Pulsa C para repetir el sector actual."},
+        {"es": "El entrenamiento no desactiva el lector de pantalla. En el modo de juego normal, la propia mira solo se representa con sonidos, mientras que las etiquetas de la interfaz, los puntos y los resultados siguen hablándose."}
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {"es": "Controles de teclado y ratón"},
+      "paragraphs": [
+        {"es": "Espacio: empieza a apuntar o lanza después de la señal de preparado."},
+        {"es": "Flechas: corrige la posición de la mira sonora."},
+        {"es": "S: lee las puntuaciones."},
+        {"es": "T: lee a quién le toca."},
+        {"es": "C: repite el sector actual en el entrenamiento de sonidos."},
+        {"es": "Ctrl+P: abre los ajustes personales de Darts y elige uno de los tres sonidos de puntería."},
+        {"es": "Control opcional con ratón: el movimiento relativo corrige la mira y el botón izquierdo comienza a apuntar o lanza. Actívalo en las opciones de la mesa antes de jugar."}
+      ]
+    }
+  ],
+  "option_chapters": {
+    "mode": "training",
+    "difficulty": "options",
+    "rounds": "scoring",
+    "progressive": "options",
+    "time_limit": "time",
+    "timeout_result": "time",
+    "mouse_input": "options"
+  }
+}

@@ -57,7 +57,7 @@ na další nadpis, Shift+H na předchozí a Escape dokument zavře.
 
 ## Co si můžete zahrát
 
-Power Games obsahuje 52 her: karetní a deskové hry, slovní a vědomostní
+Power Games obsahuje 53 her: karetní a deskové hry, slovní a vědomostní
 hry, procvičování psaní i hry založené na sluchu a postřehu.
 
 - Karetní hry: 3-5-8, 99, 1000 mil, Biblios, Blackjack, Bouillabaisse,
@@ -70,7 +70,7 @@ hry, procvičování psaní i hry založené na sluchu a postřehu.
 - Další hry založené na náhodě: Bingo a Ruleta.
 - Slova a vědomosti: Aukce o peníze, Krowa, Psanománie, Státy a města, Quiz Party,
   Scrabble a Taboo.
-- Zvukové akční hry: Kulečník, Axel Pong a Audio Ball.
+- Zvukové akční hry: Kulečník, Axel Pong, Audio Ball a Šipky.
 
 Žetony ve hrách jsou pouze virtuální.
 

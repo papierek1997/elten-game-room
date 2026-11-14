@@ -1209,6 +1209,7 @@ module GameSurfaces
   require_relative "game_surfaces/pong_surface"
   require_relative "game_surfaces/billiards_surface"
   require_relative "game_surfaces/audio_ball_surface"
+  require_relative "game_surfaces/darts_surface"
   require_relative "game_surfaces/duck_challenge_surface"
   require_relative "game_surfaces/typing_surface"
   require_relative "game_surfaces/pawn_track"
@@ -1458,6 +1459,8 @@ module GameSurfaces
       PongSurface.new(spec, state: state)
     when AudioBallSpec
       AudioBallSurface.new(spec, state: state)
+    when DartsSpec
+      DartsSurface.new(spec, state: state)
     when DuckChallengeSpec
       DuckChallengeSurface.new(spec, state: state)
     when TypingSpec

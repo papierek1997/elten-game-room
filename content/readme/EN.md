@@ -56,7 +56,7 @@ heading, Shift+H to the previous one, and Escape closes the document.
 
 ## What you can play
 
-Power Games includes 52 games, ranging from cards and board games to word
+Power Games includes 53 games, ranging from cards and board games to word
 games, typing practice and games built around listening and quick reactions.
 
 - Card games: 3-5-8, 99, 1000 miles, Biblios, Blackjack, Bouillabaisse,
@@ -68,7 +68,7 @@ games, typing practice and games built around listening and quick reactions.
 - Other games of chance: Bingo and Roulette.
 - Words and knowledge: Cash Auction, Krowa, Typoholism, Countries and cities, Quiz Party,
   Scrabble and Taboo.
-- Audio action games: Billiards, Axel Pong and Audio Ball.
+- Audio action games: Billiards, Axel Pong, Audio Ball and Darts.
 
 Games use virtual chips only.
 
