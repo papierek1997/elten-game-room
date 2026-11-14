@@ -5,6 +5,7 @@ require_relative "game_room_clock"
 require_relative "notification_time"
 require_relative "table_variant"
 require_relative "table_query_snapshot"
+require_relative "game_participants"
 
 # Public interests, not saved games. Identity always comes from the server's
 # immutable insertion author. A forged username can never subscribe somebody.

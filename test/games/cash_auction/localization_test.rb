@@ -27,6 +27,10 @@ Form.option_encoding_driver = GameOptionEncodingFixture.driver(checks)
   state = GameRoomCashAuction::Rules.initial(%w[Alice Bob], options).merge(game_id: 'locale-auction')
   GameRoomCashAuction::Rules.draw!(state, category: 0, chest: false, now: 1000)
   replay = GameRoomGames::Replay.new(players: state[:players], state: state, history: [], accepted_events: [])
+  if language == 'pl'
+    message = game.send(:auction_event_history, {'action'=>'pass'}, 'Alice', 1, state, state, nil).first.text
+    raise 'Bidding was described as skipping a turn' unless message == 'Alice pasuje.'
+  end
   surface = GameSurfaces.build(game.surface_spec(replay, 'Alice'))
   surface.fields.each do |field|
     text = field.respond_to?(:label) ? field.label : field.header

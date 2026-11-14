@@ -41,6 +41,14 @@ existing creator-text protection and source restrictions intact.
   Encryption protects the ordinary view, not against a modified client.
 - Preserve both stale-closure guards, participant epochs, immutable history,
   reconciliation of uncertain writes and protection of private phases.
+- New games use one production rule reducer. Complete-round and bot tests must
+  drive that reducer, not a parallel Round/Match model unused by the table.
+  Private trick/discard audits must actually gate scoring; native ownership
+  evidence alone does not prove follow-suit or legal discard choices.
+- `participant_scores` exposes player-visible units, even when internal scores
+  use half-points. Read the user list, score shortcut and final result together.
+  Validate sound cues, language, quiet refresh and selection retention alongside
+  legal moves; successful startup is not an acceptance test.
 - A valid native card reveal remains evidence even if its associated rule
   move is refused. A strict hand audit must replay that evidence in its original
   chronology separately from accepted moves, and reproduce the exact accepted

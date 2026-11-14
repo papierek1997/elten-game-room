@@ -56,7 +56,7 @@ assert_equal(%w[audio_ball axel_pong duck_racing krowa mania_pisania scrabble], 
 cases = JSON.parse(File.read(File.join(__dir__, '../fixtures/contracts/v1/histories.json'), encoding: 'UTF-8')).fetch('cases')
 cases.reject! { |item| item.fetch('game') == 'tysiac' }
 %w[v2/tysiac v1/mille_bornes v2/bridge v1/mahjong v1/bouillabaisse v1/scopa
-  v1/bingo v1/blackjack v1/blackjack_dice v1/dice_poker v1/go v1/liars_dice v1/roulette v1/billiards].each do |name|
+  v1/bingo v1/blackjack v1/blackjack_dice v1/dice_poker v1/go v1/liars_dice v1/roulette v1/billiards v1/french_tarot v1/backgammon].each do |name|
   cases << JSON.parse(File.read(File.join(__dir__, "../fixtures/contracts/#{name}.json"), encoding: 'UTF-8'))
 end
 

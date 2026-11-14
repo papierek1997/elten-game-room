@@ -6,6 +6,7 @@ class Program
 end
 require_relative "../../__app"
 require_relative "../support/private_simulation"
+require_relative "../support/native_simulation"
 require_relative '../support/catalog_options'
 
 $stdout.sync = true
@@ -19,7 +20,10 @@ EltenGameRoom::GAME_REGISTRY.ids.each do |id|
   options = GameRoomTest::CatalogOptions.for_players(game, bots: game.supports_bots?).merge('bot_delay' => 0)
   count = ([game.minimum_players, 2].max..game.maximum_players).find { |n| !game.validation_error(options, player_count: n) }
   players = %w[Alice Bob Carol Dave Eve Frank Grace Heidi].first(count)
-  env = GameRoomTest::PrivateSimulation.new_game(game: game, players: players, options: options, seed: 137)
+  # Native-only draws need their native metadata and real timestamps, not the
+  # older corpus's event-count clock. Both use the unchanged production reducer.
+  simulation = id == 'cash_auction' ? GameRoomTest::NativeSimulation : GameRoomTest::PrivateSimulation
+  env = simulation.new_game(game: game, players: players, options: options, seed: 137)
   2.times do
     break if env.finished?
     actor = env.active_actor
@@ -37,7 +41,7 @@ EltenGameRoom::GAME_REGISTRY.ids.each do |id|
     boundary = env.events.map { |event| event['id'] }.max.to_i + 1
     session = env.session.merge('__players' => roster, '__initial_players' => players,
       '__seat_changes' => [{'id' => boundary, 'players' => roster}])
-    after = GameRoomTest::PrivateSimulation.new(game: game, session: session,
+    after = simulation.new(game: game, session: session,
       events: Marshal.load(Marshal.dump(env.events)), players: roster,
       random_source: GameRoomRandom::SeededSource.new(241))
     after.instance_variable_set(:@next_event_id, boundary + 1)

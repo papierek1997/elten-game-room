@@ -4,28 +4,89 @@
     {
       "id": "play",
       "title": {
-        "cs": "Francouzský tarot"
+        "cs": "Rozdání a dražba"
       },
       "paragraphs": [
         {
-          "cs": "Čtyři hráči licitují. Nejvyšší nabídka určí hráče, který hraje proti zbývajícím třem. Při Petite a Garde vezměte talon a odložte šest karet. Při Garde sans se talon počítá vydražiteli, při Garde contre obraně."
+          "cs": "Hrají čtyři lidé. Každý dostane 18 karet a dalších šest tvoří talon. Vítěz dražby se stává hlavním hráčem a hraje proti ostatním třem. Stiskněte B, vyberte nabídku šipkami a potvrďte Enterem. Můžete pasovat nebo zvolit vyšší závazek. Pokud všichni pasují, rozdává se znovu."
         },
         {
-          "cs": "Přiznejte barvu, pokud můžete. Jinak zahrajte trumf, pokud ho máte. Je-li to možné, přebijte vyšším trumfem. Excuse můžete zahrát bez ohledu na barvu. Po 18 zdvizích závisí výsledek na získaných bodech a počtu oudlerů."
+          "cs": "Závazky od nejnižšího jsou Petite, Garde, Garde sans a Garde contre. U Petite a Garde všichni uvidí talon, pak jej hlavní hráč vezme a odloží šest karet. Krále ani tři oudlery odložit nelze. Trumfy lze odkládat, jen když již není vhodná běžná karta. Odložené karty se počítají hlavnímu hráči. U Garde sans mu patří body ze zakrytého talonu; u Garde contre je získá obrana."
+        }
+      ]
+    },
+    {
+      "id": "trumps",
+      "title": {
+        "cs": "Hraní zdvihů"
+      },
+      "paragraphs": [
+        {
+          "cs": "Kartu vyberte šipkami a zahrajte Enterem. Do každého zdvihu hraje každý jednu kartu. Musíte přiznat vynesenou barvu, i když někdo již zahrál trumf. Nemáte-li barvu, musíte trumfovat. Vyšší trumf musíte přebít, pokud můžete; jinak zahrajte nižší. Bez barvy i trumfů můžete hrát cokoli. Vyhrává nejvyšší trumf, a není-li žádný, nejvyšší karta vynesené barvy. Vítěz vynáší do dalšího zdvihu."
+        },
+        {
+          "cs": "V barvě je pořadí od nejvyšší karty král, dáma, jezdec, kluk, desítka až eso. Trumf 21 je nejsilnější, trumf 1 neboli Petit nejslabší. Excuse lze zahrát kdykoli a neurčuje vynesenou barvu. Před posledním zdvihem zůstává své straně; získá-li zdvih druhá strana, dostane náhradou půl bodu. V posledním zdvihu patří Excuse vítězi zdvihu."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "cs": "Bodování a konec hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Tři oudlery jsou trumf 1, trumf 21 a Excuse. Každý má hodnotu 4,5 bodu stejně jako král. Dáma má 3,5, jezdec 2,5, kluk 1,5 a ostatní karty půl bodu. Po 18 zdvizích potřebuje hlavní hráč 56 bodů bez oudlerů, 51 s jedním, 41 se dvěma nebo 36 se třemi. Talon se připočte straně určené závazkem."
+        },
+        {
+          "cs": "K absolutnímu rozdílu od potřebného počtu bodů přičtěte 25. Výsledek násobte 1 pro Petite, 2 pro Garde, 4 pro Garde sans nebo 6 pro Garde contre. Při splněném závazku každý obránce tuto částku ztratí a hlavní hráč získá trojnásobek. Při nesplnění se znaménka obrátí. Například 44 bodů při hranici 41 v Garde znamená ztrátu 56 pro každého obránce a zisk 168 pro hlavního hráče."
+        },
+        {
+          "cs": "Ve výchozím nastavení hra končí po jednom odehraném rozdání. Při tvorbě stolu lze změnit počet rozdání nebo nastavit bodový limit; nula daný limit vypne. Jsou-li zapnuté oba, rozhodne první dosažený na konci rozdání. Rozdání se samými pasy se nepočítá. Vyhrává nejvyšší součet, při shodě jde o společné vítězství."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "cs": "Ovládání"
+        "cs": "Klávesnice"
       },
       "paragraphs": [
         {
-          "cs": "Šipkami vyberte nabídku nebo kartu a potvrďte Enterem."
+          "cs": "Šipky: výběr nabídky nebo karty."
+        },
+        {
+          "cs": "Enter: potvrzení nabídky, zahrání nebo odložení vybrané karty."
+        },
+        {
+          "cs": "B: otevření nabídek závazku."
+        },
+        {
+          "cs": "Escape: zavření nabídek závazku."
+        },
+        {
+          "cs": "H: přečtení karet v ruce."
+        },
+        {
+          "cs": "C: přečtení karet na stole."
+        },
+        {
+          "cs": "F: přečtení vynesené barvy."
+        },
+        {
+          "cs": "T: přečtení hráče na tahu."
+        },
+        {
+          "cs": "S: skóre dokončených rozdání."
+        },
+        {
+          "cs": "Shift+S: body z dokončených zdvihů tohoto rozdání; talon se počítá při vyhodnocení."
         }
       ]
     }
   ],
-  "option_chapters": {}
+  "option_chapters": {
+    "round_limit": "scoring",
+    "score_limit": "scoring"
+  }
 }

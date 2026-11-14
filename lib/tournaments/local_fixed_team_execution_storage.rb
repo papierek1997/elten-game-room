@@ -405,21 +405,28 @@ module GameRoomTournaments
         unless (started || core['entries'].eql?(readback['stack'])) &&
             core['owner'] == readback['table']['owner'] && core['capacity'].eql?(execution['request']['players'].size) &&
             core['closed'].equal?(!!execution['result']) &&
-            (started || (core['last_seq'].eql?(1) && core['trimmed_through'].eql?(0) &&
-              core['entries'].size == 1 && core['entries'].first.dig('packet', 'kind') == 'room_created'))
+            (started || (core['last_seq'].eql?(readback['stack'].last['seq']) && core['trimmed_through'].eql?(0) &&
+              core['entries'].size == readback['stack'].size && core['entries'].first.dig('packet', 'kind') == 'room_created'))
           raise Invalid, :sandbox_corrupt
         end
         LocalDispatchInvitations.validate!(execution, core)
         entry = core['entries'].first
-        expected_dedup = [{'key' => [core['owner'], entry['message_id']], 'sequence' => entry['seq']}]
+        expected_dedup = readback['stack'].map { |row| {'key' => [core['owner'], row['message_id']], 'sequence' => row['seq']} }
         raise Invalid, :sandbox_corrupt unless started || core['dedup'].eql?(expected_dedup)
         calls = native['creates'].select { |row| row.is_a?(Hash) && row['native_uuid'] == core['id'] }
         raise Invalid, :sandbox_corrupt unless calls.size == 1
         call = calls.first
         C.fields!(call, %w[native_uuid pid arguments])
         args = call['arguments']
+        participant = args['participant_metadata']
+        expected_participant = {'client' => 'elten_game_room', 'table_id' => readback['table']['__id']}
+        if participant.is_a?(Hash) && participant.key?('display_name')
+          label = participant['display_name']
+          raise Invalid, :sandbox_corrupt unless label.is_a?(String) && GameRoomParticipants.normalize_display_name(label) == label
+          expected_participant['display_name'] = label
+        end
         expected_args = {'metadata' => readback['metadata'], 'discovery_metadata' => readback['discovery'],
-          'visibility' => 'private', 'capacity' => execution['request']['players'].size, 'participant_metadata' => {'client' => 'elten_game_room', 'table_id' => readback['table']['__id']},
+          'visibility' => 'private', 'capacity' => execution['request']['players'].size, 'participant_metadata' => expected_participant,
           'pool_count' => 1, 'private_messages' => true, 'stack_entries' => GameRoomLiveSessionStore::STACK_ENTRIES,
           'stack_entry_bytes' => GameRoomLiveSessionStore::STACK_ENTRY_BYTES}
         unless Data.integer?(call['pid'], 1) && args.eql?(expected_args) &&

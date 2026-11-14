@@ -58,14 +58,14 @@ encabezado, Shift+H al anterior y Escape cierra el documento.
 
 ## A qué puedes jugar
 
-Power Games incluye 50 juegos: cartas, juegos de tablero, palabras
+Power Games incluye 52 juegos: cartas, juegos de tablero, palabras
 y conocimientos, práctica de escritura y juegos basados en el oído
 y los reflejos.
 
 - Cartas: 3-5-8, 99, 1000 millas, Biblios, Blackjack, Bouillabaisse,
-  Bridge, Makao, Picas, Póker, Rummy, Scopa, Mil, UNO, War y Scientific War.
+  Bridge, Tarot francés, Makao, Picas, Póker, Rummy, Scopa, Mil, UNO, War y Scientific War.
 - Tablero y estrategia: Ludo, Cuatro en raya, Go, Tres en raya, Mahjong,
-  Mancala, Monopoly, Reversi, Hundir la flota, Ajedrez, Damas y Carrera de patos.
+  Mancala, Monopoly, Reversi, Hundir la flota, Ajedrez, Backgammon, Damas y Carrera de patos.
 - Dados y dominó: Balut, Blackjack de dados, Cat, head, tail, General de dados,
   Dominó, Farkle, Dados mentirosos, Tren mexicano, Póquer de dados y Yahtzee.
 - Otros juegos de azar: Bingo y Ruleta.

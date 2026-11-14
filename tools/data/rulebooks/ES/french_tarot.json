@@ -4,14 +4,45 @@
     {
       "id": "play",
       "title": {
-        "es": "Tarot francés"
+        "es": "Reparto y subasta"
       },
       "paragraphs": [
         {
-          "es": "Cuatro jugadores pujan. Quien hace la oferta más alta juega contra los otros tres. En Petite y Garde recoge el talón y descarta seis cartas. En Garde sans el talón puntúa para quien ganó la subasta, y en Garde contre para la defensa."
+          "es": "Juegan cuatro personas. Cada una recibe 18 cartas y las seis restantes forman el talón. Quien gana la subasta juega como declarante contra las otras tres. Pulsa B, elige una oferta con las flechas y confírmala con Intro. Puedes pasar o anunciar un contrato superior. Si todos pasan, se vuelve a repartir."
         },
         {
-          "es": "Sigue el palo si puedes. Si no, juega un triunfo si lo tienes. Supera el triunfo más alto si puedes. Puedes jugar la Excuse con cualquier palo de salida. Tras 18 bazas, el contrato se resuelve según los puntos y los oudlers conseguidos."
+          "es": "Los contratos, de menor a mayor, son Petite, Garde, Garde sans y Garde contre. En Petite y Garde todos ven el talón; después el declarante lo recoge y descarta seis cartas. No puede descartar reyes ni los tres oudlers. Solo puede descartar triunfos cuando ya no queden cartas normales aptas. El descarte cuenta para el declarante. En Garde sans también le cuenta el talón sin abrir; en Garde contre cuenta para la defensa."
+        }
+      ]
+    },
+    {
+      "id": "trumps",
+      "title": {
+        "es": "Cómo jugar las bazas"
+      },
+      "paragraphs": [
+        {
+          "es": "Elige una carta con las flechas y juégala con Intro. Todos juegan una carta por baza. Debes asistir al palo de salida si puedes, aunque alguien haya jugado triunfo. Si no tienes ese palo, debes jugar triunfo. Si ya hay un triunfo, supéralo si puedes; en caso contrario juega uno menor. Sin ese palo ni triunfos puedes jugar cualquier carta. Gana el triunfo más alto o, si no hay triunfos, la carta más alta del palo de salida. El ganador sale en la siguiente baza."
+        },
+        {
+          "es": "En cada palo, de mayor a menor: rey, dama, caballo, sota y del diez al as. El triunfo 21 es el más alto y el 1, llamado Petit, el más bajo. La Excusa puede jugarse en cualquier momento y no determina el palo de salida. Antes de la última baza se queda en su bando; si el otro bando gana esa baza, recibe medio punto a cambio. En la última baza, la Excusa pertenece al ganador de la baza."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "es": "Puntuación y final de la partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Los tres oudlers son el triunfo 1, el triunfo 21 y la Excusa. Cada uno vale 4,5 puntos, igual que un rey. Una dama vale 3,5; un caballo, 2,5; una sota, 1,5; y las demás cartas, medio punto. Tras 18 bazas el declarante necesita 56 puntos sin oudlers, 51 con uno, 41 con dos o 36 con los tres. El talón cuenta para el bando indicado por el contrato."
+        },
+        {
+          "es": "Suma 25 a la diferencia absoluta respecto al objetivo y multiplica por 1 en Petite, 2 en Garde, 4 en Garde sans o 6 en Garde contre. Si el declarante cumple, cada defensor pierde esa cantidad y el declarante gana el triple. Si falla, se invierten las ganancias y pérdidas. Por ejemplo, 44 puntos frente a un objetivo de 41 en Garde dan una pérdida de 56 a cada defensor y una ganancia de 168 al declarante."
+        },
+        {
+          "es": "Por defecto se juega un reparto. Al crear la mesa puedes cambiar el límite de repartos o fijar un límite de puntos; cero desactiva ese límite. Si están activos ambos, la partida termina al alcanzar el primero al final de un reparto. Los repartos en los que todos pasan no cuentan. Gana el total más alto; los empates comparten la victoria."
         }
       ]
     },
@@ -22,10 +53,40 @@
       },
       "paragraphs": [
         {
-          "es": "Elige una oferta o una carta con las flechas y confirma con Intro."
+          "es": "Flechas: elegir una oferta o carta."
+        },
+        {
+          "es": "Enter: confirmar la oferta, jugar una carta o descartarla durante el descarte."
+        },
+        {
+          "es": "B: abrir las opciones de contrato."
+        },
+        {
+          "es": "Escape: cerrar las opciones de contrato."
+        },
+        {
+          "es": "H: leer tu mano."
+        },
+        {
+          "es": "C: leer las cartas de la mesa."
+        },
+        {
+          "es": "F: leer el palo de salida."
+        },
+        {
+          "es": "T: indicar a quién le toca."
+        },
+        {
+          "es": "S: leer los puntos de los repartos terminados."
+        },
+        {
+          "es": "Shift+S: leer los puntos de las bazas terminadas de este reparto; el talón se cuenta al final."
         }
       ]
     }
   ],
-  "option_chapters": {}
+  "option_chapters": {
+    "round_limit": "scoring",
+    "score_limit": "scoring"
+  }
 }

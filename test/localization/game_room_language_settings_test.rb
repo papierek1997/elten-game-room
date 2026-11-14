@@ -46,6 +46,13 @@ def assert(condition, message)
   raise message unless condition
 end
 
+def language_controls(form)
+  ['Primary interface language', 'Known languages'].map do |caption|
+    header = GameRoomLocalization.translate(caption)
+    form.fields.find { |field| field.respond_to?(:header) && field.header == header } || raise("Missing #{caption}")
+  end
+end
+
 def settings_dialog(values = {}, &driver)
   Form.language_settings_driver = driver
   program = Object.new
@@ -60,7 +67,7 @@ end
 settings_dialog do |form|
   assert(form.fields.first.options == ["General", "Lobby messages", "Notification settings", "Sounds", "Widget"],
     "General must contain language and the common background settings")
-  assert(form.fields[2].multiselections.empty?, "known languages must be unchecked by default")
+  assert(language_controls(form).last.multiselections.empty?, "known languages must be unchecked by default")
   mute = form.fields.find { |field| field.respond_to?(:header) && field.header == 'Mute game sounds when switching to another window' }
   assert(mute.options == ['All games', 'Audio games only', 'Do not mute'] && mute.index == 2,
     'Background sound selector has wrong choices/default')
@@ -87,10 +94,11 @@ settings_dialog("interface_language" => "pl", "known_languages" => %w[pl en]) do
   categories.index = 0
   categories.trigger(:move)
   visible = form.fields - form.hidden_controls
-  assert(visible[1..2].map(&:header) == ["Primary interface language", "Known languages"] &&
-    visible[3..4].all? { |control| control.is_a?(CheckBox) },
-    "General must start with language selectors followed by speech and turn cue")
-  primary, known = visible[1..2]
+  primary, known = language_controls(form)
+  offset = visible.index(primary)
+  assert(offset && visible[offset + 1].equal?(known) &&
+    visible[offset + 2, 2].all? { |control| control.is_a?(CheckBox) },
+    "General must group language selectors followed by speech and turn cue")
   assert(primary.instance_variable_get(:@flags) == 0 && known.instance_variable_get(:@flags) == ListBox::Flags::MultiSelection,
     "primary must be single-select and known languages must be native MultiSelection")
   assert(primary.options == ["English", "polski"] && known.options == primary.options,
@@ -106,7 +114,7 @@ settings_dialog("interface_language" => "pl", "known_languages" => %w[pl en]) do
 end
 
 settings_dialog("interface_language" => "pl", "known_languages" => %w[pl en]) do |form|
-  primary, known = form.fields[1..2]
+  primary, known = language_controls(form)
   known.deselect_multiselection_indices([1])
   assert(known.multiselections == [0], "the primary language must be removable from known languages")
   primary.index = 0
@@ -129,7 +137,7 @@ original = {
 }.freeze
 before = Marshal.dump(original)
 saved = settings_dialog(original) do |form|
-  primary, known = form.fields[1..2]
+  primary, known = language_controls(form)
   primary.index = 1
   primary.trigger(:move)
   known.deselect_multiselection_indices([0])
@@ -143,14 +151,14 @@ assert(!saved.key?("table_presets"), "language Save could overwrite independentl
 assert(Marshal.dump(original) == before, "language editing mutated the opening settings")
 assert(GameRoomLocalization.primary_language == "en", "Save changed the active language before restart")
 cancelled = settings_dialog(original) do |form|
-  primary = form.fields[1]
+  primary = language_controls(form).first
   primary.index = 1
   primary.trigger(:move)
   form.cancel_button.trigger(:press)
 end
 assert(cancelled.nil? && Marshal.dump(original) == before, "Cancel persisted staged language choices")
 settings_dialog(saved) do |form|
-  primary, known = form.fields[1..2]
+  primary, known = language_controls(form)
   assert(primary.index == 1 && known.multiselections == [1], "reopening settings lost the saved language choices")
   form.cancel_button.trigger(:press)
 end
@@ -172,7 +180,7 @@ assert(symbolized["interface_language"] == "pl" && symbolized["known_languages"]
 
 language_tip = "Missing translations use other known languages, then English. Close ELTEN completely and start it again to apply language changes; F12 is not enough."
 settings_dialog do |form|
-  form.fields[1..2].each do |control|
+  language_controls(form).each do |control|
     assert(control.language_tips.to_a.include?(language_tip), "language controls do not explain fallback and restart in their help")
   end
   form.cancel_button.trigger(:press)
@@ -210,7 +218,7 @@ codes = languages.map { |language| language.fetch(:id) }
 assert(codes.include?("cs"), "the future-language fixture was not discovered by the real backend")
 czech_index, english_index, polish_index = %w[cs en pl].map { |code| codes.index(code) }
 future_saved = settings_dialog("interface_language" => "en", "known_languages" => ["en"]) do |form|
-  primary, known = form.fields[1..2]
+  primary, known = language_controls(form)
   assert(primary.options == languages.map { |language| language.fetch(:label) } && known.options == primary.options,
     "a future catalog was not added to both language controls")
   assert(primary.options[czech_index] == "čeština" && primary.options.all? { |label| label.encoding == Encoding::UTF_8 && label.valid_encoding? },
@@ -227,7 +235,7 @@ assert(future_saved["interface_language"] == "cs" && future_saved["known_languag
   "a future language was not persisted by its stable code")
 assert(GameRoomLocalization.primary_language == "en", "choosing a future language changed the live interface")
 settings_dialog(future_saved) do |form|
-  primary, known = form.fields[1..2]
+  primary, known = language_controls(form)
   assert(primary.index == czech_index && known.multiselections == [polish_index],
     "a future language was not restored when reopening settings")
   form.cancel_button.trigger(:press)
@@ -244,7 +252,7 @@ GameRoomLocalization.boot(settings: { "interface_language" => "en" }, host_langu
     categories = form.fields.first
     assert(categories.options.first == "General" && categories.index == 0,
       "shipped languages must remain in General")
-    primary, known = form.fields[1..2]
+    primary, known = language_controls(form)
     assert(primary.options == shipped_languages.map { |language| language.fetch(:label) } && known.options == primary.options,
       "a shipped catalog was not included in both language controls")
     assert(primary.options[language_index] == { "cs" => "čeština", "es" => "español" }.fetch(code),
@@ -266,7 +274,7 @@ GameRoomLocalization.boot(settings: { "interface_language" => "en" }, host_langu
   settings_dialog(shipped_saved) do |form|
     assert(form.fields.first.header == { "cs" => "Nastavení", "es" => "Ajustes" }.fetch(code),
       "settings did not use the shipped language after reload")
-    primary, known = form.fields[1..2]
+    primary, known = language_controls(form)
     assert(primary.index == language_index && known.multiselections == [],
       "reopening settings lost the shipped language selections")
     form.cancel_button.trigger(:press)

@@ -8,10 +8,14 @@ module GameRoomGames
     def bid(hand, choices)
       return :pass if choices == [:pass]
       trumps = hand.count { |suit, _| suit == :trump }
-      strength = trumps * 2 + hand.count { |card| FrenchTarotScoring.oudler?(card) } * 6
-      desired = if strength >= 30 then :garde_sans
-                elsif strength >= 24 then :garde
-                elsif strength >= 17 then :petite
+      oudlers = hand.count { |card| FrenchTarotScoring.oudler?(card) }
+      kings = hand.count { |suit, rank| suit != :trump && rank == 14 }
+      high_trumps = hand.count { |suit, rank| suit == :trump && rank >= 16 }
+      strength = trumps * 2 + oudlers * 6 + kings * 2 + high_trumps
+      desired = if oudlers >= 2 && trumps >= 12 && strength >= 47 then :garde_contre
+                elsif oudlers >= 2 && trumps >= 8 && strength >= 34 then :garde_sans
+                elsif oudlers >= 1 && trumps >= 5 && strength >= 26 then :garde
+                elsif trumps >= 4 && strength >= 20 then :petite
                 else :pass
                 end
       choices.include?(desired) ? desired : :pass
@@ -31,7 +35,13 @@ module GameRoomGames
       winners = legal.select { |card| FrenchTarotTrick.winner(trick + [card]) == trick.size }
       if allied
         losers = legal - winners
-        return losers.max_by { |card| FrenchTarotScoring.half_points(card) - (FrenchTarotScoring.oudler?(card) ? 20 : 0) } unless losers.empty?
+        unless losers.empty?
+          # A defender's current high card is not a secured allied trick while
+          # declarer still has to play. Do not donate a king to a likely trump.
+          taker_played = (taker - leader) % 4 < trick.length
+          return losers.min_by { |card| cost(card) } unless taker_played
+          return losers.max_by { |card| FrenchTarotScoring.half_points(card) - (FrenchTarotScoring.oudler?(card) ? 20 : 0) }
+        end
       end
       (winners.empty? ? legal : winners).min_by { |card| cost(card) }
     end

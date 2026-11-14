@@ -4,14 +4,42 @@
     {
       "id": "play",
       "title": {
-        "es": "Backgammon"
+        "es": "Mover y retirar fichas"
       },
       "paragraphs": [
         {
-          "es": "En la modalidad clásica tienes quince fichas. Nackgammon cambia su posición inicial y Hypergammon se juega con tres por persona. Avanza hacia el punto 1. Cada dado indica un movimiento. Si salen dobles, puedes hacer cuatro movimientos."
+          "es": "Juegan dos personas. Lleva todas tus fichas a tu casa, los puntos del 1 al 6, y retíralas antes que tu oponente. Cada jugador numera el tablero en su dirección: tu punto 24 es el punto 1 del rival. La tirada inicial da un dado a cada uno. Si empatan, se repite; el dado mayor empieza y usa ambos valores. Después se lanzan dos dados por turno. Los dobles permiten cuatro movimientos del mismo valor."
         },
         {
-          "es": "Un punto ocupado por dos o más fichas rivales está bloqueado. Puedes capturar una ficha rival que esté sola. Antes de mover otras fichas, vuelve a introducir las que tengas en la barra. Cuando todas estén en tu cuadrante interior, del punto 1 al 6, puedes retirarlas. Gana quien retire primero todas sus fichas."
+          "es": "Cada dado es un movimiento separado. Puedes mover dos fichas o una dos veces, pero el punto intermedio también debe estar libre. Debes usar tantos dados como sea legalmente posible. Si solo puedes usar uno de dos dados distintos y ambos permiten mover, usa el mayor. Dos o más fichas rivales bloquean un punto. Una ficha rival sola se envía a la barra al caer sobre ella. Debes volver a introducir las fichas de la barra antes de mover otras; un 3 entra en tu punto 22."
+        },
+        {
+          "es": "Cuando todas tus fichas que quedan en el tablero estén en casa, puedes retirarlas. Un 4 retira una ficha del punto 4. Si no tienes fichas en el punto 4 ni en uno superior, ese dado puede retirar una del punto ocupado más alto por debajo del 4. Si no queda ningún movimiento legal, el turno pasa automáticamente."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Variantes"
+      },
+      "paragraphs": [
+        {
+          "es": "La variante clásica empieza con quince fichas: dos en el punto 24, cinco en el 13, tres en el 8 y cinco en el 6. Nackgammon coloca dos en el 24 y dos en el 23, cuatro en el 13 y cuatro en el 6, y tres en el 8. Hypergammon solo usa tres fichas, una en el 24, otra en el 23 y otra en el 22. LongGammon coloca las quince en el punto 24. La regla egipcia usa la posición clásica, pero limita a cinco tus fichas en cada punto del tablero; no limita la barra ni las fichas retiradas."
+        }
+      ]
+    },
+    {
+      "id": "match",
+      "title": {
+        "es": "Puntuación del encuentro y doblajes"
+      },
+      "paragraphs": [
+        {
+          "es": "La victoria vale un punto si el rival ha retirado alguna ficha, dos si no ha retirado ninguna, o tres si además tiene una ficha en la barra o en tu casa. Al crear la mesa, un límite de cero significa una sola partida. Un límite positivo permite seguir jugando hasta alcanzarlo."
+        },
+        {
+          "es": "Si activas el cubo de doblaje, antes de tirar puedes elegir ofrecer un doblaje y pulsar Intro. Tu rival acepta o concede esa partida por la apuesta anterior. Al aceptar se dobla la apuesta y quien acepta recibe el derecho a proponer el siguiente doblaje, hasta 64. La victoria normal de uno, dos o tres puntos se multiplica por la apuesta. La primera vez que a alguien le falta un punto para ganar el encuentro, el doblaje queda desactivado solo en la siguiente partida: la partida Crawford."
         }
       ]
     },
@@ -22,12 +50,38 @@
       },
       "paragraphs": [
         {
-          "es": "Pulsa Intro para tirar o confirmar el movimiento elegido. Elige con las flechas. Pulsa V para consultar el tablero."
+          "es": "Enter: tirar, confirmar una decisión sobre el cubo o elegir una ficha y su destino."
+        },
+        {
+          "es": "Flechas: recorrer el tablero o elegir una decisión. La fila superior va del 24 al 13 y la inferior del 1 al 12, ambas de izquierda a derecha. La barra está a la izquierda del 24; las fichas retiradas, a la izquierda del 1. Si hay una ficha en la barra, puedes elegir directamente el punto de entrada."
+        },
+        {
+          "es": "Escape: cancelar la selección de una ficha."
+        },
+        {
+          "es": "V: examinar el tablero sin mover fichas."
+        },
+        {
+          "es": "D: leer los dados que quedan por usar."
+        },
+        {
+          "es": "Espacio: leer los dados restantes al mover."
+        },
+        {
+          "es": "B: leer las fichas de ambos jugadores en la barra."
+        },
+        {
+          "es": "Z: leer las fichas retiradas de ambos jugadores."
+        },
+        {
+          "es": "S: leer el marcador del encuentro."
         }
       ]
     }
   ],
   "option_chapters": {
-    "variant": "play"
+    "variant": "variants",
+    "score_limit": "match",
+    "doubling_cube": "match"
   }
 }

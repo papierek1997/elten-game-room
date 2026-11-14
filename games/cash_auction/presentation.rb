@@ -96,7 +96,7 @@ module GameRoomGames
         when 'all_in'
           _('%{player} goes all-in for %{amount} and wins the auction.') % {player: player, amount: state[:highest]}
         when 'pass'
-          text = _('%{player} passes.') % {player: player}
+          text = p_('Bidding', '%{player} passes.') % {player: player}
           penalty = before[:cash][seat] - state[:cash][seat]
           text += ' ' + _('Pass penalty paid into the pool: %{amount}.') % {amount: penalty} if penalty > 0
           text

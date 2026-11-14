@@ -58,14 +58,14 @@ a Escape zamyka dokument.
 
 ## W co można zagrać
 
-Power Games zawiera 50 gier: od karcianek i planszówek po zabawy słowne,
+Power Games zawiera 52 gier: od karcianek i planszówek po zabawy słowne,
 ćwiczenia pisania i gry, w których najważniejsze są słuch i refleks.
 
 - Karcianki: 3-5-8, 99, 1000 mil, Biblios, Blackjack, Bouillabaisse,
-  Brydż, Makao, Piki, Poker, Remik, Scopa, Tysiąc, UNO, Wojna i Wojna naukowa.
+  Brydż, Francuski tarot, Makao, Piki, Poker, Remik, Scopa, Tysiąc, UNO, Wojna i Wojna naukowa.
 - Gry planszowe i strategiczne: Chińczyk, Cztery w rzędzie, Go,
   Kółko i krzyżyk, Mahjong, Mankala, Monopoly, Reversi, Statki, Szachy,
-  Warcaby i Wyścigi kaczek.
+  Tryktrak, Warcaby i Wyścigi kaczek.
 - Kości i domino: Balut, Blackjack kościany, Cat, head, tail, Domino, Farkle,
   Kłamczuch kościany, Kościany Generał, Mexican Train, Poker kościany i Yahtzee.
 - Pozostałe gry losowe: Bingo i Ruletka.

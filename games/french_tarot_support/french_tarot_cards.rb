@@ -1,11 +1,12 @@
 require_relative "../card_game"
-require_relative "french_tarot_round"
 
 module GameRoomGames
   module FrenchTarotCards
     SUITS = %i[clubs diamonds hearts spades].zip(CardGame::CARD_SUITS).to_h.freeze
     RANKS = %w[A 2 3 4 5 6 7 8 9 T J N Q K].freeze
-    ENCODED = FrenchTarotRound::DECK.to_h do |card|
+    CARDS = (%i[clubs diamonds hearts spades].product((1..14).to_a) +
+      [:trump].product((1..21).to_a) + [[:excuse, 0]]).map(&:freeze).freeze
+    ENCODED = CARDS.to_h do |card|
       suit, rank = card
       value = case suit
       when :excuse then "EX"

@@ -10,7 +10,7 @@ replay = game.replay({}, events, repo)
 assert(replay.accepted_events.map { |e| e["id"] } == [1, 3], "Opening tie or wrong actor mishandled")
 assert(replay.current_player == "Bob" && replay.state[:dice] == [1, 6], "Opening roll was not retained")
 surface = game.surface_spec(replay, "Bob")
-assert(surface.point_moves.any?, "No keyboard move available")
+assert(surface.move_actions.any?, "No keyboard move available")
 choice = game.legal_actions(replay, "Bob").first
 status, plan = game.action_for(choice, replay, "Bob")
 assert(status == :ok, "Legal move cannot be submitted")

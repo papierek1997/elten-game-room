@@ -19,6 +19,9 @@ registry.ids.each do |id|
 end
 read = ->(id, options) { GameRoomTableVariant.text(registry.build(id), GameRoomTableVariant.payload(registry.build(id), options)) }
 assert(read.call('billiards', {'discipline'=>'nine'}) == 'Pool: 9-ball', 'Billiards discipline summary missing')
+assert(read.call('french_tarot', {'round_limit'=>1, 'score_limit'=>0}) == '1 deal', 'Tarot deal limit missing')
+assert(read.call('french_tarot', {'round_limit'=>0, 'score_limit'=>200}) == '200 points', 'Tarot score limit missing')
+assert(read.call('backgammon', {'variant'=>'hyper', 'score_limit'=>7, 'doubling_cube'=>true}) == 'Hypergammon, 7 points, Doubling cube', 'Backgammon target or cube missing')
 assert(read.call('billiards', {'discipline'=>'friendly', 'layout'=>'diamond'}).include?('Social billiards'), 'Social billiards summary missing')
 %w[billiards cash_auction].each do |id|
   assert(read.call(id, {}).empty?, "#{id}: absent notification options became defaults")

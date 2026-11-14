@@ -4,30 +4,84 @@
     {
       "id": "play",
       "title": {
-        "cs": "Vrhcáby"
+        "cs": "Pohyb a vyvádění kamenů"
       },
       "paragraphs": [
         {
-          "cs": "V klasické hře máte patnáct kamenů. Nackgammon mění jejich výchozí rozložení a v Hypergammonu máte tři kameny. Postupujte k bodu 1. Každá kostka určuje jeden pohyb. Dvojice stejných hodnot dává čtyři pohyby."
+          "cs": "Hrají dva lidé. Přesuňte všechny kameny do svého domu, na body 1 až 6, a vyveďte je dříve než soupeř. Každý čísluje desku ze své strany: váš bod 24 je soupeřův bod 1. Úvodní hod dá každému jednu kostku. Při shodě se opakuje; vyšší hod začíná a využije obě hodnoty. Potom se hází dvěma kostkami za tah. Dvojice stejných hodnot dává čtyři pohyby."
         },
         {
-          "cs": "Na bod se dvěma nebo více soupeřovými kameny nesmíte vstoupit. Osamocený soupeřův kámen můžete vyhodit. Nejprve vraťte do hry své vyhozené kameny. Až budete mít všechny v domácí čtvrtině na bodech 1 až 6, můžete je vyvádět. Vyhraje hráč, který vyvede všechny jako první."
+          "cs": "Každá kostka je samostatný pohyb. Můžete pohnout dvěma kameny nebo jedním dvakrát, ale dostupný musí být i mezilehlý bod. Musíte využít co nejvíce kostek. Pokud z různých hodnot lze využít jen jednu a obě umožňují pohyb, použijte vyšší. Dva či více soupeřových kamenů bod blokují. Osamocený kámen vyhodíte na bar. Nejdříve musíte vrátit kameny z baru; trojka vstupuje na váš bod 22."
+        },
+        {
+          "cs": "Jakmile jsou všechny kameny zbývající na desce ve vašem domě, můžete je vyvádět. Čtyřka vyvede kámen z bodu 4. Pokud není kámen na bodu 4 ani výše, může vyvést kámen z nejvyššího obsazeného bodu pod 4. Nezbývá-li legální pohyb, tah automaticky přejde na soupeře."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Varianty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Klasická varianta má patnáct kamenů: dva na bodu 24, pět na 13, tři na 8 a pět na 6. Nackgammon má po dvou na 24 a 23, po čtyřech na 13 a 6 a tři na 8. Hypergammon má jen tři kameny, po jednom na 24, 23 a 22. LongGammon začíná všemi patnácti na bodu 24. Egyptské pravidlo používá klasické postavení, ale dovoluje nejvýše pět vašich kamenů na bodu desky; bar a vyvedené kameny omezené nejsou."
+        }
+      ]
+    },
+    {
+      "id": "match",
+      "title": {
+        "cs": "Skóre zápasu a zdvojení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Výhra dává jeden bod, pokud soupeř vyvedl alespoň jeden kámen, dva, pokud žádný, nebo tři, pokud navíc má kámen na baru či ve vašem domě. Bodový limit nula při tvorbě stolu znamená jednu hru. Kladný limit spouští další hry, dokud jej někdo nedosáhne."
+        },
+        {
+          "cs": "Je-li zapnutá zdvojovací kostka, můžete před hodem vybrat nabídku zdvojení a stisknout Enter. Soupeř přijme, nebo tuto hru vzdá za původní sázku. Přijetí zdvojnásobí sázku a dá přijímajícímu právo dalšího zdvojení, nejvýše na 64. Běžná výhra za jeden, dva či tři body se sázkou násobí. Když poprvé někomu zbývá bod do cíle zápasu, pouze v následující hře je zdvojování vypnuté: Crawfordovo pravidlo."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "cs": "Ovládání"
+        "cs": "Klávesnice"
       },
       "paragraphs": [
         {
-          "cs": "Enter hází nebo potvrzuje vybraný tah. Tah vyberte šipkami. Klávesa V otevře přehled desky."
+          "cs": "Enter: hod, potvrzení sázky nebo výběr kamene a cílového bodu."
+        },
+        {
+          "cs": "Šipky: pohyb po desce nebo výběr rozhodnutí. Horní řada běží od 24 do 13, dolní od 1 do 12, obě zleva doprava. Bar je vlevo od 24, vyvedené kameny vlevo od 1. S kamenem na baru můžete rovnou vybrat vstupní bod."
+        },
+        {
+          "cs": "Escape: zrušení výběru kamene."
+        },
+        {
+          "cs": "V: prohlížení desky bez pohybu kamenů."
+        },
+        {
+          "cs": "D: přečtení zbývajících kostek."
+        },
+        {
+          "cs": "Mezerník: zbývající kostky během pohybu."
+        },
+        {
+          "cs": "B: počty kamenů obou hráčů na baru."
+        },
+        {
+          "cs": "Z: počty vyvedených kamenů obou hráčů."
+        },
+        {
+          "cs": "S: skóre zápasu."
         }
       ]
     }
   ],
   "option_chapters": {
-    "variant": "play"
+    "variant": "variants",
+    "score_limit": "match",
+    "doubling_cube": "match"
   }
 }

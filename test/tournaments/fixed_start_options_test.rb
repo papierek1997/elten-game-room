@@ -48,6 +48,12 @@ GameRoomGames::CATALOG.ids.each do |id|
   expected = model.options_for_team_roster(model.normalize_options(stored), players: players)
   assert_equal(expected, model.game_start_options(stored, players: players, fixed: true), "#{id}: fixed options were upgraded")
   expected = model.options_for_team_roster(model.new_game_options(stored), players: players)
-  assert_equal(expected, model.game_start_options(stored, players: players), "#{id}: ordinary new-game defaults were lost")
+  started = model.game_start_options(stored, players: players)
+  if id == 'billiards'
+    seed = started.fetch('rack_seed')
+    assert(seed.is_a?(Integer) && seed.between?(0, 2**31 - 1), 'A new billiards game has no valid rack seed')
+    expected['rack_seed'] = seed
+  end
+  assert_equal(expected, started, "#{id}: ordinary new-game defaults were lost")
 end
 puts 'PASS fixed start options: real Start handler, old/new tournament bindings, ordinary defaults and the complete game catalogue'

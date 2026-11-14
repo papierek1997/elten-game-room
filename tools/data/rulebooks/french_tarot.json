@@ -4,25 +4,104 @@
     {
       "id": "play",
       "title": {
-        "en": "French Tarot"
+        "en": "Dealing and bidding",
+        "pl": "Rozdanie i licytacja"
       },
       "paragraphs": [
         {
-          "en": "Four players bid. The highest bidder plays against the other three. With Petite or Garde, take the kitty and discard six cards. With Garde sans, the kitty counts for the taker. With Garde contre, it counts for the defenders."
+          "en": "Four people play. Each receives 18 cards; six more form the kitty. The highest bidder becomes declarer and plays against the other three. Use the arrows to choose a bid and Enter to confirm, or press B to open the bidding choices. You may pass or name a higher contract. If everyone passes, the cards are dealt again.",
+          "pl": "Gracie w czwórkę. Każdy dostaje 18 kart, a pozostałe sześć tworzy talon. Zwycięzca licytacji zostaje rozgrywającym i gra przeciwko pozostałej trójce. Wybierz kontrakt strzałkami i zatwierdź Enterem albo otwórz wybór klawiszem B. Możesz spasować lub wybrać wyższy kontrakt. Jeśli wszyscy spasują, karty zostaną rozdane ponownie."
         },
         {
-          "en": "Follow suit if you can. Otherwise trump if possible, and overtrump when you can. You may play the Excuse regardless of suit. After 18 tricks, the contract depends on the points and oudlers captured."
+          "en": "The contracts, from lowest to highest, are Petite, Garde, Garde sans and Garde contre. In Petite and Garde everyone sees the kitty, then declarer takes it and discards six cards. Kings and the three oudlers cannot be discarded. Discard trumps only if no ordinary cards remain eligible. The discarded cards count for declarer. In Garde sans the unopened kitty also counts for declarer; in Garde contre it counts for the defenders.",
+          "pl": "Kontrakty od najniższego to Petite, Garde, Garde sans i Garde contre. W Petite i Garde wszyscy poznają talon, po czym rozgrywający bierze go i odkłada sześć kart. Nie wolno odkładać króli ani trzech oudlerów. Atuty można odkładać dopiero wtedy, gdy brakuje zwykłych kart. Odłożone karty liczą się dla rozgrywającego. W Garde sans zakryty talon również liczy się dla niego, a w Garde contre dla obrony."
+        }
+      ]
+    },
+    {
+      "id": "trumps",
+      "title": {
+        "en": "Playing tricks",
+        "pl": "Jak zagrać lewę"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose a card with the arrows and play it with Enter. Everyone plays one card to each trick. You must follow the led suit if you can, even if someone has trumped. Without that suit, play a trump if you have one. If a trump is already on the table, overtrump when possible; otherwise play a lower trump. Without either suit or trumps you may play any card. The highest trump wins; without trumps the highest card in the led suit wins. The winner leads next.",
+          "pl": "Wybierz kartę strzałkami i zagraj ją Enterem. W każdej lewie każdy zagrywa jedną kartę. Musisz dołożyć do koloru wyjścia, jeśli możesz, nawet jeśli ktoś zagrał atut. Bez tego koloru musisz użyć atutu. Przebij najwyższy atut na stole, jeśli możesz; w przeciwnym razie zagraj niższy. Jeśli nie masz ani koloru, ani atutów, zagraj dowolną kartę. Wygrywa najwyższy atut, a bez atutów najwyższa karta koloru wyjścia. Zwycięzca zaczyna następną lewę."
+        },
+        {
+          "en": "Within each suit the order, highest first, is king, queen, knight, jack, 10 down to ace. Trump 21 is strongest and trump 1, the Petit, is weakest. The Excuse can be played at any time and does not set the led suit. Before the last trick it stays with its owner’s side; if the other side takes that trick, it receives half a point in exchange. In the last trick the Excuse belongs to the trick winner.",
+          "pl": "W każdym kolorze od najwyższej karty kolejność to król, dama, rycerz, walet, dziesiątka i dalej do asa. Atut 21 jest najsilniejszy, a atut 1, Mały, najsłabszy. Wymówkę można zagrać w dowolnej chwili i nie wyznacza ona koloru wyjścia. Przed ostatnią lewą zostaje po stronie właściciela; jeśli druga strona weźmie tę lewę, dostaje w zamian pół punktu. W ostatniej lewie Wymówkę bierze zwycięzca lewy."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "en": "Scoring and ending the game",
+        "pl": "Punkty i zakończenie partii"
+      },
+      "paragraphs": [
+        {
+          "en": "The three oudlers are trump 1, trump 21 and the Excuse. Each is worth 4.5 points, as is a king. A queen is worth 3.5, a knight 2.5, a jack 1.5, and every other card half a point. After 18 tricks declarer needs 56 points without oudlers, 51 with one, 41 with two, or 36 with all three. The kitty is counted for the side named by the contract.",
+          "pl": "Trzy oudlery to atut 1, atut 21 i Wymówka. Każdy daje 4,5 punktu, tak jak król. Dama daje 3,5, rycerz 2,5, walet 1,5, a pozostałe karty po pół punktu. Po 18 lewach rozgrywający potrzebuje 56 punktów bez oudlerów, 51 z jednym, 41 z dwoma lub 36 z trzema. Talon liczy się dla strony wskazanej przez kontrakt."
+        },
+        {
+          "en": "Add 25 to the absolute difference from the required score, then multiply by 1 for Petite, 2 for Garde, 4 for Garde sans or 6 for Garde contre. If declarer fulfils the contract, each defender loses that amount and declarer gains three times it. If declarer fails, reverse those gains and losses. For example, 44 points against a target of 41 in Garde gives 56 from each defender and 168 to declarer.",
+          "pl": "Do różnicy względem wymaganego progu, liczonej bez znaku, dodaj 25. Pomnóż wynik przez 1 dla Petite, 2 dla Garde, 4 dla Garde sans lub 6 dla Garde contre. Za wygrany kontrakt każdy obrońca traci tę wartość, a rozgrywający zyskuje jej trzykrotność. Przy przegranej znaki się odwracają. Na przykład 44 punkty przy progu 41 w Garde dają po 56 straty obrońcom i 168 zysku rozgrywającemu."
+        },
+        {
+          "en": "By default one played deal ends the game. When creating the table you can change the deal limit or set a score limit; zero disables that limit. If both are enabled, the first limit reached at the end of a deal ends the game. All-pass deals do not count. The highest total wins, with a shared win if tied.",
+          "pl": "Domyślnie partia kończy się po jednym rozegranym rozdaniu. Przy tworzeniu stołu możesz zmienić limit rozdań lub ustawić próg punktów; zero wyłącza dany limit. Jeśli włączysz oba, spełnienie pierwszego na koniec rozdania kończy partię. Samych pasów nie wlicza się do limitu rozdań. Wygrywa najwyższy wynik, a remis oznacza wspólne zwycięstwo."
         }
       ]
     },
     {
       "id": "controls",
       "title": {
-        "en": "Keyboard"
+        "en": "Keyboard",
+        "pl": "Klawiatura"
       },
       "paragraphs": [
         {
-          "en": "Choose a bid or card with the arrows and press Enter."
+          "en": "Arrows: choose a bid or card.",
+          "pl": "Strzałki: wybierz kontrakt lub kartę."
+        },
+        {
+          "en": "Enter: confirm the selected bid or play a card; during discard, set the selected card aside.",
+          "pl": "Enter: zatwierdź kontrakt lub zagraj kartę; podczas odkładania odłóż wybraną kartę."
+        },
+        {
+          "en": "B: open the contract choices.",
+          "pl": "B: otwórz wybór kontraktu."
+        },
+        {
+          "en": "Escape: close the contract choices.",
+          "pl": "Escape: zamknij wybór kontraktu."
+        },
+        {
+          "en": "H: read your hand.",
+          "pl": "H: odczytaj rękę."
+        },
+        {
+          "en": "C: read the cards on the table.",
+          "pl": "C: odczytaj karty na stole."
+        },
+        {
+          "en": "F: read the led suit.",
+          "pl": "F: odczytaj kolor wyjścia."
+        },
+        {
+          "en": "T: read whose turn it is.",
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "en": "S: read scores from completed deals.",
+          "pl": "S: odczytaj wyniki zakończonych rozdań."
+        },
+        {
+          "en": "Shift+S: read points from completed tricks in this deal; the kitty is counted at settlement.",
+          "pl": "Shift+S: odczytaj punkty z zakończonych lew bieżącego rozdania; talon liczy się przy rozliczeniu."
         }
       ]
     }

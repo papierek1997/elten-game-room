@@ -1,20 +1,9 @@
-require_relative "../../../games/french_tarot_support/french_tarot_match"
-deck = GameRoomGames::FrenchTarotRound::DECK
-match = GameRoomGames::FrenchTarotMatch.new(deals: 2)
-raise unless match.deal(deck)
-4.times { raise unless match.bid(match.round.turn, :pass) }
-raise unless match.dealer == 1 && match.round.nil? && match.completed_deals.zero?
-expected = [0, 0, 0, 0]
-2.times do |index|
-  raise unless match.deal(deck.shuffle(random: Random.new(index + 40)))
-  round = match.round
-  raise unless round.turn == index + 2
-  raise unless match.bid(round.turn, :garde_sans)
-  3.times { raise unless match.bid(round.turn, :pass) }
-  72.times { raise unless match.play(round.turn, round.legal_cards(round.turn).first) }
-  expected = expected.zip(round.contract_scores).map(&:sum)
-  raise unless match.scores == expected && match.scores.sum.zero?
-end
-raise unless match.finished? && match.winners.all? { |seat| expected[seat] == expected.max }
-raise if match.deal(deck)
-puts "PASS French Tarot match: redeal, rotation and settlement"
+require_relative '../../support/french_tarot'
+env = FrenchTarotFixture.match(rounds: 2)
+first = env.active_actor
+4.times { raise unless env.step(env.legal_actions.find { |a| a['choice'] == 'pass' }) == :ok }
+raise 'Redeal did not rotate the dealer' unless env.active_actor == env.players[(env.players.index(first) + 1) % 4]
+raise 'All-pass deal affected scores or limit' unless env.replay.state[:scores].values.all?(&:zero?) && env.replay.state.fetch(:completed_deals, 0).zero?
+FrenchTarotFixture.finish(env, contract: 'garde_sans')
+raise 'Wrong deal count or settlement' unless env.finished? && env.replay.state[:completed_deals] == 2 && env.replay.state[:scores].values.sum.zero?
+puts 'PASS production French Tarot all-pass redeal, dealer rotation and two-deal settlement'

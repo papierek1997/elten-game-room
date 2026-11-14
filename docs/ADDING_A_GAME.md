@@ -95,6 +95,20 @@ Choose the appropriate surface from `lib/game_surfaces/`:
 - `answer_sheet` or `review_surface` for answers and scoring;
 - `command_panel` for a small set of commands.
 
+For a grid where a move selects an origin and a destination, use
+`GridSpec.move_actions` with ordinary `GridMove`/`Action` objects. Coordinates
+and rules belong to the game, not to a game-ID branch in `GridBoard`.
+`forced_origin` supports mandatory re-entry, and `selection_epoch` identifies
+the current accepted move boundary. An unchanged refresh preserves the chosen
+origin; a new boundary clears it. Escape cancels selection. A read-only preview
+uses `row_actions: []` and must not retain any writable path through Enter or
+chat coordinates. Test the real control and its refresh, not only its spec.
+
+Keep a single production reducer. Do not ship a second stand-alone Round or
+Match implementation merely to test a new game: tests must exercise the table's
+actual replay, actions, rounds and scoring. Native-only random protocols need
+native evidence and a clock in their fixture, not a substituted local rule.
+
 History, the user list, F1 help, Ctrl+F1 rules and the overall screen layout are
 shared. Add shortcuts specific to a game family to the shared
 framework only when their meaning is genuinely the same.

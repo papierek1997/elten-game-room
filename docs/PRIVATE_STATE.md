@@ -235,6 +235,19 @@ public pool takes. A complete known-card hand audit gates score commitment;
 see [MAHJONG.md](MAHJONG.md#current-livesessions-integration). Ordinary Mahjong
 and its archives still use the public server-seed path.
 
+## Auditing tricks and discards
+
+For a game with private tricks or a discard, starting
+`GameRoomPrivateCardRoundAudit` is not sufficient: record every accepted rule
+decision and replay them through the ordinary reducer before committing the
+score. Test a forged off-suit play and an illegal discard through genuine native
+claims/reveals; hiding those choices in the UI is not validation. An unordered
+foreign receipt proves a card set, not that account's private hand order. Audit
+the proved discard set against the ordinary discard rule, rather than replaying
+its private array indexes as if they were public order. Required public cards
+(such as Tarot's Petite/Garde kitty) use the existing public pool-take path;
+the rest of the hand remains private. Repeat the check across later deals.
+
 ## Account archive
 
 `AccountSavedGames` saves the standard history through the account's private

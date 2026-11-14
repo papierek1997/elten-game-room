@@ -60,12 +60,13 @@ module GameSurfaces
     end
   end
 
+  GridMove = Struct.new(:origin, :destination, :action, keyword_init: true)
   GridSpec = Struct.new(
     :width,
     :height,
     :header,
     :cells,
-    :row_origin, :row_actions, :hide_coordinates, :shortcuts, :point_moves,
+    :row_origin, :row_actions, :hide_coordinates, :shortcuts, :move_actions, :forced_origin, :selection_epoch,
     keyword_init: true
   )
 

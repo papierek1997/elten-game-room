@@ -34,6 +34,16 @@ selected_ids.each do |id|
   master.instance_variable_get(:@turn).instance_variable_set(:@clock, -> { tick })
   8.times do
     tick += 2
+    # Paced games wait for the visible frame's presentation acknowledgement,
+    # including when covered. This fixture has no physical screen; acknowledge
+    # the same freshly read revision that a finished UI sequence would publish.
+    if game.paced_event_presentation?
+      [[master, 'Watcher'], [human, 'Bob']].each do |runner, viewer|
+        shown = h.repositories.fetch(viewer).snapshot_for(h.session)
+        runner.publish_view(session: shown.session, replay: game.replay(shown.session, shown.events, h.repositories.fetch(viewer)),
+          busy: false, context: runner.send(:context))
+      end
+    end
     step(h, master, 'Watcher')
     step(h, human, 'Bob')
     # A human automatic action (for example accepting a Makao penalty) may
@@ -54,7 +64,9 @@ selected_ids.each do |id|
   other = h.repositories['Bob'].snapshot_for(h.session)
   replacement = snapshot.session['__players'].first
   assert(GameRoomParticipants.bot?(replacement) && !snapshot.session['__players'].include?('Alice'), "#{id}: departed place was not physically replaced")
-  assert(!snapshot.events.empty? && replay.accepted_events.size == snapshot.events.size, "#{id}: automatic or bot event rejected")
+  rejected = snapshot.events.reject { |event| replay.accepted_events.include?(event) }
+  assert(!snapshot.events.empty?, "#{id}: handover produced no moves")
+  assert(rejected.empty?, "#{id}: automatic or bot event rejected: #{rejected.map { |event| event.to_h.slice('id', 'actor', 'action', 'value') }.inspect}")
   assert(snapshot.events == other.events, "#{id}: readers diverged")
   other_replay = game.replay(other.session, other.events, h.repositories['Bob'])
   assert(GameRoomTest::ContractValues.canonical(replay.state) == GameRoomTest::ContractValues.canonical(other_replay.state), "#{id}: replay diverged")

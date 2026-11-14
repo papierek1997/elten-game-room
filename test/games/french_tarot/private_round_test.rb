@@ -11,8 +11,13 @@ begin
   PrivateCardGamesTest.assert_private(h)
   300.times do
     replay = h.replay(h.users.first)
+    assert(replay.state[:private_cards], 'A later tournament deal silently became public')
     break if replay.finished?
     phase = replay.state[:phase]
+    if phase == :discard && replay.state[:kitty].empty?
+      kitty = replay.state[:private_tarot_kitty]
+      assert(kitty && kitty.size == 6 && kitty.all? { |card| replay.state[:private_public].include?(card) }, 'The six kitty cards were hidden from defenders')
+    end
     if %i[private_draw private_show private_prepare private_wait private_dealing round_complete].include?(phase)
       PrivateCardGamesTest.tick(h, runners)
       next

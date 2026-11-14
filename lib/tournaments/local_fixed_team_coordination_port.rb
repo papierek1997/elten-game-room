@@ -186,7 +186,7 @@ module GameRoomTournaments
         core['participants'] = @storage.copy(original['participants'])
         core['discovery_metadata'] = @storage.copy(original['discovery'])
         core['entries'] = @storage.copy(original['stack'])
-        core['last_seq'], core['trimmed_through'] = 1, 0
+        core['last_seq'], core['trimmed_through'] = core['entries'].last.fetch('seq'), 0
         core['closed'] = false
         core['dedup'] = core['entries'].map { |row| {'key' => [core['owner'], row['message_id']], 'sequence' => row['seq']} }
         readback = @adapter.lookup(state: state, native_uuid: result['native_uuid'], table_id: result['table_id'], owner: owner)

@@ -236,7 +236,9 @@ check.call("games with out-of-turn actions opt in; the five-second gate remains 
   EltenGameRoom::GAME_REGISTRY.ids.each do |id|
     game = EltenGameRoom::GAME_REGISTRY.build(id)
     # Taboo also accepts the moderator's out-of-turn buzzer; it has no bots.
-    assert(game.actions_during_bot_turn? == ["uno", "makao", "taboo", "mille_bornes", "duck_racing"].include?(id), "Unexpected exception for #{id}")
+    # Cash Auction accepts competing bids concurrently, including while a bot
+    # is deciding. This is the same opt-in, not an UNO-only exception.
+    assert(game.actions_during_bot_turn? == %w[uno makao taboo mille_bornes duck_racing cash_auction].include?(id), "Unexpected exception for #{id}")
     assert(game.bot_delay_revision(replay_of(position(uno)), [12, 20]) == [12, 20], "Pacing changed for #{id}") unless %w[uno rummy domino mexican_train duck_racing].include?(id)
   end
   clock = 100.0

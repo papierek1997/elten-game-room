@@ -1,6 +1,7 @@
 require_relative "../dealt_card_game"
 require_relative "french_tarot_bidding"
 require_relative "../../lib/private_card_round_audit"
+require_relative "../score_sheet_results"
 
 GameRoomServerRandom.register("french_tarot", %w[deal])
 GameRoomPrivateCards.register("french_tarot", host: %w[private_deal],
@@ -8,11 +9,22 @@ GameRoomPrivateCards.register("french_tarot", host: %w[private_deal],
   reveal: %w[play], random: %w[deal], ordered: true)
 
 module GameRoomGames
+  using GameRoomLocalization::Translations
   class FrenchTarotTable < DealtCardGame
     include FrenchTarotBidding
+    include ScoreSheetResults
 
     def id; "french_tarot"; end
-    def name; "Francuski tarot"; end
+    def name; _("French Tarot"); end
+    def short_description; _("Bid to play against three defenders, then capture tricks to fulfil your contract."); end
+    def notification_option_keys(_options); %w[round_limit score_limit]; end
+    def notification_variant(options)
+      rounds = options['round_limit']
+      parts = []
+      parts << n_("%{count} deal", "%{count} deals", rounds) % {count: rounds} if rounds.is_a?(Integer) && rounds.positive?
+      parts << notification_points(options, 'score_limit')
+      parts.compact.join(', ')
+    end
     def rule_sections; generated_rule_sections; end
 
     def bot_strategy
@@ -46,8 +58,8 @@ module GameRoomGames
       return super unless feature == :led_suit
 
       suit = table_cards(replay.state).map { |card| FrenchTarotCards.decode(card).first }.find { |value| value != :excuse }
-      labels = {clubs: "trefl", diamonds: "karo", hearts: "kier", spades: "pik", trump: "atut"}
-      {message: suit ? "Kolor wyj\u015bcia: #{labels.fetch(suit)}." : "Kolor wyj\u015bcia nie zosta\u0142 jeszcze ustalony."}
+      labels = {clubs: _("clubs"), diamonds: _("diamonds"), hearts: _("hearts"), spades: _("spades"), trump: _("trumps")}
+      {message: suit ? _("Led suit: %{suit}.") % {suit: labels.fetch(suit)} : _("No suit has been led yet.")}
     end
 
     def custom_game_shortcuts(replay, viewer)
@@ -58,14 +70,15 @@ module GameRoomGames
       points = state.fetch(:piles).each_with_index.map do |cards, side|
         half_points = cards.sum { |card| FrenchTarotScoring.half_points(card) }
         half_points += state[:excuse_debt][1 - side] - state[:excuse_debt][side]
-        half_points.even? ? (half_points / 2).to_s : "#{half_points / 2},5"
+        tarot_points(half_points)
       end
       shortcuts << GameShortcut.new(key: "s", modifiers: [:shift], kind: :announcement,
-        label: "Odczytaj punkty z zako\u0144czonych lew",
-        message: "Rozgrywaj\u0105cy: #{points[0]}. Obrona: #{points[1]}.")
+        label: _("Read points from completed tricks"),
+        message: _("Declarer: %{declarer}. Defenders: %{defenders}.") % {declarer: points[0], defenders: points[1]})
     end
 
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
+      return event['value'] == 'pass' ? 'poker_fold' : 'poker_raise' if event['action'] == 'tarot_bid'
       cues = super
       card = FrenchTarotCards::DECODED[event["value"]]
       return cues unless event["action"] == "play" && card&.first == :trump && history.any? { |entry| entry.kind == :play }
@@ -75,23 +88,26 @@ module GameRoomGames
 
     def option_definitions
       [
-        OptionDefinition.new(key: "round_limit", label: "Limit rozda\u0144 (0 = bez limitu)", kind: :integer, default: 1),
-        OptionDefinition.new(key: "score_limit", label: "Pr\u00f3g punkt\u00f3w (0 = bez progu)", kind: :integer, default: 0)
+        OptionDefinition.new(key: "round_limit", label: _("Deal limit (0 for no limit)"), kind: :integer, default: 1),
+        OptionDefinition.new(key: "score_limit", label: _("Score limit (0 for no limit)"), kind: :integer, default: 0)
       ]
     end
 
     def options_error(options, player_count: nil)
       values = normalize_options(options)
       rounds, points = values.values_at("round_limit", "score_limit")
-      return "Podaj nieujemne limity." unless [rounds, points].all? { |value| value.is_a?(Integer) && value >= 0 }
-      return "Ustaw limit rozda\u0144 lub pr\u00f3g punkt\u00f3w." if rounds.zero? && points.zero?
+      return _("Enter non-negative limits.") unless [rounds, points].all? { |value| value.is_a?(Integer) && value >= 0 }
+      return _("Set a deal limit or a score limit.") if rounds.zero? && points.zero?
 
       nil
     end
 
+    def participant_scores(replay)
+      super.transform_values { |value| value.even? ? value / 2 : value / 2.0 }
+    end
+
     def minimum_players; 4; end
     def maximum_players; 4; end
-    def private_table_required?(_options); true; end
 
     def move_error(status)
       return _("You must follow suit or play a trump when required.") if status == :must_follow_suit
@@ -127,12 +143,12 @@ module GameRoomGames
     def round_information_text(state)
       return super unless state[:taker]
 
-      text = "Rozgrywaj\u0105cy: #{GameRoomContent.utf8(participant_name(state[:taker]))}. Kontrakt: #{FrenchTarotBidding::LABELS.fetch(state[:contract])}."
+      text = _("Declarer: %{player}. Contract: %{contract}.") % {player: participant_name(state[:taker]), contract: tarot_contract_label(state[:contract])}
       state[:phase] == :discard && state[:kitty].none?(&:nil?) ? "#{text} #{tarot_discard_status(state)}" : text
     end
 
     def tarot_discard_status(state)
-      "Pozosta\u0142o kart do od\u0142o\u017cenia: #{6 - state[:kitty].size}."
+      n_("Discard %{count} more card.", "Discard %{count} more cards.", 6 - state[:kitty].size) % {count: 6 - state[:kitty].size}
     end
 
     def playing_card_rank(value)
@@ -179,7 +195,7 @@ module GameRoomGames
       state[:kitty] << hand.delete_at(index)
       if state[:kitty].size == 6
         begin_tarot_play(state)
-        add_history(history, event, repository, :notice, "Od\u0142o\u017cono sze\u015b\u0107 kart. Rozpoczyna si\u0119 gra.")
+        add_history(history, event, repository, :notice, _("Six cards discarded. Play begins."))
       else
         add_history(history, event, repository, :notice, tarot_discard_status(state))
       end
@@ -214,7 +230,7 @@ module GameRoomGames
       if %i[petite garde].include?(state[:contract])
         state[:phase], state[:current_player] = :discard, taker
         if state[:private_cards]
-          private_request_draw(state, actor: taker, count: 6, purpose: "tarot_kitty")
+          private_request_draw(state, actor: taker, count: 6, purpose: "tarot_kitty", public: true)
         else
           receive_tarot_kitty(state, state.fetch(:kitty))
         end
@@ -223,19 +239,26 @@ module GameRoomGames
       end
     end
 
-    def private_received_cards(state, purpose, cards, event, repository, history)
+    def private_draw_completed(state, purpose, cards, event, session, repository, history)
       if purpose == "tarot_final_kitty"
         state[:kitty] = cards
-        settle_tarot(state, event, repository, history)
+        state[:private_tarot_kitty] = cards.dup
+        settle_tarot(state, event, repository, history, session: session)
         return
       end
+      super
+    end
+
+    def private_received_cards(state, purpose, cards, event, repository, history)
       return super unless purpose == "tarot_kitty"
 
       receive_tarot_kitty(state, cards)
+      add_history(history, event, repository, :notice, _("Kitty: %{cards}.") % {cards: cards_text(cards)})
       add_history(history, event, repository, :notice, tarot_discard_status(state))
     end
 
     def receive_tarot_kitty(state, cards)
+      state[:private_tarot_kitty] = cards.dup if state[:private_cards]
       state.fetch(:hands).fetch(state.fetch(:taker)).concat(cards)
       state[:kitty] = []
     end
@@ -245,12 +268,12 @@ module GameRoomGames
       return super unless card
 
       suit, rank = card
-      return GameRoomLocalization.primary_language == "pl" ? "Wym\u00f3wka" : "Excuse" if suit == :excuse
-      return "Atut #{rank}" if suit == :trump
+      return _("Excuse") if suit == :excuse
+      return _("Trump %{rank}") % {rank: rank} if suit == :trump
       return super unless rank == 12
 
-      labels = {clubs: "trefl", diamonds: "karo", hearts: "kier", spades: "pik"}
-      "Rycerz #{labels.fetch(suit)}"
+      labels = {clubs: _("clubs"), diamonds: _("diamonds"), hearts: _("hearts"), spades: _("spades")}
+      _("%{rank} of %{suit}") % {rank: _("knight"), suit: labels.fetch(suit)}
     end
 
     def table_cards(state)
@@ -287,11 +310,13 @@ module GameRoomGames
         end
       end
       trick.clear
+      add_history(history, event, repository, :trick, _("%{player} wins the trick.") % {player: participant_name(winner)}, actor: winner)
       state[:phase], state[:current_player] = last ? [:tarot_count, nil] : [:playing, winner]
       settle_tarot(state, event, repository, history) if last && !state[:private_cards]
     end
 
-    def private_after_event(state, event, _session, repository, history)
+    def private_after_event(state, event, session, repository, history)
+      state[:private_round_actions] << event if %w[tarot_bid tarot_discard play].include?(event['action'])
       return unless state[:phase] == :tarot_count
       if %i[garde_sans garde_contre].include?(state[:contract])
         private_request_draw(state, actor: state[:taker], count: 6, purpose: "tarot_final_kitty")
@@ -300,19 +325,21 @@ module GameRoomGames
         state[:tarot_discarded] = {holder => state[:kitty]}
         return if GameRoomPrivateCardDisclosure.prepare(state, [holder], purpose: "tarot_discarded",
           zone: :tarot_discarded)
-
-        settle_tarot(state, event, repository, history)
+        state.delete(:private_disclosure)
+        settle_tarot(state, event, repository, history, session: session)
       end
     end
 
-    def private_disclosure_completed(state, purpose, event, _session, repository, history)
+    def private_disclosure_completed(state, purpose, event, session, repository, history)
       return unless purpose == "tarot_discarded"
 
       state[:kitty] = state.delete(:tarot_discarded).fetch(state[:taker])
-      settle_tarot(state, event, repository, history)
+      settle_tarot(state, event, repository, history, session: session)
     end
 
-    def settle_tarot(state, event, repository, history)
+    def settle_tarot(state, event, repository, history, session: nil)
+      return audit_private_tarot_round(state, event, session, repository, history) if state[:private_cards]
+
       piles = state[:piles]
       destination = state[:contract] == :garde_contre ? 1 : 0
       piles[destination].concat(state[:kitty].map { |value| FrenchTarotCards.decode(value) })
@@ -322,6 +349,10 @@ module GameRoomGames
       margin = points - FrenchTarotScoring::TARGET.fetch(oudlers)
       score = (50 + margin.abs) * FrenchTarotScoring::CONTRACTS.fetch(state[:contract])
       score = -score if margin.negative?
+      summary = _("%{player}. Card points: %{points}. Required: %{target}.") % {
+        player: participant_name(state[:taker]), points: tarot_points(points), target: tarot_points(FrenchTarotScoring::TARGET.fetch(oudlers))}
+      summary += ' ' + (margin.negative? ? _("Contract failed.") : _("Contract fulfilled."))
+      add_history(history, event, repository, :score, summary)
       state[:seats].each { |seat| state[:scores][seat] += tarot_side(state, seat).zero? ? 3 * score : -score }
       state[:completed_deals] = state.fetch(:completed_deals, 0) + 1
       round_limit = state[:options].fetch("round_limit", 1)
@@ -331,16 +362,52 @@ module GameRoomGames
         finish_game(state, event, repository, history)
       else
         state[:phase], state[:current_player] = :round_complete, nil
-        add_history(history, event, repository, :notice, "Koniec rozdania.\n#{scores_text(state)}")
+        add_history(history, event, repository, :round_result, _("End of the deal.") + "\n" + scores_text(state))
+      end
+    end
+
+    def audit_private_tarot_round(state, event, session, repository, history)
+      audit = GameRoomPrivateCardRoundAudit.initial_state(state)
+      audit[:kitty] = state[:private_tarot_kitty].dup if audit && state[:private_tarot_kitty]
+      audit_history = []
+      discarded = %i[petite garde].include?(state[:contract]) ? state[:kitty].sort : []
+      valid = audit && audit[:kitty].none?(&:nil?) && state[:private_round_actions].all? do |item|
+        if item['action'] == 'tarot_discard'
+          # Foreign initial receipts disclose a set, not another account's
+          # private draw order. Audit the proved final discard set against
+          # the ordinary rule, rather than interpreting its private indexes.
+          actor = repository.actor_of(item, session)
+          allowed = discardable_cards(audit, actor)
+          card = discarded.find { |value| allowed.include?(value) }
+          next false unless card
+          discarded.delete(card)
+          item = item.merge('value' => hand_for(audit, actor).index(card).to_s)
+        end
+        apply_replay_event(audit, item, session, repository, audit_history)
+      end
+      valid &&= discarded.empty? && audit[:play_count] == 72
+      unless valid
+        return GameRoomPrivateCardRoundAudit.reject_round(state, event, repository, history)
+      end
+      state.merge!(audit)
+      audit_history.select { |entry| [:score, :round_result, :result].include?(entry.kind) }.each do |entry|
+        entry.event_id = repository.event_id(event)
+        history << entry
       end
     end
 
     def scores_text(state)
       state[:units].sort_by { |unit| -state[:scores].fetch(unit) }.map do |unit|
         points = state[:scores].fetch(unit)
-        score = points.even? ? (points / 2).to_s : "#{points.negative? ? '-' : ''}#{points.abs / 2},5"
+        score = tarot_points(points)
         "#{GameRoomContent.utf8(unit_label(state, unit))}: #{score}"
       end.join("\n")
+    end
+
+    def tarot_points(points)
+      return (points / 2).to_s if points.even?
+      separator = GameRoomLocalization.primary_language == 'en' ? '.' : ','
+      "#{points.negative? ? '-' : ''}#{points.abs / 2}#{separator}5"
     end
 
     def tarot_side(state, actor)

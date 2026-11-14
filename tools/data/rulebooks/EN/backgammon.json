@@ -4,14 +4,42 @@
     {
       "id": "play",
       "title": {
-        "en": "Backgammon"
+        "en": "Moving and bearing off"
       },
       "paragraphs": [
         {
-          "en": "In the classic game you have fifteen checkers. Nackgammon changes their starting positions and Hypergammon uses three checkers per player. Move towards point 1. Each die gives a separate move. Doubles give four moves."
+          "en": "Two people play. Move all your checkers towards your home, points 1 to 6, then bear them off before your opponent. Each player numbers the board in their own direction: your point 24 is your opponent’s point 1. The opening roll gives each player one die. Reroll a tie; the higher die starts and uses both values. After that, roll two dice each turn. Doubles give four moves of the same value."
         },
         {
-          "en": "A point with two or more opposing checkers is blocked. You can hit a lone opposing checker. Re-enter any checkers on the bar before moving others. Once all your checkers are in your home board, points 1 through 6, you may bear them off. The first to remove all their checkers wins."
+          "en": "Each die is a separate move. You may move two checkers or one checker twice, but its intermediate point must also be available. Use as many dice as legally possible. If only one of two different dice can be used and either value allows a move, use the higher one. Two or more opposing checkers block a point. Landing on one opposing checker hits it onto the bar. Checkers on the bar must re-enter before any other checker moves; a 3 enters on your point 22."
+        },
+        {
+          "en": "When every checker still on the board is in your home, you may bear off. A 4 removes a checker from point 4. If there are no checkers on point 4 or any higher point, that die may remove a checker from the highest occupied point below 4. If no legal move remains, the turn passes automatically."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Variants"
+      },
+      "paragraphs": [
+        {
+          "en": "Classic starts with fifteen checkers: two on point 24, five on 13, three on 8 and five on 6. Nackgammon starts with two each on 24 and 23, four each on 13 and 6, and three on 8. Hypergammon has only three checkers, one each on 24, 23 and 22. LongGammon starts all fifteen on point 24. The Egyptian rule uses the classic setup but allows at most five of your checkers on a board point; the bar and borne-off checkers are not limited."
+        }
+      ]
+    },
+    {
+      "id": "match",
+      "title": {
+        "en": "Match score and doubling"
+      },
+      "paragraphs": [
+        {
+          "en": "A win is worth one point if the opponent has borne off any checker, two if none have been borne off, or three if none have been borne off and an opposing checker is still on the bar or in your home. At table creation, a score limit of zero means one game. A positive limit starts further games until someone reaches it."
+        },
+        {
+          "en": "If the doubling cube is enabled, before rolling you may select Offer a double and press Enter. Your opponent accepts or concedes this game at the old stake. Accepting doubles the stake and gives that player the right to offer the next double, up to 64. The normal one-, two- or three-point win is multiplied by the stake. The first time someone is one point short of the match target, doubling is disabled for the next game only: the Crawford game."
         }
       ]
     },
@@ -22,12 +50,38 @@
       },
       "paragraphs": [
         {
-          "en": "Press Enter to roll or confirm the selected move. Use the arrows to select a move. Press V to inspect the board."
+          "en": "Enter: roll, confirm a cube decision, or select a checker and then its destination."
+        },
+        {
+          "en": "Arrows: move around the board or choose a decision. The upper row runs from 24 to 13, the lower from 1 to 12, both left to right. The bar is left of 24; borne-off checkers are left of 1. With a checker on the bar, you can select its entry point directly."
+        },
+        {
+          "en": "Escape: cancel selection of a checker."
+        },
+        {
+          "en": "V: inspect the board without moving checkers."
+        },
+        {
+          "en": "D: read the dice still available this turn."
+        },
+        {
+          "en": "Space: read the remaining dice while moving."
+        },
+        {
+          "en": "B: read checkers on the bar for both players."
+        },
+        {
+          "en": "Z: read borne-off checkers for both players."
+        },
+        {
+          "en": "S: read the match score."
         }
       ]
     }
   ],
   "option_chapters": {
-    "variant": "play"
+    "variant": "variants",
+    "score_limit": "match",
+    "doubling_cube": "match"
   }
 }

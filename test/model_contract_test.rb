@@ -86,7 +86,7 @@ end
 duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/duck_racing.json'), encoding: 'UTF-8'))
 cash_auction = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/cash_auction.json'), encoding: 'UTF-8'))
 cases << JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/billiards.json'), encoding: 'UTF-8'))
-%w[kosciane balut].each do |id|
+%w[kosciane balut french_tarot backgammon].each do |id|
   cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding:'UTF-8'))
 end
 expected_ids = GameRoomGames::CATALOG.ids.reject { |id| %w[axel_pong audio_ball].include?(id) }.sort

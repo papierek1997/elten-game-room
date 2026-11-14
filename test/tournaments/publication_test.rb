@@ -17,7 +17,7 @@ module PublicationTest
 
   def draft(game_id = 'chess')
     game = GameRoomGames::CATALOG.build(game_id)
-    options = game.default_options
+    options = game.new_game_options(game.table_creation_options)
     { 'name' => 'Żółty turniej', 'game_id' => game_id, 'game_options' => options,
       'format' => 'round_robin', 'rematch' => false,
       'players_per_match' => GameRoomTest::ModelContract.players_for(game, options).length,

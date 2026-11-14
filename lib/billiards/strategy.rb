@@ -79,7 +79,10 @@ module GameRoomBilliards
         return result.events.count { |e| e[:kind] == :pocket && e[:a] != 0 } * 100 -
           (result.balls.first.on_table? ? 0 : 150) + result.events.count { |e| e[:kind] == :ball }
       end
-      trial = Marshal.load(Marshal.dump(state))
+      # Only the current sporting position enters a simulated shot. Copying
+      # replay IDs or the previous contact trace for every candidate would
+      # make the same position progressively more expensive in a long game.
+      trial = Marshal.load(Marshal.dump(state.except(:seen, :last, :last_shot, :undo)))
       trial[:balls] = result.balls.map(&:dup)
       Rules.resolve_shot(trial, state, result, move)
       actor = state[:turn]

@@ -4,14 +4,45 @@
     {
       "id": "play",
       "title": {
-        "en": "French Tarot"
+        "en": "Dealing and bidding"
       },
       "paragraphs": [
         {
-          "en": "Four players bid. The highest bidder plays against the other three. With Petite or Garde, take the kitty and discard six cards. With Garde sans, the kitty counts for the taker. With Garde contre, it counts for the defenders."
+          "en": "Four people play. Each receives 18 cards; six more form the kitty. The highest bidder becomes declarer and plays against the other three. Press B, choose a bid with the arrows and confirm with Enter. You may pass or name a higher contract. If everyone passes, the cards are dealt again."
         },
         {
-          "en": "Follow suit if you can. Otherwise trump if possible, and overtrump when you can. You may play the Excuse regardless of suit. After 18 tricks, the contract depends on the points and oudlers captured."
+          "en": "The contracts, from lowest to highest, are Petite, Garde, Garde sans and Garde contre. In Petite and Garde everyone sees the kitty, then declarer takes it and discards six cards. Kings and the three oudlers cannot be discarded. Discard trumps only if no ordinary cards remain eligible. The discarded cards count for declarer. In Garde sans the unopened kitty also counts for declarer; in Garde contre it counts for the defenders."
+        }
+      ]
+    },
+    {
+      "id": "trumps",
+      "title": {
+        "en": "Playing tricks"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose a card with the arrows and play it with Enter. Everyone plays one card to each trick. You must follow the led suit if you can, even if someone has trumped. Without that suit, play a trump if you have one. If a trump is already on the table, overtrump when possible; otherwise play a lower trump. Without either suit or trumps you may play any card. The highest trump wins; without trumps the highest card in the led suit wins. The winner leads next."
+        },
+        {
+          "en": "Within each suit the order, highest first, is king, queen, knight, jack, 10 down to ace. Trump 21 is strongest and trump 1, the Petit, is weakest. The Excuse can be played at any time and does not set the led suit. Before the last trick it stays with its owner’s side; if the other side takes that trick, it receives half a point in exchange. In the last trick the Excuse belongs to the trick winner."
+        }
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {
+        "en": "Scoring and ending the game"
+      },
+      "paragraphs": [
+        {
+          "en": "The three oudlers are trump 1, trump 21 and the Excuse. Each is worth 4.5 points, as is a king. A queen is worth 3.5, a knight 2.5, a jack 1.5, and every other card half a point. After 18 tricks declarer needs 56 points without oudlers, 51 with one, 41 with two, or 36 with all three. The kitty is counted for the side named by the contract."
+        },
+        {
+          "en": "Add 25 to the absolute difference from the required score, then multiply by 1 for Petite, 2 for Garde, 4 for Garde sans or 6 for Garde contre. If declarer fulfils the contract, each defender loses that amount and declarer gains three times it. If declarer fails, reverse those gains and losses. For example, 44 points against a target of 41 in Garde gives 56 from each defender and 168 to declarer."
+        },
+        {
+          "en": "By default one played deal ends the game. When creating the table you can change the deal limit or set a score limit; zero disables that limit. If both are enabled, the first limit reached at the end of a deal ends the game. All-pass deals do not count. The highest total wins, with a shared win if tied."
         }
       ]
     },
@@ -22,10 +53,40 @@
       },
       "paragraphs": [
         {
-          "en": "Choose a bid or card with the arrows and press Enter."
+          "en": "Arrows: choose a bid or card."
+        },
+        {
+          "en": "Enter: confirm the selected bid or play a card; during discard, set the selected card aside."
+        },
+        {
+          "en": "B: open the contract choices."
+        },
+        {
+          "en": "Escape: close the contract choices."
+        },
+        {
+          "en": "H: read your hand."
+        },
+        {
+          "en": "C: read the cards on the table."
+        },
+        {
+          "en": "F: read the led suit."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "S: read scores from completed deals."
+        },
+        {
+          "en": "Shift+S: read points from completed tricks in this deal; the kitty is counted at settlement."
         }
       ]
     }
   ],
-  "option_chapters": {}
+  "option_chapters": {
+    "round_limit": "scoring",
+    "score_limit": "scoring"
+  }
 }

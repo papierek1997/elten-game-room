@@ -49,6 +49,7 @@ module GameRoomGames
 
     def option_definitions
       [OptionDefinition.new(key: 'discipline', label: _('Billiards discipline'), kind: :choice, default: 'friendly', choices: [
+        OptionChoice.new(value: 'practice', label: _('Solo practice')),
         OptionChoice.new(value: 'friendly', label: _('Social billiards')),
         OptionChoice.new(value: 'eight', label: _('Pool: 8-ball')),
         OptionChoice.new(value: 'nine', label: _('Pool: 9-ball')),
@@ -86,6 +87,15 @@ module GameRoomGames
        OptionDefinition.new(key: 'bot_skill', label: _('Computer aiming strength'), kind: :choice, default: 'medium', choices: [
          OptionChoice.new(value: 'easy', label: _('Easy')), OptionChoice.new(value: 'medium', label: _('Medium')),
          OptionChoice.new(value: 'hard', label: _('Hard'))])]
+    end
+
+    # Replay/validation also understand the internal practice model. New table
+    # creation offers social/competition play, not that test/training mode.
+    def option_editor_definitions(selected = {})
+      super.map do |definition|
+        next definition unless definition.key == 'discipline'
+        definition.dup.tap { |copy| copy.choices = definition.choices.reject { |choice| choice.value == 'practice' } }
+      end
     end
 
     def options_error(options, player_count: nil)
@@ -135,7 +145,12 @@ module GameRoomGames
     def new_game_options(values)
       result = normalize_options(values)
       result['discipline'] = 'friendly' if result['discipline'] == 'practice'
-      result['rack_seed'] = SecureRandom.random_number(2**31) if B::Rules.competition?(result)
+      result
+    end
+
+    def game_start_options(values, players:, fixed: false)
+      result = super
+      result['rack_seed'] = SecureRandom.random_number(2**31) if !fixed && B::Rules.competition?(result)
       result
     end
 

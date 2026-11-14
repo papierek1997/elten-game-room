@@ -498,6 +498,12 @@ module GameSurfaces
     def initialize(spec, state: {})
       @spec = spec
       validate_spec!
+      origin = GameSurfaces::StateReader.fetch(state, 'move_origin', nil)
+      if @spec.move_actions && !@spec.row_actions && !@spec.forced_origin &&
+          GameSurfaces::StateReader.fetch(state, 'selection_epoch', nil) == @spec.selection_epoch &&
+          @spec.move_actions.any? { |move| move.origin == origin }
+        @move_origin = origin.dup
+      end
       x = state_value(state, "x", 0)
       y = state_value(state, "y", 0)
       @control = OrientedGridBox.new(
@@ -518,52 +524,36 @@ module GameSurfaces
     end
 
     def emit_selection(x, y)
-      if @spec.point_moves
-        select_move_point(x, y)
-      elsif @spec.row_actions
+      if @spec.row_actions
         action = @spec.row_actions[y]
+        emit_action(action.kind, action.name, action.payload) if action
+      elsif @spec.move_actions
+        result = select_move_cell([x, y])
+        speak(result.message) if result.message
+        action = result.action
         emit_action(action.kind, action.name, action.payload) if action
       else
         emit_action("grid", "select", { "x" => x, "y" => y })
       end
     end
 
-    def select_move_point(x, y)
-      point = x.zero? ? (y.zero? ? 25 : 0) : (y.zero? ? 25 - x : x)
-      moves = @spec.point_moves
-      from_bar = moves.any? { |from, _, _| from == 25 }
-      if from_bar
-        if point == 25
-          speak("Wybierz pole wej\u015bcia z bandy.")
-          return
-        end
-        origin = 25
-      elsif @move_origin.nil?
-        unless moves.any? { |from, _, _| from == point }
-          speak("Z tego pola nie mo\u017cna wykona\u0107 ruchu.")
-          return
-        end
-        @move_origin = point
-        if moves.select { |from, _, _| from == point }.all? { |_, to, _| to.zero? }
-          speak("Wybrano pionek. Naci\u015bnij Enter ponownie, aby go zdj\u0105\u0107.")
-        else
-          speak("Wybrano pionek. Wybierz pole docelowe.")
-        end
-        return
-      else
-        origin = @move_origin
+    def select_move_cell(cell)
+      return MovementCommandResult.new unless action_allowed?
+      origin = @move_origin || @spec.forced_origin
+      unless origin
+        available = @spec.move_actions.select { |move| move.origin == cell }
+        return MovementCommandResult.new(message: _("You cannot move from this field.")) if available.empty?
+        @move_origin = cell
+        message = available.one? ? _("Piece selected. Choose its destination or press Enter again for its only move.") :
+          _("Piece selected. Choose its destination.")
+        return MovementCommandResult.new(message: message)
       end
-
-      available = moves.select { |from, _, _| from == origin }
-      point = 0 if point == origin && available.all? { |_, to, _| to.zero? }
-      move = available.select { |_, to, _| to == point }.max_by(&:last)
-      unless move
-        speak("Tu nie mo\u017cna przesun\u0105\u0107 wybranego pionka.")
-        return
-      end
-
+      available = @spec.move_actions.select { |move| move.origin == origin }
+      move = available.find { |choice| choice.destination == cell }
+      move ||= available.first if cell == origin && available.one?
+      return MovementCommandResult.new(message: _("You cannot move the selected piece to this field.")) unless move
       @move_origin = nil
-      emit_action("pawn", "move", {"move" => move.join(",")})
+      MovementCommandResult.new(action: move.action)
     end
 
     def cancel_pending_action?
@@ -583,10 +573,12 @@ module GameSurfaces
     end
 
     def state
-      {
+      result = {
         "x" => @control.x.to_i,
         "y" => logical_y(@control.y)
       }
+      result.merge!('move_origin' => @move_origin&.dup, 'selection_epoch' => @spec.selection_epoch) if @spec.move_actions
+      result
     end
 
     def movement_command(arguments)
@@ -605,6 +597,12 @@ module GameSurfaces
       if @spec.row_actions
         action = @spec.row_actions[position[1]]
         return MovementCommandResult.new(action: action&.with_source('chat_command'))
+      end
+
+      if @spec.move_actions
+        result = select_move_cell(position)
+        result.action = result.action.with_source('chat_command') if result.action
+        return result
       end
 
       MovementCommandResult.new(
@@ -645,6 +643,19 @@ module GameSurfaces
       if actions && (!actions.is_a?(Array) || actions.length > @spec.height.to_i ||
           actions.any? { |action| action && !action.is_a?(Action) })
         raise ArgumentError, 'grid row actions must contain ordinary surface actions'
+      end
+      moves = @spec.move_actions
+      valid_cell = ->(cell) { cell.is_a?(Array) && cell.size == 2 &&
+        cell[0].is_a?(Integer) && cell[0].between?(0, @spec.width.to_i - 1) &&
+        cell[1].is_a?(Integer) && cell[1].between?(0, @spec.height.to_i - 1) }
+      if moves && (!moves.is_a?(Array) || moves.length > 4096 || moves.any? do |move|
+          !move.is_a?(GridMove) || !valid_cell.call(move.origin) || !valid_cell.call(move.destination) || !move.action.is_a?(Action)
+        end)
+        raise ArgumentError, 'grid moves must contain bounded coordinates and ordinary surface actions'
+      end
+      if @spec.forced_origin && (!moves || !valid_cell.call(@spec.forced_origin) ||
+          moves.any? { |move| move.origin != @spec.forced_origin })
+        raise ArgumentError, 'forced grid origin must match every available move'
       end
     end
 
