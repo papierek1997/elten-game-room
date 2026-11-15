@@ -526,13 +526,14 @@ class GameScreen
     def handle_inline_wait(wait, layout)
       selection = @selected_surface_action
       @selected_surface_action = nil
+      surface, surface_session = layout.surface, layout.session_id
       inline_result = submit_inline_action(wait.replay, selection)
       if inline_result != nil
         wait.replay, inserted = inline_result
         newest_id = inserted.map { |event| @repository.event_id(event) }.max.to_i
         wait.revision = [wait.revision[0].to_i + inserted.length, [wait.revision[1].to_i, newest_id].max]
         if !inserted.empty?
-          layout.surface&.action_accepted(selection)
+          confirm_surface_action(surface, selection, session_id: surface_session)
           # The form stays open and its revision already includes this write.
           # A later feed may therefore have nothing to refresh. Present the
           # accepted events now through the same deduplicating path as a refresh.

@@ -27,7 +27,7 @@ assert(read.call('billiards', {'discipline'=>'friendly', 'layout'=>'diamond'}).i
   assert(read.call(id, {}).empty?, "#{id}: absent notification options became defaults")
   options = registry.build(id).table_creation_options.merge('__private'=>'secret', 'bot_delay'=>5)
   keys = GameRoomTableVariant.payload(registry.build(id), options).fetch('options').keys
-  expected = id == 'billiards' ? %w[discipline layout] : %w[content_language_id content_set_id]
+  expected = id == 'billiards' ? %w[discipline layout] : %w[content_language_id content_pack_ids]
   assert(keys.sort == expected.sort, "#{id}: unexpected notification metadata")
 end
 assert(read.call('kosciane', {'columns'=>1})=='1 score column', 'Dice General singular column summary missing')

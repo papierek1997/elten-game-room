@@ -16,13 +16,15 @@ module GameRoomCashAuction
         raise ArgumentError, 'Invalid cash auction setup'
       end
       count = players.length
-      {players: players.map(&:dup), options: Marshal.load(Marshal.dump(configured)),
+      state = {players: players.map(&:dup), options: Marshal.load(Marshal.dump(configured)),
         round: 0, completed_rounds: 0, phase: :drawing,
         cash: Array.new(count, configured['starting_points']), eliminated: Array.new(count, false),
         pass_counts: Array.new(count, 0), pot: 0, contributions: Array.new(count, 0),
         passed: Array.new(count, false), leader: nil, highest: 0, auction_deadline: 0,
         bid_revision: 0, chests: Array.new(count, 0), question: nil, category: nil,
         chest: false, winner: nil, draw: false}
+      state.merge!(completed_auctions: 0, question_target: configured['rounds'], round_penalties: Array.new(count, 0)) if revised?(state)
+      state
     end
 
     def active_seats(state)
@@ -32,6 +34,7 @@ module GameRoomCashAuction
     def time?(now); now.is_a?(Integer) && now >= 0; end
     def seat?(state, seat); seat.is_a?(Integer) && seat.between?(0, state[:players].length - 1); end
     def active?(state, seat); seat?(state, seat) && !state[:eliminated][seat]; end
+    def revised?(state); state[:options]['auction_rules_version'] == 2; end
 
     def draw!(state, category:, chest:, now:)
       return false unless %i[drawing spinning].include?(state[:phase]) && time?(now) && [true, false].include?(chest)
@@ -50,6 +53,7 @@ module GameRoomCashAuction
         end
       end
       state[:round] += 1
+      state[:round_penalties].fill(0) if revised?(state)
       state.merge!(phase: :auction, category: owned_category, chest: chest,
         contributions: Array.new(state[:players].length, 0), passed: Array.new(state[:players].length, false),
         leader: nil, highest: 0, bid_revision: 0, question: nil,
@@ -64,6 +68,7 @@ module GameRoomCashAuction
       maximum = state[:cash][seat] + state[:contributions][seat]
       return false unless amount.is_a?(Integer) && amount <= maximum &&
         (all_in ? amount == maximum && state[:cash][seat].positive? : amount > state[:highest])
+      return false if revised?(state) && amount <= state[:highest]
       difference = amount - state[:contributions][seat]
       state[:cash][seat] -= difference
       state[:pot] += difference
@@ -76,6 +81,7 @@ module GameRoomCashAuction
     def pass!(state, seat)
       return false unless state[:phase] == :auction && active?(state, seat) && !state[:passed][seat] && state[:leader] != seat
       state[:passed][seat] = true
+      return true if revised?(state)
       state[:pass_counts][seat] += 1
       if (state[:pass_counts][seat] % 3).zero?
         penalty = [state[:cash][seat], state[:options]['pass_penalty']].min
@@ -87,6 +93,7 @@ module GameRoomCashAuction
 
     def award!(state, now:)
       return false unless state[:phase] == :auction && time?(now) && now >= state[:auction_deadline]
+      close_participation!(state) if revised?(state)
       if state[:leader] && !state[:chest]
         state[:phase] = :question_pending
       else
@@ -120,9 +127,16 @@ module GameRoomCashAuction
     end
 
     def finish_round!(state)
-      return false unless %i[auction question_pending answering].include?(state[:phase]) && state[:completed_rounds] < state[:round]
-      state[:completed_rounds] += 1
-      if active_seats(state).length <= 1 || state[:completed_rounds] >= state[:options]['rounds']
+      completed = revised?(state) ? state[:completed_auctions] : state[:completed_rounds]
+      return false unless %i[auction question_pending answering].include?(state[:phase]) && completed < state[:round]
+      if revised?(state)
+        state[:completed_auctions] += 1
+        state[:completed_rounds] += 1 if state[:phase] == :answering
+      else
+        state[:completed_rounds] += 1
+      end
+      target = revised?(state) ? state[:question_target] : state[:options]['rounds']
+      if active_seats(state).length <= 1 || state[:completed_rounds] >= target
         if state[:chests].any?(&:positive?)
           state[:phase] = :opening_chests
         else
@@ -134,12 +148,29 @@ module GameRoomCashAuction
       true
     end
 
+    def close_participation!(state)
+      active_seats(state).each do |seat|
+        if state[:contributions][seat].positive?
+          state[:pass_counts][seat] = 0
+        else
+          state[:pass_counts][seat] += 1
+          next unless state[:pass_counts][seat] == 3
+          penalty = [state[:cash][seat], state[:options]['pass_penalty']].min
+          state[:cash][seat] -= penalty
+          state[:pot] += penalty
+          state[:round_penalties][seat] = penalty
+          state[:pass_counts][seat] = 0
+        end
+      end
+    end
+
     def settle!(state)
       active = active_seats(state)
       highest = active.map { |seat| state[:cash][seat] }.max
       leaders = active.select { |seat| state[:cash][seat] == highest }
       if leaders.length > 1
         state[:phase], state[:winner], state[:draw] = :drawing, nil, false
+        state[:question_target] = state[:completed_rounds] + 1 if revised?(state)
       else
         state[:phase] = :finished
         state[:winner] = leaders.empty? ? nil : state[:players][leaders.first].dup

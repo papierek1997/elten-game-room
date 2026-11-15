@@ -19,10 +19,15 @@ module CashAuctionFixture
     attr_reader :game, :session, :repository, :events, :players
     attr_accessor :now
 
-    def initialize(players: %w[Alice Bob Carol Dan], options: {}, game_id: 'cash-auction-model', epoch_shift: 0)
+    def initialize(players: %w[Alice Bob Carol Dan], options: {}, game_id: 'cash-auction-model', epoch_shift: 0, rules_version: 1)
       @game, @players = GameRoomGames::CashAuction.new, players.dup
       @repository = Repository.new(@players)
-      @session = {'__id'=>game_id, 'options'=>JSON.generate(game.table_creation_options(options)),
+      configured = if rules_version == 1
+        game.normalize_options(GameRoomCashAuction::Rules::DEFAULT_OPTIONS.merge(options))
+      else
+        game.table_creation_options(options)
+      end
+      @session = {'__id'=>game_id, 'options'=>JSON.generate(configured),
         'created_at'=>100 + epoch_shift, '__server_started_at'=>100}
       @now, @events, @next_id, @epoch_shift = 100 + epoch_shift, [], 1, epoch_shift
     end
@@ -122,7 +127,8 @@ module CashAuctionFixture
 
     def question_seed_for_index(index)
       current = replay.state
-      @bank ||= GameRoomCashAuction::QuestionBank.new(game.selected_content_pack(current[:options]))
+      packs = game.auction_content_packs(current[:options])
+      @bank ||= GameRoomCashAuction::QuestionBank.new(current[:options]['auction_rules_version'] == 2 ? packs : packs.first)
       (0...1024).find do |seed|
         @bank.draw(category: current[:category], seed: seed, used: current[:used_questions])[:correct_index] == index
       end || raise('No matching bounded answer permutation seed')

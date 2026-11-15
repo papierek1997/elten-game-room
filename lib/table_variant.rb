@@ -12,6 +12,16 @@ module GameRoomTableVariant
     game.notification_option_keys(options).each_with_object({}) do |key, result|
       next if key.start_with?("__") || !options.key?(key)
       value = options[key]
+      if value.is_a?(Array)
+        definition = game.effective_option_definitions(options).find { |item| item.key.to_s == key }
+        next unless definition&.kind.to_s == 'multiple_values' && value.length.between?(1, 3)
+        choices = definition.choices.to_a.map(&:value)
+        next unless value.uniq.length == value.length && value.all? do |item|
+          item.is_a?(String) && item.valid_encoding? && item.bytesize.between?(1, 128) && choices.include?(item)
+        end
+        result[key] = value.map(&:dup)
+        next
+      end
       next unless [true, false].include?(value) || value.is_a?(Integer) ||
         (value.is_a?(String) && value.bytesize <= 128 && value.valid_encoding?)
       result[key] = value

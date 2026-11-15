@@ -13,7 +13,7 @@ Form.option_encoding_driver = GameOptionEncodingFixture.driver(checks)
   raise 'Auction missing from catalog' unless game
   options = app.send(:configure_game_options, game)
   raise 'Auction defaults changed on focus' unless options == game.table_creation_options
-  raise 'Wrong published defaults' unless options.values_at('starting_points', 'ante', 'pass_penalty', 'rounds', 'count_interval', 'black_chest_chance') == [1000, 10, 200, 8, 2, 5]
+  raise 'Wrong published defaults' unless options.values_at('starting_points', 'ante', 'pass_penalty', 'rounds', 'count_interval', 'black_chest_chance') == [10_000, 10, 200, 8, 3, 10]
   book = game.rule_book
   authored = JSON.parse(File.read(File.expand_path("../../../tools/data/rulebooks/#{language.upcase}/cash_auction.json", __dir__), encoding: 'UTF-8'))
   authored.fetch('sections').each do |expected|
@@ -22,7 +22,8 @@ Form.option_encoding_driver = GameOptionEncodingFixture.driver(checks)
     raise 'Title differs from reviewed source' unless actual.title == expected.fetch('title').fetch(language)
     raise 'Paragraphs differ from reviewed source' unless actual.paragraphs == expected.fetch('paragraphs').map { |paragraph| paragraph.fetch(language) }
   end
-  keys = game.effective_option_definitions.map(&:key) - ['bot_delay']
+  schemas = game.effective_option_definitions(options) + game.effective_option_definitions(game.normalize_options({}))
+  keys = schemas.map(&:key).uniq - ['bot_delay']
   raise 'An auction setting lacks rulebook help' unless authored['option_chapters'].keys.sort == keys.sort
   state = GameRoomCashAuction::Rules.initial(%w[Alice Bob], options).merge(game_id: 'locale-auction')
   GameRoomCashAuction::Rules.draw!(state, category: 0, chest: false, now: 1000)
