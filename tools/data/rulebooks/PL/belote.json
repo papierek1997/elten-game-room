@@ -1,0 +1,87 @@
+{
+  "source": "games/belote_support/belote_table.rb",
+  "sections": [
+    {
+      "id": "play",
+      "title": {
+        "pl": "Licytacja i lewy"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gracie w dwóch parach. Partnerzy siedzą naprzeciw siebie, więc przy stole grają na przemian osoby z obu drużyn. Gra toczy się do 1000 punktów. Po każdym rozdaniu rozdaje następny gracz."
+        },
+        {
+          "pl": "Każdy najpierw dostaje pięć kart. Gra odkrywa następną kartę i proponuje jej kolor jako atut. Licytację zaczyna gracz po rozdającym. W pierwszej kolejce można przyjąć proponowany kolor albo spasować. Jeśli wszyscy spasują, w drugiej kolejce można wybrać dowolny inny kolor. Po ośmiu pasach następuje nowe rozdanie."
+        },
+        {
+          "pl": "Pierwszy wybór atutu kończy licytację. Odkryta karta trafia do gracza, który wybrał atut. Gra uzupełnia ręce do ośmiu kart. Drużyna tego gracza zobowiązuje się zdobyć co najmniej 82 punkty i pokonać obronę."
+        },
+        {
+          "pl": "Do pustej lewy można wyjść dowolną kartą. Potem trzeba dokładać do koloru wyjścia. Jeśli go nie masz, zagraj atut, chyba że lewę wygrywa partner. Gdy trzeba zagrać atut, przebij najwyższy atut w lewie, jeśli możesz. Gdy nie masz ani koloru wyjścia, ani atutu, możesz zrzucić dowolną kartę. Lewę bierze najwyższy atut, a jeśli atutu nie zagrano, najwyższa karta w kolorze wyjścia. Zwycięzca wychodzi do następnej lewy."
+        },
+        {
+          "pl": "Atuty od najsilniejszego: walet (20 punktów), dziewiątka (14), as (11), dziesiątka (10), król (4), dama (3), ósemka (0), siódemka (0)."
+        },
+        {
+          "pl": "Karty poza atutem od najsilniejszej: as (11 punktów), dziesiątka (10), król (4), dama (3), walet (2), dziewiątka (0), ósemka (0), siódemka (0). Dziesiątka bije króla, damę i waleta poza atutem."
+        },
+        {
+          "pl": "Jeśli masz króla i damę atutową, zagraj dowolną z tych dwóch kart przez Shift+Enter, aby zgłosić belote. Później zagraj drugą przez Shift+Enter, aby zgłosić rebelote. Możesz meldować również przy dokładaniu do lewy, jeśli zagranie jest dozwolone. Oba zgłoszenia dają drużynie 20 punktów."
+        },
+        {
+          "pl": "Ostatnia lewa daje dodatkowe 10 punktów. Bez meldunku w kartach i ostatniej lewie jest razem 162 punkty. Przy udanym kontrakcie każda drużyna zapisuje zdobyte punkty. Przy przegranej obrona dostaje 162 punkty z lew, a drużyna licytująca zapisuje tylko ewentualny meldunek. Przy remisie obrona zapisuje swoje punkty, a punkty z lew drużyny licytującej trafiają do zwycięzcy następnego rozstrzygniętego rozdania. Premia za meldunek nie przechodzi dalej. Za wszystkie osiem lew gra dolicza 90 punktów, co daje 252 punkty przed meldunkiem."
+        }
+      ]
+    },
+    {
+      "id": "coinchee",
+      "title": {
+        "pl": "Belote Coinchée"
+      },
+      "paragraphs": [
+        {
+          "pl": "W ustawieniach stołu wybierz Coinchée. Domyślnie każdy dostaje od razu osiem kart. Jeśli włączysz rozdawanie w dwóch etapach, każdy zaczyna z pięcioma kartami. Odkryta karta trafia do zwycięzcy licytacji, ale nie ogranicza wyboru atutu. Po licytacji gra uzupełnia każdemu rękę do ośmiu kart. Gracz po rozdającym rozpoczyna licytację."
+        },
+        {
+          "pl": "Strzałkami wybierz pas albo ofertę i zatwierdź Enterem. Oferta określa kolor atutu i liczbę punktów od 80 do 160, co 10. Na przykład 90 w kierach oznacza zobowiązanie do zdobycia co najmniej 90 punktów z kierami jako atutem. Każda nowa oferta musi mieć wyższą liczbę punktów."
+        },
+        {
+          "pl": "Przeciwnik drużyny prowadzącej licytację może dać kontrę. Kontra blokuje podbijanie i podwaja wynik rozdania. Drużyna licytująca może odpowiedzieć rekontrą, która zwiększa mnożnik do czterech. Trzy pasy po ostatniej ofercie, kontrze lub rekontrze kończą licytację. Po czterech pasach bez oferty następuje nowe rozdanie."
+        },
+        {
+          "pl": "Karty, lewy i meldunki działają jak w klasycznym Belote. Kontrakt wygrywa drużyna licytująca, jeśli osiągnie zadeklarowany próg i zdobędzie więcej punktów od obrony. Przy sukcesie obie drużyny zapisują punkty z lew. Przy porażce, również przy remisie, obrona zapisuje 162 punkty z lew, a licytujący zero. Gra uwzględnia premię za komplet lew oraz zgłoszone meldunki, a potem mnoży zapis obu drużyn przez dwa po kontrze albo przez cztery po rekontrze."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Klawiatura"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałkami wybierz kartę lub pozycję menu. Enter zagrywa kartę albo zatwierdza wybór. Podczas licytacji widzisz rękę. Enter lub B otwiera wybór kontraktu albo pasu w obu kolejkach licytacji. Wybierz pozycję strzałkami i zatwierdź Enterem. Escape wraca do kart. W klasycznym Belote w pierwszej kolejce wybierasz kolor odkrytej karty, a w drugiej inny kolor. W Coinchée wybierasz liczbę punktów i kolor, a także kontrę lub rekontrę, kiedy są dostępne."
+        },
+        {
+          "pl": "- H odczytuje rękę. C odczytuje karty na stole. Ctrl+C pozwala je przejrzeć."
+        },
+        {
+          "pl": "- D odczytuje odkrytą kartę w klasycznym Belote. F odczytuje atut i kolor wyjścia do lewy, jeśli lewa już się zaczęła."
+        },
+        {
+          "pl": "- S odczytuje wynik meczu. Shift+S podaje punkty bieżącego rozdania z lew i zgłoszonych meldunków, przed mnożnikiem kontry. T mówi, czyja jest kolej. R i V odczytują kontrakt, gracza, który wybrał atut, jego parę, kolor atutu i wymagany próg."
+        },
+        {
+          "pl": "- Shift+Enter zagrywa wskazanego króla lub damę atutową razem z meldunkiem. Zgłoszenie potwierdza dźwięk."
+        },
+        {
+          "pl": "- Z przechodzi do następnej karty, którą można zagrać. Shift+Z przechodzi do poprzedniej."
+        },
+        {
+          "pl": "- Shift+C sortuje rękę według kolorów. Shift+H sortuje według wartości. Ponowne naciśnięcie odwraca kierunek sortowania. Shift+M przywraca kolejność otrzymania kart."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {}
+}
