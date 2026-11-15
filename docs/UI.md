@@ -62,6 +62,10 @@ including in live speech, lists, history and invitations. Saved or remote custom
 aliases are ignored. `GameRoomParticipants.display_name` and
 `Base#participant_name` only decode computer-player labels; they return a human
 account name unchanged. Do not shorten logins or rewrite announcement text.
+The existing finite local-directory startup task removes the obsolete
+`display_name` preference through the host's locked JSON update, without opening
+Settings. It preserves other keys, does not create or rewrite an already clean
+file, and retries on the next startup entry if the write failed.
 
 ## Option editor
 

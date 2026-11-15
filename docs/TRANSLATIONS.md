@@ -94,6 +94,75 @@ existing rules or translations supplied or selected by the creator as the text
 to use, unless editing is requested; report outdated passages separately.
 Material provided only as a reference is not a ready-to-use text to preserve.
 
+## Required acceptance gate for text changes
+
+Rules and localized UI are part of the feature, not optional work after its
+mechanics pass. Apply this gate to new games, variants, imported PRs and changes
+to options, shortcuts, messages or player documentation. A new game must supply
+complete rules and UI translations in every language declared by the manifest;
+an English fallback, untranslated label or empty catalog entry is not completion.
+For an existing feature, update every language affected by the changed meaning.
+
+1. Read the relevant editorial guide in full. Verify the actual rules and player
+   interaction, then review every changed language edition as natural prose.
+   Explain the first turn, essential controls and meaningful exceptions. Keep
+   README, rulebooks, current F1 help and the actual UI consistent without copying
+   the game's complete rules into README. Preserve creator-selected text under
+   the editorial guide's protection policy; report a blocked correction rather
+   than rewriting protected wording without permission.
+2. Check registration and coverage, not just file existence. Every actual game
+   option needs its explanation and correct `option_chapters` mapping in each
+   book; the fallback mapping needs updating too. Document each game shortcut
+   separately in its reference and check it against the implemented action.
+   Localize options, descriptions, errors, history and results through the normal
+   translation API; hard-coded text can escape extraction and still be wrong.
+3. After editing rulebook sources or English interface messages, generate the
+   runtime rules and refresh the catalogs:
+
+   ```console
+   ruby tools/compile-rulebooks.rb
+   ruby tools/translations.rb update
+   ```
+
+   Translate and review the new/changed PO entries in all affected languages,
+   preserving placeholders, contexts and plural forms. Then compile all catalogs
+   and regenerate rules after the Polish fallback sources have been refreshed:
+
+   ```console
+   ruby tools/translations.rb compile
+   ruby tools/compile-rulebooks.rb
+   ```
+
+   Include the resulting PO/POT, MO, authoring inputs and generated runtime rules
+   that belong to this change. A source edit without its generated output is an
+   incomplete contribution; do not hand-edit the generated file to hide it.
+4. After the last relevant edit, run the read-only checks without a language
+   argument, just as CI checks every catalog:
+
+   ```console
+   ruby tools/translations.rb check
+   ruby tools/compile-rulebooks.rb --check
+   ruby test/run.rb test/ui/rulebook_authoring_test.rb test/ui/localized_rulebooks_test.rb test/ui/rules_shortcut_reference_test.rb test/localization/card_and_board_coverage_test.rb test/localization/russian_translation_test.rb
+   ```
+
+   These are targeted content checks, not permission to run the full suite.
+   Add the affected game's text/shortcut/option and native-reading regressions;
+   select packaging/encoding tests when those boundaries change. The common
+   checks do not prove that every new phrase is translated or naturally written.
+5. Inspect the changed text in use: correct language, readable Unicode, headings
+   and contents, actual option explanations and current keys. For changed UI,
+   check ordered announcements and focus as well as the returned action. Report
+   native-control, live-account and actual-listening evidence separately.
+
+A stale MO, translated fallback document or generated rulebook, a missing option
+explanation, untranslated required text or a failing relevant content test means
+the change is not ready. Fix its source, generated output and dependent tests in
+the same change, then repeat the affected checks. Do not suppress a failure,
+weaken coverage, delete a language or merely change an expectation to obtain a
+green run. A deliberately changed expected message still needs its actual native
+interaction checked. Record exact commands and results in the PR; do not claim
+remote CI success until the run for that commit has actually passed.
+
 ## Adding a language
 
 The user guide is maintained separately from Gettext: Polish in `README.md`,

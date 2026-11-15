@@ -14,11 +14,13 @@ module Programs
   class ProgramError < StandardError; end unless const_defined?(:ProgramError)
   class DirectoryFixture < TestTaskRuntime
     ProgramError = Programs::ProgramError
-    attr_reader :calls, :root_threads
+    attr_reader :calls, :root_threads, :settings_writes, :settings_write_threads
     def initialize(root)
       super('directory-fixture')
       @entry_id = root
       @calls, @root_threads = Hash.new(0), []
+      @settings_writes = 0
+      @settings_write_threads = []
       @json_file_monitors_guard, @json_file_monitors = Mutex.new, {}
     end
   end
@@ -35,6 +37,14 @@ source = File.read(EltenTestHost.file('src/eapi/program.rb'), encoding:'UTF-8').
   Programs::DirectoryFixture.class_eval(body, EltenTestHost.file('src/eapi/program.rb'))
 end
 module CountDirectoryResolution
+  def write_json_file(file, data)
+    if File.basename(file) == 'settings.json'
+      @settings_writes += 1
+      @settings_write_threads << Thread.current
+    end
+    super
+  end
+
   def data_dir
     @calls[:data] += 1
     @root_threads << Thread.current
@@ -86,6 +96,9 @@ Dir.mktmpdir('pg-directory-contract-') do |root|
 
   # The entry uses one existing finite task, not a permanent worker or polling.
   fresh = Programs::DirectoryFixture.new(File.join(root,'entry'))
+  FileUtils.mkdir_p(File.join(root, 'entry', 'data'))
+  File.write(File.join(root, 'entry', 'data', 'settings.json'),
+    JSON.generate({'display_name'=>'Old', 'keep'=>false}))
   program_class = Class.new do
     include GameRoomLocalDirectories::Entry
     class << self; attr_accessor :app_runtime; end
@@ -104,6 +117,10 @@ Dir.mktmpdir('pg-directory-contract-') do |root|
     assert_equal(:none, tasks.first[:ui], 'Startup opened an unnecessary dialog')
     assert_equal(false, tasks.first[:cancellable], 'Partial preparation can be cancelled')
     assert(fresh.root_threads.none? { |thread| thread.equal?(Thread.current) }, 'Directory resolution ran on the UI thread')
+    assert_equal({'keep'=>false}, fresh.read_json('settings.json'), 'Startup entry retained the old alias')
+    assert_equal(1, fresh.settings_writes, 'Startup entry did not clean settings exactly once')
+    assert(fresh.settings_write_threads.none? { |thread| thread.equal?(Thread.current) },
+      'Obsolete settings cleanup ran on the UI thread')
   ensure
     EltenAPI::Tasks.define_singleton_method(:run, original)
   end
@@ -123,5 +140,63 @@ Dir.mktmpdir('pg-directory-contract-') do |root|
   GameRoomLocalDirectories.prepare(failed)
   assert(GameRoomLocalDirectories.ready?(failed), 'A failed initialization could not be retried')
   failed.close
+
+  # An update removes the retired preference without an explicit Settings Save.
+  # Native update_json must keep the latest other keys, not the opening snapshot.
+  obsolete = Programs::DirectoryFixture.new(File.join(root, 'obsolete'))
+  obsolete.write_json('settings.json', {'display_name'=>'Stara nazwa', 'game_sounds'=>false,
+    'other'=>{'value'=>17}})
+  writes = obsolete.settings_writes
+  GameRoomLocalDirectories.prepare(obsolete)
+  assert_equal({'game_sounds'=>false, 'other'=>{'value'=>17}}, obsolete.read_json('settings.json'),
+    'Startup did not remove only the obsolete alias')
+  assert_equal(writes + 1, obsolete.settings_writes, 'Startup did not use one native settings write')
+  GameRoomLocalDirectories.prepare(obsolete)
+  assert_equal(writes + 1, obsolete.settings_writes, 'Prepared entry wrote settings again')
+
+  clean = Programs::DirectoryFixture.new(File.join(root, 'clean'))
+  clean.write_json('settings.json', {'game_sounds'=>false, 'custom'=>[1,2]})
+  clean_bytes = File.binread(clean.data_path('settings.json'))
+  writes = clean.settings_writes
+  GameRoomLocalDirectories.prepare(clean)
+  assert_equal(writes, clean.settings_writes, 'Startup rewrote already clean settings')
+  assert_equal(clean_bytes, File.binread(clean.data_path('settings.json')))
+  missing = Programs::DirectoryFixture.new(File.join(root, 'missing-settings'))
+  GameRoomLocalDirectories.prepare(missing)
+  assert(!File.exist?(missing.data_path('settings.json')), 'Startup created unnecessary settings')
+
+  corrupt = Programs::DirectoryFixture.new(File.join(root, 'corrupt-settings'))
+  File.write(corrupt.data_path('settings.json'), '{"display_name":broken')
+  GameRoomLocalDirectories.prepare(corrupt)
+  assert_equal('{"display_name":broken', File.binread(corrupt.data_path('settings.json')),
+    'Cleanup replaced malformed settings with defaults')
+  assert_equal(0, corrupt.settings_writes)
+
+  concurrent = Programs::DirectoryFixture.new(File.join(root, 'concurrent-settings'))
+  concurrent.write_json('settings.json', {'display_name'=>'Old', 'counter'=>1})
+  original_update = concurrent.method(:update_json)
+  concurrent.define_singleton_method(:update_json) do |path, **options, &edit|
+    write_json(path, {'display_name'=>'Newer old value', 'counter'=>2, 'new_key'=>false})
+    original_update.call(path, **options, &edit)
+  end
+  GameRoomLocalDirectories.prepare(concurrent)
+  assert_equal({'counter'=>2, 'new_key'=>false}, concurrent.read_json('settings.json'),
+    'Cleanup overwrote a newer settings snapshot')
+
+  retry_cleanup = Programs::DirectoryFixture.new(File.join(root, 'retry-cleanup'))
+  retry_cleanup.write_json('settings.json', {'display_name'=>'Old', 'untouched'=>123})
+  original_update = retry_cleanup.method(:update_json)
+  retry_cleanup.define_singleton_method(:update_json) { |*| raise IOError, 'write refused' }
+  begin
+    GameRoomLocalDirectories.prepare(retry_cleanup)
+    raise 'A failed cleanup was acknowledged'
+  rescue IOError
+    assert(!GameRoomLocalDirectories.ready?(retry_cleanup), 'Failed cleanup prevented retry')
+    assert_equal('Old', retry_cleanup.read_json('settings.json')['display_name'])
+  end
+  retry_cleanup.define_singleton_method(:update_json, original_update)
+  GameRoomLocalDirectories.prepare(retry_cleanup)
+  assert_equal({'untouched'=>123}, retry_cleanup.read_json('settings.json'))
+  [obsolete, clean, missing, corrupt, concurrent, retry_cleanup].each(&:close)
 end
-puts 'PASS shared startup directories: once per runtime, background entry, concurrent callers, native path/JSON behavior, caller ownership, other apps and reload isolation'
+puts 'PASS startup directories and obsolete settings: once per runtime, background entry, native paths, atomic cleanup, concurrent edits, unchanged/missing/corrupt files and retry'

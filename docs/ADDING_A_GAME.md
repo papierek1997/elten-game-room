@@ -234,10 +234,11 @@ Review the whole changed text in every affected language, not just a sample.
 
 Mark English messages with `_`, `n_`, `p_` or `np_`, and enable
 `using GameRoomLocalization::Translations` inside the file's root module.
-For interface messages, `ruby tools/translations.rb update` updates the PO
-catalogs; edit `locale/PL.po` or the relevant language's PO and compile it with
-`ruby tools/translations.rb compile PL` (substitute the language code).
-Do not edit generated MO or Ruby translation views.
+This includes the game's name and description, options, errors, history, prompts,
+results and contextual help, not just the main menu. Update the PO catalogs and
+complete the new messages in every supported interface language, then compile
+them. Do not edit generated MO or Ruby translation views. An untranslated
+fallback or a hard-coded Polish label does not count as a translated interface.
 
 The compiler needs both its root source/registration and the authored language
 editions. For a new game:
@@ -270,7 +271,11 @@ sentence patterns. New rules follow the editorial guide regardless of author
 credits. Preserve ready-to-use rules supplied or selected by the creator unless
 editing is requested; distinguish them from reference material as the guide explains.
 Do not add manually maintained interface JSON translation fragments.
-Details: `docs/TRANSLATIONS.md`.
+Before calling the game ready, complete the generation, all-language checks and
+separate editorial review in the
+[text acceptance gate](TRANSLATIONS.md#required-acceptance-gate-for-text-changes).
+These requirements apply to PR imports too; passing the new game's own tests
+does not excuse a failing common rulebook or translation check.
 
 ## 6. Write tests
 
@@ -296,3 +301,5 @@ or search state. Use current `AGENTS.md` test-scope instructions: run affected
 game/shared scenarios during development, and the full runner for a new-game
 PR when that broader run is authorized. Report an unavailable dependency,
 timeout, skipped scenario or unperformed live path explicitly, never as a pass.
+Select additional edge cases from the
+[recurring integration risks](GAME_ACCEPTANCE.md#recurring-integration-risks).

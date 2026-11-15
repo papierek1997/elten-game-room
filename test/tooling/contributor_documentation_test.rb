@@ -40,8 +40,17 @@ def heading_ids(text)
   end
 end
 
+def console_commands(text)
+  text.scan(/^[ ]{0,3}```console\r?\n(.*?)^[ ]{0,3}```[ \t]*$/m).flatten.flat_map do |block|
+    block.lines.map(&:strip).grep(/^ruby test\/run\.rb /)
+  end
+end
+
 assert_equal("# Visible\n", outside_fences("# Visible\n~~~~\n```ruby\n# Hidden\n```\n~~~~\n"))
 assert_raises(RuntimeError) { outside_fences("```ruby\n# Unclosed\n") }
+example_command = 'ruby test/run.rb test/tooling/contributor_documentation_test.rb'
+assert_equal([example_command], console_commands("1. Verify:\n\n   ```console\n   #{example_command}\n   ```\n"),
+  'Documentation validation ignored a command nested in an ordered list')
 paths = GameRoomTestSuites.paths.to_h { |path| [path, true] }
 links = commands = snippets = 0
 DOCUMENTS.each do |relative|
@@ -63,14 +72,12 @@ DOCUMENTS.each do |relative|
     links += 1
   end
 
-  text.scan(/^```console\r?\n(.*?)^```/m).flatten.each do |block|
-    block.lines.grep(/^ruby test\/run\.rb /).each do |line|
-      arguments = Shellwords.split(line).drop(2)
-      arguments.grep(/\Atest\//).each do |selection|
-        assert(!Dir.glob(selection, base: ROOT).empty?, "#{relative}: nonexistent test selection #{selection}")
-      end
-      commands += 1
+  console_commands(text).each do |line|
+    arguments = Shellwords.split(line).drop(2)
+    arguments.grep(/\Atest\//).each do |selection|
+      assert(!Dir.glob(selection, base: ROOT).empty?, "#{relative}: nonexistent test selection #{selection}")
     end
+    commands += 1
   end
   text.scan(/^```ruby\r?\n(.*?)^```/m).flatten.each do |source|
     RubyVM::InstructionSequence.compile(source, file)

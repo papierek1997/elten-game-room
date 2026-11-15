@@ -16,6 +16,16 @@ contract changes. The tested reference game and modal example demonstrate
 existing mechanisms; they do not authorize a new framework or copying every
 capability into every feature.
 
+Rules, interface translations and their generated files are mandatory parts of
+the same contribution, including imported PRs. Follow the
+[text acceptance gate](docs/TRANSLATIONS.md#required-acceptance-gate-for-text-changes):
+complete and edit every affected supported language, regenerate outputs and run
+the content checks after the final edit. Passing model tests alone is not enough;
+a stale catalog, missing option explanation or failing rulebook check blocks
+acceptance. Do not defer this work to a failed GitHub run or weaken the checks.
+Use the [recurring-risk review](docs/GAME_ACCEPTANCE.md#recurring-integration-risks)
+to select further regression cases from previous integration failures.
+
 The question and rulebook editorial templates below are mandatory, not optional
 style suggestions. Apply their process and separate full language review, but
 write natural target-language prose rather than mechanically filling their

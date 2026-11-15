@@ -191,6 +191,15 @@ generated-content checks only for the inputs/consumers affected: for example
 or `ruby tools/export-quiz-text.rb --check`. Generation is a distinct step;
 `--check` must not silently repair the sources being verified.
 
+For new games and affected player text, the
+[text acceptance gate](TRANSLATIONS.md#required-acceptance-gate-for-text-changes)
+is required in addition to the selected mechanics tests. CI checks catalogs and
+generated sources before running its scenario suites; a failure there is not
+evidence that the game tests passed. Do not omit these checks from the local
+preflight or call a contribution ready with known failures. Select further
+edge cases from the [recurring integration risks](GAME_ACCEPTANCE.md#recurring-integration-risks),
+without expanding the task into an unrelated full test campaign.
+
 For a documentation-only change, start with:
 
 ```console

@@ -8,17 +8,28 @@ module GameRoomLocalDirectories
   LOCK = Mutex.new
 
   def self.ready?(runtime)
-    runtime.is_a?(PreparedPaths)
+    runtime.is_a?(PreparedPaths) && runtime.instance_variable_get(:@game_room_local_settings_cleaned) == true
   end
 
   def self.prepare(runtime)
     LOCK.synchronize do
       return if ready?(runtime)
 
-      roots = {data: runtime.data_dir.dup.freeze, cache: runtime.cache_path.dup.freeze}.freeze
-      roots.each_value { |path| FileUtils.mkdir_p(path) }
-      runtime.instance_variable_set(:@game_room_directory_roots, roots)
-      runtime.extend(PreparedPaths)
+      unless runtime.is_a?(PreparedPaths)
+        roots = {data: runtime.data_dir.dup.freeze, cache: runtime.cache_path.dup.freeze}.freeze
+        roots.each_value { |path| FileUtils.mkdir_p(path) }
+        runtime.instance_variable_set(:@game_room_directory_roots, roots)
+        runtime.extend(PreparedPaths)
+      end
+      # Run once in the existing finite startup task. Re-read under the host's
+      # JSON lock so removing an obsolete key cannot overwrite a concurrent edit.
+      settings = runtime.read_json('settings.json', default: nil)
+      if settings.is_a?(Hash) && settings.key?('display_name')
+        runtime.update_json('settings.json', default: {}) do |current|
+          current.delete('display_name') if current.is_a?(Hash)
+        end
+      end
+      runtime.instance_variable_set(:@game_room_local_settings_cleaned, true)
     end
   end
 
