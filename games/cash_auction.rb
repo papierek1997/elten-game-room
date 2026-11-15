@@ -30,23 +30,23 @@ module GameRoomGames
     def rule_sections; generated_rule_sections; end
     def content_pack_kind; 'quiz'; end
     def content_pack_game_id; 'quiz'; end
-    def notification_option_keys(_options); %w[content_language_id content_set_id]; end
+    def notification_option_keys(_options); %w[content_language_id content_pack_ids content_set_id]; end
     def supports_bots?; true; end
     def player_spatial_audio?; true; end
     def table_sound_event?(event); !%w[bid all_in pass].include?(event['action']); end
     def perfect_information?; false; end
     def actions_during_bot_turn?; true; end
     def session_history_capacity(_options); 32_768; end
-    def shortcut_features; [:scores]; end
+    def shortcut_features; []; end
     def bot_strategy; @bot_strategy ||= GameRoomBots::HeuristicStrategy.new; end
 
     def option_definitions
-      [OptionDefinition.new(key: 'starting_points', label: _('Starting points (10 to 1000000)'), kind: :integer, default: 1000),
+      [OptionDefinition.new(key: 'starting_points', label: _('Starting points (10 to 1000000)'), kind: :integer, default: 10_000),
        OptionDefinition.new(key: 'ante', label: _('Ante paid by each player'), kind: :integer, default: 10),
-       OptionDefinition.new(key: 'pass_penalty', label: _('Penalty for every third pass'), kind: :integer, default: 200),
-       OptionDefinition.new(key: 'rounds', label: _('Number of auction rounds (8 to 32)'), kind: :integer, default: 8),
-       OptionDefinition.new(key: 'count_interval', label: _('Seconds between auction calls (1 to 5)'), kind: :integer, default: 2),
-       OptionDefinition.new(key: 'black_chest_chance', label: _('Black chest probability in percent (5 to 10)'), kind: :integer, default: 5)]
+       OptionDefinition.new(key: 'pass_penalty', label: _('Penalty after three consecutive auctions without a bid'), kind: :integer, default: 200),
+       OptionDefinition.new(key: 'rounds', label: _('Number of question rounds (8 to 32)'), kind: :integer, default: 8),
+       OptionDefinition.new(key: 'count_interval', label: _('Seconds between auction calls (1 to 5)'), kind: :integer, default: 3),
+       OptionDefinition.new(key: 'black_chest_chance', label: _('Black chest probability in percent (5 to 15)'), kind: :integer, default: 10)]
     end
 
     def options_error(options, player_count: nil)
@@ -55,9 +55,10 @@ module GameRoomGames
       return _('Starting points must be from 10 to 1000000.') unless values['starting_points'].between?(10, 1_000_000)
       return _('The ante must be positive and no greater than the starting points.') unless values['ante'].between?(1, values['starting_points'])
       return _('The pass penalty must be from 0 to 1000000.') unless values['pass_penalty'].between?(0, 1_000_000)
-      return _('Choose from 8 to 32 auction rounds.') unless values['rounds'].between?(8, 32)
+      return _('Choose from 8 to 32 question rounds.') unless values['rounds'].between?(8, 32)
       return _('Choose from 1 to 5 seconds between auction calls.') unless values['count_interval'].between?(1, 5)
-      return _('The black chest probability must be from 5 to 10 percent.') unless values['black_chest_chance'].between?(5, 10)
+      chest_maximum = values['auction_rules_version'] == 2 ? 15 : 10
+      return _('The black chest probability must be from 5 to 15 percent.') unless values['black_chest_chance'].between?(5, chest_maximum)
       content_options_error(values)
     end
 
@@ -102,6 +103,7 @@ module GameRoomGames
 end
 
 require_relative 'cash_auction/presentation'
+require_relative 'cash_auction/content'
 require_relative 'cash_auction/actions'
 require_relative 'cash_auction/replay'
 require_relative 'generated/rulebooks/cash_auction'

@@ -39,11 +39,11 @@ begin
 
   invalid = CashAuctionNative::Fixture.new
   fixtures << invalid
-  invalid.type('bad')
+  invalid.type('xyz')
   invalid.press(13)
   refused = invalid.actions.last
   assert_equal(false, invalid.surface.action_rejected(refused, :invalid_bet))
-  assert_equal('bad', invalid.input.text, 'Validation refusal erased the draft')
+  assert_equal('xyz', invalid.input.text, 'Validation refusal erased the draft')
   invalid.type('250')
   invalid.press(13)
   assert_equal('250', invalid.actions.last['answer'], 'Correcting rejected input failed')

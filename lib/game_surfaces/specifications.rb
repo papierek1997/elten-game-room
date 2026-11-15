@@ -211,6 +211,7 @@ module GameSurfaces
     :clear_on_submit,
     :clear_on_rejection,
     :extra_commands,
+    :text_shortcuts,
     keyword_init: true
   )
 

@@ -14,7 +14,7 @@ Time.define_singleton_method(:now) { Time.at(clock.value) }
 runners = []
 begin
   game = GameRoomGames::CashAuction.new
-  room = NativeRoomHarness.new(game: game, users: %w[Alice Bob], options: game.table_creation_options)
+  room = NativeRoomHarness.new(game: game, users: %w[Alice Bob], options: game.table_creation_options('starting_points'=>1000, 'black_chest_chance'=>5))
   room.start
   host, guest = %w[Alice Bob].map { |user| runner_for(room, user) }
   runners.concat([host, guest])

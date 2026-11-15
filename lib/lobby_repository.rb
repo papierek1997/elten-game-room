@@ -283,7 +283,7 @@ class LobbyRepository
     bot_names = Array.new(current_count) { |index| current["bot_names"].to_a[index] }
     activity_subject = nil
     if difference > 0
-      occupied = current_snapshot.participants.map { |person| GameRoomParticipants.display_name(person) }
+      occupied = current_snapshot.participants.map { |person| GameRoomParticipants.public_display_name(person) }
       bot_names << GameRoomBotNames.pick(occupied: occupied)
       activity_subject = GameRoomParticipants.bot_id(id, requested, name_token: bot_names.last)
     else

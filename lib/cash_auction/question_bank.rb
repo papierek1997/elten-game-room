@@ -2,7 +2,9 @@ require_relative '../game_content'
 require_relative '../game_random'
 
 module GameRoomCashAuction
-  # A per-pack index over the existing frozen quiz rows, with no global cache.
+  # A per-selection index over the existing frozen quiz rows, with no global
+  # cache. A Pack retains the original single-pack replay; an Array explicitly
+  # selects the new pool schema, even for a one-pack content language.
   # The caller validates the recorded pack identity and supplies a native seed
   # obtained after awarding the auction, never the earlier wheel seed.
   class QuestionBank
@@ -12,28 +14,45 @@ module GameRoomCashAuction
 
     attr_reader :categories
 
-    def initialize(pack)
-      unless pack.is_a?(GameRoomContent::Pack) && pack.supports?(game_id: 'quiz', kind: 'quiz')
+    def initialize(source)
+      pooled = source.is_a?(Array)
+      packs = pooled ? source : [source]
+      unless packs.length.between?(1, 3) && packs.all? do |pack|
+          pack.is_a?(GameRoomContent::Pack) && pack.supports?(game_id: 'quiz', kind: 'quiz') &&
+            (!pooled || pack.id.bytesize <= 128)
+        end
         raise ArgumentError, 'Expected a quiz content pack'
       end
-      questions = pack.data['questions']
-      raise ArgumentError, 'Question pack is empty or invalid' unless questions.is_a?(Array) && !questions.empty?
+      if packs.map(&:id).uniq.length != packs.length || packs.map(&:language_id).uniq.length != 1
+        raise ArgumentError, 'Expected distinct quiz packs in one language'
+      end
+      packs = packs.sort_by(&:id) if pooled
 
       @by_id = {}
-      questions.each do |question|
-        unless valid_question?(question) && !@by_id.key?(question['id'])
-          raise ArgumentError, 'Question pack has invalid or duplicate questions'
+      records = packs.flat_map do |pack|
+        questions = pack.data['questions']
+        raise ArgumentError, 'Question pack is empty or invalid' unless questions.is_a?(Array) && !questions.empty?
+
+        identity = {set_id: pack.set_id.dup.freeze, pack_id: pack.id.dup.freeze,
+          pack_version: pack.version, pack_checksum: pack.checksum.dup.freeze,
+          language_id: pack.language_id.dup.freeze}.freeze
+        questions.map do |question|
+          raise ArgumentError, 'Question pack has invalid or duplicate questions' unless valid_question?(question)
+
+          # Pack IDs cannot contain a colon; the full suffix is the original
+          # local question ID. Pack ordering and tokens are stable on replay.
+          ledger = pooled ? "#{pack.id}:#{question['id']}".freeze : question['id']
+          raise ArgumentError, 'Question pack has invalid or duplicate questions' if @by_id.key?(ledger)
+
+          record = {row: question, ledger: ledger, identity: identity}.freeze
+          @by_id[ledger] = record
         end
-        @by_id[question['id']] = question
       end
-      grouped = questions.group_by { |question| question['category'] }
+      grouped = records.group_by { |record| record[:row]['category'] }
       @labels = grouped.keys.sort.freeze
       @groups = @labels.map { |label| grouped.fetch(label).freeze }.freeze
       @categories = (0...@groups.length).to_a.freeze
       @by_id.freeze
-      @identity = {set_id: pack.set_id.dup.freeze, pack_id: pack.id.dup.freeze,
-        pack_version: pack.version, pack_checksum: pack.checksum.dup.freeze,
-        language_id: pack.language_id.dup.freeze}.freeze
       freeze
     end
 
@@ -51,21 +70,22 @@ module GameRoomCashAuction
           used.all? { |id| id.is_a?(String) && @by_id.key?(id) } && used.uniq.length == used.length
         raise ArgumentError, 'Invalid used-question ledger'
       end
-      next_used = used.map { |id| @by_id.fetch(id).fetch('id') }
+      next_used = used.map { |id| @by_id.fetch(id).fetch(:ledger) }
       seen = next_used.to_h { |id| [id, true] }
-      fresh = candidates.reject { |question| seen.key?(question['id']) }
+      fresh = candidates.reject { |record| seen.key?(record[:ledger]) }
       if fresh.empty?
-        next_used.reject! { |id| @by_id.fetch(id)['category'] == @labels.fetch(category) }
+        next_used.reject! { |id| @by_id.fetch(id)[:row]['category'] == @labels.fetch(category) }
         fresh = candidates
       end
       random = Random.new(seed)
-      question = fresh.fetch(random.rand(fresh.length))
+      record = fresh.fetch(random.rand(fresh.length))
+      question = record[:row]
       answers = [question.fetch('correct'), *question.fetch('wrong')].each_with_index.to_a
       shuffled = GameRoomRandom.shuffle(answers, random: random)
-      @identity.merge(question_id: question.fetch('id'), category: category,
+      record[:identity].merge(question_id: question.fetch('id'), category: category,
         prompt: question.fetch('prompt'), choices: shuffled.map(&:first).freeze,
         correct_index: shuffled.index { |_text, index| index.zero? },
-        used: (next_used << question.fetch('id')).freeze).freeze
+        used: (next_used << record[:ledger]).freeze).freeze
     end
 
     # The game still decides who may receive even this answer-free view.

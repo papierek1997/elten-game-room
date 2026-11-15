@@ -1,8 +1,8 @@
 require_relative '../../support/cash_auction'
 include GameRoomTest::Assertions
 
-def bot_choice(match, actor)
-  game, replay = match.game, match.replay
+def bot_choice(match, actor, replay: match.replay)
+  game = match.game
   actions = game.legal_actions(replay, actor, context: match.context)
   game.bot_strategy.choose(actions: actions, actor: actor, game: game, replay: replay, context: match.context, random_source: nil)
 end
@@ -47,4 +47,71 @@ public_view.state[:contributions][1] = 0
 public_view.state[:options]['ante'] = 10
 assert(match.game.bot_action_score(public_view, 'Bob', raise_bid.merge('answer'=>'10')) > 0,
   'An unaffordable future reserve prevented every small bid')
-puts 'PASS Cash Auction fixed public positions: cheap bid, excessive cost, pass penalty, reserve, final-round urgency and hidden-input independence'
+
+# Under the new rules, even a bid subsequently beaten by another player resets
+# the no-bid streak. Its owner has no impending fine to justify overspending.
+revised = CashAuctionFixture::Match.new(players: %w[Alice Bob], rules_version: 2,
+  options: {'starting_points'=>1000})
+revised.begin_round
+revised.bid('Bob', 10)
+revised.bid('Alice', 150)
+lost_bid = revised.replay
+lost_bid.state[:pass_counts][1] = 2
+assert_equal(980, lost_bid.state[:cash][1])
+assert_equal(10, lost_bid.state[:contributions][1])
+assert_equal('pass', bot_choice(revised, 'Bob', replay: lost_bid)['action'],
+  'A losing bid did not remove the nonexistent v2 no-bid penalty from the budget')
+before = Marshal.dump(lost_bid)
+revised.game.legal_actions(lost_bid, 'Bob', context: revised.context).each do |action|
+  revised.game.bot_action_score(lost_bid, 'Bob', action)
+end
+assert_equal(before, Marshal.dump(lost_bid), 'V2 budget calculation changed its public position')
+
+closed = Marshal.load(Marshal.dump(lost_bid.state))
+cash = closed[:cash][1]
+assert(GameRoomCashAuction::Rules.pass!(closed, 1))
+assert(GameRoomCashAuction::Rules.award!(closed, now: closed[:auction_deadline]))
+assert_equal(0, closed[:pass_counts][1], 'The production reducer did not reset the losing bidder streak')
+assert_equal(cash, closed[:cash][1], 'The production reducer fined a losing bidder')
+
+no_bid = Marshal.load(Marshal.dump(lost_bid))
+no_bid.state[:cash][1] += no_bid.state[:contributions][1]
+no_bid.state[:pot] -= no_bid.state[:contributions][1]
+no_bid.state[:contributions][1] = 0
+assert_equal('160', bot_choice(revised, 'Bob', replay: no_bid)['answer'],
+  'The v2 budget ignored a real impending third no-bid penalty')
+
+legacy = CashAuctionFixture::Match.new(players: %w[Alice Bob])
+legacy.begin_round
+legacy.bid('Bob', 10)
+legacy.bid('Alice', 150)
+legacy_lost = legacy.replay
+legacy_lost.state[:pass_counts][1] = 2
+assert_equal('160', bot_choice(legacy, 'Bob', replay: legacy_lost)['answer'],
+  'The original per-pass penalty was incorrectly changed by the v2 policy')
+
+scaled = CashAuctionFixture::Match.new(players: %w[Alice Bob], rules_version: 2)
+scaled.begin_round
+scaled.bid('Alice', 10)
+assert_equal(9990, scaled.replay.state[:cash][1])
+assert_equal('110', bot_choice(scaled, 'Bob')['answer'], 'The default v2 table still uses tiny fixed raises')
+scaled.bid('Bob', 11)
+assert_equal(11, scaled.replay.state[:highest], 'Representative bot raises restricted a valid manually entered amount')
+assert_equal(9979, scaled.replay.state[:cash][1])
+
+edge = CashAuctionFixture::Match.new(players: %w[Alice Bob], rules_version: 2,
+  options: {'starting_points'=>2010})
+edge.begin_round
+edge.bid('Alice', 245)
+# Bob's maximum is 2000 and his budget is 250. The preferred 265 is too
+# expensive, while the legal 246 still fits and must remain a candidate.
+assert_equal('246', bot_choice(edge, 'Bob')['answer'], 'Scaled raises skipped a cheaper affordable legal bid')
+edge.bid('Alice', 250)
+assert_equal('pass', bot_choice(edge, 'Bob')['action'], 'Scaled raises exceeded the bid budget when no affordable raise remained')
+
+old_scale = CashAuctionFixture::Match.new(players: %w[Alice Bob])
+old_scale.begin_round
+old_scale.bid('Alice', 10)
+assert_equal('20', bot_choice(old_scale, 'Bob')['answer'], 'The v1 representative bid changed with the new scale')
+
+puts 'PASS Cash Auction fixed public positions: scaled v2 raises, manual amounts, budget edges, exact v1 choices, pass penalties, losing-bid reset, reserve, final-round urgency and hidden-input independence'

@@ -318,6 +318,14 @@ second payload/permission path. This is separate from a read-only prompt:
 `prompt_as_text` can display read-only question text while its answers remain
 writable. See `test/ui/question_read_only_native_test.rb`.
 
+Text questions may explicitly reserve game information keys with
+`QuestionSpec#text_shortcuts`, a list of `[key, modifiers]` signatures from
+their declared `GameShortcut` entries. Cash Auction uses this for P/T/H/D,
+Shift+D and Shift+S in its numeric bid field. Other text keeps normal editing.
+The control retains the matched press frame to discard the host's cached
+character without changing the draft or its edit generation. Native selection
+and copy remain available. See `test/games/cash_auction/bid_shortcuts_native_test.rb`.
+
 Tournament Operations must render every journal kind exposed by its workspace,
 including current `partnership` and `pair_draw` records, not only historical
 `pairing`. Confirmed storage and an applied semantic choice are distinct: retain

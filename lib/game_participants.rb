@@ -1,9 +1,11 @@
 # encoding: UTF-8
 require_relative "bot_names"
+require_relative "participant_names"
 
 require_relative "game_room_localization"
 
 module GameRoomParticipants
+  extend GameRoomParticipantNames
   using GameRoomLocalization::Translations
   BOT_PREFIX = "bot:".freeze
   BOT_PATTERN = /\Abot:(\d+):(\d+)(?::((?:pl|en)\d{2}))?\z/
@@ -43,6 +45,12 @@ module GameRoomParticipants
   end
 
   def display_name(participant)
+    local = local_presentation_name(participant.to_s) unless bot?(participant)
+    return local if local && !local.empty?
+    public_display_name(participant)
+  end
+
+  def public_display_name(participant)
     name = GameRoomBotNames.name_for(bot_name_token(participant))
     return name if name != nil
 

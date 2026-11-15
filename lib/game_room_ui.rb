@@ -237,6 +237,7 @@ module GameRoomUI
         accept_game_room_invitation
       end
       if game_room_entry_boundary && game_room_hotkeys_active? && !game_room_background_help? && !game_room_pending_operation
+        return if @game_room_program&.respond_to?(:handle_main_menu_input) && @game_room_program.handle_main_menu_input(self)
         @game_room_program.dispatch_game_room_entry if @game_room_program&.respond_to?(:dispatch_game_room_entry)
       end
       maintain_game_room_scene

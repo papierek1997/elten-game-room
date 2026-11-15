@@ -733,6 +733,37 @@ class EltenGameRoom < Program
     end.compact
   end
 
+  def handle_main_menu_input(form)
+    return false unless form.game_room_entry_boundary
+    keys = [16, 17, 18, 83, 71, 75]
+    return false unless keys.any? do |key|
+      next false unless EltenAPI::KeyboardState.first_pressed?(key)
+      state = EltenAPI::KeyboardState.state_when_pressed(key)
+      state && keys.all? { |code| state[code] == true }
+    end
+    captured = true
+    EltenAPI::KeyboardState.clear_current_frame
+    edit_local_presentation_name
+    true
+  ensure
+    EltenAPI::KeyboardState.clear_current_frame if captured
+  end
+  public :handle_main_menu_input
+
+  def edit_local_presentation_name
+    account = Session.name.to_s.dup
+    draft = GameRoomParticipants.local_presentation_name
+    loop do
+      draft = input_text('', text: draft, escapable: true, max_length: 64, select_all: true)
+      return if draft.nil? || !GameRoomParticipants.same?(account, Session.name)
+      if GameRoomParticipants.normalize_local_presentation_name(draft)
+        GameRoomParticipants.set_local_presentation_name(account: account, name: draft)
+        return
+      end
+      alert(GameRoomContent.utf8(_("Invalid value")))
+    end
+  end
+
   def capture_lobby_activity(entries)
     newest_id = entries.map(&:id).max.to_i
     if @last_seen_lobby_activity_id == nil

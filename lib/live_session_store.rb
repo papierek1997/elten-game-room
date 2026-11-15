@@ -585,7 +585,7 @@ class GameRoomLiveSessionStore
         raise GameRoomNetworkErrors::GamePaused, 'The player is not in this game' unless index
         if target == nil
           raise GameRoomNetworkErrors::GamePaused, 'This place already has a computer' if GameRoomParticipants.bot?(source)
-          occupied = (players + connected_users(table_id)).map { |person| GameRoomParticipants.display_name(person) }
+          occupied = (players + connected_users(table_id)).map { |person| GameRoomParticipants.public_display_name(person) }
           names = GameRoomBotNames.pick(occupied: occupied)
           all_players = current.fetch('__initial_players', []) + current.fetch('__seat_changes', []).flat_map { |change| change['players'] }
           number = (all_players + players).map { |person| GameRoomParticipants.bot_number(person).to_i }.max.to_i + 1

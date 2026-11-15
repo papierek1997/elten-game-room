@@ -25,7 +25,8 @@ module GameRoomGames
             timestamp = GameRoomSessionClock.from_server(session, timestamp, event: event)
             next if timestamp < state[:time]
             before = {phase: state[:phase], round: state[:round], pot: state[:pot], cash: state[:cash].dup,
-              eliminated: state[:eliminated].dup, leader: state[:leader], highest: state[:highest]}
+              eliminated: state[:eliminated].dup, leader: state[:leader], highest: state[:highest],
+              question_target: state[:question_target]}
             next unless apply_auction_event(state, event, actor, event_id, timestamp, bank)
             state[:seen][event_id] = true
             state[:revision] += 1
@@ -45,10 +46,11 @@ module GameRoomGames
       private
 
       def question_bank(options)
-        pack = selected_content_pack(options)
-        unless @auction_bank_pack.equal?(pack)
-          @auction_bank = GameRoomCashAuction::QuestionBank.new(pack)
-          @auction_bank_pack = pack
+        packs = auction_content_packs(options)
+        source = options['auction_rules_version'] == 2 ? packs : packs.first
+        unless @auction_bank_source == source
+          @auction_bank = GameRoomCashAuction::QuestionBank.new(source)
+          @auction_bank_source = source
         end
         @auction_bank
       end

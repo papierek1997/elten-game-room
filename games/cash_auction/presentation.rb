@@ -9,6 +9,7 @@ module GameRoomGames
           GameSurfaces::QuestionSpec.new(id: auction_id(state), mode: :text,
             prompt: _('Bid amount; type A for all-in and press Enter'),
             show_submit_button: false, clear_on_submit: true, max_length: 8,
+            text_shortcuts: custom_game_shortcuts(replay, viewer).map { |shortcut| [shortcut.key, shortcut.modifiers] },
             extra_commands: seat == state[:leader] ? [] : [GameSurfaces::Command.new(id: 'pass', label: _('Pass'), enabled: true)])
         elsif state[:phase] == :answering
           question = state[:question]
@@ -27,6 +28,24 @@ module GameRoomGames
       end
 
       def game_field_header(replay, viewer); status_text(replay, viewer); end
+
+      def custom_game_shortcuts(replay, viewer)
+        state = replay.state
+        seat = player_index(replay.players, viewer)
+        scores = shortcut_feature_data(:scores, replay, viewer)[:message]
+        own = seat ? points_text(replay, [seat]) : _('You are observing this game.')
+        others = points_text(replay, replay.players.each_index.reject { |index| index == seat })
+        [
+          ['s', state[:phase] == :auction ? [:shift] : [], _('read the scores'), scores],
+          ['p', [], _('read the pool'), _('Pool: %{points}.') % {points: state[:pot]}],
+          ['t', [], _('read whose turn it is'), auction_turn_text(replay, viewer)],
+          ['h', [], _('read who is bidding and who has passed'), bidding_text(replay)],
+          ['d', [], _('read your points'), own],
+          ['d', [:shift], _('read the other players’ points'), others]
+        ].map do |key, modifiers, label, message|
+          GameShortcut.new(key: key, modifiers: modifiers, label: label, kind: :announcement, message: message)
+        end
+      end
 
       def shortcut_feature_data(feature, replay, viewer)
         return super unless feature.to_sym == :scores
@@ -70,6 +89,40 @@ module GameRoomGames
       end
 
       private
+
+      def points_text(replay, seats)
+        seats.map do |seat|
+          count = replay.state[:cash][seat]
+          points = n_('%{count} point', '%{count} points', count) % {count: count}
+          "#{participant_name(replay.players[seat])}: #{points}"
+        end.join('; ')
+      end
+
+      def auction_turn_text(replay, viewer)
+        return _('All eligible players may bid now.') if replay.state[:phase] == :auction
+
+        status_text(replay, viewer)
+      end
+
+      def bidding_text(replay)
+        state = replay.state
+        return _('There is no auction in progress.') unless state[:phase] == :auction
+
+        replay.players.each_with_index.map do |player, seat|
+          status = if state[:eliminated][seat]
+            _('eliminated')
+          elsif state[:passed][seat]
+            _('passed')
+          elsif state[:leader] == seat
+            _('highest bid: %{amount}') % {amount: state[:highest]}
+          elsif state[:contributions][seat].positive?
+            _('bid: %{amount}') % {amount: state[:contributions][seat]}
+          else
+            _('no bid yet')
+          end
+          '%{player}: %{status}' % {player: participant_name(player), status: status}
+        end.join('; ')
+      end
 
       def auction_event_history(event, actor, event_id, state, before, bank)
         seat = player_index(state[:players], actor)
@@ -123,6 +176,16 @@ module GameRoomGames
           end
         end
         entries = [HistoryEntry.new(key: "cash-auction:#{event_id}", event_id: event_id, actor: actor, kind: kind, text: message)]
+        if R.revised?(state) && %w[all_in auction_closed].include?(event['action'])
+          state[:round_penalties].each_with_index do |penalty, index|
+            next unless penalty.positive?
+            participant = state[:players][index]
+            entries << HistoryEntry.new(key: "cash-auction:#{event_id}:inactivity:#{index}", event_id: event_id,
+              actor: participant, kind: :game,
+              text: _('%{player} made no bid in three consecutive auctions and pays %{amount} into the pool.') % {
+                player: participant_name(participant), amount: penalty})
+          end
+        end
         state[:players].each_with_index do |participant, index|
           next unless state[:eliminated][index] && !before[:eliminated][index]
           entries << HistoryEntry.new(key: "cash-auction:#{event_id}:eliminated:#{index}", event_id: event_id,
@@ -131,7 +194,7 @@ module GameRoomGames
         if state[:phase] == :opening_chests && before[:phase] != :opening_chests
           entries << HistoryEntry.new(key: "cash-auction:#{event_id}:chests", event_id: event_id, actor: actor,
             kind: :game, text: _('Open your black chests before the final result.'))
-        elsif state[:phase] == :drawing && state[:completed_rounds] >= state[:options]['rounds']
+        elsif state[:phase] == :drawing && (R.revised?(state) ? state[:question_target] != before[:question_target] : state[:completed_rounds] >= state[:options]['rounds'])
           entries << HistoryEntry.new(key: "cash-auction:#{event_id}:tie", event_id: event_id, actor: actor,
             kind: :game, text: _('The leaders are tied. An extra round will decide the match.'))
         end
@@ -149,7 +212,8 @@ module GameRoomGames
         when :auction
           leader = state[:leader] ? participant_name(replay.players[state[:leader]]) : _('No bids yet')
           _('Round %{round}; pool: %{pool}; highest bid: %{amount}; leader: %{player}.') % {
-            round: state[:round], pool: state[:pot], amount: state[:highest], player: leader}
+            round: R.revised?(state) ? state[:completed_rounds] + 1 : state[:round],
+            pool: state[:pot], amount: state[:highest], player: leader}
         when :question_pending, :answering
           _('%{player} answers the question.') % {player: participant_name(replay.players[state[:leader]])}
         when :opening_chests then _('Open your black chests before the final result.')
