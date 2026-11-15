@@ -180,7 +180,7 @@ module GameRoomParticipantMenu
           if entry.action == :table_options
             read_options.call
           elsif entry.action == :personal_settings
-            settings.call
+            run_personal_settings(layout, focused, settings)
           else
             dispatch.call(entry.action, nil)
           end
@@ -271,6 +271,32 @@ module GameRoomParticipantMenu
     (observing ? _("Make %{player} a player for the next game") : _("Make %{player} an observer for the next game")) % {
       player: GameRoomParticipants.display_name(participant)
     }
+  end
+
+  def run_personal_settings(layout, focused, settings)
+    saved = nil
+    begin
+      saved = settings.call
+    ensure
+      restore_personal_settings_focus(layout, focused, saved: !!saved)
+    end
+    saved
+  end
+
+  def restore_personal_settings_focus(layout, focused, saved:)
+    fields = layout.form.fields
+    return unless focused && fields[layout.form.index.to_i].equal?(focused)
+
+    attribute = if focused.respond_to?(:header) && focused.respond_to?(:header=) && !focused.header.to_s.empty?
+      :header
+    elsif focused.respond_to?(:label) && focused.respond_to?(:label=) && !focused.label.to_s.empty?
+      :label
+    end
+    original = focused.public_send(attribute) if attribute
+    focused.public_send("#{attribute}=", "#{_('Settings saved.')} #{original}") if saved && attribute
+    focused.focus(layout.form.index.to_i, fields.length)
+  ensure
+    focused.public_send("#{attribute}=", original) if attribute
   end
 
   def add_context_help(layout, actions, game: nil)

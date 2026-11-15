@@ -9,6 +9,7 @@ require_relative "../../games/tic_tac_toe"
 require_relative "../../games/makao"
 require_relative "../../games/axel_pong"
 require_relative "../../games/audio_ball"
+require_relative "../../games/darts"
 require_relative "../../lib/participant_menu"
 require_relative "../../lib/game_simulation"
 
@@ -66,17 +67,18 @@ program = Object.new
 called = []
 program.define_singleton_method(:show_pong_settings) { called << :pong }
 program.define_singleton_method(:show_audio_ball_settings) { called << :audio_ball }
+program.define_singleton_method(:show_darts_settings) { called << :darts }
 program.define_singleton_method(:show_custom_settings) { called << :custom }
-program.singleton_class.send(:private, :show_pong_settings, :show_audio_ball_settings, :show_custom_settings)
+program.singleton_class.send(:private, :show_pong_settings, :show_audio_ball_settings, :show_darts_settings, :show_custom_settings)
 client = Object.new
 client.define_singleton_method(:show_settings) { called << :client }
-[GameRoomGames::AxelPong.new, GameRoomGames::AudioBall.new].each do |game|
+[GameRoomGames::AxelPong.new, GameRoomGames::AudioBall.new, GameRoomGames::Darts.new].each do |game|
   entry = GameRoomParticipantMenu.personal_settings_entry(game)
   assert(entry.help_key == "Ctrl+P" && entry.menu_key == "p", "settings shortcut changed")
   GameRoomParticipantMenu.settings_callback(game, program: program).call
   GameRoomParticipantMenu.settings_callback(game, program: program, client: client).call
 end
-assert(called == [:pong, :client, :audio_ball, :client], "waiting/active settings boundary changed")
+assert(called == [:pong, :client, :audio_ball, :client, :darts, :client], "waiting/active settings boundary changed")
 assert(GameRoomParticipantMenu.settings_callback(board, program: program, client: client) == nil, "ordinary game gained personal settings")
 assert(GameRoomParticipantMenu.personal_settings_entry(board) == nil, "ordinary game gained a Pong label")
 extension = Class.new(GameRoomGames::Base) do

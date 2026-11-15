@@ -2,7 +2,7 @@ require_relative '../game_room_localization'
 
 class GameScreen
   WaitState = Struct.new(:replay, :revision, :action, :session, :membership, :actor, keyword_init: true)
-  WaitView = Struct.new(:layout, :silent_entry, :announce_finished_focus, keyword_init: true)
+  WaitView = Struct.new(:layout, :silent_entry, :announce_finished_focus, :defer_finished_focus, keyword_init: true)
   PendingMoveIntent = Struct.new(:session, :replay, :selection, :membership, :actor, :chat_receipt, keyword_init: true)
 
   module Input
@@ -38,8 +38,12 @@ class GameScreen
       elsif take_pending_computer(wait, layout)
         # Run the normal room mutation after the previous task has finished.
       elsif view.announce_finished_focus
-        speech_wait
-        form.wait
+        if view.defer_finished_focus
+          layout.wait_without_announcement
+        else
+          speech_wait
+          form.wait
+        end
       elsif !view.silent_entry
         form.wait
       else
@@ -85,6 +89,8 @@ class GameScreen
       @surface_state = @board_preferences.restore(@board_view_spec, @surface_state)
       history_items = combined_history_items(replay)
       phase = replay.finished? ? :finished : :active
+      finished_presentation_pending = finished_presentation_pending?(replay)
+      own_table_controls = same_user?(@table_owner, Session.name) && !finished_presentation_pending
       @finished_at = phase == :finished ? (@layout&.phase == :active ? monotonic_time : @finished_at) : nil
       phase_changed = @layout != nil && (@layout.phase != phase || @focus_new_game == true)
       if @layout == nil
@@ -92,14 +98,14 @@ class GameScreen
           view_spec: view_spec, surface_state: @surface_state, history_items: history_items, user_items: user_items,
           users_header: users_header, chat_control: @chat_control,
           phase: phase,
-          own_table: same_user?(@table_owner, Session.name)
+          own_table: own_table_controls
         )
         @layout.form.game_room_program = @program
       else
         @layout.update(
           view_spec: view_spec, history_items: history_items, user_items: user_items,
           users_header: users_header, phase: phase,
-          own_table: same_user?(@table_owner, Session.name),
+          own_table: own_table_controls,
           surface_state: @surface_state, reset_surface: @surface_identity == nil,
           new_game: @focus_new_game == true
         )
@@ -116,7 +122,17 @@ class GameScreen
       # New decision controls and Restart/Waiting must follow the event speech.
       # speech_wait queues their focus instead of cutting off the tile/result.
       room_focus_retained = phase_changed && [:chat, :history, :users].include?(layout.focus_location.to_a.first)
-      announce_finished_focus = (phase_changed && phase == :finished && !room_focus_retained) || layout.decision_focus_changed?
+      base_finished_focus = phase_changed && phase == :finished && !room_focus_retained
+      pending_finished_presentation = base_finished_focus && finished_presentation_pending
+      session_id = @repository.session_id(@session)
+      @deferred_finished_focus_session = session_id if pending_finished_presentation
+      if @deferred_finished_focus_session == session_id && [:chat, :history, :users].include?(layout.focus_location.to_a.first)
+        @deferred_finished_focus_session = nil
+      end
+      presentation_finished = phase == :finished && @deferred_finished_focus_session == session_id &&
+        !finished_presentation_pending?(replay)
+      @deferred_finished_focus_session = nil if presentation_finished || phase != :finished
+      announce_finished_focus = base_finished_focus || presentation_finished || layout.decision_focus_changed?
       silent_entry = room_focus_retained || (@suppress_surface_focus && !announce_finished_focus)
       @suppress_surface_focus = false
       cursor_message = layout.take_cursor_announcement
@@ -130,7 +146,8 @@ class GameScreen
       form = layout.form
       form.game_room_background_help_enabled = true
 
-      WaitView.new(layout: layout, silent_entry: silent_entry, announce_finished_focus: announce_finished_focus)
+      WaitView.new(layout: layout, silent_entry: silent_entry, announce_finished_focus: announce_finished_focus,
+        defer_finished_focus: pending_finished_presentation)
     end
 
     def bind_wait_status(wait, layout, remember_position)
@@ -313,7 +330,7 @@ class GameScreen
       form = layout.form
       layout.restart_button.on(:press) do
         next if wait.action != nil || !wait.replay.finished? || !same_user?(@table_owner, Session.name)
-        next if event_presentation_busy?
+        next if event_presentation_busy? || finished_presentation_pending?(wait.replay)
         next if @finished_at && monotonic_time - @finished_at < @game.restart_guard_seconds.to_f
 
         remember_position.call
@@ -326,49 +343,51 @@ class GameScreen
       surface = layout.surface
       form = layout.form
       back_button = layout.back_button
-      surface.on_action do |selection|
-        shortcut = @game.surface_action_shortcut(selection, wait.replay, Session.name)
-        if shortcut
-          next if wait.action != nil || @session["__frozen"] || event_presentation_busy?
-          next form.game_room_pending_operation.reject_action if form.game_room_pending_operation
-          selection = activate_game_shortcut(shortcut, surface, replay: wait.replay)
-          next if selection == nil || wait.action != nil
-        end
-        if (pending = form.game_room_pending_operation)
-          next pending.reject_action unless pending.admits_move?
-          next if selection['kind'] == 'surface' && selection['action'] == 'refresh'
-          remember_position.call
-          capture_pending_move(wait, selection)
-          next
-        end
-        next if wait.action != nil
-        next if @session["__frozen"]
-        if selection["kind"] == "surface" && selection["action"] == "refresh"
-          remember_position.call
-          wait.action = :presentation_refresh
-          form.resume_for_refresh
-          next
-        end
-        next if event_presentation_busy?
+      if surface
+        surface.on_action do |selection|
+          shortcut = @game.surface_action_shortcut(selection, wait.replay, Session.name)
+          if shortcut
+            next if wait.action != nil || @session["__frozen"] || event_presentation_busy?
+            next form.game_room_pending_operation.reject_action if form.game_room_pending_operation
+            selection = activate_game_shortcut(shortcut, surface, replay: wait.replay)
+            next if selection == nil || wait.action != nil
+          end
+          if (pending = form.game_room_pending_operation)
+            next pending.reject_action unless pending.admits_move?
+            next if selection['kind'] == 'surface' && selection['action'] == 'refresh'
+            remember_position.call
+            capture_pending_move(wait, selection)
+            next
+          end
+          next if wait.action != nil
+          next if @session["__frozen"]
+          if selection["kind"] == "surface" && selection["action"] == "refresh"
+            remember_position.call
+            wait.action = :presentation_refresh
+            form.resume_for_refresh
+            next
+          end
+          next if event_presentation_busy?
 
 
-        if selection["_stay_open"] == true
-          remember_position.call
-          @selected_surface_action = selection
-          wait.action = :inline_game_action
-          form.resume
-        else
-          remember_position.call
-          @selected_surface_action = selection
-          wait.action = :game_action
-          form.resume
+          if selection["_stay_open"] == true
+            remember_position.call
+            @selected_surface_action = selection
+            wait.action = :inline_game_action
+            form.resume
+          else
+            remember_position.call
+            @selected_surface_action = selection
+            wait.action = :game_action
+            form.resume
+          end
         end
+        @game_client.attach_view(form, surface) if @game_client.respond_to?(:attach_view)
       end
-      @game_client.attach_view(form, surface) if @game_client.respond_to?(:attach_view)
       back_button.on(:press) do
         next form.game_room_pending_operation.reject_action if form.game_room_pending_operation
         next if wait.action != nil
-        if surface.cancel_pending_action?
+        if surface&.cancel_pending_action?
           surface.cancel_pending_action!
           remember_position.call
         else
@@ -479,6 +498,10 @@ class GameScreen
           remember_position.call
           wait.action = :recovery_refresh
           form.resume_for_refresh
+        elsif deferred_finished_presentation_ready?(wait.replay)
+          remember_position.call
+          wait.action = :presentation_refresh
+          form.resume_for_refresh
         elsif presentation_changed || @game_client&.refresh_due?
           remember_position.call
           wait.action = :presentation_refresh
@@ -489,6 +512,15 @@ class GameScreen
           form.resume_for_refresh
         end
       end)
+    end
+
+    def finished_presentation_pending?(replay)
+      replay.finished? && @game_client&.respond_to?(:presentation_pending?) && @game_client.presentation_pending?
+    end
+
+    def deferred_finished_presentation_ready?(replay)
+      replay.finished? && @deferred_finished_focus_session == @repository.session_id(@session) &&
+        !finished_presentation_pending?(replay)
     end
 
     def handle_inline_wait(wait, layout)

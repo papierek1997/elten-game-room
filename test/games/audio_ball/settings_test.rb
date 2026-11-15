@@ -217,13 +217,13 @@ check('Modal settings pump the supplied realtime tick and clean up the timer on 
   end
 end
 
-check('Personal Ctrl+P and its context entry are scoped to Audio Ball and Pong without resuming gameplay') do
-  [GameRoomGames::AudioBall.new, GameRoomGames::AxelPong.new, GameRoomGames::Makao.new].each do |game|
+check('Personal Ctrl+P and its context entry are scoped to games with local settings without resuming gameplay') do
+  [GameRoomGames::AudioBall.new, GameRoomGames::AxelPong.new, GameRoomGames::Darts.new, GameRoomGames::Makao.new].each do |game|
     users, chat = ListBox.new(['Alice'], header: 'Users'), EditBox.new('Chat', text: 'draft')
     layout = Struct.new(:form, :users, :back_button).new(GameRoomUI::Form.new([users, chat]), users, nil)
     calls = 0
     GameRoomParticipantMenu.bind(layout, available: -> { [] }, game: game,
-      settings: -> { calls += 1 }) { raise 'Personal settings dispatched a shared game action' }
+      settings: -> { calls += 1; {'saved' => true} }) { raise 'Personal settings dispatched a shared game action' }
     [users, chat].each do |focused|
       layout.form.index = layout.form.fields.index(focused)
       menu = FakeMenu.new
@@ -234,10 +234,14 @@ check('Personal Ctrl+P and its context entry are scoped to Audio Ball and Pong w
         next
       end
       assert(items.length == 1, 'Ctrl+P is missing or duplicated')
-      expected = game.id == 'audio_ball' ? 'Audio Ball settings' : 'Pong settings'
+      expected = {'audio_ball'=>'Audio Ball settings', 'axel_pong'=>'Pong settings', 'darts'=>'Darts settings'}.fetch(game.id)
       assert(items.first[0] == expected, 'Wrong personal settings menu label')
       items.first[3].call
       assert(layout.form.fields[layout.form.index].equal?(focused) && chat.text == 'draft', 'Settings moved focus or edited chat')
+      returned_label = focused.respond_to?(:last_focus_header) ? focused.last_focus_header : focused.last_focus_label
+      assert(returned_label.start_with?('Settings saved. '), 'Saved personal settings did not announce their return control')
+      original_label = focused.respond_to?(:header) ? focused.header : focused.label
+      assert(!original_label.start_with?('Settings saved. '), 'The temporary settings result changed the control permanently')
     end
     assert(calls == (game.id == 'makao' ? 0 : 2), 'Ctrl+P did not dispatch the local callback')
     assert(layout.form.instance_variable_get(:@handlers).keys.none? { |key| key.to_s == 'key_p' }, 'Bare P was bound outside the native menu')

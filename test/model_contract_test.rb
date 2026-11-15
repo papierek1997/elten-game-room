@@ -91,9 +91,11 @@ new_games += %w[kosciane balut french_tarot backgammon]
 end
 duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/duck_racing.json'), encoding: 'UTF-8'))
 cash_auction = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/cash_auction.json'), encoding: 'UTF-8'))
+darts = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/darts.json'), encoding: 'UTF-8'))
 cases << JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/billiards.json'), encoding: 'UTF-8'))
 expected_ids = GameRoomGames::CATALOG.ids.reject { |id| %w[axel_pong audio_ball].include?(id) }.sort
-assert_equal(expected_ids, (cases.map { |item| item.fetch('game') } + [duck.fetch('game'), cash_auction.fetch('game')]).sort, 'corpus must explicitly cover every turn-based game')
+custom_games = [duck, cash_auction, darts].map { |item| item.fetch('game') }
+assert_equal(expected_ids, (cases.map { |item| item.fetch('game') } + custom_games).sort, 'corpus must explicitly cover every turn-based game')
 assert((ARGV - expected_ids).empty?, 'unknown game requested for contract verification')
 cases = cases.select { |item| ARGV.include?(item.fetch('game')) } unless ARGV.empty?
 cases.each do |item|
@@ -125,4 +127,11 @@ if ARGV.empty? || ARGV.include?('duck_racing')
   current_duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/duck_racing.json'), encoding: 'UTF-8'))
   assert_equal(current_duck, GameRoomTest::DuckModelContract.capture, 'Current Duck public protocol contract changed')
   puts 'duck_racing: historical ready/begin and current last-ready startup, three rolls, settlement, race continuation, full/incremental replay and RNG OK'
+end
+
+if ARGV.empty? || ARGV.include?('darts')
+  require_relative 'support/darts_model_contract'
+  assert_equal(darts, GameRoomTest::DartsModelContract.capture,
+    'Darts start, throws, tie-break or replay contract changed')
+  puts 'darts: durable seed, two three-dart turns, sudden death, full replay, input ownership, action order and RNG OK'
 end

@@ -1,0 +1,85 @@
+{
+  "source": "games/darts.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {"cs": "Cíl hry"},
+      "paragraphs": [
+        {"cs": "Darts je zvuková hra pro jednoho až osm hráčů. Naveďte pohybující se zvuk ke středu terče a získejte co nejvíce bodů. V každém kole hází každý hráč třemi šipkami."}
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {"cs": "Hod šipkou"},
+      "paragraphs": [
+        {"cs": "Mezerníkem zahájíte míření. Zaměřovač se objeví na náhodném místě dále od středu a hned začne ujíždět. První sekundu jej můžete opravovat, ale ještě nelze hodit. Krátký signál oznámí, že je hod odemčený."},
+        {"cs": "Zaměřovač upravujte šipkami a po signálu znovu stiskněte mezerník. Po zvuku vypuštění uslyšíte zásah terče a samostatný tón, jehož výška vyjadřuje získané body. Další šipka čeká na nové stisknutí mezerníku, takže míření nezačne během hlášení předchozího výsledku."}
+      ]
+    },
+    {
+      "id": "aiming",
+      "title": {"cs": "Hledání středu podle zvuku"},
+      "paragraphs": [
+        {"cs": "Vodorovnou polohu uslyšíte ve stereu. Výška a hlasitost zvuku vyjadřují vzdálenost od středu: čím blíže jste, tím je zvuk vyšší a silnější. Při vzdalování klesá a slábne. Toto pravidlo platí ve všech směrech."},
+        {"cs": "U stolu pro více hráčů slyší ostatní hráči a diváci pohyb zaměřovače aktivního hráče živě. Každý posluchač používá vlastní zvolený zvuk zaměřovače. Jde pouze o dočasný zvukový náhled: uložený hod a body nadále pocházejí z běžné herní události a přerušený přenos vzdálený zaměřovač ztiší, místo aby jej ponechal na zastaralém místě."},
+        {"cs": "Každý stisk šipky posune zaměřovač o trochu jinou vzdálenost. Po opravě zůstane krátce klidnější a potom znovu pokračuje v pohybu, obvykle ven z terče. V blízkosti cenného středu se pohybuje rychleji, takže je důležitý poslech a správný okamžik, ne opakování pevné řady kláves."},
+        {"cs": "Dřevěný signál označuje okraj kruhového terče. Po čtvercové hrací ploše se můžete pohybovat i za ním, ale hod z této oblasti nepřinese žádný bod. Jiný, kovový signál znamená vnější hranici celé plochy; dál tím směrem zaměřovač neposunete."}
+      ]
+    },
+    {
+      "id": "time",
+      "title": {"cs": "Čas na hod"},
+      "paragraphs": [
+        {"cs": "Je-li zapnutý časový limit, tři nízké tóny odpočítají poslední tři sekundy. Po vypršení času hra podle nastavení stolu buď hodí ze současné polohy, nebo přidělí nula bodů. Čas se začne počítat až po signálu připravenosti, ne při prvním stisku mezerníku."},
+        {"cs": "Limit lze také vypnout. Zaměřovač se pak pohybuje, dokud nehodíte."}
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {"cs": "Body a vítězství"},
+      "paragraphs": [
+        {"cs": "Zásah přinese 1 až 100 bodů podle vzdálenosti od středu. Přesný střed má hodnotu 100 bodů a směrem k okraji hodnota plynule klesá. Šipka mimo kruhový terč znamená nula bodů."},
+        {"cs": "Po zvoleném počtu kol vyhrává hráč s nejvyšším součtem. Při shodě vedoucích výsledků hodí každý z těchto hráčů jednu další šipku. Jednohodové rozstřely pokračují jen mezi hráči, kteří se stále dělí o vedení, dokud jeden nezíská nejlepší výsledek. Ve hře jednoho hráče je výsledkem konečný součet bodů."}
+      ]
+    },
+    {
+      "id": "options",
+      "title": {"cs": "Obtížnost a nastavení hry"},
+      "paragraphs": [
+        {"cs": "Lehká, normální a těžká obtížnost mění přesnost oprav, dobu klidnější polohy po opravě a rychlost pohybu zaměřovače. Při postupném zvyšování obtížnosti začíná hra lehce, přejde na normální úroveň a poslední část proběhne na těžké."},
+        {"cs": "Hra může mít 1, 3, 5 nebo 10 kol. Samostatně zvolíte čas na jednu šipku a následek jeho vypršení."},
+        {"cs": "Před začátkem hry lze zapnout volitelné relativní ovládání myší. Pohyb myši potom opravuje polohu zaměřovače a levé tlačítko zahájí míření nebo provede hod stejně jako mezerník."}
+      ]
+    },
+    {
+      "id": "training",
+      "title": {"cs": "Zvukový trénink"},
+      "paragraphs": [
+        {"cs": "Zvukový trénink je dostupný u stolu pro jednoho hráče. Míření a bodování zůstávají stejné, ale řeč navíc oznamuje přechod do jiného sektoru, začátek a poslední sekundy času, obě hranice, ruční nebo automatický hod a zásah či minutí. Klávesou C zopakujete aktuální sektor."},
+        {"cs": "Trénink nevypíná odečítač obrazovky. V běžné hře zůstává samotné míření pouze zvukové, zatímco popisky rozhraní, body a výsledky se nadále oznamují řečí."}
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {"cs": "Ovládání klávesnicí a myší"},
+      "paragraphs": [
+        {"cs": "Mezerník: zahajte míření nebo po signálu připravenosti hoďte."},
+        {"cs": "Šipky: opravte polohu zvukového zaměřovače."},
+        {"cs": "S: přečtěte skóre."},
+        {"cs": "T: přečtěte, kdo je na tahu."},
+        {"cs": "C: zopakujte aktuální sektor ve zvukovém tréninku."},
+        {"cs": "Ctrl+P: otevřete osobní nastavení Dartsa a vyberte jeden ze tří zvuků zaměřovače."},
+        {"cs": "Volitelné ovládání myší: relativní pohyb opravuje zaměřovač a levé tlačítko zahájí míření nebo hodí. Tuto možnost zapněte v nastavení stolu před začátkem hry."}
+      ]
+    }
+  ],
+  "option_chapters": {
+    "mode": "training",
+    "difficulty": "options",
+    "rounds": "scoring",
+    "progressive": "options",
+    "time_limit": "time",
+    "timeout_result": "time",
+    "mouse_input": "options"
+  }
+}

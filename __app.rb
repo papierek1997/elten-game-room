@@ -26,7 +26,7 @@
       "auction_gavel", "auction_chest", "auction_call_low", "auction_call_high",
       "billiards_cue", "billiards_collision", "billiards_cushion", "billiards_pocket",
       "connect", "disconnect", "chatmsg", "notice", "table_notice", "invitation_rejected", "conference_created", "buzzer", "buzzer2", "quiz_wrong_answer", "bingo_draw", "roulette_spin", "roulette_chips", "duck_challenge", "duck_question", "duck_countdown", "duck_quack", "duck_correct", "duck_frozen",
-      "duck_final_lap", "duck_shot", "duck_note_c", "duck_memory_bark", "duck_memory_bell", "duck_memory_drop", "duck_memory_clap", "duck_memory_zip",
+      "duck_final_lap", "duck_shot", "darts_hit_1", "darts_hit_2", "darts_hit_3", "darts_hit_4", "darts_hit_5", "darts_edge", "darts_limit", "darts_throw", "darts_applause", "darts_consolation", "darts_locator_round", "darts_locator_clear", "darts_locator_bright", "duck_note_c", "duck_memory_bark", "duck_memory_bell", "duck_memory_drop", "duck_memory_clap", "duck_memory_zip",
       "duck_rhythm_f", "duck_rhythm_j", "war_open", "ding", "shuffle", "scopa", "scopa_deal", "scopa_take", "draw", "draw2", "bouillabaisse_rank", "bouillabaisse_card",
       "farkle", "cht-roll-dice", "cht-bank", "cht-lost-points", "cht-cat-minus-8", "cht-cat-plus-8",
       "hit1", "hit_ship1", "hit_ship2", "rocket_launch1", "rocket_launch2", "rocket_launch3", "rocket_miss",
@@ -160,6 +160,7 @@ require_relative "lib/quiz_contributions/controller"
 require_relative "lib/quiz_reports"
 require_relative "lib/game_option_editor"
 require_relative "lib/audio_ball/settings"
+require_relative "lib/darts/settings"
 require_relative "lib/invitation_repository"
 require_relative "lib/invitation_notifications"
 require_relative "lib/game_room_notifications"
@@ -2867,6 +2868,7 @@ class EltenGameRoom < Program
     if reload || @game_room_settings == nil
       @pong_preferences = nil
       @audio_ball_preferences = nil
+      @darts_preferences = nil
       stored = read_json("settings.json", default: DEFAULT_SETTINGS.dup)
       @game_room_settings = GameRoomPreferences.normalize(stored, GAME_REGISTRY.ids)
       self.class.remember_settings(@game_room_settings)
@@ -2939,6 +2941,21 @@ class EltenGameRoom < Program
     end
     @game_room_settings = game_room_settings.merge('audio_ball' => updated)
     @audio_ball_preferences = updated.freeze
+  end
+
+  def darts_preferences
+    @darts_preferences ||= GameRoomDarts::Preferences.normalize(game_room_settings['darts']).freeze
+  end
+
+  def show_darts_settings(tick: nil, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
+    updated = GameRoomDarts::Settings.new(darts_preferences, program: self, tick: tick, clock: clock).wait
+    return unless updated
+    update_game_room_settings do |state|
+      state['darts'] = updated
+      state
+    end
+    @game_room_settings = game_room_settings.merge('darts' => updated)
+    @darts_preferences = updated.freeze
   end
 
   def build_widget_control
