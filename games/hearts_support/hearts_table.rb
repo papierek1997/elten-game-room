@@ -1,7 +1,6 @@
 require_relative "../dealt_card_game"
 require_relative "hearts_cards"
 require_relative "hearts_bot"
-require_relative "hearts_match"
 require_relative "../../lib/private_card_round_audit"
 
 GameRoomServerRandom.register("hearts", ["deal"])
@@ -9,11 +8,11 @@ GameRoomPrivateCards.register("hearts", host: %w[private_deal], claim: %w[privat
   take: %w[initial_hand], reveal: %w[pass_card hearts_open play], random: %w[deal])
 
 module GameRoomGames
+  using GameRoomLocalization::Translations
   class HeartsTable < DealtCardGame
     def id; "hearts"; end
-    def name; "Kierki"; end
-    def short_description; "Unikaj kier\u00f3w i damy pik. Wygrywa gracz z najmniejsz\u0105 liczb\u0105 punkt\u00f3w karnych."; end
-    def private_table_required?(_options); true; end
+    def name; _('Hearts'); end
+    def short_description; _('Avoid hearts and the queen of spades to finish with the fewest penalty points.'); end
 
     def rule_sections; generated_rule_sections; end
     def minimum_players; 4; end
@@ -22,10 +21,9 @@ module GameRoomGames
     def turn_announcement(replay, viewer)
       state = replay&.state
       if state && state[:phase] == :passing && same_user?(state[:current_player], viewer)
-        direction = {1 => "w lewo", -1 => "w prawo", 2 => "naprzeciwko"}.fetch(state[:pass_offset])
         remaining = 3 - state[:passes].fetch(state[:current_player], []).size
-        return "Przeka\u017c trzy karty #{direction}. Wybierz ka\u017cd\u0105 Enterem." if remaining == 3
-        return "Pozosta\u0142o kart do przekazania: #{remaining}."
+        return passing_instruction(state) if remaining == 3
+        return _('Cards still to pass: %{count}.') % {count: remaining}
       end
 
       super
@@ -41,7 +39,7 @@ module GameRoomGames
 
       sender, cards = receipt
       name = GameRoomContent.utf8(participant_name(sender))
-      messages << "Karty od #{name}: #{GameRoomContent.utf8(cards_text(cards))}."
+      messages << _('Cards from %{player}: %{cards}.') % {player: name, cards: cards_text(cards)}
     end
 
     def bot_strategy
@@ -67,21 +65,20 @@ module GameRoomGames
           cards.count { |suit, _| suit == :hearts } + (cards.include?([:spades, 12]) ? 13 : 0)
         end
         names = replay.players.map { |player| "#{GameRoomContent.utf8(participant_name(player))}: #{points.fetch(player, 0)}" }
-        return {label: "Punkty karne rozdania", message: names.empty? ? "Brak punkt\u00f3w." : names.join(". ")}
+        return {label: _('Penalty points this deal'), message: names.empty? ? _('No points yet.') : names.join(". ")}
       end
       if feature == :led_suit
         card = table_cards(state).first
-        labels = {clubs: "trefl", diamonds: "karo", hearts: "kier", spades: "pik"}
-        return {message: card ? "Kolor wyj\u015bcia: #{labels.fetch(HeartsCards.decode(card).first)}." : "Lewa jest pusta."}
+        labels = {clubs: _('clubs'), diamonds: _('diamonds'), hearts: _('hearts'), spades: _('spades')}
+        return {message: card ? _('Suit led: %{suit}.') % {suit: labels.fetch(HeartsCards.decode(card).first)} : _('The trick is empty.')}
       end
       if feature == :round_summary && state[:phase] != :passing
-        return {message: state[:hearts_broken] ? "Kiery s\u0105 ju\u017c otwarte." : "Kiery s\u0105 jeszcze zamkni\u0119te."}
+        return {message: state[:hearts_broken] ? _('Hearts have been broken.') : _('Hearts have not been broken yet.')}
       end
       return super unless feature == :round_summary && state[:phase] == :passing
 
-      direction = {1 => "w lewo", -1 => "w prawo", 2 => "naprzeciwko"}.fetch(state[:pass_offset])
       count = state[:passes].fetch(viewer, []).size
-      {message: "Przekazywanie kart #{direction}. Wybrano #{count} z 3 kart."}
+      {message: passing_instruction(state) + ' ' + _('Selected: %{count} of 3 cards.') % {count: count}}
     end
 
     def bot_action_score(replay, actor, action, context: nil)
@@ -133,6 +130,14 @@ module GameRoomGames
 
     protected
 
+    def passing_instruction(state)
+      case state[:pass_offset]
+      when 1 then _('Pass three cards to the left. Select each with Enter.')
+      when -1 then _('Pass three cards to the right. Select each with Enter.')
+      else _('Pass three cards across. Select each with Enter.')
+      end
+    end
+
     def deal_round(state, seed, event, repository, history)
       seats = state.fetch(:seats)
       cards = state[:private_cards] ? Array.new(52) : shuffled_cards(HeartsCards::DECK, seed)
@@ -144,8 +149,8 @@ module GameRoomGames
       state[:passes] = {}
       state[:last_exchange] = nil
       state[:round_penalties] = nil
-      direction = HeartsMatch::DIRECTIONS.fetch((state[:round] - 1) % 4)
-      state[:pass_offset] = HeartsRound::PASS.fetch(direction)
+      direction = HeartsRules::DIRECTIONS.fetch((state[:round] - 1) % 4)
+      state[:pass_offset] = HeartsRules::PASS.fetch(direction)
       if state[:pass_offset].zero?
         start_hearts_play(state)
       else
@@ -158,7 +163,7 @@ module GameRoomGames
     def announce_exchange(state, event, repository, history)
       return unless state[:pass_offset].zero?
 
-      add_history(history, event, repository, :exchange, "W tym rozdaniu zachowujesz wszystkie karty.")
+      add_history(history, event, repository, :exchange, _('Keep all your cards this deal.'))
     end
 
     def private_dealing_applied(state, event, _session, repository, history)
@@ -279,7 +284,7 @@ module GameRoomGames
       trick << [actor, card]
       if !state[:hearts_broken] && HeartsCards.decode(card).first == :hearts
         state[:hearts_broken] = true
-        add_history(history, event, repository, :hearts_broken, "Kiery otwarte.")
+        add_history(history, event, repository, :hearts_broken, _('Hearts have been broken.'))
       end
       if trick.size < 4
         state[:current_player] = next_player(state, actor)
@@ -291,8 +296,8 @@ module GameRoomGames
       state.fetch(:captured).fetch(winner).concat(cards)
       points = cards.count { |suit, _| suit == :hearts } + (cards.include?([:spades, 12]) ? 13 : 0)
       name = GameRoomContent.utf8(participant_name(winner))
-      message = "#{name} bierze lew\u0119. Punkty karne: #{points}."
-      message += " Wychodzi do nast\u0119pnej lewy." if state[:play_count] < 52
+      message = _('%{player} wins the trick.') % {player: name}
+      message += ' ' + _('Penalty points: %{points}.') % {points: points} if points.positive?
       add_history(history, event, repository, :trick, message, actor: winner)
       trick.clear
       state[:current_player] = winner
@@ -312,12 +317,12 @@ module GameRoomGames
       moon = penalties.index(0) if penalties.count(26) == 3
       if moon
         name = GameRoomContent.utf8(participant_name(seats.fetch(moon)))
-        add_history(history, event, repository, :round_result, "#{name} zebra\u0142 wszystkie karty karne.")
+        add_history(history, event, repository, :round_result, _('%{player} collected every penalty card.') % {player: name})
       end
       seats.zip(penalties).each do |seat, points|
         name = GameRoomContent.utf8(participant_name(seat))
         add_history(history, event, repository, :round_result,
-          "#{name}. Punkty rozdania: #{points}. Wynik meczu: #{state[:scores].fetch(seat)}.")
+          _('%{player}: this deal: %{points}; total: %{total}.') % {player: name, points: points, total: state[:scores].fetch(seat)})
       end
       state[:current_player] = nil
       if state[:scores].values.max >= 100 && winning_units(state).one?

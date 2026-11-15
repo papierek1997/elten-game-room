@@ -74,6 +74,11 @@ presentations = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/n
 assert((presentations.keys - new_games).empty?, 'Unexpected new-game presentation override')
 feedback = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v3/new_games_feedback.json'), encoding: 'UTF-8'))
 assert((feedback.keys - %w[kosciane balut backgammon]).empty?, 'Unexpected new-game feedback override')
+# PR #71 adds per-column cue metadata, not scoring changes. The separate
+# five-dice feedback contract reconstructs every old hash without that metadata.
+dice_feedback = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v4/dice_general_feedback.json'), encoding: 'UTF-8'))
+assert_equal(['kosciane'], dice_feedback.keys)
+feedback.merge!(dice_feedback)
 # Compared with 2943170 on the exact original inputs: only presentation history
 # differs, including move metadata. Full state, moves, legal ordering and RNG agree.
 presentations.merge!(feedback)
@@ -93,6 +98,9 @@ duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/duck_racin
 cash_auction = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/cash_auction.json'), encoding: 'UTF-8'))
 darts = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/darts.json'), encoding: 'UTF-8'))
 cases << JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/billiards.json'), encoding: 'UTF-8'))
+%w[cribbage belote jass hearts].each do |id|
+  cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding: 'UTF-8'))
+end
 expected_ids = GameRoomGames::CATALOG.ids.reject { |id| %w[axel_pong audio_ball].include?(id) }.sort
 custom_games = [duck, cash_auction, darts].map { |item| item.fetch('game') }
 assert_equal(expected_ids, (cases.map { |item| item.fetch('game') } + custom_games).sort, 'corpus must explicitly cover every turn-based game')

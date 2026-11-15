@@ -1,20 +1,9 @@
-require_relative "../../../games/jass_support/jass_match"
-require_relative "../../../games/jass_support/jass_bot"
-game = GameRoomGames::JassMatch.new
-bot = GameRoomGames::JassBot
-rng = Random.new(91)
-20.times do
-  break if game.winner
-  raise unless game.deal(GameRoomGames::JassRound::DECK.shuffle(random: rng))
-  round = game.round
-  until round.trump
-    seat = round.turn
-    raise unless game.bid(seat, bot.bid(round.observation(seat)))
-  end
-  while game.round && !game.winner
-    seat = round.turn
-    raise unless game.play(seat, bot.play(round.observation(seat)))
-  end
+require_relative '../../support/dealt_card_games'
+include GameRoomTest::Assertions
+%w[playroom schieber].each do |variant|
+  table = GameRoomTest::DealtCardTable.new('jass', count: 4, seed: 91, options: {'variant'=>variant})
+  table.finish_production_match
+  assert(table.replay.winner && table.state[:scores].fetch(table.replay.winner) >= 1000, "#{variant}: no winner")
+  assert_equal(table.events, table.replay.accepted_events, "#{variant}: a selected bot decision was refused")
 end
-raise unless game.winner && game.scores[game.winner] >= 1000
-puts "PASS Jass bot match"
+puts 'PASS production Jass/Schieber: legal bot choices and complete games through the registered reducer'

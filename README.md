@@ -58,11 +58,12 @@ a Escape zamyka dokument.
 
 ## W co można zagrać
 
-Power Games zawiera 53 gry: od karcianek i planszówek po zabawy słowne,
+Power Games zawiera 57 gier: od karcianek i planszówek po zabawy słowne,
 ćwiczenia pisania i gry, w których najważniejsze są słuch i refleks.
 
 - Karcianki: 3-5-8, 99, 1000 mil, Biblios, Blackjack, Bouillabaisse,
-  Brydż, Francuski tarot, Makao, Piki, Poker, Remik, Scopa, Tysiąc, UNO, Wojna i Wojna naukowa.
+  Brydż, Belote, Cribbage, Francuski tarot, Jass, Kierki, Makao, Piki, Poker,
+  Remik, Scopa, Tysiąc, UNO, Wojna i Wojna naukowa.
 - Gry planszowe i strategiczne: Chińczyk, Cztery w rzędzie, Go,
   Kółko i krzyżyk, Mahjong, Mankala, Monopoly, Reversi, Statki, Szachy,
   Tryktrak, Warcaby i Wyścigi kaczek.
@@ -668,7 +669,8 @@ Nieodebrane zaproszenie nie oznacza przegranej.
 ### Ochrona ukrytych kart
 
 W turniejach 1000 mil, Pików, Brydża, Tysiąca, 3-5-8, 99, Pokera, Wojny,
-Remika, Makao, Biblios, Bouillabaisse, Scopy i UNO serwer rozdaje karty prywatnie każdemu graczowi.
+Remika, Makao, Biblios, Bouillabaisse, Scopy, Cribbage, Belote, Jassa, Kierów
+i UNO serwer rozdaje karty prywatnie każdemu graczowi.
 Tak samo działa rozdawanie kostek w Domino i Mexican Train, liter
 w Scrabble oraz kamieni w Mahjongu. Inni gracze, obserwatorzy i gospodarz
 nie otrzymują Twojej nieujawnionej ręki ani dalszej części talii lub ściany.

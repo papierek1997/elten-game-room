@@ -3,28 +3,84 @@
   "sections": [
     {
       "id": "play",
-      "title": {
-        "en": "Hearts"
-      },
       "paragraphs": [
         {
-          "en": "Avoid taking hearts and the queen of spades. Each heart costs one point and the queen costs 13. The lowest score wins once someone reaches 100 and there is a sole leader. Taking all penalty cards gives each opponent 26 instead."
+          "en": "Four people play individually with a 52-card deck. Everyone receives thirteen cards. Avoid winning hearts and the queen of spades: every heart is one penalty point and that queen is thirteen. Other cards score nothing. Aces are highest, then kings, queens and so on down to twos. There are no trumps."
         },
         {
-          "en": "Pass three cards left, right and across in successive deals, then keep your hand on the fourth. The two of clubs opens. Follow suit when possible. On the first trick, avoid penalty cards if you can. You may lead hearts after one has been played or when you hold only hearts. The highest card of the led suit takes the trick."
+          "en": "Before the first deal, pass three cards to the left. In the next deals, pass right, then across, then keep all cards. This four-deal cycle repeats. Select each card with Enter. Once everyone has chosen three, the cards are exchanged and you hear what you received. The player holding the two of clubs leads it to the first trick."
+        },
+        {
+          "en": "Take turns playing one card and follow the suit led if possible. Without that suit, discard any card, except that on the first trick you must avoid penalty cards if you have a safe card. The highest card of the suit led wins the trick and leads next. You may lead hearts only after someone has discarded a heart, unless your hand contains only hearts."
         }
-      ]
+      ],
+      "title": {
+        "en": "Playing Hearts"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "en": "After all thirteen tricks, add the penalties to each player’s total. If one player takes all thirteen hearts and the queen of spades, that player scores zero and every opponent scores 26 instead. Once anyone reaches at least 100, the player with the lowest total wins. If the lowest total is tied, play another deal."
+        }
+      ],
+      "title": {
+        "en": "Scoring and the winner"
+      }
     },
     {
       "id": "controls",
-      "title": {
-        "en": "Keyboard"
-      },
       "paragraphs": [
         {
-          "en": "Choose a card with the arrows and press Enter to pass or play it."
+          "en": "Arrows: browse cards or menu choices."
+        },
+        {
+          "en": "Enter: select a card to pass before play, or play the selected card during a trick."
+        },
+        {
+          "en": "F: read the suit led."
+        },
+        {
+          "en": "V: read passing progress or whether hearts have been broken."
+        },
+        {
+          "en": "Shift+S: read penalty points in this deal."
+        },
+        {
+          "en": "H: read your hand."
+        },
+        {
+          "en": "C: read the cards on the table."
+        },
+        {
+          "en": "Ctrl+C: browse those cards."
+        },
+        {
+          "en": "S: read the scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "Z: find the next playable card."
+        },
+        {
+          "en": "Shift+Z: find the previous playable card."
+        },
+        {
+          "en": "Shift+C: sort your hand by suit."
+        },
+        {
+          "en": "Shift+H: sort your hand by rank."
+        },
+        {
+          "en": "Shift+M: restore the order in which you received the cards."
         }
-      ]
+      ],
+      "title": {
+        "en": "Controls"
+      }
     }
   ],
   "option_chapters": {}

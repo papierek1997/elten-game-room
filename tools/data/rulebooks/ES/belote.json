@@ -3,32 +3,123 @@
   "sections": [
     {
       "id": "play",
-      "title": {
-        "es": "Subasta y bazas"
-      },
       "paragraphs": [
         {
-          "es": "Dos parejas juegan a 1000 puntos. Con cinco cartas en la mano, elige el palo de la carta descubierta como triunfo o pasa. Tras cuatro pases se puede elegir otro palo. Tras ocho pases se vuelve a repartir."
+          "es": "Cuatro jugadores forman dos parejas, sentadas frente a frente. Se usan 32 cartas, del siete al as. Se sortea el primer repartidor y el reparto rota después. Al terminar una mano, gana la pareja que tenga al menos 1000 puntos y más que la otra."
         },
         {
-          "es": "Elegido el triunfo, cada jugador tiene ocho cartas. Sigue el palo si puedes. Si no puedes, juega un triunfo salvo que tu pareja vaya ganando la baza. Si tienes que jugar un triunfo, supera al más alto de la baza si puedes. Quien gana la baza abre la siguiente."
+          "es": "En Belote clásica todos reciben cinco cartas y se descubre otra. Empezando por quien sigue al repartidor, podéis aceptar su palo como triunfo o pasar. Tras cuatro pases, podéis elegir otro palo o pasar. Ocho pases provocan un nuevo reparto. La primera elección de triunfo acaba las pujas: quien lo elige recibe la carta descubierta y se completan todas las manos hasta ocho cartas."
         },
         {
-          "es": "La pareja que elige el triunfo necesita al menos 82 puntos y debe superar a la defensa. Si juegas el rey de triunfo mientras tienes la dama de triunfo, tu pareja gana 20 puntos cuando juegues también esa dama."
+          "es": "Sale a la primera baza quien sigue al repartidor. Debes asistir al palo. Si no tienes, juega triunfo, salvo que gane tu compañero. Cuando debas jugar triunfo, supera al más alto de la baza si puedes. Sin el palo ni triunfo puedes descartar cualquiera. Gana el triunfo más alto o, si no hay, la carta más alta del palo de salida. Quien gana sale a la siguiente."
         }
-      ]
+      ],
+      "title": {
+        "es": "Pujas y bazas"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "es": "Los triunfos, de mayor a menor, son jota (20 puntos), nueve (14), as (11), diez (10), rey (4), dama (3), ocho y siete (cero). En los otros palos: as (11), diez (10), rey (4), dama (3), jota (2), nueve, ocho y siete (cero). La última baza añade diez, para un total de 162 puntos."
+        },
+        {
+          "es": "Con el rey y la dama de triunfo en la mano, juega cualquiera con Mayús+Intro para anunciar belote y después la otra del mismo modo para anunciar rebelote. Ambos anuncios dan veinte puntos a tu pareja, aunque perdáis el contrato. Jugar sin anunciar no da esta bonificación."
+        },
+        {
+          "es": "La pareja que elige triunfo debe reunir al menos 82 puntos y más que los defensores, contando belote. Si cumple, ambas partes anotan sus puntos. Si falla, los defensores anotan los 162 puntos de las bazas. En un empate, los defensores anotan sus bazas y las de los declarantes se acumulan para quien gane la siguiente mano decisiva. Los puntos de belote siempre se conservan. Ganar las ocho bazas añade noventa puntos."
+        }
+      ],
+      "title": {
+        "es": "Valores de las cartas y puntuación"
+      }
+    },
+    {
+      "id": "coinchee",
+      "paragraphs": [
+        {
+          "es": "Al crear la mesa elige Belote clásica o Coinchée. En Coinchée se reparten normalmente las ocho cartas antes de pujar. La opción de cinco cartas divide el reparto en dos etapas: quien gane las pujas recibe la carta descubierta y las manos se completan después. Su palo no limita la elección de triunfo."
+        },
+        {
+          "es": "La oferta indica triunfo y entre 80 y 160 puntos, de diez en diez. Cada nueva oferta debe aumentar los puntos. Los rivales pueden doblar, fijando el contrato y duplicando las puntuaciones; los declarantes pueden redoblar para cuadruplicarlas. Tres pases seguidos tras una oferta, doble o redoble cierran las pujas. Cuatro pases sin oferta provocan otro reparto."
+        },
+        {
+          "es": "Los declarantes deben alcanzar su oferta y superar a los defensores. Si cumplen, cada parte anota sus bazas; si no, también en caso de empate, los defensores reciben 162 y los declarantes cero. Se añaden los bonos por todas las bazas y belote, y después se aplica el multiplicador del doble o redoble a ambas parejas."
+        }
+      ],
+      "title": {
+        "es": "Coinchée y opciones de la mesa"
+      }
     },
     {
       "id": "controls",
-      "title": {
-        "es": "Teclado"
-      },
       "paragraphs": [
         {
-          "es": "Elige una oferta, pasar o una carta con las flechas y confirma con Intro."
+          "es": "Flechas: recorrer cartas u opciones."
+        },
+        {
+          "es": "Intro: elegir una oferta durante las pujas o jugar una carta en una baza."
+        },
+        {
+          "es": "B: abrir las ofertas y el pase disponibles en tu turno."
+        },
+        {
+          "es": "Mayús+Intro: jugar el rey o la dama de triunfo y anunciar belote o rebelote."
+        },
+        {
+          "es": "D: leer la carta descubierta cuando se utilice."
+        },
+        {
+          "es": "F: leer el triunfo y el palo de salida."
+        },
+        {
+          "es": "R: leer el contrato."
+        },
+        {
+          "es": "V: leer el contrato."
+        },
+        {
+          "es": "Mayús+S: leer los puntos de esta mano antes del multiplicador."
+        },
+        {
+          "es": "H: leer tu mano."
+        },
+        {
+          "es": "C: leer las cartas de la mesa."
+        },
+        {
+          "es": "Ctrl+C: consultar esas cartas."
+        },
+        {
+          "es": "S: leer las puntuaciones."
+        },
+        {
+          "es": "T: leer a quién le toca."
+        },
+        {
+          "es": "Z: buscar la siguiente carta que puedes jugar."
+        },
+        {
+          "es": "Mayús+Z: buscar la carta jugable anterior."
+        },
+        {
+          "es": "Mayús+C: ordenar tu mano por palos."
+        },
+        {
+          "es": "Mayús+H: ordenar tu mano por valores."
+        },
+        {
+          "es": "Mayús+M: restaurar el orden en que recibiste las cartas."
         }
-      ]
+      ],
+      "title": {
+        "es": "Controles"
+      }
     }
   ],
-  "option_chapters": {}
+  "option_chapters": {
+    "variant": "coinchee",
+    "coinchee_two_stage": "coinchee"
+  }
 }

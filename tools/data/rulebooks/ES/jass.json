@@ -3,29 +3,105 @@
   "sections": [
     {
       "id": "play",
-      "title": {
-        "es": "Jass"
-      },
       "paragraphs": [
         {
-          "es": "Se juega por parejas. Quien abre elige el triunfo o cede la elección a su pareja. Quien gana una baza abre la siguiente."
+          "es": "Cuatro jugadores forman dos parejas sentadas frente a frente. Cada uno recibe nueve cartas de una baraja de 36, del seis al as. Quien sigue al repartidor elige triunfo o cede la elección a su compañero, que debe decidir. La primera salida sigue correspondiendo a quien va después del repartidor. El reparto rota en cada mano."
         },
         {
-          "es": "Cada jugador recibe nueve cartas. Si se abre con triunfo, juega un triunfo si tienes alguno. Si se abre con otro palo, puedes seguir el palo o jugar un triunfo. Si no tienes el palo de salida, puedes descartar. Solo puedes jugar un triunfo inferior al que ya hay en la baza si no tienes otra jugada legal. Gana el triunfo más alto o, si no hay triunfos, la carta más alta del palo de salida. La jota de triunfo es la más alta y vale 20. El nueve de triunfo es el segundo y vale 14. El as vale 11, el diez 10, el rey 4, la dama 3 y las demás jotas 2. La última baza suma cinco puntos. La meta es llegar a 1000."
+          "es": "La primera carta fija el palo. Si se sale de triunfo, debes asistir con triunfo si puedes. En otro palo, puedes asistir o jugar triunfo; sin ese palo puedes descartar. Solo puedes jugar un triunfo inferior al ya jugado si no queda otra jugada legal. Gana el triunfo más alto o, si no hay, la carta más alta del palo de salida. Quien gana sale a la siguiente."
         }
-      ]
+      ],
+      "title": {
+        "es": "Cómo jugar al Jass"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "es": "Los triunfos se ordenan jota, nueve, as, rey, dama, diez, ocho, siete y seis. La jota vale veinte y el nueve catorce. En los demás palos: as, rey, dama, jota, diez, nueve, ocho, siete y seis. El as da 11, el diez 10, el rey 4, la dama 3 y la jota no triunfal 2; las demás cartas cero. La última baza añade cinco, para un total de 157 por mano."
+        }
+      ],
+      "title": {
+        "es": "Orden de las cartas y puntos"
+      }
+    },
+    {
+      "id": "settings",
+      "paragraphs": [
+        {
+          "es": "La variante con triunfo ofrece los cuatro palos. Schieber añade Obenabe y Undenufe, ambos sin triunfo. En Obenabe gana la carta más alta del palo de salida y los ochos valen ocho. En Undenufe gana la más baja; los seises valen once, los ases cero y los ochos ocho. En ambos modos debes asistir al palo si puedes."
+        },
+        {
+          "es": "Los puntos de cada baza van a la pareja de quien la gane. Al crear la mesa elige un objetivo de 1000, 1500, 2000 o 2500. La partida termina al acabar la mano en la que una pareja alcance el objetivo."
+        }
+      ],
+      "title": {
+        "es": "Variantes y objetivo de puntos"
+      }
     },
     {
       "id": "controls",
-      "title": {
-        "es": "Teclado"
-      },
       "paragraphs": [
         {
-          "es": "Elige el triunfo o la carta con las flechas y confirma con Intro."
+          "es": "Flechas: recorrer cartas u opciones."
+        },
+        {
+          "es": "Intro: elegir las reglas antes de jugar o jugar una carta en una baza."
+        },
+        {
+          "es": "B: abrir las opciones de triunfo y sin triunfo."
+        },
+        {
+          "es": "F: leer las reglas de la mano y el palo de salida."
+        },
+        {
+          "es": "R: leer quién elige triunfo o qué modo se ha elegido."
+        },
+        {
+          "es": "V: repetir las reglas de la mano."
+        },
+        {
+          "es": "Mayús+S: leer los puntos de esta mano."
+        },
+        {
+          "es": "H: leer tu mano."
+        },
+        {
+          "es": "C: leer las cartas de la mesa."
+        },
+        {
+          "es": "Ctrl+C: consultar esas cartas."
+        },
+        {
+          "es": "S: leer las puntuaciones."
+        },
+        {
+          "es": "T: leer a quién le toca."
+        },
+        {
+          "es": "Z: buscar la siguiente carta que puedes jugar."
+        },
+        {
+          "es": "Mayús+Z: buscar la carta jugable anterior."
+        },
+        {
+          "es": "Mayús+C: ordenar tu mano por palos."
+        },
+        {
+          "es": "Mayús+H: ordenar tu mano por valores."
+        },
+        {
+          "es": "Mayús+M: restaurar el orden en que recibiste las cartas."
         }
-      ]
+      ],
+      "title": {
+        "es": "Controles"
+      }
     }
   ],
-  "option_chapters": {}
+  "option_chapters": {
+    "variant": "settings",
+    "score_limit": "settings"
+  }
 }

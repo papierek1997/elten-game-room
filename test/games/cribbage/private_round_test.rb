@@ -31,8 +31,8 @@ begin
       prompt = game.shortcut_feature_data(:table_cards, mine, actor).fetch(:message)
       assert(prompt.split(", ").size == 4, "Expected four counting cards without the starter")
       keys = game.game_shortcuts(mine, actor).to_h { |shortcut| [shortcut.key, shortcut] }
-      assert(keys.fetch("d").message.include?("Karta startowa"), "Missing starter shortcut")
-      assert(keys.fetch("v").message.include?("liczy crib"), "Missing crib dealer shortcut")
+      assert(keys.fetch("d").message.start_with?("Starter:"), "Missing starter shortcut")
+      assert(keys.fetch("v").message.include?("owns the crib"), "Missing crib dealer shortcut")
       wrong = action.merge("points" => action.fetch("points") + 1)
       assert(game.action_for(wrong, mine, actor).first == :ok, "Overcount rejected")
       assert(game.surface_spec(mine, actor).zones.first.cards.size == 5, "Missing cards")

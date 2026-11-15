@@ -1,27 +1,23 @@
-require_relative "../../../games/jass_support/jass_match"
-require_relative "../../../games/jass_support/jass_bid"
-game = GameRoomGames::JassMatch.new
-rng = Random.new(19)
-dealers = []
-until game.winner
-  raise "No winner after 20 deals" if dealers.size >= 20
-  dealers << game.dealer
-  raise unless game.deal(GameRoomGames::JassRound::DECK.shuffle(random: rng))
-  raise if game.deal(GameRoomGames::JassRound::DECK)
-  seat = game.round.turn
-  bids = GameRoomGames::JassBid
-  raise if bids.apply(game, (seat + 1) % 4, "spades") || bids.apply(game, seat, "unknown")
-  raise unless bids.apply(game, seat, "pass")
-  partner = game.round.turn
-  raise if bids.actions(game.round, partner).any? { |move| move["choice"] == "pass" }
-  choice = bids.actions(game.round, partner).find { |move| move["choice"] == "spades" }
-  raise unless bids.apply(game, partner, choice.fetch("choice")) && game.round.turn == seat
-  while game.round && !game.winner
-    seat = game.round.turn
-    raise unless game.play(seat, game.round.legal_cards(seat).first)
-  end
-end
-raise unless game.scores[game.winner] >= 1000
-raise unless dealers.each_cons(2).all? { |a, b| b == (a + 1) % 4 }
-raise if game.deal(GameRoomGames::JassRound::DECK)
-puts "PASS Jass match: #{dealers.size} deals"
+require_relative '../../support/dealt_card_games'
+include GameRoomTest::Assertions
+table = GameRoomTest::DealtCardTable.new('jass', count: 4, seed: 19)
+actor = table.replay.current_player
+other = (table.replay.players - [actor]).first
+pass = {'kind'=>'command', 'action'=>'choose_trump', 'choice'=>'pass'}
+assert(table.act(other, pass) != :ok, 'Another player selected the rules')
+assert(table.act(actor, pass.merge('choice'=>'unknown')) != :ok, 'Unknown trump accepted')
+assert_equal(:ok, table.act(actor, pass))
+partner = table.replay.current_player
+assert_equal((table.state[:seats].index(actor) + 2) % 4, table.state[:seats].index(partner))
+choices = table.game.legal_actions(table.replay, partner)
+assert(choices.none? { |action| action['choice'] == 'pass' }, 'Partner can pass back indefinitely')
+assert_equal(:ok, table.act(partner, choices.find { |action| action['choice'] == 'spades' }))
+assert_equal(actor, table.replay.current_player, 'Trump selection changed the opening leader')
+dealer = table.state[:dealer]
+table.finish_production_round
+assert_equal(:ok, table.deal)
+assert_equal((dealer + 1) % 4, table.state[:dealer])
+table.finish_production_match
+assert(table.replay.winner && table.state[:scores].fetch(table.replay.winner) >= 1000, 'Production Jass did not finish')
+assert(table.deal != :ok, 'Completed Jass accepted another deal')
+puts 'PASS production Jass: partner selection, refusals, opening leader, dealer rotation and complete match'

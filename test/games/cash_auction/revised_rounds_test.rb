@@ -78,10 +78,13 @@ module CashAuctionRevisedRoundsTest
     assert_equal([10, 8, :opening_chests, nil], f.replay.state.values_at(:round, :completed_rounds, :phase, :winner))
     assert_equal(8, f.events.count { |row| row['action'] == 'question' })
     assert_equal(nil, f.game.automatic_action(f.replay, 'Alice', context: f.context), 'Wheel restarted before the chests were opened')
-    f.open_chest('Alice', reward: -1000)
+    balances = f.replay.state[:cash].dup
+    f.open_chest('Alice', reward: 100)
     assert_equal([:opening_chests, nil], f.replay.state.values_at(:phase, :winner))
     f.open_chest('Bob', reward: 10_000)
-    assert_equal([:finished, 'Bob'], f.replay.state.values_at(:phase, :winner))
+    assert_equal([:finished, 'Alice'], f.replay.state.values_at(:phase, :winner))
+    assert_equal(balances, f.replay.state[:cash], 'Additional prizes changed the match score')
+    assert_equal([100, 10_000, 0, 0], f.replay.state[:bonus_prizes])
     assert_equal(nil, f.game.automatic_action(f.replay, 'Alice', context: f.context), 'Wheel restarted after the final result')
     assert_equal(f.replay, GameRoomGames::CashAuction.new.replay(f.session, f.events, f.repository))
   end
@@ -98,7 +101,7 @@ module CashAuctionRevisedRoundsTest
     question_round(f, bidder: 'Bob')
     assert_equal([:opening_chests, 9, nil], f.replay.state.values_at(:phase, :completed_rounds, :winner))
     f.open_chest('Alice', reward: 100)
-    assert_equal([:finished, 'Alice'], f.replay.state.values_at(:phase, :winner))
+    assert_equal([:finished, 'Bob'], f.replay.state.values_at(:phase, :winner))
   end
 end
 

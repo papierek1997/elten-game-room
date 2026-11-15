@@ -57,11 +57,12 @@ na další nadpis, Shift+H na předchozí a Escape dokument zavře.
 
 ## Co si můžete zahrát
 
-Power Games obsahuje 53 her: karetní a deskové hry, slovní a vědomostní
+Power Games obsahuje 57 her: karetní a deskové hry, slovní a vědomostní
 hry, procvičování psaní i hry založené na sluchu a postřehu.
 
 - Karetní hry: 3-5-8, 99, 1000 mil, Biblios, Blackjack, Bouillabaisse,
-  Bridž, Francouzský tarot, Makao, Piky, Poker, Rummy, Scopa, Tisíc, UNO, War a Scientific War.
+  Bridž, Belote, Cribbage, Francouzský tarot, Jass, Srdce, Makao, Piky, Poker,
+  Rummy, Scopa, Tisíc, UNO, War a Scientific War.
 - Deskové a strategické hry: Člověče, nezlob se, Čtyři v řadě, Go,
   Piškvorky, Mahjong, Mancala, Monopoly, Reversi, Lodě, Šachy, Vrhcáby,
   Dáma a Závody kachen.
@@ -652,7 +653,8 @@ Nepřijatá pozvánka neznamená prohru.
 ### Ochrana skrytých karet
 
 V turnajích her 1000 mil, Piky, Bridž, Tisíc, 3-5-8, 99, Poker, War, Rummy,
-Makao, Biblios, Bouillabaisse, Scopa a UNO rozdává server karty každému hráči soukromě.
+Makao, Biblios, Bouillabaisse, Scopa, Cribbage, Belote, Jass, Srdce a UNO
+rozdává server karty každému hráči soukromě.
 Totéž platí pro kameny Domina a Mexican Train, písmena Scrabblu a kameny
 Mahjongu. Ostatní hráči, diváci ani hostitel neobdrží vaši neodhalenou ruku
 ani dosud nerozdaný balíček či zeď. Karty a kameny se odhalují podle potřeby

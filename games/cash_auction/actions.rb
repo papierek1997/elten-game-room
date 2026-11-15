@@ -67,8 +67,13 @@ module GameRoomGames
           return [:ok, event_plan(all_in ? 'all_in' : 'bid', "#{state[:round]}|#{amount}")]
         end
         if state[:phase] == :answering && seat == state[:leader] && selection['kind'] == 'question' &&
-            selection['question_id'] == question_id(state) && selection['action'] == 'submit' && selection['answer'].to_s.match?(/\A[0-3]\z/)
-          return [:ok, event_plan('answer', "#{state[:round]}|#{state[:bid_revision]}|#{selection['answer']}")]
+            selection['question_id'] == question_id(state)
+          if selection['action'] == 'hint' && R.revised?(state) && !state[:hint_used] && state[:cash][seat] >= R.hint_price(state)
+            return [:ok, server_seed_plan('hint', template: "#{state[:round]}|#{state[:bid_revision]}|{seed}")]
+          elsif selection['action'] == 'submit' && selection['answer'].to_s.match?(/\A[0-3]\z/) &&
+              !state.fetch(:hidden_answers, []).include?(selection['answer'].to_i)
+            return [:ok, event_plan('answer', "#{state[:round]}|#{state[:bid_revision]}|#{selection['answer']}")]
+          end
         end
         [:invalid, nil]
       end
@@ -96,7 +101,7 @@ module GameRoomGames
           actions << base.merge('action'=>'submit', 'answer'=>'A') if can_raise && state[:cash][seat].positive? && (maximum > amount || amount <= state[:highest])
           return actions
         elsif state[:phase] == :answering && seat == state[:leader]
-          return (0..3).map { |index| {'kind'=>'question', 'action'=>'submit', 'question_id'=>question_id(state), 'answer'=>index.to_s} }
+          return (0..3).reject { |index| state.fetch(:hidden_answers, []).include?(index) }.map { |index| {'kind'=>'question', 'action'=>'submit', 'question_id'=>question_id(state), 'answer'=>index.to_s} }
         end
         []
       end

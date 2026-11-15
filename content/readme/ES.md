@@ -58,12 +58,13 @@ encabezado, Shift+H al anterior y Escape cierra el documento.
 
 ## A qué puedes jugar
 
-Power Games incluye 53 juegos: cartas, juegos de tablero, palabras
+Power Games incluye 57 juegos: cartas, juegos de tablero, palabras
 y conocimientos, práctica de escritura y juegos basados en el oído
 y los reflejos.
 
 - Cartas: 3-5-8, 99, 1000 millas, Biblios, Blackjack, Bouillabaisse,
-  Bridge, Tarot francés, Makao, Picas, Póker, Rummy, Scopa, Mil, UNO, War y Scientific War.
+  Bridge, Belote, Cribbage, Tarot francés, Corazones, Jass, Makao, Picas,
+  Póker, Rummy, Scopa, Mil, UNO, War y Scientific War.
 - Tablero y estrategia: Ludo, Cuatro en raya, Go, Tres en raya, Mahjong,
   Mancala, Monopoly, Reversi, Hundir la flota, Ajedrez, Backgammon, Damas y Carrera de patos.
 - Dados y dominó: Balut, Blackjack de dados, Cat, head, tail, General de dados,
@@ -687,7 +688,8 @@ No aceptar una invitación no cuenta como derrota.
 ### Protección de las cartas ocultas
 
 En los torneos de 1000 millas, Picas, Bridge, Mil, 3-5-8, Póker, War, Rummy,
-Makao, Biblios, Bouillabaisse, Scopa, 99 y UNO, el servidor reparte las cartas a cada jugador
+Makao, Biblios, Bouillabaisse, Scopa, 99, Cribbage, Belote, Jass, Corazones
+y UNO, el servidor reparte las cartas a cada jugador
 de forma privada. Lo mismo ocurre con las fichas de Dominó y Tren mexicano,
 las letras de Scrabble y las fichas de Mahjong.
 Ni los demás jugadores, ni los espectadores, ni el anfitrión reciben

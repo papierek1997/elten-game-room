@@ -102,7 +102,7 @@ clock = CashBidAcknowledgementFixture::Clock.new(original_now.call.to_i)
 Time.define_singleton_method(:now) { Time.at(clock.value) }
 begin
   [false, true].each do |inline|
-    [:unchanged, :new_draft, :retyped_same, :different_session, :invalid].each do |boundary|
+    [:unchanged, :new_draft, :retyped_same, :different_session, :invalid, :deadline].each do |boundary|
       f = CashBidAcknowledgementFixture.new(clock)
       begin
         initial = boundary == :invalid ? 'xyz' : '125'
@@ -111,6 +111,17 @@ begin
         submitted = f.screen.instance_variable_get(:@selected_surface_action)
         raise 'Native bid lacked its immutable edit receipt' unless submitted['_text_input'].length == 2
         before = f.h.events('Alice').length
+        if boundary == :deadline
+          # Planning sees an open auction; the confirmed server timestamp is
+          # at its deadline. A native append ACK must not masquerade as a bid.
+          native = f.h.view('Alice')
+          original_push = native.method(:stack_push)
+          deadline = f.h.replay('Alice').state[:auction_deadline]
+          native.define_singleton_method(:stack_push) do |packet, message_id:|
+            clock.value = deadline
+            original_push.call(packet, message_id: message_id)
+          end
+        end
         captured = false
         EltenAPI::Tasks.bid_ack_probe = lambda do |options|
           next unless !captured && options[:ui].is_a?(GameRoomUI::PendingOperation)
@@ -134,6 +145,11 @@ begin
         else
           raise 'ACK test did not append exactly the original bid' unless inserted.length == 1 && inserted.first['action'] == 'bid' && inserted.first['value'].split('|').last == initial
           raise 'Local edit receipt leaked into a native packet' if JSON.generate(f.h.core.entries).include?('_text_input')
+          if boundary == :deadline
+            raise 'A stored but late bid was announced as successful' if f.alerts.empty?
+            raise 'A late bid changed the actual auction' unless f.h.replay('Alice').state[:highest].zero?
+            raise 'A late native bid appeared in accepted history' if f.h.replay('Alice').accepted_events.include?(inserted.first)
+          end
         end
       ensure
         EltenAPI::Tasks.bid_ack_probe = nil

@@ -10,12 +10,15 @@ module GameRoomGames
             prompt: _('Bid amount; type A for all-in and press Enter'),
             show_submit_button: false, clear_on_submit: true, max_length: 8,
             text_shortcuts: custom_game_shortcuts(replay, viewer).map { |shortcut| [shortcut.key, shortcut.modifiers] },
-            extra_commands: seat == state[:leader] ? [] : [GameSurfaces::Command.new(id: 'pass', label: _('Pass'), enabled: true)])
+            extra_commands: seat == state[:leader] ? [] : [GameSurfaces::Command.new(id: 'pass', label: _('Withdraw from this auction'), enabled: true)])
         elsif state[:phase] == :answering
           question = state[:question]
           GameSurfaces::QuestionSpec.new(id: question_id(state), mode: :single_choice,
             prompt: question[:prompt], prompt_as_text: true, submit_on_select: true, read_only: seat != state[:leader],
-            options: question[:choices].each_with_index.map do |answer, index|
+            extra_commands: R.revised?(state) && seat == state[:leader] && !state[:hint_used] && state[:cash][seat] >= R.hint_price(state) ?
+              [GameSurfaces::Command.new(id: 'hint', label: _('Remove two wrong answers for %{price} points') % {price: R.hint_price(state)}, enabled: true)] : [],
+            options: question[:choices].each_with_index.filter_map do |answer, index|
+              next if state.fetch(:hidden_answers, []).include?(index)
               GameSurfaces::QuestionOption.new(id: index.to_s, label: ('A'.ord + index).chr + '. ' + answer, value: index.to_s)
             end)
         elsif state[:phase] == :opening_chests && seat && state[:chests][seat] > 0
@@ -60,11 +63,16 @@ module GameRoomGames
         return [] unless state[:phase] == :auction && state[:leader]
         now ||= GameRoomSessionClock.for_state(state)
         interval = state[:options]['count_interval']
-        started = state[:auction_deadline] - 3 * interval
+        started = state[:auction_deadline] - R.auction_duration(state)
         return [] if now >= state[:auction_deadline]
         ordinal = ((now - started) / interval).floor
-        return [] unless ordinal.between?(1, 2)
-        message = (ordinal == 1 ? _('%{player}, %{amount}, going once.') : _('%{player}, %{amount}, going twice.')) % {
+        return [] unless ordinal.between?(1, R.revised?(state) ? 3 : 2)
+        template = case ordinal
+        when 1 then _('%{player}, %{amount}, going once.')
+        when 2 then _('%{player}, %{amount}, going twice.')
+        else _('%{player}, %{amount}, going three times.')
+        end
+        message = template % {
           player: GameRoomParticipants.display_name(replay.players[state[:leader]]), amount: state[:highest]}
         [["cash-auction:#{state[:game_id]}:#{state[:round]}:#{state[:bid_revision]}:#{ordinal}", message,
           ordinal == 1 ? 'auction_call_low' : 'auction_call_high', :skip_on_reconstruction]]
@@ -79,6 +87,7 @@ module GameRoomGames
           seat && after_replay.state[:cash][seat].zero? ? 'poker_all_in' : 'poker_raise'
         when 'pass' then 'poker_fold'
         when 'question' then 'draw'
+        when 'hint' then 'roulette_chips'
         when 'answer' then history.any? { |entry| entry.kind == :correct_answer } ? 'replay' : 'quiz_wrong_answer'
         when 'chest' then 'auction_chest'
         end
@@ -124,6 +133,17 @@ module GameRoomGames
         end.join('; ')
       end
 
+      def auction_answer_text(state, player, correct, pot)
+        answer = state[:question][:choices][state[:question][:correct_index]]
+        if correct
+          template = R.revised?(state) ? _('%{player} answered correctly: %{answer}. Pool won: %{amount}.') :
+            _('%{player} answered correctly and takes the pool: %{amount}.')
+          template % {player: player, answer: answer, amount: pot}
+        else
+          _('%{player} answered incorrectly. Correct answer: %{answer}. The pool carries over.') % {player: player, answer: answer}
+        end
+      end
+
       def auction_event_history(event, actor, event_id, state, before, bank)
         seat = player_index(state[:players], actor)
         player = participant_name(actor)
@@ -148,7 +168,7 @@ module GameRoomGames
           text
         when 'auction_closed'
           if before[:leader]
-            text = _('%{player}, %{amount}, for the third time. Sold!') % {
+            text = (R.revised?(state) ? _('Sold to %{player} for %{amount}.') : _('%{player}, %{amount}, for the third time. Sold!')) % {
               player: participant_name(state[:players][before[:leader]]), amount: before[:highest]}
             text
           else
@@ -161,15 +181,14 @@ module GameRoomGames
         when 'answer'
           correct = event['value'].split('|').last.to_i == state[:question][:correct_index]
           kind = correct ? :correct_answer : :wrong_answer
-          answer = state[:question][:choices][state[:question][:correct_index]]
-          if correct
-            _('%{player} answered correctly and takes the pool: %{amount}.') % {player: player, amount: before[:pot]}
-          else
-            _('%{player} answered incorrectly. Correct answer: %{answer}. The pool carries over.') % {player: player, answer: answer}
-          end
+          auction_answer_text(state, player, correct, before[:pot])
+        when 'hint'
+          _('%{player} buys a hint for %{price} points. Two wrong answers are removed.') % {player: player, price: before[:cash][seat] - state[:cash][seat]}
         when 'chest'
           reward = state[:last_chest_reward]
-          if reward == 'bankrupt'
+          if R.revised?(state)
+            _('%{player} opens a black chest: an additional prize of %{amount}.') % {player: player, amount: reward}
+          elsif reward == 'bankrupt'
             _('%{player} opens a black chest: bankrupt.') % {player: player}
           else
             _('%{player} opens a black chest: %{amount} points. Balance: %{balance}.') % {player: player, amount: reward, balance: state[:cash][seat]}

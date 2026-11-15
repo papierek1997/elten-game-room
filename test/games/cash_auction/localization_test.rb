@@ -22,7 +22,7 @@ Form.option_encoding_driver = GameOptionEncodingFixture.driver(checks)
     raise 'Title differs from reviewed source' unless actual.title == expected.fetch('title').fetch(language)
     raise 'Paragraphs differ from reviewed source' unless actual.paragraphs == expected.fetch('paragraphs').map { |paragraph| paragraph.fetch(language) }
   end
-  schemas = game.effective_option_definitions(options) + game.effective_option_definitions(game.normalize_options({}))
+  schemas = game.effective_option_definitions(options)
   keys = schemas.map(&:key).uniq - ['bot_delay']
   raise 'An auction setting lacks rulebook help' unless authored['option_chapters'].keys.sort == keys.sort
   state = GameRoomCashAuction::Rules.initial(%w[Alice Bob], options).merge(game_id: 'locale-auction')

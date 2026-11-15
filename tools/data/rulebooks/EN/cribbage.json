@@ -3,28 +3,87 @@
   "sections": [
     {
       "id": "play",
-      "title": {
-        "en": "Cribbage"
-      },
       "paragraphs": [
         {
-          "en": "Play to 121. Discard two of your six cards to the crib, which scores for the dealer. Then turn up the starter. A jack gives the dealer two points."
+          "en": "Cribbage is for two players. Be the first to reach 121 points. Each deal gives you six cards; select two with Enter to put them in the crib, a separate four-card hand that will score for the dealer. The dealer changes after each deal."
         },
         {
-          "en": "Take turns playing cards without exceeding 31. Aces count one and face cards ten. Totals of 15 and 31, pairs and runs can score. Choose Go if none of your cards fits. After play, count the nondealer’s hand, then the dealer’s hand, then the crib. Include the starter in each count."
+          "en": "After both players discard, the starter is turned up. If it is a jack, the dealer immediately scores two. The nondealer then plays first. Take turns laying down one card without taking the running total above 31. Aces count one, number cards their number, and jacks, queens and kings ten."
+        },
+        {
+          "en": "Choose Go when none of your cards fits. The other player may keep playing. When neither can continue, the last player to lay a card scores one and the total resets to zero. Reaching exactly 31 gives two points instead. After the reset, the other player leads if they still have cards."
         }
-      ]
+      ],
+      "title": {
+        "en": "Playing Cribbage"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "en": "During play, a total of 15 scores two. Two, three or four consecutive cards of the same rank score 2, 6 or 12. A run of at least three consecutive ranks at the end of the sequence scores its length, regardless of their playing order. For example, 3, 5, 4 scores three."
+        },
+        {
+          "en": "After all cards are played, count the nondealer’s hand, the dealer’s hand and finally the crib, always adding the starter. Every combination totalling 15 and every pair scores two. Count each longest run of at least three for its length; duplicate cards may form several runs. Four same-suit hand cards score four, or five with a matching starter. A crib flush requires all five cards. A jack matching the starter’s suit adds one."
+        },
+        {
+          "en": "The game shows the cards to count. Press Enter and give their score. If your count is wrong, you receive no more than the correct score and your opponent receives the difference. The match ends as soon as either player reaches 121, including during play or counting."
+        }
+      ],
+      "title": {
+        "en": "Scoring and counting"
+      }
     },
     {
       "id": "controls",
-      "title": {
-        "en": "Keyboard"
-      },
       "paragraphs": [
         {
-          "en": "Use the arrows to select a card or Go and press Enter."
+          "en": "Arrows: browse cards or menu choices."
+        },
+        {
+          "en": "Enter: discard or play the selected card; when counting, open the score field. Select Go when no card fits."
+        },
+        {
+          "en": "D: read the starter."
+        },
+        {
+          "en": "V: read who owns the crib."
+        },
+        {
+          "en": "H: read your hand."
+        },
+        {
+          "en": "C: read the cards on the table."
+        },
+        {
+          "en": "Ctrl+C: browse those cards."
+        },
+        {
+          "en": "S: read the scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "Z: find the next playable card."
+        },
+        {
+          "en": "Shift+Z: find the previous playable card."
+        },
+        {
+          "en": "Shift+C: sort your hand by suit."
+        },
+        {
+          "en": "Shift+H: sort your hand by rank."
+        },
+        {
+          "en": "Shift+M: restore the order in which you received the cards."
         }
-      ]
+      ],
+      "title": {
+        "en": "Controls"
+      }
     }
   ],
   "option_chapters": {}

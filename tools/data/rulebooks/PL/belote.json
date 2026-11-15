@@ -3,85 +3,123 @@
   "sections": [
     {
       "id": "play",
-      "title": {
-        "pl": "Licytacja i lewy"
-      },
       "paragraphs": [
         {
-          "pl": "Gracie w dwóch parach. Partnerzy siedzą naprzeciw siebie, więc przy stole grają na przemian osoby z obu drużyn. Gra toczy się do 1000 punktów. Po każdym rozdaniu rozdaje następny gracz."
+          "pl": "Cztery osoby grają w dwóch parach. Partnerzy siedzą naprzeciw siebie. Talia ma 32 karty, od siódemki do asa w każdym kolorze. Pierwszego rozdającego wybiera losowanie, a po każdym rozdaniu rozdaje następna osoba. Na końcu rozdania wygrywa para, która ma co najmniej 1000 punktów i więcej od drugiej."
         },
         {
-          "pl": "Każdy najpierw dostaje pięć kart. Gra odkrywa następną kartę i proponuje jej kolor jako atut. Licytację zaczyna gracz po rozdającym. W pierwszej kolejce można przyjąć proponowany kolor albo spasować. Jeśli wszyscy spasują, w drugiej kolejce można wybrać dowolny inny kolor. Po ośmiu pasach następuje nowe rozdanie."
+          "pl": "W klasycznym Belote każdy dostaje pięć kart, a następna zostaje odkryta. Zaczynając od osoby po rozdającym, możecie przyjąć jej kolor jako atut albo spasować. Po czterech pasach wybieracie inny kolor albo pas. Osiem pasów powoduje nowe rozdanie. Pierwszy wybór atutu kończy licytację. Odkryta karta trafia do osoby, która wybrała atut, a gra uzupełnia wszystkim ręce do ośmiu kart."
         },
         {
-          "pl": "Pierwszy wybór atutu kończy licytację. Odkryta karta trafia do gracza, który wybrał atut. Gra uzupełnia ręce do ośmiu kart. Drużyna tego gracza zobowiązuje się zdobyć co najmniej 82 punkty i pokonać obronę."
-        },
-        {
-          "pl": "Do pustej lewy można wyjść dowolną kartą. Potem trzeba dokładać do koloru wyjścia. Jeśli go nie masz, zagraj atut, chyba że lewę wygrywa partner. Gdy trzeba zagrać atut, przebij najwyższy atut w lewie, jeśli możesz. Gdy nie masz ani koloru wyjścia, ani atutu, możesz zrzucić dowolną kartę. Lewę bierze najwyższy atut, a jeśli atutu nie zagrano, najwyższa karta w kolorze wyjścia. Zwycięzca wychodzi do następnej lewy."
-        },
-        {
-          "pl": "Atuty od najsilniejszego: walet (20 punktów), dziewiątka (14), as (11), dziesiątka (10), król (4), dama (3), ósemka (0), siódemka (0)."
-        },
-        {
-          "pl": "Karty poza atutem od najsilniejszej: as (11 punktów), dziesiątka (10), król (4), dama (3), walet (2), dziewiątka (0), ósemka (0), siódemka (0). Dziesiątka bije króla, damę i waleta poza atutem."
-        },
-        {
-          "pl": "Jeśli masz króla i damę atutową, zagraj dowolną z tych dwóch kart przez Shift+Enter, aby zgłosić belote. Później zagraj drugą przez Shift+Enter, aby zgłosić rebelote. Możesz meldować również przy dokładaniu do lewy, jeśli zagranie jest dozwolone. Oba zgłoszenia dają drużynie 20 punktów."
-        },
-        {
-          "pl": "Ostatnia lewa daje dodatkowe 10 punktów. Bez meldunku w kartach i ostatniej lewie jest razem 162 punkty. Przy udanym kontrakcie każda drużyna zapisuje zdobyte punkty. Przy przegranej obrona dostaje 162 punkty z lew, a drużyna licytująca zapisuje tylko ewentualny meldunek. Przy remisie obrona zapisuje swoje punkty, a punkty z lew drużyny licytującej trafiają do zwycięzcy następnego rozstrzygniętego rozdania. Premia za meldunek nie przechodzi dalej. Za wszystkie osiem lew gra dolicza 90 punktów, co daje 252 punkty przed meldunkiem."
+          "pl": "Do pierwszej lewy wychodzi osoba po rozdającym. Trzeba dokładać do koloru. Jeśli go nie masz, zagraj atut, chyba że lewę wygrywa partner. Gdy musisz zagrać atut, przebij najwyższy atut w lewie, jeśli możesz. Bez koloru wyjścia i atutu możesz zrzucić dowolną kartę. Wygrywa najwyższy atut, a jeśli go nie zagrano, najwyższa karta koloru wyjścia. Zwycięzca zaczyna następną lewę."
         }
-      ]
+      ],
+      "title": {
+        "pl": "Licytacja i lewy"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "pl": "Atuty od najsilniejszego to walet (20 punktów), dziewiątka (14), as (11), dziesiątka (10), król (4), dama (3), ósemka i siódemka (po zero). Poza atutem kolejność to as (11), dziesiątka (10), król (4), dama (3), walet (2), dziewiątka, ósemka i siódemka (po zero). Ostatnia lewa daje dodatkowe dziesięć, czyli razem w rozdaniu są 162 punkty."
+        },
+        {
+          "pl": "Gdy masz króla i damę atutową, zagraj dowolną z nich przez Shift+Enter, aby zgłosić belote. Drugą zagraj tak samo, aby zgłosić rebelote. Oba zgłoszenia dają parze dwadzieścia punktów, nawet przy przegranym kontrakcie. Zagranie bez zgłoszenia nie daje tej premii."
+        },
+        {
+          "pl": "Para wybierająca atut musi zdobyć co najmniej 82 punkty i więcej od obrony, z uwzględnieniem meldunku. Przy sukcesie obie strony zapisują zdobyte punkty. Przy porażce obrona zapisuje wszystkie 162 punkty z lew. Przy remisie obrona zapisuje własne punkty z lew, a punkty licytujących przechodzą do zwycięzcy następnego rozstrzygniętego rozdania. Meldunki zawsze zostają przy swoich parach. Wygranie wszystkich ośmiu lew daje dodatkowe dziewięćdziesiąt punktów."
+        }
+      ],
+      "title": {
+        "pl": "Wartości kart i punktacja"
+      }
     },
     {
       "id": "coinchee",
-      "title": {
-        "pl": "Belote Coinchée"
-      },
       "paragraphs": [
         {
-          "pl": "W ustawieniach stołu wybierz Coinchée. Domyślnie każdy dostaje od razu osiem kart. Jeśli włączysz rozdawanie w dwóch etapach, każdy zaczyna z pięcioma kartami. Odkryta karta trafia do zwycięzcy licytacji, ale nie ogranicza wyboru atutu. Po licytacji gra uzupełnia każdemu rękę do ośmiu kart. Gracz po rozdającym rozpoczyna licytację."
+          "pl": "Przy tworzeniu stołu wybierz klasyczne Belote albo Coinchée. W Coinchée domyślnie dostajesz od razu osiem kart. Opcja pięciu kart włącza rozdawanie w dwóch etapach: odkryta karta trafia do zwycięzcy licytacji, a pozostałe karty rozdaje się po niej. Odkryta karta nie ogranicza tu wyboru atutu."
         },
         {
-          "pl": "Strzałkami wybierz pas albo ofertę i zatwierdź Enterem. Oferta określa kolor atutu i liczbę punktów od 80 do 160, co 10. Na przykład 90 w kierach oznacza zobowiązanie do zdobycia co najmniej 90 punktów z kierami jako atutem. Każda nowa oferta musi mieć wyższą liczbę punktów."
+          "pl": "Oferta podaje kolor atutu i od 80 do 160 punktów, co dziesięć. Kolejna musi zwiększać liczbę punktów. Przeciwnicy mogą dać kontrę, która blokuje podbijanie i podwaja zapis. Licytująca para może dać rekontrę, zwiększając mnożnik do czterech. Trzy kolejne pasy po ofercie, kontrze lub rekontrze kończą licytację. Cztery pasy bez oferty powodują nowe rozdanie."
         },
         {
-          "pl": "Przeciwnik drużyny prowadzącej licytację może dać kontrę. Kontra blokuje podbijanie i podwaja wynik rozdania. Drużyna licytująca może odpowiedzieć rekontrą, która zwiększa mnożnik do czterech. Trzy pasy po ostatniej ofercie, kontrze lub rekontrze kończą licytację. Po czterech pasach bez oferty następuje nowe rozdanie."
-        },
-        {
-          "pl": "Karty, lewy i meldunki działają jak w klasycznym Belote. Kontrakt wygrywa drużyna licytująca, jeśli osiągnie zadeklarowany próg i zdobędzie więcej punktów od obrony. Przy sukcesie obie drużyny zapisują punkty z lew. Przy porażce, również przy remisie, obrona zapisuje 162 punkty z lew, a licytujący zero. Gra uwzględnia premię za komplet lew oraz zgłoszone meldunki, a potem mnoży zapis obu drużyn przez dwa po kontrze albo przez cztery po rekontrze."
+          "pl": "Licytująca para musi osiągnąć zadeklarowany próg i zdobyć więcej punktów od obrony. Przy sukcesie każda strona zapisuje punkty z lew. W przeciwnym razie, także przy remisie, obrona dostaje 162, a licytujący zero. Gra dolicza premię za komplet lew i meldunki, a następnie stosuje mnożnik kontry albo rekontry do obu par."
         }
-      ]
+      ],
+      "title": {
+        "pl": "Coinchée i ustawienia stołu"
+      }
     },
     {
       "id": "controls",
-      "title": {
-        "pl": "Klawiatura"
-      },
       "paragraphs": [
         {
-          "pl": "Strzałkami wybierz kartę lub pozycję menu. Enter zagrywa kartę albo zatwierdza wybór. Podczas licytacji widzisz rękę. Enter lub B otwiera wybór kontraktu albo pasu w obu kolejkach licytacji. Wybierz pozycję strzałkami i zatwierdź Enterem. Escape wraca do kart. W klasycznym Belote w pierwszej kolejce wybierasz kolor odkrytej karty, a w drugiej inny kolor. W Coinchée wybierasz liczbę punktów i kolor, a także kontrę lub rekontrę, kiedy są dostępne."
+          "pl": "Strzałki: przeglądaj karty lub pozycje menu."
         },
         {
-          "pl": "- H odczytuje rękę. C odczytuje karty na stole. Ctrl+C pozwala je przejrzeć."
+          "pl": "Enter: otwórz wybór oferty podczas licytacji albo zagraj kartę podczas lewy."
         },
         {
-          "pl": "- D odczytuje odkrytą kartę w klasycznym Belote. F odczytuje atut i kolor wyjścia do lewy, jeśli lewa już się zaczęła."
+          "pl": "B: otwórz oferty i pas dostępne w swojej turze."
         },
         {
-          "pl": "- S odczytuje wynik meczu. Shift+S podaje punkty bieżącego rozdania z lew i zgłoszonych meldunków, przed mnożnikiem kontry. T mówi, czyja jest kolej. R i V odczytują kontrakt, gracza, który wybrał atut, jego parę, kolor atutu i wymagany próg."
+          "pl": "Shift+Enter: zagraj wskazanego króla lub damę atutową i zgłoś belote albo rebelote."
         },
         {
-          "pl": "- Shift+Enter zagrywa wskazanego króla lub damę atutową razem z meldunkiem. Zgłoszenie potwierdza dźwięk."
+          "pl": "D: odczytaj odkrytą kartę, jeśli jest używana w tym rozdaniu."
         },
         {
-          "pl": "- Z przechodzi do następnej karty, którą można zagrać. Shift+Z przechodzi do poprzedniej."
+          "pl": "F: odczytaj atut i kolor wyjścia."
         },
         {
-          "pl": "- Shift+C sortuje rękę według kolorów. Shift+H sortuje według wartości. Ponowne naciśnięcie odwraca kierunek sortowania. Shift+M przywraca kolejność otrzymania kart."
+          "pl": "R: odczytaj kontrakt."
+        },
+        {
+          "pl": "V: odczytaj kontrakt."
+        },
+        {
+          "pl": "Shift+S: odczytaj punkty rozdania przed mnożnikiem kontry."
+        },
+        {
+          "pl": "H: odczytaj swoją rękę."
+        },
+        {
+          "pl": "C: odczytaj karty na stole."
+        },
+        {
+          "pl": "Ctrl+C: przejrzyj te karty."
+        },
+        {
+          "pl": "S: odczytaj wyniki."
+        },
+        {
+          "pl": "T: sprawdź, czyja jest tura."
+        },
+        {
+          "pl": "Z: znajdź następną kartę, którą można zagrać."
+        },
+        {
+          "pl": "Shift+Z: znajdź poprzednią kartę, którą można zagrać."
+        },
+        {
+          "pl": "Shift+C: sortuj rękę według kolorów."
+        },
+        {
+          "pl": "Shift+H: sortuj rękę według wartości."
+        },
+        {
+          "pl": "Shift+M: przywróć kolejność otrzymania kart."
         }
-      ]
+      ],
+      "title": {
+        "pl": "Skróty klawiszowe"
+      }
     }
   ],
-  "option_chapters": {}
+  "option_chapters": {
+    "variant": "coinchee",
+    "coinchee_two_stage": "coinchee"
+  }
 }

@@ -1,25 +1,34 @@
-require_relative "../../../games/belote_support/belote_deal"
-rules = GameRoomGames::BeloteRound
-deal = GameRoomGames::BeloteDeal.new(rules::DECK, dealer: 3)
-raise unless deal.hand(0).size == 5
-raise unless deal.bids(0) == [:pass, deal.upcard.first]
-4.times { raise unless deal.bid(deal.turn, :pass) }
-raise if deal.bids(0).include?(deal.upcard.first)
-raise unless deal.bid(0, deal.bids(0).last)
-hands = 4.times.map { |seat| deal.hand(seat) }
-raise unless hands.all? { |hand| hand.size == 8 } && hands.flatten(1).uniq.size == 32
-raise unless hands[deal.taker].include?(deal.upcard)
-32.times { raise unless deal.play(deal.turn, deal.legal_cards(deal.turn).first) }
-raise unless deal.phase == :finished
-passed = GameRoomGames::BeloteDeal.new(rules::DECK, dealer: 1)
-8.times { raise unless passed.bid(passed.turn, :pass) }
-raise unless passed.phase == :redeal && passed.turn.nil?
-puts "PASS Belote: two bidding rounds, complete deal and redeal"
+require_relative '../../support/dealt_card_games'
+include GameRoomTest::Assertions
+table = GameRoomTest::DealtCardTable.new('belote', count: 4, seed: 31)
+assert(table.state[:hands].values.all? { |hand| hand.size == 5 }, 'First deal did not give five cards')
+offered = GameRoomGames::BeloteCards.decode(table.state[:upcard]).first.to_s
+4.times do
+  actor = table.replay.current_player
+  action = table.game.legal_actions(table.replay, actor).find { |choice| choice['choice'] == 'pass' }
+  assert_equal(:ok, table.act(actor, action))
+end
+actor = table.replay.current_player
+choices = table.game.legal_actions(table.replay, actor)
+assert(choices.none? { |choice| choice['choice'] == offered }, 'Second auction offers the rejected suit')
+assert_equal(:ok, table.act(actor, choices.find { |choice| choice['choice'] != 'pass' }))
+assert(table.state[:hands].values.all? { |hand| hand.size == 8 }, 'The second deal did not complete all hands')
+assert_equal(32, table.state[:hands].values.flatten.uniq.size)
+assert(table.state[:hands].fetch(table.state[:taker]).include?(table.state[:upcard]), 'The taker did not receive the upcard')
+table.finish_production_round
+passed = GameRoomTest::DealtCardTable.new('belote', count: 4, seed: 51)
+8.times do
+  actor = passed.replay.current_player
+  assert_equal(:ok, passed.act(actor, passed.game.legal_actions(passed.replay, actor).find { |choice| choice['choice'] == 'pass' }))
+end
+assert_equal(:round_complete, passed.state[:phase])
+assert(passed.state[:scores].values.all?(&:zero?), 'A passed-out deal awarded a score')
+puts 'PASS production Belote: both auctions, complete hands, upcard and passed-out deal'
 
-scorer = GameRoomGames::BeloteDeal
-raise unless deal.settlement[:scores].sum == 162
+scorer = GameRoomGames::BeloteSettlement
 raise unless scorer.settle([81,81], taker: 0, carry: 10) == {scores: [0,81], carry: 91, winner: nil}
 raise unless scorer.settle([80,82], taker: 0, carry: 91) == {scores: [0,253], carry: 0, winner: 1}
 raise unless scorer.settle([80,82], taker: 0, bonuses: [20,0])[:scores] == [100,82]
-raise unless scorer.settle([0,162], taker: 0, bonuses: [20,0])[:scores] == [20,252]
-puts "PASS Belote contract settlement"
+raise unless scorer.settle([0,162], taker: 0, bonuses: [20,0], sweep: 1)[:scores] == [20,252]
+raise unless scorer.settle([0,162], taker: 0, bonuses: [20,0])[:scores] == [20,162]
+puts 'PASS Belote contract settlement: tie carry, set contract, belote and sweep'

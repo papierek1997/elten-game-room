@@ -57,6 +57,6 @@ raise unless state[:phase] == :finished && state[:winner] == "team:0" && state[:
 raise unless history.any? { |entry| entry.kind == :result }
 puts "PASS Jass team result"
 
-raise unless game.private_table_required?({})
+raise if game.private_table_required?({})
 raise unless ([:play, :controls] - game.rule_book.sections.map(&:id)).empty?
-puts "PASS Jass requires a private table and supplies Polish help"
+puts "PASS Jass supports ordinary public tables and supplies its rulebook"

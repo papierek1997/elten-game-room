@@ -142,6 +142,29 @@ begin
     assert_equal(before, Marshal.dump(readonly.state))
   end
 
+  modern_options = answer.game.table_creation_options('content_language_id'=>'en')
+  hint = CashAuctionNative::Fixture.new(phase: :answering, options: modern_options)
+  fixtures << hint
+  assert_equal(3, hint.surface.fields.size, 'The answerer has no native hint button')
+  assert(hint.surface.fields.last.label.include?('989'), 'The hint button hides its actual price')
+  hint.press(9)
+  hint.press(9)
+  hint.press(13)
+  assert_equal('hint', hint.actions.last['action'], 'The hint button submitted an answer')
+  assert_equal(false, hint.state[:hint_used], 'Native hint input directly mutated the model')
+  assert(GameRoomCashAuction::Rules.hint!(hint.state, 0, keep: 3), 'The fixture could not buy its hint')
+  hint.refresh
+  assert_equal(['C. Third', 'D. Fourth'], hint.surface.fields[1].options, 'Removing answers changed their original identifiers')
+  assert(hint.surface.fields.none? { |field| field.is_a?(Button) }, 'A second hint button remained available')
+  hint.layout.focus_game(silent: true)
+  hint.form.focus
+  hint.press(0x28)
+  hint.press(13)
+  assert_equal('2', hint.actions.last['answer'], 'The first shortened-list choice was sent as answer A')
+  modern_observer = CashAuctionNative::Fixture.new(phase: :answering, viewer: 'Bob', options: modern_options)
+  fixtures << modern_observer
+  assert(modern_observer.surface.fields.none? { |field| field.is_a?(Button) }, 'A non-answerer could buy a hint')
+
   chest = CashAuctionNative::Fixture.new(phase: :opening_chests)
   fixtures << chest
   assert(chest.surface.fields.first.is_a?(Button), 'Chest action is not a native command button')

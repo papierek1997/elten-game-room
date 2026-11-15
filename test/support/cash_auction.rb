@@ -117,9 +117,10 @@ module CashAuctionFixture
       answer(actor, replay.state[:question].fetch(:correct_index))
     end
     def open_chest(actor, reward: 100)
-      index = GameRoomGames::CashAuction::CHEST_REWARDS.index(reward)
+      rewards = GameRoomCashAuction::Rules.revised?(replay.state) ? GameRoomCashAuction::Rules::BONUS_REWARDS : GameRoomGames::CashAuction::CHEST_REWARDS
+      index = rewards.index(reward)
       assert(index, 'Unknown chest reward')
-      seed = (0...10_000).find { |candidate| Random.new(candidate).rand(7) == index }
+      seed = (0...10_000).find { |candidate| Random.new(candidate).rand(rewards.length) == index }
       selection = game.legal_actions(replay, actor, context: context).find { |action| action['action'] == 'open_chest' }
       assert(selection, 'No owned chest action')
       submit(selection, actor: actor, seed: seed)

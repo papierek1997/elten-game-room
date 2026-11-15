@@ -3,32 +3,123 @@
   "sections": [
     {
       "id": "play",
-      "title": {
-        "en": "Bidding and tricks"
-      },
       "paragraphs": [
         {
-          "en": "Two partnerships play to 1,000 points. With five cards in hand, choose the suit of the upcard or pass. After four passes you may choose a different suit. Eight passes trigger a redeal."
+          "en": "Four players form two partnerships, with partners sitting across the table. Play with 32 cards, from seven to ace in each suit. The first dealer is drawn at random; dealing then rotates. The first partnership to reach 1000 points with a higher score than the other wins at the end of a deal."
         },
         {
-          "en": "Once trumps are chosen, everyone has eight cards. Follow suit when you can. If you cannot follow, trump unless your partner is winning. When you must trump, beat the highest trump in the trick if you can. The trick winner leads next."
+          "en": "In Classic Belote, everyone receives five cards and one more is turned face up. Starting after the dealer, each player may accept its suit as trumps or pass. After four passes, choose a different suit or pass. Eight passes cause a redeal. The first player to choose trumps takes the upcard, and everyone’s hand is filled to eight cards."
         },
         {
-          "en": "The partnership that chose trumps needs at least 82 points and must outscore the defenders. If you play the trump king while holding the trump queen and later play that queen, your side earns 20 points."
+          "en": "The player after the dealer leads the first trick. Follow suit if you can. Without that suit, play a trump unless your partner is winning. When required to trump, beat the highest trump already played if possible. If you cannot follow suit or trump, discard any card. The highest trump wins, or the highest card of the suit led if no trump was played. The winner leads next."
         }
-      ]
+      ],
+      "title": {
+        "en": "Bidding and tricks"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "en": "Trumps from highest to lowest are jack (20 points), nine (14), ace (11), ten (10), king (4), queen (3), eight and seven (zero each). Other suits rank ace (11), ten (10), king (4), queen (3), jack (2), nine, eight and seven (zero). The last trick adds ten, making 162 points in the deal."
+        },
+        {
+          "en": "With both the trump king and queen in hand, play either with Shift+Enter to declare belote, then play the other with Shift+Enter to declare rebelote. Completing both announcements gives your partnership twenty points, even if you lose the contract. Playing without the announcement does not earn this bonus."
+        },
+        {
+          "en": "The partnership choosing trumps must collect at least 82 points and more than the defenders, including belote bonuses. On success, both sides record their points. On failure, the defenders record all 162 trick points. In a tie, the defenders record their own trick points and the takers’ trick points carry over to the next decisive deal. Belote bonuses are always retained. Winning all eight tricks adds ninety points."
+        }
+      ],
+      "title": {
+        "en": "Card values and scoring"
+      }
+    },
+    {
+      "id": "coinchee",
+      "paragraphs": [
+        {
+          "en": "Choose Classic or Coinchée when creating the table. Coinchée normally deals all eight cards before bidding. The five-card option instead uses two-stage dealing: the upcard goes to the winning bidder and hands are completed afterwards, but the upcard does not restrict the choice of trumps."
+        },
+        {
+          "en": "A bid names a trump suit and 80–160 points in steps of ten. Each new bid must raise the point value. Opponents can double, locking the contract and doubling the scores; the takers may redouble to quadruple them. Three consecutive passes end bidding after a bid, double or redouble. Four passes without a bid cause a redeal."
+        },
+        {
+          "en": "The takers must reach their bid and outscore the defenders. On success, each side records its trick points; otherwise, including a tie, the defenders receive 162 and the takers zero. Add any sweep and belote bonuses, then apply the double or redouble multiplier to both sides."
+        }
+      ],
+      "title": {
+        "en": "Coinchée and table options"
+      }
     },
     {
       "id": "controls",
-      "title": {
-        "en": "Keyboard"
-      },
       "paragraphs": [
         {
-          "en": "Use the arrows to choose a bid, pass or card and press Enter."
+          "en": "Arrows: browse cards or menu choices."
+        },
+        {
+          "en": "Enter: choose a bid while bidding, or play a card during tricks."
+        },
+        {
+          "en": "B: open the bids and passes available on your turn."
+        },
+        {
+          "en": "Shift+Enter: play the selected trump king or queen and declare belote or rebelote."
+        },
+        {
+          "en": "D: read the turned-up card when one is used."
+        },
+        {
+          "en": "F: read trumps and the suit led."
+        },
+        {
+          "en": "R: read the contract."
+        },
+        {
+          "en": "V: read the contract."
+        },
+        {
+          "en": "Shift+S: read this deal’s points before any multiplier."
+        },
+        {
+          "en": "H: read your hand."
+        },
+        {
+          "en": "C: read the cards on the table."
+        },
+        {
+          "en": "Ctrl+C: browse those cards."
+        },
+        {
+          "en": "S: read the scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "Z: find the next playable card."
+        },
+        {
+          "en": "Shift+Z: find the previous playable card."
+        },
+        {
+          "en": "Shift+C: sort your hand by suit."
+        },
+        {
+          "en": "Shift+H: sort your hand by rank."
+        },
+        {
+          "en": "Shift+M: restore the order in which you received the cards."
         }
-      ]
+      ],
+      "title": {
+        "en": "Controls"
+      }
     }
   ],
-  "option_chapters": {}
+  "option_chapters": {
+    "variant": "coinchee",
+    "coinchee_two_stage": "coinchee"
+  }
 }

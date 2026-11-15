@@ -12,7 +12,7 @@ require_relative '../lib/game_session_clock'
 require_relative '../lib/cash_auction/rules'
 require_relative '../lib/cash_auction/question_bank'
 
-GameRoomServerRandom.register('cash_auction', %w[wheel question chest])
+GameRoomServerRandom.register('cash_auction', %w[wheel question chest hint])
 
 module GameRoomGames
   using GameRoomLocalization::Translations

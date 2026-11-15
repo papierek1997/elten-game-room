@@ -56,11 +56,12 @@ heading, Shift+H to the previous one, and Escape closes the document.
 
 ## What you can play
 
-Power Games includes 53 games, ranging from cards and board games to word
+Power Games includes 57 games, ranging from cards and board games to word
 games, typing practice and games built around listening and quick reactions.
 
 - Card games: 3-5-8, 99, 1000 miles, Biblios, Blackjack, Bouillabaisse,
-  Bridge, French Tarot, Makao, Spades, Poker, Rummy, Scopa, 1000 card game (Thousand), UNO, War and Scientific War.
+  Bridge, Belote, Cribbage, French Tarot, Hearts, Jass, Makao, Spades, Poker,
+  Rummy, Scopa, 1000 card game (Thousand), UNO, War and Scientific War.
 - Board and strategy games: Ludo, Four in a Row, Go, Tic-tac-toe, Mahjong,
   Mancala, Monopoly, Reversi, Battleships, Chess, Backgammon, Checkers and Duck Racing.
 - Dice and dominoes: Balut, Blackjack Dice, Cat, head, tail, Dice General,
@@ -651,7 +652,8 @@ An unanswered invitation does not count as a defeat.
 ### Protecting hidden hands
 
 In tournament 1000 miles, Spades, Bridge, 1000 card game, 3-5-8, 99, Poker, War,
-Rummy, Makao, Biblios, Bouillabaisse, Scopa and UNO, the server deals cards privately to each
+Rummy, Makao, Biblios, Bouillabaisse, Scopa, Cribbage, Belote, Jass, Hearts
+and UNO, the server deals cards privately to each
 player. The same applies to Domino and Mexican Train tiles, Scrabble letters
 and Mahjong tiles. Other players, spectators and the host do not receive
 your unrevealed hand or the undealt deck or wall. Cards and tiles are revealed

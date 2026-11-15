@@ -129,6 +129,10 @@ module GameRoomGames
 
     protected
 
+    # Captures depend on values, not suit groups. Keep the established received
+    # order here; trick-taking games use the shared suit-sorted presentation.
+    def hand_cards_for_display(hand); hand; end
+
     def standard_hand_sort_keys(rank:, suit:, position:)
       suit_index = PLAYROOM_SUIT_ORDER.index(suit) || PLAYROOM_SUIT_ORDER.size
       rank_index = RANKS.index(rank) || RANKS.size

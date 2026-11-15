@@ -92,10 +92,10 @@ module GameSurfaces
       bind_immediate_choice
       @submit = build_submit_button
       @answer.on_submit { submit_answer } if @mode == :text && !@spec.read_only && @spec.show_submit_button == false
-      @extra_buttons = if @spec.read_only || @mode != :text
+      @extra_buttons = if @spec.read_only || @mode == :information
         []
       else
-        @spec.extra_commands.to_a.map do |command|
+        @spec.extra_commands.to_a.select { |command| command.enabled != false }.map do |command|
           button = Button.new(command.label)
           button.on(:press) { submit_answer(command.id) }
           button

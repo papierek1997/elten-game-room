@@ -195,7 +195,7 @@ module GameRoomGames
 
     # Presentation and H share this order; never reorder the authoritative hand.
     def hand_cards_for_display(hand)
-      hand
+      hand.sort_by { |card| playing_card_sort_key(card) }
     end
 
     def score_order; 'higher'; end

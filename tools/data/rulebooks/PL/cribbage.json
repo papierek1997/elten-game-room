@@ -3,37 +3,87 @@
   "sections": [
     {
       "id": "play",
-      "title": {
-        "pl": "Cribbage"
-      },
       "paragraphs": [
         {
-          "pl": "Gracie do 121 punktów. Odłóż dwie z sześciu kart do cribu. Crib zapunktuje dla rozdającego. Następnie odkrywa się kartę startową. Jeśli to walet, rozdający dostaje dwa punkty."
+          "pl": "W Cribbage grają dwie osoby. Wygrywa ta, która pierwsza zdobędzie 121 punktów. Dostajesz sześć kart. Wybierz dwie Enterem, aby odłożyć je do cribu, czyli osobnego czterokartowego układu, który zapunktuje dla rozdającego. Po każdym rozdaniu rozdaje druga osoba."
         },
         {
-          "pl": "Zagrywajcie na zmianę, nie przekraczając 31. As jest wart jeden, figury po dziesięć. Punkty dają między innymi sumy 15 i 31, pary i sekwencje. Wybierz Pas, gdy żadna karta się nie mieści. Po zagraniu kart policzcie kolejno rękę osoby nierozdającej, rękę rozdającego i crib. W każdym z tych układów uwzględnij kartę startową."
+          "pl": "Gdy obie osoby odłożą karty, gra odkrywa kartę startową. Jeśli to walet, rozdający od razu dostaje dwa punkty. Pierwszy zagrywa przeciwnik rozdającego. Zagrywajcie po jednej karcie na zmianę, nie przekraczając sumy 31. As jest wart jeden, karty liczbowe tyle, ile wskazują, a walet, dama i król po dziesięć."
         },
         {
-          "pl": "Podczas zagrywania 15 i 31 dają po 2 punkty. Dwie, trzy lub cztery jednakowe karty zagrane z rzędu dają odpowiednio 2, 6 lub 12 punktów. Sekwencja co najmniej trzech ostatnich kart daje tyle punktów, ile ma kart, niezależnie od kolejności zagrania. Ostatnia karta przed wyzerowaniem sumy daje 1 punkt, jeśli suma jest mniejsza niż 31."
-        },
-        {
-          "pl": "Przy liczeniu ręki i cribu każda kombinacja dająca 15 i każda para dają po 2 punkty. Każda najdłuższa sekwencja od trzech kart daje punkt za kartę. Cztery karty jednego koloru w ręce dają 4 punkty, a zgodna karta startowa daje piąty. W cribie kolor liczy się tylko wtedy, gdy wszystkie pięć kart ma ten sam kolor. Walet w ręce lub cribie w kolorze karty startowej daje 1 punkt."
+          "pl": "Wybierz Pas, gdy żadna twoja karta nie mieści się w limicie. Druga osoba może dalej zagrywać. Gdy obie nie mogą już dołożyć, gracz, który położył ostatnią kartę, dostaje punkt, a suma wraca do zera. Dokładnie 31 daje zamiast tego dwa punkty. Po wyzerowaniu zaczyna druga osoba, jeśli ma jeszcze karty."
         }
-      ]
+      ],
+      "title": {
+        "pl": "Jak grać w Cribbage"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "pl": "Podczas zagrywania suma 15 daje dwa punkty. Dwie, trzy lub cztery kolejne karty tej samej wartości dają odpowiednio 2, 6 lub 12 punktów. Sekwencja co najmniej trzech kolejnych wartości na końcu zagrywanych kart daje punkt za każdą kartę, niezależnie od kolejności ich położenia. Na przykład 3, 5, 4 daje trzy punkty."
+        },
+        {
+          "pl": "Po zagraniu wszystkich kart policzcie rękę przeciwnika rozdającego, rękę rozdającego, a na końcu crib. Za każdym razem dodajcie kartę startową. Każda kombinacja dająca 15 i każda para dają dwa punkty. Liczy się każdą najdłuższą sekwencję od trzech kart: punkt za kartę. Powtórzone wartości mogą tworzyć kilka sekwencji. Cztery karty jednego koloru w ręce dają cztery punkty, a zgodna karta startowa piąty. W cribie kolor wymaga wszystkich pięciu kart. Walet w kolorze karty startowej daje dodatkowy punkt."
+        },
+        {
+          "pl": "Gra pokazuje karty do podliczenia. Naciśnij Enter i podaj wynik. Jeśli się pomylisz, nie dostaniesz więcej niż prawidłowy wynik, a różnicę otrzyma przeciwnik. Mecz kończy się od razu po zdobyciu 121 punktów, również podczas zagrywania lub liczenia układów."
+        }
+      ],
+      "title": {
+        "pl": "Punktacja i liczenie układów"
+      }
     },
     {
       "id": "controls",
-      "title": {
-        "pl": "Klawiatura"
-      },
       "paragraphs": [
         {
-          "pl": "Wybierz kartę lub Pas strzałkami i zatwierdź Enterem."
+          "pl": "Strzałki: przeglądaj karty lub pozycje menu."
         },
         {
-          "pl": "- H odczytuje rękę, S podaje wynik, T mówi, czyja jest kolej. C odczytuje bieżącą sumę podczas zagrywania kart."
+          "pl": "Enter: odłóż lub zagraj wybraną kartę; podczas liczenia otwórz pole wyniku. Gdy żadna karta nie mieści się w limicie, wybierz Pas."
+        },
+        {
+          "pl": "D: odczytaj kartę startową."
+        },
+        {
+          "pl": "V: sprawdź, kto liczy crib."
+        },
+        {
+          "pl": "H: odczytaj swoją rękę."
+        },
+        {
+          "pl": "C: odczytaj karty na stole."
+        },
+        {
+          "pl": "Ctrl+C: przejrzyj te karty."
+        },
+        {
+          "pl": "S: odczytaj wyniki."
+        },
+        {
+          "pl": "T: sprawdź, czyja jest tura."
+        },
+        {
+          "pl": "Z: znajdź następną kartę, którą można zagrać."
+        },
+        {
+          "pl": "Shift+Z: znajdź poprzednią kartę, którą można zagrać."
+        },
+        {
+          "pl": "Shift+C: sortuj rękę według kolorów."
+        },
+        {
+          "pl": "Shift+H: sortuj rękę według wartości."
+        },
+        {
+          "pl": "Shift+M: przywróć kolejność otrzymania kart."
         }
-      ]
+      ],
+      "title": {
+        "pl": "Skróty klawiszowe"
+      }
     }
   ],
   "option_chapters": {}

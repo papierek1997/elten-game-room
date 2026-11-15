@@ -1,4 +1,4 @@
-require_relative "jass_round"
+require_relative "jass_rules"
 
 module GameRoomGames
   module JassBot
@@ -11,7 +11,7 @@ module GameRoomGames
       hand = view.fetch(:hand)
       values = suits.to_h do |suit|
         cards = hand.select { |card| card.first == suit }
-        [suit, cards.sum { |_, rank| 2 + JassRound::TRUMP_ORDER.index(rank) }]
+        [suit, cards.sum { |_, rank| 2 + JassRules::TRUMP_ORDER.index(rank) }]
       end
       values[:high] = hand.sum { |_, rank| [rank - 11, 0].max * 3 } if suits.include?(:high)
       values[:low] = hand.sum { |_, rank| [9 - rank, 0].max * 3 } if suits.include?(:low)
@@ -31,7 +31,7 @@ module GameRoomGames
     end
 
     def strength(suit, rank, trump, lead = suit)
-      suit == trump ? 30 + JassRound::TRUMP_ORDER.index(rank) : suit == lead ? (trump == :low ? 15 - rank : rank) : 0
+      suit == trump ? 30 + JassRules::TRUMP_ORDER.index(rank) : suit == lead ? (trump == :low ? 15 - rank : rank) : 0
     end
   end
 end

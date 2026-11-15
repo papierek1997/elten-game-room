@@ -171,7 +171,23 @@ class GameRoomSessionRunner
         GameRoomSessionContracts::SessionIdentity.from_row(session) == GameRoomSessionContracts::SessionIdentity.from_row(@session) && @session["__control_ready"] != false &&
         GameRoomParticipants.includes?(@replay.players, actor) &&
         (revision(replay) == revision(@replay) || @game.concurrent_session_input?(replay, @replay, selection))
-      commit(selection, actor, controller: controller)
+      result = commit(selection, actor, controller: controller)
+      # A stack ACK proves storage, not acceptance by the game's reducer. A
+      # deadline or another player's action can win while this write is in
+      # flight. Check the confirmed local projection, without another poll,
+      # before clearing a human's draft or announcing a successful action.
+      if result.first == :ok
+        snapshot = @repository.snapshot_for(@session, read_only: true)
+        if snapshot
+          events = (snapshot.events + result.last).uniq { |event| @repository.event_id(event) }.sort_by { |event| @repository.event_id(event) }
+          confirmed = @game.replay(snapshot.session, events, @repository)
+          ids = confirmed.accepted_events.to_h { |event| [@repository.event_id(event), true] }
+          return [:stale_view, nil] unless result.last.all? { |event| ids[@repository.event_id(event)] }
+        else
+          return [:stale_view, nil]
+        end
+      end
+      result
     end
   end
 

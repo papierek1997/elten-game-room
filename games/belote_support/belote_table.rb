@@ -7,13 +7,13 @@ GameRoomPrivateCards.register("belote", host: %w[private_deal], claim: %w[privat
   take: %w[initial_hand private_draw], reveal: %w[play belote_play_meld], random: %w[deal])
 
 module GameRoomGames
+  using GameRoomLocalization::Translations
   class BeloteTable < DealtCardGame
     include BeloteBidding
 
     def id; "belote"; end
-    def name; "Belote"; end
-    def short_description; "Graj w parach, wybierz atut w licytacji i zdobywaj punkty za lewy i meldunki."; end
-    def private_table_required?(_options); true; end
+    def name; _('Belote'); end
+    def short_description; _('Play in partnerships, bid for trumps and score for tricks and belote.'); end
 
     def rule_sections; generated_rule_sections; end
     def minimum_players; 4; end
@@ -21,10 +21,10 @@ module GameRoomGames
     def team_size(_options, player_count:); player_count == 4 ? 2 : 0; end
 
     def option_definitions
-      [OptionDefinition.new(key: "variant", label: "Wariant", kind: :choice, default: "classic", choices: [
-        OptionChoice.new(value: "classic", label: "Klasyczny"),
-        OptionChoice.new(value: "coinchee", label: "Coinch\u00e9e")
-      ]), OptionDefinition.new(key: "coinchee_two_stage", label: "Coinchée: rozdawanie w dwóch etapach", kind: :boolean, default: false)]
+      [OptionDefinition.new(key: "variant", label: _('Variant'), kind: :choice, default: "classic", choices: [
+        OptionChoice.new(value: "classic", label: _('Classic: choose a trump suit')),
+        OptionChoice.new(value: "coinchee", label: _('Coinchée: bid a point contract'))
+      ]), OptionDefinition.new(key: "coinchee_two_stage", label: _('Coinchée: deal five cards before bidding'), kind: :boolean, default: false)]
     end
 
     def surface_spec(replay, viewer)
@@ -39,8 +39,8 @@ module GameRoomGames
 
           declaration = state[:belote_announced][viewer] ? "rebelote" : "belote"
           card.choices = [
-            GameSurfaces::CardChoice.new(id: "normal", label: "Zagraj bez meldunku", value: card.id),
-            GameSurfaces::CardChoice.new(id: "meld", label: "Zagraj i zg\u0142o\u015b #{declaration}", value: card.id)
+            GameSurfaces::CardChoice.new(id: "normal", label: _('Play without declaring'), value: card.id),
+            GameSurfaces::CardChoice.new(id: "meld", label: _('Play and declare %{declaration}') % {declaration: declaration}, value: card.id)
           ]
           card.shift_choice = "meld"
         end
@@ -92,9 +92,9 @@ module GameRoomGames
 
     def move_error(status)
       case status
-      when :belote_no_meld then "Tej karty nie mo\u017cesz zagra\u0107 z meldunkiem."
-      when :belote_trump then "Musisz zagra\u0107 atut."
-      when :belote_overtrump then "Musisz przebi\u0107 wy\u017cszym atutem."
+      when :belote_no_meld then _('You cannot declare belote with that card.')
+      when :belote_trump then _('You must play a trump.')
+      when :belote_overtrump then _('You must play a higher trump.')
       else super
       end
     end
@@ -109,31 +109,31 @@ module GameRoomGames
       card = table_cards(replay.state).first
       suit = BeloteCards.decode(card).first if card
       trump = replay.state[:trump]
-      trump_text = trump ? "Atut: #{BeloteBidding::LABELS.fetch(trump)}." : "Nie wybrano jeszcze atutu."
-      led_text = suit ? "Kolor wyj\u015bcia: #{BeloteBidding::LABELS.fetch(suit)}." : nil
-      {label: "Odczytaj atut i kolor wyj\u015bcia", message: [trump_text, led_text].compact.join(" ")}
+      trump_text = trump ? _('Trumps: %{suit}.') % {suit: bid_label(trump)} : _('Trumps have not been chosen yet.')
+      led_text = suit ? _('Suit led: %{suit}.') % {suit: bid_label(suit)} : nil
+      {label: _('read trumps and the suit led'), message: [trump_text, led_text].compact.join(" ")}
     end
 
     def custom_game_shortcuts(replay, viewer)
       shortcuts = super
       state = replay.state
-      shortcuts << announcement_shortcut(key: "r", label: "Odczytaj kontrakt", message: round_information_text(state))
+      shortcuts << announcement_shortcut(key: "r", label: _('read the contract'), message: round_information_text(state))
       points = state.fetch(:units).map do |unit|
         total = state.fetch(:trick_points, {}).fetch(unit, 0) + state.fetch(:bonuses, {}).fetch(unit, 0)
         "#{GameRoomContent.utf8(unit_label(state, unit))}: #{total}"
       end.join(". ")
       shortcuts << GameShortcut.new(key: "s", modifiers: [:shift], kind: :announcement,
-        label: "Punkty obecnego rozdania", message: points)
+        label: _('Points this deal'), message: points)
       if state[:upcard]
-        shortcuts << GameShortcut.new(key: "d", kind: :announcement, label: "Odczytaj odkryt\u0105 kart\u0119",
-          message: "Odkryta karta: #{playing_card_label(state[:upcard])}.")
+        shortcuts << GameShortcut.new(key: "d", kind: :announcement, label: _('read the turned-up card'),
+          message: _('Turned-up card: %{card}.') % {card: playing_card_label(state[:upcard])})
       end
       if state[:phase] == :bidding && same_user?(state[:current_player], viewer)
         choices = bid_choices(state).map { |choice| ShortcutChoice.new(value: choice.to_s, label: bid_label(choice)) }
-        shortcuts << GameShortcut.new(key: "b", kind: :choice, label: "Wybierz kontrakt lub pas",
+        shortcuts << GameShortcut.new(key: "b", kind: :choice, label: _('Choose a contract or pass'),
           prompt: bidding_header(state), choices: choices, action_kind: "command",
           action_name: "belote_bid", value_key: "choice")
-        shortcuts << GameShortcut.new(key: "enter", kind: :choice, label: "Wybierz kontrakt lub pas",
+        shortcuts << GameShortcut.new(key: "enter", kind: :choice, label: _('Choose a contract or pass'),
           prompt: bidding_header(state), choices: choices, action_kind: "command",
           action_name: "belote_bid", value_key: "choice")
       end
@@ -162,7 +162,9 @@ module GameRoomGames
       return 0 unless action["kind"] == "card"
 
       legal = legal_cards(state, actor).map { |card| BeloteCards.decode(card) }
-      preferred = BeloteBot.play(legal, state.fetch(:trump))
+      trick = table_cards(state).map { |card| BeloteCards.decode(card) }
+      partner_winning = !trick.empty? && unit_for(state, state[:trick][BeloteTrick.winner(trick, state[:trump])].first) == unit_for(state, actor)
+      preferred = BeloteBot.play(legal, state.fetch(:trump), trick: trick, partner_winning: partner_winning)
       preferred && action["card"] == BeloteCards.encode(preferred) ? 1 : 0
     end
 
@@ -178,6 +180,7 @@ module GameRoomGames
       state[:trick] = []
       state[:play_count] = 0
       state[:trick_points] = state[:units].to_h { |unit| [unit, 0] }
+      state[:tricks_won] = state[:trick_points].dup
       state[:bonuses] = state[:trick_points].dup
       state[:belote_announced] = {}
       state[:phase], state[:current_player] = :bidding, first_player(state)
@@ -238,15 +241,16 @@ module GameRoomGames
 
     def round_information_text(state)
       taker = state[:taker]
-      return "Nie wybrano jeszcze kontraktu." unless taker && state[:trump]
+      return _('No contract has been chosen yet.') unless taker && state[:trump]
 
       name = GameRoomContent.utf8(participant_name(taker))
       pair = GameRoomContent.utf8(unit_label(state, unit_for(state, taker)))
-      suit = BeloteBidding::LABELS.fetch(state[:trump])
+      suit = bid_label(state[:trump])
       threshold = state[:contract] || 82
-      message = "#{name} wybra\u0142 atut: #{suit}. Kontrakt gra para #{pair}. Musi zdoby\u0107 co najmniej #{threshold} punkt\u00f3w i wi\u0119cej od obrony."
+      message = _('%{player} chooses %{suit} as trumps. Partnership %{team} must score at least %{points} and beat the defenders.') % {
+        player: name, suit: suit, team: pair, points: threshold}
       multiplier = state.fetch(:multiplier, 1)
-      message += " Mno\u017cnik kontraktu: #{multiplier}." if multiplier > 1
+      message += ' ' + _('Contract multiplier: %{multiplier}.') % {multiplier: multiplier} if multiplier > 1
       message
     end
 
@@ -262,7 +266,7 @@ module GameRoomGames
       trump = state.fetch(:trump)
       partner_winning = !trick.empty? &&
         unit_for(state, state[:trick].fetch(BeloteTrick.winner(trick, trump)).first) == unit_for(state, actor)
-      BeloteRound.legal(hand, trick, trump: trump, partner_winning: partner_winning).map do |card|
+      BeloteRules.legal(hand, trick, trump: trump, partner_winning: partner_winning).map do |card|
         BeloteCards.encode(card)
       end
     end
@@ -321,9 +325,9 @@ module GameRoomGames
       last = state[:play_count] == 32
       points = BeloteTrick.points(cards, trump, last: last)
       state.fetch(:trick_points)[unit_for(state, winner)] += points
+      state.fetch(:tricks_won)[unit_for(state, winner)] += 1
       name = GameRoomContent.utf8(participant_name(winner))
-      message = "#{name} bierze lew\u0119 za #{points} pkt."
-      message += " #{name} wychodzi do nast\u0119pnej lewy." unless last
+      message = _('%{player} wins the trick for %{points} points.') % {player: name, points: points}
       add_history(history, event, repository, :trick, message, actor: winner)
       trick.clear
       state[:current_player] = winner
@@ -358,7 +362,7 @@ module GameRoomGames
       else
         state[:belote_announced].delete(actor)
         state[:bonuses][unit_for(state, actor)] += 20
-        label = "rebelote, 20 punkt\u00f3w"
+        label = _('rebelote, 20 points')
       end
       add_history(history, event, repository, :belote, "#{GameRoomContent.utf8(participant_name(actor))}: #{label}.", actor: actor) unless state[:private_cards]
       finish_meld_decision(state, event, repository, history) if resume && state[:phase] == :meld_end
@@ -399,34 +403,35 @@ module GameRoomGames
       tricks = units.map { |unit| state.fetch(:trick_points).fetch(unit) }
       taker = units.index(unit_for(state, state.fetch(:taker)))
       bonuses = units.map { |unit| state.fetch(:bonuses).fetch(unit) }
+      sweep = units.index { |unit| state[:tricks_won][unit] == 8 }
       settlement = if coinchee?(state)
         compared = tricks.zip(bonuses).map(&:sum)
         success = compared[taker] >= state.fetch(:contract) && compared[taker] > compared[1 - taker]
         paid = success ? tricks.dup : [0, 0]
         paid[1 - taker] = 162 unless success
-        sweep = tricks.index(162)
         paid[sweep] += 90 if sweep && paid[sweep].positive?
         {scores: paid.zip(bonuses).map { |points, bonus| (points + bonus) * state.fetch(:multiplier) }, carry: 0, winner: success ? taker : 1 - taker}
       else
-        BeloteDeal.settle(tricks, taker: taker, bonuses: bonuses, carry: state.fetch(:carry, 0))
+        BeloteSettlement.settle(tricks, taker: taker, bonuses: bonuses, carry: state.fetch(:carry, 0), sweep: sweep)
       end
       state[:carry] = settlement.fetch(:carry)
       units.zip(settlement.fetch(:scores)).each { |unit, points| state[:scores][unit] += points }
       winner = settlement.fetch(:winner)
       pair = GameRoomContent.utf8(unit_label(state, units.fetch(taker)))
       outcome = if winner.nil?
-        "Remis. Para #{pair} odk\u0142ada punkty z lew do puli."
+        _('Tie. Partnership %{team} carries its trick points over to the next deal.') % {team: pair}
       elsif winner == taker
-        "Para #{pair} wykona\u0142a kontrakt."
+        _('Partnership %{team} makes the contract.') % {team: pair}
       else
-        "Para #{pair} nie wykona\u0142a kontraktu."
+        _('Partnership %{team} fails the contract.') % {team: pair}
       end
       add_history(history, event, repository, :round_result, outcome)
       units.each_with_index do |unit, index|
         name = GameRoomContent.utf8(unit_label(state, unit))
         collected = tricks.fetch(index) + bonuses.fetch(index)
         awarded = settlement.fetch(:scores).fetch(index)
-        add_history(history, event, repository, :round_result, "#{name}. Zdobyte punkty: #{collected}. Zapisane punkty: #{awarded}.")
+        add_history(history, event, repository, :round_result, _('%{team}: collected: %{collected}; recorded: %{awarded}.') % {
+          team: name, collected: collected, awarded: awarded})
       end
       state[:phase], state[:current_player] = :round_complete, nil
       if state[:scores].values.max >= 1000 && winning_units(state).one?

@@ -1,11 +1,11 @@
 require_relative "../card_game"
-require_relative "hearts_round"
+require_relative "hearts_rules"
 
 module GameRoomGames
   module HeartsCards
-    SUITS = HeartsRound::DECK.map(&:first).uniq.zip(CardGame::CARD_SUITS).to_h.freeze
+    SUITS = HeartsRules::DECK.map(&:first).uniq.zip(CardGame::CARD_SUITS).to_h.freeze
     RANKS = (2..14).zip(CardGame::CARD_RANKS).to_h.freeze
-    ENCODED = HeartsRound::DECK.to_h do |card|
+    ENCODED = HeartsRules::DECK.to_h do |card|
       suit, rank = card
       [card, (RANKS.fetch(rank) + SUITS.fetch(suit)).freeze]
     end.freeze

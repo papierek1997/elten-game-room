@@ -31,6 +31,15 @@ all-in, must exceed the current highest offer and cannot exceed that available
 total. An accepted all-in ends the auction immediately and awards its question
 or unopened chest. Typing the full available total has the same effect as A.
 
+V2 has three calls followed by one final interval before closure. A higher
+bid resets the calls. The third call is announced while bidding remains
+open, not as text attached to a committed closure. The closing event still
+binds the exact bid revision and deadline and cannot overrule a newer bid.
+A storage ACK alone is not game acceptance: the shared human-action runner
+checks the confirmed local reducer projection before reporting success,
+without another poll. The optional withdrawal button explicitly names the
+current auction. It neither accelerates closure nor refunds earlier bids.
+
 For each participant eligible after the ante, an auction without any accepted
 bid increments the consecutive non-bidding count. An explicit pass is not
 required, and the ante is not a bid. Any accepted bid resets the count even
@@ -47,13 +56,23 @@ question counter exactly once, whether correct or wrong. A chest auction
 instead adds an unopened chest to its winner and leaves the pool untouched.
 Chest auctions and empty auctions do not increment the question counter.
 
+The answerer may buy one hint removing two wrong answers. It costs 10% of
+their remaining balance, rounded up and at least one point. The button shows
+the price; a zero balance cannot buy it. Payment leaves the game, not the
+pool. A native seed chooses the surviving wrong answer, so the remaining
+positions do not disclose the right choice. Choice IDs stay unchanged when
+the list shrinks. Planning and replay reject removed answers, repeated hints
+and another player's hint. This is a project adaptation, not the official
+TV price: the television presenter negotiates the price of a hint.
+
 After the configured number of questions have been answered, or when at most one active participant
 remains,
 all owned chests must be opened before settlement, including those belonging
-to eliminated participants. Each chest independently chooses uniformly from
-`[100, 2500, 10000, -100, -500, -1000, 'bankrupt']`. Numeric changes clamp the
-balance at zero. Bankruptcy clears the balance and permanently eliminates;
-later positive rewards do not revive a participant. The maximum surviving
+to eliminated participants. V2 chooses uniformly from
+`[100, 500, 1000, 2500, 5000, 7500, 10000]`. These positive prizes are recorded
+separately in `bonus_prizes`, never added to the match score. They cannot
+eliminate anyone, revive them or change the winner. V1 keeps its historical
+chest outcomes. The maximum surviving
 balance wins. At this settlement boundary, no new wheel draw or result is
 allowed while any owned chest remains unopened. An exact tie at the highest
 surviving balance sets the next
@@ -101,7 +120,7 @@ clears only that category's IDs. The unique ledger cannot exceed the bank's
 question count. `public_view(data)` copies only approved public fields and
 excludes the answer key and internal ledger.
 
-Wheel, question and chest randomness use the existing native seed commands
+Wheel, question, hint and chest randomness use the existing native seed commands
 registered for this game. Question randomness is obtained only after the
 auction is awarded; the public category draw cannot select its future
 question. Cold replay uses the recorded seed and exact pinned combination to
@@ -116,7 +135,7 @@ budget based on public balances.
 
 The auction uses the existing `QuestionSpec` text control, with no separate
 submit button: type an amount or `A` and press Enter. Non-leaders also get
-the native Pass button, reached with Tab and activated with Enter. Accepted
+the native withdrawal button, reached with Tab and activated with Enter. Accepted
 input clears only its matching `_text_input` edit receipt. Validation errors
 preserve the draft. Another participant's bid keeps the local draft, cursor
 and focus. The auction control identity contains the accepted game ID and
@@ -145,19 +164,21 @@ uses the existing logical session clock to advance the wheel, begin auctions,
 close them and obtain post-award questions. There is no game-specific timer
 thread, polling loop or UI work on the worker. Accepted native event time is
 monotonic within the game. Each accepted higher bid replaces the auction
-deadline with three call intervals from that bid. All-in bypasses the calls:
+deadline with four call intervals from that bid in v2 (three in historical v1).
+All-in bypasses the calls:
 one accepted `all_in` event both pays the valid higher bid and awards the auction.
 The first accepted all-in closes admission for later offers; no second executor
 or timer is introduced. Versioned reduction keeps earlier `bid` and `all_in`
 records under their original rules, so accepted historical closings remain
 valid in cold replay.
 
-The first and second calls are local timer announcements, keyed by game,
+All three v2 calls are local timer announcements, keyed by game,
 round, bid revision and ordinal; historical reconstruction skips these
 expired cues. Their low/high tones precede the respective spoken calls.
-The third call is an accepted auction-close event with its recorded round,
-bid revision and deadline. Its gavel is scheduled after the complete spoken
-“for the third time. Sold!” announcement through the native speech sequence.
+The final interval after the third call still accepts higher bids. Only the
+accepted auction-close event awards the auction, binding its recorded round,
+bid revision and deadline. Its gavel follows the separate sold announcement
+through the native speech sequence. Historical v1 retains its original close.
 An immediate all-in uses its winning announcement followed by the same gavel.
 User interruption may cancel a pending cue; sound completion does not hold
 the model or create a game-clock barrier. Application sounds keep the normal

@@ -3,29 +3,105 @@
   "sections": [
     {
       "id": "play",
-      "title": {
-        "en": "Jass"
-      },
       "paragraphs": [
         {
-          "en": "Play in two partnerships. The opening player chooses trumps or passes the choice to their partner. The winner of each trick leads the next."
+          "en": "Four players form two partnerships, with partners sitting across the table. Each receives nine cards from a 36-card deck, six through ace in each suit. The player after the dealer chooses trumps or lets their partner choose. That partner must decide. The opening lead stays with the player after the dealer. After each deal, the next player deals."
         },
         {
-          "en": "Each player has nine cards. Follow a trump lead if you can. On a plain-suit lead, you may follow suit or trump. If you cannot follow, you may discard. When a trump is already down, avoid playing a lower trump if another legal card is available. The highest trump wins, or the highest card of the suit led if there are no trumps. The trump jack ranks first and scores 20, and the trump nine ranks second and scores 14. Aces score 11, tens 10, kings 4, queens 3 and other jacks 2. The last trick adds five points. The match target is 1,000."
+          "en": "The first card sets the suit led. On a trump lead, follow with a trump if possible. On another suit, follow suit or play a trump; without that suit you may discard. You may play a lower trump than one already down only if no other legal card remains. The highest trump wins, or the highest card of the suit led if there are no trumps. The trick winner leads next."
         }
-      ]
+      ],
+      "title": {
+        "en": "Playing Jass"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "en": "Trumps rank jack, nine, ace, king, queen, ten, eight, seven, six. The jack is worth twenty and the nine fourteen. In other suits the order is ace, king, queen, jack, ten, nine, eight, seven, six. Aces score 11, tens 10, kings 4, queens 3 and non-trump jacks 2; other cards score zero. The last trick adds five. There are 157 points per deal."
+        }
+      ],
+      "title": {
+        "en": "Card order and points"
+      }
+    },
+    {
+      "id": "settings",
+      "paragraphs": [
+        {
+          "en": "The Trumps variant offers four trump suits. Schieber also offers Obenabe and Undenufe, both without trumps. In Obenabe the highest card of the suit led wins and eights score eight. In Undenufe the lowest card wins; sixes score eleven, aces zero and eights eight. In either mode you must follow suit if possible."
+        },
+        {
+          "en": "Each trick’s points go to its winner’s partnership. Choose a match target of 1000, 1500, 2000 or 2500 when creating the table. The match ends at the end of the deal in which a partnership reaches the target."
+        }
+      ],
+      "title": {
+        "en": "Variants and the score target"
+      }
     },
     {
       "id": "controls",
-      "title": {
-        "en": "Keyboard"
-      },
       "paragraphs": [
         {
-          "en": "Use the arrow keys to choose a trump suit or card and press Enter."
+          "en": "Arrows: browse cards or menu choices."
+        },
+        {
+          "en": "Enter: choose the deal rules before play, or play a card during tricks."
+        },
+        {
+          "en": "B: open the available trump and no-trump choices."
+        },
+        {
+          "en": "F: read the deal rules and suit led."
+        },
+        {
+          "en": "R: read who chooses trumps or which mode was chosen."
+        },
+        {
+          "en": "V: repeat the deal rules."
+        },
+        {
+          "en": "Shift+S: read this deal’s points."
+        },
+        {
+          "en": "H: read your hand."
+        },
+        {
+          "en": "C: read the cards on the table."
+        },
+        {
+          "en": "Ctrl+C: browse those cards."
+        },
+        {
+          "en": "S: read the scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "Z: find the next playable card."
+        },
+        {
+          "en": "Shift+Z: find the previous playable card."
+        },
+        {
+          "en": "Shift+C: sort your hand by suit."
+        },
+        {
+          "en": "Shift+H: sort your hand by rank."
+        },
+        {
+          "en": "Shift+M: restore the order in which you received the cards."
         }
-      ]
+      ],
+      "title": {
+        "en": "Controls"
+      }
     }
   ],
-  "option_chapters": {}
+  "option_chapters": {
+    "variant": "settings",
+    "score_limit": "settings"
+  }
 }

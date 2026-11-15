@@ -8,13 +8,13 @@ GameRoomPrivateCards.register('jass', host: %w[private_deal], claim: %w[private_
   take: %w[initial_hand], reveal: %w[play], random: %w[deal])
 
 module GameRoomGames
+  using GameRoomLocalization::Translations
   # Shared table adapter. Register the game only once bidding and the private
   # round audit are connected; the base class alone handles single-card turns.
   class JassTable < DealtCardGame
     def id; "jass"; end
-    def name; "Jass"; end
-    def private_table_required?(_options); true; end
-    def short_description; "Szwajcarska gra w lewy dla dw\u00f3ch dru\u017cyn."; end
+    def name; _('Jass'); end
+    def short_description; _('A Swiss trick-taking game for two partnerships.'); end
 
     def rule_sections; generated_rule_sections; end
     def minimum_players; 4; end
@@ -22,17 +22,17 @@ module GameRoomGames
     def team_size(_options, player_count:); player_count == 4 ? 2 : 0; end
 
     TRUMP_LABELS = {
-      'clubs' => 'Trefl', 'diamonds' => 'Karo', 'hearts' => 'Kier',
-      'spades' => 'Pik', 'high' => 'Obenabe', 'low' => 'Undenufe', 'pass' => "Przeka\u017c wyb\u00f3r partnerowi"
+      'clubs' => 'clubs', 'diamonds' => 'diamonds', 'hearts' => 'hearts',
+      'spades' => 'spades'
     }.freeze
 
     def option_definitions
       [
-        OptionDefinition.new(key: "variant", label: "Wariant", kind: :choice, default: "playroom", choices: [
-          OptionChoice.new(value: "playroom", label: "Z atutem"),
-          OptionChoice.new(value: "schieber", label: "Schieber z trybami bez atutu")
+        OptionDefinition.new(key: "variant", label: _('Variant'), kind: :choice, default: "playroom", choices: [
+          OptionChoice.new(value: "playroom", label: _('Trumps: choose one of four suits')),
+          OptionChoice.new(value: "schieber", label: _('Schieber: also allow high- or low-card no-trumps'))
         ]),
-        OptionDefinition.new(key: "score_limit", label: "Cel punktowy", kind: :choice, default: "1000",
+        OptionDefinition.new(key: "score_limit", label: _('Score target'), kind: :choice, default: "1000",
           choices: %w[1000 1500 2000 2500].map { |points| OptionChoice.new(value: points, label: points) })
       ]
     end
@@ -48,14 +48,14 @@ module GameRoomGames
         lead = table_cards(state).first
         suit = JassCards.decode(lead).first if lead
         message = round_information_text(state)
-        message += " Kolor wyj\u015bcia: #{TRUMP_LABELS.fetch(suit.to_s)}." if suit
+        message += ' ' + _('Suit led: %{suit}.') % {suit: trump_label(suit)} if suit
         {message: message}
       when :statistics
         points = state.fetch(:round_points, {})
         message = state.fetch(:units).map do |unit|
           "#{GameRoomContent.utf8(unit_label(state, unit))}: #{points.fetch(unit, 0)}"
         end.join(". ")
-        {label: "Punkty rozdania", message: message}
+        {label: _('Points this deal'), message: message}
       else
         super
       end
@@ -63,22 +63,22 @@ module GameRoomGames
 
     def custom_game_shortcuts(replay, viewer)
       shortcuts = super
-      shortcuts << announcement_shortcut(key: "r", label: "Odczytaj zasady rozdania", message: round_information_text(replay.state))
+      shortcuts << announcement_shortcut(key: "r", label: _('read the deal rules'), message: round_information_text(replay.state))
       return shortcuts unless replay.state[:phase] == :choosing_trump && same_user?(replay.current_player, viewer)
 
       choices = trump_choices(replay.state).map do |choice|
-        ShortcutChoice.new(value: choice.to_s, label: TRUMP_LABELS.fetch(choice.to_s))
+        ShortcutChoice.new(value: choice.to_s, label: trump_label(choice))
       end
       %w[b enter].each do |key|
-        shortcuts << GameShortcut.new(key: key, kind: :choice, label: "Wybierz zasady rozdania",
-          prompt: "Wybierz atut lub inny dost\u0119pny tryb", choices: choices,
+        shortcuts << GameShortcut.new(key: key, kind: :choice, label: _('Choose the deal rules'),
+          prompt: _('Choose trumps or a no-trump mode'), choices: choices,
           action_kind: "command", action_name: "choose_trump", value_key: "choice")
       end
       shortcuts
     end
 
     def move_error(status)
-      return "Do\u0142\u00f3\u017c do koloru albo zagraj dozwolony atut. Ni\u017cszy atut mo\u017cesz zagra\u0107 tylko wtedy, gdy nie masz innego legalnego ruchu." if status == :must_follow_suit
+      return _('Follow suit or play a legal trump. You may undertrump only if no other legal card remains.') if status == :must_follow_suit
 
       super
     end
@@ -133,6 +133,15 @@ module GameRoomGames
 
     protected
 
+    def trump_label(choice)
+      case choice.to_s
+      when 'high' then _('Obenabe: high cards win, no trumps')
+      when 'low' then _('Undenufe: low cards win, no trumps')
+      when 'pass' then _('Let your partner choose')
+      else _(TRUMP_LABELS.fetch(choice.to_s))
+      end
+    end
+
     def apply_extra_card_event(state, event, session, repository, history)
       return super unless event['action'] == 'choose_trump'
       return false unless state[:phase] == :choosing_trump
@@ -147,7 +156,7 @@ module GameRoomGames
         state[:current_player] = state[:seats][(seat + 2) % 4]
         name = GameRoomContent.utf8(participant_name(actor))
         add_history(history, event, repository, :trump,
-          "#{name} przekazuje wyb\u00f3r partnerowi. #{round_information_text(state)}", actor: actor)
+          _('%{player} lets their partner choose.') % {player: name}, actor: actor)
       else
         state[:trump] = choice
         state[:trump_chooser] = actor
@@ -159,7 +168,7 @@ module GameRoomGames
     end
 
     def trump_choices(state)
-      choices = JassRound::SUITS
+      choices = JassRules::SUITS
       choices += %i[high low] if state.fetch(:options, {})["variant"] == "schieber"
       same_user?(state[:current_player], first_player(state)) ? choices + [:pass] : choices
     end
@@ -191,15 +200,13 @@ module GameRoomGames
     def round_information_text(state)
       if state[:phase] == :choosing_trump && state[:current_player]
         name = GameRoomContent.utf8(participant_name(state[:current_player]))
-        return "#{name} wybiera zasady rozdania. W swojej kolejce naci\u015bnij B lub Enter."
+        return _('%{player} chooses the deal rules. Press B or Enter on your turn.') % {player: name}
       end
       mode = state[:trump]
-      return "Nie wybrano jeszcze zasad rozdania." unless mode
+      return _('The deal rules have not been chosen yet.') unless mode
 
       chooser = GameRoomContent.utf8(participant_name(state[:trump_chooser]))
-      label = TRUMP_LABELS.fetch(mode.to_s)
-      rules = %i[high low].include?(mode) ? "#{label}, bez atutu" : "atut #{label}"
-      "#{chooser} wybiera #{rules}."
+      _('%{player} chooses %{mode}.') % {player: chooser, mode: trump_label(mode)}
     end
 
     def table_cards(state)
@@ -211,7 +218,7 @@ module GameRoomGames
 
       hand = hand_for(state, actor).compact.map { |card| JassCards.decode(card) }
       trick = table_cards(state).map { |card| JassCards.decode(card) }
-      JassRound.legal(hand, trick, state.fetch(:trump)).map { |card| JassCards.encode(card) }
+      JassRules.legal(hand, trick, state.fetch(:trump)).map { |card| JassCards.encode(card) }
     end
 
     def play_card(state, actor, card, event, repository, history)
@@ -223,14 +230,13 @@ module GameRoomGames
       end
 
       last = state[:play_count] == 36
-      index, points = JassRound.settle_trick(trick.map { |_, value| JassCards.decode(value) }, state[:trump], last: last)
+      index, points = JassRules.settle_trick(trick.map { |_, value| JassCards.decode(value) }, state[:trump], last: last)
       winner = trick.fetch(index).first
       state.fetch(:scores)[unit_for(state, winner)] += points
       round_points = state[:round_points] ||= Hash.new(0)
       round_points[unit_for(state, winner)] += points
       name = GameRoomContent.utf8(participant_name(winner))
-      message = "#{name} bierze lew\u0119 za #{points} pkt."
-      message += " Wychodzi do nast\u0119pnej lewy." unless last
+      message = _('%{player} wins the trick for %{points} points.') % {player: name, points: points}
       add_history(history, event, repository, :trick, message, actor: winner) if repository
       trick.clear
       state[:current_player] = last ? nil : winner
@@ -245,7 +251,8 @@ module GameRoomGames
         state[:units].each do |unit|
           name = GameRoomContent.utf8(unit_label(state, unit))
           add_history(history, event, repository, :round_result,
-            "#{name}. Punkty rozdania: #{round_points.fetch(unit, 0)}. Wynik meczu: #{state[:scores].fetch(unit)}.")
+            _('%{player}: this deal: %{points}; total: %{total}.') % {
+              player: name, points: round_points.fetch(unit, 0), total: state[:scores].fetch(unit)})
         end
       end
       if state[:scores].respond_to?(:values) && state[:scores].values.max >= state.fetch(:options, {}).fetch("score_limit", 1000).to_i

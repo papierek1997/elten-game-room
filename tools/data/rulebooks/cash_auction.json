@@ -9,8 +9,8 @@
       },
       "paragraphs": [
         {
-          "en": "Cash Auction combines bidding with quiz questions. Each question has four choices and exactly one correct answer. Two to eight players can take part, including bots. Everyone starts with 10000 points. Your aim is to have the most points among the players still in the match after all black chests have been opened.",
-          "pl": "Awantura o kasę łączy licytację z quizem. Każde pytanie ma cztery odpowiedzi, z których dokładnie jedna jest poprawna. Może w niej grać od dwóch do ośmiu osób, także z botami. Każdy zaczyna z 10000 punktów. Wygrywa osoba, która po otwarciu wszystkich czarnych skrzyń ma najwięcej punktów spośród graczy pozostających w meczu."
+          "en": "Cash Auction combines simultaneous bidding with quiz questions for two to eight players, including bots. Each question has four choices and one correct answer. Everyone starts with 10000 points by default. Finish with the most points among the players still in the match. Black chests contain separate prizes and never change the winner.",
+          "pl": "Awantura o kasę łączy wspólną licytację z quizem dla dwóch do ośmiu graczy, także botów. Każde pytanie ma cztery odpowiedzi i jedną poprawną. Domyślnie zaczynacie z 10000 punktów. Wygrywa osoba z największą liczbą punktów spośród pozostających w meczu. Czarne skrzynki zawierają osobne nagrody i nie zmieniają zwycięzcy."
         },
         {
           "en": "Each auction starts with a category draw and an opening payment from every remaining player. You bid against one another for the right to answer a question. A correct answer wins the whole pool; a wrong answer leaves it for a later auction.",
@@ -34,8 +34,8 @@
           "pl": "Licytujecie równocześnie, bez czekania na swoją kolej. Na początku licytacji jesteś w polu kwoty. Wpisz ofertę i zatwierdź ją Enterem. Przyjęta oferta czyści pole; po błędnej wpis zostaje, aby można go było poprawić. Słyszysz numer rundy, pulę, najwyższą ofertę i osobę prowadzącą."
         },
         {
-          "en": "After an ordinary offer, the auctioneer calls the amount once and twice, three seconds apart. The third call, after nine seconds without a new offer, closes the auction. Each higher offer starts this countdown again. If nobody bids within the opening nine seconds, the auction ends and the pool carries over.",
-          "pl": "Po zwykłej ofercie prowadzący wywołuje jej kwotę po raz pierwszy i drugi, w odstępach trzech sekund. Trzecie wywołanie, po dziewięciu sekundach bez przebicia, zamyka licytację. Każda wyższa oferta rozpoczyna odliczanie od nowa. Jeśli przez początkowe dziewięć sekund nikt nie zalicytuje, licytacja się kończy, a pula przechodzi dalej."
+          "en": "After a bid, the auctioneer calls once, twice and three times, normally three seconds apart. Bidding stays open for one more interval after the third call; only Sold ends it. Every higher offer starts the calls afresh. With the default interval, an auction closes after twelve seconds without a new bid. If nobody bids, the pool carries over.",
+          "pl": "Po ofercie prowadzący odlicza: po raz pierwszy, drugi i trzeci, domyślnie co trzy sekundy. Po trzeciej zapowiedzi licytacja pozostaje otwarta jeszcze przez jeden taki odstęp. Kończy ją dopiero ogłoszenie zwycięzcy. Każde podbicie rozpoczyna odliczanie od nowa. Przy domyślnych ustawieniach licytacja zamyka się po dwunastu sekundach bez nowej oferty. Jeśli nikt nie zalicytuje, pula przechodzi dalej."
         },
         {
           "en": "P reads the pool. T explains whose decision is pending; during bidding, all eligible players may bid at once. H reads who is bidding and who has passed. D reads your points, and Shift+D reads the other players’ points.",
@@ -63,8 +63,8 @@
           "pl": "Gdy masz jeszcze punkty, możesz zagrać vabank: wpisz A w polu kwoty i naciśnij Enter. Przeznaczasz wszystkie pozostałe punkty, a wcześniejsze wpłaty za oferty w tej licytacji doliczają się do łącznej kwoty. Możesz wpisać tę łączną kwotę zamiast A. Jeśli przebija ona najwyższą ofertę, vabank natychmiast kończy licytację i daje ci pytanie albo czarną skrzynię. Nikt nie może już podbić stawki. Gdy twoja dostępna łączna kwota nie przewyższa prowadzącej oferty, nie możesz zalicytować ani zagrać vabank."
         },
         {
-          "en": "The highest bidder cannot pass: their offer is binding. Their bid field remains available, so they may raise again before the auction closes. If the auction ends with the third call, the last accepted highest offer wins.",
-          "pl": "Osoba z najwyższą ofertą nie może pasować: jej oferta jest wiążąca. Nadal ma pole kwoty i może przebić własną ofertę przed zamknięciem licytacji. Jeśli licytację kończy trzecie wywołanie, wygrywa ostatnia przyjęta najwyższa oferta."
+          "en": "The highest bidder cannot withdraw: their offer is binding. They can still raise their own offer before the close. The last accepted highest offer wins when the auction is closed. A bid reaching the game after the deadline is refused, even if the closing announcement has not finished speaking.",
+          "pl": "Prowadzący nie może się wycofać: jego oferta jest wiążąca. Może jednak podbić ją przed zamknięciem. Wygrywa ostatnia zaliczona najwyższa oferta. Oferta, która dotrze do gry po terminie, zostaje odrzucona, nawet jeśli odczyt komunikatu kończącego licytację jeszcze trwa."
         }
       ]
     },
@@ -76,8 +76,8 @@
       },
       "paragraphs": [
         {
-          "en": "If you are not leading, press Tab to reach Pass and confirm with Enter. You leave this auction and cannot bid again until the next auction. Any points you already paid remain in the pool.",
-          "pl": "Jeśli nie prowadzisz, przejdź Tabem do przycisku Pas i zatwierdź Enterem. Wycofujesz się z tej licytacji; ponownie zalicytujesz dopiero w następnej licytacji. Wpłacone punkty pozostają w puli."
+          "en": "If you are not leading, use Tab to reach Withdraw from this auction and press Enter. This is optional: it stops further bidding by you in this auction, but does not end the auction early. You may bid again in the next auction. Earlier payments stay in the pool.",
+          "pl": "Jeśli nie prowadzisz, przejdź Tabem do przycisku Wycofaj się z tej licytacji i naciśnij Enter. Nie musisz z niego korzystać. Wycofanie blokuje twoje dalsze oferty tylko w tej licytacji i nie kończy jej wcześniej. W następnej możesz znów licytować. Wcześniejsze wpłaty zostają w puli."
         },
         {
           "en": "An auction in which you make no bid counts towards a run of missed auctions, whether you press Pass or simply do not bid. The opening payment does not count as a bid. After three consecutive auctions without a bid, you pay 200 points into the pool when the third auction closes, then the count returns to zero. If you have fewer than 200 points left, pay only that balance. Any accepted bid resets your count, even if you later lose that auction or pass.",
@@ -99,6 +99,10 @@
         {
           "en": "A correct answer transfers the entire pool to the winner of the auction and starts a new pool at zero. A wrong answer leaves the whole pool for the next auction. If you went all-in and answer wrongly with nothing left, you are permanently eliminated.",
           "pl": "Za poprawną odpowiedź zwycięzca licytacji otrzymuje całą pulę, a nowa pula zaczyna się od zera. Po błędnej odpowiedzi wszystko zostaje na następną licytację. Jeśli zagrałeś za wszystko i po błędnej odpowiedzi nie masz już punktów, odpadasz na stałe."
+        },
+        {
+          "en": "Before answering, the auction winner may buy one hint to remove two wrong choices. The price is 10% of their remaining points, rounded up, with a minimum of one point; the button shows the exact cost. The payment leaves the game rather than entering the pool. With no points left, a hint cannot be bought.",
+          "pl": "Przed odpowiedzią zwycięzca licytacji może raz kupić podpowiedź usuwającą dwie błędne odpowiedzi. Kosztuje ona 10% pozostałych mu punktów, w zaokrągleniu w górę, ale co najmniej punkt. Przycisk podaje dokładną cenę. Zapłata znika z gry, zamiast trafiać do puli. Bez punktów nie można kupić podpowiedzi."
         }
       ]
     },
@@ -110,48 +114,12 @@
       },
       "paragraphs": [
         {
-          "en": "On 10% of wheel spins, a black chest replaces the category and question. Bid for it in the same way. The auction winner keeps the chest unopened; winning it does not pay out the pool, which carries over. A chest auction does not use up one of the match questions.",
-          "pl": "W 10% losowań zamiast kategorii i pytania pojawia się czarna skrzynia. Licytujecie ją tak samo. Zwycięzca zachowuje zamkniętą skrzynię, ale nie otrzymuje puli; ta przechodzi do kolejnej licytacji. Skrzynia nie zużywa jednego z pytań przewidzianych na mecz."
+          "en": "A black chest replaces the category and question on 10% of spins by default. Bid for it normally. Its winner keeps it unopened, while the pool carries over. Chest auctions do not count towards the question limit.",
+          "pl": "Domyślnie przy 10% losowań czarna skrzynka zastępuje kategorię i pytanie. Licytujcie ją jak zwykle. Zwycięzca zatrzymuje zamkniętą skrzynkę, a pula przechodzi dalej. Licytacje skrzynek nie wliczają się do limitu pytań."
         },
         {
-          "en": "Before the final result, every owner opens all their chests, including owners who have been eliminated. When your Open a black chest button appears, select it with Tab if necessary and press Enter. Repeat for any further chests.",
-          "pl": "Przed rozstrzygnięciem meczu każdy otwiera wszystkie swoje skrzynie, również gdy wcześniej odpadł. Gdy pojawi się przycisk Otwórz czarną skrzynię, przejdź do niego Tabem w razie potrzeby i naciśnij Enter. Powtórz to dla kolejnych skrzyń."
-        },
-        {
-          "en": "There are seven equally likely chest outcomes:",
-          "pl": "Skrzynia ma siedem równie prawdopodobnych wyników:"
-        },
-        {
-          "en": "- Gain 100 points.",
-          "pl": "- Zysk 100 punktów."
-        },
-        {
-          "en": "- Gain 2500 points.",
-          "pl": "- Zysk 2500 punktów."
-        },
-        {
-          "en": "- Gain 10000 points.",
-          "pl": "- Zysk 10000 punktów."
-        },
-        {
-          "en": "- Lose 100 points.",
-          "pl": "- Strata 100 punktów."
-        },
-        {
-          "en": "- Lose 500 points.",
-          "pl": "- Strata 500 punktów."
-        },
-        {
-          "en": "- Lose 1000 points.",
-          "pl": "- Strata 1000 punktów."
-        },
-        {
-          "en": "- Go bankrupt.",
-          "pl": "- Bankructwo."
-        },
-        {
-          "en": "A deduction cannot take your balance below zero. Bankruptcy removes all your points and permanently eliminates you. A later reward never brings an eliminated player back.",
-          "pl": "Strata nie obniża salda poniżej zera. Bankructwo zabiera wszystkie punkty i eliminuje na stałe. Późniejsza nagroda nie przywraca do gry osoby, która już odpadła."
+          "en": "At the end, every owner opens their chests, including eliminated players. Use Open a black chest for each one. A chest gives an additional prize of 100, 500, 1000, 2500, 5000, 7500 or 10000, with equal chances. These prizes do not change points, elimination or the match winner. Chests contain no deductions or bankruptcy.",
+          "pl": "Na końcu każdy otwiera swoje skrzynki, również osoby wyeliminowane. Dla każdej wybierz Otwórz czarną skrzynkę. W środku jest dodatkowa nagroda: 100, 500, 1000, 2500, 5000, 7500 albo 10000, z równymi szansami. Te nagrody nie zmieniają punktów, odpadnięcia ani zwycięzcy meczu. Nie ma w nich strat ani bankruta."
         }
       ]
     },
@@ -163,8 +131,8 @@
       },
       "paragraphs": [
         {
-          "en": "A normal match ends after eight questions have been answered, correctly or wrongly. A chest auction or an auction with no bids does not count towards this limit. The match also moves to the finish if at most one player remains. Everyone first opens all owned chests, including those of eliminated players: even the apparent leader can go bankrupt. Only after the last chest is open can the result be decided or play continue.",
-          "pl": "Zwykły mecz kończy się po ośmiu pytaniach, na które udzielono odpowiedzi, poprawnej lub błędnej. Skrzynie i licytacje bez ofert nie zwiększają tego licznika. Do zakończenia przechodzicie też wtedy, gdy zostaje najwyżej jeden gracz. Najpierw każdy otwiera wszystkie swoje skrzynie, również gdy wcześniej odpadł: nawet pozorny lider może zbankrutować. Dopiero po otwarciu ostatniej skrzyni następuje rozstrzygnięcie lub dalsza gra."
+          "en": "A normal match lasts eight answered questions, right or wrong. Chest auctions and auctions without bids do not count. The match also ends when at most one player remains. Everyone opens their chests before the final result is announced, but the prizes cannot change the standings.",
+          "pl": "Zwykły mecz obejmuje osiem pytań z udzieloną odpowiedzią, dobrą albo złą. Skrzynki i licytacje bez ofert się nie liczą. Mecz kończy się też, gdy pozostanie najwyżej jedna osoba. Przed ogłoszeniem wyniku wszyscy otwierają skrzynki, ale ich nagrody nie zmieniają kolejności graczy."
         },
         {
           "en": "After all chests are open, the remaining player with the most points wins. If several remaining players share the highest balance, play on until another question has been answered, with every player still in the match taking part, not just the tied leaders. Chest auctions and auctions with no bids do not finish this extra question round. Open any new chests before comparing balances again, and repeat if necessary. If no players remain, the match is a draw.",
@@ -192,8 +160,8 @@
           "pl": "Zamiast 10000 punktów początkowych możesz ustawić dowolną liczbę całkowitą od 10 do 1000000. Wpłata na początku licytacji może wynosić od 1 punktu do całego początkowego salda. Kara po trzech kolejnych licytacjach bez własnej oferty może wynosić od 0 do 1000000. Zero wyłącza odejmowanie punktów, ale pas nadal wycofuje z bieżącej licytacji."
         },
         {
-          "en": "Choose 8–32 answered questions instead of eight, and 1–5 seconds between calls instead of three. An auction without all-in closes after three such intervals without a higher offer. You can set the black-chest chance from 5% to 15%, instead of 10%. Bots bid within a budget based on public balances and choose an answer at random from the four choices.",
-          "pl": "Możesz wybrać od 8 do 32 pytań zakończonych odpowiedzią zamiast ośmiu oraz od 1 do 5 sekund między wywołaniami zamiast trzech. Licytacja bez vabanku zamknie się po trzech takich odstępach bez przebicia. Szansę na czarną skrzynię można ustawić od 5% do 15%, zamiast domyślnych 10%. Boty licytują w ramach budżetu opartego na jawnych saldach, a odpowiedź wybierają losowo spośród czterech możliwości."
+          "en": "Choose 8–32 answered questions and 1–5 seconds between calls. By default there are eight questions and three seconds between calls. Without all-in, the auction closes after four intervals without a higher offer, leaving one interval after the third call. The black-chest chance is adjustable from 5% to 15%, with 10% as the default.",
+          "pl": "Możesz wybrać od 8 do 32 pytań i od 1 do 5 sekund między zapowiedziami. Domyślnie jest osiem pytań i trzy sekundy. Bez va banque licytacja zamyka się po czterech odstępach bez podbicia, zostawiając jeden odstęp po trzeciej zapowiedzi. Szansę na czarną skrzynkę ustawisz od 5% do 15%, domyślnie 10%."
         }
       ]
     },
@@ -213,8 +181,8 @@
           "pl": "A: wpisz A w polu kwoty i zatwierdź Enterem. Vabank natychmiast wygrywa licytację, jeśli twoja łączna kwota przebija najwyższą ofertę."
         },
         {
-          "en": "Tab: move to Pass; press Enter to withdraw from the current auction while you are not leading.",
-          "pl": "Tab: przejdź do Pas, a następnie naciśnij Enter, aby wycofać się z bieżącej licytacji, gdy nie prowadzisz."
+          "en": "Tab: reach Withdraw from this auction.",
+          "pl": ""
         },
         {
           "en": "Down from the question: move to the answers. Arrows select an answer; Enter submits it if you won the auction.",
@@ -225,8 +193,12 @@
           "pl": "Enter na Otwórz czarną skrzynię: otwórz jedną ze swoich skrzyń."
         },
         {
-          "en": "S outside the auction, or Shift+S during it: read balances and unopened chest counts.",
-          "pl": "S poza licytacją lub Shift+S podczas niej: odczytaj salda i liczbę zamkniętych skrzyń."
+          "en": "S: outside bidding, read balances and unopened chests.",
+          "pl": ""
+        },
+        {
+          "en": "Shift+S: during bidding, read balances and unopened chests.",
+          "pl": ""
         },
         {
           "en": "P: read the pool.",
@@ -259,7 +231,6 @@
     "count_interval": "settings",
     "black_chest_chance": "chests",
     "content_language_id": "settings",
-    "content_set_id": "settings",
     "content_pack_ids": "settings"
   }
 }

@@ -12,8 +12,16 @@ module GameRoomGames
       strength.call(best) >= 20 ? best : :pass
     end
 
-    def play(legal, trump)
-      legal.min_by { |suit, rank| [suit == trump ? 1 : 0, (suit == trump ? BeloteTrick::TRUMP : BeloteTrick::NORMAL).index(rank)] }
+    def play(legal, trump, trick: [], partner_winning: false)
+      strength = ->(card) { suit, rank = card; [suit == trump ? 1 : 0, (suit == trump ? BeloteTrick::TRUMP : BeloteTrick::NORMAL).index(rank)] }
+      return legal.min_by(&strength) if trick.empty?
+      winning, losing = legal.partition { |card| BeloteTrick.winner(trick + [card], trump) == trick.size }
+      # Feed points to a winning partner instead of overtaking them. If the
+      # trick is inevitably ours, shed a high card; otherwise win cheaply.
+      return losing.max_by { |card| [BeloteTrick.points([card], trump), strength.call(card)] } if partner_winning && !losing.empty?
+      return legal.max_by(&strength) if winning.size == legal.size
+      return winning.min_by(&strength) unless winning.empty?
+      legal.min_by { |card| [BeloteTrick.points([card], trump), strength.call(card)] }
     end
   end
 end

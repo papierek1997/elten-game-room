@@ -39,8 +39,8 @@ begin
     results = replay.history.select { |entry| entry.kind == :round_result }
     assert(results.size == 3, "Missing contract and team results")
     tricks = replay.history.select { |entry| entry.kind == :trick }
-    assert(tricks.size == 8 && tricks.all? { |entry| entry.text.include?("bierze") }, "Missing trick announcements")
-    assert(tricks.first.text.include?("wychodzi") && !tricks.last.text.include?("wychodzi"), "Wrong next lead announcement")
+    assert(tricks.size == 8 && tricks.all? { |entry| entry.text.include?("wins the trick") }, "Missing trick announcements")
+    assert(tricks.none? { |entry| entry.text.include?("leads next") }, "Trick feedback duplicates the shared turn announcement")
     assert(replay.state[:trick_points].values.sum == 162, "Wrong trick total for #{viewer}")
     replay.state[:scores]
   end

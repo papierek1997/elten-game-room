@@ -60,7 +60,7 @@ module GameRoomGames
         return false unless seat
         value = event['value']
         return false unless value.is_a?(String) && value.bytesize <= 128
-        return false if %w[wheel question chest].include?(event['action']) && !event['__server_random'].is_a?(Hash)
+        return false if %w[wheel question chest hint].include?(event['action']) && !event['__server_random'].is_a?(Hash)
         round = state[:round]
         case event['action']
         when 'wheel'
@@ -94,13 +94,20 @@ module GameRoomGames
           true
         when 'answer'
           match = /\A#{round}\|#{state[:bid_revision]}\|([0-3])\z/.match(value)
-          return false unless state[:phase] == :answering && match
+          return false unless state[:phase] == :answering && match && !state.fetch(:hidden_answers, []).include?(match[1].to_i)
           R.answer!(state, seat, match[1].to_i == state[:question][:correct_index], now: now)
+        when 'hint'
+          return false unless state[:phase] == :answering && seat == state[:leader]
+          seed = GameRoomServerRandom.text_seed_value(event, template: "#{round}|#{state[:bid_revision]}|{seed}")
+          return false unless seed
+          wrong = (0..3).reject { |index| index == state[:question][:correct_index] }
+          R.hint!(state, seat, keep: wrong.fetch(Random.new(seed.to_i(16)).rand(wrong.length)))
         when 'chest'
           return false unless state[:phase] == :opening_chests && state[:chests][seat] > 0
           seed = GameRoomServerRandom.text_seed_value(event, template: "#{round}|#{seat}|#{state[:chests][seat]}|{seed}")
           return false unless seed
-          reward = CHEST_REWARDS.fetch(Random.new(seed.to_i(16)).rand(CHEST_REWARDS.length))
+          rewards = R.revised?(state) ? R::BONUS_REWARDS : CHEST_REWARDS
+          reward = rewards.fetch(Random.new(seed.to_i(16)).rand(rewards.length))
           return false unless R.open_chest!(state, seat, reward, now: now)
           state[:last_chest_reward] = reward
           true

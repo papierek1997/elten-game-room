@@ -1,24 +1,9 @@
-require_relative "../../../games/cribbage_support/cribbage_bot"
-require_relative "../../../games/cribbage_support/cribbage_match"
-bot = GameRoomGames::CribbageBot
-raise unless bot.play([[6, :clubs], [13, :hearts]], [5, 4]) == [6, :clubs]
-match = GameRoomGames::CribbageMatch.new(target: 121)
-rng = Random.new(2026)
-20.times do
-  break if match.winner
-  raise unless match.deal(bot::DECK.shuffle(random: rng))
-  2.times do
-    round = match.round
-    seat = round.turn
-    hand = round.hand(seat)
-    cards = bot.discard(hand, dealer: round.dealer == seat)
-    raise unless match.discard_slots(seat, cards.map { |card| hand.index(card) })
-  end
-  while match.round && !match.winner
-    round = match.round
-    seat = round.turn
-    raise unless match.play(seat, bot.play(round.playable(seat), round.sequence))
-  end
-end
-raise unless match.winner && match.scores[match.winner] >= 121
-puts "PASS Cribbage: bots complete a 121-point match"
+require_relative '../../support/dealt_card_games'
+include GameRoomTest::Assertions
+assert_equal([6, :clubs], GameRoomGames::CribbageBot.play([[6, :clubs], [13, :hearts]], [5, 4]))
+table = GameRoomTest::DealtCardTable.new('cribbage', seed: 2026)
+table.finish_production_match
+assert(table.replay.winner && table.state[:scores].fetch(table.replay.winner) >= 121,
+  'Production bot decisions did not complete the game')
+assert(table.events == table.replay.accepted_events, 'A selected bot move was not accepted in replay')
+puts 'PASS Cribbage bots: informative pegging choice and complete production-table match'

@@ -1,11 +1,12 @@
 require_relative "belote_cards"
-require_relative "belote_deal"
+require_relative "belote_settlement"
 require_relative "belote_bot"
 
 module GameRoomGames
+  using GameRoomLocalization::Translations
   module BeloteBidding
     LABELS = {
-      pass: "Pas", clubs: "Trefl", diamonds: "Karo", hearts: "Kier", spades: "Pik"
+      pass: "Pass", clubs: "clubs", diamonds: "diamonds", hearts: "hearts", spades: "spades"
     }.freeze
 
     def legal_actions(replay, actor, context: nil)
@@ -50,22 +51,23 @@ module GameRoomGames
     end
 
     def bid_label(choice)
-      return "Kontra" if choice == :double
-      return "Rekontra" if choice == :redouble
-      return LABELS.fetch(choice) if choice.is_a?(Symbol)
+      return _('Double') if choice == :double
+      return _('Redouble') if choice == :redouble
+      return _(LABELS.fetch(choice)) if choice.is_a?(Symbol)
 
       points, suit = choice.split(":")
-      "#{points}, #{LABELS.fetch(suit.to_sym)}"
+      "#{points}, #{_(LABELS.fetch(suit.to_sym))}"
     end
 
     def bidding_header(state)
       unless coinchee?(state)
-        return "Wybierz atut. Odkryta karta: #{playing_card_label(state.fetch(:upcard))}"
+        return _('Choose trumps. Turned-up card: %{card}.') % {card: playing_card_label(state.fetch(:upcard))}
       end
 
-      return "Coinch\u00e9e. Wybierz ofert\u0119 lub pas." unless state[:contract]
+      return _('Coinchée. Choose a bid or pass.') unless state[:contract]
 
-      "#{bid_label("#{state[:contract]}:#{state[:trump]}")}. Mno\u017cnik #{state[:multiplier]}. Wybierz decyzj\u0119."
+      _('%{contract}. Multiplier: %{multiplier}. Choose your bid.') % {
+        contract: bid_label("#{state[:contract]}:#{state[:trump]}"), multiplier: state[:multiplier]}
     end
 
     def coinchee_choices(state)
@@ -79,7 +81,7 @@ module GameRoomGames
       if state[:multiplier] == 1
         first = state[:contract] ? state[:contract] + 10 : 80
         first.step(160, 10) do |points|
-          BeloteRound::SUITS.each { |suit| choices << "#{points}:#{suit}" }
+          BeloteRules::SUITS.each { |suit| choices << "#{points}:#{suit}" }
         end
       end
       choices
@@ -114,7 +116,7 @@ module GameRoomGames
     def bid_choices(state)
       return coinchee_choices(state) if coinchee?(state)
 
-      BeloteDeal.bid_choices(BeloteCards.decode(state.fetch(:upcard)).first, state.fetch(:passes))
+      BeloteRules.bid_choices(BeloteCards.decode(state.fetch(:upcard)).first, state.fetch(:passes))
     end
 
     def apply_extra_card_event(state, event, session, repository, history)
@@ -144,6 +146,7 @@ module GameRoomGames
       end
 
       if choice == :pass
+        add_history(history, event, repository, :bid, _('%{player} passes.') % {player: participant_name(actor)})
         state[:passes] += 1
         if state[:passes] == 8
           state[:phase], state[:current_player] = :round_complete, nil
@@ -162,7 +165,7 @@ module GameRoomGames
       hand = hand_for(state, actor).filter_map { |card| BeloteCards::DECODED[card] }
       if coinchee?(state)
         return 1 if state[:contract] && action["choice"] == "pass"
-        strongest = BeloteRound::SUITS.max_by { |suit| hand.count { |card| card.first == suit } }
+        strongest = BeloteRules::SUITS.max_by { |suit| hand.count { |card| card.first == suit } }
         return action["choice"] == "80:#{strongest}" ? 1 : 0
       end
 

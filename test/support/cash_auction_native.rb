@@ -73,11 +73,11 @@ module CashAuctionNative
   class Fixture
     attr_reader :game, :state, :replay, :layout, :actions, :shortcut_actions
 
-    def initialize(phase: :auction, viewer: 'Alice')
+    def initialize(phase: :auction, viewer: 'Alice', options: nil)
       @driver = Driver.new
       @viewer = viewer
       @game = GameRoomGames::CashAuction.new
-      @state = GameRoomCashAuction::Rules.initial(%w[Alice Bob Carol], game.default_options).merge(game_id: 'native-cash-test')
+      @state = GameRoomCashAuction::Rules.initial(%w[Alice Bob Carol], options || game.default_options).merge(game_id: 'native-cash-test')
       raise 'Native fixture did not enter auction' unless GameRoomCashAuction::Rules.draw!(state, category: 0, chest: false, now: 100)
       if phase == :answering
         rules = GameRoomCashAuction::Rules

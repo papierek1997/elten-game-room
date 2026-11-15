@@ -1,5 +1,8 @@
 module GameRoomGames
   module HeartsRules
+    DECK = %i[clubs diamonds hearts spades].product((2..14).to_a).map(&:freeze).freeze
+    PASS = {left: 1, right: -1, across: 2, hold: 0}.freeze
+    DIRECTIONS = %i[left right across hold].freeze
     module_function
 
     def exchange(hands, passes, offset)

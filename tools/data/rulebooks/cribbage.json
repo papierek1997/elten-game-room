@@ -3,33 +3,111 @@
   "sections": [
     {
       "id": "play",
-      "title": {
-        "en": "Cribbage",
-        "pl": ""
-      },
       "paragraphs": [
         {
-          "en": "Play to 121. Discard two of your six cards to the crib, which scores for the dealer. Then turn up the starter. A jack gives the dealer two points.",
-          "pl": ""
+          "en": "Cribbage is for two players. Be the first to reach 121 points. Each deal gives you six cards; select two with Enter to put them in the crib, a separate four-card hand that will score for the dealer. The dealer changes after each deal.",
+          "pl": "W Cribbage grają dwie osoby. Wygrywa ta, która pierwsza zdobędzie 121 punktów. Dostajesz sześć kart. Wybierz dwie Enterem, aby odłożyć je do cribu, czyli osobnego czterokartowego układu, który zapunktuje dla rozdającego. Po każdym rozdaniu rozdaje druga osoba."
         },
         {
-          "en": "Take turns playing cards without exceeding 31. Aces count one and face cards ten. Totals of 15 and 31, pairs and runs can score. Choose Go if none of your cards fits. After play, count the nondealer’s hand, then the dealer’s hand, then the crib. Include the starter in each count.",
-          "pl": ""
+          "en": "After both players discard, the starter is turned up. If it is a jack, the dealer immediately scores two. The nondealer then plays first. Take turns laying down one card without taking the running total above 31. Aces count one, number cards their number, and jacks, queens and kings ten.",
+          "pl": "Gdy obie osoby odłożą karty, gra odkrywa kartę startową. Jeśli to walet, rozdający od razu dostaje dwa punkty. Pierwszy zagrywa przeciwnik rozdającego. Zagrywajcie po jednej karcie na zmianę, nie przekraczając sumy 31. As jest wart jeden, karty liczbowe tyle, ile wskazują, a walet, dama i król po dziesięć."
+        },
+        {
+          "en": "Choose Go when none of your cards fits. The other player may keep playing. When neither can continue, the last player to lay a card scores one and the total resets to zero. Reaching exactly 31 gives two points instead. After the reset, the other player leads if they still have cards.",
+          "pl": "Wybierz Pas, gdy żadna twoja karta nie mieści się w limicie. Druga osoba może dalej zagrywać. Gdy obie nie mogą już dołożyć, gracz, który położył ostatnią kartę, dostaje punkt, a suma wraca do zera. Dokładnie 31 daje zamiast tego dwa punkty. Po wyzerowaniu zaczyna druga osoba, jeśli ma jeszcze karty."
         }
-      ]
+      ],
+      "title": {
+        "en": "Playing Cribbage",
+        "pl": "Jak grać w Cribbage"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "en": "During play, a total of 15 scores two. Two, three or four consecutive cards of the same rank score 2, 6 or 12. A run of at least three consecutive ranks at the end of the sequence scores its length, regardless of their playing order. For example, 3, 5, 4 scores three.",
+          "pl": "Podczas zagrywania suma 15 daje dwa punkty. Dwie, trzy lub cztery kolejne karty tej samej wartości dają odpowiednio 2, 6 lub 12 punktów. Sekwencja co najmniej trzech kolejnych wartości na końcu zagrywanych kart daje punkt za każdą kartę, niezależnie od kolejności ich położenia. Na przykład 3, 5, 4 daje trzy punkty."
+        },
+        {
+          "en": "After all cards are played, count the nondealer’s hand, the dealer’s hand and finally the crib, always adding the starter. Every combination totalling 15 and every pair scores two. Count each longest run of at least three for its length; duplicate cards may form several runs. Four same-suit hand cards score four, or five with a matching starter. A crib flush requires all five cards. A jack matching the starter’s suit adds one.",
+          "pl": "Po zagraniu wszystkich kart policzcie rękę przeciwnika rozdającego, rękę rozdającego, a na końcu crib. Za każdym razem dodajcie kartę startową. Każda kombinacja dająca 15 i każda para dają dwa punkty. Liczy się każdą najdłuższą sekwencję od trzech kart: punkt za kartę. Powtórzone wartości mogą tworzyć kilka sekwencji. Cztery karty jednego koloru w ręce dają cztery punkty, a zgodna karta startowa piąty. W cribie kolor wymaga wszystkich pięciu kart. Walet w kolorze karty startowej daje dodatkowy punkt."
+        },
+        {
+          "en": "The game shows the cards to count. Press Enter and give their score. If your count is wrong, you receive no more than the correct score and your opponent receives the difference. The match ends as soon as either player reaches 121, including during play or counting.",
+          "pl": "Gra pokazuje karty do podliczenia. Naciśnij Enter i podaj wynik. Jeśli się pomylisz, nie dostaniesz więcej niż prawidłowy wynik, a różnicę otrzyma przeciwnik. Mecz kończy się od razu po zdobyciu 121 punktów, również podczas zagrywania lub liczenia układów."
+        }
+      ],
+      "title": {
+        "en": "Scoring and counting",
+        "pl": "Punktacja i liczenie układów"
+      }
     },
     {
       "id": "controls",
-      "title": {
-        "en": "Keyboard",
-        "pl": "Klawiatura"
-      },
       "paragraphs": [
         {
-          "en": "Use the arrows to select a card or Go and press Enter.",
-          "pl": ""
+          "en": "Arrows: browse cards or menu choices.",
+          "pl": "Strzałki: przeglądaj karty lub pozycje menu."
+        },
+        {
+          "en": "Enter: discard or play the selected card; when counting, open the score field. Select Go when no card fits.",
+          "pl": "Enter: odłóż lub zagraj wybraną kartę; podczas liczenia otwórz pole wyniku. Gdy żadna karta nie mieści się w limicie, wybierz Pas."
+        },
+        {
+          "en": "D: read the starter.",
+          "pl": "D: odczytaj kartę startową."
+        },
+        {
+          "en": "V: read who owns the crib.",
+          "pl": "V: sprawdź, kto liczy crib."
+        },
+        {
+          "en": "H: read your hand.",
+          "pl": "H: odczytaj rękę."
+        },
+        {
+          "en": "C: read the cards on the table.",
+          "pl": "C: odczytaj karty na stole."
+        },
+        {
+          "en": "Ctrl+C: browse those cards.",
+          "pl": "Ctrl+C: przejrzyj te karty."
+        },
+        {
+          "en": "S: read the scores.",
+          "pl": "S: odczyt wyniku."
+        },
+        {
+          "en": "T: read whose turn it is.",
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "en": "Z: find the next playable card.",
+          "pl": "Z: znajdź następną kartę, którą można zagrać."
+        },
+        {
+          "en": "Shift+Z: find the previous playable card.",
+          "pl": "Shift+Z: poprzednia karta, którą można zagrać."
+        },
+        {
+          "en": "Shift+C: sort your hand by suit.",
+          "pl": "Shift+C: sortuj rękę według kolorów."
+        },
+        {
+          "en": "Shift+H: sort your hand by rank.",
+          "pl": "Shift+H: sortuj rękę według wartości."
+        },
+        {
+          "en": "Shift+M: restore the order in which you received the cards.",
+          "pl": "Shift+M: przywróć kolejność otrzymania kart."
         }
-      ]
+      ],
+      "title": {
+        "en": "Controls",
+        "pl": "Sterowanie"
+      }
     }
-  ]
+  ],
+  "option_chapters": {}
 }

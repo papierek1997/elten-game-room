@@ -5,6 +5,7 @@ module GameRoomCashAuction
     DEFAULT_OPTIONS = {'starting_points'=>1000, 'ante'=>10, 'pass_penalty'=>200,
       'rounds'=>8, 'count_interval'=>2, 'black_chest_chance'=>5}.freeze
     CHEST_REWARDS = [100, 2500, 10_000, -100, -500, -1000, 'bankrupt'].freeze
+    BONUS_REWARDS = [100, 500, 1000, 2500, 5000, 7500, 10_000].freeze
     module_function
 
     def initial(players, options)
@@ -35,6 +36,8 @@ module GameRoomCashAuction
     def seat?(state, seat); seat.is_a?(Integer) && seat.between?(0, state[:players].length - 1); end
     def active?(state, seat); seat?(state, seat) && !state[:eliminated][seat]; end
     def revised?(state); state[:options]['auction_rules_version'] == 2; end
+    def auction_duration(state); (revised?(state) ? 4 : 3) * state[:options]['count_interval']; end
+    def hint_price(state); [1, (state[:cash][state[:leader]].to_i + 9) / 10].max; end
 
     def draw!(state, category:, chest:, now:)
       return false unless %i[drawing spinning].include?(state[:phase]) && time?(now) && [true, false].include?(chest)
@@ -57,7 +60,8 @@ module GameRoomCashAuction
       state.merge!(phase: :auction, category: owned_category, chest: chest,
         contributions: Array.new(state[:players].length, 0), passed: Array.new(state[:players].length, false),
         leader: nil, highest: 0, bid_revision: 0, question: nil,
-        auction_deadline: now + 3 * state[:options]['count_interval'])
+        auction_deadline: now + auction_duration(state))
+      state.merge!(hint_used: false, hidden_answers: []) if revised?(state)
       finish_round!(state) if active_seats(state).length <= 1
       true
     end
@@ -74,7 +78,7 @@ module GameRoomCashAuction
       state[:pot] += difference
       state[:contributions][seat] = amount
       state[:highest], state[:leader], state[:bid_revision] = amount, seat, revision
-      state[:auction_deadline] = all_in ? now : now + 3 * state[:options]['count_interval']
+      state[:auction_deadline] = all_in ? now : now + auction_duration(state)
       all_in ? award!(state, now: now) : true
     end
 
@@ -123,6 +127,20 @@ module GameRoomCashAuction
         state[:eliminated][seat] = true
       end
       finish_round!(state)
+      true
+    end
+
+    def hint!(state, seat, keep:)
+      return false unless revised?(state) && state[:phase] == :answering && seat == state[:leader] && !state[:hint_used]
+      price = hint_price(state)
+      return false unless state[:cash][seat] >= price
+      wrong = (0..3).reject { |index| index == state[:question][:correct_index] }
+      return false unless wrong.include?(keep)
+      state[:cash][seat] -= price
+      state[:hint_used] = true
+      # Stable choice identities survive the shortened list. The hint removes
+      # two wrong options, never changes the already committed answer order.
+      state[:hidden_answers] = wrong.reject { |index| index == keep }
       true
     end
 
@@ -181,10 +199,14 @@ module GameRoomCashAuction
 
     def open_chest!(state, seat, reward, now:)
       return false unless state[:phase] == :opening_chests && seat?(state, seat) && state[:chests][seat] > 0 && time?(now)
-      valid_reward = reward.is_a?(Integer) && CHEST_REWARDS.include?(reward) || reward.is_a?(String) && reward == 'bankrupt'
+      valid_reward = reward.is_a?(Integer) && (revised?(state) ? BONUS_REWARDS : CHEST_REWARDS).include?(reward) ||
+        !revised?(state) && reward.is_a?(String) && reward == 'bankrupt'
       return false unless valid_reward
       state[:chests][seat] -= 1
-      if reward == 'bankrupt'
+      if revised?(state)
+        state[:bonus_prizes] ||= Array.new(state[:players].length, 0)
+        state[:bonus_prizes][seat] += reward
+      elsif reward == 'bankrupt'
         state[:cash][seat], state[:eliminated][seat] = 0, true
       else
         state[:cash][seat] = [state[:cash][seat] + reward, 0].max
