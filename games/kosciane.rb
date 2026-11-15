@@ -14,8 +14,10 @@ module GameRoomGames
     def name; _("Dice General"); end
     def short_description; _("Roll five dice and fill rows and columns to earn bonuses."); end
     def supports_bots?; true; end
-    def event_sound_cues(event:, **arguments)
-      event['action'] == 'score' ? 'cht-bank' : super
+    def event_sound_cues(event:, history:, **arguments)
+      return super unless event["action"] == "score"
+
+      history.find { |entry| entry.kind == :score }&.value || "cht-bank"
     end
     def tournament_capabilities(options: {}); super.merge(player_counts: [].freeze).freeze; end
     def shortcut_features; []; end
@@ -67,8 +69,28 @@ module GameRoomGames
         elsif event["action"] == "score"
           category, cross = decode_choice(match, event["value"])
           before_bonuses = match.bonuses(player)
-          next unless category && match.record(player, category, cross: cross)
-          history.concat(recorded_score_history(match, player, category, cross, key, before_bonuses))
+          next unless category
+          school = match.sheet(player).values_at(*(1..6))
+          school_intact = school.none? { |row| row.include?(:cross) }
+          doubled = options["double_first"] && match.rolls == 1 && !category.is_a?(Integer) && !cross
+          next unless match.record(player, category, cross: cross)
+
+          entries = recorded_score_history(match, player, category, cross, key, before_bonuses)
+          score = entries.first
+          effect = if school_intact && category.is_a?(Integer) && cross
+            score.text = "#{GameRoomContent.utf8(score.text)} #{GameRoomContent.utf8(_("%{player} did not complete the school.") % {player: GameRoomContent.utf8(participant_name(player))})}"
+            "lose3"
+          elsif school_intact && category.is_a?(Integer) && match.sheet(player).values_at(*(1..6)).all? { |row| row.size == options["columns"] }
+            score.text = "#{GameRoomContent.utf8(score.text)} #{GameRoomContent.utf8(_("%{player} completed the school.") % {player: GameRoomContent.utf8(participant_name(player))})}"
+            "win2"
+          elsif entries.size > 1 && !cross
+            "win1"
+          elsif doubled
+            "draw2"
+          end
+          column = match.sheet(player).fetch(category).size
+          score.value = ["kosciane_column_#{column}", effect].compact.join("_")
+          history.concat(entries)
         else
           next
         end
@@ -273,7 +295,7 @@ module GameRoomGames
     def category_label(category)
       return _("Even") if category == :even
       return _("Odd") if category == :odd
-      return _("Five of a kind") if category == :poker
+      return _("General (five of a kind)") if category == :poker
       key = category.is_a?(Integer) ? STANDARD_CATEGORIES.fetch(category - 1) : LABEL_KEYS.fetch(category, category.to_s)
       CATEGORY_LABELS.fetch(key)
     end
