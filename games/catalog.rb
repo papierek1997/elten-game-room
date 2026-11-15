@@ -7,6 +7,7 @@ require_relative "chess"
 require_relative "cribbage_support/cribbage_table"
 require_relative "belote_support/belote_table"
 require_relative "jass_support/jass_table"
+require_relative "hearts_support/hearts_table"
 require_relative "french_tarot_support/french_tarot_table"
 require_relative "backgammon"
 require_relative "checkers"
@@ -67,6 +68,7 @@ module GameRoomGames
     GameRoomGames::CribbageTable,
     GameRoomGames::BeloteTable,
     GameRoomGames::JassTable,
+    GameRoomGames::HeartsTable,
     GameRoomGames::FrenchTarotTable,
     GameRoomGames::Backgammon,
     GameRoomGames::Checkers,
