@@ -209,7 +209,7 @@ module GameRoomGames
     def category_label(category)
       return _("Straight") if category == :straight
       return _("Balut") if category == :balut
-      CATEGORY_LABELS.fetch(category == :choice ? 'chance' : category.to_s)
+      super(category == :choice ? 'chance' : category.to_s)
     end
   end
 end

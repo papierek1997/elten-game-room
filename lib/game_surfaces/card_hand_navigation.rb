@@ -6,7 +6,7 @@ module GameSurfaces
   module CardHandNavigation
     using GameRoomLocalization::Translations
 
-    ARROWS = %i[key_up key_down key_left key_right].freeze
+    ARROWS = %i[key_left key_right].freeze
 
     attr_writer :card_navigation_source
 
@@ -17,9 +17,9 @@ module GameSurfaces
       groups = navigation_groups if key
       return super unless groups
 
-      # Native ListBox also handles vertical arrows and treats Right as Expand
-      # (which can activate an item). Mask those paths for this dispatch only;
-      # keep its ordinary input, focus, selection and accessibility lifecycle.
+      # Native ListBox treats Right as Expand, which can activate an item.
+      # Mask only horizontal paths for this dispatch. Up/Down retain native
+      # whole-list movement, including across suit boundaries and commands.
       @card_navigation_consumed = true
       move_in_hand(key, groups)
       super
@@ -29,7 +29,7 @@ module GameSurfaces
 
     def get_tips
       inherited = defined?(super) ? super.to_a : []
-      navigation_groups ? [_("Left/Right: jump between suits or colours. Up/Down: browse cards of the current suit or colour.")] + inherited : inherited
+      navigation_groups ? [_("Left/Right: jump between suits or colours. Up/Down: browse the entire hand.")] + inherited : inherited
     end
 
     def key_processed(key)
@@ -78,48 +78,19 @@ module GameSurfaces
     def move_in_hand(key, groups)
       previous = index.to_i
       group_index = groups.index { |group| group[:indices].include?(previous) }
-      @last_navigation_group = groups[group_index][:id] if group_index
-      horizontal = %i[key_left key_right].include?(key)
-      if horizontal
-        group_index ||= groups.index { |group| group[:id] == @last_navigation_group }
-        step = key == :key_right ? 1 : -1
-        group_index = group_index ? (group_index + step) % groups.length : (step == 1 ? 0 : groups.length - 1)
-        group = groups[group_index]
-        target = group[:indices].first
-        @last_navigation_group = group[:id]
-      elsif group_index
-        indices = groups[group_index][:indices]
-        position = indices.index(previous)
-        target = indices[position + 1] if key == :key_down
-        target = indices[position - 1] if key == :key_up && position > 0
-        # Commands appended below a hand remain reachable from any suit.
-        count = groups.sum { |item| item[:indices].length }
-        target ||= count if key == :key_down && count < self.options.length
-      else
-        count = groups.sum { |item| item[:indices].length }
-        if key == :key_up && previous == count
-          group = groups.find { |item| item[:id] == @last_navigation_group } || groups.last
-          target = group[:indices].last
-        else
-          target = previous + (key == :key_down ? 1 : -1)
-          target = nil unless target.between?(count, self.options.length - 1)
-        end
-      end
-
-      if target && (target != previous || horizontal)
-        self.index = target
-        speech_stop
-        # One native announcement, with card states and braille intact. Never
-        # speak the whole hand caption again or modify the list to name a suit.
-        clear_suppressed_focus!
-        focus(nil, nil, horizontal ? group[:label] : "", true)
-        if target != previous
-          play_sound("listbox_focus", volume: 100, pitch: 100, pan: lpos) unless @silent
-          trigger(:move, target)
-        end
-      else
-        play_sound("border", volume: 100, pitch: 100, pan: lpos) unless @silent
-        trigger(:border, previous)
+      step = key == :key_right ? 1 : -1
+      group_index = group_index ? (group_index + step) % groups.length : (step == 1 ? 0 : groups.length - 1)
+      group = groups[group_index]
+      target = group[:indices].first
+      self.index = target
+      speech_stop
+      # One native announcement, with card states and braille intact. Never
+      # speak the whole hand caption again or modify the list to name a suit.
+      clear_suppressed_focus!
+      focus(nil, nil, group[:label], true)
+      if target != previous
+        play_sound("listbox_focus", volume: 100, pitch: 100, pan: lpos) unless @silent
+        trigger(:move, target)
       end
     end
   end

@@ -7,7 +7,7 @@ end
 
 def assert(value, message); raise message unless value; end
 native_dictionary = $rules_dictionary
-assert(GameRoomGames::Yahtzee::CATEGORY_LABELS.fetch("misery") == "Nędza", "Misery was not translated when binary source loaded")
+assert(GameRoomGames::Yahtzee.new.category_label("misery") == "Nędza", "Misery was not translated when binary source loaded")
 class CheckBox < FakeControl
   attr_reader :label
   attr_accessor :checked

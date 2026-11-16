@@ -20,15 +20,29 @@ module GameRoomGames
       'full_house' => 40, 'small_straight' => 40, 'large_straight' => 40,
       'chance' => 40, 'misery' => 40, 'yahtzee' => 50
     }.freeze
-    CATEGORY_LABELS = {
-      "ones" => _("Ones"), "twos" => _("Twos"), "threes" => _("Threes"),
-      "fours" => _("Fours"), "fives" => _("Fives"), "sixes" => _("Sixes"),
-      "three_kind" => _("Three of a kind"), "four_kind" => _("Four of a kind"),
-      "full_house" => _("Full house"), "small_straight" => _("Small straight"),
-      "large_straight" => _("Large straight"), "yahtzee" => _("Yahtzee"),
-      "chance" => _("Chance"), "pair" => _("One pair"),
-      "two_pairs" => _("Two pairs"), "misery" => _("Misery")
-    }.freeze
+    # Category text follows the viewer's current language, not the language
+    # active when this shared class was first loaded.
+    def category_label(category)
+      case category.to_s
+      when "ones" then _("Ones")
+      when "twos" then _("Twos")
+      when "threes" then _("Threes")
+      when "fours" then _("Fours")
+      when "fives" then _("Fives")
+      when "sixes" then _("Sixes")
+      when "three_kind" then _("Three of a kind")
+      when "four_kind" then _("Four of a kind")
+      when "full_house" then _("Full house")
+      when "small_straight" then _("Small straight")
+      when "large_straight" then _("Large straight")
+      when "yahtzee" then _("Yahtzee")
+      when "chance" then _("Chance")
+      when "pair" then _("One pair")
+      when "two_pairs" then _("Two pairs")
+      when "misery" then _("Misery")
+      else raise KeyError, "Unknown score category: #{category}"
+      end
+    end
 
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
       action = event["action"].to_s
@@ -192,7 +206,7 @@ module GameRoomGames
         points = score_category(category, state[:dice], state, viewer)
         GameSurfaces::ScoreChoice.new(
           id: category,
-          label: _("%{category}: %{points} points") % { category: CATEGORY_LABELS.fetch(category), points: points },
+          label: _("%{category}: %{points} points") % { category: category_label(category), points: points },
           value: category
         )
       end : []
@@ -282,7 +296,7 @@ module GameRoomGames
       sheet = state[:sheets].fetch(player)
       labels = [score_sheet_title(state,player)] + categories(state).map do |category|
         value = sheet.key?(category) ? sheet[category].to_s : _("not filled")
-        "#{CATEGORY_LABELS.fetch(category)}: #{value}"
+        "#{category_label(category)}: #{value}"
       end
       upper = %w[ones twos threes fours fives sixes].sum { |c| sheet[c].to_i }
       labels << (_("Ones through Sixes: %{points} of 63.") % { points: upper })
@@ -393,7 +407,7 @@ module GameRoomGames
       id = repository.event_id(event)
       history << HistoryEntry.new(
         key: "score:#{id}", text: _("%{player} scored %{points} in %{category}.") % {
-          player: participant_name(player), points: points, category: CATEGORY_LABELS.fetch(category)
+          player: participant_name(player), points: points, category: category_label(category)
         }, event_id: id, actor: player, kind: :score, value: points
       )
       upper_after = %w[ones twos threes fours fives sixes].sum { |key| state[:sheets][player][key].to_i }

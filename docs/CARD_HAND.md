@@ -7,13 +7,13 @@ dice, action lists and other lists retain their own navigation.
 
 - Left/Right jumps immediately to the first displayed card of the next/previous
   suit or colour, cycling through the groups in their displayed order. It reads
-  the group name and card once. Up/Down visits only cards of the current group,
-  even in an interleaved rank/acquisition order, stopping at its boundaries.
-  This moves the actual list cursor: it never filters, sorts or hides cards.
-  Appended commands remain reachable with Down after the group's last card;
-  Up from the first command returns to that group's last card. Home/End and
-  PageUp/PageDown retain native whole-list navigation. Modified arrows retain
-  their native meaning; editors and non-hand lists are unaffected.
+  the group name and card once. Up/Down retains native whole-list navigation:
+  it visits every displayed card in order, crossing suit/colour boundaries,
+  including in an interleaved rank/acquisition order. Horizontal jumps never
+  filter, sort, hide cards or restrict later vertical movement. Appended commands
+  follow the hand's last displayed card; Up returns to that card, not the last
+  card of a remembered suit. Home/End, PageUp/PageDown and modified arrows
+  retain their native meaning; editors and non-hand lists are unaffected.
 - After playing a card: select the nearest remaining card above it. If none
   exists, select the next one below. For A B C D: playing D selects C, B selects
   A, and A selects B.

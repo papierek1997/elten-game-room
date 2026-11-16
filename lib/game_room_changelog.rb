@@ -791,6 +791,16 @@ module GameRoomChangelog
         "Old custom display names are removed automatically from saved settings after updating.",
         "Many thanks to guliwer, postukujący and turekcom for the new games and improvements!"
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.8",
+      build: 271,
+      changes: [
+        "In card hands, Up and Down once again browse the entire list. Left and Right still jump between suits or colours.",
+        "Dice General now plays its column, bonus and school-scoring sounds correctly, respecting the selected volume and optional sound settings.",
+        "Category names in Dice General, Yahtzee and Balut now follow the current interface language, including after changing it without restarting Power Games.",
+        "Darts no longer loses an arrow-key press or throw when a modifier key is pressed immediately afterwards."
+      ].freeze
     ).freeze
   ].freeze
 

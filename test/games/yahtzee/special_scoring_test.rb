@@ -6,6 +6,9 @@ repository = NewGames116Repository.new(players)
 options = game.default_options
 keys = %w[ones twos threes fours fives sixes three_kind four_kind full_house
   small_straight large_straight yahtzee chance pair two_pairs misery]
+labels = keys.zip(['Ones', 'Twos', 'Threes', 'Fours', 'Fives', 'Sixes', 'Three of a kind',
+  'Four of a kind', 'Full house', 'Small straight', 'Large straight', 'Yahtzee',
+  'Chance', 'One pair', 'Two pairs', 'Misery']).to_h
 special = {'three_kind' => 40, 'four_kind' => 40, 'full_house' => 40,
   'small_straight' => 40, 'large_straight' => 40, 'yahtzee' => 50,
   'chance' => 40, 'pair' => 30, 'two_pairs' => 30, 'misery' => 40}
@@ -38,7 +41,7 @@ assert(!game.options_summary(options).match?(/Joker|bonus/), 'Retired switches r
       actual = game.send(:score_category, category, state[:dice], state, 'Alice')
       assert(actual == expected, "#{face}/#{previous}/#{category}: #{actual} instead of #{expected}")
       choice = surface.categories.find { |item| item.id == category }
-      assert(choice.label == "#{GameRoomGames::Yahtzee::CATEGORY_LABELS.fetch(category)}: #{expected} points",
+      assert(choice.label == "#{labels.fetch(category)}: #{expected} points",
         'The surface displayed a different score')
       assert(game.action_for({'action' => 'score', 'category' => category}, replay, 'Alice').first == :ok,
         "#{face}/#{previous}/#{category}: legal scoring was refused")

@@ -46,11 +46,18 @@ assert(field.index == 2 && speech.include?("Spades") && speech.include?("card 2S
 assert(SpeechOutput.calls.count { |entry| entry[0].include?("card 2S") } == 1, "Suit jump repeated the selected card")
 assert(!speech.include?("Full hand") && field.options == labels && field.header == "Full hand" && events.empty?, "Suit jump rebuilt/activated/read the whole hand")
 arrow(driver, form, 0x28)
-assert(field.index == 3, "Down left the selected suit")
-arrow(driver, form, 0x28)
-assert(field.index == 3, "Down crossed into Diamonds at the suit boundary")
+assert(field.index == 3, "Down did not reach the next displayed card")
+speech = arrow(driver, form, 0x28)
+assert(field.index == 4, "Down stopped at the selected suit instead of reaching Diamonds")
+assert(speech.include?("card 3D") && !speech.include?("Full hand") && events.empty?, "Vertical navigation repeated the hand caption or submitted a card")
+assert(SpeechOutput.calls.count { |entry| entry[0].include?("card 3D") } == 1, "Vertical navigation repeated the selected card")
 arrow(driver, form, 0x26)
-assert(field.index == 2, "Up did not return within Spades")
+assert(field.index == 3, "Up did not cross back from Diamonds to Spades")
+arrow(driver, form, 0x26)
+assert(field.index == 2, "Up did not reach the previous displayed Spade")
+arrow(driver, form, 0x26)
+assert(field.index == 1, "Up stopped at the selected suit instead of reaching Hearts")
+arrow(driver, form, 0x28)
 arrow(driver, form, 0x27)
 assert(field.index == 4, "Right did not skip straight to Diamonds")
 speech = arrow(driver, form, 0x27)
@@ -77,21 +84,31 @@ assert(field.index == 2, "Holding the key moved without a native repeat")
 driver.frame(form, [[0x27, :repeat]], held: [0x27])
 assert(field.index == 4 && events.empty?, "Native held-key repeat did not jump exactly once")
 
+# Holding Down keeps the native repeat behavior across suit boundaries.
+driver, surface, form, field, events = native_hand(suit_hand)
+field.index = 1
+driver.frame(form, [[0x28, true, driver.raw([0x28])]], held: [0x28])
+assert(field.index == 2, "Held Down stopped at the suit boundary")
+driver.frame(form, [], held: [0x28])
+assert(field.index == 2, "Holding Down moved without a native repeat")
+driver.frame(form, [[0x28, :repeat]], held: [0x28])
+assert(field.index == 3 && events.empty?, "Native Down repeat was lost or emitted a move")
+
 # Group navigation neither sorts nor filters an interleaved acquisition/rank
-# order. Vertical movement skips other suits, and bottom commands stay usable.
+# order. Vertical movement visits every displayed card, then bottom commands.
 driver, surface, form, field, events = native_hand(suit_hand(%w[2H 2S KH AS 3D 4C], commands: true))
 labels = field.options.dup
-arrow(driver, form, 0x28)
-assert(field.index == 2, "Down followed the raw adjacent card instead of the current suit")
-arrow(driver, form, 0x28)
-assert(field.index == 6 && field.options == labels, "Last card did not lead to the first command")
-arrow(driver, form, 0x28)
-assert(field.index == 7, "Second command became inaccessible")
+(1..7).each do |index|
+  arrow(driver, form, 0x28)
+  assert(field.index == index && field.options == labels, "Down skipped displayed card/command #{index}")
+end
 arrow(driver, form, 0x26)
 driver.frame(form, driver.tap(0x0d))
 assert(events.last["kind"] == "command" && events.last["action"] == "draw", "Command was treated as a card")
 arrow(driver, form, 0x26)
-assert(field.index == 2, "Up from commands forgot the previously selected suit")
+assert(field.index == 5, "Up from commands did not return to the last displayed card")
+arrow(driver, form, 0x27)
+assert(field.index == 0 && field.options == labels, "Right from Clubs did not cycle to Hearts")
 arrow(driver, form, 0x27)
 assert(field.index == 1 && field.options == labels, "Right filtered or sorted the interleaved hand")
 surface.update_spec(suit_hand(%w[2H 2S KH AS 3D 4C], commands: true))
@@ -100,7 +117,7 @@ driver.frame(form)
 assert(field.index == 1 && SpeechOutput.calls.empty?, "Unchanged refresh moved/spoke the cursor")
 surface.handle_command("sort_cards", "mode" => "number")
 arrow(driver, form, 0x28)
-assert(field.options[field.index] == "card AS", "Sorted hand navigation lost the current card's suit")
+assert(field.options[field.index] == "card 3D", "Down did not follow the new displayed order after sorting")
 
 # Press snapshots, not end-of-frame modifier state. Modified arrows keep the
 # native numbering/reading/selection commands and never jump a suit.
@@ -156,6 +173,8 @@ driver.frame(form, driver.tap(0x0d, modifiers: [0x10]))
 assert(surface.state["selected_ids"] == %w[2H 2S] && events.empty?, "Navigation lost or submitted a prepared packet")
 arrow(driver, form, 0x28)
 assert(field.index == 3, "Packet hand did not use the shared vertical navigation")
+arrow(driver, form, 0x28)
+assert(field.index == 4 && surface.state["selected_ids"] == %w[2H 2S] && events.empty?, "Packet Down stopped at a suit boundary or changed the prepared packet")
 
 # Rummy's hand shares arrows during a draft, but public-meld inspection in
 # that same native control must immediately regain ordinary list navigation.
@@ -184,6 +203,9 @@ assert(field.options[field.index].include?("2 of spades") && events.empty?, "Clo
 field.suppress_next_focus!
 speech = arrow(driver, form, 0x27)
 assert(speech.include?("Hearts") && speech.include?("4 of hearts"), "Quiet refresh silenced the next deliberate suit jump")
+field.suppress_next_focus!
+speech = arrow(driver, form, 0x26)
+assert(speech.include?("3 of spades") && !speech.include?("Full hand"), "Quiet refresh silenced native vertical navigation or repeated the hand caption")
 
 # Empty, single-suit and incomplete metadata cannot create an inaccessible
 # option or invent a second group.
@@ -208,4 +230,4 @@ field.card_navigation_source = -> { reads += 1; source.call }
 20.times { driver.frame(form) }
 assert(reads.zero?, "Idle input frames repeatedly scanned the hand")
 
-puts "PASS native card-suit navigation: immediate jumps, one announcement, full list, current suit, commands, sorting, refresh, modifiers, repeats, editors, choices, packets, melds and edge cases"
+puts "PASS native card-suit navigation: immediate horizontal jumps, native whole-hand vertical navigation, one announcement, commands, sorting, refresh, modifiers, repeats, editors, choices, packets, melds and edge cases"

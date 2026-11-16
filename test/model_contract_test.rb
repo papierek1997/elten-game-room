@@ -96,6 +96,15 @@ new_games += %w[kosciane balut french_tarot backgammon]
 end
 duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/duck_racing.json'), encoding: 'UTF-8'))
 cash_auction = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/cash_auction.json'), encoding: 'UTF-8'))
+# Set-qualified category announcements are the only difference in the original
+# eight-auction trace. The separate feedback regression restores every old
+# full hash without changing moves, state, legal order, actors or random draws.
+cash_feedback = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/cash_auction_feedback.json'), encoding: 'UTF-8'))
+cash_feedback.each do |index, hash|
+  position = Integer(index, 10)
+  assert(position.between?(0, cash_auction.fetch('steps').size - 1) && hash.match?(/\A[0-9a-f]{64}\z/))
+  cash_auction.fetch('steps').fetch(position)['replay'] = hash
+end
 darts = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/darts.json'), encoding: 'UTF-8'))
 cases << JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/billiards.json'), encoding: 'UTF-8'))
 %w[cribbage belote jass hearts].each do |id|

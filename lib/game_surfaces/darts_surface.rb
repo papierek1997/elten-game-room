@@ -14,7 +14,6 @@ module GameSurfaces
 
     def update
       super
-      return if game_modifier_held?
       queue(:up) if unmodified_press?(:key_up, 0x26)
       queue(:down) if unmodified_press?(:key_down, 0x28)
       queue(:left) if unmodified_press?(:key_left, 0x25)

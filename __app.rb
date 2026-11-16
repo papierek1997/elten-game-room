@@ -3,8 +3,8 @@
   "id": "c24d98cc-9ccd-4d50-b801-459da324ff60",
   "name": "Power Games",
   "description": "Accessible multiplayer games for ELTEN users.",
-  "version": "2.0.6.7",
-  "build_id": "270",
+  "version": "2.0.6.8",
+  "build_id": "271",
   "EltenAPIVersion": "3.0.5",
   "main_language": "en",
   "supported_languages": ["en", "pl", "cs", "es", "ru"],
@@ -29,6 +29,12 @@
       "duck_final_lap", "duck_shot", "darts_hit_1", "darts_hit_2", "darts_hit_3", "darts_hit_4", "darts_hit_5", "darts_edge", "darts_limit", "darts_throw", "darts_applause", "darts_consolation", "darts_locator_round", "darts_locator_clear", "darts_locator_bright", "duck_note_c", "duck_memory_bark", "duck_memory_bell", "duck_memory_drop", "duck_memory_clap", "duck_memory_zip",
       "duck_rhythm_f", "duck_rhythm_j", "war_open", "ding", "shuffle", "scopa", "scopa_deal", "scopa_take", "draw", "draw2", "bouillabaisse_rank", "bouillabaisse_card",
       "farkle", "cht-roll-dice", "cht-bank", "cht-lost-points", "cht-cat-minus-8", "cht-cat-plus-8",
+      "kosciane_column_1", "kosciane_column_1_draw2", "kosciane_column_1_lose3", "kosciane_column_1_win1", "kosciane_column_1_win2",
+      "kosciane_column_2", "kosciane_column_2_draw2", "kosciane_column_2_lose3", "kosciane_column_2_win1", "kosciane_column_2_win2",
+      "kosciane_column_3", "kosciane_column_3_draw2", "kosciane_column_3_lose3", "kosciane_column_3_win1", "kosciane_column_3_win2",
+      "kosciane_column_4", "kosciane_column_4_draw2", "kosciane_column_4_lose3", "kosciane_column_4_win1", "kosciane_column_4_win2",
+      "kosciane_column_5", "kosciane_column_5_draw2", "kosciane_column_5_lose3", "kosciane_column_5_win1", "kosciane_column_5_win2",
+      "kosciane_column_6", "kosciane_column_6_draw2", "kosciane_column_6_lose3", "kosciane_column_6_win1", "kosciane_column_6_win2",
       "hit1", "hit_ship1", "hit_ship2", "rocket_launch1", "rocket_launch2", "rocket_launch3", "rocket_miss",
       "interception", "lose1", "lose3", "play", "play2", "replay",
       "reverse", "reverse3", "roll", "skip", "win1", "win2",
@@ -214,8 +220,8 @@ class EltenGameRoom < Program
   extend GameRoomContactFiltersRuntime
   extend GameRoomAnalyticsRuntime
   extend GameRoomSportsRankings::Runtime
-  GAME_ROOM_VERSION = "2.0.6.7".freeze
-  GAME_ROOM_BUILD_ID = 270
+  GAME_ROOM_VERSION = "2.0.6.8".freeze
+  GAME_ROOM_BUILD_ID = 271
   GAME_ROOM_CAPABILITIES = ["invitations", "live_sessions", "live_session_stack"].freeze
   LOBBY_ACTIVITY_POLL_INTERVAL = 5.0
 

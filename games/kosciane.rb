@@ -297,7 +297,7 @@ module GameRoomGames
       return _("Odd") if category == :odd
       return _("General (five of a kind)") if category == :poker
       key = category.is_a?(Integer) ? STANDARD_CATEGORIES.fetch(category - 1) : LABEL_KEYS.fetch(category, category.to_s)
-      CATEGORY_LABELS.fetch(key)
+      super(key)
     end
 
     def cell_label(value)

@@ -212,9 +212,9 @@ elegida por el anfitrión.
 En una mano con cartas de distintos palos o colores, las flechas izquierda
 y derecha saltan directamente a la primera carta del palo o color anterior
 o siguiente. Escucharás su nombre y la carta seleccionada. Arriba y abajo
-recorren las cartas de ese palo o color. Todas las cartas siguen en la lista
-completa y en el mismo orden. Si debajo hay una acción, como robar una carta,
-puedes llegar a ella pulsando abajo desde la última carta del palo o color actual.
+recorren toda la mano en el orden de la lista, pasando también de un palo
+o color a otro. Si debajo hay una acción, como robar una carta, puedes llegar
+a ella pulsando abajo desde la última carta de la mano.
 
 En los juegos de cartas que admiten la ordenación común de la mano:
 

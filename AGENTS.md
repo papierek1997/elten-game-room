@@ -23,6 +23,9 @@ complete and edit every affected supported language, regenerate outputs and run
 the content checks after the final edit. Passing model tests alone is not enough;
 a stale catalog, missing option explanation or failing rulebook check blocks
 acceptance. Do not defer this work to a failed GitHub run or weaken the checks.
+Do not freeze translated UI labels in class constants at load time. Resolve
+their source messages when presenting them, and test language changes on the
+same game instance, including inherited score-sheet labels.
 Use the [recurring-risk review](docs/GAME_ACCEPTANCE.md#recurring-integration-risks)
 to select further regression cases from previous integration failures.
 
@@ -809,6 +812,12 @@ Renaming a file is not conversion. Packaging rejects other formats and
 invalid Opus headers but does not re-encode; sound IDs remain extensionless.
 `tools/generate-pong-echo.rb` also produces Opus from deterministic PCM.
 Procedure: `docs/BUILDING.md`. Preserve licensing and attribution.
+
+Presentation cues returned by a game's sound hook must be registered in
+`GameRoomSounds::ASSET_NAMES` and both required-assets manifests. A file in
+`Audio/` and a matching hook return value do not prove that it plays. Exercise
+the actual event through `GameRoomSounds.play_event` to the program's asset
+playback boundary, including volume, optional-effects and output gates.
 
 ## Contracts added after build 239
 

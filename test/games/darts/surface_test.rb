@@ -25,6 +25,11 @@ assert(GameSurfaces::DartsField.private_instance_methods(false).include?(:game_m
 pressed, held = [], []
 field.define_singleton_method(:key_pressed?) { |key| pressed.include?(key) }
 field.define_singleton_method(:key_held?) { |key| held.include?(key) }
+# This stand-in has no native event tape. Give its synthetic presses explicit
+# modifier snapshots; the separate native test covers changes within a frame.
+field.define_singleton_method(:keyboard_modifier_held_when_pressed?) do |_key, modifier|
+  held.include?({shift: 0x10, control: 0x11, option: 0x12, command: 0x5b}.fetch(modifier))
+end
 form = Form.new([field, EditBox.new('Chat')])
 $activecontrols = [form, field]
 

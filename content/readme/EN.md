@@ -202,10 +202,9 @@ menu. These change your own experience, not the shared variant set by the host.
 
 In a hand grouped by suit or colour, Left and Right jump straight to the
 first card of the previous or next suit or colour. You hear its name and
-the selected card. Up and Down browse cards of that suit or colour.
-All cards remain on the full list, in the same order. If a command such
-as drawing a card appears below the cards, press Down after the last card
-of the current suit or colour to reach it.
+the selected card. Up and Down browse the entire hand in displayed order,
+including across suits or colours. If a command such as drawing a card
+appears below the cards, press Down after the hand's last card to reach it.
 
 In card games that support shared hand sorting:
 

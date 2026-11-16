@@ -59,6 +59,36 @@ module GameRoomSounds
     cht-lost-points
     cht-cat-minus-8
     cht-cat-plus-8
+    kosciane_column_1
+    kosciane_column_1_draw2
+    kosciane_column_1_lose3
+    kosciane_column_1_win1
+    kosciane_column_1_win2
+    kosciane_column_2
+    kosciane_column_2_draw2
+    kosciane_column_2_lose3
+    kosciane_column_2_win1
+    kosciane_column_2_win2
+    kosciane_column_3
+    kosciane_column_3_draw2
+    kosciane_column_3_lose3
+    kosciane_column_3_win1
+    kosciane_column_3_win2
+    kosciane_column_4
+    kosciane_column_4_draw2
+    kosciane_column_4_lose3
+    kosciane_column_4_win1
+    kosciane_column_4_win2
+    kosciane_column_5
+    kosciane_column_5_draw2
+    kosciane_column_5_lose3
+    kosciane_column_5_win1
+    kosciane_column_5_win2
+    kosciane_column_6
+    kosciane_column_6_draw2
+    kosciane_column_6_lose3
+    kosciane_column_6_win1
+    kosciane_column_6_win2
     ninety3366
     1000_mariage
     tysiac_surrender

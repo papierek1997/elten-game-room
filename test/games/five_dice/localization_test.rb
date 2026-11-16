@@ -24,3 +24,35 @@ names.each do |language,name|
   end
 end
 puts 'PASS new games: all five runtime languages and singular/few/many score-column forms'
+
+# Keep the same instances across language changes, as the application does.
+# The three games share category names but must not retain their load language.
+general = GameRoomGames::Kosciane.new
+yahtzee = GameRoomGames::Yahtzee.new
+balut = GameRoomGames::Balut.new
+[['en', 'Ones'], ['pl', 'Jedynki'], ['cs', 'Jedničky'], ['es', 'Unos'], ['ru', 'Единицы'], ['en', 'Ones']].each do |language, expected|
+  GameRoomTestLocalization.use_language(language)
+  assert(general.send(:category_label, 1) == expected, "#{language}: General retained a category's load-time language")
+  state = yahtzee.send(:initial_state, %w[Alice Bob], yahtzee.default_options)
+  first_row = yahtzee.score_sheet_choices(state, 'Alice')[1].label
+  assert(first_row.start_with?(expected + ':'), "#{language}: Yahtzee retained a category's load-time language")
+  expected_fours = GameRoomLocalization.translate('Fours')
+  assert(balut.send(:category_label, :fours) == expected_fours, "#{language}: Balut retained a category's load-time language")
+  players = %w[Alice Bob]
+  options = general.normalize_options('columns'=>1, 'parity'=>true)
+  match = GameRoomGames::FiveDiceMatch.new(players, columns: 1, parity: true)
+  state = {players: players, match_model: match, options: options, turn_rolls: 0, dice: match.dice}
+  full_sheet = general.score_grid(state, 'Alice', writable: false)
+  full_labels = full_sheet.cells.map(&:first)
+  general_label = GameRoomLocalization.translate('General (five of a kind)')
+  assert(full_labels.include?(general_label), "#{language}: the full sheet omitted General")
+  %w[Even Odd].each do |label|
+    assert(full_labels.include?(GameRoomLocalization.translate(label)), "#{language}: an enabled parity category was hidden")
+  end
+  match.roll('Alice', (0...5).to_a, [6,6,6,6,6])
+  state.update(turn_rolls: 1, dice: match.dice)
+  writable = general.score_grid(state, 'Alice', writable: true)
+  assert(writable.row_actions.any? { |action| action['category'] == 'poker' }, "#{language}: five equal dice could not be recorded as General")
+  assert(writable.cells.any? { |row| row.first.include?(general_label) }, "#{language}: writable General used an obsolete label")
+end
+puts 'PASS score-sheet labels follow the current language on the same General, Yahtzee and Balut instances'
