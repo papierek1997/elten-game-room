@@ -26,8 +26,11 @@ Each round shuffles six fresh decks using one authenticated server seed.
 Physical IDs combine deck index and rank/suit. Hands keep acquisition order and
 an owner/round/hand epoch through the shared card-hand surface. Cards themselves
 are not played individually. After betting there is one game field: its caption
-gives the dealer's public card first, then the viewer's current hand/total; the
-rows contain only the viewer's cards in acquisition order. Space draws and
+gives the viewer's current hand/total. The dealer's public cards are labelled
+leading rows, above the viewer's cards in acquisition order, not in the caption.
+Initial focus stays on the first own card; Up reaches the dealer. Leading rows
+are not hand cards and cannot enter hand readouts, sorting or draw selection.
+Space draws and
 Enter keeps the current total through `CardZoneSpec#activation_action`, scoped
 to that field rather than a form-wide Enter binding. H retains cards plus total.
 D doubles and P splits when those Extended actions are currently legal. In the
@@ -93,6 +96,12 @@ The starting seat rotates. The first player reaching the target wins.
 The one-die option deliberately uses this match scoring instead of a playoff.
 Round busts are not permanent elimination. Every roll requests the appropriate
 number of native six-sided dice and validates the resulting event shape.
+The initial action-field caption identifies the active player. The shared
+Blackjack auction adapter also compares phase, round and split-hand identity
+when requesting the standard turn notice, so a new round starting with the
+previous final player is not silent. Unchanged views and repeat throws in the
+same turn do not repeat it. `dice_turn_announcements_test.rb` exercises the
+actual event presenter, including no turn after a final result.
 
 The optional Virtual chips settlement adds initial balances, an opening
 contribution and a round limit. New starts use the same version 2 auction as

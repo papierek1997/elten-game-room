@@ -106,9 +106,10 @@ module GameSurfaces
   CardNavigationGroup = Struct.new(:id, :label, :order, keyword_init: true)
 
   Card = Struct.new(:id, :label, :value, :choices, :shift_choice, :choice_header, :sort_keys, :confirmation, :navigation_group, keyword_init: true)
+  CardListRow = Struct.new(:id, :label, keyword_init: true)
 
   CardZoneSpec = Struct.new(:id, :header, :cards, :empty_label, :hand_order, :hand_epoch, :commands, :select_drawn,
-    :activation_action, :activation_tip, keyword_init: true)
+    :activation_action, :activation_tip, :leading_rows, keyword_init: true)
 
   CardTableSpec = Struct.new(:zones, :default_sort, :sort_modes, keyword_init: true)
 

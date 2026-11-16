@@ -8,6 +8,7 @@ require_relative "game_room_ui"
 
 require_relative "game_room_localization"
 require_relative "game_surfaces/card_actions"
+require_relative "game_surfaces/card_list_rows"
 
 module GameSurfaces
   using GameRoomLocalization::Translations
@@ -729,6 +730,7 @@ module GameSurfaces
   class CardTable
     include CardSorting
     include CardActions
+    include CardListRows
     include ActionEmitter
 
     attr_reader :command_field_index
@@ -763,6 +765,7 @@ module GameSurfaces
           @cards[zone_id] = cards
         end
         index, changed = restore_command_cursor(zone, cards, state, index, changed)
+        index, changed = restore_leading_cursor(zone, cards, state, index, changed)
         @cursor_announcements[zone_id] = card_label(cards[index]) if changed
         pending = changed || !same_epoch ? nil : remembered_choice(remembered_choices, zone_id, cards)
         labels = card_list_labels(zone, cards)
@@ -776,87 +779,15 @@ module GameSurfaces
         control = card_list_control_class.new(
           labels,
           header: header,
-          index: index,
+          index: pending ? index : index + leading_rows(zone).length,
           quiet: true,
           empty_label: zone.empty_label.to_s
         )
         control.card_navigation_source = -> { navigation_hand_cards(zone_id) }
+        control.card_navigation_offset = pending ? 0 : leading_rows(zone).length
         control.card_activation_tip = pending ? nil : zone.activation_tip
         control.on(:select) do |params|
-          next if respond_to?(:intercept_card_selection, true) && intercept_card_selection(zone_id, params.to_a[0].to_i)
-          zone = @zones.find { |item| item.id.to_s == zone_id }
-          cards = @cards.fetch(zone_id)
-          selected_index = params.to_a[0].to_i
-          pending = @pending_choices[zone_id]
-          if pending != nil
-            choice = card_choices(pending[:card])[selected_index]
-            next if choice == nil
-
-            payload = {
-              "zone" => zone_id,
-              "index" => pending[:card_index],
-              "card_id" => card_id(pending[:card]),
-              "card" => choice_value(choice),
-              "choice_id" => choice_id(choice)
-            }
-            restore_card_list(zone, control, speak: false)
-            emit_action("card", "select", payload)
-            next
-          end
-
-          if selected_index >= cards.length
-            command = zone_commands(zone)[selected_index - cards.length]
-            emit_action("command", command.id, command.payload.nil? ? {} : command.payload.to_h) if command
-            next
-          end
-          card = cards[selected_index]
-          next if card == nil
-
-          choices = card_choices(card)
-          if GameRoomUI.modifiers_when_pressed(control, :enter).include?(:shift)
-            quick_choice = shifted_choice(card, choices)
-            if quick_choice != nil
-              emit_action(
-                "card",
-                "select",
-                {
-                  "zone" => zone.id.to_s,
-                  "index" => selected_index,
-                  "card_id" => card_id(card),
-                  "card" => choice_value(quick_choice),
-                  "choice_id" => choice_id(quick_choice)
-                }
-              )
-              next
-            end
-
-            # A card may advertise a Shift action even when that action is
-            # currently unavailable. Emit the ordinary card payload together
-            # with the requested choice so the game can report the reason,
-            # instead of silently playing the card as a normal move.
-            unavailable_choice = shift_choice_id(card)
-            if !unavailable_choice.empty?
-              emit_action(
-                "card",
-                "select",
-                {
-                  "zone" => zone.id.to_s,
-                  "index" => selected_index,
-                  "card_id" => card_id(card),
-                  "card" => card_value(card),
-                  "choice_id" => unavailable_choice
-                }
-              )
-              next
-            end
-          end
-
-          if !choices.empty?
-            begin_card_choice(zone, control, card, selected_index)
-            next
-          end
-
-          submit_card_selection(zone, card, selected_index)
+          select_card_row(zone_id, control, params.to_a[0].to_i)
         end
         @controls << control
       end
@@ -888,12 +819,15 @@ module GameSurfaces
       choices = {}
       cursors = {}
       selected_commands = {}
+      selected_leading = {}
       @zones.each_with_index do |zone, index|
         zone_id = zone.id.to_s
         pending = @pending_choices[zone_id]
         if pending == nil
-          indices[zone_id] = @controls[index].index.to_i
-          if indices[zone_id] >= @cards.fetch(zone_id).length
+          position = card_index_for(zone, @controls[index])
+          indices[zone_id] = [position, 0].max
+          selected_leading[zone_id] = leading_rows(zone)[@controls[index].index].id.to_s if position < 0
+          if position >= 0 && indices[zone_id] >= @cards.fetch(zone_id).length
             command = zone_commands(zone)[indices[zone_id] - @cards.fetch(zone_id).length]
             selected_commands[zone_id] = command.id.to_s if command
           end
@@ -907,11 +841,12 @@ module GameSurfaces
         end
         if zone.hand_order != nil
           cursors[zone_id] = CardHandCursor.snapshot(@cards.fetch(zone_id), zone.hand_order,
-            zone.hand_epoch, indices[zone_id])
+            zone.hand_epoch, selected_leading.key?(zone_id) ? @cards.fetch(zone_id).length : indices[zone_id])
         end
       end
       result = { "zones" => indices }
       result["selected_commands"] = selected_commands unless selected_commands.empty?
+      result['selected_leading_rows'] = selected_leading unless selected_leading.empty?
       result["hand_cursors"] = cursors unless cursors.empty?
       result["card_choices"] = choices if !choices.empty?
       result["card_sort_mode"] = @card_sort_mode if !@card_sort_mode.empty?
@@ -938,6 +873,7 @@ module GameSurfaces
           remembered.fetch("hand_cursors", {})[zone_id], remembered["zones"][zone_id], sorted: sorted_hand?, select_drawn: zone.select_drawn != false)
         @cards[zone_id] = next_cards
         index, changed = restore_command_cursor(zone, next_cards, remembered, index, changed)
+        index, changed = restore_leading_cursor(zone, next_cards, remembered, index, changed)
         same_epoch = remembered.fetch("hand_cursors", {}).fetch(zone_id, {})["epoch"] == zone.hand_epoch.to_s
         pending = changed || !same_epoch ? nil : remembered_choice(remembered["card_choices"] || {}, zone_id, next_cards)
         @pending_choices.delete(zone_id)
@@ -947,8 +883,9 @@ module GameSurfaces
         control.options = labels if control.options != labels
         control.header = pending ? choice_header(pending[:card]) : zone.header.to_s
         control.card_activation_tip = pending ? nil : zone.activation_tip
+        control.card_navigation_offset = pending ? 0 : leading_rows(zone).length
         control.empty_label = zone.empty_label.to_s if control.respond_to?(:empty_label=)
-        control.index = pending ? pending[:choice_index] : index
+        control.index = pending ? pending[:choice_index] : index + leading_rows(zone).length
         @cursor_announcements[zone_id] = card_label(next_cards[index]) if changed && !pending
       end
       self
@@ -980,12 +917,14 @@ module GameSurfaces
         next if cards.none? { |card| card_sort_keys(card).key?(mode) }
 
         control = @controls[index]
-        selected = cards[control.index.to_i]
-        selected_command = zone_commands(zone)[control.index.to_i - cards.length] if control.index.to_i >= cards.length
+        position = card_index_for(zone, control)
+        leading_index = position < 0 ? control.index : nil
+        selected = position >= 0 ? cards[position] : nil
+        selected_command = position >= cards.length ? zone_commands(zone)[position - cards.length] : nil
         cards.replace(sorted_cards(cards, mode, direction))
         control.options = card_list_labels(zone, cards)
         selected_index = cards.index { |card| card_id(card) == card_id(selected) }
-        control.index = selected_command ? cards.length + zone_commands(zone).index(selected_command) : selected_index || 0
+        control.index = leading_index || leading_rows(zone).length + (selected_command ? cards.length + zone_commands(zone).index(selected_command) : selected_index || 0)
         sorted_any = true
       end
       return false if !sorted_any
@@ -1023,7 +962,7 @@ module GameSurfaces
     end
 
     def card_list_labels(zone, cards)
-      cards.map { |card| card_label(card) } + zone_commands(zone).map { |command| command.label.to_s }
+      leading_rows(zone).map { |row| GameRoomContent.utf8(row.label) } + cards.map { |card| card_label(card) } + zone_commands(zone).map { |command| command.label.to_s }
     end
 
     def restore_command_cursor(zone, cards, remembered, index, changed)
@@ -1059,7 +998,7 @@ module GameSurfaces
       cards = @cards.fetch(zone_id)
       target, auto_action = CardHandCursor.playable_navigation(
         cards.map { |card| card_id(card) },
-        @controls[zone_index].index,
+        card_index_for(@zones[zone_index], @controls[zone_index]),
         payload
       )
       if target == nil
@@ -1073,7 +1012,7 @@ module GameSurfaces
       end
 
       control = @controls[zone_index]
-      control.index = target
+      control.index = target + leading_rows(@zones[zone_index]).length
       control.announce_current_card
       @command_field_index = zone_index
       true
@@ -1096,6 +1035,7 @@ module GameSurfaces
     end
 
     def validate_card_zone!(zone, cards)
+      leading_rows(zone)
       if zone.activation_action != nil && !zone.activation_action.is_a?(Action)
         raise ArgumentError, "card zone activation must be a surface action"
       end
@@ -1114,6 +1054,7 @@ module GameSurfaces
       control.options = card_choices(card).map { |choice| choice_label(choice) }
       control.header = choice_header(card)
       control.card_activation_tip = nil
+      control.card_navigation_offset = 0
       control.index = 0
       control.focus(0)
     end
@@ -1126,7 +1067,8 @@ module GameSurfaces
       control.options = card_list_labels(zone, @cards.fetch(zone_id))
       control.header = zone.header.to_s
       control.card_activation_tip = zone.activation_tip
-      control.index = pending[:card_index]
+      control.card_navigation_offset = leading_rows(zone).length
+      control.index = pending[:card_index] + leading_rows(zone).length
       control.focus(control.index) if speak
       true
     end

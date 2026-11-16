@@ -305,6 +305,21 @@ network or complete-match campaign.
 
 ## Confirming card actions
 
+`CardZoneSpec#leading_rows` optionally supplies typed `CardListRow(id:, label:)`
+information above the hand in the same native list. IDs must be nonempty and
+unique within these rows; labels must be nonempty and localized. Rows have no
+physical card IDs or individual actions. They remain above sorted cards and
+outside `hand_order`, hand readouts, packets and legal-card navigation.
+Initial focus is the first own card; Up reaches the preceding information.
+The shared surface translates native row offsets before selecting a card,
+opening/restoring its choices or activating an appended command. It retains a
+selected informational row by ID on quiet refresh, unless a newly received
+card should take focus. Only an explicit zone-wide `activation_action` applies
+Enter there; otherwise the row is inert. Empty hands can still display these
+rows, without becoming another player's hand. Blackjack uses them for public
+dealer cards. Regressions: `test/ui/card_leading_rows_test.rb` and
+`test/games/blackjack/hand_controls_native_test.rb`.
+
 For a passive hand whose Enter decision concerns the whole hand rather than
 an individual card, a zone may declare `activation_action` as a typed surface
 `Action` and `activation_tip` as localized F1 help. Ordinary card activation

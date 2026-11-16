@@ -249,6 +249,7 @@ module GameRoomGames
         GameSurfaces::Card.new(id: action["action"], value: action["action"], label: labels.fetch(action["action"]))
       end
       header = _("Round %{round}; current total %{total}") % {round: state[:round], total: state[:total]}
+      header += "; " + turn_announcement(replay, viewer) unless actions.empty?
       header += "; " + (_("Pot: %{chips} chips") % {chips: state[:pot]}) if chip_game?(state[:options])
       GameSurfaces::CardTableSpec.new(zones: [GameSurfaces::CardZoneSpec.new(id: "actions", header: header,
         cards: actions, empty_label: result_text(replay) || current_turn_shortcut_text(replay, viewer))])

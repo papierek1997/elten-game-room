@@ -80,13 +80,28 @@ def verify_auction_audio(env, actions)
   end
 end
 
-[GameRoomGames::Blackjack.new, GameRoomGames::BlackjackDice.new, GameRoomGames::DicePoker.new].each do |game|
+[GameRoomGames::Blackjack.new, GameRoomGames::BlackjackDice.new].each do |game|
   options = game.new_game_options("scoring" => "chips", "starting_chips" => 100, "stake" => 5)
   build = -> { GameRoomSimulation::Environment.new_game(game: game, players: %w[Alice Bob Carol], options: options, seed: 421) }
   verify_auction_audio(build.call, [["ante", "poker_call"], ["check", "poker_check"],
     ["raise", "poker_raise"], ["call", "poker_call"], ["fold", "poker_fold"]])
   verify_auction_audio(build.call, [["all_in", "poker_all_in"]])
 end
+
+# Dice Poker has ante only before the throws; its one auction follows them.
+game = GameRoomGames::DicePoker.new
+build = lambda do
+  env = GameRoomSimulation::Environment.new_game(game: game, players: %w[Alice Bob Carol],
+    options: game.new_game_options("scoring" => "chips", "starting_chips" => 100, "stake" => 5), seed: 421)
+  3.times do
+    press_auction(env, "roll")
+    press_auction(env, "score")
+  end
+  env
+end
+verify_auction_audio(build.call, [["ante", "poker_call"], ["check", "poker_check"],
+  ["raise", "poker_raise"], ["call", "poker_call"], ["fold", "poker_fold"]])
+verify_auction_audio(build.call, [["all_in", "poker_all_in"]])
 
 game = GameRoomGames::DicePoker.new
 session = {"options" => JSON.generate(game.default_options.merge("round_limit" => 1))}

@@ -9,10 +9,10 @@ events = [dice_event(1,'Alice','ante','1')]
 r = game.replay(session,events,repo)
 check(r.state[:chips].values == [90,90,90] && r.state[:pot] == 30,'Ante was not paid by every seat')
 native_action = GameSurfaces::Action.new(kind:'command',name:'check',payload:{'amount'=>0})
-check(game.action_for(native_action,r,'Alice').first == :ok,'Actual shortcut action fails the auction interface')
-%w[Alice Bob Carol].each { |p| events << dice_event(events.size+1,p,'bet','check|0') }
-r = game.replay(session,events,repo)
-check(r.state[:phase] == :playing,'First betting round did not release dice')
+check(r.state[:phase] == :playing && r.current_player == 'Alice','Ante did not release dice directly')
+check(game.action_for(native_action,r,'Alice').first == :invalid,'A betting action is allowed before the dice')
+rejected = game.replay(session,events + [dice_event(2,'Alice','bet','raise|20')],repo)
+check(rejected.accepted_events == events && rejected.state == r.state,'An injected opening bid changed the game')
 hands = {'Alice'=>'6,6,6,6,6','Bob'=>'5,5,5,5,5','Carol'=>'1,2,3,4,5'}
 repo.players.each do |p|
   events << dice_event(events.size+1,p,'roll',hands[p])
@@ -20,6 +20,7 @@ repo.players.each do |p|
 end
 r = game.replay(session,events,repo)
 check(r.state[:phase] == :betting && r.state[:betting_stage] == 2,'Missing betting after throws')
+check(game.action_for(native_action,r,'Alice').first == :ok,'Actual shortcut action fails the final auction interface')
 events << dice_event(events.size+1,'Alice','bet','raise|20')
 events << dice_event(events.size+1,'Bob','bet','call|20')
 events << dice_event(events.size+1,'Carol','bet','fold|0')
@@ -39,7 +40,7 @@ coordinator = GameRoomBots::Coordinator.new
   end
   check(env.finished? && env.replay.accepted_events == env.events,'Betting match did not finish')
 end
-puts 'Dice poker betting: ante, two betting rounds, actual shortcut actions, pot conservation and three complete bot matches passed'
+puts 'Dice poker betting: ante only before throws, final auction, actual shortcut actions, pot conservation and three complete bot matches passed'
 
 state=game.replay(session,[dice_event(1,'Alice','ante','1')],repo).state
 state[:chips]={'Alice'=>0,'Bob'=>20,'Carol'=>0}

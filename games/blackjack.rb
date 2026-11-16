@@ -240,9 +240,10 @@ module GameRoomGames
       end
       hand = displayed_hand(state, viewer)
       public_dealer = state[:dealer_revealed] ? state[:dealer] : state[:dealer].take(1)
-      dealer_text = public_dealer.map { |card| playing_card_label(card) }.join(", ")
-      dealer_text += ", " + _("hidden card") if !state[:dealer_revealed] && state[:dealer].size > 1
-      header = dealer_text.empty? ? name : _("Dealer: %{cards}") % {cards: dealer_text}
+      dealer_rows = social?(state) ? [] : public_dealer.map do |card|
+        GameSurfaces::CardListRow.new(id: "dealer:#{card}", label: _("Dealer's card: %{card}") % {card: playing_card_label(card)})
+      end
+      header = name
       header = _("Dealing player: %{player}; no house hand.") % {player:participant_name(state[:dealing_player])} if social?(state)
       if hand
         player = replay.players.find { |person| same_user?(person, viewer) }
@@ -253,8 +254,9 @@ module GameRoomGames
         else
           _("Your hand; total %{total}.") % {total: total}
         end
-        spec = card_hand_surface(hand[:cards], header: [header, hand_header].join("\n"),
+        spec = card_hand_surface(hand[:cards], header: social?(state) ? [header, hand_header].join("\n") : hand_header,
           hand_epoch: [state[:round], player.to_s.downcase, index])
+        spec.zones.first.leading_rows = dealer_rows
         if legal_actions(replay, viewer).any? { |action| action['action'] == 'stand' }
           spec.zones.first.activation_action = GameSurfaces::Action.new(kind: 'command', name: 'stand')
           spec.zones.first.activation_tip = GameRoomContextHelp.shortcut_tip(_("Enter"), _("Keep your total"))
@@ -262,7 +264,7 @@ module GameRoomGames
         return spec
       end
       GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: [
-        GameSurfaces::CardZoneSpec.new(id: "hand", header: header, cards: [],
+        GameSurfaces::CardZoneSpec.new(id: "hand", header: result_text(replay) || current_turn_shortcut_text(replay, viewer), cards: [], leading_rows: dealer_rows,
           empty_label: result_text(replay) || current_turn_shortcut_text(replay, viewer))])
     end
 

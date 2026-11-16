@@ -17,7 +17,15 @@ module GameRoomGames
     end
 
     def turn_transition_history_entry(before_replay, after_replay, event_id:)
-      super if auction_game_decision?(after_replay)
+      return unless auction_game_decision?(after_replay)
+
+      # A new round or split hand can give the same player another turn.
+      # Keep the shared announcement, but compare the actual decision boundary.
+      if before_replay && before_replay.state.values_at(:round, :hand_index, :phase) !=
+          after_replay.state.values_at(:round, :hand_index, :phase)
+        before_replay = nil
+      end
+      super(before_replay, after_replay, event_id:event_id)
     end
 
     def current_turn_shortcut_text(replay, viewer)
@@ -110,7 +118,7 @@ module GameRoomGames
     end
     def auction_amount(amount); amount % auction_unit == 0 ? (amount / auction_unit).to_i : amount.to_f / auction_unit; end
 
-    def start_auction(state, order, event_id, history)
+    def start_auction(state, order, event_id, history, betting: true)
       state[:auction] = {order: order.dup, contributions: order.to_h { |p| [p, 0] }, folded: {}, acted: {}, acted_at: {},
         current_bet: 0, min_raise: auction_unit}
       order.each do |player|
@@ -123,7 +131,7 @@ module GameRoomGames
       state[:auction][:current_bet] = state[:auction][:contributions].values.max || 0
       state.merge!(phase: :betting, current_player: auction_actionable(state).first)
       state[:pot] = state[:auction][:contributions].values.sum if state.key?(:pot)
-      complete_auction(state, event_id, history) if auction_complete?(state)
+      complete_auction(state, event_id, history) if !betting || auction_complete?(state)
     end
 
     def auction_contenders(state)

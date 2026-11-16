@@ -8,7 +8,7 @@ module GameSurfaces
 
     ARROWS = %i[key_left key_right].freeze
 
-    attr_writer :card_navigation_source, :card_activation_tip
+    attr_writer :card_navigation_source, :card_activation_tip, :card_navigation_offset
 
     def update
       key = ARROWS.find do |arrow|
@@ -66,7 +66,7 @@ module GameSurfaces
         entry = (groups[id] ||= {id: id, label: label, order: order, indices: []})
         return nil if entry[:order] != order
 
-        entry[:indices] << index
+        entry[:indices] << index + @card_navigation_offset.to_i
       end
       values = groups.values
       return nil unless values.map { |group| group[:order] }.uniq.length == values.length

@@ -44,15 +44,22 @@ assert(replay.state[:phase] == :playing && replay.current_player == 'Alice', 'Fi
   control = surface.fields.first
   cards = surface.displayed_hand_cards('hand')
   assert(cards.map(&:id) == %w[0:5C 0:7S], 'The combined field changed actual hand order')
-  assert(control.options == cards.map(&:label), 'The hand contains redundant action rows')
+  assert(control.options.drop(1) == cards.map(&:label), 'The hand contains redundant action rows')
   dealer = GameRoomContent.utf8(game.send(:playing_card_label, '0:9D'))
   hidden = GameRoomContent.utf8(game.send(:playing_card_label, '0:7H'))
   header = GameRoomContent.utf8(control.header)
-  assert(header.lines.first.include?(dealer) && !header.include?(hidden), 'Dealer is not first or the hole card was exposed')
-  assert(header.lines.last.include?('12'), 'The current hand total is missing below the dealer')
+  dealer_label = GameRoomContent.utf8(GameRoomLocalization.translate("Dealer's card: %{card}")) % {card:dealer}
+  assert(language == 'en' || !dealer_label.start_with?("Dealer's card:"), 'Dealer row label is untranslated')
+  assert(control.options.first == dealer_label && !control.options.join.include?(hidden), 'Dealer row is missing or exposes the hole card')
+  assert(!header.include?(dealer) && !header.include?(hidden), 'Dealer cards remain in the field header')
+  assert(header.include?('12'), 'The current hand total is missing')
   spoken = SpeechOutput.calls.map(&:first).join("\n")
-  assert(spoken.include?(dealer) && spoken.index(dealer) < spoken.index(GameRoomContent.utf8(cards.first.label)),
-    "#{language}: focus did not read dealer information before the hand")
+  assert(control.index == 1 && !spoken.include?(dealer) && spoken.include?(GameRoomContent.utf8(cards.first.label)),
+    "#{language}: initial focus did not retain the first own card")
+  driver.frame(form)
+  SpeechOutput.reset
+  driver.frame(form, driver.tap(0x26))
+  assert(control.index == 0 && SpeechOutput.calls.map(&:first).join.include?(dealer_label), 'Up did not read the labelled dealer card')
   enter = GameRoomContent.utf8(GameRoomLocalization.translate('Enter'))
   assert(GameRoomContextHelp.game_field_tips([control]).any? { |tip| tip.include?(enter) }, 'F1 omits the default Enter action')
 
@@ -66,7 +73,7 @@ assert(replay.state[:phase] == :playing && replay.current_player == 'Alice', 'Fi
   surface.update_spec(game.surface_spec(after, 'Alice'))
   assert(surface.fields.first.equal?(control) && surface.displayed_hand_cards('hand').map(&:id) == %w[0:5C 0:7S 0:3C],
     'Drawing rebuilt the field or lost acquisition order')
-  assert(surface.displayed_hand_cards('hand')[control.index].id == '0:3C', 'The last drawn physical card lost the cursor')
+  assert(surface.displayed_hand_cards('hand')[control.index - 1].id == '0:3C', 'The last drawn physical card lost the cursor')
   assert(SpeechOutput.calls.empty?, 'Quiet hand refresh repeated the dealer or total')
 
   actions.clear
@@ -146,5 +153,6 @@ assert(actions.map(&:name) == ['stand'] && game.action_for(actions.first, social
 _, observer, observer_actions = blackjack_controls(game, pair, 'Watcher')
 assert(observer.surface.fields.length == 1 && observer.surface.displayed_hand_cards('hand').nil? && observer_actions.empty?,
   'Observer acquired another player’s hand or action')
+assert(observer.surface.fields.first.options.first.include?(game.send(:playing_card_label, pair.state[:dealer].first)), 'Observer lost the public dealer row')
 assert(game.game_shortcuts(pair, 'Watcher').none? { |key| %w[hit double split].include?(key.action_name) }, 'Observer has play keys')
 puts 'PASS Blackjack native controls: one field, dealer before hand, hidden hole card, Space/Enter, total/draw focus, quiet refresh, guarded actions, chat/buttons, double/split hands, social dealing and observers in five languages; no live accounts or physical keyboard'

@@ -6,7 +6,7 @@ separate scheduler or UI loop is introduced. Both support 2–8 seats.
 
 ## Dice poker
 
-Five public six-sided dice; choose two or three throws and 1–20 rounds.
+Five six-sided dice; choose two or three throws and 1–20 rounds.
 The default is three throws, three rounds, sixes high, with straights.
 Hands descend: five equal, four equal, full house, straight, three equal,
 two pairs, pair, high die. Compare repeated faces first, then kickers.
@@ -28,10 +28,12 @@ Sources:
 
 Power Games awards each round's strongest hand one point. Exact ties each
 receive one point; equal final totals draw. This is the declared match format,
-when point scoring is selected. The optional chip mode collects ante from every
-seat (or their shorter all-in), then runs the shared poker-style auction before
-throws and again after all contenders keep their hands. Folded seats skip dice;
-all-in seats still throw. Main/side pots follow covered contribution levels and
+when point scoring is selected. This default mode has public dice and no betting.
+The optional chip mode conceals rolls from other players' ordinary views.
+It collects ante from every seat (or their shorter all-in), then proceeds
+directly to throws. The shared `start_auction(..., betting: false)` builds the
+same contribution ledger but completes its opening stage without bids. The
+only auction follows everyone's kept hand. Main/side pots follow covered contribution levels and
 eligible hand ranks, with tied layers divided in seat order and uncalled excess
 refunded. A sole contender wins immediately. Balances plus pot are conserved;
 zero balance is permanent elimination only after settlement. The match ends at
@@ -39,7 +41,26 @@ the round limit or with one solvent seat. B/R enters a custom raise, C checks
 or calls, F folds, A goes all-in. All rolls use native server dice, retaining
 the selected values. The existing RollAndScore surface handles dice selection.
 Enter rolls; 1–6 select values for reroll, Shift+1–6 keeps them, K stands,
-Space reads the dice, S reads scores. No card-hand metadata is used.
+Space reads the dice, S reads scores. H recalls only the viewer's own chip-mode
+hand, also while waiting and betting. No card-hand metadata is used.
+
+Chip-mode history and other viewers' live speech say only that the actor rolls
+or keeps the hand. The owner receives the detailed roll through `describe_event`;
+shared history never stores that private presentation. At contested settlement,
+the remaining contenders' complete final hands appear before pot awards.
+Folded hands and an uncontested winner are not revealed. This is presentation
+privacy, **not protection against a modified client**: the existing native public
+dice events still contain faces. No server-private protocol is claimed here.
+Do not confuse this with Liar's dice's commitment protocol below.
+
+Chip-mode bots use their own dice, public throw limit, balances and eligible
+pot layers, not completed opponents' hands. Unknown strength is approximated
+by the best of the public number of independent full throws; this is a bounded
+heuristic, not an exact retained-dice opponent solver. Raises model matching
+solvent opponents and cap exposure. Open point-mode decisions retain the public
+completed-hand model. Regression: `poker_hidden_test.rb` compares action values,
+chosen actions and subsequent RNG state with opposite hidden hands; pot/point
+tests retain independent probability and production-settlement oracles.
 
 ## Liar's dice
 

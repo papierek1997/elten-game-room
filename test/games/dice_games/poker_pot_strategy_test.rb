@@ -31,27 +31,27 @@ game = GameRoomGames::DicePoker.new
 repository = Repository.new(%w[Alice Bob Carol])
 session = { 'options' => JSON.generate(game.normalize_options('scoring' => 'chips', 'stake' => 10,
   'starting_chips' => 100, 'throws' => 2, 'round_limit' => 1)) }
-moves = [['Alice', 'ante', '1'], ['Alice', 'bet', 'check|0'], ['Bob', 'bet', 'check|0'], ['Carol', 'bet', 'check|0'],
+moves = [['Alice', 'ante', '1'],
   ['Alice', 'roll', '1,1,1,1,5'], ['Alice', 'stand', '1'], ['Bob', 'roll', '1,1,1,1,5'], ['Bob', 'stand', '1'],
   ['Carol', 'roll', '1,1,1,1,5']]
 replay, events = poker_replay(game, session, repository, moves)
 choice = poker_choice(game, replay)
-check(choice['action'] == 'roll' && choice['die_ids'] == 'd4', 'Bot overvalues a tie with two completed co-leaders')
+check(choice['action'] == 'roll' && choice['die_ids'] == 'd4', 'Bot breaks its four of a kind instead of rerolling the kicker')
 standing = poker_settle(game, session, repository, events, 'Carol', 1)
 draws = (1..6).map { |face| poker_settle(game, session, repository, events, 'Carol', 1, [1, 1, 1, 1, face]).state[:chips]['Carol'] }
 check(standing.state[:chips]['Carol'] == 100 && draws.sum.fdiv(6) > 100, 'Improved tie decision has no actual payout advantage')
 
 session = { 'options' => JSON.generate(game.normalize_options('scoring' => 'chips', 'stake' => 1,
   'starting_chips' => 100, 'throws' => 2, 'round_limit' => 2)) }
-moves = [['Alice', 'ante', '1'], ['Alice', 'bet', 'raise|98'], ['Bob', 'bet', 'call|98'], ['Carol', 'bet', 'call|98'],
+moves = [['Alice', 'ante', '1'],
   ['Alice', 'roll', '6,6,6,6,6'], ['Alice', 'stand', '1'], ['Bob', 'roll', '1,1,1,1,1'], ['Bob', 'stand', '1'],
-  ['Carol', 'roll', '6,6,6,6,6'], ['Carol', 'stand', '1'], ['Alice', 'bet', 'check|0'], ['Bob', 'bet', 'check|0'],
-  ['Carol', 'bet', 'check|0'], ['Alice', 'ante', '2'], ['Carol', 'bet', 'raise|98'], ['Alice', 'bet', 'call|98'],
+  ['Carol', 'roll', '6,6,6,6,6'], ['Carol', 'stand', '1'], ['Alice', 'bet', 'raise|98'], ['Bob', 'bet', 'call|98'],
+  ['Carol', 'bet', 'call|98'], ['Alice', 'ante', '2'],
   ['Bob', 'roll', '6,6,6,6,6'], ['Bob', 'stand', '2'], ['Carol', 'roll', '1,1,1,1,6'], ['Carol', 'stand', '2'],
-  ['Alice', 'roll', '5,5,5,5,6']]
+  ['Alice', 'roll', '5,5,5,5,6'], ['Alice', 'stand', '2'], ['Carol', 'bet', 'raise|98']]
 replay, events = poker_replay(game, session, repository, moves)
-check(poker_choice(game, replay)['action'] == 'score', 'Short-stack hand makes the bot risk a guaranteed side pot')
-standing = poker_settle(game, session, repository, events, 'Alice', 2)
+check(poker_choice(game, replay)['action'] == 'call', 'Strong own hand abandons the covered side pot')
+standing = game.replay(session, events + [dice_event(events.size + 1, 'Alice', 'bet', 'call|98')], repository)
 check(standing.state[:chips]['Alice'] == 247, 'Guaranteed side-pot result no longer matches the reducer')
 
 strategy = GameRoomDicePokerStrategy
@@ -75,4 +75,4 @@ check((plan.roll([1, 1, 1, 1], 1) - 7.0 / 18).abs < 1e-12, 'Reroll utility does 
     check((utility.call(rank) - expected).abs < 1e-12, 'Pending opponent utility disagrees with complete weighted outcomes')
   end
 end
-puts 'PASS Dice Poker eligible side pots, all known co-leaders, real settlement advantage and independent pending-outcome oracle'
+puts 'PASS Dice Poker own-hand choices, eligible side pots, real settlement advantage and independent public-outcome oracle'

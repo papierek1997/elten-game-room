@@ -126,7 +126,7 @@ msgstr "%{board}, nemovitost %{number}"
 msgid "%{board}; free parking jackpot: %{jackpot}; automatic rent: %{rent}"
 msgstr "%{board}; jackpot na Bezplatném parkování: %{jackpot}; automatický výběr nájemného: %{rent}"
 
-#: games/blackjack.rb:534
+#: games/blackjack.rb:536
 msgid "%{cards}. Total: %{total}."
 msgstr "%{cards}. Součet: %{total}."
 
@@ -162,7 +162,7 @@ msgstr "%{card}. %{bid}"
 msgid "%{card}. Choose how to change the Scriptorium"
 msgstr "%{card}. Vyberte, jak změnit skriptorium"
 
-#: lib/game_surfaces.rb:1161
+#: lib/game_surfaces.rb:1103
 msgid "%{card}. Choose how to play it"
 msgstr "%{card}. Vyberte způsob zahrání"
 
@@ -504,7 +504,7 @@ msgstr "%{field}, %{piece}."
 msgid "%{field}, %{seeds}"
 msgstr "%{field}, %{seeds}"
 
-#: lib/game_surfaces.rb:701
+#: lib/game_surfaces.rb:702
 msgid "%{field}. Selected."
 msgstr "%{field}. Vybráno."
 
@@ -904,11 +904,11 @@ msgstr[0] "%{players} získává 1 bod."
 msgstr[1] "%{players} získávají po 1 bodu."
 msgstr[2] "%{players} získávají po 1 bodu."
 
-#: lib/blackjack_auction.rb:92
+#: lib/blackjack_auction.rb:100
 msgid "%{players} share the pot of %{amount}."
 msgstr "Bank %{amount} si dělí: %{players}."
 
-#: games/blackjack_dice.rb:378
+#: games/blackjack_dice.rb:379
 msgid "%{players} tie at %{total}. No points this round."
 msgstr "Se součtem %{total} remizují: %{players}. Nikdo nezískává body."
 
@@ -1029,7 +1029,7 @@ msgstr ""
 msgid "%{player} begins the final lap."
 msgstr "%{player} začíná poslední kolo."
 
-#: games/blackjack.rb:411
+#: games/blackjack.rb:413
 msgid "%{player} bet %{chips} chips."
 msgstr "%{player} vsadil %{chips} žetonů."
 
@@ -1095,7 +1095,7 @@ msgstr "Hráč %{player} staví třetí dům na pozemku %{property}."
 msgid "%{player} buys a hint for %{price} points. Two wrong answers are removed."
 msgstr "%{player} kupuje nápovědu za %{price} bodů. Dvě chybné odpovědi mizí."
 
-#: games/poker.rb:1356 lib/blackjack_auction.rb:255
+#: games/poker.rb:1356 lib/blackjack_auction.rb:263
 msgid "%{player} calls %{amount}."
 msgstr "Hráč %{player} dorovnává %{amount}."
 
@@ -1167,7 +1167,7 @@ msgstr "%{player} mění značky počítání."
 msgid "%{player} changes the suit to %{suit}."
 msgstr "Hráč %{player} mění barvu na %{suit}."
 
-#: games/poker.rb:1355 lib/blackjack_auction.rb:254
+#: games/poker.rb:1355 lib/blackjack_auction.rb:262
 msgid "%{player} checks."
 msgstr "Hráč %{player} čeká."
 
@@ -1366,11 +1366,11 @@ msgstr "Hráč %{player} nezaplatil a dostává trest."
 msgid "%{player} does not use the Church card."
 msgstr "Hráč %{player} nepoužívá církevní kartu."
 
-#: games/blackjack.rb:508
+#: games/blackjack.rb:510
 msgid "%{player} doubles the bet and draws %{card}. Total: %{total}."
 msgstr "%{player} zdvojnásobí sázku a dobírá: %{card}. Součet: %{total}."
 
-#: games/blackjack.rb:509 games/duck_racing_support/presentation.rb:630
+#: games/blackjack.rb:511 games/duck_racing_support/presentation.rb:630
 msgid "%{player} draws %{card}. Total: %{total}."
 msgstr "%{player} si dobírá kartu: %{card}. Součet: %{total}."
 
@@ -1496,7 +1496,7 @@ msgstr "%{player} končí sázení."
 msgid "%{player} finishes practice."
 msgstr "%{player} ukončuje trénink."
 
-#: games/poker.rb:1354 lib/blackjack_auction.rb:253
+#: games/poker.rb:1354 lib/blackjack_auction.rb:261
 msgid "%{player} folds."
 msgstr "Hráč %{player} skládá karty."
 
@@ -1516,7 +1516,7 @@ msgstr "Hráč %{player} vám předal kartu: %{card}."
 msgid "%{player} gets their stake back."
 msgstr "%{player} dostává sázku zpět."
 
-#: lib/blackjack_auction.rb:259
+#: lib/blackjack_auction.rb:267
 msgid "%{player} goes all in and raises the bet to %{amount}."
 msgstr "%{player} sází vše a zvyšuje na %{amount}."
 
@@ -1544,7 +1544,7 @@ msgstr "%{player} má %{cards}: %{hand}."
 msgid "%{player} had no cards and lost the round."
 msgstr "Hráč %{player} neměl žádné karty a prohrál kolo."
 
-#: games/blackjack_dice.rb:410 games/dice_poker.rb:266 games/dice_poker.rb:312
+#: games/blackjack_dice.rb:411 games/dice_poker.rb:270 games/dice_poker.rb:316
 msgid "%{player} has %{chips} chips."
 msgstr "%{player} má %{chips} žetonů."
 
@@ -1599,7 +1599,7 @@ msgstr "%{player} tě zve k hlasovému hovoru."
 msgid "%{player} invites you to be partners in %{name}."
 msgstr "%{player} tě zve do dvojice v turnaji %{name}."
 
-#: games/poker.rb:1358 lib/blackjack_auction.rb:261
+#: games/poker.rb:1358 lib/blackjack_auction.rb:269
 msgid "%{player} is all in for %{amount}."
 msgstr "Hráč %{player} vsadil vše, celkem %{amount}."
 
@@ -1619,11 +1619,11 @@ msgstr "Hráč %{player} vybírá barvu."
 msgid "%{player} is choosing the category for round %{round}."
 msgstr "Hráč %{player} vybírá kategorii pro kolo %{round}."
 
-#: games/blackjack.rb:542
+#: games/blackjack.rb:544
 msgid "%{player} is dealt 21: %{cards}."
 msgstr "%{player} dostává rovnou 21: %{cards}."
 
-#: games/blackjack.rb:545
+#: games/blackjack.rb:547
 msgid "%{player} is dealt: %{hand}"
 msgstr "Karty hráče %{player}: %{hand}"
 
@@ -1710,7 +1710,11 @@ msgstr "Hráč %{player} si ponechává kartu."
 msgid "%{player} keeps all cards."
 msgstr "Hráč %{player} si ponechává všechny karty."
 
-#: games/dice_poker.rb:355
+#: games/dice_poker.rb:361
+msgid "%{player} keeps the hand."
+msgstr "%{player} ponechává kombinaci."
+
+#: games/dice_poker.rb:363
 msgid "%{player} keeps the hand: %{hand}."
 msgstr "%{player} si nechává kombinaci: %{hand}."
 
@@ -2006,7 +2010,7 @@ msgstr "Hráč %{player} platí kartami v počtu %{count} a získává kartu %{c
 msgid "%{player} pays %{recipient} %{amount}: %{reason}."
 msgstr "Hráč %{player} platí %{amount}; příjemce: %{recipient}; důvod: %{reason}."
 
-#: games/poker.rb:588 lib/blackjack_auction.rb:121
+#: games/poker.rb:588 lib/blackjack_auction.rb:129
 msgid "%{player} pays ante: %{amount}."
 msgstr "Hráč %{player} platí ante: %{amount}."
 
@@ -2147,7 +2151,7 @@ msgstr "%{player} hraje ze stolu (%{seat})."
 msgid "%{player} plays from dummy."
 msgstr "%{player} hraje ze stolu."
 
-#: games/blackjack.rb:529
+#: games/blackjack.rb:531
 msgid "%{player} plays the second hand."
 msgstr "%{player} hraje druhou ruku."
 
@@ -2167,7 +2171,7 @@ msgstr "Hráč %{player} navrhl hráči %{target} výměnu: %{offer}."
 msgid "%{player} proposes reracking without a winner."
 msgstr "%{player} navrhuje nové rozestavení bez vítěze."
 
-#: games/poker.rb:1357 lib/blackjack_auction.rb:256
+#: games/poker.rb:1357 lib/blackjack_auction.rb:264
 msgid "%{player} raises by %{increase}, to %{amount}."
 msgstr "Hráč %{player} zvyšuje o %{increase} na %{amount}."
 
@@ -2368,6 +2372,10 @@ msgstr "%{player} opět používá běžnou šestistěnnou kostku."
 msgid "%{player} reveals %{dice}."
 msgstr "%{player} odhaluje %{dice}."
 
+#: games/dice_poker_support/presentation.rb:46
+msgid "%{player} reveals %{dice}: %{hand}."
+msgstr "%{player} ukazuje %{dice}: %{hand}."
+
 #: games/backgammon.rb:316 games/yahtzee.rb:397
 msgid "%{player} rolled %{dice}."
 msgstr "Hráč %{player} hodil %{dice}."
@@ -2470,7 +2478,7 @@ msgstr "%{player} hodí %{dice} a překročí 21. Součet: %{total}."
 msgid "%{player} rolls %{dice} and stops at %{total}."
 msgstr "%{player} hodí %{dice} a končí na %{total}."
 
-#: games/dice_poker.rb:351
+#: games/dice_poker_support/presentation.rb:18
 msgid "%{player} rolls %{dice}: %{hand}."
 msgstr "%{player} hází %{dice}: %{hand}."
 
@@ -2485,6 +2493,10 @@ msgstr "%{player} hází %{number}."
 #: games/duck_racing_support/presentation.rb:623
 msgid "%{player} rolls %{number}. Total: %{total}."
 msgstr "%{player} hází %{number}. Součet: %{total}."
+
+#: games/dice_poker.rb:354
+msgid "%{player} rolls the dice."
+msgstr "%{player} hází kostkami."
 
 msgid "%{player} saved %{points} points. Banked score: %{total}."
 msgstr "Hráč %{player} uložil %{points} bodů. Uložené skóre: %{total}."
@@ -2600,11 +2612,11 @@ msgstr "Hráč %{player} rozsévá %{seeds} z jamky %{pit}."
 msgid "%{player} sows again."
 msgstr "Hráč %{player} znovu rozsévá."
 
-#: games/blackjack.rb:520
+#: games/blackjack.rb:522
 msgid "%{player} splits the pair. First hand: %{first} Second hand: %{second}"
 msgstr "%{player} rozdělí pár. První ruka: %{first} Druhá ruka: %{second}"
 
-#: games/blackjack.rb:498
+#: games/blackjack.rb:500
 msgid "%{player} stands at %{total}."
 msgstr "%{player} končí se součtem %{total}."
 
@@ -2801,7 +2813,7 @@ msgstr ""
 msgid "%{player} wins the match, %{score}."
 msgstr "%{player} vyhrává zápas, %{score}."
 
-#: lib/blackjack_auction.rb:90
+#: lib/blackjack_auction.rb:98
 msgid "%{player} wins the pot of %{amount}."
 msgstr "Hráč %{player} vyhrává bank ve výši %{amount}."
 
@@ -2809,7 +2821,7 @@ msgstr "Hráč %{player} vyhrává bank ve výši %{amount}."
 msgid "%{player} wins the rack or frame. Score: %{score}."
 msgstr "%{player} vyhrává partii nebo frame. Skóre: %{score}."
 
-#: games/blackjack_dice.rb:364
+#: games/blackjack_dice.rb:365
 msgid "%{player} wins the round with %{total} and earns %{points} point."
 msgid_plural "%{player} wins the round with %{total} and earns %{points} points."
 msgstr[0] "%{player} vyhrává kolo se součtem %{total} a získává %{points} bod."
@@ -3136,7 +3148,7 @@ msgstr "%{player}: %{miles} mil; %{status}; ochrany: %{safeties}; karty 200 mil:
 msgid "%{player}: %{move}."
 msgstr "%{player}: %{move}."
 
-#: games/blackjack.rb:566
+#: games/blackjack.rb:568
 msgid "%{player}: %{outcome}. Balance: %{balance}."
 msgstr "%{player}: %{outcome}. Zůstatek: %{balance}."
 
@@ -3156,7 +3168,7 @@ msgstr "%{player}: %{points}"
 msgid "%{player}: %{points} penalty points for cards not returned to the table."
 msgstr "%{player}: trestné body za karty nevrácené na stůl: %{points}."
 
-#: games/dice_poker.rb:315
+#: games/dice_poker.rb:319
 msgid "%{player}: %{points} point"
 msgid_plural "%{player}: %{points} points"
 msgstr[0] "%{player}: %{points} bod"
@@ -7484,7 +7496,7 @@ msgstr "Po třetím hodu se tabulka objeví přímo v herním poli. Šipkami nah
 msgid "After the third roll, the score sheet appears in the game field. Use Up and Down to choose a row; Left and Right let you inspect its entries, total and reserve. Press Enter in any column of that row to record the result in its first empty space. You can only record a combination that the dice qualify for. After the third roll, you may instead choose a crossing-out entry. It fills the space without scoring points."
 msgstr ""
 
-#: lib/blackjack_auction.rb:306
+#: lib/blackjack_auction.rb:314
 msgid "After the throws."
 msgstr "Po hodech."
 
@@ -7629,14 +7641,14 @@ msgstr "Všechna čtyři roční období"
 msgid "All games"
 msgstr ""
 
-#: lib/blackjack_auction.rb:354
+#: lib/blackjack_auction.rb:362
 msgid "All hands are set. Betting resumes."
 msgstr "Všichni uzavřeli své kombinace. Začíná druhé kolo sázek."
 
 msgid "All history"
 msgstr "Celá historie"
 
-#: games/poker.rb:1347 lib/blackjack_auction.rb:289
+#: games/poker.rb:1347 lib/blackjack_auction.rb:297
 msgid "All in; %{amount}"
 msgstr "Vše do hry; %{amount}"
 
@@ -9370,6 +9382,10 @@ msgstr "Sázení se pro vás znovu neotevřelo; zatím nemůžete znovu navýši
 msgid "Betting limits"
 msgstr ""
 
+#: games/generated/rulebooks/dice_poker.rb:17
+msgid "Betting starts after everyone keeps a hand. C checks or calls, R or B raises, F folds, and A goes all-in. Folding gives up your claim to the pot. When betting ends, the players still competing reveal their hands; folded hands stay hidden. If everyone but one player folds, that player wins without showing their dice."
+msgstr "Sázení začne, až všichni potvrdí své kombinace. C vyčká nebo dorovná, R či B zvýší sázku, F odstoupí a A vsadí všechno. Odstoupením se vzdáváš nároku na bank. Po skončení sázení se ukážou kombinace hráčů, kteří o něj dál hrají; ostatní zůstanou skryté. Pokud všichni kromě jednoho odstoupí, vítěz získá bank bez ukázání kostek."
+
 #: games/poker.rb:134
 msgid "Betting structure"
 msgstr "Struktura sázek"
@@ -9377,11 +9393,11 @@ msgstr "Struktura sázek"
 msgid "Betting structures and the raise cap"
 msgstr ""
 
-#: lib/blackjack_auction.rb:305
+#: lib/blackjack_auction.rb:313
 msgid "Betting: current bet %{bet}."
 msgstr "Sázení. Aktuální sázka: %{bet}."
 
-#: lib/blackjack_auction.rb:302
+#: lib/blackjack_auction.rb:310
 msgid "Betting: current bet %{bet}; your contribution %{paid}; balance %{balance}."
 msgstr "Sázení: aktuální sázka %{bet}; tvůj vklad %{paid}; zůstatek %{balance}."
 
@@ -9573,9 +9589,17 @@ msgstr "Blackjack"
 msgid "Blackjack Dice"
 msgstr "Kostkový blackjack"
 
+#: lib/game_room_changelog.rb:815
+msgid "Blackjack Dice identifies the starting player and announces a new turn even when the same player finishes one round and starts the next."
+msgstr "Kostkový blackjack oznámí začínajícího hráče a nový tah i tehdy, když stejný hráč dokončí jedno kolo a zahájí další."
+
 #: games/blackjack.rb:260
 msgid "Blackjack actions"
 msgstr "Akce v blackjacku"
+
+#: lib/game_room_changelog.rb:814
+msgid "Blackjack lists the dealer's visible card above your own cards, labelled Dealer's card rather than placed in the header. Space draws a card and Enter stands; doubling and splitting remain available when allowed."
+msgstr "Blackjack zobrazuje odkrytou kartu krupiéra na začátku seznamu nad tvými kartami s označením Karta krupiéra, nikoli v záhlaví. Mezerník dobírá kartu a Enter ukončuje dobírání; zdvojnásobení sázky a rozdělení ruky zůstávají dostupné, pokud je pravidla dovolují."
 
 #: lib/game_room_changelog.rb:814
 msgid "Blackjack shows the dealer's visible card and your hand in one game field. Space draws a card and Enter stands; doubling and splitting remain available when allowed."
@@ -10196,7 +10220,7 @@ msgstr ""
 msgid "Calendar years are unavailable. Try Refresh."
 msgstr ""
 
-#: games/poker.rb:1341 lib/blackjack_auction.rb:287
+#: games/poker.rb:1341 lib/blackjack_auction.rb:295
 msgid "Call %{amount}"
 msgstr "Dorovnat %{amount}"
 
@@ -10608,7 +10632,7 @@ msgstr "V Dražbě lze vybrat několik sad Kvízu. Kategorie se stejným názvem
 msgid "Cash Auction starts with 10000 points by default and counts answered questions, not chest auctions or auctions without bids. A tie leads to another answered question."
 msgstr "Dražba běžně začíná s 10000 body a počítá zodpovězené otázky, nikoli aukce truhel ani aukce bez nabídek. Při shodě se hraje další otázka."
 
-#: lib/game_room_changelog.rb:816
+#: lib/game_room_changelog.rb:818
 msgid "Cash Auction starts with an ante of 100 points by default. The first offer must be at least the ante; later offers only need to beat the highest bid. Three consecutive auctions without a bid cost 5% of the remaining balance."
 msgstr "V Dražbě je počáteční vklad běžně 100 bodů. První nabídka musí být alespoň tak vysoká jako vklad; další stačí zvýšit nad nejvyšší nabídku. Za tři aukce po sobě bez vlastní nabídky zaplatíš 5 % zbývajících bodů."
 
@@ -10876,7 +10900,7 @@ msgstr "Chat už neodmítne zprávu jen proto, že jiný hráč právě provedl 
 msgid "Chat sounds"
 msgstr "Zvuky chatu"
 
-#: games/poker.rb:1340 lib/blackjack_auction.rb:286
+#: games/poker.rb:1340 lib/blackjack_auction.rb:294
 msgid "Check"
 msgstr "Čekat"
 
@@ -11197,6 +11221,10 @@ msgstr "Při tvorbě stolu zvol klasickou Belote nebo Coinchée. V Coinchée se 
 msgid "Choose Go when none of your cards fits. The other player may keep playing. When neither can continue, the last player to lay a card scores one and the total resets to zero. Reaching exactly 31 gives two points instead. After the reset, the other player leads if they still have cards."
 msgstr "Pokud se žádná karta nevejde, zvol Go. Soupeř může pokračovat. Když nemůže přiložit ani jeden, získá hráč poslední karty jeden bod a součet se vynuluje. Přesných 31 dává místo toho dva body. Po vynulování začíná druhý hráč, pokud ještě má karty."
 
+#: games/generated/rulebooks/dice_poker.rb:16
+msgid "Choose Hidden dice, with betting to play for chips. Everyone pays the opening stake, then takes their dice turn without betting first. Only you hear your dice and combination; the others hear that you roll. H recalls your hand, including while you wait or bet."
+msgstr "Pro hru o žetony vyber Skryté kostky, se sázením. Každý zaplatí vklad a odehraje svůj tah; před hody se nesází. Své kostky a kombinaci slyšíš jen ty, ostatní se dozvědí pouze to, že házíš. Klávesa H připomene tvou kombinaci i při čekání nebo sázení."
+
 #: games/generated/rulebooks/blackjack.rb:16
 msgid "Choose Hit or Stand in the actions list. In the extended variant, the original two-card hand can be doubled, receiving exactly one further card, or a matching-rank pair can be split once into two hands. Each requires an additional stake. Split aces receive one card each and stop; split hands never earn the natural bonus. There is no insurance, surrender, resplitting or double after splitting."
 msgstr ""
@@ -11483,7 +11511,7 @@ msgstr ""
 msgid "Choose a square on the enemy board to shoot."
 msgstr "Vyberte pole na soupeřově desce, na které chcete vystřelit."
 
-#: games/blackjack_dice.rb:276
+#: games/blackjack_dice.rb:277
 msgid "Choose a stake everyone can afford."
 msgstr "Vyber sázku dostupnou všem hráčům."
 
@@ -11544,7 +11572,7 @@ msgstr "Zvolte platnou sázku a kladný celý počet žetonů v mezích zůstatk
 msgid "Choose a value for %{field}."
 msgstr "Vyberte hodnotu pole %{field}."
 
-#: games/blackjack.rb:286
+#: games/blackjack.rb:288
 msgid "Choose a whole-chip bet within your balance."
 msgstr "Zvol sázku v celých žetonech do výše zůstatku."
 
@@ -11633,7 +11661,7 @@ msgstr "Vyberte 1 až 10 kol."
 msgid "Choose from 1 to 100 spins."
 msgstr "Zvolte 1 až 100 roztočení."
 
-#: games/dice_poker.rb:47
+#: games/dice_poker.rb:49
 msgid "Choose from 1 to 20 rounds."
 msgstr "Zvol 1 až 20 kol."
 
@@ -11900,6 +11928,10 @@ msgstr "Zvol trumfy. Otočená karta: %{card}."
 #: games/generated/rulebooks/dice_poker.rb:14
 msgid "Choose two or three throws per turn and 1–20 rounds. If the opener limit is enabled, everyone else gets at most the number of throws used by the first player in that round. The opening seat rotates each round. Dice are public, and every throw uses native server randomness. You may change which dice to keep before a later throw."
 msgstr ""
+
+#: games/generated/rulebooks/dice_poker.rb:14
+msgid "Choose two or three throws per turn and 1–20 rounds. If the opener limit is enabled, everyone else gets at most the number of throws used by the first player in that round. The opening seat rotates each round. In the default point game, everyone hears the dice rolled. You may change which dice to keep before a later throw."
+msgstr "Vyber dva nebo tři hody za tah a 1–20 kol. Při zapnutém limitu prvního hráče mají ostatní nejvýš tolik hodů, kolik použil on. V každém kole začíná jiný hráč. Ve výchozí bodové hře slyší výsledky hodů všichni. Před dalším hodem můžeš změnit výběr ponechaných kostek."
 
 #: lib/tournaments/tournament_setup_editor.rb:193
 msgid "Choose valid dates in chronological order, covering at most 256 days."
@@ -12541,7 +12573,7 @@ msgstr ""
 msgid "Contracts, nils and overtricks"
 msgstr ""
 
-#: games/generated/rulebooks/belote.rb:21 games/generated/rulebooks/bingo.rb:18 games/generated/rulebooks/blackjack.rb:22 games/generated/rulebooks/blackjack_dice.rb:19 games/generated/rulebooks/cash_auction.rb:42 games/generated/rulebooks/cribbage.rb:17 games/generated/rulebooks/dice_poker.rb:17 games/generated/rulebooks/go.rb:15 games/generated/rulebooks/hearts.rb:15 games/generated/rulebooks/jass.rb:17 games/generated/rulebooks/krowa.rb:44 games/generated/rulebooks/liars_dice.rb:17 games/generated/rulebooks/roulette.rb:15
+#: games/generated/rulebooks/belote.rb:21 games/generated/rulebooks/bingo.rb:18 games/generated/rulebooks/blackjack.rb:22 games/generated/rulebooks/blackjack_dice.rb:19 games/generated/rulebooks/cash_auction.rb:42 games/generated/rulebooks/cribbage.rb:17 games/generated/rulebooks/dice_poker.rb:19 games/generated/rulebooks/go.rb:15 games/generated/rulebooks/hearts.rb:15 games/generated/rulebooks/jass.rb:17 games/generated/rulebooks/krowa.rb:44 games/generated/rulebooks/liars_dice.rb:17 games/generated/rulebooks/roulette.rb:15
 msgid "Controls"
 msgstr "Ovládání"
 
@@ -13718,17 +13750,21 @@ msgstr "Počet rozdání (0 bez omezení)"
 msgid "Deal the cards with D."
 msgstr "Rozdej karty klávesou D."
 
-#: games/blackjack.rb:595
+#: games/blackjack.rb:597
 msgid "Dealer finishes with %{cards}. Total: %{total}."
 msgstr "Krupier končí s kartami: %{cards}. Součet: %{total}."
 
-#: games/blackjack.rb:593
+#: games/blackjack.rb:595
 msgid "Dealer goes over 21: %{cards}. Total: %{total}."
 msgstr "Krupier překročil 21: %{cards}. Součet: %{total}."
 
-#: games/blackjack.rb:591
+#: games/blackjack.rb:593
 msgid "Dealer has blackjack: %{cards}."
 msgstr "Krupier má blackjack: %{cards}."
+
+#: games/blackjack.rb:244
+msgid "Dealer's card: %{card}"
+msgstr "Karta krupiéra: %{card}"
 
 #: games/blackjack.rb:245
 msgid "Dealer: %{cards}"
@@ -13742,7 +13778,7 @@ msgstr "Krupiér: %{cards}; součet %{total}."
 msgid "Dealing and bidding"
 msgstr ""
 
-#: games/blackjack.rb:246
+#: games/blackjack.rb:247
 msgid "Dealing player: %{player}; no house hand."
 msgstr "Rozdává %{player}; bez ruky krupiéra."
 
@@ -14036,9 +14072,13 @@ msgstr "Kostkový generál má odlišné zvuky pro sloupce skóre, bonusy, zdvoj
 msgid "Dice General now plays its column, bonus and school-scoring sounds correctly, respecting the selected volume and optional sound settings."
 msgstr "Kostkový generál nyní správně přehrává zvuky zápisu do sloupců, bonusů a hodnocení školy. Respektuje nastavenou hlasitost i vypnutí doplňkových efektů."
 
-#: lib/game_room_changelog.rb:815
+#: lib/game_room_changelog.rb:817
 msgid "Dice General, Balut and Yahtzee share consistent scoring sounds. Dice General and Balut show zero-point entries more clearly, and Balut explains points earned for completed rows and the overall total."
 msgstr "Kostkový generál, Balut a Yahtzee používají jednotné zvuky při zápisu výsledků. Kostkový generál a Balut přehledněji zobrazují zápisy za nula bodů a Balut vysvětluje body za dokončené řádky i součet zapsaných výsledků."
+
+#: lib/game_room_changelog.rb:816
+msgid "Dice Poker offers open dice without betting or hidden dice with betting. In chip mode, ante leads straight to throws, with one auction after everyone keeps a hand. Opponents hear only that a player rolls; H recalls your own hand."
+msgstr "V Kostkovém pokeru lze hrát s odkrytými kostkami bez sázení nebo se skrytými kostkami se sázením. Při hře o žetony po zaplacení vkladu rovnou házíte; jediné sázení následuje po potvrzení všech kombinací. Soupeři slyší pouze to, že hráč hází, a H připomene tvou kombinaci."
 
 msgid "Dice and score sheets"
 msgstr "Kostky a bodovací listy"
@@ -14055,15 +14095,15 @@ msgstr "Souboj v hodu kostkou"
 msgid "Dice duel."
 msgstr "Souboj v hodu kostkou."
 
-#: games/dice_poker.rb:22
+#: games/dice_poker.rb:24
 msgid "Dice poker"
 msgstr "Kostkový poker"
 
-#: games/dice_poker.rb:15
+#: games/dice_poker.rb:17
 msgid "Dice poker scoring"
 msgstr "Bodování kostkového pokeru"
 
-#: games/dice_poker.rb:136
+#: games/dice_poker.rb:138
 msgid "Dice poker: round %{round} of %{total}; throw %{roll} of %{limit}."
 msgstr "Kostkový poker: kolo %{round} z %{total}; hod %{roll} z %{limit}."
 
@@ -14416,7 +14456,7 @@ msgstr ""
 msgid "Double 9"
 msgstr "Dvojitá devítka"
 
-#: games/blackjack.rb:275
+#: games/blackjack.rb:277
 msgid "Double down"
 msgstr "Zdvojnásobit"
 
@@ -15030,7 +15070,7 @@ msgstr ""
 msgid "Each player rolls once. The highest roll wins."
 msgstr "Každý hráč jednou hodí kostkou. Vyhrává nejvyšší hod."
 
-#: games/blackjack_dice.rb:344
+#: games/blackjack_dice.rb:345
 msgid "Each player staked %{stake} chips; pot %{pot}."
 msgstr "Každý vsadil %{stake} žetonů; bank %{pot}."
 
@@ -15529,7 +15569,7 @@ msgstr "Anglický brajl bez zkratek"
 msgid "English, grade 3"
 msgstr "Anglický, stupeň 3"
 
-#: games/blackjack.rb:260
+#: games/blackjack.rb:262
 msgid "Enter"
 msgstr "Enter"
 
@@ -15684,7 +15724,7 @@ msgstr "Enter na seznamu přečte podrobnosti. Ověření vybrané operace pouze
 msgid "Enter one Polish word of 3 to 13 letters."
 msgstr "Zadejte jedno polské slovo o délce 3 až 13 písmen."
 
-#: lib/game_surfaces.rb:605
+#: lib/game_surfaces.rb:606
 msgid "Enter one destination field, for example /C4."
 msgstr "Zadejte jedno cílové pole, například /C4."
 
@@ -15720,7 +15760,7 @@ msgstr "Enterem hodíte. Šipkou dolů a Enterem uložíte výsledek."
 msgid "Enter rolls the dice. Use 1 to 6 to select a die showing that face, and Shift with the same digit to keep it instead. Space reads the dice. With no dice selected, Enter opens scoring after a roll. V opens your sheet, Shift+V another player's sheet, and S reads the totals."
 msgstr ""
 
-#: games/generated/rulebooks/dice_poker.rb:18
+#: games/generated/rulebooks/dice_poker.rb:20
 msgid "Enter rolls. After a throw, keys 1–6 select another die with that face to reroll; Shift+1–6 keeps it. Enter rerolls selected dice; without a selection it opens the Keep hand choice. K keeps the current hand directly. Space reads dice and selection; S reads scores. F1 lists current shortcuts, Ctrl+F1 opens rules. Chat, history and volume use shared controls."
 msgstr ""
 
@@ -16203,11 +16243,11 @@ msgstr "Každý začíná se šesti kartami a se zastaveným autem. Ve svém tah
 msgid "Everyone starts with 30,000 points. Payments and accepted Riichi deposits change that balance."
 msgstr ""
 
-#: games/blackjack_dice.rb:397
+#: games/blackjack_dice.rb:398
 msgid "Everyone went bust; all stakes were returned."
 msgstr "Všichni překročili 21; všechny sázky byly vráceny."
 
-#: games/blackjack_dice.rb:375
+#: games/blackjack_dice.rb:376
 msgid "Everyone went over 21. No points this round."
 msgstr "Všichni překročili 21. Nikdo nezískává body."
 
@@ -16548,7 +16588,7 @@ msgstr "Pole %{field} není v aktuálním způsobu značení desky k dispozici."
 msgid "Field %{field} is occupied by your %{piece}."
 msgstr "Pole %{field} zabírá vaše figura: %{piece}."
 
-#: lib/game_surfaces.rb:611
+#: lib/game_surfaces.rb:612
 msgid "Field %{field} is outside this board."
 msgstr "Pole %{field} leží mimo tuto desku."
 
@@ -16688,7 +16728,7 @@ msgstr ""
 msgid "Finish line"
 msgstr "Cíl"
 
-#: lib/game_surfaces.rb:1055 lib/game_surfaces/card_actions.rb:28
+#: lib/game_surfaces.rb:994 lib/game_surfaces/card_actions.rb:69
 msgid "Finish or cancel the current card choice first."
 msgstr "Nejprve dokončete nebo zrušte aktuální výběr karty."
 
@@ -16819,7 +16859,7 @@ msgstr ""
 msgid "Five new games: Rummy, Domino, Mexican Train, Scrabble and Taboo. Each has detailed rules and keyboard help in Polish and English."
 msgstr "Pět nových her: Rummy, Domino, Mexican Train, Scrabble a Taboo. Každá má podrobná pravidla a nápovědu ke klávesovým zkratkám v polštině a angličtině."
 
-#: games/dice_poker.rb:308
+#: games/dice_poker.rb:312
 msgid "Five of a kind"
 msgstr "Pět stejných"
 
@@ -17094,7 +17134,7 @@ msgstr "Květiny: %{count} fan navíc, mimo minimum 8."
 msgid "Focus on accuracy. Try to minimize typing errors before gradually increasing your speed."
 msgstr ""
 
-#: games/poker.rb:1342 lib/blackjack_auction.rb:288 lib/blackjack_auction.rb:38
+#: games/poker.rb:1342 lib/blackjack_auction.rb:296 lib/blackjack_auction.rb:46
 msgid "Fold"
 msgstr "Složit karty"
 
@@ -17305,7 +17345,7 @@ msgstr ""
 msgid "Four in a row"
 msgstr "Čtyři v řadě"
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:35
+#: games/dice_poker.rb:312 games/yahtzee.rb:35
 msgid "Four of a kind"
 msgstr "Čtveřice"
 
@@ -17490,7 +17530,7 @@ msgstr ""
 msgid "Full deck: 52 cards"
 msgstr "Úplný balíček: 52 karet"
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:36
+#: games/dice_poker.rb:312 games/yahtzee.rb:36
 msgid "Full house"
 msgstr "Full house"
 
@@ -18065,6 +18105,10 @@ msgstr "H: přečtěte, kdo ještě hraje a kdo složil karty."
 msgid "H: read your hand and high card points."
 msgstr "H: vlastní karty a figurové body."
 
+#: games/generated/rulebooks/dice_poker.rb:21
+msgid "H: read your hand in a chip game"
+msgstr "H: připomenout vlastní kombinaci při hře o žetony"
+
 #: games/generated/rulebooks/belote.rb:31 games/generated/rulebooks/bouillabaisse.rb:31 games/generated/rulebooks/cribbage.rb:22 games/generated/rulebooks/french_tarot.rb:24 games/generated/rulebooks/hearts.rb:21 games/generated/rulebooks/jass.rb:25 games/generated/rulebooks/mille_bornes.rb:49 games/generated/rulebooks/ninety_nine.rb:29 games/generated/rulebooks/scopa.rb:36 games/generated/rulebooks/three_five_eight.rb:27 games/generated/rulebooks/tysiac.rb:44
 msgid "H: read your hand."
 msgstr "H: přečtěte karty v ruce."
@@ -18202,10 +18246,14 @@ msgstr ""
 msgid "Hidden channel"
 msgstr "Skrytý kanál"
 
+#: games/dice_poker.rb:18
+msgid "Hidden dice, with betting"
+msgstr "Skryté kostky, se sázením"
+
 msgid "Hidro-elektrana Đerdap"
 msgstr "Vodní elektrárna Đerdap"
 
-#: games/dice_poker.rb:308
+#: games/dice_poker.rb:312
 msgid "High card"
 msgstr "Vysoká karta"
 
@@ -18901,7 +18949,7 @@ msgstr "V blackjacku si dobereš kartu mezerníkem. Nové karetní a kostkové h
 msgid "In Cash Auction, one hint per question removes two wrong answers for 10% of the answerer's remaining points, rounded up to at least one point."
 msgstr "V Dražbě lze u každé otázky jednou koupit nápovědu, která odstraní dvě chybné odpovědi. Stojí 10 % zbývajících bodů odpovídajícího, zaokrouhleno nahoru, nejméně jeden bod."
 
-#: lib/game_room_changelog.rb:817
+#: lib/game_room_changelog.rb:819
 msgid "In Cash Auction, payments for black chests no longer increase the question pool. The pool from earlier questions remains available for the next question."
 msgstr "V Dražbě už platby za černé truhly nezvyšují bank otázek. Bank z předchozích otázek zůstává pro další otázku."
 
@@ -19970,11 +20018,11 @@ msgstr "Házejte dvěma kostkami a sčítejte výsledky, ale přestaňte dřív,
 msgid "Keep this draft?"
 msgstr "Zachovat tento koncept?"
 
-#: games/dice_poker.rb:143
+#: games/dice_poker.rb:145
 msgid "Keep this hand: %{hand}"
 msgstr "Ponechat kombinaci: %{hand}"
 
-#: games/dice_poker.rb:23
+#: games/dice_poker.rb:25
 msgid "Keep useful dice, reroll the others and make the strongest poker combination."
 msgstr "Ponechávej užitečné kostky, ostatní přehazuj a sestav nejsilnější pokerovou kombinaci."
 
@@ -19982,7 +20030,7 @@ msgstr "Ponechávej užitečné kostky, ostatní přehazuj a sestav nejsilnějš
 msgid "Keep your own sounds the same"
 msgstr "Stálé vlastní zvuky"
 
-#: games/blackjack.rb:260 games/blackjack_dice.rb:247
+#: games/blackjack.rb:262 games/blackjack_dice.rb:247
 msgid "Keep your total"
 msgstr "Zůstat na tomto součtu"
 
@@ -21661,7 +21709,7 @@ msgstr ""
 msgid "Maximum text size: %{bytes} UTF-8 bytes (1000 kB)."
 msgstr "Maximální velikost textu: %{bytes} bajtů UTF-8 (1000 kB)."
 
-#: games/dice_poker.rb:38
+#: games/dice_poker.rb:40
 msgid "Maximum throws per turn"
 msgstr "Maximální počet hodů za tah"
 
@@ -22271,7 +22319,7 @@ msgstr "Vyžaduje úpravy"
 msgid "Never"
 msgstr "Nikdy"
 
-#: lib/game_room_changelog.rb:818
+#: lib/game_room_changelog.rb:820
 msgid "New Cash Auction and Duck Racing tables select only the general-knowledge question set for the interface language by default, rather than remembering previous question-set selections."
 msgstr "Při vytváření stolu Dražby nebo Kachních závodů je předvybrána pouze sada všeobecných znalostí v jazyce rozhraní. Předchozí výběr sad otázek se nepamatuje."
 
@@ -22408,7 +22456,7 @@ msgstr ""
 msgid "Ninoy Aquino International Airport"
 msgstr "Mezinárodní letiště Ninoye Aquina"
 
-#: __app.rb:2307 games/mahjong_support/options.rb:28 games/mille_bornes.rb:138 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:53 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/draft_preview.rb:172 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
+#: __app.rb:2307 games/mahjong_support/options.rb:28 games/mille_bornes.rb:138 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:96 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/draft_preview.rb:172 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
 msgid "No"
 msgstr "Ne"
 
@@ -22977,11 +23025,11 @@ msgstr "Políčko nemá zvláštní účinek."
 msgid "No statistics were collected for this period."
 msgstr ""
 
-#: games/dice_poker.rb:36
+#: games/dice_poker.rb:38
 msgid "No straights; ones are aces and rank highest"
 msgstr "Bez postupek; jedničky jsou nejvyšší esa"
 
-#: games/dice_poker.rb:35
+#: games/dice_poker.rb:37
 msgid "No straights; sixes high"
 msgstr "Bez postupek; šestky nejvyšší"
 
@@ -23261,7 +23309,7 @@ msgstr ""
 msgid "Number of question rounds (8 to 32)"
 msgstr "Počet kol s otázkou (8 až 32)"
 
-#: games/blackjack.rb:37 games/blackjack_dice.rb:39 games/darts.rb:43 games/dice_poker.rb:41 games/mania_pisania.rb:75
+#: games/blackjack.rb:37 games/blackjack_dice.rb:39 games/darts.rb:43 games/dice_poker.rb:43 games/mania_pisania.rb:75
 msgid "Number of rounds"
 msgstr "Počet kol"
 
@@ -23556,7 +23604,7 @@ msgstr "Při jednom nebo dvou sloupcích se prémie neudělují. Volitelné řá
 msgid "One or two columns disable bonuses. Optional even and odd rows require every die to have the chosen parity. Fixed scoring replaces points for triple, small straight, large straight, full house, four of a kind and five of a kind with 20, 25, 30, 35, 40 and 50. First-roll doubling never applies to school. Strict school crosses also block future bonuses."
 msgstr ""
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:41
+#: games/dice_poker.rb:312 games/yahtzee.rb:41
 msgid "One pair"
 msgstr "Jeden pár"
 
@@ -23693,6 +23741,10 @@ msgstr "Šipkami a Enterem otevři druh sázky. Enter na sázce otevře pole pro
 msgid "Open a black chest"
 msgstr "Otevřít černou truhlu"
 
+#: games/dice_poker.rb:18
+msgid "Open dice, without betting"
+msgstr "Odkryté kostky, bez sázení"
+
 #: lib/tournaments/proposal_notice_dialog.rb:24
 msgid "Open match table"
 msgstr "Otevřít stůl zápasu"
@@ -23741,7 +23793,7 @@ msgstr ""
 msgid "Opening a menu, help, Messages or another ELTEN window does not pause the match. The ball, bots, score and table chat continue to update. Keys used in that other window do not move your paddle or serve when you return. To defend manually, return to the playfield. The General category of Power Games settings controls speech outside the table window."
 msgstr ""
 
-#: games/blackjack.rb:39 games/blackjack_dice.rb:38 games/dice_poker.rb:18
+#: games/blackjack.rb:39 games/blackjack_dice.rb:38 games/dice_poker.rb:20
 msgid "Opening contribution"
 msgstr "Vstupní vklad"
 
@@ -23964,7 +24016,7 @@ msgstr "Mimo zadávání textu Shift+Left/Right vybírá pohled historie: Vše, 
 msgid "Outside the fixed joker profile, the starting hand can have three to fifteen cards, normally five. There must be enough cards for all players and the first table card. The penalty for forgetting Makao is independent of the profile: one to ten cards, normally one."
 msgstr ""
 
-#: games/blackjack.rb:524
+#: games/blackjack.rb:526
 msgid "Over 21."
 msgstr "Přes 21."
 
@@ -24499,7 +24551,7 @@ msgstr "Kus nábytku"
 msgid "Piece selected. Choose its destination or press Enter again for its only move."
 msgstr "Kámen vybrán. Vyberte cíl, nebo znovu stiskněte Enter pro jediný tah."
 
-#: lib/game_surfaces.rb:562
+#: lib/game_surfaces.rb:563
 msgid "Piece selected. Choose its destination."
 msgstr "Kámen vybrán. Vyberte cílové pole."
 
@@ -25179,7 +25231,7 @@ msgstr "Pokerový balíček"
 msgid "Poker dice"
 msgstr ""
 
-#: games/dice_poker.rb:34
+#: games/dice_poker.rb:36
 msgid "Poker dice with straights; sixes high"
 msgstr "Kostkový poker s postupkami; šestky nejvyšší"
 
@@ -25360,7 +25412,7 @@ msgstr "Limit podle banku"
 msgid "Pot: %{amount}."
 msgstr "Bank: %{amount}."
 
-#: games/blackjack_dice.rb:252
+#: games/blackjack_dice.rb:253
 msgid "Pot: %{chips} chips"
 msgstr "Bank: %{chips} žetonů"
 
@@ -25541,7 +25593,7 @@ msgstr ""
 msgid "Preparing the next round"
 msgstr "Příprava dalšího kola"
 
-#: lib/blackjack_auction.rb:25
+#: lib/blackjack_auction.rb:33
 msgid "Preparing the opening bets."
 msgstr "Příprava sázek."
 
@@ -26457,11 +26509,11 @@ msgstr "Zvýšit sázku o %{amount}"
 msgid "Raise by %{minimum} to %{maximum} above the call."
 msgstr "Navýšení nad dorovnání musí být v rozmezí %{minimum} až %{maximum}."
 
-#: games/poker.rb:1346 lib/blackjack_auction.rb:291
+#: games/poker.rb:1346 lib/blackjack_auction.rb:299
 msgid "Raise by %{raise}; total payment %{amount}"
 msgstr "Navýšit o %{raise}; celková platba %{amount}"
 
-#: games/poker.rb:431 lib/blackjack_auction.rb:327
+#: games/poker.rb:431 lib/blackjack_auction.rb:335
 msgid "Raise by:"
 msgstr "Navýšit o:"
 
@@ -27789,7 +27841,7 @@ msgstr "Hoďte kostkami"
 msgid "Roll the dice before choosing a category."
 msgstr "Před výběrem kategorie hoďte kostkami."
 
-#: games/balut.rb:88 games/dice_poker.rb:147 games/kosciane.rb:158
+#: games/balut.rb:88 games/dice_poker.rb:149 games/kosciane.rb:158
 msgid "Roll the dice first"
 msgstr "Nejdříve hoď kostkami"
 
@@ -27989,7 +28041,7 @@ msgstr "Kolo %{round}. %{progress}. Zdvih %{current} z %{total}."
 msgid "Round %{round}. Cards dealt."
 msgstr "Kolo %{round}. Karty rozdány."
 
-#: games/blackjack.rb:462
+#: games/blackjack.rb:464
 msgid "Round %{round}. Dealer shows %{card}."
 msgstr "Rozdání %{round}. Krupiér ukazuje %{card}."
 
@@ -28021,7 +28073,7 @@ msgstr "Kolo %{round}. Zdvihy: %{tricks}. Zdvih %{current} z %{total}."
 msgid "Round %{round}: %{players} earn one point."
 msgstr "Kolo %{round}: %{players} získávají po bodu."
 
-#: games/dice_poker.rb:389
+#: games/dice_poker.rb:398
 msgid "Round %{round}: %{players} tie. Each earns one point. Winning hand: %{hand}."
 msgstr "Kolo %{round}. Remizují: %{players}. Každý z nich získává bod. Nejlepší kombinace: %{hand}."
 
@@ -28029,7 +28081,7 @@ msgstr "Kolo %{round}. Remizují: %{players}. Každý z nich získává bod. Nej
 msgid "Round %{round}: %{player} deals; everyone plays against the other players."
 msgstr "Kolo %{round}: rozdává %{player}; všichni hrají proti sobě."
 
-#: games/dice_poker.rb:386
+#: games/dice_poker.rb:395
 msgid "Round %{round}: %{player} wins and earns one point. Winning hand: %{hand}."
 msgstr "Kolo %{round}. %{player} vyhrává a získává bod. Vítězná kombinace: %{hand}."
 
@@ -28087,7 +28139,7 @@ msgstr ""
 msgid "Round settlement"
 msgstr "Vyhodnocení kola"
 
-#: games/blackjack_dice.rb:274
+#: games/blackjack_dice.rb:275
 msgid "Round stake (1 to %{maximum})"
 msgstr "Sázka kola (1 až %{maximum})"
 
@@ -29257,7 +29309,7 @@ msgstr "Nastavení bylo uloženo. Aby se projevilo nastavení jazyků rozhraní,
 msgid "Settle disputes before the next turn"
 msgstr ""
 
-#: lib/blackjack_auction.rb:26
+#: lib/blackjack_auction.rb:34
 msgid "Settling the blackjack round."
 msgstr "Vyhodnocování blackjacku."
 
@@ -30447,7 +30499,7 @@ msgstr "Roztočit kolo"
 msgid "Spin the wheel with Space."
 msgstr "Roztoč kolo mezerníkem."
 
-#: games/blackjack.rb:275
+#: games/blackjack.rb:277
 msgid "Split pair"
 msgstr "Rozdělit pár"
 
@@ -30661,7 +30713,7 @@ msgstr ""
 msgid "Starting an auction"
 msgstr "Začátek aukce"
 
-#: games/blackjack.rb:38 games/blackjack_dice.rb:37 games/dice_poker.rb:17 games/poker.rb:127
+#: games/blackjack.rb:38 games/blackjack_dice.rb:37 games/dice_poker.rb:19 games/poker.rb:127
 msgid "Starting chips"
 msgstr "Počáteční žetony"
 
@@ -30669,7 +30721,7 @@ msgstr "Počáteční žetony"
 msgid "Starting chips (10-10000)"
 msgstr "Počáteční žetony (10–10000)"
 
-#: games/blackjack.rb:49 games/blackjack_dice.rb:71 games/dice_poker.rb:49
+#: games/blackjack.rb:49 games/blackjack_dice.rb:71 games/dice_poker.rb:51
 msgid "Starting chips must be from 10 to 10000."
 msgstr "Počáteční žetony musí být od 10 do 10000."
 
@@ -30786,7 +30838,7 @@ msgstr ""
 msgid "Stores: %{values}."
 msgstr "Zásobníky: %{values}."
 
-#: games/balut.rb:230 games/dice_poker.rb:308
+#: games/balut.rb:230 games/dice_poker.rb:312
 msgid "Straight"
 msgstr "Postupka"
 
@@ -32487,6 +32539,10 @@ msgstr ""
 msgid "The first round is being prepared."
 msgstr "Připravuje se první kolo."
 
+#: games/generated/rulebooks/blackjack.rb:16
+msgid "The first row of the game list is labelled Dealer’s card; your cards follow below, and the header gives your total. Press Space to draw a card or Enter to keep your total. In the extended variant, D doubles the original two-card hand and draws exactly one further card. P splits a matching-rank pair once into two hands. Each requires an additional stake. Split aces receive one card each and stop; split hands never earn the natural bonus. There is no insurance, surrender, resplitting or double after splitting."
+msgstr "První řádek herního seznamu je označen jako Karta krupiéra; pod ním jsou tvoje karty a záhlaví uvádí jejich součet. Mezerníkem dobereš kartu, Enterem zůstaneš na současném součtu. V rozšířené variantě D zdvojnásobí sázku na původní dvoukaretní ruku a dobere právě jednu kartu. P jednou rozdělí pár stejné hodnoty na dvě ruce. Obě možnosti vyžadují další sázku. Rozdělená esa dostanou po jedné kartě a končí; rozdělené ruce nikdy nezískají prémii za blackjack. Není pojištění, vzdání se, opětovné dělení ani zdvojnásobení po rozdělení."
+
 msgid "The first seat serves first. Service changes after every two completed points. The table selects a target of 7, 11 or 21 points, but a player also needs a lead of at least two. At 10–10 in an 11-point match, for example, 11–10 is not enough; 12–10 wins. There is a short break after each point before the next serve."
 msgstr ""
 
@@ -33148,7 +33204,7 @@ msgstr ""
 msgid "The number of starting tokens must be greater than zero."
 msgstr "Počáteční počet žetonů musí být větší než nula."
 
-#: games/dice_poker.rb:40
+#: games/dice_poker.rb:42
 msgid "The opener's throws limit the other players"
 msgstr "Hody zahajujícího určují limit ostatních"
 
@@ -33862,7 +33918,7 @@ msgstr "Nastavení zvuku se nepodařilo uložit."
 msgid "The sound volume could not be saved."
 msgstr "Hlasitost zvuků se nepodařilo uložit."
 
-#: games/blackjack.rb:50 games/blackjack_dice.rb:72 games/dice_poker.rb:50
+#: games/blackjack.rb:50 games/blackjack_dice.rb:72 games/dice_poker.rb:52
 msgid "The stake must be positive and cannot exceed starting chips."
 msgstr "Sázka musí být kladná a nesmí překročit počáteční žetony."
 
@@ -33896,6 +33952,10 @@ msgstr ""
 #: lib/tournaments/local_fixed_team_execution_screen.rb:370 lib/tournaments/match_entry_screen.rb:331
 msgid "The status could not be read completely. The last valid view is retained."
 msgstr ""
+
+#: games/generated/rulebooks/dice_poker.rb:18
+msgid "The strongest hand wins the pot and ties split it. Odd chips are handed out in round order. You cannot win more from another player than you put in yourself. Any part of a bet nobody matched is returned. If everyone but one player folds, that player gets the pot without further play. Highest balance wins at the round limit or when only one player still has chips. If nobody is eligible for a pot, the bets in it are returned. Equal highest balances draw."
+msgstr "Bank získá nejlepší kombinace, při shodě se dělí. Zbylé žetony se přidělují podle pořadí v kole. Od soupeře nemůžeš vyhrát víc, než kolik jsi sám vsadil. Nedorovnaná část se vrací. Pokud ostatní odstoupí, poslední hráč získá bank bez další hry. Po posledním kole nebo když zbývá jediný hráč se žetony vyhrává nejvyšší zůstatek. Pokud na bank nemá nárok nikdo, vklady se vrátí. Shodný nejvyšší zůstatek znamená remízu."
 
 #: lib/quiz_contributions/drafts.rb:58
 msgid "The submission no longer matches this draft."
@@ -35381,7 +35441,7 @@ msgstr ""
 msgid "Three matching dice qualify for a number row. Extra matching dice go into that number's reserve. Reserve dice can complete a later result but do not score."
 msgstr "Tři stejné kostky umožňují zápis do číselného řádku. Další stejné kostky jdou do rezervy tohoto čísla. Mohou doplnit pozdější výsledek, ale samy nebodují."
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:34
+#: games/dice_poker.rb:312 games/yahtzee.rb:34
 msgid "Three of a kind"
 msgstr "Trojice"
 
@@ -35411,7 +35471,7 @@ msgstr ""
 msgid "Three teams"
 msgstr "Tři týmy"
 
-#: games/dice_poker.rb:39
+#: games/dice_poker.rb:41
 msgid "Three throws"
 msgstr "Tři hody"
 
@@ -36240,7 +36300,7 @@ msgstr ""
 msgid "Two mixed kongs — 6 fan: one exposed and one concealed kong. This replaces the individual kong bonuses. This version distinguishes that combination in addition to the standard 81 named entries."
 msgstr ""
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:42
+#: games/dice_poker.rb:312 games/yahtzee.rb:42
 msgid "Two pairs"
 msgstr "Dva páry"
 
@@ -36320,7 +36380,7 @@ msgstr "Dva týmy"
 msgid "Two teams of two"
 msgstr ""
 
-#: games/dice_poker.rb:39
+#: games/dice_poker.rb:41
 msgid "Two throws"
 msgstr "Dva hody"
 
@@ -36681,7 +36741,7 @@ msgstr "Ukrajinská hrací deska"
 msgid "Unavailable choice: %{id}"
 msgstr "Nedostupná volba: %{id}"
 
-#: games/blackjack_dice.rb:443
+#: games/blackjack_dice.rb:444
 msgid "Unclaimed pot of %{pot} chips returned to its contributors."
 msgstr "Nevyhraný bank %{pot} žetonů byl vrácen přispěvatelům."
 
@@ -37260,7 +37320,7 @@ msgstr "V: zjisti, komu patří crib."
 msgid "V: repeat the deal rules."
 msgstr "V: zopakuj pravidla rozdání."
 
-#: games/backgammon.rb:39 games/belote_support/belote_table.rb:27 games/bingo.rb:27 games/blackjack.rb:32 games/blackjack_dice.rb:28 games/dice_poker.rb:33 games/go.rb:20 games/jass_support/jass_table.rb:42 games/liars_dice.rb:28
+#: games/backgammon.rb:39 games/belote_support/belote_table.rb:27 games/bingo.rb:27 games/blackjack.rb:32 games/blackjack_dice.rb:28 games/dice_poker.rb:35 games/go.rb:20 games/jass_support/jass_table.rb:42 games/liars_dice.rb:28
 msgid "Variant"
 msgstr "Varianta"
 
@@ -37563,7 +37623,7 @@ msgstr "Čekání na odhalení odeslaných odpovědí."
 msgid "Waiting for the cards to be dealt"
 msgstr "Čekání na rozdání karet"
 
-#: lib/blackjack_auction.rb:28
+#: lib/blackjack_auction.rb:36
 msgid "Waiting for the cards to be dealt."
 msgstr "Čeká se na rozdání karet."
 
@@ -38553,7 +38613,7 @@ msgstr "Rok"
 msgid "Yellowbelly die"
 msgstr "Zbabělá kostka"
 
-#: __app.rb:2307 games/mahjong_support/options.rb:28 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:53 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
+#: __app.rb:2307 games/mahjong_support/options.rb:28 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:96 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
 msgid "Yes"
 msgstr "Ano"
 
@@ -38862,7 +38922,7 @@ msgstr ""
 msgid "You cannot move a checker onto the bar."
 msgstr "Kámen nelze přesunout na bar."
 
-#: lib/game_surfaces.rb:557
+#: lib/game_surfaces.rb:558
 msgid "You cannot move from this field."
 msgstr "Z tohoto pole nelze táhnout."
 
@@ -38874,7 +38934,7 @@ msgstr "Vybranou figurou nelze táhnout z pole %{from} na %{to}. Stisknutím V s
 msgid "You cannot move the selected piece to %{field}. Press V to hear its available moves."
 msgstr "Vybranou figurku nelze přesunout na pole %{field}. Stiskněte V pro přečtení dostupných tahů."
 
-#: lib/game_surfaces.rb:571
+#: lib/game_surfaces.rb:572
 msgid "You cannot move the selected piece to this field."
 msgstr "Vybraný kámen nelze přesunout na toto pole."
 
@@ -39058,7 +39118,7 @@ msgstr "V této hře nemáš kostky."
 msgid "You have no kings."
 msgstr "Nemáte žádné dámy."
 
-#: games/base/shortcuts.rb:169 lib/game_surfaces.rb:1066 lib/game_surfaces/packet_cards.rb:198
+#: games/base/shortcuts.rb:169 lib/game_surfaces.rb:1005 lib/game_surfaces/packet_cards.rb:198
 msgid "You have no playable card."
 msgstr "Nemáte žádnou kartu, kterou lze zahrát."
 
@@ -39462,7 +39522,7 @@ msgstr "Vaše nabídka v aukci:"
 msgid "Your availability changed in another client. Enable it again if you want to participate."
 msgstr ""
 
-#: games/blackjack.rb:284
+#: games/blackjack.rb:286
 msgid "Your bet (1 to %{maximum})"
 msgstr "Tvoje sázka (1 až %{maximum})"
 
@@ -39538,6 +39598,10 @@ msgstr "Tvé kostky budou dostupné po přípravě hodů všech hráčů."
 msgid "Your dice: %{dice}."
 msgstr "Tvé kostky: %{dice}."
 
+#: games/dice_poker_support/presentation.rb:36
+msgid "Your dice: %{dice}. %{hand}."
+msgstr "Tvé kostky: %{dice}. %{hand}."
+
 #: games/krowa_support/client.rb:240
 msgid "Your dictionary is empty."
 msgstr "Váš slovník je prázdný."
@@ -39603,7 +39667,7 @@ msgstr "Vaše skupina: %{group}."
 msgid "Your hand"
 msgstr "Vaše karty"
 
-#: games/blackjack.rb:252
+#: games/blackjack.rb:253
 msgid "Your hand %{hand} of %{count}: %{total}"
 msgstr "Tvoje ruka %{hand} z %{count}: %{total}"
 
@@ -39611,7 +39675,7 @@ msgstr "Tvoje ruka %{hand} z %{count}: %{total}"
 msgid "Your hand and your partner"
 msgstr "Karty a partner"
 
-#: games/blackjack.rb:296 games/card_game.rb:106 games/dealt_card_game.rb:119 games/dealt_card_game.rb:136 games/duck_racing_support/presentation.rb:211 games/makao.rb:356 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:369 games/rummy_ui.rb:61 games/scientific_war.rb:789 games/spades.rb:875 games/three_five_eight.rb:376 games/tile_game.rb:146 games/tysiac.rb:448 games/uno.rb:462 lib/game_surfaces/packet_cards.rb:52
+#: games/blackjack.rb:298 games/card_game.rb:106 games/dealt_card_game.rb:119 games/dealt_card_game.rb:136 games/duck_racing_support/presentation.rb:211 games/makao.rb:356 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:369 games/rummy_ui.rb:61 games/scientific_war.rb:789 games/spades.rb:875 games/three_five_eight.rb:376 games/tile_game.rb:146 games/tysiac.rb:448 games/uno.rb:462 lib/game_surfaces/packet_cards.rb:52
 msgid "Your hand is empty"
 msgstr "Ruka je prázdná"
 
@@ -39662,7 +39726,7 @@ msgstr ""
 msgid "Your hand; discard %{remaining} cards"
 msgstr ""
 
-#: games/blackjack.rb:254
+#: games/blackjack.rb:255
 msgid "Your hand; total %{total}."
 msgstr "Tvoje karty. Součet: %{total}."
 
@@ -40073,7 +40137,7 @@ msgstr "přijmout výměnu"
 msgid "ace"
 msgstr "eso"
 
-#: games/poker.rb:407 lib/blackjack_auction.rb:39
+#: games/poker.rb:407 lib/blackjack_auction.rb:47
 msgid "all in"
 msgstr "vše vsazeno"
 
@@ -40539,7 +40603,7 @@ msgstr "tmavě modrá skupina"
 msgid "dark side"
 msgstr "tmavá strana"
 
-#: games/blackjack.rb:271
+#: games/blackjack.rb:273
 msgid "deal the next social blackjack hand"
 msgstr "rozdat další společenský blackjack"
 
@@ -40800,7 +40864,7 @@ msgstr "hra skončila"
 msgid "game in progress"
 msgstr "hra probíhá"
 
-#: games/blackjack.rb:558
+#: games/blackjack.rb:560
 msgid "gets the stake back"
 msgstr "vrácená sázka"
 
@@ -40852,7 +40916,7 @@ msgstr "uhodnuto"
 msgid "han"
 msgstr "han"
 
-#: games/blackjack.rb:564
+#: games/blackjack.rb:566
 msgid "hand %{hand}: %{outcome}"
 msgstr "ruka %{hand}: %{outcome}"
 
@@ -40965,14 +41029,14 @@ msgstr "rozhoduje"
 msgid "keep a %{value}"
 msgstr "ponechat %{value}"
 
-#: games/dice_poker.rb:158 games/yahtzee.rb:270
+#: games/dice_poker.rb:162 games/yahtzee.rb:270
 msgid "keep another die showing %{value}"
 msgstr "ponechat další kostku s hodnotou %{value}"
 
 msgid "keep die %{number}"
 msgstr "ponechat kostku %{number}"
 
-#: games/dice_poker.rb:162
+#: games/dice_poker.rb:166
 msgid "keep the current poker dice hand"
 msgstr "ponechat aktuální pokerovou kombinaci"
 
@@ -41043,7 +41107,7 @@ msgstr "poslouchat z pohledu druhého hráče"
 msgid "listen from the third player's perspective"
 msgstr "poslouchat z pohledu třetího hráče"
 
-#: games/blackjack.rb:556
+#: games/blackjack.rb:558
 msgid "loss %{amount}"
 msgstr "ztráta: %{amount}"
 
@@ -41393,7 +41457,7 @@ msgstr "předchozí hratelná karta"
 msgid "previous playable tile"
 msgstr "předchozí hratelný kámen"
 
-#: games/blackjack.rb:554
+#: games/blackjack.rb:556
 msgid "profit %{amount}"
 msgstr "zisk: %{amount}"
 
@@ -41442,7 +41506,7 @@ msgstr "uvozovky"
 msgid "railroad"
 msgstr "železnice"
 
-#: games/poker.rb:432 lib/blackjack_auction.rb:327
+#: games/poker.rb:432 lib/blackjack_auction.rb:335
 msgid "raise"
 msgstr "navýšit sázku"
 
@@ -41634,7 +41698,7 @@ msgstr "přečíst pravidla rozdání"
 msgid "read the dice"
 msgstr "přečíst kostky"
 
-#: games/dice_poker.rb:161 games/yahtzee.rb:287
+#: games/dice_poker.rb:165 games/yahtzee.rb:287
 msgid "read the dice and their selection state"
 msgstr "přečtěte kostky a stav jejich výběru"
 
@@ -41758,7 +41822,7 @@ msgstr "přečtěte informace o kole"
 msgid "read the rules for this round"
 msgstr "připomenout pravidla tohoto kola"
 
-#: games/balut.rb:137 games/cash_auction/presentation.rb:41 games/dice_poker.rb:151 games/mahjong.rb:164 games/uno.rb:511 games/yahtzee.rb:288 lib/game_shortcuts.rb:9
+#: games/balut.rb:137 games/cash_auction/presentation.rb:41 games/dice_poker.rb:153 games/mahjong.rb:164 games/uno.rb:511 games/yahtzee.rb:288 lib/game_shortcuts.rb:9
 msgid "read the scores"
 msgstr "přečtěte výsledky"
 
@@ -41914,6 +41978,10 @@ msgstr "přečíst své jamky"
 msgid "read your points"
 msgstr "přečíst vlastní body"
 
+#: games/dice_poker_support/presentation.rb:35
+msgid "read your poker dice hand"
+msgstr "přečíst vlastní kombinaci kostek"
+
 #: games/duck_racing_support/presentation.rb:230
 msgid "read your position and feathers"
 msgstr "přečíst vaši pozici a pírka"
@@ -42038,7 +42106,7 @@ msgstr "pravý mantinel"
 msgid "right edge"
 msgstr "pravý okraj"
 
-#: games/blackjack_dice.rb:267
+#: games/blackjack_dice.rb:268
 msgid "roll the dice"
 msgstr "hodit kostkami"
 
@@ -42096,7 +42164,7 @@ msgstr "skóre"
 msgid "select a %{value} for reroll"
 msgstr "vybrat kostku s hodnotou %{value} k opětovnému hodu"
 
-#: games/dice_poker.rb:157 games/yahtzee.rb:266
+#: games/dice_poker.rb:161 games/yahtzee.rb:266
 msgid "select another die showing %{value}"
 msgstr "vybrat další kostku s hodnotou %{value}"
 
@@ -42118,11 +42186,11 @@ msgstr "středník"
 msgid "set the final contract"
 msgstr "stanovte konečný závazek"
 
-#: games/blackjack_dice.rb:273
+#: games/blackjack_dice.rb:274
 msgid "set the round stake"
 msgstr "nastavit sázku kola"
 
-#: games/blackjack.rb:283
+#: games/blackjack.rb:285
 msgid "set your bet before the deal"
 msgstr "nastavit vlastní sázku před rozdáním"
 

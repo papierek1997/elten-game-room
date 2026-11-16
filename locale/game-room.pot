@@ -123,7 +123,7 @@ msgstr ""
 msgid "%{board}; free parking jackpot: %{jackpot}; automatic rent: %{rent}"
 msgstr ""
 
-#: games/blackjack.rb:534
+#: games/blackjack.rb:536
 msgid "%{cards}. Total: %{total}."
 msgstr ""
 
@@ -159,7 +159,7 @@ msgstr ""
 msgid "%{card}. Choose how to change the Scriptorium"
 msgstr ""
 
-#: lib/game_surfaces.rb:1161
+#: lib/game_surfaces.rb:1103
 msgid "%{card}. Choose how to play it"
 msgstr ""
 
@@ -496,7 +496,7 @@ msgstr ""
 msgid "%{field}, %{seeds}"
 msgstr ""
 
-#: lib/game_surfaces.rb:701
+#: lib/game_surfaces.rb:702
 msgid "%{field}. Selected."
 msgstr ""
 
@@ -891,11 +891,11 @@ msgid_plural "%{players} receive 1 point each."
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/blackjack_auction.rb:92
+#: lib/blackjack_auction.rb:100
 msgid "%{players} share the pot of %{amount}."
 msgstr ""
 
-#: games/blackjack_dice.rb:378
+#: games/blackjack_dice.rb:379
 msgid "%{players} tie at %{total}. No points this round."
 msgstr ""
 
@@ -1015,7 +1015,7 @@ msgstr ""
 msgid "%{player} begins the final lap."
 msgstr ""
 
-#: games/blackjack.rb:411
+#: games/blackjack.rb:413
 msgid "%{player} bet %{chips} chips."
 msgstr ""
 
@@ -1081,7 +1081,7 @@ msgstr ""
 msgid "%{player} buys a hint for %{price} points. Two wrong answers are removed."
 msgstr ""
 
-#: games/poker.rb:1356 lib/blackjack_auction.rb:255
+#: games/poker.rb:1356 lib/blackjack_auction.rb:263
 msgid "%{player} calls %{amount}."
 msgstr ""
 
@@ -1152,7 +1152,7 @@ msgstr ""
 msgid "%{player} changes the suit to %{suit}."
 msgstr ""
 
-#: games/poker.rb:1355 lib/blackjack_auction.rb:254
+#: games/poker.rb:1355 lib/blackjack_auction.rb:262
 msgid "%{player} checks."
 msgstr ""
 
@@ -1350,11 +1350,11 @@ msgstr ""
 msgid "%{player} does not use the Church card."
 msgstr ""
 
-#: games/blackjack.rb:508
+#: games/blackjack.rb:510
 msgid "%{player} doubles the bet and draws %{card}. Total: %{total}."
 msgstr ""
 
-#: games/blackjack.rb:509 games/duck_racing_support/presentation.rb:630
+#: games/blackjack.rb:511 games/duck_racing_support/presentation.rb:630
 msgid "%{player} draws %{card}. Total: %{total}."
 msgstr ""
 
@@ -1478,7 +1478,7 @@ msgstr ""
 msgid "%{player} finishes practice."
 msgstr ""
 
-#: games/poker.rb:1354 lib/blackjack_auction.rb:253
+#: games/poker.rb:1354 lib/blackjack_auction.rb:261
 msgid "%{player} folds."
 msgstr ""
 
@@ -1498,7 +1498,7 @@ msgstr ""
 msgid "%{player} gets their stake back."
 msgstr ""
 
-#: lib/blackjack_auction.rb:259
+#: lib/blackjack_auction.rb:267
 msgid "%{player} goes all in and raises the bet to %{amount}."
 msgstr ""
 
@@ -1526,7 +1526,7 @@ msgstr ""
 msgid "%{player} had no cards and lost the round."
 msgstr ""
 
-#: games/blackjack_dice.rb:410 games/dice_poker.rb:266 games/dice_poker.rb:312
+#: games/blackjack_dice.rb:411 games/dice_poker.rb:270 games/dice_poker.rb:316
 msgid "%{player} has %{chips} chips."
 msgstr ""
 
@@ -1580,7 +1580,7 @@ msgstr ""
 msgid "%{player} invites you to be partners in %{name}."
 msgstr ""
 
-#: games/poker.rb:1358 lib/blackjack_auction.rb:261
+#: games/poker.rb:1358 lib/blackjack_auction.rb:269
 msgid "%{player} is all in for %{amount}."
 msgstr ""
 
@@ -1600,11 +1600,11 @@ msgstr ""
 msgid "%{player} is choosing the category for round %{round}."
 msgstr ""
 
-#: games/blackjack.rb:542
+#: games/blackjack.rb:544
 msgid "%{player} is dealt 21: %{cards}."
 msgstr ""
 
-#: games/blackjack.rb:545
+#: games/blackjack.rb:547
 msgid "%{player} is dealt: %{hand}"
 msgstr ""
 
@@ -1694,7 +1694,11 @@ msgstr ""
 msgid "%{player} keeps all cards."
 msgstr ""
 
-#: games/dice_poker.rb:355
+#: games/dice_poker.rb:361
+msgid "%{player} keeps the hand."
+msgstr ""
+
+#: games/dice_poker.rb:363
 msgid "%{player} keeps the hand: %{hand}."
 msgstr ""
 
@@ -1992,7 +1996,7 @@ msgstr ""
 msgid "%{player} pays %{recipient} %{amount}: %{reason}."
 msgstr ""
 
-#: games/poker.rb:588 lib/blackjack_auction.rb:121
+#: games/poker.rb:588 lib/blackjack_auction.rb:129
 msgid "%{player} pays ante: %{amount}."
 msgstr ""
 
@@ -2133,7 +2137,7 @@ msgstr ""
 msgid "%{player} plays from dummy."
 msgstr ""
 
-#: games/blackjack.rb:529
+#: games/blackjack.rb:531
 msgid "%{player} plays the second hand."
 msgstr ""
 
@@ -2153,7 +2157,7 @@ msgstr ""
 msgid "%{player} proposes reracking without a winner."
 msgstr ""
 
-#: games/poker.rb:1357 lib/blackjack_auction.rb:256
+#: games/poker.rb:1357 lib/blackjack_auction.rb:264
 msgid "%{player} raises by %{increase}, to %{amount}."
 msgstr ""
 
@@ -2355,6 +2359,10 @@ msgstr ""
 msgid "%{player} reveals %{dice}."
 msgstr ""
 
+#: games/dice_poker_support/presentation.rb:46
+msgid "%{player} reveals %{dice}: %{hand}."
+msgstr ""
+
 #: games/backgammon.rb:316 games/yahtzee.rb:397
 msgid "%{player} rolled %{dice}."
 msgstr ""
@@ -2457,7 +2465,7 @@ msgstr ""
 msgid "%{player} rolls %{dice} and stops at %{total}."
 msgstr ""
 
-#: games/dice_poker.rb:351
+#: games/dice_poker_support/presentation.rb:18
 msgid "%{player} rolls %{dice}: %{hand}."
 msgstr ""
 
@@ -2471,6 +2479,10 @@ msgstr ""
 
 #: games/duck_racing_support/presentation.rb:623
 msgid "%{player} rolls %{number}. Total: %{total}."
+msgstr ""
+
+#: games/dice_poker.rb:354
+msgid "%{player} rolls the dice."
 msgstr ""
 
 msgid "%{player} saved %{points} points. Banked score: %{total}."
@@ -2584,11 +2596,11 @@ msgstr ""
 msgid "%{player} sows again."
 msgstr ""
 
-#: games/blackjack.rb:520
+#: games/blackjack.rb:522
 msgid "%{player} splits the pair. First hand: %{first} Second hand: %{second}"
 msgstr ""
 
-#: games/blackjack.rb:498
+#: games/blackjack.rb:500
 msgid "%{player} stands at %{total}."
 msgstr ""
 
@@ -2789,7 +2801,7 @@ msgstr ""
 msgid "%{player} wins the match, %{score}."
 msgstr ""
 
-#: lib/blackjack_auction.rb:90
+#: lib/blackjack_auction.rb:98
 msgid "%{player} wins the pot of %{amount}."
 msgstr ""
 
@@ -2797,7 +2809,7 @@ msgstr ""
 msgid "%{player} wins the rack or frame. Score: %{score}."
 msgstr ""
 
-#: games/blackjack_dice.rb:364
+#: games/blackjack_dice.rb:365
 msgid "%{player} wins the round with %{total} and earns %{points} point."
 msgid_plural "%{player} wins the round with %{total} and earns %{points} points."
 msgstr[0] ""
@@ -3118,7 +3130,7 @@ msgstr ""
 msgid "%{player}: %{move}."
 msgstr ""
 
-#: games/blackjack.rb:566
+#: games/blackjack.rb:568
 msgid "%{player}: %{outcome}. Balance: %{balance}."
 msgstr ""
 
@@ -3138,7 +3150,7 @@ msgstr ""
 msgid "%{player}: %{points} penalty points for cards not returned to the table."
 msgstr ""
 
-#: games/dice_poker.rb:315
+#: games/dice_poker.rb:319
 msgid "%{player}: %{points} point"
 msgid_plural "%{player}: %{points} points"
 msgstr[0] ""
@@ -7472,7 +7484,7 @@ msgstr ""
 msgid "After the third roll, the score sheet appears in the game field. Use Up and Down to choose a row; Left and Right let you inspect its entries, total and reserve. Press Enter in any column of that row to record the result in its first empty space. You can only record a combination that the dice qualify for. After the third roll, you may instead choose a crossing-out entry. It fills the space without scoring points."
 msgstr ""
 
-#: lib/blackjack_auction.rb:306
+#: lib/blackjack_auction.rb:314
 msgid "After the throws."
 msgstr ""
 
@@ -7617,14 +7629,14 @@ msgstr ""
 msgid "All games"
 msgstr ""
 
-#: lib/blackjack_auction.rb:354
+#: lib/blackjack_auction.rb:362
 msgid "All hands are set. Betting resumes."
 msgstr ""
 
 msgid "All history"
 msgstr ""
 
-#: games/poker.rb:1347 lib/blackjack_auction.rb:289
+#: games/poker.rb:1347 lib/blackjack_auction.rb:297
 msgid "All in; %{amount}"
 msgstr ""
 
@@ -9351,6 +9363,10 @@ msgstr ""
 msgid "Betting limits"
 msgstr ""
 
+#: games/generated/rulebooks/dice_poker.rb:17
+msgid "Betting starts after everyone keeps a hand. C checks or calls, R or B raises, F folds, and A goes all-in. Folding gives up your claim to the pot. When betting ends, the players still competing reveal their hands; folded hands stay hidden. If everyone but one player folds, that player wins without showing their dice."
+msgstr ""
+
 #: games/poker.rb:134
 msgid "Betting structure"
 msgstr ""
@@ -9358,11 +9374,11 @@ msgstr ""
 msgid "Betting structures and the raise cap"
 msgstr ""
 
-#: lib/blackjack_auction.rb:305
+#: lib/blackjack_auction.rb:313
 msgid "Betting: current bet %{bet}."
 msgstr ""
 
-#: lib/blackjack_auction.rb:302
+#: lib/blackjack_auction.rb:310
 msgid "Betting: current bet %{bet}; your contribution %{paid}; balance %{balance}."
 msgstr ""
 
@@ -9554,8 +9570,16 @@ msgstr ""
 msgid "Blackjack Dice"
 msgstr ""
 
+#: lib/game_room_changelog.rb:815
+msgid "Blackjack Dice identifies the starting player and announces a new turn even when the same player finishes one round and starts the next."
+msgstr ""
+
 #: games/blackjack.rb:260
 msgid "Blackjack actions"
+msgstr ""
+
+#: lib/game_room_changelog.rb:814
+msgid "Blackjack lists the dealer's visible card above your own cards, labelled Dealer's card rather than placed in the header. Space draws a card and Enter stands; doubling and splitting remain available when allowed."
 msgstr ""
 
 #: lib/game_room_changelog.rb:814
@@ -10177,7 +10201,7 @@ msgstr ""
 msgid "Calendar years are unavailable. Try Refresh."
 msgstr ""
 
-#: games/poker.rb:1341 lib/blackjack_auction.rb:287
+#: games/poker.rb:1341 lib/blackjack_auction.rb:295
 msgid "Call %{amount}"
 msgstr ""
 
@@ -10592,7 +10616,7 @@ msgstr ""
 msgid "Cash Auction starts with 10000 points by default and counts answered questions, not chest auctions or auctions without bids. A tie leads to another answered question."
 msgstr ""
 
-#: lib/game_room_changelog.rb:816
+#: lib/game_room_changelog.rb:818
 msgid "Cash Auction starts with an ante of 100 points by default. The first offer must be at least the ante; later offers only need to beat the highest bid. Three consecutive auctions without a bid cost 5% of the remaining balance."
 msgstr ""
 
@@ -10860,7 +10884,7 @@ msgstr ""
 msgid "Chat sounds"
 msgstr ""
 
-#: games/poker.rb:1340 lib/blackjack_auction.rb:286
+#: games/poker.rb:1340 lib/blackjack_auction.rb:294
 msgid "Check"
 msgstr ""
 
@@ -11181,6 +11205,10 @@ msgstr ""
 msgid "Choose Go when none of your cards fits. The other player may keep playing. When neither can continue, the last player to lay a card scores one and the total resets to zero. Reaching exactly 31 gives two points instead. After the reset, the other player leads if they still have cards."
 msgstr ""
 
+#: games/generated/rulebooks/dice_poker.rb:16
+msgid "Choose Hidden dice, with betting to play for chips. Everyone pays the opening stake, then takes their dice turn without betting first. Only you hear your dice and combination; the others hear that you roll. H recalls your hand, including while you wait or bet."
+msgstr ""
+
 #: games/generated/rulebooks/blackjack.rb:16
 msgid "Choose Hit or Stand in the actions list. In the extended variant, the original two-card hand can be doubled, receiving exactly one further card, or a matching-rank pair can be split once into two hands. Each requires an additional stake. Split aces receive one card each and stop; split hands never earn the natural bonus. There is no insurance, surrender, resplitting or double after splitting."
 msgstr ""
@@ -11466,7 +11494,7 @@ msgstr ""
 msgid "Choose a square on the enemy board to shoot."
 msgstr ""
 
-#: games/blackjack_dice.rb:276
+#: games/blackjack_dice.rb:277
 msgid "Choose a stake everyone can afford."
 msgstr ""
 
@@ -11527,7 +11555,7 @@ msgstr ""
 msgid "Choose a value for %{field}."
 msgstr ""
 
-#: games/blackjack.rb:286
+#: games/blackjack.rb:288
 msgid "Choose a whole-chip bet within your balance."
 msgstr ""
 
@@ -11616,7 +11644,7 @@ msgstr ""
 msgid "Choose from 1 to 100 spins."
 msgstr ""
 
-#: games/dice_poker.rb:47
+#: games/dice_poker.rb:49
 msgid "Choose from 1 to 20 rounds."
 msgstr ""
 
@@ -11890,6 +11918,10 @@ msgstr ""
 
 #: games/generated/rulebooks/dice_poker.rb:14
 msgid "Choose two or three throws per turn and 1–20 rounds. If the opener limit is enabled, everyone else gets at most the number of throws used by the first player in that round. The opening seat rotates each round. Dice are public, and every throw uses native server randomness. You may change which dice to keep before a later throw."
+msgstr ""
+
+#: games/generated/rulebooks/dice_poker.rb:14
+msgid "Choose two or three throws per turn and 1–20 rounds. If the opener limit is enabled, everyone else gets at most the number of throws used by the first player in that round. The opening seat rotates each round. In the default point game, everyone hears the dice rolled. You may change which dice to keep before a later throw."
 msgstr ""
 
 #: lib/tournaments/tournament_setup_editor.rb:193
@@ -12532,7 +12564,7 @@ msgstr ""
 msgid "Contracts, nils and overtricks"
 msgstr ""
 
-#: games/generated/rulebooks/belote.rb:21 games/generated/rulebooks/bingo.rb:18 games/generated/rulebooks/blackjack.rb:22 games/generated/rulebooks/blackjack_dice.rb:19 games/generated/rulebooks/cash_auction.rb:42 games/generated/rulebooks/cribbage.rb:17 games/generated/rulebooks/dice_poker.rb:17 games/generated/rulebooks/go.rb:15 games/generated/rulebooks/hearts.rb:15 games/generated/rulebooks/jass.rb:17 games/generated/rulebooks/krowa.rb:44 games/generated/rulebooks/liars_dice.rb:17 games/generated/rulebooks/roulette.rb:15
+#: games/generated/rulebooks/belote.rb:21 games/generated/rulebooks/bingo.rb:18 games/generated/rulebooks/blackjack.rb:22 games/generated/rulebooks/blackjack_dice.rb:19 games/generated/rulebooks/cash_auction.rb:42 games/generated/rulebooks/cribbage.rb:17 games/generated/rulebooks/dice_poker.rb:19 games/generated/rulebooks/go.rb:15 games/generated/rulebooks/hearts.rb:15 games/generated/rulebooks/jass.rb:17 games/generated/rulebooks/krowa.rb:44 games/generated/rulebooks/liars_dice.rb:17 games/generated/rulebooks/roulette.rb:15
 msgid "Controls"
 msgstr ""
 
@@ -13715,16 +13747,20 @@ msgstr ""
 msgid "Deal the cards with D."
 msgstr ""
 
-#: games/blackjack.rb:595
+#: games/blackjack.rb:597
 msgid "Dealer finishes with %{cards}. Total: %{total}."
 msgstr ""
 
-#: games/blackjack.rb:593
+#: games/blackjack.rb:595
 msgid "Dealer goes over 21: %{cards}. Total: %{total}."
 msgstr ""
 
-#: games/blackjack.rb:591
+#: games/blackjack.rb:593
 msgid "Dealer has blackjack: %{cards}."
+msgstr ""
+
+#: games/blackjack.rb:244
+msgid "Dealer's card: %{card}"
 msgstr ""
 
 #: games/blackjack.rb:245
@@ -13739,7 +13775,7 @@ msgstr ""
 msgid "Dealing and bidding"
 msgstr ""
 
-#: games/blackjack.rb:246
+#: games/blackjack.rb:247
 msgid "Dealing player: %{player}; no house hand."
 msgstr ""
 
@@ -14033,8 +14069,12 @@ msgstr ""
 msgid "Dice General now plays its column, bonus and school-scoring sounds correctly, respecting the selected volume and optional sound settings."
 msgstr ""
 
-#: lib/game_room_changelog.rb:815
+#: lib/game_room_changelog.rb:817
 msgid "Dice General, Balut and Yahtzee share consistent scoring sounds. Dice General and Balut show zero-point entries more clearly, and Balut explains points earned for completed rows and the overall total."
+msgstr ""
+
+#: lib/game_room_changelog.rb:816
+msgid "Dice Poker offers open dice without betting or hidden dice with betting. In chip mode, ante leads straight to throws, with one auction after everyone keeps a hand. Opponents hear only that a player rolls; H recalls your own hand."
 msgstr ""
 
 msgid "Dice and score sheets"
@@ -14052,15 +14092,15 @@ msgstr ""
 msgid "Dice duel."
 msgstr ""
 
-#: games/dice_poker.rb:22
+#: games/dice_poker.rb:24
 msgid "Dice poker"
 msgstr ""
 
-#: games/dice_poker.rb:15
+#: games/dice_poker.rb:17
 msgid "Dice poker scoring"
 msgstr ""
 
-#: games/dice_poker.rb:136
+#: games/dice_poker.rb:138
 msgid "Dice poker: round %{round} of %{total}; throw %{roll} of %{limit}."
 msgstr ""
 
@@ -14415,7 +14455,7 @@ msgstr ""
 msgid "Double 9"
 msgstr ""
 
-#: games/blackjack.rb:275
+#: games/blackjack.rb:277
 msgid "Double down"
 msgstr ""
 
@@ -15032,7 +15072,7 @@ msgstr ""
 msgid "Each player rolls once. The highest roll wins."
 msgstr ""
 
-#: games/blackjack_dice.rb:344
+#: games/blackjack_dice.rb:345
 msgid "Each player staked %{stake} chips; pot %{pot}."
 msgstr ""
 
@@ -15534,7 +15574,7 @@ msgstr ""
 msgid "English, grade 3"
 msgstr ""
 
-#: games/blackjack.rb:260
+#: games/blackjack.rb:262
 msgid "Enter"
 msgstr ""
 
@@ -15689,7 +15729,7 @@ msgstr ""
 msgid "Enter one Polish word of 3 to 13 letters."
 msgstr ""
 
-#: lib/game_surfaces.rb:605
+#: lib/game_surfaces.rb:606
 msgid "Enter one destination field, for example /C4."
 msgstr ""
 
@@ -15725,7 +15765,7 @@ msgstr ""
 msgid "Enter rolls the dice. Use 1 to 6 to select a die showing that face, and Shift with the same digit to keep it instead. Space reads the dice. With no dice selected, Enter opens scoring after a roll. V opens your sheet, Shift+V another player's sheet, and S reads the totals."
 msgstr ""
 
-#: games/generated/rulebooks/dice_poker.rb:18
+#: games/generated/rulebooks/dice_poker.rb:20
 msgid "Enter rolls. After a throw, keys 1–6 select another die with that face to reroll; Shift+1–6 keeps it. Enter rerolls selected dice; without a selection it opens the Keep hand choice. K keeps the current hand directly. Space reads dice and selection; S reads scores. F1 lists current shortcuts, Ctrl+F1 opens rules. Chat, history and volume use shared controls."
 msgstr ""
 
@@ -16215,11 +16255,11 @@ msgstr ""
 msgid "Everyone starts with 30,000 points. Payments and accepted Riichi deposits change that balance."
 msgstr ""
 
-#: games/blackjack_dice.rb:397
+#: games/blackjack_dice.rb:398
 msgid "Everyone went bust; all stakes were returned."
 msgstr ""
 
-#: games/blackjack_dice.rb:375
+#: games/blackjack_dice.rb:376
 msgid "Everyone went over 21. No points this round."
 msgstr ""
 
@@ -16563,7 +16603,7 @@ msgstr ""
 msgid "Field %{field} is occupied by your %{piece}."
 msgstr ""
 
-#: lib/game_surfaces.rb:611
+#: lib/game_surfaces.rb:612
 msgid "Field %{field} is outside this board."
 msgstr ""
 
@@ -16703,7 +16743,7 @@ msgstr ""
 msgid "Finish line"
 msgstr ""
 
-#: lib/game_surfaces.rb:1055 lib/game_surfaces/card_actions.rb:28
+#: lib/game_surfaces.rb:994 lib/game_surfaces/card_actions.rb:69
 msgid "Finish or cancel the current card choice first."
 msgstr ""
 
@@ -16834,7 +16874,7 @@ msgstr ""
 msgid "Five new games: Rummy, Domino, Mexican Train, Scrabble and Taboo. Each has detailed rules and keyboard help in Polish and English."
 msgstr ""
 
-#: games/dice_poker.rb:308
+#: games/dice_poker.rb:312
 msgid "Five of a kind"
 msgstr ""
 
@@ -17109,7 +17149,7 @@ msgstr ""
 msgid "Focus on accuracy. Try to minimize typing errors before gradually increasing your speed."
 msgstr ""
 
-#: games/poker.rb:1342 lib/blackjack_auction.rb:288 lib/blackjack_auction.rb:38
+#: games/poker.rb:1342 lib/blackjack_auction.rb:296 lib/blackjack_auction.rb:46
 msgid "Fold"
 msgstr ""
 
@@ -17324,7 +17364,7 @@ msgstr ""
 msgid "Four in a row"
 msgstr ""
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:35
+#: games/dice_poker.rb:312 games/yahtzee.rb:35
 msgid "Four of a kind"
 msgstr ""
 
@@ -17512,7 +17552,7 @@ msgstr ""
 msgid "Full deck: 52 cards"
 msgstr ""
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:36
+#: games/dice_poker.rb:312 games/yahtzee.rb:36
 msgid "Full house"
 msgstr ""
 
@@ -18087,6 +18127,10 @@ msgstr ""
 msgid "H: read your hand and high card points."
 msgstr ""
 
+#: games/generated/rulebooks/dice_poker.rb:21
+msgid "H: read your hand in a chip game"
+msgstr ""
+
 #: games/generated/rulebooks/belote.rb:31 games/generated/rulebooks/bouillabaisse.rb:31 games/generated/rulebooks/cribbage.rb:22 games/generated/rulebooks/french_tarot.rb:24 games/generated/rulebooks/hearts.rb:21 games/generated/rulebooks/jass.rb:25 games/generated/rulebooks/mille_bornes.rb:49 games/generated/rulebooks/ninety_nine.rb:29 games/generated/rulebooks/scopa.rb:36 games/generated/rulebooks/three_five_eight.rb:27 games/generated/rulebooks/tysiac.rb:44
 msgid "H: read your hand."
 msgstr ""
@@ -18224,10 +18268,14 @@ msgstr ""
 msgid "Hidden channel"
 msgstr ""
 
+#: games/dice_poker.rb:18
+msgid "Hidden dice, with betting"
+msgstr ""
+
 msgid "Hidro-elektrana Đerdap"
 msgstr ""
 
-#: games/dice_poker.rb:308
+#: games/dice_poker.rb:312
 msgid "High card"
 msgstr ""
 
@@ -18927,7 +18975,7 @@ msgstr ""
 msgid "In Cash Auction, one hint per question removes two wrong answers for 10% of the answerer's remaining points, rounded up to at least one point."
 msgstr ""
 
-#: lib/game_room_changelog.rb:817
+#: lib/game_room_changelog.rb:819
 msgid "In Cash Auction, payments for black chests no longer increase the question pool. The pool from earlier questions remains available for the next question."
 msgstr ""
 
@@ -19996,11 +20044,11 @@ msgstr ""
 msgid "Keep this draft?"
 msgstr ""
 
-#: games/dice_poker.rb:143
+#: games/dice_poker.rb:145
 msgid "Keep this hand: %{hand}"
 msgstr ""
 
-#: games/dice_poker.rb:23
+#: games/dice_poker.rb:25
 msgid "Keep useful dice, reroll the others and make the strongest poker combination."
 msgstr ""
 
@@ -20008,7 +20056,7 @@ msgstr ""
 msgid "Keep your own sounds the same"
 msgstr ""
 
-#: games/blackjack.rb:260 games/blackjack_dice.rb:247
+#: games/blackjack.rb:262 games/blackjack_dice.rb:247
 msgid "Keep your total"
 msgstr ""
 
@@ -21710,7 +21758,7 @@ msgstr ""
 msgid "Maximum text size: %{bytes} UTF-8 bytes (1000 kB)."
 msgstr ""
 
-#: games/dice_poker.rb:38
+#: games/dice_poker.rb:40
 msgid "Maximum throws per turn"
 msgstr ""
 
@@ -22326,7 +22374,7 @@ msgstr ""
 msgid "Never"
 msgstr ""
 
-#: lib/game_room_changelog.rb:818
+#: lib/game_room_changelog.rb:820
 msgid "New Cash Auction and Duck Racing tables select only the general-knowledge question set for the interface language by default, rather than remembering previous question-set selections."
 msgstr ""
 
@@ -22463,7 +22511,7 @@ msgstr ""
 msgid "Ninoy Aquino International Airport"
 msgstr ""
 
-#: __app.rb:2307 games/mahjong_support/options.rb:28 games/mille_bornes.rb:138 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:53 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/draft_preview.rb:172 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
+#: __app.rb:2307 games/mahjong_support/options.rb:28 games/mille_bornes.rb:138 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:96 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/draft_preview.rb:172 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
 msgid "No"
 msgstr ""
 
@@ -23032,11 +23080,11 @@ msgstr ""
 msgid "No statistics were collected for this period."
 msgstr ""
 
-#: games/dice_poker.rb:36
+#: games/dice_poker.rb:38
 msgid "No straights; ones are aces and rank highest"
 msgstr ""
 
-#: games/dice_poker.rb:35
+#: games/dice_poker.rb:37
 msgid "No straights; sixes high"
 msgstr ""
 
@@ -23315,7 +23363,7 @@ msgstr ""
 msgid "Number of question rounds (8 to 32)"
 msgstr ""
 
-#: games/blackjack.rb:37 games/blackjack_dice.rb:39 games/darts.rb:43 games/dice_poker.rb:41 games/mania_pisania.rb:75
+#: games/blackjack.rb:37 games/blackjack_dice.rb:39 games/darts.rb:43 games/dice_poker.rb:43 games/mania_pisania.rb:75
 msgid "Number of rounds"
 msgstr ""
 
@@ -23610,7 +23658,7 @@ msgstr ""
 msgid "One or two columns disable bonuses. Optional even and odd rows require every die to have the chosen parity. Fixed scoring replaces points for triple, small straight, large straight, full house, four of a kind and five of a kind with 20, 25, 30, 35, 40 and 50. First-roll doubling never applies to school. Strict school crosses also block future bonuses."
 msgstr ""
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:41
+#: games/dice_poker.rb:312 games/yahtzee.rb:41
 msgid "One pair"
 msgstr ""
 
@@ -23747,6 +23795,10 @@ msgstr ""
 msgid "Open a black chest"
 msgstr ""
 
+#: games/dice_poker.rb:18
+msgid "Open dice, without betting"
+msgstr ""
+
 #: lib/tournaments/proposal_notice_dialog.rb:24
 msgid "Open match table"
 msgstr ""
@@ -23795,7 +23847,7 @@ msgstr ""
 msgid "Opening a menu, help, Messages or another ELTEN window does not pause the match. The ball, bots, score and table chat continue to update. Keys used in that other window do not move your paddle or serve when you return. To defend manually, return to the playfield. The General category of Power Games settings controls speech outside the table window."
 msgstr ""
 
-#: games/blackjack.rb:39 games/blackjack_dice.rb:38 games/dice_poker.rb:18
+#: games/blackjack.rb:39 games/blackjack_dice.rb:38 games/dice_poker.rb:20
 msgid "Opening contribution"
 msgstr ""
 
@@ -24018,7 +24070,7 @@ msgstr ""
 msgid "Outside the fixed joker profile, the starting hand can have three to fifteen cards, normally five. There must be enough cards for all players and the first table card. The penalty for forgetting Makao is independent of the profile: one to ten cards, normally one."
 msgstr ""
 
-#: games/blackjack.rb:524
+#: games/blackjack.rb:526
 msgid "Over 21."
 msgstr ""
 
@@ -24553,7 +24605,7 @@ msgstr ""
 msgid "Piece selected. Choose its destination or press Enter again for its only move."
 msgstr ""
 
-#: lib/game_surfaces.rb:562
+#: lib/game_surfaces.rb:563
 msgid "Piece selected. Choose its destination."
 msgstr ""
 
@@ -25236,7 +25288,7 @@ msgstr ""
 msgid "Poker dice"
 msgstr ""
 
-#: games/dice_poker.rb:34
+#: games/dice_poker.rb:36
 msgid "Poker dice with straights; sixes high"
 msgstr ""
 
@@ -25417,7 +25469,7 @@ msgstr ""
 msgid "Pot: %{amount}."
 msgstr ""
 
-#: games/blackjack_dice.rb:252
+#: games/blackjack_dice.rb:253
 msgid "Pot: %{chips} chips"
 msgstr ""
 
@@ -25598,7 +25650,7 @@ msgstr ""
 msgid "Preparing the next round"
 msgstr ""
 
-#: lib/blackjack_auction.rb:25
+#: lib/blackjack_auction.rb:33
 msgid "Preparing the opening bets."
 msgstr ""
 
@@ -26514,11 +26566,11 @@ msgstr ""
 msgid "Raise by %{minimum} to %{maximum} above the call."
 msgstr ""
 
-#: games/poker.rb:1346 lib/blackjack_auction.rb:291
+#: games/poker.rb:1346 lib/blackjack_auction.rb:299
 msgid "Raise by %{raise}; total payment %{amount}"
 msgstr ""
 
-#: games/poker.rb:431 lib/blackjack_auction.rb:327
+#: games/poker.rb:431 lib/blackjack_auction.rb:335
 msgid "Raise by:"
 msgstr ""
 
@@ -27899,7 +27951,7 @@ msgstr ""
 msgid "Roll the dice before choosing a category."
 msgstr ""
 
-#: games/balut.rb:88 games/dice_poker.rb:147 games/kosciane.rb:158
+#: games/balut.rb:88 games/dice_poker.rb:149 games/kosciane.rb:158
 msgid "Roll the dice first"
 msgstr ""
 
@@ -28099,7 +28151,7 @@ msgstr ""
 msgid "Round %{round}. Cards dealt."
 msgstr ""
 
-#: games/blackjack.rb:462
+#: games/blackjack.rb:464
 msgid "Round %{round}. Dealer shows %{card}."
 msgstr ""
 
@@ -28131,7 +28183,7 @@ msgstr ""
 msgid "Round %{round}: %{players} earn one point."
 msgstr ""
 
-#: games/dice_poker.rb:389
+#: games/dice_poker.rb:398
 msgid "Round %{round}: %{players} tie. Each earns one point. Winning hand: %{hand}."
 msgstr ""
 
@@ -28139,7 +28191,7 @@ msgstr ""
 msgid "Round %{round}: %{player} deals; everyone plays against the other players."
 msgstr ""
 
-#: games/dice_poker.rb:386
+#: games/dice_poker.rb:395
 msgid "Round %{round}: %{player} wins and earns one point. Winning hand: %{hand}."
 msgstr ""
 
@@ -28195,7 +28247,7 @@ msgstr ""
 msgid "Round settlement"
 msgstr ""
 
-#: games/blackjack_dice.rb:274
+#: games/blackjack_dice.rb:275
 msgid "Round stake (1 to %{maximum})"
 msgstr ""
 
@@ -29368,7 +29420,7 @@ msgstr ""
 msgid "Settle disputes before the next turn"
 msgstr ""
 
-#: lib/blackjack_auction.rb:26
+#: lib/blackjack_auction.rb:34
 msgid "Settling the blackjack round."
 msgstr ""
 
@@ -30564,7 +30616,7 @@ msgstr ""
 msgid "Spin the wheel with Space."
 msgstr ""
 
-#: games/blackjack.rb:275
+#: games/blackjack.rb:277
 msgid "Split pair"
 msgstr ""
 
@@ -30778,7 +30830,7 @@ msgstr ""
 msgid "Starting an auction"
 msgstr ""
 
-#: games/blackjack.rb:38 games/blackjack_dice.rb:37 games/dice_poker.rb:17 games/poker.rb:127
+#: games/blackjack.rb:38 games/blackjack_dice.rb:37 games/dice_poker.rb:19 games/poker.rb:127
 msgid "Starting chips"
 msgstr ""
 
@@ -30786,7 +30838,7 @@ msgstr ""
 msgid "Starting chips (10-10000)"
 msgstr ""
 
-#: games/blackjack.rb:49 games/blackjack_dice.rb:71 games/dice_poker.rb:49
+#: games/blackjack.rb:49 games/blackjack_dice.rb:71 games/dice_poker.rb:51
 msgid "Starting chips must be from 10 to 10000."
 msgstr ""
 
@@ -30903,7 +30955,7 @@ msgstr ""
 msgid "Stores: %{values}."
 msgstr ""
 
-#: games/balut.rb:230 games/dice_poker.rb:308
+#: games/balut.rb:230 games/dice_poker.rb:312
 msgid "Straight"
 msgstr ""
 
@@ -32612,6 +32664,10 @@ msgstr ""
 msgid "The first round is being prepared."
 msgstr ""
 
+#: games/generated/rulebooks/blackjack.rb:16
+msgid "The first row of the game list is labelled Dealer’s card; your cards follow below, and the header gives your total. Press Space to draw a card or Enter to keep your total. In the extended variant, D doubles the original two-card hand and draws exactly one further card. P splits a matching-rank pair once into two hands. Each requires an additional stake. Split aces receive one card each and stop; split hands never earn the natural bonus. There is no insurance, surrender, resplitting or double after splitting."
+msgstr ""
+
 msgid "The first seat serves first. Service changes after every two completed points. The table selects a target of 7, 11 or 21 points, but a player also needs a lead of at least two. At 10–10 in an 11-point match, for example, 11–10 is not enough; 12–10 wins. There is a short break after each point before the next serve."
 msgstr ""
 
@@ -33274,7 +33330,7 @@ msgstr ""
 msgid "The number of starting tokens must be greater than zero."
 msgstr ""
 
-#: games/dice_poker.rb:40
+#: games/dice_poker.rb:42
 msgid "The opener's throws limit the other players"
 msgstr ""
 
@@ -33991,7 +34047,7 @@ msgstr ""
 msgid "The sound volume could not be saved."
 msgstr ""
 
-#: games/blackjack.rb:50 games/blackjack_dice.rb:72 games/dice_poker.rb:50
+#: games/blackjack.rb:50 games/blackjack_dice.rb:72 games/dice_poker.rb:52
 msgid "The stake must be positive and cannot exceed starting chips."
 msgstr ""
 
@@ -34024,6 +34080,10 @@ msgstr ""
 
 #: lib/tournaments/local_fixed_team_execution_screen.rb:370 lib/tournaments/match_entry_screen.rb:331
 msgid "The status could not be read completely. The last valid view is retained."
+msgstr ""
+
+#: games/generated/rulebooks/dice_poker.rb:18
+msgid "The strongest hand wins the pot and ties split it. Odd chips are handed out in round order. You cannot win more from another player than you put in yourself. Any part of a bet nobody matched is returned. If everyone but one player folds, that player gets the pot without further play. Highest balance wins at the round limit or when only one player still has chips. If nobody is eligible for a pot, the bets in it are returned. Equal highest balances draw."
 msgstr ""
 
 #: lib/quiz_contributions/drafts.rb:58
@@ -35516,7 +35576,7 @@ msgstr ""
 msgid "Three matching dice qualify for a number row. Extra matching dice go into that number's reserve. Reserve dice can complete a later result but do not score."
 msgstr ""
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:34
+#: games/dice_poker.rb:312 games/yahtzee.rb:34
 msgid "Three of a kind"
 msgstr ""
 
@@ -35546,7 +35606,7 @@ msgstr ""
 msgid "Three teams"
 msgstr ""
 
-#: games/dice_poker.rb:39
+#: games/dice_poker.rb:41
 msgid "Three throws"
 msgstr ""
 
@@ -36375,7 +36435,7 @@ msgstr ""
 msgid "Two mixed kongs — 6 fan: one exposed and one concealed kong. This replaces the individual kong bonuses. This version distinguishes that combination in addition to the standard 81 named entries."
 msgstr ""
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:42
+#: games/dice_poker.rb:312 games/yahtzee.rb:42
 msgid "Two pairs"
 msgstr ""
 
@@ -36455,7 +36515,7 @@ msgstr ""
 msgid "Two teams of two"
 msgstr ""
 
-#: games/dice_poker.rb:39
+#: games/dice_poker.rb:41
 msgid "Two throws"
 msgstr ""
 
@@ -36816,7 +36876,7 @@ msgstr ""
 msgid "Unavailable choice: %{id}"
 msgstr ""
 
-#: games/blackjack_dice.rb:443
+#: games/blackjack_dice.rb:444
 msgid "Unclaimed pot of %{pot} chips returned to its contributors."
 msgstr ""
 
@@ -37398,7 +37458,7 @@ msgstr ""
 msgid "V: repeat the deal rules."
 msgstr ""
 
-#: games/backgammon.rb:39 games/belote_support/belote_table.rb:27 games/bingo.rb:27 games/blackjack.rb:32 games/blackjack_dice.rb:28 games/dice_poker.rb:33 games/go.rb:20 games/jass_support/jass_table.rb:42 games/liars_dice.rb:28
+#: games/backgammon.rb:39 games/belote_support/belote_table.rb:27 games/bingo.rb:27 games/blackjack.rb:32 games/blackjack_dice.rb:28 games/dice_poker.rb:35 games/go.rb:20 games/jass_support/jass_table.rb:42 games/liars_dice.rb:28
 msgid "Variant"
 msgstr ""
 
@@ -37707,7 +37767,7 @@ msgstr ""
 msgid "Waiting for the cards to be dealt"
 msgstr ""
 
-#: lib/blackjack_auction.rb:28
+#: lib/blackjack_auction.rb:36
 msgid "Waiting for the cards to be dealt."
 msgstr ""
 
@@ -38696,7 +38756,7 @@ msgstr ""
 msgid "Yellowbelly die"
 msgstr ""
 
-#: __app.rb:2307 games/mahjong_support/options.rb:28 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:53 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
+#: __app.rb:2307 games/mahjong_support/options.rb:28 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:96 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
 msgid "Yes"
 msgstr ""
 
@@ -39005,7 +39065,7 @@ msgstr ""
 msgid "You cannot move a checker onto the bar."
 msgstr ""
 
-#: lib/game_surfaces.rb:557
+#: lib/game_surfaces.rb:558
 msgid "You cannot move from this field."
 msgstr ""
 
@@ -39017,7 +39077,7 @@ msgstr ""
 msgid "You cannot move the selected piece to %{field}. Press V to hear its available moves."
 msgstr ""
 
-#: lib/game_surfaces.rb:571
+#: lib/game_surfaces.rb:572
 msgid "You cannot move the selected piece to this field."
 msgstr ""
 
@@ -39201,7 +39261,7 @@ msgstr ""
 msgid "You have no kings."
 msgstr ""
 
-#: games/base/shortcuts.rb:169 lib/game_surfaces.rb:1066 lib/game_surfaces/packet_cards.rb:198
+#: games/base/shortcuts.rb:169 lib/game_surfaces.rb:1005 lib/game_surfaces/packet_cards.rb:198
 msgid "You have no playable card."
 msgstr ""
 
@@ -39608,7 +39668,7 @@ msgstr ""
 msgid "Your availability changed in another client. Enable it again if you want to participate."
 msgstr ""
 
-#: games/blackjack.rb:284
+#: games/blackjack.rb:286
 msgid "Your bet (1 to %{maximum})"
 msgstr ""
 
@@ -39684,6 +39744,10 @@ msgstr ""
 msgid "Your dice: %{dice}."
 msgstr ""
 
+#: games/dice_poker_support/presentation.rb:36
+msgid "Your dice: %{dice}. %{hand}."
+msgstr ""
+
 #: games/krowa_support/client.rb:240
 msgid "Your dictionary is empty."
 msgstr ""
@@ -39749,7 +39813,7 @@ msgstr ""
 msgid "Your hand"
 msgstr ""
 
-#: games/blackjack.rb:252
+#: games/blackjack.rb:253
 msgid "Your hand %{hand} of %{count}: %{total}"
 msgstr ""
 
@@ -39757,7 +39821,7 @@ msgstr ""
 msgid "Your hand and your partner"
 msgstr ""
 
-#: games/blackjack.rb:296 games/card_game.rb:106 games/dealt_card_game.rb:119 games/dealt_card_game.rb:136 games/duck_racing_support/presentation.rb:211 games/makao.rb:356 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:369 games/rummy_ui.rb:61 games/scientific_war.rb:789 games/spades.rb:875 games/three_five_eight.rb:376 games/tile_game.rb:146 games/tysiac.rb:448 games/uno.rb:462 lib/game_surfaces/packet_cards.rb:52
+#: games/blackjack.rb:298 games/card_game.rb:106 games/dealt_card_game.rb:119 games/dealt_card_game.rb:136 games/duck_racing_support/presentation.rb:211 games/makao.rb:356 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:369 games/rummy_ui.rb:61 games/scientific_war.rb:789 games/spades.rb:875 games/three_five_eight.rb:376 games/tile_game.rb:146 games/tysiac.rb:448 games/uno.rb:462 lib/game_surfaces/packet_cards.rb:52
 msgid "Your hand is empty"
 msgstr ""
 
@@ -39807,7 +39871,7 @@ msgstr ""
 msgid "Your hand; discard %{remaining} cards"
 msgstr ""
 
-#: games/blackjack.rb:254
+#: games/blackjack.rb:255
 msgid "Your hand; total %{total}."
 msgstr ""
 
@@ -40221,7 +40285,7 @@ msgstr ""
 msgid "ace"
 msgstr ""
 
-#: games/poker.rb:407 lib/blackjack_auction.rb:39
+#: games/poker.rb:407 lib/blackjack_auction.rb:47
 msgid "all in"
 msgstr ""
 
@@ -40694,7 +40758,7 @@ msgstr ""
 msgid "dark side"
 msgstr ""
 
-#: games/blackjack.rb:271
+#: games/blackjack.rb:273
 msgid "deal the next social blackjack hand"
 msgstr ""
 
@@ -40957,7 +41021,7 @@ msgstr ""
 msgid "game in progress"
 msgstr ""
 
-#: games/blackjack.rb:558
+#: games/blackjack.rb:560
 msgid "gets the stake back"
 msgstr ""
 
@@ -41009,7 +41073,7 @@ msgstr ""
 msgid "han"
 msgstr ""
 
-#: games/blackjack.rb:564
+#: games/blackjack.rb:566
 msgid "hand %{hand}: %{outcome}"
 msgstr ""
 
@@ -41122,14 +41186,14 @@ msgstr ""
 msgid "keep a %{value}"
 msgstr ""
 
-#: games/dice_poker.rb:158 games/yahtzee.rb:270
+#: games/dice_poker.rb:162 games/yahtzee.rb:270
 msgid "keep another die showing %{value}"
 msgstr ""
 
 msgid "keep die %{number}"
 msgstr ""
 
-#: games/dice_poker.rb:162
+#: games/dice_poker.rb:166
 msgid "keep the current poker dice hand"
 msgstr ""
 
@@ -41200,7 +41264,7 @@ msgstr ""
 msgid "listen from the third player's perspective"
 msgstr ""
 
-#: games/blackjack.rb:556
+#: games/blackjack.rb:558
 msgid "loss %{amount}"
 msgstr ""
 
@@ -41549,7 +41613,7 @@ msgstr ""
 msgid "previous playable tile"
 msgstr ""
 
-#: games/blackjack.rb:554
+#: games/blackjack.rb:556
 msgid "profit %{amount}"
 msgstr ""
 
@@ -41598,7 +41662,7 @@ msgstr ""
 msgid "railroad"
 msgstr ""
 
-#: games/poker.rb:432 lib/blackjack_auction.rb:327
+#: games/poker.rb:432 lib/blackjack_auction.rb:335
 msgid "raise"
 msgstr ""
 
@@ -41790,7 +41854,7 @@ msgstr ""
 msgid "read the dice"
 msgstr ""
 
-#: games/dice_poker.rb:161 games/yahtzee.rb:287
+#: games/dice_poker.rb:165 games/yahtzee.rb:287
 msgid "read the dice and their selection state"
 msgstr ""
 
@@ -41914,7 +41978,7 @@ msgstr ""
 msgid "read the rules for this round"
 msgstr ""
 
-#: games/balut.rb:137 games/cash_auction/presentation.rb:41 games/dice_poker.rb:151 games/mahjong.rb:164 games/uno.rb:511 games/yahtzee.rb:288 lib/game_shortcuts.rb:9
+#: games/balut.rb:137 games/cash_auction/presentation.rb:41 games/dice_poker.rb:153 games/mahjong.rb:164 games/uno.rb:511 games/yahtzee.rb:288 lib/game_shortcuts.rb:9
 msgid "read the scores"
 msgstr ""
 
@@ -42070,6 +42134,10 @@ msgstr ""
 msgid "read your points"
 msgstr ""
 
+#: games/dice_poker_support/presentation.rb:35
+msgid "read your poker dice hand"
+msgstr ""
+
 #: games/duck_racing_support/presentation.rb:230
 msgid "read your position and feathers"
 msgstr ""
@@ -42194,7 +42262,7 @@ msgstr ""
 msgid "right edge"
 msgstr ""
 
-#: games/blackjack_dice.rb:267
+#: games/blackjack_dice.rb:268
 msgid "roll the dice"
 msgstr ""
 
@@ -42252,7 +42320,7 @@ msgstr ""
 msgid "select a %{value} for reroll"
 msgstr ""
 
-#: games/dice_poker.rb:157 games/yahtzee.rb:266
+#: games/dice_poker.rb:161 games/yahtzee.rb:266
 msgid "select another die showing %{value}"
 msgstr ""
 
@@ -42274,11 +42342,11 @@ msgstr ""
 msgid "set the final contract"
 msgstr ""
 
-#: games/blackjack_dice.rb:273
+#: games/blackjack_dice.rb:274
 msgid "set the round stake"
 msgstr ""
 
-#: games/blackjack.rb:283
+#: games/blackjack.rb:285
 msgid "set your bet before the deal"
 msgstr ""
 

@@ -55,13 +55,16 @@ module GameRoomDicePokerStrategy
     end
   end
 
-  def self.contest_value(variant, known, pending, split_ties:)
+  def self.contest_value(variant, known, pending, split_ties:, attempts: 1)
     best = known.max
     ties = known.count(best)
     distribution = random_outcomes(variant)
     lambda do |rank|
       next 0.0 if best && (rank <=> best) < 0
       below, equal = distribution.fetch(rank)
+      # Hidden opponents are approximated by the best of their allowed full
+      # throws. This uses only the public limit, not their actual retained dice.
+      below, equal = below**attempts, (below + equal)**attempts - below**attempts if attempts > 1
       next (below + equal)**pending unless split_ties
 
       prior_ties = rank == best ? ties : 0
@@ -74,13 +77,13 @@ module GameRoomDicePokerStrategy
     end
   end
 
-  def self.pot_value(variant, pots, actor, completed)
+  def self.pot_value(variant, pots, actor, completed, attempts: 1)
     layers = pots.filter_map do |pot|
       next unless pot[:eligible].include?(actor)
       others = pot[:eligible] - [actor]
       known = others.filter_map { |player| completed[player] if completed.key?(player) }
       pending = others.count { |player| !completed.key?(player) }
-      utility = contest_value(variant, known, pending, split_ties: true)
+      utility = contest_value(variant, known, pending, split_ties: true, attempts: attempts)
       [pot[:amount], utility]
     end
     ->(rank) { layers.sum { |amount, utility| amount * utility.call(rank) } }
