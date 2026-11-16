@@ -3,8 +3,11 @@ require_relative '../../support/game_option_editor_native'
 NativeOptionTest.language = 'en'
 game = GameRoomGames::CashAuction.new
 pl = game.table_creation_options('content_language_id'=>'pl-PL')
-ids = pl.fetch('content_pack_ids')
+general = pl.fetch('content_pack_ids')
+NativeOptionTest.assert(general == ['quiz.wikidata.pl'], 'Polish defaults selected specialist topics')
+ids = game.effective_option_definitions(pl).find { |definition| definition.key == 'content_pack_ids' }.choices.map(&:value)
 NativeOptionTest.assert(ids.length == 3, 'The real Polish catalog lost its three question sets')
+pl = game.table_creation_options(pl.merge('content_pack_ids'=>ids))
 
 # The actual ListBox handles Space, and submit derives the manifest from the
 # resulting IDs instead of retaining the former three-pack identity.
@@ -21,23 +24,27 @@ NativeOptionTest.assert(two['content_pack_ids'] == ids.drop(1), 'Native save cha
 NativeOptionTest.assert(two['content_pack_manifest'].map { |entry| entry['id'] } == ids.drop(1), 'Native save retained a stale pack manifest')
 NativeOptionTest.assert(pl['content_pack_manifest'].map { |entry| entry['id'] } == ids, 'Native editing changed its input')
 
-# A refused one-set choice keeps the same form, controls and unfinished
-# checklist. The player can check the missing set and submit again.
+# An empty choice keeps the same form and controls. The player can choose
+# just one set and submit again without adding unrelated topics.
 driver = NativeOptionTest::Driver.new(game, initial_options: two)
 sets = driver.focus('content_pack_ids')
 driver.press([35])
 driver.press([32])
-driver.focus(driver.form.accept_button)
-driver.press([13])
-NativeOptionTest.assert(driver.program.alerts.last.to_s.include?('Choose 2 or 3'), 'The one-set refusal did not explain the required count')
-NativeOptionTest.assert(sets.multiselections == [1], 'Validation reset the unfinished checklist')
-driver.pristine
-driver.focus(sets)
-driver.press([35])
+driver.press([38])
 driver.press([32])
 driver.focus(driver.form.accept_button)
 driver.press([13])
-NativeOptionTest.assert(driver.finished == two, 'Repairing the checklist changed unrelated options')
+NativeOptionTest.assert(driver.program.alerts.last.to_s.include?('Choose from 1 to 3'), 'The empty-set refusal did not explain the required count')
+NativeOptionTest.assert(sets.multiselections.empty?, 'Validation reset the unfinished checklist')
+driver.pristine
+driver.focus(sets)
+driver.press([32])
+driver.focus(driver.form.accept_button)
+driver.press([13])
+one = driver.finished
+NativeOptionTest.assert(one['content_pack_ids'] == general, 'A repaired single-set choice was refused or changed')
+NativeOptionTest.assert(one['content_pack_manifest'].map { |entry| entry['id'] } == general, 'One-set save retained the former manifest')
+NativeOptionTest.assert(one.reject { |key, _| %w[content_pack_ids content_pack_manifest].include?(key) } == two.reject { |key, _| %w[content_pack_ids content_pack_manifest].include?(key) }, 'Repairing the checklist changed unrelated options')
 
 # Language changes replace dependent choices in place. The native focus stays
 # on Language, and EN's allowed single set has the correct pinned identity.
@@ -60,7 +67,7 @@ sets = driver.control('content_pack_ids')
 language = driver.focus('content_language_id')
 driver.press([40])
 NativeOptionTest.assert(driver.form.fields[driver.form.index].equal?(language), 'Refreshing Polish choices stole focus')
-NativeOptionTest.assert(sets.options.length == 3 && sets.multiselections == [0, 1, 2], 'Polish did not restore its explicit three-set defaults')
+NativeOptionTest.assert(sets.options.length == 3 && sets.multiselections == [ids.index(general.first)], 'Polish did not select only its general set')
 driver.focus(sets)
 driver.press([36])
 driver.press([32])
@@ -78,7 +85,7 @@ driver.focus(driver.form.accept_button)
 driver.press([13])
 saved = driver.finished
 preferences = driver.program.writes.last[1].fetch(game.id)
-NativeOptionTest.assert(preferences['content_language_id'] == 'pl-PL' && preferences['content_pack_ids'] == ids, 'Remembered checkbox choices lost their language')
+NativeOptionTest.assert(preferences['content_language_id'] == 'pl-PL' && preferences['content_pack_ids'] == general, 'Remembered checkbox choices lost their language')
 restored = game.remembered_table_creation_options(preferences)
 NativeOptionTest.assert(restored['content_pack_ids'] == saved['content_pack_ids'] && restored['content_pack_manifest'] == saved['content_pack_manifest'], 'Reopening remembered choices changed their source identity')
 
@@ -93,4 +100,4 @@ driver.pristine
 driver.press([27])
 NativeOptionTest.assert(driver.finished.nil?, 'The invalid-options form could not be cancelled')
 
-puts "Cash Auction native source editor: #{NativeOptionTest.checks} checks of Space/Enter/Escape, two/three sets, validation repair, language focus, pinned manifests and cancellation passed."
+puts "Cash Auction native source editor: #{NativeOptionTest.checks} checks of Space/Enter/Escape, one/two/three sets, empty validation repair, general defaults, language focus, pinned manifests and cancellation passed."

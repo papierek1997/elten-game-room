@@ -427,6 +427,19 @@ Elige «Clasificaciones» en el menú principal y después un juego.
 Las clasificaciones comparan resultados; los totales de victorias,
 derrotas y goles están aparte, en «Estadísticas».
 
+### Darts
+
+Elige Darts, la dificultad y después la clasificación de la mejor ronda de tres
+dardos o de la mejor puntuación media. Cada lista muestra 30 resultados, con un
+máximo de tres por jugador. Una puntuación mayor da un puesto mejor; en caso de
+empate, se favorece el menor tiempo de lanzamiento.
+
+Tus récords se guardan de forma privada. Para compartirlos, abre los ajustes de
+Darts en la mesa con Ctrl+P y activa la publicación. También puedes publicar los
+récords ya guardados. Una opción independiente elimina tus resultados públicos
+sin borrar las copias privadas. Desactivar la publicación solo impide que se
+compartan nuevos resultados.
+
 ### Krowa
 
 - En la clasificación de una palabra, menos intentos dan un puesto mejor.

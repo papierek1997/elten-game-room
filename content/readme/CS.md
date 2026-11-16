@@ -400,6 +400,18 @@ Ctrl+I importuje soubor z disku. Před sdílením historie pamatujte,
 V hlavní nabídce vyberte „Žebříčky“ a potom hru. Žebříčky porovnávají
 výsledky hráčů; počty výher, proher a gólů najdete zvlášť ve statistikách.
 
+### Darts
+
+Vyberte Darts, obtížnost a potom žebříček nejlepšího kola se třemi šipkami nebo
+nejlepšího průměrného skóre. Každý seznam obsahuje 30 výsledků, nejvýše tři od
+jednoho hráče. Vyšší skóre znamená lepší umístění; při shodě rozhoduje kratší
+čas hodů.
+
+Vaše rekordy se ukládají soukromě. Chcete-li je zveřejňovat, otevřete u stolu
+nastavení Darts pomocí Ctrl+P a zapněte zveřejňování. Můžete zveřejnit i dříve
+uložené rekordy. Samostatná volba odstraní veřejné výsledky, ale soukromé kopie
+zachová. Pouhé vypnutí zveřejňování zastaví jen odesílání nových výsledků.
+
 ### Krowa
 
 - V žebříčku slova je lepší výsledek s menším počtem pokusů.

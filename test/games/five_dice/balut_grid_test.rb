@@ -27,7 +27,7 @@ shortcut = game.game_shortcuts(replay, "Alice").find { |key| key.key == "b" }
 raise "Full row remains writable" if shortcut.default_value.row_actions.any? { |action| action['category'] == 'fours' }
 readonly = game.send(:score_grid, state, 'Alice', writable: false)
 row = readonly.cells.first
-raise "Missing full row total or remaining threshold" unless row[5].include?("52") && row.last.end_with?("0")
+raise "Missing full row total or earned category points" unless row[5] == 'Sum of entries: 52' && row.last == 'Game points for this category: 2'
 inspector = GameSurfaces.build(readonly)
 inspected_action = nil
 inspector.on_action { |input| inspected_action = input }

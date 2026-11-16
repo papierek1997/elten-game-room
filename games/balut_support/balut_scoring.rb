@@ -46,6 +46,20 @@ module GameRoomGames
       {raw: raw, points: points + adjustment(raw)}
     end
 
+    # A read-only hint: no further choice can repair a zero in the four
+    # required straights/full houses, or a numeric target beyond remaining dice.
+    def row_points_possible?(category, row)
+      return true if row_points(category, row).positive?
+      remaining = 4 - row.length
+      return false unless remaining.positive?
+      if TARGETS.key?(category)
+        maximum = FACES.key?(category) ? FACES.fetch(category) * 5 : 30
+        row.sum + remaining * maximum >= TARGETS.fetch(category)
+      else
+        category == :balut || row.all?(&:positive?)
+      end
+    end
+
     def result(sheet)
       current_result(sheet) if CATEGORIES.all? { |category| sheet.fetch(category).length == 4 }
     end

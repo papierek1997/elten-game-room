@@ -415,6 +415,19 @@ W głównym menu wybierz „Rankingi”, a następnie grę. Rankingi porównują
 wyniki graczy; zestawienia wygranych, przegranych i bramek znajdziesz
 osobno w „Statystykach”.
 
+### Darts
+
+Po wybraniu Dartsa wskaż poziom trudności, a następnie ranking najlepszej rundy
+trzech lotek albo najlepszej średniej punktów. Każda lista pokazuje 30 wyników,
+z najwyżej trzema wynikami jednej osoby. Wyższa punktacja daje lepsze miejsce;
+przy remisie decyduje krótszy czas rzutów.
+
+Twoje rekordy zapisują się prywatnie. Jeśli chcesz je udostępniać, przy stole
+otwórz ustawienia Dartsa skrótem Ctrl+P i włącz publikowanie. Możesz wtedy
+opublikować także zapisane wcześniej rekordy. Osobna opcja usuwa wyniki
+publiczne, pozostawiając prywatne. Samo wyłączenie publikowania zatrzymuje
+tylko wysyłanie nowych wyników.
+
 ### Krowa
 
 - W rankingu słowa lepszy jest wynik z mniejszą liczbą prób.

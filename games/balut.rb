@@ -12,11 +12,14 @@ module GameRoomGames
     GameRoomServerRandom.register("balut", ["roll"])
 
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
-      return 'cht-bank' if event['action'] == 'score'
-      dice = after_replay&.state&.fetch(:dice, [])
-      return ["roll", "win1"] if event["action"] == "roll" && dice&.size == 5 && dice.none?(&:nil?) && dice.uniq.one?
+      return super unless event['action'] == 'score'
+      score = history.find { |entry| entry.key.to_s.start_with?('score:') }
+      return GameRoomFiveDiceSounds.score unless score
 
-      super
+      category = BalutScoring::CATEGORIES.find { |item| item.to_s == event['value'].to_s }
+      row = after_replay.state.fetch(:sheets).fetch(score.actor).fetch(category)
+      bonus = history.any? { |entry| entry.kind == :bonus }
+      GameRoomFiveDiceSounds.score(column: row.size, zero: row.last.zero?, effect: bonus ? :bonus : nil)
     end
 
     def id; "balut"; end
@@ -44,17 +47,11 @@ module GameRoomGames
           next unless apply_roll(state, event, player, repository, history)
         when "score"
           category = BalutScoring::CATEGORIES.find { |c| c.to_s == event["value"] }
-          before_points = total_score(state, player)
-          next unless state[:turn_rolls].positive? && category && BalutScoring.record(sheets[player], category, state[:dice])
-          history << HistoryEntry.new(key: "score:#{key}", event_id: key, actor: player, kind: :score,
-            text: _("%{player} records %{score} in %{category}, entry %{entry}.") % {
-              player: participant_name(player), score: sheets[player][category].last,
-              category: category_label(category), entry: sheets[player][category].size})
-          points = total_score(state, player)
-          if points != before_points
-            history << HistoryEntry.new(key: "points:#{key}", event_id: key, actor: player, kind: :score,
-              text: _("%{player}: game points: %{points}.") % {player: participant_name(player), points: points})
-          end
+          next unless state[:turn_rolls].positive? && category
+          before = BalutScoring.current_result(sheets[player])
+          row_points = BalutScoring.row_points(category, sheets[player][category])
+          next unless BalutScoring.record(sheets[player], category, state[:dice])
+          history.concat(recorded_score_history(sheets[player], player, category, key, before, row_points))
           state[:current_player] = players.rotate(players.index(player) + 1).find { |p| !BalutScoring.result(sheets[p]) }
           state[:turn_rolls] = 0
           state[:dice] = Array.new(5)
@@ -97,9 +94,9 @@ module GameRoomGames
       rows = sheet.filter_map do |category, values|
         next if incomplete_only && values.size >= SLOT_COUNT
         cells = Array.new(4) { |index| values.fetch(index, _("not filled")) }
-        points = BalutScoring.row_points(category, values)
-        _("%{category}: %{entries}. Total: %{total}. Row points: %{points}.") % {
-          category: category_label(category), entries: cells.join(', '), total: values.sum, points: points}
+        _("%{category}: %{entries}. Sum of entries: %{total}. %{status}") % {
+          category: category_label(category), entries: cells.join(', '), total: values.sum,
+          status: balut_row_status(category, values)}
       end
       rows << balut_totals_text(state, player) unless incomplete_only
       rows.map { |label| ShortcutChoice.new(label: label, value: nil) }
@@ -179,6 +176,29 @@ module GameRoomGames
     end
 
     private
+
+    def recorded_score_history(sheet, player, category, event_id, before, before_row_points)
+      row = sheet.fetch(category)
+      values = {player: participant_name(player), category: category_label(category)}
+      entries = [HistoryEntry.new(key: "score:#{event_id}", event_id: event_id, actor: player, kind: :score,
+        text: _("%{player} records %{score} in %{category}, entry %{entry}.") % values.merge(score: row.last, entry: row.size))]
+      gained = BalutScoring.row_points(category, row) - before_row_points
+      if gained.positive?
+        entries << HistoryEntry.new(key: "category_points:#{event_id}", event_id: event_id, actor: player, kind: :bonus,
+          text: _("%{player} earns %{points} game points for %{category}.") % values.merge(points: gained))
+      end
+      after = BalutScoring.current_result(sheet)
+      adjustment = BalutScoring.adjustment(after[:raw])
+      if adjustment != BalutScoring.adjustment(before[:raw])
+        entries << HistoryEntry.new(key: "sum_points:#{event_id}", event_id: event_id, actor: player, kind: :bonus,
+          text: _("%{player}: points for the sum of recorded scores: %{points}.") % values.merge(points: adjustment))
+      end
+      if after[:points] != before[:points]
+        entries << HistoryEntry.new(key: "points:#{event_id}", event_id: event_id, actor: player, kind: :score,
+          text: _("%{player}: game points: %{points}.") % values.merge(points: after[:points]))
+      end
+      entries
+    end
 
     def bot_category_value(sheet, category, dice)
       points = BalutScoring.score(category, dice)

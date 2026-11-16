@@ -1,6 +1,7 @@
 require_relative "base"
 require_relative "../lib/game_bots"
 require_relative "../lib/five_dice_planner"
+require_relative "../lib/five_dice_sounds"
 require_relative "../lib/server_random"
 
 require_relative "../lib/game_room_localization"
@@ -46,8 +47,13 @@ module GameRoomGames
 
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
       action = event["action"].to_s
-      return "roll" if action == "roll"
-      return "play" if action == "score"
+      return GameRoomFiveDiceSounds.roll(after_replay&.state&.[](:dice)) if action == "roll"
+      if action == "score"
+        score = history.find { |entry| entry.kind == :score }
+        bonus = history.any? { |entry| entry.key.to_s.start_with?('upper_bonus:') }
+        return GameRoomFiveDiceSounds.score(effect: bonus ? :bonus : nil,
+          zero: score&.value == 0 && event['value'] != 'misery')
+      end
     end
 
     def id

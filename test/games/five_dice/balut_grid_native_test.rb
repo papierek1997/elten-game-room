@@ -29,3 +29,26 @@ surface.on_action { |action| selected = action.to_h }
 end
 raise "Native Enter did not select the focused row" unless selected == {"kind" => "dice", "action" => "score", "category" => "fours"}
 puts "PASS Balut: all four native arrow bindings and Enter"
+
+# A proposed entry is not a final game-point award. Read the same native
+# status cell that previously promised points after the target was impossible.
+sheet[:fours] = [0, 0]
+state[:dice] = [1, 1, 1, 1, 2]
+surface = GameSurfaces.build(game.send(:score_grid, state, 'Alice', writable: true))
+control = surface.fields.first
+control.focus
+raise 'Native label confuses the entry with game points' unless SpeechOutput.calls.last.first.include?('Fours: enter 0')
+SpeechOutput.reset
+driver.keys = Array.new(6) { [[39], []] }.flatten(1) + [[13]]
+selected = nil
+surface.on_action { |action| selected = action.to_h }
+13.times do |index|
+  driver.tick(root)
+  control.update
+  if index == 10
+    raise 'Native row still promises an impossible bonus' unless SpeechOutput.calls.last.first.include?('No game points can be earned in this category.')
+  end
+end
+raise 'Row navigation reread the table header' if SpeechOutput.calls.any? { |call| call.first.include?('Score sheet: Alice') }
+raise 'The status cell cannot confirm its zero entry' unless selected && selected['category'] == 'fours'
+puts 'PASS Balut native entry/status: clear label, impossible points, quiet navigation and Enter from the status cell'

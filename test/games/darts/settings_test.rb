@@ -1,5 +1,11 @@
 # encoding: UTF-8
 require_relative '../../support/ui'
+
+class CheckBox < FakeControl
+  attr_accessor :label, :checked
+  def initialize(label, checked: false); super(); @label, @checked = label, checked; end
+end unless defined?(CheckBox)
+
 require_relative '../../../lib/darts/settings'
 require_relative '../../../lib/darts/client'
 
@@ -38,10 +44,12 @@ class DartsSettingsProgram
 end
 
 preferences = GameRoomDarts::Preferences
-assert(preferences.normalize(nil) == {'locator_sound'=>'round'}, 'missing Darts preferences changed the default')
-assert(preferences.normalize('locator_sound'=>'clear') == {'locator_sound'=>'clear'}, 'valid Darts locator was rejected')
+assert(preferences.normalize(nil) == {'locator_sound'=>'round', 'public_rankings'=>false}, 'missing Darts preferences changed the default')
+assert(preferences.normalize('locator_sound'=>'clear', 'public_rankings'=>true) ==
+  {'locator_sound'=>'clear', 'public_rankings'=>true}, 'valid Darts preferences were rejected')
 [nil, 3, 'warm', '../bright', 'BRIGHT'].each do |value|
-  assert(preferences.normalize('locator_sound'=>value) == {'locator_sound'=>'round'}, 'invalid locator escaped normalization')
+  assert(preferences.normalize('locator_sound'=>value, 'public_rankings'=>'true') ==
+    {'locator_sound'=>'round', 'public_rankings'=>false}, 'invalid Darts preference escaped normalization')
 end
 
 old_wait = Form.instance_method(:wait)
@@ -49,26 +57,42 @@ driver = nil
 Form.send(:define_method, :wait) { driver.call(self) }
 begin
   program = DartsSettingsProgram.new
+  withdrawn = 0
+  publish_prompts = 0
+  withdrawal_prompts = 0
   driver = lambda do |form|
-    locator, preview, = form.fields
+    locator, public_rankings, preview, withdraw, = form.fields
     assert(locator.header == 'Aiming sound (only for you)', 'Darts sound choice has an unclear label')
     assert(locator.options == %w[Rounded Clear Bright] && locator.index == 0, 'Darts sound choices or default changed')
+    assert(!public_rankings.checked, 'public Darts rankings were enabled without the player opting in')
+    assert(public_rankings.label == 'Publish new Darts records in the public rankings',
+      'Darts publication setting does not distinguish new results from existing public ones')
+    assert(withdraw.label == 'Remove my results from the public Darts rankings',
+      'Darts settings do not expose public-result withdrawal')
+    withdraw.trigger(:press)
     locator.index = 2
+    public_rankings.checked = true
     preview.trigger(:press)
     asset, options, sound = program.created.last
     assert(asset == 'darts_locator_bright' && options == {loop: false, sample: false}, 'preview loaded the wrong asset or mode')
     assert(sound.volume == 1.0 && sound.plays == 1, 'preview did not use the audible game level')
     form.accept_button.trigger(:press)
   end
-  result = GameRoomDarts::Settings.new({}, program: program).wait
-  assert(result == {'locator_sound'=>'bright'}, 'Darts sound choice was not returned for saving')
+  result = GameRoomDarts::Settings.new({}, program: program,
+    withdraw:-> { withdrawn += 1; true }, confirm_withdraw:-> { withdrawal_prompts += 1; true },
+    confirm_publish:-> { publish_prompts += 1; true }, notify:->(_message) {}).wait
+  assert(result.values == {'locator_sound'=>'bright', 'public_rankings'=>true} && result.publish_saved,
+    'Darts settings did not return the opt-in and saved-record publication choice')
+  assert(withdrawn == 1 && withdrawal_prompts == 1 && publish_prompts == 1,
+    'Darts settings did not independently confirm withdrawal and existing-record publication')
   assert(program.released == program.managed && program.managed.first.closes == 1, 'preview stream leaked after saving')
 
   driver = lambda do |form|
     form.fields.first.index = 1
     form.cancel_button.trigger(:press)
   end
-  assert(GameRoomDarts::Settings.new({'locator_sound'=>'bright'}, program: program).wait == nil,
+  assert(GameRoomDarts::Settings.new({'locator_sound'=>'bright', 'public_rankings'=>true}, program: program,
+    confirm_publish:-> { raise 'unchanged publication prompted again' }).wait == nil,
     'Cancel changed the Darts sound choice')
 ensure
   Form.send(:define_method, :wait, old_wait)

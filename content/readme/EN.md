@@ -406,6 +406,17 @@ Choose “Leaderboards” in the main menu, then a game. Leaderboards compare
 players' results; win, loss and goal totals are listed separately
 under “Statistics”.
 
+### Darts
+
+Choose Darts, a difficulty, and then either Best three-dart round or Best average
+score. Each list shows 30 results, with no more than three from one player.
+Higher scores rank first; shorter throw times break a tie.
+
+Your records are saved privately. To share them, open Darts settings at the table
+with Ctrl+P and enable publication. You can also publish previously saved records.
+A separate option removes your public results while keeping the private copies.
+Turning publication off only stops new results from being shared.
+
 ### Krowa
 
 - Word leaderboards favour fewer guesses. Search by a word or part of one.

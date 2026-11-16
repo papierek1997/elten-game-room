@@ -3,15 +3,15 @@ require_relative '../../../lib/game_random'
 include GameRoomTest::Assertions
 
 $stdout.sync = true
-unless ARGV.empty? || (ARGV.length == 2 && %w[1 2 3].include?(ARGV[0]) && %w[2 4 8].include?(ARGV[1]))
-  raise ArgumentError, 'Expected no arguments, or rules version (1, 2 or 3) and player count (2, 4 or 8)'
+unless ARGV.empty? || (ARGV.length == 2 && %w[1 2 3 4].include?(ARGV[0]) && %w[2 4 8].include?(ARGV[1]))
+  raise ArgumentError, 'Expected no arguments, or rules version (1, 2, 3 or 4) and player count (2, 4 or 8)'
 end
-cases = ARGV.empty? ? [1, 2, 3].product([2, 4, 8]) : [[ARGV[0].to_i, ARGV[1].to_i]]
+cases = ARGV.empty? ? [1, 2, 3, 4].product([2, 4, 8]) : [[ARGV[0].to_i, ARGV[1].to_i]]
 cases.each do |version, count|
     label = "v#{version}, #{count} players"
     puts "#{label}: starting"
     players = Array.new(count) { |index| "Player#{index + 1}" }
-    options = version >= 2 ? {'content_language_id'=>'pl-PL'} : {}
+    options = version >= 2 ? {'content_language_id'=>'pl-PL', 'content_pack_ids'=>%w[quiz.harry_potter.books.pl quiz.wikidata.pl quiz.witcher.books.pl]} : {}
     match = CashAuctionFixture::Match.new(players: players, options: options, rules_version: version)
     replay = match.replay
     if version >= 2
@@ -37,7 +37,7 @@ cases.each do |version, count|
       when :question_pending
         replay = match.reveal_question(seed: step + 1)
       when :opening_chests
-        if version == 3
+        if version >= 3
           match.now = replay.state[:open_chests_at]
           replay = match.automatic(seed: step + 1)
           next

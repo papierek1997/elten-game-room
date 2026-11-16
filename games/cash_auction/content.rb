@@ -9,6 +9,7 @@ module GameRoomCashAuction
     VERSION_KEY = 'auction_rules_version'.freeze
     MANIFEST_FIELDS = %w[id set language version checksum].freeze
     MAX_PACKS = 3
+    GENERAL_SET_IDS = {'en'=>'quiz.general', 'pl-PL'=>'quiz.wikidata', 'ru-RU'=>'quiz.general.ru'}.freeze
     MAX_ID_BYTES = 128
     MAX_MANIFEST_BYTES = 4096
     MAX_VERSION = (1 << 63) - 1
@@ -132,7 +133,7 @@ module GameRoomCashAuction
       language = default_content_language_id if language.to_s.empty?
       packs = auction_available_packs(language)
       [super(selected).first,
-       GameRoomGames::OptionDefinition.new(key: PACKS_KEY, label: _('Question sets (2 or 3, or the only available set)'), kind: :multiple_values,
+       GameRoomGames::OptionDefinition.new(key: PACKS_KEY, label: _('Question sets (1 to 3)'), kind: :multiple_values,
          default: auction_default_pack_ids(language), choices: packs.map do |pack|
            GameRoomGames::OptionChoice.new(value: pack.id, label: pack.title)
          end)]
@@ -160,7 +161,7 @@ module GameRoomCashAuction
     def content_options_error(options)
       version = option_source_value(options, VERSION_KEY)
       present = options.key?(VERSION_KEY) || options.key?(VERSION_KEY.to_sym)
-      unless !present || (version.is_a?(Integer) && [1, 2, GameRoomCashAuction::Rules::CURRENT_VERSION].include?(version))
+      unless !present || (version.is_a?(Integer) && [1, 2, 3, GameRoomCashAuction::Rules::CURRENT_VERSION].include?(version))
         return _('Unsupported Cash Auction rules version.')
       end
       return super unless GameRoomCashAuction::Rules.revised_options?(options)
@@ -191,7 +192,10 @@ module GameRoomCashAuction
     end
 
     def auction_default_pack_ids(language)
-      auction_available_packs(language).first(MAX_PACKS).map(&:id)
+      # The general set is an editorial default, not the first catalogue item.
+      # Leave an absent general set unchecked rather than selecting a topic.
+      general = GENERAL_SET_IDS[language.to_s]
+      auction_available_packs(language).select { |pack| pack.set_id == general }.map(&:id)
     end
 
     def auction_selection_error(options)
@@ -204,9 +208,8 @@ module GameRoomCashAuction
       unless valid_ids && ids.uniq.length == ids.length
         return _('The selected question pack is not installed for this language.')
       end
-      minimum = packs.length == 1 ? 1 : 2
-      unless ids.length.between?(minimum, [packs.length, MAX_PACKS].min)
-        return minimum == 1 ? _('Choose the available question set in the selected language.') : _('Choose 2 or 3 question sets in the selected language.')
+      unless ids.length.between?(1, [packs.length, MAX_PACKS].min)
+        return _('Choose from 1 to 3 question sets in the selected language.')
       end
       nil
     end

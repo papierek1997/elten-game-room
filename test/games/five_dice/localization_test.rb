@@ -54,5 +54,17 @@ balut = GameRoomGames::Balut.new
   writable = general.score_grid(state, 'Alice', writable: true)
   assert(writable.row_actions.any? { |action| action['category'] == 'poker' }, "#{language}: five equal dice could not be recorded as General")
   assert(writable.cells.any? { |row| row.first.include?(general_label) }, "#{language}: writable General used an obsolete label")
+  sheet = GameRoomGames::BalutScoring::CATEGORIES.to_h { |category| [category, []] }
+  sheet[:straight] = [0]
+  balut_state = {sheets: {'Alice'=>sheet}, dice: [4, 4, 4, 4, 4]}
+  grid = balut.send(:score_grid, balut_state, 'Alice', writable: true)
+  enter = GameRoomLocalization.translate('%{category}: enter %{points}') % {category: expected_fours, points: 20}
+  impossible = GameRoomLocalization.translate('No game points can be earned in this category.')
+  assert(grid.cells.first.first == enter, "#{language}: Balut entry label changed language or confused game points")
+  assert(grid.cells[3].last == impossible, "#{language}: Balut's impossible-row status is untranslated")
+  assert(balut.score_sheet_choices(balut_state, 'Alice')[3].label.include?(impossible), "#{language}: Balut V readout disagrees with its grid")
+  if language != 'en'
+    assert(!enter.include?(': enter ') && !impossible.start_with?('No game'), "#{language}: an English fallback hid missing Balut text")
+  end
 end
 puts 'PASS score-sheet labels follow the current language on the same General, Yahtzee and Balut instances'

@@ -8,11 +8,22 @@ module GameRoomDarts
   using GameRoomLocalization::Translations
 
   class Settings
+    Outcome = Struct.new(:values, :publish_saved, keyword_init: true)
+
     def _(text); GameRoomContent.utf8(super(text)); end
 
-    def initialize(values, program:, tick: nil, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
+    def initialize(values, program:, tick: nil, withdraw: nil, confirm_publish: nil, confirm_withdraw: nil, notify: nil,
+      clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
       @values, @program = Preferences.normalize(values), program
       @tick, @clock = tick, clock
+      @withdraw = withdraw
+      @confirm_publish = confirm_publish || -> {
+        confirm(_('Publish your three saved personal records in each Darts ranking too?'))
+      }
+      @confirm_withdraw = confirm_withdraw || -> {
+        confirm(_('Remove all your results from the public Darts rankings? Your private records will stay saved. If publishing remains enabled, later records can appear again.'))
+      }
+      @notify = notify || ->(message) { alert(message) }
     end
 
     def wait
@@ -21,18 +32,35 @@ module GameRoomDarts
       labels = [_('Rounded'), _('Clear'), _('Bright')]
       locator = ListBox.new(labels, header: _('Aiming sound (only for you)'),
         index: choices.index(@values['locator_sound']) || 0, quiet: true)
+      public_rankings = CheckBox.new(_('Publish new Darts records in the public rankings'),
+        checked: @values['public_rankings'])
       preview = Button.new(_('Play selected sound'))
+      withdraw = Button.new(_('Remove my results from the public Darts rankings')) if @withdraw
       save, cancel = Button.new(_('Save')), Button.new(_('Cancel'))
-      form = GameRoomUI::Form.new([locator, preview, save, cancel], program: @program, quiet: true)
+      fields = [locator, public_rankings, preview]
+      fields << withdraw if withdraw
+      form = GameRoomUI::Form.new(fields + [save, cancel], program: @program, quiet: true)
       form.accept_button, form.cancel_button = save, cancel
       accepted = false
       preview.on(:press) { play_preview(Preferences::LOCATOR_ASSETS.fetch(choices.fetch(locator.index.to_i))) }
+      withdraw&.on(:press) do
+        next unless @confirm_withdraw.call
+        if @withdraw.call
+          @notify.call(_('Removal of your public Darts results has been queued.'))
+        else
+          @notify.call(_('Could not queue removal of your public Darts results.'))
+        end
+      end
       save.on(:press) { accepted = true; form.resume }
       cancel.on(:press) { form.resume }
       timer = GameRoomRealtime::Timer.new(clock: @clock, &@tick) if @tick
       form.add_timer(timer) if timer
       form.wait
-      accepted ? Preferences.normalize('locator_sound' => choices.fetch(locator.index.to_i)) : nil
+      return unless accepted
+      values = Preferences.normalize('locator_sound' => choices.fetch(locator.index.to_i),
+        'public_rankings' => public_rankings.checked == true)
+      publish_saved = !@values['public_rankings'] && values['public_rankings'] && @confirm_publish.call
+      Outcome.new(values: values, publish_saved: publish_saved)
     ensure
       close_preview
       timer&.stop

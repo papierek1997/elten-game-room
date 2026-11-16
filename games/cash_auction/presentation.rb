@@ -216,7 +216,9 @@ module GameRoomGames
             participant = state[:players][index]
             entries << HistoryEntry.new(key: "cash-auction:#{event_id}:inactivity:#{index}", event_id: event_id,
               actor: participant, kind: :game,
-              text: _('%{player} made no bid in three consecutive auctions and pays %{amount} into the pool.') % {
+              text: (R.question_pool_auction?(state) ?
+                _('%{player} made no bid in three consecutive auctions and pays %{amount} into the pool.') :
+                _('%{player} made no bid in three consecutive auctions and loses %{amount} points.')) % {
                 player: participant_name(participant), amount: penalty})
           end
         end

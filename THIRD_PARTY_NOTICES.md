@@ -729,14 +729,17 @@ other languages, not a runtime dependency.
 ### Dice General — school feedback
 
 The `Audio/kosciane_column_*.opus` cues combine the score cue with trimmed,
-gain-adjusted feedback effects. School completion uses “Applause i.ogg” by
+gain-adjusted feedback effects. Balut also uses these shared recordings.
+School completion uses “Applause i.ogg” by
 Thore, released into the public domain:
 https://commons.wikimedia.org/wiki/File:Applause_i.ogg.
 School failure uses “Sad Trombone.wav” by Sad Tromboner, under
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/):
 https://commons.wikimedia.org/wiki/File:Sad_Trombone.wav.
-The source effects have been edited and combined; their authors do not
-endorse Power Games.
+The source effects have been edited and combined. The combined cues have
+playback gain adjustments in their Opus headers to balance their loudness;
+the compressed audio packets are unchanged. Their authors do not endorse
+Power Games.
 
 ### Cash Auction — gavel and chest
 

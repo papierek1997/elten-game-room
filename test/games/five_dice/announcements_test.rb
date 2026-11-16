@@ -21,7 +21,7 @@ assert(replay.history.any? { |entry| entry.text == 'Alice records 30 in Sixes, c
 events << cht_event(events.size + 1, 'Alice', 'score', 'cross:2')
 crossed = game.replay(session, events, repository)
 assert(crossed.history.last.text == 'Alice loses 30 bonus points.', 'A school cross silently removed bonuses')
-assert(crossed.history[-2].text == 'Alice crosses out Twos, column 1. Alice did not complete the school.', 'A cross has no cell or first school failure feedback')
+assert(crossed.history[-2].text == 'Alice records 0 in Twos, column 1. Alice did not complete the school.', 'A zero has no cell or first school failure feedback')
 assert(crossed.history[-2].value == 'kosciane_column_1_lose3', 'The first school cross lacks its column/failure cue')
 assert(crossed.history.map(&:text) == game.replay(session, events, repository).history.map(&:text), 'Reconstructing the game repeats score feedback')
 
@@ -50,7 +50,8 @@ assert(replay.history.count { |entry| entry.text.include?('Alice completed the s
 balut = GameRoomGames::Balut.new
 events = [cht_event(1, 'Alice', 'roll', '6,6,6,6,6'), cht_event(2, 'Alice', 'score', 'balut')]
 replay = balut.replay({}, events, repository)
-assert(replay.history[-2].text == 'Alice records 50 in Balut, entry 1.', 'Balut conflates the entry with game points')
+assert(replay.history[-3].text == 'Alice records 50 in Balut, entry 1.', 'Balut conflates the entry with game points')
+assert(replay.history[-2].text == 'Alice earns 2 game points for Balut.', 'Balut does not explain the gained category points')
 assert(replay.history.last.text == 'Alice: game points: 0.', 'The changed game-point total was not announced')
 events += [cht_event(3, 'Bob', 'roll', '4,4,4,4,4'), cht_event(4, 'Bob', 'score', 'fours')]
 replay = balut.replay({}, events, repository)

@@ -4,7 +4,7 @@ def check(value, message)
   NativeOptionTest.assert(value, message)
 end
 
-games = [GameRoomGames::QuizParty.new, GameRoomGames::Scrabble.new,
+games = [GameRoomGames::QuizParty.new, GameRoomGames::CashAuction.new, GameRoomGames::Scrabble.new,
   GameRoomGames::Taboo.new, GameRoomGames::Categories.new, GameRoomGames::DuckRacing.new]
 general_sets = {"en" => "quiz.general", "pl-PL" => "quiz.wikidata", "ru-RU" => "quiz.general.ru"}
 historical_defaults = games.to_h { |game| [game.id, game.default_options] }
@@ -17,7 +17,7 @@ scenarios = []
     key = game.content_language_option_key
     expected = if ui == "pl"
       game.id == "categories" ? "pl" : "pl-PL"
-    elsif ui == "ru" && %w[quiz duck_racing].include?(game.id)
+    elsif ui == "ru" && %w[quiz cash_auction duck_racing].include?(game.id)
       "ru-RU"
     else
       "en"
@@ -30,6 +30,9 @@ scenarios = []
     definitions = game.effective_option_definitions(defaults)
     if game.id == "quiz"
       check(defaults["content_set_id"] == general_sets.fetch(expected), "Quiz did not select the general set")
+    elsif game.id == "cash_auction"
+      pack = GameRoomContent.registry.pack_for(game_id: 'quiz', kind: 'quiz', set_id: general_sets.fetch(expected), language_id: expected)
+      check(defaults['content_pack_ids'] == [pack.id], 'Cash Auction did not select only the matching general set')
     elsif game.id == "duck_racing"
       check(defaults["question_sets"] == [general_sets.fetch(expected)], "Duck Racing did not select the matching general set")
     end
@@ -43,6 +46,11 @@ scenarios = []
     if game.id == "quiz"
       set = definitions.find { |definition| definition.key == "content_set_id" }
       check(driver.control(set.key).options == set.choices.map(&:label), "Quiz opened with the wrong set list")
+    elsif game.id == "cash_auction"
+      set = definitions.find { |definition| definition.key == 'content_pack_ids' }
+      checklist = driver.control(set.key)
+      check(checklist.options == set.choices.map(&:label), 'Cash Auction opened with the wrong checklist')
+      check(checklist.multiselections.map { |index| set.choices[index].value } == defaults['content_pack_ids'], 'Cash Auction checked additional topics by default')
     elsif game.id == "duck_racing"
       set = definitions.find { |definition| definition.key == "question_sets" }
       checklist = driver.control(set.key)

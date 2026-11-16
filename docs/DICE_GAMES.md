@@ -1,6 +1,6 @@
-# Dice poker and Liar's dice
+# Dice games
 
-Both games use the ordinary LiveSessions game/action/replay path, shared
+Dice poker and Liar's dice use the ordinary LiveSessions game/action/replay path, shared
 SessionRunner, bot coordinator, history, context help and sound output. No
 separate scheduler or UI loop is introduced. Both support 2–8 seats.
 
@@ -101,3 +101,32 @@ data and storage failures. Public replay never stores private values before
 the challenge. UI and bot views are separate, bounded, viewer-scoped copies.
 The bot uses only its own cup and public counts, with an explicit replay-only
 strategy contract. Permanent loss of the final die uses the shared elimination hook.
+
+## Shared score-sheet feedback
+
+Yahtzee, Dice General and Balut use `GameRoomFiveDiceSounds`, through their
+existing `event_sound_cues` hooks. `roll(dice)` selects the ordinary roll or
+roll plus five-equal feedback. `score(column: nil, effect: nil, zero: false,
+recording: nil)` selects a non-card recording cue. Columns 1–6 reuse the
+existing combined `kosciane_column_*` recordings; do not split their timing or
+copy/re-encode the assets. Effects are `:bonus`, `:complete`, `:failure` and
+`:doubled`. A zero adds a short cue, but never duplicates a school failure.
+General's history can supply its already selected `recording` unchanged.
+
+The helper only selects names. Games retain scoring and the meaning of each
+effect; for example, zero in Yahtzee Misery is not a failed combination, and
+an ordinary Balut zero does not revoke General's school bonuses. Shared
+presentation still owns event order, deduplication, playback, volume and output
+gates. No helper may publish moves, use the game RNG or start an audio worker.
+
+Balut's table entries and game points are separate. Its feedback explains new
+category points and changes to the total-score adjustment before reporting the
+new game total. The native table and V readout share `balut_row_status`;
+`BalutScoring.row_points_possible?` determines whether remaining entries can
+still earn category points. It never changes the score or legal actions.
+
+Regressions: `test/games/five_dice/shared_sounds_test.rb`,
+`balut_feedback_test.rb`, `balut_grid_native_test.rb`,
+`score_sounds_playback_test.rb` and `feedback_contract_test.rb` in the same
+directory. Also run the three games' model contracts and the affected native,
+localization and rulebook checks. A names-only test does not prove playback.

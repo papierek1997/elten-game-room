@@ -251,7 +251,7 @@ module CashAuctionPercentageChestsTest
   end
 
   def run
-    assert_equal(3, GameRoomGames::CashAuction.new.table_creation_options['auction_rules_version'])
+    assert_equal(R::CURRENT_VERSION, GameRoomGames::CashAuction.new.table_creation_options['auction_rules_version'])
     distribution
     settlement
     refusals

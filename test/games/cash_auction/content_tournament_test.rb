@@ -4,16 +4,18 @@ require_relative '../../support/tournament_public_ui'
 include GameRoomTest::Assertions
 GameRoomLocalization.boot(settings: {'interface_language'=>'en', 'known_languages'=>['en']})
 game = GameRoomGames::CATALOG.build('cash_auction')
-modern = game.new_game_options(game.table_creation_options('content_language_id'=>'pl-PL'))
+general = game.table_creation_options('content_language_id'=>'pl-PL')
+ids = game.effective_option_definitions(general).find { |definition| definition.key == 'content_pack_ids' }.choices.map(&:value)
+modern = game.new_game_options(game.table_creation_options('content_language_id'=>'pl-PL', 'content_pack_ids'=>ids))
 legacy = game.normalize_options('content_language_id'=>'pl-PL', 'content_set_id'=>'quiz.witcher.books')
 read_options = ->(row) { JSON.parse(row.fetch('settings_json')).fetch('game_options') }
-rows = [modern, modern.merge('auction_rules_version'=>2), legacy].each_with_index.map do |options, index|
+rows = [modern, modern.merge('auction_rules_version'=>2), legacy, general].each_with_index.map do |options, index|
   row = TournamentPublicUI.publication(41 + index, game: game.id, options: options, 'players_per_match'=>3)
   assert_equal(options, read_options.call(row), 'Publication changed a pinned content identity')
   row
 end
 snapshot = TournamentPublicUI.snapshot(rows)
-assert_equal(3, snapshot.fetch('announcements').length, 'The actual publication decoder rejected a valid source schema')
+assert_equal(4, snapshot.fetch('announcements').length, 'The actual publication decoder rejected a valid source schema')
 rows.each do |row|
   restored = snapshot.fetch('announcements').find { |entry| entry['__id'] == row['__id'] }
   assert_equal(read_options.call(row), read_options.call(restored), 'Reading a publication upgraded its options')
@@ -25,8 +27,8 @@ forged = Marshal.load(Marshal.dump(modern))
 forged['content_pack_manifest'][0]['checksum'] = 'f' * 64
 invalid = [forged, modern.merge('content_pack_manifest'=>{}),
   modern.merge('content_pack_ids'=>'quiz.wikidata.pl'),
-  modern.merge('content_pack_ids'=>[modern['content_pack_ids'].first]),
-  modern.merge('auction_rules_version'=>'3'), modern.merge('auction_rules_version'=>4),
+  modern.merge('content_pack_ids'=>[]),
+  modern.merge('auction_rules_version'=>'3'), modern.merge('auction_rules_version'=>5),
   modern.merge('content_pack_manifest'=>modern['content_pack_manifest'].reverse)]
 invalid.each_with_index do |options, index|
   assert_raises(GameRoomTournaments::Publication::Invalid) do
@@ -67,8 +69,9 @@ rows.each do |row|
     if fixed && !stored.key?('auction_rules_version')
       assert_equal(false, app.prepared.key?('content_pack_ids'), 'An old fixed binding acquired a merged pool')
     else
-      assert_equal(fixed ? stored['auction_rules_version'] : 3, app.prepared['auction_rules_version'])
-      assert_equal(3, app.prepared['content_pack_manifest'].length)
+      assert_equal(fixed ? stored['auction_rules_version'] : GameRoomCashAuction::Rules::CURRENT_VERSION, app.prepared['auction_rules_version'])
+      expected_ids = stored['content_pack_ids'] || ['quiz.wikidata.pl']
+      assert_equal(expected_ids, app.prepared['content_pack_manifest'].map { |entry| entry['id'] })
     end
   end
 end

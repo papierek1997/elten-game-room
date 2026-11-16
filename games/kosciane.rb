@@ -17,7 +17,8 @@ module GameRoomGames
     def event_sound_cues(event:, history:, **arguments)
       return super unless event["action"] == "score"
 
-      history.find { |entry| entry.kind == :score }&.value || "cht-bank"
+      score = history.find { |entry| entry.kind == :score }
+      GameRoomFiveDiceSounds.score(recording: score&.value, zero: event['value'].to_s.start_with?('cross:'))
     end
     def tournament_capabilities(options: {}); super.merge(player_counts: [].freeze).freeze; end
     def shortcut_features; []; end
@@ -30,7 +31,7 @@ module GameRoomGames
         OptionDefinition.new(key: "parity", label: _("Even and odd"), kind: :boolean, default: false),
         OptionDefinition.new(key: "fixed", label: _("Fixed scores for combinations"), kind: :boolean, default: false),
         OptionDefinition.new(key: "double_first", label: _("Double the first roll score"), kind: :boolean, default: false),
-        OptionDefinition.new(key: "strict_school", label: _("School crosses prevent future bonuses"), kind: :boolean, default: false)
+        OptionDefinition.new(key: "strict_school", label: _("Zero scores in school prevent future bonuses"), kind: :boolean, default: false)
       ]
     end
 
@@ -79,17 +80,17 @@ module GameRoomGames
           score = entries.first
           effect = if school_intact && category.is_a?(Integer) && cross
             score.text = "#{GameRoomContent.utf8(score.text)} #{GameRoomContent.utf8(_("%{player} did not complete the school.") % {player: GameRoomContent.utf8(participant_name(player))})}"
-            "lose3"
+            :failure
           elsif school_intact && category.is_a?(Integer) && match.sheet(player).values_at(*(1..6)).all? { |row| row.size == options["columns"] }
             score.text = "#{GameRoomContent.utf8(score.text)} #{GameRoomContent.utf8(_("%{player} completed the school.") % {player: GameRoomContent.utf8(participant_name(player))})}"
-            "win2"
+            :complete
           elsif entries.size > 1 && !cross
-            "win1"
+            :bonus
           elsif doubled
-            "draw2"
+            :doubled
           end
           column = match.sheet(player).fetch(category).size
-          score.value = ["kosciane_column_#{column}", effect].compact.join("_")
+          score.value = GameRoomFiveDiceSounds.score(column: column, effect: effect)
           history.concat(entries)
         else
           next
@@ -197,13 +198,19 @@ module GameRoomGames
       match = state[:match_model]
       columns = state[:options]["columns"]
       choices = writable ? available_scoring_categories(state, player) : match.categories
+      # Keep the protocol's failed-result marker and bonus rules, but offer
+      # only one row per category: its score, or zero if no score is possible.
+      choices = choices.reject do |choice|
+        category, cross = decode_choice(match, choice)
+        cross && match.preview(category)
+      end if writable
       rows = choices.map do |choice|
         category, cross = writable ? decode_choice(match, choice) : [choice, false]
         entries = match.sheet(player).fetch(category)
         label = category_label(category)
         if writable
-          label = cross ? _("Cross out %{category}") % {category: label} :
-            _("%{category}: record %{points}") % {category: label, points: match.preview(category).first}
+          points = cross ? 0 : match.preview(category).first
+          label = _("%{category}: record %{points}") % {category: label, points: points}
         end
         total = entries.grep(Integer).sum
         reserve = category.is_a?(Integer) ? (_("Reserve: %{count}") % {count: match.reserve(player, category)}) : ""
@@ -247,11 +254,8 @@ module GameRoomGames
     def recorded_score_history(match, player, category, cross, event_id, before_bonuses)
       row = match.sheet(player).fetch(category)
       values = {player: participant_name(player), category: category_label(category), column: row.size}
-      text = if cross
-        _("%{player} crosses out %{category}, column %{column}.") % values
-      else
-        _("%{player} records %{points} in %{category}, column %{column}.") % values.merge(points: row.last)
-      end
+      text = _("%{player} records %{points} in %{category}, column %{column}.") %
+        values.merge(points: cross ? 0 : row.last)
       entries = [HistoryEntry.new(key: "score:#{event_id}", event_id: event_id, actor: player, kind: :score, text: text)]
       bonuses = match.bonuses(player)
       bonuses.each do |(kind, completed), points|
@@ -302,7 +306,7 @@ module GameRoomGames
 
     def cell_label(value)
       return _("not filled") if value.nil?
-      value == :cross ? _("crossed out") : value.to_s
+      value == :cross ? "0" : value.to_s
     end
   end
 end

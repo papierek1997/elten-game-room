@@ -230,6 +230,10 @@ msgstr "%{category}: %{answer}; sędzia zmienił ocenę z %{previous} na %{decis
 msgid "%{category}: %{answer}; the judge removed the assessment %{previous}."
 msgstr "%{category}: %{answer}; sędzia usunął ocenę %{previous}."
 
+#: games/balut.rb:97
+msgid "%{category}: %{entries}. Sum of entries: %{total}. %{status}"
+msgstr "%{category}: %{entries}. Suma wpisów: %{total}. %{status}"
+
 #: games/balut.rb:101
 msgid "%{category}: %{entries}. Total: %{total}. Row points: %{points}."
 msgstr "%{category}: %{entries}. Suma: %{total}. Punkty za wiersz: %{points}."
@@ -238,7 +242,7 @@ msgstr "%{category}: %{entries}. Suma: %{total}. Punkty za wiersz: %{points}."
 msgid "%{category}: %{player} with %{total}"
 msgstr "%{category}: %{player}, suma %{total}"
 
-#: games/yahtzee.rb:209
+#: games/yahtzee.rb:215
 msgid "%{category}: %{points} points"
 msgstr "%{category}: %{points} punktów"
 
@@ -250,11 +254,15 @@ msgstr "%{category}: %{total}"
 msgid "%{category}: %{value}"
 msgstr "%{category}: %{value}"
 
+#: games/balut_support/balut_score_grid.rb:22
+msgid "%{category}: enter %{points}"
+msgstr "%{category}: zapisz %{points}"
+
 #: games/biblios.rb:1233
 msgid "%{category}: nobody"
 msgstr "%{category}: nikt"
 
-#: games/balut_support/balut_score_grid.rb:27 games/kosciane.rb:206
+#: games/kosciane.rb:213
 msgid "%{category}: record %{points}"
 msgstr "%{category}: do zapisu %{points}"
 
@@ -414,14 +422,14 @@ msgstr[2] "%{count} pytań"
 msgid "%{count} questions"
 msgstr "%{count} pytań"
 
-#: games/darts.rb:69
+#: games/darts.rb:70
 msgid "%{count} round"
 msgid_plural "%{count} rounds"
 msgstr[0] "%{count} runda"
 msgstr[1] "%{count} rundy"
 msgstr[2] "%{count} rund"
 
-#: games/kosciane.rb:44
+#: games/kosciane.rb:45
 msgid "%{count} score column"
 msgid_plural "%{count} score columns"
 msgstr[0] "%{count} kolumna punktacji"
@@ -471,6 +479,10 @@ msgstr "%{deck}; limit punktów %{score}; odpowiedzi na kary: %{responses}; limi
 #: games/war.rb:94
 msgid "%{deck}; up to %{count} battles"
 msgstr "%{deck}; najwyżej %{count} bitew"
+
+#: lib/darts/rankings/screen.rb:66
+msgid "%{difficulty}: %{ranking}"
+msgstr "%{difficulty}: %{ranking}"
 
 #: games/mille_bornes/presentation.rb:197
 msgid "%{distance} miles"
@@ -559,7 +571,7 @@ msgstr "Zasady gry %{game}"
 msgid "%{game}, %{owner}"
 msgstr "%{game}, %{owner}"
 
-#: __app.rb:3042
+#: __app.rb:3060
 msgid "%{game}, %{table}"
 msgstr "%{game}, %{table}"
 
@@ -571,11 +583,11 @@ msgstr "%{game}: %{mode}"
 msgid "%{game}: %{section}"
 msgstr "%{game}: %{section}"
 
-#: __app.rb:1374
+#: __app.rb:1382
 msgid "%{game}; %{date}; %{players}"
 msgstr "%{game}; %{date}; %{players}"
 
-#: __app.rb:2637
+#: __app.rb:2645
 msgid "%{game}; %{table}; invited by %{sender}; %{count}/%{maximum}"
 msgstr "%{game}; %{table}; zaprasza %{sender}; %{count}/%{maximum}"
 
@@ -591,7 +603,7 @@ msgstr "%{giver} wymienił jedną kartę z graczem %{target}."
 msgid "%{giver} gave a trump card to %{target}; %{target} chooses the return card."
 msgstr "%{giver} przekazał kartę atutową graczowi %{target}; %{target} wybiera kartę do oddania."
 
-#: __app.rb:3910
+#: __app.rb:3928
 msgid "%{group}, %{volume}%%"
 msgstr "%{group}, %{volume}%%"
 
@@ -711,7 +723,7 @@ msgstr[2] "%{level} pików"
 msgid "%{mark}, %{player}'s mark"
 msgstr "%{mark}, znak gracza %{player}"
 
-#: games/yahtzee.rb:102
+#: games/yahtzee.rb:108
 msgid "%{matches} matches; extra categories: %{extra}"
 msgstr "Liczba rozgrywek: %{matches}; dodatkowe kategorie: %{extra}"
 
@@ -823,7 +835,7 @@ msgstr "%{owner} żąda czynszu. %{player} płaci %{rent}."
 msgid "%{owner} waived the rent from %{player}."
 msgstr "%{owner} rezygnuje z czynszu od gracza %{player}."
 
-#: __app.rb:3335
+#: __app.rb:3353
 msgid "%{owner}, %{count}/%{maximum}, %{status}"
 msgstr "%{owner}, %{count}/%{maximum}, %{status}"
 
@@ -1004,7 +1016,7 @@ msgstr "%{player} odpowiedział niepoprawnie."
 msgid "%{player} answered incorrectly. Correct answer: %{answer}. The pool carries over."
 msgstr "%{player} odpowiada błędnie. Poprawna odpowiedź: %{answer}. Pula przechodzi dalej."
 
-#: games/cash_auction/presentation.rb:271
+#: games/cash_auction/presentation.rb:273
 msgid "%{player} answers the question."
 msgstr "%{player} odpowiada na pytanie."
 
@@ -1226,14 +1238,14 @@ msgstr "%{player} odbiera jackpot z Darmowego parkingu w wysokości %{amount}."
 msgid "%{player} completed the %{group}."
 msgstr "%{player} ma komplet: %{group}."
 
-#: games/darts.rb:240
+#: games/darts.rb:253
 msgid "%{player} completed the game with %{score} point."
 msgid_plural "%{player} completed the game with %{score} points."
 msgstr[0] "%{player} kończy grę z wynikiem %{score} punktu."
 msgstr[1] "%{player} kończy grę z wynikiem %{score} punktów."
 msgstr[2] "%{player} kończy grę z wynikiem %{score} punktów."
 
-#: games/kosciane.rb:84
+#: games/kosciane.rb:85
 msgid "%{player} completed the school."
 msgstr "%{player} ukończył szkołę."
 
@@ -1323,7 +1335,7 @@ msgstr "%{player} odrzuca podwojenie."
 msgid "%{player} describes for team %{team}."
 msgstr "%{player} opisuje dla drużyny %{team}."
 
-#: games/kosciane.rb:81
+#: games/kosciane.rb:82
 msgid "%{player} did not complete the school."
 msgstr "%{player} nie ukończył szkoły."
 
@@ -1431,13 +1443,17 @@ msgstr "%{player} dobiera kartę zastępczą."
 msgid "%{player} drew a tile."
 msgstr "%{player} dobrał kamień."
 
-#: games/kosciane.rb:260
+#: games/kosciane.rb:264
 msgid "%{player} earns %{points} bonus points for completing %{category}."
 msgstr "%{player} otrzymuje %{points}-punktową premię za wypełnienie kategorii %{category}."
 
-#: games/kosciane.rb:263
+#: games/kosciane.rb:267
 msgid "%{player} earns %{points} bonus points for completing column %{column}."
 msgstr "%{player} otrzymuje %{points}-punktową premię za wypełnienie kolumny %{column}."
+
+#: games/balut.rb:188
+msgid "%{player} earns %{points} game points for %{category}."
+msgstr "%{player} otrzymuje %{points} punkty za kategorię %{category}."
 
 #: games/ninety_nine.rb:913
 msgid "%{player} eliminated"
@@ -1631,7 +1647,7 @@ msgstr "Karty gracza %{player}: %{hand}"
 msgid "%{player} is eliminated by forfeit. The remaining participants continue playing."
 msgstr "%{player} odpada przez walkower. Pozostali gracze kontynuują partię."
 
-#: games/cash_auction/presentation.rb:226 games/rummy.rb:565
+#: games/cash_auction/presentation.rb:228 games/rummy.rb:565
 msgid "%{player} is eliminated."
 msgstr "%{player} odpada."
 
@@ -1794,7 +1810,7 @@ msgstr[2] "%{player} traci za karę %{count} piór."
 msgid "%{player} loses %{count} penalty feathers."
 msgstr "%{player} traci za karę %{count} piór."
 
-#: games/kosciane.rb:271
+#: games/kosciane.rb:275
 msgid "%{player} loses %{points} bonus points."
 msgstr "%{player} traci premię o wartości %{points} pkt."
 
@@ -1829,7 +1845,11 @@ msgstr "%{player} stracił %{points} punktów."
 msgid "%{player} lost the round by exceeding 99."
 msgstr "%{player} przegrywa rundę przez przekroczenie 99."
 
-#: games/cash_auction/presentation.rb:219
+#: games/cash_auction/presentation.rb:221
+msgid "%{player} made no bid in three consecutive auctions and loses %{amount} points."
+msgstr "%{player} nie złożył oferty w trzech kolejnych licytacjach i traci %{amount} pkt."
+
+#: games/cash_auction/presentation.rb:220
 msgid "%{player} made no bid in three consecutive auctions and pays %{amount} into the pool."
 msgstr "%{player} nie złożył oferty w trzech kolejnych licytacjach i wpłaca karę %{amount} do puli."
 
@@ -1939,7 +1959,7 @@ msgstr "%{player} ujawnia flotę."
 msgid "%{player} opens a black chest: %{amount} points. Balance: %{balance}."
 msgstr "%{player} otwiera czarną skrzynię: %{amount} punktów. Saldo: %{balance}."
 
-#: games/cash_auction/presentation.rb:244
+#: games/cash_auction/presentation.rb:246
 msgid "%{player} opens a black chest: %{percent}."
 msgstr "%{player} otwiera czarną skrzynkę: %{percent}."
 
@@ -1951,7 +1971,7 @@ msgstr "%{player} otwiera czarną skrzynkę. Dodatkowa nagroda: %{amount}."
 msgid "%{player} opens a black chest: bankrupt."
 msgstr "%{player} otwiera czarną skrzynię: bankructwo."
 
-#: games/cash_auction/presentation.rb:243
+#: games/cash_auction/presentation.rb:245
 msgid "%{player} opens a black chest: no change."
 msgstr "%{player} otwiera czarną skrzynkę: bez zmiany."
 
@@ -2280,7 +2300,7 @@ msgstr "%{player} otrzymuje %{points} pkt."
 msgid "%{player} receives 100 bonus points for another Yahtzee."
 msgstr "%{player} otrzymuje premię za kolejne Yahtzee: 100 punktów."
 
-#: games/yahtzee.rb:415
+#: games/yahtzee.rb:421
 msgid "%{player} receives 35 bonus points for Ones through Sixes."
 msgstr "%{player} otrzymuje 35 punktów premii za Jedynki–Szóstki."
 
@@ -2291,11 +2311,11 @@ msgstr "%{player} otrzymuje podwójną pensję, %{amount}, za zatrzymanie na Sta
 msgid "%{player} receives the upper-section bonus: 35 points."
 msgstr "%{player} otrzymuje premię za górną część arkusza: 35 punktów."
 
-#: games/kosciane.rb:253
+#: games/kosciane.rb:257
 msgid "%{player} records %{points} in %{category}, column %{column}."
 msgstr "%{player} zapisuje %{points} w kategorii %{category}, w kolumnie %{column}."
 
-#: games/balut.rb:50
+#: games/balut.rb:184
 msgid "%{player} records %{score} in %{category}, entry %{entry}."
 msgstr "%{player} zapisuje %{score} w kategorii %{category}, w polu %{entry}."
 
@@ -2380,7 +2400,7 @@ msgstr "%{player} znów używa zwykłej kości z wynikami od 1 do 6."
 msgid "%{player} reveals %{dice}."
 msgstr "%{player} odkrywa kości: %{dice}."
 
-#: games/backgammon.rb:316 games/yahtzee.rb:391
+#: games/backgammon.rb:316 games/yahtzee.rb:397
 msgid "%{player} rolled %{dice}."
 msgstr "%{player} wyrzuca %{dice}."
 
@@ -2513,7 +2533,7 @@ msgstr "%{player} mówi UNO!"
 msgid "%{player} says the bid is exact."
 msgstr "%{player} twierdzi, że liczba kości się zgadza."
 
-#: games/yahtzee.rb:409
+#: games/yahtzee.rb:415
 msgid "%{player} scored %{points} in %{category}."
 msgstr "%{player} zapisuje %{points} punktów w kategorii %{category}."
 
@@ -2535,7 +2555,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: games/darts.rb:395
+#: games/darts.rb:408
 msgid "%{player} scores %{points} point."
 msgid_plural "%{player} scores %{points} points."
 msgstr[0] "%{player} zdobywa %{points} punkt."
@@ -2716,7 +2736,7 @@ msgstr[2] "%{player}: koniec zamrożenia, otrzymuje %{count} piór."
 msgid "%{player} thaws and receives %{count} feathers."
 msgstr "%{player}: koniec zamrożenia, otrzymuje %{count} piór."
 
-#: games/darts.rb:390
+#: games/darts.rb:403
 msgid "%{player} throws automatically and scores %{points} point."
 msgid_plural "%{player} throws automatically and scores %{points} points."
 msgstr[0] "%{player} wykonuje automatyczny rzut i zdobywa %{points} punkt."
@@ -2964,7 +2984,11 @@ msgstr "pionek %{pawn} gracza %{player}"
 msgid "%{player}'s piece"
 msgstr "Pionek gracza %{player}"
 
-#: games/yahtzee.rb:293
+#: lib/darts/client.rb:570
+msgid "%{player}'s result took place %{place} in %{category}, %{difficulty}."
+msgstr "Wynik gracza %{player} zajął %{place}. miejsce w kategorii %{category}, poziom %{difficulty}."
+
+#: games/yahtzee.rb:299
 msgid "%{player}'s score sheet, match %{match}"
 msgstr "Karta punktacji: %{player}, partia %{match}"
 
@@ -3091,7 +3115,7 @@ msgstr "%{player}: %{attempts} prób, w grze"
 msgid "%{player}: %{attempt}"
 msgstr "%{player}: %{attempt}"
 
-#: games/cash_auction/presentation.rb:252
+#: games/cash_auction/presentation.rb:254
 msgid "%{player}: %{balance} points after opening the chests."
 msgstr "%{player}: %{balance} punktów po otwarciu skrzynek."
 
@@ -3222,7 +3246,7 @@ msgstr "%{player}: %{result}"
 msgid "%{player}: %{result}."
 msgstr "%{player}: %{result}."
 
-#: games/biblios.rb:1296 games/cat_head_tail.rb:433 games/farkle.rb:761 games/three_five_eight.rb:1023 games/tysiac.rb:1645 games/uno.rb:1389 games/yahtzee.rb:544 lib/game_surfaces/darts_surface.rb:111
+#: games/biblios.rb:1296 games/cat_head_tail.rb:433 games/farkle.rb:761 games/three_five_eight.rb:1023 games/tysiac.rb:1645 games/uno.rb:1389 games/yahtzee.rb:550 lib/game_surfaces/darts_surface.rb:111
 msgid "%{player}: %{score}"
 msgstr "%{player}: %{score}"
 
@@ -3303,7 +3327,7 @@ msgstr "%{player}: pierwsze poddanie."
 msgid "%{player}: first zero."
 msgstr "%{player}: pierwsze zero."
 
-#: games/balut.rb:56
+#: games/balut.rb:198
 msgid "%{player}: game points: %{points}."
 msgstr "%{player}: punkty gry: %{points}."
 
@@ -3334,6 +3358,10 @@ msgstr "%{player}: nieodgadnięte, %{attempts} prób"
 #: games/scientific_war.rb:879
 msgid "%{player}: out"
 msgstr "%{player}: poza grą"
+
+#: games/balut.rb:194
+msgid "%{player}: points for the sum of recorded scores: %{points}."
+msgstr "%{player}: punkty za sumę wpisów: %{points}."
 
 #: games/cash_auction/presentation.rb:55
 msgid "%{player}: points: %{points}; black chests: %{chests}"
@@ -3514,7 +3542,7 @@ msgstr[0] "%{seconds} sekunda"
 msgstr[1] "%{seconds} sekundy"
 msgstr[2] "%{seconds} sekund"
 
-#: games/categories.rb:272 games/darts.rb:47 games/uno.rb:190
+#: games/categories.rb:272 games/darts.rb:48 games/uno.rb:190
 msgid "%{seconds} seconds"
 msgstr "%{seconds} sekund"
 
@@ -3530,11 +3558,11 @@ msgstr "Pozostało %{seconds} sekund"
 msgid "%{seconds} seconds remaining."
 msgstr "Pozostało %{seconds} sekund."
 
-#: __app.rb:415
+#: __app.rb:420
 msgid "%{sender} invites you to %{table} (%{game})."
 msgstr "%{sender} zaprasza cię do stołu %{table} (%{game})."
 
-#: __app.rb:413
+#: __app.rb:418
 msgid "%{sender} invites you to a tournament match (%{game})."
 msgstr "%{sender} zaprasza cię na mecz turniejowy (%{game})."
 
@@ -3542,11 +3570,11 @@ msgstr "%{sender} zaprasza cię na mecz turniejowy (%{game})."
 msgid "%{sender} invites you to register for %{name} (%{game})."
 msgstr "%{sender} zaprasza Cię do zapisania się na turniej %{name} (%{game})."
 
-#: __app.rb:415
+#: __app.rb:420
 msgid "%{sender} invites you to resume %{table} (%{game})."
 msgstr "%{sender} zaprasza Cię do wznowienia gry przy stole %{table} (%{game})."
 
-#: __app.rb:413
+#: __app.rb:418
 msgid "%{sender} invites you to resume a tournament match (%{game})."
 msgstr "%{sender} zaprasza cię do wznowienia meczu turniejowego (%{game})."
 
@@ -3648,7 +3676,7 @@ msgstr "%{suit} jako atut"
 msgid "%{suit}: %{cards}"
 msgstr "%{suit}: %{cards}"
 
-#: __app.rb:3046
+#: __app.rb:3064
 msgid "%{table}, unavailable"
 msgstr "%{table}, niedostępny"
 
@@ -3749,7 +3777,7 @@ msgstr "%{user} odrzucił zaproszenie gracza %{player}."
 msgid "%{user} declined your invitation to %{table}."
 msgstr "%{user} odrzuca Twoje zaproszenie do stołu %{table}."
 
-#: __app.rb:3980
+#: __app.rb:3998
 msgid "%{user}'s table"
 msgstr "Stół użytkownika %{user}"
 
@@ -5611,7 +5639,7 @@ msgstr "1: zaznacz do rzutu jedną zachowaną kość o wartości 1."
 msgid "1–6 / Shift+1–6: select or deselect a die showing that value."
 msgstr ""
 
-#: games/generated/rulebooks/balut.rb:17 games/generated/rulebooks/kosciane.rb:27
+#: games/generated/rulebooks/balut.rb:20 games/generated/rulebooks/kosciane.rb:27
 msgid "1–6: select one die showing that value for a reroll."
 msgstr ""
 
@@ -5646,7 +5674,7 @@ msgstr "Pozostało 20 sekund."
 msgid "24 cards, from nine to ace"
 msgstr "24 karty, od dziewiątki do asa"
 
-#: games/balut.rb:27
+#: games/balut.rb:30
 msgid "28 turns per player"
 msgstr "28 tur na gracza"
 
@@ -5728,7 +5756,7 @@ msgstr ""
 msgid "33, 66, 99 and elimination"
 msgstr "33, 66, 99 i odpadanie"
 
-#: games/yahtzee.rb:89
+#: games/yahtzee.rb:95
 msgid "35-point bonus for Ones through Sixes"
 msgstr "Premia 35 punktów za Jedynki–Szóstki"
 
@@ -5988,6 +6016,10 @@ msgstr "Zwycięzca licytacji, który zdobędzie co najmniej dokładną wartość
 msgid "A black chest replaces the category and question on 10% of spins by default. Bid for it normally. Its winner keeps it unopened, while the pool carries over. Chest auctions do not count towards the question limit."
 msgstr "Domyślnie przy 10% losowań czarna skrzynka zastępuje kategorię i pytanie. Licytujcie ją jak zwykle. Zwycięzca zatrzymuje zamkniętą skrzynkę, a pula przechodzi dalej. Licytacje skrzynek nie wliczają się do limitu pytań."
 
+#: games/generated/rulebooks/cash_auction.rb:30
+msgid "A black chest replaces the category and question on 10% of spins by default. Bid for it normally; the winner keeps it unopened. The pool left by earlier questions remains for the next question, but opening payments, bids and penalties from the chest auction do not increase it. Those payments leave the game. Chest auctions do not count towards the question limit."
+msgstr "Domyślnie przy 10% losowań czarna skrzynka zastępuje kategorię i pytanie. Licytujcie ją jak zwykle; zwycięzca zatrzymuje zamkniętą skrzynkę. Wcześniejsza pula pytań zostaje na następne pytanie, ale wpłaty początkowe, oferty i kary z licytacji skrzynki jej nie powiększają. Zapłacone punkty wypadają z gry. Licytacje skrzynek nie wliczają się do limitu pytań."
+
 #: games/generated/rulebooks/mancala.rb:9
 msgid "A board full of seeds"
 msgstr "Plansza pełna kamieni"
@@ -6166,7 +6198,7 @@ msgstr "Nie można wybrać pełnej kolumny. Po prawidłowym ruchu kolej przechod
 msgid "A full raise must be at least the big blind, or at least as large as the most recent full raise if that was larger. You may raise more, up to all your chips. The amount field tells you the available range."
 msgstr ""
 
-#: __app.rb:3436 __app.rb:3478
+#: __app.rb:3454 __app.rb:3496
 msgid "A game has already started. Opening the current game."
 msgstr "Gra już się rozpoczęła. Otwieranie bieżącej gry."
 
@@ -6631,6 +6663,10 @@ msgstr "Słowo musi zawierać co najmniej dwie litery."
 msgid "A wrong guess is harmless: teammates may keep trying. People decide whether an answer is close enough or a different grammatical form should count. Before playing, agree on a consistent approach to such answers. The app does not recognise spoken words and cannot decide a disputed clue for you."
 msgstr "Błędna odpowiedź niczego nie kosztuje: partnerzy mogą zgadywać dalej. To ludzie rozstrzygają, czy odpowiedź jest wystarczająca i czy uznać inną formę gramatyczną. Przed grą ustalcie wspólne podejście do takich odpowiedzi. Program nie rozpoznaje wypowiadanych słów i nie rozstrzygnie za Was spornej wskazówki."
 
+#: games/generated/rulebooks/balut.rb:17
+msgid "A zero in the Straight or Full house row prevents you from earning that row's points: all four entries must be successful."
+msgstr "Zero w wierszu stritów lub fulli wyklucza punkty za ten wiersz: potrzebujesz czterech udanych wpisów."
+
 #: games/generated/rulebooks/billiards.rb:123
 msgid "A: Aim at the centre of the selected ball."
 msgstr "A: Wyceluj w środek wybranej bili."
@@ -6678,7 +6714,7 @@ msgstr "Przyjmij wyświetlone pary pucharowe"
 msgid "Accept displayed plan"
 msgstr "Zaakceptuj wyświetlony plan"
 
-#: __app.rb:2806 lib/game_room_ui.rb:165 lib/game_room_ui.rb:359 lib/game_room_widget.rb:198 lib/game_room_widget.rb:204
+#: __app.rb:2814 lib/game_room_ui.rb:165 lib/game_room_ui.rb:359 lib/game_room_widget.rb:198 lib/game_room_widget.rb:204
 msgid "Accept invitation"
 msgstr "Przyjmij zaproszenie"
 
@@ -6690,7 +6726,7 @@ msgstr "Zatwierdź lokalny plan testowy"
 msgid "Accept partnership with %{player}"
 msgstr "Przyjmij partnerstwo z %{player}"
 
-#: __app.rb:3568
+#: __app.rb:3586
 msgid "Accept teams"
 msgstr "Zaakceptuj drużyny"
 
@@ -6751,7 +6787,7 @@ msgstr "Zapisani uczestnicy: %{count}"
 msgid "Accepted: %{players}"
 msgstr "Zaakceptowali: %{players}"
 
-#: __app.rb:2677 __app.rb:2700
+#: __app.rb:2685 __app.rb:2708
 msgid "Accepting invitation"
 msgstr "Przyjmowanie zaproszenia"
 
@@ -6854,7 +6890,7 @@ msgstr "Dodaj komputer"
 msgid "Add a new category"
 msgstr "Dodaj nową kategorię"
 
-#: __app.rb:2457
+#: __app.rb:2465
 msgid "Add a new computer in this place"
 msgstr "Dodaj nowego bota na to miejsce"
 
@@ -7160,7 +7196,7 @@ msgstr "Dodano dźwięki poddania oraz zrealizowania i niezrealizowania kontrakt
 msgid "Added statistics by balteam: visits, started and completed games, with game and period filters. Open Statistics in the main menu. Ctrl+W on that menu's options list reads current public and private table counts and human memberships, including observers but not bots. Developer mode does not collect new statistics."
 msgstr "Dodano statystyki autorstwa balteama: odwiedziny, rozpoczęte i ukończone partie, z podziałem na gry i okresy. Otworzysz je przez Statystyki w menu głównym. Ctrl+W na liście opcji tego menu odczytuje bieżącą liczbę stołów publicznych i prywatnych oraz członkostw ludzi, wliczając obserwatorów, ale nie boty. Tryb deweloperski nie zbiera nowych statystyk."
 
-#: __app.rb:2351
+#: __app.rb:2359
 msgid "Adding computer"
 msgstr "Dodawanie komputera"
 
@@ -7168,11 +7204,11 @@ msgstr "Dodawanie komputera"
 msgid "Additional Yahtzee bonuses: %{points}."
 msgstr "Premie za kolejne Yahtzee: %{points}."
 
-#: __app.rb:3874
+#: __app.rb:3892
 msgid "Additional game sound effects disabled."
 msgstr "Wyłączono dodatkowe efekty dźwiękowe gier."
 
-#: __app.rb:3874
+#: __app.rb:3892
 msgid "Additional game sound effects enabled."
 msgstr "Włączono dodatkowe efekty dźwiękowe gier."
 
@@ -7497,6 +7533,10 @@ msgid "After the shared track a pawn enters its own six-field home lane; opponen
 msgstr "Po okrążeniu wspólnego toru pionek wchodzi na własną sześciopolową drogę do mety, niedostępną dla przeciwników. Jej ostatnie pole to meta. Pionek na mecie już się nie porusza i nie jest oferowany do wykonania ruchu."
 
 #: games/generated/rulebooks/kosciane.rb:13
+msgid "After the third roll, the score sheet appears in the game field. Use Up and Down to choose a row; Left and Right let you inspect its entries, total and reserve. Press Enter in any column of that row to record the result in its first empty space. If your dice do not qualify for a category, you may record zero there after the third roll."
+msgstr "Po trzecim rzucie tabela zapisu pojawia się od razu. Strzałkami w górę i w dół wybierasz kategorię, a gra podaje punkty za bieżący rzut. Strzałki w lewo i w prawo pozwalają sprawdzić wpisy i rezerwę. Enter zapisuje wynik w pierwszym wolnym polu wybranego wiersza. Jeśli po trzecim rzucie kości nie spełniają warunków wybranej kategorii, możesz zapisać w niej zero."
+
+#: games/generated/rulebooks/kosciane.rb:13
 msgid "After the third roll, the score sheet appears in the game field. Use Up and Down to choose a row; Left and Right let you inspect its entries, total and reserve. Press Enter in any column of that row to record the result in its first empty space. You can only record a combination that the dice qualify for. After the third roll, you may instead choose a crossing-out entry. It fills the space without scoring points."
 msgstr ""
 
@@ -7569,7 +7609,7 @@ msgstr "Wyceluj wybraną bilę do wskazanej łuzy"
 msgid "Aiming and striking"
 msgstr "Celowanie i uderzenie"
 
-#: lib/darts/settings.rb:22
+#: lib/darts/settings.rb:33
 msgid "Aiming sound (only for you)"
 msgstr "Dźwięk celownika tylko dla Ciebie"
 
@@ -7857,6 +7897,10 @@ msgstr "Licytacja bez żadnej twojej oferty zwiększa licznik kolejnych licytacj
 msgid "An auction in which you make no bid counts towards a run of missed auctions. The opening payment does not count as a bid. After three consecutive auctions without a bid, you pay 200 points into the pool when the third auction closes, then the count returns to zero. If you have fewer than 200 points left, pay only that balance. Any accepted bid resets your count, even if you later lose that auction."
 msgstr "Licytacja bez żadnej twojej oferty zwiększa licznik kolejnych licytacji bez udziału. Początkowa wpłata do puli nie jest ofertą. Po trzech takich licytacjach z rzędu, przy zamknięciu trzeciej, płacisz 200 punktów do puli, a licznik wraca do zera. Jeśli zostało ci mniej niż 200 punktów, płacisz tylko pozostałą kwotę. Każda przyjęta oferta zeruje licznik, nawet jeśli później przegrasz tę licytację."
 
+#: games/generated/rulebooks/cash_auction.rb:24
+msgid "An auction in which you make no bid counts towards a run of missed auctions. The opening payment does not count as a bid. After three consecutive auctions without a bid, you pay 200 points when the third auction closes, then the count returns to zero. If you have fewer than 200 points left, pay only that balance. Any accepted bid resets your count, even if you later lose that auction."
+msgstr "Licytacja bez żadnej twojej oferty zwiększa licznik kolejnych licytacji bez udziału. Początkowa wpłata nie jest ofertą. Po trzech takich licytacjach z rzędu, przy zamknięciu trzeciej, płacisz 200 punktów, a licznik wraca do zera. Jeśli zostało ci mniej niż 200 punktów, płacisz tylko pozostałą kwotę. Każda przyjęta oferta zeruje licznik, nawet jeśli później przegrasz tę licytację."
+
 #: lib/tournaments/local_workspace.rb:473
 msgid "An earlier tournament change is not confirmed. Check Operations before making another change."
 msgstr "Wcześniejsza zmiana turnieju nie została potwierdzona. Sprawdź operacje przed kolejną zmianą."
@@ -7887,7 +7931,7 @@ msgstr "Dodatkowy zbiornik chroni przed spuszczeniem paliwa, opony odporne na pr
 msgid "An extra tank protects against running out of gas, puncture-proof tires protect against flat tires, and the driving ace protects against accidents. Right of way protects against red lights and speed limits and removes the need for green lights. A safety removes the corresponding current problem and protects you until the round ends."
 msgstr "Dodatkowy bak chroni przed brakiem paliwa, nieprzebijalne opony — przed przebiciem opony, a as drogi — przed wypadkami. Pierwszeństwo przejazdu chroni przed czerwonym światłem i ograniczeniem prędkości oraz znosi konieczność zagrywania zielonego światła. Zabezpieczenie usuwa odpowiadający mu bieżący problem i chroni do końca rundy."
 
-#: __app.rb:2523
+#: __app.rb:2531
 msgid "An invitation to this table is already pending for this user."
 msgstr "Ten użytkownik ma już oczekujące zaproszenie do tego stołu."
 
@@ -7981,11 +8025,11 @@ msgstr "Informuj o wyjściu gracza ze stołu"
 msgid "Announce when a table is created"
 msgstr "Informuj o utworzeniu stołu"
 
-#: __app.rb:2914
+#: __app.rb:2922
 msgid "Announcements of placed and removed letters disabled."
 msgstr "Komunikaty o kładzeniu i zabieraniu liter wyłączone."
 
-#: __app.rb:2914
+#: __app.rb:2922
 msgid "Announcements of placed and removed letters enabled."
 msgstr "Komunikaty o kładzeniu i zabieraniu liter włączone."
 
@@ -7997,7 +8041,7 @@ msgstr "Głośność lektora"
 msgid "Another person is playing now."
 msgstr "Teraz gra inna osoba."
 
-#: __app.rb:946
+#: __app.rb:954
 msgid "Another player is creating this match's table. Accept their invitation or try again shortly."
 msgstr "Inny gracz tworzy właśnie stół tego meczu. Przyjmij jego zaproszenie albo spróbuj za chwilę."
 
@@ -8336,7 +8380,7 @@ msgstr "Strzałki: wybierz kategorię lub odpowiedź."
 msgid "Arrows: choose a category or answer. Enter: submit the highlighted choice. T: read the question. Ctrl+T: remaining answer time. S: scores. V: round summary. Ctrl+F1: rules and shortcuts. Escape: return to the table."
 msgstr "Strzałki: wybór kategorii lub odpowiedzi. Enter: wysłanie wskazanej decyzji. T: odczyt pytania. Ctrl+T: pozostały czas odpowiedzi. S: wyniki. V: podsumowanie rundy. Ctrl+F1: zasady i skróty. Escape: powrót do stołu."
 
-#: games/generated/rulebooks/balut.rb:19 games/generated/rulebooks/kosciane.rb:29
+#: games/generated/rulebooks/balut.rb:22 games/generated/rulebooks/kosciane.rb:29
 msgid "Arrows: choose a row with Up and Down; inspect its entries and totals with Left and Right. Full rows are omitted from the scoring view."
 msgstr ""
 
@@ -8704,7 +8748,7 @@ msgstr "Opcja automatycznego odbijania dla obu graczy jest domyślnie wyłączon
 msgid "Automatic return is a personal setting, off by default. When enabled, your paddle returns a reachable ball automatically near your end. You still position the paddle and serve yourself. Open Pong settings with Ctrl+P to change it; your opponent chooses independently."
 msgstr "Automatyczne odbijanie to Twoje osobiste ustawienie, domyślnie wyłączone. Po jego włączeniu rakietka sama odbije piłkę w swoim zasięgu blisko Twojej krawędzi. Nadal samodzielnie ustawiasz rakietkę i serwujesz. Zmienisz tę opcję pod Ctrl+P, w ustawieniach Ponga. Przeciwnik wybiera ją niezależnie."
 
-#: lib/darts/client.rb:308
+#: lib/darts/client.rb:318
 msgctxt "Darts training"
 msgid "Automatic throw"
 msgstr "Rzut automatyczny"
@@ -8760,7 +8804,7 @@ msgstr "Unikaj zbierania kart przynoszących kary, a w ostatniej z sześciu rund
 msgid "Awaiting review"
 msgstr "Oczekuje na rozpatrzenie"
 
-#: __app.rb:978 __app.rb:983 lib/tournaments/server_schedule_overview.rb:339 lib/tournaments/server_schedule_overview.rb:41
+#: __app.rb:986 __app.rb:991 lib/tournaments/server_schedule_overview.rb:339 lib/tournaments/server_schedule_overview.rb:41
 msgid "Award forfeit"
 msgstr "Przyznaj walkower"
 
@@ -8823,6 +8867,10 @@ msgstr "W Ayoayo pomijasz magazyny oraz dołek opróżniony dla danego rozsiewan
 msgid "Ayoayo: one move can continue through several pits"
 msgstr "Ayoayo: jeden ruch przez wiele dołków"
 
+#: games/generated/rulebooks/balut.rb:12
+msgid "B also opens the score sheet. Left and Right let you inspect the row's earlier entries, their sum and the points available for that category. The table shows what you still need to earn those points, or that they are no longer possible. Entries in the table are not the game points that decide the winner."
+msgstr "Tabelę otworzysz także literą B. Strzałki w lewo i w prawo pozwalają sprawdzić wcześniejsze wpisy w wierszu, ich sumę i punkty za kategorię. Tabela podaje, ile brakuje do zdobycia tych punktów lub że nie można ich już uzyskać. Wpisy do tabeli to nie punkty końcowe decydujące o wygranej."
+
 msgid "B during bidding: enter your declaration. Outside bidding: read the declarations. Arrows and Enter: choose and play a card."
 msgstr "B podczas deklarowania: wpisanie deklaracji. Poza nim: odczyt deklaracji. Strzałki i Enter: wybór i zagranie karty."
 
@@ -8881,7 +8929,7 @@ msgstr "B: otwórz oferty i pas dostępne w swojej turze."
 msgid "B: open the contract choices."
 msgstr "B: otwórz wybór kontraktu."
 
-#: games/generated/rulebooks/balut.rb:20 games/generated/rulebooks/kosciane.rb:30
+#: games/generated/rulebooks/balut.rb:23 games/generated/rulebooks/kosciane.rb:30
 msgid "B: open the score sheet in a separate window."
 msgstr ""
 
@@ -8901,7 +8949,7 @@ msgstr "B: odczytaj obecną aukcję."
 msgid "B: respond to the buzzer."
 msgstr "B: zareaguj na brzęczyk."
 
-#: __app.rb:1662 __app.rb:1706 games/krowa_support/leaderboards.rb:42 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:739 lib/game_room_screens.rb:756 lib/game_screen.rb:800 lib/game_screen.rb:839 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/recordings/ui.rb:243 lib/sports_rankings/screen.rb:206 lib/sports_rankings/screen.rb:58 lib/sports_rankings/screen.rb:88 lib/table_voice_screen.rb:158 lib/table_voice_screen.rb:176 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:69 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/partner_choice.rb:55 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:190 lib/tournaments/public_preview.rb:211 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:118
+#: __app.rb:1670 __app.rb:1714 games/krowa_support/leaderboards.rb:42 lib/darts/rankings/screen.rb:39 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:739 lib/game_room_screens.rb:756 lib/game_screen.rb:800 lib/game_screen.rb:839 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/recordings/ui.rb:243 lib/sports_rankings/screen.rb:206 lib/sports_rankings/screen.rb:58 lib/sports_rankings/screen.rb:88 lib/table_voice_screen.rb:158 lib/table_voice_screen.rb:176 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:69 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/partner_choice.rb:55 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:190 lib/tournaments/public_preview.rb:211 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:118
 msgid "Back"
 msgstr "Wstecz"
 
@@ -9077,7 +9125,7 @@ msgstr "Bile na stole"
 msgid "Balls remaining: %{count}"
 msgstr "Pozostałe bile: %{count}"
 
-#: games/balut.rb:211 games/balut.rb:23
+#: games/balut.rb:231 games/balut.rb:26
 msgid "Balut"
 msgstr "Balut"
 
@@ -9250,6 +9298,10 @@ msgid "Before settling the match, the game waits five seconds and opens all ches
 msgstr "Przed końcowym rozliczeniem gra czeka pięć sekund, a następnie automatycznie otwiera wszystkie skrzynki, także te należące do osób wyeliminowanych. Usłyszysz zapowiedź otwierania, dźwięk skrzynek i ich zawartość. Po ogłoszeniu zawartości mijają cztery sekundy do podania końcowego wyniku."
 
 #: games/generated/rulebooks/cash_auction.rb:39
+msgid "Before starting, choose the question language and one to three Quiz sets in the table settings. Only the general knowledge set in that language is selected by default. Use Space to mark or clear sets and Enter to confirm. The wheel draws categories from the selected sets. Each category stays tied to its own set, so categories with the same name in different sets remain separate. The question language can differ from the interface language."
+msgstr "Przed rozpoczęciem wybierz w ustawieniach stołu język pytań i od jednego do trzech zestawów Quizu. Domyślnie zaznaczony jest tylko zestaw wiedzy ogólnej w wybranym języku. Spacją zaznaczasz i odznaczasz zestawy, a Enterem zatwierdzasz wybór. Koło losuje kategorie z wybranych zestawów. Każda pozostaje przypisana do swojego zestawu, więc kategorie o takich samych nazwach nie są łączone. Język pytań może być inny niż język interfejsu."
+
+#: games/generated/rulebooks/cash_auction.rb:39
 msgid "Before starting, choose the question language and select two or three Quiz sets in the table settings. Mark the sets you want with Space and confirm the selection with Enter. The wheel draws from the selected sets, keeping each category tied to its own set. Categories with the same name in different sets remain separate. If that language has only one available set, use that one; the English and Russian catalogues currently have one each. The question language can differ from the interface language."
 msgstr "Przed rozpoczęciem wybierz w ustawieniach stołu język pytań oraz dwa lub trzy zestawy Quizu. Spacją zaznacz potrzebne zestawy, a Enterem zatwierdź wybór. Koło losuje kategorie z wybranych zestawów, ale każda pozostaje przypisana do swojego zestawu. Kategorie o takich samych nazwach w różnych zestawach są rozdzielone. Jeśli dla wybranego języka jest dostępny tylko jeden zestaw, korzystasz z niego; obecnie tak jest dla angielskiego i rosyjskiego. Język pytań może być inny niż język interfejsu."
 
@@ -9304,6 +9356,10 @@ msgstr ""
 msgid "Belote"
 msgstr "Belote"
 
+#: lib/darts/client.rb:610 lib/darts/rankings/screen.rb:86
+msgid "Best average score"
+msgstr "Najlepsza średnia punktów"
+
 #: games/krowa_support/leaderboards.rb:281
 msgid "Best result"
 msgstr "Najlepszy wynik"
@@ -9311,6 +9367,10 @@ msgstr "Najlepszy wynik"
 #: games/krowa_support/presentation.rb:124
 msgid "Best result: %{players}."
 msgstr "Najlepszy wynik: %{players}."
+
+#: lib/darts/client.rb:610 lib/darts/rankings/screen.rb:86
+msgid "Best three-dart round"
+msgstr "Najlepsza runda trzech lotek"
 
 #: games/duck_racing_support/challenge_presentation.rb:226
 msgid "Best word: %{word}."
@@ -9537,7 +9597,7 @@ msgstr "Szansa na czarną skrzynię w procentach (od 5 do 10)"
 msgid "Black chest probability in percent (5 to 15)"
 msgstr "Szansa na czarną skrzynię w procentach (od 5 do 15)"
 
-#: games/cash_auction/presentation.rb:272 games/generated/rulebooks/cash_auction.rb:29
+#: games/cash_auction/presentation.rb:274 games/generated/rulebooks/cash_auction.rb:29
 msgid "Black chests"
 msgstr "Czarne skrzynie"
 
@@ -9650,7 +9710,7 @@ msgstr "Stos niedostępny: %{count}."
 msgid "Boneyard: %{count}."
 msgstr "Stos: %{count}."
 
-#: games/yahtzee.rb:303
+#: games/yahtzee.rb:309
 msgid "Bonus for Ones through Sixes: %{points}."
 msgstr "Premia za Jedynki–Szóstki: %{points}."
 
@@ -9676,7 +9736,7 @@ msgstr "Premie i kary zapisuje się nad kreską. Powiększają wynik całego mec
 msgid "Bonuses and the Joker are separate options"
 msgstr "Premie i Joker to oddzielne opcje"
 
-#: games/kosciane.rb:213 games/kosciane.rb:235
+#: games/kosciane.rb:220 games/kosciane.rb:242
 msgid "Bonuses: %{points}"
 msgstr "Premie: %{points}"
 
@@ -9856,7 +9916,7 @@ msgstr "Odmiana brydża"
 msgid "Bridge with an estimated reference score"
 msgstr "Brydż z wynikiem orientacyjnym"
 
-#: lib/darts/settings.rb:21
+#: lib/darts/settings.rb:32
 msgid "Bright"
 msgstr "Jasny"
 
@@ -10212,7 +10272,7 @@ msgstr "Spokojny (krótka analiza)"
 msgid "Calza: exact calls can recover a die"
 msgstr "Calza: trafna dokładna liczba odzyskuje kość"
 
-#: __app.rb:2295 __app.rb:3569 games/krowa_support/client.rb:219 games/krowa_support/client.rb:380 games/krowa_support/leaderboards.rb:250 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/darts/settings.rb:25 lib/game_option_editor.rb:72 lib/game_room_screens.rb:362 lib/game_room_ui.rb:78 lib/game_screen.rb:711 lib/game_screen.rb:760 lib/game_surfaces/billiards_surface.rb:390 lib/game_surfaces/word_board.rb:208 lib/krowa_word_proposals.rb:119 lib/mania_pisania/client.rb:353 lib/mania_pisania/client.rb:623 lib/mania_pisania/text_import_dialog.rb:18 lib/quiz_contributions/views.rb:145 lib/quiz_contributions/views.rb:166 lib/table_voice_screen.rb:196 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:30
+#: __app.rb:2303 __app.rb:3587 games/krowa_support/client.rb:219 games/krowa_support/client.rb:380 games/krowa_support/leaderboards.rb:250 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/darts/settings.rb:39 lib/game_option_editor.rb:72 lib/game_room_screens.rb:362 lib/game_room_ui.rb:78 lib/game_screen.rb:711 lib/game_screen.rb:760 lib/game_surfaces/billiards_surface.rb:390 lib/game_surfaces/word_board.rb:208 lib/krowa_word_proposals.rb:119 lib/mania_pisania/client.rb:353 lib/mania_pisania/client.rb:623 lib/mania_pisania/text_import_dialog.rb:18 lib/quiz_contributions/views.rb:145 lib/quiz_contributions/views.rb:166 lib/table_voice_screen.rb:196 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:30
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -10743,7 +10803,7 @@ msgstr "Kwestionowanie Wild Dobierz cztery jest opcją tylko dla talii klasyczne
 msgid "Challenging Wild Draw Four is off by default and available only in Classic. F challenges the last such play: if its author still had a card of the previous colour, they draw four instead. If the play was justified, the challenger draws six and loses the turn. This is not an automatic check on every wild play."
 msgstr "Kwestionowanie Dzikiej dobierz cztery jest domyślnie wyłączone i dostępne tylko w talii klasycznej. F sprawdza ostatnie takie zagranie: jeśli autor miał jeszcze kartę poprzedniego koloru, sam dobiera cztery. Jeśli zagrał prawidłowo, kwestionujący dobiera sześć i traci turę. To nie automatyczne sprawdzanie każdej dzikiej karty."
 
-#: content/monopoly_boards.rb:181 games/monopoly/board_events.rb:189 games/yahtzee.rb:39
+#: content/monopoly_boards.rb:181 games/monopoly/board_events.rb:189 games/yahtzee.rb:40
 msgid "Chance"
 msgstr "Szansa"
 
@@ -10775,7 +10835,7 @@ msgstr "Zmień partnera wybranego uczestnika"
 msgid "Change settings for the next game"
 msgstr "Zmień ustawienia następnej partii"
 
-#: __app.rb:3566 lib/game_room_screens.rb:21
+#: __app.rb:3584 lib/game_room_screens.rb:21
 msgid "Change team"
 msgstr "Zmień drużynę"
 
@@ -11016,11 +11076,11 @@ msgstr "Sprawdzanie aktualizacji gry"
 msgid "Checking game availability"
 msgstr "Sprawdzanie dostępności gry"
 
-#: __app.rb:1316
+#: __app.rb:1324
 msgid "Checking game before saving"
 msgstr "Sprawdzanie partii przed zapisaniem"
 
-#: __app.rb:2655
+#: __app.rb:2663
 msgid "Checking invitation"
 msgstr "Sprawdzanie zaproszenia"
 
@@ -11044,7 +11104,7 @@ msgstr "Sprawdzanie zapisanego meczu turniejowego"
 msgid "Checking server date"
 msgstr "Sprawdzanie daty serwera"
 
-#: __app.rb:647
+#: __app.rb:655
 msgid "Checking server table access"
 msgstr "Sprawdzanie dostępu do tabel serwera"
 
@@ -11052,30 +11112,30 @@ msgstr "Sprawdzanie dostępu do tabel serwera"
 msgid "Checking set details"
 msgstr "Sprawdzanie danych zestawu"
 
-#: __app.rb:3207
+#: __app.rb:3225
 msgid "Checking table"
 msgstr "Sprawdzanie stołu"
 
 msgid "Checking the current game"
 msgstr "Sprawdzanie bieżącej gry"
 
-#: __app.rb:1426
+#: __app.rb:1434
 msgid "Checking the current table"
 msgstr "Sprawdzanie bieżącego stołu"
 
-#: __app.rb:3426
+#: __app.rb:3444
 msgid "Checking the table before starting"
 msgstr "Sprawdzanie stołu przed rozpoczęciem"
 
-#: __app.rb:2339 __app.rb:2690 __app.rb:3472
+#: __app.rb:2347 __app.rb:2698 __app.rb:3490
 msgid "Checking the table members"
 msgstr "Sprawdzanie uczestników stołu"
 
-#: __app.rb:1905
+#: __app.rb:1913
 msgid "Checking tournament match"
 msgstr "Sprawdzanie meczu turniejowego"
 
-#: __app.rb:475
+#: __app.rb:480
 msgid "Checking your current table"
 msgstr "Sprawdzanie bieżącego stołu"
 
@@ -11338,7 +11398,7 @@ msgstr "Wybierz odstęp od 3 do 30 sekund."
 msgid "Choose a destination: %{destinations}."
 msgstr "Wybierz miejsce docelowe: %{destinations}."
 
-#: __app.rb:3125
+#: __app.rb:3143
 msgid "Choose a game for the preset"
 msgstr "Wybierz grę dla skrótu"
 
@@ -11384,7 +11444,7 @@ msgstr "Wybierz gracza"
 msgid "Choose a player for the trade"
 msgstr "Wybierz gracza do wymiany"
 
-#: __app.rb:2417
+#: __app.rb:2425
 msgid "Choose a player in the current game."
 msgstr "Wybierz gracza uczestniczącego w bieżącej partii."
 
@@ -11392,7 +11452,7 @@ msgstr "Wybierz gracza uczestniczącego w bieżącej partii."
 msgid "Choose a player to exchange hands with"
 msgstr "Wybierz gracza do wymiany rąk"
 
-#: games/yahtzee.rb:278
+#: games/yahtzee.rb:284
 msgid "Choose a player's score sheet"
 msgstr "Wybierz kartę punktacji gracza"
 
@@ -11483,7 +11543,7 @@ msgstr "Wybierz musik."
 msgid "Choose a target pocket"
 msgstr "Wybierz łuzę docelową"
 
-#: __app.rb:3621
+#: __app.rb:3639
 msgid "Choose a team"
 msgstr "Wybierz drużynę"
 
@@ -11609,6 +11669,10 @@ msgstr "Wybierz od 1 do 100 obrotów."
 msgid "Choose from 1 to 20 rounds."
 msgstr "Wybierz od 1 do 20 rund."
 
+#: games/cash_auction/content.rb:212
+msgid "Choose from 1 to 3 question sets in the selected language."
+msgstr "Wybierz od jednego do trzech zestawów pytań w wybranym języku."
+
 #: games/cash_auction.rb:61
 msgid "Choose from 1 to 5 seconds between auction calls."
 msgstr "Wybierz od 1 do 5 sekund między wywołaniami."
@@ -11617,7 +11681,7 @@ msgstr "Wybierz od 1 do 5 sekund między wywołaniami."
 msgid "Choose from 1 to 5 starting dice."
 msgstr "Wybierz od 1 do 5 kości początkowych."
 
-#: games/kosciane.rb:39
+#: games/kosciane.rb:40
 msgid "Choose from 1 to 6 score columns."
 msgstr "Wybierz od 1 do 6 kolumn."
 
@@ -11716,11 +11780,11 @@ msgstr "Do wyboru są rozgrywki każdy z każdym oraz grupy z późniejszą faz�
 msgid "Choose rubber or estimated-reference scoring."
 msgstr "Wybierz grę na robra albo porównanie z wynikiem orientacyjnym."
 
-#: __app.rb:3552 lib/participant_menu.rb:27
+#: __app.rb:3570 lib/participant_menu.rb:27
 msgid "Choose teams"
 msgstr "Wybierz drużyny"
 
-#: __app.rb:3567
+#: __app.rb:3585
 msgid "Choose teams randomly"
 msgstr "Wybierz drużyny losowo"
 
@@ -11794,7 +11858,7 @@ msgstr "Wybierz pełną talię 52 kart albo 24 karty od dziewiątki do asa. Hier
 msgid "Choose the full 52-card deck or 24 cards from nine through ace. Ordinary poker hand ranking stays unchanged; no special short-deck flush or ace-low straight rule is added. Draw poker with 24 cards supports at most four seats, while Texas hold’em still supports eight. Private hands, exchanges and bot estimates use the chosen deck. With the all-five exchange option, the 24-card draw game is limited to three seats so the first exchange always has enough cards without returning that player’s own discards."
 msgstr "Wybierz pełną talię 52 kart albo 24 karty od dziewiątki do asa. Hierarchia układów pozostaje zwykła; nie dodajemy specjalnej przewagi koloru ani niskiego strita z asem. Poker dobierany z talią 24 kart obsługuje najwyżej cztery miejsca, a Texas hold’em nadal osiem. Prywatne ręce, wymiana i oceny botów używają wybranej talii. Przy wymianie wszystkich pięciu kart limit krótkiej talii wynosi trzy miejsca, aby pierwszy wymieniający miał dość kart bez odzyskania własnych odrzuconych."
 
-#: __app.rb:2413
+#: __app.rb:2421
 msgid "Choose the new table master"
 msgstr "Wybierz nowego gospodarza stołu"
 
@@ -11825,7 +11889,7 @@ msgstr ""
 msgid "Choose the quiz language, then tick the question sets you want. Initially only the general set in that language is selected. Every checked set has the same chance of being chosen, followed by a random question from that set. The same selection applies to duels, group challenges, question squares and Curiosity."
 msgstr ""
 
-#: __app.rb:2431
+#: __app.rb:2439
 msgid "Choose the replacement"
 msgstr "Wybierz osobę zastępującą"
 
@@ -12071,7 +12135,7 @@ msgstr "Klasyczny: bez jokerów, tylko sprawdzanie blefu"
 msgid "Clean water company"
 msgstr "Zakład uzdatniania wody"
 
-#: lib/darts/settings.rb:21
+#: lib/darts/settings.rb:32
 msgid "Clear"
 msgstr "Wyraźny"
 
@@ -12087,11 +12151,11 @@ msgstr ""
 msgid "Clearing the table with your play earns a scopa worth 1 point, including on the last play of the round. Receiving leftover cards at the end is not a scopa."
 msgstr ""
 
-#: games/krowa_support/client.rb:200 games/krowa_support/client.rb:248 games/krowa_support/client.rb:290 games/krowa_support/leaderboards.rb:340 games/krowa_support/leaderboards.rb:341 lib/game_room_screens.rb:66 lib/game_room_screens.rb:82 lib/game_room_ui.rb:372 lib/game_surfaces/billiards_surface.rb:438 lib/mania_pisania/text_library_dialog.rb:21 lib/quiz_contributions/views.rb:121 lib/recordings/ui.rb:161 lib/recordings/ui.rb:232
+#: games/krowa_support/client.rb:200 games/krowa_support/client.rb:248 games/krowa_support/client.rb:290 games/krowa_support/leaderboards.rb:340 games/krowa_support/leaderboards.rb:341 lib/darts/rankings/screen.rb:68 lib/game_room_screens.rb:66 lib/game_room_screens.rb:82 lib/game_room_ui.rb:372 lib/game_surfaces/billiards_surface.rb:438 lib/mania_pisania/text_library_dialog.rb:21 lib/quiz_contributions/views.rb:121 lib/recordings/ui.rb:161 lib/recordings/ui.rb:232
 msgid "Close"
 msgstr "Zamknij"
 
-#: __app.rb:3194
+#: __app.rb:3212
 msgid "Close ELTEN completely and start it again to apply the interface language preferences. Restarting with F12 does not reload Power Games."
 msgstr "Zamknij całkowicie ELTEN-a i uruchom go ponownie, aby zastosować ustawienia języków interfejsu. Restart klawiszem F12 nie przeładowuje Power Games."
 
@@ -12106,11 +12170,11 @@ msgstr "Zamknij zapisy"
 msgid "Close the table for everyone"
 msgstr "Zamknij stół dla wszystkich"
 
-#: __app.rb:2394
+#: __app.rb:2402
 msgid "Close the table for everyone?"
 msgstr "Zamknąć stół dla wszystkich?"
 
-#: __app.rb:2395
+#: __app.rb:2403
 msgid "Closing table"
 msgstr "Zamykanie stołu"
 
@@ -12375,7 +12439,7 @@ msgstr "Poddaj bieżącą partię lub frejm"
 msgid "Concede this rack or frame?"
 msgstr "Poddać bieżącą partię lub frejm?"
 
-#: __app.rb:2294
+#: __app.rb:2302
 msgid "Confirm"
 msgstr "Potwierdzenie"
 
@@ -12447,7 +12511,7 @@ msgstr "Połącz słowo z literami już leżącymi na planszy."
 msgid "Connecting the match."
 msgstr "Łączenie meczu."
 
-#: __app.rb:3078 __app.rb:502
+#: __app.rb:3096 __app.rb:507
 msgid "Connecting to Elten"
 msgstr "Łączenie z Eltenem"
 
@@ -12620,11 +12684,15 @@ msgstr "Koszt: %{count} piór."
 msgid "Cosy nest"
 msgstr "Przytulne gniazdo"
 
+#: lib/darts/rankings/screen.rb:78
+msgid "Could not connect to the Darts ranking."
+msgstr "Nie udało się połączyć z rankingiem Dartsa."
+
 #: games/krowa_support/leaderboards.rb:380
 msgid "Could not connect to the Krowa leaderboard."
 msgstr "Nie udało się połączyć z rankingiem Krowy."
 
-#: __app.rb:3939
+#: __app.rb:3957
 msgid "Could not disconnect the voice conversation. Open Conferences to leave it."
 msgstr "Nie udało się rozłączyć rozmowy głosowej. Aby ją opuścić, otwórz Konferencje."
 
@@ -12640,7 +12708,7 @@ msgstr "Nie udało się wczytać ustawień Krowy. Spróbuj ponownie."
 msgid "Could not load the attempt list. Return to the result and try again."
 msgstr "Nie udało się wczytać listy prób. Wróć do wyniku i spróbuj ponownie."
 
-#: __app.rb:1202
+#: __app.rb:1210
 msgid "Could not open the README."
 msgstr "Nie udało się otworzyć README."
 
@@ -12663,6 +12731,14 @@ msgstr "Nie udało się opublikować wyniku Wieży."
 #: games/krowa_support/leaderboards.rb:105
 msgid "Could not publish the result."
 msgstr "Nie udało się opublikować wyniku."
+
+#: __app.rb:2980
+msgid "Could not queue publication of your saved personal Darts records."
+msgstr "Nie udało się zlecić publikacji zapisanych osobistych rekordów Dartsa."
+
+#: lib/darts/settings.rb:51
+msgid "Could not queue removal of your public Darts results."
+msgstr "Nie udało się zlecić usunięcia Twoich publicznych wyników Dartsa."
 
 #: games/krowa_support/daily_access.rb:104 games/krowa_support/daily_access.rb:110
 msgid "Could not record opening Daily Krowa on the server. Please try again."
@@ -12838,11 +12914,11 @@ msgstr "Utwórz lokalny szkic turnieju, a następnie otwórz test lokalny, aby z
 msgid "Create a new set"
 msgstr "Stwórz nowy zestaw"
 
-#: __app.rb:1265 __app.rb:261 lib/game_room_widget.rb:178
+#: __app.rb:1273 __app.rb:263 lib/game_room_widget.rb:178
 msgid "Create a new table"
 msgstr "Utwórz nowy stół"
 
-#: __app.rb:2365
+#: __app.rb:2373
 msgid "Create a new table to add named computers."
 msgstr "Utwórz nowy stół, aby dodawać boty z imionami."
 
@@ -12881,15 +12957,15 @@ msgstr "Utwórz rozmowę głosową"
 msgid "Create your own question sets"
 msgstr "Tworzenie własnych zestawów pytań"
 
-#: __app.rb:265 lib/quiz_contributions/views.rb:47
+#: __app.rb:267 lib/quiz_contributions/views.rb:47
 msgid "Create your own quiz question sets"
 msgstr "Tworzenie własnych zestawów pytań do quizu"
 
-#: __app.rb:1284
+#: __app.rb:1292
 msgid "Creating table"
 msgstr "Tworzenie stołu"
 
-#: __app.rb:932
+#: __app.rb:940
 msgid "Creating tournament table"
 msgstr "Tworzenie stołu turniejowego"
 
@@ -13443,7 +13519,7 @@ msgstr "D: odczytaj wynik kości bez ponownego rzutu."
 msgid "D: read the dice still available this turn."
 msgstr "D: odczytaj kości pozostałe do wykorzystania."
 
-#: games/generated/rulebooks/balut.rb:23 games/generated/rulebooks/kosciane.rb:33
+#: games/generated/rulebooks/balut.rb:26 games/generated/rulebooks/kosciane.rb:33
 msgid "D: read the last roll."
 msgstr ""
 
@@ -13545,7 +13621,7 @@ msgstr "W Dziennej Krowie słowo jest trwale przypisane do dnia. Aktualizacja s�
 msgid "Daily Krowa leaderboard"
 msgstr "Ranking dziennej krowy"
 
-#: __app.rb:3810
+#: __app.rb:3828
 msgid "Daily Krowa requires a private table. Create a new private table for this variant."
 msgstr "Dzienna Krowa wymaga prywatnego stołu. Utwórz nowy prywatny stół dla tego wariantu."
 
@@ -13601,6 +13677,10 @@ msgstr "Ciemne pola, piony i damki"
 msgid "Darts"
 msgstr "Darts"
 
+#: lib/darts/rankings/screen.rb:21
+msgid "Darts difficulty"
+msgstr "Poziom trudności w Dartsie"
+
 #: games/generated/rulebooks/darts.rb:10
 msgid "Darts is an audio aiming game for one to eight players. Guide the moving sound towards the centre of the target and score as many points as possible. Each round gives every player three darts."
 msgstr ""
@@ -13609,11 +13689,15 @@ msgstr ""
 msgid "Darts no longer loses an arrow-key press or throw when a modifier key is pressed immediately afterwards."
 msgstr "W grze Darts nie ginie już naciśnięcie strzałki ani rzut, jeśli tuż potem naciśniesz klawisz modyfikujący, np. Ctrl lub Shift."
 
-#: games/darts.rb:199
+#: games/darts.rb:212
 msgid "Darts playfield"
 msgstr "Tarcza do darta"
 
-#: games/darts.rb:28
+#: lib/darts/rankings/screen.rb:15
+msgid "Darts rankings are temporarily unavailable."
+msgstr "Rankingi Dartsa są tymczasowo niedostępne."
+
+#: games/darts.rb:29
 msgid "Darts settings"
 msgstr "Ustawienia Dartsa"
 
@@ -13621,7 +13705,7 @@ msgstr "Ustawienia Dartsa"
 msgid "Data stays on this computer. Test names do not authenticate network accounts. No invitations or matches are started."
 msgstr "Dane pozostają na tym komputerze. Testowe nazwy nie uwierzytelniają kont sieciowych. Zaproszenia nie są wysyłane, a spotkania nie są uruchamiane."
 
-#: games/krowa_support/leaderboards.rb:173 games/krowa_support/leaderboards.rb:305
+#: games/krowa_support/leaderboards.rb:173 games/krowa_support/leaderboards.rb:305 lib/darts/rankings/screen.rb:65
 msgid "Date"
 msgstr "Data"
 
@@ -13844,7 +13928,7 @@ msgstr "Usuń szkic"
 msgid "Delete removes the draft tile under the cursor; Backspace undoes the last placement; Z cancels the draft; F submits. G exchanges tiles; P passes. C reads the rack; I cycles free, alphabetic and vowel-first rack order; Y previews words and points; L lists played words; E reads tile counts; S reads scores; T reads whose turn it is. Writing advances past committed letters. Sorting requires cancelling the draft. These shortcuts do not act in chat."
 msgstr "Delete usuwa układaną płytkę spod kursora, Backspace cofa ostatnie położenie, Z anuluje szkic, F zatwierdza. G wymienia płytki, P pasuje. C odczytuje stojak, I przełącza kolejność swobodną, alfabetyczną i z samogłoskami na początku. Y podaje możliwe słowa i punkty, L otwiera listę ułożonych słów, E podaje liczbę płytek, S wyniki, T czyją jest turą. Pisanie omija zatwierdzone wcześniej litery. Sortowanie wymaga anulowania szkicu. Te skróty nie działają w czacie."
 
-#: __app.rb:1380
+#: __app.rb:1388
 msgid "Delete saved game"
 msgstr "Usuń zapisaną grę"
 
@@ -13868,7 +13952,7 @@ msgstr "Czy usunąć ten lokalny szkic turnieju?"
 msgid "Delete this recording file from the library? Exported copies will remain."
 msgstr "Usunąć plik tego nagrania z biblioteki? Wyeksportowane kopie pozostaną."
 
-#: __app.rb:1397
+#: __app.rb:1405
 msgid "Delete this saved game?"
 msgstr "Usunąć tę zapisaną grę?"
 
@@ -13904,7 +13988,7 @@ msgstr "Usuwanie nagrania"
 msgid "Deleting recording message"
 msgstr "Usuwanie wiadomości z nagraniem"
 
-#: __app.rb:1397 __app.rb:1610
+#: __app.rb:1405 __app.rb:1618
 msgid "Deleting saved game"
 msgstr "Usuwanie zapisanej gry"
 
@@ -14093,7 +14177,7 @@ msgstr[2] "Kość od 1 do %{sides}, pozostało %{count} rzutów w wyścigu."
 msgid "Die: 1 to %{sides}, %{count} race rolls left."
 msgstr "Kość od 1 do %{sides}. Pozostałe rzuty w wyścigu: %{count}."
 
-#: games/darts.rb:37
+#: games/darts.rb:38
 msgid "Difficulty"
 msgstr "Poziom trudności"
 
@@ -14272,11 +14356,11 @@ msgstr "Nie używaj hasła, zakazanego słowa, ich odmiany gramatycznej ani znac
 msgid "Do you want to exit ELTEN Game Room?"
 msgstr "Czy chcesz zamknąć ELTEN Game Room?"
 
-#: __app.rb:720
+#: __app.rb:728
 msgid "Do you want to exit Power Games?"
 msgstr "Czy chcesz zamknąć Power Games?"
 
-#: __app.rb:2248
+#: __app.rb:2256
 msgid "Do you want to leave the table?"
 msgstr "Czy chcesz opuścić stół?"
 
@@ -14284,7 +14368,7 @@ msgstr "Czy chcesz opuścić stół?"
 msgid "Do you want to leave the table? The table will be closed for everyone."
 msgstr "Czy chcesz opuścić stół? Stół zostanie zamknięty dla wszystkich."
 
-#: __app.rb:2696
+#: __app.rb:2704
 msgid "Do you want to leave your current table and join the invited table?"
 msgstr "Czy chcesz opuścić obecny stół i dołączyć do stołu z zaproszenia?"
 
@@ -14391,7 +14475,7 @@ msgstr "Podwójne Riichi"
 msgid "Double salary when landing on Start"
 msgstr "Podwójna pensja przy zatrzymaniu na Starcie"
 
-#: games/kosciane.rb:32
+#: games/kosciane.rb:33
 msgid "Double the first roll score"
 msgstr "Podwój wynik wpisany po pierwszym rzucie"
 
@@ -15087,7 +15171,7 @@ msgstr "Wschód–Zachód"
 msgid "East-West vulnerable"
 msgstr "Wschód–Zachód po partii"
 
-#: games/axel_pong.rb:48 games/billiards.rb:88 games/darts.rb:38 games/mania_pisania.rb:74
+#: games/axel_pong.rb:48 games/billiards.rb:88 games/darts.rb:39 games/mania_pisania.rb:74 lib/darts/client.rb:613 lib/darts/rankings/screen.rb:82
 msgid "Easy"
 msgstr "Łatwy"
 
@@ -15255,11 +15339,11 @@ msgstr "Włącz dostępność, gdy chcesz grać. Każdy gracz musi przyjąć pro
 msgid "Enable my availability for automatic matches"
 msgstr "Włącz moją dostępność do automatycznych meczów"
 
-#: __app.rb:2375
+#: __app.rb:2383
 msgid "Enabling observer mode"
 msgstr "Włączanie trybu obserwatora"
 
-#: __app.rb:2375
+#: __app.rb:2383
 msgid "Enabling player mode"
 msgstr "Włączanie trybu gracza"
 
@@ -15309,7 +15393,7 @@ msgstr "Koniec gry"
 msgid "End on the start date"
 msgstr "Koniec w dniu rozpoczęcia"
 
-#: __app.rb:3838
+#: __app.rb:3856
 msgid "End the current game for everyone? The table and chat will stay open, and no winner will be recorded."
 msgstr "Przerwać obecną partię wszystkim graczom? Stół i czat pozostaną otwarte, bez zapisywania zwycięzcy."
 
@@ -15383,7 +15467,7 @@ msgstr ""
 msgid "Ending and agreeing the score"
 msgstr "Zakończenie i uzgadnianie wyniku"
 
-#: __app.rb:3845
+#: __app.rb:3863
 msgid "Ending game"
 msgstr "Przerywanie partii"
 
@@ -15863,7 +15947,7 @@ msgstr "Enter: zagraj wierzchnią kartę."
 msgid "Enter: roll all dice initially, then reroll selected dice. If none are selected, or you have used three rolls, open the scoring list instead. Arrows and Enter choose and save a category; Escape cancels that choice."
 msgstr "Enter: początkowo rzut wszystkimi kośćmi, później przerzut zaznaczonych. Jeśli żadna nie jest zaznaczona albo wykorzystano trzy rzuty, otwiera listę punktacji. Strzałkami i Enterem wybierasz i zapisujesz kategorię, a Escape anuluje wybór."
 
-#: games/generated/rulebooks/balut.rb:16 games/generated/rulebooks/kosciane.rb:26
+#: games/generated/rulebooks/balut.rb:19 games/generated/rulebooks/kosciane.rb:26
 msgid "Enter: roll all five dice to begin your turn. Later, reroll the selected dice or open scoring if none are selected. In the score sheet, record the selected row. After the third roll, the sheet appears automatically."
 msgstr ""
 
@@ -15989,7 +16073,7 @@ msgstr "Escape: zamknij wybór kontraktu."
 msgid "Escape: close the current list."
 msgstr "Escape: zamknij bieżącą listę."
 
-#: games/generated/rulebooks/balut.rb:21 games/generated/rulebooks/kosciane.rb:31
+#: games/generated/rulebooks/balut.rb:24 games/generated/rulebooks/kosciane.rb:31
 msgid "Escape: close the separate score-sheet window without recording a result."
 msgstr ""
 
@@ -16035,11 +16119,11 @@ msgstr "Koło europejskie ma 0–36, amerykańskie dodatkowo 00. Francuskie ma j
 msgid "European: single zero"
 msgstr "Europejskie: jedno zero"
 
-#: games/kosciane.rb:296 games/roulette.rb:287
+#: games/kosciane.rb:300 games/roulette.rb:287
 msgid "Even"
 msgstr "Parzyste"
 
-#: games/kosciane.rb:30
+#: games/kosciane.rb:31
 msgid "Even and odd"
 msgstr "Kategorie parzyste i nieparzyste"
 
@@ -16348,7 +16432,7 @@ msgstr "F5 powtarza dźwięki."
 msgid "F: Read shot power."
 msgstr "F: Odczytaj siłę uderzenia."
 
-#: games/generated/rulebooks/balut.rb:26 games/generated/rulebooks/kosciane.rb:36
+#: games/generated/rulebooks/balut.rb:29 games/generated/rulebooks/kosciane.rb:36
 msgid "F: browse your unfilled rows."
 msgstr ""
 
@@ -16577,7 +16661,7 @@ msgstr "Bila końcowa: %{ball}."
 msgid "Final deal."
 msgstr "Ostatnie rozdanie."
 
-#: games/generated/rulebooks/balut.rb:13
+#: games/generated/rulebooks/balut.rb:15
 msgid "Final score"
 msgstr ""
 
@@ -16769,7 +16853,7 @@ msgstr "Pierwszy dzień turnieju"
 msgid "First, the game gives you one word to type. It then adds another, but reads aloud only the new word."
 msgstr ""
 
-#: __app.rb:952
+#: __app.rb:960
 msgid "First-to-wins knockout series currently run only in the local tournament test. The ordinary-table server trial cannot play subsequent games yet."
 msgstr "Serie pucharowe do określonej liczby wygranych działają obecnie tylko w lokalnym teście turniejów. Test serwerowy zwykłych stołów nie obsługuje jeszcze kolejnych partii."
 
@@ -16827,7 +16911,7 @@ msgstr "Poker dobierany: popraw własną rękę"
 msgid "Five-letter words: 30 attempts"
 msgstr "dla pięcioliterowych - 30 prób"
 
-#: games/yahtzee.rb:31
+#: games/yahtzee.rb:32
 msgid "Fives"
 msgstr "Piątki"
 
@@ -16947,7 +17031,7 @@ msgstr "Poprawiono przywracanie własnych ustawień Makao przy tworzeniu kolejne
 msgid "Fixed resuming larger saved games, including Scrabble, and a case where a failed save left the game paused."
 msgstr "Poprawiono wznawianie większych zapisów, m.in. Scrabble, oraz przypadek pozostawienia partii wstrzymanej po nieudanym zapisie."
 
-#: games/kosciane.rb:31
+#: games/kosciane.rb:32
 msgid "Fixed scores for combinations"
 msgstr "Stałe punkty za wybrane układy"
 
@@ -17282,7 +17366,7 @@ msgstr "Cztery jednakowe kości dają 100 plus dziesięciokrotność ich wartoś
 msgid "Four in a row"
 msgstr "Cztery w rzędzie"
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:34
+#: games/dice_poker.rb:308 games/yahtzee.rb:35
 msgid "Four of a kind"
 msgstr "Kareta"
 
@@ -17346,7 +17430,7 @@ msgstr "Cztery, sześć lub osiem osób tworzy dwie równe drużyny. Nie ma bot�
 msgid "Four-letter words: 24 attempts"
 msgstr "dla czteroliterowych - 24 próby"
 
-#: games/yahtzee.rb:30
+#: games/yahtzee.rb:31
 msgid "Fours"
 msgstr "Czwórki"
 
@@ -17471,7 +17555,7 @@ msgstr "Pełne P2P (bezpośrednie połączenia między uczestnikami)"
 msgid "Full deck: 52 cards"
 msgstr "Pełna talia: 52 karty"
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:35
+#: games/dice_poker.rb:308 games/yahtzee.rb:36
 msgid "Full house"
 msgstr "Full"
 
@@ -17545,7 +17629,7 @@ msgstr "G: odczytaj swój najlepszy obecny układ."
 msgid "G: read your best current hand."
 msgstr ""
 
-#: games/darts.rb:34 games/mancala.rb:97 lib/game_history_navigation.rb:124 lib/game_statistics_screen.rb:72 lib/tournaments/draft_editor.rb:28 lib/tournaments/draft_preview.rb:169 lib/tournaments/public_text.rb:99 lib/tournaments/tournament_setup_editor.rb:29
+#: games/darts.rb:35 games/mancala.rb:97 lib/game_history_navigation.rb:124 lib/game_statistics_screen.rb:72 lib/tournaments/draft_editor.rb:28 lib/tournaments/draft_preview.rb:169 lib/tournaments/public_text.rb:99 lib/tournaments/tournament_setup_editor.rb:29
 msgid "Game"
 msgstr "Gra"
 
@@ -17632,7 +17716,7 @@ msgstr "Historia gry"
 msgid "Game in progress"
 msgstr "Partia w toku"
 
-#: __app.rb:378 __app.rb:418
+#: __app.rb:383 __app.rb:423
 msgid "Game invitation"
 msgstr "Zaproszenie do gry"
 
@@ -17671,7 +17755,11 @@ msgstr "Gra wstrzymana."
 msgid "Game points for %{for}, game points against %{against}."
 msgstr "Punkty z gry zdobyte: %{for}, punkty przeciwników: %{against}."
 
-#: games/balut_support/balut_score_grid.rb:33
+#: games/balut_support/balut_score_grid.rb:40
+msgid "Game points for this category: %{points}"
+msgstr "Punkty za kategorię: %{points}"
+
+#: games/balut_support/balut_score_grid.rb:28
 msgid "Game points: %{points}"
 msgstr "Wynik gry: %{points}"
 
@@ -17679,7 +17767,7 @@ msgstr "Wynik gry: %{points}"
 msgid "Game points: %{points}. Sum of recorded scores: %{total}."
 msgstr "Wynik gry: %{points}. Suma wpisów: %{total}."
 
-#: __app.rb:1248 __app.rb:269 lib/game_rules.rb:119 lib/participant_menu.rb:23
+#: __app.rb:1256 __app.rb:271 lib/game_rules.rb:119 lib/participant_menu.rb:23
 msgid "Game rules"
 msgstr "Zasady gry"
 
@@ -17779,7 +17867,7 @@ msgstr "Zatankowanie"
 msgid "General"
 msgstr "Ogólne"
 
-#: games/kosciane.rb:298
+#: games/kosciane.rb:302
 msgid "General (five of a kind)"
 msgstr "Generał (pięć jednakowych kości)"
 
@@ -18110,7 +18198,7 @@ msgstr "Rozdania trwają ze zmieniającym się rozdającym, aż tylko jeden grac
 msgid "Hands or minutes between blind increases"
 msgstr "Liczba rozdań albo minut między podniesieniami ciemnych"
 
-#: games/axel_pong.rb:48 games/billiards.rb:89 games/darts.rb:40 games/mania_pisania.rb:74
+#: games/axel_pong.rb:48 games/billiards.rb:89 games/darts.rb:41 games/mania_pisania.rb:74 lib/darts/client.rb:613 lib/darts/rankings/screen.rb:82
 msgid "Hard"
 msgstr "Trudny"
 
@@ -18211,7 +18299,7 @@ msgstr "Historia i pomoc pod F1 są teraz polami tekstowymi tylko do odczytu. Mo
 msgid "Hit"
 msgstr "Dobierz"
 
-#: lib/darts/client.rb:83
+#: lib/darts/client.rb:90
 msgctxt "Darts training"
 msgid "Hit"
 msgstr "Trafienie"
@@ -18910,7 +18998,7 @@ msgstr "Mapa Wyścigów kaczek otwierana klawiszem V pokazuje od razu pole, na k
 msgid "In Duck Racing, each player now starts Simon, Repeat the rhythm and Hit the duck independently, without waiting for everyone to confirm readiness. You can try the sounds before starting. Results are compared after everyone finishes."
 msgstr "W Wyścigach kaczek każdy gracz rozpoczyna teraz własną próbę w wyzwaniach Simon, Powtórz rytm i Traf kaczkę, bez czekania na potwierdzenie gotowości przez wszystkich. Przed rozpoczęciem można wypróbować dźwięki. Wyniki są porównywane, gdy wszyscy skończą."
 
-#: games/generated/rulebooks/balut.rb:12
+#: games/generated/rulebooks/balut.rb:14
 msgid "In Fours, Fives and Sixes, sum only the dice showing the named value. Chance takes the sum of all five dice. A straight is five consecutive values, and a full house is three of one value and two of another. Both score the sum of all five dice. Five equal dice score 50 in Balut regardless of their value. If Balut is full, five sixes can still score 30 in Sixes or Chance."
 msgstr ""
 
@@ -19387,7 +19475,7 @@ msgstr "Podnoś ciemne"
 msgid "Increase blinds can be Never, after a number of hands, or after a number of minutes. The default is every 5 hands with a multiplier of 2. The interval can be 1–100 hands or minutes; the multiplier 2–10. Increases are applied when a new hand begins, not in the middle of betting. These controls are relevant only when the variant uses blinds."
 msgstr "Podnoszenie ciemnych może być wyłączone, następować po liczbie rozdań albo minut. Domyślnie odbywa się co 5 rozdań z mnożnikiem 2. Odstęp może wynosić 1–100 rozdań lub minut, mnożnik 2–10. Podwyżki wchodzą na początku nowego rozdania, nie w środku licytacji. Te ustawienia dotyczą tylko wariantu korzystającego z ciemnych."
 
-#: games/darts.rb:44
+#: games/darts.rb:45
 msgid "Increase difficulty during the match"
 msgstr "Zwiększaj poziom trudności podczas meczu"
 
@@ -19468,7 +19556,7 @@ msgstr "Plansza indonezyjska"
 msgid "Inferno"
 msgstr "Inferno"
 
-#: __app.rb:1380 lib/tournaments/server_schedule_overview.rb:20
+#: __app.rb:1388 lib/tournaments/server_schedule_overview.rb:20
 msgid "Information"
 msgstr "Informacje"
 
@@ -19611,7 +19699,7 @@ msgstr "Wynalazek"
 msgid "Investment"
 msgstr "Inwestycja"
 
-#: __app.rb:2807
+#: __app.rb:2815
 msgid "Invitation"
 msgstr "Zaproszenie"
 
@@ -19634,7 +19722,7 @@ msgstr "Zaproszenie odrzucone."
 msgid "Invitation sent."
 msgstr "Zaproszenie wysłane."
 
-#: __app.rb:2630
+#: __app.rb:2638
 msgid "Invitations"
 msgstr "Zaproszenia"
 
@@ -19658,11 +19746,11 @@ msgstr "Zaproś"
 msgid "Invite an online Elten user"
 msgstr "Zaproś zalogowanego użytkownika ELTEN-a"
 
-#: __app.rb:2500
+#: __app.rb:2508
 msgid "Invite an online user"
 msgstr "Zaproś dostępnego użytkownika"
 
-#: __app.rb:2500
+#: __app.rb:2508
 msgid "Invite from contacts"
 msgstr "Zaproś z kontaktów"
 
@@ -19796,11 +19884,11 @@ msgctxt "categories"
 msgid "Jewelry material"
 msgstr "Materiał jubilerski"
 
-#: __app.rb:1705
+#: __app.rb:1713
 msgid "Join"
 msgstr "Dołącz"
 
-#: __app.rb:1657 __app.rb:262
+#: __app.rb:1665 __app.rb:264
 msgid "Join a table"
 msgstr "Dołącz do stołu"
 
@@ -19824,7 +19912,7 @@ msgstr "Dołącz do rozmowy głosowej"
 msgid "Joining a local test tournament"
 msgstr "Zapisywanie do lokalnego turnieju testowego"
 
-#: __app.rb:1786
+#: __app.rb:1794
 msgid "Joining table"
 msgstr "Dołączanie do stołu"
 
@@ -19972,7 +20060,7 @@ msgstr "Lotnisko Kennedy'ego"
 msgid "Kept dice from separate rolls cannot be combined into a new scoring set. If all six dice score, you have hot dice and may roll all six again while keeping the accumulated turn points. A roll with no scoring combination is a Farkle: the entire unbanked turn score is lost and the turn ends."
 msgstr "Kości zachowanych z osobnych rzutów nie można łączyć w nowy układ punktujący. Jeśli wszystkie sześć kości punktuje, otrzymujesz gorące kości i możesz ponownie rzucić wszystkimi sześcioma, zachowując zgromadzone punkty tury. Rzut bez kombinacji punktującej to Farkle: wszystkie niezapisane punkty tury przepadają, a tura się kończy."
 
-#: games/generated/rulebooks/backgammon.rb:18 games/generated/rulebooks/balut.rb:15 games/generated/rulebooks/french_tarot.rb:19 games/generated/rulebooks/kosciane.rb:25 games/mania_pisania.rb:73
+#: games/generated/rulebooks/backgammon.rb:18 games/generated/rulebooks/balut.rb:18 games/generated/rulebooks/french_tarot.rb:19 games/generated/rulebooks/kosciane.rb:25 games/mania_pisania.rb:73
 msgid "Keyboard"
 msgstr "Klawiatura"
 
@@ -20288,7 +20376,7 @@ msgstr "Języki, blanki i premie"
 msgid "Laps"
 msgstr "Liczba okrążeń"
 
-#: games/yahtzee.rb:37
+#: games/yahtzee.rb:38
 msgid "Large straight"
 msgstr "Duży strit"
 
@@ -20395,14 +20483,14 @@ msgstr "Ranking: ostatnie pół roku"
 msgid "Leaderboard: last year"
 msgstr "Ranking: ostatni rok"
 
-#: __app.rb:1090 __app.rb:266
+#: __app.rb:1098 __app.rb:268
 msgid "Leaderboards"
 msgstr "Rankingi"
 
 msgid "Leaderboards will become available after the first playable game is added."
 msgstr "Rankingi staną się dostępne po dodaniu pierwszej gry obsługującej tę funkcję."
 
-#: __app.rb:2071 lib/game_layout.rb:194 lib/game_screen/input.rb:118 lib/participant_menu.rb:32
+#: __app.rb:2079 lib/game_layout.rb:194 lib/game_screen/input.rb:118 lib/participant_menu.rb:32
 msgid "Leave"
 msgstr "Opuść"
 
@@ -20446,7 +20534,7 @@ msgstr "Zostaw na swoim polu. Kaczka, która na niej stanie, przez najbliższe 2
 msgid "Leave it on your square. When a duck lands there, everyone draws a card."
 msgstr "Zostaw na swoim polu. Gdy stanie na niej kaczka, każdy gracz dobierze kartę."
 
-#: __app.rb:2291
+#: __app.rb:2299
 msgid "Leave only the table"
 msgstr "Wyjdź tylko ze stołu"
 
@@ -20470,7 +20558,7 @@ msgstr "Opuścić obecną konferencję i dołączyć do tej rozmowy?"
 msgid "Leave your current table before accepting a tournament match."
 msgstr "Opuść obecny stół, zanim przyjmiesz zaproszenie do meczu turniejowego."
 
-#: __app.rb:948
+#: __app.rb:956
 msgid "Leave your current table before opening another tournament match."
 msgstr "Opuść obecny stół przed otwarciem kolejnego meczu turniejowego."
 
@@ -20486,7 +20574,7 @@ msgstr "Wyjście ze stołu rozłącza też jego konferencję głosową. Ctrl+Shi
 msgid "Leaving a table now waits for confirmation. If the connection fails, you stay at the table and can retry instead of returning to the lobby without leaving."
 msgstr "Przy opuszczaniu stołu program czeka teraz na potwierdzenie. W razie utraty połączenia pozostajesz przy stole i możesz ponowić próbę, zamiast wracać do lobby bez faktycznego opuszczenia stołu."
 
-#: __app.rb:2269
+#: __app.rb:2277
 msgid "Leaving table"
 msgstr "Opuszczanie stołu"
 
@@ -20726,6 +20814,10 @@ msgstr "Ładowanie dat dziennej krowy"
 msgid "Loading Daily Krowa leaderboard"
 msgstr "Ładowanie rankingu dziennej krowy"
 
+#: lib/darts/rankings/screen.rb:52
+msgid "Loading Darts ranking"
+msgstr "Wczytywanie rankingu Dartsa"
+
 #: __app.rb:669 __app.rb:720
 msgid "Loading Game Room history"
 msgstr "Wczytywanie historii Game Room"
@@ -20734,7 +20826,7 @@ msgstr "Wczytywanie historii Game Room"
 msgid "Loading Game Room tables"
 msgstr "Wczytywanie stołów Game Roomu"
 
-#: __app.rb:2989 lib/game_room_widget.rb:148 lib/game_room_widget.rb:152 lib/game_room_widget.rb:50
+#: __app.rb:3007 lib/game_room_widget.rb:148 lib/game_room_widget.rb:152 lib/game_room_widget.rb:50
 msgid "Loading Power Games tables"
 msgstr "Wczytywanie stołów Power Games"
 
@@ -20750,11 +20842,11 @@ msgstr "Pobieranie rund Wieży"
 msgid "Loading attempt list"
 msgstr "Wczytywanie listy prób"
 
-#: __app.rb:1643
+#: __app.rb:1651
 msgid "Loading available tables"
 msgstr "Wczytywanie dostępnych stołów"
 
-#: __app.rb:3014
+#: __app.rb:3032
 msgid "Loading contacts"
 msgstr "Wczytywanie kontaktów"
 
@@ -20766,7 +20858,7 @@ msgstr "Wczytywanie szkicu"
 msgid "Loading histories and replays"
 msgstr "Wczytywanie historii i powtórek"
 
-#: __app.rb:2610
+#: __app.rb:2618
 msgid "Loading invitations"
 msgstr "Wczytywanie zaproszeń"
 
@@ -20806,22 +20898,22 @@ msgstr "Wczytywanie wiadomości z nagraniami"
 msgid "Loading saved drafts"
 msgstr "Wczytywanie zapisanych szkiców"
 
-#: __app.rb:1383 __app.rb:1391 __app.rb:1589
+#: __app.rb:1391 __app.rb:1399 __app.rb:1597
 msgid "Loading saved game"
 msgstr "Wczytywanie zapisanej gry"
 
-#: __app.rb:1367
+#: __app.rb:1375
 msgid "Loading saved games"
 msgstr "Wczytywanie zapisanych gier"
 
 msgid "Loading server time"
 msgstr "Pobieranie czasu serwera"
 
-#: __app.rb:1134 lib/game_statistics_screen.rb:149 lib/game_statistics_screen.rb:152 lib/sports_rankings/screen.rb:123 lib/sports_rankings/screen.rb:124 lib/sports_rankings/screen.rb:79 lib/sports_rankings/screen.rb:84
+#: __app.rb:1142 lib/game_statistics_screen.rb:149 lib/game_statistics_screen.rb:152 lib/sports_rankings/screen.rb:123 lib/sports_rankings/screen.rb:124 lib/sports_rankings/screen.rb:79 lib/sports_rankings/screen.rb:84
 msgid "Loading statistics"
 msgstr "Wczytywanie statystyk"
 
-#: __app.rb:1688
+#: __app.rb:1696
 msgid "Loading tables"
 msgstr "Wczytywanie stołów"
 
@@ -20829,7 +20921,7 @@ msgstr "Wczytywanie stołów"
 msgid "Loading tournament drafts"
 msgstr "Wczytywanie szkiców turniejów"
 
-#: __app.rb:2468 lib/tournaments/tournament_invite_picker.rb:12
+#: __app.rb:2476 lib/tournaments/tournament_invite_picker.rb:12
 msgid "Loading users"
 msgstr "Wczytywanie użytkowników"
 
@@ -20890,7 +20982,7 @@ msgstr "To tylko podgląd lokalnego planu. Nie zapisuje ani nie publikuje spotka
 msgid "Local readiness operation in progress. Back discards its presentation, not its durable intent."
 msgstr "Trwa lokalna operacja gotowości. Wstecz odrzuca jej prezentację, a nie trwały zamiar."
 
-#: __app.rb:3193
+#: __app.rb:3211
 msgid "Local settings saved. New-table notification subscriptions could not be saved."
 msgstr "Zapisano ustawienia lokalne. Nie udało się zapisać subskrypcji powiadomień o nowych stołach."
 
@@ -21422,7 +21514,7 @@ msgstr "Zaznaczanie bieżącej kulki bingo."
 msgid "Marylebone station"
 msgstr "Dworzec Marylebone"
 
-#: games/yahtzee.rb:612
+#: games/yahtzee.rb:618
 msgid "Match %{match} finished. %{scores}."
 msgstr "Partia %{match} zakończona. %{scores}."
 
@@ -21818,11 +21910,11 @@ msgstr "Minuta"
 msgid "Misere reverses the targets: the dealer may take at most 8 tricks, the player to the dealer's right at most 5, and the chooser at most 3. Your score is the limit minus tricks won, so avoiding tricks earns points and exceeding the limit loses points."
 msgstr "W rozgrywce bez lew cele są odwrócone: rozdający może wziąć najwyżej 8 lew, gracz po jego prawej najwyżej 5, a wybierający najwyżej 3. Wynik to limit minus zdobyte lewy, więc unikanie lew daje punkty, a przekroczenie limitu je odbiera."
 
-#: games/yahtzee.rb:42
+#: games/yahtzee.rb:43
 msgid "Misery"
 msgstr "Nędza"
 
-#: lib/darts/client.rb:83
+#: lib/darts/client.rb:90
 msgctxt "Darts training"
 msgid "Miss"
 msgstr "Pudło"
@@ -21859,7 +21951,7 @@ msgstr "Odkryty i zakryty kong"
 msgid "Mixed mode here is for incurable nerds, because you have to recall both the word and the way you were supposed to type it."
 msgstr ""
 
-#: games/darts.rb:33
+#: games/darts.rb:34
 msgid "Mode"
 msgstr "Tryb"
 
@@ -22304,6 +22396,10 @@ msgstr "Nowy szkic"
 msgid "New games are selected in the widget by default, while saved manual deselections are remembered. Older settings also enable Rummy, Domino, Mexican Train, Scrabble, Taboo and Biblios once."
 msgstr "Nowe gry są domyślnie zaznaczane w widgecie, a zapisane ręczne odznaczenia są zapamiętywane. W starszych ustawieniach jednorazowo włączane są także Rummy, Domino, Mexican Train, Scrabble, Taboo i Biblios."
 
+#: lib/darts/client.rb:526
+msgid "New personal three-dart record: %{score} points in %{seconds} seconds."
+msgstr "Nowy rekord osobisty trzech rzutów: %{score} punktów w czasie %{seconds} sekund."
+
 #: lib/quiz_contributions/controller.rb:110
 msgid "New question"
 msgstr "Nowe pytanie"
@@ -22316,7 +22412,7 @@ msgstr "Nowy zestaw pytań"
 msgid "New set"
 msgstr "Nowy zestaw"
 
-#: __app.rb:399 __app.rb:405
+#: __app.rb:404 __app.rb:410
 msgid "New table"
 msgstr "Nowy stół"
 
@@ -22405,7 +22501,7 @@ msgstr "W Dziewięćdziesiąt dziewięć gra od 2 do 8 graczy. Każdy aktywny gr
 msgid "Ninoy Aquino International Airport"
 msgstr "Międzynarodowe lotnisko Ninoy Aquino"
 
-#: __app.rb:2291 games/mahjong_support/options.rb:28 games/mille_bornes.rb:137 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:49 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/draft_preview.rb:172 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
+#: __app.rb:2299 games/mahjong_support/options.rb:28 games/mille_bornes.rb:137 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:49 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/draft_preview.rb:172 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
 msgid "No"
 msgstr "Nie"
 
@@ -22546,7 +22642,7 @@ msgstr "Żadna bitwa nie została jeszcze rozstrzygnięta."
 msgid "No bid was made. The pool carries over to the next round."
 msgstr "Nikt nie zalicytował. Pula przechodzi do następnej rundy."
 
-#: games/cash_auction/presentation.rb:266
+#: games/cash_auction/presentation.rb:268
 msgid "No bids yet"
 msgstr "Brak ofert"
 
@@ -22593,7 +22689,7 @@ msgstr "Na stole nie ma kart"
 msgid "No cards on the table."
 msgstr "Brak kart na stole."
 
-#: games/yahtzee.rb:223
+#: games/yahtzee.rb:229
 msgid "No categories remain"
 msgstr "Nie pozostała żadna kategoria"
 
@@ -22692,7 +22788,11 @@ msgstr "Obecnie nie masz kwiatów ani pór roku: możliwy dodatkowy 1 fan, niewl
 msgid "No further registration request will be sent from this preview."
 msgstr "Z tego podglądu nie zostanie wysłane kolejne zgłoszenie."
 
-#: __app.rb:1896 __app.rb:1897
+#: games/balut_support/balut_score_grid.rb:42
+msgid "No game points can be earned in this category."
+msgstr "Za tę kategorię nie można już zdobyć punktów."
+
+#: __app.rb:1904 __app.rb:1905
 msgid "No games have been played yet"
 msgstr "Nie rozegrano jeszcze żadnej gry"
 
@@ -22722,7 +22822,7 @@ msgstr "W tej wersji nie ma dostępnych rankingów."
 msgid "No legal win is available for your hand now; no final value can be given."
 msgstr "Nie masz teraz legalnej wygranej; nie można podać końcowej wartości ręki."
 
-#: games/darts.rb:46 games/poker.rb:22
+#: games/darts.rb:47 games/poker.rb:22
 msgid "No limit"
 msgstr "Bez limitu"
 
@@ -22907,7 +23007,7 @@ msgstr "Brak czynszu: ta nieruchomość nie ma właściciela."
 msgid "No rent: this property is mortgaged."
 msgstr "Brak czynszu: ta nieruchomość jest zastawiona."
 
-#: games/krowa_support/leaderboards.rb:306
+#: games/krowa_support/leaderboards.rb:306 lib/darts/rankings/screen.rb:67
 msgid "No results"
 msgstr "Brak wyników"
 
@@ -22986,7 +23086,7 @@ msgstr "Nie wyłożono jeszcze pierwszej karty."
 msgid "No suit has been led."
 msgstr "Nie wyłożono jeszcze koloru."
 
-#: __app.rb:3096
+#: __app.rb:3114
 msgid "No table preset is assigned to this shortcut."
 msgstr "Do tego skrótu nie przypisano ustawień stołu."
 
@@ -23057,7 +23157,7 @@ msgctxt "categories"
 msgid "Non-alcoholic drink"
 msgstr "Napój bezalkoholowy"
 
-#: __app.rb:3541 lib/game_option_values.rb:105 lib/game_room_screens.rb:519 lib/mania_pisania/client.rb:351
+#: __app.rb:3559 lib/game_option_values.rb:105 lib/game_room_screens.rb:519 lib/mania_pisania/client.rb:351
 msgid "None"
 msgstr "Brak"
 
@@ -23069,7 +23169,7 @@ msgstr "Żadna z pozostałych kości nie pozwala zdjąć tego pionka."
 msgid "None of your cards fits within 31"
 msgstr "Żadna karta nie mieści się w limicie 31"
 
-#: games/axel_pong.rb:48 games/darts.rb:39
+#: games/axel_pong.rb:48 games/darts.rb:40 lib/darts/client.rb:613 lib/darts/rankings/screen.rb:82
 msgid "Normal"
 msgstr "Normalny"
 
@@ -23243,7 +23343,7 @@ msgstr "Liczba liter"
 msgid "Number of letters - Random word and Race"
 msgstr "Liczba liter — Losowe słowo i Wyścig"
 
-#: games/yahtzee.rb:87
+#: games/yahtzee.rb:93
 msgid "Number of matches"
 msgstr "Liczba partii"
 
@@ -23254,7 +23354,7 @@ msgstr "Liczba meczów wynosi domyślnie 1, można ustawić od 1 do 10. Każdy m
 msgid "Number of question rounds (8 to 32)"
 msgstr "Liczba rund z pytaniem (od 8 do 32)"
 
-#: games/blackjack.rb:35 games/blackjack_dice.rb:39 games/darts.rb:42 games/dice_poker.rb:41 games/mania_pisania.rb:75
+#: games/blackjack.rb:35 games/blackjack_dice.rb:39 games/darts.rb:43 games/dice_poker.rb:41 games/mania_pisania.rb:75
 msgid "Number of rounds"
 msgstr "Liczba rund"
 
@@ -23317,7 +23417,7 @@ msgstr "Obserwatorzy: %{players}."
 msgid "Occupied seats, including bots"
 msgstr "Liczba graczy, łącznie z botami"
 
-#: games/kosciane.rb:297 games/roulette.rb:287
+#: games/kosciane.rb:301 games/roulette.rb:287
 msgid "Odd"
 msgstr "Nieparzyste"
 
@@ -23542,10 +23642,14 @@ msgid "One of these cards is not in your hand."
 msgstr "Jednej z tych kart nie ma w twojej ręce."
 
 #: games/generated/rulebooks/kosciane.rb:24
+msgid "One or two columns disable bonuses. Optional even and odd rows require every die to have the chosen parity. Fixed scoring replaces points for triple, small straight, large straight, full house, four of a kind and five of a kind with 20, 25, 30, 35, 40 and 50. First-roll doubling never applies to school. In the strict school variant, recording zero also blocks future bonuses."
+msgstr "Przy jednej lub dwóch kolumnach nie ma premii. Opcjonalne kategorie parzyste i nieparzyste liczą sumę oczek, jeśli wszystkie kości są odpowiednio parzyste albo nieparzyste. Stała punktacja daje 20 za trójkę, 25 za małego strita, 30 za dużego, 35 za fulla, 40 za karetę i 50 za generała. Opcja podwajania wyniku z pierwszego rzutu nie obejmuje szkoły. W surowym wariancie zapisanie zera w szkole blokuje także przyszłe premie."
+
+#: games/generated/rulebooks/kosciane.rb:24
 msgid "One or two columns disable bonuses. Optional even and odd rows require every die to have the chosen parity. Fixed scoring replaces points for triple, small straight, large straight, full house, four of a kind and five of a kind with 20, 25, 30, 35, 40 and 50. First-roll doubling never applies to school. Strict school crosses also block future bonuses."
 msgstr ""
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:40
+#: games/dice_poker.rb:308 games/yahtzee.rb:41
 msgid "One pair"
 msgstr "Jedna para"
 
@@ -23572,14 +23676,14 @@ msgstr "Jeden strzał i zmiana gracza"
 msgid "One stroke can combine several scores:"
 msgstr ""
 
-#: games/yahtzee.rb:27
+#: games/yahtzee.rb:28
 msgid "Ones"
 msgstr "Jedynki"
 
 msgid "Ones through Sixes sum only dice of that value: three fours score 12 in Fours. Three of a kind and Four of a kind require at least three or four identical dice and score the sum of all five dice. Chance always scores that sum, with no required combination."
 msgstr "Jedynki do Szóstek sumują wyłącznie kości o danej wartości: trzy czwórki dają 12 w Czwórkach. Trójka i Kareta wymagają co najmniej trzech albo czterech identycznych kości i punktują sumą wszystkich pięciu kości. Szansa zawsze daje tę sumę, bez wymaganego układu."
 
-#: games/yahtzee.rb:302
+#: games/yahtzee.rb:308
 msgid "Ones through Sixes: %{points} of 63."
 msgstr "Jedynki–Szóstki: %{points} z 63."
 
@@ -23634,11 +23738,11 @@ msgstr "Może to zrobić tylko organizator."
 msgid "Only the solo player can save their private typing progress."
 msgstr "Tylko gracz solo może zapisać swój prywatny postęp pisania."
 
-#: __app.rb:2385
+#: __app.rb:2393
 msgid "Only the table master may change another user's role."
 msgstr "Tylko gospodarz stołu może zmieniać rolę innej osoby."
 
-#: __app.rb:3432
+#: __app.rb:3450
 msgid "Only the table master may start a game."
 msgstr "Tylko założyciel stołu może rozpocząć grę."
 
@@ -23658,7 +23762,7 @@ msgstr ""
 msgid "Only the tricks promised beyond the first six earn contract points. If you make your contract, they are worth:"
 msgstr "Punkty za kontrakt otrzymujesz za obiecane lewy ponad pierwszych sześć. Jeśli para wypełni kontrakt, każda z nich daje:"
 
-#: __app.rb:1661 games/krowa_support/leaderboards.rb:340 games/krowa_support/leaderboards.rb:41 lib/game_room_screens.rb:111 lib/game_room_screens.rb:738 lib/game_statistics_screen.rb:17 lib/mania_pisania/client.rb:623 lib/quiz_contributions/views.rb:144 lib/recordings/ui.rb:242 lib/recordings/ui.rb:45 lib/sports_rankings/screen.rb:58
+#: __app.rb:1669 games/krowa_support/leaderboards.rb:340 games/krowa_support/leaderboards.rb:41 lib/darts/rankings/screen.rb:39 lib/game_room_screens.rb:111 lib/game_room_screens.rb:738 lib/game_statistics_screen.rb:17 lib/mania_pisania/client.rb:623 lib/quiz_contributions/views.rb:144 lib/recordings/ui.rb:242 lib/recordings/ui.rb:45 lib/sports_rankings/screen.rb:58
 msgid "Open"
 msgstr "Otwórz"
 
@@ -23690,7 +23794,7 @@ msgstr "Otwórz stół meczu"
 msgid "Open registration"
 msgstr "Otwórz zapisy"
 
-#: games/balut.rb:135 games/kosciane.rb:180
+#: games/balut.rb:132 games/kosciane.rb:181
 msgid "Open the score sheet"
 msgstr "Otwórz tabelę punktacji"
 
@@ -23698,7 +23802,7 @@ msgstr "Otwórz tabelę punktacji"
 msgid "Open tournament"
 msgstr "Otwórz turniej"
 
-#: games/cash_auction/presentation.rb:231 games/cash_auction/presentation.rb:272
+#: games/cash_auction/presentation.rb:233 games/cash_auction/presentation.rb:274
 msgid "Open your black chests before the final result."
 msgstr "Otwórz swoje czarne skrzynie przed rozstrzygnięciem meczu."
 
@@ -23757,7 +23861,7 @@ msgstr "Otwarcie licytacji wymaga co najmniej pary waletów."
 msgid "Opening the black chests!"
 msgstr "Otwieramy czarne skrzynki!"
 
-#: __app.rb:3475
+#: __app.rb:3493
 msgid "Opening the current game"
 msgstr "Otwieranie bieżącej gry"
 
@@ -24123,7 +24227,7 @@ msgstr "Zapis pary nie został potwierdzony. Sprawdź operacje przed kolejną pr
 msgid "Pair saved. Refresh to check the current partners."
 msgstr "Para zapisana. Odśwież widok, aby sprawdzić aktualnych partnerów."
 
-#: games/yahtzee.rb:88
+#: games/yahtzee.rb:94
 msgid "Pair, two pairs and misery"
 msgstr "Para, dwie pary i misery"
 
@@ -24504,7 +24608,7 @@ msgstr "Pigmenty"
 msgid "Pile: %{total}."
 msgstr "Stos: %{total}."
 
-#: games/krowa_support/leaderboards.rb:214 games/krowa_support/leaderboards.rb:305 games/krowa_support/leaderboards.rb:77 lib/tournaments/server_forfeit_screen.rb:81
+#: games/krowa_support/leaderboards.rb:214 games/krowa_support/leaderboards.rb:305 games/krowa_support/leaderboards.rb:77 lib/darts/rankings/screen.rb:65 lib/tournaments/server_forfeit_screen.rb:81
 msgid "Place"
 msgstr "Miejsce"
 
@@ -24771,7 +24875,7 @@ msgstr "Odtwórz"
 msgid "Play return match"
 msgstr "Zagraj rewanż"
 
-#: lib/darts/settings.rb:24
+#: lib/darts/settings.rb:37
 msgid "Play selected sound"
 msgstr "Odtwórz wybrany dźwięk"
 
@@ -24835,7 +24939,7 @@ msgstr "Rozegrane"
 msgid "Played words"
 msgstr "Ułożone słowa"
 
-#: lib/sports_rankings/screen.rb:98
+#: lib/darts/rankings/screen.rb:65 lib/sports_rankings/screen.rb:98
 msgid "Player"
 msgstr "Gracz"
 
@@ -24929,11 +25033,11 @@ msgstr ""
 msgid "Players: %{count}"
 msgstr "Gracze: %{count}"
 
-#: __app.rb:3542 lib/table_roster_reader.rb:69
+#: __app.rb:3560 lib/table_roster_reader.rb:69
 msgid "Players: %{players}."
 msgstr "Gracze: %{players}."
 
-#: lib/darts/client.rb:294
+#: lib/darts/client.rb:304
 msgctxt "Darts training"
 msgid "Playfield boundary"
 msgstr "Granica planszy"
@@ -25356,7 +25460,7 @@ msgstr "Pula: %{amount}."
 msgid "Pot: %{chips} chips"
 msgstr "Pula: %{chips} żetonów"
 
-#: __app.rb:309 lib/game_room_screens.rb:104
+#: __app.rb:314 lib/game_room_screens.rb:104
 msgid "Power Games"
 msgstr "Power Games"
 
@@ -25505,7 +25609,7 @@ msgstr "Przygotowywanie zgłoszenia pytania"
 msgid "Preparing round %{round}."
 msgstr "Przygotowywanie rundy %{round}."
 
-#: __app.rb:1484 __app.rb:1518
+#: __app.rb:1492 __app.rb:1526
 msgid "Preparing saved game"
 msgstr "Przygotowywanie zapisanej gry"
 
@@ -25896,6 +26000,10 @@ msgstr "Postęp wyzerowany."
 msgid "Progress shows how many pairs you have removed and how many tiles remain. Your score is the number of removed pairs, up to 72. When no pair is available, undo a move to try another route or choose End this puzzle. Ending early does not count as clearing the layout."
 msgstr ""
 
+#: lib/darts/client.rb:614 lib/darts/rankings/screen.rb:82
+msgid "Progressive game"
+msgstr "Gra progresywna"
+
 #: games/generated/rulebooks/spades.rb:9
 msgid "Promise a number of tricks, then try to take them"
 msgstr "Zadeklaruj lewy i spróbuj je zdobyć"
@@ -25984,6 +26092,10 @@ msgstr "Publikacja nie została potwierdzona. Sprawdź operacje przed kolejną p
 msgid "Publication not confirmed. This form cannot send again. Check the operation in the local test hub."
 msgstr "Publikacja nie została potwierdzona. Ten formularz nie może wysłać jej ponownie. Sprawdź operację w menu lokalnych testów."
 
+#: __app.rb:2978
+msgid "Publication of your saved personal Darts records has been queued."
+msgstr "Zlecono publikację zapisanych osobistych rekordów Dartsa."
+
 #: lib/tournaments/operations_screen.rb:128
 msgid "Publication: %{title}"
 msgstr "Publikacja: %{title}"
@@ -26014,6 +26126,14 @@ msgstr "Opublikuj w lokalnym trybie testowym"
 msgid "Publish in server test"
 msgstr "Opublikuj w teście serwerowym"
 
+#: lib/darts/settings.rb:24
+msgid "Publish my Darts records in the public rankings"
+msgstr "Publikuj moje rekordy Dartsa w publicznych rankingach"
+
+#: lib/darts/settings.rb:35
+msgid "Publish new Darts records in the public rankings"
+msgstr "Publikuj nowe rekordy Dartsa w publicznych rankingach"
+
 #: games/krowa_support/client.rb:353
 msgid "Publish the Word Tower result: %{rounds} completed rounds?"
 msgstr "Opublikować wynik Wieży: %{rounds} ukończonych rund?"
@@ -26033,6 +26153,10 @@ msgstr "Opublikuj bez listy prób"
 #: games/krowa_support/client.rb:335
 msgid "Publish your Daily Krowa result: %{attempts} attempts?"
 msgstr "Opublikować wynik dziennej krowy: %{attempts} prób?"
+
+#: lib/darts/settings.rb:21
+msgid "Publish your three saved personal records in each Darts ranking too?"
+msgstr "Czy opublikować także trzy zapisane rekordy osobiste w każdym rankingu Dartsa?"
 
 #: lib/quiz_contributions/views.rb:108
 msgid "Published"
@@ -26220,6 +26344,10 @@ msgstr "Zestaw pytań"
 msgid "Question sets"
 msgstr "Zestawy pytań"
 
+#: games/cash_auction/content.rb:136
+msgid "Question sets (1 to 3)"
+msgstr "Zestawy pytań (od 1 do 3)"
+
 #: games/cash_auction/content.rb:135
 msgid "Question sets (2 or 3, or the only available set)"
 msgstr "Zestawy pytań (2 lub 3 albo jedyny dostępny zestaw)"
@@ -26356,7 +26484,7 @@ msgstr "R: sprawdź, kto wybiera atut albo jaki tryb wybrano."
 msgid "R: reject an incoming offer."
 msgstr "R: odrzuć otrzymaną ofertę."
 
-#: __app.rb:270 lib/game_room_screens.rb:81
+#: __app.rb:272 lib/game_room_screens.rb:81
 msgid "README"
 msgstr "README"
 
@@ -26480,6 +26608,10 @@ msgstr "Losowe słowa, tryb przetrwania"
 msgid "Randomly"
 msgstr "Losowo"
 
+#: lib/darts/rankings/screen.rb:26
+msgid "Ranking type"
+msgstr "Rodzaj rankingu"
+
 #: games/duck_racing_support/challenge_presentation.rb:120
 msgid "Reach at most 25. Enter rolls the dice. Down, then Enter saves your result."
 msgstr "Nie przekrocz 25. Enter rzuca kośćmi. Strzałka w dół i Enter zapisują wynik."
@@ -26585,11 +26717,11 @@ msgstr "Najpierw odczytaj wybrane bieżące spotkanie. Odczyt historycznej opera
 msgid "Read the selected target with Check local match entry, then consent and confirm entry separately. Local entry does not open or start a network game."
 msgstr "Odczytaj wybrany cel opcją Sprawdź wejście do meczu lokalnego, a następnie osobno wyraź zgodę i potwierdź wejście. Wejście lokalne nie otwiera ani nie rozpoczyna gry sieciowej."
 
-#: __app.rb:1771 __app.rb:1776 lib/game_room_widget.rb:190 lib/game_room_widget.rb:207
+#: __app.rb:1779 __app.rb:1784 lib/game_room_widget.rb:190 lib/game_room_widget.rb:207
 msgid "Read the table participants"
 msgstr "Odczytaj obsadę stołu"
 
-#: __app.rb:1772 __app.rb:1775 lib/game_room_widget.rb:189 lib/game_room_widget.rb:208 lib/participant_menu.rb:24
+#: __app.rb:1780 __app.rb:1783 lib/game_room_widget.rb:189 lib/game_room_widget.rb:208 lib/participant_menu.rb:24
 msgid "Read the table variant and settings"
 msgstr "Odczytaj wariant i ustawienia stołu"
 
@@ -26979,7 +27111,7 @@ msgstr "Zgłoszenie poza okresem zapisów."
 msgid "Reject"
 msgstr "Odrzuć"
 
-#: __app.rb:2806 lib/game_room_screens.rb:140
+#: __app.rb:2814 lib/game_room_screens.rb:140
 msgid "Reject invitation"
 msgstr "Odrzuć zaproszenie"
 
@@ -26995,7 +27127,7 @@ msgstr "Odrzucono"
 msgid "Rejected or conflicting entry reports — announcements: %{announcements}; registrations: %{registrations}. These are not accepted entries."
 msgstr "Zgłoszone odrzucone lub sprzeczne wpisy — ogłoszenia: %{announcements}; zapisy: %{registrations}. Nie są to zaakceptowane wpisy."
 
-#: __app.rb:2770
+#: __app.rb:2778
 msgid "Rejecting invitation"
 msgstr "Odrzucanie zaproszenia"
 
@@ -27018,6 +27150,10 @@ msgstr ""
 msgid "Removal of %{player} from tournament %{id}"
 msgstr "Usunięcie gracza %{player} z turnieju %{id}"
 
+#: lib/darts/settings.rb:49
+msgid "Removal of your public Darts results has been queued."
+msgstr "Zlecono usunięcie Twoich publicznych wyników Dartsa."
+
 msgid "Remove a computer"
 msgstr "Usuń komputer"
 
@@ -27029,9 +27165,21 @@ msgstr ""
 msgid "Remove all my bets"
 msgstr "Usuń wszystkie moje zakłady"
 
+#: lib/darts/settings.rb:24
+msgid "Remove all your results from the public Darts rankings? Your private records will stay saved."
+msgstr "Usunąć wszystkie Twoje wyniki z publicznych rankingów Dartsa? Rekordy prywatne pozostaną zapisane."
+
+#: lib/darts/settings.rb:24
+msgid "Remove all your results from the public Darts rankings? Your private records will stay saved. If publishing remains enabled, later records can appear again."
+msgstr "Usunąć wszystkie Twoje wyniki z publicznych rankingów Dartsa? Rekordy prywatne pozostaną zapisane. Jeśli publikowanie pozostanie włączone, późniejsze rekordy mogą pojawić się ponownie."
+
 #: lib/participant_menu.rb:226
 msgid "Remove computer"
 msgstr "Usuń komputer"
+
+#: lib/darts/settings.rb:38
+msgid "Remove my results from the public Darts rankings"
+msgstr "Usuń moje wyniki z publicznych rankingów Dartsa"
 
 #: lib/tournaments/local_participant_manager.rb:63 lib/tournaments/participant_manager.rb:127
 msgid "Remove participant %{player}?"
@@ -27133,7 +27281,7 @@ msgstr ""
 msgid "Removing a red light or the lack of an initial green light allows driving only if no other problem blocks it. Repairing a fuel, tire or accident problem still requires a green light unless you have Right of way. Other problems remain unchanged. Instant repair is not a safety or an immediate response to an attack: it grants no immunity, extra turn, or 100- or 300-point bonus."
 msgstr "Usunięcie czerwonego światła lub początkowego braku zielonego światła pozwala ruszyć tylko wtedy, gdy nie blokuje tego inny problem. Usunięcie problemu z paliwem, oponą lub wypadkiem nadal wymaga zielonego światła, chyba że masz Pierwszeństwo przejazdu. Pozostałe problemy nie zmieniają się. Błyskawiczna naprawa nie jest kartą uniewrażliwiającą ani natychmiastową reakcją na atak: nie daje odporności, dodatkowej tury ani premii 100 lub 300 punktów."
 
-#: __app.rb:2351
+#: __app.rb:2359
 msgid "Removing computer"
 msgstr "Usuwanie komputera"
 
@@ -27302,7 +27450,7 @@ msgstr "Ustaw ponownie i rozbij sam"
 msgid "Rerack and let the opponent break"
 msgstr "Ustaw ponownie i oddaj rozbicie przeciwnikowi"
 
-#: games/kosciane.rb:209 games/kosciane.rb:231
+#: games/kosciane.rb:216 games/kosciane.rb:238
 msgid "Reserve: %{count}"
 msgstr "Rezerwa: %{count}"
 
@@ -27401,7 +27549,7 @@ msgstr "Wyniki"
 msgid "Results — %{phase}"
 msgstr "Wyniki — %{phase}"
 
-#: __app.rb:1380 __app.rb:3546
+#: __app.rb:1388 __app.rb:3564
 msgid "Resume game"
 msgstr "Wznów grę"
 
@@ -27413,7 +27561,7 @@ msgstr "Wznów zapisany turniej"
 msgid "Resume typing without saving"
 msgstr "Wznów pisanie bez zapisu"
 
-#: __app.rb:1603
+#: __app.rb:1611
 msgid "Resuming game"
 msgstr "Wznawianie gry"
 
@@ -27751,7 +27899,7 @@ msgstr "Dodatkowy rzut po szóstce jest domyślnie włączony. Po rozpatrzeniu s
 msgid "Roll all five dice first. You can reroll selected dice up to twice, or record a result immediately. After the third roll, you may also cross out an open cell. A cross scores nothing."
 msgstr ""
 
-#: games/yahtzee.rb:62
+#: games/yahtzee.rb:68
 msgid "Roll five dice and choose how to score them, remembering that each category can only be used once."
 msgstr "Rzucaj pięcioma kośćmi i wybieraj, za co policzyć punkty, pamiętając, że każdą kategorię możesz wykorzystać tylko raz."
 
@@ -27759,7 +27907,7 @@ msgstr "Rzucaj pięcioma kośćmi i wybieraj, za co policzyć punkty, pamiętaj�
 msgid "Roll five dice and fill rows and columns to earn bonuses."
 msgstr "Rzucaj pięcioma kośćmi i zdobywaj premie za zapełnianie wierszy i kolumn."
 
-#: games/balut.rb:24
+#: games/balut.rb:27
 msgid "Roll five dice and fill seven categories to earn points for combinations and completed rows."
 msgstr "Rzucaj pięcioma kośćmi i wypełniaj siedem kategorii, zdobywając punkty za układy i pełne wiersze."
 
@@ -27787,11 +27935,11 @@ msgstr "Rzucasz jedną kością. Jeśli legalny ruch ma dokładnie jeden pionek,
 msgid "Roll the dice"
 msgstr "Rzuć kośćmi"
 
-#: games/yahtzee.rb:347
+#: games/yahtzee.rb:353
 msgid "Roll the dice before choosing a category."
 msgstr "Rzuć kośćmi przed wybraniem kategorii."
 
-#: games/balut.rb:91 games/dice_poker.rb:147 games/kosciane.rb:157
+#: games/balut.rb:88 games/dice_poker.rb:147 games/kosciane.rb:158
 msgid "Roll the dice first"
 msgstr "Najpierw rzuć kośćmi"
 
@@ -27940,11 +28088,11 @@ msgstr "Rozpoczęła się runda %{round}."
 msgid "Round %{round} started. Letter: %{letter}."
 msgstr "Rozpoczęła się runda %{round}. Litera: %{letter}."
 
-#: games/darts.rb:210
+#: games/darts.rb:223
 msgid "Round %{round} throw %{dart}"
 msgstr "Runda %{round} rzut %{dart}"
 
-#: games/darts.rb:214
+#: games/darts.rb:227
 msgid "Round %{round} throw %{dart} player %{player}"
 msgstr "Runda %{round} rzut %{dart} gracz %{player}"
 
@@ -28063,7 +28211,7 @@ msgstr "Runda %{round}; sędzia: %{judge}"
 msgid "Round %{round}; letter %{letter}; judge: %{judge}"
 msgstr "Runda %{round}; litera %{letter}; sędzia: %{judge}"
 
-#: games/cash_auction/presentation.rb:267
+#: games/cash_auction/presentation.rb:269
 msgid "Round %{round}; pool: %{pool}; highest bid: %{amount}; leader: %{player}."
 msgstr "Runda %{round}; pula: %{pool}; najwyższa oferta: %{amount}; prowadzi: %{player}."
 
@@ -28105,7 +28253,7 @@ msgstr "Pung lub kong wiatru rundy — %{tile}"
 msgid "Round wind: %{wind}."
 msgstr "Wiatr rundy: %{wind}."
 
-#: lib/darts/settings.rb:21
+#: lib/darts/settings.rb:32
 msgid "Rounded"
 msgstr "Zaokrąglony"
 
@@ -28163,7 +28311,7 @@ msgstr "Przepisy i dostosowania do gry"
 msgid "Rules for this game are not available in this version of ELTEN Game Room."
 msgstr "Zasady tej gry nie są dostępne w tej wersji ELTEN Game Room."
 
-#: __app.rb:1256
+#: __app.rb:1264
 msgid "Rules for this game are not available in this version of Power Games."
 msgstr "Zasady tej gry nie są dostępne w tej wersji Power Games."
 
@@ -28315,7 +28463,7 @@ msgstr "S: odczytaj żetony wszystkich."
 msgid "S: read final scores after the game."
 msgstr "S: odczytaj wyniki końcowe po partii."
 
-#: games/generated/rulebooks/balut.rb:27
+#: games/generated/rulebooks/balut.rb:30
 msgid "S: read game points."
 msgstr ""
 
@@ -28401,7 +28549,7 @@ msgstr "Kanapka"
 msgid "Sarajevo Railway Station"
 msgstr "Dworzec w Sarajewie"
 
-#: games/krowa_support/client.rb:219 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/darts/settings.rb:25 lib/game_room_screens.rb:361 lib/mania_pisania/client.rb:353 lib/quiz_contributions/controller.rb:186 lib/quiz_contributions/views.rb:165
+#: games/krowa_support/client.rb:219 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/darts/settings.rb:39 lib/game_room_screens.rb:361 lib/mania_pisania/client.rb:353 lib/quiz_contributions/controller.rb:186 lib/quiz_contributions/views.rb:165
 msgid "Save"
 msgstr "Zapisz"
 
@@ -28413,7 +28561,7 @@ msgstr "Remika można zapisać na początku tury, przed dobieraniem lub manipulo
 msgid "Save Taboo between turns, after the table master approves the review."
 msgstr "Taboo można zapisać między turami, po zatwierdzeniu rozliczenia przez mastera."
 
-#: __app.rb:3783
+#: __app.rb:3801
 msgid "Save changes"
 msgstr "Zapisz zmiany"
 
@@ -28450,7 +28598,7 @@ msgstr "Zapisz zachowuje wybraną stronę na kolejne mecze; Anuluj pozostawia po
 msgid "Save partner"
 msgstr "Zapisz partnera"
 
-#: __app.rb:3132
+#: __app.rb:3150
 msgid "Save preset"
 msgstr "Zapisz ustawienia skrótu"
 
@@ -28470,7 +28618,7 @@ msgstr "Zapisz partię i zamknij stół"
 msgid "Save the game at the beginning of a trick, before any person has chosen a card."
 msgstr "Zapisz grę na początku lewy, zanim ktokolwiek z ludzi wybierze kartę."
 
-#: __app.rb:1323
+#: __app.rb:1331
 msgid "Save this game and close the table for everyone?"
 msgstr "Zapisać tę partię i zamknąć stół dla wszystkich?"
 
@@ -28490,7 +28638,7 @@ msgstr "Zapisz zmiany turnieju"
 msgid "Saved drafts"
 msgstr "Zapisane szkice"
 
-#: __app.rb:1377 __app.rb:263 lib/recordings/runtime.rb:65
+#: __app.rb:1385 __app.rb:265 lib/recordings/runtime.rb:65
 msgid "Saved games"
 msgstr "Zapisane gry"
 
@@ -28538,7 +28686,7 @@ msgstr "Zapisywanie szkicu na koncie"
 msgid "Saving editorial decision"
 msgstr "Zapisywanie decyzji redakcji"
 
-#: __app.rb:1325
+#: __app.rb:1333
 msgid "Saving game"
 msgstr "Zapisywanie partii"
 
@@ -28550,7 +28698,7 @@ msgstr "Zapisywanie jest dostępne tylko w Wyścigu i Wieży słów."
 msgid "Saving is not supported for this game."
 msgstr "Tej gry nie można zapisać."
 
-#: __app.rb:3172
+#: __app.rb:3190
 msgid "Saving notification settings"
 msgstr "Zapisywanie ustawień powiadomień"
 
@@ -28562,19 +28710,19 @@ msgstr "Zapisywanie pytania do zgłoszenia"
 msgid "Saving replay"
 msgstr "Zapisywanie powtórki"
 
-#: __app.rb:3869
+#: __app.rb:3887
 msgid "Saving sound settings"
 msgstr "Zapisywanie ustawień dźwięku"
 
-#: __app.rb:1355
+#: __app.rb:1363
 msgid "Saving table history"
 msgstr "Zapisywanie historii stołu"
 
-#: __app.rb:3816
+#: __app.rb:3834
 msgid "Saving table settings"
 msgstr "Zapisywanie ustawień stołu"
 
-#: __app.rb:3646
+#: __app.rb:3664
 msgid "Saving teams"
 msgstr "Zapisywanie drużyn"
 
@@ -28666,6 +28814,10 @@ msgstr "Scopone"
 msgid "Scopone: an empty table and larger hands instead of three-card deals"
 msgstr "Scopone: pusty stół i większe ręce zamiast rozdawania po trzy karty"
 
+#: lib/darts/rankings/screen.rb:65
+msgid "Score"
+msgstr "Wynik"
+
 #: games/bridge/presentation.rb:497
 msgid "Score %{result}, compared with %{reference}. %{comparison}"
 msgstr "Wynik: %{result}, wynik odniesienia: %{reference}. %{comparison}"
@@ -28678,7 +28830,7 @@ msgstr ""
 msgid "Score announcements under S are ordered from highest to lowest, with eliminated players or teams last. Their actual scores are preserved."
 msgstr "Punktacja pod S jest odczytywana od najwyższego wyniku do najniższego, a wyeliminowani gracze lub drużyny na końcu. Ich rzeczywiste wyniki pozostają bez zmian."
 
-#: games/kosciane.rb:29
+#: games/kosciane.rb:30
 msgid "Score columns"
 msgstr "Liczba kolumn"
 
@@ -28718,15 +28870,19 @@ msgctxt "cat_head_tail"
 msgid "Score limit: %{points}"
 msgstr ""
 
-#: games/balut.rb:94 games/kosciane.rb:221
+#: games/balut.rb:91 games/kosciane.rb:228
 msgid "Score sheet: %{player}"
 msgstr "Tabela wyników: %{player}"
+
+#: games/balut_support/balut_score_grid.rb:44
+msgid "Score still needed: %{count}"
+msgstr "Do progu brakuje: %{count}"
 
 #: games/jass_support/jass_table.rb:45
 msgid "Score target"
 msgstr "Cel punktowy"
 
-#: games/darts.rb:51
+#: games/darts.rb:52
 msgid "Score zero points"
 msgstr "Przyznaj zero punktów"
 
@@ -28914,7 +29070,7 @@ msgstr "Wybierz co najmniej jedną kategorię do własnej puli."
 msgid "Select at least one challenge for the whole group and for a duel."
 msgstr "Zaznacz przynajmniej jedno wyzwanie dla całej grupy i jedno dla pojedynku."
 
-#: games/yahtzee.rb:346
+#: games/yahtzee.rb:352
 msgid "Select at least one die to reroll, or open the scoring categories."
 msgstr "Wybierz co najmniej jedną kość do ponownego rzutu albo otwórz kategorie punktacji."
 
@@ -29060,7 +29216,7 @@ msgstr "Wysłanie i odrzucenie zaproszenia trafia do historii pokoju. Odrzucenie
 msgid "Sending assessment"
 msgstr "Wysyłanie oceny"
 
-#: __app.rb:2222 lib/game_screen.rb:1368
+#: __app.rb:2230 lib/game_screen.rb:1368
 msgid "Sending chat message"
 msgstr "Wysyłanie wiadomości na czacie"
 
@@ -29068,15 +29224,15 @@ msgstr "Wysyłanie wiadomości na czacie"
 msgid "Sending has not been confirmed. Try again to check delivery; the file will not be sent twice."
 msgstr "Wysłanie nie zostało potwierdzone. Spróbuj ponownie, aby sprawdzić, czy nagranie dotarło. Nie zostanie wysłane drugi raz."
 
-#: __app.rb:1564 __app.rb:2504 __app.rb:935 lib/tournaments/tournament_invite_picker.rb:47
+#: __app.rb:1572 __app.rb:2512 __app.rb:943 lib/tournaments/tournament_invite_picker.rb:47
 msgid "Sending invitation"
 msgstr "Wysyłanie zaproszenia"
 
-#: __app.rb:671
+#: __app.rb:679
 msgid "Sending invitations is unavailable because server table access could not be confirmed."
 msgstr "Wysyłanie zaproszeń jest niedostępne, ponieważ nie udało się potwierdzić dostępu do tabel serwera."
 
-#: __app.rb:669
+#: __app.rb:677
 msgid "Sending invitations is unavailable because the server requires an official launcher stamp that this Elten session cannot provide. Changing developer mode does not grant server table access."
 msgstr "Wysyłanie zaproszeń jest niedostępne, ponieważ serwer wymaga potwierdzenia z oficjalnego launchera, którego ta sesja ELTEN-a nie dostarcza. Samo przełączenie trybu deweloperskiego nie daje dostępu do tabel serwera."
 
@@ -29158,7 +29314,7 @@ msgstr "Test propozycji na serwerze: bez automatycznych zaproszeń, rezerwacji g
 msgid "Server table access could not be checked. Global lobby history and sending invitations are unavailable until you reopen Game Room."
 msgstr "Nie udało się sprawdzić dostępu do tabel serwera. Globalna historia lobby i wysyłanie zaproszeń będą niedostępne do ponownego otwarcia Game Roomu."
 
-#: __app.rb:661
+#: __app.rb:669
 msgid "Server table access could not be checked. Global lobby history and sending invitations are unavailable until you reopen Power Games."
 msgstr "Nie udało się sprawdzić dostępu do tabel serwera. Globalna historia lobby i wysyłanie zaproszeń będą niedostępne do ponownego otwarcia Power Games."
 
@@ -29230,7 +29386,7 @@ msgstr "Sety do zwycięstwa"
 msgid "Sets: %{own} to %{opponent}."
 msgstr "Sety: %{own} do %{opponent}."
 
-#: __app.rb:268 lib/game_room_screens.rb:320
+#: __app.rb:270 lib/game_room_screens.rb:320
 msgid "Settings"
 msgstr "Ustawienia"
 
@@ -29238,11 +29394,11 @@ msgstr "Ustawienia"
 msgid "Settings changed. Preview the plan again before accepting."
 msgstr "Ustawienia się zmieniły. Przed akceptacją ponownie obejrzyj plan."
 
-#: __app.rb:3199 lib/participant_menu.rb:296
+#: __app.rb:3217 lib/participant_menu.rb:296
 msgid "Settings saved."
 msgstr "Ustawienia zapisane."
 
-#: __app.rb:3197
+#: __app.rb:3215
 msgid "Settings saved. Close ELTEN completely and start it again to apply the interface language preferences. Restarting with F12 does not reload Power Games."
 msgstr "Ustawienia zapisane. Zamknij całkowicie ELTEN-a i uruchom go ponownie, aby zastosować ustawienia języków interfejsu. Restart klawiszem F12 nie przeładowuje Power Games."
 
@@ -29333,7 +29489,7 @@ msgstr "Shift"
 msgid "Shift+1: place rack tile 1 on the current square; a blank asks for its letter."
 msgstr "Shift+1: połóż płytkę 1 ze stojaka na bieżącym polu; blank wymaga wyboru litery."
 
-#: games/generated/rulebooks/balut.rb:18 games/generated/rulebooks/kosciane.rb:28
+#: games/generated/rulebooks/balut.rb:21 games/generated/rulebooks/kosciane.rb:28
 msgid "Shift+1–6: keep one selected die showing that value."
 msgstr ""
 
@@ -29650,7 +29806,7 @@ msgstr "Shift+S: odczytaj żetony pozostałych graczy."
 msgid "Shift+S: read the points in the current set and the number of sets won."
 msgstr "Shift+S: odczytaj punkty w bieżącym secie i liczbę wygranych setów."
 
-#: games/generated/rulebooks/balut.rb:28 games/generated/rulebooks/kosciane.rb:38
+#: games/generated/rulebooks/balut.rb:31 games/generated/rulebooks/kosciane.rb:38
 msgid "Shift+S: read the sum of recorded scores."
 msgstr ""
 
@@ -29690,7 +29846,7 @@ msgstr "Shift+U: złap gracza, który nie powiedział makao."
 msgid "Shift+Up: increase power by 0.1 percent."
 msgstr "Shift+w górę: zwiększ siłę o 0,1 procenta."
 
-#: games/generated/rulebooks/balut.rb:25 games/generated/rulebooks/kosciane.rb:35
+#: games/generated/rulebooks/balut.rb:28 games/generated/rulebooks/kosciane.rb:35
 msgid "Shift+V: browse another player's score sheet."
 msgstr ""
 
@@ -29928,7 +30084,7 @@ msgstr "Sześć rund, wszystko albo nic"
 msgid "Six-letter words: 42 attempts"
 msgstr "dla sześcioliterowych - 42 próby"
 
-#: games/yahtzee.rb:32
+#: games/yahtzee.rb:33
 msgid "Sixes"
 msgstr "Szóstki"
 
@@ -29996,7 +30152,7 @@ msgstr "Małe punkty: niższy wynik jest lepszy."
 msgid "Small points: scored %{scored}, conceded %{conceded}, difference %{difference}"
 msgstr "Małe punkty: zdobyte %{scored}, stracone %{conceded}, różnica %{difference}"
 
-#: games/yahtzee.rb:36
+#: games/yahtzee.rb:37
 msgid "Small straight"
 msgstr "Mały strit"
 
@@ -30200,11 +30356,11 @@ msgstr "Pakiet dźwięków (tylko dla Ciebie)"
 msgid "Sound pairs"
 msgstr "Pary dźwięków"
 
-#: lib/darts/settings.rb:48
+#: lib/darts/settings.rb:76
 msgid "Sound preview is unavailable."
 msgstr "Podgląd dźwięku jest niedostępny."
 
-#: games/darts.rb:35 games/generated/rulebooks/darts.rb:29
+#: games/darts.rb:36 games/generated/rulebooks/darts.rb:29
 msgid "Sound training"
 msgstr "Trening dźwiękowy"
 
@@ -30212,7 +30368,7 @@ msgstr "Trening dźwiękowy"
 msgid "Sound training is available at a one-player table. It uses the same aiming and scoring, but speech also announces the sector when you enter a different one, the start and final seconds of the clock, both boundaries, manual or automatic throws, hits and misses. Press C to repeat the current sector."
 msgstr ""
 
-#: games/darts.rb:60
+#: games/darts.rb:61
 msgid "Sound training is available only at a one-player table."
 msgstr "Trening dźwiękowy jest dostępny tylko przy stole jednoosobowym."
 
@@ -30333,7 +30489,7 @@ msgstr "Spacja: wykonaj bieżące uderzenie."
 msgid "Space: play your top card."
 msgstr "Spacja: zagraj wierzchnią kartę."
 
-#: games/generated/rulebooks/balut.rb:22 games/generated/rulebooks/kosciane.rb:32
+#: games/generated/rulebooks/balut.rb:25 games/generated/rulebooks/kosciane.rb:32
 msgid "Space: read the dice and, in the rolling field, their selection state."
 msgstr ""
 
@@ -30572,7 +30728,7 @@ msgstr "Zacznij z dolnego punktu początkowego"
 msgid "Start from the upper opening spot"
 msgstr "Zacznij z górnego punktu początkowego"
 
-#: __app.rb:3555 games/krowa_support/presentation.rb:15 lib/game_layout.rb:189
+#: __app.rb:3573 games/krowa_support/presentation.rb:15 lib/game_layout.rb:189
 msgid "Start game"
 msgstr "Rozpocznij grę"
 
@@ -30682,7 +30838,7 @@ msgstr "Liczba żetonów początkowych musi wynosić od 100 do 100000."
 msgid "Starting dice per player (1-5)"
 msgstr "Kości początkowe na gracza (1–5)"
 
-#: __app.rb:3511
+#: __app.rb:3529
 msgid "Starting game"
 msgstr "Rozpoczynanie gry"
 
@@ -30719,7 +30875,7 @@ msgstr "Dworzec Gambir"
 msgid "Stasiun Hall Bandung"
 msgstr "Dworzec Hall Bandung"
 
-#: __app.rb:267 lib/game_statistics_screen.rb:16 lib/game_statistics_screen.rb:68
+#: __app.rb:269 lib/game_statistics_screen.rb:16 lib/game_statistics_screen.rb:68
 msgid "Statistics"
 msgstr "Statystyki"
 
@@ -30787,7 +30943,7 @@ msgstr ""
 msgid "Stores: %{values}."
 msgstr "Magazyny: %{values}."
 
-#: games/balut.rb:210 games/dice_poker.rb:308
+#: games/balut.rb:230 games/dice_poker.rb:308
 msgid "Straight"
 msgstr "Strit"
 
@@ -30857,6 +31013,10 @@ msgstr "Wysłana wersja"
 msgid "Subtract 10"
 msgstr "Odejmij 10"
 
+#: games/balut_support/balut_score_grid.rb:46
+msgid "Successful entries still needed: %{count}"
+msgstr "Brakuje udanych wpisów: %{count}"
+
 #: lib/quiz_contributions/views.rb:76
 msgid "Suggested correction (optional)"
 msgstr "Proponowana poprawka (opcjonalnie)"
@@ -30885,6 +31045,10 @@ msgstr "Zmiana koloru, żądania, damy i jokery"
 #: games/belote_support/belote_table.rb:115 games/hearts_support/hearts_table.rb:73 games/jass_support/jass_table.rb:61
 msgid "Suit led: %{suit}."
 msgstr "Kolor wyjścia: %{suit}."
+
+#: games/balut_support/balut_score_grid.rb:25
+msgid "Sum of entries: %{total}"
+msgstr "Suma wpisów: %{total}"
 
 #: games/mahjong_support/tile_labels.rb:20
 msgid "Summer"
@@ -31156,11 +31320,11 @@ msgstr ""
 msgid "Table chat messages can now contain up to 2000 characters instead of 400."
 msgstr "Zwiększono limit długości wiadomości na czacie przy stole z 400 do 2000 znaków."
 
-#: __app.rb:951
+#: __app.rb:959
 msgid "Table creation is not confirmed. Check Operations; the table will not be created again automatically."
 msgstr "Utworzenie stołu nie jest potwierdzone. Sprawdź Operacje; stół nie zostanie automatycznie utworzony ponownie."
 
-#: __app.rb:1354
+#: __app.rb:1362
 msgid "Table history"
 msgstr "Historia stołu"
 
@@ -31342,7 +31506,7 @@ msgstr "Cel %{number} z 5."
 msgid "Target and forbidden words"
 msgstr "Hasło i zakazane słowa"
 
-#: lib/darts/client.rb:544
+#: lib/darts/client.rb:655
 msgctxt "Darts training"
 msgid "Target boundary"
 msgstr "Granica tarczy"
@@ -31394,7 +31558,7 @@ msgstr "Drużyna %{number}: %{score}"
 msgid "Team %{players}"
 msgstr "Drużyna: %{players}"
 
-#: __app.rb:3620
+#: __app.rb:3638
 msgid "Team %{team}"
 msgstr "Drużyna %{team}"
 
@@ -31625,7 +31789,7 @@ msgstr "Ten dołek jest pusty."
 msgid "That pocket cannot be reached with a direct cut from this side."
 msgstr "Z tej strony nie da się skierować bili bezpośrednio do tej łuzy."
 
-#: games/yahtzee.rb:348
+#: games/yahtzee.rb:354
 msgid "That scoring category has already been used."
 msgstr "Ta kategoria punktacji została już wykorzystana."
 
@@ -32023,7 +32187,7 @@ msgstr "Kategorie to państwo, miasto, imię, zwierzę, roślina i rzecz. Ich et
 msgid "The categories for the next round are being drawn."
 msgstr "Losowanie kategorii kolejnej rundy."
 
-#: games/cash_auction/presentation.rb:166 games/cash_auction/presentation.rb:264
+#: games/cash_auction/presentation.rb:166 games/cash_auction/presentation.rb:266
 msgid "The category wheel is spinning."
 msgstr "Koło kategorii się kręci."
 
@@ -32151,7 +32315,7 @@ msgstr "Bilę rozgrywającą skierowano w bandę, z którą się stykała."
 msgid "The current game contains private data that cannot be transferred at this stage."
 msgstr "Na tym etapie partii nie można bezpiecznie przekazać jej prywatnych danych. Dokończ bieżącą fazę albo zakończ partię."
 
-#: __app.rb:994 lib/tournaments/server_schedule_overview.rb:311
+#: __app.rb:1002 lib/tournaments/server_schedule_overview.rb:311
 msgid "The current game history is unavailable. Join the table as an observer and try again. No forfeit was recorded."
 msgstr "Aktualna historia partii jest niedostępna. Dołącz do stołu jako obserwator i spróbuj ponownie. Nie przyznano walkowera."
 
@@ -32289,7 +32453,7 @@ msgstr "Opisujący naciska Enter, gdy wszyscy są gotowi. Po trzech sekundach pr
 msgid "The describing player presses Enter when everyone is ready. After three seconds, a sound starts the turn and reveals the card. Enter marks a correct guess; P skips. An opponent presses B for a violation. The next card appears immediately without restarting the clock. Guessers do not press anything. The deck is shuffled; no card repeats until exhaustion, and reshuffling avoids an immediate repeat."
 msgstr "Osoba opisująca naciska Enter, gdy wszyscy są gotowi. Po trzech sekundach dźwięk rozpoczyna turę i pojawia się karta. Enter zatwierdza odgadnięcie, P pomija kartę. Przeciwnik naciska B przy naruszeniu zasad. Następna karta pojawia się od razu, bez zerowania zegara. Zgadujący niczego nie naciskają. Zestaw jest tasowany; karty nie powtarzają się do jego wyczerpania, a ponowne tasowanie zapobiega natychmiastowej powtórce."
 
-#: games/cat_head_tail.rb:442 games/ludo.rb:326 games/yahtzee.rb:537 lib/game_surfaces/roll_and_score.rb:183
+#: games/cat_head_tail.rb:442 games/ludo.rb:326 games/yahtzee.rb:543 lib/game_surfaces/roll_and_score.rb:183
 msgid "The dice have not been rolled."
 msgstr "Kości nie zostały jeszcze rzucone."
 
@@ -32458,6 +32622,10 @@ msgstr "Kto pierwszy wypełni wiersz bez skreśleń, ponownie otrzymuje jego ost
 msgid "The first player to complete a row without a cross gets its last score again. The first to complete a column without crosses gets 60 points for that column. A school cross removes bonuses you already earned."
 msgstr ""
 
+#: games/generated/rulebooks/kosciane.rb:22
+msgid "The first player to complete a row without a zero gets its last score again as a bonus. The first to complete a column without zeros gets 60 points for that column. Recording zero in school removes bonuses you already earned."
+msgstr "Pierwszy gracz, który wypełni dany wiersz bez zera, dostaje premię równą wynikowi z ostatniego pola. Pierwszy, kto wypełni daną kolumnę dodatnimi wynikami we wszystkich kategoriach, dostaje 60 punktów. Zapisanie zera w szkole odbiera zdobyte premie."
+
 msgid "The first player to place all four pawns at the finish wins."
 msgstr "Wygrywa pierwszy gracz, który umieści wszystkie cztery pionki na mecie."
 
@@ -32577,7 +32745,7 @@ msgstr "Galeria zapamiętuje słowa odgadnięte samodzielnie i najlepszą liczb�
 msgid "The game announces when someone goes onto the barrel and records it in the history. S reads scores and marks the players currently on the barrel. Shift+S also tells you how many barrel chances they have left."
 msgstr "Gra ogłasza wejście gracza na beczkę i zapisuje ten komunikat w historii. Pod S przy wyniku graczy będących na beczce słychać „na beczce”. Shift+S pozwala dodatkowo sprawdzić, ile szans im pozostało."
 
-#: __app.rb:3489
+#: __app.rb:3507
 msgid "The game cannot start until these players join the real-time session: %{players}."
 msgstr "Nie można rozpocząć gry, dopóki ci gracze nie dołączą do sesji w czasie rzeczywistym: %{players}."
 
@@ -32588,7 +32756,7 @@ msgstr "Stan gry zmienił się przed przyjęciem twojego ruchu. Wybierz ponownie
 msgid "The game could not be opened. Please try again."
 msgstr "Nie udało się otworzyć gry. Spróbuj ponownie."
 
-#: __app.rb:1348
+#: __app.rb:1356
 msgid "The game could not be saved. The table was not closed by this operation."
 msgstr "Nie udało się zapisać partii. Ta operacja nie zamknęła stołu."
 
@@ -32633,7 +32801,7 @@ msgstr "Gra już się zakończyła."
 msgid "The game has already started."
 msgstr "Partia już się rozpoczęła."
 
-#: __app.rb:1334
+#: __app.rb:1342
 msgid "The game has been saved."
 msgstr "Partia została zapisana."
 
@@ -32674,7 +32842,7 @@ msgstr "Gra używa standardowej szachownicy 8 na 8 i klasycznego ustawienia pocz
 msgid "The game was interrupted because fewer than two participants remain."
 msgstr "Partia została przerwana, ponieważ zostało mniej niż dwóch uczestników."
 
-#: __app.rb:1618
+#: __app.rb:1626
 msgid "The game was resumed, but its saved copy could not be deleted. Remove it from Saved games."
 msgstr "Gra została wznowiona, ale nie udało się usunąć jej zapisu. Usuń go z listy zapisanych partii."
 
@@ -32741,7 +32909,7 @@ msgstr ""
 msgid "The highest total of 21 or less wins. Each loser pays the difference between their total and the winner's in feathers. Going over 21 also costs one extra feather for each point over, paid to the game."
 msgstr ""
 
-#: __app.rb:1357
+#: __app.rb:1365
 msgid "The history has been added to Histories and replays."
 msgstr "Historia została dodana do historii i powtórek."
 
@@ -32916,7 +33084,7 @@ msgstr "Na prowadzeniu jest remis. Zostanie rozegrany kolejny pełny cykl sędzi
 msgid "The lead is tied. Another round will be played: %{players}."
 msgstr "Remis na prowadzeniu. Rozegramy kolejną rundę. Prowadzą: %{players}."
 
-#: games/cash_auction/presentation.rb:234
+#: games/cash_auction/presentation.rb:236
 msgid "The leaders are tied. An extra round will decide the match."
 msgstr "Liderzy mają równy wynik. O wyniku meczu zdecyduje dodatkowa runda."
 
@@ -33029,7 +33197,7 @@ msgstr ""
 msgid "The match authorization changed. Automatic dispatch stopped; saved history and player reservations are retained."
 msgstr "Uprawnienie do meczu uległo zmianie. Automat został zatrzymany; zapisana historia i rezerwacje graczy pozostają zachowane."
 
-#: __app.rb:986
+#: __app.rb:994
 msgid "The match changed. Review the updated consequences before confirming again."
 msgstr "Stan meczu się zmienił. Przed ponownym zatwierdzeniem sprawdź aktualne skutki decyzji."
 
@@ -33127,7 +33295,7 @@ msgstr "Liczba kategorii wyświetlanych w rundzie nie może przekraczać rozmiar
 msgid "The number of categories shown in a round must be between 1 and 9."
 msgstr "Liczba kategorii wyświetlanych w rundzie musi wynosić od 1 do 9."
 
-#: games/yahtzee.rb:95
+#: games/yahtzee.rb:101
 msgid "The number of matches must be from 1 to 10."
 msgstr "Liczba partii musi wynosić od 1 do 10."
 
@@ -33166,7 +33334,7 @@ msgstr "Pierwsze uderzenie musi trafić bezpośrednio w czerwoną."
 msgid "The opening shot uses the coloured ball from behind the home line at the left quarter. After hitting an object ball, either pot a ball, send three different object balls to cushions, or send two to cushions and an object ball across the centre line."
 msgstr ""
 
-#: __app.rb:1580 __app.rb:2521 __app.rb:3257 lib/game_room_widget.rb:251 lib/game_screen.rb:1703
+#: __app.rb:1588 __app.rb:2529 __app.rb:3275 lib/game_room_widget.rb:251 lib/game_screen.rb:1703
 msgid "The operation could not be completed. Please try again."
 msgstr "Nie udało się wykonać operacji. Spróbuj ponownie."
 
@@ -33474,7 +33642,7 @@ msgstr "Osiągnięto limit podbić w tej licytacji."
 msgid "The readiness revision changed. Check status before a new declaration."
 msgstr "Rewizja gotowości się zmieniła. Sprawdź stan przed nową deklaracją."
 
-#: __app.rb:1742 __app.rb:2684 __app.rb:2712 __app.rb:3055
+#: __app.rb:1750 __app.rb:2692 __app.rb:2720 __app.rb:3073
 msgid "The real-time connection to this table could not be established. Please try again."
 msgstr "Nie udało się ustanowić połączenia w czasie rzeczywistym z tym stołem. Spróbuj ponownie."
 
@@ -33581,11 +33749,11 @@ msgstr "Te same godziny obowiązują codziennie. Jeśli koniec wypada wcześniej
 msgid "The saved draft is damaged."
 msgstr "Zapisany szkic jest uszkodzony."
 
-#: __app.rb:1591
+#: __app.rb:1599
 msgid "The saved game is no longer available."
 msgstr "Zapisana partia nie jest już dostępna."
 
-#: __app.rb:1401
+#: __app.rb:1409
 msgid "The saved game storage is damaged or incompatible."
 msgstr "Zapisane gry są uszkodzone lub niezgodne z tą wersją programu."
 
@@ -33647,11 +33815,11 @@ msgctxt "cat_head_tail"
 msgid "The score limit must be greater than zero."
 msgstr "Wynik docelowy musi być większy od zera."
 
-#: games/balut.rb:128 games/kosciane.rb:174
+#: games/balut.rb:125 games/kosciane.rb:175
 msgid "The score sheet is full."
 msgstr "Tabela punktacji jest pełna."
 
-#: __app.rb:993
+#: __app.rb:1001
 msgid "The scores from a completed round are unavailable. No forfeit was recorded."
 msgstr "Wyniki ukończonej rundy są niedostępne. Nie przyznano walkowera."
 
@@ -33724,11 +33892,11 @@ msgstr "Wybrany język nie jest dostępny dla tego zestawu zawartości."
 msgid "The selected piece cannot capture %{piece} on %{field} with this move."
 msgstr "Wybraną figurą nie można w tym ruchu zbić figury %{piece} na polu %{field}."
 
-#: games/cash_auction/content.rb:205
+#: games/cash_auction/content.rb:209
 msgid "The selected question pack is not installed for this language."
 msgstr "Wybrany pakiet pytań nie jest zainstalowany dla tego języka."
 
-#: games/cash_auction/content.rb:173
+#: games/cash_auction/content.rb:174
 msgid "The selected question packs do not match the table."
 msgstr "Wybrane pakiety pytań nie zgadzają się z ustawieniami stołu."
 
@@ -33788,7 +33956,7 @@ msgstr "Serwer jest niedostępny lub odmówiono dostępu. Szkic pozostał na kom
 msgid "The server repeated a page of submissions."
 msgstr "Serwer zwrócił ponownie tę samą stronę zgłoszeń."
 
-#: __app.rb:659
+#: __app.rb:667
 msgid "The server requires an official launcher stamp that this Elten session cannot provide. Changing developer mode does not grant server table access. Global lobby history and sending invitations are unavailable until server table access is confirmed."
 msgstr "Serwer wymaga potwierdzenia z oficjalnego launchera, którego ta sesja ELTEN-a nie dostarcza. Samo przełączenie trybu deweloperskiego nie daje dostępu do tabel serwera. Historia głównego lobby i wysyłanie zaproszeń są niedostępne do czasu potwierdzenia tego dostępu."
 
@@ -33798,11 +33966,11 @@ msgstr "Serwer wymaga potwierdzenia z oficjalnego launchera. Uruchom ELTEN-a prz
 msgid "The server tournament test failed. No local fallback was used. Check Operations before repeating a write."
 msgstr "Operacja testu serwerowego nie powiodła się. Nie przełączono na lokalny magazyn. Przed ponownym zapisem sprawdź Operacje."
 
-#: __app.rb:3368 lib/table_roster_reader.rb:79
+#: __app.rb:3386 lib/table_roster_reader.rb:79
 msgid "The settings of this table are not available."
 msgstr "Ustawienia tego stołu nie są dostępne."
 
-#: games/generated/rulebooks/balut.rb:11
+#: games/generated/rulebooks/balut.rb:13
 msgid "The seven rows"
 msgstr ""
 
@@ -33855,11 +34023,11 @@ msgstr "Ta odmiana nie ma ręki krupiera. Gracze rozdają kolejno, a rozdający 
 msgid "The soft nest looks like a good place for a nap."
 msgstr "Miękkie gniazdo zachęca do drzemki."
 
-#: __app.rb:3878
+#: __app.rb:3896
 msgid "The sound setting could not be saved."
 msgstr "Nie udało się zapisać ustawienia dźwięku."
 
-#: __app.rb:3913 __app.rb:3918
+#: __app.rb:3931 __app.rb:3936
 msgid "The sound volume could not be saved."
 msgstr "Nie udało się zapisać głośności dźwięków."
 
@@ -33917,7 +34085,7 @@ msgstr "Stół i wynik korzystają ze zwykłej sesji Game Roomu, a ruch — z Co
 msgid "The table and score use Power Games's normal session; movement uses Communications. During a human match, each player calculates their own flight and return locally. Lost or delayed paddle-position updates alone do not stop the ball. Serves, returns and misses travel separately in order. An actual connection failure pauses the rally; a replacement connection restarts the unfinished point with the confirmed score unchanged. Observers may listen but cannot control a paddle. Unfinished matches cannot currently be saved."
 msgstr "Stół i wynik korzystają ze zwykłej sesji Power Games, a ruch — z Communications. W meczu dwóch osób każdy klient sam oblicza lot piłki i własne odbicie. Zgubiona albo opóźniona aktualizacja pozycji rakietki nie zatrzymuje od razu gry. Serwisy, odbicia i utrata punktu są przesyłane osobno, w odpowiedniej kolejności. Rzeczywista awaria połączenia wstrzymuje wymianę; po ponownym zestawieniu kanału niedokończony punkt zaczyna się od nowa, bez zmiany potwierdzonego wyniku. Obserwatorzy mogą słuchać, lecz nie sterują rakietkami. Na razie nie można zapisać niedokończonego meczu."
 
-#: __app.rb:3650 __app.rb:3801 __app.rb:3820
+#: __app.rb:3668 __app.rb:3819 __app.rb:3838
 msgid "The table changed while you were editing. Open its settings again."
 msgstr "Stół zmienił się podczas edycji. Otwórz ustawienia ponownie."
 
@@ -33954,7 +34122,7 @@ msgstr "Formularz stołu pokazuje tylko ustawienia pasujące do wybranego warian
 msgid "The table form shows only settings relevant to the chosen variant. Number of letters is available in Random word and Race; Scoring criterion appears only in Race. Daily Krowa and Word Tower select their own lengths and hide both settings."
 msgstr "Formularz stołu pokazuje tylko ustawienia pasujące do wybranego wariantu. Liczba liter jest dostępna w Losowym słowie i Wyścigu, a Kryterium wyniku tylko w Wyścigu. Dzienna Krowa i Wieża Słów same dobierają długości i ukrywają oba te ustawienia."
 
-#: __app.rb:1361
+#: __app.rb:1369
 msgid "The table history could not be saved."
 msgstr "Nie udało się zapisać historii stołu."
 
@@ -33970,7 +34138,7 @@ msgstr "Gospodarz stołu może nacisnąć Ctrl+Shift+P na swoim imieniu, aby wyb
 msgid "The table is empty."
 msgstr "Stół jest pusty."
 
-#: __app.rb:1558
+#: __app.rb:1566
 msgid "The table is waiting for the original players. Start the game when everyone has joined."
 msgstr "Stół czeka na uczestników zapisanej partii. Rozpocznij grę, gdy wszyscy dołączą."
 
@@ -34151,7 +34319,7 @@ msgstr "Turniej się zmienił. Odśwież widok i wybierz działanie ponownie."
 msgid "The tournament changed. Refresh its view before changing it again."
 msgstr "Turniej został zmieniony. Odśwież widok przed kolejną zmianą."
 
-#: __app.rb:3504 __app.rb:959 lib/tournaments/public_text.rb:69
+#: __app.rb:3522 __app.rb:967 lib/tournaments/public_text.rb:69
 msgid "The tournament deadline has passed. New matches cannot be started; games already in progress may finish."
 msgstr "Upłynął termin rozgrywania meczów. Nie można rozpoczynać nowych spotkań; trwające partie można dokończyć."
 
@@ -34248,7 +34416,7 @@ msgstr "Górna część tabeli punktuje kości o wskazanej wartości i przy 63 p
 msgid "The upper-section bonus adds 35 points if the six upper rows total at least 63. It is enabled by default. You do not need three of each value separately: a strong result in Sixes can compensate for a weak result in Ones. Switching the bonus off leaves the rows themselves unchanged."
 msgstr "Premia górnej części karty dodaje 35 punktów, gdy sześć górnych kategorii da łącznie co najmniej 63. Domyślnie jest włączona. Nie trzeba osobno zebrać po trzy kości każdej wartości: dobry wynik w Szóstkach może wyrównać słaby w Jedynkach. Wyłączenie premii nie usuwa samych kategorii."
 
-#: __app.rb:3483 __app.rb:3638
+#: __app.rb:3501 __app.rb:3656
 msgid "The users at the table changed while teams were being selected. Please start again."
 msgstr "Podczas wybierania drużyn zmienił się skład stołu. Rozpocznij ponownie."
 
@@ -34414,19 +34582,19 @@ msgstr "Na stole nie ma układów."
 msgid "There are no non-empty answers to review"
 msgstr "Brak niepustych odpowiedzi do ocenienia"
 
-#: __app.rb:2493
+#: __app.rb:2501
 msgid "There are no online contacts available to invite."
 msgstr "Nie ma dostępnych kontaktów online, które można zaprosić."
 
-#: __app.rb:2493
+#: __app.rb:2501
 msgid "There are no online users available to invite."
 msgstr "Nie ma dostępnych użytkowników, których można zaprosić."
 
-#: __app.rb:1693
+#: __app.rb:1701
 msgid "There are no open tables for this game."
 msgstr "Nie ma otwartych stołów dla tej gry."
 
-#: __app.rb:1648
+#: __app.rb:1656
 msgid "There are no open tables."
 msgstr "Nie ma otwartych stołów."
 
@@ -34434,7 +34602,7 @@ msgstr "Nie ma otwartych stołów."
 msgid "There are no optional board sizes or alternative placement rules in this game. Either player can be a bot."
 msgstr "Ta gra nie ma ustawienia rozmiaru planszy ani innych sposobów stawiania pionków. W miejsce dowolnego gracza można dodać bota."
 
-#: __app.rb:2584
+#: __app.rb:2592
 msgid "There are no pending invitations."
 msgstr "Nie ma oczekujących zaproszeń."
 
@@ -34490,7 +34658,7 @@ msgstr "Między setami jest pięć sekund przerwy. Gra zapowiada pierwszy, drugi
 msgid "There is a short break before the next serve after an ordinary point, and a five-second break between sets. The game automatically announces the set number and who is serving. You do not need to request these announcements."
 msgstr "Po zwykłym punkcie jest krótka przerwa przed kolejnym serwisem, a między setami pięć sekund. Gra automatycznie zapowiada numer seta i osobę serwującą. Nie musisz wywoływać tych komunikatów."
 
-#: __app.rb:3963
+#: __app.rb:3981
 msgid "There is currently %{current} user at the table."
 msgid_plural "There are currently %{current} users at the table."
 msgstr[0] "Obecnie przy stole jest %{current} użytkownik."
@@ -34583,7 +34751,7 @@ msgstr "Na początku rozdania nie ma atutu. Rozpoczynając lewę inną niż pier
 msgid "There is no trump suit."
 msgstr "Nie ma koloru atutowego."
 
-#: __app.rb:2428
+#: __app.rb:2436
 msgid "There is nobody available to replace this player."
 msgstr "Nie ma nikogo, kto może zastąpić tego gracza."
 
@@ -34932,7 +35100,7 @@ msgstr "Ta gra nie udostępnia wyniku liczbowego."
 msgid "This game does not support computers."
 msgstr "Ta gra nie obsługuje botów."
 
-#: __app.rb:992
+#: __app.rb:1000
 msgid "This game does not yet support removing a participant from a tournament match in progress. No result was recorded."
 msgstr "W tej grze nie można jeszcze usunąć uczestnika w trakcie meczu turniejowego. Nie zapisano wyniku."
 
@@ -34944,7 +35112,7 @@ msgstr "Ta partia już się zakończyła."
 msgid "This game is not supported by this version of ELTEN Game Room."
 msgstr "Ta gra nie jest obsługiwana przez tę wersję ELTEN Game Room."
 
-#: __app.rb:3448 __app.rb:3716 __app.rb:3953
+#: __app.rb:3466 __app.rb:3734 __app.rb:3971
 msgid "This game is not supported by this version of Power Games."
 msgstr "Ta gra nie jest obsługiwana przez tę wersję Power Games."
 
@@ -34956,7 +35124,7 @@ msgstr "Ta gra wymaga własnego klienta realtime, który nie jest jeszcze podł�
 msgid "This game requires %{minimum} to %{maximum} players per match."
 msgstr "Ta gra wymaga od %{minimum} do %{maximum} graczy przy stole."
 
-#: __app.rb:3959
+#: __app.rb:3977
 msgid "This game requires exactly %{required} players."
 msgstr "Ta gra wymaga dokładnie %{required} graczy."
 
@@ -34964,7 +35132,7 @@ msgstr "Ta gra wymaga dokładnie %{required} graczy."
 msgid "This game requires exactly %{required} players. There are currently %{current} users at the table."
 msgstr "Ta gra wymaga dokładnie %{required} graczy. Obecnie przy stole jest %{current} użytkowników."
 
-#: __app.rb:3961
+#: __app.rb:3979
 msgid "This game requires from %{minimum} to %{maximum} players."
 msgstr "Ta gra wymaga od %{minimum} do %{maximum} graczy."
 
@@ -34976,7 +35144,7 @@ msgstr "Ta gra wymaga od %{minimum} do %{maximum} graczy. Obecnie przy stole jes
 msgid "This game uses virtual chips only. Place any number of bets within your balance before finishing your turn. Players bet in order; after everyone is ready, no further bets can be changed for this spin. The outcome comes from native server randomness, not the spinner’s choice."
 msgstr "Gra używa wyłącznie wirtualnych żetonów. Przed zakończeniem swojej tury możesz stawiać wiele zakładów w granicach salda. Gracze obstawiają kolejno. Po gotowości wszystkich nie można zmienić zakładów tego obrotu. Wynik losuje natywny serwer, nie wybiera go kręcący."
 
-#: __app.rb:950
+#: __app.rb:958
 msgid "This game variant requires a private table and is not supported by this server test."
 msgstr "Ten wariant gry wymaga prywatnego stołu i nie jest obsługiwany w tym teście serwera."
 
@@ -34994,11 +35162,11 @@ msgstr "Ta implementacja zachowuje talię autora liczącą 87 kart: 45 kategorii
 msgid "This invitation expired. Choose Play to send a new one."
 msgstr "Zaproszenie wygasło. Wybierz Zagraj, aby wysłać nowe."
 
-#: __app.rb:2761 __app.rb:513
+#: __app.rb:2769 __app.rb:518
 msgid "This invitation has expired."
 msgstr "To zaproszenie wygasło."
 
-#: __app.rb:2596 __app.rb:2664 __app.rb:2798
+#: __app.rb:2604 __app.rb:2672 __app.rb:2806
 msgid "This invitation is no longer available."
 msgstr "To zaproszenie nie jest już dostępne."
 
@@ -35022,7 +35190,7 @@ msgstr "Nie możesz teraz zgłosić tego meldunku."
 msgid "This match has already been played."
 msgstr "Ten mecz został już rozegrany."
 
-#: __app.rb:995
+#: __app.rb:1003
 msgid "This match has already been resolved."
 msgstr "Ten mecz został już rozstrzygnięty."
 
@@ -35030,15 +35198,15 @@ msgstr "Ten mecz został już rozstrzygnięty."
 msgid "This match has already finished."
 msgstr "Ten mecz już się zakończył."
 
-#: __app.rb:949
+#: __app.rb:957
 msgid "This match has unsupported player counts or team assignments for the selected game."
 msgstr "Ten mecz ma liczbę graczy lub skład drużyn nieobsługiwany przez wybraną grę."
 
-#: __app.rb:378 lib/tournaments/server_proposal_screen.rb:49
+#: __app.rb:383 lib/tournaments/server_proposal_screen.rb:49
 msgid "This match invitation is no longer available."
 msgstr "To zaproszenie do meczu jest już nieaktualne."
 
-#: __app.rb:991
+#: __app.rb:999
 msgid "This match is still being played. A manual forfeit cannot interrupt it."
 msgstr "Ten mecz nadal trwa. Organizator nie może przerwać go walkowerem."
 
@@ -35049,7 +35217,7 @@ msgstr "Ten plan meczów odczytano z serwera i sprawdzono względem aktualnych z
 msgid "This match proposal changed. Refresh before responding; no new opponent was accepted."
 msgstr "Ta propozycja meczu zmieniła się. Odśwież przed odpowiedzią; nie zaakceptowano nowego przeciwnika."
 
-#: __app.rb:947
+#: __app.rb:955
 msgid "This match was started or its state is uncertain, so it cannot be started again. Use 'Check pending changes' in the tournament list to check any unconfirmed operation."
 msgstr "Ten mecz już się rozpoczął albo jego stan jest niepewny, dlatego nie można rozpocząć go ponownie. Na liście turniejów wybierz „Sprawdź oczekujące zmiany”, aby sprawdzić operacje, których wykonania nie potwierdzono."
 
@@ -35109,7 +35277,7 @@ msgstr "Ten test przy zwykłym stole obsługuje dwóch graczy indywidualnych. St
 msgid "This participant already has a partner."
 msgstr "Ten uczestnik ma już partnera."
 
-#: __app.rb:2435
+#: __app.rb:2443
 msgid "This participant cannot replace the selected player."
 msgstr "Ta osoba nie może zastąpić wybranego gracza."
 
@@ -35121,7 +35289,7 @@ msgstr "To zaproszenie do pary nadal oczekuje na odpowiedź."
 msgid "This pawn cannot move after the current roll."
 msgstr "Tego pionka nie można przesunąć po obecnym rzucie."
 
-#: __app.rb:2386
+#: __app.rb:2394
 msgid "This person is no longer at the table. Their role was not changed."
 msgstr "Tej osoby nie ma już przy stole. Jej rola nie została zmieniona."
 
@@ -35137,7 +35305,7 @@ msgstr "Ten system nie może bezpiecznie przeliczyć czasu lokalnego. Wybierz in
 msgid "This player already has a partner. Refresh the list and choose a free player."
 msgstr "Ten gracz ma już partnera. Odśwież listę i wybierz wolnego gracza."
 
-#: __app.rb:2421
+#: __app.rb:2429
 msgid "This player is no longer at the table."
 msgstr "Tego gracza nie ma już przy stole."
 
@@ -35145,7 +35313,7 @@ msgstr "Tego gracza nie ma już przy stole."
 msgid "This poker deck and exchange setting support at most %{count} players."
 msgstr "Ta talia i ustawienie wymiany pokera obsługują najwyżej %{count} graczy."
 
-#: __app.rb:3101
+#: __app.rb:3119
 msgid "This preset needs updating. Check its game and options before creating a table."
 msgstr "Zapisane ustawienia wymagają aktualizacji. Sprawdź grę i jej opcje przed utworzeniem stołu."
 
@@ -35185,11 +35353,11 @@ msgstr "Powtórka jest za duża na załącznik do wiadomości. Wyeksportuj plik,
 msgid "This runtime cannot safely read local tournament test data."
 msgstr "To środowisko wykonawcze nie może bezpiecznie odczytać danych lokalnych testów turniejów."
 
-#: __app.rb:1472 __app.rb:1636
+#: __app.rb:1480 __app.rb:1644
 msgid "This saved game is not compatible with this version or is damaged."
 msgstr "Ta zapisana gra jest niezgodna z tą wersją programu lub uszkodzona."
 
-#: __app.rb:1421
+#: __app.rb:1429
 msgid "This saved game needs %{count} seats, but tables support at most %{maximum}."
 msgstr "Ta zapisana gra wymaga %{count} miejsc, ale stoły obsługują najwyżej %{maximum}."
 
@@ -35199,7 +35367,7 @@ msgstr "Ten plan jest obliczany na podstawie zapisów na serwerze. To podgląd; 
 msgid "This server test has a 2048-byte field limit. Shorten the rules or settings; a full edit must also fit this limit. Nothing was sent."
 msgstr "Ten test serwerowy ma limit 2048 bajtów na pole. Skróć regulamin lub ustawienia; pełna edycja też musi zmieścić się w tym limicie. Nic nie wysłano."
 
-#: games/yahtzee.rb:304
+#: games/yahtzee.rb:310
 msgid "This sheet: %{points}."
 msgstr "Ta karta punktacji: %{points}."
 
@@ -35227,7 +35395,7 @@ msgstr "To pole nie ma aktu własności."
 msgid "This table already has a game. A forfeit cannot replace a game in progress or a finished result."
 msgstr "Na tym stole rozpoczęto już grę. Walkower nie może zastąpić trwającej gry ani zapisanego wyniku."
 
-#: __app.rb:3218 __app.rb:406
+#: __app.rb:3236 __app.rb:411
 msgid "This table announcement has expired or is no longer available."
 msgstr "To powiadomienie o stole wygasło lub nie jest już dostępne."
 
@@ -35235,11 +35403,11 @@ msgstr "To powiadomienie o stole wygasło lub nie jest już dostępne."
 msgid "This table has no pockets."
 msgstr "Ten stół nie ma łuz."
 
-#: __app.rb:1756 __app.rb:2363 __app.rb:2672 __app.rb:2716 __app.rb:2725 __app.rb:3067
+#: __app.rb:1764 __app.rb:2371 __app.rb:2680 __app.rb:2724 __app.rb:2733 __app.rb:3085
 msgid "This table is full."
 msgstr "Ten stół jest pełny."
 
-#: __app.rb:1550 __app.rb:1575 __app.rb:1759 __app.rb:2364 __app.rb:2527 __app.rb:2664 __app.rb:2716 __app.rb:2728 __app.rb:3069 __app.rb:3231 __app.rb:526 lib/game_table_background.rb:116 lib/table_roster_reader.rb:48
+#: __app.rb:1558 __app.rb:1583 __app.rb:1767 __app.rb:2372 __app.rb:2535 __app.rb:2672 __app.rb:2724 __app.rb:2736 __app.rb:3087 __app.rb:3249 __app.rb:531 lib/game_table_background.rb:116 lib/table_roster_reader.rb:48
 msgid "This table is no longer available."
 msgstr "Ten stół nie jest już dostępny."
 
@@ -35279,7 +35447,7 @@ msgstr "Dla tego systemu turnieju nie można wyznaczyć wstępnego planu spotka�
 msgid "This tournament is no longer available."
 msgstr "Ten turniej nie jest już dostępny."
 
-#: __app.rb:889 lib/tournaments/tournament_start_runtime.rb:115 lib/tournaments/tournament_start_runtime.rb:135 lib/tournaments/tournament_start_runtime.rb:190
+#: __app.rb:897 lib/tournaments/tournament_start_runtime.rb:115 lib/tournaments/tournament_start_runtime.rb:135 lib/tournaments/tournament_start_runtime.rb:190
 msgid "This tournament notification is no longer available."
 msgstr "To powiadomienie o turnieju jest już nieaktualne."
 
@@ -35291,7 +35459,7 @@ msgstr "W tym turnieju karty są prywatne. Aby kontynuować, wróć do tego same
 msgid "This trade is no longer valid. Check the player, properties and available cash."
 msgstr "Ta wymiana nie jest już prawidłowa. Sprawdź gracza, nieruchomości i dostępną gotówkę."
 
-#: __app.rb:2525
+#: __app.rb:2533
 msgid "This user is already at the table."
 msgstr "Ten użytkownik jest już przy stole."
 
@@ -35385,7 +35553,7 @@ msgstr "Trzy znaki w jednej linii"
 msgid "Three matching dice qualify for a number row. Extra matching dice go into that number's reserve. Reserve dice can complete a later result but do not score."
 msgstr "Trzy jednakowe kości pozwalają wpisać wynik do wiersza danej liczby. Dodatkowe kości o tej wartości trafiają do rezerwy. Mogą uzupełnić późniejszy układ, ale nie dają punktów."
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:33
+#: games/dice_poker.rb:308 games/yahtzee.rb:34
 msgid "Three of a kind"
 msgstr "Trójka"
 
@@ -35435,16 +35603,16 @@ msgstr "Trzy sekundy na przygotowanie."
 msgid "Three: in the next trick, the player who played a three can check how many cards each opponent has in hand. At any time, anyone can check how many cards each player has in total, in hand and on the pile."
 msgstr "Trójka: w następnej lewie osoba, która zagrała trójkę, może sprawdzić, ile kart w ręce ma każdy przeciwnik. Łączną liczbę kart każdego gracza, w ręce i na stosie, każdy może sprawdzić w dowolnej chwili."
 
-#: games/yahtzee.rb:29
+#: games/yahtzee.rb:30
 msgid "Threes"
 msgstr "Trójki"
 
-#: lib/darts/client.rb:308
+#: lib/darts/client.rb:318
 msgctxt "Darts training"
 msgid "Throw"
 msgstr "Rzut"
 
-#: games/darts.rb:50
+#: games/darts.rb:51
 msgid "Throw from the current position"
 msgstr "Rzuć z aktualnego położenia"
 
@@ -35488,7 +35656,7 @@ msgstr "Kamienie w układzie"
 msgid "Tiles left: %{count}."
 msgstr "Pozostało kamieni: %{count}."
 
-#: games/billiards.rb:74
+#: games/billiards.rb:74 lib/darts/rankings/screen.rb:65
 msgid "Time"
 msgstr "Czas"
 
@@ -35522,7 +35690,7 @@ msgstr "Czas na jedną odpowiedź wynosi domyślnie 20 sekund. Dostępne są war
 msgid "Time for one answer in seconds"
 msgstr "Czas na odpowiedź w sekundach"
 
-#: games/darts.rb:45
+#: games/darts.rb:46
 msgid "Time for one dart"
 msgstr "Czas na jedną lotkę"
 
@@ -35546,7 +35714,7 @@ msgstr "Limit czasu w minutach (1–180)"
 msgid "Time limits and a blocked round"
 msgstr "Limit czasu i zablokowana runda"
 
-#: lib/darts/client.rb:177
+#: lib/darts/client.rb:187
 msgctxt "Darts training"
 msgid "Time starts"
 msgstr "Czas start"
@@ -35648,7 +35816,7 @@ msgstr ""
 msgid "To use the new game rules, create a table in Game Room 2.0. All players need version 2.0 or later."
 msgstr "Aby korzystać z nowych zasad, utwórz stół w Game Roomie 2.0. Wszyscy gracze potrzebują wersji 2.0 lub nowszej."
 
-#: __app.rb:3440
+#: __app.rb:3458
 msgid "To use the new game rules, create a table in Power Games. All players need version 2.0 or later."
 msgstr "Aby korzystać z nowych zasad, utwórz stół w Power Games. Wszyscy gracze potrzebują wersji 2.0 lub nowszej."
 
@@ -35730,11 +35898,11 @@ msgstr "Karta na stole: %{card}; zadeklarowany kolor: %{suit}%{request}."
 msgid "Top/back spin (-100 to 100)"
 msgstr "Rotacja górna/dolna (od -100 do 100)"
 
-#: games/yahtzee.rb:305
+#: games/yahtzee.rb:311
 msgid "Total across matches: %{points}."
 msgstr "Suma wszystkich partii: %{points}."
 
-#: games/balut_support/balut_score_grid.rb:30 games/balut_support/balut_score_grid.rb:34 games/kosciane.rb:210 games/kosciane.rb:212 games/kosciane.rb:236
+#: games/balut_support/balut_score_grid.rb:29 games/kosciane.rb:217 games/kosciane.rb:219 games/kosciane.rb:243
 msgid "Total: %{points}"
 msgstr "Razem: %{points}"
 
@@ -35837,7 +36005,7 @@ msgstr "System turnieju"
 msgid "Tournament game result: %{id}"
 msgstr "Wynik gry: turniej %{id}"
 
-#: __app.rb:1337 __app.rb:1461 __app.rb:1625 lib/game_screen.rb:301
+#: __app.rb:1345 __app.rb:1469 __app.rb:1633 lib/game_screen.rb:301
 msgid "Tournament games cannot be saved or resumed from a saved game."
 msgstr "Partii turniejowych nie można zapisywać ani wznawiać z zapisu."
 
@@ -35860,7 +36028,7 @@ msgstr "Lista turniejów"
 msgid "Tournament list scope"
 msgstr "Widok listy turniejów"
 
-#: __app.rb:3343 __app.rb:3347 lib/tournaments/server_proposal_screen.rb:27
+#: __app.rb:3361 __app.rb:3365 lib/tournaments/server_proposal_screen.rb:27
 msgid "Tournament match"
 msgstr "Mecz turniejowy"
 
@@ -35924,7 +36092,7 @@ msgstr "Pary turniejowe"
 msgid "Tournament participants and invitations are now managed from the participant list. Organizers can invite several online users or contacts at once; Ctrl+L shows pending and declined invitations."
 msgstr "Uczestnikami turnieju i zaproszeniami zarządza się teraz z listy uczestników. Organizator może zaprosić naraz kilka osób z listy online lub kontaktów; Ctrl+L pokazuje zaproszenia oczekujące i odrzucone."
 
-#: __app.rb:877 lib/tournaments/tournament_start_runtime.rb:137
+#: __app.rb:885 lib/tournaments/tournament_start_runtime.rb:137
 msgid "Tournament partnership"
 msgstr "Partnerstwo w turnieju"
 
@@ -35996,11 +36164,11 @@ msgstr "Tworzenie stołu: turniej %{id}"
 msgid "Tournament table link: %{id}"
 msgstr "Powiązanie stołu: turniej %{id}"
 
-#: __app.rb:1013 __app.rb:1340 __app.rb:1464 __app.rb:1628 __app.rb:3500 __app.rb:953 __app.rb:996
+#: __app.rb:1004 __app.rb:1021 __app.rb:1348 __app.rb:1472 __app.rb:1636 __app.rb:3518 __app.rb:961
 msgid "Tournament table operation blocked: %{reason}"
 msgstr "Operacja stołu turniejowego zablokowana: %{reason}"
 
-#: __app.rb:1001 __app.rb:1017 __app.rb:1344 __app.rb:1468 __app.rb:1632 __app.rb:961
+#: __app.rb:1009 __app.rb:1025 __app.rb:1352 __app.rb:1476 __app.rb:1640 __app.rb:969
 msgid "Tournament table or result not confirmed. Check Operations before trying again."
 msgstr "Stół turniejowy lub wynik nie jest potwierdzony. Przed ponowną próbą sprawdź Operacje."
 
@@ -36020,7 +36188,7 @@ msgstr "Zaktualizowano turniej."
 msgid "Tournament winner: %{player}"
 msgstr "Zwycięzca turnieju: %{player}"
 
-#: __app.rb:264 lib/game_room_ui.rb:156 lib/game_room_ui.rb:362 lib/game_room_widget.rb:200 lib/game_room_widget.rb:206 lib/tournaments/public_screen.rb:181 lib/tournaments/public_screen.rb:65 lib/tournaments/server_workspace.rb:757
+#: __app.rb:266 lib/game_room_ui.rb:156 lib/game_room_ui.rb:362 lib/game_room_widget.rb:200 lib/game_room_widget.rb:206 lib/tournaments/public_screen.rb:181 lib/tournaments/public_screen.rb:65 lib/tournaments/server_workspace.rb:757
 msgid "Tournaments"
 msgstr "Turnieje"
 
@@ -36244,7 +36412,7 @@ msgstr "Dwa pełne obiegi stołu bez dobrania lub zagrania karty z pierwotnej r�
 msgid "Two mixed kongs — 6 fan: one exposed and one concealed kong. This replaces the individual kong bonuses. This version distinguishes that combination in addition to the standard 81 named entries."
 msgstr ""
 
-#: games/dice_poker.rb:308 games/yahtzee.rb:41
+#: games/dice_poker.rb:308 games/yahtzee.rb:42
 msgid "Two pairs"
 msgstr "Dwie pary"
 
@@ -36405,7 +36573,7 @@ msgstr "Od dwóch do czterech graczy ma po cztery pionki. Wygrywa pierwszy, któ
 msgid "Two-leg knockout ties use match points, then complete game scores. If still tied, an additional single game is played."
 msgstr "W dwumeczu pucharowym decydują punkty za mecze, następnie pełne małe punkty z obu gier. Jeśli nadal jest remis, rozgrywa się pojedynczy dodatkowy mecz."
 
-#: games/yahtzee.rb:28
+#: games/yahtzee.rb:29
 msgid "Twos"
 msgstr "Dwójki"
 
@@ -36419,7 +36587,7 @@ msgstr "Dwójki i trójki mogą odpowiadać na siebie"
 msgid "Twos, threes, fours and kings"
 msgstr "Dwójki, trójki, czwórki i króle"
 
-#: __app.rb:2123 lib/game_screen/input.rb:412
+#: __app.rb:2131 lib/game_screen/input.rb:412
 msgid "Type a chat message first."
 msgstr "Najpierw wpisz wiadomość na czacie."
 
@@ -36717,7 +36885,7 @@ msgstr "Cofnij ostatnie uderzenie w treningu solo"
 msgid "Undo, progress and finishing"
 msgstr ""
 
-#: games/balut.rb:131 games/kosciane.rb:177
+#: games/balut.rb:128 games/kosciane.rb:178
 msgid "Unfilled categories"
 msgstr "Niewypełnione kategorie"
 
@@ -36772,7 +36940,7 @@ msgstr "Wolne nieruchomości"
 msgid "Unsaved changes on this computer"
 msgstr "Niezapisane zmiany na tym komputerze"
 
-#: games/cash_auction/content.rb:164
+#: games/cash_auction/content.rb:165
 msgid "Unsupported Cash Auction rules version."
 msgstr "Nieobsługiwana wersja zasad Awantury o kasę."
 
@@ -36892,7 +37060,7 @@ msgstr "Aktualizowanie nazwy wyświetlanej"
 msgid "Updating game"
 msgstr "Aktualizowanie gry"
 
-#: __app.rb:1622 __app.rb:1991 __app.rb:2242 __app.rb:2251 __app.rb:2262 __app.rb:2391 __app.rb:2440 __app.rb:3625 __app.rb:3634 __app.rb:3780 __app.rb:3797 __app.rb:3839 lib/game_screen.rb:1164 lib/game_screen/input.rb:576
+#: __app.rb:1630 __app.rb:1999 __app.rb:2250 __app.rb:2259 __app.rb:2270 __app.rb:2399 __app.rb:2448 __app.rb:3643 __app.rb:3652 __app.rb:3798 __app.rb:3815 __app.rb:3857 lib/game_screen.rb:1164 lib/game_screen/input.rb:576
 msgid "Updating table"
 msgstr "Aktualizowanie stołu"
 
@@ -36984,6 +37152,10 @@ msgstr[2] "Przez %{count} rzutów w wyścigu używaj kości od 1 do %{sides}."
 msgid "Use a die from 1 to %{sides} for %{count} race rolls."
 msgstr "Przez %{count} rzutów w wyścigu używaj kości od 1 do %{sides}."
 
+#: games/generated/rulebooks/balut.rb:11
+msgid "Use a digit from 1 to 6 to select a die showing that value for another roll. Shift with the same digit clears one selection. Enter rerolls the selected dice; with none selected, it opens the score sheet. Choose a row with Up and Down, then press Enter to record the shown value in its next empty space. After the third roll, the score sheet appears automatically."
+msgstr "Cyfrą od 1 do 6 zaznaczasz do przerzutu jedną kość o tej wartości. Shift z tą samą cyfrą odznacza jedną kość. Enter przerzuca zaznaczone kości, a gdy żadna nie jest zaznaczona, otwiera tabelę zapisu. Strzałkami w górę i w dół wybierz wiersz, a Enterem zapisz proponowaną wartość w jego pierwszym wolnym polu. Po trzecim rzucie tabela pojawia się automatycznie."
+
 #: lib/quiz_contributions/model.rb:108
 msgid "Use a language code, for example pl, en or es."
 msgstr "Podaj kod języka, np. pl, en lub es."
@@ -37021,7 +37193,7 @@ msgstr "Użyj odrzuconych kart jako nowej talii, gdy obecna się skończy"
 msgid "Use keyboard equivalents for decorative punctuation: a minus for dashes, straight quotes for curly quotes, three full stops for an ellipsis and normal spaces for special spaces. Polish letters still matter. Number prompts tell you to enter digits. Unsupported symbols in imports are listed for correction."
 msgstr ""
 
-#: games/darts.rb:53
+#: games/darts.rb:54
 msgid "Use relative mouse movement and the left button"
 msgstr "Używaj względnego ruchu myszy i lewego przycisku"
 
@@ -37127,7 +37299,7 @@ msgstr "Użytkownicy przy stole (%{count})"
 msgid "Users at the table. %{name}; %{game}; host: %{owner}; %{count}/%{maximum}"
 msgstr "Użytkownicy przy stole. %{name}; %{game}; założyciel: %{owner}; %{count}/%{maximum}"
 
-#: __app.rb:3352
+#: __app.rb:3370
 msgid "Users at the table. %{status}; %{name}; %{game}; host: %{owner}; %{count}/%{maximum}"
 msgstr "Użytkownicy przy stole. %{status}; %{name}; %{game}; prowadzący: %{owner}; %{count}/%{maximum}"
 
@@ -37162,7 +37334,7 @@ msgstr "V: lista własnych pionków. Shift+V: lista pionków wszystkich graczy. 
 msgid "V: browse your properties."
 msgstr "V: przeglądaj swoje nieruchomości."
 
-#: games/generated/rulebooks/balut.rb:24 games/generated/rulebooks/kosciane.rb:34
+#: games/generated/rulebooks/balut.rb:27 games/generated/rulebooks/kosciane.rb:34
 msgid "V: browse your score sheet."
 msgstr ""
 
@@ -37347,7 +37519,7 @@ msgstr "Podgląd turnieju"
 msgid "View tournament standings"
 msgstr "Pokaż tabelę turnieju"
 
-#: games/balut.rb:128 games/balut.rb:130 games/kosciane.rb:174 games/kosciane.rb:176
+#: games/balut.rb:125 games/balut.rb:127 games/kosciane.rb:175 games/kosciane.rb:177
 msgid "View unfilled categories"
 msgstr "Przeglądaj niewypełnione kategorie"
 
@@ -37645,7 +37817,7 @@ msgstr "Oczekiwanie na zapis punktu."
 msgid "Waiting for the private solution."
 msgstr "Oczekiwanie na prywatne przesłanie rozwiązania."
 
-#: __app.rb:1600
+#: __app.rb:1608
 msgid "Waiting for these players: %{players}."
 msgstr "Oczekiwanie na graczy: %{players}."
 
@@ -37802,7 +37974,7 @@ msgstr "Co oznaczają decyzje w licytacji"
 msgid "What your card will do"
 msgstr "Co zrobi zagrywana karta"
 
-#: __app.rb:271 lib/game_room_screens.rb:63
+#: __app.rb:273 lib/game_room_screens.rb:63
 msgid "What's new"
 msgstr "Co nowego"
 
@@ -37959,7 +38131,7 @@ msgstr "Przy takim samym rodzaju układu porównuje się wartości tworzących g
 msgid "When time expires, everything currently entered is submitted automatically. The fields are not cleared before the server accepts the answers."
 msgstr "Po upływie czasu wszystko, co jest obecnie wpisane, zostaje wysłane automatycznie. Pola nie są czyszczone przed przyjęciem odpowiedzi przez serwer."
 
-#: games/darts.rb:49 games/generated/rulebooks/makao.rb:28 games/generated/rulebooks/mexican_train.rb:23
+#: games/darts.rb:50 games/generated/rulebooks/makao.rb:28 games/generated/rulebooks/mexican_train.rb:23
 msgid "When time runs out"
 msgstr "Gdy upłynie czas"
 
@@ -38539,7 +38711,7 @@ msgstr "Y: Przewiduj uderzenie bez ruszania bil."
 msgid "Y: preview the words and their points."
 msgstr "Y: odczytaj podgląd słów i punktów."
 
-#: games/yahtzee.rb:38 games/yahtzee.rb:58
+#: games/yahtzee.rb:39 games/yahtzee.rb:64
 msgid "Yahtzee"
 msgstr "Yahtzee"
 
@@ -38559,7 +38731,7 @@ msgstr "Rok"
 msgid "Yellowbelly die"
 msgstr "Tchórzliwa kość"
 
-#: __app.rb:2291 games/mahjong_support/options.rb:28 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:49 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
+#: __app.rb:2299 games/mahjong_support/options.rb:28 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:49 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
 msgid "Yes"
 msgstr "Tak"
 
@@ -38579,11 +38751,11 @@ msgstr "Odpowiedziałeś niepoprawnie."
 msgid "You are already at a table."
 msgstr "Jesteś już przy stole."
 
-#: __app.rb:1440 __app.rb:1454 __app.rb:1752 __app.rb:2731 __app.rb:3064
+#: __app.rb:1448 __app.rb:1462 __app.rb:1760 __app.rb:2739 __app.rb:3082
 msgid "You are already at another table."
 msgstr "Jesteś już przy innym stole."
 
-#: __app.rb:2682
+#: __app.rb:2690
 msgid "You are already at this table."
 msgstr "Jesteś już przy tym stole."
 
@@ -38900,7 +39072,7 @@ msgstr "Bicie polega na przesunięciu własnej figury na pole zajęte przez figu
 msgid "You chose %{card}."
 msgstr "Twój wybór: %{card}."
 
-#: __app.rb:1301
+#: __app.rb:1309
 msgid "You created a room."
 msgstr "Utworzyłeś pokój."
 
@@ -38924,7 +39096,7 @@ msgstr "Nie masz wystarczającej liczby punktów, aby przebić najwyższą ofert
 msgid "You draw %{card}."
 msgstr "Dobierasz: %{card}."
 
-#: games/generated/rulebooks/balut.rb:14
+#: games/generated/rulebooks/balut.rb:16
 msgid "You earn two points for each of these row totals you reach: 52 in Fours, 65 in Fives, 78 in Sixes and 100 in Chance. Four straights earn four points, four full houses earn three and each Balut earns two. Add up all entries. Below 300, subtract two points. At 300–349, subtract one. At 350–399, make no adjustment. Starting at 400, add one point for each 50 above 350, up to six at 650. The highest final score wins. The maximum is 29 points."
 msgstr ""
 
@@ -38992,7 +39164,7 @@ msgstr "W tej turze już dobrałeś kartę."
 msgid "You have already shot at that square."
 msgstr "To pole było już ostrzelane."
 
-#: games/yahtzee.rb:345
+#: games/yahtzee.rb:351
 msgid "You have already used all three rolls."
 msgstr "Wykorzystano już wszystkie trzy rzuty."
 
@@ -39072,7 +39244,7 @@ msgstr "Nie masz punktów, którymi można przebić ofertę."
 msgid "You have no properties available to mortgage now."
 msgstr "Nie masz teraz nieruchomości, które możesz zastawić."
 
-#: __app.rb:1370
+#: __app.rb:1378
 msgid "You have no saved games."
 msgstr "Nie masz zapisanych gier."
 
@@ -39123,7 +39295,7 @@ msgstr "Zostałeś wypisany z tego turnieju. Wcześniejszy zapis nie jest już a
 msgid "You hold your cards in your hand and choose which one to play. The cards in your hand are always listed from the lowest to the highest, with the joker last. The cards you win go to a separate pile."
 msgstr "Karty trzymasz w ręce i sam wybierasz, którą zagrać. Karty w ręce są zawsze ułożone od najniższej do najwyższej, a joker jest na końcu. Wygrane karty trafiają na osobny stos."
 
-#: __app.rb:2841
+#: __app.rb:2849
 msgid "You joined %{player}'s room."
 msgstr "Dołączyłeś do pokoju gracza %{player}."
 
@@ -39370,11 +39542,11 @@ msgstr "Chcesz mieć jak najmniej punktów"
 msgid "You want as few points as possible. The round winner receives zero; everyone else adds the value of cards still held. Number cards count their number, coloured action cards 20 and wild cards 50. The elimination limit is normally 500, configurable from 50 to 5000. Players reaching it leave after the round, while the others continue. The last remaining player wins the whole game."
 msgstr "Chcesz mieć jak najmniej punktów. Zwycięzca rundy dostaje zero, a inni dodają wartość pozostałych kart. Numery liczą się według wartości, kolorowe karty akcji za 20, a karty Wild za 50. Limit odpadnięcia wynosi zwykle 500 i można ustawić od 50 do 5000. Osoby, które go osiągną, odpadają po rundzie, a pozostali grają dalej. Ostatni gracz wygrywa całą partię."
 
-#: __app.rb:2381
+#: __app.rb:2389
 msgid "You will observe the next game."
 msgstr "Będziesz obserwować następną grę."
 
-#: __app.rb:2381
+#: __app.rb:2389
 msgid "You will play in the next game."
 msgstr "Zagrasz w następnej grze."
 
@@ -40015,6 +40187,10 @@ msgstr "Wymiany rąk po zerze i siódemce są domyślnie wyłączone. Siódemka 
 msgid "Zero and seven hand swapping is off by default. Seven exchanges your hand with a selected opponent. Zero passes every active hand along the direction of play. Buzzer cards is also off: it adds eight universal cards to Classic or No Mercy, not Flip. After one is played, all active players press B; the last draws two. Anything can be played after a buzzer."
 msgstr "Zamiany rąk zerem i siódemką są domyślnie wyłączone. Siódemka zamienia Twoją rękę z wybranym przeciwnikiem. Zero przekazuje każdą aktywną rękę zgodnie z kierunkiem gry. Karty buzzera też są wyłączone: dodają osiem uniwersalnych kart do talii klasycznej albo No Mercy, nie Flip. Po zagraniu wszyscy aktywni gracze wciskają B; ostatni dobiera dwie. Po buzzerze można zagrać dowolną kartę."
 
+#: games/kosciane.rb:34
+msgid "Zero scores in school prevent future bonuses"
+msgstr "Zera w szkole blokują przyszłe premie"
+
 #: games/generated/rulebooks/ninety_nine.rb:20
 msgid "Zero tokens does not itself eliminate you. You drop out only when a later penalty costs more than you can pay. If you have one token and lose one, you stay; if you must then pay another, you are out. The last active player wins the game."
 msgstr "Samo zero żetonów jeszcze cię nie eliminuje. Odpadasz dopiero wtedy, gdy późniejsza kara przewyższy to, czym możesz zapłacić. Jeśli masz jeden żeton i tracisz jeden, zostajesz w grze. Jeśli potem musisz oddać następny, odpadasz. Ostatni aktywny gracz wygrywa partię."
@@ -40388,7 +40564,7 @@ msgstr "gotówka: %{amount}"
 msgid "catch missing Makao"
 msgstr "wyłap brak makao"
 
-#: games/darts.rb:265 lib/billiards/presentation.rb:47 lib/billiards/presentation.rb:76
+#: games/darts.rb:278 lib/billiards/presentation.rb:47 lib/billiards/presentation.rb:76
 msgid "centre"
 msgstr "środek"
 
@@ -40613,7 +40789,7 @@ msgstr "podwójna premia literowa"
 msgid "double word"
 msgstr "podwójna premia słowna"
 
-#: games/darts.rb:267
+#: games/darts.rb:280
 msgid "down"
 msgstr "dół"
 
@@ -40810,7 +40986,7 @@ msgstr "kropka"
 msgid "game finished"
 msgstr "gra zakończona"
 
-#: __app.rb:3422
+#: __app.rb:3440
 msgid "game in progress"
 msgstr "gra w toku"
 
@@ -40979,7 +41155,7 @@ msgstr "sędziuje"
 msgid "keep a %{value}"
 msgstr "zachowaj %{value}"
 
-#: games/dice_poker.rb:158 games/yahtzee.rb:264
+#: games/dice_poker.rb:158 games/yahtzee.rb:270
 msgid "keep another die showing %{value}"
 msgstr "zachowaj kolejną kość o wartości %{value}"
 
@@ -41009,7 +41185,7 @@ msgstr "króle: %{kings}, hetmany: %{queens}, wieże: %{rooks}, gońce: %{bishop
 msgid "knight"
 msgstr "rycerz"
 
-#: games/darts.rb:266 lib/billiards/presentation.rb:47
+#: games/darts.rb:279 lib/billiards/presentation.rb:47
 msgid "left"
 msgstr "lewa strona"
 
@@ -41061,11 +41237,11 @@ msgstr "słuchaj z perspektywy trzeciego gracza"
 msgid "loss %{amount}"
 msgstr "strata: %{amount}"
 
-#: games/darts.rb:266
+#: games/darts.rb:279
 msgid "lower left"
 msgstr "lewy dolny"
 
-#: games/darts.rb:267
+#: games/darts.rb:280
 msgid "lower right"
 msgstr "prawy dolny"
 
@@ -41166,7 +41342,7 @@ msgstr "następna pasująca kostka"
 msgid "nil"
 msgstr "nil"
 
-#: games/makao.rb:153 games/yahtzee.rb:616
+#: games/makao.rb:153 games/yahtzee.rb:622
 msgid "no"
 msgstr "nie"
 
@@ -41209,7 +41385,7 @@ msgstr "brak"
 msgid "not bid yet"
 msgstr "jeszcze nie zadeklarowano"
 
-#: games/balut.rb:99 games/balut_support/balut_score_grid.rb:29 games/kosciane.rb:304 games/yahtzee.rb:298
+#: games/balut.rb:96 games/balut_support/balut_score_grid.rb:24 games/kosciane.rb:308 games/yahtzee.rb:304
 msgid "not filled"
 msgstr "niewypełnione"
 
@@ -41249,7 +41425,7 @@ msgstr "jedna linia"
 msgid "one pair"
 msgstr "para"
 
-#: __app.rb:3422 games/mexican_train.rb:185
+#: __app.rb:3440 games/mexican_train.rb:185
 msgid "open"
 msgstr "otwarty"
 
@@ -41411,7 +41587,7 @@ msgstr "poprzednia pasująca kostka"
 msgid "profit %{amount}"
 msgstr "zysk: %{amount}"
 
-#: games/darts.rb:70
+#: games/darts.rb:71
 msgid "progressive difficulty"
 msgstr "rosnący poziom trudności"
 
@@ -41444,7 +41620,7 @@ msgstr "długą"
 msgid "question mark"
 msgstr "znak zapytania"
 
-#: games/cash_auction/content.rb:183
+#: games/cash_auction/content.rb:184
 msgid "question sets: %{sets}; language: %{language}"
 msgstr "zestawy pytań: %{sets}; język: %{language}"
 
@@ -41548,7 +41724,7 @@ msgstr "odczytaj przygotowane układy i ich wartość"
 msgid "read rack position %{number}"
 msgstr "odczyt pozycji %{number} na stojaku"
 
-#: games/axel_pong.rb:248 games/darts.rb:230 lib/recordings/controls.rb:28
+#: games/axel_pong.rb:248 games/darts.rb:243 lib/recordings/controls.rb:28
 msgid "read scores"
 msgstr "odczytaj wyniki"
 
@@ -41644,11 +41820,11 @@ msgstr "odczytaj słowo"
 msgid "read the deal rules"
 msgstr "odczytaj zasady rozdania"
 
-#: games/balut.rb:138 games/balut_support/balut_score_grid.rb:39 games/kosciane.rb:185 games/kosciane.rb:187 games/kosciane.rb:217
+#: games/balut.rb:135 games/balut_support/balut_score_grid.rb:34 games/kosciane.rb:186 games/kosciane.rb:188 games/kosciane.rb:224
 msgid "read the dice"
 msgstr "odczytaj kości"
 
-#: games/dice_poker.rb:161 games/yahtzee.rb:281
+#: games/dice_poker.rb:161 games/yahtzee.rb:287
 msgid "read the dice and their selection state"
 msgstr "odczytaj kości i stan ich wyboru"
 
@@ -41772,7 +41948,7 @@ msgstr "odczytać informacje o rundzie"
 msgid "read the rules for this round"
 msgstr "odczytaj zasady bieżącej rundy"
 
-#: games/balut.rb:140 games/cash_auction/presentation.rb:41 games/dice_poker.rb:151 games/mahjong.rb:164 games/uno.rb:495 games/yahtzee.rb:282 lib/game_shortcuts.rb:9
+#: games/balut.rb:137 games/cash_auction/presentation.rb:41 games/dice_poker.rb:151 games/mahjong.rb:164 games/uno.rb:495 games/yahtzee.rb:288 lib/game_shortcuts.rb:9
 msgid "read the scores"
 msgstr "odczytać wyniki"
 
@@ -41788,7 +41964,7 @@ msgstr "odczytaj serwującego i stan połączenia"
 msgid "read the starter"
 msgstr "odczytaj kartę startową"
 
-#: games/balut.rb:142 games/kosciane.rb:193
+#: games/balut.rb:139 games/kosciane.rb:194
 msgid "read the sum of recorded scores"
 msgstr "odczytaj sumę wpisów"
 
@@ -41808,7 +41984,7 @@ msgstr "odczytaj kamień oczekujący na twoją odpowiedź"
 msgid "read the top card"
 msgstr "odczytaj kartę na stole"
 
-#: games/darts.rb:232
+#: games/darts.rb:245
 msgid "read the training cursor sector"
 msgstr "odczytaj sektor celownika treningowego"
 
@@ -42040,7 +42216,7 @@ msgstr "zmiana kierunku"
 msgid "reviewing answers"
 msgstr "ocenianie odpowiedzi"
 
-#: games/darts.rb:265 lib/billiards/presentation.rb:47
+#: games/darts.rb:278 lib/billiards/presentation.rb:47
 msgid "right"
 msgstr "prawa strona"
 
@@ -42110,7 +42286,7 @@ msgstr "wyniki"
 msgid "select a %{value} for reroll"
 msgstr "wybierz %{value} do ponownego rzutu"
 
-#: games/dice_poker.rb:157 games/yahtzee.rb:260
+#: games/dice_poker.rb:157 games/yahtzee.rb:266
 msgid "select another die showing %{value}"
 msgstr "zaznacz kolejną kość o wartości %{value}"
 
@@ -42435,7 +42611,7 @@ msgstr "wykup nieruchomość"
 msgid "unsupported"
 msgstr "nieobsługiwana"
 
-#: games/darts.rb:265
+#: games/darts.rb:278
 msgid "up"
 msgstr "góra"
 
@@ -42443,11 +42619,11 @@ msgstr "góra"
 msgid "up to %{count} tricks"
 msgstr "do %{count} lew"
 
-#: games/darts.rb:266
+#: games/darts.rb:279
 msgid "upper left"
 msgstr "lewy górny"
 
-#: games/darts.rb:265
+#: games/darts.rb:278
 msgid "upper right"
 msgstr "prawy górny"
 
@@ -42471,11 +42647,11 @@ msgstr "pionowo"
 msgid "vertical bar"
 msgstr "pionowa kreska"
 
-#: games/yahtzee.rb:277
+#: games/yahtzee.rb:283
 msgid "view another player's score sheet"
 msgstr "podgląd karty punktacji innego gracza"
 
-#: games/yahtzee.rb:270
+#: games/yahtzee.rb:276
 msgid "view your score sheet"
 msgstr "podgląd twojej karty punktacji"
 
@@ -42629,7 +42805,7 @@ msgstr "żółty"
 msgid "yellow group"
 msgstr "grupa żółta"
 
-#: games/makao.rb:153 games/yahtzee.rb:616
+#: games/makao.rb:153 games/yahtzee.rb:622
 msgid "yes"
 msgstr "tak"
 

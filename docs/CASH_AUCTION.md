@@ -51,7 +51,10 @@ answer receives the whole pool; a wrong answer leaves it to carry over.
 A wrong answer with no cash left permanently eliminates the answerer.
 There is no answer deadline. Each accepted answer increments the answered
 question counter exactly once, whether correct or wrong. A chest auction
-instead adds an unopened chest to its winner and leaves the pool untouched.
+instead adds an unopened chest to its winner and preserves the prior question
+pool. Under v4, chest antes, bid increments and inactivity penalties are still
+deducted from participants but leave the game rather than increasing that pool.
+The following question adds only its own payments to the preserved pool.
 Chest auctions and empty auctions do not increment the question counter.
 
 The answerer may buy one hint removing two wrong answers. It costs 10% of
@@ -82,7 +85,9 @@ at-most-one-survivor boundary was reached earlier. No active seats
 means a draw. The pool has no final automatic payout to a leader.
 
 The version marker is part of normalized game options. A new ordinary start
-uses v3; an already bound tournament match uses its fixed published version.
+uses v4; an already bound tournament match uses its fixed published version.
+V3 retains its original pool accounting and percentage chest settlement;
+v4 keeps that settlement but separates chest payments from the question pool.
 Unmarked historical sessions retain v1, including their original single-pack
 identity, defaults, cumulative pass penalties, auction-counted rounds and
 earlier bid/all-in transition semantics. Reading or resuming them must not
@@ -136,10 +141,15 @@ selection and support validation only: language, pack ID, version and
 checksum retain their existing pinned meanings. The game does not rewrite
 Quiz pack manifests, data or checksums.
 
-The revised `content_pack_ids` multiple-value control selects two or three sets
-from one Quiz language. A language with exactly one available set permits
-that one set instead; the current English and Russian catalogues have one
-each. The immutable `content_pack_manifest` pins every selected member with
+The revised `content_pack_ids` multiple-value control selects one to three sets
+from one Quiz language. New table defaults check only that language's general
+knowledge set; specialist topics stay unchecked. The creator's interface language
+chooses the question language, with the existing English fallback when unavailable.
+Changing language also selects only its general set. If that set is missing,
+leave the checklist empty for the creator to repair rather than selecting a
+specialist topic silently. Explicit and remembered selections are retained,
+including empty or unavailable choices which must be repaired before submission.
+The immutable `content_pack_manifest` pins every selected member with
 `id`, `set`, `language`, `version` and `checksum`. Selection and replay validate
 the complete pinned combination, rather than replacing it with whichever
 packs are currently available. Legacy single-pack fields remain authoritative
@@ -289,7 +299,9 @@ The source tests relevant to the shared adapter and native controls are:
   action, refused retained/native requests, silent bot waiting, a later bid,
   the ordinary deadline and unchanged no-bid accounting.
 - `test/games/cash_auction/content_editor_native_test.rb`: Space, Enter,
-  Escape, two/three-set validation, language changes and cancelled drafts.
+  Escape, one/two/three-set selection, empty validation, language changes and cancelled drafts.
+- `test/localization/content_language_defaults_test.rb`: all five interface
+  languages, default-only general sets, native creation, presets and unchanged explicit choices.
 
 The game-owned model, authority and active-runner regressions are maintained
 with the implementation. Missing dependencies, skipped cases and timeouts

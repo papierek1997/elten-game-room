@@ -4,7 +4,8 @@ require_relative '../../../lib/table_variant'
 
 include GameRoomTest::Assertions
 game = GameRoomGames::CashAuction.new
-options = game.table_creation_options('content_language_id'=>'pl-PL').merge(
+ids = GameRoomContent.registry.packs_for(game_id: 'quiz', kind: 'quiz').select { |pack| pack.language_id == 'pl-PL' }.map(&:id)
+options = game.table_creation_options('content_language_id'=>'pl-PL', 'content_pack_ids'=>ids).merge(
   '__secret'=>'private', 'player_answer'=>'never advertise', 'arbitrary_title'=>'forged')
 payload = GameRoomTableVariant.payload(game, JSON.generate(options))
 assert_equal(%w[content_language_id content_pack_ids], payload.fetch('options').keys.sort)
