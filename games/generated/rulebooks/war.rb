@@ -24,7 +24,7 @@ module GameRoomGames
             GameRoomRules.translate("E: read each player's card count."),
             GameRoomRules.translate("V: read the result of the last battle."),
             GameRoomRules.translate("T: read whose turn it is."),
-            GameRoomRules.translate("Ctrl+T: read the number of the current battle and the battle limit."))
+            GameRoomRules.translate("Ctrl+Alt+T: read the number of the current battle and the battle limit."))
         ]
       end
 
@@ -43,7 +43,7 @@ module GameRoomGames
               "Zb\u00FDv\u00E1-li ti jedin\u00E1 karta, pou\u017Eije\u0161 ji k porovn\u00E1n\u00ED bez skryt\u00E9 karty. Bez karet pokra\u010Dovat nem\u016F\u017Ee\u0161. Jakmile m\u016F\u017Ee pokra\u010Dovat u\u017E jen jeden hr\u00E1\u010D, bere v\u0161e. Nem\u00E1-li dost karet nikdo, ko\u0159ist z\u016Fstane do p\u0159\u00ED\u0161t\u00EDho souboje."),
             rule_section(:ending, "Vy\u0159azen\u00ED a v\u00EDt\u011Bzstv\u00ED",
               "Po vyhodnocen\u00ED souboje vypadnou hr\u00E1\u010Di bez karet. Posledn\u00ED zb\u00FDvaj\u00EDc\u00ED hr\u00E1\u010D vyhr\u00E1v\u00E1; kdyby nezbyly karty nikomu, je rem\u00EDza.",
-              "Z\u00E1kladn\u00ED hra m\u00E1 nejv\u00FD\u0161 20 souboj\u016F. Pokud se d\u0159\u00EDv nerozhodne, vyhraje ten, kdo m\u00E1 nejv\u00EDc karet. Stejn\u00FD nejvy\u0161\u0161\u00ED po\u010Det znamen\u00E1 rem\u00EDzu. Po\u010Dty karet zjist\u00ED\u0161 kl\u00E1vesou E, \u010D\u00EDslo souboje a limit pomoc\u00ED Ctrl+T."),
+              "Z\u00E1kladn\u00ED hra m\u00E1 nejv\u00FD\u0161 20 souboj\u016F. Pokud se d\u0159\u00EDv nerozhodne, vyhraje ten, kdo m\u00E1 nejv\u00EDc karet. Stejn\u00FD nejvy\u0161\u0161\u00ED po\u010Det znamen\u00E1 rem\u00EDzu. Po\u010Dty karet zjist\u00ED\u0161 kl\u00E1vesou E, \u010D\u00EDslo souboje a limit pomoc\u00ED Ctrl+Alt+T."),
             rule_section(:variants, "Bal\u00ED\u010Dek a d\u00E9lka hry",
               "P\u0159ed za\u010D\u00E1tkem lze v nastaven\u00ED stolu vybrat jin\u00FD bal\u00ED\u010Dek a del\u0161\u00ED hru:",
               "- Pln\u00FD bal\u00ED\u010Dek m\u00E1 52 karet od dvojek po esa. Hodnoty rostou podle \u010D\u00EDsla, za des\u00EDtkou n\u00E1sleduj\u00ED kluk, d\u00E1ma, kr\u00E1l a eso.",
@@ -55,7 +55,7 @@ module GameRoomGames
               "E: p\u0159e\u010D\u00EDst po\u010Dty karet hr\u00E1\u010D\u016F.",
               "V: p\u0159e\u010D\u00EDst v\u00FDsledek minul\u00E9ho souboje.",
               "T: ozn\u00E1mit, kdo je na tahu.",
-              "Ctrl+T: p\u0159e\u010D\u00EDst \u010D\u00EDslo souboje a celkov\u00FD limit.")
+              "Ctrl+Alt+T: p\u0159e\u010D\u00EDst \u010D\u00EDslo souboje a celkov\u00FD limit.")
           ]
         when "en"
           [
@@ -70,7 +70,7 @@ module GameRoomGames
               "With only one card left, play it as the revealed card without adding a hidden one. A player with no cards cannot continue. If only one player has enough to keep going, they take the pile immediately. If nobody can continue, the pile carries over to the next battle."),
             rule_section(:ending, "Ending the game",
               "After a battle is settled, players without cards are eliminated. The last player left wins. If nobody has cards left, the game is a draw.",
-              "A game lasts at most 20 battles. If nobody has won by then, the largest card count wins; equal largest counts draw. E reads everyone's card count, and Ctrl+T reads the battle number and limit."),
+              "A game lasts at most 20 battles. If nobody has won by then, the largest card count wins; equal largest counts draw. E reads everyone's card count, and Ctrl+Alt+T reads the battle number and limit."),
             rule_section(:variants, "Deck and length",
               "The host can change these before starting:",
               "- Use a full 52-card deck, from 2 to ace. Number cards still ascend normally, followed by jack, queen, king and ace.",
@@ -82,7 +82,7 @@ module GameRoomGames
               "E: read card counts.",
               "V: read the last battle result.",
               "T: read whose turn it is.",
-              "Ctrl+T: read the battle number and limit.")
+              "Ctrl+Alt+T: read the battle number and limit.")
           ]
         when "es"
           [
@@ -97,7 +97,7 @@ module GameRoomGames
               "Si solo te queda una carta, se usa descubierta, sin a\u00F1adir una oculta. Quien no tenga cartas no puede continuar. Si solo a una persona le quedan suficientes para seguir, gana todo inmediatamente. Si nadie puede, las cartas pendientes pasan al siguiente enfrentamiento."),
             rule_section(:ending, "Final de partida",
               "Al resolverse un enfrentamiento se elimina a quienes no tienen cartas. Si solo queda una persona, gana. Si todos se quedan sin cartas, hay empate.",
-              "La partida dura como m\u00E1ximo 20 enfrentamientos. Si no se ha decidido antes, gana quien tenga m\u00E1s cartas; si varias personas tienen esa misma cantidad, hay empate. E cuenta las cartas y Ctrl+T consulta el n\u00FAmero de enfrentamiento y el l\u00EDmite."),
+              "La partida dura como m\u00E1ximo 20 enfrentamientos. Si no se ha decidido antes, gana quien tenga m\u00E1s cartas; si varias personas tienen esa misma cantidad, hay empate. E cuenta las cartas y Ctrl+Alt+T consulta el n\u00FAmero de enfrentamiento y el l\u00EDmite."),
             rule_section(:variants, "Baraja y duraci\u00F3n",
               "Antes de empezar puedes cambiar estas opciones:",
               "- Baraja completa: 52 cartas, del dos al as. El orden sigue siendo los n\u00FAmeros, jota, reina, rey y as.",
@@ -109,7 +109,7 @@ module GameRoomGames
               "E: contar las cartas de los jugadores.",
               "V: consultar el \u00FAltimo enfrentamiento.",
               "T: consultar de qui\u00E9n es el turno.",
-              "Ctrl+T: consultar el enfrentamiento actual y su l\u00EDmite.")
+              "Ctrl+Alt+T: consultar el enfrentamiento actual y su l\u00EDmite.")
           ]
         when "pl"
           [
@@ -124,7 +124,7 @@ module GameRoomGames
               "Je\u015Bli zosta\u0142a ci tylko jedna karta, zagrywasz j\u0105 do por\u00F3wnania, bez dok\u0142adania zakrytej. Kto nie ma ju\u017C kart, nie mo\u017Ce kontynuowa\u0107. Gdy tylko jednej osobie wystarczy ich do dalszej gry, od razu zabiera ca\u0142o\u015B\u0107. Je\u015Bli nie wystarczy nikomu, zdobycz przechodzi do nast\u0119pnego starcia."),
             rule_section(:ending, "Koniec gry",
               "Po rozstrzygni\u0119ciu starcia gracze bez kart odpadaj\u0105. Je\u015Bli zosta\u0142 tylko jeden, wygrywa. Gdyby bez kart zostali wszyscy, gra ko\u0144czy si\u0119 remisem.",
-              "Partia trwa najwy\u017Cej 20 star\u0107. Je\u017Celi wcze\u015Bniej nie zostanie wy\u0142oniony zwyci\u0119zca, wygrywa gracz z najwi\u0119ksz\u0105 liczb\u0105 kart; r\u00F3wna najwi\u0119ksza liczba oznacza remis. E podaje liczb\u0119 kart ka\u017Cdego gracza, a Ctrl+T numer starcia i limit."),
+              "Partia trwa najwy\u017Cej 20 star\u0107. Je\u017Celi wcze\u015Bniej nie zostanie wy\u0142oniony zwyci\u0119zca, wygrywa gracz z najwi\u0119ksz\u0105 liczb\u0105 kart; r\u00F3wna najwi\u0119ksza liczba oznacza remis. E podaje liczb\u0119 kart ka\u017Cdego gracza, a Ctrl+Alt+T numer starcia i limit."),
             rule_section(:variants, "Inna talia i d\u0142ugo\u015B\u0107 gry",
               "W ustawieniach sto\u0142u przed gr\u0105 mo\u017Cna zmieni\u0107 tali\u0119 oraz d\u0142ugo\u015B\u0107 partii:",
               "- Pe\u0142na talia zawiera 52 karty, od dw\u00F3jki do asa. Warto\u015Bci por\u00F3wnuje si\u0119 tak samo: po kolejnych numerach nast\u0119puj\u0105 walet, dama, kr\u00F3l i as.",
@@ -136,7 +136,7 @@ module GameRoomGames
               "E: odczytaj liczby kart graczy.",
               "V: odczytaj wynik ostatniego starcia.",
               "T: odczytaj, czyja jest tura.",
-              "Ctrl+T: odczytaj numer bie\u017C\u0105cego starcia i limit star\u0107.")
+              "Ctrl+Alt+T: odczytaj numer bie\u017C\u0105cego starcia i limit star\u0107.")
           ]
         when "ru"
           [
@@ -151,7 +151,7 @@ module GameRoomGames
               "\u0421 \u0435\u0434\u0438\u043D\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0439 \u043E\u0441\u0442\u0430\u0432\u0448\u0435\u0439\u0441\u044F \u043A\u0430\u0440\u0442\u043E\u0439 \u0432\u044B \u0438\u0433\u0440\u0430\u0435\u0442\u0435 \u0435\u0451 \u043E\u0442\u043A\u0440\u044B\u0442\u043E, \u043D\u0435 \u0434\u043E\u0431\u0430\u0432\u043B\u044F\u044F \u0437\u0430\u043A\u0440\u044B\u0442\u0443\u044E. \u0411\u0435\u0437 \u043A\u0430\u0440\u0442 \u043F\u0440\u043E\u0434\u043E\u043B\u0436\u0430\u0442\u044C \u043D\u0435\u043B\u044C\u0437\u044F. \u0415\u0441\u043B\u0438 \u043F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u0441\u043F\u043E\u0441\u043E\u0431\u0435\u043D \u0442\u043E\u043B\u044C\u043A\u043E \u043E\u0434\u0438\u043D \u0438\u0433\u0440\u043E\u043A, \u043E\u043D \u0441\u0440\u0430\u0437\u0443 \u0437\u0430\u0431\u0438\u0440\u0430\u0435\u0442 \u0432\u0441\u0451. \u0415\u0441\u043B\u0438 \u043A\u0430\u0440\u0442 \u043D\u0435 \u0445\u0432\u0430\u0442\u0430\u0435\u0442 \u043D\u0438\u043A\u043E\u043C\u0443, \u043D\u0430\u043A\u043E\u043F\u043B\u0435\u043D\u043D\u044B\u0435 \u043A\u0430\u0440\u0442\u044B \u043E\u0441\u0442\u0430\u044E\u0442\u0441\u044F \u0434\u043B\u044F \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0433\u043E \u0441\u0440\u0430\u0436\u0435\u043D\u0438\u044F."),
             rule_section(:ending, "\u041A\u0442\u043E \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0435\u0442",
               "\u041F\u043E\u0441\u043B\u0435 \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0438\u044F \u0441\u0440\u0430\u0436\u0435\u043D\u0438\u044F \u0438\u0433\u0440\u043E\u043A\u0438 \u0431\u0435\u0437 \u043A\u0430\u0440\u0442 \u0432\u044B\u0431\u044B\u0432\u0430\u044E\u0442. \u041F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0439 \u043E\u0441\u0442\u0430\u0432\u0448\u0438\u0439\u0441\u044F \u0438\u0433\u0440\u043E\u043A \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0435\u0442. \u0415\u0441\u043B\u0438 \u0431\u0435\u0437 \u043A\u0430\u0440\u0442 \u043E\u043A\u0430\u0436\u0443\u0442\u0441\u044F \u0432\u0441\u0435, \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442 \u2014 \u043D\u0438\u0447\u044C\u044F.",
-              "\u041F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E \u043F\u0430\u0440\u0442\u0438\u044F \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u0430 20 \u0441\u0440\u0430\u0436\u0435\u043D\u0438\u044F\u043C\u0438. \u0415\u0441\u043B\u0438 \u0440\u0430\u043D\u044C\u0448\u0435 \u043F\u043E\u0431\u0435\u0434\u0438\u0442\u0435\u043B\u044C \u043D\u0435 \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0438\u043B\u0441\u044F, \u043F\u043E \u0434\u043E\u0441\u0442\u0438\u0436\u0435\u043D\u0438\u0438 \u043B\u0438\u043C\u0438\u0442\u0430 \u0441\u0440\u0430\u0432\u043D\u0438\u0432\u0430\u044E\u0442 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u0440\u0442. \u0412\u044B\u0438\u0433\u0440\u044B\u0432\u0430\u0435\u0442 \u0438\u0433\u0440\u043E\u043A \u0441 \u043D\u0430\u0438\u0431\u043E\u043B\u044C\u0448\u0438\u043C \u0447\u0438\u0441\u043B\u043E\u043C \u043A\u0430\u0440\u0442; \u043F\u0440\u0438 \u0440\u0430\u0432\u0435\u043D\u0441\u0442\u0432\u0435 \u043B\u0443\u0447\u0448\u0438\u0445 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u043E\u0432 \u043E\u0431\u044A\u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u043D\u0438\u0447\u044C\u044F. \u041A\u043B\u0430\u0432\u0438\u0448\u0430 E \u0441\u043E\u043E\u0431\u0449\u0430\u0435\u0442 \u0447\u0438\u0441\u043B\u043E \u043A\u0430\u0440\u0442 \u0443 \u0438\u0433\u0440\u043E\u043A\u043E\u0432, \u0430 Ctrl+T \u2014 \u043D\u043E\u043C\u0435\u0440 \u0441\u0440\u0430\u0436\u0435\u043D\u0438\u044F \u0438 \u043F\u0440\u0435\u0434\u0435\u043B \u043F\u0430\u0440\u0442\u0438\u0438."),
+              "\u041F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E \u043F\u0430\u0440\u0442\u0438\u044F \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u0430 20 \u0441\u0440\u0430\u0436\u0435\u043D\u0438\u044F\u043C\u0438. \u0415\u0441\u043B\u0438 \u0440\u0430\u043D\u044C\u0448\u0435 \u043F\u043E\u0431\u0435\u0434\u0438\u0442\u0435\u043B\u044C \u043D\u0435 \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0438\u043B\u0441\u044F, \u043F\u043E \u0434\u043E\u0441\u0442\u0438\u0436\u0435\u043D\u0438\u0438 \u043B\u0438\u043C\u0438\u0442\u0430 \u0441\u0440\u0430\u0432\u043D\u0438\u0432\u0430\u044E\u0442 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u0440\u0442. \u0412\u044B\u0438\u0433\u0440\u044B\u0432\u0430\u0435\u0442 \u0438\u0433\u0440\u043E\u043A \u0441 \u043D\u0430\u0438\u0431\u043E\u043B\u044C\u0448\u0438\u043C \u0447\u0438\u0441\u043B\u043E\u043C \u043A\u0430\u0440\u0442; \u043F\u0440\u0438 \u0440\u0430\u0432\u0435\u043D\u0441\u0442\u0432\u0435 \u043B\u0443\u0447\u0448\u0438\u0445 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u043E\u0432 \u043E\u0431\u044A\u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u043D\u0438\u0447\u044C\u044F. \u041A\u043B\u0430\u0432\u0438\u0448\u0430 E \u0441\u043E\u043E\u0431\u0449\u0430\u0435\u0442 \u0447\u0438\u0441\u043B\u043E \u043A\u0430\u0440\u0442 \u0443 \u0438\u0433\u0440\u043E\u043A\u043E\u0432, \u0430 Ctrl+Alt+T \u2014 \u043D\u043E\u043C\u0435\u0440 \u0441\u0440\u0430\u0436\u0435\u043D\u0438\u044F \u0438 \u043F\u0440\u0435\u0434\u0435\u043B \u043F\u0430\u0440\u0442\u0438\u0438."),
             rule_section(:variants, "\u041A\u043E\u043B\u043E\u0434\u0430 \u0438 \u043F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C",
               "\u0414\u043E \u043D\u0430\u0447\u0430\u043B\u0430 \u043F\u0430\u0440\u0442\u0438\u0438 \u0432 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0430\u0445 \u0441\u0442\u043E\u043B\u0430 \u043C\u043E\u0436\u043D\u043E \u0438\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0434\u0432\u0430 \u0443\u0441\u043B\u043E\u0432\u0438\u044F:",
               "- \u041F\u043E\u043B\u043D\u0430\u044F \u043A\u043E\u043B\u043E\u0434\u0430 \u0441\u043E\u0434\u0435\u0440\u0436\u0438\u0442 52 \u043A\u0430\u0440\u0442\u044B, \u043E\u0442 \u0434\u0432\u043E\u0439\u043A\u0438 \u0434\u043E \u0442\u0443\u0437\u0430. \u0421\u0442\u0430\u0440\u0448\u0438\u043D\u0441\u0442\u0432\u043E \u0442\u043E \u0436\u0435: \u043F\u043E\u0441\u043B\u0435 \u043A\u0430\u0440\u0442 \u0441 \u0447\u0438\u0441\u043B\u0430\u043C\u0438 \u0438\u0434\u0443\u0442 \u0432\u0430\u043B\u0435\u0442, \u0434\u0430\u043C\u0430, \u043A\u043E\u0440\u043E\u043B\u044C \u0438 \u0442\u0443\u0437.",
@@ -163,7 +163,7 @@ module GameRoomGames
               "E: \u0443\u0437\u043D\u0430\u0442\u044C \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u0440\u0442 \u0443 \u043A\u0430\u0436\u0434\u043E\u0433\u043E \u0438\u0433\u0440\u043E\u043A\u0430.",
               "V: \u0443\u0437\u043D\u0430\u0442\u044C \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442 \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u0433\u043E \u0441\u0440\u0430\u0436\u0435\u043D\u0438\u044F.",
               "T: \u0443\u0437\u043D\u0430\u0442\u044C, \u0447\u0435\u0439 \u0441\u0435\u0439\u0447\u0430\u0441 \u0445\u043E\u0434.",
-              "Ctrl+T: \u0443\u0437\u043D\u0430\u0442\u044C \u043D\u043E\u043C\u0435\u0440 \u0442\u0435\u043A\u0443\u0449\u0435\u0433\u043E \u0441\u0440\u0430\u0436\u0435\u043D\u0438\u044F \u0438 \u043B\u0438\u043C\u0438\u0442.")
+              "Ctrl+Alt+T: \u0443\u0437\u043D\u0430\u0442\u044C \u043D\u043E\u043C\u0435\u0440 \u0442\u0435\u043A\u0443\u0449\u0435\u0433\u043E \u0441\u0440\u0430\u0436\u0435\u043D\u0438\u044F \u0438 \u043B\u0438\u043C\u0438\u0442.")
           ]
         end
       end

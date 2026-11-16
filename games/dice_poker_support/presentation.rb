@@ -4,7 +4,7 @@ module GameRoomGames
 
     def describe_event(event, repository, replay, viewer)
       lines = super
-      return lines unless chip_rules?(replay.state[:options]) && event["action"] == "roll"
+      return lines unless event["action"] == "roll"
 
       entry = replay.history.find { |item| item.event_id.to_i == repository.event_id(event).to_i && item.kind == :roll }
       return lines unless entry && same_user?(entry.actor, viewer)
@@ -20,8 +20,6 @@ module GameRoomGames
     end
 
     def own_poker_hand_shortcut(state, viewer)
-      return unless chip_rules?(state[:options])
-
       player = state[:players].find { |person| same_user?(person, viewer) }
       return unless player
 

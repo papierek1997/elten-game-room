@@ -12,6 +12,9 @@ module GameRoomGames
     GameRoomServerRandom.register('roulette', %w[spin])
     def id; 'roulette'; end
     def name; _('Roulette'); end
+    def round_timing_event_ids(replay, repository:)
+      successive_round_timing_event_ids(replay, [:settlement])
+    end
     def short_description; _('Place chips on numbers or groups and spin a European, American or French wheel.'); end
     def minimum_players; 1; end
     def maximum_players; 8; end

@@ -443,7 +443,7 @@ module GameRoomGames
       when :turn
         { message: current_question_text(state) }
       when :remaining_time
-        { message: remaining_time_text(state) }
+        { message: remaining_time_text(state), modifiers: [:control, :alt] }
       when :scores
         { message: scores_text(state, sorted: true) }
       when :round_summary

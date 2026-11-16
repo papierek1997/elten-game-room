@@ -813,11 +813,15 @@ module GameRoomChangelog
         "In Hearts, a passed card disappears from your hand immediately, with a short confirmation.",
         "Blackjack lists the dealer's visible card above your own cards, labelled Dealer's card rather than placed in the header. Space draws a card and Enter stands; doubling and splitting remain available when allowed.",
         "Blackjack Dice identifies the starting player and announces a new turn even when the same player finishes one round and starts the next.",
-        "Dice Poker offers open dice without betting or hidden dice with betting. In chip mode, ante leads straight to throws, with one auction after everyone keeps a hand. Opponents hear only that a player rolls; H recalls your own hand.",
+        "Dice Poker uses hidden dice and chips. Ante leads straight to throws, with one auction after everyone keeps a hand. Opponents hear only that a player rolls; H recalls your own hand.",
         "Dice General, Balut and Yahtzee share consistent scoring sounds. Dice General and Balut show zero-point entries more clearly, and Balut explains points earned for completed rows and the overall total.",
         "Cash Auction starts with an ante of 100 points by default. The first offer must be at least the ante; later offers only need to beat the highest bid. Three consecutive auctions without a bid cost 5% of the remaining balance.",
         "In Cash Auction, payments for black chests no longer increase the question pool. The pool from earlier questions remains available for the next question.",
-        "New Cash Auction and Duck Racing tables select only the general-knowledge question set for the interface language by default, rather than remembering previous question-set selections."
+        "New Cash Auction and Duck Racing tables select only the general-knowledge question set for the interface language by default, rather than remembering previous question-set selections.",
+        "In games with a point target, S now gives the target after the current scores.",
+        "Ctrl+T reads the elapsed game time and Ctrl+Shift+T the round time, except in Countries and Cities. In Quiz and War, the former Ctrl+T action is now on Ctrl+Alt+T.",
+        "Hearts lets the host choose the point limit, with 100 points by default, and explains why a card cannot be played.",
+        "Added a sound at the end of rounds that lacked one, without replacing existing round or game-ending sounds."
       ].freeze
     ).freeze
   ].freeze

@@ -53,6 +53,18 @@ module GameRoomGames
     def recording_audio_kind; 'audio_ball'; end
     def shortcut_features; []; end
 
+    def score_target_text(replay)
+      sets = replay.state[:options]['sets_to_win']
+      points = n_('Score limit: %{count} point.', 'Score limit: %{count} points.', POINTS_TO_WIN) % {count: POINTS_TO_WIN}
+      return points if sets == 1
+
+      (n_('First to %{count} set.', 'First to %{count} sets.', sets) % {count: sets}) + ' ' + points
+    end
+
+    def round_timing_event_ids(replay, repository:)
+      successive_round_timing_event_ids(replay, [:set])
+    end
+
     def _(source); GameRoomContent.utf8(super(source)); end
     def participant_name(player); GameRoomContent.utf8(super(player)); end
 
@@ -258,7 +270,7 @@ module GameRoomGames
         players: replay.players.map { |player| participant_name(player) }, viewer: player_index(replay.players, viewer),
         scores: replay.state[:scores], sets: replay.state[:sets], set_number: replay.state[:set_number], finished: replay.finished?,
         teams:team_assignment(replay.state[:options],players:replay.players)&.seats,
-        score_labels:score_labels(replay.state[:options],replay.players))
+        score_labels:score_labels(replay.state[:options],replay.players), score_target_text: score_target_text(replay))
     end
 
     def custom_game_shortcuts(replay, viewer)

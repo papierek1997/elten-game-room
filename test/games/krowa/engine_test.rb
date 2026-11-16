@@ -42,8 +42,11 @@ tower.guess("Alice", "las"); tower.automatic
 assert(tower.replay.current_player == "Bob", "tower turn did not advance")
 tower.guess("Bob", "kot"); tower.automatic; tower.automatic
 assert(tower.replay.state[:completed] == [{word: "kot", attempts: 2}], "tower completion")
+first, last = tower.game.round_timing_event_ids(tower.replay, repository: tower.repository)
+assert(first && last == tower.events.last['id'], 'word round duration does not stop at the accepted solution')
 tower.automatic
 assert(tower.replay.current_player == "Alice" && tower.replay.state[:round] == 2, "next word turn")
+assert(tower.game.round_timing_event_ids(tower.replay, repository: tower.repository).last.nil?, 'new word keeps the previous round end time')
 assert(tower.surrender("Bob") == :not_host, "non-host ended tower")
 tower.surrender("Alice"); tower.automatic
 assert(tower.replay.finished?, "tower surrender")

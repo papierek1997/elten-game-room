@@ -20,6 +20,15 @@ module GameRoomGames
 
     def id; "backgammon"; end
     def name; _("Backgammon"); end
+    def round_ended?(history:, **context)
+      history.any? { |entry| entry.key.to_s.start_with?('game:') } || super(history: history, **context)
+    end
+    def score_target(replay); replay.state[:target]; end
+
+    def round_timing_event_ids(replay, repository:)
+      ids = replay.history.filter_map { |entry| entry.event_id if entry.key.to_s.start_with?('game:') }
+      replay.finished? ? [ids[-2], ids[-1]] : [ids[-1], nil]
+    end
     def short_description; _("Move your checkers home and bear them all off before your opponent."); end
     def notification_option_keys(options)
       ['variant', *(options['score_limit'].to_i.positive? ? ['score_limit'] : []), *(options['doubling_cube'] ? ['doubling_cube'] : [])]

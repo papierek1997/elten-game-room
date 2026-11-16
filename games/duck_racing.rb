@@ -16,6 +16,8 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class DuckRacing < Base
+    def round_timing_start_kinds; %i[challenge quiz_question]; end
+    def round_timing_end_kinds; [:challenge_result]; end
     include PublicHistoryAnnouncements
     include GameRoomDuckRacing::Bots
     Logic = GameRoomDuckRacing

@@ -34,6 +34,7 @@ module GameRoomGames
     def supports_saved_games?; false; end
     def recording_audio_kind; 'axel_pong'; end
     def shortcut_features; []; end
+    def score_target(replay); points_to_win(replay.state[:options]); end
 
     def _(source); GameRoomContent.utf8(super(source)); end
     def participant_name(player); GameRoomContent.utf8(super(player)); end
@@ -240,7 +241,7 @@ module GameRoomGames
       GameSurfaces::PongSpec.new(game_id: id, players: replay.players.map { |p| participant_name(p) },
         viewer: player_index(replay.players, viewer), scores: replay.state[:scores],
         score_labels: replay.state[:options]['team_size'] == 2 ? score_labels(replay.state[:options], replay.players) : nil,
-        header: _('Pong playfield'), finished: replay.finished?)
+        header: _('Pong playfield'), finished: replay.finished?, score_target_text: score_target_text(replay))
     end
 
     def custom_game_shortcuts(replay, viewer)

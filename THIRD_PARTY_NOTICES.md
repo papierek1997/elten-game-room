@@ -756,6 +756,17 @@ modifications and source links are in
 [CC0](LICENSES/CC0-1.0.txt) and [CC BY 3.0](LICENSES/CC-BY-3.0.txt).
 The authors do not endorse this application.
 
+### Shared end-of-round cue
+
+`Audio/round_finished.opus` uses “Finished.wav” by **deleted_user_877451**,
+Freesound [76426](https://freesound.org/s/76426/), under
+[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+The user supplied the complete HQ Ogg preview. It was converted to 144 kb/s
+VBR Opus at 48 kHz with 20 ms frames, preserving both channels, level and
+the whole recording, without normalization or trimming. The full licence is
+in [LICENSES/CC-BY-3.0.txt](LICENSES/CC-BY-3.0.txt).
+The author does not endorse this application.
+
 ### Score-sheet games — zero score
 
 `Audio/five_dice_zero.opus` uses “DENY_SOUND.mp3” by **ciapaqua**,

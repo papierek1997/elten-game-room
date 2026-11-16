@@ -44,12 +44,15 @@ end
 
 game = GameRoomGames::DicePoker.new
 session = dice_session(game, throws: 2)
-events = [dice_event(1, "Alice", "roll", "1,2,3,4,5"), dice_event(2, "Alice", "stand", "1")]
-winning = game.replay(session, events + [dice_event(3, "Bob", "roll", "2,3,4,5,6")], repo)
-check(choice(game, winning, "Bob")["action"] == "score", "Bot rerolled a guaranteed winning straight")
-losing = game.replay(session, events + [dice_event(3, "Bob", "roll", "2,3,4,5,5")], repo)
+events = [dice_event(1, 'Alice', 'ante', '1'), dice_event(2, "Alice", "roll", "1,2,3,4,5"), dice_event(3, "Alice", "stand", "1")]
+winning = game.replay(session, events + [dice_event(4, "Bob", "roll", "6,6,6,6,6")], repo)
+check(choice(game, winning, "Bob")["action"] == "score", "Bot rerolled the strongest possible hand")
+losing = game.replay(session, events + [dice_event(4, "Bob", "roll", "2,3,4,5,5")], repo)
 reroll = choice(game, losing, "Bob")
-check(reroll["action"] == "roll" && %w[d3 d4].include?(reroll["die_ids"]), "Bot broke an open straight to keep a pair")
+changed = events.map(&:dup)
+changed[1]['value'] = '6,6,6,6,6'
+concealed = game.replay(session, changed + [dice_event(4, "Bob", "roll", "2,3,4,5,5")], repo)
+check(choice(game, concealed, 'Bob') == reroll, 'Bot used the other hidden hand when choosing dice')
 
 game = GameRoomGames::Go.new
 session = dice_session(game, variant: "atari")

@@ -106,14 +106,15 @@ verify_auction_audio(build.call, [["all_in", "poker_all_in"]])
 game = GameRoomGames::DicePoker.new
 session = {"options" => JSON.generate(game.default_options.merge("round_limit" => 1))}
 %w[2,3,4,5,6 1,1,1,1,1].each do |other|
-  events = [%w[Alice roll 1,1,1,1,1], %w[Alice stand 1], ["Bob", "roll", other], %w[Bob stand 1]]
+  events = [%w[Alice ante 1], %w[Alice roll 1,1,1,1,1], %w[Alice stand 1], ["Bob", "roll", other], %w[Bob stand 1],
+    %w[Alice bet check|0], %w[Bob bet check|0]]
     .map.with_index { |args, index| BlackjackChecksSupport.event(index + 1, *args) }
   replay = game.replay(session, events, repo)
-  text = replay.history.find { |entry| entry.kind == :round }.text
+  text = replay.history.find { |entry| entry.kind == :pot }.text
   if other == "1,1,1,1,1"
-    check(text.include?("Remis: Alice, Bob") && replay.state[:scores].values == [1, 1], "Tie result or points are wrong")
+    check(text.include?('Alice, Bob') && text.include?('dzielą') && replay.state[:chips].values == [1000,1000], "Tied chip pot announcement or settlement is wrong")
   else
-    check(text.include?("Alice wygrywa i zdobywa punkt.") && replay.state[:scores].values == [1, 0], "Single winner announced as a tie")
+    check(text.include?('Alice wygrywa pulę') && replay.state[:chips].values == [1010,990], "Single pot winner announced as a tie")
   end
 end
 puts "New game presentation: Space handler, blackjack visibility, auction effects through the shared presenter and Polish dice poker results."

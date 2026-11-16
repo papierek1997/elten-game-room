@@ -180,6 +180,15 @@ Do pole Chat napište zprávu a odešlete ji Enterem. Před partií i během ní
 může mít jedna zpráva až 2000 znaků. Textová pole zachovávají obvyklé
 ovládání pro čtení, označování a kopírování textu.
 
+Ve hrách s bodovým limitem ho S přečte za výsledky. U stolu Ctrl+T oznámí,
+jak dlouho trvá partie, a Ctrl+Shift+T délku aktuálního nebo posledního kola.
+Pokud hra nemá samostatná kola, obě zkratky se týkají celé partie.
+Přestávky při pozastavené hře se nezapočítávají.
+
+Výjimkou jsou Státy a města: tyto údaje o délce hry nenabízejí a Ctrl+T nadále
+čte zbývající čas na odpovědi. V Quiz Party ho zjistíte pomocí Ctrl+Alt+T;
+ve Válce tato zkratka přečte číslo souboje a jeho limit.
+
 Všechny zkratky si nemusíte pamatovat:
 
 - F1 zobrazí nápovědu k aktuálnímu místu a dostupným akcím.

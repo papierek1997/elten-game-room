@@ -19,7 +19,7 @@ repo.players.each do |p|
   events << dice_event(events.size+1,p,'stand','1')
 end
 r = game.replay(session,events,repo)
-check(r.state[:phase] == :betting && r.state[:betting_stage] == 2,'Missing betting after throws')
+check(r.state[:phase] == :betting && r.history.count { |entry| entry.kind == :betting } == 1,'Missing single betting round after throws')
 check(game.action_for(native_action,r,'Alice').first == :ok,'Actual shortcut action fails the final auction interface')
 events << dice_event(events.size+1,'Alice','bet','raise|20')
 events << dice_event(events.size+1,'Bob','bet','call|20')

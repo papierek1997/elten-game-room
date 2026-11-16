@@ -132,7 +132,7 @@ module GameSurfaces
     keyword_init: true
   )
 
-  AudioBallSpec = Struct.new(:game_id, :header, :players, :viewer, :scores, :sets, :set_number, :finished, :teams, :score_labels, keyword_init: true)
+  AudioBallSpec = Struct.new(:game_id, :header, :players, :viewer, :scores, :sets, :set_number, :finished, :teams, :score_labels, :score_target_text, keyword_init: true)
 
   DartsSpec = Struct.new(:game_id, :header, :players, :viewer, :current_player, :throw_index,
     :round, :dart, :difficulty, :scores, :active, :finished, :training, keyword_init: true)
@@ -198,7 +198,7 @@ module GameSurfaces
     keyword_init: true
   )
 
-  PongSpec = Struct.new(:game_id, :header, :players, :viewer, :scores, :finished, :score_labels, keyword_init: true)
+  PongSpec = Struct.new(:game_id, :header, :players, :viewer, :scores, :finished, :score_labels, :score_target_text, keyword_init: true)
 
   QuestionOption = Struct.new(:id, :label, :value, keyword_init: true)
 

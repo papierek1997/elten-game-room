@@ -15,6 +15,13 @@ module GameRoomGames
 
     def id; "blackjack_dice"; end
     def name; _("Blackjack Dice"); end
+    def round_ended?(history:, **context)
+      history.any? { |entry| entry.kind == :round } || super(history: history, **context)
+    end
+
+    def round_timing_event_ids(replay, repository:)
+      successive_round_timing_event_ids(replay, %i[round settlement])
+    end
     def short_description; _("Roll towards 21, stop before going bust and outscore the other players."); end
     def minimum_players; 2; end
     def maximum_players; 8; end

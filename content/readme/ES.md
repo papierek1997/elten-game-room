@@ -187,6 +187,15 @@ Escribe en el campo Chat y pulsa Enter para enviar el mensaje. Puede tener
 hasta 2000 caracteres, antes de la partida o durante ella. Los campos de texto
 mantienen los controles habituales de lectura, selección y copia.
 
+En los juegos con límite de puntos, S lo anuncia después de los resultados.
+En una mesa, Ctrl+T lee la duración de la partida y Ctrl+Mayús+T la de la
+ronda actual o la última. Si el juego no tiene rondas separadas, ambos atajos
+se refieren a la partida completa. El tiempo en pausa no se cuenta.
+
+Países y ciudades es la excepción: no tiene estas consultas de duración y
+Ctrl+T sigue indicando el tiempo restante para responder. En Quiz Party se
+consulta con Ctrl+Alt+T; en Guerra, este atajo lee el enfrentamiento y su límite.
+
 No necesitas memorizar todos los atajos:
 
 - F1 muestra la ayuda del lugar actual y las acciones disponibles.

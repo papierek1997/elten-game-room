@@ -88,11 +88,8 @@ end
   check(signatures[0] == signatures[1], "#{variant}: bot reads opponents' hidden dice or varies its RNG consumption")
 end
 
-session = dice_session(game, round_limit: 1)
-public_roll = dice_event(1, "Alice", "roll", "1,2,3,4,6")
-public_replay = game.replay(session, [public_roll], repo)
-check(game.describe_event(public_roll, repo, public_replay, "Observer") == ["Alice rolls 1, 2, 3, 4, 6: High card."], "Open no-betting mode concealed the dice")
-check(game.notification_option_keys({}).include?("scoring"), "Table summary omits whether dice are hidden")
+check(game.option_definitions.none? { |definition| definition.key == 'scoring' }, 'Removed public-dice variant is still selectable')
+check(game.notification_option_keys({}) == ['variant'], 'Table summary still exposes the removed scoring selector')
 
 # Independently derive the unknown opponent model's CDF by retaining the best
 # of two independent full throws, including exact ties. Do not use our helper

@@ -180,6 +180,15 @@ Type in the Chat field and press Enter to send a message of up to
 2000 characters, before or during a game. Text fields retain their usual
 reading, selection and copying controls.
 
+In games with a point limit, S reads it after the scores. At a table, Ctrl+T
+reads the game duration and Ctrl+Shift+T the duration of the current or last
+round. In games without separate rounds, both refer to the whole game.
+Paused time is not counted.
+
+Countries and Cities is the exception: it has no duration readouts, and Ctrl+T
+still reads the answer time remaining. In Quiz Party, use Ctrl+Alt+T for the
+remaining time; in War, that shortcut reads the battle number and limit.
+
 You do not need to memorise every shortcut:
 
 - F1 shows help for your current location and the available actions.

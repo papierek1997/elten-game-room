@@ -9,6 +9,7 @@ GameRoomServerRandom.register('uno', ['deal'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class Uno < CardGame
+    def standard_round_end_sound?; false; end
     def tournament_small_point_policy(options:)
       tournament_target_small_points(normalize_options(options).fetch('score_limit'), order: 'lower')
     end

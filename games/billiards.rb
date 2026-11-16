@@ -14,6 +14,17 @@ module GameRoomGames
     B = GameRoomBilliards
     def id; 'billiards'; end
     def name; _('Billiards'); end
+
+    def round_ended?(before_replay:, after_replay:, **context)
+      (after_replay.state[:phase] == :rack_end && before_replay.state[:phase] != :rack_end) ||
+        super(before_replay: before_replay, after_replay: after_replay, **context)
+    end
+
+    def score_target(replay)
+      options = replay.state[:options]
+      return if options['discipline'] == 'english' && options['english_limit'] == 'time'
+      options['point_target'] if %w[straight english carom one_cushion three_cushion].include?(options['discipline'])
+    end
     def short_description; _('Play pool, snooker, English billiards or carom with spoken aiming and simulated ball contacts.'); end
     def notification_option_keys(options)
       options['discipline'] == 'friendly' ? %w[discipline layout] : ['discipline']
@@ -162,7 +173,7 @@ module GameRoomGames
       input = GameRoomReplayCache::Input.new(session, events, repository)
       options = options_from_json(session['options'])
       @replay_cache ||= GameRoomReplayCache.new
-      state, indices, history = @replay_cache.reduce(input, context: options) do |checkpoint, prefix|
+      state, indices, history, timing = @replay_cache.reduce(input, context: options) do |checkpoint, prefix|
         initial = {balls: starting_balls(options['layout']), options: options,
           game_id: session['__id'] || session['id'], revision: 0, shots: 0, scores: Array.new(input.players.length, 0), turn: 0, phase: :playing, last: nil, undo: nil, seen: {}}
         if !checkpoint && B::Rules.competition?(options)
@@ -170,7 +181,7 @@ module GameRoomGames
           initial.merge!(racks: Array.new(input.players.length, 0), rack_number: 0, winner: nil)
           B::Rules.setup(initial)
         end
-        state, indices, history = checkpoint || [initial, [], [starting_history(input.players)]]
+        state, indices, history, timing = checkpoint || [initial, [], [starting_history(input.players)], [nil, nil]]
         input.events.drop(prefix).each_with_index do |event, offset|
           break if state[:phase] == :finished
           actor, event_id = input.actor_of(event), input.event_id(event)
@@ -181,6 +192,7 @@ module GameRoomGames
           next unless valid_action?(event['action'], data, state, input.players.length)
           time = event['created_at'] && GameRoomSessionClock.from_server(session, event['created_at'].to_i, event: event)
           next unless timed_event_allowed?(state, event['action'], time)
+          previous_rack = state[:rack_number]
           if clock_action
             apply_clock_event(state, event['action'], time)
           else
@@ -189,16 +201,25 @@ module GameRoomGames
             state[:english_started_at] = nil if next_frame && timed_billiards?(state)
           end
           state[:revision] += 1
+          timing = billiards_round_timing(timing, previous_rack, state, event_id)
           state[:seen][event_id] = true
           indices << prefix + offset
           history << HistoryEntry.new(key: "billiards:#{event_id}", event_id: event_id, actor: actor,
             kind: :move, text: event_text(event['action'], actor, state, data, input.players))
         end
-        [state, indices, history]
+        [state, indices, history, timing]
       end
-      Replay.new(players: input.players, current_player: state[:phase] == :finished ? nil : input.players[state[:turn]],
+      result = Replay.new(players: input.players, current_player: state[:phase] == :finished ? nil : input.players[state[:turn]],
         winner: state[:winner] && input.players[state[:winner]], draw: state[:phase] == :finished && state[:winner].nil?, board: nil, state: state, history: history,
         accepted_events: indices.map { |i| input.events.fetch(i) })
+      result.round_timing = timing
+      result
+    end
+
+    def billiards_round_timing(timing, previous_rack, state, event_id)
+      return [event_id, nil] if previous_rack != state[:rack_number]
+      return [timing.first, event_id] if state[:phase] == :rack_end && timing.last.nil?
+      timing
     end
 
     def action_for(selection, replay, actor, context: nil)

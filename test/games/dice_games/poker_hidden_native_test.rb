@@ -38,6 +38,16 @@ context = GameRoomGames::ActionContext.new(random_source: GameRoomRandom::Seeded
 
 %w[en pl cs es ru].each do |language|
   GameRoomTestLocalization.use_language(language)
+  announced = game.replay(session, events, repo)
+  expected = {
+    'en'=>'All hands are set. Betting begins.',
+    'pl'=>'Wszyscy wybrali układy. Czas na licytację.',
+    'cs'=>'Všichni si ponechali svou kombinaci. Začíná sázení.',
+    'es'=>'Todos han elegido su combinación. Empiezan las apuestas.',
+    'ru'=>'Все выбрали комбинации. Начинаются ставки.'
+  }.fetch(language)
+  assert(game.describe_event(events.last, repo, announced, 'Alice').count(expected) == 1,
+    "#{language}: betting announcement is missing, repeated or still says second betting round")
   driver, layout, actions = poker_controls(game, before, "Alice")
   driver.frame(layout.form)
   driver.frame(layout.form, driver.tap(0x0D))

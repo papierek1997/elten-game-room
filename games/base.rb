@@ -63,6 +63,18 @@ module GameRoomGames
       default_cue
     end
 
+    # Existing game-owned round feedback keeps its audience and tie policy.
+    def standard_round_end_sound?; true; end
+
+    # A round boundary is a public settlement, not a turn, draw or new deal.
+    # Games with other boundary vocabularies override this pure predicate.
+    def round_ended?(before_replay:, after_replay:, history:)
+      return true if history.any? { |entry| %i[round_result round_end round_score hand_result].include?(entry.kind) }
+      before_phase = before_replay.state&.[](:phase)
+      after_phase = after_replay.state&.[](:phase)
+      after_phase == :round_complete && before_phase != :round_complete
+    end
+
     # A new participant inherits the existing place, never a rewritten event log.
     # Private commitments cannot be reconstructed by a different computer.
     # Games with a private protocol must explicitly opt in at a safe boundary.
@@ -685,4 +697,5 @@ require_relative "base/teams"
 require_relative "base/bots"
 
 require_relative "base/shortcuts"
+require_relative "base/information"
 require_relative "base/tournaments"

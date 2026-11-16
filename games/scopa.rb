@@ -14,6 +14,7 @@ module GameRoomGames
 
     def id; 'scopa'; end
     def name; 'Scopa'; end
+    def round_timing_end_kinds; [:score]; end
     def maximum_players; 6; end
     def short_description
       _("Capture cards by matching their values, and clear the table for extra points.")

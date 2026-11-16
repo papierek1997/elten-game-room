@@ -16,6 +16,7 @@ require_relative "room_presentation"
 require_relative "participant_menu"
 require_relative "network_errors"
 require_relative "game_session_clock"
+require_relative "game_duration"
 require_relative "game_session_runner"
 require_relative "presentation_replay"
 require_relative "game_background_presentation"
@@ -585,7 +586,7 @@ class GameScreen
   def activate_game_shortcut(shortcut, surface = nil, replay: nil)
     case shortcut.kind
     when :announcement
-      message = shortcut.message
+      message = game_announcement_text(shortcut, replay)
       hand_id = shortcut.payload['hand_id']
       if hand_id && replay && @game && surface.respond_to?(:displayed_hand_cards)
         cards = surface.displayed_hand_cards(hand_id)
@@ -632,6 +633,14 @@ class GameScreen
     else
       raise ArgumentError, "unsupported game shortcut kind: #{shortcut.kind}"
     end
+  end
+
+  def game_announcement_text(shortcut, replay)
+    scope = shortcut.payload['duration_scope']
+    return shortcut.message unless %w[game round].include?(scope)
+
+    GameRoomDuration.text(scope, game: @game, replay: replay, session: @session,
+      repository: @repository, now: @session && action_time)
   end
 
   # The first selection is a small public event. Once it has been accepted,
@@ -822,7 +831,7 @@ class GameScreen
     unless announcements.empty?
       raise ArgumentError, 'Grid inspection accepts announcement shortcuts only' unless announcements.all? { |key| key.kind == :announcement }
       announcements = announcements.uniq { |key| [key.key, key.modifiers] }
-      bind_game_shortcuts(form, surface.fields, announcements) { |key| speak(key.message) }
+      bind_game_shortcuts(form, surface.fields, announcements) { |key| speak(game_announcement_text(key, replay)) }
     end
     if @layout&.form&.game_room_pending_operation
       @layout.form.open_game_room_background_help(form)

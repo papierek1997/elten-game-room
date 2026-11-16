@@ -13,6 +13,7 @@ module GameRoomGames
     include CribbagePrivate
     def id; "cribbage"; end
     def name; _('Cribbage'); end
+    def score_target(_replay); 121; end
     def minimum_players; 2; end
     def maximum_players; 2; end
     def short_description; _('Score for card combinations and play to 121 points.'); end

@@ -17,6 +17,7 @@ module GameRoomGames
   # reconstructed from the public deal seed, while only information intended
   # by the rules is announced to other players.
   class ThreeFiveEight < Base
+    def standard_round_end_sound?; false; end
     CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def player_spatial_audio?; true; end
     RANKS = %w[2 3 4 5 6 7 8 9 T J Q K A].freeze

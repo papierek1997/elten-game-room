@@ -16,6 +16,19 @@ module GameRoomGames
 
     def id; 'darts'; end
     def name; _('Darts'); end
+    def round_ended?(before_replay:, after_replay:, **context)
+      previous, current = before_replay.state&.[](:round), after_replay.state&.[](:round)
+      (previous.is_a?(Integer) && current.is_a?(Integer) && current > previous) ||
+        super(before_replay: before_replay, after_replay: after_replay, **context)
+    end
+
+    def round_timing_event_ids(replay, repository:)
+      previous = (replay.state[:round] - 1) * replay.players.size * 3 - 1
+      event = replay.accepted_events.find do |item|
+        item['action'] == 'darts_throw' && THROW_PATTERN.match(item['value'])[1].to_i == previous
+      end if previous >= 0
+      [event && repository.event_id(event), nil]
+    end
     def short_description; _('Guide an unstable audio cursor and throw three darts as close to the centre as possible.'); end
     def minimum_players; 1; end
     def maximum_players; 8; end

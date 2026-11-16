@@ -509,6 +509,8 @@ module GameRoomGames
       [:turn, :remaining_time, :scores, :round_summary]
     end
 
+    def duration_shortcuts?; false; end
+
     def shortcut_feature_data(feature, replay, viewer)
       state = replay.state
       case feature.to_sym

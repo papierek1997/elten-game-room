@@ -21,7 +21,7 @@ module GameRoomSpatialSound
   DISTANT_LOW_PASS = 9500.0
   DISTANT_REVERB = { dry_mix: 1.0, wet_mix: 0.3, room_size: 0.35, damping: 0.6, width: 1.0 }.freeze
   # Cues about the listener or the whole table, never about one seat.
-  CENTRED_CUES = %w[win_party lose_party card-shuffle poker_pot].freeze
+  CENTRED_CUES = %w[win_party lose_party card-shuffle poker_pot round_finished].freeze
   # HRTF makes side seats sound farther sideways than they are and seats
   # behind sound odd, so the others share a front arc of this half-width in
   # degrees, by table size: three players about 11 and 1 o'clock, four about

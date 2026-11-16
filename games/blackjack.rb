@@ -19,6 +19,9 @@ module GameRoomGames
 
     def id; "blackjack"; end
     def name; _("Blackjack"); end
+
+    def round_timing_start_kinds; [:ante]; end
+    def round_timing_end_kinds; [:settlement]; end
     def short_description; _("Beat the automatic dealer without exceeding 21; play with virtual table chips."); end
     def minimum_players; 2; end
     def maximum_players; 6; end

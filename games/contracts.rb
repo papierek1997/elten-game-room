@@ -228,6 +228,10 @@ module GameRoomGames
     :state,
     keyword_init: true
   ) do
+    # Optional presentation-only round boundaries, reconstructed from accepted
+    # events. Not another rule-state member or a saved-game wire field.
+    attr_accessor :round_timing
+
     def finished?
       winner != nil || draw == true
     end

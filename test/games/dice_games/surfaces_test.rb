@@ -12,7 +12,8 @@ checks = {forms: 0, checkbox_states: 0, labels: 0}
   GameRoomTestLocalization.use_language(language)
   poker = GameRoomGames::DicePoker.new
   session = {'__id'=>71, 'options'=>JSON.generate(poker.normalize_options({}))}
-  replay = poker.replay(session, [], repo)
+  ante = {'id'=>1,'actor'=>'Alice','action'=>'ante','value'=>'1'}
+  replay = poker.replay(session, [ante], repo)
   poker.game_shortcuts(replay,'Alice')
   context = GameRoomGames::ActionContext.new(session_id:71, random_source:GameRoomRandom::SeededSource.new(57))
   surface = GameSurfaces.build(poker.surface_spec(replay, 'Alice'))
@@ -21,8 +22,8 @@ checks = {forms: 0, checkbox_states: 0, labels: 0}
   surface.fields.first.trigger(:select, [0])
   status, plan = poker.action_for(action, replay, 'Alice', context:context)
   raise 'Initial poker Enter is not a real roll' unless status == :ok
-  event = {'id'=>1,'actor'=>'Alice','action'=>plan.events.first.action,'value'=>plan.events.first.value}
-  played = poker.replay(session,[event],repo)
+  event = {'id'=>2,'actor'=>'Alice','action'=>plan.events.first.action,'value'=>plan.events.first.value}
+  played = poker.replay(session,[ante,event],repo)
   shortcuts = poker.game_shortcuts(played,'Alice')
   raise 'Shared turn key was replaced' unless shortcuts.any? { |shortcut| shortcut.key == 't' && shortcut.kind == :announcement }
   raise 'Keep hand key missing' unless shortcuts.any? { |shortcut| shortcut.key == 'k' && shortcut.kind == :action }

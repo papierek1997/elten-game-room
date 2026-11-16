@@ -111,6 +111,7 @@ module GameRoomGames
         # labels and behaviour. Add only the missing shared hand commands.
         existing = result.map { |shortcut| [shortcut.key, shortcut.modifiers.to_a] }
         result += hand_sort_shortcuts(replay, viewer).reject { |shortcut| existing.include?([shortcut.key, shortcut.modifiers.to_a]) }
+        result = information_shortcuts(result, replay)
         keys = result.map { |shortcut| [shortcut.key, shortcut.modifiers.to_a] }
         raise ArgumentError, "game shortcut keys must be unique" if keys.uniq.length != keys.length
 

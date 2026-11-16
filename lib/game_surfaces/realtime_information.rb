@@ -11,7 +11,7 @@ module GameSurfaces
     def pong(command, spec:, snapshot:, status: '', listening_seat: nil)
       case command
       when 'scores'
-        if spec.score_labels
+        scores = if spec.score_labels
           spec.score_labels.each_with_index.map do |label, i|
             _('%{team}. Points: %{points}.') % {team: label, points: spec.scores[i]}
           end.join(' ')
@@ -20,6 +20,7 @@ module GameSurfaces
             "#{spec.players[i]}, #{spec.scores[i]}"
           end.join('. ')
         end
+        [scores, spec.score_target_text].compact.reject(&:empty?).join("\n")
       when 'server'
         text = if snapshot && spec.score_labels
           _('%{server} will serve against %{receiver}.') % {
@@ -53,10 +54,11 @@ module GameSurfaces
     def audio_ball(command, spec:, snapshot:, status: '')
       case command
       when 'scores'
-        (spec.score_labels || spec.players).each_with_index.map do |player, side|
+        scores = (spec.score_labels || spec.players).each_with_index.map do |player, side|
           _('%{player}. Points: %{points}. Sets: %{sets}.') % {
             player: GameRoomContent.utf8(player), points: spec.scores[side], sets: spec.sets[side]}
         end.join(' ')
+        [scores, spec.score_target_text].compact.reject(&:empty?).join("\n")
       when 'server'
         server = snapshot && snapshot['server']
         text = ''

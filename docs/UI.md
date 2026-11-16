@@ -256,6 +256,73 @@ returns without rebuilding the form.
 
 ## Help during a game
 
+### Score targets and elapsed time
+
+`Base::Information` appends `score_target_text(replay)` once, after the plain-S
+score announcement. The default reads visible, declared `score_limit` or
+`target_score` controls without expanding stored options; nonpositive or absent
+targets produce no suffix. Games with fixed or compound goals override
+`score_target` or `score_target_text`. Pong and Audio Ball pass the same text
+through their surface specifications to `RealtimeInformation`, so a requested
+score readout in live play or a recording has one owner. Automatic point speech
+does not gain this suffix.
+
+Ctrl+T reads game duration and Ctrl+Shift+T the current or last round. These
+are ordinary read-only announcement shortcuts carrying `duration_scope`; the
+screen resolves their text at activation, not when the form is built. Grid
+inspection reuses that resolver. Countries and Cities opts out through
+`duration_shortcuts?` and keeps its original Ctrl+T countdown. Quiz's countdown
+and War's battle number use Ctrl+Alt+T. Existing modified informational shortcuts
+remain available while typing; ordinary letters and native read-only text
+commands keep their usual handling.
+
+`GameRoomDuration` uses the current `GameRoomSessionClock` and authenticated
+accepted-event timestamps, preserving archived logical times, event-time pause
+offsets and a frozen session. Finished games stop at their last accepted event.
+It does no network/file access, reducer replay, polling or periodic refresh.
+Games expose their semantic boundaries through `round_timing_event_ids(replay,
+repository:)`. The default uses deal/round-start history and declared end kinds;
+`round_timing_start_actions` supports adapters such as Mahjong. A completed
+round waiting in the declared `round_timing_end_phases` (by default,
+`round_complete`) stops at its last accepted event when no end-history kind
+exists, including a thrown-in deal. Explicit hooks
+cover immediate settlement-to-next-round games, Darts and Audio Ball sets.
+An adapter already decoding compound actions, such as Typing Mania, may attach
+the two accepted boundary IDs as `Replay#round_timing` during reconstruction.
+This optional copied metadata is outside rule state and the archive wire; a
+restored game derives it again. Never decode a large action tape or rerun the
+reducer from the shortcut callback just to find a boundary.
+Billiards retains the same two IDs beside its owned reducer checkpoint,
+resetting on a new rack and stopping at `rack_end`, without changing rule state.
+Without separate round boundaries, the game is treated as one round. Missing
+timestamps produce an unavailable message, never a fabricated elapsed time.
+
+Tests: `test/ui/game_information_test.rb` and
+`test/ui/game_information_native_test.rb` cover logical time, late-bound native
+shortcuts, one utterance, focus/drafts, all five languages and the exception.
+Hearts' limit and specific refusals are checked by
+`test/games/hearts/limits_and_errors_test.rb`. Its shared
+`DealtCardGame#illegal_card_status` hook runs only after turn, card ownership and
+legal-card checks; other games retain the ordinary follow-suit refusal.
+
+### End-of-round feedback
+
+The shared event-sound path adds `round_finished` when `Base#round_ended?`
+identifies a new public round settlement and that event has no existing
+completion cue. Games already owning a round-feedback policy opt out through
+`standard_round_end_sound?`, preserving their existing audience and tie behavior
+even when that policy intentionally produces no cue for one viewer.
+The default recognizes round-result/end history and entering
+`round_complete`; games with another public vocabulary override the pure
+predicate. It does not infer a round from a new deal, a turn change or scoring
+an ordinary move. Existing round wins/losses, pot payouts, Taboo's end signal
+and final party feedback keep their own sounds. Cold reconstruction, a repeated
+accepted event and unchanged refresh add nothing. The fallback is one ordinary
+game effect, centred for everyone, with the same sound preferences and lifetime
+as other effects; it adds no timer, polling, file read or server write.
+
+### Inspecting score grids
+
 Score-sheet games may use `GameShortcut` kind `grid_preview` with a `GridSpec`
 as `default_value`. The shared modal uses the ordinary native grid and returns
 its action through the existing move validation; Escape returns no action.

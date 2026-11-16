@@ -150,6 +150,7 @@ module GameRoomGames
         scores: players.to_h { |player| [player, 0] }, owner: session['__table_owner'] || session['__insertion_user'] || players.first,
         winner: nil, draw: false}
       history, accepted = [starting_history(players)], []
+      round_timing = nil
       GameRoomActionPayload.each(events, id, repository, session) do |data, actor, batch|
         if %w[text_part save_begin save_cancel save_resume].include?(data['action'])
           next unless batch.all? { |event| same_user?(event['__insertion_user'] || actor, event['__authority_user'] || state[:owner]) }
@@ -157,6 +158,11 @@ module GameRoomGames
         next unless apply(state, data, actor)
         accepted.concat(batch)
         event_id = repository.event_id(batch.last)
+        if data['action'] == 'start'
+          round_timing = [event_id, nil]
+        elsif round_timing && !round_timing.last && %i[between finished].include?(state[:phase])
+          round_timing[1] = event_id
+        end
         message = case data['action']
         when 'start'
           _('Round %{round}.') % {round: state[:round]}
@@ -178,8 +184,10 @@ module GameRoomGames
           history << result_history(event_id: event_id, winner: state[:winner], draw: state[:draw])
         end
       end
-      Replay.new(board: nil, players: players, current_player: nil, state: state,
+      result = Replay.new(board: nil, players: players, current_player: nil, state: state,
         accepted_events: accepted, history: history, winner: state[:winner], draw: state[:draw])
+      result.round_timing = round_timing
+      result
     end
 
     def action_for(selection, replay, actor, context: nil)

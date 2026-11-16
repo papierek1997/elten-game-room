@@ -36,6 +36,7 @@ players.each { |player| events << dice_event(events.size+1, player, 'reveal', '1
 finished = game.replay(session, events, repo)
 check(finished.finished? && finished.winner == 'Bob' && finished.state[:counts] == {'Alice'=>0,'Bob'=>1,'Carol'=>0}, "RDR exact call did not penalize every opponent")
 check(finished.accepted_events == events && finished.state[:answer_cleanup][:receipts].values.first.size == 3, "Disclosure receipts missing")
+check(game.round_timing_event_ids(finished, repository: repo) == [4, events.last['id']], "Final Liar's Dice round duration lost its boundaries")
 check(game.eliminated_from_game?(finished, 'Carol'), "Permanent elimination not exposed")
 
 perudo = dice_session(game, variant: 'perudo', starting_dice: 2, calza: true)
@@ -46,6 +47,7 @@ check(game.action_for({'action'=>'exact','round'=>1,'bid_index'=>1}, perudo_repl
 perudo_events << dice_event(6, 'Bob', 'challenge', '1:1')
 players.each { |player| perudo_events << dice_event(perudo_events.size+1, player, 'reveal', '1:'+GameRoomLiarsDiceSecrets.encode(seeds[player]+nonce)) }
 after = game.replay(perudo, perudo_events, repo)
+check(game.round_timing_event_ids(after, repository: repo) == [4, perudo_events.last['id']], "Completed round clock advances while awaiting new dice")
 check(after.state[:counts]['Alice'] == 1 && after.state[:starter] == 'Alice' && after.state[:palifico] && after.state[:palifico_used] == ['Alice'], "First one-die loss did not start Palifico")
 check(game.participant_replacement_error(game.replay(perudo, commits.take(1), repo), player: 'Alice') != nil, "Pending secret replacement allowed")
 check(game.participant_replacement_error(game.replay(perudo, commits.take(1), repo), player: 'Bob').nil?, "Other person's secret blocked an unrelated replacement")

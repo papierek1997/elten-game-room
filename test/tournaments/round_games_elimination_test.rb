@@ -102,10 +102,12 @@ check.call(liar.replay.state[:phase] == :bidding, 'Liar’s dice did not restart
 # A shared first place does not automatically tie the absent player with the winners.
 tie = fixture.call('dice_poker', 'round_limit'=>1)
 tie.eliminate('Carol')
+tie.automatic
 %w[Alice Bob].each do |player|
   tie.append(player, 'roll', '2,2,3,4,5')
   tie.append(player, 'stand', '1')
 end
+%w[Alice Bob].each { |player| tie.append(player, 'bet', 'check|0') }
 export = GameRoomTournaments::GameResult
 people = tie.players.map { |name| {'username'=>name, 'account'=>name.downcase} }
 summary = export.from_replay(game: tie.game, replay: tie.replay, players: people, options: tie.options,

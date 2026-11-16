@@ -19,6 +19,8 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class CashAuction < Base
+    def round_timing_start_actions; ['wheel']; end
+    def round_timing_end_kinds; %i[correct_answer wrong_answer]; end
     include PublicHistoryAnnouncements
     R = GameRoomCashAuction::Rules
     CHEST_REWARDS = R::CHEST_REWARDS

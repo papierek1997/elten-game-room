@@ -5,6 +5,10 @@ module GameRoomGames
     BETTING_VERSION = OptionDefinition.new(key: "blackjack_betting_version", label: "Betting rules version",
       kind: :integer, default: 2, visible_if: ->(_options) { false }).freeze
 
+    def round_ended?(history:, **context)
+      history.any? { |entry| entry.kind == :settlement } || super(history: history, **context)
+    end
+
     def required_decision_key(replay, viewer)
       return nil unless auction_game_decision?(replay)
 
@@ -359,7 +363,7 @@ module GameRoomGames
       if auction_complete?(state)
         complete_auction(state, event_id, history)
       else
-        add_history(history, event_id, "", :betting, _("All hands are set. Betting resumes."))
+        add_history(history, event_id, "", :betting, _("All hands are set. Betting begins."))
       end
     end
   end

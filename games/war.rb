@@ -200,7 +200,7 @@ module GameRoomGames
       [
         GameShortcut.new(key: "space", label: _("play your top card"), kind: :action, action_kind: "command", action_name: "play"),
         announcement_shortcut(key: "e", label: _("read card counts"), message: counts_text(replay.state)),
-        GameShortcut.new(key: "t", modifiers: [:control], label: _("read the battle number"), kind: :announcement,
+        GameShortcut.new(key: "t", modifiers: [:control, :alt], label: _("read the battle number"), kind: :announcement,
           message: battle_number_text(replay.state))
       ]
     end

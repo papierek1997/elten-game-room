@@ -185,6 +185,15 @@ W polu „Czat” wpisz wiadomość i wyślij ją Enterem. Jedna wiadomość mo�
 do 2000 znaków, zarówno przed partią, jak i w jej trakcie. Pola tekstowe
 zachowują zwykłą obsługę odczytywania, zaznaczania i kopiowania tekstu.
 
+W grach z limitem punktów S podaje go na końcu wyników. Przy stole Ctrl+T
+odczytuje czas trwania partii, a Ctrl+Shift+T — bieżącej lub ostatniej rundy.
+W grach bez podziału na rundy oba odczyty dotyczą całej partii. Pauzy nie są
+wliczane do czasu gry.
+
+Wyjątkiem są Państwa-miasta: nie mają tych odczytów czasu, a Ctrl+T nadal
+podaje pozostały czas na odpowiedzi. W Quizie pozostały czas sprawdzisz
+przez Ctrl+Alt+T; w Wojnie ten skrót podaje numer starcia i jego limit.
+
 Nie musisz zapamiętywać wszystkich skrótów:
 
 - F1 pokazuje pomoc dla bieżącego miejsca i dostępnych w nim czynności.

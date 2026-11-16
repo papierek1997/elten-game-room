@@ -84,6 +84,12 @@ feedback.merge!(dice_feedback)
 presentations.merge!(feedback)
 new_games += %w[kosciane balut french_tarot backgammon]
 (%w[bouillabaisse scopa mania_pisania] + new_games).each do |id|
+  if id == 'dice_poker'
+    # The point-only variant was deliberately removed. This reviewed hidden
+    # two-round trace retains the former chip game's moves, legal order and RNG.
+    cases << JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/dice_poker_hidden.json'), encoding: 'UTF-8'))
+    next
+  end
   item = JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding: 'UTF-8'))
   checkpoints = item.fetch('steps') + [item.fetch('final')]
   presentations.fetch(id, {}).each do |index, hash|
@@ -108,7 +114,17 @@ end
 darts = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/darts.json'), encoding: 'UTF-8'))
 cases << JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/billiards.json'), encoding: 'UTF-8'))
 %w[cribbage belote jass hearts].each do |id|
-  cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding: 'UTF-8'))
+  item = JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding: 'UTF-8'))
+  if id == 'hearts'
+    # An explicit default-limit option changes state, not the 100-point rules.
+    # limit_contract_test reproduces every original hash without that one field
+    # and verifies unchanged inputs, legal moves, actors and subsequent RNG.
+    hashes = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/hearts_limit.json')))
+    (item.fetch('steps') + [item.fetch('final')]).each_with_index do |checkpoint,index|
+      checkpoint['replay'] = hashes.fetch(index.to_s)
+    end
+  end
+  cases << item
 end
 expected_ids = GameRoomGames::CATALOG.ids.reject { |id| %w[axel_pong audio_ball].include?(id) }.sort
 custom_games = [duck, cash_auction, darts].map { |item| item.fetch('game') }

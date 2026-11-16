@@ -14,6 +14,7 @@ module GameRoomGames
 
     def id; "belote"; end
     def name; _('Belote'); end
+    def score_target(_replay); 1000; end
     def short_description; _('Play in partnerships, bid for trumps and score for tricks and belote.'); end
 
     def notification_option_keys(_options); %w[variant]; end

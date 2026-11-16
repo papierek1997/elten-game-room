@@ -19,6 +19,25 @@ module GameRoomGames
     def minimum_players; 4; end
     def maximum_players; 4; end
 
+    def option_definitions
+      [OptionDefinition.new(key: 'score_limit', label: _('Score limit'), kind: :integer, default: 100)]
+    end
+
+    def options_error(options, player_count: nil)
+      _('The score limit must be greater than zero.') unless normalize_options(options)['score_limit'].positive?
+    end
+
+    def notification_option_keys(_options); %w[score_limit]; end
+
+    def move_error(status)
+      case status
+      when :hearts_opening_club then _('You must start with the two of clubs.')
+      when :hearts_first_trick then _('You cannot play a penalty card in the first trick while you have a non-penalty card.')
+      when :hearts_not_broken then _('You cannot lead hearts until hearts have been broken, unless you have only hearts.')
+      else super
+      end
+    end
+
     def turn_announcement(replay, viewer)
       state = replay&.state
       if state && state[:phase] == :passing && same_user?(state[:current_player], viewer)
@@ -295,6 +314,19 @@ module GameRoomGames
         hearts_broken: state[:hearts_broken]).map { |card| HeartsCards.encode(card) }
     end
 
+    def illegal_card_status(state, actor, card)
+      trick = decoded_trick(state)
+      if trick.empty?
+        return :hearts_opening_club if state[:play_count].zero?
+        return :hearts_not_broken if HeartsCards.decode(card).first == :hearts && !state[:hearts_broken]
+      elsif known_hand(state, actor).any? { |item| HeartsCards.decode(item).first == trick.first.first }
+        return :must_follow_suit
+      elsif state[:play_count] < 4 && HeartsRules.penalty(HeartsCards.decode(card)).positive?
+        return :hearts_first_trick
+      end
+      super
+    end
+
     def play_card(state, actor, card, event, repository, history)
       trick = state.fetch(:trick)
       trick << [actor, card]
@@ -341,7 +373,7 @@ module GameRoomGames
           _('%{player}: this deal: %{points}; total: %{total}.') % {player: name, points: points, total: state[:scores].fetch(seat)})
       end
       state[:current_player] = nil
-      if state[:scores].values.max >= 100 && winning_units(state).one?
+      if state[:scores].values.max >= state[:options].fetch('score_limit') && winning_units(state).one?
         finish_game(state, event, repository, history)
       else
         state[:phase] = :round_complete

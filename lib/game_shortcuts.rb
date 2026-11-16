@@ -61,8 +61,8 @@ module GameRoomShortcuts
     kind = value(data, :kind, :announcement).to_sym
     label = value(data, :label, definition.label).to_s
     common = {
-      key: definition.key,
-      modifiers: definition.modifiers,
+      key: value(data, :key, definition.key),
+      modifiers: value(data, :modifiers, definition.modifiers),
       label: label,
       kind: kind
     }

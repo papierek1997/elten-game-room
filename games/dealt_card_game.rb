@@ -20,6 +20,7 @@ module GameRoomGames
     def supports_bots?; true; end
     def player_spatial_audio?; true; end
     def rule_sections; generated_rule_sections; end
+    def round_timing_start_actions; %w[deal private_deal]; end
 
     def replay(session, events, repository)
       players = repository.players_for(session)
@@ -83,7 +84,7 @@ module GameRoomGames
       return [:invalid, nil] unless selection['kind'] == 'card' && selection['action'] == 'select' && selection['zone'] == 'hand'
       card = selection['card'].to_s
       return [:card_not_in_hand, nil] unless hand_for(state, actor).include?(card)
-      return [:must_follow_suit, nil] unless legal_cards(state, actor).include?(card)
+      return [illegal_card_status(state, actor, card), nil] unless legal_cards(state, actor).include?(card)
       [:ok, event_plan('play', card)]
     end
 
@@ -254,6 +255,7 @@ module GameRoomGames
     def apply_extra_card_event(_state, _event, _session, _repository, _history); false; end
 
     def legal_cards(state, actor); hand_for(state, actor); end
+    def illegal_card_status(_state, _actor, _card); :must_follow_suit; end
     def valid_roster?(state)
       players = state[:players]
       players.size.between?(minimum_players, maximum_players) && GameRoomParticipants.unique(players).size == players.size &&

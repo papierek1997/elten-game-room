@@ -10,6 +10,9 @@ module GameRoomGames
   using GameRoomLocalization::Translations
   class Yahtzee < Base
     def player_spatial_audio?; true; end
+    def round_timing_event_ids(replay, repository:)
+      successive_round_timing_event_ids(replay, [:round_result])
+    end
     GameRoomServerRandom.register('yahtzee', ['roll'])
     STANDARD_CATEGORIES = %w[
       ones twos threes fours fives sixes three_kind four_kind full_house

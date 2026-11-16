@@ -13,6 +13,10 @@ module GameRoomGames
   # Rules and deterministic replay only. Room membership, invites, observers,
   # reconnects and the ordered event log belong to the shared Game Room stack.
   class Krowa < Base
+    def round_ended?(history:, **context)
+      history.any? { |entry| entry.kind == :solution } || super(history: history, **context)
+    end
+    def round_timing_end_kinds; [:solution]; end
     def tournament_private_protocol?; true; end
     include KrowaPresentation
     include KrowaSavedSecret

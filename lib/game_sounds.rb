@@ -3,6 +3,7 @@ require_relative "game_turn_clock"
 require_relative "game_sound_output"
 require_relative "game_spatial_sound"
 require_relative "game_room_preferences"
+require_relative "game_round_cues"
 
 module GameRoomSounds
   ASSET_NAMES = %w[
@@ -35,6 +36,7 @@ module GameRoomSounds
     war_open
     ding
     shuffle
+    round_finished
     scopa
     scopa_deal
     scopa_take
@@ -286,6 +288,8 @@ module GameRoomSounds
       cues.unshift("card-shuffle")
     end
     cues.concat(Array(result_cue(game, before_replay, after_replay, viewer))) if include_result
+    cues << GameRoomRoundCues.missing_completion_cue(game: game, before_replay: before_replay,
+      after_replay: after_replay, history: history, cues: cues)
     cues = cues.compact.map(&:to_s).reject(&:empty?).uniq
     return nil if cues.empty?
     return cues.first if cues.length == 1

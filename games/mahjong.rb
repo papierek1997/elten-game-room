@@ -21,6 +21,16 @@ module GameRoomGames
 
     module Identity
       def id; 'mahjong'; end
+      def round_timing_start_actions; %w[mahjong_deal mahjong_begin]; end
+      def round_timing_event_ids(replay, repository:)
+        first, last = super
+        round = replay.state[:round]
+        if round.respond_to?(:finished?) && round.finished?
+          end_event = replay.accepted_events.reverse_each.find { |event| event['action'] != 'mahjong_ready' }
+          last = repository.event_id(end_event) if end_event
+        end
+        [first, last]
+      end
       def name; _('Mahjong'); end
       def minimum_players; 1; end
       def maximum_players; 4; end
