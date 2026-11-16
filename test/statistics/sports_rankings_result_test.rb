@@ -83,7 +83,10 @@ forfeit = R.from_tournament(game:game,candidate:candidate,match:match,receipt:re
 assert(R.parse(forfeit)['sides'].map { |side| side['goals'] }==[11,0], 'Forfeit lost its technical goals')
 assert(R.from_tournament(game:game,candidate:candidate,match:match,receipt:{'summary'=>receipt['summary'].merge('resolution'=>'all_zero')},players:names,finished_at:epoch).nil?, 'All-zero settlement became a win')
 ids = EltenGameRoom::GAME_REGISTRY.ids.select { |id| EltenGameRoom::GAME_REGISTRY.build(id).supports_leaderboards? }
-assert(ids == %w[krowa], 'Retired sports rankings remain available or Krowa disappeared')
+assert(ids.sort == %w[darts krowa], 'Retired sports rankings remain available or the Darts/Krowa leaderboards disappeared')
+GameRoomDartsRankings::Schema::TABLES.each do |name, schema|
+  assert(EltenGameRoom::SERVER_TABLES.fetch(name) == schema, "Darts ranking schema missing from application declaration: #{name}")
+end
 statistics = EltenGameRoom::GAME_REGISTRY.ids.select { |id| EltenGameRoom::GAME_REGISTRY.build(id).supports_player_statistics? }
 assert(statistics.sort == %w[audio_ball axel_pong], 'Personal statistics capabilities differ from the two sports games')
 puts 'PASS sports statistics results: no ranking formula/capability, actual terminal reducers, full sets, final human roster, late replacement, doubles and technical forfeits'

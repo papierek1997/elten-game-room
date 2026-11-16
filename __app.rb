@@ -155,6 +155,7 @@ require_relative "lib/game_room_presence_collector"
 require_relative "lib/game_room_presence_screen"
 require_relative "lib/game_room_analytics_runtime"
 require_relative "lib/sports_rankings/runtime"
+require_relative "lib/darts/rankings/runtime"
 require_relative "lib/game_statistics_screen"
 require_relative "lib/table_activity_repository"
 require_relative "lib/table_history_exporter"
@@ -220,12 +221,13 @@ class EltenGameRoom < Program
   extend GameRoomContactFiltersRuntime
   extend GameRoomAnalyticsRuntime
   extend GameRoomSportsRankings::Runtime
+  extend GameRoomDartsRankings::Runtime
   GAME_ROOM_VERSION = "2.0.6.8".freeze
   GAME_ROOM_BUILD_ID = 271
   GAME_ROOM_CAPABILITIES = ["invitations", "live_sessions", "live_session_stack"].freeze
   LOBBY_ACTIVITY_POLL_INTERVAL = 5.0
 
-  SERVER_TABLES = GameRoomGames::KrowaServerSchema::TABLES.merge(GameRoomStatistics::Schema::TABLES).merge(GameRoomPresence::Schema::TABLES).merge(GameRoomSportsRankings::Schema::TABLES).merge({
+  SERVER_TABLES = GameRoomGames::KrowaServerSchema::TABLES.merge(GameRoomStatistics::Schema::TABLES).merge(GameRoomPresence::Schema::TABLES).merge(GameRoomSportsRankings::Schema::TABLES).merge(GameRoomDartsRankings::Schema::TABLES).merge({
     GameRoomTableWatch::TABLE => GameRoomTableWatch::SCHEMA,
     "game_room_users" => {
       "visibility" => "public",
@@ -301,9 +303,12 @@ class EltenGameRoom < Program
       extension.every("sports_rankings_upload", seconds: 1, autorun: false, persistent: false, first: :after_interval) do |context|
         run_sports_rankings_job(context.token)
       end
+      extension.every("darts_rankings_upload", seconds: 1, autorun: false, persistent: false, first: :after_interval) do |context|
+        run_darts_rankings_job(context.token)
+      end
       extension.start { table_watch_start; start_tournament_coordination(program) }
-      extension.tick(interval: 1.0) { contacts_tick; table_watch_tick; tournament_coordination_tick; tournament_starts_tick; InvitationResponseOutbox.tick_default; analytics_tick; sports_rankings_tick }
-      extension.stop { table_watch_stop; contacts_stop; stop_tournament_coordination; stop_analytics; stop_sports_rankings }
+      extension.tick(interval: 1.0) { contacts_tick; table_watch_tick; tournament_coordination_tick; tournament_starts_tick; InvitationResponseOutbox.tick_default; analytics_tick; sports_rankings_tick; darts_rankings_tick }
+      extension.stop { table_watch_stop; contacts_stop; stop_tournament_coordination; stop_analytics; stop_sports_rankings; stop_darts_rankings }
       extension.main_tab(
         "tables",
         label: _("Power Games"),
@@ -559,12 +564,14 @@ class EltenGameRoom < Program
   end
 
   def statistics_observer_for(game, service: self.class.statistics_service, viewer: Session.name.to_s.dup.freeze)
-    return nil unless self.class.analytics_enabled?
     rankings = self.class.sports_rankings_service if game.respond_to?(:sports_ranking_result)
-    return nil unless rankings || service && self.class.analytics_enabled?
+    darts_rankings = self.class.darts_rankings_service if game.id == 'darts'
+    return nil unless darts_rankings || rankings || service && self.class.analytics_enabled?
     lambda do |session, replay|
-      next unless self.class.analytics_enabled?
+      darts_rankings&.observe(session: session, replay: replay, viewer: viewer,
+        publish: darts_preferences['public_rankings'])
       rankings&.observe(game: game, session: session, replay: replay)
+      next unless self.class.analytics_enabled?
       next unless service && self.class.analytics_enabled?
       participants = session.fetch("__players", [])
       if replay && game.eliminated_from_game?(replay, viewer)
@@ -2954,14 +2961,24 @@ class EltenGameRoom < Program
   end
 
   def show_darts_settings(tick: nil, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
-    updated = GameRoomDarts::Settings.new(darts_preferences, program: self, tick: tick, clock: clock).wait
-    return unless updated
+    outcome = GameRoomDarts::Settings.new(darts_preferences, program: self, tick: tick, clock: clock,
+      withdraw: -> { self.class.darts_rankings_service&.withdraw_public_records == true }).wait
+    return unless outcome
+    updated = outcome.values
     update_game_room_settings do |state|
       state['darts'] = updated
       state
     end
     @game_room_settings = game_room_settings.merge('darts' => updated)
     @darts_preferences = updated.freeze
+    if outcome.publish_saved
+      service = self.class.darts_rankings_service
+      if service&.publish_saved_records
+        alert(_('Publication of your saved personal Darts records has been queued.'))
+      else
+        alert(_('Could not queue publication of your saved personal Darts records.'))
+      end
+    end
   end
 
   def build_widget_control

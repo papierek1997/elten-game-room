@@ -464,6 +464,10 @@ msgstr "%{deck}; bodový limit %{score}; reakce na trestné dobírání: %{respo
 msgid "%{deck}; up to %{count} battles"
 msgstr ""
 
+#: lib/darts/rankings/screen.rb:66
+msgid "%{difficulty}: %{ranking}"
+msgstr "%{difficulty}: %{ranking}"
+
 #: games/mille_bornes/presentation.rb:197
 msgid "%{distance} miles"
 msgstr "%{distance} mil"
@@ -2919,6 +2923,10 @@ msgstr "figurka %{pawn} hráče %{player}"
 
 msgid "%{player}'s piece"
 msgstr "kámen hráče %{player}"
+
+#: lib/darts/client.rb:568
+msgid "%{player}'s result took place %{place} in %{category}, %{difficulty}."
+msgstr "Výsledek hráče %{player} se umístil na %{place}. místě v kategorii %{category}, obtížnost %{difficulty}."
 
 #: games/yahtzee.rb:293
 msgid "%{player}'s score sheet, match %{match}"
@@ -9244,6 +9252,10 @@ msgstr ""
 msgid "Belote"
 msgstr "Belote"
 
+#: lib/darts/client.rb:597 lib/darts/rankings/screen.rb:86
+msgid "Best average score"
+msgstr "Nejlepší průměrné skóre"
+
 #: games/krowa_support/leaderboards.rb:281
 msgid "Best result"
 msgstr "Nejlepší výsledek"
@@ -9251,6 +9263,10 @@ msgstr "Nejlepší výsledek"
 #: games/krowa_support/presentation.rb:124
 msgid "Best result: %{players}."
 msgstr "Nejlepší výsledek: %{players}."
+
+#: lib/darts/client.rb:597 lib/darts/rankings/screen.rb:86
+msgid "Best three-dart round"
+msgstr "Nejlepší kolo se třemi šipkami"
 
 #: games/duck_racing_support/challenge_presentation.rb:226
 msgid "Best word: %{word}."
@@ -12544,6 +12560,10 @@ msgstr[2] "Cena: %{count} pírek."
 msgid "Cosy nest"
 msgstr "Útulné hnízdo"
 
+#: lib/darts/rankings/screen.rb:78
+msgid "Could not connect to the Darts ranking."
+msgstr "K žebříčku šipek se nepodařilo připojit."
+
 #: games/krowa_support/leaderboards.rb:380
 msgid "Could not connect to the Krowa leaderboard."
 msgstr "Nepodařilo se připojit k žebříčku hry Krowa."
@@ -12587,6 +12607,14 @@ msgstr "Výsledek Věže slov se nepodařilo zveřejnit."
 #: games/krowa_support/leaderboards.rb:105
 msgid "Could not publish the result."
 msgstr "Výsledek se nepodařilo zveřejnit."
+
+#: __app.rb:2973
+msgid "Could not queue publication of your saved personal Darts records."
+msgstr "Zveřejnění uložených osobních rekordů v Dartsu se nepodařilo zařadit do fronty."
+
+#: lib/darts/settings.rb:51
+msgid "Could not queue removal of your public Darts results."
+msgstr "Odstranění vašich veřejných výsledků v Dartsu se nepodařilo zařadit do fronty."
 
 #: games/krowa_support/daily_access.rb:104 games/krowa_support/daily_access.rb:110
 msgid "Could not record opening Daily Krowa on the server. Please try again."
@@ -13522,6 +13550,10 @@ msgstr ""
 msgid "Darts"
 msgstr "Šipky"
 
+#: lib/darts/rankings/screen.rb:21
+msgid "Darts difficulty"
+msgstr "Obtížnost ve hře Šipky"
+
 #: games/generated/rulebooks/darts.rb:10
 msgid "Darts is an audio aiming game for one to eight players. Guide the moving sound towards the centre of the target and score as many points as possible. Each round gives every player three darts."
 msgstr ""
@@ -13533,6 +13565,10 @@ msgstr "V Šipkách se již neztratí stisk šipky ani hod, pokud hned poté sti
 #: games/darts.rb:199
 msgid "Darts playfield"
 msgstr "Hrací plocha pro šipky"
+
+#: lib/darts/rankings/screen.rb:15
+msgid "Darts rankings are temporarily unavailable."
+msgstr "Žebříčky šipek jsou dočasně nedostupné."
 
 #: games/darts.rb:28
 msgid "Darts settings"
@@ -20599,6 +20635,10 @@ msgstr ""
 msgid "Loading Daily Krowa leaderboard"
 msgstr ""
 
+#: lib/darts/rankings/screen.rb:52
+msgid "Loading Darts ranking"
+msgstr "Načítání žebříčku šipek"
+
 #: __app.rb:669 __app.rb:720
 msgid "Loading Game Room history"
 msgstr "Načítání historie Game Room"
@@ -22150,6 +22190,10 @@ msgstr ""
 #: lib/game_room_changelog.rb:133
 msgid "New games are selected in the widget by default, while saved manual deselections are remembered. Older settings also enable Rummy, Domino, Mexican Train, Scrabble, Taboo and Biblios once."
 msgstr "Nové hry jsou ve widgetu standardně označené a uložená ruční zrušení výběru se pamatují. Ve starších nastaveních se jednorázově zapnou také Rummy, Domino, Mexican Train, Scrabble, Taboo a Biblios."
+
+#: lib/darts/client.rb:524
+msgid "New personal three-dart record: %{score} points in %{seconds} seconds."
+msgstr "Nový osobní rekord za tři šipky: %{score} bodů za %{seconds} sekundy."
 
 #: lib/quiz_contributions/controller.rb:110
 msgid "New question"
@@ -25740,6 +25784,10 @@ msgstr "Průběh byl vynulován."
 msgid "Progress shows how many pairs you have removed and how many tiles remain. Your score is the number of removed pairs, up to 72. When no pair is available, undo a move to try another route or choose End this puzzle. Ending early does not count as clearing the layout."
 msgstr ""
 
+#: lib/darts/client.rb:601 lib/darts/rankings/screen.rb:82
+msgid "Progressive game"
+msgstr "Progresivní hra"
+
 #: games/generated/rulebooks/spades.rb:9
 msgid "Promise a number of tricks, then try to take them"
 msgstr ""
@@ -25828,6 +25876,10 @@ msgstr "Zveřejnění nebylo potvrzeno. Před dalším pokusem zkontrolujte Oper
 msgid "Publication not confirmed. This form cannot send again. Check the operation in the local test hub."
 msgstr ""
 
+#: __app.rb:2971
+msgid "Publication of your saved personal Darts records has been queued."
+msgstr "Zveřejnění uložených osobních rekordů v Dartsu bylo zařazeno do fronty."
+
 #: lib/tournaments/operations_screen.rb:128
 msgid "Publication: %{title}"
 msgstr "Zveřejnění: %{title}"
@@ -25858,6 +25910,14 @@ msgstr "Zveřejnit v místním testu"
 msgid "Publish in server test"
 msgstr "Zveřejnit v serverovém testu"
 
+#: lib/darts/settings.rb:24
+msgid "Publish my Darts records in the public rankings"
+msgstr "Zveřejňovat mé rekordy v šipkách ve veřejných žebříčcích"
+
+#: lib/darts/settings.rb:35
+msgid "Publish new Darts records in the public rankings"
+msgstr "Zveřejňovat nové rekordy v Dartsu ve veřejných žebříčcích"
+
 #: games/krowa_support/client.rb:353
 msgid "Publish the Word Tower result: %{rounds} completed rounds?"
 msgstr "Zveřejnit výsledek Věže slov? Počet dokončených kol: %{rounds}."
@@ -25877,6 +25937,10 @@ msgstr "Zveřejnit bez seznamu pokusů"
 #: games/krowa_support/client.rb:335
 msgid "Publish your Daily Krowa result: %{attempts} attempts?"
 msgstr ""
+
+#: lib/darts/settings.rb:21
+msgid "Publish your three saved personal records in each Darts ranking too?"
+msgstr "Zveřejnit také tři uložené osobní rekordy v každém žebříčku Dartsu?"
 
 #: lib/quiz_contributions/views.rb:108
 msgid "Published"
@@ -26323,6 +26387,10 @@ msgstr "Náhodná slova, přežití"
 #: games/battleship.rb:634
 msgid "Randomly"
 msgstr "Náhodně"
+
+#: lib/darts/rankings/screen.rb:26
+msgid "Ranking type"
+msgstr "Typ žebříčku"
 
 #: games/duck_racing_support/challenge_presentation.rb:120
 msgid "Reach at most 25. Enter rolls the dice. Down, then Enter saves your result."
@@ -26819,6 +26887,10 @@ msgstr ""
 msgid "Removal of %{player} from tournament %{id}"
 msgstr "Odebrání hráče %{player} z turnaje %{id}"
 
+#: lib/darts/settings.rb:49
+msgid "Removal of your public Darts results has been queued."
+msgstr "Odstranění vašich veřejných výsledků v Dartsu bylo zařazeno do fronty."
+
 msgid "Remove a computer"
 msgstr "Odebrat počítačového hráče"
 
@@ -26830,9 +26902,21 @@ msgstr ""
 msgid "Remove all my bets"
 msgstr "Zrušit všechny mé sázky"
 
+#: lib/darts/settings.rb:24
+msgid "Remove all your results from the public Darts rankings? Your private records will stay saved."
+msgstr "Odstranit všechny vaše výsledky z veřejných žebříčků Dartsu? Soukromé rekordy zůstanou uloženy."
+
+#: lib/darts/settings.rb:24
+msgid "Remove all your results from the public Darts rankings? Your private records will stay saved. If publishing remains enabled, later records can appear again."
+msgstr "Odstranit všechny vaše výsledky z veřejných žebříčků Dartsu? Soukromé rekordy zůstanou uloženy. Pokud publikování zůstane zapnuté, pozdější rekordy se mohou objevit znovu."
+
 #: lib/participant_menu.rb:226
 msgid "Remove computer"
 msgstr "Odebrat počítačového hráče"
+
+#: lib/darts/settings.rb:38
+msgid "Remove my results from the public Darts rankings"
+msgstr "Odstranit mé výsledky z veřejných žebříčků Dartsu"
 
 #: lib/tournaments/local_participant_manager.rb:63 lib/tournaments/participant_manager.rb:127
 msgid "Remove participant %{player}?"
@@ -28455,6 +28539,10 @@ msgstr "Scopone"
 #: games/scopa.rb:29
 msgid "Scopone: an empty table and larger hands instead of three-card deals"
 msgstr "Scopone: prázdný stůl a větší ruce místo rozdávání po třech kartách"
+
+#: lib/darts/rankings/screen.rb:65
+msgid "Score"
+msgstr "Skóre"
 
 #: games/bridge/presentation.rb:497
 msgid "Score %{result}, compared with %{reference}. %{comparison}"

@@ -20,6 +20,7 @@ module GameRoomGames
     def minimum_players; 1; end
     def maximum_players; 8; end
     def supports_bots?; true; end
+    def supports_leaderboards?; true; end
     def background_client?; true; end
     def audio_game?; true; end
     def paced_event_presentation?; true; end
@@ -62,20 +63,28 @@ module GameRoomGames
       nil
     end
 
-    def notification_option_keys(_options); %w[mode difficulty rounds progressive time_limit]; end
+    def notification_option_keys(_options); %w[mode difficulty rounds progressive time_limit timeout_result]; end
     def notification_variant(options)
       parts = [notification_choice(options, 'mode'), notification_choice(options, 'difficulty')]
       round_count = options['rounds'].to_i
       parts << n_('%{count} round', '%{count} rounds', round_count) % {count: round_count}
       parts << _('progressive difficulty') if options['progressive']
       parts << notification_choice(options, 'time_limit')
+      parts << notification_choice(options, 'timeout_result') if options['time_limit'].to_i.positive?
       parts.compact.join(', ')
     end
     def options_summary(options); notification_variant(normalize_options(options)); end
 
     def build_client(program, **services)
       require_relative '../lib/darts/client'
-      GameRoomDarts::Client.new(program, self, **services.slice(:clock, :mouse, :audio, :channel_factory))
+      ranking_service = program.class.darts_rankings_service if program.class.respond_to?(:darts_rankings_service)
+      GameRoomDarts::Client.new(program, self, ranking_service: ranking_service,
+        **services.slice(:clock, :mouse, :audio, :channel_factory))
+    end
+
+    def build_leaderboard_client(program, **_services)
+      require_relative '../lib/darts/rankings/screen'
+      GameRoomDartsRankings::Screen.new(program: program, game: self, service: program.class.darts_rankings_service)
     end
 
     def replay(session, events, repository)
@@ -120,7 +129,7 @@ module GameRoomGames
           advance_after_throw(state, players)
           if state[:phase] == :finished
             winner = state[:winner]
-            history << result_history(event_id: event_id, winner: winner)
+            history << result_history(event_id: event_id, winner: winner) if players.length > 1
           end
         end
       end
@@ -186,7 +195,10 @@ module GameRoomGames
     end
 
     def automatic_action_allowed?(replay, actor, table_owner:)
-      return same_user?(table_owner, replay.state[:owner]) && same_user?(actor, replay.players.first) if replay.state[:phase] == :opening
+      if replay.state[:phase] == :opening
+        return same_user?(table_owner, replay.state[:owner]) &&
+          (same_user?(actor, table_owner) || same_user?(actor, replay.players.first))
+      end
       same_user?(actor, replay.current_player)
     end
 

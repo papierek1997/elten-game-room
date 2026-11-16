@@ -23,7 +23,7 @@ class DartsCursorNetwork
     channel
   end
 
-  def deliver(sender, data)
+  def deliver(sender, data, reliable: false)
     packet = GameRoomRealtime::Protocol.decode(data, match: sender.match, epoch: sender.epoch)
     return unless packet
 
@@ -31,7 +31,9 @@ class DartsCursorNetwork
       next false if candidate.equal?(sender) || candidate.closed || candidate.match != sender.match
       sender.host? || candidate.host?
     end
-    targets.each { |target| target.receive(sender.viewer, packet) }
+    targets.each do |target|
+      reliable ? target.receive_event(sender.viewer, packet) : target.receive(sender.viewer, packet)
+    end
   end
 
   def latest(viewer)
@@ -40,23 +42,32 @@ class DartsCursorNetwork
 end
 
 class DartsCursorChannel
-  attr_reader :epoch, :match, :viewer, :sent
+  attr_reader :epoch, :match, :viewer, :sent, :event_sent, :event_protocol
   attr_accessor :closed
 
   def initialize(network, match:, owner:, viewer:, **_options)
     @network, @match, @owner, @viewer = network, match, owner.to_s, viewer.to_s
     @epoch = 'darts-cursor-test-epoch'
-    @incoming, @sent, @closed = {}, [], false
+    @incoming, @events, @sent, @event_sent, @closed = {}, [], [], [], false
   end
 
   def host?; @owner.casecmp?(@viewer); end
   def tick; end
   def connected?; !@closed; end
+  def enable_events(protocol); @event_protocol = protocol; end
 
   def send(data)
     return false if @closed
+    raise 'Darts ranking event used the replaceable cursor lane' if JSON.parse(data)['k'] == 'event'
     @sent << data
     @network.deliver(self, data)
+    true
+  end
+
+  def send_event(data)
+    return false if @closed || !@event_protocol
+    @event_sent << data
+    @network.deliver(self, data, reliable: true)
     true
   end
 
@@ -64,14 +75,24 @@ class DartsCursorChannel
     @incoming[sender.downcase] = packet
   end
 
+  def receive_event(sender, packet)
+    @events << [sender.downcase, packet]
+  end
+
   def take_packets
     packets, @incoming = @incoming, {}
     packets
   end
 
+  def take_events
+    events, @events = @events, []
+    events
+  end
+
   def close
     @closed = true
     @incoming.clear
+    @events.clear
   end
 end
 
@@ -95,14 +116,15 @@ class DartsCursorMouse
   def suspend; [[], false]; end
 end
 
-DartsCursorReplay = Struct.new(:current_player, :state) do
-  def finished?; false; end
+DartsCursorReplay = Struct.new(:current_player, :state, :done) do
+  def finished?; !!done; end
 end
 
-def darts_cursor_client(network, viewer, owner, clock, audio)
+def darts_cursor_client(network, viewer, owner, clock, audio, ranking_service: nil, speech: nil)
   client = GameRoomDarts::Client.new(Object.new, GameRoomGames::Darts.new, clock: clock,
-    audio: audio, mouse: DartsCursorMouse.new,
+    audio: audio, mouse: DartsCursorMouse.new, ranking_service: ranking_service,
     channel_factory: ->(**options) { network.build(**options) })
+  client.define_singleton_method(:speak) { |text, **_| speech << text.to_s } if speech
   client.bind_screen(session_id: 77, table_id: 7, owner: owner, viewer: viewer,
     members: -> { %w[Alice Bob Watcher] })
   client
@@ -209,4 +231,43 @@ assert(direct_audio.fetch('Bob').updates.last&.first(2) == direct_engine.positio
   'a player did not hear the active table owner cursor')
 
 direct.each_value(&:close)
+
+class DartsRankingFeedback
+  def initialize(value); @values = [value]; end
+  def take_feedback; values, @values = @values, []; values; end
+end
+
+ranking_network = DartsCursorNetwork.new
+ranking_speech = %w[Alice Bob Watcher].to_h { |name| [name, []] }
+feedback = {'result_key'=>'a' * 64, 'user'=>'Alice', 'difficulty'=>'normal',
+  'personal_record'=>{'score'=>271, 'time_ms'=>4321},
+  'placements'=>[{'category'=>'triple', 'place'=>3}]}
+ranking_clients = %w[Alice Bob Watcher].to_h do |name|
+  service = DartsRankingFeedback.new(feedback) if name == 'Alice'
+  [name, darts_cursor_client(ranking_network, name, 'Watcher', clock, DartsCursorAudio.new,
+    ranking_service: service, speech: ranking_speech.fetch(name))]
+end
+finished_state = state.merge(phase: :finished, throw_index: 24)
+finished = DartsCursorReplay.new(nil, finished_state, true)
+ranking_clients.each do |name, client|
+  client.before_wait(finished, name)
+end
+ranking_clients.fetch('Alice').frame
+ranking_clients.fetch('Watcher').frame
+ranking_clients.fetch('Bob').frame
+ranking_clients.fetch('Alice').frame
+assert(ranking_speech.fetch('Alice').any? { |text| text.include?('New personal three-dart record') },
+  'the player did not hear their private confirmed three-dart record')
+assert(ranking_speech.values.all? { |messages| messages.count { |text| text.include?('took place 3') } == 1 },
+  'a confirmed top-thirty place was not announced exactly once to the whole table')
+assert(ranking_network.channels.all? { |channel| channel.event_protocol == 'darts-rankings-1' } &&
+  ranking_network.channels.sum { |channel| channel.event_sent.length } >= 2,
+  'Darts ranking places did not use the bounded ordered event lane')
+assert(ranking_speech.fetch('Bob').none? { |text| text.include?('personal') } &&
+  ranking_speech.fetch('Watcher').none? { |text| text.include?('personal') },
+  'a private personal record was disclosed to another table member')
+assert(ranking_network.channels.none?(&:closed),
+  'the Darts realtime channel closed before a confirmed ranking place could be relayed')
+ranking_clients.each_value(&:close)
+
 puts 'PASS Darts network cursor: observer relay, direct owner, rate limit, timeout and control replacement'

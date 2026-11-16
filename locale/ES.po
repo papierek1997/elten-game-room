@@ -451,6 +451,10 @@ msgstr "%{deck}; límite de puntos %{score}; respuestas al robo: %{responses}; l
 msgid "%{deck}; up to %{count} battles"
 msgstr ""
 
+#: lib/darts/rankings/screen.rb:66
+msgid "%{difficulty}: %{ranking}"
+msgstr "%{difficulty}: %{ranking}"
+
 #: games/mille_bornes/presentation.rb:197
 msgid "%{distance} miles"
 msgstr "%{distance} millas"
@@ -2861,6 +2865,10 @@ msgstr "Ficha %{pawn} de %{player}"
 
 msgid "%{player}'s piece"
 msgstr "Pieza de %{player}"
+
+#: lib/darts/client.rb:568
+msgid "%{player}'s result took place %{place} in %{category}, %{difficulty}."
+msgstr "El resultado de %{player} obtuvo el puesto %{place} en %{category}, dificultad %{difficulty}."
 
 #: games/yahtzee.rb:293
 msgid "%{player}'s score sheet, match %{match}"
@@ -9182,6 +9190,10 @@ msgstr ""
 msgid "Belote"
 msgstr "Belote"
 
+#: lib/darts/client.rb:597 lib/darts/rankings/screen.rb:86
+msgid "Best average score"
+msgstr "Mejor puntuación media"
+
 #: games/krowa_support/leaderboards.rb:281
 msgid "Best result"
 msgstr "Mejor resultado"
@@ -9189,6 +9201,10 @@ msgstr "Mejor resultado"
 #: games/krowa_support/presentation.rb:124
 msgid "Best result: %{players}."
 msgstr "Mejor resultado: %{players}."
+
+#: lib/darts/client.rb:597 lib/darts/rankings/screen.rb:86
+msgid "Best three-dart round"
+msgstr "Mejor ronda de tres dardos"
 
 #: games/duck_racing_support/challenge_presentation.rb:226
 msgid "Best word: %{word}."
@@ -12478,6 +12494,10 @@ msgstr[1] "Coste: %{count} plumas."
 msgid "Cosy nest"
 msgstr "Nido acogedor"
 
+#: lib/darts/rankings/screen.rb:78
+msgid "Could not connect to the Darts ranking."
+msgstr "No se pudo conectar a la clasificación de Dardos."
+
 #: games/krowa_support/leaderboards.rb:380
 msgid "Could not connect to the Krowa leaderboard."
 msgstr "No se ha podido conectar con la clasificación de Krowa."
@@ -12521,6 +12541,14 @@ msgstr "No se ha podido publicar el resultado de Torre de palabras."
 #: games/krowa_support/leaderboards.rb:105
 msgid "Could not publish the result."
 msgstr "No se ha podido publicar el resultado."
+
+#: __app.rb:2973
+msgid "Could not queue publication of your saved personal Darts records."
+msgstr "No se pudo poner en cola la publicación de tus récords personales guardados de Dardos."
+
+#: lib/darts/settings.rb:51
+msgid "Could not queue removal of your public Darts results."
+msgstr "No se pudo poner en cola la eliminación de tus resultados públicos de Dardos."
 
 #: games/krowa_support/daily_access.rb:104 games/krowa_support/daily_access.rb:110
 msgid "Could not record opening Daily Krowa on the server. Please try again."
@@ -13456,6 +13484,10 @@ msgstr ""
 msgid "Darts"
 msgstr "Dardos"
 
+#: lib/darts/rankings/screen.rb:21
+msgid "Darts difficulty"
+msgstr "Dificultad de Dardos"
+
 #: games/generated/rulebooks/darts.rb:10
 msgid "Darts is an audio aiming game for one to eight players. Guide the moving sound towards the centre of the target and score as many points as possible. Each round gives every player three darts."
 msgstr ""
@@ -13467,6 +13499,10 @@ msgstr "Dardos ya no pierde un movimiento con las flechas ni un lanzamiento si p
 #: games/darts.rb:199
 msgid "Darts playfield"
 msgstr "Zona de juego de dardos"
+
+#: lib/darts/rankings/screen.rb:15
+msgid "Darts rankings are temporarily unavailable."
+msgstr "Las clasificaciones de Dardos no están disponibles temporalmente."
 
 #: games/darts.rb:28
 msgid "Darts settings"
@@ -20528,6 +20564,10 @@ msgstr ""
 msgid "Loading Daily Krowa leaderboard"
 msgstr ""
 
+#: lib/darts/rankings/screen.rb:52
+msgid "Loading Darts ranking"
+msgstr "Cargando clasificación de Dardos"
+
 #: __app.rb:669 __app.rb:720
 msgid "Loading Game Room history"
 msgstr "Cargando el historial de Game Room"
@@ -22076,6 +22116,10 @@ msgstr ""
 #: lib/game_room_changelog.rb:133
 msgid "New games are selected in the widget by default, while saved manual deselections are remembered. Older settings also enable Rummy, Domino, Mexican Train, Scrabble, Taboo and Biblios once."
 msgstr "Los juegos nuevos se seleccionan de forma predeterminada en el widget, y se recuerda si los has desmarcado manualmente y guardado ese cambio. En los ajustes antiguos también se activan una sola vez Rummy, Dominó, Tren mexicano, Scrabble, Tabú y Biblios."
+
+#: lib/darts/client.rb:524
+msgid "New personal three-dart record: %{score} points in %{seconds} seconds."
+msgstr "Nuevo récord personal de tres dardos: %{score} puntos en %{seconds} segundos."
 
 #: lib/quiz_contributions/controller.rb:110
 msgid "New question"
@@ -25665,6 +25709,10 @@ msgstr "Progreso restablecido."
 msgid "Progress shows how many pairs you have removed and how many tiles remain. Your score is the number of removed pairs, up to 72. When no pair is available, undo a move to try another route or choose End this puzzle. Ending early does not count as clearing the layout."
 msgstr ""
 
+#: lib/darts/client.rb:601 lib/darts/rankings/screen.rb:82
+msgid "Progressive game"
+msgstr "Partida progresiva"
+
 #: games/generated/rulebooks/spades.rb:9
 msgid "Promise a number of tricks, then try to take them"
 msgstr ""
@@ -25753,6 +25801,10 @@ msgstr "La publicación no se ha confirmado. Consulta Operaciones antes de inten
 msgid "Publication not confirmed. This form cannot send again. Check the operation in the local test hub."
 msgstr ""
 
+#: __app.rb:2971
+msgid "Publication of your saved personal Darts records has been queued."
+msgstr "La publicación de tus récords personales guardados de Dardos se ha puesto en cola."
+
 #: lib/tournaments/operations_screen.rb:128
 msgid "Publication: %{title}"
 msgstr "Publicación: %{title}"
@@ -25783,6 +25835,14 @@ msgstr "Publicar en la prueba local"
 msgid "Publish in server test"
 msgstr "Publicar en la prueba de servidor"
 
+#: lib/darts/settings.rb:24
+msgid "Publish my Darts records in the public rankings"
+msgstr "Publicar mis récords de Dardos en las clasificaciones públicas"
+
+#: lib/darts/settings.rb:35
+msgid "Publish new Darts records in the public rankings"
+msgstr "Publicar nuevos récords de Dardos en las clasificaciones públicas"
+
 #: games/krowa_support/client.rb:353
 msgid "Publish the Word Tower result: %{rounds} completed rounds?"
 msgstr "¿Publicar el resultado de Torre de palabras: %{rounds} rondas completadas?"
@@ -25802,6 +25862,10 @@ msgstr "Publicar sin la lista de intentos"
 #: games/krowa_support/client.rb:335
 msgid "Publish your Daily Krowa result: %{attempts} attempts?"
 msgstr ""
+
+#: lib/darts/settings.rb:21
+msgid "Publish your three saved personal records in each Darts ranking too?"
+msgstr "¿Publicar también tus tres récords personales guardados en cada clasificación de Dardos?"
 
 #: lib/quiz_contributions/views.rb:108
 msgid "Published"
@@ -26248,6 +26312,10 @@ msgstr "Palabras aleatorias, supervivencia"
 #: games/battleship.rb:634
 msgid "Randomly"
 msgstr "Aleatoriamente"
+
+#: lib/darts/rankings/screen.rb:26
+msgid "Ranking type"
+msgstr "Tipo de clasificación"
 
 #: games/duck_racing_support/challenge_presentation.rb:120
 msgid "Reach at most 25. Enter rolls the dice. Down, then Enter saves your result."
@@ -26743,6 +26811,10 @@ msgstr ""
 msgid "Removal of %{player} from tournament %{id}"
 msgstr "Retirada de %{player} del torneo %{id}"
 
+#: lib/darts/settings.rb:49
+msgid "Removal of your public Darts results has been queued."
+msgstr "La eliminación de tus resultados públicos de Dardos se ha puesto en cola."
+
 msgid "Remove a computer"
 msgstr "Eliminar un ordenador"
 
@@ -26754,9 +26826,21 @@ msgstr ""
 msgid "Remove all my bets"
 msgstr "Retirar todas mis apuestas"
 
+#: lib/darts/settings.rb:24
+msgid "Remove all your results from the public Darts rankings? Your private records will stay saved."
+msgstr "¿Eliminar todos tus resultados de las clasificaciones públicas de Dardos? Tus récords privados seguirán guardados."
+
+#: lib/darts/settings.rb:24
+msgid "Remove all your results from the public Darts rankings? Your private records will stay saved. If publishing remains enabled, later records can appear again."
+msgstr "¿Eliminar todos tus resultados de las clasificaciones públicas de Dardos? Tus récords privados seguirán guardados. Si la publicación permanece activada, los récords posteriores podrán volver a aparecer."
+
 #: lib/participant_menu.rb:226
 msgid "Remove computer"
 msgstr "Quitar ordenador"
+
+#: lib/darts/settings.rb:38
+msgid "Remove my results from the public Darts rankings"
+msgstr "Eliminar mis resultados de las clasificaciones públicas de Dardos"
 
 #: lib/tournaments/local_participant_manager.rb:63 lib/tournaments/participant_manager.rb:127
 msgid "Remove participant %{player}?"
@@ -28379,6 +28463,10 @@ msgstr "Scopone"
 #: games/scopa.rb:29
 msgid "Scopone: an empty table and larger hands instead of three-card deals"
 msgstr "Scopone: mesa vacía y manos mayores en lugar de repartir de tres en tres"
+
+#: lib/darts/rankings/screen.rb:65
+msgid "Score"
+msgstr "Puntuación"
 
 #: games/bridge/presentation.rb:497
 msgid "Score %{result}, compared with %{reference}. %{comparison}"

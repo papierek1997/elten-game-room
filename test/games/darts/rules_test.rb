@@ -3,6 +3,7 @@ def _(text); text; end
 def n_(singular, plural, count); count == 1 ? singular : plural; end
 
 require_relative '../../../games/darts'
+require_relative '../../../lib/table_variant'
 require_relative '../../support/sequence_random'
 
 def assert(value, message)
@@ -42,6 +43,11 @@ assert(game.notification_variant(game.default_options.merge('rounds'=>1)).includ
   'one-round table notification uses a plural English label')
 assert(game.notification_variant(game.default_options.merge('rounds'=>3)).include?('3 rounds'),
   'multi-round table notification uses a singular English label')
+notification_options = game.default_options.merge('time_limit'=>5, 'timeout_result'=>'zero')
+notification_payload = GameRoomTableVariant.payload(game, JSON.generate(notification_options))
+assert(notification_payload['options']['timeout_result'] == 'zero' &&
+  GameRoomTableVariant.text(game, notification_payload).include?('Score zero points'),
+  'Darts notifications hide what happens when throw time runs out')
 assert(game.training_position_text(1_000, 0) == 'right' &&
   !game.training_position_text(1_000, 0).include?('point'),
   'training cursor speech still exposes a score instead of only its sector')
@@ -111,6 +117,17 @@ bot_context = GameRoomGames::ActionContext.new(table_owner: 'Alice', random_sour
 actions = game.legal_actions(bot_started, 'bot:1:1', context: bot_context)
 status, plan = game.action_for(actions.first, bot_started, 'bot:1:1', context: bot_context)
 assert(status == :ok && plan.events.first.value.bytesize <= 64, 'bot did not use the ordinary bounded action path')
+
+solo_session = darts_session(game, players: ['Alice'], options: {'rounds'=>1})
+solo_events = [start]
+3.times do |index|
+  solo_events << darts_event('darts_throw', throw_value(index, 0, 0), actor: 'Alice', id: index + 2)
+end
+solo = game.replay(solo_session, solo_events, repo)
+assert(solo.finished? && solo.history.none? { |entry| entry.kind == :result },
+  'solo history says that the only player won against themselves')
+assert(game.result_text(solo).include?('completed the game'),
+  'removing the solo winner entry also removed the useful completion result')
 
 assert(GameRoomDarts::Scoring.points(0, 0) == 100, 'centre does not score 100')
 radial_scores = [100, 300, 600, 900, 1_000].map { |radius| GameRoomDarts::Scoring.points(radius, 0) }

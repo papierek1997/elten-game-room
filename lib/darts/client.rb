@@ -2,7 +2,8 @@
 require_relative 'engine'
 require_relative 'audio'
 require_relative 'mouse'
-require_relative '../realtime/channel'
+require_relative 'rankings/result'
+require_relative '../realtime/event_channel'
 require_relative '../realtime/protocol'
 require_relative '../realtime/progress'
 require_relative '../realtime/table_control'
@@ -19,6 +20,7 @@ module GameRoomDarts
     MAX_PRESENTATIONS = 32
     CURSOR_SEND_INTERVAL = 0.05
     CURSOR_TIMEOUT = 0.3
+    MAX_RANKING_MESSAGES = GameRoomRealtime::EventChannel::LIMIT
 
     class PresentationHandle
       def initialize; @finished = false; end
@@ -27,14 +29,16 @@ module GameRoomDarts
     end
 
     def initialize(program, game, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) }, mouse: nil, audio: nil,
-      progress_factory: nil, channel_factory: nil, **_services)
+      progress_factory: nil, channel_factory: nil, ranking_service: nil, **_services)
       @program, @game, @clock = program, game, clock
       @engine = Engine.new(clock: clock)
       @mouse = mouse || Mouse.new
       @audio = audio || Audio.new(program)
       @progress_factory = progress_factory || ->(**options, &block) { GameRoomRealtime::Progress.new(**options, &block) }
-      @channel_factory = channel_factory || ->(**options) { GameRoomRealtime::Channel.new(**options) }
+      @channel_factory = channel_factory || ->(**options) { GameRoomRealtime::EventChannel.new(**options) }
+      @ranking_service = ranking_service
       @presentations = []
+      @ranking_announcements, @ranking_outbox, @ranking_seen = [], [], {}
       reset_cursor_network
     end
 
@@ -47,6 +51,7 @@ module GameRoomDarts
       @base_match = @match
       @channel = @channel_factory.call(program: @program, match: @match, owner: @owner,
         viewer: @viewer, clock: @clock, members: members)
+      @channel.enable_events('darts-rankings-1')
     end
 
     def start
@@ -120,7 +125,7 @@ module GameRoomDarts
         @pending = nil
       end
       synchronize_aim_state
-      shutdown_cursor_network if replay.finished?
+      clear_remote_cursor if replay.finished?
     end
 
     def attach_view(form, surface)
@@ -149,7 +154,10 @@ module GameRoomDarts
       presentation_was_pending = !@presentations.empty?
       process_presentations(now)
       synchronize_aim_state if presentation_was_pending && @presentations.empty?
+      collect_ranking_feedback
       receive_cursor_network(now)
+      publish_ranking_outbox
+      present_ranking_announcements if @presentations.empty?
 
       selected = !background && !@settings_open && @form && @surface && @surface.input_active?(@form)
       commands = selected ? @surface.input(@form) : []
@@ -389,6 +397,7 @@ module GameRoomDarts
       @channel.take_packets.each do |sender, packet|
         receive_cursor_packet(sender, packet, now)
       end
+      @channel.take_events.each { |sender, packet| receive_ranking_packet(sender, packet) }
     end
 
     def finish_cursor_frame(now)
@@ -401,6 +410,7 @@ module GameRoomDarts
 
       @cursor_epoch = @channel.epoch
       @cursor_sequence = 0
+      @ranking_sequence = 0
       @cursor_next_send = 0.0
       @cursor_last_signature = nil
       clear_remote_cursor
@@ -443,7 +453,7 @@ module GameRoomDarts
     end
 
     def publish_cursor(now)
-      return unless @channel && @cursor_epoch && @replay && !@network_closed
+      return unless @channel && @cursor_epoch && @replay && !@network_closed && !@replay.finished?
 
       body = host? ? host_cursor_body(now) : guest_cursor_body
       signature = [body['i'], body['p'], body['active'], body['x'], body['y']]
@@ -504,9 +514,108 @@ module GameRoomDarts
       @remote_cursor = nil
     end
 
+    def collect_ranking_feedback
+      return unless @ranking_service
+      @ranking_service.take_feedback.each do |feedback|
+        next unless feedback.is_a?(Hash) && GameRoomParticipants.same?(feedback['user'], @viewer)
+        record = feedback['personal_record']
+        if record.is_a?(Hash)
+          seconds = format('%.3f', record.fetch('time_ms').to_i / 1000.0)
+          queue_ranking_announcement(_('New personal three-dart record: %{score} points in %{seconds} seconds.') % {
+            score: record.fetch('score'), seconds: seconds})
+        end
+        feedback.fetch('placements', []).each do |placement|
+          body = {'type'=>'darts_ranking', 'key'=>feedback.fetch('result_key'), 'player'=>feedback.fetch('user'),
+            'difficulty'=>feedback.fetch('difficulty'), 'category'=>placement.fetch('category'),
+            'place'=>placement.fetch('place')}
+          next unless valid_ranking_body?(body)
+          announce_ranking_body(body)
+          queue_ranking_outbox(body)
+        end
+      end
+    end
+
+    def receive_ranking_packet(sender, packet)
+      return unless cursor_packet_valid?(packet, 'event')
+      body = packet['d']
+      return unless valid_ranking_body?(body)
+      if host?
+        return unless sender.to_s.casecmp?(body['player'].to_s) && table_member?(sender)
+      else
+        return unless sender.to_s.casecmp?(@owner.to_s)
+      end
+      return if @ranking_seen[ranking_event_id(body)]
+      announce_ranking_body(body)
+      queue_ranking_outbox(body) if host?
+    end
+
+    def publish_ranking_outbox
+      return if @ranking_outbox.empty? || !@channel || !@cursor_epoch || @network_closed
+      while (body = @ranking_outbox.first)
+        packet = GameRoomRealtime::Protocol.encode(match: @match, epoch: @cursor_epoch,
+          sequence: @ranking_sequence, kind: 'event', body: body)
+        break unless @channel.send_event(packet)
+        @ranking_sequence += 1
+        @ranking_outbox.shift
+      end
+    end
+
+    def announce_ranking_body(body)
+      id = ranking_event_id(body)
+      return if @ranking_seen[id]
+      @ranking_seen[id] = true
+      @ranking_seen.shift while @ranking_seen.length > 128
+      queue_ranking_announcement(_("%{player}'s result took place %{place} in %{category}, %{difficulty}.") % {
+        player: body['player'], place: body['place'], category: ranking_category_label(body['category']),
+        difficulty: ranking_difficulty_label(body['difficulty'])})
+    end
+
+    def queue_ranking_announcement(message)
+      @ranking_announcements << message
+      @ranking_announcements.shift while @ranking_announcements.length > MAX_RANKING_MESSAGES
+    end
+
+    def queue_ranking_outbox(body)
+      return if @ranking_outbox.any? { |queued| ranking_event_id(queued) == ranking_event_id(body) }
+      @ranking_outbox << body
+      @ranking_outbox.shift while @ranking_outbox.length > MAX_RANKING_MESSAGES
+    end
+
+    def present_ranking_announcements
+      @ranking_announcements.shift(4).each do |message|
+        speak(GameRoomContent.utf8(message.to_s), stop: false, break_sequence: false)
+      end
+    end
+
+    def valid_ranking_body?(body)
+      return false unless body.is_a?(Hash) && body.keys.sort == %w[category difficulty key place player type]
+      return false unless body['type'] == 'darts_ranking' && /\A[0-9a-f]{64}\z/.match?(body['key'].to_s)
+      return false unless GameRoomDartsRankings::Result::DIFFICULTIES.include?(body['difficulty']) &&
+        %w[triple average].include?(body['category']) && body['place'].is_a?(Integer) &&
+        body['place'].between?(1, GameRoomDartsRankings::DISPLAY_LIMIT)
+      player = body['player']
+      player.is_a?(String) && player.valid_encoding? && !player.empty? && player.bytesize <= 64 && table_member?(player)
+    end
+
+    def table_member?(name)
+      GameRoomParticipants.includes?(Array(@members_provider&.call), name)
+    rescue StandardError
+      false
+    end
+
+    def ranking_event_id(body); "#{body['key']}:#{body['category']}"; end
+    def ranking_category_label(value)
+      value == 'triple' ? _('Best three-dart round') : _('Best average score')
+    end
+    def ranking_difficulty_label(value)
+      {'easy'=>_('Easy'), 'normal'=>_('Normal'), 'hard'=>_('Hard'),
+        'progressive'=>_('Progressive game')}.fetch(value)
+    end
+
     def reset_cursor_network
       @cursor_epoch = nil
       @cursor_sequence = 0
+      @ranking_sequence = 0
       @cursor_next_send = 0.0
       @cursor_last_signature = nil
       @remote_cursor = nil
