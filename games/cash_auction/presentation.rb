@@ -225,23 +225,7 @@ module GameRoomGames
           entries << HistoryEntry.new(key: "cash-auction:#{event_id}:eliminated:#{index}", event_id: event_id,
             actor: participant, kind: :game, text: _('%{player} is eliminated.') % {player: participant_name(participant)})
         end
-        if event['action'] == 'open_chests'
-          entries.first.kind = :chests_opening
-          state[:last_chest_rewards].each_with_index do |(index, reward), number|
-            participant = state[:players][index]
-            text = reward.zero? ? _('%{player} opens a black chest: no change.') % {player: participant_name(participant)} :
-              _('%{player} opens a black chest: %{percent}.') % {
-                player: participant_name(participant), percent: format('%+d%%', reward)}
-            entries << HistoryEntry.new(key: "cash-auction:#{event_id}:chest:#{number}", event_id: event_id,
-              actor: participant, kind: :game, text: text)
-          end
-          state[:players].each_with_index do |participant, index|
-            next if state[:chest_percentages][index].zero?
-            entries << HistoryEntry.new(key: "cash-auction:#{event_id}:chest-balance:#{index}", event_id: event_id,
-              actor: participant, kind: :game, text: _('%{player}: %{balance} points after opening the chests.') % {
-                player: participant_name(participant), balance: state[:cash][index]})
-          end
-        end
+        append_chest_history(entries, state, event_id) if event['action'] == 'open_chests'
         if state[:phase] == :opening_chests && before[:phase] != :opening_chests && !R.percentage_chests?(state)
           entries << HistoryEntry.new(key: "cash-auction:#{event_id}:chests", event_id: event_id, actor: actor,
             kind: :game, text: _('Open your black chests before the final result.'))
@@ -250,6 +234,24 @@ module GameRoomGames
             kind: :game, text: _('The leaders are tied. An extra round will decide the match.'))
         end
         entries
+      end
+
+      def append_chest_history(entries, state, event_id)
+        entries.first.kind = :chests_opening
+        state[:last_chest_rewards].each_with_index do |(index, reward), number|
+          participant = state[:players][index]
+          text = reward.zero? ? _('%{player} opens a black chest: no change.') % {player: participant_name(participant)} :
+            _('%{player} opens a black chest: %{percent}.') % {
+              player: participant_name(participant), percent: format('%+d%%', reward)}
+          entries << HistoryEntry.new(key: "cash-auction:#{event_id}:chest:#{number}", event_id: event_id,
+            actor: participant, kind: :game, text: text)
+        end
+        state[:players].each_with_index do |participant, index|
+          next if state[:chest_percentages][index].zero?
+          entries << HistoryEntry.new(key: "cash-auction:#{event_id}:chest-balance:#{index}", event_id: event_id,
+            actor: participant, kind: :game, text: _('%{player}: %{balance} points after opening the chests.') % {
+              player: participant_name(participant), balance: state[:cash][index]})
+        end
       end
 
       def auction_id(state); "cash-auction:#{state[:game_id]}:bid:#{state[:round]}"; end
