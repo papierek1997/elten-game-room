@@ -67,7 +67,7 @@ module GameRoomCashAuction
         source.delete(key.to_sym)
       end
       result = super(source)
-      # Remembered unavailable/empty selections must reach the option form,
+      # Explicit unavailable/empty selections must reach the option form,
       # where the existing checklist shows them and the user can repair them.
       return result if auction_selection_error(result)
 
@@ -94,9 +94,9 @@ module GameRoomCashAuction
     end
 
     def remembered_option_definitions(definitions, options: nil)
-      selected = super
-      language = definitions.find { |definition| definition.key.to_s == GameRoomContent::LANGUAGE_OPTION_KEY }
-      language ? (selected + [language]).uniq : selected
+      # Each new table starts with its language's general set, not the previous
+      # checklist. Filtering here covers both reading old and writing new prefs.
+      super.reject { |definition| definition.key.to_s == PACKS_KEY }
     end
 
     def notification_choice(options, key)
@@ -161,7 +161,7 @@ module GameRoomCashAuction
     def content_options_error(options)
       version = option_source_value(options, VERSION_KEY)
       present = options.key?(VERSION_KEY) || options.key?(VERSION_KEY.to_sym)
-      unless !present || (version.is_a?(Integer) && [1, 2, 3, GameRoomCashAuction::Rules::CURRENT_VERSION].include?(version))
+      unless !present || (version.is_a?(Integer) && [1, 2, 3, 4, GameRoomCashAuction::Rules::CURRENT_VERSION].include?(version))
         return _('Unsupported Cash Auction rules version.')
       end
       return super unless GameRoomCashAuction::Rules.revised_options?(options)

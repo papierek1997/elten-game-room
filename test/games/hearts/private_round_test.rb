@@ -16,6 +16,17 @@ begin
     end
     assert(action, "Missing action in #{replay.state[:phase]}, actor #{actor.inspect}, hands #{replay.state[:hands].transform_values(&:size)}, views #{h.users.map { |viewer| current = h.replay(viewer); [viewer, current.current_player, current.state[:passes], current.accepted_events.last&.fetch("action")] }.inspect}")
     PrivateCardGamesTest.submit(h, runners, actor, action)
+    if action['kind'] == 'card' && replay.state[:phase] == :passing
+      after = h.replay(actor)
+      hand = game.surface_spec(after, actor).zones.first
+      outgoing = after.state[:passes].fetch(actor, [])
+      assert((hand.cards.map(&:id) & outgoing).empty?, 'A committed private card remained selectable')
+      assert(hand.cards.map(&:id) == hand.cards.sort_by { |card| card.sort_keys['colour'] }.map(&:id),
+        'The private hand lost suit sorting during passing')
+      before = Marshal.dump(after)
+      game.shortcut_feature_data(:hand, after, actor)
+      assert(Marshal.dump(after) == before, 'The private hand reminder changed its audit')
+    end
   end
   scores = h.users.map do |viewer|
     replay = h.replay(viewer)

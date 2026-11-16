@@ -143,7 +143,7 @@ begin
   hint = CashAuctionNative::Fixture.new(phase: :answering, options: modern_options)
   fixtures << hint
   assert_equal(3, hint.surface.fields.size, 'The answerer has no native hint button')
-  assert(hint.surface.fields.last.label.include?('989'), 'The hint button hides its actual price')
+  assert(hint.surface.fields.last.label.include?('980'), 'The hint button hides its actual price after the 100-point ante')
   hint.press(9)
   hint.press(9)
   hint.press(13)

@@ -68,9 +68,11 @@ module GameRoomShortcuts
     }
     case kind
     when :announcement
+      hand_id = value(data, :hand_id, definition.id == :hand ? 'hand' : nil)
       GameRoomGames::GameShortcut.new(
         **common,
-        message: value(data, :message)
+        message: value(data, :message),
+        payload: hand_id.to_s.empty? ? {} : {'hand_id'=>hand_id.to_s}
       )
     when :browse
       GameRoomGames::GameShortcut.new(

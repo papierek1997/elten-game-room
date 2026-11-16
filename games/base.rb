@@ -131,6 +131,18 @@ module GameRoomGames
 
     PLAYROOM_SUIT_ORDER = %w[H S D C].freeze
     PLAYROOM_RANK_ORDER = %w[2 3 4 5 6 7 8 9 T J Q K A].freeze
+    PLAYROOM_HAND_ORDER = CardHandOrder.new(default_sort: 'colour', sort_modes: %w[colour number], suits: PLAYROOM_SUIT_ORDER, ranks: PLAYROOM_RANK_ORDER)
+    ACQUISITION_HAND_ORDER = CardHandOrder.new(default_sort: 'none', sort_modes: %w[none], suits: [], ranks: [])
+
+    # Each card game declares CARD_HAND_ORDER, even if it never sorts a hand.
+    # Board/dice games need no policy and do not gain card-hand behavior.
+    def card_hand_order(options: {})
+      return nil unless self.class.const_defined?(:CARD_HAND_ORDER)
+
+      order = self.class.const_get(:CARD_HAND_ORDER)
+      raise ArgumentError, "#{self.class} has an invalid CARD_HAND_ORDER" unless order.is_a?(CardHandOrder)
+      order
+    end
 
     # Headless simulations may override this to extend an already materialized
     # replay with newly appended events. Returning nil keeps the safe generic
@@ -518,7 +530,16 @@ module GameRoomGames
     # Standard Playroom hand order: group cards by suit, then expose each suit
     # from its lowest rank to its highest rank. Games with duplicate decks may
     # provide a final stable key without changing the visible rank order.
-    def playroom_hand_sort_key(card, ranks: PLAYROOM_RANK_ORDER, suits: PLAYROOM_SUIT_ORDER, tie_breaker: 0)
+    def declared_card_hand_order(options: {})
+      card_hand_order(options: options) || raise(ArgumentError, "#{self.class} must declare CARD_HAND_ORDER")
+    end
+
+    def default_hand_sort(options: {}); declared_card_hand_order(options: options).default_sort; end
+    def hand_sort_modes(options: {}); declared_card_hand_order(options: options).sort_modes; end
+    def hand_suit_order; declared_card_hand_order.suits; end
+    def hand_rank_order; declared_card_hand_order.ranks; end
+
+    def playroom_hand_sort_key(card, ranks: hand_rank_order, suits: hand_suit_order, tie_breaker: 0)
       suit_index = suits.index(card_suit(card))
       rank_index = ranks.index(card_rank(card))
       [
@@ -529,8 +550,8 @@ module GameRoomGames
     end
 
     def standard_hand_sort_keys(rank:, suit:, position:)
-      suit_index = PLAYROOM_SUIT_ORDER.index(suit) || PLAYROOM_SUIT_ORDER.length
-      rank_index = PLAYROOM_RANK_ORDER.index(rank) || PLAYROOM_RANK_ORDER.length
+      suit_index = hand_suit_order.index(suit) || hand_suit_order.length
+      rank_index = hand_rank_order.index(rank) || hand_rank_order.length
       { "colour" => [suit_index, rank_index], "number" => [rank_index, suit_index], "none" => [position] }
     end
 
@@ -542,9 +563,9 @@ module GameRoomGames
       when "C" then p_("Card suit", "Clubs")
       end
       if rank == "X"
-        return GameSurfaces::CardNavigationGroup.new(id: "joker", label: p_("Card suit", "Jokers"))
+        return GameSurfaces::CardNavigationGroup.new(id: "joker", label: p_("Card suit", "Jokers"), order: hand_suit_order.length)
       end
-      GameSurfaces::CardNavigationGroup.new(id: suit, label: label) if label
+      GameSurfaces::CardNavigationGroup.new(id: suit, label: label, order: hand_suit_order.index(suit)) if label
     end
 
     def canonical_value(value)

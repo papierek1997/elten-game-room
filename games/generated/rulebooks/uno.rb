@@ -45,12 +45,10 @@ module GameRoomGames
             GameRoomRules.translate("G: read the pending penalty."),
             GameRoomRules.translate("Z: next legal card on your turn; disabled with straights, interceptions or buzzer cards."),
             GameRoomRules.translate("Shift+Z: previous legal card on your turn; disabled with straights, interceptions or buzzer cards."),
-            GameRoomRules.translate("Shift+D: restore acquisition order."),
             GameRoomRules.translate("S: read scores."),
             GameRoomRules.translate("T: read whose turn it is."),
             GameRoomRules.translate("Shift+C: sort by suit or colour; press again to reverse the order."),
-            GameRoomRules.translate("Shift+H: sort by rank or value; press again to reverse the order."),
-            GameRoomRules.translate("Shift+M: restore the order in which cards were received."))
+            GameRoomRules.translate("Shift+H: sort by rank or value; press again to reverse the order."))
         ]
       end
 
@@ -138,9 +136,7 @@ module GameRoomGames
               "S: p\u0159e\u010D\u00EDst sk\u00F3re.",
               "T: ozn\u00E1mit, kdo je na tahu.",
               "Shift+C: se\u0159adit podle barev; opakov\u00E1n\u00EDm obr\u00E1tit po\u0159ad\u00ED.",
-              "Shift+H: se\u0159adit podle hodnot; opakov\u00E1n\u00EDm obr\u00E1tit po\u0159ad\u00ED.",
-              "Shift+D: obnovit po\u0159ad\u00ED p\u0159ijat\u00FDch karet.",
-              "Shift+M: obnovit po\u0159ad\u00ED p\u0159ijat\u00FDch karet.")
+              "Shift+H: se\u0159adit podle hodnot; opakov\u00E1n\u00EDm obr\u00E1tit po\u0159ad\u00ED.")
           ]
         when "en"
           [
@@ -225,9 +221,7 @@ module GameRoomGames
               "S: read the scores.",
               "T: announce whose turn it is.",
               "Shift+C: sort by colour; press again to reverse.",
-              "Shift+H: sort by value; press again to reverse.",
-              "Shift+D: restore the order in which you received the cards.",
-              "Shift+M: restore the order in which you received the cards.")
+              "Shift+H: sort by value; press again to reverse.")
           ]
         when "es"
           [
@@ -311,9 +305,7 @@ module GameRoomGames
               "S: consultar los resultados.",
               "T: consultar de qui\u00E9n es el turno.",
               "Shift+C: ordenar por color; repetir para invertir el orden.",
-              "Shift+H: ordenar por valor; repetir para invertir el orden.",
-              "Shift+D: recuperar el orden de recepci\u00F3n.",
-              "Shift+M: recuperar el orden de recepci\u00F3n.")
+              "Shift+H: ordenar por valor; repetir para invertir el orden.")
           ]
         when "pl"
           [
@@ -397,9 +389,7 @@ module GameRoomGames
               "S: odczytaj wyniki.",
               "T: odczytaj, czyja jest tura.",
               "Shift+C: sortuj karty wed\u0142ug koloru; ponowne u\u017Cycie odwraca kolejno\u015B\u0107.",
-              "Shift+H: sortuj karty wed\u0142ug warto\u015Bci; ponowne u\u017Cycie odwraca kolejno\u015B\u0107.",
-              "Shift+D: przywr\u00F3\u0107 kolejno\u015B\u0107 otrzymania kart.",
-              "Shift+M: przywr\u00F3\u0107 kolejno\u015B\u0107 otrzymania kart.")
+              "Shift+H: sortuj karty wed\u0142ug warto\u015Bci; ponowne u\u017Cycie odwraca kolejno\u015B\u0107.")
           ]
         when "ru"
           [
@@ -483,9 +473,7 @@ module GameRoomGames
               "S: \u0443\u0437\u043D\u0430\u0442\u044C \u0441\u0447\u0451\u0442.",
               "T: \u0443\u0437\u043D\u0430\u0442\u044C, \u0447\u0435\u0439 \u0441\u0435\u0439\u0447\u0430\u0441 \u0445\u043E\u0434.",
               "Shift+C: \u0443\u043F\u043E\u0440\u044F\u0434\u043E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u044B \u043F\u043E \u0446\u0432\u0435\u0442\u0430\u043C; \u043F\u043E\u0432\u0442\u043E\u0440\u043D\u043E\u0435 \u043D\u0430\u0436\u0430\u0442\u0438\u0435 \u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043D\u0430 \u043E\u0431\u0440\u0430\u0442\u043D\u044B\u0439.",
-              "Shift+H: \u0443\u043F\u043E\u0440\u044F\u0434\u043E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u044B \u043F\u043E \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u044E; \u043F\u043E\u0432\u0442\u043E\u0440\u043D\u043E\u0435 \u043D\u0430\u0436\u0430\u0442\u0438\u0435 \u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043D\u0430 \u043E\u0431\u0440\u0430\u0442\u043D\u044B\u0439.",
-              "Shift+D: \u0432\u0435\u0440\u043D\u0443\u0442\u044C \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u043A\u0430\u0440\u0442.",
-              "Shift+M: \u0432\u0435\u0440\u043D\u0443\u0442\u044C \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u043A\u0430\u0440\u0442.")
+              "Shift+H: \u0443\u043F\u043E\u0440\u044F\u0434\u043E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u044B \u043F\u043E \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u044E; \u043F\u043E\u0432\u0442\u043E\u0440\u043D\u043E\u0435 \u043D\u0430\u0436\u0430\u0442\u0438\u0435 \u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043D\u0430 \u043E\u0431\u0440\u0430\u0442\u043D\u044B\u0439.")
           ]
         end
       end

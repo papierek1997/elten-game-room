@@ -11,6 +11,7 @@ GameRoomPrivateCards.register("french_tarot", host: %w[private_deal],
 module GameRoomGames
   using GameRoomLocalization::Translations
   class FrenchTarotTable < DealtCardGame
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'colour', sort_modes: %w[colour number], suits: PLAYROOM_SUIT_ORDER, ranks: FrenchTarotCards::RANKS)
     include FrenchTarotBidding
     include ScoreSheetResults
 
@@ -193,23 +194,14 @@ module GameRoomGames
       return {"colour" => [101, 0], "number" => [101, 0], "none" => [position]} if rank == :excuse
       return {"colour" => [100, rank], "number" => [100, rank], "none" => [position]} if rank.is_a?(Integer)
 
-      suit_index = PLAYROOM_SUIT_ORDER.index(suit) || PLAYROOM_SUIT_ORDER.length
-      rank_index = FrenchTarotCards::RANKS.index(rank) || FrenchTarotCards::RANKS.length
-      {"colour" => [suit_index, rank_index], "number" => [rank_index, suit_index], "none" => [position]}
-    end
-
-    def standard_hand_navigation_group(rank:, suit:)
-      return GameSurfaces::CardNavigationGroup.new(id: "trumps", label: p_("Card suit", "Trumps")) if rank.is_a?(Integer)
-      return GameSurfaces::CardNavigationGroup.new(id: "excuse", label: _("Excuse")) if rank == :excuse
-
       super
     end
 
-    def hand_cards_for_display(hand)
-      hand.sort_by do |value|
-        keys = standard_hand_sort_keys(rank: playing_card_rank(value), suit: playing_card_suit(value), position: 0)
-        keys.fetch("colour")
-      end
+    def standard_hand_navigation_group(rank:, suit:)
+      return GameSurfaces::CardNavigationGroup.new(id: "trumps", label: p_("Card suit", "Trumps"), order: hand_suit_order.length) if rank.is_a?(Integer)
+      return GameSurfaces::CardNavigationGroup.new(id: "excuse", label: _("Excuse"), order: hand_suit_order.length + 1) if rank == :excuse
+
+      super
     end
 
     def discardable_cards(state, actor)

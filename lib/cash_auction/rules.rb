@@ -6,7 +6,8 @@ module GameRoomCashAuction
       'rounds'=>8, 'count_interval'=>2, 'black_chest_chance'=>5}.freeze
     CHEST_REWARDS = [100, 2500, 10_000, -100, -500, -1000, 'bankrupt'].freeze
     BONUS_REWARDS = [100, 500, 1000, 2500, 5000, 7500, 10_000].freeze
-    CURRENT_VERSION = 4
+    CURRENT_VERSION = 5
+    INACTIVITY_PENALTY_PERCENT = 5
     CHEST_MAGNITUDES = [5, 10, 15, 20, 25, 30, 35].freeze
     CHEST_WEIGHTS = [49, 36, 25, 16, 9, 4, 1].freeze
     CHEST_WEIGHT_TOTAL = CHEST_WEIGHTS.sum
@@ -39,11 +40,17 @@ module GameRoomCashAuction
     def time?(now); now.is_a?(Integer) && now >= 0; end
     def seat?(state, seat); seat.is_a?(Integer) && seat.between?(0, state[:players].length - 1); end
     def active?(state, seat); seat?(state, seat) && !state[:eliminated][seat]; end
-    def revised_options?(options); [2, 3, CURRENT_VERSION].include?(options['auction_rules_version']); end
+    def revised_options?(options); [2, 3, 4, CURRENT_VERSION].include?(options['auction_rules_version']); end
     def revised?(state); revised_options?(state[:options]); end
-    def percentage_chests?(state); [3, CURRENT_VERSION].include?(state[:options]['auction_rules_version']); end
+    def percentage_chests?(state); [3, 4, CURRENT_VERSION].include?(state[:options]['auction_rules_version']); end
+    def percentage_penalty?(options); options['auction_rules_version'] == CURRENT_VERSION; end
+    def inactivity_penalty(state, seat)
+      cash = state[:cash][seat]
+      percentage_penalty?(state[:options]) ? (cash * INACTIVITY_PENALTY_PERCENT + 99) / 100 :
+        [cash, state[:options]['pass_penalty']].min
+    end
     def question_pool_auction?(state, chest: state[:chest])
-      state[:options]['auction_rules_version'] != CURRENT_VERSION || !chest
+      ![4, CURRENT_VERSION].include?(state[:options]['auction_rules_version']) || !chest
     end
     def auction_duration(state); (revised?(state) ? 4 : 3) * state[:options]['count_interval']; end
     def hint_price(state); [1, (state[:cash][state[:leader]].to_i + 9) / 10].max; end
@@ -97,7 +104,7 @@ module GameRoomCashAuction
       state[:passed][seat] = true
       state[:pass_counts][seat] += 1
       if (state[:pass_counts][seat] % 3).zero?
-        penalty = [state[:cash][seat], state[:options]['pass_penalty']].min
+        penalty = inactivity_penalty(state, seat)
         state[:cash][seat] -= penalty
         state[:pot] += penalty
       end
@@ -187,7 +194,7 @@ module GameRoomCashAuction
         else
           state[:pass_counts][seat] += 1
           next unless state[:pass_counts][seat] == 3
-          penalty = [state[:cash][seat], state[:options]['pass_penalty']].min
+          penalty = inactivity_penalty(state, seat)
           state[:cash][seat] -= penalty
           state[:pot] += penalty if question_pool_auction?(state)
           state[:round_penalties][seat] = penalty

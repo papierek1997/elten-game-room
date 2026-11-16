@@ -36,8 +36,7 @@ module GameRoomGames
             GameRoomRules.translate("Z: find the next playable card."),
             GameRoomRules.translate("Shift+Z: find the previous playable card."),
             GameRoomRules.translate("Shift+C: sort your hand by suit."),
-            GameRoomRules.translate("Shift+H: sort your hand by rank."),
-            GameRoomRules.translate("Shift+M: restore the order in which you received the cards."))
+            GameRoomRules.translate("Shift+H: sort your hand by rank."))
         ]
       end
 
@@ -75,8 +74,7 @@ module GameRoomGames
               "Z: najdi dal\u0161\u00ED hratelnou kartu.",
               "Shift+Z: najdi p\u0159edchoz\u00ED hratelnou kartu.",
               "Shift+C: se\u0159a\u010F ruku podle barev.",
-              "Shift+H: se\u0159a\u010F ruku podle hodnot.",
-              "Shift+M: obnov po\u0159ad\u00ED p\u0159ijat\u00FDch karet.")
+              "Shift+H: se\u0159a\u010F ruku podle hodnot.")
           ]
         when "en"
           [
@@ -110,8 +108,7 @@ module GameRoomGames
               "Z: find the next playable card.",
               "Shift+Z: find the previous playable card.",
               "Shift+C: sort your hand by suit.",
-              "Shift+H: sort your hand by rank.",
-              "Shift+M: restore the order in which you received the cards.")
+              "Shift+H: sort your hand by rank.")
           ]
         when "es"
           [
@@ -180,8 +177,7 @@ module GameRoomGames
               "Z: znajd\u017A nast\u0119pn\u0105 kart\u0119, kt\u00F3r\u0105 mo\u017Cna zagra\u0107.",
               "Shift+Z: znajd\u017A poprzedni\u0105 kart\u0119, kt\u00F3r\u0105 mo\u017Cna zagra\u0107.",
               "Shift+C: sortuj r\u0119k\u0119 wed\u0142ug kolor\u00F3w.",
-              "Shift+H: sortuj r\u0119k\u0119 wed\u0142ug warto\u015Bci.",
-              "Shift+M: przywr\u00F3\u0107 kolejno\u015B\u0107 otrzymania kart.")
+              "Shift+H: sortuj r\u0119k\u0119 wed\u0142ug warto\u015Bci.")
           ]
         when "ru"
           [
@@ -215,8 +211,7 @@ module GameRoomGames
               "Z: \u043D\u0430\u0439\u0442\u0438 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0443\u044E \u0434\u043E\u043F\u0443\u0441\u0442\u0438\u043C\u0443\u044E \u043A\u0430\u0440\u0442\u0443.",
               "Shift+Z: \u043D\u0430\u0439\u0442\u0438 \u043F\u0440\u0435\u0434\u044B\u0434\u0443\u0449\u0443\u044E \u0434\u043E\u043F\u0443\u0441\u0442\u0438\u043C\u0443\u044E \u043A\u0430\u0440\u0442\u0443.",
               "Shift+C: \u043E\u0442\u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0440\u0443\u043A\u0443 \u043F\u043E \u043C\u0430\u0441\u0442\u044F\u043C.",
-              "Shift+H: \u043E\u0442\u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0440\u0443\u043A\u0443 \u043F\u043E \u0434\u043E\u0441\u0442\u043E\u0438\u043D\u0441\u0442\u0432\u0443.",
-              "Shift+M: \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u043A\u0430\u0440\u0442.")
+              "Shift+H: \u043E\u0442\u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0440\u0443\u043A\u0443 \u043F\u043E \u0434\u043E\u0441\u0442\u043E\u0438\u043D\u0441\u0442\u0432\u0443.")
           ]
         end
       end

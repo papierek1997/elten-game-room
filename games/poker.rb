@@ -10,6 +10,7 @@ GameRoomServerRandom.register('poker', ['deal'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class Poker < CardGame
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def player_spatial_audio?; true; end
     VARIANTS = [
       OptionChoice.new(value: "holdem", label: _("Texas Hold'em")),
@@ -366,7 +367,7 @@ module GameRoomGames
             navigation_group: standard_hand_navigation_group(rank: card[0], suit: card[1]),
             sort_keys: standard_hand_sort_keys(rank: card[0], suit: card[1], position: hand_for(state, viewer).index(card)))
         end
-        packet = GameSurfaces::PacketCardSpec.new(id: "poker_exchange", header: _("Choose cards to exchange"),
+        packet = GameSurfaces::PacketCardSpec.new(id: "poker_exchange", default_sort: default_hand_sort, sort_modes: hand_sort_modes, header: _("Choose cards to exchange"),
           packet_tip: _("Press Shift+Enter to select or unselect the current card for exchange."),
           activation_tip: _("Press Enter to exchange the current card or the selected cards."),
           cards: cards, action_name: "exchange", allow_packet: true, empty_label: _("No cards"),
@@ -1313,13 +1314,13 @@ module GameRoomGames
 
     def information_shortcuts(state, viewer)
       player = player_key(state, viewer)
-      cards = hand_for(state, viewer)
+      cards = hand_for(state, viewer).sort_by { |card| playing_sort_key(card) }
       board = state[:community]
       result = [
         announcement_shortcut(key: "s", label: _("read your stack"), message: _("Your stack: %{chips}.") % { chips: state[:stacks][player].to_i }),
         GameShortcut.new(key: "s", modifiers: [:shift], label: _("read other stacks"), kind: :announcement, message: stack_text(state, viewer)),
         announcement_shortcut(key: "v", label: _("read the call amount"), message: _("To call: %{amount}.") % { amount: player == nil ? 0 : [state[:current_bet] - state[:street_bets][player], 0].max }),
-        announcement_shortcut(key: "d", label: _("read your cards"), message: cards.empty? ? _("You have no cards.") : cards.map { |card| poker_card_label(card) }.join(", ")),
+        announcement_shortcut(key: "d", label: _("read your cards"), message: cards.empty? ? _("You have no cards.") : cards.map { |card| poker_card_label(card) }.join(", "), hand_id: 'poker_exchange'),
         announcement_shortcut(key: "e", label: _("read visible table cards"), message: board.empty? ? _("No community cards are visible.") : board.map { |card| poker_card_label(card) }.join(", ")),
         announcement_shortcut(key: "p", label: _("read the pot"), message: _("Pot: %{amount}.") % { amount: state[:contributions].values.sum }),
         announcement_shortcut(key: "i", label: _("read your total investment"), message: _("You have invested %{amount} in this hand.") % { amount: state[:contributions][player].to_i }),
@@ -1454,7 +1455,7 @@ module GameRoomGames
     end
 
     def playing_sort_key(card)
-      [PLAYROOM_SUIT_ORDER.index(card[1]) || 9, PLAYROOM_RANK_ORDER.index(card[0]) || 99]
+      standard_hand_sort_keys(rank: card[0], suit: card[1], position: 0).fetch('colour')
     end
 
     def poker_card_label(card)

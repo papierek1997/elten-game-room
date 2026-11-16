@@ -755,3 +755,32 @@ modifications and source links are in
 [LICENSES/AUCTION-SOUNDS.txt](LICENSES/AUCTION-SOUNDS.txt); full licences are
 [CC0](LICENSES/CC0-1.0.txt) and [CC BY 3.0](LICENSES/CC-BY-3.0.txt).
 The authors do not endorse this application.
+
+### Score-sheet games — zero score
+
+`Audio/five_dice_zero.opus` uses “DENY_SOUND.mp3” by **ciapaqua**,
+Freesound [637108](https://freesound.org/s/637108/), supplied by the user with
+its [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) notice.
+The complete HQ Ogg preview was converted to Ogg Opus, target 144 kb/s VBR,
+48 kHz, 20 ms frames, audio mode and complexity 10. Channels, level and the
+complete recording are preserved; no normalization or trimming was applied.
+It replaces the short zero-score cue only in Balut, Dice General and Yahtzee.
+
+### Score-sheet games — positive feedback and recording a score
+
+`Audio/five_dice_bonus.opus` uses “Jingle_Win_Synth_03.wav” by
+**LittleRobotSoundFactory**, Freesound [274177](https://freesound.org/s/274177/).
+`Audio/five_dice_doubled.opus` uses “Jingle_Win_Synth_01.wav” by the same author,
+Freesound [274179](https://freesound.org/s/274179/).
+`Audio/five_dice_record.opus` uses “Save confirm, synth (Shutter & Focus Camera
+App UI)” by **Packsmithy**, Freesound [877300](https://freesound.org/s/877300/).
+All three are under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+The user supplied their HQ Ogg previews and licence notices. Complete previews
+were converted to 144 kb/s VBR Opus, 48 kHz, 20 ms frames, audio mode and
+complexity 10, preserving channels and levels without normalization or trimming.
+
+`Audio/kosciane_column_1_bonus.opus` through `kosciane_column_6_bonus.opus` and
+the corresponding `_doubled.opus` files concatenate an existing calibrated
+column cue with the complete new jingle. The composite was re-encoded to the
+same Opus profile. Attribution and licence for the original column recordings
+still apply. The authors do not endorse this application.

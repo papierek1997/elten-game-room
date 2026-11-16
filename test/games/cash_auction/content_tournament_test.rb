@@ -28,7 +28,7 @@ forged['content_pack_manifest'][0]['checksum'] = 'f' * 64
 invalid = [forged, modern.merge('content_pack_manifest'=>{}),
   modern.merge('content_pack_ids'=>'quiz.wikidata.pl'),
   modern.merge('content_pack_ids'=>[]),
-  modern.merge('auction_rules_version'=>'3'), modern.merge('auction_rules_version'=>5),
+  modern.merge('auction_rules_version'=>'3'), modern.merge('auction_rules_version'=>6),
   modern.merge('content_pack_manifest'=>modern['content_pack_manifest'].reverse)]
 invalid.each_with_index do |options, index|
   assert_raises(GameRoomTournaments::Publication::Invalid) do

@@ -44,8 +44,9 @@ module GameRoomGames
 
     def option_definitions
       [OptionDefinition.new(key: 'starting_points', label: _('Starting points (10 to 1000000)'), kind: :integer, default: 10_000),
-       OptionDefinition.new(key: 'ante', label: _('Ante paid by each player'), kind: :integer, default: 10),
-       OptionDefinition.new(key: 'pass_penalty', label: _('Penalty after three consecutive auctions without a bid'), kind: :integer, default: 200),
+       OptionDefinition.new(key: 'ante', label: _('Ante paid by each player'), kind: :integer, default: 100),
+       OptionDefinition.new(key: 'pass_penalty', label: _('Penalty after three consecutive auctions without a bid'), kind: :integer, default: 200,
+         visible_if: ->(values) { !R.percentage_penalty?(values) }),
        OptionDefinition.new(key: 'rounds', label: _('Number of question rounds (8 to 32)'), kind: :integer, default: 8),
        OptionDefinition.new(key: 'count_interval', label: _('Seconds between auction calls (1 to 5)'), kind: :integer, default: 3),
        OptionDefinition.new(key: 'black_chest_chance', label: _('Black chest probability in percent (5 to 15)'), kind: :integer, default: 10)]
@@ -56,7 +57,9 @@ module GameRoomGames
       return _('Choose from 2 to 8 players.') if player_count && !player_count.between?(2, 8)
       return _('Starting points must be from 10 to 1000000.') unless values['starting_points'].between?(10, 1_000_000)
       return _('The ante must be positive and no greater than the starting points.') unless values['ante'].between?(1, values['starting_points'])
-      return _('The pass penalty must be from 0 to 1000000.') unless values['pass_penalty'].between?(0, 1_000_000)
+      unless R.percentage_penalty?(values) || values['pass_penalty'].between?(0, 1_000_000)
+        return _('The pass penalty must be from 0 to 1000000.')
+      end
       return _('Choose from 8 to 32 question rounds.') unless values['rounds'].between?(8, 32)
       return _('Choose from 1 to 5 seconds between auction calls.') unless values['count_interval'].between?(1, 5)
       chest_maximum = R.revised_options?(values) ? 15 : 10

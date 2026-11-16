@@ -4,6 +4,19 @@ module GameSurfaces
   module CardSorting
     private
 
+    def card_sort_mode_allowed?(mode)
+      return false unless %w[colour number none].include?(mode.to_s)
+      allowed = @spec.respond_to?(:sort_modes) ? @spec.sort_modes : nil
+      allowed == nil || allowed.include?(mode.to_s)
+    end
+
+    def reset_disallowed_card_sort
+      return if @card_sort_mode.to_s.empty? || card_sort_mode_allowed?(@card_sort_mode)
+
+      @card_sort_mode = ''
+      @card_sort_direction = 'ascending'
+    end
+
     def sorted_hand?
       mode = active_card_sort_mode
       !mode.empty? && mode != "none"

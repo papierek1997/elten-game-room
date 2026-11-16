@@ -1,11 +1,13 @@
 require_relative "../support/duck_challenge_native"
 require_relative "../../games/base"
+require_relative "../../games/spades"
 require_relative "../../games/rummy"
+require_relative "../../games/bridge"
 
 GameRoomLocalization.boot(settings: {"interface_language" => "en"}, host_language: "en")
 
 def suit_cards(ids)
-  game = GameRoomGames::Base.new
+  game = GameRoomGames::Spades.new
   ids.each_with_index.map do |id, index|
     GameSurfaces::Card.new(id: id, value: id, label: "card #{id}",
       navigation_group: game.__send__(:standard_hand_navigation_group, rank: id[0], suit: id[1]),
@@ -68,6 +70,40 @@ arrow(driver, form, 0x25)
 assert(field.index == 5, "Left did not cycle to Clubs")
 driver.frame(form, driver.tap(0x0d))
 assert(events.size == 1 && events.first["card_id"] == "4C", "Enter did not use the actual selected physical card")
+
+# Suit navigation follows the game's semantic cycle, not first occurrence or
+# card adjacency. An interleaved/descending/acquisition hand stays complete.
+raw_ids = %w[3S 2H 5C 4H 6D 7S]
+driver, surface, form, field, events = native_hand(suit_hand(raw_ids))
+%w[6D 5C 2H 3S].each do |id|
+  arrow(driver, form, 0x27)
+  assert(field.options[field.index] == "card #{id}", 'Interleaved hand changed the semantic suit cycle')
+end
+['number', 'colour', 'colour', 'none'].each do |mode|
+  surface.handle_command('sort_cards', 'mode'=>mode, 'toggle'=>true)
+  field.index = field.options.index('card 4H')
+  expected = surface.displayed_hand_cards('hand').find { |card| card.id[1] == 'S' }.label
+  before = field.options.dup
+  speech = arrow(driver, form, 0x27)
+  assert(field.options[field.index] == expected && speech.include?('Spades'), "#{mode}: Right did not target the first displayed Spade")
+  assert(field.options == before && events.empty?, 'Suit jump filtered, sorted or submitted an interleaved hand')
+  arrow(driver, form, 0x25)
+  assert(field.options[field.index] == surface.displayed_hand_cards('hand').find { |card| card.id[1] == 'H' }.label, 'Left did not return to the first displayed Heart')
+end
+assert(field.options == raw_ids.map { |id| "card #{id}" }, 'Acquisition order was not preserved')
+field.index = 1
+arrow(driver, form, 0x28)
+assert(field.options[field.index] == 'card 5C', 'Down was restricted to the horizontally chosen suit')
+spec = suit_hand(%w[2H 3S 4C 5D])
+bridge = GameRoomGames::Bridge.new
+spec.zones.first.cards.each do |card|
+  card.navigation_group = bridge.send(:standard_hand_navigation_group, rank:card.id[0], suit:card.id[1])
+end
+driver, surface, form, field, events = native_hand(spec)
+arrow(driver, form, 0x27)
+assert(field.options[field.index] == 'card 5D', 'Bridge did not keep its own Spades/Hearts/Diamonds/Clubs cycle')
+arrow(driver, form, 0x25)
+assert(field.options[field.index] == 'card 2H' && events.empty?, 'Bridge reverse suit navigation disagreed')
 
 # Arrow plus Enter in one native frame selects the jumped-to card exactly
 # once, in the same order as native vertical movement followed by selection.
@@ -187,6 +223,7 @@ state.update(phase: :playing, round: 1, turn: 1, current_player: "Alice", drawn:
 replay = GameRoomGames::Replay.new(players: state[:players], state: state, current_player: "Alice", history: [])
 driver, surface, form, field, events = native_hand(game.surface_spec(replay, "Alice"))
 surface.handle_command("meld_new")
+field.index = field.options.index('2 of spades')
 driver.frame(form, driver.tap(0x0d))
 arrow(driver, form, 0x27)
 assert(field.options[field.index].include?("4 of hearts") && surface.state["meld_selection"] == ["2S0"], "Suit movement changed the prepared meld")
@@ -204,8 +241,8 @@ field.suppress_next_focus!
 speech = arrow(driver, form, 0x27)
 assert(speech.include?("Hearts") && speech.include?("4 of hearts"), "Quiet refresh silenced the next deliberate suit jump")
 field.suppress_next_focus!
-speech = arrow(driver, form, 0x26)
-assert(speech.include?("3 of spades") && !speech.include?("Full hand"), "Quiet refresh silenced native vertical navigation or repeated the hand caption")
+speech = arrow(driver, form, 0x28)
+assert(speech.include?("2 of spades") && !speech.include?("Full hand"), "Quiet refresh silenced native vertical navigation or repeated the hand caption")
 
 # Empty, single-suit and incomplete metadata cannot create an inaccessible
 # option or invent a second group.

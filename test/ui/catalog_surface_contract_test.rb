@@ -1,6 +1,7 @@
 require_relative '../support/room_interface'
 require_relative '../support/private_simulation'
 require_relative '../support/model_contract'
+require_relative '../support/card_hand_order'
 
 include GameRoomTest::Assertions
 
@@ -66,6 +67,7 @@ types = Hash.new(0)
 inspect_view = lambda do |game, replay, viewer|
   before = GameRoomTest::ContractValues.digest(replay)
   view = game.game_view_spec(replay, viewer)
+  GameRoomTest::CardHandOrderContract.check(game, view.surface, options: replay.state&.fetch(:options, {}) || {})
   # Construct the whole shared layout, not just a declaration of its fields.
   layout = GameRoomLayout::Screen.new(view_spec: view, chat_text: 'Keep this draft',
     chat_index: 4, chat_check: 8, history_items: [], user_items: replay.players)

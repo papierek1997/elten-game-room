@@ -77,7 +77,7 @@ groups = spec.zones.first.cards.map(&:navigation_group)
 assert(groups.map(&:id).uniq.sort == %w[C D H S excuse trumps], "Tarot specials were confused with ordinary suits")
 
 # Names are suit names, not the colliding titles of the Hearts/Spades games.
-base = GameRoomGames::Base.new
+base = GameRoomGames::Spades.new
 {"en" => %w[Hearts Spades Diamonds Clubs Jokers Trumps],
  "pl" => %w[Kiery Piki Kara Trefle Jokery Atuty],
  "cs" => %w[Srdce Piky Kára Kříže Žolíci Trumfy],

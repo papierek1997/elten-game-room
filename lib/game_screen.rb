@@ -585,7 +585,13 @@ class GameScreen
   def activate_game_shortcut(shortcut, surface = nil, replay: nil)
     case shortcut.kind
     when :announcement
-      speak(shortcut.message) if !shortcut.message.to_s.empty?
+      message = shortcut.message
+      hand_id = shortcut.payload['hand_id']
+      if hand_id && replay && @game && surface.respond_to?(:displayed_hand_cards)
+        cards = surface.displayed_hand_cards(hand_id)
+        message = @game.displayed_hand_announcement(replay, Session.name, cards: cards, hand_id: hand_id) || message if cards
+      end
+      speak(message) if !message.to_s.empty?
       nil
     when :grid_preview
       show_shortcut_grid(shortcut, replay)

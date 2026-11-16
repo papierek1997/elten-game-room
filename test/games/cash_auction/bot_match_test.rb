@@ -3,10 +3,10 @@ require_relative '../../../lib/game_random'
 include GameRoomTest::Assertions
 
 $stdout.sync = true
-unless ARGV.empty? || (ARGV.length == 2 && %w[1 2 3 4].include?(ARGV[0]) && %w[2 4 8].include?(ARGV[1]))
-  raise ArgumentError, 'Expected no arguments, or rules version (1, 2, 3 or 4) and player count (2, 4 or 8)'
+unless ARGV.empty? || (ARGV.length == 2 && %w[1 2 3 4 5].include?(ARGV[0]) && %w[2 4 8].include?(ARGV[1]))
+  raise ArgumentError, 'Expected no arguments, or rules version (1 to 5) and player count (2, 4 or 8)'
 end
-cases = ARGV.empty? ? [1, 2, 3, 4].product([2, 4, 8]) : [[ARGV[0].to_i, ARGV[1].to_i]]
+cases = ARGV.empty? ? [1, 2, 3, 4, 5].product([2, 4, 8]) : [[ARGV[0].to_i, ARGV[1].to_i]]
 cases.each do |version, count|
     label = "v#{version}, #{count} players"
     puts "#{label}: starting"

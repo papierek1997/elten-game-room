@@ -218,13 +218,15 @@ assert(cursor["raw_ids"] == original_hand && cursor["epoch"] == "#{actor}:#{play
 original_ids = cursor["ids"].dup
 selected = cursor["selected_id"]
 shortcuts = game.game_shortcuts(playing, actor)
-["colour", "number", "none"].each do |mode|
+["colour", "number"].each do |mode|
   shortcut = shortcuts.find { |entry| entry.kind == :surface && entry.action_name == "sort_cards" && entry.payload["mode"] == mode }
   assert(shortcut && surface.handle_command(shortcut.action_name, shortcut.payload), "hand sorting #{mode} is unavailable")
   cursor = ThreeFiveEightIntegration.hand_cursor(surface)
   assert(cursor["selected_id"] == selected && cursor["ids"].sort == original_ids.sort, "sorting changed selected card or hand")
 end
-assert(ThreeFiveEightIntegration.hand_cursor(surface)["ids"] == original_hand, "Shift+M did not restore acquisition order")
+assert(shortcuts.none? { |entry| entry.action_name == 'sort_cards' && entry.payload['mode'] == 'none' }, 'Removed order still has a shortcut')
+assert(!surface.handle_command('sort_cards', 'mode'=>'none'), 'A retained removed-order callback was accepted')
+assert(ThreeFiveEightIntegration.hand_cursor(surface)['raw_ids'] == original_hand, 'Physical receipt metadata changed')
 assert(playing.state[:hands][actor] == original_hand, "view sorting mutated game state")
 [-1, 1].each do |direction|
   shortcut = shortcuts.find { |entry| entry.key == "z" && entry.modifiers == (direction < 0 ? [:shift] : []) }

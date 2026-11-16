@@ -6,7 +6,7 @@ module CashAuctionRevisedRoundsTest
   module_function
 
   def match
-    F.new(rules_version: 2, options: {'starting_points'=>1000, 'content_language_id'=>'en'})
+    F.new(rules_version: 2, options: {'starting_points'=>1000, 'ante'=>10, 'content_language_id'=>'en'})
   end
 
   def question_round(f, bidder: 'Alice')

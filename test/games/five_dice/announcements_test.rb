@@ -58,7 +58,7 @@ replay = balut.replay({}, events, repository)
 assert(replay.history.last.text == 'Bob records 20 in Fours, entry 1.', 'An unchanged game total creates extra score speech')
 [game, balut].each do |model|
   assert(model.event_sound_cues(event: {'action'=>'score'}, before_replay: nil, after_replay: replay,
-    history: [], viewer: 'Alice', random_variant: 0) == 'cht-bank', 'Dice scoring uses a card-play effect')
+    history: [], viewer: 'Alice', random_variant: 0) == 'five_dice_record', 'Dice scoring uses a card-play effect')
 end
 puts 'PASS five-dice score announcements: row/column bonuses, loss, exact cell, Balut entry versus game points and non-card score cues'
 

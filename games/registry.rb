@@ -9,6 +9,7 @@ module GameRoomGames
         raise ArgumentError, "a game must have an id" if id.empty?
         raise ArgumentError, "duplicate game id: #{id}" if @game_types.key?(id)
 
+        game.card_hand_order if game.respond_to?(:card_hand_order)
         game.rule_book
 
         @game_types[id] = game_type

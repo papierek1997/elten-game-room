@@ -14,7 +14,11 @@ control = surface.fields.first
 emitted = []
 surface.on_action { |action| emitted << action }
 surface.handle_command("meld_new")
-[0, 1, 2].each { |i| control.index = i; control.trigger(:select, [i]) }
+["2 of spades", "3 of spades", "4 of spades"].each do |label|
+  index = control.options.index(label)
+  control.index = index
+  control.trigger(:select, [index])
+end
 assert(emitted.empty?, "draft accidentally emitted a move")
 assert(surface.state["meld_selection"] == %w[2S0 3S0 4S0], "ordered selection")
 surface.handle_command("sort_cards", { "mode" => "number", "toggle" => true })

@@ -112,12 +112,12 @@ program = NativeOptionTest::Program.new
 stored = {duck.id => {"question_sets" => ["quiz.witcher.books"]}}
 program.define_singleton_method(:read_json) { |_path, default:| stored }
 options = program.send(:remembered_game_option_defaults, duck, duck.effective_option_definitions)
-check(options["question_language"] == "pl-PL" && options["question_sets"] == ["quiz.witcher.books"], "Remembered sets were mixed with another language")
+check(options["question_language"] == "en" && options["question_sets"] == ["quiz.general"], "Duck Racing restored former sets instead of its interface defaults")
 program.send(:remember_multiple_choice_options, duck, duck.effective_option_definitions(options), options)
-check(program.writes.last[1][duck.id]["question_language"] == "pl-PL", "Checklist language was not remembered with the sets")
+check(program.writes.last[1][duck.id].keys == ["challenges"], "Duck Racing persisted its question sets or language")
 stored[duck.id] = {"question_language" => "en", "question_sets" => []}
 options = program.send(:remembered_game_option_defaults, duck, duck.effective_option_definitions)
-check(options["question_sets"] == [], "An explicitly cleared checklist regained a default")
+check(options["question_sets"] == ["quiz.general"], "A former empty preference removed the general default")
 
 # A content registry missing the preferred pack still defaults to English.
 # Merely asking for defaults must not load any lazy resource.

@@ -10,6 +10,7 @@ GameRoomPrivateCards.register("hearts", host: %w[private_deal], claim: %w[privat
 module GameRoomGames
   using GameRoomLocalization::Translations
   class HeartsTable < DealtCardGame
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def id; "hearts"; end
     def name; _('Hearts'); end
     def short_description; _('Avoid hearts and the queen of spades to finish with the fewest penalty points.'); end
@@ -31,8 +32,13 @@ module GameRoomGames
 
     def describe_event(event, repository, replay, viewer)
       messages = Array(super)
+      event_id = repository.event_id(event)
+      if event['action'] == 'pass_card' && same_user?(repository.actor_of(event), viewer) &&
+          replay.accepted_events.reverse_each.any? { |accepted| repository.event_id(accepted) == event_id }
+        messages.unshift _('Card passed.')
+      end
       exchange = replay.state[:last_exchange]
-      return messages unless exchange && exchange[:event_id] == repository.event_id(event)
+      return messages unless exchange && exchange[:event_id] == event_id
 
       receipt = exchange[:received].find { |seat, _| same_user?(seat, viewer) }&.last
       return messages unless receipt
@@ -129,6 +135,16 @@ module GameRoomGames
     end
 
     protected
+
+    # Keep original cards for the simultaneous exchange and private audit,
+    # but a committed outgoing card is no longer selectable or read by H.
+    def hand_for_display(state, viewer)
+      cards = super
+      return cards unless state[:phase] == :passing
+
+      seat = state[:players].find { |player| same_user?(player, viewer) }
+      cards - state[:passes].fetch(seat, [])
+    end
 
     def passing_instruction(state)
       case state[:pass_offset]

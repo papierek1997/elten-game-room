@@ -9,6 +9,7 @@ require_relative "../lib/game_room_localization"
 module GameRoomGames
   using GameRoomLocalization::Translations
   class ScientificWar < CardGame
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'number', sort_modes: %w[number], suits: CARD_SUITS, ranks: CARD_RANKS)
     def player_spatial_audio?; true; end
     include HiddenSubmissions::Cleanup
     SUIT_ORDER = %w[H S D C].freeze
@@ -779,11 +780,12 @@ module GameRoomGames
 
     def hand_surface(state, player, viewer, header)
       hand = state[:hands][player]
-      cards = hand.sort_by { |card| [joker?(card) ? 1 : 0, CARD_RANKS.index(playing_card_rank(card)).to_i, card] }.map do |card|
+      cards = hand_cards_for_display(hand).map do |card|
         GameSurfaces::Card.new(id: card, label: playing_card_label(card), value: card,
+          sort_keys: standard_hand_sort_keys(rank: playing_card_rank(card), suit: playing_card_suit(card), position: hand.index(card)),
           navigation_group: standard_hand_navigation_group(rank: playing_card_rank(card), suit: playing_card_suit(card)))
       end
-      GameSurfaces::CardTableSpec.new(zones: [
+      GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: [
         GameSurfaces::CardZoneSpec.new(id: "hand", header: header, cards: cards, empty_label: _("Your hand is empty"),
           hand_order: hand.dup, hand_epoch: "#{viewer.to_s.downcase}:scientific_war:#{state[:new_hands][player].to_i}")
       ])

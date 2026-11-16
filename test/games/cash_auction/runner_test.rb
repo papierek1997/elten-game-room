@@ -39,7 +39,7 @@ begin
   end
   room.assert_converged('concurrent auction bids', expected_count: 4)
   state = room.replay('Alice').state
-  assert(state[:cash] == [890, 790] && state[:pot] == 320, 'Native ACK changed the bid ledger')
+  assert(state[:cash] == [800, 700] && state[:pot] == 500, 'Native ACK changed the 100-point ante or bid ledger')
   clock.value = state[:auction_deadline] - 1
   step(room, host)
   assert(room.events('Alice').length == 4, 'The executor closed the auction early')
@@ -58,7 +58,7 @@ begin
     assert(status == :ok, 'The winner could not answer through the executor')
   end
   room.assert_converged('answered auction', expected_count: 7)
-  assert(room.replay('Alice').state[:cash] == [890, 1110], 'Executor payout differs from cold native replay')
+  assert(room.replay('Alice').state[:cash] == [800, 1200], 'Executor payout differs from cold native replay')
   assert(room.replay('Alice').accepted_events.length == room.events('Alice').length, 'The executor wrote a refused event')
   [false, true].each do |chest|
     clock.value = room.replay('Alice').state[:resume_at]

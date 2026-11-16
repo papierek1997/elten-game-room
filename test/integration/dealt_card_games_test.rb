@@ -32,7 +32,11 @@ end
   spec=game.surface_spec(table.replay,actor)
   own=table.state[:hands][actor]
   assert_equal(own,spec.zones.first.hand_order,"#{id}: hand order not supplied")
-  expected = id == 'bouillabaisse' ? own.sort_by { |card| GameRoomGames::Spades.new.send(:card_sort_key, card) } : own
+  expected = if id == 'bouillabaisse'
+    own.sort_by { |card| GameRoomGames::Spades.new.send(:card_sort_key, card) }
+  else
+    own.sort_by { |card| [GameRoomGames::Scopa.card_value(card), %w[H S D C].index(card[1])] }
+  end
   assert_equal(expected,spec.zones.first.cards.map(&:id),"#{id}: displayed card order or identity changed")
   nav=game.playable_card_navigation(table.replay,actor)
   assert(nav[:card_actions].keys.sort == game.legal_actions(table.replay,actor).map { |item| item['card_id'] }.sort,'playable navigation differs')

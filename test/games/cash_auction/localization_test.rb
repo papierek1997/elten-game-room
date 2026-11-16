@@ -13,7 +13,11 @@ Form.option_encoding_driver = GameOptionEncodingFixture.driver(checks)
   raise 'Auction missing from catalog' unless game
   options = app.send(:configure_game_options, game)
   raise 'Auction defaults changed on focus' unless options == game.table_creation_options
-  raise 'Wrong published defaults' unless options.values_at('starting_points', 'ante', 'pass_penalty', 'rounds', 'count_interval', 'black_chest_chance') == [10_000, 10, 200, 8, 3, 10]
+  raise 'Wrong published defaults' unless options.values_at('starting_points', 'ante', 'pass_penalty', 'rounds', 'count_interval', 'black_chest_chance') == [10_000, 100, 200, 8, 3, 10]
+  penalty = game.effective_option_definitions(options).find { |definition| definition.key == 'pass_penalty' }
+  raise 'The fixed percentage penalty is editable' if game.option_visible?(penalty, options)
+  raise 'The fixed penalty changed across languages' unless GameRoomCashAuction::Rules.inactivity_penalty(
+    GameRoomCashAuction::Rules.initial(%w[Alice Bob], options), 0) == 500
   book = game.rule_book
   authored = JSON.parse(File.read(File.expand_path("../../../tools/data/rulebooks/#{language.upcase}/cash_auction.json", __dir__), encoding: 'UTF-8'))
   authored.fetch('sections').each do |expected|

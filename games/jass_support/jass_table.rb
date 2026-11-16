@@ -12,6 +12,7 @@ module GameRoomGames
   # Shared table adapter. Register the game only once bidding and the private
   # round audit are connected; the base class alone handles single-card turns.
   class JassTable < DealtCardGame
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def id; "jass"; end
     def name; _('Jass'); end
     def short_description; _('A Swiss trick-taking game for two partnerships.'); end

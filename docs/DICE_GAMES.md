@@ -108,10 +108,17 @@ Yahtzee, Dice General and Balut use `GameRoomFiveDiceSounds`, through their
 existing `event_sound_cues` hooks. `roll(dice)` selects the ordinary roll or
 roll plus five-equal feedback. `score(column: nil, effect: nil, zero: false,
 recording: nil)` selects a non-card recording cue. Columns 1–6 reuse the
-existing combined `kosciane_column_*` recordings; do not split their timing or
-copy/re-encode the assets. Effects are `:bonus`, `:complete`, `:failure` and
-`:doubled`. A zero adds a short cue, but never duplicates a school failure.
+combined `kosciane_column_*` recordings; do not split their timing or
+re-encode them in a build. Effects are `:bonus`, `:complete`, `:failure` and
+`:doubled`. A zero adds `five_dice_zero` (the user-selected DENY_SOUND), but
+never duplicates a school failure. Other games retain their existing `lose1`.
 General's history can supply its already selected `recording` unchanged.
+The existing `win1`, `draw2` and `cht-bank` roles now use the selected
+`five_dice_bonus`, `five_dice_doubled` and `five_dice_record` recordings only
+inside this helper. Bonus/doubled column cues concatenate the original column
+prefix with the complete new jingle, through the explicit authoring tool
+`tools/author-five-dice-feedback.rb`. Old column assets remain available for
+captured recordings; no action gains a cue that it did not previously have.
 
 The helper only selects names. Games retain scoring and the meaning of each
 effect; for example, zero in Yahtzee Misery is not a failed combination, and

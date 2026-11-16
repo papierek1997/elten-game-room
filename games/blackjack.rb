@@ -9,6 +9,7 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class Blackjack < CardGame
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'none', sort_modes: %w[none], suits: PLAYROOM_SUIT_ORDER, ranks: CARD_RANKS)
     include PublicHistoryAnnouncements
     include BlackjackAuction
     include BlackjackSocial
@@ -260,7 +261,7 @@ module GameRoomGames
       header = _("Dealing player: %{player}; no house hand.") % {player:participant_name(state[:dealing_player])} if social?(state)
       zones << GameSurfaces::CardZoneSpec.new(id: "actions", header: header, cards: actions,
         empty_label: result_text(replay) || current_turn_shortcut_text(replay, viewer))
-      GameSurfaces::CardTableSpec.new(zones: zones)
+      GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: zones)
     end
 
     def custom_game_shortcuts(replay, viewer)
@@ -283,7 +284,7 @@ module GameRoomGames
         {message: replay.state[:chips].map { |person, chips| "#{participant_name(person)}: #{auction_amount(chips)}" }.join("; ")}
       when :hand
         hand = displayed_hand(replay.state, viewer)
-        {message: hand ? blackjack_hand_text(hand[:cards]) : _("Your hand is empty")}
+        {message: hand ? blackjack_hand_text(hand[:cards]) : _("Your hand is empty"), hand_id: nil}
       when :draw_card
         if replay.state[:phase] == :playing && !replay.finished? && same_user?(replay.current_player, viewer)
           {kind: :action, action_kind: "command", action_name: "hit"}

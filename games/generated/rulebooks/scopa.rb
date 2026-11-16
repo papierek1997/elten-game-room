@@ -41,8 +41,7 @@ module GameRoomGames
             GameRoomRules.translate("T: read whose turn it is."),
             GameRoomRules.translate("Z / Shift+Z: find the next / previous playable card."),
             GameRoomRules.translate("Shift+C: sort by suit."),
-            GameRoomRules.translate("Shift+H: sort by rank."),
-            GameRoomRules.translate("Shift+M: restore received order."))
+            GameRoomRules.translate("Shift+H: sort by rank."))
         ]
       end
 
@@ -85,8 +84,7 @@ module GameRoomGames
               "T: kdo je na tahu.",
               "Z / Shift+Z: dal\u0161\u00ED / p\u0159edchoz\u00ED hrateln\u00E1 karta.",
               "Shift+C: se\u0159azen\u00ED podle barev.",
-              "Shift+H: se\u0159azen\u00ED podle hodnot.",
-              "Shift+M: obnoven\u00ED po\u0159ad\u00ED p\u0159ijat\u00FDch karet.")
+              "Shift+H: se\u0159azen\u00ED podle hodnot.")
           ]
         when "en"
           [
@@ -125,8 +123,7 @@ module GameRoomGames
               "T: read whose turn it is.",
               "Z / Shift+Z: find the next / previous playable card.",
               "Shift+C: sort by suit.",
-              "Shift+H: sort by rank.",
-              "Shift+M: restore received order.")
+              "Shift+H: sort by rank.")
           ]
         when "es"
           [
@@ -205,8 +202,7 @@ module GameRoomGames
               "T: sprawd\u017A, czyja jest tura.",
               "Z / Shift+Z: znajd\u017A nast\u0119pn\u0105 / poprzedni\u0105 kart\u0119 do zagrania.",
               "Shift+C: sortuj wed\u0142ug kolor\u00F3w.",
-              "Shift+H: sortuj wed\u0142ug warto\u015Bci.",
-              "Shift+M: przywr\u00F3\u0107 kolejno\u015B\u0107 otrzymania kart.")
+              "Shift+H: sortuj wed\u0142ug warto\u015Bci.")
           ]
         when "ru"
           [
@@ -245,8 +241,7 @@ module GameRoomGames
               "T: \u0443\u0437\u043D\u0430\u0442\u044C, \u0447\u0435\u0439 \u0445\u043E\u0434.",
               "Z / Shift+Z: \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0430\u044F / \u043F\u0440\u0435\u0434\u044B\u0434\u0443\u0449\u0430\u044F \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u0430\u044F \u0434\u043B\u044F \u0445\u043E\u0434\u0430 \u043A\u0430\u0440\u0442\u0430.",
               "Shift+C: \u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0430 \u043F\u043E \u043C\u0430\u0441\u0442\u044F\u043C.",
-              "Shift+H: \u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0430 \u043F\u043E \u0434\u043E\u0441\u0442\u043E\u0438\u043D\u0441\u0442\u0432\u0443.",
-              "Shift+M: \u0432\u0435\u0440\u043D\u0443\u0442\u044C \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u043A\u0430\u0440\u0442.")
+              "Shift+H: \u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0430 \u043F\u043E \u0434\u043E\u0441\u0442\u043E\u0438\u043D\u0441\u0442\u0432\u0443.")
           ]
         end
       end

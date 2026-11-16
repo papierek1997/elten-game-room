@@ -24,7 +24,7 @@ events = []
   if index == 2
     assert(entries.map(&:text) == ['Alice records 12 in Fours, entry 3.',
       'Alice earns 2 game points for Fours.', 'Alice: game points: 0.'], 'The category threshold lacks a clear, ordered reason and game total')
-    assert(cue == 'kosciane_column_3_win1', 'The threshold does not use the common column/bonus recording')
+    assert(cue == 'kosciane_column_3_bonus', 'The threshold does not use the common column/bonus recording')
   else
     assert(entries.length == 1, 'Unchanged category points create extra speech')
   end
@@ -38,7 +38,7 @@ events = []
     if replay.state[:sheets]['Alice'].values.sum(&:sum) == 300
       assert(entries.map(&:text) == ['Alice records 30 in Sixes, entry 4.',
         'Alice: points for the sum of recorded scores: -1.', 'Alice: game points: 5.'], 'The total-score adjustment has no reason or is mixed with category points')
-      assert(cue == 'kosciane_column_4_win1', 'A better sum threshold has no success cue')
+      assert(cue == 'kosciane_column_4_bonus', 'A better sum threshold has no success cue')
     end
     turn.call(events, 'Bob', [1] * 5, category)
   end

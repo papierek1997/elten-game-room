@@ -34,9 +34,9 @@ spades = GameRoomGames::Spades.new
   state[:hands]['Alice'] << 'JH'
   surface.update_spec(spec.call)
   assert(ids.call == expected.call.reverse, "#{phase}: a received card discarded explicit descending sorting")
-  surface.handle_command('sort_cards', 'mode'=>'none')
+  assert(!surface.handle_command('sort_cards', 'mode'=>'none'), "#{phase}: removed order was accepted")
   state[:hands]['Alice'] << 'TH'
   surface.update_spec(spec.call)
-  assert(ids.call == state[:hands]['Alice'], "#{phase}: the default overrode explicit acquisition order")
+  assert(ids.call == expected.call.reverse, "#{phase}: refusing an order lost the current sort")
 end
 puts 'PASS 3-5-8 suit sorting: Spades/H parity, received cards in five phases, cursor/cue, reconstruction and manual overrides'

@@ -19,6 +19,7 @@ module GameRoomGames
     include PublicHistoryAnnouncements
     include GameRoomDuckRacing::Bots
     Logic = GameRoomDuckRacing
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'none', sort_modes: %w[none], suits: [], ranks: Logic::Cards::POOL.map(&:to_s))
 
     def initialize(resources: nil, bot_cache: nil)
       @prepared_resources = resources
@@ -74,13 +75,15 @@ module GameRoomGames
     def content_language_option_key; "question_language"; end
 
     def remembered_option_definitions(definitions, options: nil)
-      super + definitions.select { |definition| definition.key == "question_language" }
+      # New tables use the interface language's general questions. Keep the
+      # challenge checklist preference, but never restore former question sets.
+      super.reject { |definition| definition.key.to_s == "question_sets" }
     end
 
     def table_creation_options(values = {})
       source = values.dup
-      # A remembered checklist belongs to its content language. Resolve that
-      # language from the packs when the preference contains only set IDs.
+      # Explicit table/preset choices belong to their content language. Resolve
+      # it from the packs when the supplied options contain only set IDs.
       ids = option_source_value(source, "question_sets")
       if option_source_value(source, "question_language").to_s.empty? && ids.is_a?(Array) && !ids.empty?
         languages = Logic::QuestionSets.languages(registry: content_registry).select do |language|

@@ -12,12 +12,12 @@ not a claim to reproduce an official television rulebook.
 
 ## Model and settlement
 
-New games use `auction_rules_version = 3`. The game accepts 2–8 participants,
-including bots. Defaults are 10000 starting points, a 10-point ante, a
-200-point penalty after three consecutive auctions without a bid, eight
+New games use `auction_rules_version = 5`. The game accepts 2–8 participants,
+including bots. Defaults are 10000 starting points, a 100-point ante, a
+fixed 5% penalty after three consecutive auctions without a bid, eight
 answered questions, three seconds between calls and a 10% chance of a chest
 instead of a category/question. Table controls admit starting
-points 10–1000000, ante 1–starting points, penalty 0–1000000, rounds 8–32,
+points 10–1000000, ante 1–starting points, rounds 8–32,
 call intervals 1–5 seconds and chest chances 5–15%.
 
 Every remaining participant pays the ante. Someone unable to pay is
@@ -42,9 +42,13 @@ without another poll. Declining to bid requires no action or server event.
 For each participant eligible after the ante, an auction without any accepted
 bid increments the consecutive non-bidding count. The ante is not a bid.
 Any accepted bid resets the count even if its author later loses. At closure, the third consecutive missed
-auction deducts the configured penalty, capped at the remaining cash, adds it
-to the pool and resets the count to zero. This applies at both timed and
-immediate all-in closure; a zero penalty still resets the completed run.
+auction deducts 5% of that participant's balance at closure, after the ante,
+rounded up to a whole point, and resets the count to zero. A zero balance owes
+zero. The rate is fixed, not a table setting; saved `pass_penalty` values are
+ignored in v5. The production reducer and bot budget use the same penalty
+helper. At a question auction the deduction enters the question pool; at a
+chest auction it leaves the game. This applies at timed and immediate all-in
+closure. Fixed v1–v4 games retain their recorded flat-penalty rule and options.
 
 The ordinary auction winner answers one four-choice question. A correct
 answer receives the whole pool; a wrong answer leaves it to carry over.
@@ -52,7 +56,7 @@ A wrong answer with no cash left permanently eliminates the answerer.
 There is no answer deadline. Each accepted answer increments the answered
 question counter exactly once, whether correct or wrong. A chest auction
 instead adds an unopened chest to its winner and preserves the prior question
-pool. Under v4, chest antes, bid increments and inactivity penalties are still
+pool. Since v4, chest antes, bid increments and inactivity penalties are still
 deducted from participants but leave the game rather than increasing that pool.
 The following question adds only its own payments to the preserved pool.
 Chest auctions and empty auctions do not increment the question counter.
@@ -85,7 +89,7 @@ at-most-one-survivor boundary was reached earlier. No active seats
 means a draw. The pool has no final automatic payout to a leader.
 
 The version marker is part of normalized game options. A new ordinary start
-uses v4; an already bound tournament match uses its fixed published version.
+uses v5; an already bound tournament match uses its fixed published version.
 V3 retains its original pool accounting and percentage chest settlement;
 v4 keeps that settlement but separates chest payments from the question pool.
 Unmarked historical sessions retain v1, including their original single-pack
@@ -147,7 +151,9 @@ knowledge set; specialist topics stay unchecked. The creator's interface languag
 chooses the question language, with the existing English fallback when unavailable.
 Changing language also selects only its general set. If that set is missing,
 leave the checklist empty for the creator to repair rather than selecting a
-specialist topic silently. Explicit and remembered selections are retained,
+specialist topic silently. Question-set checklists and their language are not
+remembered between new tables; older saved preferences are ignored without
+changing another game's preferences. Explicit table/preset selections are retained,
 including empty or unavailable choices which must be repaired before submission.
 The immutable `content_pack_manifest` pins every selected member with
 `id`, `set`, `language`, `version` and `checksum`. Selection and replay validate
@@ -300,6 +306,9 @@ The source tests relevant to the shared adapter and native controls are:
   the ordinary deadline and unchanged no-bid accounting.
 - `test/games/cash_auction/content_editor_native_test.rb`: Space, Enter,
   Escape, one/two/three-set selection, empty validation, language changes and cancelled drafts.
+- `test/games/cash_auction/table_defaults_native_test.rb`: fresh forms in all
+  five UI languages, ignored former checklists, no source-preference writes,
+  the default 100-point ante and unchanged explicit/fixed settings.
 - `test/localization/content_language_defaults_test.rb`: all five interface
   languages, default-only general sets, native creation, presets and unchanged explicit choices.
 

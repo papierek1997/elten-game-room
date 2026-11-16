@@ -8,6 +8,7 @@ GameRoomServerRandom.register('war', ['deal'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class War < CardGame
+    CARD_HAND_ORDER = ACQUISITION_HAND_ORDER
     def player_spatial_audio?; true; end
     include PublicHistoryAnnouncements
 

@@ -17,6 +17,7 @@ module GameRoomGames
   # reconstructed from the public deal seed, while only information intended
   # by the rules is announced to other players.
   class ThreeFiveEight < Base
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def player_spatial_audio?; true; end
     RANKS = %w[2 3 4 5 6 7 8 9 T J Q K A].freeze
     SUITS = %w[H S D C].freeze
@@ -370,7 +371,7 @@ module GameRoomGames
           sort_keys: standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: hand_for(state, viewer).to_a.index(card))
         )
       end
-      hand = GameSurfaces::CardTableSpec.new(default_sort: "colour", zones: [GameSurfaces::CardZoneSpec.new(
+      hand = GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: [GameSurfaces::CardZoneSpec.new(
         id: "hand", header: hand_header(state, viewer), cards: cards,
         empty_label: _("Your hand is empty"), hand_order: hand_for(state, viewer).to_a.dup,
         hand_epoch: [viewer, state[:round]].join(":")

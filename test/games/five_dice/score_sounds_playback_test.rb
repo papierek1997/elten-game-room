@@ -35,8 +35,8 @@ root = File.expand_path('../../..', __dir__)
 manifest = JSON.parse(File.read(File.join(root, 'manifest.json'), encoding: 'UTF-8'))
 source = File.read(File.join(root, '__app.rb'), encoding: 'UTF-8')
 embedded = JSON.parse(source[/\A=begin Elten3AppInfo\s+(\{.*?\})\s+=end Elten3AppInfo/m, 1])
-names = (1..6).flat_map { |column| ['', '_draw2', '_lose3', '_win1', '_win2'].map { |suffix| "kosciane_column_#{column}#{suffix}" } }
-assert(GameRoomSounds::ASSET_NAMES.grep(/\Akosciane_column_/).sort == names.sort, 'Registered General cues differ from its six columns and four effects')
+names = (1..6).flat_map { |column| ['', '_draw2', '_lose3', '_win1', '_win2', '_bonus', '_doubled'].map { |suffix| "kosciane_column_#{column}#{suffix}" } }
+assert(GameRoomSounds::ASSET_NAMES.grep(/\Akosciane_column_/).sort == names.sort, 'Registered General cues differ from current and recorded column effects')
 names.each do |name|
   assert(manifest.dig('required_assets', 'sounds').include?(name) && embedded.dig('required_assets', 'sounds').include?(name), "Required General cue missing from a manifest: #{name}")
   assert(File.binread(File.join(root, 'Audio', "#{name}.opus"), 64).include?('OpusHead'), "Missing or invalid General recording: #{name}")
@@ -60,4 +60,4 @@ assert(program.played.empty?, 'General ignored muted volume')
 program.level = 0.37
 GameRoomSounds.play(program, 'kosciane_column_7')
 assert(program.played.empty?, 'Registering General allowed an unknown sound')
-puts 'PASS General playback: real scoring event, all 30 recorded cues, both manifests, shared volume, optional-effects and output gates'
+puts 'PASS General playback: real scoring event, current and historical column cues, both manifests, shared volume, optional-effects and output gates'

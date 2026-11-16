@@ -206,18 +206,22 @@ wariant wybrany przez gospodarza.
 
 ### Porządkowanie kart i wyszukiwanie zagrania
 
-W ręce z kartami podzielonymi na kolory strzałki w lewo i w prawo
+W karciankach z nawigacją po kolorach strzałki w lewo i w prawo
 przechodzą od razu do pierwszej karty poprzedniego lub następnego koloru.
 Usłyszysz nazwę koloru i wskazaną kartę. Strzałkami w górę i w dół
 przeglądasz całą rękę w kolejności widocznej na liście, także między kolorami.
 Jeśli pod kartami jest komenda, np. dobranie karty, dotrzesz do niej
-strzałką w dół po ostatniej karcie w ręce.
+strzałką w dół po ostatniej karcie w ręce. Kolejność przechodzenia między
+kolorami jest stała, także gdy karty różnych kolorów są przemieszane.
 
 W karciankach udostępniających wspólne sortowanie ręki:
 
 - Shift+C porządkuje karty według koloru.
 - Shift+H porządkuje karty według wartości.
-- Shift+M przywraca kolejność otrzymywania kart.
+
+W Tysiącu mil Shift+M przywraca kolejność otrzymywania kart. Początkowy
+układ ręki zależy od gry i wariantu; wybrane sortowanie pozostaje aktywne
+także po otrzymaniu kolejnych kart.
 
 Ponowne użycie skrótu sortowania odwraca kolejność. Z i Shift+Z przechodzą
 do następnej lub poprzedniej karty albo kostki, którą można zagrać.

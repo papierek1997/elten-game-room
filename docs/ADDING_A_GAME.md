@@ -113,6 +113,18 @@ History, the user list, F1 help, Ctrl+F1 rules and the overall screen layout are
 shared. Add shortcuts specific to a game family to the shared
 framework only when their meaning is genuinely the same.
 
+Every card game explicitly declares its initial display order through
+`CARD_HAND_ORDER`, with its allowed modes and one of them as default, even when
+it preserves receipt order. Use the shared semantic
+keys, hand cursor and readout contract in [Card hands](CARD_HAND.md), not a local
+sort in each deal/draw/reminder. The default chooses colour, rank or acquisition
+order; it is not an additional duplicate command. Include initial and received
+cards, manual overrides, interleaved suit jumps and native whole-list arrows in
+the [hand-order regression review](CARD_HAND.md#required-hand-order-regression-review).
+The catalog's marked-hand test checks the concrete declaration, allowed modes
+and active surface default for the current variant. Unavailable modes must be
+absent from help/menus and refused by the surface, not merely hidden.
+
 Use `GameShortcut` declarations for common action, number and choice prompts
 rather than binding a second game-specific handler. A local single-choice
 picker outside a shortcut uses `GameRoomUI.choose_index`; see the exact return,

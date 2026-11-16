@@ -9,6 +9,7 @@ GameRoomPrivateCards.register("cribbage", host: %w[private_deal], claim: %w[priv
 module GameRoomGames
   using GameRoomLocalization::Translations
   class CribbageTable < DealtCardGame
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'number', sort_modes: %w[colour number], suits: PLAYROOM_SUIT_ORDER, ranks: CribbageCards::RANKS)
     include CribbagePrivate
     def id; "cribbage"; end
     def name; _('Cribbage'); end
@@ -17,6 +18,14 @@ module GameRoomGames
     def short_description; _('Score for card combinations and play to 121 points.'); end
 
     def rule_sections; generated_rule_sections; end
+
+    def displayed_hand_announcement(replay, viewer, **options)
+      # Counting presents public cards from either hand/the crib, not the
+      # viewer's current private hand. Keep that reminder's existing meaning.
+      return nil if replay.state[:phase] == :manual_count
+
+      super
+    end
 
     def bot_strategy
       @bot_strategy ||= GameRoomBots::HeuristicStrategy.new
@@ -82,10 +91,11 @@ module GameRoomGames
           label = playing_card_label(card)
           label = _('Starter. %{card}') % {card: label} if card == state[:starter]
           GameSurfaces::Card.new(id: card, value: card, label: label,
-            navigation_group: standard_hand_navigation_group(rank: playing_card_rank(card), suit: playing_card_suit(card)))
+            navigation_group: standard_hand_navigation_group(rank: playing_card_rank(card), suit: playing_card_suit(card)),
+            sort_keys: standard_hand_sort_keys(rank: playing_card_rank(card), suit: playing_card_suit(card), position: hand.index(card)))
         end
         label = state[:count_index] == 2 ? _('Crib') : _('Cards to count')
-        return GameSurfaces::CardTableSpec.new(zones: [
+        return GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: [
           GameSurfaces::CardZoneSpec.new(id: "hand", header: label, cards: cards,
             hand_order: hand, hand_epoch: [state[:round], state[:count_index]].join(":"))
         ])

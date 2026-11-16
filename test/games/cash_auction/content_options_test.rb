@@ -13,6 +13,7 @@ general_ids = ['quiz.wikidata.pl']
 options = game.table_creation_options('content_language_id'=>'pl-PL')
 assert_equal(GameRoomCashAuction::Rules::CURRENT_VERSION, options['auction_rules_version'])
 assert_equal(10_000, options['starting_points'])
+assert_equal(100, options['ante'])
 assert_equal(3, options['count_interval'])
 assert_equal(10, options['black_chest_chance'])
 assert_equal(general_ids, options['content_pack_ids'])
@@ -27,7 +28,7 @@ definition = game.effective_option_definitions(options).find { |item| item.key =
 assert_equal(:multiple_values, definition.kind)
 assert_equal(pl_ids, definition.choices.map(&:value).sort)
 remembered_keys = game.remembered_option_definitions(game.effective_option_definitions(options), options: options).map(&:key)
-assert(remembered_keys.include?('content_language_id') && remembered_keys.include?('content_pack_ids'), 'Remembered pack IDs lost their language')
+assert_equal([], remembered_keys, 'Cash Auction must not remember a previous question checklist or its language')
 assert_equal(loaded, catalog.to_h { |pack| [pack.id, pack.verified?] }, 'Option metadata loaded the question databases')
 
 two_ids = pl_ids.first(2)
@@ -54,10 +55,10 @@ pl_ids.each do |id|
 end
 empty = game.normalize_options(options.merge('content_pack_ids'=>[]))
 assert_equal([], empty['content_pack_ids'], 'The empty checklist regained the default selection')
-remembered_empty = game.remembered_table_creation_options('content_language_id'=>'pl-PL', 'content_pack_ids'=>[])
-assert_equal([], remembered_empty['content_pack_ids'], 'Remembered empty choices fell back to all packs')
-remembered_missing = game.remembered_table_creation_options('content_language_id'=>'pl-PL', 'content_pack_ids'=>['missing'])
-assert_equal(['missing'], remembered_missing['content_pack_ids'], 'An unavailable remembered choice was silently replaced')
+explicit_empty = game.table_creation_options('content_language_id'=>'pl-PL', 'content_pack_ids'=>[])
+assert_equal([], explicit_empty['content_pack_ids'], 'An explicit unfinished checklist regained a default')
+explicit_missing = game.table_creation_options('content_language_id'=>'pl-PL', 'content_pack_ids'=>['missing'])
+assert_equal(['missing'], explicit_missing['content_pack_ids'], 'An explicit unavailable choice was silently replaced')
 extension = game.build_option_editor_extension(nil, options)
 assert_equal([], extension.fields)
 assert_raises(ArgumentError) { extension.prepare(empty) }
@@ -90,7 +91,7 @@ end
   invalid = game.normalize_options(options.merge('content_pack_manifest'=>manifest))
   assert(game.validation_error(invalid), 'Accepted a malformed manifest')
 end
-[nil, 0, 5, '2', '3', '4', false, 2.0, 3.0, 4.0, [2]].each do |version|
+[nil, 0, 6, '2', '3', '4', '5', false, 2.0, 3.0, 4.0, 5.0, [2]].each do |version|
   invalid = game.normalize_options(options.merge('auction_rules_version'=>version))
   assert_equal(version, invalid['auction_rules_version'])
   assert(game.validation_error(invalid), 'An invalid rules marker silently selected legacy rules')

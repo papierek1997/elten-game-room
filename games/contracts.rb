@@ -5,6 +5,28 @@ module GameRoomGames
   using GameRoomLocalization::Translations
   EventCommand = Struct.new(:action, :value, keyword_init: true)
 
+  # Presentation only: these ranks never replace trick strength or deck order.
+  CardHandOrder = Struct.new(:default_sort, :sort_modes, :suits, :ranks, keyword_init: true) do
+    def initialize(default_sort:, sort_modes:, suits:, ranks:)
+      unless sort_modes.is_a?(Array) && !sort_modes.empty? && sort_modes.uniq == sort_modes &&
+          sort_modes.all? { |mode| %w[colour number none].include?(mode) } && sort_modes.include?(default_sort)
+        raise ArgumentError, "a card hand must declare its allowed sort modes and a default from that list"
+      end
+      [suits, ranks].each do |values|
+        unless values.is_a?(Array) && values.all? { |value| value.is_a?(String) && !value.empty? } && values.uniq == values
+          raise ArgumentError, "card hand suits and ranks must be unique semantic strings"
+        end
+      end
+      if default_sort != 'none' && (suits.empty? || ranks.empty?)
+        raise ArgumentError, "a sorted card hand must declare its suits and ranks"
+      end
+      super(default_sort: default_sort.dup.freeze, sort_modes: sort_modes.map { |mode| mode.dup.freeze }.freeze,
+        suits: suits.map { |value| value.dup.freeze }.freeze,
+        ranks: ranks.map { |value| value.dup.freeze }.freeze)
+      freeze
+    end
+  end
+
   # Untranslated text from a packaged app can retain ASCII-8BIT even when
   # its bytes are UTF-8. Host controls append their own translated labels.
   OptionChoice = Struct.new(:value, :label, :description, keyword_init: true) do

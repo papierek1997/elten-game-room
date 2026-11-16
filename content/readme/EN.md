@@ -200,17 +200,21 @@ menu. These change your own experience, not the shared variant set by the host.
 
 ### Sorting cards and finding a playable move
 
-In a hand grouped by suit or colour, Left and Right jump straight to the
+In card games with suit or colour navigation, Left and Right jump straight to the
 first card of the previous or next suit or colour. You hear its name and
 the selected card. Up and Down browse the entire hand in displayed order,
 including across suits or colours. If a command such as drawing a card
 appears below the cards, press Down after the hand's last card to reach it.
+The suit or colour cycle stays the same even when the cards are interleaved.
 
 In card games that support shared hand sorting:
 
 - Shift+C sorts cards by suit or colour.
 - Shift+H sorts cards by rank or value.
-- Shift+M restores the order in which you received them.
+
+In 1000 miles, Shift+M restores the order in which you received the cards.
+The initial hand layout depends on the game and variant; your chosen sorting
+stays active when you receive more cards.
 
 Repeating a sorting shortcut reverses the order. Z and Shift+Z move to
 the next or previous playable card or tile. If there is only one unambiguous

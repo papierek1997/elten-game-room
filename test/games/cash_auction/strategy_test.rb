@@ -51,7 +51,7 @@ assert(match.game.bot_action_score(public_view, 'Bob', raise_bid.merge('answer'=
 # Under the new rules, even a bid subsequently beaten by another player resets
 # the no-bid streak. Its owner has no impending fine to justify overspending.
 revised = CashAuctionFixture::Match.new(players: %w[Alice Bob], rules_version: 2,
-  options: {'starting_points'=>1000})
+  options: {'starting_points'=>1000, 'ante'=>10})
 revised.begin_round
 revised.bid('Bob', 10)
 revised.bid('Alice', 150)
@@ -90,7 +90,7 @@ legacy_lost.state[:pass_counts][1] = 2
 assert_equal('160', bot_choice(legacy, 'Bob', replay: legacy_lost)['answer'],
   'The original per-pass penalty was incorrectly changed by the v2 policy')
 
-scaled = CashAuctionFixture::Match.new(players: %w[Alice Bob], rules_version: 2)
+scaled = CashAuctionFixture::Match.new(players: %w[Alice Bob], rules_version: 2, options: {'ante'=>10})
 scaled.begin_round
 scaled.bid('Alice', 10)
 assert_equal(9990, scaled.replay.state[:cash][1])
@@ -100,7 +100,7 @@ assert_equal(11, scaled.replay.state[:highest], 'Representative bot raises restr
 assert_equal(9979, scaled.replay.state[:cash][1])
 
 edge = CashAuctionFixture::Match.new(players: %w[Alice Bob], rules_version: 2,
-  options: {'starting_points'=>2010})
+  options: {'starting_points'=>2010, 'ante'=>10})
 edge.begin_round
 edge.bid('Alice', 245)
 # Bob's maximum is 2000 and his budget is 250. The preferred 265 is too
@@ -110,7 +110,7 @@ edge.bid('Alice', 250)
 assert_equal(nil, bot_choice(edge, 'Bob'), 'Scaled raises exceeded the bid budget when no affordable raise remained')
 
 crowded = CashAuctionFixture::Match.new(players: %w[Alice Bob Carol Dan Eve Frank Grace Heidi], rules_version: 2,
-  options: {'starting_points'=>1000, 'content_language_id'=>'en'})
+  options: {'starting_points'=>1000, 'ante'=>10, 'content_language_id'=>'en'})
 crowded.begin_round
 crowded.bid('Alice', 124)
 assert_equal(nil, bot_choice(crowded, 'Bob'), 'Bob did not decline a bid above the fixed auction budget')
@@ -123,7 +123,7 @@ old_scale.bid('Alice', 10)
 assert_equal('20', bot_choice(old_scale, 'Bob')['answer'], 'The v1 representative bid changed with the new scale')
 
 chest = CashAuctionFixture::Match.new(players: %w[Alice Bob], rules_version: 3,
-  options: {'starting_points'=>10000, 'content_language_id'=>'en'})
+  options: {'starting_points'=>10000, 'ante'=>10, 'content_language_id'=>'en'})
 chest.begin_round(chest: true)
 chest.bid('Alice', 340)
 assert_equal('341', bot_choice(chest, 'Bob')['answer'], 'Bot ignored an affordable percentage chest')

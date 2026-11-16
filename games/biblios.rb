@@ -14,6 +14,7 @@ module GameRoomGames
   class Biblios < CardGame
     def player_spatial_audio?; true; end
     CATEGORIES = %w[p m f h s].freeze
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'none', sort_modes: %w[none], suits: CATEGORIES, ranks: %w[1 2 3 4])
     TIE_ORDER = %w[m p f h s].freeze
     LETTERS = %w[A B C D E F G H I].freeze
     RICH_CATEGORIES = %w[p m].freeze
@@ -1108,7 +1109,7 @@ module GameRoomGames
       cards = available.map { |card| GameSurfaces::Card.new(id: card, label: card_label(card), value: card) }
       cards << GameSurfaces::Card.new(id: DECLINE, label: _("Do not pay"), value: DECLINE)
       GameSurfaces::PacketCardSpec.new(
-        id: "biblios_payment", header: payment_header(state), cards: cards,
+        id: "biblios_payment", default_sort: default_hand_sort, sort_modes: hand_sort_modes, header: payment_header(state), cards: cards,
         action_name: "pay", allow_packet: true, empty_label: _("You have nothing to pay with"),
         hand_order: available + [DECLINE], hand_epoch: "#{viewer}:#{state[:pointer]}"
       )
@@ -1261,7 +1262,7 @@ module GameRoomGames
       cards = player == nil ? [] : state[:hands].fetch(player, []).reject { |card| gold?(card) }
       return [ShortcutChoice.new(value: nil, label: _("Your library is empty"))] if cards.empty?
 
-      cards.sort_by { |card| [CATEGORIES.index(card_category(card)).to_i, card[1]] }.map do |card|
+      cards.sort_by { |card| standard_hand_sort_keys(suit: card_category(card), rank: card[1], position: 0).fetch('colour') }.map do |card|
         ShortcutChoice.new(value: card, label: card_label(card))
       end
     end

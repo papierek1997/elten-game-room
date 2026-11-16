@@ -45,13 +45,13 @@ assert_equal(500, state[:pot], 'An unsold chest increased the question pool')
 assert_equal([0, 0], state[:chests])
 
 # Fixed published v3 games retain their original reducer; a new ordinary
-# table selects v4. Do not reinterpret already accepted question payouts.
+# table selects the current rules. Do not reinterpret already accepted payouts.
 state = state_for(3)
 assert(R.draw!(state, category:nil, chest:true, now:1000))
 assert(R.bid!(state, 0, 100, now:1001, revision:1))
 assert_equal(620, state[:pot], 'A fixed older game changed its recorded chest-payment meaning')
 game = GameRoomGames::CashAuction.new
-assert_equal(4, game.table_creation_options('content_language_id'=>'en')['auction_rules_version'])
+assert_equal(R::CURRENT_VERSION, game.table_creation_options('content_language_id'=>'en')['auction_rules_version'])
 
 f = CashAuctionFixture::Match.new(rules_version:4, options:{'content_language_id'=>'en'})
 3.times do

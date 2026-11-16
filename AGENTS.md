@@ -614,6 +614,20 @@ Details: `docs/UI.md`.
   `hand_epoch` identifying the owner and deal. Details are in
   `docs/CARD_HAND.md`. Do not mark other lists, boards or dice as card hands;
   this mechanism must not change their behavior or announcements.
+- Every card game explicitly declares `CARD_HAND_ORDER` on its concrete class,
+  including acquisition-order games, with its allowed `sort_modes` and a default
+  from that list. Pass both to the hand surface; shared shortcuts and surfaces
+  must reject disabled modes, including retained callbacks and local view state.
+  Reuse `CardHandOrder` and the shared
+  helpers for default/manual display and suit navigation; do not silently use
+  a standard order or confuse presentation with trick strength. Variant defaults
+  select an existing mode, not another duplicate "default" option. Keep the
+  catalog's actual marked-hand gate and the
+  [hand regression review](docs/CARD_HAND.md#required-hand-order-regression-review):
+  initial/received/passed cards, current-list readout, interleaved horizontal
+  jumps, whole-list vertical arrows, physical cursor/prepared packets, quiet
+  refresh and new hand epochs. Update dependent tests alongside an approved
+  default change; do not hide ordering failures by removing order assertions.
 - A new game with an actual card hand implements `playable_card_navigation`
   and groups all legal actions by the physical card's stable ID. The shared
   framework provides `Z` and `Shift+Z`. Mark a move as automatic only when

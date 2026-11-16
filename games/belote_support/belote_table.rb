@@ -9,6 +9,7 @@ GameRoomPrivateCards.register("belote", host: %w[private_deal], claim: %w[privat
 module GameRoomGames
   using GameRoomLocalization::Translations
   class BeloteTable < DealtCardGame
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     include BeloteBidding
 
     def id; "belote"; end

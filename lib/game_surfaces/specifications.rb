@@ -103,13 +103,13 @@ module GameSurfaces
 
   CardChoice = Struct.new(:id, :label, :value, keyword_init: true)
 
-  CardNavigationGroup = Struct.new(:id, :label, keyword_init: true)
+  CardNavigationGroup = Struct.new(:id, :label, :order, keyword_init: true)
 
   Card = Struct.new(:id, :label, :value, :choices, :shift_choice, :choice_header, :sort_keys, :confirmation, :navigation_group, keyword_init: true)
 
   CardZoneSpec = Struct.new(:id, :header, :cards, :empty_label, :hand_order, :hand_epoch, :commands, :select_drawn, keyword_init: true)
 
-  CardTableSpec = Struct.new(:zones, :default_sort, keyword_init: true)
+  CardTableSpec = Struct.new(:zones, :default_sort, :sort_modes, keyword_init: true)
 
   AnswerField = Struct.new(
     :id,
@@ -155,10 +155,11 @@ module GameSurfaces
   )
 
   MeldHandSpec = Struct.new(:zones, :turn, :editable, :can_discard, :minimum,
-    :validator, :table, :discard_choices, :discard_error, :action_error, keyword_init: true)
+    :validator, :table, :discard_choices, :discard_error, :action_error, :default_sort, :sort_modes, keyword_init: true)
 
   PacketCardSpec = Struct.new(
     :id, :header, :cards, :action_name, :allow_packet, :empty_label, :hand_order, :hand_epoch, :packet_tip, :activation_tip,
+    :default_sort, :sort_modes,
     keyword_init: true
   )
 

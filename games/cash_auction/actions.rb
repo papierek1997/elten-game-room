@@ -169,7 +169,7 @@ module GameRoomGames
         pool = [state[:pot] - paid, 0].max
         budget = [maximum / [rounds_left, 4].max, pool / 3].max
         if (state[:pass_counts][seat] + 1) % 3 == 0 && (!R.revised?(state) || state[:contributions][seat].zero?)
-          penalty = [state[:cash][seat], state[:options]['pass_penalty']].min
+          penalty = R.inactivity_penalty(state, seat)
           budget = [budget, state[:contributions][seat] + penalty].max
         end
         [budget, [maximum - reserve, 0].max].min

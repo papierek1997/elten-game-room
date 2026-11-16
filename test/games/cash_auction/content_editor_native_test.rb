@@ -12,6 +12,7 @@ pl = game.table_creation_options(pl.merge('content_pack_ids'=>ids))
 # The actual ListBox handles Space, and submit derives the manifest from the
 # resulting IDs instead of retaining the former three-pack identity.
 driver = NativeOptionTest::Driver.new(game, initial_options: pl)
+NativeOptionTest.assert(!driver.visible?('pass_penalty'), 'A current table can edit the fixed 5% penalty')
 sets = driver.focus('content_pack_ids')
 NativeOptionTest.assert(sets.multiselections == [0, 1, 2], 'Three-pack defaults were not checked')
 driver.press([36])
@@ -75,8 +76,8 @@ driver.press([27])
 NativeOptionTest.assert(driver.finished.nil? && driver.program.writes.empty?, 'Cancel stored changed question sources')
 NativeOptionTest.assert(english['content_pack_ids'] == ['quiz.general.en'], 'Cancel changed the original options')
 
-# The ordinary Create-table entry remembers the checkbox IDs together with
-# their language, so reopening under an English UI still restores Polish.
+# A manual language choice is valid for this table, but saving it must not
+# persist the question checklist or override the next table's UI defaults.
 driver = NativeOptionTest::Driver.new(game)
 language = driver.focus('content_language_id')
 driver.press([36])
@@ -84,10 +85,8 @@ driver.press([40])
 driver.focus(driver.form.accept_button)
 driver.press([13])
 saved = driver.finished
-preferences = driver.program.writes.last[1].fetch(game.id)
-NativeOptionTest.assert(preferences['content_language_id'] == 'pl-PL' && preferences['content_pack_ids'] == general, 'Remembered checkbox choices lost their language')
-restored = game.remembered_table_creation_options(preferences)
-NativeOptionTest.assert(restored['content_pack_ids'] == saved['content_pack_ids'] && restored['content_pack_manifest'] == saved['content_pack_manifest'], 'Reopening remembered choices changed their source identity')
+NativeOptionTest.assert(saved['content_language_id'] == 'pl-PL' && saved['content_pack_ids'] == general, 'The manual table language lost its general set')
+NativeOptionTest.assert(driver.program.writes.empty?, 'Creating Cash Auction persisted the question checklist')
 
 missing = pl.merge('content_pack_ids'=>['missing'])
 driver = NativeOptionTest::Driver.new(game, initial_options: missing)

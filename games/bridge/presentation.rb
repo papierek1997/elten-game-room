@@ -6,6 +6,8 @@ module GameRoomGames
   # the dummy as a second card zone and announcement shortcuts.
   class Bridge < CardGame
     DISPLAY_SUITS = %w[S H D C].freeze
+    DISPLAY_RANKS = R::RANKS.reverse.freeze
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'colour', sort_modes: %w[colour number], suits: DISPLAY_SUITS, ranks: DISPLAY_RANKS)
 
     def hand_sorting_available?(replay, viewer)
       seat = seat_of(replay.state, viewer)
@@ -20,7 +22,7 @@ module GameRoomGames
         return GameSurfaces::QuestionSpec.new(id: "table", prompt: GameRoomContent.utf8(name), mode: :information,
           value: GameRoomContent.utf8(spectator_text(state)))
       end
-      cards = GameSurfaces::CardTableSpec.new(zones: zones)
+      cards = GameSurfaces::CardTableSpec.new(zones: zones, default_sort: default_hand_sort, sort_modes: hand_sort_modes)
       question = call_question(state, viewer)
       return cards if question == nil
 
@@ -169,6 +171,27 @@ module GameRoomGames
       super
     end
 
+    def displayed_hand_announcement(replay, viewer, cards:, hand_id:)
+      state = replay.state
+      seat = hand_id == 'dummy' ? dummy_seat(state) : seat_of(state, viewer)
+      return nil unless seat && (hand_id != 'dummy' || state[:dummy_visible])
+
+      raw = seat_hand(state, seat)
+      ordered = cards.map(&:id)
+      return nil unless ordered.sort == raw.sort
+
+      if ordered == hand_cards_for_display(raw)
+        return hand_id == 'dummy' ? dummy_hand_text(state, viewer) : own_hand_text(state, viewer)
+      end
+      # A custom rank/acquisition order can interleave suits. Read that exact
+      # sequence, retaining the existing identity and high-card-point context.
+      text = cards.map(&:label).join('; ')
+      return _("Dummy, %{seat}: %{cards}.") % {seat: participant_name(state[:seats][seat]), cards: text} if hand_id == 'dummy'
+
+      _("Your hand, %{count} cards: %{cards}. %{points} high card points.") % {
+        count: raw.length, cards: text, points: R.high_card_points(raw)}
+    end
+
     def shortcut_feature_data(feature, replay, viewer)
       state = replay.state
       return nil if state == nil
@@ -203,7 +226,7 @@ module GameRoomGames
       return [] if state == nil
 
       [
-        announcement_shortcut(key: "d", label: _("read dummy's hand"), message: dummy_hand_text(state, viewer)),
+        announcement_shortcut(key: "d", label: _("read dummy's hand"), message: dummy_hand_text(state, viewer), hand_id: 'dummy'),
         announcement_shortcut(key: "k", label: _("read the contract"), message: contract_status_text(state)),
         announcement_shortcut(key: "l", label: _("read the auction"), message: auction_text(state)),
         browse_shortcut(key: "l", modifiers: [:control], label: _("browse the auction"), prompt: _("Auction"),
@@ -294,15 +317,12 @@ module GameRoomGames
 
     # Bridge players read a hand suit by suit, highest card first.
     def hand_by_suits(cards)
+      ordered = hand_cards_for_display(cards)
       DISPLAY_SUITS.map do |suit|
-        ranks = cards.select { |card| card_suit(card) == suit }.sort_by { |card| -R.rank_index(card) }
+        ranks = ordered.select { |card| card_suit(card) == suit }
         values = ranks.empty? ? _("none") : ranks.map { |card| rank_name(card_rank(card)) }.join(", ")
         _("%{suit}: %{cards}") % { suit: suit_name(suit), cards: values }
       end.join("; ")
-    end
-
-    def card_sort_key(card)
-      [DISPLAY_SUITS.index(card_suit(card)), -R.rank_index(card)]
     end
 
     def card_zones(state, viewer)
@@ -321,7 +341,7 @@ module GameRoomGames
     end
 
     def hand_zone(id, header, hand, epoch)
-      cards = hand.sort_by { |card| card_sort_key(card) }.map do |card|
+      cards = hand_cards_for_display(hand).map do |card|
         GameSurfaces::Card.new(id: card, label: card_label(card), value: card,
           navigation_group: standard_hand_navigation_group(rank: card_rank(card), suit: card_suit(card)),
           sort_keys: standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: hand.index(card)))

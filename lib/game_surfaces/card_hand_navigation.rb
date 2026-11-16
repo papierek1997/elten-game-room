@@ -57,14 +57,20 @@ module GameSurfaces
       cards.each_with_index do |card, index|
         group = navigation_value(card, :navigation_group)
         id, label = navigation_value(group, :id).to_s, navigation_value(group, :label).to_s
+        order = navigation_value(group, :order)
         # Incomplete annotations must not strand an ungrouped card. Ordinary
         # card/action lists, with no suit semantics, retain native navigation.
-        return nil if id.empty? || label.empty?
+        return nil if id.empty? || label.empty? || !order.is_a?(Integer)
 
-        entry = (groups[id] ||= {id: id, label: label, indices: []})
+        entry = (groups[id] ||= {id: id, label: label, order: order, indices: []})
+        return nil if entry[:order] != order
+
         entry[:indices] << index
       end
-      groups.values
+      values = groups.values
+      return nil unless values.map { |group| group[:order] }.uniq.length == values.length
+
+      values.sort_by { |group| group[:order] }
     end
 
     def navigation_value(value, name)

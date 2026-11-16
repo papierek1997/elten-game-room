@@ -39,9 +39,8 @@ by_number = faces.flat_map { |face| colours.flat_map { |colour| copies.call(colo
     surface = GameSurfaces::CardTable.new(spec, state: surface.state)
     assert(surface.fields.first.options == labels, "Sort order lost on refresh")
   end
-  reset = shortcuts.find { |item| item.key == "d" && item.modifiers == [:shift] }
-  surface.handle_command("sort_cards", reset.payload)
-  assert(surface.fields.first.options == hand.map { |card| game.send(:uno_label, card, state) }, "Deal order not restored")
+  assert(shortcuts.none? { |item| %w[d m].include?(item.key) && item.modifiers == [:shift] }, 'UNO retains the removed acquisition shortcut')
+  assert(!surface.handle_command('sort_cards', 'mode'=>'none'), 'UNO accepts the removed acquisition order')
 end
 
 assert(state[:hands]["Alice"] == hand, "Sorting changed the actual hand")
@@ -49,4 +48,39 @@ assert(game.send(:classic_deck) == deck, "Sorting changed the deck")
 assert(GameRoomGames::Uno::COLORS == %w[R Y G B], "Deck colour order changed")
 assert(game.send(:available_colors, state) == %w[R Y G B], "Colour choice order changed")
 assert(game.send(:all_colors).last(4) == %w[O P T U], "Dark colour order changed")
-puts "PASS UNO colour/value order, both directions, refresh, focus and deal order"
+
+# All combinations, not just a super option that is inactive without ordinary
+# interceptions. Use all real deck families, including dark Flip faces.
+%w[classic no_mercy flip].each do |deck_id|
+  [false, true].repeated_permutation(3) do |straights, interceptions, super_interceptions|
+    options = game.default_options.merge('deck'=>deck_id, 'straights'=>straights,
+      'interceptions'=>interceptions, 'super_interceptions'=>super_interceptions)
+    position = game.send(:initial_state, %w[Alice Bob], options)
+    hand = game.send(:uno_deck, options).reverse
+    position.update(phase: :playing, current_player:'Alice', hands:{'Alice'=>hand, 'Bob'=>[]}, discard:[])
+    replay = GameRoomGames::Replay.new(players: position[:players], state:position, current_player:'Alice', history:[], accepted_events:[])
+    mode = straights || (interceptions && super_interceptions) ? 'number' : 'colour'
+    initial = game.surface_spec(replay, 'Alice')
+    assert(initial.default_sort == mode, "#{deck_id}/#{options}: wrong default sort")
+    assert(initial.zones.first.hand_order == hand, 'Variant sorting changed the physical receipt order')
+    face_order = %w[0 1 2 3 4 5 6 7 8 9 V S I D X H E A L W F R T C B]
+    colour_order = %w[Y R B G O P T U]
+    expected = hand.sort_by do |card|
+      face = face_order.index(game.send(:card_face, card))
+      colour = colour_order.index(game.send(:card_color, card)) || 99
+      mode == 'number' ? [face, colour, card] : [colour, face, card]
+    end
+    assert(initial.zones.first.cards.map(&:id) == expected, "#{deck_id}: variant surface and declaration disagree")
+    surface = GameSurfaces.build(initial)
+    original = Marshal.dump(position)
+    %w[colour number].each do |manual|
+      surface.handle_command('sort_cards', 'mode'=>manual, 'toggle'=>true)
+      before = surface.displayed_hand_cards('hand').map(&:id)
+      surface.update_spec(game.surface_spec(replay, 'Alice'))
+      assert(surface.displayed_hand_cards('hand').map(&:id) == before, 'Variant default overwrote explicit sorting')
+    end
+    assert(!surface.handle_command('sort_cards', 'mode'=>'none'), 'Variant accepted a disabled mode')
+    assert(Marshal.dump(position) == original, 'Presentation changed a variant replay')
+  end
+end
+puts "PASS UNO colour/value order, variant defaults for all three decks, both directions, refresh, focus and deal order"

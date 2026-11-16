@@ -9,6 +9,7 @@ GameRoomPrivateCards.register('bouillabaisse', host: %w[private_deal], claim: %w
 
 module GameRoomGames
   class Bouillabaisse < DealtCardGame
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     using GameRoomLocalization::Translations
 
     def id; 'bouillabaisse'; end
@@ -87,12 +88,6 @@ module GameRoomGames
     end
 
     protected
-
-    def hand_cards_for_display(hand)
-      hand.sort_by do |card|
-        standard_hand_sort_keys(rank: playing_card_rank(card), suit: playing_card_suit(card), position: 0).fetch('colour')
-      end
-    end
 
     def score_order; 'lower'; end
     def table_cards(state); state[:trick].to_a.map(&:last); end

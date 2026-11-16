@@ -60,6 +60,10 @@ module GameSurfaces
       nil
     end
 
+    def displayed_hand_cards(_hand_id)
+      nil
+    end
+
     private
 
     def emit_action(kind, name, payload = {}, source: nil)
@@ -738,6 +742,7 @@ module GameSurfaces
       remembered_choices = state.respond_to?(:[]) ? (state["card_choices"] || state[:card_choices] || {}) : {}
       @card_sort_mode = state.respond_to?(:[]) ? (state["card_sort_mode"] || state[:card_sort_mode]).to_s : ""
       @card_sort_direction = state.respond_to?(:[]) && (state["card_sort_direction"] || state[:card_sort_direction]).to_s == "descending" ? "descending" : "ascending"
+      reset_disallowed_card_sort
       @controls = []
       @cards = {}
       @pending_choices = {}
@@ -860,6 +865,12 @@ module GameSurfaces
       @controls
     end
 
+    # Read only the actual cards, not appended commands or a temporary picker.
+    def displayed_hand_cards(hand_id)
+      zone = @zones.find { |item| item.id.to_s == hand_id.to_s && item.hand_order != nil }
+      @cards.fetch(zone.id.to_s).dup if zone
+    end
+
     # Expose named card zones to the shared decision-focus policy without
     # splitting one table's cursor/sorting state across separate surfaces.
     def fields_for_parts(ids)
@@ -915,6 +926,7 @@ module GameSurfaces
     def update_spec(spec)
       remembered = state
       @spec = spec
+      reset_disallowed_card_sort
       @zones = spec.zones.to_a
       @cursor_announcements.clear
       @zones.each_with_index do |zone, field_index|
@@ -956,7 +968,7 @@ module GameSurfaces
       return false if command.to_s != "sort_cards" || !@pending_choices.empty?
 
       mode = (payload["mode"] || payload[:mode]).to_s
-      return false if mode.empty?
+      return false unless card_sort_mode_allowed?(mode)
 
       toggle = payload["toggle"] || payload[:toggle]
       direction = toggle && @card_sort_mode == mode && @card_sort_direction == "ascending" ? "descending" : "ascending"

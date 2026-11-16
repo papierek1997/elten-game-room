@@ -6,7 +6,7 @@ extend GameRoomTest::Assertions
 game = GameRoomGames::CashAuction.new
 options = game.table_creation_options
 assert_equal([2, 8], [game.minimum_players, game.maximum_players])
-assert_equal([10_000, 10, 200, 8, 3, 10], options.values_at('starting_points', 'ante', 'pass_penalty', 'rounds', 'count_interval', 'black_chest_chance'))
+assert_equal([10_000, 100, 200, 8, 3, 10], options.values_at('starting_points', 'ante', 'pass_penalty', 'rounds', 'count_interval', 'black_chest_chance'))
 assert_equal(nil, game.options_error(options, player_count: 2))
 assert_equal(nil, game.options_error(options, player_count: 8))
 %w[starting_points ante rounds count_interval black_chest_chance].each do |key|

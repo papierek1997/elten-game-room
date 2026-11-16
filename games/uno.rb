@@ -19,6 +19,20 @@ module GameRoomGames
     COLOUR_CHOICE_ORDER = %w[Y R B G].freeze
     # Presentation order only: preserve deck construction.
     SORT_COLORS = (COLOUR_CHOICE_ORDER + DARK_COLORS).freeze
+    SORT_FACES = %w[0 1 2 3 4 5 6 7 8 9 V S I D X H E A L W F R T C B].freeze
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'colour', sort_modes: %w[colour number], suits: SORT_COLORS, ranks: SORT_FACES)
+    VALUE_HAND_ORDER = CardHandOrder.new(default_sort: 'number', sort_modes: %w[colour number], suits: SORT_COLORS, ranks: SORT_FACES)
+
+    def card_hand_order(options: {})
+      # Ordinary interceptions need an exact colour+face match; super
+      # interceptions group the same face across colours. Explicit view choices
+      # still take precedence in the shared hand surface.
+      if options['straights'] || (options['interceptions'] && options['super_interceptions'])
+        VALUE_HAND_ORDER
+      else
+        CARD_HAND_ORDER
+      end
+    end
     COLOR_NAMES = {
       "R" => _("red"), "Y" => _("yellow"), "G" => _("green"), "B" => _("blue"),
       "O" => _("orange"), "P" => _("pink"), "T" => _("teal"), "U" => _("purple")
@@ -430,18 +444,20 @@ module GameRoomGames
           empty_label: _("There are no colours to choose from"), hand_order: nil, hand_epoch: nil
         )])
       end
+      sort_mode = default_hand_sort(options: state[:options])
       cards = hand_for(state, viewer).each_with_index.map do |card, index|
         choices = colour_choice_pending?(state) || too_late_interception?(state, viewer, card) ? [] : card_choices(card, state, viewer)
         GameSurfaces::Card.new(id: card, label: uno_label(card, state), value: card, choices: choices,
           navigation_group: GameSurfaces::CardNavigationGroup.new(id: card_color(card) || "wild",
-            label: card_color(card) ? COLOR_NAMES.fetch(card_color(card)) : _("Wild cards")),
+            label: card_color(card) ? COLOR_NAMES.fetch(card_color(card)) : _("Wild cards"),
+            order: hand_suit_order.index(card_color(card)) || hand_suit_order.length),
           choice_header: state[:options]["zero_seven"] && card_number(card) == 7 ? _("Choose a player to exchange hands with") : _("Choose a colour"), sort_keys: {
             "colour" => uno_sort_key(card),
             "number" => uno_number_sort_key(card),
             "none" => [index]
           })
-      end.sort_by { |card| card.sort_keys["colour"] }
-      GameSurfaces::CardTableSpec.new(zones: [GameSurfaces::CardZoneSpec.new(
+      end.sort_by { |card| card.sort_keys.fetch(sort_mode) }
+      GameSurfaces::CardTableSpec.new(default_sort: sort_mode, sort_modes: hand_sort_modes(options: state[:options]), zones: [GameSurfaces::CardZoneSpec.new(
         id: "hand", header: same_user?(state[:current_player], viewer) && !state[:buzzer_active] ? _("Your hand") : status_text(state, viewer),
         cards: cards, empty_label: _("Your hand is empty"),
         hand_order: hand_for(state, viewer).dup, hand_epoch: [viewer, state[:round], state[:side]].join(":"))])
@@ -503,9 +519,7 @@ module GameRoomGames
         surface_shortcut(key: "h", modifiers: [:shift], label: _("sort cards by value"),
           command: "sort_cards", payload: { "mode" => "number", "toggle" => true,
             "ascending_message" => _("Your cards are now sorted by ascending number."),
-            "descending_message" => _("Your cards are now sorted by descending number.") }),
-        surface_shortcut(key: "d", modifiers: [:shift], label: _("disable card sorting"),
-          command: "sort_cards", payload: { "mode" => "none", "message" => _("Card sorting disabled.") })
+            "descending_message" => _("Your cards are now sorted by descending number.") })
       ]
       if state[:buzzer_active] && !state[:buzzer_pressed][player_key(state, viewer)]
         shortcuts << GameShortcut.new(key: "b", label: _("press the buzzer"), kind: :action,
@@ -1091,8 +1105,7 @@ module GameRoomGames
     end
 
     def face_sort_index(face)
-      order = %w[0 1 2 3 4 5 6 7 8 9 V S I D X H E A L W F R T C B]
-      order.index(face.to_s) || order.length
+      hand_rank_order.index(face.to_s) || hand_rank_order.length
     end
 
     def draw_penalty(state, card)
@@ -1155,11 +1168,11 @@ module GameRoomGames
     end
 
     def uno_sort_key(card)
-      [SORT_COLORS.index(card_color(card)) || 99, face_sort_index(card_face(card)), card]
+      [hand_suit_order.index(card_color(card)) || 99, face_sort_index(card_face(card)), card]
     end
 
     def uno_number_sort_key(card)
-      [face_sort_index(card_face(card)), SORT_COLORS.index(card_color(card)) || 99, card]
+      [face_sort_index(card_face(card)), hand_suit_order.index(card_color(card)) || 99, card]
     end
 
     def card_points(card)

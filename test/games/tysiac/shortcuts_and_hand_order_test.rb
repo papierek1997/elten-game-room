@@ -65,9 +65,9 @@ surface.handle_command('sort_cards', 'mode'=>'colour', 'toggle'=>true)
 assert(ids.call == %w[9H QH KH AH JS], 'First manual suit sort unexpectedly reversed the default')
 surface.handle_command('sort_cards', 'mode'=>'colour', 'toggle'=>true)
 assert(ids.call == %w[JS AH KH QH 9H], 'Second manual suit sort no longer reverses order')
-surface.handle_command('sort_cards', 'mode'=>'none')
+assert(!surface.handle_command('sort_cards', 'mode'=>'none'), 'Removed acquisition mode remains available')
 state[:hands]['Alice'] << 'JH'
 surface.update_spec(game.surface_spec(view.call, 'Alice'))
-assert(ids.call == state[:hands]['Alice'], 'Default suit order overrode explicit acquisition order')
+assert(ids.call == %w[JS AH KH QH JH 9H], 'Refused sorting or a received card changed the chosen direction')
 assert(state[:hands]['Alice'] == %w[9H KH AH JS QH JH], 'View sorting changed the replay hand')
 puts 'PASS Thousand: concise R, validated Shift+R, two/four/team players, received-card suit order and manual override'

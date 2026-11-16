@@ -200,17 +200,21 @@ stolu. Týkají se vašeho způsobu hraní, ne společné varianty zvolené host
 
 ### Řazení karet a hledání možného tahu
 
-V ruce s kartami rozdělenými podle barev přejdou šipky vlevo a vpravo
+V karetních hrách s navigací podle barev přejdou šipky vlevo a vpravo
 rovnou na první kartu předchozí nebo následující barvy. Uslyšíte název
 barvy a vybranou kartu. Šipkami nahoru a dolů procházíte celou ruku
 v pořadí seznamu, včetně přechodů mezi barvami. Pokud je pod kartami příkaz,
 například líznutí karty, dostanete se k němu šipkou dolů za poslední kartou v ruce.
+Pořadí přecházení mezi barvami se nemění, ani když jsou karty různých barev promíchané.
 
 V karetních hrách, které podporují společné řazení ruky:
 
 - Shift+C řadí karty podle barvy.
 - Shift+H řadí karty podle hodnoty.
-- Shift+M obnoví pořadí, v němž jste karty dostali.
+
+Ve hře Tisíc mil obnoví Shift+M pořadí, v němž jste karty dostali. Počáteční
+uspořádání ruky závisí na hře a variantě; zvolené řazení zůstává aktivní
+i po dobrání dalších karet.
 
 Další stisk zkratky řazení obrátí pořadí. Z a Shift+Z přecházejí na další
 nebo předchozí hratelnou kartu či kostku domina. Při jediné jednoznačné

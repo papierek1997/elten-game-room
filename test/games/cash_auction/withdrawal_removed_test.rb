@@ -2,7 +2,7 @@ require_relative '../../support/cash_auction'
 require_relative '../../../lib/game_bots'
 
 include GameRoomTest::Assertions
-f = CashAuctionFixture::Match.new(rules_version: 2, options: {'content_language_id'=>'en', 'starting_points'=>1000})
+f = CashAuctionFixture::Match.new(rules_version: 2, options: {'content_language_id'=>'en', 'starting_points'=>1000, 'ante'=>10})
 f.begin_round
 before = f.replay
 selection = {'kind'=>'question', 'action'=>'pass', 'question_id'=>f.game.surface_spec(before, 'Bob').id}

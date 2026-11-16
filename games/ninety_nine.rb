@@ -14,6 +14,7 @@ GameRoomServerRandom.register('ninety_nine', ['deal'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class NinetyNine < Base
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def tournament_small_point_policy(options:)
       tournament_target_small_points(normalize_options(options).fetch('starting_tokens'))
     end
@@ -358,7 +359,7 @@ module GameRoomGames
         item.navigation_group = standard_hand_navigation_group(rank: card_rank(card), suit: card_suit(card))
         item
       end
-      hand = GameSurfaces::CardTableSpec.new(
+      hand = GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes,
         zones: [
           GameSurfaces::CardZoneSpec.new(
             id: "hand",
