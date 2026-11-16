@@ -11,8 +11,9 @@ require_relative '../lib/game_replay_cache'
 require_relative '../lib/game_session_clock'
 require_relative '../lib/cash_auction/rules'
 require_relative '../lib/cash_auction/question_bank'
+require_relative '../lib/cash_auction/bidding_strategy'
 
-GameRoomServerRandom.register('cash_auction', %w[wheel question chest hint])
+GameRoomServerRandom.register('cash_auction', %w[wheel question chest hint open_chests])
 
 module GameRoomGames
   using GameRoomLocalization::Translations
@@ -38,7 +39,8 @@ module GameRoomGames
     def actions_during_bot_turn?; true; end
     def session_history_capacity(_options); 32_768; end
     def shortcut_features; []; end
-    def bot_strategy; @bot_strategy ||= GameRoomBots::HeuristicStrategy.new; end
+    def serial_event_presentation?; true; end
+    def bot_strategy; @bot_strategy ||= GameRoomCashAuction::BiddingStrategy.new; end
 
     def option_definitions
       [OptionDefinition.new(key: 'starting_points', label: _('Starting points (10 to 1000000)'), kind: :integer, default: 10_000),
@@ -57,7 +59,7 @@ module GameRoomGames
       return _('The pass penalty must be from 0 to 1000000.') unless values['pass_penalty'].between?(0, 1_000_000)
       return _('Choose from 8 to 32 question rounds.') unless values['rounds'].between?(8, 32)
       return _('Choose from 1 to 5 seconds between auction calls.') unless values['count_interval'].between?(1, 5)
-      chest_maximum = values['auction_rules_version'] == 2 ? 15 : 10
+      chest_maximum = R.revised_options?(values) ? 15 : 10
       return _('The black chest probability must be from 5 to 15 percent.') unless values['black_chest_chance'].between?(5, chest_maximum)
       content_options_error(values)
     end
@@ -77,7 +79,7 @@ module GameRoomGames
       seats = case state[:phase]
       when :auction then R.active_seats(state).reject { |seat| state[:passed][seat] || seat == state[:leader] }
       when :answering then [state[:leader]]
-      when :opening_chests then state[:chests].each_index.select { |seat| state[:chests][seat] > 0 }
+      when :opening_chests then R.percentage_chests?(state) ? [] : state[:chests].each_index.select { |seat| state[:chests][seat] > 0 }
       else []
       end
       seats.compact.map { |seat| replay.players[seat] }

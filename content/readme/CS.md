@@ -200,6 +200,13 @@ stolu. Týkají se vašeho způsobu hraní, ne společné varianty zvolené host
 
 ### Řazení karet a hledání možného tahu
 
+V ruce s kartami rozdělenými podle barev přejdou šipky vlevo a vpravo
+rovnou na první kartu předchozí nebo následující barvy. Uslyšíte název
+barvy a vybranou kartu. Šipkami nahoru a dolů procházíte karty této barvy.
+Všechny karty zůstávají v úplném seznamu ve stejném pořadí. Pokud je pod
+kartami příkaz, například líznutí karty, dostanete se k němu šipkou dolů
+za poslední kartou aktuální barvy.
+
 V karetních hrách, které podporují společné řazení ruky:
 
 - Shift+C řadí karty podle barvy.

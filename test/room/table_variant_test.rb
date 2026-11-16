@@ -1,6 +1,6 @@
 require_relative "../support/table_watch_runtime"
 registry = EltenGameRoom::GAME_REGISTRY
-empty = %w[balut mexican_train war scientific_war battleship ludo reversi yahtzee biblios chess four_in_a_row tic_tac_toe]
+empty = %w[balut mexican_train war scientific_war battleship ludo reversi yahtzee biblios chess four_in_a_row tic_tac_toe cribbage hearts]
 registry.ids.each do |id|
   game = registry.build(id)
   # Reader defaults may retain historical modes that new tables no longer offer.
@@ -18,6 +18,17 @@ registry.ids.each do |id|
   puts "#{id}: #{message}"
 end
 read = ->(id, options) { GameRoomTableVariant.text(registry.build(id), GameRoomTableVariant.payload(registry.build(id), options)) }
+assert(read.call('belote', {'variant'=>'classic'}) == 'Classic: choose a trump suit', 'Belote classic variant missing')
+assert(read.call('belote', {'variant'=>'coinchee'}) == 'Coinchée: bid a point contract', 'Coinchée variant missing')
+assert(read.call('jass', {'variant'=>'playroom', 'score_limit'=>'1000'}) == 'Trumps: choose one of four suits, 1000 points', 'Jass variant or points missing')
+assert(read.call('jass', {'variant'=>'schieber', 'score_limit'=>'2500'}) == 'Schieber: also allow high- or low-card no-trumps, 2500 points', 'Schieber variant or points missing')
+%w[belote jass].each do |id|
+  assert(read.call(id, {'variant'=>'invalid', 'score_limit'=>'unexpected'}).empty?, "#{id}: malformed variant printed")
+  assert(read.call(id, {}).empty?, "#{id}: absent options became defaults")
+  options = registry.build(id).table_creation_options.merge('__private'=>'secret', 'bot_delay'=>5)
+  keys = GameRoomTableVariant.payload(registry.build(id), options).fetch('options').keys
+  assert(keys.sort == (id == 'belote' ? ['variant'] : %w[score_limit variant]), "#{id}: unexpected notification metadata")
+end
 assert(read.call('billiards', {'discipline'=>'nine'}) == 'Pool: 9-ball', 'Billiards discipline summary missing')
 assert(read.call('french_tarot', {'round_limit'=>1, 'score_limit'=>0}) == '1 deal', 'Tarot deal limit missing')
 assert(read.call('french_tarot', {'round_limit'=>0, 'score_limit'=>200}) == '200 points', 'Tarot score limit missing')

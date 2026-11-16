@@ -28,15 +28,15 @@ module CashAuctionRevisedRoundsTest
 
   def inactive_rounds_and_reset
     f = match
-    2.times { question_round(f) { f.pass('Bob') } }
+    2.times { question_round(f) }
     assert_equal(2, f.replay.state[:pass_counts][1])
     question_round(f)
     assert_equal(770, f.replay.state[:cash][1], 'Silence without Pass did not incur the third-round fine')
     assert_equal(0, f.replay.state[:pass_counts][1])
     question_round(f) { f.bid('Bob', 1) }
     assert_equal(0, f.replay.state[:pass_counts][1], 'A losing bidder was treated as inactive')
-    question_round(f) { f.bid('Bob', 1); f.bid('Carol', 2); f.pass('Bob') }
-    assert_equal(0, f.replay.state[:pass_counts][1], 'Passing after a bid was treated as inactivity')
+    question_round(f) { f.bid('Bob', 1); f.bid('Carol', 2) }
+    assert_equal(0, f.replay.state[:pass_counts][1], 'Not raising a beaten bid was treated as inactivity')
     2.times { question_round(f) }
     assert_equal(2, f.replay.state[:pass_counts][1], 'Inactivity did not restart after a lost bid')
     assert_equal(728, f.replay.state[:cash][1], 'A losing bidder paid an extra fine')

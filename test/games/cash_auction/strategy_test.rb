@@ -59,7 +59,7 @@ lost_bid = revised.replay
 lost_bid.state[:pass_counts][1] = 2
 assert_equal(980, lost_bid.state[:cash][1])
 assert_equal(10, lost_bid.state[:contributions][1])
-assert_equal('pass', bot_choice(revised, 'Bob', replay: lost_bid)['action'],
+assert_equal(nil, bot_choice(revised, 'Bob', replay: lost_bid),
   'A losing bid did not remove the nonexistent v2 no-bid penalty from the budget')
 before = Marshal.dump(lost_bid)
 revised.game.legal_actions(lost_bid, 'Bob', context: revised.context).each do |action|
@@ -69,7 +69,7 @@ assert_equal(before, Marshal.dump(lost_bid), 'V2 budget calculation changed its 
 
 closed = Marshal.load(Marshal.dump(lost_bid.state))
 cash = closed[:cash][1]
-assert(GameRoomCashAuction::Rules.pass!(closed, 1))
+assert_equal(false, GameRoomCashAuction::Rules.pass!(closed, 1), 'The removed withdrawal is still a current rule action')
 assert(GameRoomCashAuction::Rules.award!(closed, now: closed[:auction_deadline]))
 assert_equal(0, closed[:pass_counts][1], 'The production reducer did not reset the losing bidder streak')
 assert_equal(cash, closed[:cash][1], 'The production reducer fined a losing bidder')
@@ -107,11 +107,36 @@ edge.bid('Alice', 245)
 # expensive, while the legal 246 still fits and must remain a candidate.
 assert_equal('246', bot_choice(edge, 'Bob')['answer'], 'Scaled raises skipped a cheaper affordable legal bid')
 edge.bid('Alice', 250)
-assert_equal('pass', bot_choice(edge, 'Bob')['action'], 'Scaled raises exceeded the bid budget when no affordable raise remained')
+assert_equal(nil, bot_choice(edge, 'Bob'), 'Scaled raises exceeded the bid budget when no affordable raise remained')
+
+crowded = CashAuctionFixture::Match.new(players: %w[Alice Bob Carol Dan Eve Frank Grace Heidi], rules_version: 2,
+  options: {'starting_points'=>1000, 'content_language_id'=>'en'})
+crowded.begin_round
+crowded.bid('Alice', 124)
+assert_equal(nil, bot_choice(crowded, 'Bob'), 'Bob did not decline a bid above the fixed auction budget')
+%w[Carol Dan Eve Frank Grace Heidi].each_with_index { |actor, index| crowded.bid(actor, 150 + index * 10) }
+assert_equal(nil, bot_choice(crowded, 'Bob'), 'Other players inflated the pot and brought an unwilling bot back into bidding')
 
 old_scale = CashAuctionFixture::Match.new(players: %w[Alice Bob])
 old_scale.begin_round
 old_scale.bid('Alice', 10)
 assert_equal('20', bot_choice(old_scale, 'Bob')['answer'], 'The v1 representative bid changed with the new scale')
 
-puts 'PASS Cash Auction fixed public positions: scaled v2 raises, manual amounts, budget edges, exact v1 choices, pass penalties, losing-bid reset, reserve, final-round urgency and hidden-input independence'
+chest = CashAuctionFixture::Match.new(players: %w[Alice Bob], rules_version: 3,
+  options: {'starting_points'=>10000, 'content_language_id'=>'en'})
+chest.begin_round(chest: true)
+chest.bid('Alice', 340)
+assert_equal('341', bot_choice(chest, 'Bob')['answer'], 'Bot ignored an affordable percentage chest')
+chest.bid('Alice', 347)
+assert_equal(nil, bot_choice(chest, 'Bob'), 'Bot overpaid the expected value of the percentage chest')
+view = chest.replay
+view.state[:completed_rounds] = 7
+view.state[:cash][0] = 100000
+assert_equal(nil, bot_choice(chest, 'Bob', replay: view), 'Final-round urgency caused a chest all-in')
+view.state[:question] = {correct_index: 3, prompt: 'Not available during bidding'}
+view.state[:last_chest_reward] = 35
+before = Marshal.dump(view)
+assert_equal(nil, bot_choice(chest, 'Bob', replay: view), 'Hidden chest information changed the bidding budget')
+assert_equal(before, Marshal.dump(view))
+
+puts 'PASS Cash Auction public bidding: scaled raises, budget edges, legacy choices, fixed auction budgets, percentage chest value and hidden-input independence'

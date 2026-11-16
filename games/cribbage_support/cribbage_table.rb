@@ -81,7 +81,8 @@ module GameRoomGames
         cards = hand.map do |card|
           label = playing_card_label(card)
           label = _('Starter. %{card}') % {card: label} if card == state[:starter]
-          GameSurfaces::Card.new(id: card, value: card, label: label)
+          GameSurfaces::Card.new(id: card, value: card, label: label,
+            navigation_group: standard_hand_navigation_group(rank: playing_card_rank(card), suit: playing_card_suit(card)))
         end
         label = state[:count_index] == 2 ? _('Crib') : _('Cards to count')
         return GameSurfaces::CardTableSpec.new(zones: [

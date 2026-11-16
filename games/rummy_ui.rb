@@ -25,6 +25,7 @@ module GameRoomGames
         end
         choices << GameSurfaces::CardChoice.new(id: "cancel", label: _("Cancel"), value: "") unless choices.empty?
         GameSurfaces::Card.new(id: card, label: playing_card_label(card), value: card,
+          navigation_group: standard_hand_navigation_group(rank: playing_card_rank(card), suit: playing_card_suit(card)),
           choices: choices, choice_header: _("Choose an action"), sort_keys: {
             "colour" => playing_card_sort_key(card),
             "number" => [Rules.joker?(card) ? 99 : Rules.rank(card), Rules::SUITS.index(card[1]) || 4, card],

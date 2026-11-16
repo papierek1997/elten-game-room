@@ -45,11 +45,12 @@ module GameSurfaces
       end
       @selected_ids.select! { |id| @cards.any? { |card| card_id(card) == id } }
       @pending = nil
-      @control = RefreshAwareListBox.new(
+      @control = CardHandListBox.new(
         labels, header: spec.header.to_s,
         index: bounded_index(index), quiet: true,
         empty_label: (spec.empty_label || _("Your hand is empty")).to_s
       )
+      @control.card_navigation_source = -> { @cards if @spec.hand_order != nil && @pending == nil }
       @control.on(:select) { |parameters| activate(parameters.to_a[0].to_i) }
       @control.extend(PacketHelp)
       refresh_packet_help

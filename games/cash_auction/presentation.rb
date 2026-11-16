@@ -9,8 +9,7 @@ module GameRoomGames
           GameSurfaces::QuestionSpec.new(id: auction_id(state), mode: :text,
             prompt: _('Bid amount; type A for all-in and press Enter'),
             show_submit_button: false, clear_on_submit: true, max_length: 8,
-            text_shortcuts: custom_game_shortcuts(replay, viewer).map { |shortcut| [shortcut.key, shortcut.modifiers] },
-            extra_commands: seat == state[:leader] ? [] : [GameSurfaces::Command.new(id: 'pass', label: _('Withdraw from this auction'), enabled: true)])
+            text_shortcuts: custom_game_shortcuts(replay, viewer).map { |shortcut| [shortcut.key, shortcut.modifiers] })
         elsif state[:phase] == :answering
           question = state[:question]
           GameSurfaces::QuestionSpec.new(id: question_id(state), mode: :single_choice,
@@ -21,7 +20,7 @@ module GameRoomGames
               next if state.fetch(:hidden_answers, []).include?(index)
               GameSurfaces::QuestionOption.new(id: index.to_s, label: ('A'.ord + index).chr + '. ' + answer, value: index.to_s)
             end)
-        elsif state[:phase] == :opening_chests && seat && state[:chests][seat] > 0
+        elsif state[:phase] == :opening_chests && !R.percentage_chests?(state) && seat && state[:chests][seat] > 0
           GameSurfaces::CommandPanelSpec.new(commands: [GameSurfaces::Command.new(id: 'open_chest',
             label: _('Open a black chest'), enabled: true, payload: {'round'=>state[:round], 'remaining'=>state[:chests][seat]})])
         else
@@ -42,7 +41,7 @@ module GameRoomGames
           ['s', state[:phase] == :auction ? [:shift] : [], _('read the scores'), scores],
           ['p', [], _('read the pool'), _('Pool: %{points}.') % {points: state[:pot]}],
           ['t', [], _('read whose turn it is'), auction_turn_text(replay, viewer)],
-          ['h', [], _('read who is bidding and who has passed'), bidding_text(replay)],
+          ['h', [], _('read the current bids'), bidding_text(replay)],
           ['d', [], _('read your points'), own],
           ['d', [:shift], _('read the other players’ points'), others]
         ].map do |key, modifiers, label, message|
@@ -90,11 +89,26 @@ module GameRoomGames
         when 'hint' then 'roulette_chips'
         when 'answer' then history.any? { |entry| entry.kind == :correct_answer } ? 'replay' : 'quiz_wrong_answer'
         when 'chest' then 'auction_chest'
+        when 'open_chests'
+          'auction_chest' if history.any? { |entry| entry.kind == :chests_opening }
         end
       end
 
       def event_speech_tail_sound(event:, before_replay:, after_replay:, viewer:)
         'auction_gavel' if event['action'] == 'all_in' || event['action'] == 'auction_closed' && before_replay&.state&.[](:leader)
+      end
+
+      def event_presentation_stages(event, repository, _before, after, viewer)
+        unless event['action'] == 'open_chests'
+          return [{descriptions: describe_event_for_display(event, repository, after, viewer), wait_for_sounds: false}]
+        end
+        entries = after.history.select { |entry| entry.event_id == repository.event_id(event) }
+        introduction, rewards = entries.partition { |entry| entry.kind == :chests_opening }
+        result, rewards = rewards.partition { |entry| entry.key.to_s.end_with?(':tie') }
+        [{history: [], descriptions: introduction.map(&:text), delay: 1.0},
+         {history: introduction, descriptions: [], wait_for_sounds: true},
+         {history: rewards, descriptions: rewards.map(&:text), delay: 4.0},
+         {history: result, descriptions: result.map(&:text)}]
       end
 
       private
@@ -151,7 +165,7 @@ module GameRoomGames
         message = case event['action']
         when 'wheel' then _('The category wheel is spinning.')
         when 'auction_start'
-          category = state[:chest] ? _('Black chest') : bank.category_label(state[:category])
+          category = state[:chest] ? _('Black chest') : bank.category_label(state[:category], include_set: true)
           if state[:phase] == :auction
             _('Category: %{category}. Each remaining player pays an ante of %{ante}. Start!') % {category: category, ante: state[:options]['ante']}
           else
@@ -184,6 +198,7 @@ module GameRoomGames
           auction_answer_text(state, player, correct, before[:pot])
         when 'hint'
           _('%{player} buys a hint for %{price} points. Two wrong answers are removed.') % {player: player, price: before[:cash][seat] - state[:cash][seat]}
+        when 'open_chests' then _('Opening the black chests!')
         when 'chest'
           reward = state[:last_chest_reward]
           if R.revised?(state)
@@ -210,7 +225,24 @@ module GameRoomGames
           entries << HistoryEntry.new(key: "cash-auction:#{event_id}:eliminated:#{index}", event_id: event_id,
             actor: participant, kind: :game, text: _('%{player} is eliminated.') % {player: participant_name(participant)})
         end
-        if state[:phase] == :opening_chests && before[:phase] != :opening_chests
+        if event['action'] == 'open_chests'
+          entries.first.kind = :chests_opening
+          state[:last_chest_rewards].each_with_index do |(index, reward), number|
+            participant = state[:players][index]
+            text = reward.zero? ? _('%{player} opens a black chest: no change.') % {player: participant_name(participant)} :
+              _('%{player} opens a black chest: %{percent}.') % {
+                player: participant_name(participant), percent: format('%+d%%', reward)}
+            entries << HistoryEntry.new(key: "cash-auction:#{event_id}:chest:#{number}", event_id: event_id,
+              actor: participant, kind: :game, text: text)
+          end
+          state[:players].each_with_index do |participant, index|
+            next if state[:chest_percentages][index].zero?
+            entries << HistoryEntry.new(key: "cash-auction:#{event_id}:chest-balance:#{index}", event_id: event_id,
+              actor: participant, kind: :game, text: _('%{player}: %{balance} points after opening the chests.') % {
+                player: participant_name(participant), balance: state[:cash][index]})
+          end
+        end
+        if state[:phase] == :opening_chests && before[:phase] != :opening_chests && !R.percentage_chests?(state)
           entries << HistoryEntry.new(key: "cash-auction:#{event_id}:chests", event_id: event_id, actor: actor,
             kind: :game, text: _('Open your black chests before the final result.'))
         elsif state[:phase] == :drawing && (R.revised?(state) ? state[:question_target] != before[:question_target] : state[:completed_rounds] >= state[:options]['rounds'])
@@ -235,7 +267,7 @@ module GameRoomGames
             pool: state[:pot], amount: state[:highest], player: leader}
         when :question_pending, :answering
           _('%{player} answers the question.') % {player: participant_name(replay.players[state[:leader]])}
-        when :opening_chests then _('Open your black chests before the final result.')
+        when :opening_chests then R.percentage_chests?(state) ? _('Black chests') : _('Open your black chests before the final result.')
         end
       end
     end

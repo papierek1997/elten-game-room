@@ -10,7 +10,9 @@ catalog = count.times.to_h do |i|
   [key, bytes.byteslice(offset, length).force_encoding("UTF-8")]
 end
 messages = GameRoomTranslationCatalog.read_po(File.join(root, 'locale/pl.po')).filter_map do |entry|
-    next if entry.msgid.empty? || entry.msgstr.to_s.empty? || entry.fuzzy?
+    # Empty plural forms are represented by NUL separators, not an empty
+    # Ruby string. Like the compiler, exclude untranslated/obsolete entries.
+    next if entry.msgid.empty? || entry.msgstr.to_s.delete("\0").empty? || entry.fuzzy? || entry.obsolete?
     key = entry.msgid
     key = "#{entry.msgctxt}\u0004#{key}" if entry.msgctxt
     key += "\0#{entry.msgid_plural}" if entry.msgid_plural

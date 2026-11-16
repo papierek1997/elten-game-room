@@ -605,6 +605,16 @@ assert(GameRoomChangelog.pending_entries(nil, 269).map(&:build) == [269], 'first
 assert(GameRoomChangelog.pending_entries(269, 269).empty?, 'build 269 reopens after being read')
 assert(GameRoomChangelog.list_items([entry_269]).first == 'Version 2.0.6.6, build 269', 'build 269 heading differs')
 assert(GameRoomChangelog.available_entries(269).first.equal?(entry_269), 'build 269 is not the newest entry')
+entry_270 = entries.find { |entry| entry.build == 270 }
+assert(entry_270 && entry_270.version == '2.0.6.7' && entry_270.changes.size == 16,
+  'build 270 has incomplete release notes')
+assert(%w[guliwer postukujący turekcom].all? { |author| entry_270.changes.last.include?(author) },
+  'build 270 lacks contributor credits')
+assert(GameRoomChangelog.pending_entries(269, 270).map(&:build) == [270], 'build 270 repeats earlier notes')
+assert(GameRoomChangelog.pending_entries(nil, 270).map(&:build) == [270], 'first build 270 launch repeats history')
+assert(GameRoomChangelog.pending_entries(270, 270).empty?, 'build 270 reopens after being read')
+assert(GameRoomChangelog.list_items([entry_270]).first == 'Version 2.0.6.7, build 270',
+  'build 270 heading differs')
 latest = entries.max_by(&:build)
 manifest = JSON.parse(File.read(File.expand_path('../../manifest.json', __dir__)))
 runtime_release = [EltenGameRoom::GAME_ROOM_VERSION, EltenGameRoom::GAME_ROOM_BUILD_ID]

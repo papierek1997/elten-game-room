@@ -1,6 +1,6 @@
 # Cash Auction
 
-Bid and pass effects use the existing optional player-seat HRTF policy.
+Bid effects use the existing optional player-seat HRTF policy.
 Wheel, ante, question, answer, countdown and chest/gavel effects stay centred.
 Discovery and invitation summaries use the selected Quiz language and sets,
 through the game's existing notification-option declarations.
@@ -12,7 +12,7 @@ not a claim to reproduce an official television rulebook.
 
 ## Model and settlement
 
-New games use `auction_rules_version = 2`. The game accepts 2–8 participants,
+New games use `auction_rules_version = 3`. The game accepts 2–8 participants,
 including bots. Defaults are 10000 starting points, a 10-point ante, a
 200-point penalty after three consecutive auctions without a bid, eight
 answered questions, three seconds between calls and a 10% chance of a chest
@@ -23,9 +23,9 @@ call intervals 1–5 seconds and chest chances 5–15%.
 Every remaining participant pays the ante. Someone unable to pay is
 permanently eliminated. An accepted bid is the bidder's total contribution
 to this auction, excluding the ante. The reducer deducts only the difference
-from that bidder's earlier bid. All bidders pay, and losing or passing does
-not refund their contributions. The current leader cannot pass, but retains
-the same bid editor and may raise voluntarily. All-in is the remaining cash
+from that bidder's earlier bid. All bidders pay, and losing does
+not refund their contributions. There is no withdrawal action in current games;
+the bid editor remains available until the auction closes. All-in is the remaining cash
 plus that participant's earlier bid contributions. Every bid, including
 all-in, must exceed the current highest offer and cannot exceed that available
 total. An accepted all-in ends the auction immediately and awards its question
@@ -37,13 +37,11 @@ open, not as text attached to a committed closure. The closing event still
 binds the exact bid revision and deadline and cannot overrule a newer bid.
 A storage ACK alone is not game acceptance: the shared human-action runner
 checks the confirmed local reducer projection before reporting success,
-without another poll. The optional withdrawal button explicitly names the
-current auction. It neither accelerates closure nor refunds earlier bids.
+without another poll. Declining to bid requires no action or server event.
 
 For each participant eligible after the ante, an auction without any accepted
-bid increments the consecutive non-bidding count. An explicit pass is not
-required, and the ante is not a bid. Any accepted bid resets the count even
-if its author later loses or passes. At closure, the third consecutive missed
+bid increments the consecutive non-bidding count. The ante is not a bid.
+Any accepted bid resets the count even if its author later loses. At closure, the third consecutive missed
 auction deducts the configured penalty, capped at the remaining cash, adds it
 to the pool and resets the count to zero. This applies at both timed and
 immediate all-in closure; a zero penalty still resets the completed run.
@@ -67,8 +65,9 @@ TV price: the television presenter negotiates the price of a hint.
 
 After the configured number of questions have been answered, or when at most one active participant
 remains,
-all owned chests must be opened before settlement, including those belonging
-to eliminated participants. V2 chooses uniformly from
+all owned chests are opened automatically five logical seconds later, including
+those belonging to eliminated participants. V3 uses the weighted percentage
+settlement below. Historical v2 chooses uniformly from
 `[100, 500, 1000, 2500, 5000, 7500, 10000]`. These positive prizes are recorded
 separately in `bonus_prizes`, never added to the match score. They cannot
 eliminate anyone, revive them or change the winner. V1 keeps its historical
@@ -83,11 +82,51 @@ at-most-one-survivor boundary was reached earlier. No active seats
 means a draw. The pool has no final automatic payout to a leader.
 
 The version marker is part of normalized game options. A new ordinary start
-uses v2; an already bound tournament match uses its fixed published version.
+uses v3; an already bound tournament match uses its fixed published version.
 Unmarked historical sessions retain v1, including their original single-pack
 identity, defaults, cumulative pass penalties, auction-counted rounds and
 earlier bid/all-in transition semantics. Reading or resuming them must not
 upgrade their options or reinterpret their accepted events.
+
+## Percentage chests
+
+V3 replaces the separate fixed-value prizes with score adjustments.
+
+Each chest has a 60% chance of a positive change, a 30% chance of a negative
+change and a 10% chance of no change. For either nonzero sign, draw the
+magnitude with the same decreasing weights:
+
+| Balance change magnitude | Weight |
+| --- | ---: |
+| 5% | 49 |
+| 10% | 36 |
+| 15% | 25 |
+| 20% | 16 |
+| 25% | 9 |
+| 30% | 4 |
+| 35% | 1 |
+
+The weights total 140 and are the squares of 7 through 1. Thus a particular
+positive outcome has probability `0.60 * weight / 140`; its negative counterpart
+has probability `0.30 * weight / 140`. The mean change per chest is +3.6% of
+the base balance before considering its auction cost.
+
+Use each participant's balance at settlement, before any chest adjustment,
+as the common base for all their chests. Sum their signed percentages rather
+than compounding them, round the final adjusted balance once to whole points
+and do not let it fall below zero. Apply all chest adjustments before choosing
+the winner. Opening order must not affect the result; for example, +20% and
+-10% on a base of 10000 produce 11000 in either order.
+
+The ordinary executor requests one native `open_chests` seed at
+`open_chests_at`, five seconds after the settlement boundary. One accepted
+event opens the complete batch in seat order; there is no player readiness,
+manual button, per-chest network request or additional timer. The shared
+presentation queue speaks the opening announcement, allows one second for that
+short cue, plays `auction_chest` once and waits for its handle to finish.
+It then reads the contents and adjusted balances, and holds the final result
+for four seconds. Cold reconstruction does not replay those effects or pauses.
+Eliminated players remain eliminated, even when their chest adjustment is positive.
 
 ## Shared Quiz content
 
@@ -97,7 +136,7 @@ selection and support validation only: language, pack ID, version and
 checksum retain their existing pinned meanings. The game does not rewrite
 Quiz pack manifests, data or checksums.
 
-The v2 `content_pack_ids` multiple-value control selects two or three sets
+The revised `content_pack_ids` multiple-value control selects two or three sets
 from one Quiz language. A language with exactly one available set permits
 that one set instead; the current English and Russian catalogues have one
 each. The immutable `content_pack_manifest` pins every selected member with
@@ -107,8 +146,13 @@ packs are currently available. Legacy single-pack fields remain authoritative
 for v1, including already fixed v1 publications.
 
 `GameRoomCashAuction::QuestionBank` indexes the selected frozen question rows.
-Its stable integer categories combine the chosen sets; `category_label(id)`
-returns the category label. A question remains bound to its source pack.
+Each integer category identifies one `(pack_id, category name)` pair, sorted
+by category name and then pack ID. Equal names from different sets stay separate.
+`category_label(id)` returns the bare category; `include_set: true` adds its
+one source's title for the wheel announcement. `category_pack_id(id)` exposes
+that exact metadata identity. Display labels are prepared once per bank, not
+by rescanning the question rows on each replay event. A question stays in the
+category's own set, and exhaustion clears only that pair's ledger entries.
 No copied question database or process-wide unbounded cache is introduced.
 
 `draw(category:, seed:, used: [])` accepts a native unsigned 128-bit seed and
@@ -129,13 +173,20 @@ Quiz packs are not a cryptographic secret against a modified client. The
 ordinary presentation exposes the question and ABCD choices to everyone only
 after award; the correct index stays out of bot observations. Answer bots
 score the four actions equally and choose randomly, while bidding uses a
-budget based on public balances.
+budget based on public balances. In v2 the pool component excludes every
+bid contribution, using only the carried pool and antes. Those inputs stay
+fixed during bidding, so other players cannot inflate a previously declined
+bot's budget by raising. The game-owned `BiddingStrategy` retains
+shared heuristic selection but returns nil when no bid fits that budget.
+The ordinary coordinator can then try another actor; the existing clock still
+closes the auction. Waiting does not withdraw a bot or write a move, and a new
+auction state lets it reconsider. Never replace a refused bid with an
+over-budget one merely because the former Pass alternative has been removed.
 
 ## Native controls and concurrent input
 
 The auction uses the existing `QuestionSpec` text control, with no separate
-submit button: type an amount or `A` and press Enter. Non-leaders also get
-the native withdrawal button, reached with Tab and activated with Enter. Accepted
+submit or withdrawal button: type an amount or `A` and press Enter. Accepted
 input clears only its matching `_text_input` edit receipt. Validation errors
 preserve the draft. Another participant's bid keeps the local draft, cursor
 and focus. The auction control identity contains the accepted game ID and
@@ -144,11 +195,12 @@ round, so a new round or game cannot inherit a stale bid or acknowledgement.
 Questions use the shared read-only prompt and single-choice ABCD list. Down
 enters the list, arrows select and Enter submits for the auction winner.
 Other participants and spectators see the same question without submission
-authority. Chest opening uses the existing `CommandPanelSpec`. S reads scores
+authority. V3 chest opening needs no control or player action; historical
+manual openings keep their existing `CommandPanelSpec`. S reads scores
 outside the auction, including while answering; Shift+S reads them during
 the auction without taking the letter S from the bid editor. Readouts retain
 full participant names, balances and unopened chest counts. P reads the pool,
-T the pending decision, H each player’s bidding/passing status, D the viewer's points
+T the pending decision, H each player’s current bid, D the viewer's points
 and Shift+D other players' points. During an auction, the turn readout explains
 that all eligible participants may bid simultaneously.
 
@@ -209,13 +261,17 @@ The source tests relevant to the shared adapter and native controls are:
 - `test/games/cash_auction/revised_rounds_test.rb`: v2 consecutive non-bidding
   penalties, strict all-in, eight answered questions, deferred chest results
   and an additional answered question after a tie.
+- `test/games/cash_auction/percentage_chests_test.rb`: exact weighted
+  probabilities, native automatic batch opening at five seconds, one common
+  balance/rounding, deductions capped at zero, elimination, cold replay and
+  ordered announcement/sound/rewards with a four-second result pause.
 - `test/games/cash_auction/all_in_test.rb`: historical immediate question/chest
   awards, numeric maximums and shorter-stack behavior, late/forged refusal and
   unchanged accepted histories.
 - `test/games/cash_auction/runner_test.rb`: the active shared executor, native
   seed evidence, host-only automatic progression and concurrent bid admission.
 - `test/games/cash_auction/native_surface_test.rb`: actual native bid field,
-  all-in, Pass, protected text editing, selection, matching acknowledgement,
+  all-in, no withdrawal button, protected text editing, selection, matching acknowledgement,
   concurrent refresh, new-round drafts, ABCD, chest commands and read-only
   viewers. Its listener captures actions without writing moves; it is not a
   live-server or listening test.
@@ -227,6 +283,11 @@ The source tests relevant to the shared adapter and native controls are:
   `test/games/cash_auction/content_question_bank_test.rb` and
   `test/games/cash_auction/content_tournament_test.rb`: complete pinned
   combinations, provenance, strict publication types and ordinary/fixed starts.
+- `test/games/cash_auction/category_sources_test.rb`: source-qualified category
+  announcements in five interface languages, no early question and cold replay.
+- `test/games/cash_auction/withdrawal_removed_test.rb`: no current withdrawal
+  action, refused retained/native requests, silent bot waiting, a later bid,
+  the ordinary deadline and unchanged no-bid accounting.
 - `test/games/cash_auction/content_editor_native_test.rb`: Space, Enter,
   Escape, two/three-set validation, language changes and cancelled drafts.
 

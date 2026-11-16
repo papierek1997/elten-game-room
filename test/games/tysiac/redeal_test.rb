@@ -1,13 +1,15 @@
 require_relative "../../support/tysiac_redeal_fixture"
 
 game = GameRoomGames::Tysiac.new
-assert(game.table_creation_options.values_at('redeal_four_nines', 'redeal_talon_nines') == [true, false],
+assert(game.table_creation_options.values_at('redeal_four_nines', 'redeal_talon_nines') == [false, false],
   'New-table defaults differ from the option form')
 assert(!game.normalize_options({}).key?('redeal_four_nines'), 'New defaults rewrote a recorded option document')
 ['redeal_four_nines', :redeal_four_nines].each do |key|
-  source = {key => false}
-  assert(game.table_creation_options(source)['redeal_four_nines'] == false && source == {key => false},
-    'Table defaults replaced an explicit false or mutated input')
+  [false, true].each do |enabled|
+    source = {key => enabled}
+    assert(game.table_creation_options(source)['redeal_four_nines'] == enabled && source == {key => enabled},
+      'Table defaults replaced an explicit choice or mutated input')
+  end
 end
 
 nines = %w[9H 9S 9D 9C]
@@ -16,6 +18,18 @@ music = TysiacRedealFixture.seed_for { |deck| deck.last(3).count { |card| card[0
 three_plus_one = TysiacRedealFixture.seed_for do |deck|
   deck.slice(7, 7).count { |card| card[0] == "9" } == 3 && deck.last(3).count { |card| card[0] == "9" } == 1
 end
+
+f = TysiacRedealFixture.new(game.table_creation_options)
+f.deal(four)
+assert(f.request('four_nines') == :cannot_redeal, 'A newly created table enabled the four-nines rule')
+assert(f.game.legal_actions(f.replay, 'Bob').none? { |action| action['action'] == 'redeal' },
+  'The default-disabled rule still offers a redeal')
+assert(f.game.game_shortcuts(f.replay, 'Bob').none? { |key| key.key == 'd' && key.modifiers == [:shift] },
+  'The default-disabled rule still offers Shift+D')
+
+f = TysiacRedealFixture.new(game.table_creation_options('redeal_four_nines'=>true))
+f.deal(four)
+assert(f.request('four_nines') == :ok, 'Explicitly enabling the four-nines rule no longer works')
 
 f = TysiacRedealFixture.new
 f.deal(four)

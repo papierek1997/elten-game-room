@@ -363,6 +363,7 @@ module GameRoomGames
       if state[:phase] == :exchange && same_user?(state[:current_player], viewer)
         cards = hand_for(state, viewer).sort_by { |card| playing_sort_key(card) }.map do |card|
           GameSurfaces::Card.new(id: card, label: poker_card_label(card), value: card,
+            navigation_group: standard_hand_navigation_group(rank: card[0], suit: card[1]),
             sort_keys: standard_hand_sort_keys(rank: card[0], suit: card[1], position: hand_for(state, viewer).index(card)))
         end
         packet = GameSurfaces::PacketCardSpec.new(id: "poker_exchange", header: _("Choose cards to exchange"),

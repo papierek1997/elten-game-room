@@ -346,6 +346,7 @@ module GameRoomGames
           GameSurfaces::CardChoice.new(id: choice, label: choice_label(choice), value: choice)
         end
         GameSurfaces::Card.new(id: card, label: makao_card_label(card), value: card, choices: choices,
+          navigation_group: standard_hand_navigation_group(rank: card_rank(card), suit: card_suit(card)),
           sort_keys: standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: hand_for(state, viewer).index(card)),
           choice_header: joker?(card) ? _("Choose the card represented by the joker") : card_rank(card) == "A" ? _("Choose a suit") : _("Choose the requested rank"))
       end

@@ -14,13 +14,15 @@ module GameRoomGames
         when :drawing, :spinning then now >= state.fetch(:resume_at, 0)
         when :auction then now >= state[:auction_deadline]
         when :question_pending then true
+        when :opening_chests then R.percentage_chests?(state) && now >= state[:open_chests_at]
         else false
         end
       end
 
       def automatic_action(replay, actor, context: nil)
         return nil unless automatic_action_due?(replay, actor, context: context)
-        action = {drawing: 'wheel', spinning: 'auction_start', auction: 'auction_closed', question_pending: 'question'}[replay.state[:phase]]
+        action = {drawing: 'wheel', spinning: 'auction_start', auction: 'auction_closed', question_pending: 'question',
+          opening_chests: 'open_chests'}[replay.state[:phase]]
         {'kind'=>'automatic', 'action'=>action}
       end
 
@@ -37,10 +39,12 @@ module GameRoomGames
           when 'auction_start' then return [:ok, event_plan('auction_start', (state[:round]+1).to_s)]
           when 'auction_closed' then return [:ok, event_plan('auction_closed', [state[:round], state[:bid_revision], state[:auction_deadline]].join('|'))]
           when 'question' then return [:ok, server_seed_plan('question', template: "#{state[:round]}|#{state[:bid_revision]}|{seed}")]
+          when 'open_chests' then return [:ok, server_seed_plan('open_chests', template: "#{state[:round]}|#{state[:revision]}|{seed}")]
           end
         end
         return [:not_your_turn, nil] unless seat
         if selection['action'] == 'open_chest'
+          return [:invalid, nil] if R.percentage_chests?(state)
           return [:invalid, nil] unless state[:phase] == :opening_chests && state[:chests][seat] > 0 &&
             selection['round'] == state[:round] && selection['remaining'] == state[:chests][seat]
           return [:ok, server_seed_plan('chest', template: "#{state[:round]}|#{seat}|#{state[:chests][seat]}|{seed}")]
@@ -49,7 +53,7 @@ module GameRoomGames
         if state[:phase] == :auction
           return [:invalid, nil] unless selection['kind'] == 'question' && selection['question_id'] == auction_id(state)
           return [:invalid, nil] if state[:passed][seat] || now >= state[:auction_deadline]
-          if selection['action'] == 'pass'
+          if selection['action'] == 'pass' && !R.revised?(state)
             return [:invalid, nil] if seat == state[:leader]
             return [:ok, event_plan('pass', state[:round].to_s)]
           end
@@ -81,13 +85,13 @@ module GameRoomGames
       def legal_actions(replay, actor, context: nil)
         state, seat = replay.state, player_index(replay.players, actor)
         return [] unless seat && !replay.finished?
-        if state[:phase] == :opening_chests && state[:chests][seat] > 0
+        if state[:phase] == :opening_chests && !R.percentage_chests?(state) && state[:chests][seat] > 0
           return [{'kind'=>'command', 'action'=>'open_chest', 'round'=>state[:round], 'remaining'=>state[:chests][seat]}]
         end
         return [] if state[:eliminated][seat]
         if state[:phase] == :auction && !state[:passed][seat] && action_time(state, context) < state[:auction_deadline]
           base = {'kind'=>'question', 'question_id'=>auction_id(state)}
-          actions = seat == state[:leader] ? [] : [base.merge('action'=>'pass')]
+          actions = !R.revised?(state) && seat != state[:leader] ? [base.merge('action'=>'pass')] : []
           maximum = state[:cash][seat] + state[:contributions][seat]
           amount = [state[:highest] + [state[:options]['ante'], 1].max, maximum].min
           if R.revised?(state)
@@ -145,6 +149,11 @@ module GameRoomGames
       private
 
       def bot_bid_budget(state, seat, maximum)
+        if R.percentage_chests?(state) && state[:chest]
+          # Expected adjustment is +3.6%, but the paid bid also lowers that
+          # base. This conservative public-data ceiling is fixed per auction.
+          return maximum * 36 / 1036
+        end
         rounds_left = [state[:options]['rounds'] - state[:completed_rounds], 1].max
         active = R.active_seats(state)
         # On the last round, passing cannot rescue a player who is behind.
@@ -152,7 +161,12 @@ module GameRoomGames
         return maximum if rounds_left == 1 && trailing
 
         reserve = [state[:options]['ante'] * (rounds_left - 1), maximum / 2].min
-        pool = [state[:pot] - state[:contributions][seat], 0].max
+        # Current auctions have no permanent Pass move. Their budget must not
+        # grow when other bidders pay: otherwise a bot that just declined can
+        # re-enter repeatedly and keep extending the same auction. The carried
+        # pool plus antes is fixed throughout bidding, and is all public data.
+        paid = R.revised?(state) ? state[:contributions].sum : state[:contributions][seat]
+        pool = [state[:pot] - paid, 0].max
         budget = [maximum / [rounds_left, 4].max, pool / 3].max
         if (state[:pass_counts][seat] + 1) % 3 == 0 && (!R.revised?(state) || state[:contributions][seat].zero?)
           penalty = [state[:cash][seat], state[:options]['pass_penalty']].min

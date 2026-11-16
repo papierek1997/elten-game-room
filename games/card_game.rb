@@ -78,6 +78,7 @@ module GameRoomGames
           id: card,
           label: playing_card_label(card),
           value: card,
+          navigation_group: standard_hand_navigation_group(rank: playing_card_rank(card), suit: playing_card_suit(card)),
           sort_keys: standard_hand_sort_keys(rank: playing_card_rank(card), suit: playing_card_suit(card), position: cards.index(card)),
           choices: choices.respond_to?(:call) ? choices.call(card) : nil
         )

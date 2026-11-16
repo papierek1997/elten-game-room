@@ -3,24 +3,25 @@ require_relative '../../../lib/game_random'
 include GameRoomTest::Assertions
 
 $stdout.sync = true
-unless ARGV.empty? || (ARGV.length == 2 && %w[1 2].include?(ARGV[0]) && %w[2 4 8].include?(ARGV[1]))
-  raise ArgumentError, 'Expected no arguments, or rules version (1 or 2) and player count (2, 4 or 8)'
+unless ARGV.empty? || (ARGV.length == 2 && %w[1 2 3].include?(ARGV[0]) && %w[2 4 8].include?(ARGV[1]))
+  raise ArgumentError, 'Expected no arguments, or rules version (1, 2 or 3) and player count (2, 4 or 8)'
 end
-cases = ARGV.empty? ? [1, 2].product([2, 4, 8]) : [[ARGV[0].to_i, ARGV[1].to_i]]
+cases = ARGV.empty? ? [1, 2, 3].product([2, 4, 8]) : [[ARGV[0].to_i, ARGV[1].to_i]]
 cases.each do |version, count|
     label = "v#{version}, #{count} players"
     puts "#{label}: starting"
     players = Array.new(count) { |index| "Player#{index + 1}" }
-    options = version == 2 ? {'content_language_id'=>'pl-PL'} : {}
+    options = version >= 2 ? {'content_language_id'=>'pl-PL'} : {}
     match = CashAuctionFixture::Match.new(players: players, options: options, rules_version: version)
     replay = match.replay
-    if version == 2
+    if version >= 2
       assert_equal(3, replay.state[:options]['content_pack_ids'].length,
         'The revised bot game did not use the real three-pack Polish pool')
     end
     random = GameRoomRandom::SeededSource.new(20261114 + count)
     coordinator = GameRoomBots::Coordinator.new
     decisions = Hash.new(0)
+    waits = 0
     2000.times do |step|
       break if replay.finished?
       state = replay.state
@@ -31,10 +32,16 @@ cases.each do |version, count|
       when :drawing
         # Preserve the historical schedule. In v2, chests do not complete a
         # question round, so mix them by auction number rather than loop work.
-        chest = (version == 2 ? state[:round] : step) % 5 == 0
+        chest = (version >= 2 ? state[:round] : step) % 5 == 0
         replay = match.begin_round(chest: chest)
       when :question_pending
         replay = match.reveal_question(seed: step + 1)
+      when :opening_chests
+        if version == 3
+          match.now = replay.state[:open_chests_at]
+          replay = match.automatic(seed: step + 1)
+          next
+        end
       when :auction
         if match.now >= state[:auction_deadline] || match.game.active_actors(replay).empty?
           match.now = [match.now, state[:auction_deadline]].max
@@ -46,6 +53,11 @@ cases.each do |version, count|
       context = GameRoomGames::ActionContext.new(now: match.now, server_random: true, random_source: random,
         table_owner: players.first, session_id: match.session['__id'])
       decision = coordinator.decide_next(game: match.game, replay: replay, context: context, controlled_actors: players)
+      if !decision && version >= 2 && replay.state[:phase] == :auction
+        waits += 1
+        match.now = replay.state[:auction_deadline]
+        next
+      end
       assert(decision, "#{label}: no decision in #{replay.state[:phase]}")
       decisions[decision.action['action']] += 1
       # Plan against the current real replay, materialize the native request,
@@ -60,8 +72,9 @@ cases.each do |version, count|
       match.now += 1
     end
     assert(replay.finished?, "#{label}: bot match did not finish within 2000 steps")
-    assert(decisions['submit'].positive? && decisions['pass'].positive?, "#{label}: bots never bid or never give up")
-    if version == 2
+    assert(decisions['submit'].positive?, "#{label}: bots never bid")
+    assert(version >= 2 ? waits.positive? && decisions['pass'].zero? : decisions['pass'].positive?, "#{label}: bots failed to decline costly bids normally")
+    if version >= 2
       assert(match.events.any? { |event| event['action'] == 'question' }, "#{label}: the match never drew a real quiz question")
       final = replay.state
       assert(final[:completed_auctions] > final[:completed_rounds], 'Revised bot play counted a chest as a question')

@@ -25,7 +25,7 @@ module CashAuctionFixture
       configured = if rules_version == 1
         game.normalize_options(GameRoomCashAuction::Rules::DEFAULT_OPTIONS.merge(options))
       else
-        game.table_creation_options(options)
+        game.normalize_options(game.table_creation_options(options).merge('auction_rules_version'=>rules_version))
       end
       @session = {'__id'=>game_id, 'options'=>JSON.generate(configured),
         'created_at'=>100 + epoch_shift, '__server_started_at'=>100}
@@ -117,10 +117,11 @@ module CashAuctionFixture
       answer(actor, replay.state[:question].fetch(:correct_index))
     end
     def open_chest(actor, reward: 100)
-      rewards = GameRoomCashAuction::Rules.revised?(replay.state) ? GameRoomCashAuction::Rules::BONUS_REWARDS : GameRoomGames::CashAuction::CHEST_REWARDS
-      index = rewards.index(reward)
-      assert(index, 'Unknown chest reward')
-      seed = (0...10_000).find { |candidate| Random.new(candidate).rand(rewards.length) == index }
+      state = replay.state
+      seed = (0...10_000).find do |candidate|
+        GameRoomCashAuction::Rules.chest_reward(state, random_source: Random.new(candidate)) == reward
+      end
+      assert(seed, 'Unknown or unavailable chest reward')
       selection = game.legal_actions(replay, actor, context: context).find { |action| action['action'] == 'open_chest' }
       assert(selection, 'No owned chest action')
       submit(selection, actor: actor, seed: seed)
@@ -129,7 +130,7 @@ module CashAuctionFixture
     def question_seed_for_index(index)
       current = replay.state
       packs = game.auction_content_packs(current[:options])
-      @bank ||= GameRoomCashAuction::QuestionBank.new(current[:options]['auction_rules_version'] == 2 ? packs : packs.first)
+      @bank ||= GameRoomCashAuction::QuestionBank.new(GameRoomCashAuction::Rules.revised?(current) ? packs : packs.first)
       (0...1024).find do |seed|
         @bank.draw(category: current[:category], seed: seed, used: current[:used_questions])[:correct_index] == index
       end || raise('No matching bounded answer permutation seed')

@@ -16,6 +16,16 @@ module GameRoomGames
     def name; _('Jass'); end
     def short_description; _('A Swiss trick-taking game for two partnerships.'); end
 
+    def notification_option_keys(_options); %w[variant score_limit]; end
+
+    def notification_variant(options)
+      parts = [notification_choice(options, 'variant')]
+      if notification_choice(options, 'score_limit')
+        parts << notification_points({'score_limit' => options['score_limit'].to_i}, 'score_limit')
+      end
+      parts.compact.join(', ')
+    end
+
     def rule_sections; generated_rule_sections; end
     def minimum_players; 4; end
     def maximum_players; 4; end

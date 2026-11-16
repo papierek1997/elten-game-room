@@ -5,6 +5,15 @@ dice, action lists and other lists retain their own navigation.
 
 ## Behavior
 
+- Left/Right jumps immediately to the first displayed card of the next/previous
+  suit or colour, cycling through the groups in their displayed order. It reads
+  the group name and card once. Up/Down visits only cards of the current group,
+  even in an interleaved rank/acquisition order, stopping at its boundaries.
+  This moves the actual list cursor: it never filters, sorts or hides cards.
+  Appended commands remain reachable with Down after the group's last card;
+  Up from the first command returns to that group's last card. Home/End and
+  PageUp/PageDown retain native whole-list navigation. Modified arrows retain
+  their native meaning; editors and non-hand lists are unaffected.
 - After playing a card: select the nearest remaining card above it. If none
   exists, select the next one below. For A B C D: playing D selects C, B selects
   A, and A selects B.
@@ -19,7 +28,7 @@ dice, action lists and other lists retain their own navigation.
 - Without an explicitly selected sort order, preserve the order of the remaining
   hand and append new cards at the bottom. A CardTableSpec may declare a
   default_sort to keep its default order active for received cards; Thousand
-  uses suit order. An explicit player choice, including acquisition order,
+  and 3-5-8 use suit order. An explicit player choice, including acquisition order,
   takes precedence. UNO sorting remains active.
 - Announcements follow the identity of the new card under the cursor. They do
   not add the label “dobrano” (“drawn”); they also cover a change to a different
@@ -59,6 +68,14 @@ CardTable and PacketCardSurface share it. A new game uses these controls
   the end, independently of the displayed sort order;
 - `hand_epoch`: the owner and deal identity, changed for a new deal;
 - normal labels, action values and any sort keys.
+- `Card#navigation_group`: a `CardNavigationGroup` with a stable semantic `id`
+  and localized `label` for every card, to enable suit/colour arrow navigation.
+  `Base#standard_hand_navigation_group(rank:, suit:)` supplies ordinary suits
+  and jokers; the CardGame and DealtCardGame hand helpers already use it.
+  Other decks declare their own groups, including special cards (UNO wild
+  cards, Tarot trumps/Excuse). Never infer groups from translated labels, rank
+  sort keys or physical IDs in the control. A missing group on any card leaves
+  native navigation active for the whole list, rather than stranding that card.
 - `playable_card_navigation` with `card_navigation_spec`: the hand identifier,
   legal actions grouped by physical `Card#id`, and cards for which a single,
   unambiguous move may be performed automatically.
@@ -67,6 +84,16 @@ There is no need to copy cursor control, announcements or refresh handling.
 `hand_order: nil` means an ordinary control outside this mechanism. Do not mark
 public decks, action lists or dice as hands in future work. Changing only
 the owner of the displayed hand also requires a different `hand_epoch`.
+
+`CardHandListBox` implements suit navigation once for CardTable, packets and
+meld hands in `card_hand_navigation.rb`. Its source callback reads the surface's
+current displayed cards only on navigation/help, not during idle frames. A
+temporary action/target picker or public-meld inspection returns nil, restoring
+native list behavior and removing the suit-navigation tip until the hand returns.
+The callback is installed once per control, not repeatedly on refresh. Navigation
+does not emit a move or alter hand/packet IDs, epochs, selections or private state.
+The native-control regression is `test/ui/card_suit_navigation_native_test.rb`;
+real-game metadata coverage is `test/ui/card_suit_navigation_consumers_test.rb`.
 
 A game must not mark a card as automatic if it requires a subsequent choice,
 meld, declaration, target or packet construction. In these situations, the

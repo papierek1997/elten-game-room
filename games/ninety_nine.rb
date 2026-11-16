@@ -355,6 +355,7 @@ module GameRoomGames
       cards = hand_for(state, viewer).to_a.sort_by { |card| card_sort_key(card) }.map do |card|
         item = card_surface_card(card, state[:total])
         item.sort_keys = standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: hand_for(state, viewer).index(card))
+        item.navigation_group = standard_hand_navigation_group(rank: card_rank(card), suit: card_suit(card))
         item
       end
       hand = GameSurfaces::CardTableSpec.new(

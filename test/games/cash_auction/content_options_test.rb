@@ -10,7 +10,7 @@ pl_ids = catalog.select { |pack| pack.language_id == 'pl-PL' }.map(&:id).sort
 assert_equal(3, pl_ids.length)
 
 options = game.table_creation_options('content_language_id'=>'pl-PL')
-assert_equal(2, options['auction_rules_version'])
+assert_equal(3, options['auction_rules_version'])
 assert_equal(10_000, options['starting_points'])
 assert_equal(3, options['count_interval'])
 assert_equal(10, options['black_chest_chance'])
@@ -83,7 +83,7 @@ end
   invalid = game.normalize_options(options.merge('content_pack_manifest'=>manifest))
   assert(game.validation_error(invalid), 'Accepted a malformed manifest')
 end
-[nil, 0, 3, '2', false, 2.0, [2]].each do |version|
+[nil, 0, 4, '2', '3', false, 2.0, 3.0, [2]].each do |version|
   invalid = game.normalize_options(options.merge('auction_rules_version'=>version))
   assert_equal(version, invalid['auction_rules_version'])
   assert(game.validation_error(invalid), 'An invalid rules marker silently selected legacy rules')
@@ -107,7 +107,7 @@ contract_options = game.normalize_options(GameRoomCashAuction::Rules::DEFAULT_OP
 assert_equal(contract.fetch('session').fetch('options'), JSON.generate(contract_options), 'The immutable single-pack option JSON changed its key order')
 assert_equal('quiz.witcher.books.pl', game.auction_content_packs(legacy).first.id)
 upgraded = game.new_game_options(legacy)
-assert_equal(2, upgraded['auction_rules_version'])
+assert_equal(3, upgraded['auction_rules_version'])
 assert_equal(pl_ids, upgraded['content_pack_ids'])
 assert_equal(false, upgraded.key?('content_pack_id'))
 assert_equal(nil, game.validation_error(upgraded))

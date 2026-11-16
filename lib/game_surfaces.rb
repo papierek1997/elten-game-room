@@ -3,6 +3,7 @@ require_relative "game_surfaces/state_reader"
 require_relative "game_layout"
 require_relative "game_surfaces/card_hand_cursor"
 require_relative "game_surfaces/card_sorting"
+require_relative "game_surfaces/card_hand_navigation"
 require_relative "game_room_ui"
 
 require_relative "game_room_localization"
@@ -349,6 +350,10 @@ module GameSurfaces
       character
     end
 
+  end
+
+  class CardHandListBox < RefreshAwareListBox
+    include CardHandNavigation
   end
 
   class RefreshAwareEditBox < EditBox
@@ -770,6 +775,7 @@ module GameSurfaces
           quiet: true,
           empty_label: zone.empty_label.to_s
         )
+        control.card_navigation_source = -> { navigation_hand_cards(zone_id) }
         control.on(:select) do |params|
           next if respond_to?(:intercept_card_selection, true) && intercept_card_selection(zone_id, params.to_a[0].to_i)
           zone = @zones.find { |item| item.id.to_s == zone_id }
@@ -1019,7 +1025,12 @@ module GameSurfaces
     end
 
     def card_list_control_class
-      RefreshAwareListBox
+      CardHandListBox
+    end
+
+    def navigation_hand_cards(zone_id)
+      zone = @zones.find { |item| item.id.to_s == zone_id }
+      @cards[zone_id] if zone && zone.hand_order != nil && !@pending_choices.key?(zone_id)
     end
 
     def navigate_playable_card(payload)

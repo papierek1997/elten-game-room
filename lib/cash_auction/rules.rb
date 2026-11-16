@@ -6,6 +6,10 @@ module GameRoomCashAuction
       'rounds'=>8, 'count_interval'=>2, 'black_chest_chance'=>5}.freeze
     CHEST_REWARDS = [100, 2500, 10_000, -100, -500, -1000, 'bankrupt'].freeze
     BONUS_REWARDS = [100, 500, 1000, 2500, 5000, 7500, 10_000].freeze
+    CURRENT_VERSION = 3
+    CHEST_MAGNITUDES = [5, 10, 15, 20, 25, 30, 35].freeze
+    CHEST_WEIGHTS = [49, 36, 25, 16, 9, 4, 1].freeze
+    CHEST_WEIGHT_TOTAL = CHEST_WEIGHTS.sum
     module_function
 
     def initial(players, options)
@@ -35,7 +39,9 @@ module GameRoomCashAuction
     def time?(now); now.is_a?(Integer) && now >= 0; end
     def seat?(state, seat); seat.is_a?(Integer) && seat.between?(0, state[:players].length - 1); end
     def active?(state, seat); seat?(state, seat) && !state[:eliminated][seat]; end
-    def revised?(state); state[:options]['auction_rules_version'] == 2; end
+    def revised_options?(options); [2, CURRENT_VERSION].include?(options['auction_rules_version']); end
+    def revised?(state); revised_options?(state[:options]); end
+    def percentage_chests?(state); state[:options]['auction_rules_version'] == CURRENT_VERSION; end
     def auction_duration(state); (revised?(state) ? 4 : 3) * state[:options]['count_interval']; end
     def hint_price(state); [1, (state[:cash][state[:leader]].to_i + 9) / 10].max; end
 
@@ -62,7 +68,7 @@ module GameRoomCashAuction
         leader: nil, highest: 0, bid_revision: 0, question: nil,
         auction_deadline: now + auction_duration(state))
       state.merge!(hint_used: false, hidden_answers: []) if revised?(state)
-      finish_round!(state) if active_seats(state).length <= 1
+      finish_round!(state, now: now) if active_seats(state).length <= 1
       true
     end
 
@@ -83,9 +89,9 @@ module GameRoomCashAuction
     end
 
     def pass!(state, seat)
+      return false if revised?(state)
       return false unless state[:phase] == :auction && active?(state, seat) && !state[:passed][seat] && state[:leader] != seat
       state[:passed][seat] = true
-      return true if revised?(state)
       state[:pass_counts][seat] += 1
       if (state[:pass_counts][seat] % 3).zero?
         penalty = [state[:cash][seat], state[:options]['pass_penalty']].min
@@ -102,7 +108,7 @@ module GameRoomCashAuction
         state[:phase] = :question_pending
       else
         state[:chests][state[:leader]] += 1 if state[:leader]
-        finish_round!(state)
+        finish_round!(state, now: now)
       end
       true
     end
@@ -126,7 +132,7 @@ module GameRoomCashAuction
       elsif state[:cash][seat].zero?
         state[:eliminated][seat] = true
       end
-      finish_round!(state)
+      finish_round!(state, now: now)
       true
     end
 
@@ -144,7 +150,7 @@ module GameRoomCashAuction
       true
     end
 
-    def finish_round!(state)
+    def finish_round!(state, now: 0)
       completed = revised?(state) ? state[:completed_auctions] : state[:completed_rounds]
       return false unless %i[auction question_pending answering].include?(state[:phase]) && completed < state[:round]
       if revised?(state)
@@ -157,6 +163,11 @@ module GameRoomCashAuction
       if active_seats(state).length <= 1 || state[:completed_rounds] >= target
         if state[:chests].any?(&:positive?)
           state[:phase] = :opening_chests
+          if percentage_chests?(state)
+            state[:chest_base_cash] = state[:cash].dup
+            state[:chest_percentages] = Array.new(state[:players].length, 0)
+            state[:open_chests_at] = now + 5
+          end
         else
           settle!(state)
         end
@@ -197,9 +208,47 @@ module GameRoomCashAuction
       true
     end
 
+    def chest_reward(state, random_source:)
+      unless percentage_chests?(state)
+        rewards = revised?(state) ? BONUS_REWARDS : CHEST_REWARDS
+        return rewards.fetch(random_source.rand(rewards.length))
+      end
+      sign = random_source.rand(10)
+      return 0 if sign == 9
+
+      remaining = random_source.rand(CHEST_WEIGHT_TOTAL)
+      CHEST_WEIGHTS.each_with_index do |weight, index|
+        return CHEST_MAGNITUDES[index] * (sign < 6 ? 1 : -1) if remaining < weight
+        remaining -= weight
+      end
+    end
+
+    def open_chests!(state, random_source:, now:)
+      return false unless percentage_chests?(state) && state[:phase] == :opening_chests &&
+        time?(now) && now >= state[:open_chests_at]
+
+      rewards = []
+      state[:chests].each_with_index do |count, seat|
+        count.times do
+          reward = chest_reward(state, random_source: random_source)
+          state[:chest_percentages][seat] += reward
+          rewards << [seat, reward]
+        end
+      end
+      state[:chests].fill(0)
+      state[:last_chest_rewards] = rewards
+      state[:cash] = state[:chest_base_cash].each_with_index.map do |base, index|
+        (base * [100 + state[:chest_percentages][index], 0].max + 50) / 100
+      end
+      settle!(state)
+      true
+    end
+
     def open_chest!(state, seat, reward, now:)
+      return false if percentage_chests?(state)
       return false unless state[:phase] == :opening_chests && seat?(state, seat) && state[:chests][seat] > 0 && time?(now)
-      valid_reward = reward.is_a?(Integer) && (revised?(state) ? BONUS_REWARDS : CHEST_REWARDS).include?(reward) ||
+      rewards = revised?(state) ? BONUS_REWARDS : CHEST_REWARDS
+      valid_reward = reward.is_a?(Integer) && rewards.include?(reward) ||
         !revised?(state) && reward.is_a?(String) && reward == 'bankrupt'
       return false unless valid_reward
       state[:chests][seat] -= 1

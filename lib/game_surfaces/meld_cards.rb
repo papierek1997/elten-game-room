@@ -5,7 +5,7 @@ module GameSurfaces
   using GameRoomLocalization::Translations
 
 
-  class MeldListBox < RefreshAwareListBox
+  class MeldListBox < CardHandListBox
     attr_accessor :meld_context
     def context(menu, submenu = false)
       super
@@ -166,6 +166,10 @@ module GameSurfaces
     private
 
     def card_list_control_class; MeldListBox; end
+
+    def navigation_hand_cards(zone_id)
+      super unless @view
+    end
 
     def intercept_card_selection(zone_id, index)
       if @view

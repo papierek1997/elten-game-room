@@ -198,6 +198,13 @@ module GameRoomGames
       {"colour" => [suit_index, rank_index], "number" => [rank_index, suit_index], "none" => [position]}
     end
 
+    def standard_hand_navigation_group(rank:, suit:)
+      return GameSurfaces::CardNavigationGroup.new(id: "trumps", label: p_("Card suit", "Trumps")) if rank.is_a?(Integer)
+      return GameSurfaces::CardNavigationGroup.new(id: "excuse", label: _("Excuse")) if rank == :excuse
+
+      super
+    end
+
     def hand_cards_for_display(hand)
       hand.sort_by do |value|
         keys = standard_hand_sort_keys(rank: playing_card_rank(value), suit: playing_card_suit(value), position: 0)

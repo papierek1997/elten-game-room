@@ -780,7 +780,8 @@ module GameRoomGames
     def hand_surface(state, player, viewer, header)
       hand = state[:hands][player]
       cards = hand.sort_by { |card| [joker?(card) ? 1 : 0, CARD_RANKS.index(playing_card_rank(card)).to_i, card] }.map do |card|
-        GameSurfaces::Card.new(id: card, label: playing_card_label(card), value: card)
+        GameSurfaces::Card.new(id: card, label: playing_card_label(card), value: card,
+          navigation_group: standard_hand_navigation_group(rank: playing_card_rank(card), suit: playing_card_suit(card)))
       end
       GameSurfaces::CardTableSpec.new(zones: [
         GameSurfaces::CardZoneSpec.new(id: "hand", header: header, cards: cards, empty_label: _("Your hand is empty"),

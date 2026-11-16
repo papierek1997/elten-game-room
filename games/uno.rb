@@ -433,6 +433,8 @@ module GameRoomGames
       cards = hand_for(state, viewer).each_with_index.map do |card, index|
         choices = colour_choice_pending?(state) || too_late_interception?(state, viewer, card) ? [] : card_choices(card, state, viewer)
         GameSurfaces::Card.new(id: card, label: uno_label(card, state), value: card, choices: choices,
+          navigation_group: GameSurfaces::CardNavigationGroup.new(id: card_color(card) || "wild",
+            label: card_color(card) ? COLOR_NAMES.fetch(card_color(card)) : _("Wild cards")),
           choice_header: state[:options]["zero_seven"] && card_number(card) == 7 ? _("Choose a player to exchange hands with") : _("Choose a colour"), sort_keys: {
             "colour" => uno_sort_key(card),
             "number" => uno_number_sort_key(card),

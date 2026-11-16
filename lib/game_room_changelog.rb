@@ -769,6 +769,28 @@ module GameRoomChangelog
       changes: [
         "Removed custom display names. Player lists, game announcements, history and invitations now use ELTEN account names."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.7",
+      build: 270,
+      changes: [
+        "Added Darts, an audio target game with personal aiming and sound settings.",
+        "Added four card games: Cribbage, Belote with Coinchée, Jass and Hearts, with bots, tournament play and rules in all five interface languages.",
+        "In supported card hands, Left and Right jump between suits or colours, while Up and Down browse the current group without filtering the hand.",
+        "In 3-5-8, cards stay sorted by suit when received, including after exchanges.",
+        "The four-nines redeal option in Tysiac is now off by default for new tables.",
+        "Cash Auction lets you select several Quiz sets. Categories with the same name in different sets stay separate, and each category announcement names its set.",
+        "Cash Auction starts with 10000 points by default and counts answered questions, not chest auctions or auctions without bids. A tie leads to another answered question.",
+        "Cash Auction stays open for one more interval after the third call, and all-in must beat the highest offer. Accepted bids clear the field; rejected bids and newer drafts are kept.",
+        "Removed withdrawal from Cash Auction. The penalty applies after three consecutive auctions without a bid; any accepted bid resets the count, even if it loses.",
+        "In Cash Auction, one hint per question removes two wrong answers for 10% of the answerer's remaining points, rounded up to at least one point.",
+        "Cash Auction chests adjust the final balance by 5–35%: a 60% chance of a gain, 30% of a loss and 10% of no change, with larger changes less likely. They open automatically after five seconds, followed by their contents and a four-second pause before the result.",
+        "Cash Auction bots bid more cautiously for chests and no longer unnecessarily prolong auctions.",
+        "Dice General has distinct sounds for score columns, bonuses, doubled scores and completing or failing the school. Five of a kind is labelled General.",
+        "After closing personal game settings, focus returns to the previous field. Darts finishes presenting its result before moving to Restart.",
+        "Old custom display names are removed automatically from saved settings after updating.",
+        "Many thanks to guliwer, postukujący and turekcom for the new games and improvements!"
+      ].freeze
     ).freeze
   ].freeze
 

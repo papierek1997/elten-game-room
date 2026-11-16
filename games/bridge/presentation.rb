@@ -323,6 +323,7 @@ module GameRoomGames
     def hand_zone(id, header, hand, epoch)
       cards = hand.sort_by { |card| card_sort_key(card) }.map do |card|
         GameSurfaces::Card.new(id: card, label: card_label(card), value: card,
+          navigation_group: standard_hand_navigation_group(rank: card_rank(card), suit: card_suit(card)),
           sort_keys: standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: hand.index(card)))
       end
       GameSurfaces::CardZoneSpec.new(id: id, header: GameRoomContent.utf8(header), cards: cards, hand_order: hand.dup,

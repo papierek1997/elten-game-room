@@ -206,6 +206,13 @@ wariant wybrany przez gospodarza.
 
 ### Porządkowanie kart i wyszukiwanie zagrania
 
+W ręce z kartami podzielonymi na kolory strzałki w lewo i w prawo
+przechodzą od razu do pierwszej karty poprzedniego lub następnego koloru.
+Usłyszysz nazwę koloru i wskazaną kartę. Strzałkami w górę i w dół
+przeglądasz karty tego koloru. Wszystkie karty pozostają na pełnej liście,
+w tej samej kolejności. Jeśli pod kartami jest komenda, np. dobranie karty,
+dotrzesz do niej strzałką w dół po ostatniej karcie bieżącego koloru.
+
 W karciankach udostępniających wspólne sortowanie ręki:
 
 - Shift+C porządkuje karty według koloru.

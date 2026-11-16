@@ -15,7 +15,8 @@ GameRoomBotNames::NAMES.each do |token, name|
   end
 end
 expected_games = JSON.parse(File.read(File.join(__dir__, '../fixtures/game_descriptions_pl.json'), encoding: 'UTF-8')).keys
-raise "Unexpected games during binary loading" unless registry.ids.sort == expected_games.sort
+missing_games, unexpected_games = expected_games - registry.ids, registry.ids - expected_games
+raise "Unexpected games during binary loading: missing=#{missing_games.inspect}, extra=#{unexpected_games.inspect}" unless missing_games.empty? && unexpected_games.empty?
 raise "Typing Mania was not loaded from binary sources" unless registry.ids.include?('mania_pisania')
 %w[bouillabaisse scopa].each { |id| raise "Missing new card game: #{id}" unless registry.ids.include?(id) }
 raise "Bridge was not loaded from binary sources" unless registry.ids.include?("bridge")

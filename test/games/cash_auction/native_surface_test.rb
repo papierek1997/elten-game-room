@@ -10,8 +10,7 @@ begin
   assert_equal([:game, 0], f.layout.focus_location)
   assert(f.input.is_a?(EditBox), 'Auction did not start in the native bid field')
   assert_equal(0, f.form.index, 'The bid field did not receive index-zero focus')
-  assert_equal(2, f.surface.fields.length, 'Auction invented a second submit control')
-  assert(f.surface.fields[1].is_a?(Button), 'Pass is not a native button')
+  assert_equal(1, f.surface.fields.length, 'Auction retained a withdrawal or redundant submit button')
   f.type('125')
   f.press(13)
   bid = f.actions.last
@@ -30,10 +29,8 @@ begin
   assert_equal('A', f.actions.last['answer'], 'Native A Enter did not capture all-in text')
   assert_equal('submit', f.actions.last['action'])
   f.press(9)
-  assert(f.form.fields[f.form.index].equal?(f.surface.fields[1]), 'Tab did not reach Pass')
-  f.press(13)
-  assert_equal('pass', f.actions.last['action'], 'Pass Enter submitted the bid instead')
-  assert_equal('cash-auction:native-cash-test:bid:1', f.actions.last['question_id'])
+  assert(!f.form.fields[f.form.index].equal?(f.input), 'Tab did not leave the bid field')
+  assert_equal(2, f.actions.length, 'Leaving the bid field submitted a withdrawal')
   assert_equal(snapshot, Marshal.dump(f.state), 'Native bid/pass input mutated the model')
   assert_equal([], f.replay.accepted_events, 'Native controls wrote game events')
 

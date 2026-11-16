@@ -15,6 +15,8 @@ module GameRoomGames
     def name; _('Belote'); end
     def short_description; _('Play in partnerships, bid for trumps and score for tricks and belote.'); end
 
+    def notification_option_keys(_options); %w[variant]; end
+
     def rule_sections; generated_rule_sections; end
     def minimum_players; 4; end
     def maximum_players; 4; end

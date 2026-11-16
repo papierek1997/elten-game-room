@@ -47,7 +47,7 @@ module GameRoomGames
 
       def question_bank(options)
         packs = auction_content_packs(options)
-        source = options['auction_rules_version'] == 2 ? packs : packs.first
+        source = R.revised_options?(options) ? packs : packs.first
         unless @auction_bank_source == source
           @auction_bank = GameRoomCashAuction::QuestionBank.new(source)
           @auction_bank_source = source
@@ -60,7 +60,7 @@ module GameRoomGames
         return false unless seat
         value = event['value']
         return false unless value.is_a?(String) && value.bytesize <= 128
-        return false if %w[wheel question chest hint].include?(event['action']) && !event['__server_random'].is_a?(Hash)
+        return false if %w[wheel question chest hint open_chests].include?(event['action']) && !event['__server_random'].is_a?(Hash)
         round = state[:round]
         case event['action']
         when 'wheel'
@@ -81,7 +81,7 @@ module GameRoomGames
           match = /\A#{round}\|([0-9]{1,8})\z/.match(value)
           match && R.bid!(state, seat, match[1].to_i, now: now, revision: event_id, all_in: event['action'] == 'all_in')
         when 'pass'
-          value == round.to_s && now < state[:auction_deadline] && R.pass!(state, seat)
+          !R.revised?(state) && value == round.to_s && now < state[:auction_deadline] && R.pass!(state, seat)
         when 'auction_closed'
           value == [round, state[:bid_revision], state[:auction_deadline]].join('|') && seat.zero? && R.award!(state, now: now)
         when 'question'
@@ -102,12 +102,17 @@ module GameRoomGames
           return false unless seed
           wrong = (0..3).reject { |index| index == state[:question][:correct_index] }
           R.hint!(state, seat, keep: wrong.fetch(Random.new(seed.to_i(16)).rand(wrong.length)))
+        when 'open_chests'
+          return false unless seat.zero? && R.percentage_chests?(state) && state[:phase] == :opening_chests && now >= state[:open_chests_at]
+          seed = GameRoomServerRandom.text_seed_value(event, template: "#{round}|#{state[:revision]}|{seed}")
+          return false unless seed
+          R.open_chests!(state, random_source: Random.new(seed.to_i(16)), now: now)
         when 'chest'
+          return false if R.percentage_chests?(state)
           return false unless state[:phase] == :opening_chests && state[:chests][seat] > 0
           seed = GameRoomServerRandom.text_seed_value(event, template: "#{round}|#{seat}|#{state[:chests][seat]}|{seed}")
           return false unless seed
-          rewards = R.revised?(state) ? R::BONUS_REWARDS : CHEST_REWARDS
-          reward = rewards.fetch(Random.new(seed.to_i(16)).rand(rewards.length))
+          reward = R.chest_reward(state, random_source: Random.new(seed.to_i(16)))
           return false unless R.open_chest!(state, seat, reward, now: now)
           state[:last_chest_reward] = reward
           true

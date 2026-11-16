@@ -534,6 +534,19 @@ module GameRoomGames
       { "colour" => [suit_index, rank_index], "number" => [rank_index, suit_index], "none" => [position] }
     end
 
+    def standard_hand_navigation_group(rank:, suit:)
+      label = case suit
+      when "H" then p_("Card suit", "Hearts")
+      when "S" then p_("Card suit", "Spades")
+      when "D" then p_("Card suit", "Diamonds")
+      when "C" then p_("Card suit", "Clubs")
+      end
+      if rank == "X"
+        return GameSurfaces::CardNavigationGroup.new(id: "joker", label: p_("Card suit", "Jokers"))
+      end
+      GameSurfaces::CardNavigationGroup.new(id: suit, label: label) if label
+    end
+
     def canonical_value(value)
       case value
       when Hash

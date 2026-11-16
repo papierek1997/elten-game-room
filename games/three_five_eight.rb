@@ -366,10 +366,11 @@ module GameRoomGames
         GameSurfaces::Card.new(
           id: card, label: card_label(card), value: value,
           choices: choices.empty? ? nil : choices,
+          navigation_group: standard_hand_navigation_group(rank: card_rank(card), suit: card_suit(card)),
           sort_keys: standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: hand_for(state, viewer).to_a.index(card))
         )
       end
-      hand = GameSurfaces::CardTableSpec.new(zones: [GameSurfaces::CardZoneSpec.new(
+      hand = GameSurfaces::CardTableSpec.new(default_sort: "colour", zones: [GameSurfaces::CardZoneSpec.new(
         id: "hand", header: hand_header(state, viewer), cards: cards,
         empty_label: _("Your hand is empty"), hand_order: hand_for(state, viewer).to_a.dup,
         hand_epoch: [viewer, state[:round]].join(":")

@@ -1,11 +1,11 @@
 module GameRoomGames
   module TysiacRedeals
     using GameRoomLocalization::Translations
-    REDEAL_DEFAULTS = {"redeal_four_nines"=>true, "redeal_talon_nines"=>false}.freeze
+    REDEAL_DEFAULTS = {"redeal_four_nines"=>false, "redeal_talon_nines"=>false}.freeze
 
     def option_definitions
       super + [
-        OptionDefinition.new(key: "redeal_four_nines", label: _("Allow a redeal with four initial nines"), kind: :boolean, default: true),
+        OptionDefinition.new(key: "redeal_four_nines", label: _("Allow a redeal with four initial nines"), kind: :boolean, default: false),
         OptionDefinition.new(key: "redeal_talon_nines", label: _("Allow a redeal with at least two nines in the talon"), kind: :boolean, default: false)
       ]
     end

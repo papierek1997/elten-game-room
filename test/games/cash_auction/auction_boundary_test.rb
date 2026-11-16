@@ -21,9 +21,10 @@ f.now = deadline
 before = f.replay
 f.append_raw(action: 'auction_closed', value: [before.state[:round], old.state[:bid_revision], deadline].join('|'))
 assert_equal(before, f.replay, 'A close prepared for the previous bidder overruled a valid raise')
-f.pass('Bob')
-assert_equal(before.state[:auction_deadline], f.replay.state[:auction_deadline], 'Withdrawing changed the advertised deadline')
-assert_equal(:invalid, f.plan(f.bid_selection('Bob', 150), actor: 'Bob').first)
+withdraw = {'kind'=>'question', 'action'=>'pass', 'question_id'=>f.game.surface_spec(f.replay, 'Bob').id}
+assert_equal(:invalid, f.plan(withdraw, actor: 'Bob').first, 'Removed withdrawal was still accepted')
+assert_equal(before, f.replay, 'Refused withdrawal changed the auction')
+assert_equal(:ok, f.plan(f.bid_selection('Bob', 150), actor: 'Bob').first, 'Bob lost the right to raise')
 f.close_auction
 assert_equal('Alice', f.replay.players[f.replay.state[:leader]])
 assert(f.replay.history.last.text.start_with?('Sold to Alice'), 'Closing repeated the third call')

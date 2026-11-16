@@ -58,7 +58,7 @@ module GameRoomCashAuction
 
     def table_creation_options(values = {})
       source = values.is_a?(Hash) ? values.dup : {}
-      source[VERSION_KEY] = 2
+      source[VERSION_KEY] = GameRoomCashAuction::Rules::CURRENT_VERSION
       # These describe the former single source, never a synthetic merged pack.
       [GameRoomContent::SET_OPTION_KEY, GameRoomContent::PACK_OPTION_KEY,
         GameRoomContent::PACK_VERSION_KEY, GameRoomContent::PACK_CHECKSUM_KEY].each do |key|
@@ -81,7 +81,7 @@ module GameRoomCashAuction
 
     def option_editor_changes(previous, current)
       changes = super
-      if current[VERSION_KEY] == 2 && previous[GameRoomContent::LANGUAGE_OPTION_KEY] != current[GameRoomContent::LANGUAGE_OPTION_KEY]
+      if GameRoomCashAuction::Rules.revised_options?(current) && previous[GameRoomContent::LANGUAGE_OPTION_KEY] != current[GameRoomContent::LANGUAGE_OPTION_KEY]
         changes.merge(PACKS_KEY=>auction_default_pack_ids(current[GameRoomContent::LANGUAGE_OPTION_KEY]))
       else
         changes
@@ -89,7 +89,7 @@ module GameRoomCashAuction
     end
 
     def build_option_editor_extension(program, options)
-      options[VERSION_KEY] == 2 ? OptionFields.new(self) : super
+      GameRoomCashAuction::Rules.revised_options?(options) ? OptionFields.new(self) : super
     end
 
     def remembered_option_definitions(definitions, options: nil)
@@ -115,7 +115,7 @@ module GameRoomCashAuction
       error = content_options_error(values)
       raise ArgumentError, error if error
 
-      return [selected_content_pack(values)] unless values[VERSION_KEY] == 2
+      return [selected_content_pack(values)] unless GameRoomCashAuction::Rules.revised_options?(values)
 
       auction_packs_for_ids(values[PACKS_KEY], values[GameRoomContent::LANGUAGE_OPTION_KEY])
     end
@@ -160,10 +160,10 @@ module GameRoomCashAuction
     def content_options_error(options)
       version = option_source_value(options, VERSION_KEY)
       present = options.key?(VERSION_KEY) || options.key?(VERSION_KEY.to_sym)
-      unless !present || (version.is_a?(Integer) && [1, 2].include?(version))
+      unless !present || (version.is_a?(Integer) && [1, 2, GameRoomCashAuction::Rules::CURRENT_VERSION].include?(version))
         return _('Unsupported Cash Auction rules version.')
       end
-      return super unless version == 2
+      return super unless GameRoomCashAuction::Rules.revised_options?(options)
 
       error = auction_selection_error(options)
       return error if error
@@ -176,7 +176,7 @@ module GameRoomCashAuction
     end
 
     def content_options_summary(options)
-      return super unless options[VERSION_KEY] == 2
+      return super unless GameRoomCashAuction::Rules.revised_options?(options)
       return '' if content_options_error(options)
 
       language = content_registry.language(options[GameRoomContent::LANGUAGE_OPTION_KEY])

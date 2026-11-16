@@ -209,6 +209,13 @@ elegida por el anfitrión.
 
 ### Ordenar cartas y encontrar una jugada
 
+En una mano con cartas de distintos palos o colores, las flechas izquierda
+y derecha saltan directamente a la primera carta del palo o color anterior
+o siguiente. Escucharás su nombre y la carta seleccionada. Arriba y abajo
+recorren las cartas de ese palo o color. Todas las cartas siguen en la lista
+completa y en el mismo orden. Si debajo hay una acción, como robar una carta,
+puedes llegar a ella pulsando abajo desde la última carta del palo o color actual.
+
 En los juegos de cartas que admiten la ordenación común de la mano:
 
 - Shift+C ordena las cartas por palo o color.

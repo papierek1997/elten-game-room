@@ -48,17 +48,31 @@ module GameRoomCashAuction
           @by_id[ledger] = record
         end
       end
-      grouped = records.group_by { |record| record[:row]['category'] }
-      @labels = grouped.keys.sort.freeze
-      @groups = @labels.map { |label| grouped.fetch(label).freeze }.freeze
+      # A category belongs to one pack. Equal display names in unrelated sets
+      # never authorize drawing each other's questions or clearing their cycles.
+      grouped = records.group_by { |record| [record[:identity][:pack_id], record[:row]['category']] }
+      keys = grouped.keys.sort_by { |pack_id, label| [label, pack_id] }
+      @labels = keys.map(&:last).freeze
+      @groups = keys.map { |key| grouped.fetch(key).freeze }.freeze
+      titles = packs.to_h { |pack| [pack.id, pack.title] }
+      @labels_with_sets = keys.map do |pack_id, label|
+        "#{label} (#{titles.fetch(pack_id)})".freeze
+      end.freeze
+      @question_categories = @groups.each_with_index.each_with_object({}) do |(questions, index), result|
+        questions.each { |record| result[record[:ledger]] = index }
+      end.freeze
       @categories = (0...@groups.length).to_a.freeze
       @by_id.freeze
       freeze
     end
 
-    def category_label(category)
+    def category_label(category, include_set: false)
       category_questions(category)
-      @labels.fetch(category)
+      (include_set ? @labels_with_sets : @labels).fetch(category)
+    end
+
+    def category_pack_id(category)
+      category_questions(category).first[:identity][:pack_id]
     end
 
     # :used is the next bounded resolver ledger, not public question data.
@@ -74,7 +88,7 @@ module GameRoomCashAuction
       seen = next_used.to_h { |id| [id, true] }
       fresh = candidates.reject { |record| seen.key?(record[:ledger]) }
       if fresh.empty?
-        next_used.reject! { |id| @by_id.fetch(id)[:row]['category'] == @labels.fetch(category) }
+        next_used.reject! { |id| @question_categories.fetch(id) == category }
         fresh = candidates
       end
       random = Random.new(seed)
