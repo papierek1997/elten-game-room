@@ -181,6 +181,15 @@ allowed surface choice remains active across draws and refreshes and must not
 be replaced by the variant default. Do not select an
 order from the current top card or re-sort the model after every move.
 
+Sorting shortcuts toggle against the effective active mode, including the
+declared default before any manual choice. The first matching shortcut reverses
+that initial order; the next restores ascending order. Switching to a different
+mode starts ascending, while a command without `toggle` explicitly selects
+ascending order. Acquisition order (`none`) is only restored, never reversed.
+CardTable and PacketCardSurface share this decision in `CardSorting`; meld hands
+inherit it. Preserve the physical cursor, prepared packet/meld order and one
+direction announcement. Quiet refresh and reconstruction retain that direction.
+
 `CardGame` rejects an absent declaration during registry validation; Base's
 hand helpers also reject it instead of silently guessing. The
 [catalog surface gate](../test/ui/catalog_surface_contract_test.rb) inspects
@@ -283,6 +292,11 @@ only a generic surface fixture:
   rulebook references. Test direct/retained commands and reconstructed local
   state too; rejecting a mode must not change focus, a prepared packet or the
   current allowed order. See [sort permissions](../test/ui/card_sort_modes_test.rb).
+- Test the first sorting shortcut on a fresh default-sorted hand as well as
+  repeated manual toggles: it must reverse the active default, not announce an
+  unchanged ascending order. Cover both colour and rank defaults, a different
+  mode, receipt-order restoration, refresh and reconstruction. The native UNO
+  variant test exercises the actual key binding and its single announcement.
 
 Captured native speech and simulated key snapshots establish control behavior,
 not physical input or listening. Report live-account checks separately when the
@@ -290,6 +304,18 @@ changed risk depends on actual delivery; local-only ordering needs no unrelated
 network or complete-match campaign.
 
 ## Confirming card actions
+
+For a passive hand whose Enter decision concerns the whole hand rather than
+an individual card, a zone may declare `activation_action` as a typed surface
+`Action` and `activation_tip` as localized F1 help. Ordinary card activation
+then emits that one action through the existing guard and executor. Without
+it, card selection is unchanged; explicit card choices and appended commands
+retain their own actions. Refresh replaces/clears the action and help without
+replacing the control, and a temporary card-choice picker hides the default
+tip. This does not bind Enter on chat, room buttons or other zones. Blackjack
+uses it to stand on the current hand without a second actions list. Its cards,
+physical IDs, acquisition metadata and received-card cursor still use CardTable.
+See `test/ui/card_actions_test.rb` and Blackjack's native control regression.
 
 The optional `Card#confirmation` supplies a ready-to-use question before the
 normal Enter action. Without a question, other card games retain their

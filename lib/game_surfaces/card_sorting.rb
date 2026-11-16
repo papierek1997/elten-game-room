@@ -28,6 +28,10 @@ module GameSurfaces
       @spec.respond_to?(:default_sort) ? @spec.default_sort.to_s : ""
     end
 
+    def card_sort_direction_for(mode, toggle:)
+      toggle && mode != "none" && active_card_sort_mode == mode && @card_sort_direction == "ascending" ? "descending" : "ascending"
+    end
+
     def sorted_cards(cards, mode, direction = @card_sort_direction)
       return cards if mode.to_s.empty?
       sorted = cards.each_with_index.sort_by do |card, index|

@@ -28,8 +28,9 @@ shortcuts = uno.custom_game_shortcuts(uno_view, "Alice")
     $spoken_messages.clear
     assert(uno_surface.handle_command("sort_cards", shortcut.payload), "UNO sort refused")
     expected = uno_spec.zones.first.cards.sort_by { |card| card.sort_keys[mode] }.map(&:label)
-    direction = press.odd? ? "descending" : "ascending"
-    expected.reverse! if press.odd?
+    descending = mode == uno_spec.default_sort ? press.even? : press.odd?
+    direction = descending ? "descending" : "ascending"
+    expected.reverse! if descending
     assert(uno_surface.fields.first.options == expected, "UNO #{mode} #{direction} order is wrong")
     assert($spoken_messages == ["Your cards are now sorted by #{direction} #{spoken_mode}."], "UNO sort announcement is not concise")
     assert(uno_surface.fields.first.options[uno_surface.fields.first.index] == focused_label, "Sorting moved to another card")
@@ -38,8 +39,11 @@ shortcuts = uno.custom_game_shortcuts(uno_view, "Alice")
   end
 end
 reset_sort = shortcuts.find { |item| item.key == "d" && item.modifiers == [:shift] }
-uno_surface.handle_command("sort_cards", reset_sort.payload)
-assert(uno_surface.fields.first.options == uno_state[:hands]["Alice"].map { |card| uno.send(:uno_label, card, uno_state) }, "Shift+D did not restore deal order")
+assert(reset_sort.nil?, 'UNO retained the removed Shift+D sorting mode')
+before_refusal = [Marshal.dump(uno_surface.state), uno_surface.fields.first.options.dup, uno_surface.fields.first.index]
+assert(!uno_surface.handle_command('sort_cards', 'mode'=>'none'), 'A retained acquisition-order callback was accepted')
+assert(before_refusal == [Marshal.dump(uno_surface.state), uno_surface.fields.first.options, uno_surface.fields.first.index],
+  'Refusing the removed sorting mode changed the list or cursor')
 assert(shortcuts.any? { |item| item.key == "c" && item.kind == :announcement && item.modifiers.to_a.empty? }, "Normal C was replaced by sort")
 card_counts = shortcuts.find { |item| item.key == "e" && item.kind == :announcement && item.modifiers.to_a.empty? }
 assert(card_counts && card_counts.message == "Alice, 5. Bob, 1.", "UNO E does not read concise card counts")

@@ -107,7 +107,8 @@ module GameSurfaces
 
   Card = Struct.new(:id, :label, :value, :choices, :shift_choice, :choice_header, :sort_keys, :confirmation, :navigation_group, keyword_init: true)
 
-  CardZoneSpec = Struct.new(:id, :header, :cards, :empty_label, :hand_order, :hand_epoch, :commands, :select_drawn, keyword_init: true)
+  CardZoneSpec = Struct.new(:id, :header, :cards, :empty_label, :hand_order, :hand_epoch, :commands, :select_drawn,
+    :activation_action, :activation_tip, keyword_init: true)
 
   CardTableSpec = Struct.new(:zones, :default_sort, :sort_modes, keyword_init: true)
 
@@ -259,7 +260,7 @@ module GameSurfaces
 
   TileChoice = Struct.new(:id, :label, :value, keyword_init: true)
 
-  TileZoneSpec = Struct.new(:id, :header, :cards, :empty_label, :hand_order, :hand_epoch, :commands, :select_drawn, keyword_init: true)
+  TileZoneSpec = Struct.new(*CardZoneSpec.members, keyword_init: true)
 
   TileHandSpec = Struct.new(:zones, :table_header, :table, :table_epoch, :default_target, :selection_error, keyword_init: true)
 

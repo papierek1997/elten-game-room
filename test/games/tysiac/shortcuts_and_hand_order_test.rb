@@ -62,12 +62,12 @@ assert(surface.fields.first.index == 1 && surface.take_cursor_announcement(0) ==
 restored = GameSurfaces.build(game.surface_spec(view.call, 'Alice'), state:surface.state)
 assert(restored.fields.first.options == surface.fields.first.options, 'Sorted received cards changed after rebuilding')
 surface.handle_command('sort_cards', 'mode'=>'colour', 'toggle'=>true)
-assert(ids.call == %w[9H QH KH AH JS], 'First manual suit sort unexpectedly reversed the default')
+assert(ids.call == %w[JS AH KH QH 9H], 'First manual suit sort did not reverse the active default')
 surface.handle_command('sort_cards', 'mode'=>'colour', 'toggle'=>true)
-assert(ids.call == %w[JS AH KH QH 9H], 'Second manual suit sort no longer reverses order')
+assert(ids.call == %w[9H QH KH AH JS], 'Second manual suit sort did not restore ascending order')
 assert(!surface.handle_command('sort_cards', 'mode'=>'none'), 'Removed acquisition mode remains available')
 state[:hands]['Alice'] << 'JH'
 surface.update_spec(game.surface_spec(view.call, 'Alice'))
-assert(ids.call == %w[JS AH KH QH JH 9H], 'Refused sorting or a received card changed the chosen direction')
+assert(ids.call == %w[9H JH QH KH AH JS], 'Refused sorting or a received card changed the chosen direction')
 assert(state[:hands]['Alice'] == %w[9H KH AH JS QH JH], 'View sorting changed the replay hand')
 puts 'PASS Thousand: concise R, validated Shift+R, two/four/team players, received-card suit order and manual override'

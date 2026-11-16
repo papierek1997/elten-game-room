@@ -9,10 +9,14 @@ module GameSurfaces
     def submit_card_selection(zone, card, index)
       return unless confirm_card_action(card_confirmation(card))
 
-      emit_action("card", "select", {
-        "zone" => zone.id.to_s, "index" => index,
-        "card_id" => card_id(card), "card" => card_value(card)
-      })
+      if (action = zone.activation_action)
+        emit_action(action.kind, action.name, action.payload, source: action.source)
+      else
+        emit_action("card", "select", {
+          "zone" => zone.id.to_s, "index" => index,
+          "card_id" => card_id(card), "card" => card_value(card)
+        })
+      end
     end
 
     def selected_card_action(payload)

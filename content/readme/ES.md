@@ -226,7 +226,7 @@ En 1000 millas, Shift+M restaura el orden en el que recibiste las cartas.
 La disposición inicial de la mano depende del juego y de la variante;
 la ordenación que elijas se mantiene al recibir más cartas.
 
-Repetir un atajo de ordenación invierte el orden. Z y Shift+Z pasan
+El atajo del modo de ordenación actual invierte el orden de las cartas. Z y Shift+Z pasan
 a la siguiente o anterior carta o ficha que se puede jugar.
 Si solo hay una jugada inequívoca, el atajo puede realizarla de inmediato.
 La disponibilidad depende del juego y la variante; consulta F1

@@ -27,14 +27,14 @@ control = surface.fields.first
 selected = expected[4]
 control.index = 4
 surface.handle_command('sort_cards', 'mode' => 'colour', 'toggle' => true)
-assert_equal(labels, control.options, 'Manual suit sorting differs from the default hand')
+assert_equal(labels.reverse, control.options, 'First suit sorting did not reverse the active default')
 surface.handle_command('sort_cards', 'mode' => 'colour', 'toggle' => true)
-assert_equal(labels.reverse, control.options, 'Descending suit sorting is broken')
+assert_equal(labels, control.options, 'Second suit sorting did not restore ascending order')
 assert_equal(selected, surface.instance_variable_get(:@cards).fetch('hand')[control.index].id, 'Sorting moved the selected physical card')
 surface.update_spec(game.surface_spec(table.replay, viewer))
-assert_equal(labels.reverse, control.options, 'Refresh discarded the explicit sort direction')
+assert_equal(labels, control.options, 'Refresh discarded the explicit sort direction')
 assert(!surface.handle_command('sort_cards', 'mode' => 'none'), 'Removed acquisition mode is still accepted')
-assert_equal(labels.reverse, control.options, 'Refused sorting changed the display')
+assert_equal(labels, control.options, 'Refused sorting changed the display')
 surface.handle_command('sort_cards', 'mode' => 'number', 'toggle' => true)
 numeric = zone.cards.sort_by { |card| card.sort_keys.fetch('number') }.map(&:label)
 assert_equal(numeric, control.options, 'Rank sorting is broken')

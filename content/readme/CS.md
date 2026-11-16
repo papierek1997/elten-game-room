@@ -216,7 +216,7 @@ Ve hře Tisíc mil obnoví Shift+M pořadí, v němž jste karty dostali. Počá
 uspořádání ruky závisí na hře a variantě; zvolené řazení zůstává aktivní
 i po dobrání dalších karet.
 
-Další stisk zkratky řazení obrátí pořadí. Z a Shift+Z přecházejí na další
+Zkratka právě používaného řazení obrátí pořadí karet. Z a Shift+Z přecházejí na další
 nebo předchozí hratelnou kartu či kostku domina. Při jediné jednoznačné
 možnosti může zkratka tah rovnou provést. Dostupnost závisí na hře
 a variantě; ověřte ji pomocí F1 v herním poli.

@@ -39,14 +39,15 @@ by_number = %w[Y1a R2a G2a R5a R5b B5a NF0]
   driver.frame(form)
   SpeechOutput.reset
   driver.frame(form, driver.tap(key.ord, modifiers:[0x10]))
-  assert(ids.call == expected, "#{variant}: explicit sorting disagrees with its declared default")
+  assert(ids.call == expected.reverse, "#{variant}: first sorting key did not reverse the active default")
   assert(ids.call[control.index] == 'R5b', 'Sorting changed the physical cursor')
-  assert(SpeechOutput.calls.length == 1 && SpeechOutput.calls.first.first.include?('ascending'),
+  assert(SpeechOutput.calls.length == 1 && SpeechOutput.calls.first.first.include?('descending'),
     "#{variant}: sorting was not announced once: #{SpeechOutput.calls.inspect}")
   driver.frame(form)
   SpeechOutput.reset
   driver.frame(form, driver.tap(key.ord, modifiers:[0x10]))
-  assert(ids.call == expected.reverse && SpeechOutput.calls.length == 1, 'Second key did not reverse the declared order quietly')
+  assert(ids.call == expected && SpeechOutput.calls.length == 1 && SpeechOutput.calls.first.first.include?('ascending'),
+    'Second key did not restore ascending order with one announcement')
   # Rank order interleaves colours; horizontal navigation still follows Y/R/B/G
   # while vertical navigation crosses every card in the displayed list.
   surface.handle_command('sort_cards', 'mode'=>'number')
@@ -70,4 +71,4 @@ by_number = %w[Y1a R2a G2a R5a R5b B5a NF0]
   state[:hands]['Alice'].pop
   assert(Marshal.dump(replay) == snapshot && writes.empty?, 'Sorting/arrows wrote a move or changed the reducer')
 end
-puts 'PASS UNO native variant ordering: defaults/manual agreement, single speech, physical cursor, interleaved arrows, manual override and received cards; no live accounts or physical keyboard'
+puts 'PASS UNO native variant ordering: first-key default reversal, single direction announcement, physical cursor, interleaved arrows, manual override and received cards; no live accounts or physical keyboard'

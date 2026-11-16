@@ -126,7 +126,7 @@ msgstr "%{board}, propiedad %{number}"
 msgid "%{board}; free parking jackpot: %{jackpot}; automatic rent: %{rent}"
 msgstr "%{board}; bote de Parking gratuito: %{jackpot}; alquiler automático: %{rent}"
 
-#: games/blackjack.rb:525
+#: games/blackjack.rb:534
 msgid "%{cards}. Total: %{total}."
 msgstr "%{cards}. Total: %{total}."
 
@@ -162,7 +162,7 @@ msgstr "%{card}. %{bid}"
 msgid "%{card}. Choose how to change the Scriptorium"
 msgstr "%{card}. Elige cómo modificar el Scriptorium"
 
-#: lib/game_surfaces.rb:1154
+#: lib/game_surfaces.rb:1161
 msgid "%{card}. Choose how to play it"
 msgstr "%{card}. Elige cómo jugarla"
 
@@ -1006,7 +1006,7 @@ msgstr ""
 msgid "%{player} begins the final lap."
 msgstr "%{player} empieza la última vuelta."
 
-#: games/blackjack.rb:402
+#: games/blackjack.rb:411
 msgid "%{player} bet %{chips} chips."
 msgstr "%{player} apostó %{chips} fichas."
 
@@ -1341,11 +1341,11 @@ msgstr "%{player} no paga y recibe una penalización."
 msgid "%{player} does not use the Church card."
 msgstr "%{player} no usa la carta de Iglesia."
 
-#: games/blackjack.rb:499
+#: games/blackjack.rb:508
 msgid "%{player} doubles the bet and draws %{card}. Total: %{total}."
 msgstr "%{player} dobla la apuesta y roba: %{card}. Total: %{total}."
 
-#: games/blackjack.rb:500 games/duck_racing_support/presentation.rb:630
+#: games/blackjack.rb:509 games/duck_racing_support/presentation.rb:630
 msgid "%{player} draws %{card}. Total: %{total}."
 msgstr "%{player} roba %{card}. Total: %{total}."
 
@@ -1587,11 +1587,11 @@ msgstr "%{player} está eligiendo un color."
 msgid "%{player} is choosing the category for round %{round}."
 msgstr "%{player} está eligiendo la categoría de la ronda %{round}."
 
-#: games/blackjack.rb:533
+#: games/blackjack.rb:542
 msgid "%{player} is dealt 21: %{cards}."
 msgstr "%{player} recibe 21 de entrada: %{cards}."
 
-#: games/blackjack.rb:536
+#: games/blackjack.rb:545
 msgid "%{player} is dealt: %{hand}"
 msgstr "Cartas de %{player}: %{hand}"
 
@@ -2108,7 +2108,7 @@ msgstr "%{player} juega desde el muerto (%{seat})."
 msgid "%{player} plays from dummy."
 msgstr "%{player} juega del muerto."
 
-#: games/blackjack.rb:520
+#: games/blackjack.rb:529
 msgid "%{player} plays the second hand."
 msgstr "%{player} pasa a la segunda mano."
 
@@ -2555,11 +2555,11 @@ msgstr "%{player} siembra %{seeds} desde %{pit}."
 msgid "%{player} sows again."
 msgstr "%{player} vuelve a sembrar."
 
-#: games/blackjack.rb:511
+#: games/blackjack.rb:520
 msgid "%{player} splits the pair. First hand: %{first} Second hand: %{second}"
 msgstr "%{player} separa la pareja. Primera mano: %{first} Segunda mano: %{second}"
 
-#: games/blackjack.rb:489
+#: games/blackjack.rb:498
 msgid "%{player} stands at %{total}."
 msgstr "%{player} se planta con %{total}."
 
@@ -2699,7 +2699,7 @@ msgstr "%{player} acierta y recupera un dado."
 msgid "%{player} went bust."
 msgstr "%{player} se pasó de 21."
 
-#: games/blackjack.rb:206
+#: games/blackjack.rb:207
 msgid "%{player} will deal the cards."
 msgstr "Reparte %{player}."
 
@@ -3077,7 +3077,7 @@ msgstr "%{player}: %{miles} millas; %{status}; protecciones: %{safeties}; cartas
 msgid "%{player}: %{move}."
 msgstr "%{player}: %{move}."
 
-#: games/blackjack.rb:557
+#: games/blackjack.rb:566
 msgid "%{player}: %{outcome}. Balance: %{balance}."
 msgstr "%{player}: %{outcome}. Saldo: %{balance}."
 
@@ -6943,6 +6943,10 @@ msgstr ""
 msgid "Added Daily Krowa rankings by paulinux. You can publish results and browse rankings for individual days. Today's solution remains hidden; you can view the word for earlier days."
 msgstr ""
 
+#: lib/game_room_changelog.rb:809
+msgid "Added Darts rankings for the best three-dart round and best average score, separately for each difficulty. Personal records are private by default; Ctrl+P lets you publish them or remove public results. Many thanks to postukujący for this feature!"
+msgstr "Se han añadido clasificaciones de Dardos para la mejor ronda de tres dardos y la mejor media de puntos, por separado para cada dificultad. Los récords personales son privados por defecto; con Ctrl+P puedes publicarlos o borrar los resultados públicos. ¡Muchas gracias a postukujący por esta función!"
+
 #: lib/game_room_changelog.rb:777
 msgid "Added Darts, an audio target game with personal aiming and sound settings."
 msgstr "Se ha añadido Dardos, un juego sonoro de puntería y lanzamiento con ajustes personales de apuntado y sonido."
@@ -9143,7 +9147,7 @@ msgstr "Sé el primero en ordenar ocho notas de la más grave a la más aguda, i
 msgid "Be the first to type the displayed number correctly."
 msgstr "Sé el primero en copiar correctamente el número que aparece."
 
-#: games/blackjack.rb:21
+#: games/blackjack.rb:22
 msgid "Beat the automatic dealer without exceeding 21; play with virtual table chips."
 msgstr "Supera al crupier automático sin pasar de 21, con fichas virtuales de la mesa."
 
@@ -9272,7 +9276,7 @@ msgstr[1] "Mejor palabra: %{word}, %{count} letras."
 msgid "Bet %{amount} on %{bet}"
 msgstr "Apostar %{amount} a %{bet}"
 
-#: games/blackjack.rb:234
+#: games/blackjack.rb:235
 msgid "Bet %{chips} chips"
 msgstr "Apostar %{chips} fichas"
 
@@ -9498,7 +9502,7 @@ msgstr "Piedra negra"
 msgid "Blackball"
 msgstr "Blackball"
 
-#: games/blackjack.rb:20
+#: games/blackjack.rb:21
 msgid "Blackjack"
 msgstr "Blackjack"
 
@@ -9509,6 +9513,10 @@ msgstr "Blackjack de dados"
 #: games/blackjack.rb:260
 msgid "Blackjack actions"
 msgstr "Acciones de blackjack"
+
+#: lib/game_room_changelog.rb:814
+msgid "Blackjack shows the dealer's visible card and your hand in one game field. Space draws a card and Enter stands; doubling and splitting remain available when allowed."
+msgstr "Blackjack muestra la carta descubierta del crupier y tu mano en un único campo de juego. Espacio pide carta e Intro se planta; doblar y dividir siguen disponibles cuando las reglas lo permiten."
 
 #: lib/game_room_changelog.rb:735
 msgid "Blackjack, Blackjack Dice and Dice Poker bots now account correctly for side pots and tied hands."
@@ -10318,6 +10326,14 @@ msgstr ""
 msgid "Card exchange."
 msgstr "Cambio de cartas."
 
+#: lib/game_room_changelog.rb:811
+msgid "Card hands now use consistent ordering for starting, received and exchanged cards. Tysiac, Belote and Jass use the same hand ordering as Spades. Mille Bornes keeps newly received cards at the end of the hand."
+msgstr "Se ha unificado la ordenación de las cartas iniciales, robadas e intercambiadas. Tysiac, Belote y Jass ordenan la mano igual que Picas. En Mil Millas, las cartas nuevas siguen apareciendo al final de la mano."
+
+#: lib/game_room_changelog.rb:811
+msgid "Card hands now use consistent ordering for starting, received and exchanged cards. Tysiac, Belote and Jass use the same suit order as Spades; Tysiac also uses its card-value order. Mille Bornes keeps newly received cards at the end of the hand."
+msgstr ""
+
 #: lib/game_room_changelog.rb:126
 msgid "Card hands support Shift+C to sort by suit or colour, Shift+H by rank, and Shift+M by receipt order. Pressing C or H with Shift again reverses that sorting direction. This covers UNO, Makao, Rummy, Spades, Tysiac, 99 and Poker's exchange hand, preserving each game's default order, the selected card and card packages."
 msgstr "Las manos de cartas se pueden ordenar con Shift+C por palo o color, con Shift+H por valor y con Shift+M por orden de recepción. Al volver a pulsar C o H con Shift, se invierte el sentido de esa ordenación. Esto se aplica a UNO, Makao, Rummy, Picas, Mil, 99 y a la mano de intercambio del póquer, y conserva el orden predeterminado de cada juego, la carta seleccionada y los grupos de cartas."
@@ -10527,6 +10543,10 @@ msgstr "Subasta de dinero permite elegir varios conjuntos de Quiz. Las categorí
 #: lib/game_room_changelog.rb:783
 msgid "Cash Auction starts with 10000 points by default and counts answered questions, not chest auctions or auctions without bids. A tie leads to another answered question."
 msgstr "Subasta de dinero empieza con 10000 puntos por defecto y cuenta las preguntas respondidas, no las subastas de cofres ni las subastas sin ofertas. Un empate da lugar a otra pregunta."
+
+#: lib/game_room_changelog.rb:816
+msgid "Cash Auction starts with an ante of 100 points by default. The first offer must be at least the ante; later offers only need to beat the highest bid. Three consecutive auctions without a bid cost 5% of the remaining balance."
+msgstr "En Subasta de dinero, la aportación inicial es de 100 puntos por defecto. La primera oferta debe ser como mínimo igual a esa aportación; las siguientes solo tienen que superar la más alta. Tres subastas consecutivas sin pujar cuestan el 5 % del saldo restante."
 
 #: lib/game_room_changelog.rb:784
 msgid "Cash Auction stays open for one more interval after the third call, and all-in must beat the highest offer. Accepted bids clear the field; rejected bids and newer drafts are kept."
@@ -11406,7 +11426,7 @@ msgstr "Elige una apuesta que todos puedan pagar."
 msgid "Choose a suit"
 msgstr "Elige un palo"
 
-#: games/blackjack.rb:46 games/blackjack_dice.rb:66
+#: games/blackjack.rb:47 games/blackjack_dice.rb:66
 msgid "Choose a supported blackjack variant."
 msgstr "Elige una variante de blackjack compatible."
 
@@ -11459,7 +11479,7 @@ msgstr "Elija una apuesta válida y fichas enteras positivas dentro de su saldo.
 msgid "Choose a value for %{field}."
 msgstr "Elige un valor para %{field}."
 
-#: games/blackjack.rb:277
+#: games/blackjack.rb:286
 msgid "Choose a whole-chip bet within your balance."
 msgstr "Elige una apuesta de fichas enteras dentro de tu saldo."
 
@@ -13620,7 +13640,7 @@ msgstr "Reparto %{round}. Quedan %{count} cartas por repartir."
 msgid "Deal %{round}. Dealer: %{dealer}. %{vulnerability}."
 msgstr "Mano %{round}. Reparte %{dealer}. %{vulnerability}."
 
-#: games/blackjack.rb:253 lib/tournaments/local_fixed_team_execution_screen.rb:630
+#: lib/tournaments/local_fixed_team_execution_screen.rb:630
 msgid "Deal cards"
 msgstr "Repartir cartas"
 
@@ -13628,23 +13648,23 @@ msgstr "Repartir cartas"
 msgid "Deal limit (0 for no limit)"
 msgstr "Límite de repartos (0 sin límite)"
 
-#: games/blackjack.rb:205
+#: games/blackjack.rb:206
 msgid "Deal the cards with D."
 msgstr "Pulsa D para repartir."
 
-#: games/blackjack.rb:586
+#: games/blackjack.rb:595
 msgid "Dealer finishes with %{cards}. Total: %{total}."
 msgstr "La banca se planta con: %{cards}. Total: %{total}."
 
-#: games/blackjack.rb:584
+#: games/blackjack.rb:593
 msgid "Dealer goes over 21: %{cards}. Total: %{total}."
 msgstr "La banca se pasa de 21: %{cards}. Total: %{total}."
 
-#: games/blackjack.rb:582
+#: games/blackjack.rb:591
 msgid "Dealer has blackjack: %{cards}."
 msgstr "La banca tiene blackjack: %{cards}."
 
-#: games/blackjack.rb:260
+#: games/blackjack.rb:245
 msgid "Dealer: %{cards}"
 msgstr "Crupier: %{cards}"
 
@@ -13656,7 +13676,7 @@ msgstr "Crupier: %{cards}; total %{total}."
 msgid "Dealing and bidding"
 msgstr ""
 
-#: games/blackjack.rb:261
+#: games/blackjack.rb:246
 msgid "Dealing player: %{player}; no house hand."
 msgstr "Reparte %{player}; sin mano de la banca."
 
@@ -13949,6 +13969,10 @@ msgstr "General de dados tiene sonidos distintos para las columnas, los bonus, l
 #: lib/game_room_changelog.rb:800
 msgid "Dice General now plays its column, bonus and school-scoring sounds correctly, respecting the selected volume and optional sound settings."
 msgstr "General de dados reproduce correctamente los sonidos de las columnas, las bonificaciones y la puntuación de la escuela, respetando el volumen y la configuración de efectos opcionales."
+
+#: lib/game_room_changelog.rb:815
+msgid "Dice General, Balut and Yahtzee share consistent scoring sounds. Dice General and Balut show zero-point entries more clearly, and Balut explains points earned for completed rows and the overall total."
+msgstr "General de dados, Balut y Yahtzee usan sonidos coherentes al anotar resultados. General de dados y Balut muestran con más claridad las anotaciones de cero puntos, y Balut explica los puntos obtenidos por filas completas y por la suma de resultados."
 
 msgid "Dice and score sheets"
 msgstr "Dados y hojas de puntuación"
@@ -14324,7 +14348,7 @@ msgstr ""
 msgid "Double 9"
 msgstr "Doble 9"
 
-#: games/blackjack.rb:253
+#: games/blackjack.rb:275
 msgid "Double down"
 msgstr "Doblar"
 
@@ -14439,7 +14463,7 @@ msgstr "Roba 3 cartas."
 msgid "Draw Two may answer Draw Two and Wild Draw Four may answer Wild Draw Four. The penalties accumulate but the two types do not mix."
 msgstr ""
 
-#: games/blackjack.rb:253 games/mille_bornes/presentation.rb:40
+#: games/mille_bornes/presentation.rb:40
 msgid "Draw a card"
 msgstr "Robar una carta"
 
@@ -15436,7 +15460,11 @@ msgstr "Braille inglés sin contracciones"
 msgid "English, grade 3"
 msgstr "Inglés, grado 3"
 
-#: games/cash_auction/actions.rb:131
+#: games/blackjack.rb:260
+msgid "Enter"
+msgstr "Intro"
+
+#: games/cash_auction/actions.rb:139
 msgid "Enter %{maximum} or A to go all-in."
 msgstr "Escribe %{maximum} o A para ir con todo."
 
@@ -15502,9 +15530,13 @@ msgstr "Enter ejecuta la acción seleccionada. I lee las posiciones; T, la fase;
 msgid "Enter always operates the roll field: before the first roll it rolls all dice; afterwards it rerolls selected dice. If none are selected, or the third roll has been used, Enter opens the scoring list. Arrow keys choose a category and Enter saves it; Escape cancels the choice."
 msgstr "Enter siempre actúa sobre el campo de tirada: antes de la primera tirada lanza todos los dados; después, vuelve a lanzar los dados seleccionados. Si no hay ninguno seleccionado o ya se ha usado la tercera tirada, Enter abre la lista de puntuación. Las flechas eligen una categoría y Enter la guarda; Escape cancela la elección."
 
-#: games/cash_auction/actions.rb:132
+#: games/cash_auction/actions.rb:140
 msgid "Enter an amount above %{minimum} and at most %{maximum}, or A for all-in."
 msgstr "Introduce un importe superior a %{minimum} y como máximo %{maximum}, o A para ir con todo."
+
+#: games/cash_auction/actions.rb:133
+msgid "Enter an amount from %{minimum} to %{maximum}, or A for all-in."
+msgstr "Introduce un importe entre %{minimum} y %{maximum}, o A para ir con todo."
 
 #: lib/quiz_contributions/model.rb:112
 msgid "Enter answer %{letter}."
@@ -16209,7 +16241,7 @@ msgstr "Exportando registro"
 msgid "Exposed sets"
 msgstr "Combinaciones expuestas"
 
-#: games/blackjack.rb:33
+#: games/blackjack.rb:34
 msgid "Extended: double and split"
 msgstr "Ampliado: doblar y separar"
 
@@ -16586,7 +16618,7 @@ msgstr ""
 msgid "Finish line"
 msgstr "Meta"
 
-#: lib/game_surfaces.rb:1053 lib/game_surfaces/card_actions.rb:24
+#: lib/game_surfaces.rb:1055 lib/game_surfaces/card_actions.rb:28
 msgid "Finish or cancel the current card choice first."
 msgstr "Primero termina o cancela la elección de cómo jugar la carta actual."
 
@@ -18798,6 +18830,10 @@ msgstr "En el blackjack puedes robar una carta con Espacio. Los nuevos juegos de
 msgid "In Cash Auction, one hint per question removes two wrong answers for 10% of the answerer's remaining points, rounded up to at least one point."
 msgstr "En Subasta de dinero se puede comprar una pista por pregunta para eliminar dos respuestas incorrectas. Cuesta el 10 % de los puntos restantes de quien responde, redondeado hacia arriba, con un mínimo de uno."
 
+#: lib/game_room_changelog.rb:817
+msgid "In Cash Auction, payments for black chests no longer increase the question pool. The pool from earlier questions remains available for the next question."
+msgstr "En Subasta de dinero, los pagos por cofres negros ya no aumentan el bote de las preguntas. El bote acumulado de preguntas anteriores se conserva para la siguiente."
+
 #: lib/game_room_changelog.rb:320
 msgid "In Categories, after using the entire alphabet, you can continue playing with the letters available again."
 msgstr ""
@@ -18809,6 +18845,10 @@ msgstr ""
 #: games/generated/rulebooks/belote.rb:11
 msgid "In Classic Belote, everyone receives five cards and one more is turned face up. Starting after the dealer, each player may accept its suit as trumps or pass. After four passes, choose a different suit or pass. Eight passes cause a redeal. The first player to choose trumps takes the upcard, and everyone’s hand is filled to eight cards."
 msgstr "En Belote clásica todos reciben cinco cartas y se descubre otra. Empezando por quien sigue al repartidor, podéis aceptar su palo como triunfo o pasar. Tras cuatro pases, podéis elegir otro palo o pasar. Ocho pases provocan un nuevo reparto. La primera elección de triunfo acaba las pujas: quien lo elige recibe la carta descubierta y se completan todas las manos hasta ocho cartas."
+
+#: lib/game_room_changelog.rb:810
+msgid "In Darts, bots continue playing after replacing a departing player, and a host who is observing can run a game with bots. Solo results and observers' aiming sounds have also been corrected."
+msgstr "En Dardos, los bots siguen jugando tras sustituir a un jugador que ha abandonado la mesa, y un anfitrión que observa puede dirigir una partida con bots. También se han corregido los resultados en solitario y los sonidos de puntería para los observadores."
 
 #: lib/game_room_changelog.rb:201
 msgid "In Doubles, the first player on each team uses a distinct footstep recording without an extra pitch shift. Their serves and returns are four semitones lower. Missing Polish Doubles messages have also been translated."
@@ -18844,6 +18884,10 @@ msgstr "En Game Room, F1 abre una lista de atajos que puedes recorrer con las fl
 #: games/generated/rulebooks/monopoly.rb:32
 msgid "In Game Room, a negative balance ends your current turn. The other players take their turns before your next one begins. Then you can sell buildings, mortgage properties or arrange a trade to cover the shortfall. Roll remains the main action, but tells you how much is missing instead of rolling while the balance is negative. A payment charged outside your turn does not interrupt the current player's move."
 msgstr ""
+
+#: lib/game_room_changelog.rb:813
+msgid "In Hearts, a passed card disappears from your hand immediately, with a short confirmation."
+msgstr "En Corazones, cada carta que pasas desaparece de tu mano al instante, con una breve confirmación."
 
 #: games/generated/rulebooks/mahjong.rb:13
 msgid "In Hong Kong, Riichi and MCR, W also reads a subtotal of basic bonuses already present: dragon and scoring-wind triplets, plus the applicable bonus tiles or an accepted Riichi declaration. Concealed triplets count while you keep them together. This is not the value of an unfinished hand: whole-hand patterns may replace basic bonuses. In MCR, flowers are listed separately and do not help reach 8 fan; Riichi lists visible dora separately because dora require yaku. Hong Kong mentions the possible no-flower point separately, since a later bonus draw removes it. When creating a table, Basic scoring preview under W defaults to Yes; choose No to keep only the legal-win readout. The setting never changes scoring or permission to win."
@@ -19867,7 +19911,7 @@ msgstr "Conserva dados útiles, repite los demás y forma la mejor combinación 
 msgid "Keep your own sounds the same"
 msgstr "Mantener tus propios sonidos"
 
-#: games/blackjack.rb:253 games/blackjack_dice.rb:247
+#: games/blackjack.rb:260 games/blackjack_dice.rb:247
 msgid "Keep your total"
 msgstr "Plantarse con este total"
 
@@ -20454,7 +20498,7 @@ msgstr ""
 msgid "Left/Right: jump between suits or colours. Up/Down: browse cards of the current suit or colour."
 msgstr "Izquierda/derecha: cambiar de palo o color. Arriba/abajo: recorrer las cartas del palo o color actual."
 
-#: lib/game_surfaces/card_hand_navigation.rb:32
+#: lib/game_surfaces/card_hand_navigation.rb:33
 msgid "Left/Right: jump between suits or colours. Up/Down: browse the entire hand."
 msgstr "Las flechas izquierda y derecha saltan entre palos o colores. Arriba y abajo recorren toda la mano."
 
@@ -22153,6 +22197,10 @@ msgstr "Necesita cambios"
 msgid "Never"
 msgstr "Nunca"
 
+#: lib/game_room_changelog.rb:818
+msgid "New Cash Auction and Duck Racing tables select only the general-knowledge question set for the interface language by default, rather than remembering previous question-set selections."
+msgstr "Las mesas nuevas de Subasta de dinero y Carrera de patos seleccionan por defecto solo el conjunto de cultura general del idioma de la interfaz, sin recordar las selecciones anteriores."
+
 #: lib/game_room_changelog.rb:560
 msgid "New Countries and Cities games have Drink, Tool, Known athlete, Known actor and Known writer instead of Surname, Chemical element, Building, Invention and Famous person. Existing and saved games keep their categories."
 msgstr "Las nuevas partidas de Países y ciudades incluyen Bebida, Herramienta, Deportista conocido, Actor conocido y Escritor conocido en lugar de Apellido, Elemento químico, Construcción, Invento y Persona famosa. Las partidas en curso y las guardadas conservan sus categorías."
@@ -22286,7 +22334,7 @@ msgstr ""
 msgid "Ninoy Aquino International Airport"
 msgstr "Aeropuerto Internacional Ninoy Aquino"
 
-#: __app.rb:2307 games/mahjong_support/options.rb:28 games/mille_bornes.rb:138 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:49 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/draft_preview.rb:172 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
+#: __app.rb:2307 games/mahjong_support/options.rb:28 games/mille_bornes.rb:138 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:53 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/draft_preview.rb:172 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
 msgid "No"
 msgstr "No"
 
@@ -23138,7 +23186,7 @@ msgstr ""
 msgid "Number of question rounds (8 to 32)"
 msgstr "Número de rondas con pregunta (de 8 a 32)"
 
-#: games/blackjack.rb:36 games/blackjack_dice.rb:39 games/darts.rb:43 games/dice_poker.rb:41 games/mania_pisania.rb:75
+#: games/blackjack.rb:37 games/blackjack_dice.rb:39 games/darts.rb:43 games/dice_poker.rb:41 games/mania_pisania.rb:75
 msgid "Number of rounds"
 msgstr "Número de rondas"
 
@@ -23618,7 +23666,7 @@ msgstr ""
 msgid "Opening a menu, help, Messages or another ELTEN window does not pause the match. The ball, bots, score and table chat continue to update. Keys used in that other window do not move your paddle or serve when you return. To defend manually, return to the playfield. The General category of Power Games settings controls speech outside the table window."
 msgstr ""
 
-#: games/blackjack.rb:38 games/blackjack_dice.rb:38 games/dice_poker.rb:18
+#: games/blackjack.rb:39 games/blackjack_dice.rb:38 games/dice_poker.rb:18
 msgid "Opening contribution"
 msgstr "Aportación inicial"
 
@@ -23841,7 +23889,7 @@ msgstr "Fuera de los campos de escritura, Shift+izquierda/derecha selecciona la 
 msgid "Outside the fixed joker profile, the starting hand can have three to fifteen cards, normally five. There must be enough cards for all players and the first table card. The penalty for forgetting Makao is independent of the profile: one to ten cards, normally one."
 msgstr ""
 
-#: games/blackjack.rb:515
+#: games/blackjack.rb:524
 msgid "Over 21."
 msgstr "Se pasa de 21."
 
@@ -24460,7 +24508,7 @@ msgstr "Coloca tres de tus símbolos en línea antes que tu rival."
 msgid "Place three of your marks in one horizontal, vertical or diagonal line before your opponent does."
 msgstr ""
 
-#: games/blackjack.rb:236
+#: games/blackjack.rb:237
 msgid "Place your bet before the deal (maximum %{maximum})"
 msgstr "Apuesta antes del reparto (máximo %{maximum})"
 
@@ -27865,7 +27913,7 @@ msgstr "Ronda %{round}. %{progress}. Baza %{current} de %{total}."
 msgid "Round %{round}. Cards dealt."
 msgstr "Ronda %{round}. Cartas repartidas."
 
-#: games/blackjack.rb:453
+#: games/blackjack.rb:462
 msgid "Round %{round}. Dealer shows %{card}."
 msgstr "Ronda %{round}. El crupier muestra %{card}."
 
@@ -29761,7 +29809,7 @@ msgstr ""
 msgid "Simple Makao, Polish extended Makao and the agreed joker variant are ready-made profiles. Custom rules preserve their last local values for the next table you create."
 msgstr ""
 
-#: games/blackjack.rb:32
+#: games/blackjack.rb:33
 msgid "Simple: hit and stand"
 msgstr "Simple: pedir y plantarse"
 
@@ -29913,11 +29961,11 @@ msgstr ""
 msgid "Social blackjack"
 msgstr "Blackjack social"
 
-#: games/blackjack.rb:45
+#: games/blackjack.rb:46
 msgid "Social blackjack requires the current betting rules."
 msgstr "El blackjack social requiere las reglas actuales de apuestas."
 
-#: games/blackjack.rb:34
+#: games/blackjack.rb:35
 msgid "Social blackjack: rotating dealer, no house hand"
 msgstr "Social: reparto rotatorio, sin mano de la banca"
 
@@ -30137,6 +30185,10 @@ msgstr "Espacio"
 msgid "Space checks a word except in Survival, where the last correct character or cell confirms it. Ctrl+S saves and closes the table after confirmation. F1 opens contextual help, Ctrl+F1 opens these rules, and Escape opens the shared table-leaving dialog."
 msgstr ""
 
+#: games/generated/rulebooks/blackjack.rb:23
+msgid "Space draws a card; Enter in the card field keeps your current total. H reads your cards and total, T reads the current turn and S reads chip balances. In the extended variant D doubles and P splits; in social blackjack D deals."
+msgstr "Espacio roba una carta e Intro en el campo de cartas te planta con el total actual. H lee tus cartas y el total, T indica el turno y S los saldos de fichas. En la variante ampliada, D dobla y P separa parejas; en el blackjack social, D reparte."
+
 msgid "Space draws from stock. D only reads the visible discard pile. Shift+D takes the only available choice immediately, or opens a discard list when there are several choices. C browses numbered table melds; Enter reads the selected meld. Its context menu contains only legal Merge, Take whole meld and individual cards to take. E reads hand and stock counts, S scores, T the turn. Shift+C/H toggles suit/rank order; Shift+M restores acquisition order."
 msgstr "Espacio roba del mazo de robo. D solo lee la pila de descartes visible. Shift+D toma inmediatamente el único descarte disponible o abre una lista de descartes si hay varias opciones. C permite explorar las combinaciones numeradas de la mesa; Enter lee la combinación seleccionada. Su menú contextual solo contiene las acciones permitidas de Unir, Tomar toda la combinación y las cartas individuales que se pueden tomar. E lee el número de cartas en las manos y en el mazo de robo, S las puntuaciones y T el turno. Shift+C/H alterna el orden por palo o valor; Shift+M restablece el orden en que recibiste las cartas."
 
@@ -30317,7 +30369,7 @@ msgstr "Girar la rueda"
 msgid "Spin the wheel with Space."
 msgstr "Pulsa Espacio para girar la ruleta."
 
-#: games/blackjack.rb:253
+#: games/blackjack.rb:275
 msgid "Split pair"
 msgstr "Separar pareja"
 
@@ -30531,7 +30583,7 @@ msgstr ""
 msgid "Starting an auction"
 msgstr "Comienzo de la subasta"
 
-#: games/blackjack.rb:37 games/blackjack_dice.rb:37 games/dice_poker.rb:17 games/poker.rb:127
+#: games/blackjack.rb:38 games/blackjack_dice.rb:37 games/dice_poker.rb:17 games/poker.rb:127
 msgid "Starting chips"
 msgstr "Fichas iniciales"
 
@@ -30539,7 +30591,7 @@ msgstr "Fichas iniciales"
 msgid "Starting chips (10-10000)"
 msgstr "Fichas iniciales (10–10000)"
 
-#: games/blackjack.rb:48 games/blackjack_dice.rb:71 games/dice_poker.rb:49
+#: games/blackjack.rb:49 games/blackjack_dice.rb:71 games/dice_poker.rb:49
 msgid "Starting chips must be from 10 to 10000."
 msgstr "Las fichas iniciales deben estar entre 10 y 10000."
 
@@ -32494,6 +32546,10 @@ msgstr ""
 msgid "The game ends when the board is full or neither player has a legal placement under the selected rules. The player with more discs wins; equal numbers mean a draw. Having no move yourself does not end the game if your opponent can still play."
 msgstr ""
 
+#: games/generated/rulebooks/blackjack.rb:16
+msgid "The game field shows the dealer’s visible card above your hand and total. Press Space to draw a card or Enter to keep your total. In the extended variant, D doubles the original two-card hand and draws exactly one further card. P splits a matching-rank pair once into two hands. Each requires an additional stake. Split aces receive one card each and stop; split hands never earn the natural bonus. There is no insurance, surrender, resplitting or double after splitting."
+msgstr "El campo de juego muestra la carta visible de la banca y debajo tu mano y su total. Pulsa Espacio para robar una carta o Intro para plantarte. En la variante ampliada, D dobla la apuesta de la mano inicial de dos cartas y roba exactamente una carta más. P separa una pareja del mismo valor en dos manos, una sola vez. Ambas opciones requieren una apuesta adicional. Al separar ases recibes una carta para cada uno y termina el turno; las manos separadas nunca cobran la prima del blackjack. No hay seguro, rendición, separación repetida ni doblaje después de separar."
+
 #: games/base.rb:417
 msgid "The game has already ended."
 msgstr "La partida ya ha terminado."
@@ -32995,7 +33051,7 @@ msgstr "El número de categorías mostradas en una ronda debe estar entre 1 y 9.
 msgid "The number of matches must be from 1 to 10."
 msgstr "El número de partidas debe estar entre 1 y 10."
 
-#: games/blackjack.rb:47 games/blackjack_dice.rb:73
+#: games/blackjack.rb:48 games/blackjack_dice.rb:73
 msgid "The number of rounds must be from 1 to 100."
 msgstr "El número de rondas debe estar entre 1 y 100."
 
@@ -33724,7 +33780,7 @@ msgstr "No se pudo guardar el ajuste de sonido."
 msgid "The sound volume could not be saved."
 msgstr "No se ha podido guardar el volumen de los sonidos."
 
-#: games/blackjack.rb:49 games/blackjack_dice.rb:72 games/dice_poker.rb:50
+#: games/blackjack.rb:50 games/blackjack_dice.rb:72 games/dice_poker.rb:50
 msgid "The stake must be positive and cannot exceed starting chips."
 msgstr "La apuesta debe ser positiva y no superar las fichas iniciales."
 
@@ -34650,7 +34706,7 @@ msgstr ""
 msgid "This bid is not allowed with the selected Spades rules."
 msgstr "Esta declaración no está permitida con las reglas de Picas seleccionadas."
 
-#: games/blackjack.rb:44 games/blackjack_dice.rb:65
+#: games/blackjack.rb:45 games/blackjack_dice.rb:65
 msgid "This blackjack betting version is not supported."
 msgstr "Esta versión de apuestas de blackjack no es compatible."
 
@@ -36530,6 +36586,10 @@ msgstr "En UNO, desactivar el robo voluntario ya no impide robar cuando es neces
 msgid "UNO round %{round} started. First card: %{card}."
 msgstr "Ha comenzado la ronda %{round} de UNO. Primera carta: %{card}."
 
+#: lib/game_room_changelog.rb:812
+msgid "UNO starts with cards sorted by value for straights and super interceptions, and by colour otherwise. Redundant sorting modes have been removed. Pressing the shortcut for the current sorting mode reverses it from the first press."
+msgstr "En UNO, las cartas se ordenan inicialmente por valor al jugar con escaleras o superintercepciones, y por color en los demás casos. Se han eliminado los modos de ordenación redundantes. El atajo del modo actual invierte el orden desde la primera pulsación."
+
 #: content/monopoly_boards.rb:21
 msgid "Ukrainian board"
 msgstr "Tablero ucraniano"
@@ -36929,7 +36989,7 @@ msgstr "Usa las flechas para desplazarte entre las respuestas y Enter para envia
 msgid "Use the arrows to choose a bid, pass or card and press Enter."
 msgstr ""
 
-#: games/generated/rulebooks/blackjack.rb:23 games/generated/rulebooks/blackjack_dice.rb:20
+#: games/generated/rulebooks/blackjack_dice.rb:20
 msgid "Use the arrows to choose an action and Enter to perform it. Tab changes fields. T reads the current turn; S reads scores. F1 opens the current shortcut reference; Ctrl+F1 opens the rules. Card hands preserve physical card identity and draw order. Their cards are for inspection, not play: choose decisions in the separate actions list."
 msgstr ""
 
@@ -37116,7 +37176,7 @@ msgstr "V: leer a quién pertenece el crib."
 msgid "V: repeat the deal rules."
 msgstr "V: repetir las reglas de la mano."
 
-#: games/backgammon.rb:39 games/belote_support/belote_table.rb:27 games/bingo.rb:27 games/blackjack.rb:31 games/blackjack_dice.rb:28 games/dice_poker.rb:33 games/go.rb:20 games/jass_support/jass_table.rb:42 games/liars_dice.rb:28
+#: games/backgammon.rb:39 games/belote_support/belote_table.rb:27 games/bingo.rb:27 games/blackjack.rb:32 games/blackjack_dice.rb:28 games/dice_poker.rb:33 games/go.rb:20 games/jass_support/jass_table.rb:42 games/liars_dice.rb:28
 msgid "Variant"
 msgstr "Variante"
 
@@ -38414,7 +38474,7 @@ msgstr "Año"
 msgid "Yellowbelly die"
 msgstr "Dado cobarde"
 
-#: __app.rb:2307 games/mahjong_support/options.rb:28 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:49 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
+#: __app.rb:2307 games/mahjong_support/options.rb:28 lib/game_option_values.rb:99 lib/game_surfaces/billiards_surface.rb:142 lib/game_surfaces/billiards_surface.rb:150 lib/game_surfaces/card_actions.rb:53 lib/game_surfaces/taboo_surface.rb:82 lib/game_surfaces/word_board.rb:106 lib/quiz_contributions/views.rb:24 lib/tournaments/draft_editor.rb:66 lib/tournaments/draft_preview.rb:171 lib/tournaments/public_text.rb:101 lib/tournaments/public_text.rb:132 lib/tournaments/public_text.rb:133 lib/tournaments/tournament_setup_editor.rb:66 lib/tournaments/tournament_setup_editor.rb:85
 msgid "Yes"
 msgstr "Sí"
 
@@ -38775,7 +38835,11 @@ msgstr "No tienes suficientes fichas para subir después de igualar."
 msgid "You do not have enough money. You are %{amount} short."
 msgstr "No tienes suficiente dinero. Te faltan %{amount}."
 
-#: games/cash_auction/actions.rb:128
+#: games/cash_auction/actions.rb:132
+msgid "You do not have enough points for the first bid (minimum: %{minimum})."
+msgstr "No tienes suficientes puntos para la primera oferta (mínimo: %{minimum})."
+
+#: games/cash_auction/actions.rb:136
 msgid "You do not have enough points to beat the highest bid."
 msgstr "No tienes puntos suficientes para superar la puja más alta."
 
@@ -38915,7 +38979,7 @@ msgstr "No tienes dados en esta partida."
 msgid "You have no kings."
 msgstr "No tienes damas."
 
-#: games/base/shortcuts.rb:169 lib/game_surfaces.rb:1064 lib/game_surfaces/packet_cards.rb:198
+#: games/base/shortcuts.rb:169 lib/game_surfaces.rb:1066 lib/game_surfaces/packet_cards.rb:198
 msgid "You have no playable card."
 msgstr "No tienes ninguna carta que puedas jugar."
 
@@ -38923,7 +38987,7 @@ msgstr "No tienes ninguna carta que puedas jugar."
 msgid "You have no playable tile."
 msgstr "No tienes ninguna ficha que puedas jugar."
 
-#: games/cash_auction/actions.rb:130
+#: games/cash_auction/actions.rb:138
 msgid "You have no points available to raise the bid."
 msgstr "No tienes puntos suficientes para superar la puja."
 
@@ -39314,7 +39378,7 @@ msgstr "Tu puja:"
 msgid "Your availability changed in another client. Enable it again if you want to participate."
 msgstr ""
 
-#: games/blackjack.rb:275
+#: games/blackjack.rb:284
 msgid "Your bet (1 to %{maximum})"
 msgstr "Tu apuesta (1 a %{maximum})"
 
@@ -39455,7 +39519,7 @@ msgstr "Tu grupo: %{group}."
 msgid "Your hand"
 msgstr "Tu mano"
 
-#: games/blackjack.rb:247
+#: games/blackjack.rb:252
 msgid "Your hand %{hand} of %{count}: %{total}"
 msgstr "Tu mano %{hand} de %{count}: %{total}"
 
@@ -39463,7 +39527,7 @@ msgstr "Tu mano %{hand} de %{count}: %{total}"
 msgid "Your hand and your partner"
 msgstr "Tu mano y tu compañero"
 
-#: games/blackjack.rb:287 games/card_game.rb:106 games/dealt_card_game.rb:119 games/dealt_card_game.rb:136 games/duck_racing_support/presentation.rb:211 games/makao.rb:356 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:369 games/rummy_ui.rb:61 games/scientific_war.rb:789 games/spades.rb:875 games/three_five_eight.rb:376 games/tile_game.rb:146 games/tysiac.rb:448 games/uno.rb:462 lib/game_surfaces/packet_cards.rb:52
+#: games/blackjack.rb:296 games/card_game.rb:106 games/dealt_card_game.rb:119 games/dealt_card_game.rb:136 games/duck_racing_support/presentation.rb:211 games/makao.rb:356 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:369 games/rummy_ui.rb:61 games/scientific_war.rb:789 games/spades.rb:875 games/three_five_eight.rb:376 games/tile_game.rb:146 games/tysiac.rb:448 games/uno.rb:462 lib/game_surfaces/packet_cards.rb:52
 msgid "Your hand is empty"
 msgstr "Tu mano está vacía"
 
@@ -39513,7 +39577,7 @@ msgstr ""
 msgid "Your hand; discard %{remaining} cards"
 msgstr ""
 
-#: games/blackjack.rb:249
+#: games/blackjack.rb:254
 msgid "Your hand; total %{total}."
 msgstr "Tus cartas. Total: %{total}."
 
@@ -39578,6 +39642,10 @@ msgstr ""
 #: games/generated/rulebooks/cash_auction.rb:17
 msgid "Your offer is the total amount you commit to this auction, in addition to the opening payment. It must beat the current highest offer. Every bidder pays immediately, including players who later lose the auction or pass; those payments are not refunded."
 msgstr ""
+
+#: games/generated/rulebooks/cash_auction.rb:18
+msgid "Your offer is the total amount you commit to this auction, in addition to the opening payment. The first offer must be at least as much as that payment, even if you go all-in. Every offer must beat the current highest offer. Every bidder pays immediately, even if they later lose the auction; those payments are not refunded."
+msgstr "Tu oferta es el importe total que comprometes en esta subasta, aparte de la aportación inicial. La primera oferta debe ser como mínimo igual a esa aportación, incluso si vas con todo. Todas las ofertas deben superar la más alta. Todos los que pujan pagan en el acto, aunque después pierdan la subasta; esos puntos no se devuelven."
 
 #: games/war.rb:463
 msgid "Your opponent's hidden cards: %{cards}."
@@ -40384,7 +40452,7 @@ msgstr "grupo azul oscuro"
 msgid "dark side"
 msgstr "lado oscuro"
 
-#: games/blackjack.rb:269
+#: games/blackjack.rb:271
 msgid "deal the next social blackjack hand"
 msgstr "repartir la próxima mano social"
 
@@ -40643,7 +40711,7 @@ msgstr "partida terminada"
 msgid "game in progress"
 msgstr "partida en curso"
 
-#: games/blackjack.rb:549
+#: games/blackjack.rb:558
 msgid "gets the stake back"
 msgstr "apuesta devuelta"
 
@@ -40695,7 +40763,7 @@ msgstr "adivinada"
 msgid "han"
 msgstr "han"
 
-#: games/blackjack.rb:555
+#: games/blackjack.rb:564
 msgid "hand %{hand}: %{outcome}"
 msgstr "mano %{hand}: %{outcome}"
 
@@ -40715,7 +40783,7 @@ msgstr "corazones"
 msgid "held"
 msgstr "conservado"
 
-#: games/blackjack.rb:259
+#: games/blackjack.rb:244
 msgid "hidden card"
 msgstr "carta oculta"
 
@@ -40886,7 +40954,7 @@ msgstr "escuchar desde la perspectiva del segundo jugador"
 msgid "listen from the third player's perspective"
 msgstr "escuchar desde la perspectiva del tercer jugador"
 
-#: games/blackjack.rb:547
+#: games/blackjack.rb:556
 msgid "loss %{amount}"
 msgstr "pérdida: %{amount}"
 
@@ -41235,7 +41303,7 @@ msgstr "anterior carta que puedes jugar"
 msgid "previous playable tile"
 msgstr "ficha anterior que puedes jugar"
 
-#: games/blackjack.rb:545
+#: games/blackjack.rb:554
 msgid "profit %{amount}"
 msgstr "ganancia: %{amount}"
 
@@ -41964,7 +42032,7 @@ msgstr "fijar el contrato definitivo"
 msgid "set the round stake"
 msgstr "fijar la apuesta de ronda"
 
-#: games/blackjack.rb:274
+#: games/blackjack.rb:283
 msgid "set your bet before the deal"
 msgstr "fijar tu apuesta antes del reparto"
 

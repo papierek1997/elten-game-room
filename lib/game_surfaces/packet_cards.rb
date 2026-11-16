@@ -169,7 +169,7 @@ module GameSurfaces
       return false unless card_sort_mode_allowed?(mode)
       return false if @cards.none? { |card| card_sort_keys(card).key?(mode) }
       toggle = payload["toggle"] || payload[:toggle]
-      direction = toggle && @card_sort_mode == mode && @card_sort_direction == "ascending" ? "descending" : "ascending"
+      direction = card_sort_direction_for(mode, toggle:toggle)
       selected = card_id(@cards[@control.index.to_i])
       @cards = sorted_cards(@cards, mode, direction)
       @card_sort_mode, @card_sort_direction = mode, direction

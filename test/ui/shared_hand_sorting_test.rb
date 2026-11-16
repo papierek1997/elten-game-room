@@ -96,9 +96,9 @@ types.each do |type|
     original = hand_ids.call
     assert(original == %w[KH JS AS TD], "existing default hand order changed in #{game.id}")
     surface.handle_command("sort_cards", "mode" => "colour", "toggle" => true)
-    assert(hand_ids.call == original, "first suit sort disagrees with the existing default in #{game.id}")
+    assert(hand_ids.call == original.reverse, "first suit sort did not reverse the active default in #{game.id}")
     surface.handle_command("sort_cards", "mode" => "colour", "toggle" => true)
-    assert(hand_ids.call == original.reverse, "second suit sort did not reverse in #{game.id}")
+    assert(hand_ids.call == original, "second suit sort did not restore ascending order in #{game.id}")
     surface.handle_command("sort_cards", "mode" => "number", "toggle" => true)
     assert(hand_ids.call == %w[TD JS KH AS], "rank sort incorrectly used card points in #{game.id}")
     surface.handle_command("navigate_playable_card", "hand_id" => "hand", "card_ids" => %w[AS JS KH TD], "direction" => 1)

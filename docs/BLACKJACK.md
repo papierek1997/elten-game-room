@@ -25,7 +25,19 @@ splitting use that stake. No second executor or UI input loop is introduced.
 Each round shuffles six fresh decks using one authenticated server seed.
 Physical IDs combine deck index and rank/suit. Hands keep acquisition order and
 an owner/round/hand epoch through the shared card-hand surface. Cards themselves
-have no play action; decisions belong to a separate actions zone.
+are not played individually. After betting there is one game field: its caption
+gives the dealer's public card first, then the viewer's current hand/total; the
+rows contain only the viewer's cards in acquisition order. Space draws and
+Enter keeps the current total through `CardZoneSpec#activation_action`, scoped
+to that field rather than a form-wide Enter binding. H retains cards plus total.
+D doubles and P splits when those Extended actions are currently legal. In the
+social variant D still deals only during its awaiting-deal phase. No duplicate
+Draw/Stand rows or separate actions field remain after the deal. Betting keeps
+its existing action list. Observers see public dealer/status information, not
+another player's hand; the hole card remains hidden until settlement.
+The native regression is `test/games/blackjack/hand_controls_native_test.rb`,
+including five languages, ordered focus speech, draws, split-hand epochs,
+quiet refresh, action guards and chat/table-button isolation.
 
 Aces count 1/11. The dealer stands on all 17s. A natural is an unsplit original
 two-card 21. Naturals pay 3:2, ordinary wins 1:1, equal surviving totals push,

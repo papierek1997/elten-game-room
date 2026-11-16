@@ -12,7 +12,7 @@ not a claim to reproduce an official television rulebook.
 
 ## Model and settlement
 
-New games use `auction_rules_version = 5`. The game accepts 2–8 participants,
+New games use `auction_rules_version = 6`. The game accepts 2–8 participants,
 including bots. Defaults are 10000 starting points, a 100-point ante, a
 fixed 5% penalty after three consecutive auctions without a bid, eight
 answered questions, three seconds between calls and a 10% chance of a chest
@@ -24,7 +24,12 @@ Every remaining participant pays the ante. Someone unable to pay is
 permanently eliminated. An accepted bid is the bidder's total contribution
 to this auction, excluding the ante. The reducer deducts only the difference
 from that bidder's earlier bid. All bidders pay, and losing does
-not refund their contributions. There is no withdrawal action in current games;
+not refund their contributions. Since v6, the first accepted offer must be at
+least the ante, including an all-in. Later offers need only beat the highest
+offer; this does not add a minimum raise increment. Planning, reduction and bot
+candidates share `Rules.opening_bid_minimum`; an unaffordable opening must not
+be offered by a bot or suggested as an all-in in validation feedback.
+There is no withdrawal action in current games;
 the bid editor remains available until the auction closes. All-in is the remaining cash
 plus that participant's earlier bid contributions. Every bid, including
 all-in, must exceed the current highest offer and cannot exceed that available
@@ -45,7 +50,7 @@ Any accepted bid resets the count even if its author later loses. At closure, th
 auction deducts 5% of that participant's balance at closure, after the ante,
 rounded up to a whole point, and resets the count to zero. A zero balance owes
 zero. The rate is fixed, not a table setting; saved `pass_penalty` values are
-ignored in v5. The production reducer and bot budget use the same penalty
+ignored in v5 and later. The production reducer and bot budget use the same penalty
 helper. At a question auction the deduction enters the question pool; at a
 chest auction it leaves the game. This applies at timed and immediate all-in
 closure. Fixed v1–v4 games retain their recorded flat-penalty rule and options.
@@ -89,7 +94,9 @@ at-most-one-survivor boundary was reached earlier. No active seats
 means a draw. The pool has no final automatic payout to a leader.
 
 The version marker is part of normalized game options. A new ordinary start
-uses v5; an already bound tournament match uses its fixed published version.
+uses v6; an already bound tournament match uses its fixed published version.
+V1–v5 keep their original opening-bid admission; v5 retains its percentage
+penalties and separate chest accounting after this version change.
 V3 retains its original pool accounting and percentage chest settlement;
 v4 keeps that settlement but separates chest payments from the question pool.
 Unmarked historical sessions retain v1, including their original single-pack
@@ -274,6 +281,12 @@ The source tests relevant to the shared adapter and native controls are:
   deduplicated pending-decision alerts.
 - `test/games/cash_auction/rules_test.rb`: original bid contributions,
   cumulative pass penalties, carried pools, elimination and settlement.
+- `test/games/cash_auction/opening_bid_test.rb`: first-offer ante floor in
+  planning, reduction and injected events, all-in boundaries, bot budgets,
+  unchanged later raises and accepted v1–v5 histories.
+- `test/games/cash_auction/opening_bid_native_test.rb`: the native bid editor
+  in all five interface languages, inclusive limits, short all-in refusal,
+  correction, acknowledgement, retained draft/focus and a one-point raise.
 - `test/games/cash_auction/revised_rounds_test.rb`: v2 consecutive non-bidding
   penalties, strict all-in, eight answered questions, deferred chest results
   and an additional answered question after a tie.

@@ -223,7 +223,7 @@ W Tysiącu mil Shift+M przywraca kolejność otrzymywania kart. Początkowy
 układ ręki zależy od gry i wariantu; wybrane sortowanie pozostaje aktywne
 także po otrzymaniu kolejnych kart.
 
-Ponowne użycie skrótu sortowania odwraca kolejność. Z i Shift+Z przechodzą
+Skrót bieżącego sposobu sortowania odwraca kolejność kart. Z i Shift+Z przechodzą
 do następnej lub poprzedniej karty albo kostki, którą można zagrać.
 Jeśli istnieje tylko jedno jednoznaczne zagranie, skrót może od razu wykonać
 ruch. Dostępność tej pomocy zależy od gry i wariantu; sprawdzisz ją pod F1

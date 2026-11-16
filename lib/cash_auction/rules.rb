@@ -6,7 +6,7 @@ module GameRoomCashAuction
       'rounds'=>8, 'count_interval'=>2, 'black_chest_chance'=>5}.freeze
     CHEST_REWARDS = [100, 2500, 10_000, -100, -500, -1000, 'bankrupt'].freeze
     BONUS_REWARDS = [100, 500, 1000, 2500, 5000, 7500, 10_000].freeze
-    CURRENT_VERSION = 5
+    CURRENT_VERSION = 6
     INACTIVITY_PENALTY_PERCENT = 5
     CHEST_MAGNITUDES = [5, 10, 15, 20, 25, 30, 35].freeze
     CHEST_WEIGHTS = [49, 36, 25, 16, 9, 4, 1].freeze
@@ -40,17 +40,20 @@ module GameRoomCashAuction
     def time?(now); now.is_a?(Integer) && now >= 0; end
     def seat?(state, seat); seat.is_a?(Integer) && seat.between?(0, state[:players].length - 1); end
     def active?(state, seat); seat?(state, seat) && !state[:eliminated][seat]; end
-    def revised_options?(options); [2, 3, 4, CURRENT_VERSION].include?(options['auction_rules_version']); end
+    def revised_options?(options); (2..CURRENT_VERSION).include?(options['auction_rules_version']); end
     def revised?(state); revised_options?(state[:options]); end
-    def percentage_chests?(state); [3, 4, CURRENT_VERSION].include?(state[:options]['auction_rules_version']); end
-    def percentage_penalty?(options); options['auction_rules_version'] == CURRENT_VERSION; end
+    def percentage_chests?(state); (3..CURRENT_VERSION).include?(state[:options]['auction_rules_version']); end
+    def percentage_penalty?(options); (5..CURRENT_VERSION).include?(options['auction_rules_version']); end
+    def opening_bid_minimum(state)
+      state[:leader].nil? && (6..CURRENT_VERSION).include?(state[:options]['auction_rules_version']) ? state[:options]['ante'] : 0
+    end
     def inactivity_penalty(state, seat)
       cash = state[:cash][seat]
       percentage_penalty?(state[:options]) ? (cash * INACTIVITY_PENALTY_PERCENT + 99) / 100 :
         [cash, state[:options]['pass_penalty']].min
     end
     def question_pool_auction?(state, chest: state[:chest])
-      ![4, CURRENT_VERSION].include?(state[:options]['auction_rules_version']) || !chest
+      !(4..CURRENT_VERSION).include?(state[:options]['auction_rules_version']) || !chest
     end
     def auction_duration(state); (revised?(state) ? 4 : 3) * state[:options]['count_interval']; end
     def hint_price(state); [1, (state[:cash][state[:leader]].to_i + 9) / 10].max; end
@@ -88,6 +91,7 @@ module GameRoomCashAuction
       maximum = state[:cash][seat] + state[:contributions][seat]
       return false unless amount.is_a?(Integer) && amount <= maximum &&
         (all_in ? amount == maximum && state[:cash][seat].positive? : amount > state[:highest])
+      return false if amount < opening_bid_minimum(state)
       return false if revised?(state) && amount <= state[:highest]
       difference = amount - state[:contributions][seat]
       state[:cash][seat] -= difference

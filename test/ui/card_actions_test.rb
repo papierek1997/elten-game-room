@@ -52,4 +52,51 @@ composite = GameSurfaces.build(GameSurfaces::CompositeSpec.new(parts: [
 ]))
 composite.program = program
 assert(composite.reuse_candidates.first.program.equal?(program), "composite lost the native confirmation's owning program")
-puts "PASS shared card actions: optional confirmation, sorted physical IDs, single emission, cancellation, guards, pending choices and program ownership"
+
+# A passive hand can use Enter for a game-owned decision without another
+# action list or a form-wide Enter shortcut. Other card selections stay native.
+spec = hand_spec(%w[first second])
+zone = spec.zones.first
+zone.activation_action = GameSurfaces::Action.new(kind:'command', name:'stand', payload:{'round'=>1}, source:'hand')
+zone.activation_tip = 'Enter, keep your total.'
+surface = GameSurfaces.build(spec)
+field = surface.fields.first
+emitted = []
+surface.on_action { |action| emitted << action }
+3.times { assert(field.get_tips.count { |tip| tip == zone.activation_tip } == 1, 'Activation help accumulated or disappeared') }
+field.trigger(:select, [1])
+assert(emitted.length == 1 && emitted.first.to_h == {'kind'=>'command','action'=>'stand','round'=>1,'source'=>'hand'},
+  'Hand activation lost its payload/source or also emitted card selection')
+surface.action_guard = -> { false }
+field.trigger(:select, [0])
+assert(emitted.length == 1, 'Hand activation bypassed the shared action guard')
+surface.action_guard = nil
+surface.update_spec(hand_spec(%w[first second]))
+assert(surface.fields.first.equal?(field) && !field.get_tips.include?(zone.activation_tip), 'Removing activation rebuilt the field or left stale help')
+field.trigger(:select, [0])
+assert(emitted.length == 2 && emitted.last['kind'] == 'card' && emitted.last['card_id'] == 'first',
+  'Removing activation did not restore ordinary card selection')
+choice_spec = hand_spec(%w[first second], choices:true)
+choice_spec.zones.first.activation_action = zone.activation_action
+choice_spec.zones.first.activation_tip = zone.activation_tip
+choice_spec.zones.first.commands = [GameSurfaces::Command.new(id:'other', label:'Other command')]
+choice_surface = GameSurfaces.build(choice_spec)
+chosen = []
+choice_surface.on_action { |action| chosen << action }
+choice_field = choice_surface.fields.first
+choice_field.trigger(:select, [0])
+assert(choice_surface.cancel_pending_action? && !choice_field.get_tips.include?(zone.activation_tip),
+  'Default activation replaced an explicit card choice or left misleading help')
+choice_field.trigger(:select, [0])
+assert(chosen.map(&:name) == ['select'] && choice_field.get_tips.include?(zone.activation_tip),
+  'Finishing a choice used the default action or lost its restored help')
+choice_field.trigger(:select, [2])
+assert(chosen.map(&:name) == %w[select other], 'Default activation replaced an appended command')
+zone.activation_action = {'kind'=>'command','action'=>'stand'}
+begin
+  GameSurfaces.build(spec)
+  raise 'Malformed hand activation was accepted'
+rescue ArgumentError => error
+  assert(error.message == 'card zone activation must be a surface action', 'Unexpected activation validation failure')
+end
+puts "PASS shared card actions: optional confirmation, sorted physical IDs, single emission, cancellation, guards, pending choices, program ownership and field-scoped activation/help"

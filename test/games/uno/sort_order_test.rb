@@ -32,7 +32,8 @@ by_number = faces.flat_map { |face| colours.flat_map { |colour| copies.call(colo
   shortcut = shortcuts.find { |item| item.key == key && item.modifiers == [:shift] }
   3.times do |press|
     assert(surface.handle_command("sort_cards", shortcut.payload), "Shift+#{key} refused")
-    order = press.odd? ? expected.reverse : expected
+    descending = key == 'c' ? press.even? : press.odd?
+    order = descending ? expected.reverse : expected
     labels = order.map { |card| game.send(:uno_label, card, state) }
     assert(surface.fields.first.options == labels, "Wrong Shift+#{key} order on press #{press + 1}")
     assert(surface.fields.first.options[surface.fields.first.index] == focused_label, "Focus changed after sorting")

@@ -80,7 +80,7 @@ shortcut = game.game_shortcuts(table.replay, 'Alice').find { |item| item.key == 
 text = hand_readout(game, table.replay, surface, shortcut)
 assert(text == game.shortcut_feature_data(:hand, table.replay, 'Alice')[:message] && text.include?('13 high card points'), 'Bridge default readout lost suit grouping/honor points')
 surface.handle_command('sort_cards', 'mode'=>'colour', 'toggle'=>true)
-assert(surface.displayed_hand_cards('hand').map(&:id) == %w[AS KS 2S AH 2H 3D QC], 'Manual suit sorting abandoned Bridge order')
+assert(surface.displayed_hand_cards('hand').map(&:id) == %w[QC 3D 2H AH 2S KS AS], 'First suit sorting did not reverse the active Bridge default')
 surface.handle_command('sort_cards', 'mode'=>'number', 'toggle'=>true)
 assert(surface.displayed_hand_cards('hand').map(&:id) == %w[AS AH KS QC 3D 2S 2H], "Bridge rank sorting was not applied: #{surface.displayed_hand_cards('hand').map(&:id).inspect}")
 assert(shortcut.payload == {'hand_id'=>'hand'}, "Bridge lost its reminder hand metadata: #{shortcut.payload.inspect}")

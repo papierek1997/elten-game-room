@@ -67,6 +67,7 @@ module GameRoomGames
           end
           all_in = amount == maximum && state[:cash][seat].positive?
           return [:invalid_bet, nil] unless amount && amount <= maximum && (all_in || amount > state[:highest])
+          return [:invalid_bet, nil] if amount < R.opening_bid_minimum(state)
           return [:invalid_bet, nil] if R.revised?(state) && amount <= state[:highest]
           return [:ok, event_plan(all_in ? 'all_in' : 'bid', "#{state[:round]}|#{amount}")]
         end
@@ -93,15 +94,17 @@ module GameRoomGames
           base = {'kind'=>'question', 'question_id'=>auction_id(state)}
           actions = !R.revised?(state) && seat != state[:leader] ? [base.merge('action'=>'pass')] : []
           maximum = state[:cash][seat] + state[:contributions][seat]
+          minimum = R.opening_bid_minimum(state)
+          return actions if maximum < minimum
           amount = [state[:highest] + [state[:options]['ante'], 1].max, maximum].min
           if R.revised?(state)
             increment = [state[:options]['ante'], 1, (maximum + 99) / 100].max
             amount = [state[:highest] + increment, maximum].min
             budget = bot_bid_budget(state, seat, maximum)
-            amount = state[:highest] + 1 if amount > budget && state[:highest] < budget
+            amount = [state[:highest] + 1, minimum].max if amount > budget && state[:highest] < budget
           end
-          actions << base.merge('action'=>'submit', 'answer'=>amount.to_s) if amount > state[:highest]
-          can_raise = !R.revised?(state) || maximum > state[:highest]
+          actions << base.merge('action'=>'submit', 'answer'=>amount.to_s) if amount > state[:highest] && amount >= minimum
+          can_raise = maximum >= minimum && (!R.revised?(state) || maximum > state[:highest])
           actions << base.merge('action'=>'submit', 'answer'=>'A') if can_raise && state[:cash][seat].positive? && (maximum > amount || amount <= state[:highest])
           return actions
         elsif state[:phase] == :answering && seat == state[:leader]
@@ -124,6 +127,11 @@ module GameRoomGames
         seat = player_index(replay.players, actor)
         return super unless seat
         maximum = replay.state[:cash][seat] + replay.state[:contributions][seat]
+        minimum = R.opening_bid_minimum(replay.state)
+        if minimum.positive?
+          return _('You do not have enough points for the first bid (minimum: %{minimum}).') % {minimum: minimum} if maximum < minimum
+          return _('Enter an amount from %{minimum} to %{maximum}, or A for all-in.') % {minimum: minimum, maximum: maximum}
+        end
         if R.revised?(replay.state) && maximum <= replay.state[:highest]
           return _('You do not have enough points to beat the highest bid.')
         end

@@ -29,14 +29,14 @@ spades = GameRoomGames::Spades.new
   assert(ids.call(restored) == expected.call, "#{phase}: reconstruction lost suit sorting")
 
   surface.handle_command('sort_cards', 'mode'=>'colour', 'toggle'=>true)
-  assert(ids.call == expected.call, "#{phase}: the first explicit suit sort reversed the default")
+  assert(ids.call == expected.call.reverse, "#{phase}: the first suit sort did not reverse the active default")
   surface.handle_command('sort_cards', 'mode'=>'colour', 'toggle'=>true)
   state[:hands]['Alice'] << 'JH'
   surface.update_spec(spec.call)
-  assert(ids.call == expected.call.reverse, "#{phase}: a received card discarded explicit descending sorting")
+  assert(ids.call == expected.call, "#{phase}: a received card discarded explicit ascending sorting")
   assert(!surface.handle_command('sort_cards', 'mode'=>'none'), "#{phase}: removed order was accepted")
   state[:hands]['Alice'] << 'TH'
   surface.update_spec(spec.call)
-  assert(ids.call == expected.call.reverse, "#{phase}: refusing an order lost the current sort")
+  assert(ids.call == expected.call, "#{phase}: refusing an order lost the current sort")
 end
 puts 'PASS 3-5-8 suit sorting: Spades/H parity, received cards in five phases, cursor/cue, reconstruction and manual overrides'

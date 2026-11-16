@@ -216,7 +216,7 @@ In 1000 miles, Shift+M restores the order in which you received the cards.
 The initial hand layout depends on the game and variant; your chosen sorting
 stays active when you receive more cards.
 
-Repeating a sorting shortcut reverses the order. Z and Shift+Z move to
+The shortcut for the current sorting mode reverses the card order. Z and Shift+Z move to
 the next or previous playable card or tile. If there is only one unambiguous
 play, the shortcut may make that move immediately. Availability depends
 on the game and variant; check F1 in the game area.

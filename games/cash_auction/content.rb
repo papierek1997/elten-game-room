@@ -161,7 +161,7 @@ module GameRoomCashAuction
     def content_options_error(options)
       version = option_source_value(options, VERSION_KEY)
       present = options.key?(VERSION_KEY) || options.key?(VERSION_KEY.to_sym)
-      unless !present || (version.is_a?(Integer) && [1, 2, 3, 4, GameRoomCashAuction::Rules::CURRENT_VERSION].include?(version))
+      unless !present || (version.is_a?(Integer) && version.between?(1, GameRoomCashAuction::Rules::CURRENT_VERSION))
         return _('Unsupported Cash Auction rules version.')
       end
       return super unless GameRoomCashAuction::Rules.revised_options?(options)

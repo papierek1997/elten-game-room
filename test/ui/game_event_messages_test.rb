@@ -19,8 +19,9 @@ check.call("Poker: R, G and draw-poker card numbers") do
   shortcuts = game.custom_game_shortcuts(view, "Alice")
   assert(shortcuts.find { |s| s.key == "r" }.prompt == "Raise by:", "Raise prompt is verbose")
   assert(shortcuts.find { |s| s.key == "g" }.message == "You have no combination.", "G reads high card")
+  displayed_cards = %w[5H 7S 3D 2C 9C]
   1.upto(5) do |n|
-    assert(shortcuts.find { |s| s.key == n.to_s }.message == game.send(:poker_card_label, state[:hands]["Alice"][n - 1]), "Wrong draw card #{n}")
+    assert(shortcuts.find { |s| s.key == n.to_s }.message == game.send(:poker_card_label, displayed_cards[n - 1]), "Wrong displayed draw card #{n}")
   end
   state[:hands]["Alice"] = %w[2C 2D]
   assert(game.send(:best_combination_text, state[:hands]["Alice"]) == "one pair: 2.", "Pair of twos lost")

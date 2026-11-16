@@ -751,7 +751,7 @@ module GameSurfaces
         changed = false
         same_epoch = true
         cards = sorted_cards(zone.cards.to_a, active_card_sort_mode)
-        validate_card_choices!(cards)
+        validate_card_zone!(zone, cards)
         zone_id = zone.id.to_s
         @cards[zone_id] = cards
         index = remembered_index(remembered, zone.id)
@@ -781,6 +781,7 @@ module GameSurfaces
           empty_label: zone.empty_label.to_s
         )
         control.card_navigation_source = -> { navigation_hand_cards(zone_id) }
+        control.card_activation_tip = pending ? nil : zone.activation_tip
         control.on(:select) do |params|
           next if respond_to?(:intercept_card_selection, true) && intercept_card_selection(zone_id, params.to_a[0].to_i)
           zone = @zones.find { |item| item.id.to_s == zone_id }
@@ -932,7 +933,7 @@ module GameSurfaces
       @zones.each_with_index do |zone, field_index|
         zone_id = zone.id.to_s
         next_cards = sorted_cards(zone.cards.to_a, active_card_sort_mode)
-        validate_card_choices!(next_cards)
+        validate_card_zone!(zone, next_cards)
         next_cards, index, changed = CardHandCursor.resolve(next_cards, zone.hand_order, zone.hand_epoch,
           remembered.fetch("hand_cursors", {})[zone_id], remembered["zones"][zone_id], sorted: sorted_hand?, select_drawn: zone.select_drawn != false)
         @cards[zone_id] = next_cards
@@ -945,6 +946,7 @@ module GameSurfaces
         labels = pending ? card_choices(pending[:card]).map { |choice| choice_label(choice) } : card_list_labels(zone, next_cards)
         control.options = labels if control.options != labels
         control.header = pending ? choice_header(pending[:card]) : zone.header.to_s
+        control.card_activation_tip = pending ? nil : zone.activation_tip
         control.empty_label = zone.empty_label.to_s if control.respond_to?(:empty_label=)
         control.index = pending ? pending[:choice_index] : index
         @cursor_announcements[zone_id] = card_label(next_cards[index]) if changed && !pending
@@ -971,7 +973,7 @@ module GameSurfaces
       return false unless card_sort_mode_allowed?(mode)
 
       toggle = payload["toggle"] || payload[:toggle]
-      direction = toggle && @card_sort_mode == mode && @card_sort_direction == "ascending" ? "descending" : "ascending"
+      direction = card_sort_direction_for(mode, toggle:toggle)
       sorted_any = false
       @zones.each_with_index do |zone, index|
         cards = @cards.fetch(zone.id.to_s)
@@ -1093,7 +1095,10 @@ module GameSurfaces
       value.to_s
     end
 
-    def validate_card_choices!(cards)
+    def validate_card_zone!(zone, cards)
+      if zone.activation_action != nil && !zone.activation_action.is_a?(Action)
+        raise ArgumentError, "card zone activation must be a surface action"
+      end
       cards.each do |card|
         choices = card_choices(card)
         ids = choices.map { |choice| choice_id(choice) }
@@ -1108,6 +1113,7 @@ module GameSurfaces
       @pending_choices[zone_id] = { card: card, card_index: card_index.to_i }
       control.options = card_choices(card).map { |choice| choice_label(choice) }
       control.header = choice_header(card)
+      control.card_activation_tip = nil
       control.index = 0
       control.focus(0)
     end
@@ -1119,6 +1125,7 @@ module GameSurfaces
 
       control.options = card_list_labels(zone, @cards.fetch(zone_id))
       control.header = zone.header.to_s
+      control.card_activation_tip = zone.activation_tip
       control.index = pending[:card_index]
       control.focus(control.index) if speak
       true

@@ -3,7 +3,7 @@ require_relative '../support/assertions'
 require_relative '../../games/rummy'
 include GameRoomTest::Assertions
 
-def mode_spec(packet:, modes:)
+def mode_spec(packet:, modes:, default_sort: 'colour')
   ids = %w[3C 9S 2H]
   cards = ids.each_with_index.map do |id, index|
     suit = %w[H S D C].index(id[1])
@@ -12,10 +12,57 @@ def mode_spec(packet:, modes:)
   end
   if packet
     GameSurfaces::PacketCardSpec.new(id:'hand', header:'Cards', cards:cards, action_name:'play', allow_packet:true,
-      hand_order:ids, hand_epoch:'one', default_sort:'colour', sort_modes:modes)
+      hand_order:ids, hand_epoch:'one', default_sort:default_sort, sort_modes:modes)
   else
-    GameSurfaces::CardTableSpec.new(default_sort:'colour', sort_modes:modes, zones:[
+    GameSurfaces::CardTableSpec.new(default_sort:default_sort, sort_modes:modes, zones:[
       GameSurfaces::CardZoneSpec.new(id:'hand', header:'Cards', cards:cards, hand_order:ids, hand_epoch:'one')])
+  end
+end
+
+# A declared default is already active before the first manual command. Both
+# surface families reverse it immediately, without losing a card or packet.
+[false, true].each do |packet|
+  {'colour'=>%w[2H 9S 3C], 'number'=>%w[2H 3C 9S], 'none'=>%w[3C 9S 2H]}.each do |mode, ascending|
+    spec = mode_spec(packet:packet, modes:%w[colour number none], default_sort:mode)
+    surface = GameSurfaces.build(spec)
+    ids = -> { surface.displayed_hand_cards('hand').map(&:id) }
+    assert_equal(ascending, ids.call, "#{packet}/#{mode}: wrong initial order")
+    surface.fields.first.index = ids.call.index('9S')
+    if packet
+      %w[3C 2H].each { |id| surface.send(:toggle_card, surface.displayed_hand_cards('hand').find { |card| card.id == id }) }
+    end
+    emitted = []
+    3.times do |press|
+      surface.on_action { |action| emitted << action }
+      direction = mode != 'none' && press.even? ? 'descending' : 'ascending'
+      expected = direction == 'descending' ? ascending.reverse : ascending
+      $spoken_messages.clear
+      assert(surface.handle_command('sort_cards', 'mode'=>mode, 'toggle'=>true,
+        'ascending_message'=>'Ascending', 'descending_message'=>'Descending'), 'Default sort command was refused')
+      assert_equal(expected, ids.call, "#{packet}/#{mode}: wrong order on press #{press + 1}")
+      assert_equal([direction.capitalize], $spoken_messages, 'Sort direction was not announced once')
+      assert_equal('9S', ids.call[surface.fields.first.index], 'Sort lost the physical cursor')
+      assert_equal(%w[3C 2H], surface.state['selected_ids'], 'Sort reordered the prepared packet') if packet
+      $spoken_messages.clear
+      control = surface.fields.first
+      surface.update_spec(spec)
+      assert(surface.fields.first.equal?(control), 'Sort refresh rebuilt the control')
+      assert_equal(expected, ids.call, 'Refresh lost the sort direction')
+      assert($spoken_messages.empty?, 'Quiet refresh repeated sorting speech')
+      surface = GameSurfaces.build(spec, state:surface.state)
+      assert_equal(expected, ids.call, 'Reconstruction lost the sort direction')
+      assert_equal('9S', ids.call[surface.fields.first.index], 'Reconstruction lost the physical cursor')
+      assert_equal(%w[3C 2H], surface.state['selected_ids'], 'Reconstruction changed the packet') if packet
+    end
+    other_mode = mode == 'number' ? 'colour' : 'number'
+    expected = other_mode == 'colour' ? %w[2H 9S 3C] : %w[2H 3C 9S]
+    surface.handle_command('sort_cards', 'mode'=>other_mode, 'toggle'=>true)
+    assert_equal(expected, ids.call, 'A different mode did not start ascending')
+    surface.handle_command('sort_cards', 'mode'=>other_mode, 'toggle'=>true)
+    assert_equal(expected.reverse, ids.call, 'An explicit sort did not reverse')
+    surface.handle_command('sort_cards', 'mode'=>other_mode)
+    assert_equal(expected, ids.call, 'A non-toggle command did not set ascending order')
+    assert(emitted.empty?, 'Local sorting emitted a game action')
   end
 end
 
@@ -67,4 +114,4 @@ assert_equal(%w[2S0 3S0], surface.state['meld_selection'], 'Dropping a disabled 
 before = Marshal.dump(surface.state)
 assert(!surface.handle_command('sort_cards', 'mode'=>'none'), 'Meld hand accepted the removed mode')
 assert_equal(before, Marshal.dump(surface.state), 'A refused meld sort changed preparation')
-puts 'PASS card sort permissions: tables/packets/melds, retained callback refusal, stale local-mode reset, physical focus and prepared-packet preservation'
+puts 'PASS card sort permissions: default/explicit toggles, receipt-order restoration, tables/packets/melds, retained callback refusal, stale local-mode reset, physical focus and prepared-packet preservation'

@@ -801,6 +801,22 @@ module GameRoomChangelog
         "Category names in Dice General, Yahtzee and Balut now follow the current interface language, including after changing it without restarting Power Games.",
         "Darts no longer loses an arrow-key press or throw when a modifier key is pressed immediately afterwards."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.9",
+      build: 272,
+      changes: [
+        "Added Darts rankings for the best three-dart round and best average score, separately for each difficulty. Personal records are private by default; Ctrl+P lets you publish them or remove public results. Many thanks to postukujący for this feature!",
+        "In Darts, bots continue playing after replacing a departing player, and a host who is observing can run a game with bots. Solo results and observers' aiming sounds have also been corrected.",
+        "Card hands now use consistent ordering for starting, received and exchanged cards. Tysiac, Belote and Jass use the same hand ordering as Spades. Mille Bornes keeps newly received cards at the end of the hand.",
+        "UNO starts with cards sorted by value for straights and super interceptions, and by colour otherwise. Redundant sorting modes have been removed. Pressing the shortcut for the current sorting mode reverses it from the first press.",
+        "In Hearts, a passed card disappears from your hand immediately, with a short confirmation.",
+        "Blackjack shows the dealer's visible card and your hand in one game field. Space draws a card and Enter stands; doubling and splitting remain available when allowed.",
+        "Dice General, Balut and Yahtzee share consistent scoring sounds. Dice General and Balut show zero-point entries more clearly, and Balut explains points earned for completed rows and the overall total.",
+        "Cash Auction starts with an ante of 100 points by default. The first offer must be at least the ante; later offers only need to beat the highest bid. Three consecutive auctions without a bid cost 5% of the remaining balance.",
+        "In Cash Auction, payments for black chests no longer increase the question pool. The pool from earlier questions remains available for the next question.",
+        "New Cash Auction and Duck Racing tables select only the general-knowledge question set for the interface language by default, rather than remembering previous question-set selections."
+      ].freeze
     ).freeze
   ].freeze
 

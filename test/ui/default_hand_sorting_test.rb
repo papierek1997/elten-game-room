@@ -68,10 +68,11 @@ cases.each do |game, replay, raw, first, second|
 
   surface.handle_command('sort_cards', 'mode'=>'colour', 'toggle'=>true)
   by_suit = cards.sort_by { |card| [*card.sort_keys.fetch('colour'), card.id] }.map(&:id)
-  assert(displayed_ids(surface) == by_suit, "#{game.id}: first explicit sort reversed the default")
+  first_sort = mode == 'colour' ? by_suit.reverse : by_suit
+  assert(displayed_ids(surface) == first_sort, "#{game.id}: first sort ignored the active default")
   surface.handle_command('sort_cards', 'mode'=>'colour', 'toggle'=>true)
   surface.update_spec(spec.call)
-  assert(displayed_ids(surface) == by_suit.reverse, "#{game.id}: refresh lost descending sorting")
+  assert(displayed_ids(surface) == first_sort.reverse, "#{game.id}: refresh lost the selected sort direction")
   surface.handle_command('sort_cards', 'mode'=>'number', 'toggle'=>true)
   numeric = cards.sort_by { |card| [*card.sort_keys.fetch('number'), card.id] }.map(&:id)
   surface.update_spec(spec.call)

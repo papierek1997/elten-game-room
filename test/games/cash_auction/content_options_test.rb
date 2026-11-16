@@ -91,7 +91,7 @@ end
   invalid = game.normalize_options(options.merge('content_pack_manifest'=>manifest))
   assert(game.validation_error(invalid), 'Accepted a malformed manifest')
 end
-[nil, 0, 6, '2', '3', '4', '5', false, 2.0, 3.0, 4.0, 5.0, [2]].each do |version|
+[nil, 0, GameRoomCashAuction::Rules::CURRENT_VERSION + 1, '2', '3', '4', '5', '6', false, 2.0, 3.0, 4.0, 5.0, 6.0, [2]].each do |version|
   invalid = game.normalize_options(options.merge('auction_rules_version'=>version))
   assert_equal(version, invalid['auction_rules_version'])
   assert(game.validation_error(invalid), 'An invalid rules marker silently selected legacy rules')

@@ -8,7 +8,7 @@ module GameSurfaces
 
     ARROWS = %i[key_left key_right].freeze
 
-    attr_writer :card_navigation_source
+    attr_writer :card_navigation_source, :card_activation_tip
 
     def update
       key = ARROWS.find do |arrow|
@@ -29,6 +29,7 @@ module GameSurfaces
 
     def get_tips
       inherited = defined?(super) ? super.to_a : []
+      inherited = [@card_activation_tip] + inherited unless @card_activation_tip.to_s.empty?
       navigation_groups ? [_("Left/Right: jump between suits or colours. Up/Down: browse the entire hand.")] + inherited : inherited
     end
 

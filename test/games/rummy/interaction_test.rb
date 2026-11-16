@@ -194,10 +194,11 @@ check.call("sorting tells both ascending and descending directions") do
   game, _state, replay, surface, _control, = interaction_fixture
   %w[c h].each do |key|
     item = shortcut(game, replay, key, [:shift])
+    directions = key == 'c' ? %w[descending ascending] : %w[ascending descending]
     surface.handle_command(item.action_name, item.payload)
-    assert($spoken_messages.last.include?("ascending"), "no ascending sort confirmation")
+    assert($spoken_messages.last.include?(directions.first), "wrong first sort confirmation for #{key}")
     surface.handle_command(item.action_name, item.payload)
-    assert($spoken_messages.last.include?("descending"), "no descending sort confirmation")
+    assert($spoken_messages.last.include?(directions.last), "wrong second sort confirmation for #{key}")
   end
 end
 

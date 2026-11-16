@@ -4,6 +4,7 @@ require_relative "../lib/game_bots"
 require_relative "../lib/blackjack_auction"
 require_relative "../lib/blackjack_social"
 require_relative "../lib/twenty_one_strategy"
+require_relative "../lib/context_help"
 
 module GameRoomGames
   using GameRoomLocalization::Translations
@@ -238,30 +239,31 @@ module GameRoomGames
           cards: actions, empty_label: current_turn_shortcut_text(replay, viewer))])
       end
       hand = displayed_hand(state, viewer)
-      zones = []
+      public_dealer = state[:dealer_revealed] ? state[:dealer] : state[:dealer].take(1)
+      dealer_text = public_dealer.map { |card| playing_card_label(card) }.join(", ")
+      dealer_text += ", " + _("hidden card") if !state[:dealer_revealed] && state[:dealer].size > 1
+      header = dealer_text.empty? ? name : _("Dealer: %{cards}") % {cards: dealer_text}
+      header = _("Dealing player: %{player}; no house hand.") % {player:participant_name(state[:dealing_player])} if social?(state)
       if hand
         player = replay.players.find { |person| same_user?(person, viewer) }
         index = state[:hands].fetch(player).index(hand)
         count, total = state[:hands].fetch(player).size, hand_total(hand[:cards])
-        header = if count > 1
+        hand_header = if count > 1
           _("Your hand %{hand} of %{count}: %{total}") % {hand: index + 1, count: count, total: total}
         else
           _("Your hand; total %{total}.") % {total: total}
         end
-        zones.concat(card_hand_surface(hand[:cards], header: header, hand_epoch: [state[:round], player.to_s.downcase, index]).zones)
+        spec = card_hand_surface(hand[:cards], header: [header, hand_header].join("\n"),
+          hand_epoch: [state[:round], player.to_s.downcase, index])
+        if legal_actions(replay, viewer).any? { |action| action['action'] == 'stand' }
+          spec.zones.first.activation_action = GameSurfaces::Action.new(kind: 'command', name: 'stand')
+          spec.zones.first.activation_tip = GameRoomContextHelp.shortcut_tip(_("Enter"), _("Keep your total"))
+        end
+        return spec
       end
-      labels = {"hit" => _("Draw a card"), "stand" => _("Keep your total"), "double" => _("Double down"), "split" => _("Split pair"), "deal"=>_("Deal cards")}
-      actions = legal_actions(replay, viewer).map do |action|
-        GameSurfaces::Card.new(id: action["action"], value: action["action"], label: labels.fetch(action["action"]))
-      end
-      public_dealer = state[:dealer_revealed] ? state[:dealer] : state[:dealer].take(1)
-      dealer_text = public_dealer.map { |card| playing_card_label(card) }.join(", ")
-      dealer_text += ", " + _("hidden card") if !state[:dealer_revealed] && state[:dealer].size > 1
-      header = dealer_text.empty? ? _("Blackjack actions") : _("Dealer: %{cards}") % {cards: dealer_text}
-      header = _("Dealing player: %{player}; no house hand.") % {player:participant_name(state[:dealing_player])} if social?(state)
-      zones << GameSurfaces::CardZoneSpec.new(id: "actions", header: header, cards: actions,
-        empty_label: result_text(replay) || current_turn_shortcut_text(replay, viewer))
-      GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: zones)
+      GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: [
+        GameSurfaces::CardZoneSpec.new(id: "hand", header: header, cards: [],
+          empty_label: result_text(replay) || current_turn_shortcut_text(replay, viewer))])
     end
 
     def custom_game_shortcuts(replay, viewer)
@@ -269,6 +271,13 @@ module GameRoomGames
         return [GameShortcut.new(key:"d",label:_("deal the next social blackjack hand"),kind: :action,action_kind:"command",action_name:"deal")]
       end
       return auction_shortcuts(replay, viewer) if replay.state[:phase] == :betting && auction_rules?(replay.state[:options])
+      if replay.state[:phase] == :playing
+        choices = {'double'=>['d', _("Double down")], 'split'=>['p', _("Split pair")]}
+        return legal_actions(replay, viewer).filter_map do |action|
+          key, label = choices[action['action']]
+          GameShortcut.new(key: key, label: label, kind: :action, action_kind: 'command', action_name: action['action']) if key
+        end
+      end
       return [] unless replay.state[:phase] == :betting && same_user?(replay.current_player, viewer)
       maximum = maximum_bet(replay.state)
       [GameShortcut.new(key: "b", label: _("set your bet before the deal"), kind: :number_input,
