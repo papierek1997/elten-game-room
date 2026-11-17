@@ -91,9 +91,7 @@ end
 check(game.option_definitions.none? { |definition| definition.key == 'scoring' }, 'Removed public-dice variant is still selectable')
 check(game.notification_option_keys({}) == ['variant'], 'Table summary still exposes the removed scoring selector')
 
-# Independently derive the unknown opponent model's CDF by retaining the best
-# of two independent full throws, including exact ties. Do not use our helper
-# distribution as the oracle for its own exponentiation.
+# A single full throw has an independent exact weighted-outcome oracle.
 rank = GameRoomDicePokerHands.rank([3, 3, 3, 5, 6], "classic")
 lower = equal = 0
 GameRoomDicePokerStrategy::OUTCOMES.fetch(5).each do |dice, weight|
@@ -101,8 +99,22 @@ GameRoomDicePokerStrategy::OUTCOMES.fetch(5).each do |dice, weight|
   lower += weight if comparison < 0
   equal += weight if comparison == 0
 end
-below_two = lower.fdiv(6**5)**2
-equal_two = (lower + equal).fdiv(6**5)**2 - below_two
-utility = GameRoomDicePokerStrategy.contest_value("classic", [], 1, split_ties: true, attempts: 2)
-check((utility.call(rank) - below_two - equal_two / 2).abs < 1e-12, "Hidden-opponent equity miscounts best-of-two ties")
+utility = GameRoomDicePokerStrategy.contest_value("classic", [], 1, split_ties: true, attempts: 1)
+check((utility.call(rank) - (lower + equal / 2.0).fdiv(6**5)).abs < 1e-12,
+  "Hidden-opponent equity miscounts single-throw ties")
+
+# Further throws retain dice rather than take the best independent full roll.
+# The model's distribution is checked in poker_opponent_model_test; here compare
+# the utility against separately settling every possible final opponent rank,
+# not another copy of contest_value's CDF/binomial formula.
+[2, 3].each do |attempts|
+  distribution = GameRoomDicePokerStrategy.modeled_outcomes('classic', attempts)
+  expected = distribution.sum do |opponent, (_below, probability)|
+    comparison = rank <=> opponent
+    comparison.positive? ? probability : comparison.zero? ? probability / 2.0 : 0.0
+  end
+  utility = GameRoomDicePokerStrategy.contest_value('classic', [], 1, split_ties:true, attempts:attempts)
+  check((utility.call(rank) - expected).abs < 1e-12,
+    "Hidden-opponent equity miscounts retained-dice ties with #{attempts} throws")
+end
 puts "PASS Dice Poker ante-only opening, owner/opponent/spectator presentation, hidden history, contested/folded showdown, cold replay and bot information invariance"

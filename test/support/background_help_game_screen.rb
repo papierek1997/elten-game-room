@@ -4,6 +4,10 @@ require_relative '../../games/four_in_a_row'
 
 # In-memory native-session broker and clocked UI peripherals. The production
 # GameScreen#run, repository writes, replay, timers and clients are not replaced.
+module BackgroundGameScreenSupport
+  PROGRESS_TIMEOUT = 30.0
+end
+
 module EltenAPI::Tasks
   class Cancelled < StandardError; end unless const_defined?(:Cancelled)
   class CancellationToken
@@ -46,12 +50,12 @@ class Form
     # synthetic frame count is not a time budget for that asynchronous work.
     # Preserve both the normal delay and strategy; bound a stuck test by the
     # actual elapsed time instead of outrunning the worker with the UI clock.
-    deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + 30.0
+    deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + BackgroundGameScreenSupport::PROGRESS_TIMEOUT
     while @wait
       $help_clock += 0.016
       $help_frames += 1
       if Process.clock_gettime(Process::CLOCK_MONOTONIC) >= deadline
-        raise "Game did not progress while help was open within 30 seconds (#{$help_frames} fixture frames)"
+        raise "Game did not progress while help was open within #{BackgroundGameScreenSupport::PROGRESS_TIMEOUT.to_i} seconds (#{$help_frames} fixture frames)"
       end
       Form.driver.call(self)
       update

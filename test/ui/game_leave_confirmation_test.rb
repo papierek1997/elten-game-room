@@ -9,9 +9,13 @@ end
 $mainthread = $currentthread = Thread.current
 
 def wait_in_leave_dialog(loop_host, runner)
-  deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + 6
+  # The same paced, real planning worker runs under Help and confirmation.
+  # A shorter modal-only wall-clock bound makes correctness depend on CPU load.
+  deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + BackgroundGameScreenSupport::PROGRESS_TIMEOUT
   until yield
-    raise 'Game stopped inside the leave confirmation' if Process.clock_gettime(Process::CLOCK_MONOTONIC) > deadline
+    if Process.clock_gettime(Process::CLOCK_MONOTONIC) > deadline
+      raise "Game did not progress inside the leave confirmation within #{BackgroundGameScreenSupport::PROGRESS_TIMEOUT.to_i} seconds"
+    end
     $help_clock += 0.016
     loop_host.send(:loop_update)
     error = runner.take_error
