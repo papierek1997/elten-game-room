@@ -1,4 +1,4 @@
-require_relative 'bot_action_regressions_test'
+require_relative '../../support/makao_positions'
 game = GameRoomGames::Makao.new
 state = playing_makao_state(game,%w[Alice Bob],{'profile'=>'simple'},current:'Alice',
   hands:{'Alice'=>%w[7H 7D 7C 9C],'Bob'=>%w[6S 8S]},top:'9H')

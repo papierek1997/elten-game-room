@@ -124,6 +124,13 @@ It refuses to overwrite an existing directory. A new version requires a review o
 we do not update expectations in response to a failing test. The quality check compares code
 with `fixtures/quality_baseline.json`; the check itself is tested by `tooling/quality_checks_test.rb`.
 
+A settled-outcome regression must not regenerate its historical game using the
+current bot strategy: the same deal can legally produce different moves and
+winners after a strategy improvement. Preserve accepted events from a pinned
+reference commit and replay every prefix through the production reducer; retain
+the original result assertions and test current bot completion separately.
+`tournaments/tile_winning_units_policy_test.rb` demonstrates this separation.
+
 The `contracts/v1` corpus comes from unchanged `0c86d03` (Ruby 4.0.5, EN).
 It covers 30 turn-based games, up to the first 16 legal moves, synthetic participants,
 seed 137 and a local secret store. Checkpoints verify replay fields,
