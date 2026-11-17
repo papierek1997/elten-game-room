@@ -53,7 +53,10 @@ module GameRoomGames
         replay.finished? ? [ids[-2], ids[-1]] : [ids[-1], nil]
       end
 
-      def information_shortcuts(shortcuts, replay)
+      # Keep this framework decorator distinct from game-owned information
+      # builders. Poker has long used information_shortcuts(state, viewer) for
+      # its private table readout, so dynamic dispatch must not reach it here.
+      def decorate_information_shortcuts(shortcuts, replay)
         tail = score_target_text(replay)
         result = shortcuts.map do |shortcut|
           next shortcut unless tail && shortcut.key == 's' && shortcut.modifiers.empty? && shortcut.kind == :announcement
