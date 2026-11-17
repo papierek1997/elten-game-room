@@ -118,13 +118,13 @@ assert(choice["action"] == "roll", "the bot banked below 19 points")
 
 state[:turn_points] = 19
 choice = strategy.choose(actions: actions, actor: "Alice", random_source: GameRoomRandom::SequenceSource.new([100]), replay: bot_replay)
-assert(choice["action"] == "roll", "the bot never risks at 19 points")
+assert(choice["action"] == "roll", "the bot ignored a positive continuation expectation at 19")
 choice = strategy.choose(actions: actions, actor: "Alice", random_source: GameRoomRandom::SequenceSource.new([1]), replay: bot_replay)
-assert(choice["action"] == "bank", "the bot cannot bank at 19 points")
+assert(choice["action"] == "roll", "strategy consumed a random coin flip instead of comparing expectations")
 
 state[:turn_points] = 24
 choice = strategy.choose(actions: actions, actor: "Alice", random_source: GameRoomRandom::SequenceSource.new([100]), replay: bot_replay)
-assert(choice["action"] == "roll", "the bot never risks at 24 points")
+assert(choice["action"] == "bank", "the bot risked 24 despite a negative continuation expectation")
 choice = strategy.choose(actions: actions, actor: "Alice", random_source: GameRoomRandom::SequenceSource.new([1]), replay: bot_replay)
 assert(choice["action"] == "bank", "the bot does not usually bank at 24 points")
 

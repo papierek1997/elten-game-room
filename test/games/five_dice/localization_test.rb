@@ -59,6 +59,7 @@ balut = GameRoomGames::Balut.new
   balut_state = {sheets: {'Alice'=>sheet}, dice: [4, 4, 4, 4, 4]}
   grid = balut.send(:score_grid, balut_state, 'Alice', writable: true)
   enter = GameRoomLocalization.translate('%{category}: enter %{points}') % {category: expected_fours, points: 20}
+  enter = GameRoomLocalization.translate('%{label}, column %{column} of %{columns}') % {label: enter, column: 1, columns: 4}
   impossible = GameRoomLocalization.translate('No game points can be earned in this category.')
   assert(grid.cells.first.first == enter, "#{language}: Balut entry label changed language or confused game points")
   assert(grid.cells[3].last == impossible, "#{language}: Balut's impossible-row status is untranslated")

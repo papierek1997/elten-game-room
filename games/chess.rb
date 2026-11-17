@@ -318,6 +318,35 @@ module GameRoomGames
        state[:positions].sort]
     end
 
+    # A planning branch is not a server event. Keep the production move,
+    # promotion, check/mate and draw routines, but avoid serializing a move and
+    # validating the same generated choice a second time in the event reader.
+    def bot_search_transition(replay, selection, actor, event_id:, context: nil)
+      return [:finished,nil] if replay.finished?
+      return [:not_your_turn,nil] unless same_user?(replay.current_player,actor)
+      state,history = duplicate_state(replay.state),[]
+      if state[:pending_promotion]
+        piece = selection['card'].to_s.upcase
+        return [:invalid,nil] unless selection['kind']=='card' && selection['zone']=='promotion' && PROMOTIONS.include?(piece)
+        x,y = state[:pending_promotion]
+        state[:board][y][x] = "#{colour_for(state,actor)}#{piece}"
+        state[:pending_promotion] = nil
+        name,value = 'promote',piece
+      else
+        requested = action_to_move(selection)
+        move = available_board_moves(replay,actor).find { |candidate|same_board_move?(candidate,requested) }
+        return [:invalid_move,nil] unless move
+        result = apply_chess_move!(state,move,actor)
+        history << chess_move_history(event_id,actor,move,result)
+        name,value = board_event_action,move.event_value
+      end
+      finish_chess_turn!(state,actor,event_id,history) unless state[:pending_promotion]
+      event = {'id'=>event_id,'actor'=>actor,'action'=>name,'value'=>value}
+      [:ok,Replay.new(board:state[:board],players:state[:players],current_player:state[:current_player],
+        winner:state[:winner],draw:state[:draw],state:state,history:history,
+        accepted_events:replay.accepted_events+[event])]
+    end
+
     def bot_forced_continuation?(replay)
       replay.state[:pending_promotion] != nil
     end

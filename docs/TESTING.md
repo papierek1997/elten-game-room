@@ -141,6 +141,14 @@ replace any older game's expected state. Complete matches, row/column bonuses,
 joint wins, native randomness, saves and replacement remain separate tests in
 `test/games/five_dice/`.
 
+`v3/poker_bot_evidence.json` records the reviewed replay hashes after adding
+typed public bet/showdown metadata for opponent learning. The original v2
+inputs and hashes are untouched. `games/poker/bot_evidence_contract_test.rb`
+removes exactly those two added metadata fields on detached history entries
+and reproduces all 17 former full hashes, while checking unchanged rule state,
+text, actions, events, actor, legal order and RNG. Updating hashes without this
+semantic proof is not an acceptable way to validate a strategy change.
+
 `fixtures/polish_messages.json` contains independent expected text for
 translation regressions, grouped by the behavior being checked. It comes
 from existing wording checks and release history; the translation CLI never

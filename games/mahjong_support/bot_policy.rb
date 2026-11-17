@@ -5,16 +5,23 @@ require_relative 'hong_kong_scoring'
 require_relative 'mcr_scoring'
 require_relative 'riichi_deal'
 require_relative 'riichi_scoring'
+require_relative 'payments'
 
 module GameRoomMahjong
   module Bot
     # Takes only TileFlow's player observation plus public round metadata.
     # Legal actions and actual settlement still belong to TableRound.
     class Policy
-      def initialize(observation, seat:, dealer:, variant:, round_wind:, riichi_levels:)
+      def initialize(observation, seat:, dealer:, variant:, round_wind:, riichi_levels:, match_scores: nil, rounds_left: nil)
         @view, @seat, @variant, @round_wind = observation, seat, variant, round_wind
         @seats = observation.fetch(:hand_counts).size
         @seat_wind = 27 + (seat - dealer) % @seats
+        @dealer = dealer
+        @scoring_cache = {}
+        @risk_scale = 1.0
+        if match_scores && rounds_left && rounds_left <= 2
+          @risk_scale = match_scores[seat] < match_scores.max ? 0.7 : 1.3
+        end
         @hand = kinds(observation.fetch(:concealed))
         @melds = observation.fetch(:melds).fetch(seat).map do |meld|
           [meld.fetch(:type), meld.fetch(:first_kind), !meld[:from].nil?]
@@ -23,6 +30,9 @@ module GameRoomMahjong
         observation.fetch(:discard_history).each { |owner, tile| @rivers[owner] << Tiles.kind(tile) }
         @levels = riichi_levels || Array.new(@seats, 0)
         @threats = @levels.each_index.select { |other| other != seat && @levels[other].positive? }
+        if variant != 'riichi'
+          @threats = observation.fetch(:melds).each_index.select { |other| other != seat && observation[:melds][other].size >= 3 }
+        end
         indicators = observation.fetch(:dora_indicators)
         @dora = indicators.map { |tile| RiichiDeal.dora_kind(tile, sanma: @seats == 3) }
         @flowers = kinds(observation.fetch(:flowers).fetch(seat))
@@ -35,11 +45,12 @@ module GameRoomMahjong
             4 - @visible.fetch(kind, 0) - owned.fetch(kind, 0)
         end
         @analysis = Efficiency.new(variant: @variant, available: @available, discards: @rivers[seat],
-          completion: method(:scoring_wait), dora: @dora,
+          completion: method(:scoring_wait), completion_value: method(:scoring_values), dora: @dora,
           route: @variant == 'hong_kong' ? method(:hong_kong_route) : nil)
       end
 
       def choose(actions)
+        @can_declare = actions.any? { |action| action[:type] == :riichi }
         pass = actions.find { |action| action[:choice] == [:pass] }
         return claim(actions, pass) if pass
 
@@ -47,7 +58,7 @@ module GameRoomMahjong
         return actions.first if discards.empty?
 
         choice = @analysis.discard(@hand, @melds, kinds(discards.map { |action| action[:tile] }),
-          risk: @threats.empty? ? nil : method(:danger))
+          risk: @threats.empty? ? nil : method(:danger), push: method(:push_hand?))
         discard = discards.find { |action| Tiles.kind(action[:tile]) == choice.kind }
         kong = useful_kong(actions, choice)
         return kong if kong
@@ -121,30 +132,56 @@ module GameRoomMahjong
       def danger(kind)
         @threats.sum do |other|
           # Furiten makes this tile safe against this specific opponent.
-          next 0.0 if @rivers[other].include?(kind)
+          next 0.0 if @variant == 'riichi' && @rivers[other].include?(kind)
 
           # These are softer estimates, never a claim of safety.
           remaining = @available[kind]
           base = kind >= 27 ? 0.8 + remaining * 0.35 :
             1.6 + [kind % 9, 8 - kind % 9].min * 0.23 + remaining * 0.12
           base + @dora.count(kind) * 0.45
-        end
+        end * @risk_scale
       end
 
       def scoring_wait(tiles, winning, melds)
+        scoring_values(tiles, winning, melds).map(&:positive?)
+      end
+
+      def push_hand?(choice)
+        return true if @threats.empty? || danger(choice.kind).zero?
+        return true if @risk_scale < 1 && choice.distance <= 1 && choice.acceptance >= 4
+        minimum = @variant == 'riichi' ? 8000 : @variant == 'hong_kong' ? 96 : 80
+        return true if choice.distance.zero? && choice.acceptance.positive? && choice.value >= minimum && danger(choice.kind) <= 4
+        unit = @variant == 'riichi' ? 2000.0 : @variant == 'hong_kong' ? 40.0 : 48.0
+        choice.distance.zero? && choice.acceptance >= 2 && choice.value / unit * choice.acceptance >= danger(choice.kind) * 2.5
+      end
+
+      def scoring_values(tiles, winning, melds)
+        key = [tiles.sort, winning, melds, @can_declare]
+        return @scoring_cache[key] if @scoring_cache.key?(key)
         dora = (tiles + melds.flat_map { |meld| Hand.tiles_for(meld.first(2)) }).sum { |kind| @dora.count(kind) }
-        [true, false].map do |self_draw|
+        @scoring_cache[key] = [true, false].map do |self_draw|
           common = {concealed: tiles, winning_tile: winning, melds: melds, self_draw: self_draw,
             seat_wind: @seat_wind, round_wind: @round_wind}
           result = case @variant
           when 'riichi'
-            RiichiScoring.score(**common, riichi: @levels[@seat], dora: dora)
+            RiichiScoring.score(**common, riichi: [@levels[@seat], @can_declare ? 1 : 0].max, dora: dora)
           when 'hong_kong'
             HongKongScoring.score(**common, flowers: @flowers)
           when 'mcr'
             MCRScoring.score(**common, flowers: @flowers.size, flags: {last_kind: @visible.fetch(winning, 0) == 3})
           end
-          !result.nil?
+          next 0 unless result
+          discarder = self_draw ? nil : (@seat + 1) % @seats
+          payout = case @variant
+          when 'riichi'
+            Payments.riichi(han: result.han, fu: result.fu, yakuman: result.yakuman,
+              winner: @seat, dealer: @dealer, seats: @seats, discarder: discarder)
+          when 'hong_kong'
+            Payments.hong_kong(fan: result.fan, minimum: 3, winner: @seat, discarder: discarder)
+          when 'mcr'
+            Payments.mcr(fan: result.fan, flowers: result.flowers, winner: @seat, discarder: discarder)
+          end
+          payout.fetch(@seat)
         end
       end
 

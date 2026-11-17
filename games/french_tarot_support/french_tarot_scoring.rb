@@ -18,8 +18,8 @@ module GameRoomGames
       {14=>9, 13=>7, 12=>5, 11=>3}.fetch(rank, 1)
     end
 
-    def contract_value(cards, contract)
-      margin = cards.sum { |card| half_points(card) } - TARGET.fetch(cards.count { |card| oudler?(card) })
+    def contract_value(cards, contract, compensation: 0)
+      margin = cards.sum { |card| half_points(card) } + compensation - TARGET.fetch(cards.count { |card| oudler?(card) })
       sign = margin.negative? ? -1 : 1
       sign * (50 + margin.abs) * CONTRACTS.fetch(contract)
     end

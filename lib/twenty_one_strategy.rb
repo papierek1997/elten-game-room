@@ -14,16 +14,19 @@ module GameRoomTwentyOneStrategy
     weights.sum { |value, weight| weight * yield(value) }.fdiv(weights.values.sum)
   end
 
-  def card_dealer(upcard)
-    holes = CARDS.reject { |value, _| (upcard == 1 && value == 10) || (upcard == 10 && value == 1) }
+  def card_dealer(upcard, weights: CARDS)
+    holes = weights.reject { |value, _| (upcard == 1 && value == 10) || (upcard == 10 && value == 1) }
     @card_dealers ||= {}
-    @card_dealers[upcard] ||= distribution(holes) do |value|
-      terminal_distribution(upcard + value, upcard == 1 || value == 1, {}) { CARDS }
+    @card_dealers.clear if @card_dealers.size >= 64
+    @card_dealers[[upcard,weights.to_a]] ||= distribution(holes) do |value|
+      terminal_distribution(upcard + value, upcard == 1 || value == 1, {}) { weights }
     end
   end
 
-  def card_opponent
-    @card_opponent ||= terminal_distribution(0, false, {}) { CARDS }
+  def card_opponent(weights: CARDS)
+    @card_opponents ||= {}
+    @card_opponents.clear if @card_opponents.size >= 64
+    @card_opponents[weights.to_a] ||= terminal_distribution(0, false, {}) { weights }
   end
 
   def dice_opponent(two_dice)

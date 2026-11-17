@@ -2,6 +2,7 @@ require "digest"
 require_relative "card_game"
 require_relative "../lib/game_bots"
 require_relative "../lib/game_turn_clock"
+require_relative "../lib/poker_opponents"
 
 require_relative "../lib/game_room_localization"
 
@@ -452,29 +453,15 @@ module GameRoomGames
       call = [[state[:current_bet] - state[:street_bets][actor], 0].max, state[:stacks][actor]].min
       paid = action["amount"].to_i
       contributions = state[:contributions].merge(actor => state[:contributions][actor] + paid)
-      expectation = poker_pot_expectation(state, actor, contributions, ranges) - paid
       case action["action"]
       # Checking keeps our share of the existing pot. Comparing a raise with
       # zero incorrectly rewarded virtually any positive-equity hand for betting.
-      when "check", "call" then expectation
+      when "check", "call" then poker_pot_expectation(state, actor, contributions, ranges) - paid
       when "raise", "all_in"
-        return expectation if paid <= call
+        return poker_pot_expectation(state, actor, contributions, ranges) - paid if paid <= call
         raise_by = paid - call
-        opponents = contenders(state) - [actor]
-        fold_chance = opponents.reduce(1.0) do |chance, player|
-          next 0.0 if state[:all_in][player]
-          pressure = raise_by.to_f / [pot + raise_by, 1].max
-          # A token bet into a large pot should not inherit a large baseline
-          # chance of making EVERY rival fold. Public aggression reduces it.
-          chance * [[pressure * 0.8 / (1 + ranges.fetch(player, 0) * 0.5), 0.005].max, 0.65].min
-        end
-        opponents.each do |player|
-          extra = [state[:street_bets][actor] + paid - state[:street_bets][player], state[:stacks][player]].min
-          contributions[player] += [extra, 0].max
-        end
-        called = poker_pot_expectation(state, actor, contributions, ranges) - paid
         risk = 0.12 * raise_by * raise_by / [pot + current_big_blind(state), 1].max
-        fold_chance * pot + (1 - fold_chance) * called - risk
+        poker_raise_expectation(state, actor, paid, ranges, pot: pot, raise_by: raise_by) - risk
       else 0
       end
     end
@@ -729,6 +716,8 @@ module GameRoomGames
       return false if candidate == nil
       paid = 0
       previous_bet = state[:current_bet]
+      previous_call = [[previous_bet - state[:street_bets][player], 0].max, state[:stacks][player]].min
+      previous_pot = state[:contributions].values.sum
       case action
       when "fold"
         state[:folded][player] = true
@@ -751,7 +740,9 @@ module GameRoomGames
       state[:acted][player] = true
       (state[:acted_at_bet] ||= {})[player] = state[:current_bet]
       id = repository.event_id(event)
-      history << HistoryEntry.new(key: "bet:#{id}", text: betting_history(player, action, paid, state, previous_bet), event_id: id, actor: actor, kind: :game)
+      history << HistoryEntry.new(key: "bet:#{id}", text: betting_history(player, action, paid, state, previous_bet), event_id: id, actor: actor, kind: :game,
+        field: 'poker_bet', value: {'action' => action, 'call' => previous_call, 'paid' => paid, 'pot' => previous_pot,
+          'raise_by' => [state[:street_bets][player] - previous_bet, 0].max, 'hand' => state[:hand_number], 'street' => state[:street]})
       progress_after_action(state, player, id, history)
       true
     end
@@ -879,7 +870,8 @@ module GameRoomGames
         cards = hand_for(state, player).sort_by { |card| playing_sort_key(card) }.map { |card| poker_card_label(card) }.join(', ')
         history << HistoryEntry.new(key: "showdown_hand:#{event_id}:#{player.downcase}",
           text: _("%{player} had %{cards}: %{hand}.") % {player: participant_name(player), cards: cards, hand: showdown_hand_text(ranks[player], [])},
-          event_id: event_id, actor: player, kind: :game)
+          event_id: event_id, actor: player, kind: :game, field: 'poker_showdown',
+          value: {'hand' => state[:hand_number], 'category' => ranks[player].first, 'variant' => state[:options]['variant']})
       end
       messages = []
       pots.each_with_index do |pot, index|
@@ -1098,16 +1090,30 @@ module GameRoomGames
     end
 
     def poker_public_ranges(replay)
-      events = GameRoomParticipantDecisionEvents.for(replay).to_a
+      source = GameRoomParticipantDecisionEvents.for(replay)
+      cache_key = [replay.object_id, source.object_id, source.size, replay.history.size]
+      return @poker_public_ranges if @poker_public_ranges_replay.equal?(replay) && @poker_public_ranges_key == cache_key
+      events = source.to_a
       start = events.rindex { |event| event["action"] == "deal" }
       events = events[(start + 1)..] if start
       ranges = Hash.new(0)
+      ranges[:pressure] = {}
+      bets = replay.history.select { |entry| entry.field == 'poker_bet' }.to_h { |entry| [entry.event_id, entry.value] }
       events.each do |event|
         next unless event["action"] == "bet"
         name = event["value"].to_s.split("|", 2).first
-        ranges[event["actor"]] += 1 if %w[raise all_in].include?(name)
+        data = bets[event['id'] || event['__id']]
+        aggressive = data ? data['raise_by'].positive? : %w[raise all_in].include?(name)
+        if aggressive
+          player = event['actor']
+          ranges[player] += 1
+          ranges[:pressure][player] = [ranges[:pressure].fetch(player, 0), data ? data['raise_by'].fdiv([data['pot'], 1].max) : 0.0].max
+        end
       end
       ranges[:exchanges] = poker_public_exchanges(replay) if replay.state[:options]["variant"] == "draw"
+      ranges[:profiles] = GameRoomPokerOpponents.profiles(replay.history)
+      @poker_public_ranges_key, @poker_public_ranges = cache_key, ranges
+      @poker_public_ranges_replay = replay
       ranges
     end
 
@@ -1124,15 +1130,34 @@ module GameRoomGames
       end
     end
 
-    def poker_pot_expectation(state, actor, contributions, ranges)
+    def poker_raise_expectation(state, actor, paid, ranges, pot:, raise_by:)
+      opponents = contenders(state) - [actor]
+      pressure = raise_by.to_f / [pot + raise_by, 1].max
+      rates = opponents.to_h do |player|
+        profile = GameRoomPokerOpponents.profile(ranges.fetch(:profiles), player, street:state[:street], pressure:pressure)
+        [player, state[:all_in][player] ? 0.0 : GameRoomPokerOpponents.fold_probability(profile, pressure, ranges.fetch(player, 0))]
+      end
+      # Some rivals may fold while others call. Dead chips stay in the pot,
+      # but a folded hypothetical hand cannot keep beating us at showdown.
+      GameRoomPokerOpponents.responders(opponents, rates).sum do |calling, chance|
+        contributions = state[:contributions].merge(actor => state[:contributions][actor] + paid)
+        calling.each do |player|
+          extra = [state[:street_bets][actor] + paid - state[:street_bets][player], state[:stacks][player]].min
+          contributions[player] += [extra, 0].max
+        end
+        chance * (poker_pot_expectation(state, actor, contributions, ranges, eligible: [actor] + calling) - paid)
+      end
+    end
+
+    def poker_pot_expectation(state, actor, contributions, ranges, eligible: contenders(state))
       cap = contributions[actor]
       previous = 0
       contributions.values.uniq.sort.sum do |level|
         next 0.0 if level > cap
         amount = (level - previous) * contributions.count { |_, chips| chips >= level }
         previous = level
-        eligible = contenders(state).select { |player| contributions[player] >= level }
-        amount * poker_equity(state, actor, opponents: eligible - [actor], ranges: ranges)
+        candidates = eligible.select { |player| contributions[player] >= level }
+        amount * poker_equity(state, actor, opponents: candidates - [actor], ranges: ranges)
       end
     end
 
@@ -1147,7 +1172,8 @@ module GameRoomGames
       if @poker_equity_key == key
         return poker_sample_equity(opponents)
       end
-      random = Random.new(Digest::SHA256.hexdigest(key).to_i(16))
+      sample_key = [actor, own, board, all_opponents, state[:options].values_at('variant', 'deck')]
+      random = Random.new(Digest::SHA256.hexdigest(sample_key.inspect).to_i(16))
       unknown = poker_deck(state[:options]) - own - board
       @poker_samples = Array.new(64) do
         sample = unknown.dup
@@ -1170,7 +1196,13 @@ module GameRoomGames
           end
           # Importance weights condition the SAME worlds on public aggression;
           # no actual opposing hand or private discard is read.
-          weight = 1.0 + [ranges.fetch(player, 0), 3].min * (strength - 0.5) * 0.5
+          if state[:options]['variant'] == 'holdem' && !board.empty?
+            visible_rank = hand_rank(cards + board)
+            strength = (visible_rank[0].fdiv(4) + visible_rank[1].to_f / 56).clamp(0.0, 1.0)
+          end
+          profile = GameRoomPokerOpponents.profile(ranges.fetch(:profiles, {}), player, street:state[:street])
+          weight = GameRoomPokerOpponents.range_weight(profile, ranges.fetch(player, 0), strength,
+            pressure: ranges.fetch(:pressure, {}).fetch(player, 0))
           if state[:options]["variant"] == "draw"
             exchanged = ranges.fetch(:exchanges, {})[player]
             weight *= poker_exchange_evidence_weight(rank, exchanged) unless exchanged == nil
@@ -1180,10 +1212,13 @@ module GameRoomGames
         [own_rank, rivals]
       end
       @poker_equity_key = key
+      @poker_subset_equities = {}
       poker_sample_equity(opponents)
     end
 
     def poker_sample_equity(opponents)
+      @poker_subset_equities ||= {}
+      return @poker_subset_equities[opponents] if @poker_subset_equities.key?(opponents)
       weighted_wins = 0.0
       weights = 0.0
       @poker_samples.each do |own, rivals|
@@ -1193,7 +1228,7 @@ module GameRoomGames
         weighted_wins += weight / (1 + comparison.count(0)) unless comparison.include?(-1)
         weights += weight
       end
-      weighted_wins / weights
+      @poker_subset_equities[opponents.dup.freeze] = weighted_wins / weights
     end
 
     def poker_exchange_value(state, actor, discards, exchanges: {})

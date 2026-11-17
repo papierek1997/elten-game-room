@@ -651,6 +651,34 @@ Details: `docs/UI.md`.
   and a UTF-8 result do not prove that the key matched. Test with the actual
   dictionary or a faithful binary stub.
 - A bot chooses an action but executes it through the standard game path.
+- Own-continuation proofs stop at unknown rival choices, draws and hand
+  transfers. Reuse `GameRoomBots::OwnContinuations`; never call an unfinished
+  branch a loss. UNO interception/super-interception and urgent reactions must
+  bypass deeper planning. Check their actual computation as well as legality;
+  do not silently replace the user's configured pacing.
+- Small score-table forecasts use the game's actual record/bonus/settlement
+  functions. Known final outcome outranks extra points, but expected points
+  still break certain-loss/tie cases. Do not predict another player's future
+  competitive bonus claim. Test rare-zero versus flexible-category choices,
+  not only whether a table finishes.
+- Value finite resources only while remaining entries can use them; terminal
+  or excess reserve has no future value. A bonus must remain physically
+  reachable, and retries must consume real remaining opportunities. Keep raw
+  score opportunity cost separate from a lost bonus. Reproduce earlier choices
+  leading to a late failure and compare full common-dice matches before adding
+  a more elaborate estimator. See the school/threshold value regressions under
+  `test/games/five_dice/`.
+- Joint hidden-piece/card models must respect one physical inventory. Budget
+  exhaustion is fallback, not a partial posterior. Hypothetical opponent hands
+  and neutral size estimates are not permission to read real concealed data.
+- A fast search transition must match production state, terminal outcome,
+  repetition/clock rights and tactical metadata through special moves. Faster
+  imports and legal choices alone do not establish strategic improvement.
+- A replay object can be updated in place (notably `DealtCardGame`). A bot's
+  decision cache must include its accepted-event revision as well as replay
+  identity and actor. Exercise consecutive turns of the same actor on that
+  same object; cold replay tests alone cannot detect a stale preferred card.
+  See [bot evaluation contracts](docs/BOT_TRAINING.md#bounded-planning-contracts).
 - The LiveSessions stack synchronizes table and game state. Discover public
   tables through discovery and join them directly; do not restore bootstrap
   or synchronization through Signals.

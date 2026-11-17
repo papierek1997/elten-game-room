@@ -165,7 +165,7 @@ module GameRoomGames
       hand = hand_for(state, actor).filter_map { |card| BeloteCards::DECODED[card] }
       if coinchee?(state)
         return 1 if state[:contract] && action["choice"] == "pass"
-        strongest = BeloteRules::SUITS.max_by { |suit| hand.count { |card| card.first == suit } }
+        strongest = BeloteRules::SUITS.max_by { |suit| BeloteBot.strength(hand, suit) }
         return action["choice"] == "80:#{strongest}" ? 1 : 0
       end
 

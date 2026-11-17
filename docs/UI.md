@@ -328,11 +328,20 @@ as `default_value`. The shared modal uses the ordinary native grid and returns
 its action through the existing move validation; Escape returns no action.
 `GridSpec#row_actions` is an array of ordinary `GameSurfaces::Action` values:
 each row activates its declared action regardless of the inspected column.
+General and Balut use the inherited `score_entry_column_label` for writable
+row labels: it names the first empty score column and total score columns,
+not the historical cell currently inspected. Read-only labels stay unchanged.
+At the top of a row-action table, Up repeats the current cell without its
+header or a submission; ordinary board grids retain their existing borders.
 An empty array makes the grid read-only; nil preserves ordinary board-coordinate
 selection. Summary rows without an action are inert. `hide_coordinates` affects
 presentation only. A grid may declare read-only announcement `shortcuts`, such
 as the dice readout; the shared modal never reads game-specific state fields.
 Pending writes and frozen sessions still prohibit submission, not inspection.
+Yahtzee and its score-sheet subclasses declare a new `decision_focus_key` at
+the third roll. The shared decision-focus path also accepts a single surface
+without a part name, queues its prompt after event speech, and remains quiet
+for an unchanged decision or while chat, history or users hold focus.
 Tests cover native opening, navigation, Enter/Escape, one prompt and unchanged
 parent focus/drafts, as well as an ordinary coordinate board.
 

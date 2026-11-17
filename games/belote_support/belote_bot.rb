@@ -7,9 +7,21 @@ module GameRoomGames
     def bid(choices, hand, upcard)
       suits = choices - [:pass]
       return :pass if suits.empty?
-      strength = ->(suit) { BeloteTrick.points((hand + [upcard]).select { |card| card.first == suit }, suit) }
-      best = suits.max_by(&strength)
-      strength.call(best) >= 20 ? best : :pass
+      value = ->(suit) { BeloteTrick.points((hand + [upcard]).select { |card| card.first == suit }, suit) }
+      best = suits.max_by(&value)
+      value.call(best) >= 20 ? best : :pass
+    end
+
+    def strength(hand, suit)
+      trumps = hand.select { |card| card.first == suit }
+      outside = hand.reject { |card| card.first == suit }.group_by(&:first)
+      value = BeloteTrick.points(trumps, suit) + (trumps.size - 2) * 5
+      value += 8 if trumps.any? { |_, rank| rank == 12 } && trumps.any? { |_, rank| rank == 13 }
+      outside.each_value do |cards|
+        value += 7 if cards.any? { |_, rank| rank == 14 }
+        value += 3 if cards.any? { |_, rank| rank == 10 } && cards.any? { |_, rank| rank == 14 }
+      end
+      value
     end
 
     def play(legal, trump, trick: [], partner_winning: false)

@@ -72,7 +72,7 @@ module GameRoomGames
     end
 
     def bot_strategy
-      @bot_strategy ||= GameRoomBots::HeuristicStrategy.new
+      @bot_strategy ||= BotStrategy.new
     end
 
     def rule_sections
@@ -1028,3 +1028,4 @@ end
 require_relative 'generated/rulebooks/makao'
 require_relative 'makao_private'
 GameRoomGames::Makao.prepend(GameRoomGames::MakaoPrivate)
+require_relative 'makao_bot'

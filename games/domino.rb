@@ -136,6 +136,7 @@ module GameRoomGames
       links = rest.count { |t| Tiles.fits?(t, left) || Tiles.fits?(t, right) }
       # Bound work by hand + public chain, not by hidden worlds or rollouts.
       score = Tiles.pips(tile) * 2 + (Tiles.double?(tile) ? 4 : 0) + links * 7
+      score += (Tiles.playable_count(rest, [left, right]) - links) * 6
       # An empty own hand is not a round win in whole-team mode. Still compare
       # the two ends using public information about the remaining partners.
       score += 1000 if rest.empty?

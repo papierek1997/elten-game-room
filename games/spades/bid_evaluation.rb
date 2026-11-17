@@ -1,10 +1,24 @@
 require_relative '../../lib/game_room_localization'
+require_relative '../../lib/game_snapshot'
 
 module GameRoomGames
   using GameRoomLocalization::Translations
   class Spades
     module BidEvaluation
       private
+
+      # Hypothetical hands change thousands of times; their public team
+      # assignment does not. Own one value-keyed snapshot, never a caller's
+      # mutable options or a global assignment used by the UI.
+      def bot_team_assignment(state)
+        key = [state[:players], state[:options]]
+        cache = @bot_team_assignment_cache
+        return cache.last if cache && cache.first == key
+
+        assignment = team_assignment(state[:options], players: state[:players])
+        @bot_team_assignment_cache = [GameRoomSnapshot.copy(key), assignment]
+        assignment
+      end
 
       def bidding_bot_features(state, actor, action)
         bid = selection_value(action, "bid")
@@ -30,7 +44,7 @@ module GameRoomGames
         table_target = table_projection[:target]
         projected_table_bid = table_projection[:projected]
         table_difference = (projected_table_bid - table_target) / [maximum, 1].max.to_f
-        assignment = team_assignment(state[:options], players: state[:players])
+        assignment = bot_team_assignment(state)
         known_team_bids = if assignment == nil
           0
         else
@@ -229,7 +243,7 @@ module GameRoomGames
         actor_key = player_key(state, actor)
         return false if actor_key == nil
 
-        assignment = team_assignment(state[:options], players: state[:players])
+        assignment = bot_team_assignment(state)
         members = assignment == nil ? [actor_key] : assignment.teammates_for(actor_key)
         return false if members.any? do |member|
           !same_user?(member, actor_key) && state[:bids].fetch(member, -1).to_i == 0
@@ -376,7 +390,7 @@ module GameRoomGames
         adjustment = -0.6 * remaining.to_f / (players.length - 1)
         maximum = [cards_per_player(players.length), 1].max.to_f
         expected = maximum / players.length
-        assignment = team_assignment(state[:options], players: players)
+        assignment = bot_team_assignment(state)
         teammates = if assignment == nil
           []
         else
@@ -634,7 +648,7 @@ module GameRoomGames
       end
 
       def bot_score_context(state, actor)
-        assignment = team_assignment(state[:options], players: state[:players])
+        assignment = bot_team_assignment(state)
         unit = if assignment == nil
           player_key(state, actor)
         else
@@ -655,14 +669,14 @@ module GameRoomGames
       end
 
       def bot_state_allied?(state, first, second)
-        assignment = team_assignment(state[:options], players: state[:players])
+        assignment = bot_team_assignment(state)
         return same_user?(first, second) if assignment == nil
 
         assignment.team_index_for(first) == assignment.team_index_for(second)
       end
 
       def bot_contract_remaining(state, actor)
-        assignment = team_assignment(state[:options], players: state[:players])
+        assignment = bot_team_assignment(state)
         members = assignment == nil ? [player_key(state, actor)] : assignment.teammates_for(actor)
         regular = members.reject { |player| state[:bids].fetch(player, -1).to_i == 0 }
         required = regular.sum { |player| state[:bids].fetch(player, 0).to_i }
@@ -673,7 +687,7 @@ module GameRoomGames
       def bot_bag_risk?(state, actor)
         return false if state[:options]["quicksand"] == true
 
-        assignment = team_assignment(state[:options], players: state[:players])
+        assignment = bot_team_assignment(state)
         unit = if assignment == nil
           player_key(state, actor)
         else

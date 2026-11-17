@@ -2,6 +2,31 @@ require_relative "game_bots"
 require_relative "game_participants"
 
 module CatHeadTailPlanning
+  # Value iteration over the actual eight-sided outcomes: 2 is banked
+  # immediately, 7 repeats, and 8 changes the turn total by +/-8. No RNG or
+  # game state is consumed while constructing this small reusable table.
+  def self.turn_values
+    @turn_values ||= begin
+      low, high = -128, 128
+      values = (low..high).map { |points| [points.to_f, 2.0].max }
+      300.times do
+        difference = 0.0
+        next_values = (low..high).map do |points|
+          at = ->(value) { value < low ? 2.0 : value > high ? value.to_f : values[value - low] }
+          roll = (2 + 2 * at.call(points) + (3..6).sum { |face| at.call(points + face) } +
+            (at.call(points - 8) + at.call(points + 8)) / 2) / 8.0
+          value = [points.to_f, roll].max
+          difference = [difference, (value - values[points - low]).abs].max
+          value
+        end
+        values = next_values
+        Thread.pass
+        break if difference < 1e-9
+      end
+      values.freeze
+    end
+  end
+
   class Strategy
     include GameRoomBots::ReplayOnlyStrategy
 
@@ -34,17 +59,9 @@ module CatHeadTailPlanning
       end
 
       return bank if banked_total >= state[:options]["score_limit"].to_i
-      return roll if turn_points < 19
-
-      chance = {
-        19 => 30,
-        20 => 42,
-        21 => 66,
-        22 => 70,
-        23 => 78,
-        24 => 84
-      }.fetch(turn_points) { [88 + (turn_points - 25) * 3, 99].min }
-      random_source.roll(count: 1, sides: 100).values.first.to_i <= chance ? bank : roll
+      return roll if turn_points < -128
+      return bank if turn_points > 128
+      CatHeadTailPlanning.turn_values[turn_points + 128] > turn_points + 1e-8 ? roll : bank
     end
   end
 end

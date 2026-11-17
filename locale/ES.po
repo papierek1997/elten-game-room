@@ -162,7 +162,7 @@ msgstr "%{card}. %{bid}"
 msgid "%{card}. Choose how to change the Scriptorium"
 msgstr "%{card}. Elige cómo modificar el Scriptorium"
 
-#: lib/game_surfaces.rb:1103
+#: lib/game_surfaces.rb:1108
 msgid "%{card}. Choose how to play it"
 msgstr "%{card}. Elige cómo jugarla"
 
@@ -372,7 +372,7 @@ msgstr[1] "%{count} categorías por ronda"
 msgid "%{count} concealed pungs"
 msgstr "Pungs ocultos: %{count}"
 
-#: games/french_tarot_support/french_tarot_table.rb:25
+#: games/french_tarot_support/french_tarot_table.rb:26
 msgid "%{count} deal"
 msgid_plural "%{count} deals"
 msgstr[0] "%{count} reparto"
@@ -479,7 +479,7 @@ msgstr "%{difficulty}: %{ranking}"
 msgid "%{distance} miles"
 msgstr "%{distance} millas"
 
-#: games/three_five_eight.rb:129
+#: games/three_five_eight.rb:140
 msgid "%{exchange}; 18 deals"
 msgstr ""
 
@@ -503,7 +503,7 @@ msgstr "%{field}, %{piece}."
 msgid "%{field}, %{seeds}"
 msgstr "%{field}, %{seeds}"
 
-#: lib/game_surfaces.rb:702
+#: lib/game_surfaces.rb:707
 msgid "%{field}. Selected."
 msgstr "%{field}. Seleccionada."
 
@@ -547,7 +547,7 @@ msgstr "%{fleet}; los barcos pueden tocarse"
 msgid "%{from} to %{target}: %{assets}"
 msgstr "%{from} entrega a %{target}: %{assets}"
 
-#: games/backgammon.rb:473
+#: games/backgammon.rb:466
 msgid "%{from} to %{to}, die %{die}"
 msgstr "%{from} → %{to}, dado %{die}"
 
@@ -582,15 +582,15 @@ msgstr "%{game}; %{date}; %{players}"
 msgid "%{game}; %{table}; invited by %{sender}; %{count}/%{maximum}"
 msgstr "%{game}; %{table}; invitación de %{sender}; %{count}/%{maximum}"
 
-#: games/three_five_eight.rb:602
+#: games/three_five_eight.rb:648
 msgid "%{giver} completed an exchange with %{target}."
 msgstr ""
 
-#: games/three_five_eight.rb:579
+#: games/three_five_eight.rb:625
 msgid "%{giver} exchanged one card with %{target}."
 msgstr ""
 
-#: games/three_five_eight.rb:570
+#: games/three_five_eight.rb:616
 msgid "%{giver} gave a trump card to %{target}; %{target} chooses the return card."
 msgstr ""
 
@@ -598,11 +598,11 @@ msgstr ""
 msgid "%{group}, %{volume}%%"
 msgstr "%{group}, %{volume}%%"
 
-#: games/poker.rb:1066
+#: games/poker.rb:1058
 msgid "%{hand}: %{values}"
 msgstr "%{hand}: %{values}"
 
-#: games/poker.rb:1057
+#: games/poker.rb:1049
 msgid "%{hand}: %{values}."
 msgstr "%{hand}: %{values}."
 
@@ -635,6 +635,10 @@ msgstr "%{judge}; respuestas en %{language}; %{time}; objetivo: %{target} puntos
 #: games/bridge/presentation.rb:675
 msgid "%{label} after %{boards} of %{total} boards: %{scores}."
 msgstr "%{label} tras %{boards} de %{total} manos: %{scores}."
+
+#: games/yahtzee.rb:497
+msgid "%{label}, column %{column} of %{columns}"
+msgstr "%{label}, columna %{column} de %{columns}"
 
 #: games/duck_racing.rb:152
 msgid "%{laps} lap"
@@ -935,11 +939,11 @@ msgstr "Habla %{player} (%{seat})."
 msgid "%{player} accepted the trade."
 msgstr "%{player} ha aceptado el intercambio."
 
-#: games/backgammon.rb:89
+#: games/backgammon.rb:90
 msgid "%{player} accepts the double."
 msgstr "%{player} acepta el doblaje."
 
-#: games/go.rb:258
+#: games/go.rb:259
 msgid "%{player} accepts the proposed score."
 msgstr "%{player} acepta el resultado propuesto."
 
@@ -1006,7 +1010,7 @@ msgctxt "cat_head_tail"
 msgid "%{player} banked %{points} points and now has %{total}."
 msgstr "%{player} ha guardado %{points} puntos y ahora tiene %{total}."
 
-#: games/backgammon.rb:480
+#: games/backgammon.rb:473
 msgid "%{player} bears off a checker from point %{point}."
 msgstr "%{player} retira una ficha del punto %{point}."
 
@@ -1084,7 +1088,7 @@ msgstr "%{player} construye la tercera casa en %{property}."
 msgid "%{player} buys a hint for %{price} points. Two wrong answers are removed."
 msgstr "%{player} compra una pista por %{price} puntos. Se eliminan dos respuestas incorrectas."
 
-#: games/poker.rb:1356 lib/blackjack_auction.rb:267
+#: games/poker.rb:1391 lib/blackjack_auction.rb:267
 msgid "%{player} calls %{amount}."
 msgstr "%{player} iguala con %{amount}."
 
@@ -1096,7 +1100,7 @@ msgstr "%{player} declara %{call}. Revelad los dados."
 msgid "%{player} calls Calza correctly and recovers a die, up to the starting limit."
 msgstr "%{player} acierta Calza y recupera un dado hasta el límite inicial."
 
-#: games/backgammon.rb:455
+#: games/backgammon.rb:448
 msgid "%{player} cannot move. The turn ends."
 msgstr "%{player} no puede mover. Termina su turno."
 
@@ -1155,19 +1159,19 @@ msgstr "%{player} cambia las marcas de puntuación."
 msgid "%{player} changes the suit to %{suit}."
 msgstr "%{player} cambia el palo a %{suit}."
 
-#: games/poker.rb:1355 lib/blackjack_auction.rb:266
+#: games/poker.rb:1390 lib/blackjack_auction.rb:266
 msgid "%{player} checks."
 msgstr "%{player} pasa."
 
-#: games/jass_support/jass_table.rb:220
+#: games/jass_support/jass_table.rb:242
 msgid "%{player} chooses %{mode}."
 msgstr "%{player} elige: %{mode}."
 
-#: games/belote_support/belote_table.rb:254
+#: games/belote_support/belote_table.rb:291
 msgid "%{player} chooses %{suit} as trumps. Partnership %{team} must score at least %{points} and beat the defenders."
 msgstr "%{player} elige triunfo: %{suit}. La pareja %{team} debe conseguir al menos %{points} puntos y superar a los defensores."
 
-#: games/jass_support/jass_table.rb:214
+#: games/jass_support/jass_table.rb:236
 msgid "%{player} chooses the deal rules. Press B or Enter on your turn."
 msgstr "%{player} elige las reglas de la mano. En tu turno, pulsa B o Intro."
 
@@ -1175,7 +1179,7 @@ msgstr "%{player} elige las reglas de la mano. En tu turno, pulsa B o Intro."
 msgid "%{player} chose %{colour}."
 msgstr "%{player} ha elegido %{colour}."
 
-#: games/three_five_eight.rb:542
+#: games/three_five_eight.rb:588
 msgid "%{player} chose %{contract}."
 msgstr ""
 
@@ -1191,7 +1195,7 @@ msgstr "%{player} ha elegido a %{user} como espectador para la próxima partida.
 msgid "%{player} chose talon %{number}."
 msgstr "%{player} ha elegido la reserva %{number}."
 
-#: games/mahjong_support/table_game.rb:438
+#: games/mahjong_support/table_game.rb:440
 msgid "%{player} claimed %{set}."
 msgstr "%{player} ha reclamado: %{set}."
 
@@ -1202,7 +1206,7 @@ msgstr "%{player} ha cobrado %{amount} por pasar por la casilla de Salida."
 msgid "%{player} collected %{points} points in the tricks and marriages."
 msgstr "%{player} ha conseguido %{points} puntos en bazas y anuncios."
 
-#: games/hearts_support/hearts_table.rb:368
+#: games/hearts_support/hearts_table.rb:393
 msgid "%{player} collected every penalty card."
 msgstr "%{player} ha recogido todas las cartas de penalización."
 
@@ -1243,11 +1247,11 @@ msgstr "%{player} corrige %{card}: %{before} → %{after}."
 msgid "%{player} could not pay %{count} tokens for %{reason} and was eliminated."
 msgstr "%{player} no ha podido pagar %{count} fichas por %{reason} y ha quedado fuera de la partida."
 
-#: games/cribbage_support/cribbage_table.rb:191
+#: games/cribbage_support/cribbage_table.rb:204
 msgid "%{player} counts the crib. Press Enter to give the score."
 msgstr "%{player} cuenta el crib. Pulsa Intro para indicar la puntuación."
 
-#: games/cribbage_support/cribbage_table.rb:193
+#: games/cribbage_support/cribbage_table.rb:206
 msgid "%{player} counts their hand. Press Enter to give the score."
 msgstr "%{player} cuenta su mano. Pulsa Intro para indicar la puntuación."
 
@@ -1267,11 +1271,11 @@ msgstr "%{player} crea la combinación %{number}: %{cards}."
 msgid "%{player} crosses out %{category}, column %{column}."
 msgstr "%{player} tacha %{category} en la columna %{column}."
 
-#: games/mahjong_support/table_game.rb:425 games/mahjong_support/table_game.rb:436
+#: games/mahjong_support/table_game.rb:427 games/mahjong_support/table_game.rb:438
 msgid "%{player} declared Mahjong."
 msgstr "%{player} ha declarado Mahjong."
 
-#: games/mahjong_support/table_game.rb:427
+#: games/mahjong_support/table_game.rb:429
 msgid "%{player} declared a concealed kong."
 msgstr "%{player} ha declarado un kong oculto."
 
@@ -1286,7 +1290,7 @@ msgstr "%{player} se ha declarado en bancarrota. Las propiedades restantes pasan
 msgid "%{player} declared bankruptcy. Remaining property returns to the bank."
 msgstr "%{player} se ha declarado en bancarrota. Las propiedades restantes vuelven al banco."
 
-#: games/mahjong_support/table_game.rb:431
+#: games/mahjong_support/table_game.rb:433
 msgid "%{player} declared riichi, discarding %{tile}."
 msgstr "%{player} ha declarado riichi descartando: %{tile}."
 
@@ -1302,7 +1306,7 @@ msgstr "%{player} ha renunciado a comprar %{property}."
 msgid "%{player} declined your partner invitation in %{name}."
 msgstr "%{player} ha rechazado tu invitación de pareja en %{name}."
 
-#: games/backgammon.rb:95
+#: games/backgammon.rb:96
 msgid "%{player} declines the double."
 msgstr "%{player} rechaza el doblaje."
 
@@ -1333,11 +1337,11 @@ msgstr "%{player} no ha sacado a tiempo. El rival recibe un punto."
 msgid "%{player} discarded %{card}."
 msgstr "%{player} descarta %{card}."
 
-#: games/mahjong_support/table_game.rb:423
+#: games/mahjong_support/table_game.rb:425
 msgid "%{player} discarded %{tile}."
 msgstr "%{player} ha descartado: %{tile}."
 
-#: games/three_five_eight.rb:630
+#: games/three_five_eight.rb:676
 msgid "%{player} discarded a card to the kitty (%{count} of 4)."
 msgstr ""
 
@@ -1367,7 +1371,7 @@ msgid_plural "%{player} draws %{count} cards."
 msgstr[0] "%{player} toma %{count} carta."
 msgstr[1] "%{player} toma %{count} cartas."
 
-#: games/domino.rb:257
+#: games/domino.rb:258
 msgid "%{player} draws %{count} tile."
 msgid_plural "%{player} draws %{count} tiles."
 msgstr[0] "%{player} roba %{count} ficha."
@@ -1377,7 +1381,7 @@ msgstr[1] "%{player} roba %{count} fichas."
 msgid "%{player} draws a card."
 msgstr "%{player} roba una carta."
 
-#: games/domino.rb:262 games/mexican_train.rb:238 games/mexican_train.rb:280
+#: games/domino.rb:263 games/mexican_train.rb:239 games/mexican_train.rb:281
 msgid "%{player} draws a tile."
 msgstr "%{player} roba una ficha."
 
@@ -1406,15 +1410,15 @@ msgstr "%{player} ha robado una carta."
 msgid "%{player} drew a replacement card."
 msgstr "%{player} ha robado una carta de sustitución."
 
-#: games/mahjong_support/table_game.rb:421
+#: games/mahjong_support/table_game.rb:423
 msgid "%{player} drew a tile."
 msgstr "%{player} ha robado una ficha."
 
-#: games/kosciane.rb:264
+#: games/kosciane.rb:265
 msgid "%{player} earns %{points} bonus points for completing %{category}."
 msgstr "%{player} recibe %{points} puntos de bonificación por completar %{category}."
 
-#: games/kosciane.rb:267
+#: games/kosciane.rb:268
 msgid "%{player} earns %{points} bonus points for completing column %{column}."
 msgstr "%{player} recibe %{points} puntos de bonificación por completar la columna %{column}."
 
@@ -1434,11 +1438,11 @@ msgstr "%{player} ha terminado la partida. La mesa sigue abierta."
 msgid "%{player} ended the turn."
 msgstr "%{player} ha terminado el turno."
 
-#: games/backgammon.rb:482
+#: games/backgammon.rb:475
 msgid "%{player} enters a checker from the bar on point %{point}."
 msgstr "%{player} vuelve a introducir una ficha de la barra en el punto %{point}."
 
-#: games/poker.rb:780 games/poker_private.rb:119
+#: games/poker.rb:771 games/poker_private.rb:119
 msgid "%{player} exchanged %{count} card."
 msgid_plural "%{player} exchanged %{count} cards."
 msgstr[0] "%{player} ha cambiado %{count} carta."
@@ -1465,7 +1469,7 @@ msgid_plural "%{player} faces a penalty of %{count} waiting turns."
 msgstr[0] "%{player} se enfrenta a una penalización de %{count} turno de espera."
 msgstr[1] "%{player} se enfrenta a una penalización de %{count} turnos de espera."
 
-#: games/three_five_eight.rb:613
+#: games/three_five_eight.rb:659
 msgid "%{player} finished exchanging cards."
 msgstr ""
 
@@ -1477,7 +1481,7 @@ msgstr "%{player} termina de apostar."
 msgid "%{player} finishes practice."
 msgstr "%{player} termina la práctica."
 
-#: games/poker.rb:1354 lib/blackjack_auction.rb:265
+#: games/poker.rb:1389 lib/blackjack_auction.rb:265
 msgid "%{player} folds."
 msgstr "%{player} se retira."
 
@@ -1517,7 +1521,7 @@ msgstr "%{player} va a la cárcel."
 msgid "%{player} guesses the word in %{count} attempts."
 msgstr "%{player} adivina la palabra en %{count} intentos."
 
-#: games/poker.rb:881
+#: games/poker.rb:872
 msgid "%{player} had %{cards}: %{hand}."
 msgstr "%{player} tenía %{cards}: %{hand}."
 
@@ -1543,7 +1547,7 @@ msgstr ""
 msgid "%{player} has no cards left and is out of the game."
 msgstr ""
 
-#: games/reversi.rb:311
+#: games/reversi.rb:353
 msgid "%{player} has no legal move; the turn is passed."
 msgstr "%{player} no tiene ningún movimiento válido; pasa el turno."
 
@@ -1579,7 +1583,7 @@ msgstr "%{player} te invita a una conversación de voz."
 msgid "%{player} invites you to be partners in %{name}."
 msgstr "%{player} te invita a formar pareja en %{name}."
 
-#: games/poker.rb:1358 lib/blackjack_auction.rb:273
+#: games/poker.rb:1393 lib/blackjack_auction.rb:273
 msgid "%{player} is all in for %{amount}."
 msgstr "%{player} lo apuesta todo: %{amount}."
 
@@ -1645,7 +1649,7 @@ msgstr "%{player} está preparando una oferta de intercambio para %{target}."
 msgid "%{player} is preparing to describe."
 msgstr "%{player} se prepara para describir."
 
-#: games/mahjong_support/private_table_replay.rb:217 games/mahjong_support/table_game.rb:360
+#: games/mahjong_support/private_table_replay.rb:217 games/mahjong_support/table_game.rb:362
 msgid "%{player} is ready for the next hand."
 msgstr "%{player} está listo para la siguiente mano."
 
@@ -1685,7 +1689,7 @@ msgstr "%{player} se queda con una carta de Salir de la cárcel."
 msgid "%{player} keeps a card."
 msgstr "%{player} se queda con una carta."
 
-#: games/poker.rb:780
+#: games/poker.rb:771
 msgid "%{player} keeps all cards."
 msgstr "%{player} conserva todas las cartas."
 
@@ -1747,7 +1751,7 @@ msgstr "%{player} ha salido de la sala."
 msgid "%{player} left this game."
 msgstr "%{player} abandona la partida."
 
-#: games/jass_support/jass_table.rb:170
+#: games/jass_support/jass_table.rb:192
 msgid "%{player} lets their partner choose."
 msgstr "%{player} cede la elección a su compañero."
 
@@ -1763,7 +1767,7 @@ msgid_plural "%{player} loses %{count} penalty feathers."
 msgstr[0] "%{player} pierde %{count} pluma de penalización."
 msgstr[1] "%{player} pierde %{count} plumas de penalización."
 
-#: games/kosciane.rb:275
+#: games/kosciane.rb:276
 msgid "%{player} loses %{points} bonus points."
 msgstr "%{player} pierde %{points} puntos de bonificación."
 
@@ -1806,15 +1810,15 @@ msgstr "%{player} no ha pujado en tres subastas seguidas y pierde %{amount} punt
 msgid "%{player} made no bid in three consecutive auctions and pays %{amount} into the pool."
 msgstr "%{player} no ha pujado en tres subastas seguidas y paga una penalización de %{amount} al bote."
 
-#: games/go.rb:255
+#: games/go.rb:256
 msgid "%{player} marks the group at %{field} as alive."
 msgstr "%{player} marca el grupo de %{field} como vivo."
 
-#: games/go.rb:255
+#: games/go.rb:256
 msgid "%{player} marks the group at %{field} as dead."
 msgstr "%{player} marca el grupo de %{field} como muerto."
 
-#: games/go.rb:253
+#: games/go.rb:254
 msgid "%{player} marks the region at %{field} as neutral."
 msgstr "%{player} marca la región de %{field} como neutral."
 
@@ -1849,7 +1853,7 @@ msgstr "%{player} se ha movido de %{from} a %{to}."
 msgid "%{player} moved pawn %{pawn} from %{from} to %{to}."
 msgstr "%{player} ha movido la ficha %{pawn} de %{from} a %{to}."
 
-#: games/backgammon.rb:484
+#: games/backgammon.rb:477
 msgid "%{player} moves a checker from point %{from} to point %{to}."
 msgstr "%{player} mueve una ficha del punto %{from} al punto %{to}."
 
@@ -1896,7 +1900,7 @@ msgstr[1] "%{player} debe esperar %{count} turnos."
 msgid "%{player} must wait %{count} turns."
 msgstr "%{player} debe esperar %{count} turnos."
 
-#: games/backgammon.rb:82
+#: games/backgammon.rb:83
 msgid "%{player} offers to double the stake to %{stake}."
 msgstr "%{player} propone doblar la apuesta a %{stake}."
 
@@ -1927,7 +1931,7 @@ msgstr "%{player} abre un cofre negro: sin cambios."
 msgid "%{player} owes each other player %{amount}."
 msgstr "%{player} debe %{amount} a cada uno de los demás jugadores."
 
-#: games/cribbage_support/cribbage_table.rb:199
+#: games/cribbage_support/cribbage_table.rb:212
 msgid "%{player} owns the crib."
 msgstr "El crib pertenece a %{player}."
 
@@ -1938,7 +1942,7 @@ msgstr "%{player} ha pagado %{amount} a %{recipient}: %{reason}."
 msgid "%{player} paid %{rent} rent to %{owner}."
 msgstr "%{player} ha pagado %{rent} de alquiler a %{owner}."
 
-#: games/mahjong_support/table_game.rb:434 games/tysiac.rb:753
+#: games/mahjong_support/table_game.rb:436 games/tysiac.rb:753
 msgid "%{player} passed."
 msgstr "%{player} ha pasado."
 
@@ -1954,7 +1958,7 @@ msgstr "%{player} pasa en esta subasta."
 msgid "%{player} passes the cue to the next player."
 msgstr "%{player} pasa el turno al siguiente jugador."
 
-#: games/belote_support/belote_bidding.rb:149 games/domino.rb:275 games/go.rb:261 games/mexican_train.rb:309 games/reversi.rb:276 games/scrabble.rb:254
+#: games/belote_support/belote_bidding.rb:149 games/domino.rb:276 games/go.rb:262 games/mexican_train.rb:310 games/reversi.rb:314 games/scrabble.rb:254
 msgid "%{player} passes."
 msgstr "%{player} pasa."
 
@@ -1983,15 +1987,15 @@ msgstr "%{player} paga con %{count} cartas y recibe %{card}."
 msgid "%{player} pays %{recipient} %{amount}: %{reason}."
 msgstr "%{player} paga a %{recipient} %{amount}: %{reason}."
 
-#: games/poker.rb:588 lib/blackjack_auction.rb:133
+#: games/poker.rb:575 lib/blackjack_auction.rb:133
 msgid "%{player} pays ante: %{amount}."
 msgstr "%{player} paga el ante: %{amount}."
 
-#: games/poker.rb:587
+#: games/poker.rb:574
 msgid "%{player} pays the big blind: %{amount}."
 msgstr "%{player} paga la ciega grande: %{amount}."
 
-#: games/poker.rb:586
+#: games/poker.rb:573
 msgid "%{player} pays the small blind: %{amount}."
 msgstr "%{player} paga la ciega pequeña: %{amount}."
 
@@ -2024,7 +2028,7 @@ msgstr "%{player} coloca una carta en el mazo de subasta."
 msgid "%{player} places a hidden card and plays %{card}."
 msgstr ""
 
-#: games/go.rb:248
+#: games/go.rb:249
 msgid "%{player} places a stone at %{field}."
 msgstr "%{player} coloca una piedra en %{field}."
 
@@ -2044,7 +2048,7 @@ msgstr "%{player} juega %{card} contra %{target}."
 msgid "%{player} played %{card}, now at %{miles} miles."
 msgstr "%{player} jugó %{card} y ahora lleva %{miles} millas."
 
-#: games/mille_bornes/model.rb:308 games/spades.rb:786 games/three_five_eight.rb:651 games/tysiac.rb:941 games/uno/play_reduction.rb:106
+#: games/mille_bornes/model.rb:308 games/spades.rb:786 games/three_five_eight.rb:697 games/tysiac.rb:941 games/uno/play_reduction.rb:106
 msgid "%{player} played %{card}."
 msgstr "%{player} ha jugado %{card}."
 
@@ -2088,23 +2092,23 @@ msgctxt "duck_racing"
 msgid "%{player} plays %{card}."
 msgstr "%{player} juega «%{card}»."
 
-#: games/mexican_train.rb:261
+#: games/mexican_train.rb:262
 msgid "%{player} plays %{tile} on %{owner}'s train."
 msgstr "%{player} juega %{tile} en el tren de %{owner}."
 
-#: games/mexican_train.rb:257
+#: games/mexican_train.rb:258
 msgid "%{player} plays %{tile} on the Mexican train."
 msgstr "%{player} juega %{tile} en el tren mexicano."
 
-#: games/domino.rb:242
+#: games/domino.rb:243
 msgid "%{player} plays %{tile} on the left."
 msgstr "%{player} juega %{tile} a la izquierda."
 
-#: games/domino.rb:242
+#: games/domino.rb:243
 msgid "%{player} plays %{tile} on the right."
 msgstr "%{player} juega %{tile} a la derecha."
 
-#: games/mexican_train.rb:259
+#: games/mexican_train.rb:260
 msgid "%{player} plays %{tile} on their own train."
 msgstr "%{player} juega %{tile} en su propio tren."
 
@@ -2132,7 +2136,7 @@ msgstr "%{player} pasa a la segunda mano."
 msgid "%{player} promoted the pawn to %{piece}."
 msgstr "%{player} ha promocionado el peón a %{piece}."
 
-#: games/mahjong_support/table_game.rb:429
+#: games/mahjong_support/table_game.rb:431
 msgid "%{player} proposed a kong of %{tile}."
 msgstr "%{player} ha propuesto un kong de: %{tile}."
 
@@ -2144,7 +2148,7 @@ msgstr "%{player} ha propuesto un intercambio a %{target}: %{offer}."
 msgid "%{player} proposes reracking without a winner."
 msgstr "%{player} propone repetir sin ganador."
 
-#: games/poker.rb:1357 lib/blackjack_auction.rb:268
+#: games/poker.rb:1392 lib/blackjack_auction.rb:268
 msgid "%{player} raises by %{increase}, to %{amount}."
 msgstr "%{player} sube en %{increase}, hasta %{amount}."
 
@@ -2191,7 +2195,7 @@ msgstr "%{player} ha alcanzado el límite de puntos. Hay que terminar la ronda d
 msgid "%{player} reaches the finish."
 msgstr "%{player} llega a la meta."
 
-#: games/cribbage_support/cribbage_table.rb:380 games/uno.rb:1245
+#: games/cribbage_support/cribbage_table.rb:393 games/uno.rb:1245
 msgid "%{player} received %{points} point."
 msgid_plural "%{player} received %{points} points."
 msgstr[0] "%{player} ha recibido %{points} punto."
@@ -2216,7 +2220,7 @@ msgstr "%{player} recibe %{amount} de %{pot}: %{hand}."
 msgid "%{player} receives %{amount} from the bank."
 msgstr "%{player} recibe %{amount} del banco."
 
-#: games/poker.rb:916
+#: games/poker.rb:908
 msgid "%{player} receives %{amount} from the pot; all other players folded."
 msgstr "%{player} recibe %{amount} del bote; todos los demás jugadores se han retirado."
 
@@ -2242,7 +2246,7 @@ msgstr "%{player} recibe %{points} puntos."
 msgid "%{player} receives 100 bonus points for another Yahtzee."
 msgstr "%{player} recibe 100 puntos de bonificación por otro Yahtzee."
 
-#: games/yahtzee.rb:424
+#: games/yahtzee.rb:431
 msgid "%{player} receives 35 bonus points for Ones through Sixes."
 msgstr "%{player} recibe 35 puntos de bonificación por las categorías del uno al seis."
 
@@ -2253,7 +2257,7 @@ msgstr "%{player} recibe el doble de sueldo, %{amount}, por caer en la casilla d
 msgid "%{player} receives the upper-section bonus: 35 points."
 msgstr "%{player} recibe la bonificación de la sección superior: 35 puntos."
 
-#: games/kosciane.rb:257
+#: games/kosciane.rb:258
 msgid "%{player} records %{points} in %{category}, column %{column}."
 msgstr "%{player} anota %{points} en %{category}, columna %{column}."
 
@@ -2315,14 +2319,14 @@ msgstr "%{player} pide un nuevo reparto: hay al menos dos nueves en el talón."
 msgid "%{player} requests spotting the nearest legal object ball."
 msgstr "%{player} pide reponer la bola válida más cercana."
 
-#: games/go.rb:260
+#: games/go.rb:261
 msgid "%{player} resigns."
 msgstr "%{player} abandona la partida."
 
 msgid "%{player} resolved a board card. Cash: %{cash}."
 msgstr "%{player} ha resuelto una carta del tablero. Efectivo: %{cash}."
 
-#: games/go.rb:253
+#: games/go.rb:254
 msgid "%{player} restores territory scoring for the region at %{field}."
 msgstr "%{player} restaura el territorio en la región de %{field}."
 
@@ -2330,7 +2334,7 @@ msgstr "%{player} restaura el territorio en la región de %{field}."
 msgid "%{player} restores the position before the last shot."
 msgstr "%{player} recupera la posición anterior al último tiro."
 
-#: games/go.rb:259
+#: games/go.rb:260
 msgid "%{player} resumes play."
 msgstr "%{player} reanuda el juego."
 
@@ -2346,7 +2350,7 @@ msgstr "%{player} revela %{dice}."
 msgid "%{player} reveals %{dice}: %{hand}."
 msgstr "%{player} muestra %{dice}: %{hand}."
 
-#: games/backgammon.rb:325 games/yahtzee.rb:400
+#: games/backgammon.rb:324 games/yahtzee.rb:407
 msgid "%{player} rolled %{dice}."
 msgstr "%{player} ha sacado %{dice}."
 
@@ -2452,7 +2456,7 @@ msgstr "%{player} saca %{dice} y termina con %{total}."
 msgid "%{player} rolls %{dice}: %{hand}."
 msgstr "%{player} lanza %{dice}: %{hand}."
 
-#: games/backgammon.rb:327
+#: games/backgammon.rb:326
 msgid "%{player} rolls %{die}."
 msgstr "%{player} saca %{die}."
 
@@ -2483,7 +2487,7 @@ msgstr "%{player} dice ¡UNO!"
 msgid "%{player} says the bid is exact."
 msgstr "%{player} dice que la cantidad es exacta."
 
-#: games/yahtzee.rb:418
+#: games/yahtzee.rb:425
 msgid "%{player} scored %{points} in %{category}."
 msgstr "%{player} ha anotado %{points} en %{category}."
 
@@ -2595,7 +2599,7 @@ msgstr "%{player} inicia un desafío con %{others}."
 msgid "%{player} starts describing for team %{team}."
 msgstr "%{player} empieza a describir para el equipo %{team}."
 
-#: games/backgammon.rb:328
+#: games/backgammon.rb:327
 msgid "%{player} starts."
 msgstr "Empieza %{player}."
 
@@ -2743,7 +2747,7 @@ msgstr[1] "%{player} se saltará %{count} turnos."
 msgid "%{player} will spin the wheel."
 msgstr "%{player} girará la ruleta."
 
-#: games/poker.rb:904
+#: games/poker.rb:896
 msgid "%{player} wins %{amount} from the %{pot}%{deciding}."
 msgstr "%{player} gana %{amount} del %{pot}%{deciding}."
 
@@ -2796,11 +2800,11 @@ msgid_plural "%{player} wins the trick and takes %{count} cards."
 msgstr[0] ""
 msgstr[1] ""
 
-#: games/belote_support/belote_table.rb:334 games/jass_support/jass_table.rb:250
+#: games/belote_support/belote_table.rb:371 games/jass_support/jass_table.rb:272
 msgid "%{player} wins the trick for %{points} points."
 msgstr "%{player} gana la baza por %{points} puntos."
 
-#: games/bouillabaisse.rb:179 games/bridge/presentation.rb:102 games/french_tarot_support/french_tarot_table.rb:343 games/hearts_support/hearts_table.rb:347
+#: games/bouillabaisse.rb:179 games/bridge/presentation.rb:102 games/french_tarot_support/french_tarot_table.rb:375 games/hearts_support/hearts_table.rb:372
 msgid "%{player} wins the trick."
 msgstr "%{player} gana la baza."
 
@@ -2816,11 +2820,11 @@ msgid_plural "%{player} wins the war because the others have no cards left, and 
 msgstr[0] ""
 msgstr[1] ""
 
-#: games/poker.rb:902
+#: games/poker.rb:894
 msgid "%{player} wins the whole pot: %{amount}%{deciding}."
 msgstr "%{player} gana todo el bote: %{amount}%{deciding}."
 
-#: games/backgammon.rb:434
+#: games/backgammon.rb:427
 msgid "%{player} wins this game for %{points} point."
 msgid_plural "%{player} wins this game for %{points} points."
 msgstr[0] "%{player} gana esta partida por %{points} punto."
@@ -2868,7 +2872,7 @@ msgstr "%{player} ha ganado la ronda. Los valores de las cartas restantes se han
 msgid "%{player} won the trick for %{points} card points."
 msgstr "%{player} ha ganado la baza por un valor de %{points} puntos en cartas."
 
-#: games/spades.rb:801 games/three_five_eight.rb:658
+#: games/spades.rb:801 games/three_five_eight.rb:704
 msgid "%{player} won the trick."
 msgstr "%{player} ha ganado la baza."
 
@@ -2882,7 +2886,7 @@ msgstr "%{piece} de %{player}"
 msgid "%{player}'s answers were revealed."
 msgstr "Se han revelado las respuestas de %{player}."
 
-#: games/reversi.rb:95
+#: games/reversi.rb:113
 msgid "%{player}'s disc"
 msgstr "Ficha de %{player}"
 
@@ -2910,7 +2914,7 @@ msgstr "Pieza de %{player}"
 msgid "%{player}'s result took place %{place} in %{category}, %{difficulty}."
 msgstr "El resultado de %{player} obtuvo el puesto %{place} en %{category}, dificultad %{difficulty}."
 
-#: games/yahtzee.rb:302
+#: games/yahtzee.rb:309
 msgid "%{player}'s score sheet, match %{match}"
 msgstr "Hoja de puntuaciones de %{player}, partida %{match}"
 
@@ -2918,11 +2922,11 @@ msgstr "Hoja de puntuaciones de %{player}, partida %{match}"
 msgid "%{player}'s time expired. 50 penalty points."
 msgstr "Se ha agotado el tiempo de %{player}. 50 puntos de penalización."
 
-#: games/mexican_train.rb:159 games/mexican_train.rb:264
+#: games/mexican_train.rb:160 games/mexican_train.rb:265
 msgid "%{player}'s train is closed."
 msgstr "El tren de %{player} está cerrado."
 
-#: games/mexican_train.rb:309
+#: games/mexican_train.rb:310
 msgid "%{player}'s train opens; turn passed."
 msgstr "El tren de %{player} se abre; turno pasado."
 
@@ -2980,7 +2984,7 @@ msgstr ""
 msgid "%{player}, %{position}"
 msgstr ""
 
-#: games/reversi.rb:294
+#: games/reversi.rb:329
 msgid "%{player}, changed fields: %{fields}."
 msgstr "%{player}, casillas modificadas: %{fields}."
 
@@ -3007,7 +3011,7 @@ msgstr "%{player}, equipo %{team}"
 msgid "%{player}, you have 10 seconds left."
 msgstr "%{player}, te quedan 10 segundos."
 
-#: games/french_tarot_support/french_tarot_table.rb:382
+#: games/french_tarot_support/french_tarot_table.rb:413
 msgid "%{player}. Card points: %{points}. Required: %{target}."
 msgstr "%{player}. Puntos de cartas: %{points}. Objetivo: %{target}."
 
@@ -3057,7 +3061,7 @@ msgstr "%{player}: %{call}."
 msgid "%{player}: %{cards} points for opponents' cards and %{bonus} bonus points."
 msgstr "%{player}: %{cards} puntos por las cartas de los rivales y %{bonus} puntos de bonificación."
 
-#: games/base/shortcuts.rb:50 games/bouillabaisse.rb:67 games/bouillabaisse.rb:97 games/scientific_war.rb:889 games/spades.rb:938 games/three_five_eight.rb:1020 games/tysiac.rb:1635 games/war.rb:428 games/war.rb:487
+#: games/base/shortcuts.rb:50 games/bouillabaisse.rb:67 games/bouillabaisse.rb:97 games/scientific_war.rb:889 games/spades.rb:938 games/three_five_eight.rb:1066 games/tysiac.rb:1635 games/war.rb:428 games/war.rb:487
 msgid "%{player}: %{card}"
 msgstr "%{player}: %{card}"
 
@@ -3068,7 +3072,7 @@ msgstr "%{player}: %{card} Efectivo: %{cash}."
 msgid "%{player}: %{card}."
 msgstr "%{player}: %{card}."
 
-#: games/poker.rb:1468
+#: games/poker.rb:1503
 msgid "%{player}: %{chips}"
 msgstr "%{player}: %{chips}"
 
@@ -3113,7 +3117,7 @@ msgstr "%{player}: %{period}"
 msgid "%{player}: %{pieces}"
 msgstr "%{player}: %{pieces}"
 
-#: games/categories.rb:1414 games/mahjong.rb:172 games/mahjong_support/table_game.rb:193 games/mahjong_support/table_presentation.rb:60 games/quiz_party.rb:1213
+#: games/categories.rb:1414 games/mahjong.rb:172 games/mahjong_support/table_game.rb:195 games/mahjong_support/table_presentation.rb:60 games/quiz_party.rb:1213
 msgid "%{player}: %{points}"
 msgstr "%{player}: %{points}"
 
@@ -3166,7 +3170,7 @@ msgstr "%{player}: %{result}"
 msgid "%{player}: %{result}."
 msgstr "%{player}: %{result}."
 
-#: games/biblios.rb:1297 games/cat_head_tail.rb:433 games/farkle.rb:761 games/three_five_eight.rb:1025 games/tysiac.rb:1647 games/uno.rb:1403 games/yahtzee.rb:553 lib/game_surfaces/darts_surface.rb:111
+#: games/biblios.rb:1297 games/cat_head_tail.rb:433 games/farkle.rb:761 games/three_five_eight.rb:1071 games/tysiac.rb:1647 games/uno.rb:1403 games/yahtzee.rb:566 lib/game_surfaces/darts_surface.rb:111
 msgid "%{player}: %{score}"
 msgstr "%{player}: %{score}"
 
@@ -3200,7 +3204,7 @@ msgstr "%{player}: %{tiles}"
 msgid "%{player}: %{tricks}/%{bid}"
 msgstr "%{player}: %{tricks}/%{bid}"
 
-#: games/three_five_eight.rb:1031
+#: games/three_five_eight.rb:1077
 msgid "%{player}: %{tricks}/%{target}"
 msgstr ""
 
@@ -3315,7 +3319,7 @@ msgstr "%{player}: tercera rendición."
 msgid "%{player}: third zero."
 msgstr "%{player}: tercer cero."
 
-#: games/hearts_support/hearts_table.rb:373 games/jass_support/jass_table.rb:265
+#: games/hearts_support/hearts_table.rb:398 games/jass_support/jass_table.rb:287
 msgid "%{player}: this deal: %{points}; total: %{total}."
 msgstr "%{player}: esta mano: %{points}; total: %{total}."
 
@@ -3323,7 +3327,7 @@ msgstr "%{player}: esta mano: %{points}; total: %{total}."
 msgid "%{player}: three consecutive sixes; end of turn."
 msgstr ""
 
-#: games/three_five_eight.rb:684
+#: games/three_five_eight.rb:730
 msgid "%{player}: tricks won %{tricks}, target %{target}, points this deal %{points}, total score %{score}."
 msgstr ""
 
@@ -3358,7 +3362,7 @@ msgstr "%{position}, %{player}, ficha %{pawn}"
 msgid "%{position}. %{value}"
 msgstr "%{position}. %{value}"
 
-#: games/poker.rb:896
+#: games/poker.rb:888
 msgid "%{pot} is split between %{players}."
 msgstr "%{pot} se reparte entre %{players}."
 
@@ -3395,7 +3399,7 @@ msgstr "%{property}; propiedades del grupo en posesión: %{owned} de %{total}."
 msgid "%{quantity} dice showing %{face}"
 msgstr "%{quantity} dados de %{face}"
 
-#: games/card_game.rb:65 games/french_tarot_support/french_tarot_table.rb:306 games/makao.rb:915 games/makao.rb:922 games/ninety_nine.rb:1040 games/poker.rb:1462 games/spades.rb:1126 games/three_five_eight.rb:1108 games/tysiac.rb:1740
+#: games/card_game.rb:65 games/french_tarot_support/french_tarot_table.rb:344 games/makao.rb:915 games/makao.rb:922 games/ninety_nine.rb:1040 games/poker.rb:1497 games/spades.rb:1126 games/three_five_eight.rb:1154 games/tysiac.rb:1740
 msgid "%{rank} of %{suit}"
 msgstr "%{rank} de %{suit}"
 
@@ -3567,7 +3571,7 @@ msgstr "%{size} por %{size}; conjunto de reglas seleccionado"
 msgid "%{size} masts from %{bow} to %{stern} placed."
 msgstr "Barco de %{size} casillas colocado de %{bow} a %{stern}."
 
-#: games/poker.rb:853 games/poker_private.rb:103
+#: games/poker.rb:844 games/poker_private.rb:103
 msgid "%{stage}: %{cards}."
 msgstr "%{stage}: %{cards}."
 
@@ -3578,7 +3582,7 @@ msgstr "De %{start_date} %{start_time} a %{end_date} %{end_time}"
 msgid "%{status}; %{name}; host: %{owner}; users: %{users}; %{count}/%{maximum}"
 msgstr "%{status}; %{name}; anfitrión: %{owner}; usuarios: %{users}; %{count}/%{maximum}"
 
-#: games/three_five_eight.rb:1045
+#: games/three_five_eight.rb:1091
 msgid "%{suit} as trump"
 msgstr ""
 
@@ -3601,7 +3605,7 @@ msgstr "%{taker} ha dado una carta a %{player}."
 msgid "%{team}. Points: %{points}."
 msgstr "%{team}. Puntos: %{points}."
 
-#: games/belote_support/belote_table.rb:437
+#: games/belote_support/belote_table.rb:466
 msgid "%{team}: collected: %{collected}; recorded: %{awarded}."
 msgstr "%{team}: conseguidos: %{collected}; anotados: %{awarded}."
 
@@ -3657,7 +3661,7 @@ msgstr "%{title}; %{language}"
 msgid "%{title}; questions: %{count}"
 msgstr "%{title}; preguntas: %{count}"
 
-#: games/mexican_train.rb:179
+#: games/mexican_train.rb:180
 msgid "%{train}, %{value}"
 msgstr "%{train}, %{value}"
 
@@ -3724,7 +3728,7 @@ msgstr "%{variant}. %{difficulty}. %{points} puntos para ganar."
 msgid "%{variant}. %{difficulty}. Unlimited match."
 msgstr "%{variant}. %{difficulty}. Partida sin límite."
 
-#: games/poker.rb:194
+#: games/poker.rb:195
 msgid "%{variant}; %{chips} chips; %{stakes}; %{structure}"
 msgstr "%{variant}; %{chips} fichas; %{stakes}; %{structure}"
 
@@ -3747,7 +3751,7 @@ msgstr ""
 msgid "%{variant}; 3 to 9 letters"
 msgstr "%{variant}; de 3 a 9 letras"
 
-#: games/spades.rb:580 games/spades.rb:850 games/three_five_eight.rb:433 games/tysiac.rb:1057 games/tysiac.rb:128
+#: games/spades.rb:580 games/spades.rb:850 games/three_five_eight.rb:479 games/tysiac.rb:1057 games/tysiac.rb:128
 msgid "%{winner} won the game."
 msgstr "%{winner} ha ganado la partida."
 
@@ -5488,7 +5492,7 @@ msgstr ""
 msgid "1. Use all your fingers. Each finger is assigned specific keys. Try to follow these assignments while learning."
 msgstr ""
 
-#: games/card_game.rb:58 games/three_five_eight.rb:41
+#: games/card_game.rb:58 games/three_five_eight.rb:52
 msgid "10"
 msgstr "10"
 
@@ -5634,7 +5638,7 @@ msgstr "3 minutos"
 msgid "3, 4, 5 and 6 add that many points to the current turn total. These points are not safe until you bank them."
 msgstr ""
 
-#: games/three_five_eight.rb:84
+#: games/three_five_eight.rb:95
 msgid "3-5-8"
 msgstr ""
 
@@ -5834,7 +5838,7 @@ msgstr ""
 msgid "; buildings: %{buildings}"
 msgstr "; edificios: %{buildings}"
 
-#: games/poker.rb:1077
+#: games/poker.rb:1069
 msgid "; deciding card: %{card}"
 msgstr "; carta decisiva: %{card}"
 
@@ -5885,7 +5889,7 @@ msgstr ""
 msgid "A Church card lets its owner adjust one or two dice on the Scriptorium by one point each. A card with two dice must be used on two separate categories or not at all, so you may not modify one category by two points. A player may decide not to use the card, in which case it is discarded."
 msgstr ""
 
-#: games/jass_support/jass_table.rb:18
+#: games/jass_support/jass_table.rb:19
 msgid "A Swiss trick-taking game for two partnerships."
 msgstr "Un juego suizo de bazas para dos parejas."
 
@@ -5954,7 +5958,7 @@ msgstr "Se debe completar toda la secuencia de capturas"
 msgid "A capture sequence must be completed is on by default. After a jump, continue capturing with the same piece while a continuation is available. The interface performs the jumps one at a time. With this option off the turn ends after one jump. Prefer a king when equally long captures are available is off by default; when enabled, equally long maximum captures by a king take precedence over those by a man."
 msgstr ""
 
-#: games/three_five_eight.rb:88
+#: games/three_five_eight.rb:99
 msgid "A card game for three players, each with a different target, where a good result gives you an advantage in the next deal."
 msgstr "Un juego de cartas para tres personas con objetivos distintos, en el que un buen resultado te da ventaja en el siguiente reparto."
 
@@ -6042,7 +6046,7 @@ msgstr "Un contraataque anula el ataque y conserva el estado de circulación ant
 msgid "A dirty trick cancels the attack and preserves the previous driving state. It earns 300 bonus points in addition to the safety's 100 points. You take the next turn, then play continues with the player after you. Intervening players are skipped. A safety played later gives ordinary protection without this bonus."
 msgstr "Un contraataque anula el ataque y conserva el estado de circulación anterior. Otorga 300 puntos extra, además de los 100 puntos de la protección. Tú tomas el siguiente turno y después continúa el jugador que va detrás de ti. Los jugadores intermedios se saltan. Una protección jugada más tarde ofrece la protección habitual, sin esta bonificación."
 
-#: games/reversi.rb:143
+#: games/reversi.rb:161
 msgid "A disc placed here would not enclose any opposing discs."
 msgstr "Una ficha colocada aquí no encerraría ninguna ficha del rival."
 
@@ -6407,7 +6411,7 @@ msgstr "Un barco debe ocupar una sola fila o una sola columna."
 msgid "A single 5 scores 5 points and a single 1 scores 10. Three 1s score 75; three of any other face score ten times that face. Four of a kind score 110 to 160, five of a kind 320 to 420, and six of a kind 625 to 750."
 msgstr ""
 
-#: games/backgammon.rb:389
+#: games/backgammon.rb:382
 msgid "A single move must match one of your remaining dice: %{dice}."
 msgstr "Cada movimiento debe corresponder a uno de tus dados restantes: %{dice}."
 
@@ -6645,7 +6649,7 @@ msgstr "Aceptar la pareja con %{player}"
 msgid "Accept teams"
 msgstr "Confirmar equipos"
 
-#: games/backgammon.rb:178
+#: games/backgammon.rb:179
 msgid "Accept the double"
 msgstr "Aceptar el doblaje"
 
@@ -7217,11 +7221,11 @@ msgstr ""
 msgid "After a hand, inspect the winner, hand value, point changes and match scores with Tab. For a longer match, every participant must use Ready for the next hand before the next deal starts. In Riichi the dealer repeats after a dealer win or a draw with a ready dealer; repeated hands carry honba bonuses. The selected round count ends the match after the required dealer rotations. The highest total wins; equal totals share a draw."
 msgstr ""
 
-#: games/poker.rb:30
+#: games/poker.rb:31
 msgid "After a number of hands"
 msgstr "Tras un número de repartos"
 
-#: games/poker.rb:31
+#: games/poker.rb:32
 msgid "After a number of minutes"
 msgstr "Tras un número de minutos"
 
@@ -7619,7 +7623,7 @@ msgstr "Todos han elegido su combinación. Empiezan las apuestas."
 msgid "All history"
 msgstr "Todo el historial"
 
-#: games/poker.rb:1347 lib/blackjack_auction.rb:301
+#: games/poker.rb:1382 lib/blackjack_auction.rb:301
 msgid "All in; %{amount}"
 msgstr "Todo apostado; %{amount}"
 
@@ -7742,11 +7746,11 @@ msgstr ""
 msgid "Allow drawing with a playable tile is on by default. Drawing never removes the right to play a legal tile already held. Without a legal move after drawing the turn ends. Forbid drawing disables both drawing options; an empty or forbidden boneyard and no legal tile cause an automatic pass."
 msgstr ""
 
-#: games/poker.rb:144
+#: games/poker.rb:145
 msgid "Allow exchanging all five cards"
 msgstr "Permitir cambiar las cinco cartas"
 
-#: games/reversi.rb:36
+#: games/reversi.rb:54
 msgid "Allow passing even when a move exists"
 msgstr "Permitir pasar aunque haya un movimiento posible"
 
@@ -8081,7 +8085,7 @@ msgstr ""
 msgid "Answers remain hidden until writing has closed. Writing closes after every player submits or, when a time limit is enabled, when that time expires; missing answers then become blank."
 msgstr ""
 
-#: games/poker.rb:130
+#: games/poker.rb:131
 msgid "Ante in five-card draw"
 msgstr "Ante en el póquer con descarte de cinco cartas"
 
@@ -8718,7 +8722,7 @@ msgstr "Parejas disponibles: elige con las flechas y pulsa Intro para retirar"
 msgid "Available small-point totals remain visible even if an older match has no recorded small points. Incomplete totals do not decide the order of tied participants."
 msgstr "Las sumas disponibles de puntos de juego siguen mostrándose aunque falten esos datos en un encuentro antiguo. Las sumas incompletas no se usan para desempatar."
 
-#: games/hearts_support/hearts_table.rb:16
+#: games/hearts_support/hearts_table.rb:17
 msgid "Avoid hearts and the queen of spades to finish with the fewest penalty points."
 msgstr "Evita los corazones y la dama de picas para terminar con menos puntos de penalización."
 
@@ -8897,7 +8901,7 @@ msgstr "Volver a las secciones de las reglas"
 msgid "Back to the table"
 msgstr "Volver a la mesa"
 
-#: games/backgammon.rb:22
+#: games/backgammon.rb:23
 msgid "Backgammon"
 msgstr "Backgammon"
 
@@ -9122,7 +9126,7 @@ msgstr ""
 msgid "Bar. %{first}: %{one}. %{second}: %{two}."
 msgstr "Barra. %{first}: %{one}. %{second}: %{two}."
 
-#: games/backgammon.rb:264
+#: games/backgammon.rb:265
 msgid "Bar: %{counts}."
 msgstr "Barra: %{counts}."
 
@@ -9290,7 +9294,7 @@ msgstr "Empieza la vuelta %{lap}."
 msgid "Being vulnerable raises both the rewards and the penalties. Who is vulnerable is announced at the start of each deal; V repeats it together with the deal number, the dealer, the contract and the tricks."
 msgstr ""
 
-#: games/belote_support/belote_table.rb:16
+#: games/belote_support/belote_table.rb:17
 msgid "Belote"
 msgstr "Belote"
 
@@ -9347,7 +9351,7 @@ msgstr "Apostar y consultar las cartas"
 msgid "Betting before the deal"
 msgstr ""
 
-#: games/poker.rb:516
+#: games/poker.rb:503
 msgid "Betting has not reopened for you; you cannot raise again yet."
 msgstr "Las apuestas no se han reabierto para ti; todavía no puedes volver a subir."
 
@@ -9359,7 +9363,7 @@ msgstr ""
 msgid "Betting starts after everyone keeps a hand. C checks or calls, R or B raises, F folds, and A goes all-in. Folding gives up your claim to the pot. When betting ends, the players still competing reveal their hands; folded hands stay hidden. If everyone but one player folds, that player wins without showing their dice."
 msgstr "Las apuestas empiezan cuando todos han confirmado su jugada. C pasa o iguala, R o B sube, F te retira y A apuesta todo. Al retirarte renuncias al bote. Al terminar las apuestas se muestran las jugadas de quienes siguen compitiendo; las de quienes se retiraron quedan ocultas. Si solo queda una persona, gana el bote sin mostrar los dados."
 
-#: games/poker.rb:134
+#: games/poker.rb:135
 msgid "Betting structure"
 msgstr "Estructura de apuestas"
 
@@ -9425,7 +9429,7 @@ msgstr ""
 msgid "Bid on everyone's hidden dice, raise the claim or call a bluff. Keep your last die to win."
 msgstr "Apuesta sobre los dados ocultos de todos, sube o desafía un farol. Conserva tu último dado para ganar."
 
-#: games/french_tarot_support/french_tarot_table.rb:20
+#: games/french_tarot_support/french_tarot_table.rb:21
 msgid "Bid to play against three defenders, then capture tricks to fulfil your contract."
 msgstr "Gana un contrato contra tres defensores y captura bazas para cumplirlo."
 
@@ -9481,7 +9485,7 @@ msgstr ""
 msgid "Bids: %{bids}."
 msgstr "Declaraciones: %{bids}."
 
-#: games/poker.rb:129
+#: games/poker.rb:130
 msgid "Big blind"
 msgstr "Ciega grande"
 
@@ -9590,7 +9594,7 @@ msgstr "Lista negra"
 msgid "Blank"
 msgstr "Casilla vacía"
 
-#: games/poker.rb:142
+#: games/poker.rb:143
 msgid "Blind multiplier"
 msgstr "Multiplicador de las ciegas"
 
@@ -9598,18 +9602,18 @@ msgstr "Multiplicador de las ciegas"
 msgid "Blinds and ante put chips into play"
 msgstr ""
 
-#: games/poker.rb:709
+#: games/poker.rb:696
 msgid "Blinds increase to %{small} and %{big}."
 msgstr "Las ciegas suben a %{small} y %{big}."
 
-#: games/poker.rb:158
+#: games/poker.rb:159
 msgid "Blinds must be positive and the big blind must not be smaller than the small blind."
 msgstr "Las ciegas deben ser positivas y la ciega grande no puede ser menor que la pequeña."
 
 msgid "Blinds, ante and increasing stakes"
 msgstr ""
 
-#: games/poker.rb:1329
+#: games/poker.rb:1364
 msgid "Blinds: %{small} and %{big}."
 msgstr "Ciegas: %{small} y %{big}."
 
@@ -9663,7 +9667,7 @@ msgstr "Pozo no disponible: %{count}."
 msgid "Boneyard: %{count}."
 msgstr "Pozo: %{count}."
 
-#: games/yahtzee.rb:312
+#: games/yahtzee.rb:319
 msgid "Bonus for Ones through Sixes: %{points}."
 msgstr "Bonificación por las categorías del uno al seis: %{points}."
 
@@ -9689,7 +9693,7 @@ msgstr "Las primas y penalizaciones se anotan encima de la línea. Cuentan para 
 msgid "Bonuses and the Joker are separate options"
 msgstr ""
 
-#: games/kosciane.rb:220 games/kosciane.rb:242
+#: games/kosciane.rb:221 games/kosciane.rb:243
 msgid "Bonuses: %{points}"
 msgstr "Bonificaciones: %{points}"
 
@@ -9706,7 +9710,7 @@ msgstr "Personaje de un libro"
 msgid "Borne off. %{first}: %{one}. %{second}: %{two}."
 msgstr "Fichas retiradas. %{first}: %{one}. %{second}: %{two}."
 
-#: games/backgammon.rb:265
+#: games/backgammon.rb:266
 msgid "Borne off: %{counts}."
 msgstr "Fichas retiradas: %{counts}."
 
@@ -9877,7 +9881,7 @@ msgstr "Brillante"
 msgid "Bring all four pawns home"
 msgstr ""
 
-#: games/backgammon.rb:412
+#: games/backgammon.rb:405
 msgid "Bring all your checkers into points 1 to 6 before bearing off."
 msgstr "Antes de retirar fichas, debes llevarlas todas a los puntos del 1 al 6."
 
@@ -10197,7 +10201,7 @@ msgstr ""
 msgid "Calendar years are unavailable. Try Refresh."
 msgstr ""
 
-#: games/poker.rb:1341 lib/blackjack_auction.rb:299
+#: games/poker.rb:1376 lib/blackjack_auction.rb:299
 msgid "Call %{amount}"
 msgstr "Igualar con %{amount}"
 
@@ -10378,7 +10382,7 @@ msgstr ""
 msgid "Card effects, combinations and other lists in the rules now appear as separate items, making them easier to read and navigate."
 msgstr "Los efectos de las cartas, las combinaciones y otras enumeraciones de las reglas ahora aparecen en listas, para facilitar su lectura y navegación."
 
-#: games/three_five_eight.rb:111
+#: games/three_five_eight.rb:122
 msgid "Card exchange between players"
 msgstr ""
 
@@ -10386,7 +10390,7 @@ msgstr ""
 msgid "Card exchange is available only in a trump contract. A player who scored above zero in the previous deal may exchange up to that many cards with players who scored below zero. A player with the higher target in the current deal exchanges first. You may stop before using the whole allowance."
 msgstr ""
 
-#: games/poker.rb:809
+#: games/poker.rb:800
 msgid "Card exchange."
 msgstr "Cambio de cartas."
 
@@ -10414,7 +10418,7 @@ msgstr ""
 msgid "Card order: reversed; two is the strongest card and ace the weakest."
 msgstr ""
 
-#: games/hearts_support/hearts_table.rb:57
+#: games/hearts_support/hearts_table.rb:58
 msgid "Card passed."
 msgstr "Carta pasada."
 
@@ -10464,7 +10468,7 @@ msgstr "Cartas que se roban por no decir Makao"
 msgid "Cards drawn for missing Makao defaults to 1, from 1 to 10, in every profile. Say Makao once your hand contains one card. Another player may catch the omission before your next turn and make you draw this many cards. Playing your last card ends the game; there is no points-elimination tournament in this implementation."
 msgstr ""
 
-#: games/hearts_support/hearts_table.rb:67
+#: games/hearts_support/hearts_table.rb:68
 msgid "Cards from %{player}: %{cards}."
 msgstr "Cartas de %{player}: %{cards}."
 
@@ -10480,7 +10484,7 @@ msgstr ""
 msgid "Cards in each talon"
 msgstr "Cartas en cada reserva"
 
-#: games/poker.rb:602
+#: games/poker.rb:589
 msgid "Cards in hand: %{cards}."
 msgstr "Cartas en la mano: %{cards}."
 
@@ -10492,7 +10496,7 @@ msgstr ""
 msgid "Cards on the table"
 msgstr "Cartas en la mesa"
 
-#: games/spades.rb:943 games/three_five_eight.rb:1020
+#: games/spades.rb:943 games/three_five_eight.rb:1066
 msgid "Cards on the table: %{cards}."
 msgstr "Cartas en la mesa: %{cards}."
 
@@ -10526,11 +10530,11 @@ msgstr "Cartas ordenadas por palo en orden descendente."
 msgid "Cards sorted by value."
 msgstr "Cartas ordenadas por valor."
 
-#: games/hearts_support/hearts_table.rb:46
+#: games/hearts_support/hearts_table.rb:47
 msgid "Cards still to pass: %{count}."
 msgstr "Cartas que faltan por pasar: %{count}."
 
-#: games/cribbage_support/cribbage_table.rb:98
+#: games/cribbage_support/cribbage_table.rb:111
 msgid "Cards to count"
 msgstr "Cartas que contar"
 
@@ -10876,7 +10880,7 @@ msgstr "El chat ya no rechaza un mensaje solo porque otro jugador actúe al mism
 msgid "Chat sounds"
 msgstr "Sonidos del chat"
 
-#: games/poker.rb:1340 lib/blackjack_auction.rb:298
+#: games/poker.rb:1375 lib/blackjack_auction.rb:298
 msgid "Check"
 msgstr "Pasar"
 
@@ -11001,11 +11005,11 @@ msgstr "Ficha seleccionada. Pulsa Enter de nuevo para retirarla."
 msgid "Checkers"
 msgstr "Damas"
 
-#: games/backgammon.rb:360
+#: games/backgammon.rb:353
 msgid "Checkers already borne off cannot be moved."
 msgstr "Las fichas retiradas ya no se pueden mover."
 
-#: games/backgammon.rb:380
+#: games/backgammon.rb:373
 msgid "Checkers move toward lower-numbered points."
 msgstr "Las fichas se mueven hacia los puntos de menor número."
 
@@ -11353,7 +11357,7 @@ msgstr "Elige un kong oculto"
 msgid "Choose a contract"
 msgstr "Elige un contrato"
 
-#: games/belote_support/belote_table.rb:137 games/belote_support/belote_table.rb:140 games/french_tarot_support/french_tarot_bidding.rb:41
+#: games/belote_support/belote_table.rb:138 games/belote_support/belote_table.rb:141 games/french_tarot_support/french_tarot_bidding.rb:41
 msgid "Choose a contract or pass"
 msgstr "Elegir contrato o pasar"
 
@@ -11395,7 +11399,7 @@ msgstr "Elige una prueba local de torneos o la prueba separada del servidor. La 
 msgid "Choose a match and press Enter to play. Results are recorded automatically."
 msgstr "Elige una partida y pulsa Intro para jugar. Los resultados se registran automáticamente."
 
-#: games/backgammon.rb:407
+#: games/backgammon.rb:400
 msgid "Choose a move that lets you use as many dice as possible."
 msgstr "Elige un movimiento que permita usar tantos dados como sea posible."
 
@@ -11423,7 +11427,7 @@ msgstr "Elige a un jugador de la partida actual."
 msgid "Choose a player to exchange hands with"
 msgstr "Elige un jugador con quien intercambiar las manos"
 
-#: games/yahtzee.rb:287
+#: games/yahtzee.rb:294
 msgid "Choose a player's score sheet"
 msgstr "Elige la hoja de puntuaciones de un jugador"
 
@@ -11577,7 +11581,7 @@ msgstr ""
 msgid "Choose an empty intersection. Suicide and repetition of an earlier board position are forbidden."
 msgstr "Elija una intersección vacía. Se prohíben suicidio y repetición de posiciones anteriores."
 
-#: games/backgammon.rb:379
+#: games/backgammon.rb:372
 msgid "Choose an entry point from 19 to 24 for your checker on the bar."
 msgstr "Elige un punto del 19 al 24 para volver a introducir la ficha de la barra."
 
@@ -11612,7 +11616,7 @@ msgstr "Elige fichas disponibles y casillas válidas del tablero."
 msgid "Choose both a tile and its train"
 msgstr "Elige tanto una ficha como su tren"
 
-#: games/poker.rb:370
+#: games/poker.rb:371
 msgid "Choose cards to exchange"
 msgstr "Elige las cartas que quieres cambiar"
 
@@ -11811,7 +11815,7 @@ msgstr ""
 msgid "Choose the cue ball"
 msgstr "Elige la bola jugadora"
 
-#: games/jass_support/jass_table.rb:84
+#: games/jass_support/jass_table.rb:85
 msgid "Choose the deal rules"
 msgstr "Elige las reglas de la mano"
 
@@ -11892,7 +11896,7 @@ msgstr ""
 msgid "Choose tiles to exchange"
 msgstr "Elige las fichas que quieres intercambiar"
 
-#: games/jass_support/jass_table.rb:85
+#: games/jass_support/jass_table.rb:86
 msgid "Choose trumps or a no-trump mode"
 msgstr "Elige triunfo o un modo sin triunfo"
 
@@ -12027,7 +12031,7 @@ msgstr "Fechas y horas de la zona horaria indicada, sin conversión a otras zona
 msgid "Claim bingo"
 msgstr "Cantar bingo"
 
-#: games/cribbage_support/cribbage_table.rb:361
+#: games/cribbage_support/cribbage_table.rb:374
 msgid "Claimed: %{claimed}; correct score: %{actual}. %{player} receives the difference: %{points}."
 msgstr "Puntuación indicada: %{claimed}; correcta: %{actual}. %{player} recibe la diferencia: %{points}."
 
@@ -12055,7 +12059,7 @@ msgstr "Se ha aclarado la redacción de tres preguntas del conjunto polaco de co
 msgid "Classic"
 msgstr "Clásico"
 
-#: games/backgammon.rb:49
+#: games/backgammon.rb:50
 msgctxt "Backgammon variant"
 msgid "Classic"
 msgstr "Clásico"
@@ -12091,7 +12095,7 @@ msgstr ""
 msgid "Classic, No Mercy and Flip decks"
 msgstr ""
 
-#: games/belote_support/belote_table.rb:29
+#: games/belote_support/belote_table.rb:30
 msgid "Classic: choose a trump suit"
 msgstr "Clásica: elegir un palo de triunfo"
 
@@ -12170,11 +12174,11 @@ msgstr "Coinchée y opciones de la mesa"
 msgid "Coinchée. Choose a bid or pass."
 msgstr "Coinchée. Elige una oferta o pasa."
 
-#: games/belote_support/belote_table.rb:30
+#: games/belote_support/belote_table.rb:31
 msgid "Coinchée: bid a point contract"
 msgstr "Coinchée: pujar por un contrato de puntos"
 
-#: games/belote_support/belote_table.rb:31
+#: games/belote_support/belote_table.rb:32
 msgid "Coinchée: deal five cards before bidding"
 msgstr "Coinchée: repartir cinco cartas antes de pujar"
 
@@ -12505,15 +12509,15 @@ msgstr "Seguir editando"
 msgid "Continue without drawing"
 msgstr "Continuar sin robar"
 
-#: games/french_tarot_support/french_tarot_table.rb:384
+#: games/french_tarot_support/french_tarot_table.rb:415
 msgid "Contract failed."
 msgstr "Contrato fallido."
 
-#: games/french_tarot_support/french_tarot_table.rb:384
+#: games/french_tarot_support/french_tarot_table.rb:415
 msgid "Contract fulfilled."
 msgstr "Contrato cumplido."
 
-#: games/belote_support/belote_table.rb:257
+#: games/belote_support/belote_table.rb:294
 msgid "Contract multiplier: %{multiplier}."
 msgstr "Multiplicador del contrato: %{multiplier}."
 
@@ -12533,7 +12537,7 @@ msgstr "Contrato: %{contract}, juega %{declarer}. El declarante necesita %{neede
 msgid "Contract: %{contract}, declarer %{declarer}. %{leader} makes the opening lead."
 msgstr "Contrato: %{contract}, declarante %{declarer}. Sale %{leader}."
 
-#: games/three_five_eight.rb:1038
+#: games/three_five_eight.rb:1084
 msgid "Contract: %{contract}."
 msgstr ""
 
@@ -12769,7 +12773,7 @@ msgstr "Cuenta los graznidos, escribe la respuesta y pulsa Enter. F5 repite los 
 msgid "Count the tiles left behind"
 msgstr ""
 
-#: games/cribbage_support/cribbage_table.rb:82
+#: games/cribbage_support/cribbage_table.rb:95
 msgid "Count these cards"
 msgstr "Cuenta estas cartas"
 
@@ -12849,7 +12853,7 @@ msgstr "En Categorías pueden jugar de dos a ocho personas. En cada ronda se sor
 msgid "Country"
 msgstr "País"
 
-#: games/mexican_train.rb:196
+#: games/mexican_train.rb:197
 msgid "Cover %{double} on %{train}."
 msgstr "Cubre %{double} en %{train}."
 
@@ -12861,7 +12865,7 @@ msgstr ""
 msgid "Covered tile"
 msgstr "Ficha cubierta"
 
-#: games/backgammon.rb:442
+#: games/backgammon.rb:435
 msgid "Crawford game. Doubling is disabled."
 msgstr "Partida Crawford. El doblaje está desactivado."
 
@@ -12928,7 +12932,7 @@ msgstr "Creando la mesa"
 msgid "Creating tournament table"
 msgstr "Creando mesa del torneo"
 
-#: games/cribbage_support/cribbage_table.rb:98
+#: games/cribbage_support/cribbage_table.rb:111
 msgid "Crib"
 msgstr "Crib"
 
@@ -13704,11 +13708,11 @@ msgstr "Día"
 msgid "Deadline passed"
 msgstr "Plazo vencido"
 
-#: games/three_five_eight.rb:519
+#: games/three_five_eight.rb:565
 msgid "Deal %{round} of 18. %{dealer} deals; %{chooser} chooses the contract from the first six cards."
 msgstr ""
 
-#: games/three_five_eight.rb:1033
+#: games/three_five_eight.rb:1079
 msgid "Deal %{round} of 18. %{details}."
 msgstr ""
 
@@ -13728,7 +13732,7 @@ msgstr "Mano %{round}. Reparte %{dealer}. %{vulnerability}."
 msgid "Deal cards"
 msgstr "Repartir cartas"
 
-#: games/french_tarot_support/french_tarot_table.rb:92
+#: games/french_tarot_support/french_tarot_table.rb:130
 msgid "Deal limit (0 for no limit)"
 msgstr "Límite de repartos (0 sin límite)"
 
@@ -13830,7 +13834,7 @@ msgstr "Anunciar el siguiente golpe"
 msgid "Declared: %{ball}; %{pocket}."
 msgstr "Anunciado: %{ball}; %{pocket}."
 
-#: games/french_tarot_support/french_tarot_table.rb:78
+#: games/french_tarot_support/french_tarot_table.rb:116
 msgid "Declarer: %{declarer}. Defenders: %{defenders}."
 msgstr "Declarante: %{declarer}. Defensa: %{defenders}."
 
@@ -13838,7 +13842,7 @@ msgstr "Declarante: %{declarer}. Defensa: %{defenders}."
 msgid "Declarer: %{player}."
 msgstr "Declarante: %{player}."
 
-#: games/french_tarot_support/french_tarot_table.rb:178
+#: games/french_tarot_support/french_tarot_table.rb:216
 msgid "Declarer: %{player}. Contract: %{contract}."
 msgstr "Declarante: %{player}. Contrato: %{contract}."
 
@@ -13846,7 +13850,7 @@ msgstr "Declarante: %{player}. Contrato: %{contract}."
 msgid "Declaring a win"
 msgstr ""
 
-#: games/backgammon.rb:178
+#: games/backgammon.rb:179
 msgid "Decline and concede this game"
 msgstr "Rechazar y conceder esta partida"
 
@@ -14112,7 +14116,7 @@ msgstr ""
 msgid "Dice: %{dice}."
 msgstr "Dados: %{dice}."
 
-#: games/backgammon.rb:245
+#: games/backgammon.rb:246
 msgid "Dice: %{dice}. Board."
 msgstr "Dados: %{dice}. Tablero."
 
@@ -14206,13 +14210,13 @@ msgstr "Descartar"
 msgid "Discard %{card}?"
 msgstr "¿Quieres descartar la carta %{card}?"
 
-#: games/french_tarot_support/french_tarot_table.rb:183
+#: games/french_tarot_support/french_tarot_table.rb:221
 msgid "Discard %{count} more card."
 msgid_plural "Discard %{count} more cards."
 msgstr[0] "Descarta %{count} carta más."
 msgstr[1] "Descarta %{count} cartas más."
 
-#: games/french_tarot_support/french_tarot_table.rb:127
+#: games/french_tarot_support/french_tarot_table.rb:165
 msgid "Discard an ordinary suited card while you still have one that can be discarded."
 msgstr "Mientras tengas cartas de palo normal que se puedan descartar, debes elegir una de ellas."
 
@@ -14365,7 +14369,7 @@ msgstr "Dominó"
 msgid "Domino and Mexican Train now have distinct sounds for dealing tiles, playing a tile and drawing from the boneyard."
 msgstr "Dominó y Tren mexicano tienen ahora sonidos distintos para repartir fichas, jugar una ficha y robar del montón."
 
-#: games/domino.rb:189
+#: games/domino.rb:190
 msgid "Domino chain"
 msgstr "Cadena de dominó"
 
@@ -14460,7 +14464,7 @@ msgstr "Doble sueldo al caer en la casilla de Salida"
 msgid "Double the first roll score"
 msgstr "Duplicar los puntos de la primera tirada"
 
-#: games/backgammon.rb:185
+#: games/backgammon.rb:186
 msgid "Double the stake from %{from} to %{to}."
 msgstr "Doblar la apuesta de %{from} a %{to}."
 
@@ -14483,7 +14487,7 @@ msgstr "Dobles requiere exactamente cuatro jugadores."
 msgid "Doubles requires two teams of two players."
 msgstr "Dobles requiere dos equipos de dos jugadores."
 
-#: games/backgammon.rb:38 games/backgammon.rb:56
+#: games/backgammon.rb:39 games/backgammon.rb:57
 msgid "Doubling cube"
 msgstr "Cubo de doblaje"
 
@@ -14788,7 +14792,7 @@ msgstr ""
 msgid "Duplicate, 5 points"
 msgstr "Repetida, 5 puntos"
 
-#: games/base/information.rb:70 lib/game_duration.rb:11 lib/game_duration.rb:22
+#: games/base/information.rb:73 lib/game_duration.rb:11 lib/game_duration.rb:22
 msgid "Duration is unavailable."
 msgstr "No se puede consultar la duración."
 
@@ -15236,7 +15240,7 @@ msgstr "Nota para la revisión (opcional)"
 msgid "Editorial note: %{note}"
 msgstr "Nota para la revisión: %{note}"
 
-#: games/backgammon.rb:53
+#: games/backgammon.rb:54
 msgid "Egyptian rule"
 msgstr "Regla egipcia"
 
@@ -15358,7 +15362,7 @@ msgstr "El fin del sentido contrario elimina únicamente el efecto de sentido co
 msgid "End of speed limit"
 msgstr "Fin del límite de velocidad"
 
-#: games/french_tarot_support/french_tarot_table.rb:395
+#: games/french_tarot_support/french_tarot_table.rb:426
 msgid "End of the deal."
 msgstr "Fin del reparto."
 
@@ -15572,7 +15576,7 @@ msgstr "Escribe %{maximum} o A para ir con todo."
 msgid "Enter (Solitaire): mark the first tile or remove a matching second tile."
 msgstr ""
 
-#: games/backgammon.rb:61
+#: games/backgammon.rb:62
 msgid "Enter a non-negative match score limit."
 msgstr "Introduce un objetivo de puntos no negativo."
 
@@ -15684,7 +15688,7 @@ msgstr ""
 msgid "Enter in the rules inserts a new line. Only the Publish in local test button submits. Escape cancels."
 msgstr ""
 
-#: games/french_tarot_support/french_tarot_table.rb:100
+#: games/french_tarot_support/french_tarot_table.rb:138
 msgid "Enter non-negative limits."
 msgstr "Introduce límites no negativos."
 
@@ -15715,7 +15719,7 @@ msgstr "Intro en la lista lee los detalles. Comprobar la operación seleccionada
 msgid "Enter one Polish word of 3 to 13 letters."
 msgstr "Escribe una palabra polaca de entre 3 y 13 letras."
 
-#: lib/game_surfaces.rb:606
+#: lib/game_surfaces.rb:611
 msgid "Enter one destination field, for example /C4."
 msgstr "Introduce una casilla de destino, por ejemplo, /C4."
 
@@ -16108,7 +16112,7 @@ msgstr "Europa usa 0–36; América añade 00. Francia usa un cero y la partage:
 msgid "European: single zero"
 msgstr "Europea: un cero"
 
-#: games/kosciane.rb:300 games/roulette.rb:290
+#: games/kosciane.rb:301 games/roulette.rb:290
 msgid "Even"
 msgstr "Par"
 
@@ -16280,7 +16284,7 @@ msgstr ""
 msgid "Exchange one to seven tiles only when at least eight remain in the bag. Returned tiles go into the bag before shuffling and drawing replacements, so the same tile may return. Exchanging or passing ends the turn. Neither action commits a draft."
 msgstr ""
 
-#: games/three_five_eight.rb:354
+#: games/three_five_eight.rb:400
 msgid "Exchange with %{player}"
 msgstr ""
 
@@ -16296,7 +16300,7 @@ msgstr ""
 msgid "Excluded from this comparison: matches against %{player}"
 msgstr ""
 
-#: games/french_tarot_support/french_tarot_table.rb:202 games/french_tarot_support/french_tarot_table.rb:301
+#: games/french_tarot_support/french_tarot_table.rb:240 games/french_tarot_support/french_tarot_table.rb:339
 msgid "Excuse"
 msgstr "Excusa"
 
@@ -16578,7 +16582,7 @@ msgstr ""
 msgid "Field %{field} contains %{piece}, which belongs to your opponent."
 msgstr "En la casilla %{field} hay una pieza de tu rival: %{piece}."
 
-#: games/reversi.rb:155
+#: games/reversi.rb:173
 msgid "Field %{field} is already occupied."
 msgstr "La casilla %{field} ya está ocupada."
 
@@ -16594,7 +16598,7 @@ msgstr "La casilla %{field} no está disponible en la notación actual del table
 msgid "Field %{field} is occupied by your %{piece}."
 msgstr "Tu pieza (%{piece}) ocupa la casilla %{field}."
 
-#: lib/game_surfaces.rb:612
+#: lib/game_surfaces.rb:617
 msgid "Field %{field} is outside this board."
 msgstr "La casilla %{field} está fuera de este tablero."
 
@@ -16726,7 +16730,7 @@ msgstr "Finalizar la trayectoria por bandas"
 msgid "Finish every player’s turn before scoring. A unique best total not exceeding 21 earns one point, or two for exactly 21. A tied best total, including tied 21s, and an all-bust round earn no points. This match scoring also applies to the one-die variant; it replaces a playoff. Rotate the first player each round. First to the chosen target (default ten) wins."
 msgstr ""
 
-#: games/three_five_eight.rb:992
+#: games/three_five_eight.rb:1038
 msgid "Finish exchanging"
 msgstr ""
 
@@ -16734,7 +16738,7 @@ msgstr ""
 msgid "Finish line"
 msgstr "Meta"
 
-#: lib/game_surfaces.rb:994 lib/game_surfaces/card_actions.rb:69
+#: lib/game_surfaces.rb:999 lib/game_surfaces/card_actions.rb:69
 msgid "Finish or cancel the current card choice first."
 msgstr "Primero termina o cancela la elección de cómo jugar la carta actual."
 
@@ -16798,7 +16802,7 @@ msgstr ""
 msgid "Finishing the game"
 msgstr ""
 
-#: games/poker.rb:715
+#: games/poker.rb:702
 msgid "First betting round."
 msgstr "Primera ronda de apuestas."
 
@@ -16882,7 +16886,7 @@ msgstr ""
 msgid "Five seconds after the last question, all chests open automatically, including those owned by eliminated players. You hear an opening announcement, the chest sound and each chest’s contents. The final result follows four seconds after the contents have been announced."
 msgstr "Cinco segundos después de terminar las preguntas, todos los cofres se abren automáticamente, incluidos los de los jugadores eliminados. Oirás el anuncio de apertura, el sonido de los cofres y su contenido. El resultado final se anuncia cuatro segundos después del contenido."
 
-#: games/poker.rb:17
+#: games/poker.rb:18
 msgid "Five-card draw"
 msgstr "Póquer con descarte de cinco cartas"
 
@@ -16994,7 +16998,7 @@ msgstr "Se ha corregido la clasificación final en varios juegos de torneo, incl
 msgid "Fixed handling of expired table notifications and cleanup of table voice channels whose creation was not confirmed."
 msgstr "Se ha corregido la gestión de avisos de mesas caducados y la limpieza de canales de voz cuya creación no se había confirmado."
 
-#: games/poker.rb:26
+#: games/poker.rb:27
 msgid "Fixed limit"
 msgstr "Límite fijo"
 
@@ -17121,7 +17125,7 @@ msgstr ""
 msgid "Flip: %{side}. %{top}"
 msgstr "Flip: %{side}. %{top}"
 
-#: games/poker.rb:851 games/poker_private.rb:101
+#: games/poker.rb:842 games/poker_private.rb:101
 msgid "Flop"
 msgstr "Flop"
 
@@ -17146,7 +17150,7 @@ msgstr "Flores: %{count} fan extra, fuera del mínimo de 8."
 msgid "Focus on accuracy. Try to minimize typing errors before gradually increasing your speed."
 msgstr ""
 
-#: games/poker.rb:1342 lib/blackjack_auction.rb:300 lib/blackjack_auction.rb:50
+#: games/poker.rb:1377 lib/blackjack_auction.rb:300 lib/blackjack_auction.rb:50
 msgid "Fold"
 msgstr "Retirarse"
 
@@ -17154,7 +17158,7 @@ msgstr "Retirarse"
 msgid "Follow suit if you can. Otherwise trump if possible, and overtrump when you can. You may play the Excuse regardless of suit. After 18 tricks, the contract depends on the points and oudlers captured."
 msgstr ""
 
-#: games/jass_support/jass_table.rb:92
+#: games/jass_support/jass_table.rb:93
 msgid "Follow suit or play a legal trump. You may undertrump only if no other legal card remains."
 msgstr "Asiste al palo o juega un triunfo permitido. Solo puedes echar un triunfo inferior si no te queda otra jugada legal."
 
@@ -17484,7 +17488,7 @@ msgstr "Escritura libre"
 msgid "Free typing ends at the end of the text, at the time limit, or when you choose Finish typing. Multiplayer results appear after everyone finishes. The score combines WPM with an accuracy factor; the highest score wins and equal scores tie. Results remain at the table and in its history. There is no separate Typing Mania server leaderboard."
 msgstr ""
 
-#: games/french_tarot_support/french_tarot_table.rb:19
+#: games/french_tarot_support/french_tarot_table.rb:20
 msgid "French Tarot"
 msgstr "Tarot francés"
 
@@ -17541,7 +17545,7 @@ msgstr ""
 msgid "Full P2P (direct connections between participants)"
 msgstr ""
 
-#: games/poker.rb:20
+#: games/poker.rb:21
 msgid "Full deck: 52 cards"
 msgstr "Baraja completa: 52 cartas"
 
@@ -17749,11 +17753,11 @@ msgstr "Partida en pausa."
 msgid "Game points for %{for}, game points against %{against}."
 msgstr ""
 
-#: games/balut_support/balut_score_grid.rb:40
+#: games/balut_support/balut_score_grid.rb:41
 msgid "Game points for this category: %{points}"
 msgstr "Puntos de esta categoría: %{points}"
 
-#: games/balut_support/balut_score_grid.rb:28
+#: games/balut_support/balut_score_grid.rb:29
 msgid "Game points: %{points}"
 msgstr "Puntos de partida: %{points}"
 
@@ -17861,7 +17865,7 @@ msgstr "Combustible"
 msgid "General"
 msgstr "General"
 
-#: games/kosciane.rb:302
+#: games/kosciane.rb:303
 msgid "General (five of a kind)"
 msgstr "General (cinco dados iguales)"
 
@@ -17906,7 +17910,7 @@ msgstr "Estación central de ferrocarril de Beograd"
 msgid "Go"
 msgstr "Go"
 
-#: games/cribbage_support/cribbage_table.rb:107
+#: games/cribbage_support/cribbage_table.rb:120
 msgctxt "Cribbage"
 msgid "Go"
 msgstr "Paso"
@@ -18155,7 +18159,7 @@ msgstr ""
 msgid "Half your score comes from the order of the sounds, and half from the gaps between them. The most accurate performance wins. Each ten percentage points of advantage, rounded up, earns one feather from that opponent."
 msgstr ""
 
-#: games/poker.rb:25
+#: games/poker.rb:26
 msgid "Half-pot limit"
 msgstr "Límite de medio bote"
 
@@ -18200,7 +18204,7 @@ msgstr ""
 msgid "Hands continue with a rotating dealer until only one player has chips."
 msgstr ""
 
-#: games/poker.rb:140
+#: games/poker.rb:141
 msgid "Hands or minutes between blind increases"
 msgstr "Repartos o minutos entre subidas de las ciegas"
 
@@ -18232,7 +18236,7 @@ msgstr ""
 msgid "Hazards and remedies"
 msgstr "Ataques y remedios"
 
-#: games/hearts_support/hearts_table.rb:15
+#: games/hearts_support/hearts_table.rb:16
 msgid "Hearts"
 msgstr "Corazones"
 
@@ -18241,11 +18245,11 @@ msgctxt "Card suit"
 msgid "Hearts"
 msgstr "Corazones"
 
-#: games/hearts_support/hearts_table.rb:101 games/hearts_support/hearts_table.rb:335
+#: games/hearts_support/hearts_table.rb:102 games/hearts_support/hearts_table.rb:360
 msgid "Hearts have been broken."
 msgstr "Se han abierto los corazones."
 
-#: games/hearts_support/hearts_table.rb:101
+#: games/hearts_support/hearts_table.rb:102
 msgid "Hearts have not been broken yet."
 msgstr "Aún no se han abierto los corazones."
 
@@ -18481,7 +18485,7 @@ msgstr "¿Cuántas cartas tiene %{player}?"
 msgid "How many feathers does %{player} have?"
 msgstr "¿Cuántas plumas tiene %{player}?"
 
-#: games/cribbage_support/cribbage_table.rb:83
+#: games/cribbage_support/cribbage_table.rb:96
 msgid "How many points do these cards score?"
 msgstr "¿Cuántos puntos suman estas cartas?"
 
@@ -18515,7 +18519,7 @@ msgstr ""
 msgid "Hydro Power Plant"
 msgstr "Central hidroeléctrica"
 
-#: games/backgammon.rb:51
+#: games/backgammon.rb:52
 msgid "Hypergammon"
 msgstr "Hypergammon"
 
@@ -19462,7 +19466,7 @@ msgstr "Atajos de teclado durante la partida"
 msgid "In-game keyboard shortcuts are now an arrow-key list. During a game, it uses the same current game-field help as F1. Enter or Escape closes the list; rules remain one document with headings."
 msgstr "Los atajos de teclado de la partida se muestran ahora en una lista que se recorre con las flechas. Durante una partida, usa la misma ayuda actual del área de juego que F1. Enter o Escape cierran la lista; las reglas siguen siendo un único documento con encabezados."
 
-#: games/poker.rb:1472
+#: games/poker.rb:1507
 msgid "In: %{active}; folded: %{folded}."
 msgstr "En juego: %{active}; se han retirado: %{folded}."
 
@@ -19494,7 +19498,7 @@ msgstr "Palabra incorrecta."
 msgid "Incorrect, 0 points"
 msgstr "Incorrecta, 0 puntos"
 
-#: games/poker.rb:138
+#: games/poker.rb:139
 msgid "Increase blinds"
 msgstr "Subir las ciegas"
 
@@ -19603,7 +19607,7 @@ msgctxt "categories"
 msgid "Insect"
 msgstr "Insecto"
 
-#: games/backgammon.rb:266
+#: games/backgammon.rb:267
 msgid "Inspect the board"
 msgstr "Examinar el tablero"
 
@@ -19820,7 +19824,7 @@ msgstr ""
 msgid "It is based on War, but you choose which card to play, so bluff and strategy matter. There is no random deal. Every player gets all thirteen cards of one suit, from two to ace, plus one joker, so everyone starts with the same cards. Two players play with hearts and spades. With more than four players a second deck is added, so some suits appear twice."
 msgstr ""
 
-#: games/poker.rb:497
+#: games/poker.rb:484
 msgid "It is not the card-exchange stage."
 msgstr "No es la fase de cambio de cartas."
 
@@ -19867,7 +19871,7 @@ msgstr ""
 msgid "Jack, revolution: a jack reverses the card order at once, already in the trick in which it is played. The two becomes the strongest card and the ace the weakest. The next jack restores the usual order. Two jacks in the same trick cancel each other out."
 msgstr ""
 
-#: games/poker.rb:146
+#: games/poker.rb:147
 msgid "Jacks or better is required to open draw poker"
 msgstr "Exigir una pareja de jotas o una combinación superior para abrir en el póquer con descarte"
 
@@ -19893,7 +19897,7 @@ msgstr ""
 msgid "Jail can be reached by a field, a card or three doubles. Before rolling you may pay the exit fee or use a held jail card. Otherwise try for doubles, for up to three turns. Successful doubles release you and move the pawn but give no extra roll. After the third failed attempt you pay and move by that roll. Merely visiting the jail field is not imprisonment."
 msgstr ""
 
-#: games/jass_support/jass_table.rb:17
+#: games/jass_support/jass_table.rb:18
 msgid "Jass"
 msgstr "Jass"
 
@@ -20010,11 +20014,11 @@ msgstr "Conservar %{dice}; %{points} puntos"
 msgid "Keep a Get out of jail card."
 msgstr "Conserva una carta para salir de la cárcel."
 
-#: games/poker.rb:376
+#: games/poker.rb:377
 msgid "Keep all cards"
 msgstr "Conservar todas las cartas"
 
-#: games/hearts_support/hearts_table.rb:201
+#: games/hearts_support/hearts_table.rb:226
 msgid "Keep all your cards this deal."
 msgstr "En esta mano conservas todas tus cartas."
 
@@ -20128,7 +20132,7 @@ msgstr "La prioridad de la dama requiere la regla de captura máxima."
 msgid "King's cross station"
 msgstr "Estación de King's Cross"
 
-#: games/french_tarot_support/french_tarot_table.rb:125
+#: games/french_tarot_support/french_tarot_table.rb:163
 msgid "Kings and the three oudlers cannot be discarded."
 msgstr "No se pueden descartar reyes ni ninguno de los tres oudlers."
 
@@ -20148,7 +20152,7 @@ msgctxt "categories"
 msgid "Kitchen utensil"
 msgstr "Utensilio de cocina"
 
-#: games/french_tarot_support/french_tarot_bidding.rb:72 games/french_tarot_support/french_tarot_table.rb:286
+#: games/french_tarot_support/french_tarot_bidding.rb:72 games/french_tarot_support/french_tarot_table.rb:324
 msgid "Kitty: %{cards}."
 msgstr "Talón: %{cards}."
 
@@ -20598,15 +20602,15 @@ msgstr "Saliendo de la mesa"
 msgid "Leaving the playfield"
 msgstr ""
 
-#: games/french_tarot_support/french_tarot_table.rb:63
+#: games/french_tarot_support/french_tarot_table.rb:101
 msgid "Led suit: %{suit}."
 msgstr "Palo de salida: %{suit}."
 
-#: games/domino.rb:188 lib/audio_ball/settings.rb:20 lib/game_surfaces/tile_hand.rb:62
+#: games/domino.rb:189 lib/audio_ball/settings.rb:20 lib/game_surfaces/tile_hand.rb:62
 msgid "Left"
 msgstr "Izquierda"
 
-#: games/domino.rb:186
+#: games/domino.rb:187
 msgid "Left %{left}, right %{right}."
 msgstr "Izquierda %{left}, derecha %{right}."
 
@@ -20671,7 +20675,7 @@ msgstr ""
 msgid "Length of the game"
 msgstr ""
 
-#: games/jass_support/jass_table.rb:151
+#: games/jass_support/jass_table.rb:173
 msgid "Let your partner choose"
 msgstr "Ceder la elección al compañero"
 
@@ -20715,7 +20719,7 @@ msgstr "Liblouis no está instalado."
 msgid "Limit playing hours"
 msgstr "Limitar el horario de juego"
 
-#: games/poker.rb:135
+#: games/poker.rb:136
 msgid "Limit raises per betting round"
 msgstr "Limitar las subidas por ronda de apuestas"
 
@@ -21057,7 +21061,7 @@ msgstr "Aeropuerto de Londres-Heathrow"
 msgid "Long absence"
 msgstr "Ausencia prolongada"
 
-#: games/backgammon.rb:52
+#: games/backgammon.rb:53
 msgid "LongGammon"
 msgstr "LongGammon"
 
@@ -21262,7 +21266,7 @@ msgstr ""
 msgid "Made Bridge announcements shorter, clarified bidding and improved navigation between your hand and dummy. Trump cards now use the same sound as in Spades."
 msgstr "Se han acortado los anuncios de Bridge, aclarado la subasta y mejorado la navegación entre tu mano y las cartas del muerto. Los triunfos usan ahora el mismo sonido que en Picas."
 
-#: games/mahjong.rb:34 games/mahjong_support/private_table.rb:176 games/mahjong_support/solitaire_presentation.rb:12 games/mahjong_support/solitaire_presentation.rb:36 games/mahjong_support/table_game.rb:205 games/mahjong_support/table_presentation.rb:21 games/mahjong_support/table_presentation.rb:25
+#: games/mahjong.rb:34 games/mahjong_support/private_table.rb:176 games/mahjong_support/solitaire_presentation.rb:12 games/mahjong_support/solitaire_presentation.rb:36 games/mahjong_support/table_game.rb:207 games/mahjong_support/table_presentation.rb:21 games/mahjong_support/table_presentation.rb:25
 msgid "Mahjong"
 msgstr "Mahjong"
 
@@ -21440,7 +21444,7 @@ msgstr ""
 msgid "Mandatory capture is on by default: each move must turn at least one disc. When disabled, you may also place beside any existing disc, in any of the eight directions, without turning a disc. Isolated and occupied fields are still forbidden. Any enclosed discs must still turn."
 msgstr ""
 
-#: games/reversi.rb:37
+#: games/reversi.rb:55
 msgid "Mandatory capture — a move must turn a disc"
 msgstr "Captura obligatoria — cada movimiento debe dar la vuelta a una ficha"
 
@@ -21515,7 +21519,7 @@ msgstr "Marcando la llamada actual de bingo."
 msgid "Marylebone station"
 msgstr "Estación de Marylebone"
 
-#: games/yahtzee.rb:621
+#: games/yahtzee.rb:634
 msgid "Match %{match} finished. %{scores}."
 msgstr "La partida %{match} ha terminado. %{scores}."
 
@@ -21621,11 +21625,11 @@ msgstr "Partida reanudada."
 msgid "Match score and doubling"
 msgstr ""
 
-#: games/backgammon.rb:55
+#: games/backgammon.rb:56
 msgid "Match score limit (0 for one game)"
 msgstr "Objetivo de puntos del encuentro (0 para una partida)"
 
-#: games/mahjong_support/table_game.rb:195
+#: games/mahjong_support/table_game.rb:197
 msgid "Match scores"
 msgstr "Puntuación de la partida completa"
 
@@ -21739,7 +21743,7 @@ msgstr ""
 msgid "Maximum cards drawn voluntarily in one turn"
 msgstr "Máximo de cartas robadas voluntariamente en un turno"
 
-#: games/poker.rb:136
+#: games/poker.rb:137
 msgid "Maximum raises per betting round"
 msgstr "Máximo de subidas por ronda de apuestas"
 
@@ -21875,7 +21879,7 @@ msgstr "Tren mexicano admite de 2 a 8 jugadores."
 msgid "Mexican Train uses one Double 12 set of 91 tiles, for two to eight players. Remove the central station before dealing: double twelve in round one, then eleven down to zero, then twelve again. The station is not an unfinished double. Two to five players receive fifteen tiles each, six or seven receive twelve, and eight receive ten. Recalculate the deal after eliminations."
 msgstr ""
 
-#: games/mexican_train.rb:175
+#: games/mexican_train.rb:176
 msgid "Mexican train"
 msgstr "Tren mexicano"
 
@@ -22116,7 +22120,7 @@ msgstr "Mover a la persona seleccionada hacia arriba"
 msgid "Move to %{square}."
 msgstr "Avanza hasta %{square}."
 
-#: games/backgammon.rb:32
+#: games/backgammon.rb:33
 msgid "Move your checkers home and bear them all off before your opponent."
 msgstr "Lleva tus fichas a casa y retíralas todas antes que tu rival."
 
@@ -22319,7 +22323,7 @@ msgstr "N: recorre tus caballos."
 msgid "N: start a new combination in the draft."
 msgstr "N: inicia una nueva combinación en el borrador."
 
-#: games/backgammon.rb:50
+#: games/backgammon.rb:51
 msgid "Nackgammon"
 msgstr "Nackgammon"
 
@@ -22355,7 +22359,7 @@ msgstr "Falta para la bonificación: %{count}"
 msgid "Needs changes"
 msgstr "Necesita cambios"
 
-#: games/poker.rb:29
+#: games/poker.rb:30
 msgid "Never"
 msgstr "Nunca"
 
@@ -22573,7 +22577,7 @@ msgstr ""
 msgid "No accepted knockout pairings were found for this group plan."
 msgstr ""
 
-#: games/monopoly/presentation.rb:35 games/poker.rb:398
+#: games/monopoly/presentation.rb:35 games/poker.rb:399
 msgid "No action is available"
 msgstr "No hay ninguna acción disponible"
 
@@ -22653,14 +22657,14 @@ msgstr "Todavía nadie ha hablado."
 msgid "No card has been dealt yet."
 msgstr "Todavía no se ha repartido ninguna carta."
 
-#: games/poker.rb:1333
+#: games/poker.rb:1368
 msgid "No card in position %{number}."
 msgstr "No hay ninguna carta en la posición %{number}."
 
 msgid "No card in this packet can legally begin the move."
 msgstr "Ninguna carta de este grupo puede iniciar la jugada de forma válida."
 
-#: games/bridge/presentation.rb:350 games/poker.rb:373
+#: games/bridge/presentation.rb:350 games/poker.rb:374
 msgid "No cards"
 msgstr "Sin cartas"
 
@@ -22680,7 +22684,7 @@ msgstr "Aún no se ha jugado ninguna carta en esta baza."
 msgid "No cards on the table"
 msgstr "No hay cartas en la mesa"
 
-#: games/cribbage_support/cribbage_table.rb:183
+#: games/cribbage_support/cribbage_table.rb:196
 msgid "No cards on the table."
 msgstr "No hay cartas en la mesa."
 
@@ -22696,7 +22700,7 @@ msgstr "No hay opciones disponibles"
 msgid "No collection start date is available."
 msgstr ""
 
-#: games/poker.rb:1324
+#: games/poker.rb:1359
 msgid "No community cards are visible."
 msgstr "No hay cartas comunitarias visibles."
 
@@ -22711,7 +22715,7 @@ msgstr "No hay torneos finalizados."
 msgid "No confirmed registration for this test participant. Viewing does not join a tournament."
 msgstr ""
 
-#: games/belote_support/belote_table.rb:248 games/three_five_eight.rb:1037
+#: games/belote_support/belote_table.rb:285 games/three_five_eight.rb:1083
 msgid "No contract has been chosen yet."
 msgstr "Aún no se ha elegido un contrato."
 
@@ -22751,7 +22755,7 @@ msgstr "No hay dados"
 msgid "No dice have been rolled in this turn."
 msgstr "Aún no se han lanzado los dados en este turno."
 
-#: games/backgammon.rb:268
+#: games/backgammon.rb:269
 msgid "No dice remain to be played."
 msgstr "No quedan dados por usar."
 
@@ -22783,7 +22787,7 @@ msgstr "Por ahora no tienes flores ni estaciones: un posible fan adicional, no i
 msgid "No further registration request will be sent from this preview."
 msgstr "No se enviarán más solicitudes de inscripción desde esta vista."
 
-#: games/balut_support/balut_score_grid.rb:42
+#: games/balut_support/balut_score_grid.rb:43
 msgid "No game points can be earned in this category."
 msgstr "Ya no puedes ganar puntos por esta categoría."
 
@@ -22817,7 +22821,7 @@ msgstr "No hay clasificaciones disponibles en esta versión."
 msgid "No legal win is available for your hand now; no final value can be given."
 msgstr "Ahora no tienes una victoria válida; no se puede dar el valor final de la mano."
 
-#: games/darts.rb:60 games/poker.rb:23
+#: games/darts.rb:60 games/poker.rb:24
 msgid "No limit"
 msgstr "Sin límite"
 
@@ -22966,7 +22970,7 @@ msgstr ""
 msgid "No points"
 msgstr "Sin puntos"
 
-#: games/hearts_support/hearts_table.rb:93
+#: games/hearts_support/hearts_table.rb:94
 msgid "No points yet."
 msgstr "Aún no hay puntos."
 
@@ -23073,7 +23077,7 @@ msgstr "Sin escaleras; los unos son ases y los mayores"
 msgid "No straights; sixes high"
 msgstr "Sin escaleras; seises altos"
 
-#: games/french_tarot_support/french_tarot_table.rb:63
+#: games/french_tarot_support/french_tarot_table.rb:101
 msgid "No suit has been led yet."
 msgstr "Aún no se ha salido a ningún palo."
 
@@ -23155,11 +23159,11 @@ msgstr "Bebida sin alcohol"
 msgid "None"
 msgstr "Nadie"
 
-#: games/backgammon.rb:414
+#: games/backgammon.rb:407
 msgid "None of the remaining dice can bear off this checker."
 msgstr "Ninguno de los dados restantes permite retirar esta ficha."
 
-#: games/cribbage_support/cribbage_table.rb:109
+#: games/cribbage_support/cribbage_table.rb:122
 msgid "None of your cards fits within 31"
 msgstr "Ninguna carta cabe en el límite de 31"
 
@@ -23388,7 +23392,7 @@ msgstr ""
 msgid "O: List all balls and their positions."
 msgstr "O: Enumerar todas las bolas y sus posiciones."
 
-#: games/jass_support/jass_table.rb:149
+#: games/jass_support/jass_table.rb:171
 msgid "Obenabe: high cards win, no trumps"
 msgstr "Obenabe: sin triunfo, ganan las cartas altas"
 
@@ -23411,7 +23415,7 @@ msgstr ""
 msgid "Occupied seats, including bots"
 msgstr "Número de jugadores, incluidos los bots"
 
-#: games/kosciane.rb:301 games/roulette.rb:290
+#: games/kosciane.rb:302 games/roulette.rb:290
 msgid "Odd"
 msgstr "Impar"
 
@@ -23423,7 +23427,7 @@ msgstr "Impares o pares"
 msgid "Off the water"
 msgstr "Fuera del agua"
 
-#: games/backgammon.rb:177
+#: games/backgammon.rb:178
 msgid "Offer a double"
 msgstr "Ofrecer un doblaje"
 
@@ -23677,7 +23681,7 @@ msgstr "Unos"
 msgid "Ones through Sixes sum only dice of that value: three fours score 12 in Fours. Three of a kind and Four of a kind require at least three or four identical dice and score the sum of all five dice. Chance always scores that sum, with no required combination."
 msgstr ""
 
-#: games/yahtzee.rb:311
+#: games/yahtzee.rb:318
 msgid "Ones through Sixes: %{points} of 63."
 msgstr "Categorías del uno al seis: %{points} de 63."
 
@@ -23851,7 +23855,7 @@ msgstr "Abrir la ayuda con F1 o las reglas con Ctrl+F1 ya no detiene la partida.
 msgid "Opening history or replay"
 msgstr "Abriendo historial o repetición"
 
-#: games/poker.rb:514
+#: games/poker.rb:501
 msgid "Opening the betting requires a pair of jacks or better."
 msgstr "Para abrir las apuestas se necesita una pareja de jotas o una combinación superior."
 
@@ -24312,11 +24316,11 @@ msgstr "Elección de pareja: %{players}"
 msgid "Partners and the deal"
 msgstr ""
 
-#: games/belote_support/belote_table.rb:430
+#: games/belote_support/belote_table.rb:459
 msgid "Partnership %{team} fails the contract."
 msgstr "La pareja %{team} incumple el contrato."
 
-#: games/belote_support/belote_table.rb:428
+#: games/belote_support/belote_table.rb:457
 msgid "Partnership %{team} makes the contract."
 msgstr "La pareja %{team} cumple el contrato."
 
@@ -24336,7 +24340,7 @@ msgstr "Penalización por pasar añadida al bote: %{amount}."
 msgid "Pass the cue to the next player"
 msgstr "Pasar el turno al siguiente jugador"
 
-#: games/hearts_support/hearts_table.rb:172
+#: games/hearts_support/hearts_table.rb:197
 msgid "Pass three cards across. Select each with Enter."
 msgstr "Pasa tres cartas al jugador de enfrente. Selecciona cada una con Intro."
 
@@ -24344,11 +24348,11 @@ msgstr "Pasa tres cartas al jugador de enfrente. Selecciona cada una con Intro."
 msgid "Pass three cards left, right and across in successive deals, then keep your hand on the fourth. The two of clubs opens. Follow suit when possible. On the first trick, avoid penalty cards if you can. You may lead hearts after one has been played or when you hold only hearts. The highest card of the led suit takes the trick."
 msgstr ""
 
-#: games/hearts_support/hearts_table.rb:170
+#: games/hearts_support/hearts_table.rb:195
 msgid "Pass three cards to the left. Select each with Enter."
 msgstr "Pasa tres cartas a la izquierda. Selecciona cada una con Intro."
 
-#: games/hearts_support/hearts_table.rb:171
+#: games/hearts_support/hearts_table.rb:196
 msgid "Pass three cards to the right. Select each with Enter."
 msgstr "Pasa tres cartas a la derecha. Selecciona cada una con Intro."
 
@@ -24507,7 +24511,7 @@ msgstr ""
 msgid "Penalty for every third pass"
 msgstr "Penalización por cada tercera vez que se pasa"
 
-#: games/hearts_support/hearts_table.rb:93
+#: games/hearts_support/hearts_table.rb:94
 msgid "Penalty points this deal"
 msgstr "Penalizaciones de esta mano"
 
@@ -24515,7 +24519,7 @@ msgstr "Penalizaciones de esta mano"
 msgid "Penalty points to the opponent: %{points}."
 msgstr "Puntos de penalización para el rival: %{points}."
 
-#: games/hearts_support/hearts_table.rb:348
+#: games/hearts_support/hearts_table.rb:373
 msgid "Penalty points: %{points}."
 msgstr "Puntos de penalización: %{points}."
 
@@ -24590,11 +24594,11 @@ msgstr "Mueble"
 msgid "Piece selected. Choose its destination or press Enter again for its only move."
 msgstr "Ficha seleccionada. Elige el destino o pulsa Enter otra vez para su único movimiento."
 
-#: lib/game_surfaces.rb:563
+#: lib/game_surfaces.rb:568
 msgid "Piece selected. Choose its destination."
 msgstr "Ficha seleccionada. Elige su destino."
 
-#: games/backgammon.rb:374 lib/game_surfaces/piece_board.rb:119 lib/game_surfaces/piece_board.rb:163
+#: games/backgammon.rb:367 lib/game_surfaces/piece_board.rb:119 lib/game_surfaces/piece_board.rb:163
 msgid "Piece selection cancelled."
 msgstr "Selección de pieza cancelada."
 
@@ -24643,7 +24647,7 @@ msgstr "Coloca todos los barcos antes de confirmar la flota."
 msgid "Place letters directly on the board"
 msgstr "Colocar letras directamente en el tablero"
 
-#: games/reversi.rb:150
+#: games/reversi.rb:168
 msgid "Place on an empty field beside an existing disc."
 msgstr "Coloca la ficha en una casilla vacía junto a una ficha existente."
 
@@ -24771,7 +24775,7 @@ msgstr "Disputa un desafío al azar contra el rival elegido."
 msgid "Play a sound for my turn outside the table window"
 msgstr ""
 
-#: games/belote_support/belote_table.rb:47
+#: games/belote_support/belote_table.rb:48
 msgid "Play and declare %{declaration}"
 msgstr "Jugar y anunciar %{declaration}"
 
@@ -24813,7 +24817,7 @@ msgstr "Juega un punto: reconoce la pelota por su sonido, elige la defensa adecu
 msgid "Play from the current position"
 msgstr "Jugar desde la posición actual"
 
-#: games/belote_support/belote_table.rb:18
+#: games/belote_support/belote_table.rb:19
 msgid "Play in partnerships, bid for trumps and score for tricks and belote."
 msgstr "Juega en parejas, puja por el triunfo y suma puntos por bazas y belote."
 
@@ -24897,7 +24901,7 @@ msgstr ""
 msgid "Play until a specified number of wins"
 msgstr "Hasta un número de victorias"
 
-#: games/belote_support/belote_table.rb:46
+#: games/belote_support/belote_table.rb:47
 msgid "Play without declaring"
 msgstr "Jugar sin anunciar"
 
@@ -25175,15 +25179,15 @@ msgstr "Tronera 6, superior derecha"
 msgid "Podolská vodárna"
 msgstr "Podolská vodárna"
 
-#: games/backgammon.rb:396
+#: games/backgammon.rb:389
 msgid "Point %{point} already has the maximum of %{count} checkers."
 msgstr "El punto %{point} ya tiene el máximo de %{count} fichas."
 
-#: games/backgammon.rb:392
+#: games/backgammon.rb:385
 msgid "Point %{point} is blocked by %{count} opposing checkers."
 msgstr "El punto %{point} está bloqueado por %{count} fichas rivales."
 
-#: games/backgammon.rb:234
+#: games/backgammon.rb:235
 msgid "Point %{point}: %{pieces}"
 msgstr "Punto %{point}: %{pieces}"
 
@@ -25227,7 +25231,7 @@ msgstr "Puntos necesarios para ganar (1–1000)"
 msgid "Points scored: %{points}."
 msgstr "Puntos ganados: %{points}."
 
-#: games/belote_support/belote_table.rb:130 games/jass_support/jass_table.rb:69
+#: games/belote_support/belote_table.rb:131 games/jass_support/jass_table.rb:70
 msgid "Points this deal"
 msgstr "Puntos de esta mano"
 
@@ -25254,15 +25258,15 @@ msgstr "Puntos: %{points}"
 msgid "Points: %{score}."
 msgstr "Puntos: %{score}."
 
-#: games/poker.rb:88
+#: games/poker.rb:89
 msgid "Poker"
 msgstr "Póquer"
 
-#: games/poker.rb:398
+#: games/poker.rb:399
 msgid "Poker actions"
 msgstr "Acciones de póquer"
 
-#: games/poker.rb:19
+#: games/poker.rb:20
 msgid "Poker deck"
 msgstr "Baraja de póquer"
 
@@ -25301,7 +25305,7 @@ msgstr "Teclas de póquer"
 msgid "Poker now offers a short deck of 24 cards, from nines to aces."
 msgstr "En el póquer ya puedes jugar con una baraja corta de 24 cartas, del nueve al as."
 
-#: games/poker.rb:125
+#: games/poker.rb:126
 msgid "Poker variant"
 msgstr "Variante de póquer"
 
@@ -25443,11 +25447,11 @@ msgstr "Bote de %{pot} fichas repartido entre: %{players}."
 msgid "Pot Limit and Half-pot Limit always allow at least a full minimum raise if you can afford it. Going all-in does not bypass those limits."
 msgstr ""
 
-#: games/poker.rb:24
+#: games/poker.rb:25
 msgid "Pot limit"
 msgstr "Límite del bote"
 
-#: games/poker.rb:1325
+#: games/poker.rb:1360
 msgid "Pot: %{amount}."
 msgstr "Bote: %{amount}."
 
@@ -25550,7 +25554,7 @@ msgstr "Calculando el tiro"
 msgid "Prefer a king when equally long captures are available"
 msgstr "Dar prioridad a una dama cuando las secuencias de captura tengan la misma longitud"
 
-#: games/poker.rb:715
+#: games/poker.rb:702
 msgid "Preflop. First betting round."
 msgstr "Preflop. Primera ronda de apuestas."
 
@@ -25751,7 +25755,7 @@ msgstr "Pulsa Enter para pujar."
 msgid "Press Enter to edit."
 msgstr "Pulsa Enter para editar."
 
-#: games/poker.rb:372
+#: games/poker.rb:373
 msgid "Press Enter to exchange the current card or the selected cards."
 msgstr "Pulsa Enter para cambiar la carta actual o las cartas seleccionadas."
 
@@ -25828,7 +25832,7 @@ msgstr ""
 msgid "Press Shift+Enter to add or remove the current card from the prepared packet."
 msgstr "Pulsa Shift+Enter para añadir o quitar la carta actual del grupo de cartas preparado."
 
-#: games/poker.rb:371
+#: games/poker.rb:372
 msgid "Press Shift+Enter to select or unselect the current card for exchange."
 msgstr "Pulsa Shift+Enter para seleccionar o deseleccionar la carta actual para el cambio."
 
@@ -26552,15 +26556,15 @@ msgstr "Subida por encima del importe para igualar: de %{minimum} a %{maximum}. 
 msgid "Raise by %{amount}"
 msgstr "Subir %{amount}"
 
-#: games/poker.rb:517
+#: games/poker.rb:504
 msgid "Raise by %{minimum} to %{maximum} above the call."
 msgstr "Sube entre %{minimum} y %{maximum} por encima de la cantidad necesaria para igualar."
 
-#: games/poker.rb:1346 lib/blackjack_auction.rb:303
+#: games/poker.rb:1381 lib/blackjack_auction.rb:303
 msgid "Raise by %{raise}; total payment %{amount}"
 msgstr "Subir en %{raise}; pago total %{amount}"
 
-#: games/poker.rb:431 lib/blackjack_auction.rb:339
+#: games/poker.rb:432 lib/blackjack_auction.rb:339
 msgid "Raise by:"
 msgstr "Subir en:"
 
@@ -26633,7 +26637,7 @@ msgstr ""
 msgid "Read Exposed sets to inspect everyone’s declared sets; each entry names its owner. Discards records which tiles each player has discarded. These fields help you see what is already used and what opponents may need. You can review them without submitting a move."
 msgstr ""
 
-#: games/backgammon.rb:265
+#: games/backgammon.rb:266
 msgid "Read borne-off checkers"
 msgstr "Leer las fichas retiradas"
 
@@ -26653,7 +26657,7 @@ msgstr "Leer la dirección del taco"
 msgid "Read current position"
 msgstr "Leer la posición actual"
 
-#: games/french_tarot_support/french_tarot_table.rb:77
+#: games/french_tarot_support/french_tarot_table.rb:115
 msgid "Read points from completed tricks"
 msgstr "Leer los puntos de las bazas terminadas"
 
@@ -26661,7 +26665,7 @@ msgstr "Leer los puntos de las bazas terminadas"
 msgid "Read proposal"
 msgstr "Leer la propuesta"
 
-#: games/backgammon.rb:263
+#: games/backgammon.rb:264
 msgid "Read scores"
 msgstr "Leer los puntos"
 
@@ -26681,7 +26685,7 @@ msgstr "Leer la versión enviada"
 msgid "Read table messages outside the table window"
 msgstr ""
 
-#: games/backgammon.rb:264
+#: games/backgammon.rb:265
 msgid "Read the bar"
 msgstr "Leer la barra"
 
@@ -26689,7 +26693,7 @@ msgstr "Leer la barra"
 msgid "Read the current word (Ctrl+O)"
 msgstr "Leer la palabra actual (Ctrl+O)"
 
-#: games/backgammon.rb:254 games/backgammon.rb:267
+#: games/backgammon.rb:255 games/backgammon.rb:268
 msgid "Read the dice"
 msgstr "Leer los dados"
 
@@ -26776,7 +26780,7 @@ msgstr ""
 msgid "Ready for the next bingo call"
 msgstr "Listo para la próxima llamada de bingo"
 
-#: games/mahjong_support/table_game.rb:199
+#: games/mahjong_support/table_game.rb:201
 msgid "Ready for the next hand"
 msgstr "Listo para la siguiente mano"
 
@@ -27405,7 +27409,7 @@ msgstr "Reponer y sacar tú"
 msgid "Rerack and let the opponent break"
 msgstr "Reponer y dejar sacar al rival"
 
-#: games/kosciane.rb:216 games/kosciane.rb:238
+#: games/kosciane.rb:217 games/kosciane.rb:239
 msgid "Reserve: %{count}"
 msgstr "Reserva: %{count}"
 
@@ -27559,7 +27563,7 @@ msgstr "Volver a las reglas del juego"
 msgid "Return to the Cue control with Tab. Left and Right turn anticlockwise and clockwise by one degree. Hold Shift for 0.1-degree steps or Ctrl for 0.01 degree. Up and Down change power by one percent, or 0.1 percent with Shift. Releasing an aiming arrow reads a short ball, cushion or pocket description. K reads the exact angle and F the power."
 msgstr ""
 
-#: games/backgammon.rb:362
+#: games/backgammon.rb:355
 msgid "Return your checkers from the bar before moving another checker."
 msgstr "Antes de mover otra ficha, debes volver a introducir las que tienes en la barra."
 
@@ -27582,7 +27586,7 @@ msgstr "Revelando dados tras un desafío."
 msgid "Revealing your submitted answers."
 msgstr "Revelando las respuestas que has enviado."
 
-#: games/reversi.rb:27
+#: games/reversi.rb:45
 msgid "Reversi"
 msgstr "Reversi"
 
@@ -27641,7 +27645,7 @@ msgstr "Se han reescrito las reglas de todos los juegos en polaco. Las explicaci
 msgid "Rewritten the rules of all 23 games in Polish and English, with clearer explanations, examples and descriptions of the variants and settings available in Game Room."
 msgstr "Se han reescrito las reglas de los 23 juegos en polaco e inglés, con explicaciones más claras, ejemplos y descripciones de las variantes y los ajustes disponibles en Game Room."
 
-#: games/domino.rb:188 lib/game_surfaces/tile_hand.rb:62
+#: games/domino.rb:189 lib/game_surfaces/tile_hand.rb:62
 msgid "Right"
 msgstr "Derecha"
 
@@ -27783,7 +27787,7 @@ msgctxt "categories"
 msgid "River"
 msgstr "Río"
 
-#: games/poker.rb:851 games/poker_private.rb:101
+#: games/poker.rb:842 games/poker_private.rb:101
 msgctxt "poker"
 msgid "River"
 msgstr "River"
@@ -27879,11 +27883,11 @@ msgstr "Tirar un dado"
 msgid "Roll one die. If exactly one pawn has a legal move, it moves automatically. If several can move, choose one from the list of legal destinations. If none can move, play passes on, except for an extra roll allowed by the six rule. One roll moves one pawn, not several pawns sharing its value."
 msgstr ""
 
-#: games/backgammon.rb:177 games/backgammon.rb:190 games/monopoly/presentation.rb:158 lib/game_surfaces/roll_and_score.rb:164
+#: games/backgammon.rb:178 games/backgammon.rb:191 games/monopoly/presentation.rb:158 lib/game_surfaces/roll_and_score.rb:164
 msgid "Roll the dice"
 msgstr "Tirar los dados"
 
-#: games/yahtzee.rb:356
+#: games/yahtzee.rb:363
 msgid "Roll the dice before choosing a category."
 msgstr "Lanza los dados antes de elegir una categoría."
 
@@ -28016,7 +28020,7 @@ msgstr "Rueda de ruleta"
 msgid "Round"
 msgstr "Ronda"
 
-#: games/poker.rb:707
+#: games/poker.rb:694
 msgid "Round %{hand}. Dealer: %{dealer}."
 msgstr "Reparto %{hand}. Reparte %{dealer}."
 
@@ -28099,7 +28103,7 @@ msgstr "Ronda %{round}. El crupier muestra %{card}."
 msgid "Round %{round}. Six cards dealt to each player."
 msgstr "Ronda %{round}. Se reparten seis cartas a cada jugador."
 
-#: games/mexican_train.rb:229
+#: games/mexican_train.rb:230
 msgid "Round %{round}. Station %{station}. Tiles dealt."
 msgstr "Ronda %{round}. Estación %{station}. Fichas repartidas."
 
@@ -28111,7 +28115,7 @@ msgstr "Ronda %{round}. Los dados están listos."
 msgid "Round %{round}. The drawn categories are: %{categories}."
 msgstr "Ronda %{round}. Las categorías elegidas al azar son: %{categories}."
 
-#: games/domino.rb:220
+#: games/domino.rb:221
 msgid "Round %{round}. Tiles dealt."
 msgstr "Ronda %{round}. Fichas repartidas."
 
@@ -28710,7 +28714,7 @@ msgstr "Programar el cierre de inscripciones"
 msgid "Schedule the tournament start"
 msgstr "Programar el inicio del torneo"
 
-#: games/jass_support/jass_table.rb:44
+#: games/jass_support/jass_table.rb:45
 msgid "Schieber: also allow high- or low-card no-trumps"
 msgstr "Schieber: también sin triunfo, con ventaja de cartas altas o bajas"
 
@@ -28805,7 +28809,7 @@ msgstr "Suma puntos por combinaciones y juega hasta alcanzar 121."
 msgid "Score honours"
 msgstr "Contar honores"
 
-#: games/blackjack_dice.rb:39 games/cat_head_tail.rb:74 games/domino.rb:63 games/farkle.rb:136 games/hearts_support/hearts_table.rb:23 games/mexican_train.rb:25 games/rummy.rb:73 games/scopa.rb:25 games/spades.rb:274
+#: games/blackjack_dice.rb:39 games/cat_head_tail.rb:74 games/domino.rb:63 games/farkle.rb:136 games/hearts_support/hearts_table.rb:24 games/mexican_train.rb:25 games/rummy.rb:73 games/scopa.rb:25 games/spades.rb:274
 msgid "Score limit"
 msgstr "Límite de puntos"
 
@@ -28814,7 +28818,7 @@ msgctxt "cat_head_tail"
 msgid "Score limit"
 msgstr "Límite de puntos"
 
-#: games/french_tarot_support/french_tarot_table.rb:93
+#: games/french_tarot_support/french_tarot_table.rb:131
 msgid "Score limit (0 for no limit)"
 msgstr "Límite de puntos (0 sin límite)"
 
@@ -28836,15 +28840,15 @@ msgctxt "cat_head_tail"
 msgid "Score limit: %{points}"
 msgstr ""
 
-#: games/balut.rb:91 games/kosciane.rb:228
+#: games/balut.rb:91 games/kosciane.rb:229
 msgid "Score sheet: %{player}"
 msgstr "Tabla de puntuación: %{player}"
 
-#: games/balut_support/balut_score_grid.rb:44
+#: games/balut_support/balut_score_grid.rb:45
 msgid "Score still needed: %{count}"
 msgstr "Falta para alcanzar el mínimo: %{count}"
 
-#: games/jass_support/jass_table.rb:46
+#: games/jass_support/jass_table.rb:47
 msgid "Score target"
 msgstr "Objetivo de puntos"
 
@@ -28964,7 +28968,7 @@ msgstr ""
 msgid "Seats: one match per line, accounts separated by commas"
 msgstr ""
 
-#: games/poker.rb:790
+#: games/poker.rb:781
 msgid "Second betting round."
 msgstr "Segunda ronda de apuestas."
 
@@ -29036,7 +29040,7 @@ msgstr "Selecciona al menos una categoría para el conjunto personalizado."
 msgid "Select at least one challenge for the whole group and for a duel."
 msgstr "Elige al menos un desafío para todo el grupo y otro para duelos."
 
-#: games/yahtzee.rb:355
+#: games/yahtzee.rb:362
 msgid "Select at least one die to reroll, or open the scoring categories."
 msgstr "Selecciona al menos un dado para volver a lanzarlo o abre las categorías de puntuación."
 
@@ -29063,7 +29067,7 @@ msgstr "Selecciona las cartas con Enter en el orden de la combinación."
 msgid "Select cards in their actual meld order. A run has at least three consecutive cards of one suit. Ace may be low before two or high after king, but a run cannot wrap from king through ace to two or contain two aces. A set has three or four equal ranks in different suits. With Identities enabled, three or four identical rank-and-suit cards from different decks also form a meld."
 msgstr ""
 
-#: games/poker.rb:502
+#: games/poker.rb:489
 msgid "Select each card only once, from your own hand."
 msgstr "Selecciona cada carta una sola vez, de tu propia mano."
 
@@ -29099,11 +29103,11 @@ msgstr "Pieza seleccionada en %{field}: %{piece}. No hay movimientos disponibles
 msgid "Selected local target: %{native}; table: %{table}"
 msgstr ""
 
-#: games/backgammon.rb:250
+#: games/backgammon.rb:251
 msgid "Selected."
 msgstr "Seleccionada."
 
-#: games/hearts_support/hearts_table.rb:106
+#: games/hearts_support/hearts_table.rb:107
 msgid "Selected: %{count} of 3 cards."
 msgstr "Seleccionadas: %{count} de 3 cartas."
 
@@ -29306,7 +29310,7 @@ msgstr ""
 msgid "Serving, scoring and winning"
 msgstr ""
 
-#: games/french_tarot_support/french_tarot_table.rb:101
+#: games/french_tarot_support/french_tarot_table.rb:139
 msgid "Set a deal limit or a score limit."
 msgstr "Fija un límite de repartos o de puntos."
 
@@ -29900,7 +29904,7 @@ msgstr "Al disparar a un pato se oye el disparo en la posición estéreo elegida
 msgid "Short Scopa table descriptions now show the selected variants and score limit; Bouillabaisse shows whether All or nothing is enabled."
 msgstr "Las descripciones breves de las mesas de Scopa muestran ahora las variantes seleccionadas y el límite de puntos; las de Bouillabaisse indican si está activado Todo o nada."
 
-#: games/poker.rb:21
+#: games/poker.rb:22
 msgid "Short deck: 24 cards, nine through ace"
 msgstr "Baraja corta: 24 cartas del nueve al as"
 
@@ -30035,7 +30039,7 @@ msgstr "Individual requiere exactamente dos jugadores."
 msgid "Sirkeci Railway Station"
 msgstr "Estación de tren de Sirkeci"
 
-#: games/french_tarot_support/french_tarot_table.rb:228
+#: games/french_tarot_support/french_tarot_table.rb:266
 msgid "Six cards discarded. Play begins."
 msgstr "Se han descartado seis cartas. Empieza el juego."
 
@@ -30090,7 +30094,7 @@ msgstr[1] "Te saltarás %{count} turnos más."
 msgid "Slovak board"
 msgstr "Tablero eslovaco"
 
-#: games/poker.rb:128
+#: games/poker.rb:129
 msgid "Small blind"
 msgstr "Ciega pequeña"
 
@@ -30638,7 +30642,7 @@ msgstr "Apuesta"
 msgid "Stake %{chips} chips each"
 msgstr "Apostar %{chips} fichas cada uno"
 
-#: games/backgammon.rb:185
+#: games/backgammon.rb:186
 msgid "Stake: %{stake}."
 msgstr "Apuesta: %{stake}."
 
@@ -30763,11 +30767,11 @@ msgstr ""
 msgid "Started individual tournament matches pause when a player disconnects. Each player has a total of five minutes to return during the match. After that, they lose a one-on-one match or place last in a multiplayer match; the others continue if the game allows it. The organizer can also eliminate a player with Ctrl+F without ending a game that can continue."
 msgstr "Los encuentros individuales de torneo ya iniciados se pausan si alguien se desconecta. Cada jugador dispone de cinco minutos en total para volver durante el encuentro. Al agotarlos, pierde si juega uno contra uno o queda último si hay más participantes; los demás continúan cuando el juego lo permite. El organizador también puede eliminar a un jugador con Ctrl+F sin dar por terminada una partida que pueda continuar."
 
-#: games/cribbage_support/cribbage_table.rb:93
+#: games/cribbage_support/cribbage_table.rb:106
 msgid "Starter. %{card}"
 msgstr "Carta inicial. %{card}"
 
-#: games/cribbage_support/cribbage_table.rb:394 games/cribbage_support/cribbage_table.rb:75
+#: games/cribbage_support/cribbage_table.rb:407 games/cribbage_support/cribbage_table.rb:88
 msgid "Starter: %{card}."
 msgstr "Carta inicial: %{card}."
 
@@ -30783,7 +30787,7 @@ msgstr ""
 msgid "Starting an auction"
 msgstr "Comienzo de la subasta"
 
-#: games/blackjack.rb:41 games/blackjack_dice.rb:44 games/dice_poker.rb:43 games/poker.rb:127
+#: games/blackjack.rb:41 games/blackjack_dice.rb:44 games/dice_poker.rb:43 games/poker.rb:128
 msgid "Starting chips"
 msgstr "Fichas iniciales"
 
@@ -30795,7 +30799,7 @@ msgstr "Fichas iniciales (10–10000)"
 msgid "Starting chips must be from 10 to 10000."
 msgstr "Las fichas iniciales deben estar entre 10 y 10000."
 
-#: games/poker.rb:156
+#: games/poker.rb:157
 msgid "Starting chips must be from 100 to 100000."
 msgstr "El número de fichas iniciales debe estar entre 100 y 100000."
 
@@ -30978,7 +30982,7 @@ msgstr "Versión enviada"
 msgid "Subtract 10"
 msgstr "Restar 10"
 
-#: games/balut_support/balut_score_grid.rb:46
+#: games/balut_support/balut_score_grid.rb:47
 msgid "Successful entries still needed: %{count}"
 msgstr "Anotaciones válidas que faltan: %{count}"
 
@@ -31007,11 +31011,11 @@ msgstr "Suicidio requiere equipos de dos."
 msgid "Suit changes, requests, queens and jokers"
 msgstr ""
 
-#: games/belote_support/belote_table.rb:117 games/hearts_support/hearts_table.rb:98 games/jass_support/jass_table.rb:62
+#: games/belote_support/belote_table.rb:118 games/hearts_support/hearts_table.rb:99 games/jass_support/jass_table.rb:63
 msgid "Suit led: %{suit}."
 msgstr "Palo de salida: %{suit}."
 
-#: games/balut_support/balut_score_grid.rb:25
+#: games/balut_support/balut_score_grid.rb:26
 msgid "Sum of entries: %{total}"
 msgstr "Suma de anotaciones: %{total}"
 
@@ -31686,7 +31690,7 @@ msgstr ""
 msgid "Test participant name"
 msgstr ""
 
-#: games/poker.rb:16
+#: games/poker.rb:17
 msgid "Texas Hold'em"
 msgstr "Texas Hold'em"
 
@@ -31717,7 +31721,7 @@ msgstr "¡Gracias a Zuzler por avisarnos de errores en las preguntas del concurs
 msgid "Thanks to td-programs for the Krowa, Braille echo and table-role improvements!"
 msgstr "¡Gracias a td-programs por las mejoras de Krowa, del eco de escritura braille y de los cambios de rol en la mesa!"
 
-#: games/poker.rb:484
+#: games/poker.rb:471
 msgid "That betting action is not available now."
 msgstr "Esa acción de apuesta no está disponible ahora."
 
@@ -31725,7 +31729,7 @@ msgstr "Esa acción de apuesta no está disponible ahora."
 msgid "That card cannot be played now."
 msgstr "Esa carta no se puede jugar ahora."
 
-#: games/cribbage_support/cribbage_table.rb:136
+#: games/cribbage_support/cribbage_table.rb:149
 msgid "That card would take the total above 31. Choose a lower card."
 msgstr "Esa carta superaría el total de 31. Elige una más baja."
 
@@ -31747,7 +31751,7 @@ msgstr "Ese hoyo está vacío."
 msgid "That pocket cannot be reached with a direct cut from this side."
 msgstr "Desde este lado no se puede dirigir la bola directamente a esa tronera."
 
-#: games/yahtzee.rb:357
+#: games/yahtzee.rb:364
 msgid "That scoring category has already been used."
 msgstr "Esa categoría de puntuación ya se ha utilizado."
 
@@ -31957,7 +31961,7 @@ msgstr "El tiempo para responder debe ser 0 o estar entre %{minimum} y %{maximum
 msgid "The answer time must be between %{minimum} and %{maximum} seconds."
 msgstr "El tiempo para responder debe estar entre %{minimum} y %{maximum} segundos."
 
-#: games/poker.rb:161
+#: games/poker.rb:162
 msgid "The ante must be positive and cannot exceed the starting stack."
 msgstr "El ante debe ser positivo y no puede superar el número de fichas iniciales."
 
@@ -32065,11 +32069,11 @@ msgstr "La probabilidad de un cofre negro debe estar entre el 5 y el 10 por cien
 msgid "The black chest probability must be from 5 to 15 percent."
 msgstr "La probabilidad de cofre negro debe estar entre el 5 y el 15 por ciento."
 
-#: games/poker.rb:167
+#: games/poker.rb:168
 msgid "The blind interval must be from 1 to 100."
 msgstr "El intervalo entre subidas de las ciegas debe estar entre 1 y 100."
 
-#: games/poker.rb:170
+#: games/poker.rb:171
 msgid "The blind multiplier must be from 2 to 10."
 msgstr "El multiplicador de las ciegas debe estar entre 2 y 10."
 
@@ -32112,7 +32116,7 @@ msgstr ""
 msgid "The building and selling lists show the colour, existing buildings and cost or proceeds. Confirm an operation with Enter and stay in the list to continue managing properties. If no operation is possible, the game explains why instead of making you select a building you cannot buy."
 msgstr ""
 
-#: games/poker.rb:507
+#: games/poker.rb:494
 msgid "The call amount has changed to %{amount}. Choose your raise again."
 msgstr "La cantidad necesaria para igualar ha cambiado a %{amount}. Elige de nuevo tu subida."
 
@@ -32280,7 +32284,7 @@ msgstr "La hora de fin debe ser posterior a la de inicio."
 msgid "The deadline cannot be earlier than the tournament start."
 msgstr "La fecha límite no puede ser anterior al inicio del torneo."
 
-#: games/jass_support/jass_table.rb:217
+#: games/jass_support/jass_table.rb:239
 msgid "The deal rules have not been chosen yet."
 msgstr "Aún no se han elegido las reglas de la mano."
 
@@ -32406,7 +32410,7 @@ msgstr ""
 msgid "The describing player presses Enter when everyone is ready. After three seconds, a sound starts the turn and reveals the card. Enter marks a correct guess; P skips. An opponent presses B for a violation. The next card appears immediately without restarting the clock. Guessers do not press anything. The deck is shuffled; no card repeats until exhaustion, and reshuffling avoids an immediate repeat."
 msgstr ""
 
-#: games/cat_head_tail.rb:442 games/ludo.rb:326 games/yahtzee.rb:546 lib/game_surfaces/roll_and_score.rb:183
+#: games/cat_head_tail.rb:442 games/ludo.rb:326 games/yahtzee.rb:559 lib/game_surfaces/roll_and_score.rb:183
 msgid "The dice have not been rolled."
 msgstr "Aún no se han lanzado los dados."
 
@@ -32720,7 +32724,7 @@ msgstr "No se ha podido guardar la partida. Esta operación no ha cerrado la mes
 msgid "The game deals five cards by default. In the joker profile it uses two jokers, and the first table card cannot be a two, three, four, ace, attacking king or joker."
 msgstr ""
 
-#: games/three_five_eight.rb:435
+#: games/three_five_eight.rb:481
 msgid "The game ended in a draw between %{players}."
 msgstr ""
 
@@ -33008,7 +33012,7 @@ msgstr ""
 msgid "The king moves one field in any direction. The queen moves any distance along a row, column or diagonal. A rook moves along rows and columns; a bishop along diagonals. These pieces cannot jump over occupied fields. A knight jumps in an L: two fields along one axis and one along the other, regardless of intervening pieces."
 msgstr ""
 
-#: games/three_five_eight.rb:762
+#: games/three_five_eight.rb:808
 msgid "The kitty is %{cards}."
 msgstr ""
 
@@ -33131,7 +33135,7 @@ msgstr "La partida de mahjong solitario está lista."
 msgid "The mahjong solitaire puzzle was ended."
 msgstr "La partida de mahjong solitario ha terminado."
 
-#: games/mahjong_support/table_game.rb:346
+#: games/mahjong_support/table_game.rb:348
 msgid "The mahjong tiles have been dealt."
 msgstr "Se han repartido las fichas de mahjong."
 
@@ -33310,7 +33314,7 @@ msgstr "El rival tiene una entrada igualadora."
 msgid "The opponent has no kings."
 msgstr "El oponente no tiene damas."
 
-#: games/backgammon.rb:122 games/backgammon.rb:311
+#: games/backgammon.rb:123 games/backgammon.rb:310
 msgid "The opponent's checker goes to the bar."
 msgstr "La ficha rival va a la barra."
 
@@ -33586,11 +33590,11 @@ msgstr "En el rombo, la 9 queda en el punto de pie y la 1 delante. Un saque sin 
 msgid "The rack or frame is tied. Score: %{score}."
 msgstr "La partida o el frame termina en empate. Marcador: %{score}."
 
-#: games/poker.rb:164
+#: games/poker.rb:165
 msgid "The raise cap must be from 1 to 10."
 msgstr "El límite de subidas debe estar entre 1 y 10."
 
-#: games/poker.rb:511
+#: games/poker.rb:498
 msgid "The raise limit for this betting round has been reached."
 msgstr "Se ha alcanzado el límite de subidas de esta ronda de apuestas."
 
@@ -33762,7 +33766,7 @@ msgstr "El objetivo debe estar entre 1 y 100 puntos."
 msgid "The score limit must be from 50 to 5000."
 msgstr "El límite de puntos debe estar entre 50 y 5000."
 
-#: games/cat_head_tail.rb:82 games/farkle.rb:173 games/hearts_support/hearts_table.rb:27 games/scopa.rb:39 games/spades.rb:355
+#: games/cat_head_tail.rb:82 games/farkle.rb:173 games/hearts_support/hearts_table.rb:28 games/scopa.rb:39 games/spades.rb:355
 msgid "The score limit must be greater than zero."
 msgstr "El límite de puntos debe ser mayor que cero."
 
@@ -33992,7 +33996,7 @@ msgstr "La apuesta debe ser positiva y no superar las fichas iniciales."
 msgid "The started match was cancelled in the tournament. Its game history is preserved."
 msgstr "La partida iniciada se anuló en el torneo. Se conserva el historial."
 
-#: games/cribbage_support/cribbage_table.rb:75
+#: games/cribbage_support/cribbage_table.rb:88
 msgid "The starter has not been turned up yet."
 msgstr "Aún no se ha descubierto la carta inicial."
 
@@ -34095,7 +34099,7 @@ msgstr "El historial de la mesa se ha guardado en %{path}."
 msgid "The table host can use Ctrl+Shift+P on their own name to choose whether to play or observe the next game."
 msgstr "El anfitrión puede pulsar Ctrl+Mayús+P sobre su propio nombre para elegir si jugará u observará la siguiente partida."
 
-#: games/domino.rb:185 lib/game_surfaces/tile_hand.rb:157
+#: games/domino.rb:186 lib/game_surfaces/tile_hand.rb:157
 msgid "The table is empty."
 msgstr "La mesa está vacía."
 
@@ -34328,7 +34332,7 @@ msgstr ""
 msgid "The trees open onto a small clearing."
 msgstr "Entre los árboles se abre un pequeño claro."
 
-#: games/hearts_support/hearts_table.rb:98
+#: games/hearts_support/hearts_table.rb:99
 msgid "The trick is empty."
 msgstr "La baza está vacía."
 
@@ -34525,7 +34529,7 @@ msgstr "No hay movimientos disponibles desde %{field}."
 msgid "There are no cards in the current trick."
 msgstr "Todavía no hay cartas en la baza actual."
 
-#: games/spades.rb:934 games/three_five_eight.rb:1019
+#: games/spades.rb:934 games/three_five_eight.rb:1065
 msgid "There are no cards on the table."
 msgstr "No hay cartas en la mesa."
 
@@ -34954,7 +34958,7 @@ msgstr "Esta carta no contrarresta la penalización de esperar turnos."
 msgid "This card does not satisfy the requested rank."
 msgstr "Esta carta no tiene el valor solicitado."
 
-#: games/three_five_eight.rb:392
+#: games/three_five_eight.rb:438
 msgid "This card exchange is not available."
 msgstr ""
 
@@ -34962,7 +34966,7 @@ msgstr ""
 msgid "This card is not in the hand that is to play."
 msgstr "Esa carta no está en la mano a la que le toca."
 
-#: games/dealt_card_game.rb:92 games/makao.rb:445 games/ninety_nine.rb:406 games/spades.rb:561 games/three_five_eight.rb:393 games/tysiac.rb:527
+#: games/dealt_card_game.rb:92 games/makao.rb:445 games/ninety_nine.rb:406 games/spades.rb:561 games/three_five_eight.rb:439 games/tysiac.rb:527
 msgid "This card is not in your hand."
 msgstr "Esta carta no está en tu mano."
 
@@ -34978,7 +34982,7 @@ msgstr ""
 msgid "This column is full."
 msgstr "Esta columna está llena."
 
-#: games/three_five_eight.rb:391
+#: games/three_five_eight.rb:437
 msgid "This contract is not available to you."
 msgstr ""
 
@@ -35018,7 +35022,7 @@ msgstr "Este borrador ya no está en el servidor. La copia abierta no se ha modi
 msgid "This draft is too large."
 msgstr "Este borrador es demasiado grande."
 
-#: games/reversi.rb:142 games/tic_tac_toe.rb:221
+#: games/reversi.rb:160 games/tic_tac_toe.rb:221
 msgid "This field is already occupied."
 msgstr "Esta casilla ya está ocupada."
 
@@ -35200,7 +35204,7 @@ msgstr ""
 msgid "This move does not resolve the check on your king."
 msgstr "Este movimiento no resuelve el jaque a tu rey."
 
-#: games/base.rb:435 games/mexican_train.rb:139 games/mexican_train.rb:157 lib/game_surfaces/tile_hand.rb:232
+#: games/base.rb:435 games/mexican_train.rb:140 games/mexican_train.rb:158 lib/game_surfaces/tile_hand.rb:232
 msgid "This move is not available."
 msgstr "Este movimiento no está disponible."
 
@@ -35266,7 +35270,7 @@ msgstr ""
 msgid "This player is no longer at the table."
 msgstr "Este jugador ya no está en la mesa."
 
-#: games/poker.rb:154
+#: games/poker.rb:155
 msgid "This poker deck and exchange setting support at most %{count} players."
 msgstr "Esta baraja y ajuste de cambio admiten como máximo %{count} jugadores."
 
@@ -35324,7 +35328,7 @@ msgstr "Este calendario se calcula a partir de las inscripciones del servidor. E
 msgid "This server test has a 2048-byte field limit. Shorten the rules or settings; a full edit must also fit this limit. Nothing was sent."
 msgstr "Esta prueba de servidor tiene un límite de 2048 bytes por campo. Acorta las reglas o ajustes; una edición completa también debe caber en ese límite. No se ha enviado nada."
 
-#: games/yahtzee.rb:313
+#: games/yahtzee.rb:320
 msgid "This sheet: %{points}."
 msgstr "Esta hoja: %{points}."
 
@@ -35376,15 +35380,15 @@ msgstr "Esta mesa utiliza reglas fijas sin opciones adicionales configurables."
 msgid "This text is too long."
 msgstr "El texto es demasiado largo."
 
-#: games/mexican_train.rb:153
+#: games/mexican_train.rb:154
 msgid "This tile does not fit any train."
 msgstr "Esta ficha no encaja en ningún tren."
 
-#: games/mexican_train.rb:161
+#: games/mexican_train.rb:162
 msgid "This tile does not fit this train."
 msgstr "Esta ficha no encaja en este tren."
 
-#: games/mexican_train.rb:152
+#: games/mexican_train.rb:153
 msgid "This tile does not fit."
 msgstr "Esta ficha no encaja."
 
@@ -35581,11 +35585,11 @@ msgstr ""
 msgid "Tic-tac-toe"
 msgstr "Tres en raya"
 
-#: games/belote_support/belote_table.rb:426
+#: games/belote_support/belote_table.rb:455
 msgid "Tie. Partnership %{team} carries its trick points over to the next deal."
 msgstr "Empate. Los puntos por bazas de la pareja %{team} se acumulan para la siguiente mano."
 
-#: games/backgammon.rb:328
+#: games/backgammon.rb:327
 msgid "Tie. Roll again."
 msgstr "Empate. Vuelve a tirar."
 
@@ -35704,7 +35708,7 @@ msgstr "Por decidir"
 msgid "To be played"
 msgstr "Pendiente"
 
-#: games/poker.rb:1322
+#: games/poker.rb:1357
 msgid "To call: %{amount}."
 msgstr "Para igualar: %{amount}."
 
@@ -35855,11 +35859,11 @@ msgstr "Carta superior: %{card}; palo declarado: %{suit}%{request}."
 msgid "Top/back spin (-100 to 100)"
 msgstr "Efecto de avance/retroceso (de -100 a 100)"
 
-#: games/yahtzee.rb:314
+#: games/yahtzee.rb:321
 msgid "Total across matches: %{points}."
 msgstr "Total de todas las partidas: %{points}."
 
-#: games/balut_support/balut_score_grid.rb:29 games/kosciane.rb:217 games/kosciane.rb:219 games/kosciane.rb:243
+#: games/balut_support/balut_score_grid.rb:30 games/kosciane.rb:218 games/kosciane.rb:220 games/kosciane.rb:244
 msgid "Total: %{points}"
 msgstr "Total: %{points}"
 
@@ -35867,7 +35871,7 @@ msgstr "Total: %{points}"
 msgid "Total: %{scores}."
 msgstr "Total: %{scores}."
 
-#: games/cribbage_support/cribbage_table.rb:185
+#: games/cribbage_support/cribbage_table.rb:198
 msgid "Total: %{total}. Cards: %{cards}."
 msgstr "Total: %{total}. Cartas: %{cards}."
 
@@ -36189,7 +36193,7 @@ msgstr "Intercambio con %{player}: %{details}"
 msgid "Training does not turn off your screen reader. Ordinary game mode leaves the cursor itself sound-only, while normal interface labels, scores and results remain spoken."
 msgstr ""
 
-#: games/mexican_train.rb:181
+#: games/mexican_train.rb:182
 msgid "Trains"
 msgstr "Trenes"
 
@@ -36208,7 +36212,7 @@ msgstr ""
 msgid "Translation support by balteam (budyn1211): each language now has one editable PO file for interface text, game rules and the changelog, making it easier to add and maintain translations without changing game logic."
 msgstr "balteam (budyn1211) ha mejorado el sistema de traducción: cada idioma dispone ahora de un único archivo PO editable para el texto de la interfaz, las reglas de los juegos y el historial de cambios. Así resulta más fácil añadir y mantener traducciones sin modificar la lógica de los juegos."
 
-#: games/reversi.rb:31
+#: games/reversi.rb:49
 msgid "Trap your opponent's pieces between your own and turn them to your colour."
 msgstr "Encierra las fichas de tu rival entre las tuyas y cámbialas a tu color."
 
@@ -36244,7 +36248,7 @@ msgstr ""
 msgid "Tricks: %{tricks}."
 msgstr "Bazas: %{tricks}."
 
-#: games/french_tarot_support/french_tarot_table.rb:302
+#: games/french_tarot_support/french_tarot_table.rb:340
 msgid "Trump %{rank}"
 msgstr "Triunfo %{rank}"
 
@@ -36252,7 +36256,7 @@ msgstr "Triunfo %{rank}"
 msgid "Trump: %{suit}."
 msgstr "Triunfo: %{suit}."
 
-#: games/french_tarot_support/french_tarot_table.rb:201
+#: games/french_tarot_support/french_tarot_table.rb:239
 msgctxt "Card suit"
 msgid "Trumps"
 msgstr "Triunfos"
@@ -36261,7 +36265,7 @@ msgstr "Triunfos"
 msgid "Trumps from highest to lowest are jack (20 points), nine (14), ace (11), ten (10), king (4), queen (3), eight and seven (zero each). Other suits rank ace (11), ten (10), king (4), queen (3), jack (2), nine, eight and seven (zero). The last trick adds ten, making 162 points in the deal."
 msgstr "Los triunfos, de mayor a menor, son jota (20 puntos), nueve (14), as (11), diez (10), rey (4), dama (3), ocho y siete (cero). En los otros palos: as (11), diez (10), rey (4), dama (3), jota (2), nueve, ocho y siete (cero). La última baza añade diez, para un total de 162 puntos."
 
-#: games/belote_support/belote_table.rb:116
+#: games/belote_support/belote_table.rb:117
 msgid "Trumps have not been chosen yet."
 msgstr "Aún no se ha elegido triunfo."
 
@@ -36269,11 +36273,11 @@ msgstr "Aún no se ha elegido triunfo."
 msgid "Trumps rank jack, nine, ace, king, queen, ten, eight, seven, six. The jack is worth twenty and the nine fourteen. In other suits the order is ace, king, queen, jack, ten, nine, eight, seven, six. Aces score 11, tens 10, kings 4, queens 3 and non-trump jacks 2; other cards score zero. The last trick adds five. There are 157 points per deal."
 msgstr "Los triunfos se ordenan jota, nueve, as, rey, dama, diez, ocho, siete y seis. La jota vale veinte y el nueve catorce. En los demás palos: as, rey, dama, jota, diez, nueve, ocho, siete y seis. El as da 11, el diez 10, el rey 4, la dama 3 y la jota no triunfal 2; las demás cartas cero. La última baza añade cinco, para un total de 157 por mano."
 
-#: games/belote_support/belote_table.rb:116
+#: games/belote_support/belote_table.rb:117
 msgid "Trumps: %{suit}."
 msgstr "Triunfo: %{suit}."
 
-#: games/jass_support/jass_table.rb:43
+#: games/jass_support/jass_table.rb:44
 msgid "Trumps: choose one of four suits"
 msgstr "Con triunfo: elegir uno de los cuatro palos"
 
@@ -36305,7 +36309,7 @@ msgstr "Prueba los dos sonidos de caja con F y J. Enter o Espacio inicia el desa
 msgid "Turkish board"
 msgstr "Tablero turco"
 
-#: games/poker.rb:851 games/poker_private.rb:101
+#: games/poker.rb:842 games/poker_private.rb:101
 msgid "Turn"
 msgstr "Turn"
 
@@ -36337,7 +36341,7 @@ msgstr "Los ajustes del tiempo por turno son ahora uniformes en UNO, Makao, Domi
 msgid "Turn: %{player}."
 msgstr ""
 
-#: games/belote_support/belote_table.rb:133
+#: games/belote_support/belote_table.rb:134
 msgid "Turned-up card: %{card}."
 msgstr "Carta descubierta: %{card}."
 
@@ -36818,7 +36822,7 @@ msgstr "Bote sin ganador de %{pot} fichas devuelto a sus aportantes."
 msgid "Unclear question"
 msgstr "Pregunta ambigua"
 
-#: games/jass_support/jass_table.rb:150
+#: games/jass_support/jass_table.rb:172
 msgid "Undenufe: low cards win, no trumps"
 msgstr "Undenufe: sin triunfo, ganan las cartas bajas"
 
@@ -37137,7 +37141,7 @@ msgstr "Usa las flechas para elegir una ficha. G selecciona el lado izquierdo y 
 msgid "Use arrows to read the ticket. In manual mode Enter marks a called number, M enters a number, B claims bingo and R confirms ready. The actions list also has Claim bingo and Ready. L repeats the last ball; D browses calls. Tab changes fields. F1 shows current shortcuts, Ctrl+F1 the rules. History, chat and volume use the normal Power Games keys."
 msgstr ""
 
-#: games/poker.rb:132
+#: games/poker.rb:133
 msgid "Use blinds in five-card draw"
 msgstr "Usar ciegas en el póquer con descarte de cinco cartas"
 
@@ -37388,7 +37392,7 @@ msgstr "V: leer a quién pertenece el crib."
 msgid "V: repeat the deal rules."
 msgstr "V: repetir las reglas de la mano."
 
-#: games/backgammon.rb:48 games/belote_support/belote_table.rb:28 games/bingo.rb:27 games/blackjack.rb:35 games/blackjack_dice.rb:35 games/dice_poker.rb:34 games/go.rb:20 games/jass_support/jass_table.rb:42 games/liars_dice.rb:33
+#: games/backgammon.rb:49 games/belote_support/belote_table.rb:29 games/bingo.rb:27 games/blackjack.rb:35 games/blackjack_dice.rb:35 games/dice_poker.rb:34 games/go.rb:20 games/jass_support/jass_table.rb:43 games/liars_dice.rb:33
 msgid "Variant"
 msgstr "Variante"
 
@@ -37582,7 +37586,7 @@ msgstr "Esperando a que %{owner} inicie una partida"
 msgid "Waiting for %{owner} to start a game."
 msgstr "Esperando a que %{owner} inicie una partida."
 
-#: games/makao.rb:354 games/poker.rb:394 games/uno.rb:1430 lib/tournaments/partner_choice.rb:42
+#: games/makao.rb:354 games/poker.rb:395 games/uno.rb:1430 lib/tournaments/partner_choice.rb:42
 msgid "Waiting for %{player}"
 msgstr "Esperando a %{player}"
 
@@ -37713,7 +37717,7 @@ msgstr "Esperando el reparto."
 msgid "Waiting for the describing player."
 msgstr "Esperando a quien debe describir."
 
-#: games/mahjong_support/table_game.rb:205 lib/game_layout.rb:309
+#: games/mahjong_support/table_game.rb:207 lib/game_layout.rb:309
 msgid "Waiting for the game to start"
 msgstr "Esperando a que comience la partida"
 
@@ -37721,7 +37725,7 @@ msgstr "Esperando a que comience la partida"
 msgid "Waiting for the host to share the table text."
 msgstr "Esperando que el anfitrión comparta el texto de la mesa."
 
-#: games/mille_bornes/presentation.rb:179 games/ninety_nine.rb:948 games/poker.rb:392 games/spades.rb:905
+#: games/mille_bornes/presentation.rb:179 games/ninety_nine.rb:948 games/poker.rb:393 games/spades.rb:905
 msgid "Waiting for the next deal."
 msgstr "Esperando el siguiente reparto."
 
@@ -38270,7 +38274,7 @@ msgstr "Ventaja de dos puntos: alcanza el objetivo y aventaja al resto por dos"
 msgid "Win chips by making the best poker hand or by making every opponent fold. The last player with chips wins."
 msgstr ""
 
-#: games/poker.rb:92
+#: games/poker.rb:93
 msgid "Win chips with stronger cards or bluff your opponents into folding."
 msgstr "Gana fichas con mejores cartas o convence a tus rivales de que se retiren con un farol."
 
@@ -38382,7 +38386,7 @@ msgstr ""
 msgid "With Attacking kings enabled, the king of spades attacks the next player with five cards. The king of hearts answers that king attack and adds another five, so the next player owes ten. It does not reverse the direction. The other kings are ordinary matching cards. King penalties are separate from the two/three family."
 msgstr ""
 
-#: games/backgammon.rb:416
+#: games/backgammon.rb:409
 msgid "With a larger die, you must first move a checker farther from the exit."
 msgstr "Con un dado mayor, primero debes mover una ficha que esté más lejos de la salida."
 
@@ -38979,7 +38983,7 @@ msgstr "Ahora no puedes construir. Necesitas un grupo de color completo sin hipo
 msgid "You cannot castle while your king is in check."
 msgstr "No puedes enrocar mientras tu rey esté en jaque."
 
-#: games/belote_support/belote_table.rb:99
+#: games/belote_support/belote_table.rb:100
 msgid "You cannot declare belote with that card."
 msgstr "No puedes anunciar belote con esa carta."
 
@@ -38987,11 +38991,11 @@ msgstr "No puedes anunciar belote con esa carta."
 msgid "You cannot draw another card."
 msgstr "No puedes robar otra carta."
 
-#: games/poker.rb:485
+#: games/poker.rb:472
 msgid "You cannot exchange that set of cards."
 msgstr "No puedes cambiar ese grupo de cartas."
 
-#: games/hearts_support/hearts_table.rb:36
+#: games/hearts_support/hearts_table.rb:37
 msgid "You cannot lead hearts until hearts have been broken, unless you have only hearts."
 msgstr "No puedes salir con corazones hasta que se hayan abierto, salvo que solo tengas corazones."
 
@@ -39003,7 +39007,7 @@ msgstr ""
 msgid "You cannot move a checker onto the bar."
 msgstr "No puedes mover una ficha a la barra."
 
-#: lib/game_surfaces.rb:558
+#: lib/game_surfaces.rb:563
 msgid "You cannot move from this field."
 msgstr "No puedes mover desde esta casilla."
 
@@ -39015,11 +39019,11 @@ msgstr "No puedes mover la pieza seleccionada de %{from} a %{to}. Pulsa V para o
 msgid "You cannot move the selected piece to %{field}. Press V to hear its available moves."
 msgstr "No puedes mover la pieza seleccionada a %{field}. Pulsa V para escuchar sus movimientos disponibles."
 
-#: lib/game_surfaces.rb:572
+#: lib/game_surfaces.rb:577
 msgid "You cannot move the selected piece to this field."
 msgstr "No puedes mover la ficha seleccionada a esta casilla."
 
-#: games/hearts_support/hearts_table.rb:35
+#: games/hearts_support/hearts_table.rb:36
 msgid "You cannot play a penalty card in the first trick while you have a non-penalty card."
 msgstr "No puedes jugar una carta de penalización en la primera baza si tienes otra sin penalización."
 
@@ -39051,7 +39055,7 @@ msgstr "Has creado una sala."
 msgid "You do not build chows, pungs or kongs, or count fan, han or yaku in this variant. Those belong to the multiplayer games. Here you win by removing every pair from the layout."
 msgstr ""
 
-#: games/poker.rb:513
+#: games/poker.rb:500
 msgid "You do not have enough chips to raise after calling."
 msgstr "No tienes suficientes fichas para subir después de igualar."
 
@@ -39139,7 +39143,7 @@ msgstr "Ya has robado en este turno."
 msgid "You have already shot at that square."
 msgstr "Ya has disparado a esa casilla."
 
-#: games/yahtzee.rb:354
+#: games/yahtzee.rb:361
 msgid "You have already used all three rolls."
 msgstr "Ya has utilizado las tres tiradas."
 
@@ -39147,7 +39151,7 @@ msgstr "Ya has utilizado las tres tiradas."
 msgid "You have chosen your card."
 msgstr ""
 
-#: games/poker.rb:1326
+#: games/poker.rb:1361
 msgid "You have invested %{amount} in this hand."
 msgstr "Has aportado %{amount} en este reparto."
 
@@ -39175,23 +39179,23 @@ msgstr "Ahora no tienes edificios que puedas vender."
 msgid "You have no card power in this trick."
 msgstr ""
 
-#: games/biblios.rb:1247 games/poker.rb:1033 games/poker.rb:1323 games/poker.rb:1328
+#: games/biblios.rb:1247 games/poker.rb:1025 games/poker.rb:1358 games/poker.rb:1363
 msgid "You have no cards."
 msgstr "No tienes cartas."
 
-#: games/backgammon.rb:365
+#: games/backgammon.rb:358
 msgid "You have no checker on point %{point}."
 msgstr "No tienes ninguna ficha en el punto %{point}."
 
-#: games/backgammon.rb:364
+#: games/backgammon.rb:357
 msgid "You have no checkers on the bar."
 msgstr "No tienes fichas en la barra."
 
-#: games/poker.rb:504
+#: games/poker.rb:491
 msgid "You have no chips left to bet."
 msgstr "No te quedan fichas para apostar."
 
-#: games/poker.rb:1053
+#: games/poker.rb:1045
 msgid "You have no combination."
 msgstr "No tienes ninguna combinación."
 
@@ -39203,7 +39207,7 @@ msgstr "No tienes dados en esta partida."
 msgid "You have no kings."
 msgstr "No tienes damas."
 
-#: games/base/shortcuts.rb:170 lib/game_surfaces.rb:1005 lib/game_surfaces/packet_cards.rb:198
+#: games/base/shortcuts.rb:170 lib/game_surfaces.rb:1010 lib/game_surfaces/packet_cards.rb:198
 msgid "You have no playable card."
 msgstr "No tienes ninguna carta que puedas jugar."
 
@@ -39309,7 +39313,7 @@ msgstr ""
 msgid "You may declare bankruptcy while in debt. It also happens automatically on your own turn if your cash is negative and there are no buildings you can sell or properties you can mortgage. Possible trade offers do not delay it. An insolvent move still ends first and the other players take their turns before this decision. Bankruptcy removes you from active play. A player creditor receives your remaining properties and held jail cards; buildings are liquidated at half price. With a bank debt the properties return to the bank. The last solvent player wins."
 msgstr ""
 
-#: games/poker.rb:501
+#: games/poker.rb:488
 msgid "You may exchange at most %{count} cards."
 msgstr "Puedes cambiar como máximo %{count} cartas."
 
@@ -39339,23 +39343,23 @@ msgstr "Debes seguir capturando con la pieza %{piece} situada en %{field}."
 msgid "You must continue the capture from %{from}. Available destinations: %{fields}."
 msgstr "Debes continuar la captura desde %{from}. Destinos disponibles: %{fields}."
 
-#: games/mexican_train.rb:147
+#: games/mexican_train.rb:148
 msgid "You must cover double %{number} on %{player}'s train."
 msgstr "Debes cubrir el doble %{number} en el tren de %{player}."
 
-#: games/mexican_train.rb:145
+#: games/mexican_train.rb:146
 msgid "You must cover double %{number} on the Mexican train."
 msgstr "Debes cubrir el doble %{number} en el tren mexicano."
 
-#: games/french_tarot_support/french_tarot_table.rb:165
+#: games/french_tarot_support/french_tarot_table.rb:203
 msgid "You must follow %{suit}."
 msgstr "Debes asistir al palo de %{suit}."
 
-#: games/french_tarot_support/french_tarot_table.rb:114 games/tysiac.rb:529
+#: games/french_tarot_support/french_tarot_table.rb:152 games/tysiac.rb:529
 msgid "You must follow suit or play a trump when required."
 msgstr "Debes seguir el palo o jugar un triunfo cuando sea obligatorio."
 
-#: games/three_five_eight.rb:394
+#: games/three_five_eight.rb:440
 msgid "You must follow suit when you have a card of the led suit."
 msgstr ""
 
@@ -39374,15 +39378,15 @@ msgstr "Debes jugar una carta del palo de salida."
 msgid "You must not capture every seed left on the opposing side at once. Such a move may be played, but no capture occurs. If the opponent's row is empty before your turn, you must choose a sowing that feeds it when one exists. Otherwise the game ends, and each player keeps the seeds remaining on their own side."
 msgstr ""
 
-#: games/belote_support/belote_table.rb:101
+#: games/belote_support/belote_table.rb:102
 msgid "You must play a higher trump."
 msgstr "Debes jugar un triunfo más alto."
 
-#: games/french_tarot_support/french_tarot_table.rb:169
+#: games/french_tarot_support/french_tarot_table.rb:207
 msgid "You must play a trump higher than %{rank}."
 msgstr "Debes jugar un triunfo mayor que %{rank}."
 
-#: games/belote_support/belote_table.rb:100 games/french_tarot_support/french_tarot_table.rb:171
+#: games/belote_support/belote_table.rb:101 games/french_tarot_support/french_tarot_table.rb:209
 msgid "You must play a trump."
 msgstr "Debes jugar un triunfo."
 
@@ -39394,11 +39398,11 @@ msgstr "Debes poner semillas en la otra fila."
 msgid "You must roll at least once. You have 30 seconds for each decision, starting afresh after your roll. When time runs out, your result is saved; if you have not rolled at all, the game makes that first roll before saving. Reaching 25 or going over ends your attempt. Cards affecting your race die apply to both dice without being used up."
 msgstr ""
 
-#: games/hearts_support/hearts_table.rb:34
+#: games/hearts_support/hearts_table.rb:35
 msgid "You must start with the two of clubs."
 msgstr "Debes empezar con el dos de tréboles."
 
-#: games/backgammon.rb:405
+#: games/backgammon.rb:398
 msgid "You must use the higher die, %{die}."
 msgstr "Debes usar el dado más alto, %{die}."
 
@@ -39418,15 +39422,15 @@ msgstr "Antes de añadir preguntas, debes crear al menos una categoría."
 msgid "You organize this tournament"
 msgstr "Organizas este torneo"
 
-#: games/poker.rb:582
+#: games/poker.rb:569
 msgid "You pay ante: %{amount}."
 msgstr "Pagas el ante: %{amount}."
 
-#: games/poker.rb:581
+#: games/poker.rb:568
 msgid "You pay the big blind: %{amount}."
 msgstr "Pagas la ciega grande: %{amount}."
 
-#: games/poker.rb:580
+#: games/poker.rb:567
 msgid "You pay the small blind: %{amount}."
 msgstr "Pagas la ciega pequeña: %{amount}."
 
@@ -39709,11 +39713,11 @@ msgstr ""
 msgid "Your first roll uses all five dice. You may then reroll any of them, at most twice more. Dice you do not select are kept. After each roll the values are sorted from lowest to highest and all dice begin as kept, so select the ones you want to change. You may stop after the first or second roll; using three rolls is a choice, not a requirement."
 msgstr ""
 
-#: games/three_five_eight.rb:1002
+#: games/three_five_eight.rb:1048
 msgid "Your first six cards"
 msgstr ""
 
-#: games/three_five_eight.rb:1002
+#: games/three_five_eight.rb:1048
 msgid "Your first six cards; waiting for the contract"
 msgstr ""
 
@@ -39747,7 +39751,7 @@ msgstr ""
 msgid "Your group: %{group}."
 msgstr "Tu grupo: %{group}."
 
-#: games/bridge/presentation.rb:359 games/card_game.rb:86 games/dealt_card_game.rb:118 games/makao.rb:354 games/mille_bornes/presentation.rb:34 games/ninety_nine.rb:367 games/rummy_ui.rb:60 games/spades.rb:872 games/three_five_eight.rb:1004 games/three_five_eight.rb:1006 games/three_five_eight.rb:1008 games/tysiac.rb:1520 games/uno.rb:462
+#: games/bridge/presentation.rb:359 games/card_game.rb:86 games/dealt_card_game.rb:118 games/makao.rb:354 games/mille_bornes/presentation.rb:34 games/ninety_nine.rb:367 games/rummy_ui.rb:60 games/spades.rb:872 games/three_five_eight.rb:1050 games/three_five_eight.rb:1052 games/three_five_eight.rb:1054 games/tysiac.rb:1520 games/uno.rb:462
 msgid "Your hand"
 msgstr "Tu mano"
 
@@ -39759,7 +39763,7 @@ msgstr "Tu mano %{hand} de %{count}: %{total}"
 msgid "Your hand and your partner"
 msgstr "Tu mano y tu compañero"
 
-#: games/blackjack.rb:301 games/card_game.rb:106 games/dealt_card_game.rb:120 games/dealt_card_game.rb:137 games/duck_racing_support/presentation.rb:211 games/makao.rb:356 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:370 games/rummy_ui.rb:61 games/scientific_war.rb:789 games/spades.rb:875 games/three_five_eight.rb:377 games/tile_game.rb:147 games/tysiac.rb:449 games/uno.rb:463 lib/game_surfaces/packet_cards.rb:52
+#: games/blackjack.rb:301 games/card_game.rb:106 games/dealt_card_game.rb:120 games/dealt_card_game.rb:137 games/duck_racing_support/presentation.rb:211 games/makao.rb:356 games/mille_bornes/presentation.rb:35 games/ninety_nine.rb:370 games/rummy_ui.rb:61 games/scientific_war.rb:789 games/spades.rb:875 games/three_five_eight.rb:423 games/tile_game.rb:147 games/tysiac.rb:449 games/uno.rb:463 lib/game_surfaces/packet_cards.rb:52
 msgid "Your hand is empty"
 msgstr "Tu mano está vacía"
 
@@ -39769,7 +39773,7 @@ msgid_plural "Your hand is empty, so you take %{count} cards from your pile into
 msgstr[0] ""
 msgstr[1] ""
 
-#: games/bridge/presentation.rb:569 games/makao.rb:971 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:906 games/spades.rb:948 games/three_five_eight.rb:1014 games/tysiac.rb:1628
+#: games/bridge/presentation.rb:569 games/makao.rb:971 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:906 games/spades.rb:948 games/three_five_eight.rb:1060 games/tysiac.rb:1628
 msgid "Your hand is empty."
 msgstr "Tu mano está vacía."
 
@@ -39789,7 +39793,7 @@ msgstr "Tu mano, %{seat}: eres el muerto y tu compañero juega estas cartas"
 msgid "Your hand, high card points: %{points}"
 msgstr "Tu mano, puntos de honor: %{points}"
 
-#: games/base/shortcuts.rb:88 games/dealt_card_game.rb:137 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:908 games/spades.rb:950 games/three_five_eight.rb:1015 games/tysiac.rb:1629
+#: games/base/shortcuts.rb:88 games/dealt_card_game.rb:137 games/mille_bornes/presentation.rb:76 games/ninety_nine.rb:908 games/spades.rb:950 games/three_five_eight.rb:1061 games/tysiac.rb:1629
 msgid "Your hand: %{cards}."
 msgstr "Tu mano: %{cards}."
 
@@ -39801,11 +39805,11 @@ msgstr "Tu mano: %{total}"
 msgid "Your hand: your partner plays these cards"
 msgstr "Tu mano: juega tu pareja"
 
-#: games/three_five_eight.rb:1006
+#: games/three_five_eight.rb:1052
 msgid "Your hand; choose a return card"
 msgstr ""
 
-#: games/three_five_eight.rb:1004
+#: games/three_five_eight.rb:1050
 msgid "Your hand; discard %{remaining} cards"
 msgstr ""
 
@@ -39855,7 +39859,7 @@ msgstr "Tu cartón marcado no completa el patrón actual de bingo."
 msgid "Your most important choice is the game mode. Each of the four modes offers a different kind of challenge and lets you tailor the game to your preferences."
 msgstr ""
 
-#: games/poker.rb:555
+#: games/poker.rb:542
 msgid "Your move."
 msgstr "Tu turno."
 
@@ -39994,7 +39998,7 @@ msgstr "Tus barcos se han colocado automáticamente."
 msgid "Your shots"
 msgstr "Tus disparos"
 
-#: games/poker.rb:1320
+#: games/poker.rb:1355
 msgid "Your stack: %{chips}."
 msgstr "Tus fichas: %{chips}."
 
@@ -40215,11 +40219,11 @@ msgstr "aceptar resultado propuesto"
 msgid "accept the trade"
 msgstr "aceptar el intercambio"
 
-#: games/bridge/presentation.rb:280 games/card_game.rb:59 games/makao.rb:31 games/ninety_nine.rb:46 games/poker.rb:41 games/spades.rb:51 games/three_five_eight.rb:42 games/tysiac.rb:37
+#: games/bridge/presentation.rb:280 games/card_game.rb:59 games/makao.rb:31 games/ninety_nine.rb:46 games/poker.rb:42 games/spades.rb:51 games/three_five_eight.rb:53 games/tysiac.rb:37
 msgid "ace"
 msgstr "as"
 
-#: games/poker.rb:407 lib/blackjack_auction.rb:51
+#: games/poker.rb:408 lib/blackjack_auction.rb:51
 msgid "all in"
 msgstr "todo apostado"
 
@@ -40242,7 +40246,7 @@ msgstr "ha respondido"
 msgid "answering"
 msgstr "respondiendo"
 
-#: games/poker.rb:192
+#: games/poker.rb:193
 msgid "ante %{ante}"
 msgstr "ante %{ante}"
 
@@ -40294,7 +40298,7 @@ msgstr "acento grave"
 msgid "bankrupt"
 msgstr "en bancarrota"
 
-#: games/backgammon.rb:466
+#: games/backgammon.rb:459
 msgid "bar"
 msgstr "barra"
 
@@ -40350,7 +40354,7 @@ msgstr "torre negra"
 msgid "blank"
 msgstr "comodín"
 
-#: games/poker.rb:190
+#: games/poker.rb:191
 msgid "blinds %{small}/%{big}"
 msgstr "ciegas %{small}/%{big}"
 
@@ -40370,7 +40374,7 @@ msgstr "azul"
 msgid "bluff"
 msgstr "farol"
 
-#: games/backgammon.rb:467
+#: games/backgammon.rb:460
 msgid "borne off"
 msgstr "fichas retiradas"
 
@@ -40501,11 +40505,11 @@ msgstr "carta"
 msgid "card counts"
 msgstr "número de cartas"
 
-#: games/three_five_eight.rb:128
+#: games/three_five_eight.rb:139
 msgid "card exchange disabled"
 msgstr ""
 
-#: games/three_five_eight.rb:128
+#: games/three_five_eight.rb:139
 msgid "card exchange enabled"
 msgstr ""
 
@@ -40556,7 +40560,7 @@ msgstr "cambiar las señales sonoras de las paredes laterales"
 msgid "change the field notation"
 msgstr "cambiar la notación de las casillas"
 
-#: games/poker.rb:417
+#: games/poker.rb:418
 msgid "check or call"
 msgstr "pasar o igualar"
 
@@ -40592,7 +40596,7 @@ msgstr "desmarcar la proa o retirar el último barco"
 msgid "clear the prepared packet"
 msgstr "vaciar el grupo de cartas preparado"
 
-#: games/mexican_train.rb:185
+#: games/mexican_train.rb:186
 msgid "closed"
 msgstr "cerrado"
 
@@ -40614,7 +40618,7 @@ msgstr "paréntesis de cierre"
 msgid "closing square bracket"
 msgstr "corchete de cierre"
 
-#: games/bouillabaisse.rb:214 games/bridge/presentation.rb:276 games/card_game.rb:62 games/french_tarot_support/french_tarot_table.rb:164 games/french_tarot_support/french_tarot_table.rb:305 games/french_tarot_support/french_tarot_table.rb:62 games/hearts_support/hearts_table.rb:97 games/makao.rb:30 games/ninety_nine.rb:28 games/poker.rb:40 games/spades.rb:33 games/three_five_eight.rb:37 games/tysiac.rb:26
+#: games/bouillabaisse.rb:214 games/bridge/presentation.rb:276 games/card_game.rb:62 games/french_tarot_support/french_tarot_table.rb:100 games/french_tarot_support/french_tarot_table.rb:202 games/french_tarot_support/french_tarot_table.rb:343 games/hearts_support/hearts_table.rb:98 games/makao.rb:30 games/ninety_nine.rb:28 games/poker.rb:41 games/spades.rb:33 games/three_five_eight.rb:48 games/tysiac.rb:26
 msgid "clubs"
 msgstr "tréboles"
 
@@ -40700,7 +40704,7 @@ msgstr "anunciar UNO o señalar a quien no lo haya dicho"
 msgid "describe the selected card"
 msgstr "describir la carta seleccionada"
 
-#: games/bouillabaisse.rb:214 games/bridge/presentation.rb:276 games/card_game.rb:62 games/french_tarot_support/french_tarot_table.rb:164 games/french_tarot_support/french_tarot_table.rb:305 games/french_tarot_support/french_tarot_table.rb:62 games/hearts_support/hearts_table.rb:97 games/makao.rb:30 games/ninety_nine.rb:29 games/poker.rb:40 games/spades.rb:34 games/three_five_eight.rb:37 games/tysiac.rb:27
+#: games/bouillabaisse.rb:214 games/bridge/presentation.rb:276 games/card_game.rb:62 games/french_tarot_support/french_tarot_table.rb:100 games/french_tarot_support/french_tarot_table.rb:202 games/french_tarot_support/french_tarot_table.rb:343 games/hearts_support/hearts_table.rb:98 games/makao.rb:30 games/ninety_nine.rb:29 games/poker.rb:41 games/spades.rb:34 games/three_five_eight.rb:48 games/tysiac.rb:27
 msgid "diamonds"
 msgstr "diamantes"
 
@@ -40809,7 +40813,7 @@ msgstr "editar las combinaciones preparadas"
 msgid "eliminated"
 msgstr "fuera de la partida"
 
-#: games/backgammon.rb:234 lib/game_surfaces/word_board.rb:201
+#: games/backgammon.rb:235 lib/game_surfaces/word_board.rb:201
 msgid "empty"
 msgstr "vacío"
 
@@ -40891,11 +40895,11 @@ msgstr[1] ""
 msgid "flip"
 msgstr "voltea"
 
-#: games/poker.rb:1028
+#: games/poker.rb:1020
 msgid "flush"
 msgstr "color"
 
-#: games/poker.rb:423
+#: games/poker.rb:424
 msgid "fold"
 msgstr "retirarse"
 
@@ -40903,7 +40907,7 @@ msgstr "retirarse"
 msgid "four corners"
 msgstr "cuatro esquinas"
 
-#: games/poker.rb:1028
+#: games/poker.rb:1020
 msgid "four of a kind"
 msgstr "póquer"
 
@@ -40927,7 +40931,7 @@ msgstr ""
 msgid "full bingo ticket"
 msgstr "cartón completo de bingo"
 
-#: games/poker.rb:1028
+#: games/poker.rb:1020
 msgid "full house"
 msgstr "full"
 
@@ -40955,7 +40959,7 @@ msgstr "entregar %{amount}"
 msgid "give %{property}"
 msgstr "entregar %{property}"
 
-#: games/poker.rb:423
+#: games/poker.rb:424
 msgid "go all in"
 msgstr "apostarlo todo"
 
@@ -41007,7 +41011,7 @@ msgstr "conjunto de categorías difícil"
 msgid "hash sign"
 msgstr "almohadilla"
 
-#: games/bouillabaisse.rb:214 games/bridge/presentation.rb:276 games/card_game.rb:63 games/french_tarot_support/french_tarot_table.rb:164 games/french_tarot_support/french_tarot_table.rb:305 games/french_tarot_support/french_tarot_table.rb:62 games/hearts_support/hearts_table.rb:97 games/makao.rb:30 games/ninety_nine.rb:30 games/poker.rb:40 games/spades.rb:35 games/three_five_eight.rb:38 games/tysiac.rb:28
+#: games/bouillabaisse.rb:214 games/bridge/presentation.rb:276 games/card_game.rb:63 games/french_tarot_support/french_tarot_table.rb:100 games/french_tarot_support/french_tarot_table.rb:202 games/french_tarot_support/french_tarot_table.rb:343 games/hearts_support/hearts_table.rb:98 games/makao.rb:30 games/ninety_nine.rb:30 games/poker.rb:41 games/spades.rb:35 games/three_five_eight.rb:49 games/tysiac.rb:28
 msgid "hearts"
 msgstr "corazones"
 
@@ -41019,7 +41023,7 @@ msgstr "conservado"
 msgid "hidden card"
 msgstr "carta oculta"
 
-#: games/poker.rb:1028
+#: games/poker.rb:1020
 msgid "high card"
 msgstr "carta alta"
 
@@ -41085,7 +41089,7 @@ msgstr "signo de apertura de exclamación"
 msgid "inverted question mark"
 msgstr "signo de apertura de interrogación"
 
-#: games/bridge/presentation.rb:280 games/card_game.rb:58 games/makao.rb:31 games/ninety_nine.rb:43 games/poker.rb:41 games/spades.rb:48 games/three_five_eight.rb:41 games/tysiac.rb:33
+#: games/bridge/presentation.rb:280 games/card_game.rb:58 games/makao.rb:31 games/ninety_nine.rb:43 games/poker.rb:42 games/spades.rb:48 games/three_five_eight.rb:52 games/tysiac.rb:33
 msgid "jack"
 msgstr "jota"
 
@@ -41108,7 +41112,7 @@ msgstr "evaluando"
 msgid "keep a %{value}"
 msgstr "conservar un %{value}"
 
-#: games/dice_poker.rb:151 games/yahtzee.rb:273
+#: games/dice_poker.rb:151 games/yahtzee.rb:280
 msgid "keep another die showing %{value}"
 msgstr "conservar otro dado con el valor %{value}"
 
@@ -41122,7 +41126,7 @@ msgstr "conservar la mano de dados actual"
 msgid "kept"
 msgstr "conservado"
 
-#: games/bridge/presentation.rb:280 games/card_game.rb:59 games/chess.rb:281 games/chess.rb:871 games/makao.rb:31 games/ninety_nine.rb:45 games/poker.rb:41 games/spades.rb:50 games/three_five_eight.rb:42 games/tysiac.rb:35
+#: games/bridge/presentation.rb:280 games/card_game.rb:59 games/chess.rb:281 games/chess.rb:871 games/makao.rb:31 games/ninety_nine.rb:45 games/poker.rb:42 games/spades.rb:50 games/three_five_eight.rb:53 games/tysiac.rb:35
 msgid "king"
 msgstr "rey"
 
@@ -41134,7 +41138,7 @@ msgstr "corto"
 msgid "kings: %{kings}, queens: %{queens}, rooks: %{rooks}, bishops: %{bishops}, knights: %{knights}, pawns: %{pawns}"
 msgstr "reyes: %{kings}, damas: %{queens}, torres: %{rooks}, alfiles: %{bishops}, caballos: %{knights}, peones: %{pawns}"
 
-#: games/chess.rb:285 games/chess.rb:867 games/french_tarot_support/french_tarot_table.rb:306
+#: games/chess.rb:285 games/chess.rb:867 games/french_tarot_support/french_tarot_table.rb:344
 msgid "knight"
 msgstr "caballo"
 
@@ -41212,7 +41216,7 @@ msgstr[1] "cumplido con %{count} sobrebazas"
 msgid "magenta group"
 msgstr "grupo magenta"
 
-#: games/poker.rb:895
+#: games/poker.rb:887
 msgid "main pot"
 msgstr "bote principal"
 
@@ -41255,7 +41259,7 @@ msgstr "franja central"
 msgid "minus"
 msgstr "menos"
 
-#: games/three_five_eight.rb:1044
+#: games/three_five_eight.rb:1090
 msgid "misere; take as few tricks as possible"
 msgstr ""
 
@@ -41294,7 +41298,7 @@ msgstr "siguiente ficha que puedes jugar"
 msgid "nil"
 msgstr "cero bazas"
 
-#: games/makao.rb:154 games/yahtzee.rb:625
+#: games/makao.rb:154 games/yahtzee.rb:638
 msgid "no"
 msgstr "no"
 
@@ -41325,7 +41329,7 @@ msgstr "sin puntuación"
 msgid "no time limit"
 msgstr "sin límite de tiempo"
 
-#: games/three_five_eight.rb:1043
+#: games/three_five_eight.rb:1089
 msgid "no trump"
 msgstr ""
 
@@ -41337,7 +41341,7 @@ msgstr "ninguno"
 msgid "not bid yet"
 msgstr "aún sin declarar"
 
-#: games/balut.rb:96 games/balut_support/balut_score_grid.rb:24 games/kosciane.rb:308 games/yahtzee.rb:307
+#: games/balut.rb:96 games/balut_support/balut_score_grid.rb:25 games/kosciane.rb:309 games/yahtzee.rb:314
 msgid "not filled"
 msgstr "sin rellenar"
 
@@ -41373,11 +41377,11 @@ msgstr "activado"
 msgid "one line"
 msgstr "una línea"
 
-#: games/poker.rb:1028
+#: games/poker.rb:1020
 msgid "one pair"
 msgstr "pareja"
 
-#: __app.rb:3448 games/mexican_train.rb:185
+#: __app.rb:3448 games/mexican_train.rb:186
 msgid "open"
 msgstr "abierto"
 
@@ -41401,7 +41405,7 @@ msgstr "naranja"
 msgid "orange group"
 msgstr "grupo naranja"
 
-#: games/poker.rb:408 games/scientific_war.rb:370 games/war.rb:170
+#: games/poker.rb:409 games/scientific_war.rb:370 games/war.rb:170
 msgid "out"
 msgstr "fuera"
 
@@ -41424,7 +41428,7 @@ msgstr "parcialmente correcta, 5 puntos"
 msgid "pass"
 msgstr "pasar"
 
-#: games/go.rb:126 games/reversi.rb:120
+#: games/go.rb:126 games/reversi.rb:138
 msgid "pass your turn"
 msgstr "pasar tu turno"
 
@@ -41492,7 +41496,7 @@ msgstr "más"
 msgid "pocket jaw"
 msgstr "mandíbula de la tronera"
 
-#: games/backgammon.rb:468
+#: games/backgammon.rb:461
 msgid "point %{point}"
 msgstr "punto %{point}"
 
@@ -41555,7 +41559,7 @@ msgstr "morado"
 msgid "purple group"
 msgstr "grupo morado"
 
-#: games/bridge/presentation.rb:280 games/card_game.rb:58 games/makao.rb:31 games/ninety_nine.rb:44 games/poker.rb:41 games/spades.rb:49 games/three_five_eight.rb:41 games/tysiac.rb:34
+#: games/bridge/presentation.rb:280 games/card_game.rb:58 games/makao.rb:31 games/ninety_nine.rb:44 games/poker.rb:42 games/spades.rb:49 games/three_five_eight.rb:52 games/tysiac.rb:34
 msgid "queen"
 msgstr "reina"
 
@@ -41584,7 +41588,7 @@ msgstr "comillas"
 msgid "railroad"
 msgstr "estación de ferrocarril"
 
-#: games/poker.rb:432 lib/blackjack_auction.rb:339
+#: games/poker.rb:433 lib/blackjack_auction.rb:339
 msgid "raise"
 msgstr "subir"
 
@@ -41600,7 +41604,7 @@ msgstr ""
 msgid "read %{player}'s pawn positions"
 msgstr "leer las posiciones de las fichas de %{player}"
 
-#: games/poker.rb:1327
+#: games/poker.rb:1362
 msgid "read active and folded players"
 msgstr "leer los jugadores activos y los que se han retirado"
 
@@ -41612,7 +41616,7 @@ msgstr "leer los escudos activos y el estado de invisibilidad de la pelota"
 msgid "read captured stones"
 msgstr "leer las capturas"
 
-#: games/poker.rb:1333
+#: games/poker.rb:1368
 msgid "read card %{number}"
 msgstr "leer la carta %{number}"
 
@@ -41640,11 +41644,11 @@ msgstr "leer las finanzas"
 msgid "read forbidden word %{number}"
 msgstr "leer la palabra prohibida %{number}"
 
-#: games/base/information.rb:67
+#: games/base/information.rb:70
 msgid "read how long the game has lasted"
 msgstr "consultar la duración de la partida"
 
-#: games/base/information.rb:68
+#: games/base/information.rb:71
 msgid "read how long the round has lasted"
 msgstr "consultar la duración de la ronda"
 
@@ -41656,7 +41660,7 @@ msgstr ""
 msgid "read other players exposed sets"
 msgstr "leer los grupos expuestos de los demás jugadores"
 
-#: games/poker.rb:1321
+#: games/poker.rb:1356
 msgid "read other stacks"
 msgstr "leer las fichas de los demás"
 
@@ -41708,11 +41712,11 @@ msgstr ""
 msgid "read the bids"
 msgstr "leer las declaraciones"
 
-#: games/poker.rb:1329
+#: games/poker.rb:1364
 msgid "read the blinds"
 msgstr "leer las ciegas"
 
-#: games/poker.rb:1322
+#: games/poker.rb:1357
 msgid "read the call amount"
 msgstr "leer la cantidad necesaria para igualar"
 
@@ -41724,7 +41728,7 @@ msgstr "leer las cartas de la mesa"
 msgid "read the chip balances"
 msgstr "leer saldos de fichas"
 
-#: games/belote_support/belote_table.rb:124 games/bridge/presentation.rb:230
+#: games/belote_support/belote_table.rb:125 games/bridge/presentation.rb:230
 msgid "read the contract"
 msgstr "leer el contrato"
 
@@ -41744,7 +41748,7 @@ msgstr "leer el color actual"
 msgid "read the current contract"
 msgstr "leer el contrato actual"
 
-#: games/three_five_eight.rb:456
+#: games/three_five_eight.rb:502
 msgid "read the current contract and trump suit"
 msgstr ""
 
@@ -41776,15 +41780,15 @@ msgstr "leer el total actual"
 msgid "read the current word"
 msgstr "leer la palabra actual"
 
-#: games/jass_support/jass_table.rb:77
+#: games/jass_support/jass_table.rb:78
 msgid "read the deal rules"
 msgstr "leer las reglas de la mano"
 
-#: games/balut.rb:135 games/balut_support/balut_score_grid.rb:34 games/kosciane.rb:186 games/kosciane.rb:188 games/kosciane.rb:224
+#: games/balut.rb:135 games/balut_support/balut_score_grid.rb:35 games/kosciane.rb:186 games/kosciane.rb:188 games/kosciane.rb:225
 msgid "read the dice"
 msgstr "leer los dados"
 
-#: games/dice_poker.rb:154 games/yahtzee.rb:290
+#: games/dice_poker.rb:154 games/yahtzee.rb:297
 msgid "read the dice and their selection state"
 msgstr "leer los dados y su estado de selección"
 
@@ -41852,7 +41856,7 @@ msgstr "leer la otra fila"
 msgid "read the pool"
 msgstr "leer el bote"
 
-#: games/poker.rb:1325
+#: games/poker.rb:1360
 msgid "read the pot"
 msgstr "leer el bote"
 
@@ -41908,7 +41912,7 @@ msgstr "leer la información de la ronda"
 msgid "read the rules for this round"
 msgstr "recordar las reglas de esta ronda"
 
-#: games/balut.rb:137 games/cash_auction/presentation.rb:41 games/dice_poker.rb:142 games/mahjong.rb:174 games/uno.rb:512 games/yahtzee.rb:291 lib/game_shortcuts.rb:9
+#: games/balut.rb:137 games/cash_auction/presentation.rb:41 games/dice_poker.rb:142 games/mahjong.rb:174 games/uno.rb:512 games/yahtzee.rb:298 lib/game_shortcuts.rb:9
 msgid "read the scores"
 msgstr "leer las puntuaciones"
 
@@ -41920,7 +41924,7 @@ msgstr "anunciar quién saca"
 msgid "read the server and connection status"
 msgstr "leer quién saca y el estado de la conexión"
 
-#: games/cribbage_support/cribbage_table.rb:74
+#: games/cribbage_support/cribbage_table.rb:87
 msgid "read the starter"
 msgstr "leer la carta inicial"
 
@@ -41956,11 +41960,11 @@ msgstr "leer el palo de triunfo"
 msgid "read the turn or challenge"
 msgstr "consultar el turno o desafío actual"
 
-#: games/belote_support/belote_table.rb:132
+#: games/belote_support/belote_table.rb:133
 msgid "read the turned-up card"
 msgstr "leer la carta descubierta"
 
-#: games/belote_support/belote_table.rb:118
+#: games/belote_support/belote_table.rb:119
 msgid "read trumps and the suit led"
 msgstr "leer el triunfo y el palo de salida"
 
@@ -41968,7 +41972,7 @@ msgstr "leer el triunfo y el palo de salida"
 msgid "read typing progress"
 msgstr "leer el progreso de escritura"
 
-#: games/poker.rb:1324
+#: games/poker.rb:1359
 msgid "read visible table cards"
 msgstr "leer las cartas visibles de la mesa"
 
@@ -41988,7 +41992,7 @@ msgstr "leer quién puja y quién ha pasado"
 msgid "read who leads each category"
 msgstr "leer quién va en cabeza en cada categoría"
 
-#: games/cribbage_support/cribbage_table.rb:77
+#: games/cribbage_support/cribbage_table.rb:90
 msgid "read who owns the crib"
 msgstr "leer a quién pertenece el crib"
 
@@ -42004,11 +42008,11 @@ msgstr "leer de quién es el turno"
 msgid "read your Gold"
 msgstr "leer tu oro"
 
-#: games/poker.rb:1328
+#: games/poker.rb:1363
 msgid "read your best combination"
 msgstr "leer tu mejor combinación"
 
-#: games/poker.rb:1323
+#: games/poker.rb:1358
 msgid "read your cards"
 msgstr "leer tus cartas"
 
@@ -42080,11 +42084,11 @@ msgstr "leer tu atril"
 msgid "read your roulette bets"
 msgstr "leer sus apuestas de ruleta"
 
-#: games/poker.rb:1320
+#: games/poker.rb:1355
 msgid "read your stack"
 msgstr "leer tus fichas"
 
-#: games/poker.rb:1326
+#: games/poker.rb:1361
 msgid "read your total investment"
 msgstr "leer tu aportación total"
 
@@ -42096,7 +42100,7 @@ msgstr "leer el valor de tu mano ganadora"
 msgid "ready"
 msgstr ""
 
-#: games/belote_support/belote_table.rb:369
+#: games/belote_support/belote_table.rb:406
 msgid "rebelote, 20 points"
 msgstr "rebelote, 20 puntos"
 
@@ -42250,7 +42254,7 @@ msgstr "puntuaciones"
 msgid "select a %{value} for reroll"
 msgstr "seleccionar un %{value} para volver a tirarlo"
 
-#: games/dice_poker.rb:150 games/yahtzee.rb:269
+#: games/dice_poker.rb:150 games/yahtzee.rb:276
 msgid "select another die showing %{value}"
 msgstr "seleccionar otro dado con el valor %{value}"
 
@@ -42284,7 +42288,7 @@ msgstr "fijar tu apuesta antes del reparto"
 msgid "ship"
 msgstr "barco"
 
-#: games/poker.rb:895
+#: games/poker.rb:887
 msgid "side pot %{number}"
 msgstr "bote secundario %{number}"
 
@@ -42328,7 +42332,7 @@ msgstr "ordenar las cartas por valor"
 msgid "space"
 msgstr "espacio"
 
-#: games/bouillabaisse.rb:214 games/bridge/presentation.rb:276 games/card_game.rb:63 games/french_tarot_support/french_tarot_table.rb:164 games/french_tarot_support/french_tarot_table.rb:305 games/french_tarot_support/french_tarot_table.rb:62 games/hearts_support/hearts_table.rb:97 games/makao.rb:30 games/ninety_nine.rb:31 games/poker.rb:40 games/spades.rb:36 games/three_five_eight.rb:38 games/tysiac.rb:29
+#: games/bouillabaisse.rb:214 games/bridge/presentation.rb:276 games/card_game.rb:63 games/french_tarot_support/french_tarot_table.rb:100 games/french_tarot_support/french_tarot_table.rb:202 games/french_tarot_support/french_tarot_table.rb:343 games/hearts_support/hearts_table.rb:98 games/makao.rb:30 games/ninety_nine.rb:31 games/poker.rb:41 games/spades.rb:36 games/three_five_eight.rb:49 games/tysiac.rb:29
 msgid "spades"
 msgstr "picas"
 
@@ -42348,11 +42352,11 @@ msgstr "empezar un turno sin cartas"
 msgid "stops on the table"
 msgstr "se detendrá en la mesa"
 
-#: games/poker.rb:1028
+#: games/poker.rb:1020
 msgid "straight"
 msgstr "escalera"
 
-#: games/poker.rb:1028
+#: games/poker.rb:1020
 msgid "straight flush"
 msgstr "escalera de color"
 
@@ -42438,7 +42442,7 @@ msgstr "la pila llega a %{limit}"
 msgid "the pile reaching 99"
 msgstr "la pila llega a 99"
 
-#: games/poker.rb:1028
+#: games/poker.rb:1020
 msgid "three of a kind"
 msgstr "trío"
 
@@ -42521,7 +42525,7 @@ msgstr "triple valor de letra"
 msgid "triple word"
 msgstr "triple valor de palabra"
 
-#: games/french_tarot_support/french_tarot_table.rb:62
+#: games/french_tarot_support/french_tarot_table.rb:100
 msgid "trumps"
 msgstr "triunfos"
 
@@ -42529,7 +42533,7 @@ msgstr "triunfos"
 msgid "two lines"
 msgstr "dos líneas"
 
-#: games/poker.rb:1028
+#: games/poker.rb:1020
 msgid "two pairs"
 msgstr "doble pareja"
 
@@ -42548,7 +42552,7 @@ msgstr "guion bajo"
 msgid "undo the last tile"
 msgstr "retirar la última ficha colocada"
 
-#: games/mexican_train.rb:186
+#: games/mexican_train.rb:187
 msgid "unfinished double"
 msgstr "doble pendiente"
 
@@ -42611,11 +42615,11 @@ msgstr "vertical"
 msgid "vertical bar"
 msgstr "barra vertical"
 
-#: games/yahtzee.rb:286
+#: games/yahtzee.rb:293
 msgid "view another player's score sheet"
 msgstr "ver la hoja de puntuaciones de otro jugador"
 
-#: games/yahtzee.rb:279
+#: games/yahtzee.rb:286
 msgid "view your score sheet"
 msgstr "ver tu hoja de puntuaciones"
 
@@ -42719,7 +42723,7 @@ msgstr "jugará en la siguiente partida"
 msgid "win by two"
 msgstr "ventaja de dos"
 
-#: games/three_five_eight.rb:51
+#: games/three_five_eight.rb:62
 msgid "with card exchange"
 msgstr ""
 
@@ -42735,7 +42739,7 @@ msgstr ""
 msgid "withdrawn"
 msgstr ""
 
-#: games/three_five_eight.rb:51
+#: games/three_five_eight.rb:62
 msgid "without card exchange"
 msgstr ""
 
@@ -42769,7 +42773,7 @@ msgstr "amarillo"
 msgid "yellow group"
 msgstr "grupo amarillo"
 
-#: games/makao.rb:154 games/yahtzee.rb:625
+#: games/makao.rb:154 games/yahtzee.rb:638
 msgid "yes"
 msgstr "sí"
 

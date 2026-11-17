@@ -2,7 +2,7 @@ require_relative "five_dice_scoring"
 
 module GameRoomGames
   class FiveDiceMatch
-    attr_reader :current_player, :rolls, :categories
+    attr_reader :current_player, :rolls, :categories, :columns
 
     def initialize(players, columns: 3, parity: false, fixed: false, double_first: false, strict_school: false)
       raise ArgumentError unless players.size >= 2 && players.uniq == players && columns.is_a?(Integer) && columns.positive?
@@ -66,6 +66,16 @@ module GameRoomGames
     def planning_key
       Marshal.dump([@players, @columns, @fixed, @double_first, @strict_school,
         @sheets, @reserves, @bonuses, @claimed, @blocked, @current_player])
+    end
+
+    # Conditional own-turn forecast using the real reserve/bonus recorder.
+    # Only call across turns when no unknown rival bonus claim can intervene.
+    def forecast_record(player, category, dice:, rolls:, cross: false)
+      copy = Marshal.load(Marshal.dump(self))
+      copy.send(:begin_turn, player)
+      copy.instance_variable_set(:@dice, dice.dup)
+      copy.instance_variable_set(:@rolls, rolls)
+      copy.record(player,category,cross:cross) ? copy : nil
     end
 
     def preview_bonus(category, points)

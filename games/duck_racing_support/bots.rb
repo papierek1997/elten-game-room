@@ -427,17 +427,28 @@ module GameRoomDuckRacing
       square = Board.square(destination)
       effects = Board::SQUARES.fetch(square)
       value = signed(seat, value)
-      effects.each do |kind, quantity, *_rest|
+      effects.each do |kind, quantity, *rest|
         case kind
         when :feathers then value += feather_value(seat, quantity)
         when :cards then value += signed(seat, quantity * 0.8)
         when :skip then value += signed(seat, -quantity * 3.5)
+        when :chance
+          effect,amount = rest
+          expected = case effect
+          when :feathers then feather_value(seat,amount)
+          when :cards then signed(seat,amount*0.8)
+          when :skip then signed(seat,-amount*3.5)
+          else 0.0
+          end
+          value += expected*quantity/100.0
         end
       end
-      if (trap = @view[:traps][square]) && trap[:owner] != seat
+      if (trap = @view[:traps][square])
+        trap_effects = Cards::BY_ID.fetch(trap[:type]).effects
+        ignored = trap[:owner]==seat && trap_effects.any? { |effect|effect.first==:steal_feathers }
         # A known harmful trap changes the desirability of this destination;
         # do not recursively follow an unbounded or random effect chain.
-        impact = Cards::BY_ID.fetch(trap[:type]).effects.sum do |kind, quantity, _|
+        impact = ignored ? 0.0 : trap_effects.sum do |kind, quantity, _|
           case kind
           when :move then quantity
           when :skip then -3.5 * quantity

@@ -20,6 +20,7 @@ module GameRoomGames
         if writable
           points = BalutScoring.score(category, state.fetch(:dice))
           label = _("%{category}: enter %{points}") % {category: label, points: points}
+          label = score_entry_column_label(label, column: values.size + 1, columns: SLOT_COUNT)
         end
         [label, *Array.new(SLOT_COUNT) { |index| values.fetch(index, _("not filled")).to_s },
          _("Sum of entries: %{total}") % {total: values.sum}, balut_row_status(category, values)]

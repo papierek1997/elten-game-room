@@ -388,9 +388,12 @@ module GameRoomLayout
       # A new decision may select its actionable control, once per boundary.
       # Never interrupt room text, or refocus for another participant's reply.
       if phase == :active && location[0] == :game && view_spec.decision_focus_key != nil &&
-          (new_game || previous_decision_key != view_spec.decision_focus_key) &&
-          @surface.respond_to?(:fields_for_parts)
-        target = @surface.fields_for_parts([view_spec.decision_focus_part.to_s]).first
+          (new_game || previous_decision_key != view_spec.decision_focus_key)
+        target = if @surface.respond_to?(:fields_for_parts)
+          @surface.fields_for_parts([view_spec.decision_focus_part.to_s]).first
+        elsif view_spec.decision_focus_part.nil?
+          game_fields.first
+        end
         if target && game_fields.include?(target)
           index = view_spec.decision_focus_index
           if index.is_a?(Integer) && index >= 0 && target.respond_to?(:index=) &&

@@ -5,8 +5,13 @@ require_relative '../../../lib/game_sounds'
 
 sounds = GameRoomFiveDiceSounds
 assert(sounds.roll([1, 2, 3, 4, 5]) == 'roll', 'Ordinary roll has an unrelated effect')
-assert(sounds.roll([6] * 5) == %w[roll five_dice_bonus], 'Five equal dice have no common cue')
+(1..6).each do |face|
+  assert(sounds.roll([face] * 5) == %w[roll war_open], 'Five equal dice do not use War drums')
+end
 assert(sounds.roll([nil] * 5) == 'roll', 'An incomplete roll gained a success cue')
+[[6] * 4, [0] * 5, ['6'] * 5].each do |dice|
+  assert(sounds.roll(dice) == 'roll', 'Invalid or incomplete dice gained War drums')
+end
 assert(sounds.score(zero: true) == %w[five_dice_record five_dice_zero], 'Zero is not distinct from a normal record')
 assert(sounds.score(effect: :bonus) == %w[five_dice_record five_dice_bonus], 'A bonus is not distinct from zero')
 (1..6).each do |column|
@@ -41,7 +46,8 @@ end
   saved = Marshal.dump([roll, before, after])
   GameRoomSounds.play_event(program, game: game, event: roll, before_replay: before,
     after_replay: after, repository: repository, viewer: 'Alice')
-  assert(program.played == [['roll', {volume: 0.37}], ['five_dice_bonus', {volume: 0.37}]], "#{game.id}: real roll bypassed common output")
+  assert(program.played == [['roll', {volume: 0.37}], ['war_open', {volume: 0.37 * 0.6}]],
+    "#{game.id}: real five-of-a-kind roll bypassed War drums or their existing gain")
   assert(saved == Marshal.dump([roll, before, after]), "#{game.id}: selecting sounds mutated replay")
   program.played.clear
   program.effects = false
@@ -70,7 +76,7 @@ end
 root = File.expand_path('../../..', __dir__)
 manifest = JSON.parse(File.read(File.join(root, 'manifest.json')))
 embedded = JSON.parse(File.read(File.join(root, '__app.rb'))[/\A=begin Elten3AppInfo\s+(\{.*?\})\s+=end Elten3AppInfo/m, 1])
-%w[five_dice_zero five_dice_record five_dice_bonus five_dice_doubled].each do |name|
+%w[five_dice_zero five_dice_record five_dice_bonus five_dice_doubled war_open].each do |name|
   assert(manifest.dig('required_assets', 'sounds').include?(name) &&
     embedded.dig('required_assets', 'sounds').include?(name), 'A replacement cue is absent from an installer manifest')
   assert(File.binread(File.join(root, "Audio/#{name}.opus"), 64).include?('OpusHead'), 'Missing Opus replacement cue')

@@ -944,14 +944,14 @@ module SpadesPlanning
     end
 
     def score_unit(state, actor)
-      assignment = @game.team_assignment(state[:options], players: state[:players])
+      assignment = @game.send(:bot_team_assignment, state)
       return player_key(state, actor) if assignment == nil
 
       "team:#{assignment.team_index_for(actor)}"
     end
 
     def team_game?(state)
-      @game.team_assignment(state[:options], players: state[:players]) != nil
+      @game.send(:bot_team_assignment, state) != nil
     end
 
     def current_bags(state, actor)

@@ -532,6 +532,11 @@ module GameSurfaces
         coordinates = params.to_a
         emit_selection(coordinates[0].to_i, logical_y(coordinates[1]))
       end
+      if @spec.row_actions && row_origin == :top
+        @control.on(:border) do |params|
+          @control.focus(nil, nil, true, include_header: false) if params[2] == :up
+        end
+      end
     end
 
     def emit_selection(x, y)

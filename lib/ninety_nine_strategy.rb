@@ -246,24 +246,30 @@ module NinetyNinePlanning
       @budget = GameRoomBots::SearchBudget.new(limit: @node_limit)
       @cache = {}
 
-      scored = choices.map do |action|
-        values = worlds.map do |world|
-          next_state = Transition.play(game, world, actor, action)
-          next -Float::INFINITY if next_state == nil
-
-          search(game, next_state, @depth - 1).fetch(actor.to_s, -Float::INFINITY)
+      scored, completed_depth = nil, 0
+      1.upto(@depth) do |depth|
+        begin
+          iteration = choices.map do |action|
+            values = worlds.map do |world|
+              next_state = Transition.play(game, world, actor, action)
+              next -Float::INFINITY if next_state == nil
+              search(game, next_state, depth - 1).fetch(actor.to_s, -Float::INFINITY)
+            end
+            average = values.sum.fdiv([values.length, 1].max)
+            [action, average, game.bot_action_score(replay, actor, action).to_f]
+          end
+          scored, completed_depth = iteration, depth
+        rescue GameRoomBots::SearchBudget::Exhausted
+          break
         end
-        average = values.sum.to_f / [values.length, 1].max
-        tactical = game.bot_action_score(replay, actor, action).to_f
-        [action, average, tactical]
       end
-      selected = scored.max_by { |_action, value, tactical| [value, tactical] }.first
+      selected = scored.max_by { |action, value, tactical| [value, tactical, game.bot_action_key(action)] }.first
       @last_stats = {
         worlds: world_count,
         nodes: @budget.nodes,
         cooperative_yields: @budget.yields,
         omniscient: omniscient,
-        depth: @depth
+        depth: @depth, completed_depth: completed_depth
       }
       selected
     ensure
@@ -276,11 +282,7 @@ module NinetyNinePlanning
     def search(game, state, depth)
       return utilities(game, state) if depth <= 0 || state[:current_player] == nil || state[:winner] != nil
 
-      begin
-        @budget.visit!
-      rescue GameRoomBots::SearchBudget::Exhausted
-        return utilities(game, state)
-      end
+      @budget.visit!
 
       key = state_key(state, depth)
       cached = @cache[key]

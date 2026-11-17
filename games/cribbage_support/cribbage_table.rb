@@ -39,7 +39,8 @@ module GameRoomGames
       hand = hand_for(state, actor)
       seat = state[:current_player]
       key = [state[:phase], seat, hand.dup, state[:sequence].dup,
-        state.fetch(:crib).fetch(seat).dup, state[:discard_slots].fetch(seat, []).dup, first_player(state)]
+        state.fetch(:crib).fetch(seat).dup, state[:discard_slots].fetch(seat, []).dup, first_player(state),
+        state[:played].values.map(&:dup), state[:scores].dup, state[:go].dup]
       cached = @cribbage_bot_choice
       preferred = cached && cached.first == key ? cached.last : cribbage_preferred_card(state, actor)
       @cribbage_bot_choice = [key, preferred]
@@ -53,11 +54,24 @@ module GameRoomGames
         initial_hand = hand.dup
         slot = state[:discard_slots].fetch(state[:current_player], []).first
         initial_hand.insert(slot, discarded.first) if slot && discarded.one?
-        CribbageBot.discard(initial_hand, dealer: !same_user?(actor, first_player(state)))
+        key = [initial_hand.sort, !same_user?(actor, first_player(state))]
+        if @cribbage_discard_key != key
+          @cribbage_discards = CribbageBot.discard(initial_hand, dealer: key.last)
+          @cribbage_discard_key = key
+        end
+        @cribbage_discards
           &.find { |card| hand.include?(card) }
       else
         cards = legal_cards(state, actor).map { |card| CribbageCards.decode(card) }
-        CribbageBot.play(cards, state[:sequence])
+        hand = hand_for(state, actor).map { |card| CribbageCards.decode(card) }
+        seen = state[:played].values.flatten.map { |card| CribbageCards.decode(card) }
+        seen.concat(state[:crib].fetch(state[:current_player]).map { |card| CribbageCards.decode(card) })
+        seen << CribbageCards.decode(state[:starter]) if state[:starter]
+        other = state[:seats].find { |seat| !same_user?(seat, actor) }
+        CribbageBot.play(cards, state[:sequence], hand: hand, seen: seen,
+          opponent_count: state[:go].include?(other) ? 0 : state[:hands].fetch(other).size,
+          points_needed: 121 - state[:scores].fetch(state[:current_player]),
+          opponent_points_needed:121 - state[:scores].fetch(other))
       end
       preferred
     end

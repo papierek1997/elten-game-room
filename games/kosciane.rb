@@ -1,5 +1,6 @@
 require_relative "yahtzee"
 require_relative "kosciane_support/five_dice_match"
+require_relative "kosciane_support/school_strategy"
 require_relative "score_sheet_results"
 
 module GameRoomGames
@@ -110,6 +111,8 @@ module GameRoomGames
     end
 
     def bot_action_score(replay, actor, action, context: nil)
+      tail = bot_tail_value(replay.state, actor, action)
+      return tail unless tail.nil?
       match = replay.state[:match_model]
       if action["action"] == "score"
         category, cross = decode_choice(match, action["category"])
@@ -124,10 +127,11 @@ module GameRoomGames
       if key != @score_plan_key
         @score_plan_key = key
         model = Marshal.load(Marshal.dump(match))
+        school = school_strategy(model)
         open = model.sheet(actor).select { |_category, row| row.size < replay.state[:options]["columns"] }.keys
         @score_planner = GameRoomFiveDicePlanner.new do |dice, rolls|
           open.filter_map do |category|
-            category_value(model, category, dice, rolls) || (cross_value(model, actor, category) if rolls == 3)
+            category_value(model, category, dice, rolls, school: school) || (cross_value(model, actor, category) if rolls == 3)
           end.max
         end
       end
@@ -211,6 +215,7 @@ module GameRoomGames
         if writable
           points = cross ? 0 : match.preview(category).first
           label = _("%{category}: record %{points}") % {category: label, points: points}
+          label = score_entry_column_label(label, column: entries.size + 1, columns: columns)
         end
         total = entries.grep(Integer).sum
         reserve = category.is_a?(Integer) ? (_("Reserve: %{count}") % {count: match.reserve(player, category)}) : ""
@@ -277,18 +282,58 @@ module GameRoomGames
       entries
     end
 
-    def category_value(match, category, dice, rolls)
+    def category_value(match, category, dice, rolls, school: nil)
       result = match.preview(category, dice: dice, rolls: rolls)
       return unless result
       points, reserve_delta = result
       target = category.is_a?(Integer) ? category * 3 :
         {pair: 6, two_pairs: 12, triple: 9, four: 10, small_straight: 6,
          large_straight: 10, full_house: 10, poker: 12, chance: 23, even: 20, odd: 15}.fetch(category)
-      points + reserve_delta * (category.is_a?(Integer) ? category : 0) + match.preview_bonus(category, points) - target
+      school ||= school_strategy(match)
+      points + school.value(category, reserve_delta, match.preview_bonus(category, points)) - target
+    end
+
+    def school_strategy(match)
+      key = match.planning_key
+      if @school_strategy_key != key
+        @school_strategy_key = key
+        @school_strategy = GeneralSchoolStrategy.new(match, match.current_player)
+      end
+      @school_strategy
     end
 
     def cross_value(match, actor, category)
       category.is_a?(Integer) ? -100.0 - match.bonuses(actor).values.sum : -30.0
+    end
+
+    def bot_tail_position(state, _actor); state[:match_model]; end
+    def bot_tail_slots(position, actor)
+      position.sheet(actor).sum { |_,row|position.columns-row.size }
+    end
+    def bot_tail_identity(position, _actor); position.planning_key; end
+    def bot_tail_choices(position, actor, dice, rolls)
+      position.sheet(actor).flat_map do |category,row|
+        next [] if row.size>=position.columns
+        choices = []
+        choices << category.to_s if position.forecast_record(actor,category,dice:dice,rolls:rolls)
+        choices << "cross:#{category}" if rolls==3
+        choices
+      end
+    end
+    def bot_tail_record(position, actor, choice, dice, rolls)
+      category,cross = decode_choice(position,choice)
+      position.forecast_record(actor,category,dice:dice,rolls:rolls,cross:cross)
+    end
+    def bot_tail_total(position, actor); position.total(actor); end
+    def bot_tail_eligible?(state, actor)
+      model = state[:match_model]
+      model.columns<3 || (state[:players]-[actor]).all? { |p|bot_tail_slots(model,p).zero? }
+    end
+    def bot_tail_target(state, actor)
+      model = state[:match_model]
+      rivals = state[:players]-[actor]
+      return nil unless rivals.all? { |p|bot_tail_slots(model,p).zero? }
+      rivals.map { |p|model.total(p) }.max
     end
 
     def decode_choice(match, value)

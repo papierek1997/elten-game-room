@@ -4,6 +4,7 @@ require "digest"
 require_relative "base"
 require_relative "../lib/game_bots"
 require_relative "../lib/participant_decision_events"
+require_relative "../lib/trick_forecast"
 
 require_relative "../lib/game_room_localization"
 
@@ -24,13 +25,23 @@ module GameRoomGames
     SUITS = %w[H S D C].freeze
     CONTRACTS = %w[H S D C NT MISERE].freeze
     BOT_DECK = SUITS.flat_map { |suit| RANKS.map { |rank| "#{rank}#{suit}".freeze } }.freeze
+    BOT_DECODED = BOT_DECK.to_h { |card| [card, [card[1], RANKS.index(card[0])].freeze] }.freeze
+    BOT_ENCODED = BOT_DECODED.invert.freeze
 
     # Build the information set once per decision, not once per candidate.
-    # No simulated deal or retained replay cache is needed by this policy.
+    # The late-deal forecast shares this observation and the ordinary rules.
     class BotStrategy < GameRoomBots::HeuristicStrategy
       def choose(game:, replay:, actor:, context: nil, **arguments)
-        super(game: game, replay: replay, actor: actor,
-          context: game.bot_decision_context(replay, actor), **arguments)
+        information = game.bot_decision_context(replay, actor)
+        fallback = super(game: game, replay: replay, actor: actor, context: information, **arguments)
+        if replay.state[:phase] == :playing && information[:hand].size <= 4
+          actions = arguments.fetch(:actions)
+          if fallback
+            card = game.bot_endgame_card(replay, actor, information, fallback.fetch('card'))
+            return actions.find { |action| action['card'] == card } || fallback
+          end
+        end
+        fallback
       end
     end
     SUIT_NAMES = {
@@ -198,9 +209,44 @@ module GameRoomGames
       pools = state[:players].reject { |player| same_user?(player, actor) }.to_h do |player|
         [player, unseen.reject { |card| voids[player].include?(card_suit(card)) }]
       end
-      {hand: hand, unseen_cards: unseen, void_suits: voids, opponent_pools: pools,
+      {hand: hand, unseen_cards: unseen, own_discards: own_discards, void_suits: voids, opponent_pools: pools,
         opponent_suits: pools.transform_values { |cards| cards.group_by { |card| card_suit(card) } },
         exchange_bounds: bot_exchange_bounds(state, actor, hand, events)}
+    end
+
+    def bot_endgame_card(replay, actor, information, fallback)
+      state, players = replay.state, replay.players
+      decoded, encoded = BOT_DECODED, BOT_ENCODED
+      plays = GameRoomTrickForecast.public_plays(GameRoomParticipantDecisionEvents.for(replay), players, decoded)
+      table = state[:current_trick].map { |item| [players.index(item[:player]), decoded.fetch(item[:card])] }
+      convert = ->(trick) { trick.map { |who, card| {player: players[who], card: encoded.fetch(card)} } }
+      trump = trump_suit(state)
+      winner = lambda do |cards|
+        trick = cards.each_with_index.map { |card, who| {player: who, card: encoded.fetch(card)} }
+        trick_winner(trick, trump)
+      end
+      view = {seat: players.index(actor), units: (0...players.size).to_a, hand: information[:hand].map { |card| decoded.fetch(card) },
+        counts: players.map { |player| state[:hands][player].size }, played: plays, trick: table, deck: decoded.values,
+        dead: information[:own_discards].map { |card| decoded.fetch(card) }, reserve: information[:own_discards].empty? ? 4 : 0}
+      legal = lambda do |hand, trick, who|
+        trial = state.merge(hands: {players[who] => hand.map { |card| encoded.fetch(card) }},
+          current_player: players[who], current_trick: convert.call(trick))
+        legal_cards(trial, players[who]).map { |card| decoded.fetch(card) }
+      end
+      policy = lambda do |cards, trick, _who, _hand|
+        winning = cards.select { |card| winner.call(trick.map(&:last) + [card]) == trick.size }
+        pool = if state[:contract] == 'MISERE'
+          losing = cards - winning
+          losing.empty? ? cards : losing
+        else
+          winning.empty? ? cards : winning
+        end
+        state[:contract] == 'MISERE' ? pool.max_by(&:last) : pool.min_by(&:last)
+      end
+      selected = GameRoomTrickForecast.new(view, legal: legal, winner: winner,
+        points: ->(_cards, _last) { state[:contract] == 'MISERE' ? -1 : 1 }, policy: policy,
+        voided: ->(lead, card) { card.first != lead }).choose(legal_cards(state, actor).map { |card| decoded.fetch(card) }, decoded.fetch(fallback))
+      encoded.fetch(selected)
     end
 
     def replay(session, events, repository)

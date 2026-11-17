@@ -12,8 +12,8 @@ replay = game.replay(session, events, repository)
 spec = game.surface_spec(replay, 'Alice')
 assert(spec.row_actions.length == replay.state[:match_model].categories.length,
   'A category is listed separately for its score and for crossing out')
-assert(spec.cells[4].first == 'Fives: record 15', 'Three fives do not show their normal score')
-assert(spec.cells.first.first == 'Ones: record 0', 'An unavailable combination does not show zero')
+assert(spec.cells[4].first == 'Fives: record 15, column 1 of 3', 'Three fives do not show their normal score and destination')
+assert(spec.cells.first.first == 'Ones: record 0, column 1 of 3', 'An unavailable combination does not show zero and its destination')
 assert(spec.cells.flatten.none? { |label| label.to_s.include?('Cross out') }, 'Cross-out UI remains')
 
 # A scoring row remains reachable by native navigation and submits its normal

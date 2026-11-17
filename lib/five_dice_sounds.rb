@@ -10,7 +10,8 @@ module GameRoomFiveDiceSounds
 
   def roll(dice)
     complete = dice.is_a?(Array) && dice.length == 5 && dice.all? { |face| face.is_a?(Integer) && face.between?(1, 6) }
-    complete && dice.uniq.one? ? %w[roll five_dice_bonus] : 'roll'
+    # Five of a kind shares War's drum roll; scoring bonuses keep their own cue.
+    complete && dice.uniq.one? ? %w[roll war_open] : 'roll'
   end
 
   # A column uses the existing combined recording, preserving its timing.

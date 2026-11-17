@@ -331,22 +331,40 @@ module GameRoomGames
     end
 
     def blackjack_bot_plan(state, observation)
+      weights = blackjack_public_weights(state,observation)
       if social?(state)
         completed = state[:hands].filter_map do |player, hands|
           [player, hand_total(hands.first[:cards])] if hands.first[:done]
         end.to_h
         stand_value, bust_value = GameRoomTwentyOneStrategy.pot_values(auction_pots(state),
-          state[:current_player], completed, GameRoomTwentyOneStrategy.card_opponent)
-        return GameRoomTwentyOneStrategy::Plan.new(stand_value, bust_value: bust_value) { GameRoomTwentyOneStrategy::CARDS }
+          state[:current_player], completed, GameRoomTwentyOneStrategy.card_opponent(weights:weights))
+        return GameRoomTwentyOneStrategy::Plan.new(stand_value, bust_value: bust_value) { weights }
       end
       upcard = bot_card_value(observation["dealer_upcard"])
-      dealer = GameRoomTwentyOneStrategy.card_dealer(upcard)
+      dealer = GameRoomTwentyOneStrategy.card_dealer(upcard,weights:weights)
       stand_value = lambda do |sum|
         dealer.sum do |score, probability|
           score == GameRoomTwentyOneStrategy::BUST || sum > score ? probability : (sum < score ? -probability : 0)
         end
       end
-      GameRoomTwentyOneStrategy::Plan.new(stand_value, bust_value: -1) { GameRoomTwentyOneStrategy::CARDS }
+      GameRoomTwentyOneStrategy::Plan.new(stand_value, bust_value: -1) { weights }
+    end
+
+    def blackjack_public_weights(state,observation)
+      # The current deal has a fresh six-pack shoe (one deck in social mode).
+      # Only our cards and the exposed dealer card are known removals. Never
+      # inspect the shoe order, hole card or unfinished opponents' hands.
+      copies = social?(state) ? 1 : 6
+      weights = GameRoomTwentyOneStrategy::CARDS.transform_values { |n| n*4*copies }
+      own = state[:hands].fetch(state[:current_player],[]).flat_map { |hand|hand[:cards] }
+      known = own + (social?(state) ? [] : [observation['dealer_upcard']])
+      known.each do |card|
+        value = bot_card_value(card)
+        weights[value] -= 1 if weights[value]&.positive?
+      end
+      # Subsequent hypothetical draws still use this fixed approximation;
+      # it is a public composition estimate, not a claim of exact shoe search.
+      weights.reject { |_value,count|count.zero? }
     end
 
     def prepare_auction(state, rotate_dealer: true)

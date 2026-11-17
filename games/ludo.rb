@@ -233,6 +233,10 @@ module GameRoomGames
       state = replay.state
       player = player_index(state[:players], actor)
       pawn = action["pawn"].to_i
+      bot_pawn_score(state, player, pawn, extra_roll: true)
+    end
+
+    def bot_pawn_score(state, player, pawn, extra_roll: false)
       return -10_000.0 if !legal_pawn_indices(state, player).include?(pawn)
 
       before = state[:pawns][player][pawn]
@@ -247,8 +251,19 @@ module GameRoomGames
       moved[:pawns][player][pawn] = after
       captures.each { |other, index| moved[:pawns][other][index] = -1 }
       score -= exposure_risk(moved, player, after) * (35 + after * 3)
+      if extra_roll && state[:roll] == 6 && state[:options]["extra_on_six"] &&
+          !moved[:pawns][player].all? { |progress| progress == FINISH_PROGRESS }
+        # Only the guaranteed next roll of the same player is considered.
+        # Opponent turns are not skipped or replaced by imagined safe replies.
+        score += (1..6).sum do |roll|
+          next 0.0 if roll == 6 && state[:options]["three_sixes"] && state[:consecutive_sixes].to_i >= 2
+          following = moved.merge(roll: roll)
+          legal_pawn_indices(following, player).map { |index| bot_pawn_score(following, player, index) }.max || 0.0
+        end / 6.0
+      end
       score
     end
+    private :bot_pawn_score
 
     def bot_position_value(replay, actor)
       return bot_reward(replay, actor) * 1_000_000.0 if replay.finished?

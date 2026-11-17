@@ -2,6 +2,7 @@ require_relative "../dealt_card_game"
 require_relative "../../lib/private_card_round_audit"
 require_relative "jass_cards"
 require_relative "jass_bot"
+require_relative "../../lib/trick_forecast"
 
 GameRoomServerRandom.register('jass', ['deal'])
 GameRoomPrivateCards.register('jass', host: %w[private_deal], claim: %w[private_ready choose_trump],
@@ -117,8 +118,29 @@ module GameRoomGames
       end
       return 0 unless action['kind'] == 'card'
       legal = legal_cards(state, actor).map { |card| JassCards.decode(card) }
-      trick = table_cards(state).map { |card| JassCards.decode(card) }
-      preferred = JassBot.play(legal_cards: legal, trick: trick, trump: state[:trump])
+      seats, trump = state[:seats], state[:trump]
+      units = seats.map { |player| unit_for(state, player) }
+      seat = seats.index(actor)
+      current = state[:trick].map { |player, card| [seats.index(player), JassCards.decode(card)] }
+      allied = lambda do |cards, who|
+        !cards.empty? && units[cards[JassRules.settle_trick(cards.map(&:last), trump).first].first] == units[who]
+      end
+      policy = ->(cards, table, who, hand) { JassBot.play(legal_cards: cards, trick: table.map(&:last), trump: trump,
+        hand: hand, partner_winning: allied.call(table, who)) }
+      preferred = policy.call(legal, current, seat, hand_for(state, actor).map { |card| JassCards.decode(card) })
+      revision = replay.accepted_events.size
+      unless @jass_bot_replay.equal?(replay) && @jass_bot_revision == revision && @jass_bot_actor == actor
+        played = GameRoomTrickForecast.public_plays(GameRoomParticipantDecisionEvents.for(replay), seats, JassCards::DECODED)
+        view = {seat: seat, units: units, hand: hand_for(state, actor).map { |card| JassCards.decode(card) },
+          counts: seats.map { |player| state[:hands][player].size }, played: played, trick: current, deck: JassRules::DECK}
+        @jass_bot_card = GameRoomTrickForecast.new(view,
+          legal: ->(hand, table, _who) { JassRules.legal(hand, table.map(&:last), trump) },
+          winner: ->(cards) { JassRules.settle_trick(cards, trump).first },
+          points: ->(cards, last) { JassRules.settle_trick(cards, trump, last: last).last }, policy: policy,
+          voided: ->(lead, card) { card.first != lead && card.first != trump }).choose(legal, preferred)
+        @jass_bot_replay, @jass_bot_revision, @jass_bot_actor = replay, revision, actor
+      end
+      preferred = @jass_bot_card
       preferred && action['card'] == JassCards.encode(preferred) ? 1 : 0
     end
 

@@ -93,14 +93,14 @@ assert_equal(nil, bot.choose(view, seat: 0, random: Random.new(0)))
 
 state = engine.start("blackjack", seats: [0, 1], seed: 42, now_ms: 0)
 view = engine.public_view(state, viewer: 0)
-view[:own].merge!(done: false, total: 16)
+view[:own].merge!(done: false, total: 10, cards: [8, 24])
 view[:turn_seat] = 0
 low = bot.choose(view, seat: 0, random: Random.new(0))
 view[:deck] = [0]
 view[:answer] = "stand"
 assert_equal(low, bot.choose(view, seat: 0, random: Random.new(0)))
 assert_equal(:hit, low[:kind])
-view[:own][:total] = 17
+view[:own].merge!(total: 20, cards: [8, 24, 36])
 assert_equal(:stand, bot.choose(view, seat: 0, random: Random.new(0))[:kind])
 
 # Off-turn decisions must return before touching the bot's random stream.

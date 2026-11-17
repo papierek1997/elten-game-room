@@ -121,7 +121,7 @@ module GameRoomGames
     end
 
     def bot_strategy
-      @bot_strategy ||= GameRoomBots::HeuristicStrategy.new
+      @bot_strategy ||= BotStrategy.new
     end
 
     def rule_sections
@@ -1437,4 +1437,5 @@ require_relative "uno/play_reduction"
 require_relative 'uno_private'
 GameRoomGames::Uno.prepend(GameRoomGames::UnoPrivate)
 
+require_relative 'uno/bot_strategy'
 require_relative 'generated/rulebooks/uno'

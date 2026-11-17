@@ -206,8 +206,8 @@ module GameRoomGames
       if paid > auction_call(state, player)
         # Value-bet only a strong own hand, with a bounded exposure. Model the
         # other solvent contenders matching it; never inspect their dice.
-        below, = GameRoomDicePokerStrategy.random_outcomes(variant).fetch(rank)
-        return -1 if below**throw_limit(state) < 0.7 || paid > [state[:options]["stake"] * 4, state[:chips][player].div(4)].max
+        below, = GameRoomDicePokerStrategy.modeled_outcomes(variant, throw_limit(state)).fetch(rank)
+        return -1 if below < 0.7 || paid > [state[:options]["stake"] * 4, state[:chips][player].div(4)].max
 
         auction_actionable(state).each do |other|
           next if other == player

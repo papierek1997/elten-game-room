@@ -1,4 +1,5 @@
 require_relative "../dealt_card_game"
+require_relative "../../lib/trick_forecast"
 require_relative "belote_bidding"
 require_relative "../../lib/private_card_round_audit"
 
@@ -169,6 +170,42 @@ module GameRoomGames
       trick = table_cards(state).map { |card| BeloteCards.decode(card) }
       partner_winning = !trick.empty? && unit_for(state, state[:trick][BeloteTrick.winner(trick, state[:trump])].first) == unit_for(state, actor)
       preferred = BeloteBot.play(legal, state.fetch(:trump), trick: trick, partner_winning: partner_winning)
+      seats, trump = state[:seats], state[:trump]
+      units = seats.map { |player| unit_for(state, player) }
+      current = state[:trick].map { |player, card| [seats.index(player), BeloteCards.decode(card)] }
+      revision = replay.accepted_events.size
+      unless @belote_bot_replay.equal?(replay) && @belote_bot_revision == revision && @belote_bot_actor == actor
+        allied = ->(table, seat) { !table.empty? && units[table[BeloteTrick.winner(table.map(&:last), trump)].first] == units[seat] }
+        view = {seat: seats.index(actor), units: units, hand: hand_for(state, actor).map { |card| BeloteCards.decode(card) },
+          counts: seats.map { |player| state[:hands][player].size }, trick: current, deck: BeloteRules::DECK,
+          played: GameRoomTrickForecast.public_plays(GameRoomParticipantDecisionEvents.for(replay), seats, BeloteCards::DECODED)}
+        order = state[:units]
+        root = order.index(unit_for(state, actor))
+        taker = order.index(unit_for(state, state[:taker]))
+        bonuses = order.map { |unit| state[:bonuses].fetch(unit) }
+        points_before = order.map { |unit| state[:trick_points].fetch(unit) }
+        tricks_before = order.map { |unit| state[:tricks_won].fetch(unit) }
+        @belote_bot_card = GameRoomTrickForecast.new(view,
+          legal: ->(hand, table, who) { BeloteRules.legal(hand, table.map(&:last), trump: trump, partner_winning: allied.call(table, who)) },
+          winner: ->(cards) { BeloteTrick.winner(cards, trump) },
+          points: ->(cards, last) { BeloteTrick.points(cards, trump, last: last) },
+          policy: ->(cards, table, who, _hand) { BeloteBot.play(cards, trump, trick: table.map(&:last), partner_winning: allied.call(table, who)) },
+          evaluate: lambda do |completed, _reserve|
+            points, won = points_before.dup, tricks_before.dup
+            completed.each do |table, winner, last|
+              unit = order.index(units[winner])
+              points[unit] += BeloteTrick.points(table.map(&:last), trump, last: last)
+              won[unit] += 1
+            end
+            result = BeloteSettlement.contract(points, taker: taker, bonuses: bonuses,
+              carry: state.fetch(:carry, 0), sweep: won.index(8), coinchee: coinchee?(state) ? state[:contract] : nil,
+              multiplier: state.fetch(:multiplier, 1))
+            result[:scores][root] - result[:scores][1 - root]
+          end,
+          voided: ->(lead, card) { card.first != lead }).choose(legal, preferred)
+        @belote_bot_replay, @belote_bot_revision, @belote_bot_actor = replay, revision, actor
+      end
+      preferred = @belote_bot_card
       preferred && action["card"] == BeloteCards.encode(preferred) ? 1 : 0
     end
 
@@ -408,16 +445,8 @@ module GameRoomGames
       taker = units.index(unit_for(state, state.fetch(:taker)))
       bonuses = units.map { |unit| state.fetch(:bonuses).fetch(unit) }
       sweep = units.index { |unit| state[:tricks_won][unit] == 8 }
-      settlement = if coinchee?(state)
-        compared = tricks.zip(bonuses).map(&:sum)
-        success = compared[taker] >= state.fetch(:contract) && compared[taker] > compared[1 - taker]
-        paid = success ? tricks.dup : [0, 0]
-        paid[1 - taker] = 162 unless success
-        paid[sweep] += 90 if sweep && paid[sweep].positive?
-        {scores: paid.zip(bonuses).map { |points, bonus| (points + bonus) * state.fetch(:multiplier) }, carry: 0, winner: success ? taker : 1 - taker}
-      else
-        BeloteSettlement.settle(tricks, taker: taker, bonuses: bonuses, carry: state.fetch(:carry, 0), sweep: sweep)
-      end
+      settlement = BeloteSettlement.contract(tricks, taker: taker, bonuses: bonuses, carry: state.fetch(:carry, 0), sweep: sweep,
+        coinchee: coinchee?(state) ? state.fetch(:contract) : nil, multiplier: state.fetch(:multiplier, 1))
       state[:carry] = settlement.fetch(:carry)
       units.zip(settlement.fetch(:scores)).each { |unit, points| state[:scores][unit] += points }
       winner = settlement.fetch(:winner)

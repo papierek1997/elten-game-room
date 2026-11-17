@@ -27,6 +27,10 @@ module GameRoomGames
       lead = trick.first.first
       best = trick.map { |suit, rank| strength(suit, rank, trump, lead) }.max
       winning = cards.select { |suit, rank| strength(suit, rank, trump, lead) > best }
+      if view[:partner_winning] && trick.size == 3
+        losing = cards - winning
+        return losing.max_by { |card| JassRules.settle_trick([card], trump).last } unless losing.empty?
+      end
       (winning.empty? ? cards : winning).min_by { |suit, rank| strength(suit, rank, trump, lead) }
     end
 

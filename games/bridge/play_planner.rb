@@ -1,5 +1,6 @@
 require 'digest'
 require_relative 'rules'
+require_relative 'bidding'
 require_relative '../../lib/game_random'
 require_relative '../../lib/hidden_card_deals'
 
@@ -27,6 +28,10 @@ module GameRoomGames
       @side = R.side_of(@seat)
       @trick = encode(view.fetch('trick'))
       plays = encode(view.fetch('played'))
+      @public_played = plays + @trick
+      @auction_evidence = SEATS.map do |seat|
+        BridgeBidding.new(view.merge('seat' => R.partner_of(seat), 'hand' => [])).partner_evidence
+      end
       @counts = Array.new(4, 13)
       @voids = Array.new(4, 0)
       (plays.each_slice(4).to_a + [@trick]).each do |trick|
@@ -123,9 +128,9 @@ module GameRoomGames
       exact = unseen.all? { |card| hidden.count { |seat| allowed.call(seat, card) } == 1 }
       seed = Digest::SHA256.hexdigest(Marshal.dump([@remaining, @visible, @voids, @view['calls'], @turn])).to_i(16)
       random = Random.new(seed)
-      worlds = []
+      weighted = []
       signatures = {}
-      (exact ? 1 : WORLD_LIMIT * 3).times do
+      (exact ? 1 : WORLD_LIMIT * 4).times do
         found = GameRoomHiddenCardDeals.assign(unseen, @hidden, counts, random, &allowed)
         next unless found
 
@@ -133,10 +138,30 @@ module GameRoomGames
         next if signatures[hands]
 
         signatures[hands] = true
-        worlds << State.new(hands, @remaining, @voids, @trick, @tricks, @turn, !@view['dummy'].nil?).branch
-        break if worlds.size >= WORLD_LIMIT
+        state = State.new(hands, @remaining, @voids, @trick, @tricks, @turn, !@view['dummy'].nil?).branch
+        # Weighted sampling without hard rejection. Even an unusual human
+        # auction retains support; voids still remain actual hard evidence.
+        priority = Math.log([random.rand, Float::MIN].max) / auction_weight(hands)
+        weighted << [priority, state]
       end
+      worlds = weighted.sort_by(&:first).last(WORLD_LIMIT).map(&:last)
       [worlds, exact]
+    end
+
+    def auction_weight(hands)
+      @hidden.reduce(1.0) do |weight, seat|
+        evidence = @auction_evidence.fetch(seat)
+        next weight if evidence[:expected].zero?
+        original = hands[seat] + @public_played.filter_map { |owner, card| card if owner == seat }
+        cards = original.map { |card| R::DECK.fetch(card) }
+        hcp = R.high_card_points(cards)
+        lengths = cards.group_by { |card| R.card_suit(card) }.transform_values(&:size)
+        cost = (hcp - evidence[:expected])**2 / 50.0
+        cost += [evidence[:minimum] - hcp, 0].max * 0.15
+        cost += evidence[:lengths].sum { |suit, minimum| [minimum - lengths.fetch(suit, 0), 0].max**2 * 0.35 }
+        cost += 0.8 if evidence[:balanced] && !BridgeBidding::BALANCED.include?(R::SUITS.map { |suit| lengths.fetch(suit, 0) }.sort)
+        weight * (0.12 + 0.88 * Math.exp(-cost))
+      end
     end
 
     def play(state, card)

@@ -147,13 +147,16 @@ module GameRoomGames
         return -200
       end
       if action['action'] == 'pass'
-        return 100_000 if state[:moves] >= board.size * 2 && state[:options]['variant'] != 'atari'
+        # Captures can make a perfectly useful game longer than twice the
+        # board area. The move counter is not evidence that play is over.
         return state[:passes].positive? && state[:moves] >= size * 2 ? 15 : -2
       end
 
       point = action['y'] * size + action['x']
       next_board, captured = placement(state, point)
-      liberties = GameRoomGoPosition.group(next_board, point, size).last.size
+      return 1_000_000.0 if state[:options]['variant']=='atari' && !captured.empty?
+      group,open = GameRoomGoPosition.group(next_board, point, size)
+      liberties = open.size
       adjacent = GameRoomGoPosition.neighbors(point, size)
       threatened = adjacent.select { |neighbor| board[neighbor] == marker }.map do |neighbor|
         GameRoomGoPosition.group(board, neighbor, size)
@@ -161,7 +164,27 @@ module GameRoomGames
       saved = liberties > 1 ? threatened.sum { |stones, open| open.one? ? stones.size : 0 } : 0
       distance = [action['x'], action['y'], size - 1 - action['x'], size - 1 - action['y']].min
       opening = state[:moves] < size ? 4 - (distance - 2).abs : 0
-      captured.size * 100 + saved * 45 + [liberties, 4].min * 2 + opening -
+      endgame = if state[:passes].positive?
+        captures = state[:captures].dup
+        captures[marker] += captured.size
+        following = state.merge(stones: next_board, captures: captures)
+        before = GameRoomGoPosition.score(state)
+        after = GameRoomGoPosition.score(following)
+        ((after[marker] - after[1 - marker]) - (before[marker] - before[1 - marker])) * 10
+      else
+        0
+      end
+      # Verify the one immediate capture of the newly connected group. A
+      # sacrificial stone and sacrificing a large chain must not cost the same.
+      reply_loss = 0
+      if open.one?
+        following = state.merge(stones:next_board,current_player:state[:players][1-marker],
+          seen:state[:seen].merge(GameRoomGoPosition.key(next_board)=>true))
+        reply = placement(following,open.first)
+        reply_loss = (reply.last & group).size if reply
+      end
+      reply_cost = state[:options]['variant']=='atari' && reply_loss.positive? ? 1_000_000 : reply_loss*100
+      captured.size * 100 + saved * 45 + [liberties, 4].min * 2 + opening + endgame - reply_cost -
         (liberties == 1 ? 20 : 0) - (go_eye?(board, point, marker, size) ? 30 : 0)
     end
 

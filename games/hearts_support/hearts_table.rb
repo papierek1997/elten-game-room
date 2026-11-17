@@ -1,6 +1,7 @@
 require_relative "../dealt_card_game"
 require_relative "hearts_cards"
 require_relative "hearts_bot"
+require_relative "../../lib/trick_forecast"
 require_relative "../../lib/private_card_round_audit"
 
 GameRoomServerRandom.register("hearts", ["deal"])
@@ -111,13 +112,37 @@ module GameRoomGames
       state = replay.state
       if state[:phase] == :passing
         hand = known_hand(state, actor).map { |card| HeartsCards.decode(card) }
-        preferred = HeartsBot.pass(hand).map { |card| HeartsCards.encode(card) }
+        if @hearts_pass_hand != hand
+          @hearts_pass_cards = HeartsBot.pass(hand).map { |card| HeartsCards.encode(card) }
+          @hearts_pass_hand = hand
+        end
+        preferred = @hearts_pass_cards
         return preferred.include?(action["card"]) ? 1 : 0
       end
       legal = legal_cards(state, actor).map { |card| HeartsCards.decode(card) }
-      preferred = HeartsBot.play(legal, decoded_trick(state))
+      revision = replay.accepted_events.size
+      unless @hearts_bot_replay.equal?(replay) && @hearts_bot_revision == revision && @hearts_bot_actor == actor
+        @hearts_bot_choice = HeartsBot::Position.new(hearts_bot_view(replay, actor)).choose(legal)
+        @hearts_bot_replay, @hearts_bot_revision, @hearts_bot_actor = replay, revision, actor
+      end
+      preferred = @hearts_bot_choice
       preferred && action["card"] == HeartsCards.encode(preferred) ? 1 : 0
     end
+
+    def hearts_bot_view(replay, actor)
+      state = replay.state
+      seats = state[:seats]
+      plays = GameRoomTrickForecast.public_plays(GameRoomParticipantDecisionEvents.for(replay), seats, HeartsCards::DECODED)
+      passed = state.fetch(:last_exchange, nil)&.fetch(:received, {})&.filter_map do |receiver, (sender, cards)|
+        next unless same_user?(sender, actor)
+        [seats.index(receiver), cards.map { |card| HeartsCards.decode(card) }]
+      end.to_a.to_h
+      {seat: seats.index(actor), hand: known_hand(state, actor).map { |card| HeartsCards.decode(card) },
+        played: plays, trick: state[:trick].map { |player, card| [seats.index(player), HeartsCards.decode(card)] },
+        captured: seats.map { |player| state[:captured].fetch(player) }, passed: passed,
+        scores: seats.map { |player| state[:scores].fetch(player) }, limit: state[:options]['score_limit'], broken: state[:hearts_broken]}
+    end
+    private :hearts_bot_view
 
     def automatic_action(replay, actor, context: nil)
       if replay.state[:phase] == :opening && hand_for(replay.state, actor).include?("2C")

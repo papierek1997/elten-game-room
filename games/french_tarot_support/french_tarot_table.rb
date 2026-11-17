@@ -1,4 +1,5 @@
 require_relative "../dealt_card_game"
+require_relative "../../lib/trick_forecast"
 require_relative "french_tarot_bidding"
 require_relative "../../lib/private_card_round_audit"
 require_relative "../score_sheet_results"
@@ -39,7 +40,12 @@ module GameRoomGames
 
       if state[:phase] == :discard
         hand = hand_for(state, actor).filter_map { |value| FrenchTarotCards::DECODED[value] }
-        return FrenchTarotBot.discard(hand).include?(FrenchTarotCards.decode(action["card"])) ? 1 : 0
+        key = [actor, hand, state[:kitty].size]
+        if @tarot_discard_key != key
+          @tarot_discard_cards = FrenchTarotBot.discard(hand, count: 6 - state[:kitty].size)
+          @tarot_discard_key = key
+        end
+        return @tarot_discard_cards.include?(FrenchTarotCards.decode(action["card"])) ? 1 : 0
       end
 
       seats = state[:seats]
@@ -47,7 +53,39 @@ module GameRoomGames
       trick = table_cards(state).map { |card| FrenchTarotCards.decode(card) }
       leader = state[:trick].first&.first || actor
       card = FrenchTarotBot.play(legal, trick, taker: player_index(seats, state[:taker]),
-        seat: player_index(seats, actor), leader: player_index(seats, leader))
+        seat: player_index(seats, actor), leader: player_index(seats, leader),
+        hand: hand_for(state, actor).map { |value| FrenchTarotCards.decode(value) })
+      current = state[:trick].map { |player, value| [seats.index(player), FrenchTarotCards.decode(value)] }
+      revision = replay.accepted_events.size
+      unless @tarot_bot_replay.equal?(replay) && @tarot_bot_revision == revision && @tarot_bot_actor == actor
+        taker = seats.index(state[:taker])
+        units = seats.each_index.map { |seat| seat == taker ? 0 : 1 }
+        known_discard = seats.index(actor) == taker && %i[petite garde].include?(state[:contract])
+        view = {seat: seats.index(actor), units: units, trick: current, deck: FrenchTarotCards::CARDS,
+          hand: hand_for(state, actor).map { |value| FrenchTarotCards.decode(value) },
+          counts: seats.map { |player| state[:hands][player].size },
+          played: GameRoomTrickForecast.public_plays(GameRoomParticipantDecisionEvents.for(replay), seats, FrenchTarotCards::DECODED),
+          dead: known_discard ? state[:kitty].map { |value| FrenchTarotCards.decode(value) } : [], reserve: known_discard ? 0 : 6}
+        @tarot_bot_card = GameRoomTrickForecast.new(view,
+          legal: ->(hand, table, _seat) { FrenchTarotTrick.legal(hand, table.map(&:last)) },
+          winner: ->(cards) { FrenchTarotTrick.winner(cards) },
+          points: ->(cards, _last) { cards.sum { |value| FrenchTarotScoring.half_points(value) } },
+          evaluate: lambda do |completed, reserve|
+            piles, debt = state[:piles].map(&:dup), state[:excuse_debt].dup
+            completed.each do |table, winner, last|
+              added, owed = FrenchTarotTrick.distribute(table, units: units, winner: winner, last: last)
+              2.times { |side| piles[side].concat(added[side]); debt[side] += owed[side] }
+            end
+            piles[state[:contract] == :garde_contre ? 1 : 0].concat(reserve)
+            score = FrenchTarotScoring.contract_value(piles[0], state[:contract], compensation: debt[1] - debt[0])
+            units[seats.index(actor)].zero? ? 3 * score : -score
+          end,
+          policy: ->(cards, table, who, hand) { FrenchTarotBot.play(cards, table.map(&:last), taker: taker, seat: who,
+            leader: table.first&.first || who, hand: hand) },
+          voided: ->(lead, value) { value.first != lead && value.first != :excuse }).choose(legal, card)
+        @tarot_bot_replay, @tarot_bot_revision, @tarot_bot_actor = replay, revision, actor
+      end
+      card = @tarot_bot_card
       card && action["card"] == FrenchTarotCards.encode(card) ? 1 : 0
     end
 
@@ -328,17 +366,11 @@ module GameRoomGames
 
       cards = trick.map { |_, card| FrenchTarotCards.decode(card) }
       winner = trick.fetch(FrenchTarotTrick.winner(cards)).first
-      taking = tarot_side(state, winner)
       last = state[:play_count] == 72
-      trick.zip(cards).each do |(owner, _), card|
-        owner_side = tarot_side(state, owner)
-        if card.first == :excuse && !last && owner_side != taking
-          state[:piles][owner_side] << card
-          state[:excuse_debt][owner_side] += 1
-        else
-          state[:piles][taking] << card
-        end
-      end
+      owners = state[:seats]
+      added, owed = FrenchTarotTrick.distribute(trick.map { |owner, value| [owners.index(owner), FrenchTarotCards.decode(value)] },
+        units: owners.map { |owner| tarot_side(state, owner) }, winner: owners.index(winner), last: last)
+      2.times { |side| state[:piles][side].concat(added[side]); state[:excuse_debt][side] += owed[side] }
       trick.clear
       add_history(history, event, repository, :trick, _("%{player} wins the trick.") % {player: participant_name(winner)}, actor: winner)
       state[:phase], state[:current_player] = last ? [:tarot_count, nil] : [:playing, winner]
@@ -377,8 +409,7 @@ module GameRoomGames
       points = piles[0].sum { |card| FrenchTarotScoring.half_points(card) }
       points += state[:excuse_debt][1] - state[:excuse_debt][0]
       margin = points - FrenchTarotScoring::TARGET.fetch(oudlers)
-      score = (50 + margin.abs) * FrenchTarotScoring::CONTRACTS.fetch(state[:contract])
-      score = -score if margin.negative?
+      score = FrenchTarotScoring.contract_value(piles[0], state[:contract], compensation: state[:excuse_debt][1] - state[:excuse_debt][0])
       summary = _("%{player}. Card points: %{points}. Required: %{target}.") % {
         player: participant_name(state[:taker]), points: tarot_points(points), target: tarot_points(FrenchTarotScoring::TARGET.fetch(oudlers))}
       summary += ' ' + (margin.negative? ? _("Contract failed.") : _("Contract fulfilled."))

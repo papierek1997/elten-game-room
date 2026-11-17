@@ -24,5 +24,20 @@ module GameRoomGames
         [suit == :trump ? 2 : suit == lead ? 1 : 0, rank]
       end
     end
+
+    def distribute(trick, units:, winner:, last:)
+      piles, debt = [[], []], [0, 0]
+      taking = units.fetch(winner)
+      trick.each do |owner, card|
+        side = units.fetch(owner)
+        if card.first == :excuse && !last && side != taking
+          piles[side] << card
+          debt[side] += 1
+        else
+          piles[taking] << card
+        end
+      end
+      [piles, debt]
+    end
   end
 end

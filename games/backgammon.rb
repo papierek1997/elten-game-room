@@ -1,5 +1,6 @@
 require_relative "base"
 require_relative "backgammon_support/backgammon_rules"
+require_relative "backgammon_support/backgammon_bot"
 require_relative "../lib/server_random"
 require_relative "../lib/game_bots"
 require_relative "../lib/game_replay_cache"
@@ -276,15 +277,13 @@ module GameRoomGames
       when 'drop' then return probability < 0.25 ? 2 : -2
       end
       return 0 unless action["move"]
-      from, to, die = action["move"].split(",").map(&:to_i)
-      other = replay.board[1 - replay.state[:turn]]
-      own = replay.board[replay.state[:turn]]
-      rear = own.keys.max
-      after = BackgammonRules.apply(replay.board, replay.state[:turn], [from, to, die])
-      risk = bot_blot_risk(after, replay.state[:turn]) - bot_blot_risk(replay.board, replay.state[:turn])
-      die + (to.zero? ? 30 : 0) + (from == rear ? 3 : 0) +
-        (from == 25 ? 15 : 0) + (to.positive? && other.fetch(25 - to, 0) == 1 ? 12 : 0) +
-        (to.positive? && own.fetch(to, 0) == 1 ? 8 : 0) - 12 * risk
+      state = replay.state
+      key = [replay.board.map(&:dup), state[:turn], state[:dice].dup, state[:point_limit]]
+      if @backgammon_plan_key != key
+        @backgammon_plan = BackgammonBot::TurnPlan.new(replay.board, state[:turn], state[:dice], point_limit: state[:point_limit])
+        @backgammon_plan_key = key
+      end
+      @backgammon_plan.score(action["move"].split(",").map(&:to_i))
     end
 
     def participant_scores(replay)
@@ -332,17 +331,11 @@ module GameRoomGames
     def bot_winning_chance(board, side)
       pips = board.map { |pieces| pieces.sum { |point, count| point * count } }
       scale = [Math.sqrt(pips.sum) * 2, 10].max
-      (0.5 + (pips[1 - side] - pips[side]) / (2.0 * scale)).clamp(0.01, 0.99)
-    end
-
-    def bot_blot_risk(board, side)
-      own, other = board.values_at(side, 1 - side)
-      own.sum do |point, count|
-        next 0.0 unless point.between?(1, 24) && count == 1
-        origins = other.fetch(25, 0).positive? ? [25] : other.keys.select(&:positive?)
-        faces = origins.map { |origin| origin + point - 25 }.select { |distance| distance.between?(1, 6) }.uniq.length
-        1.0 - ((6 - faces) / 6.0) ** 2
-      end
+      # Pip count is meaningful in a race; contact also depends on bars,
+      # made home points and exposed checkers.
+      contact = board[0].keys.max.to_i + board[1].keys.max.to_i > 25
+      advantage = contact ? BackgammonBot.value(board, side) / 0.3 : pips[1 - side] - pips[side]
+      (0.5 + advantage / (2.0 * scale)).clamp(0.01, 0.99)
     end
 
     def board_cell(point)

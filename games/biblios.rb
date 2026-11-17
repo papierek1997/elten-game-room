@@ -4,6 +4,7 @@ require "digest"
 require_relative "card_game"
 require_relative "../lib/game_bots"
 require_relative "../lib/biblios_strategy"
+require_relative "../lib/biblios_category_model"
 
 require_relative "../lib/game_room_localization"
 
@@ -1314,18 +1315,49 @@ module GameRoomGames
     # Own cards and public information only; never inspect hidden rival hands.
     def category_strength(state, player, category, own_cards)
       mine = [total_of(own_cards, category), -letter_rank_of(own_cards, category)]
+      return 0.0 if mine.first.zero?
       rivals = state[:players].reject { |other| same_user?(other, player) }
-      best = rivals.map do |other|
-        known = state[:revealed].fetch(other, [])
-        [total_of(known, category), -letter_rank_of(known, category)]
-      end.max || [0, -LETTERS.length]
-      total = mine[0]
-      return 0.0 if total == 0
-      lead = (mine <=> best) > 0
+      # Remove only owned/public cards. Never inspect a foreign card value or
+      # the remaining stack; its unknown removals remain part of the pool.
+      known = (state[:hands].fetch(player) + own_cards + state[:revealed].values.flatten + state[:public] + [state[:card]]).compact.uniq
+      unknown = setup_deck(state[:players]) - known
+      available = unknown.select { |card| card_category(card) == category }
+      # Even the size of a concealed rival library is not part of this
+      # game's observation. Use our own library as a neutral size estimate,
+      # bounded below by that rival's publicly revealed cards.
+      facts = rivals.map do |other|
+        revealed = state[:revealed].fetch(other, []).dup
+        [revealed, [state[:hands].fetch(player).size, revealed.size].max]
+      end
+      key = [category, mine, available, unknown.size, facts, state[:dice][category]]
+      @biblios_category_models = {} if !@biblios_category_models || @biblios_category_models.size >= 128
+      return @biblios_category_models[key] if @biblios_category_models.key?(key)
+      subsets = [[0, LETTERS.size, 0]]
+      available.each do |card|
+        subsets += subsets.map { |total, letter, count| [total + card_value(card), [letter, LETTERS.index(card[1])].min, count + 1] }
+      end
+      probability = facts.reduce(1.0) do |chance, (revealed, size)|
+        hidden = (size - revealed.size).clamp(0, unknown.size)
+        total = total_of(revealed, category)
+        letter = letter_rank_of(revealed, category)
+        weights = (0..available.size).map do |count|
+          rest, population = available.size - count, unknown.size
+          next 0.0 if count > hidden || rest > population - hidden
+          numerator = (0...count).reduce(1.0) { |value, i| value * (hidden - i) }
+          numerator *= (0...rest).reduce(1.0) { |value, i| value * (population - hidden - i) }
+          denominator = (0...available.size).reduce(1.0) { |value, i| value * (population - i) }
+          numerator / denominator
+        end
+        chance * subsets.sum do |extra, earliest, count|
+          (mine <=> [total + extra, -[letter, earliest].min]) > 0 ? weights[count] : 0.0
+        end
+      end
+      joint = GameRoomBibliosCategoryModel.win_probability(
+        available.map { |card|[card_value(card),LETTERS.index(card[1])] },mine:mine,population:unknown.size,
+        rivals:facts.map { |revealed,size|[total_of(revealed,category),-letter_rank_of(revealed,category),size-revealed.size] })
+      probability = joint unless joint.nil?
       supply = (RICH_CATEGORIES.include?(category) ? RICH_VALUES : PLAIN_VALUES).sum
-      secured = total > supply / 2.0
-      state[:dice][category] * ((lead ? 1.0 : 0.0) + (secured ? 1.0 : 0.0)) +
-        [total, best[0] + 4].min * 0.5
+      @biblios_category_models[key] = state[:dice][category] * probability * 2 + [mine.first, supply / 2.0].min * 0.35
     end
 
     def marginal_card_cost(state, player, card, own_cards)
@@ -1399,7 +1431,7 @@ module GameRoomGames
       return -1_000.0 if overshoot > BLUFF_REACH
 
       rivals = rival_bidders(state, player)
-      return -1_000.0 if rivals.zero?
+      return -1_000.0 if rivals < 2
 
       lost = state[:options]["penalty"] == "full" ? state[:players].length - 1 : 1
       worth * rivals - overshoot * 4.0 - lost * 12.0

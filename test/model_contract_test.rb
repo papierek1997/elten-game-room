@@ -31,6 +31,13 @@ assert_equal(without_replay_hashes.call(previous_quiz_v2), without_replay_hashes
 poker = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/poker.json'), encoding: 'UTF-8'))
 previous_poker = corpus.fetch('cases').find { |item| item.fetch('game') == 'poker' }
 assert_equal(without_replay_hashes.call(previous_poker), without_replay_hashes.call(poker), 'Poker wording must not replace the reference actions or RNG')
+# Typed public bot evidence changes only the two metadata fields on existing
+# bet/showdown history entries. The semantic regression reproduces all 17 old
+# full hashes after removing precisely those additions, not game state/text.
+poker_evidence = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v3/poker_bot_evidence.json'), encoding: 'UTF-8'))
+(poker.fetch('steps') + [poker.fetch('final')]).each_with_index do |checkpoint, index|
+  checkpoint['replay'] = poker_evidence.fetch(index.to_s)
+end
 # Categories adds pause, participant-departure and confirmed-cleanup metadata.
 # A separate semantic regression verifies their exact values and reproduces
 # both historical full replay hashes using detached copies.

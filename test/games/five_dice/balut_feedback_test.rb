@@ -63,6 +63,6 @@ assert(readonly.cells[2].last == 'Score still needed: 78', 'The numeric hint los
 assert(readonly.cells[4].last == 'Successful entries still needed: 4', 'The full-house hint lost its entry units')
 assert(readonly.cells[0][5] == 'Sum of entries: 0', 'The row sum is confused with game points')
 writable = game.send(:score_grid, state, 'Alice', writable: true)
-assert(writable.cells.first.first == 'Fours: enter 0', 'The record action still suggests four final game points')
+assert(writable.cells.first.first == 'Fours: enter 0, column 3 of 4', 'The record action hides its destination or suggests four final game points')
 assert(game.score_sheet_choices(state, 'Alice').first.label.end_with?('No game points can be earned in this category.'), 'V disagrees with the grid about an impossible bonus')
 puts 'PASS Balut feedback: accepted threshold and total transitions, ordered explanations, common bonus recordings, silent unchanged totals, cold replay and reachable/impossible row hints'

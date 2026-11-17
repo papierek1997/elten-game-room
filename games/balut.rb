@@ -155,6 +155,8 @@ module GameRoomGames
 
     def bot_action_score(replay, actor, action, context: nil)
       state = replay.state
+      tail = bot_tail_value(state, actor, action)
+      return tail unless tail.nil?
       if action["action"] == "score"
         category = action["category"].to_sym
         return bot_category_value(state[:sheets].fetch(actor), category, state[:dice])
@@ -176,6 +178,27 @@ module GameRoomGames
     end
 
     private
+
+    def bot_tail_slots(position, actor)
+      position[:sheets].fetch(actor).values.sum { |row|4-row.size }
+    end
+    def bot_tail_identity(position, actor); Marshal.dump(position[:sheets].fetch(actor)); end
+    def bot_tail_choices(position, actor, _dice, _rolls)
+      position[:sheets].fetch(actor).select { |_,row|row.size<4 }.keys.map(&:to_s)
+    end
+    def bot_tail_record(position, actor, category, dice, _rolls)
+      category = category.to_sym
+      sheet = position[:sheets].fetch(actor)
+      return nil unless sheet.key?(category) && sheet[category].size<4
+      updated = sheet.merge(category=>sheet[category]+[BalutScoring.score(category,dice)])
+      position.merge(sheets:position[:sheets].merge(actor=>updated))
+    end
+    def bot_tail_total(position, actor); total_score(position,actor); end
+    def bot_tail_target(state, actor)
+      rivals = state[:players]-[actor]
+      return nil unless rivals.all? { |p|bot_tail_slots(state,p).zero? }
+      rivals.map { |p|total_score(state,p) }.max
+    end
 
     def recorded_score_history(sheet, player, category, event_id, before, before_row_points)
       row = sheet.fetch(category)
@@ -214,7 +237,7 @@ module GameRoomGames
     def bot_progress(sheet)
       progress = sheet.sum do |category, row|
         if (target = BalutScoring::TARGETS[category])
-          2 * [row.sum.to_f / target, 1.0].min
+          BalutScoring.row_points_possible?(category, row) ? 2 * [row.sum.to_f / target, 1.0].min : 0
         elsif category == :balut
           2 * row.count(&:positive?)
         elsif row.include?(0)

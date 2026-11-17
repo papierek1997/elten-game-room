@@ -42,6 +42,14 @@ module GameRoomGames
       end) || R::PASS
     end
 
+    # The same natural-auction interpretation is used during card play.
+    # These are soft expectations, never proof about a human's hidden hand.
+    def partner_evidence
+      first = @partners.first
+      {minimum: @minimum, expected: @estimate, lengths: @shown_lengths[@partner].dup,
+        balanced: first && first.strain == 'N' && first.role == :opening && first.level <= 2}
+    end
+
     private
 
     def read_auction(calls)

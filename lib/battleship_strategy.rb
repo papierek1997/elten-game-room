@@ -1,8 +1,10 @@
 require_relative "game_bots"
+require_relative "game_tree_search"
 
 module BattleshipPlanning
   class Strategy
     include GameRoomBots::ReplayOnlyStrategy
+    attr_reader :last_stats
 
     def initialize(fallback: GameRoomBots::HeuristicStrategy.new)
       @fallback = fallback
@@ -35,6 +37,7 @@ module BattleshipPlanning
       remaining = fleet.dup
       finished = []
       observed = {}
+      unambiguous = true
       shots.each do |cell, result|
         observed[cell] = result
         next if result != "sunk"
@@ -46,6 +49,7 @@ module BattleshipPlanning
           end
           certain = candidates.empty? ? [cell] : candidates.reduce { |a, b| a & b }
           lengths = candidates.map(&:length).uniq
+          unambiguous &&= candidates.one?
           remove_size(remaining, lengths.first) if lengths.length == 1
         else
           certain = [cell]
@@ -66,6 +70,11 @@ module BattleshipPlanning
         finished.each { |cell| blocked.concat(neighbours(cell, size, diagonal: true)) }
       end
       wounded = shots.keys.select { |cell| shots[cell] == "hit" && !finished.include?(cell) }
+      @last_stats = {joint: false, worlds: 0, nodes: 0}
+      if unambiguous && remaining.size.between?(1,3)
+        joint = joint_scores(remaining,shots,blocked,wounded,touching,size)
+        return joint if joint
+      end
       scores = {}
       placements(remaining, size).each do |ship|
         next if (ship & blocked).any?
@@ -76,6 +85,43 @@ module BattleshipPlanning
         end
       end
       scores
+    end
+
+    def joint_scores(fleet, shots, blocked, wounded, touching, size)
+      mask = ->(cells) { cells.reduce(0) { |bits,cell|bits | (1 << cell) } }
+      blocked_mask, wound_mask = mask.call(blocked), mask.call(wounded)
+      fleets = fleet.sort.reverse
+      choices = fleets.map do |length|
+        placements([length],size).filter_map do |cells|
+          bits = mask.call(cells)
+          next if (bits & blocked_mask).positive? || (cells-shots.keys).empty?
+          border = touching ? cells : cells + cells.flat_map { |cell|neighbours(cell,size,diagonal:true) }
+          [bits,mask.call(border)]
+        end
+      end
+      budget = GameRoomBots::SearchBudget.new(limit:20_000)
+      worlds, scores = 0, Hash.new(0.0)
+      visit = lambda do |index,taken,forbidden,previous|
+        budget.visit!
+        if index == fleets.size
+          return unless (wound_mask & taken) == wound_mask
+          worlds += 1
+          (0...(size*size)).each { |cell|scores[cell]+=1 if taken[cell]==1 && !shots.key?(cell) }
+          return
+        end
+        choices[index].each do |bits,border|
+          next unless (bits & forbidden).zero?
+          next if index.positive? && fleets[index]==fleets[index-1] && bits<=previous
+          visit.call(index+1,taken|bits,forbidden|border,bits)
+        end
+      end
+      visit.call(0,0,0,0)
+      @last_stats = {joint:worlds.positive?,worlds:worlds,nodes:budget.nodes}
+      worlds.positive? ? (0...(size*size)).to_h { |cell|[cell,scores[cell]/worlds] } : nil
+    rescue GameRoomBots::SearchBudget::Exhausted
+      # An incomplete posterior is not an exact probability distribution.
+      @last_stats = {joint:false,worlds:worlds,nodes:budget.nodes,exhausted:true}
+      nil
     end
 
     def remove_size(fleet, length)
