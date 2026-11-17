@@ -113,11 +113,11 @@ mid = state_replay(game, players, { "Alice" => %w[QS 9H AC TD], "Bob" => %w[QH J
 apply(game, mid, 3)
 assert(game.send(:table_text, mid.state, "Bob").start_with?("Bob: queen of hearts. Alice: queen of spades, ace of clubs, 1 hidden card"),
   "C does not read the listener's cards first: #{game.send(:table_text, mid.state, "Bob")}")
-counter = game.game_shortcuts(mid, "Alice").find { |item| item.key == "t" && item.modifiers.to_a == [:control] }
-assert(counter && counter.message == "Battle 1 of 20.", "Ctrl+T does not read the battle number: #{counter&.message}")
+counter = game.game_shortcuts(mid, "Alice").find { |item| item.key == "t" && item.modifiers.to_a == [:alt, :control] }
+assert(counter && counter.message == "Battle 1 of 20.", "Ctrl+Alt+T does not read the battle number: #{counter&.message}")
 apply(game, mid, 1)
-assert(game.game_shortcuts(mid, "Alice").find { |item| item.key == "t" && item.modifiers.to_a == [:control] }.message == "Battle 2 of 20.",
-  "Ctrl+T did not advance after a battle")
+assert(game.game_shortcuts(mid, "Alice").find { |item| item.key == "t" && item.modifiers.to_a == [:alt, :control] }.message == "Battle 2 of 20.",
+  "Ctrl+Alt+T did not advance after a battle")
 assert(game.restart_guard_seconds >= 2, "a held Enter can restart a finished War game at once")
 
 last = state_replay(game, players, { "Alice" => %w[QS KC], "Bob" => %w[QH] })

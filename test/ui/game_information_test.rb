@@ -50,12 +50,23 @@ end
   current = empty_information_replay(consumer)
   assert_equal(target, consumer.score_target(current), "#{id}: wrong target")
   source = GameRoomGames::GameShortcut.new(key:'s', label:'Scores', kind: :announcement, message:'Alice: 10.')
-  once = consumer.information_shortcuts([source],current)
-  again = consumer.information_shortcuts([source],current)
+  once = consumer.decorate_information_shortcuts([source],current)
+  again = consumer.decorate_information_shortcuts([source],current)
   assert_equal(once.map(&:message), again.map(&:message), 'Repeated build duplicates the suffix')
   assert_equal('Alice: 10.', source.message, 'Shared target mutates an owned shortcut')
   assert(once.first.message.end_with?(consumer.score_target_text(current)), 'Target is not last')
 end
+
+# A game may already own an unrelated information_shortcuts method. The shared
+# decorator must never dispatch through that method with shortcut arguments.
+legacy = Class.new(GameRoomGames::Base) do
+  def shortcut_features; []; end
+  def information_shortcuts(_state, _viewer); raise 'legacy information builder was called'; end
+end.new
+legacy_replay = empty_information_replay(legacy)
+legacy_times = legacy.game_shortcuts(legacy_replay, 'Alice').select { |shortcut| shortcut.payload['duration_scope'] }
+assert_equal(%w[game round], legacy_times.map { |shortcut| shortcut.payload['duration_scope'] },
+  'Shared information decorator collided with a game-owned method')
 blackjack = GameRoomGames::BlackjackDice.new
 assert_equal(nil, blackjack.score_target(empty_information_replay(blackjack,'scoring'=>'chips')), 'Hidden point target added in chip mode')
 backgammon = GameRoomGames::Backgammon.new
