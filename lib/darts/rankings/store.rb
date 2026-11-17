@@ -311,7 +311,7 @@ module GameRoomDartsRankings
     end
 
     def validate_record_entry!(record, category)
-      base = record.is_a?(Hash) && /\A[0-9a-f]{64}\z/.match?(record['key'].to_s) &&
+      base = record.is_a?(Hash) && record['key'].is_a?(String) && /\A[0-9a-f]{64}\z/.match?(record['key']) &&
         Result.valid_epoch?(record['played_at'])
       valid = if category == 'triple'
         base && record.keys.sort == %w[key played_at score time_ms] &&

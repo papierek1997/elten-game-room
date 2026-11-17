@@ -23,6 +23,21 @@ legacy = single_record_set(ranking_row('old-record', score:250, time:1234))
 assert(codec.decode(JSON.generate(legacy), version:1) == legacy, 'existing published records changed during decoding')
 store = store_for(DartsRankingMemoryApi.new, 'Alice')
 assert(store.send(:validate_record_set!, records), 'the maximum-width fixture is not valid production data')
+numeric_key_records = single_record_set(ranking_row('numeric-key', score:200, time:1000))
+numeric_key_records.fetch('normal').each_value do |entries|
+  entries.first['key'] = Integer('1' * 64)
+end
+begin
+  codec.encode(numeric_key_records)
+  raise 'A numeric result key reached the compact encoder'
+rescue GameRoomDartsRankings::RecordCodec::Invalid
+end
+begin
+  decoded = codec.decode(JSON.generate(numeric_key_records), version:1)
+  store.send(:validate_record_set!, decoded)
+  raise 'A numeric legacy result key was admitted by the store'
+rescue GameRoomDartsRankings::Unavailable
+end
 invalid = [nil, [], {'normal'=>[]}, {'normal'=>{'unknown'=>[]}},
   {'normal'=>{'triple'=>[['A' * 43, 1, 100]]}},
   {'normal'=>{'triple'=>[['!' * 43, 1, 100, 1000]]}},

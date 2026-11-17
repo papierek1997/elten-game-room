@@ -58,7 +58,7 @@ module GameRoomDartsRankings
     end
 
     def parse(row)
-      unless row.is_a?(Hash) && /\A[0-9a-f]{64}\z/.match?(row['result_key'].to_s) &&
+      unless row.is_a?(Hash) && row['result_key'].is_a?(String) && /\A[0-9a-f]{64}\z/.match?(row['result_key']) &&
           DIFFICULTIES.include?(row['difficulty']) && valid_epoch?(row['played_at']) && row['day_key'] == day(row['played_at']) &&
           row['rounds'].is_a?(Integer) && row['rounds'].between?(1, 100) &&
           row['throw_count'] == row['rounds'] * 3 && row['throw_count'].between?(3, 300) &&

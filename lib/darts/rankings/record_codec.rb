@@ -21,7 +21,7 @@ module GameRoomDartsRankings
           fields = FIELDS.fetch(category)
           [category, entries.map do |entry|
             key = entry.fetch('key')
-            raise Invalid, 'Invalid Darts result key' unless /\A[0-9a-f]{64}\z/.match?(key.to_s)
+            raise Invalid, 'Invalid Darts result key' unless key.is_a?(String) && /\A[0-9a-f]{64}\z/.match?(key)
             [Base64.urlsafe_encode64([key].pack('H*'), padding:false), *fields.drop(1).map { |field| entry.fetch(field) }]
           end]
         end

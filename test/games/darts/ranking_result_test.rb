@@ -72,6 +72,7 @@ assert(GameRoomDartsRankings::Result.from_replay(session:session, replay:inherit
   'An extra tie-break throw concealed an inherited bot throw')
 
 [
+  row.merge('result_key'=>Integer('1' * 64)),
   row.merge('total_score'=>901),
   row.merge('best_round_score'=>100),
   row.merge('total_time_ms'=>9 * 600_000 + 1),
