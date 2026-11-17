@@ -1,6 +1,8 @@
 # encoding: UTF-8
 require_relative 'base'
+require_relative '../lib/darts/difficulty'
 require_relative '../lib/darts/scoring'
+require_relative '../lib/darts/preferences'
 require_relative '../lib/server_random'
 
 GameRoomServerRandom.register('darts', ['darts_start'])
@@ -12,7 +14,7 @@ module GameRoomGames
     include PublicHistoryAnnouncements
 
     THROW_PATTERN = /\A(\d{1,5}):(-?\d{1,4}):(-?\d{1,4}):(\d{1,6}):([ma])\z/
-    DIFFICULTIES = %w[easy normal hard].freeze
+    DIFFICULTIES = GameRoomDarts::Difficulty::IDS
 
     def id; 'darts'; end
     def name; _('Darts'); end
@@ -49,9 +51,7 @@ module GameRoomGames
           OptionChoice.new(value: 'training', label: _('Sound training'))
         ]),
         OptionDefinition.new(key: 'difficulty', label: _('Difficulty'), kind: :choice, default: 'normal', choices: [
-          OptionChoice.new(value: 'easy', label: _('Easy')),
-          OptionChoice.new(value: 'normal', label: _('Normal')),
-          OptionChoice.new(value: 'hard', label: _('Hard'))
+          *DIFFICULTIES.map { |value| OptionChoice.new(value: value, label: difficulty_label(value)) }
         ]),
         OptionDefinition.new(key: 'rounds', label: _('Number of rounds'), kind: :choice, default: 3,
           choices: [1, 3, 5, 10].map { |count| OptionChoice.new(value: count, label: count.to_s) }),
@@ -66,6 +66,30 @@ module GameRoomGames
         ], visible_if: ->(options) { options['time_limit'].to_i.positive? }),
         OptionDefinition.new(key: 'mouse_input', label: _('Use relative mouse movement and the left button'), kind: :boolean, default: false)
       ]
+    end
+
+    def difficulty_label(value)
+      {
+        'easy'=>_('Easy'), 'normal'=>_('Normal'), 'hard'=>_('Hard'),
+        'expert'=>_('Expert'), 'master'=>_('Master'), 'legendary'=>_('Legendary')
+      }.fetch(value.to_s)
+    end
+
+    def personal_option_editor_definitions(program, selected = {}, creating_table: false)
+      definitions = super
+      local = GameRoomDarts::Preferences.read(program)['unlocked_difficulty']
+      service = program.class.darts_rankings_service if program.class.respond_to?(:darts_rankings_service)
+      remote = service&.highest_unlocked_difficulty
+      allowed = GameRoomDarts::Difficulty.unlocked_ids(GameRoomDarts::Difficulty.highest(local, remote))
+      current = selected['difficulty'].to_s if !creating_table && selected.is_a?(Hash)
+      allowed |= [current] if DIFFICULTIES.include?(current)
+      definitions.map do |definition|
+        next definition unless definition.key.to_s == 'difficulty'
+
+        copy = definition.dup
+        copy.choices = definition.choices.select { |choice| allowed.include?(choice.value.to_s) }
+        copy
+      end
     end
 
     def options_error(options, player_count: nil)
@@ -134,7 +158,7 @@ module GameRoomGames
           throw[:round] = state[:round]
           throw[:difficulty] = active_difficulty(state)
           throw[:tiebreak] = state[:phase] == :tiebreak
-          throw[:points] = GameRoomDarts::Scoring.points(throw[:x], throw[:y])
+          throw[:points] = GameRoomDarts::Scoring.points(throw[:x], throw[:y], difficulty: throw[:difficulty])
           state[:throws][state[:current_player]] << throw
           state[:scores][state[:current_player]] += throw[:points] unless throw[:tiebreak]
           accepted << event
@@ -326,7 +350,10 @@ module GameRoomGames
 
     def bot_throw_value(replay, random_source)
       values = random_source.roll(count: 3, sides: 1_000).values
-      maximum_radius = {'easy' => 620, 'normal' => 470, 'hard' => 340}.fetch(active_difficulty(replay.state))
+      maximum_radius = {
+        'easy'=>620, 'normal'=>470, 'hard'=>340,
+        'expert'=>270, 'master'=>200, 'legendary'=>150
+      }.fetch(active_difficulty(replay.state))
       radius = ((values[0] - 1) / 999.0)**1.7 * maximum_radius
       angle = (values[1] - 1) / 1_000.0 * Math::PI * 2
       limit = replay.state[:options]['time_limit'].to_i

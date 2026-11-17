@@ -58,7 +58,8 @@ module GameRoomDarts
       form.wait
       return unless accepted
       values = Preferences.normalize('locator_sound' => choices.fetch(locator.index.to_i),
-        'public_rankings' => public_rankings.checked == true)
+        'public_rankings' => public_rankings.checked == true,
+        'unlocked_difficulty' => @values['unlocked_difficulty'])
       publish_saved = !@values['public_rankings'] && values['public_rankings'] && @confirm_publish.call
       Outcome.new(values: values, publish_saved: publish_saved)
     ensure

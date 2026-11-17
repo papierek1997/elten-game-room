@@ -8,12 +8,34 @@ module GameRoomDartsRankings
 
     def initialize(program:, user:, storage: program, store: nil, queue: nil, **options)
       @feedback, @feedback_keys, @feedback_lock = Queue.new, {}, Mutex.new
+      @progression_lock = Mutex.new
+      @highest_unlocked_difficulty = GameRoomDarts::Difficulty::BASE_HIGHEST
+      @progression_synced = false
       store ||= Store.new(app_uuid: program.respond_to?(:server_app_uuid) ? program.server_app_uuid : program.class.server_app_uuid,
         user: user, current_user: options.fetch(:current_user, -> { Session.name }),
-        feedback_requested: ->(key) { feedback_requested?(key) }, on_feedback: ->(value) { confirm_feedback(value) })
+        feedback_requested: ->(key) { feedback_requested?(key) }, on_feedback: ->(value) { confirm_feedback(value) },
+        on_progression: ->(value) { update_progression(value) })
       queue ||= GameRoomStatistics::Queue.new(storage: storage, user: user, path: PATH,
         before_write: -> { check_context!(@flush_token) })
       super(program: program, user: user, storage: storage, store: store, queue: queue, **options)
+    end
+
+    def flush(token = nil, upload: true)
+      result = super
+      if result && upload && !progression_synced? && @store.respond_to?(:highest_unlocked_difficulty)
+        update_progression(@store.highest_unlocked_difficulty(cancellation_token: token))
+      end
+      result
+    rescue StandardError => error
+      failed(error)
+    end
+
+    def highest_unlocked_difficulty
+      @progression_lock.synchronize { @highest_unlocked_difficulty }
+    end
+
+    def unlocked_difficulties
+      GameRoomDarts::Difficulty.unlocked_ids(highest_unlocked_difficulty)
     end
 
     def observe(session:, replay:, viewer:, publish: false)
@@ -67,8 +89,20 @@ module GameRoomDartsRankings
     def confirm_feedback(value)
       return unless value.is_a?(Hash)
       accepted = @feedback_lock.synchronize { @feedback_keys.delete(value['result_key']) }
-      informative = value['personal_record'].is_a?(Hash) || !value.fetch('placements', []).empty?
+      informative = value['personal_record'].is_a?(Hash) || value['unlocked_difficulty'].is_a?(String) ||
+        !value.fetch('placements', []).empty?
       @feedback << value if accepted && informative
+    end
+
+    def update_progression(value)
+      @progression_lock.synchronize do
+        @highest_unlocked_difficulty = GameRoomDarts::Difficulty.highest(@highest_unlocked_difficulty, value)
+        @progression_synced = true
+      end
+    end
+
+    def progression_synced?
+      @progression_lock.synchronize { @progression_synced }
     end
   end
 end

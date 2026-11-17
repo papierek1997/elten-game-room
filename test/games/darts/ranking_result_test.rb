@@ -44,6 +44,11 @@ progressive_session = session.merge('options'=>JSON.generate(options.merge('prog
 progressive = game.replay(progressive_session, events, DartsRankingRepository.new)
 assert(GameRoomDartsRankings::Result.from_replay(session: progressive_session, replay: progressive, viewer: 'Alice')['difficulty'] == 'progressive',
   'progressive Darts was mixed with a fixed difficulty')
+legendary_session = session.merge('options'=>JSON.generate(options.merge('difficulty'=>'legendary')))
+legendary = game.replay(legendary_session, events, DartsRankingRepository.new)
+legendary_row = GameRoomDartsRankings::Result.from_replay(session: legendary_session, replay: legendary, viewer: 'Alice')
+assert(legendary_row['difficulty'] == 'legendary',
+  'legendary Darts was rejected or mixed with another ranking scope')
 training_session = session.merge('options'=>JSON.generate(options.merge('mode'=>'training')))
 training = game.replay(training_session, events, DartsRankingRepository.new)
 assert(GameRoomDartsRankings::Result.from_replay(session: training_session, replay: training, viewer: 'Alice') == nil,

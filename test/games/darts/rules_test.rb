@@ -37,6 +37,24 @@ assert(game.supports_bots? && game.background_client? && game.audio_game?, 'Dart
 assert(game.paced_event_presentation?, 'Darts bot turns can overtake the audible throw presentation')
 assert(game.default_options == {'mode'=>'game', 'difficulty'=>'normal', 'rounds'=>3, 'progressive'=>false,
   'time_limit'=>10, 'timeout_result'=>'auto', 'mouse_input'=>false, 'bot_delay'=>1}, 'Darts defaults changed')
+locked_program = Object.new
+locked_choices = game.personal_option_editor_definitions(locked_program, {}, creating_table:true)
+  .find { |definition| definition.key == 'difficulty' }.choices.map(&:value)
+assert(locked_choices == %w[easy normal hard], 'a new account can create a locked advanced Darts table')
+existing_choices = game.personal_option_editor_definitions(locked_program, {'difficulty'=>'expert'}, creating_table:false)
+  .find { |definition| definition.key == 'difficulty' }.choices.map(&:value)
+assert(existing_choices == %w[easy normal hard expert], 'editing a joined advanced table discarded its difficulty')
+unlocked_program = Object.new
+unlocked_program.define_singleton_method(:darts_preferences) do
+  {'locator_sound'=>'round', 'public_rankings'=>false, 'unlocked_difficulty'=>'legendary'}
+end
+unlocked_program.singleton_class.send(:private, :darts_preferences)
+unlocked_choices = game.personal_option_editor_definitions(unlocked_program, {}, creating_table:true)
+  .find { |definition| definition.key == 'difficulty' }.choices.map(&:value)
+assert(unlocked_choices == GameRoomDarts::Difficulty::IDS,
+  'a locally unlocked account cannot create all advanced Darts tables')
+assert(game.normalize_options('difficulty'=>'legendary')['difficulty'] == 'legendary',
+  'canonical replay rejected a higher difficulty selected by another host')
 assert(game.options_error(game.default_options.merge('mode'=>'training'), player_count: 2), 'multiplayer training was accepted')
 assert(game.options_error(game.default_options.merge('mode'=>'training'), player_count: 1) == nil, 'solo training was rejected')
 assert(game.notification_variant(game.default_options.merge('rounds'=>1)).include?('1 round'),

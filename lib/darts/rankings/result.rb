@@ -1,5 +1,6 @@
 require 'digest'
 require_relative 'schema'
+require_relative '../difficulty'
 require_relative '../../game_participants'
 require_relative '../../game_statistics_periods'
 require_relative '../../game_statistics_store'
@@ -9,7 +10,7 @@ module GameRoomDartsRankings
   class Unavailable < GameRoomStatistics::Unavailable; end
 
   module Result
-    DIFFICULTIES = %w[easy normal hard progressive].freeze
+    DIFFICULTIES = (GameRoomDarts::Difficulty::IDS + ['progressive']).freeze
     FIELDS = %w[result_key difficulty played_at day_key rounds throw_count total_score total_time_ms
       best_round_score best_round_time_ms].freeze
     module_function

@@ -5,9 +5,9 @@ module GameRoomDartsRankings
   module Schema
     TABLE = 'darts_ranked_results'.freeze
     PERSONAL_TABLE = 'darts_personal_records'.freeze
-    RECORDS_BYTES = 4096
+    RECORDS_BYTES = 8192
     COLUMNS = {'version'=>'integer', 'records_json'=>"string:#{RECORDS_BYTES}"}.freeze
-    PERSONAL_COLUMNS = COLUMNS
+    PERSONAL_COLUMNS = COLUMNS.merge('unlocked_level'=>'integer').freeze
     TABLES = {
       TABLE=>{
         'visibility'=>'public', 'unique_per_user'=>false, 'columns'=>COLUMNS,

@@ -76,7 +76,12 @@ module GameRoomDarts
 
       clear_remote_cursor
       x, y = match[2].to_i, match[3].to_i
-      points = Scoring.points(x, y)
+      throw_index = match[1].to_i
+      recorded = after.state.fetch(:throws, {}).each_value.flat_map { |items| items }.find do |item|
+        item[:index] == throw_index
+      end
+      difficulty = recorded&.[](:difficulty) || after.state.dig(:options, 'difficulty')
+      points = Scoring.points(x, y, difficulty: difficulty)
       now = @clock.call.to_f
       local = @local_throw && @local_throw[:value] == event['value'].to_s
       impact_at = if local
@@ -526,6 +531,12 @@ module GameRoomDarts
           queue_ranking_announcement(_('New personal three-dart record: %{score} points in %{seconds} seconds.') % {
             score: record.fetch('score'), seconds: seconds})
         end
+        unlocked = feedback['unlocked_difficulty']
+        if GameRoomDarts::Difficulty::IDS.include?(unlocked)
+          @program.send(:remember_darts_unlock, unlocked) if @program.respond_to?(:remember_darts_unlock, true)
+          queue_ranking_announcement(_('Darts difficulty unlocked: %{difficulty}.') % {
+            difficulty: @game.difficulty_label(unlocked)})
+        end
         feedback.fetch('placements', []).each do |placement|
           body = {'type'=>'darts_ranking', 'key'=>feedback.fetch('result_key'), 'player'=>feedback.fetch('user'),
             'difficulty'=>feedback.fetch('difficulty'), 'category'=>placement.fetch('category'),
@@ -610,8 +621,9 @@ module GameRoomDarts
       value == 'triple' ? _('Best three-dart round') : _('Best average score')
     end
     def ranking_difficulty_label(value)
-      {'easy'=>_('Easy'), 'normal'=>_('Normal'), 'hard'=>_('Hard'),
-        'progressive'=>_('Progressive game')}.fetch(value)
+      return _('Progressive game') if value == 'progressive'
+
+      @game.difficulty_label(value)
     end
 
     def reset_cursor_network

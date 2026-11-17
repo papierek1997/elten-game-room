@@ -50,7 +50,8 @@ class GameRoomOptionEditor
       [GameRoomContent::PACK_OPTION_KEY, GameRoomContent::PACK_VERSION_KEY,
         GameRoomContent::PACK_CHECKSUM_KEY].include?(key)
     end
-    definitions = game.option_editor_definitions(selected).to_a
+    definitions = game.personal_option_editor_definitions(@program, selected,
+      creating_table: creating_table).to_a
     return selected if definitions.empty? && !creating_table && !require_confirmation
     built_language = selected[GameRoomContent::LANGUAGE_OPTION_KEY].to_s
     private_table = initial_private_table == true
@@ -99,7 +100,8 @@ class GameRoomOptionEditor
           # Replace only the dependent choices. Recreating the form here
           # steals focus (and speech) from the language being browsed.
           options = game.normalize_options(game_option_values(bindings, base_options))
-          definitions = game.option_editor_definitions(options).to_a
+          definitions = game.personal_option_editor_definitions(@program, options,
+            creating_table: creating_table).to_a
           set_binding = bindings.find { |definition, _control| definition.key.to_s == GameRoomContent::SET_OPTION_KEY }
           set_definition = definitions.find { |definition| definition.key.to_s == GameRoomContent::SET_OPTION_KEY }
           if set_binding && set_definition
@@ -131,7 +133,8 @@ class GameRoomOptionEditor
         if chosen_language != built_language
           selected = options
           built_language = chosen_language
-          definitions = game.option_editor_definitions(selected).to_a
+          definitions = game.personal_option_editor_definitions(@program, selected,
+            creating_table: creating_table).to_a
           break
         end
         error = game.validation_error(options)

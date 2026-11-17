@@ -44,12 +44,15 @@ class DartsSettingsProgram
 end
 
 preferences = GameRoomDarts::Preferences
-assert(preferences.normalize(nil) == {'locator_sound'=>'round', 'public_rankings'=>false}, 'missing Darts preferences changed the default')
+assert(preferences.normalize(nil) == {'locator_sound'=>'round', 'public_rankings'=>false,
+  'unlocked_difficulty'=>'hard'}, 'missing Darts preferences changed the default')
 assert(preferences.normalize('locator_sound'=>'clear', 'public_rankings'=>true) ==
-  {'locator_sound'=>'clear', 'public_rankings'=>true}, 'valid Darts preferences were rejected')
+  {'locator_sound'=>'clear', 'public_rankings'=>true, 'unlocked_difficulty'=>'hard'},
+  'valid Darts preferences were rejected')
 [nil, 3, 'warm', '../bright', 'BRIGHT'].each do |value|
   assert(preferences.normalize('locator_sound'=>value, 'public_rankings'=>'true') ==
-    {'locator_sound'=>'round', 'public_rankings'=>false}, 'invalid Darts preference escaped normalization')
+    {'locator_sound'=>'round', 'public_rankings'=>false, 'unlocked_difficulty'=>'hard'},
+    'invalid Darts preference escaped normalization')
 end
 
 old_wait = Form.instance_method(:wait)
@@ -81,7 +84,8 @@ begin
   result = GameRoomDarts::Settings.new({}, program: program,
     withdraw:-> { withdrawn += 1; true }, confirm_withdraw:-> { withdrawal_prompts += 1; true },
     confirm_publish:-> { publish_prompts += 1; true }, notify:->(_message) {}).wait
-  assert(result.values == {'locator_sound'=>'bright', 'public_rankings'=>true} && result.publish_saved,
+  assert(result.values == {'locator_sound'=>'bright', 'public_rankings'=>true,
+    'unlocked_difficulty'=>'hard'} && result.publish_saved,
     'Darts settings did not return the opt-in and saved-record publication choice')
   assert(withdrawn == 1 && withdrawal_prompts == 1 && publish_prompts == 1,
     'Darts settings did not independently confirm withdrawal and existing-record publication')

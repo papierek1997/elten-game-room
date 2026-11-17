@@ -1,6 +1,7 @@
 # encoding: UTF-8
 require 'digest'
 require_relative 'scoring'
+require_relative 'difficulty'
 
 module GameRoomDarts
   # Local aiming physics. Only the final bounded coordinate and active time are
@@ -12,11 +13,7 @@ module GameRoomDarts
     MAX_CATCH_UP_STEPS = 600
     START_RADIUS_MIN = 650.0
     START_RADIUS_MAX = 800.0
-    PROFILES = {
-      'easy' => {step: 78.0, jitter: 5.0, hold: 0.45, drift: 31.0},
-      'normal' => {step: 82.0, jitter: 12.0, hold: 0.25, drift: 47.0},
-      'hard' => {step: 86.0, jitter: 22.0, hold: 0.10, drift: 67.0}
-    }.freeze
+    PROFILES = Difficulty::PROFILES
 
     attr_reader :x, :y, :throw_index, :started_at, :ready_at, :difficulty,
       :last_nudge_blocked
@@ -27,8 +24,8 @@ module GameRoomDarts
 
     def reset(seed:, throw_index:, difficulty:, time_limit:, timeout_result:)
       @throw_index = Integer(throw_index)
-      @difficulty = PROFILES.key?(difficulty.to_s) ? difficulty.to_s : 'normal'
-      @profile = PROFILES.fetch(@difficulty)
+      @difficulty = Difficulty.normalize(difficulty)
+      @profile = Difficulty.profile(@difficulty)
       @time_limit = Integer(time_limit)
       @timeout_result = timeout_result.to_s == 'zero' ? 'zero' : 'auto'
       material = "#{seed}:#{@throw_index}:darts"
@@ -137,7 +134,8 @@ module GameRoomDarts
       lateral = random_signed(0.85)
       # The inner high-value zones move faster, but the outward component is
       # never perfectly straight and occasional brief reversals stay possible.
-      centre_factor = 1.0 + 0.9 * (1.0 - [radius / Scoring::BOARD_LIMIT, 1.0].min)
+      proximity = 1.0 - [radius / Scoring::BOARD_LIMIT, 1.0].min
+      centre_factor = 1.0 + (@profile[:centre_multiplier] - 1.0) * proximity
       distance = @profile[:drift] * centre_factor * STEP_SECONDS
       @x += Math.cos(radial) * distance * direction + Math.cos(radial + Math::PI / 2) * distance * lateral
       @y += Math.sin(radial) * distance * direction + Math.sin(radial + Math::PI / 2) * distance * lateral

@@ -64,6 +64,51 @@ assert(private_feedback.any? { |value| value.dig('personal_record', 'score') == 
   private_feedback.all? { |value| value['placements'].empty? },
   'private records lost personal-best feedback or invented a public place')
 
+progress_api = DartsRankingMemoryApi.new
+progress_feedback, progress_updates = [], []
+progress_store = store_for(progress_api, 'Alice', feedback_requested:->(_key) { true },
+  on_feedback:->(value) { progress_feedback << value }, on_progression:->(value) { progress_updates << value })
+premature = ranking_row('premature-master', score:300, time:3000, total:800, total_time:9000,
+  throws:9, difficulty:'expert')
+progress_store.write_batch([result_operation(premature, publish:false)])
+assert(progress_store.highest_unlocked_difficulty == 'hard',
+  'an Expert result skipped the required Hard unlock step')
+[
+  ['unlock-expert', 'hard', 850, 'expert'],
+  ['unlock-master', 'expert', 800, 'master'],
+  ['unlock-legendary', 'master', 750, 'legendary']
+].each_with_index do |(key, difficulty, total, expected), index|
+  row = ranking_row(key, score:300 - index, time:3000, total:total, total_time:9000,
+    throws:9, difficulty:difficulty, played_at:1_800_004_500 + index)
+  progress_store.write_batch([result_operation(row, publish:false)])
+  assert(progress_store.highest_unlocked_difficulty == expected,
+    "#{expected} was not unlocked by its exact three-round threshold")
+end
+assert(progress_feedback.map { |value| value['unlocked_difficulty'] }.compact == %w[expert master legendary] &&
+  progress_updates.include?('legendary'), 'unlock feedback or account progression was lost')
+
+legacy_api = DartsRankingMemoryApi.new
+legacy_api.personal_table.seed('Alice', single_record_set(ranking_row('legacy', score:200, time:4000)))
+assert(store_for(legacy_api, 'Alice').highest_unlocked_difficulty == 'hard',
+  'a version-one personal snapshot did not migrate to the legacy Hard entitlement')
+
+concurrent_progress_api = DartsRankingMemoryApi.new
+concurrent_progress_table = concurrent_progress_api.personal_table
+[
+  [ranking_row('progress-hard', score:180, time:4000), 2],
+  [ranking_row('progress-expert', score:190, time:3900), 3]
+].each_with_index do |(candidate, level), index|
+  concurrent_progress_table.rows << {'__id'=>index + 1, '__insertion_user'=>'Alice', 'version'=>2,
+    'unlocked_level'=>level, 'records_json'=>JSON.generate(single_record_set(candidate))}
+end
+concurrent_progress_store = store_for(concurrent_progress_api, 'Alice')
+assert(concurrent_progress_store.highest_unlocked_difficulty == 'expert',
+  'concurrent personal snapshots lowered the highest Darts unlock')
+candidate = ranking_row('progress-compact', score:200, time:3800, played_at:1_800_004_900)
+concurrent_progress_store.write_batch([result_operation(candidate, publish:false)])
+assert(concurrent_progress_table.rows.length == 1 && concurrent_progress_table.rows.first['unlocked_level'] == 3,
+  'compaction lost an unlock retained by another concurrent snapshot')
+
 %w[easy hard progressive].each_with_index do |difficulty, index|
   row = ranking_row("private-#{difficulty}", score:180 + index, time:4000,
     difficulty:difficulty, played_at:1_800_005_000 + index)
@@ -115,13 +160,15 @@ widest = GameRoomDartsRankings::Result::DIFFICULTIES.to_h do |difficulty|
       'total_score'=>30_000 - i, 'throw_count'=>300, 'total_time_ms'=>180_000_000} }
   }]
 end
-assert(store.send(:validate_record_set!, widest) && JSON.generate(widest).bytesize <= 4096 &&
-  GameRoomDartsRankings::Schema::COLUMNS.fetch('records_json') == 'string:4096',
+assert(store.send(:validate_record_set!, widest) && JSON.generate(widest).bytesize <= 8192 &&
+  GameRoomDartsRankings::Schema::COLUMNS.fetch('records_json') == 'string:8192' &&
+  GameRoomDartsRankings::Schema::PERSONAL_COLUMNS.fetch('unlocked_level') == 'integer',
   'Maximum-length valid Darts records exceed the server-supported string column')
 
 queued = []
 writer = Object.new
 writer.define_singleton_method(:write_batch) { |values, **_| queued.concat(values); values.length }
+writer.define_singleton_method(:highest_unlocked_difficulty) { |**_| 'master' }
 program = Object.new
 program.define_singleton_method(:server_app_uuid) { 'test' }
 storage = DartsRankingMemoryStorage.new
@@ -133,6 +180,8 @@ service.flush
 assert(queued.map { |entry| entry['kind'] } == %w[darts_publish_saved darts_withdraw] &&
   queued.all? { |entry| /\A[0-9a-f]{32}\z/.match?(entry['match']) },
   'background ranking queue did not preserve ordered publish/withdraw operations')
+assert(service.highest_unlocked_difficulty == 'master',
+  'background ranking synchronization did not restore the account unlock')
 
 puts 'PASS Darts rankings: private/public top three, compact snapshots, opt-in, withdrawal, places and durable operations'
 

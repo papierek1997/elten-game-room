@@ -9,16 +9,18 @@ module GameRoomDartsRankings
     MAX_PUBLIC_ROWS = 4096
     MAX_PERSONAL_ROWS = 128
     MAX_CACHED_RESULTS = MAX_PUBLIC_ROWS * RECORDS_PER_PLAYER
-    RECORDS_VERSION = 1
+    LEGACY_RECORDS_VERSION = 1
+    RECORDS_VERSION = 2
     CATEGORIES = %w[triple average].freeze
     OPERATION_KEY = /\A[0-9a-f]{32}\z/
 
     def initialize(app_uuid:, user:, client: nil, api: nil, current_user: -> { Session.name },
-      feedback_requested: ->(_key) { false }, on_feedback: nil,
+      feedback_requested: ->(_key) { false }, on_feedback: nil, on_progression: nil,
       monotonic: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
       @app_uuid, @user, @current_user = app_uuid.to_s, user.to_s.dup.freeze, current_user
       @client, @api = client || EltenLink::Client.new, api || EltenLink::Apps
       @feedback_requested, @on_feedback = feedback_requested, on_feedback
+      @on_progression = on_progression
       @monotonic, @lock = monotonic, Mutex.new
     end
 
@@ -35,14 +37,14 @@ module GameRoomDartsRankings
             payload = source.slice(*Result::FIELDS)
             Result.parse(payload)
             personal_table ||= personal_table_for(cancellation_token)
-            personal_record = write_personal(personal_table, payload, cancellation_token)
+            personal_record, unlocked = write_personal(personal_table, payload, cancellation_token)
             placements = []
             if source['publish'] == true
               public_table ||= public_table_for(cancellation_token)
               write_public(public_table, payload, cancellation_token)
               placements = public_placements(public_table, payload, cancellation_token)
             end
-            deliver_feedback(payload, personal_record, placements)
+            deliver_feedback(payload, personal_record, placements, unlocked)
           when 'darts_publish_saved'
             validate_operation_source!(source)
             personal_table ||= personal_table_for(cancellation_token)
@@ -87,6 +89,15 @@ module GameRoomDartsRankings
       end
     end
 
+    def highest_unlocked_difficulty(cancellation_token: nil)
+      @lock.synchronize do
+        table = personal_table_for(cancellation_token)
+        _records, _rows, highest = read_records(table, cancellation_token, public: false)
+        publish_progression(highest)
+        highest
+      end
+    end
+
     private
 
     def validate_result_source!(source)
@@ -103,11 +114,11 @@ module GameRoomDartsRankings
       end
     end
 
-    def deliver_feedback(payload, personal_record, placements)
+    def deliver_feedback(payload, personal_record, placements, unlocked)
       return unless @on_feedback && @feedback_requested.call(payload.fetch('result_key'))
       @on_feedback.call({'result_key'=>payload.fetch('result_key'), 'user'=>@user,
         'difficulty'=>payload.fetch('difficulty'), 'personal_record'=>personal_record,
-        'placements'=>placements})
+        'placements'=>placements, 'unlocked_difficulty'=>unlocked})
     end
 
     def public_placements(table, payload, token)
@@ -123,34 +134,45 @@ module GameRoomDartsRankings
     end
 
     def write_public(table, payload, token)
-      update_records(table, records_for(payload), token, public: true)
+      update_records(table, records_for(payload), token, public: true).first
       true
     end
 
     def write_personal(table, payload, token)
-      records = update_records(table, records_for(payload), token, public: false)
+      records, unlocked = update_records(table, records_for(payload), token, public: false,
+        progression_result: payload)
       triple = records.dig(payload.fetch('difficulty'), 'triple', 0)
-      triple && triple['key'] == payload['result_key'] ?
+      personal = triple && triple['key'] == payload['result_key'] ?
         {'score'=>triple.fetch('score'), 'time_ms'=>triple.fetch('time_ms')} : nil
+      [personal, unlocked]
     end
 
-    def update_records(table, incoming, token, public:)
-      records, rows = read_records(table, token, public: public)
+    def update_records(table, incoming, token, public:, progression_result: nil)
+      records, rows, highest = read_records(table, token, public: public)
       merged = merge_records(records, incoming)
-      return records if merged == records && rows.length <= 1
+      next_highest = public ? highest : GameRoomDarts::Difficulty.unlock_after(highest, progression_result)
+      unlocked = next_highest == highest ? nil : next_highest
+      if merged == records && rows.length <= 1 && unlocked == nil
+        publish_progression(next_highest) unless public
+        return [records, nil]
+      end
       encoded = JSON.generate(merged)
       raise Unavailable, 'Darts ranking records are too large' if encoded.bytesize > Schema::RECORDS_BYTES
       # The API has no compare-and-swap. Never overwrite a snapshot read by a
       # concurrent client: append the merged top three, then retire ONLY the
       # exact snapshots included in it. Concurrent appenders retain separate
       # documents; readers union them and the next write compacts them safely.
-      row = table.insert('version'=>RECORDS_VERSION, 'records_json'=>encoded)
+      values = {'version'=>RECORDS_VERSION, 'records_json'=>encoded}
+      values['unlocked_level'] = GameRoomDarts::Difficulty.level(next_highest) unless public
+      row = table.insert(values)
       check!(token)
       written = validate_record_row!(row, public: public, access: false, author: false)
       raise Unavailable, 'Darts ranking write was not confirmed' unless written == merged &&
-        rows.none? { |old| old['__id'] == row['__id'] }
+        rows.none? { |old| old['__id'] == row['__id'] } &&
+        (public || row_unlocked_difficulty(row) == next_highest)
       remove_rows(table, rows, token)
-      merged
+      publish_progression(next_highest) unless public
+      [merged, unlocked]
     end
 
     def withdraw_public(table, token)
@@ -159,7 +181,8 @@ module GameRoomDartsRankings
         return true if rows.empty?
         remove_rows(table, rows, token)
       end
-      return true if read_records(table, token, public: true).last.empty?
+      _records, rows = read_records(table, token, public: true)
+      return true if rows.empty?
       raise Unavailable, 'Darts public ranking withdrawal was not confirmed'
     end
 
@@ -175,6 +198,7 @@ module GameRoomDartsRankings
 
     def read_records(table, token, public:)
       records, rows, cursor = {}, [], 0
+      highest = GameRoomDarts::Difficulty::BASE_HIGHEST
       loop do
         check!(token)
         page = table.select(where: {'__insertion_user'=>@user, '__id'=>{'gte'=>cursor + 1}},
@@ -187,11 +211,12 @@ module GameRoomDartsRankings
           raise Unavailable, 'Unordered Darts personal record page' unless row['__id'] > cursor
           cursor = row['__id']
           records = merge_records(records, value)
+          highest = GameRoomDarts::Difficulty.highest(highest, row_unlocked_difficulty(row)) unless public
           rows << row
           raise Unavailable, 'Darts personal records are too large' if rows.length > MAX_PERSONAL_ROWS
         end
       end
-      [records, rows]
+      [records, rows, highest]
     end
 
     def records_for(payload)
@@ -229,8 +254,14 @@ module GameRoomDartsRankings
 
     def validate_record_row!(row, public:, access:, author:)
       valid = row.is_a?(Hash) && row['__id'].is_a?(Integer) && row['__id'].positive? &&
-        row['version'] == RECORDS_VERSION && row['records_json'].is_a?(String) &&
+        [LEGACY_RECORDS_VERSION, RECORDS_VERSION].include?(row['version']) && row['records_json'].is_a?(String) &&
         row['records_json'].bytesize <= Schema::RECORDS_BYTES
+      if !public && row['version'] == RECORDS_VERSION
+        level = row['unlocked_level']
+        valid &&= level.is_a?(Integer) && level.between?(
+          GameRoomDarts::Difficulty.level(GameRoomDarts::Difficulty::BASE_HIGHEST),
+          GameRoomDarts::Difficulty::IDS.length - 1)
+      end
       if author
         user = row['__insertion_user']
         valid &&= valid_user?(user) && (!access || GameRoomParticipants.same?(user, @user))
@@ -241,6 +272,16 @@ module GameRoomDartsRankings
       validate_record_set!(records)
     rescue JSON::ParserError, EncodingError
       raise Unavailable, public ? 'Invalid Darts public record data' : 'Invalid Darts personal record data'
+    end
+
+    def row_unlocked_difficulty(row)
+      return GameRoomDarts::Difficulty::BASE_HIGHEST unless row.is_a?(Hash) && row['version'] == RECORDS_VERSION
+
+      GameRoomDarts::Difficulty::IDS[row['unlocked_level'].to_i] || GameRoomDarts::Difficulty::BASE_HIGHEST
+    end
+
+    def publish_progression(value)
+      @on_progression&.call(GameRoomDarts::Difficulty.normalize_highest(value))
     end
 
     def validate_record_set!(records)
