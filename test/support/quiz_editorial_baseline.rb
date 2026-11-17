@@ -11,7 +11,11 @@ module QuizEditorialBaseline
   end
 
   def before_november_8_review(questions)
-    restore(questions, 'november_8_review.json')
+    restore(before_november_17_review(questions), 'november_8_review.json')
+  end
+
+  def before_november_17_review(questions)
+    restore(questions, 'november_17_review.json')
   end
 
   def restore(questions, fixture_name)

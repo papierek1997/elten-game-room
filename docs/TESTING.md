@@ -169,6 +169,10 @@ The contract for catalogs, manifests and both native ELTEN builders is checked b
 
 `fixtures/quiz/questions.json` stores approved counts, versions, logical
 question checksums, excluded IDs and selected media assignments.
+Later approved Polish wording edits extend the exact before/after fixture chain
+in `support/quiz_editorial_baseline.rb`; keep the old historical hashes rather
+than refreshing them. Pin historical pack versions explicitly, not relative to
+the current version, and verify that unapproved later edits are still rejected.
 `fixtures/audio_ball/recordings.json` ties current recordings to source
 files and checksums; licenses are described in `THIRD_PARTY_NOTICES.md`. These expectations
 replace the tests' dependency on old reports; they are not automatically
