@@ -2969,6 +2969,20 @@ class EltenGameRoom < Program
     @darts_preferences ||= GameRoomDarts::Preferences.normalize(game_room_settings['darts']).freeze
   end
 
+  def remember_darts_unlock(difficulty)
+    highest = GameRoomDarts::Difficulty.highest(darts_preferences['unlocked_difficulty'], difficulty)
+    return false if highest == darts_preferences['unlocked_difficulty']
+
+    updated = darts_preferences.merge('unlocked_difficulty'=>highest)
+    update_game_room_settings do |state|
+      state['darts'] = updated
+      state
+    end
+    @game_room_settings = game_room_settings.merge('darts'=>updated)
+    @darts_preferences = updated.freeze
+    true
+  end
+
   def show_darts_settings(tick: nil, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
     outcome = GameRoomDarts::Settings.new(darts_preferences, program: self, tick: tick, clock: clock,
       withdraw: -> { self.class.darts_rankings_service&.withdraw_public_records == true }).wait

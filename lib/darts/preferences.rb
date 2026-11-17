@@ -1,4 +1,6 @@
 # encoding: UTF-8
+require_relative 'difficulty'
+
 module GameRoomDarts
   module Preferences
     LOCATOR_ASSETS = {
@@ -6,15 +8,17 @@ module GameRoomDarts
       'clear' => 'darts_locator_clear',
       'bright' => 'darts_locator_bright'
     }.freeze
-    DEFAULTS = {'locator_sound' => 'round', 'public_rankings' => false}.freeze
+    DEFAULTS = {'locator_sound'=>'round', 'public_rankings'=>false,
+      'unlocked_difficulty'=>Difficulty::BASE_HIGHEST}.freeze
 
     module_function
 
     def normalize(values)
       values = values.is_a?(Hash) ? values : {}
       choice = values['locator_sound'].to_s
-      {'locator_sound' => LOCATOR_ASSETS.key?(choice) ? choice : DEFAULTS['locator_sound'],
-        'public_rankings' => values['public_rankings'] == true}
+      {'locator_sound'=>LOCATOR_ASSETS.key?(choice) ? choice : DEFAULTS['locator_sound'],
+        'public_rankings'=>values['public_rankings'] == true,
+        'unlocked_difficulty'=>Difficulty.normalize_highest(values['unlocked_difficulty'])}
     end
 
     def read(program)

@@ -42,7 +42,8 @@ program = DartsNativeSettingsProgram.new
 withdrawn, publish_prompt = 0, 0
 outcome = GameRoomDarts::Settings.new({}, program:program, withdraw:-> { withdrawn += 1; true },
   confirm_withdraw:-> { true }, confirm_publish:-> { publish_prompt += 1; true }, notify:->(_text) {}).wait
-assert(outcome.values == {'locator_sound'=>'bright', 'public_rankings'=>true} && outcome.publish_saved,
+assert(outcome.values == {'locator_sound'=>'bright', 'public_rankings'=>true,
+  'unlocked_difficulty'=>'hard'} && outcome.publish_saved,
   'The native save did not preserve sound and publication selections')
 assert(withdrawn == 1 && publish_prompt == 1, 'The native settings repeated or lost an account operation')
 assert(program.sounds.length == 1 && program.sounds.first.closed, 'Native preview leaked after closing settings')

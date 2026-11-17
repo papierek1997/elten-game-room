@@ -90,6 +90,13 @@ module GameRoomGames
         effective_option_definitions(selected)
       end
 
+      # The canonical schema must accept options received from another table
+      # owner. The local creation/editing form may expose a narrower set of
+      # choices based on account-private progress without changing replay.
+      def personal_option_editor_definitions(_program, selected = {}, creating_table: false)
+        option_editor_definitions(selected)
+      end
+
       # Only the creator's option form uses these defaults. Replay and saved
       # tables keep their recorded language, regardless of the viewer's UI.
       def table_creation_options(values = {})

@@ -19,4 +19,17 @@ screen = GameRoomDartsRankings::Screen.new(program:Object.new, game:Object.new, 
 screen.send(:show_ranking, 'normal', 'triple')
 assert(received.is_a?(EltenAPI::Tasks::CancellationToken), 'The ranking read did not receive the native task cancellation token')
 assert(received.cancelled?, 'The native ranking task did not preserve cancellation')
+
+program = Object.new
+program.define_singleton_method(:darts_preferences) do
+  {'locator_sound'=>'round', 'public_rankings'=>false, 'unlocked_difficulty'=>'expert'}
+end
+program.singleton_class.send(:private, :darts_preferences)
+game = Object.new
+game.define_singleton_method(:difficulty_label) { |value| value.capitalize }
+progress_service = Struct.new(:highest_unlocked_difficulty).new('master')
+choices = GameRoomDartsRankings::Screen.new(program:program, game:game, service:progress_service)
+  .send(:difficulty_choices).map(&:first)
+assert(choices == %w[easy normal hard expert master progressive],
+  'ranking navigation exposed a locked difficulty or hid an account unlock')
 puts 'PASS Darts ranking screen: native task cancellation reaches the store without a failure dialog'

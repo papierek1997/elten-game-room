@@ -1,0 +1,58 @@
+require 'json'
+require_relative '../../lib/darts/rankings/schema'
+
+module GameRoomDartsRankingMigration
+  module_function
+
+  LEGACY_COLUMNS = {'version'=>'integer', 'records_json'=>'string:4096'}.freeze
+  LEGACY_TABLES = {
+    GameRoomDartsRankings::Schema::TABLE=>{
+      'visibility'=>'public', 'unique_per_user'=>false, 'columns'=>LEGACY_COLUMNS,
+      'permissions'=>%w[select insert delete], 'limits'=>{'max_select_limit'=>1000}
+    },
+    GameRoomDartsRankings::Schema::PERSONAL_TABLE=>{
+      'visibility'=>'shared', 'unique_per_user'=>false, 'columns'=>LEGACY_COLUMNS,
+      'permissions'=>%w[select insert delete], 'limits'=>{'max_select_limit'=>1000}
+    }
+  }.freeze
+
+  def document
+    {
+      'migration'=>'darts-rankings-v2',
+      'deployment'=>'official_application_owner_review_required',
+      'destructive'=>false,
+      'expected_current_tables'=>LEGACY_TABLES,
+      'target_tables'=>GameRoomDartsRankings::Schema::TABLES,
+      'operations'=>[
+        'widen darts_ranked_results.records_json from string:4096 to string:8192',
+        'widen darts_personal_records.records_json from string:4096 to string:8192',
+        'add nullable integer darts_personal_records.unlocked_level'
+      ],
+      'data_compatibility'=>{
+        'rewrite_existing_rows'=>false,
+        'legacy_records_version'=>1,
+        'current_records_version'=>2,
+        'legacy_unlocked_difficulty'=>'hard',
+        'new_unlocked_level_range'=>[2, 5],
+        'maximum_record_document_bytes'=>6417,
+        'records_json_limit_bytes'=>8192
+      },
+      'rollout'=>[
+        'authenticate as the verified Power Games application owner',
+        'back up both complete Darts ranking tables and record their row counts',
+        'read the complete live application declaration and require both Darts tables to match expected_current_tables',
+        'merge target_tables into the complete declaration without replacing unrelated tables, protection, quotas or notifications',
+        'apply the schema update without deleting or recreating either Darts table',
+        'read the live schema back and require exact target table definitions before releasing the new client',
+        'verify that pre-migration rows and row counts remain present, then exercise one private version-2 write and read it back'
+      ],
+      'rollback'=>{
+        'schema'=>'keep the widened additive schema',
+        'client'=>'stop or roll back the client release; legacy clients fail ranking access closed against the newer schema',
+        'reason'=>'shrinking records_json after a version-2 write can truncate valid documents'
+      }
+    }
+  end
+end
+
+puts JSON.pretty_generate(GameRoomDartsRankingMigration.document) if $PROGRAM_NAME == __FILE__

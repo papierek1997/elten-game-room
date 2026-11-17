@@ -1,4 +1,5 @@
 require_relative 'result'
+require_relative '../preferences'
 require_relative '../../game_room_ui'
 
 module GameRoomDartsRankings
@@ -79,7 +80,10 @@ module GameRoomDartsRankings
     end
 
     def difficulty_choices
-      [['easy', _('Easy')], ['normal', _('Normal')], ['hard', _('Hard')], ['progressive', _('Progressive game')]]
+      local = GameRoomDarts::Preferences.read(@program)['unlocked_difficulty']
+      remote = @service&.highest_unlocked_difficulty
+      unlocked = GameRoomDarts::Difficulty.unlocked_ids(GameRoomDarts::Difficulty.highest(local, remote))
+      unlocked.map { |value| [value, @game.difficulty_label(value)] } + [['progressive', _('Progressive game')]]
     end
 
     def category_choices
