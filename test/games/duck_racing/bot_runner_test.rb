@@ -39,7 +39,7 @@ module DuckBotRunnerFixture
     include DuckBotFixture
     attr_reader :harness, :runner, :clock, :plans, :game, :users
 
-    def initialize(kind, bot_count: 2, bot_delay: 0)
+    def initialize(kind, bot_count: 2, bot_delay: 0, blackjack_opening: :decisions)
       @clock = Clock.new(1_000.0)
       @previous_clock = Thread.current[:duck_bot_runner_clock]
       Thread.current[:duck_bot_runner_clock] = clock
@@ -91,6 +91,24 @@ module DuckBotRunnerFixture
       assert(replay.state[:race], "Observer host did not start the race")
       card = replay.state[:race][:racers][0][:hand].find { |copy| copy.type == "super_challenge" }
       assert(card)
+      if kind == 'blackjack'
+        # Race actions receive their own native random receipt, independently
+        # of the initial deal. An all-natural opening resolves without input;
+        # delay/timeout tests explicitly need unfinished player decisions.
+        opening_seed = (0...10_000).find do |candidate|
+          race = Marshal.load(Marshal.dump(replay.state[:race]))
+          race[:random] = Random.new(candidate)
+          accepted = LOGIC::Race.new(race).apply(seat:0, revision:race[:revision],
+            action:{kind: :play, card:card.id})
+          next false unless accepted && race[:challenge]
+          engine = LOGIC::ChallengeEngine.start(race[:challenge], resources:DuckBotFixture.resources)
+          players = engine[:model][:players].values
+          blackjack_opening == :all_natural ? players.all? { |player| player[:done] } :
+            players.none? { |player| player[:done] }
+        end
+        assert(opening_seed, "No controlled blackjack opening for #{blackjack_opening}")
+        harness.view(users.first).next_random_values = Seed.new(opening_seed).roll(count:16,sides:256).values
+      end
       # The real dealt physical card opens the challenge. No state injection.
       status, = harness.as(users.first) do
         runner.submit(session: harness.session, replay: replay,
@@ -98,15 +116,17 @@ module DuckBotRunnerFixture
           actor: replay.players[0], controller: true)
       end
       assert_equal(:ok, status)
+      @challenge_id = replay.state.fetch(:round).fetch(:challenge).fetch(:id)
       20.times do
-        break if replay.state.dig(:round, :phase) == :playing
+        break if replay.state.dig(:round, :phase) == :playing || replay.state[:last_resolution]
         tick(0.01)
       end
-      assert_equal(:playing, replay.state.dig(:round, :phase),
-        "Readiness stalled: #{replay.state[:round][:ready].inspect}; players=#{replay.players.inspect}; " \
+      immediately_resolved = blackjack_opening == :all_natural && kind == 'blackjack' &&
+        replay.state.dig(:last_resolution, :id) == @challenge_id
+      assert(immediately_resolved || replay.state.dig(:round, :phase) == :playing,
+        "Readiness stalled: #{replay.state.dig(:round, :ready).inspect}; players=#{replay.players.inspect}; " \
         "controllers=#{replay.state[:controllers].inspect}; local=#{runner.send(:context).local_data.inspect}; " \
         "actions=#{wire.map { |data| data.slice('action', 'actor') }.inspect}")
-      @challenge_id = replay.state[:round][:challenge][:id]
       if kind == "simon"
         # Table IDs are intentionally random in the native broker. Select an
         # explicit bot skill/reaction seed for this one boundary scenario;
@@ -153,6 +173,7 @@ module DuckBotRunnerFixture
     end
 
     def finish(limit: 4_000)
+      return replay if replay.state.dig(:last_resolution, :id) == @challenge_id
       limit.times do
         current = tick
         if current.state[:last_resolution]
@@ -190,6 +211,19 @@ check = lambda do |name, &block|
   cases << {name: name, status: "PASS"}
 rescue StandardError => error
   cases << {name: name, status: "FAIL", error: "#{error.class}: #{error.message}", backtrace: error.backtrace.first(8)}
+end
+
+check.call('blackjack all-natural opening: immediate settlement, no artificial bot decision') do
+  h = DuckBotRunnerFixture::Fixture.new('blackjack', blackjack_opening: :all_natural)
+  begin
+    finished = h.finish
+    assert(finished.state[:round].nil?, 'natural 21s still require an input round')
+    assert(finished.state[:last_resolution][:settlement], 'natural opening has no settlement')
+    assert(h.wire.none? { |data| data['action'] == 'input' }, 'an already complete hand submitted a bot move')
+    h.assert_converged('immediate blackjack settlement')
+  ensure
+    h.close
+  end
 end
 
 (["simon"] + GameRoomDuckRacing::ChallengeEngine::FIRST_ANSWER).each do |kind|

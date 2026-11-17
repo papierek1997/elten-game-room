@@ -30,14 +30,17 @@ module GameRoomDarts
       require_relative '../realtime/timer' if @tick
       choices = Preferences::LOCATOR_ASSETS.keys
       labels = [_('Rounded'), _('Clear'), _('Bright')]
-      locator = ListBox.new(labels, header: _('Aiming sound (only for you)'),
-        index: choices.index(@values['locator_sound']) || 0, quiet: true)
       public_rankings = CheckBox.new(_('Publish new Darts records in the public rankings'),
         checked: @values['public_rankings'])
+      private_history = CheckBox.new(_('Show private Darts records in the table history'),
+        checked: @values['private_records_in_history'])
+      locator = ListBox.new(labels, header: _('Aiming sound (only for you)'),
+        index: choices.index(@values['locator_sound']) || 0, quiet: true)
       preview = Button.new(_('Play selected sound'))
+      mouse_input = CheckBox.new(_('Play Darts using the mouse or touchpad'), checked: @values['mouse_input'])
       withdraw = Button.new(_('Remove my results from the public Darts rankings')) if @withdraw
       save, cancel = Button.new(_('Save')), Button.new(_('Cancel'))
-      fields = [locator, public_rankings, preview]
+      fields = [public_rankings, private_history, locator, preview, mouse_input]
       fields << withdraw if withdraw
       form = GameRoomUI::Form.new(fields + [save, cancel], program: @program, quiet: true)
       form.accept_button, form.cancel_button = save, cancel
@@ -59,7 +62,10 @@ module GameRoomDarts
       return unless accepted
       values = Preferences.normalize('locator_sound' => choices.fetch(locator.index.to_i),
         'public_rankings' => public_rankings.checked == true,
-        'unlocked_difficulty' => @values['unlocked_difficulty'])
+        'unlocked_difficulty' => @values['unlocked_difficulty'],
+        'unlocked_account' => @values['unlocked_account'],
+        'private_records_in_history' => private_history.checked == true,
+        'mouse_input' => mouse_input.checked == true)
       publish_saved = !@values['public_rankings'] && values['public_rankings'] && @confirm_publish.call
       Outcome.new(values: values, publish_saved: publish_saved)
     ensure

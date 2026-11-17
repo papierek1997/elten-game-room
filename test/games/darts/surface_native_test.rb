@@ -26,5 +26,7 @@ surface.update_spec(spec.dup.tap { |copy| copy.active = false })
 driver.frame(form)
 driver.frame(form, driver.tap(0x27))
 assert(surface.input(form).empty?, 'An observing player produced a movement')
+assert(surface.focused?(form) && !surface.input_active?(form),
+  'Darts cannot distinguish local pointer capture from permission to aim')
 assert(field.is_a?(EltenAPI::Controls::Button), 'Darts did not use the real native Button')
 puts 'PASS native Darts field: press-time modifier snapshots, ordinary arrows/throw, no duplicates and spectator isolation'

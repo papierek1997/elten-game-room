@@ -118,7 +118,16 @@ cash_feedback.each do |index, hash|
   assert(position.between?(0, cash_auction.fetch('steps').size - 1) && hash.match?(/\A[0-9a-f]{64}\z/))
   cash_auction.fetch('steps').fetch(position)['replay'] = hash
 end
-darts = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/darts.json'), encoding: 'UTF-8'))
+previous_darts = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/darts.json'), encoding: 'UTF-8'))
+darts = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/darts.json'), encoding: 'UTF-8'))
+darts_without_replay_hashes = lambda do |item|
+  item.merge('steps' => item.fetch('steps').map { |step| step.reject { |key, _| key == 'replay' } })
+end
+expected_darts = darts_without_replay_hashes.call(previous_darts)
+expected_darts['session'] = previous_darts.fetch('session').merge('options' => JSON.generate(
+  JSON.parse(previous_darts.fetch('session').fetch('options')).except('mouse_input')))
+assert_equal(expected_darts, darts_without_replay_hashes.call(darts),
+  'Darts personal mouse preference must not replace the reference actions, state or RNG')
 cases << JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/billiards.json'), encoding: 'UTF-8'))
 %w[cribbage belote jass hearts].each do |id|
   item = JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding: 'UTF-8'))

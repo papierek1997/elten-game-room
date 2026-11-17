@@ -2966,10 +2966,16 @@ class EltenGameRoom < Program
   end
 
   def darts_preferences
-    @darts_preferences ||= GameRoomDarts::Preferences.normalize(game_room_settings['darts']).freeze
+    account = GameRoomDarts::Preferences.current_account
+    if @darts_preferences_account != account
+      @darts_preferences = nil
+      @darts_preferences_account = account
+    end
+    @darts_preferences ||= GameRoomDarts::Preferences.for_account(game_room_settings['darts'], account).freeze
   end
 
-  def remember_darts_unlock(difficulty)
+  def remember_darts_unlock(difficulty, account: Session.name)
+    return false if account.to_s.empty? || !GameRoomParticipants.same?(account, Session.name)
     highest = GameRoomDarts::Difficulty.highest(darts_preferences['unlocked_difficulty'], difficulty)
     return false if highest == darts_preferences['unlocked_difficulty']
 

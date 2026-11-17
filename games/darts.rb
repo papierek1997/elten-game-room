@@ -38,6 +38,7 @@ module GameRoomGames
     def supports_leaderboards?; true; end
     def background_client?; true; end
     def audio_game?; true; end
+    def standard_round_end_sound?; false; end
     def paced_event_presentation?; true; end
     def precise_action_clock?; true; end
     def shortcut_features; [:turn]; end
@@ -63,8 +64,7 @@ module GameRoomGames
         OptionDefinition.new(key: 'timeout_result', label: _('When time runs out'), kind: :choice, default: 'auto', choices: [
           OptionChoice.new(value: 'auto', label: _('Throw from the current position')),
           OptionChoice.new(value: 'zero', label: _('Score zero points'))
-        ], visible_if: ->(options) { options['time_limit'].to_i.positive? }),
-        OptionDefinition.new(key: 'mouse_input', label: _('Use relative mouse movement and the left button'), kind: :boolean, default: false)
+        ], visible_if: ->(options) { options['time_limit'].to_i.positive? })
       ]
     end
 
@@ -167,7 +167,25 @@ module GameRoomGames
           advance_after_throw(state, players)
           if state[:phase] == :finished
             winner = state[:winner]
-            history << result_history(event_id: event_id, winner: winner) if players.length > 1
+            if players.length == 1
+              player = players.first
+              history << HistoryEntry.new(
+                key: "result:#{event_id}",
+                text: solo_completion_text(player, state[:scores][player]),
+                event_id: event_id,
+                actor: player,
+                kind: :result
+              )
+            else
+              history << HistoryEntry.new(
+                key: "final_scores:#{event_id}",
+                text: final_scores_text(players, state[:scores]),
+                event_id: event_id,
+                actor: "",
+                kind: :final_scores
+              )
+              history << result_history(event_id: event_id, winner: winner)
+            end
           end
         end
       end
@@ -286,11 +304,8 @@ module GameRoomGames
 
     def result_text(replay)
       if replay.players.length == 1 && replay.finished?
-        score = replay.state[:scores][replay.players.first]
-        n_('%{player} completed the game with %{score} point.',
-          '%{player} completed the game with %{score} points.', score) % {
-            player: participant_name(replay.players.first), score: score
-          }
+        player = replay.players.first
+        solo_completion_text(player, replay.state[:scores][player])
       else
         super
       end
@@ -451,6 +466,21 @@ module GameRoomGames
       end
       HistoryEntry.new(key: "darts:#{event_id}", event_id: event_id, actor: throw[:player],
         kind: :move, text: text, value: throw[:points])
+    end
+
+    def solo_completion_text(player, score)
+      n_('%{player} completed the game with %{score} point.',
+        '%{player} completed the game with %{score} points.', score) % {
+          player: participant_name(player), score: score
+        }
+    end
+
+    def final_scores_text(players, scores)
+      ordered = score_announcement_order(players, scores)
+      values = ordered.map do |player|
+        _('%{player}: %{score}') % {player: participant_name(player), score: scores[player].to_i}
+      end
+      _('Scores: %{scores}.') % {scores: values.join('; ')}
     end
   end
 end

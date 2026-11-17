@@ -1275,10 +1275,17 @@ class GameScreen
       Session.name,
       surface_state: @surface_state
     )
+    local_entries = if @game_client&.respond_to?(:local_history_entries)
+      @game_client.local_history_entries.to_a.map do |text|
+        GameRoomHistory::Entry.new(text: text.to_s, category: :game)
+      end
+    else
+      []
+    end
     if @activity_repository == nil
       return game_entries.map do |entry|
         GameRoomHistory::Entry.new(text: entry.text.to_s, category: :game)
-      end
+      end + local_entries
     end
 
     @activity_repository.merged_history_entries(
@@ -1286,7 +1293,7 @@ class GameScreen
       game_events: replay.accepted_events,
       activity_entries: @activity_entries.to_a,
       game_name: @game_name
-    )
+    ) + local_entries
   end
 
   def combined_history_items(replay)
@@ -1296,6 +1303,20 @@ class GameScreen
   def refresh_history_control(history, replay)
     @layout.update_history(combined_history_items(replay))
     @history_index = history.entry_index
+  end
+
+  # Clients publish a cheap revision when private, presentation-only history
+  # changes independently of the durable game log. Consume it on the owning
+  # form timer, never from a background client frame or by rebuilding the form.
+  def refresh_local_client_history(replay)
+    client = @game_client
+    return unless client&.respond_to?(:local_history_revision) && @layout
+
+    revision = client.local_history_revision
+    return if @history_client.equal?(client) && @history_client_revision == revision
+
+    refresh_history_control(@layout.history, replay)
+    @history_client, @history_client_revision = client, revision
   end
 
   def process_new_table_activity(replay, entries: @activity_entries, background: false)

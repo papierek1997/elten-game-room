@@ -430,6 +430,10 @@ with Ctrl+P and enable publication. You can also publish previously saved record
 A separate option removes your public results while keeping the private copies.
 Turning publication off only stops new results from being shared.
 
+The same settings can separately show new private records in your local table
+history and disable or re-enable mouse and touchpad control for Darts. This
+control is enabled by default.
+
 ### Krowa
 
 - Word leaderboards favour fewer guesses. Search by a word or part of one.

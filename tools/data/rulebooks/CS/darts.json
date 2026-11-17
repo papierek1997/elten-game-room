@@ -42,6 +42,7 @@
         {"cs": "Po zvoleném počtu kol vyhrává hráč s nejvyšším součtem. Při shodě vedoucích výsledků hodí každý z těchto hráčů jednu další šipku. Jednohodové rozstřely pokračují jen mezi hráči, kteří se stále dělí o vedení, dokud jeden nezíská nejlepší výsledek. Ve hře jednoho hráče je výsledkem konečný součet bodů."},
         {"cs": "Z každé dokončené hry se do rekordů započítá vaše nejlepší kolo se třemi šipkami a průměr ze všech běžných hodů. V každé kategorii se soukromě uchovávají tři nejlepší výsledky, zvlášť pro každou obtížnost. Zvukový trénink, výsledky počítačových hráčů a rozstřel se nezapočítávají."},
         {"cs": "Chcete-li nové rekordy zveřejňovat, otevřete osobní nastavení Darts pomocí Ctrl+P a zapněte zveřejňování. Můžete zveřejnit i dříve uložené rekordy. Vypnutí zveřejňování již veřejné výsledky neodstraní; k tomu slouží samostatná volba ve stejném nastavení. Soukromé kopie zůstanou uložené."},
+        {"cs": "Nové soukromé rekordy se ve výchozím nastavení nezobrazují ve společné historii stolu. Ve stejném nastavení Ctrl+P můžete zapnout jejich zobrazení ve své místní historii. Ostatní hráči tyto záznamy neuvidí a jejich zobrazením se rekordy nezveřejní."},
         {"cs": "Vyšší skóre znamená lepší umístění, při shodě rozhoduje kratší čas hodů. Shodné skóre i čas znamenají společné místo; dřívější výsledek se zobrazí první. Každý žebříček obsahuje 30 výsledků, nejvýše tři od jednoho hráče. Nové veřejné umístění v první třicítce uslyší všichni u stolu, nový osobní rekord kola se třemi šipkami pouze jeho držitel."}
       ]
     },
@@ -53,7 +54,7 @@
         {"cs": "Obtížnosti expert, mistr a legendární pokračují méně předvídatelnými opravami, rychlejším pohybem u středu a stále užšími oblastmi s vysokým bodovým ziskem. Po opravě zůstane zaměřovač klidnější 0,07 sekundy na expertovi, 0,05 sekundy na mistrovi a 0,03 sekundy na legendární obtížnosti."},
         {"cs": "Pokročilé obtížnosti se odemykají postupně po přesně třech kolech na předchozí pevné obtížnosti: nejméně 850 bodů na těžké odemkne experta, 800 bodů na expertovi mistra a 750 bodů na mistrovi legendární obtížnost. Odemčení patří k vašemu účtu a synchronizují se v soukromých rekordech. Ke stolu s dosud zamčenou obtížností se můžete připojit, ale nemůžete jej vytvořit ani procházet žebříček této obtížnosti, dokud ji neodemknete."},
         {"cs": "Hra může mít 1, 3, 5 nebo 10 kol. Samostatně zvolíte čas na jednu šipku a následek jeho vypršení."},
-        {"cs": "Před začátkem hry lze zapnout volitelné relativní ovládání myší. Pohyb myši potom opravuje polohu zaměřovače a levé tlačítko zahájí míření nebo provede hod stejně jako mezerník."}
+        {"cs": "Ovládání myší nebo touchpadem je osobní nastavení a ve výchozím stavu je zapnuté. Pomocí Ctrl+P je můžete vypnout nebo znovu zapnout. Při zapnuté volbě relativní pohyb opravuje polohu zaměřovače a levé tlačítko zahájí míření nebo provede hod stejně jako mezerník."}
       ]
     },
     {
@@ -73,8 +74,8 @@
         {"cs": "S: přečtěte skóre."},
         {"cs": "T: přečtěte, kdo je na tahu."},
         {"cs": "C: zopakujte aktuální sektor ve zvukovém tréninku."},
-        {"cs": "Ctrl+P: otevřete osobní nastavení Dartsa, vyberte zvuk zaměřovače, nastavte zveřejňování nových rekordů nebo odstraňte své veřejné výsledky."},
-        {"cs": "Volitelné ovládání myší: relativní pohyb opravuje zaměřovač a levé tlačítko zahájí míření nebo hodí. Tuto možnost zapněte v nastavení stolu před začátkem hry."}
+        {"cs": "Ctrl+P: otevřete osobní nastavení Darts, nastavte zveřejňování rekordů a jejich zobrazování v místní historii, vyberte zvuk zaměřovače nebo zapněte či vypněte ovládání myší a touchpadem."},
+        {"cs": "Myš/touchpad: relativní pohyb opravuje zaměřovač a levé tlačítko zahájí míření nebo hodí. Toto osobní ovládání je ve výchozím stavu zapnuté a lze je změnit pomocí Ctrl+P."}
       ]
     }
   ],
@@ -84,7 +85,6 @@
     "rounds": "scoring",
     "progressive": "options",
     "time_limit": "time",
-    "timeout_result": "time",
-    "mouse_input": "options"
+    "timeout_result": "time"
   }
 }

@@ -6,6 +6,10 @@ require_relative '../../../games/darts'
 require_relative '../../../lib/table_variant'
 require_relative '../../support/sequence_random'
 
+module Session
+  def self.name; 'Alice'; end
+end
+
 def assert(value, message)
   raise message unless value
 end
@@ -34,9 +38,10 @@ repo = DartsRepository.new
 
 assert(game.id == 'darts' && game.minimum_players == 1 && game.maximum_players == 8, 'Darts identity or roster limits changed')
 assert(game.supports_bots? && game.background_client? && game.audio_game?, 'Darts lacks its declared runtime capabilities')
+assert(!game.standard_round_end_sound?, 'Darts plays the generic round cue on top of its serialized cue')
 assert(game.paced_event_presentation?, 'Darts bot turns can overtake the audible throw presentation')
 assert(game.default_options == {'mode'=>'game', 'difficulty'=>'normal', 'rounds'=>3, 'progressive'=>false,
-  'time_limit'=>10, 'timeout_result'=>'auto', 'mouse_input'=>false, 'bot_delay'=>1}, 'Darts defaults changed')
+  'time_limit'=>10, 'timeout_result'=>'auto', 'bot_delay'=>1}, 'Darts defaults changed')
 locked_program = Object.new
 locked_choices = game.personal_option_editor_definitions(locked_program, {}, creating_table:true)
   .find { |definition| definition.key == 'difficulty' }.choices.map(&:value)
@@ -46,7 +51,7 @@ existing_choices = game.personal_option_editor_definitions(locked_program, {'dif
 assert(existing_choices == %w[easy normal hard expert], 'editing a joined advanced table discarded its difficulty')
 unlocked_program = Object.new
 unlocked_program.define_singleton_method(:darts_preferences) do
-  {'locator_sound'=>'round', 'public_rankings'=>false, 'unlocked_difficulty'=>'legendary'}
+  {'locator_sound'=>'round', 'public_rankings'=>false, 'unlocked_difficulty'=>'legendary', 'unlocked_account'=>'Alice'}
 end
 unlocked_program.singleton_class.send(:private, :darts_preferences)
 unlocked_choices = game.personal_option_editor_definitions(unlocked_program, {}, creating_table:true)
@@ -111,6 +116,14 @@ assert(one_tiebreak_dart.state[:scores] == {'Alice'=>300, 'Bob'=>300}, 'tie-brea
 events << darts_event('darts_throw', throw_value(7, 1_000, 1_000), actor: 'Bob', id: events.length + 1)
 finished = game.replay(session, events, repo)
 assert(finished.winner == 'Alice' && finished.finished?, 'one-dart sudden death did not resolve the tie')
+final_entries = finished.history.last(2)
+assert(final_entries.map(&:kind) == [:final_scores, :result] &&
+  final_entries.first.text == 'Scores: Alice: 300; Bob: 300.' &&
+  final_entries.last.text == 'Alice won the game.',
+  'multiplayer Darts did not store final scores and the winner as separate history entries')
+assert(game.describe_event(events.last, repo, finished, 'Bob').last == final_entries.first.text &&
+  game.result_text(finished) == final_entries.last.text,
+  'multiplayer Darts does not present final scores before the separate winner announcement')
 assert(game.surface_spec(finished, 'Alice') == nil, 'finished Darts retained an actionless playfield button')
 assert(finished.state[:throws]['Alice'].last[:tiebreak] && finished.state[:throws]['Bob'].last[:tiebreak],
   'tie-break darts cannot be separated from ordinary ranking throws')
@@ -142,8 +155,15 @@ solo_events = [start]
   solo_events << darts_event('darts_throw', throw_value(index, 0, 0), actor: 'Alice', id: index + 2)
 end
 solo = game.replay(solo_session, solo_events, repo)
-assert(solo.finished? && solo.history.none? { |entry| entry.kind == :result },
-  'solo history says that the only player won against themselves')
+solo_result = solo.history.select { |entry| entry.kind == :result }
+assert(solo.finished? && solo_result.length == 1 && solo_result.first.text.include?('completed the game') &&
+  solo_result.first.text.include?('300 points') && solo_result.first.text == game.result_text(solo) &&
+  !solo_result.first.text.include?('won the game') && solo.history.none? { |entry| entry.kind == :final_scores },
+  'solo history omitted the final score or says that the only player won against themselves')
+assert(game.send(:final_scores_text, %w[Postukujacy Milczacy Strzelajacy1],
+  {'Postukujacy'=>143, 'Milczacy'=>555, 'Strzelajacy1'=>20}) ==
+  'Scores: Milczacy: 555; Postukujacy: 143; Strzelajacy1: 20.',
+  'final Darts scores do not use the shared descending score format')
 assert(game.result_text(solo).include?('completed the game'),
   'removing the solo winner entry also removed the useful completion result')
 

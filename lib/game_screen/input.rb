@@ -448,6 +448,7 @@ class GameScreen
 
         presentation_changed = event_presenter.event_presentation&.advance
         @game_client&.tick
+        refresh_local_client_history(wait.replay)
         announce_due_timers(wait.replay)
         publish_session_view(wait.replay, surface)
         automatic_due = automatic_action_due?(wait.replay)

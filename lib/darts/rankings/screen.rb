@@ -1,5 +1,6 @@
 require_relative 'result'
 require_relative '../preferences'
+require_relative 'time_text'
 require_relative '../../game_room_ui'
 
 module GameRoomDartsRankings
@@ -61,7 +62,7 @@ module GameRoomDartsRankings
           format('%.2f', row.fetch('total_score').fdiv(row.fetch('throw_count')))
         end
         time_ms = category == 'triple' ? row.fetch('best_round_time_ms') : row.fetch('total_time_ms').fdiv(row.fetch('throw_count'))
-        [row.fetch('place').to_s, text(row.fetch('user')), score, format('%.3f s', time_ms / 1000.0), score_date(row.fetch('played_at'))]
+        [row.fetch('place').to_s, text(row.fetch('user')), score, TimeText.short(time_ms), score_date(row.fetch('played_at'))]
       end
       table = TableBox.new([_('Place'), _('Player'), _('Score'), _('Time'), _('Date')].map { |label| text(label) }, rows,
         header: text(_('%{difficulty}: %{ranking}')) % {difficulty: text(difficulty_label(difficulty)), ranking: text(category_label(category))},

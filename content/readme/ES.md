@@ -453,6 +453,10 @@ récords ya guardados. Una opción independiente elimina tus resultados público
 sin borrar las copias privadas. Desactivar la publicación solo impide que se
 compartan nuevos resultados.
 
+En los mismos ajustes puedes mostrar por separado los récords privados nuevos en
+tu historial local de la mesa y desactivar o volver a activar el control de Darts
+con ratón o panel táctil. Este control está activado de forma predeterminada.
+
 ### Krowa
 
 - En la clasificación de una palabra, menos intentos dan un puesto mejor.

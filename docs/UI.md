@@ -519,6 +519,14 @@ it is not a game shortcut field. The same key still operates the game when
 its actual playfield is focused. Explicit history-navigation shortcuts retain
 their existing scope.
 
+Clients may expose `local_history_entries` for private presentation-only text
+and a cheap monotonic `local_history_revision` when that text or its visibility
+changes independently of accepted moves. GameScreen consumes the revision on
+its owning form timer and replaces only history entries, preserving selection,
+focus and chat. Do not mutate controls from a background client frame or set a
+whole-game refresh flag merely to display a late record. Darts covers this
+contract in `test/games/darts/local_history_native_test.rb`.
+
 A browse shortcut may set `default_value` to select the matching choice on
 opening. This does not reorder the choices: arrows, Home and End keep their
 native behaviour. An absent or unavailable value selects the first row.

@@ -53,7 +53,7 @@ capture_training_speech.call(client)
 state = {
   phase: :playing, seed: 'a' * 32, throw_index: 0, round: 1, dart: 1,
   options: {'difficulty'=>'normal', 'progressive'=>false, 'rounds'=>3,
-    'time_limit'=>10, 'timeout_result'=>'auto', 'mouse_input'=>false, 'mode'=>'training'}
+    'time_limit'=>10, 'timeout_result'=>'auto', 'mode'=>'training'}
 }
 replay = DartsStartReplay.new('Alice', state)
 client.before_wait(replay, 'Alice')

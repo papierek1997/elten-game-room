@@ -102,6 +102,10 @@ def single_record_set(row)
   }}
 end
 
+def stored_darts_records(row)
+  GameRoomDartsRankings::RecordCodec.decode(row.fetch('records_json'), version:row.fetch('version'))
+end
+
 def store_for(api, user, feedback_requested: ->(_key) { false }, on_feedback: nil, on_progression: nil)
   GameRoomDartsRankings::Store.new(app_uuid:'test', user:user, api:api, client:Object.new,
     current_user:-> { user }, feedback_requested:feedback_requested, on_feedback:on_feedback,

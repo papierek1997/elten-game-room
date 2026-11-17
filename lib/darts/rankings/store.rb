@@ -1,6 +1,7 @@
 require 'thread'
 require 'json'
 require_relative 'result'
+require_relative 'record_codec'
 require_relative '../../game_room_analytics_client'
 
 module GameRoomDartsRankings
@@ -156,20 +157,20 @@ module GameRoomDartsRankings
         publish_progression(next_highest) unless public
         return [records, nil]
       end
-      encoded = JSON.generate(merged)
+      encoded = RecordCodec.encode(merged,
+        unlocked_level: public ? nil : GameRoomDarts::Difficulty.level(next_highest))
       raise Unavailable, 'Darts ranking records are too large' if encoded.bytesize > Schema::RECORDS_BYTES
       # The API has no compare-and-swap. Never overwrite a snapshot read by a
       # concurrent client: append the merged top three, then retire ONLY the
       # exact snapshots included in it. Concurrent appenders retain separate
       # documents; readers union them and the next write compacts them safely.
       values = {'version'=>RECORDS_VERSION, 'records_json'=>encoded}
-      values['unlocked_level'] = GameRoomDarts::Difficulty.level(next_highest) unless public
       row = table.insert(values)
       check!(token)
-      written = validate_record_row!(row, public: public, access: false, author: false)
-      raise Unavailable, 'Darts ranking write was not confirmed' unless written == merged &&
+      written = validate_record_document!(row, public: public, access: false, author: false)
+      raise Unavailable, 'Darts ranking write was not confirmed' unless written.records == merged &&
         rows.none? { |old| old['__id'] == row['__id'] } &&
-        (public || row_unlocked_difficulty(row) == next_highest)
+        (public || document_unlocked_difficulty(written) == next_highest)
       remove_rows(table, rows, token)
       publish_progression(next_highest) unless public
       [merged, unlocked]
@@ -207,11 +208,11 @@ module GameRoomDartsRankings
         raise Unavailable, 'Invalid Darts personal record page' unless page.is_a?(Array) && page.length <= @limit
         break if page.empty?
         page.each do |row|
-          value = validate_record_row!(row, public: public, access: true, author: true)
+          document = validate_record_document!(row, public: public, access: true, author: true)
           raise Unavailable, 'Unordered Darts personal record page' unless row['__id'] > cursor
           cursor = row['__id']
-          records = merge_records(records, value)
-          highest = GameRoomDarts::Difficulty.highest(highest, row_unlocked_difficulty(row)) unless public
+          records = merge_records(records, document.records)
+          highest = GameRoomDarts::Difficulty.highest(highest, document_unlocked_difficulty(document)) unless public
           rows << row
           raise Unavailable, 'Darts personal records are too large' if rows.length > MAX_PERSONAL_ROWS
         end
@@ -253,31 +254,34 @@ module GameRoomDartsRankings
     end
 
     def validate_record_row!(row, public:, access:, author:)
+      validate_record_document!(row, public:public, access:access, author:author).records
+    end
+
+    def validate_record_document!(row, public:, access:, author:)
       valid = row.is_a?(Hash) && row['__id'].is_a?(Integer) && row['__id'].positive? &&
         [LEGACY_RECORDS_VERSION, RECORDS_VERSION].include?(row['version']) && row['records_json'].is_a?(String) &&
         row['records_json'].bytesize <= Schema::RECORDS_BYTES
-      if !public && row['version'] == RECORDS_VERSION
-        level = row['unlocked_level']
-        valid &&= level.is_a?(Integer) && level.between?(
-          GameRoomDarts::Difficulty.level(GameRoomDarts::Difficulty::BASE_HIGHEST),
-          GameRoomDarts::Difficulty::IDS.length - 1)
-      end
+      raise Unavailable, 'Invalid Darts record row' unless valid
       if author
         user = row['__insertion_user']
         valid &&= valid_user?(user) && (!access || GameRoomParticipants.same?(user, @user))
       end
       valid &&= row.dig('__access', 'owner') == true if access
       raise Unavailable, public ? 'Invalid Darts public record' : 'Invalid Darts personal record' unless valid
-      records = JSON.parse(row['records_json'], max_nesting: 7, create_additions: false)
-      validate_record_set!(records)
-    rescue JSON::ParserError, EncodingError
+      document = RecordCodec.decode_document(row['records_json'], version:row['version'])
+      if row['version'] == RECORDS_VERSION &&
+          (public ? !document.unlocked_level.nil? : document.unlocked_level.nil?)
+        raise Unavailable, 'Invalid Darts progression scope'
+      end
+      validate_record_set!(document.records)
+      document
+    rescue JSON::ParserError, EncodingError, RecordCodec::Invalid
       raise Unavailable, public ? 'Invalid Darts public record data' : 'Invalid Darts personal record data'
     end
 
-    def row_unlocked_difficulty(row)
-      return GameRoomDarts::Difficulty::BASE_HIGHEST unless row.is_a?(Hash) && row['version'] == RECORDS_VERSION
-
-      GameRoomDarts::Difficulty::IDS[row['unlocked_level'].to_i] || GameRoomDarts::Difficulty::BASE_HIGHEST
+    def document_unlocked_difficulty(document)
+      document.unlocked_level ? GameRoomDarts::Difficulty::IDS.fetch(document.unlocked_level) :
+        GameRoomDarts::Difficulty::BASE_HIGHEST
     end
 
     def publish_progression(value)

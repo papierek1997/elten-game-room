@@ -135,7 +135,7 @@ clock = -> { now }
 state = {
   phase: :playing, seed: 'a' * 32, throw_index: 4, round: 2, dart: 2,
   options: {'difficulty'=>'normal', 'progressive'=>false, 'rounds'=>3,
-    'time_limit'=>10, 'timeout_result'=>'auto', 'mouse_input'=>false, 'mode'=>'game'}
+    'time_limit'=>10, 'timeout_result'=>'auto', 'mode'=>'game'}
 }
 replay = DartsCursorReplay.new('Alice', state)
 network = DartsCursorNetwork.new
@@ -262,6 +262,18 @@ ranking_clients.fetch('Watcher').frame
 ranking_clients.fetch('Alice').frame
 assert(ranking_speech.fetch('Alice').any? { |text| text.include?('New personal three-dart record') },
   'the player did not hear their private confirmed three-dart record')
+assert(ranking_speech.fetch('Alice').any? { |text| text.include?('4.32 seconds') },
+  'the private record time was not rounded to an unambiguous two-decimal value')
+alice_ranking_client = ranking_clients.fetch('Alice')
+assert(alice_ranking_client.local_history_entries.empty?,
+  'private records appeared in table history without the player opting in')
+ranking_program = alice_ranking_client.instance_variable_get(:@program)
+ranking_program.define_singleton_method(:darts_preferences) do
+  {'private_records_in_history'=>true, 'mouse_input'=>true}
+end
+ranking_program.singleton_class.send(:private, :darts_preferences)
+assert(alice_ranking_client.local_history_entries.one? { |text| text.include?('271 points') },
+  'the opted-in private record was not available in local table history')
 assert(ranking_speech.values.all? { |messages| messages.count { |text| text.include?('took place 3') } == 1 },
   'a confirmed top-thirty place was not announced exactly once to the whole table')
 assert(ranking_network.channels.all? { |channel| channel.event_protocol == 'darts-rankings-1' } &&

@@ -22,7 +22,7 @@ assert(received.cancelled?, 'The native ranking task did not preserve cancellati
 
 program = Object.new
 program.define_singleton_method(:darts_preferences) do
-  {'locator_sound'=>'round', 'public_rankings'=>false, 'unlocked_difficulty'=>'expert'}
+  {'locator_sound'=>'round', 'public_rankings'=>false, 'unlocked_difficulty'=>'expert', 'unlocked_account'=>'Alice'}
 end
 program.singleton_class.send(:private, :darts_preferences)
 game = Object.new
@@ -32,4 +32,8 @@ choices = GameRoomDartsRankings::Screen.new(program:program, game:game, service:
   .send(:difficulty_choices).map(&:first)
 assert(choices == %w[easy normal hard expert master progressive],
   'ranking navigation exposed a locked difficulty or hid an account unlock')
+GameRoomLocalization.boot(settings: {'interface_language'=>'pl'}, host_language: 'pl')
+assert(GameRoomDartsRankings::TimeText.short(6_330) == '6,33 s',
+  'ranking time still looks like thousands of seconds in a decimal-comma language')
+GameRoomLocalization.boot(settings: {'interface_language'=>'en'}, host_language: 'en')
 puts 'PASS Darts ranking screen: native task cancellation reaches the store without a failure dialog'

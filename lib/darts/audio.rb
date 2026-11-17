@@ -18,6 +18,7 @@ module GameRoomDarts
     THROW = 'darts_throw'.freeze
     WIN = 'darts_applause'.freeze
     LOSS = 'darts_consolation'.freeze
+    ROUND = 'round_finished'.freeze
     IMPACTS = {
       east: 'darts_hit_1', north_east: 'darts_hit_2',
       north: 'darts_hit_3', north_west: 'darts_hit_4',
@@ -45,7 +46,7 @@ module GameRoomDarts
 
     def load
       return if @loaded
-      ([READY, COUNTDOWN, EDGE, LIMIT, THROW, WIN, LOSS, QUALITY] + IMPACTS.values.uniq).each do |asset|
+      ([READY, COUNTDOWN, EDGE, LIMIT, THROW, WIN, LOSS, ROUND, QUALITY] + IMPACTS.values.uniq).each do |asset|
         load_asset(asset, looped: false)
       end
       @countdown_frequency = @sounds[COUNTDOWN]&.frequency
@@ -154,6 +155,11 @@ module GameRoomDarts
       asset = won ? WIN : LOSS
       play_once(asset)
       sound_length(@sounds[asset])
+    end
+
+    def round_started
+      play_once(ROUND)
+      sound_length(@sounds[ROUND])
     end
 
     def silence

@@ -13,11 +13,19 @@ module GameRoomDarts
       suspend
     end
 
-    def sample(active:)
-      delta = active ? @backend.sample : nil
+    def sample(active:, capture: active)
+      delta = capture ? @backend.sample : nil
       return suspend unless delta
 
       held = delta[2] == true
+      unless active
+        @button_blocked = held unless @active
+        @button_blocked = false unless held
+        @button_held = held
+        @active = false
+        @x = @y = 0
+        return [[], false]
+      end
       @button_blocked = held unless @active
       clicked = held && !@button_held && !@button_blocked
       @button_blocked = false unless held
@@ -36,7 +44,7 @@ module GameRoomDarts
     end
 
     def suspend
-      @backend.suspend if @backend
+      @backend.suspend(restore: false) if @backend
       @active = false
       @button_held = @button_blocked = false
       @x = @y = 0

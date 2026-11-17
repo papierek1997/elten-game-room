@@ -425,6 +425,10 @@ nastavení Darts pomocí Ctrl+P a zapněte zveřejňování. Můžete zveřejnit
 uložené rekordy. Samostatná volba odstraní veřejné výsledky, ale soukromé kopie
 zachová. Pouhé vypnutí zveřejňování zastaví jen odesílání nových výsledků.
 
+Ve stejném nastavení lze samostatně zobrazit nové soukromé rekordy ve vaší místní
+historii stolu a vypnout nebo znovu zapnout ovládání Darts myší či touchpadem.
+Toto ovládání je ve výchozím stavu zapnuté.
+
 ### Krowa
 
 - V žebříčku slova je lepší výsledek s menším počtem pokusů.

@@ -42,6 +42,7 @@
         {"pl": "Po wybranej liczbie rund wygrywa gracz z największą sumą punktów. Jeśli prowadzi kilka osób z takim samym wynikiem, każda rzuca jedną dodatkową lotką. Kolejne dogrywki po jednym rzucie obejmują tylko nadal remisujących i trwają, aż jedna osoba uzyska najlepszy wynik. W grze jednoosobowej rezultatem jest końcowa suma punktów."},
         {"pl": "Z każdej ukończonej partii do rekordów trafia Twoja najlepsza runda trzech lotek i średnia ze wszystkich zwykłych rzutów. Zachowujesz prywatnie trzy najlepsze wyniki w każdej kategorii, osobno dla każdego poziomu trudności. Trening dźwięków, wyniki botów i rzuty z dogrywki nie są uwzględniane."},
         {"pl": "Aby udostępniać nowe rekordy, otwórz osobiste ustawienia Dartsa skrótem Ctrl+P i włącz publikowanie. Możesz wtedy opublikować także zapisane wcześniej rekordy. Wyłączenie publikowania nie usuwa wyników już udostępnionych; służy do tego osobna opcja w tych samych ustawieniach. Prywatne kopie pozostają zachowane."},
+        {"pl": "Nowe prywatne rekordy nie pojawiają się domyślnie we wspólnej historii stołu. W tych samych ustawieniach Ctrl+P możesz włączyć ich wyświetlanie w swojej lokalnej historii. Pozostali gracze nie zobaczą tych wpisów, a ich wyświetlanie nie powoduje publikacji rekordów."},
         {"pl": "W rankingach lepszy jest wyższy wynik, a przy równej punktacji decyduje krótszy czas rzutów. Identyczny wynik i czas dają wspólne miejsce; wcześniej uzyskany rezultat pojawia się pierwszy. Ranking pokazuje 30 wyników, najwyżej trzy jednej osoby. O nowym miejscu w tej trzydziestce dowiadują się wszyscy pozostający przy stole, natomiast komunikat o osobistym rekordzie rundy słyszy tylko jego właściciel."}
       ]
     },
@@ -53,7 +54,7 @@
         {"pl": "Poziomy ekspert, mistrz i legendarny rozwijają tę skalę przez mniej przewidywalne poprawki, szybszy dryf w pobliżu środka i coraz węższe obszary wysokiej punktacji. Po poprawce celownik pozostaje stabilniejszy przez 0,07 sekundy na ekspercie, 0,05 sekundy na mistrzu i 0,03 sekundy na poziomie legendarnym."},
         {"pl": "Zaawansowane poziomy odblokowujesz po kolei, rozgrywając dokładnie trzy rundy na poprzednim stałym poziomie: zdobądź co najmniej 850 punktów na trudnym, aby odblokować eksperta, 800 na ekspercie dla mistrza i 750 na mistrzu dla poziomu legendarnego. Odblokowania należą do Twojego konta i są synchronizowane w prywatnych rekordach. Możesz dołączyć do stołu na jeszcze zablokowanym poziomie, ale nie możesz utworzyć takiego stołu ani przeglądać rankingu tego poziomu przed jego odblokowaniem."},
         {"pl": "Rozgrywka może mieć 1, 3, 5 albo 10 rund. Osobno wybierasz czas na jedną lotkę oraz skutek jego upływu."},
-        {"pl": "Przed rozpoczęciem gry można włączyć opcjonalne względne sterowanie myszą. Ruch myszy poprawia wtedy położenie celownika, a lewy przycisk rozpoczyna celowanie lub wykonuje rzut tak jak spacja."}
+        {"pl": "Sterowanie myszą lub touchpadem jest ustawieniem osobistym i domyślnie pozostaje włączone. Możesz je wyłączyć lub ponownie włączyć w ustawieniach otwieranych skrótem Ctrl+P. Przy włączonej opcji względny ruch poprawia położenie celownika, a lewy przycisk rozpoczyna celowanie lub wykonuje rzut tak jak spacja."}
       ]
     },
     {
@@ -73,8 +74,8 @@
         {"pl": "S: odczytaj wyniki."},
         {"pl": "T: odczytaj, czyja jest kolej."},
         {"pl": "C: powtórz bieżący sektor w treningu dźwięków."},
-        {"pl": "Ctrl+P: otwórz osobiste ustawienia Dartsa, wybierz dźwięk celownika, ustaw publikowanie nowych rekordów albo usuń swoje wyniki publiczne."},
-        {"pl": "Opcjonalne sterowanie myszą: względny ruch poprawia położenie celownika, a lewy przycisk rozpoczyna celowanie lub wykonuje rzut. Włącz tę możliwość w ustawieniach stołu przed rozpoczęciem gry."}
+        {"pl": "Ctrl+P: otwórz osobiste ustawienia Dartsa, ustaw publikowanie rekordów i ich wyświetlanie w lokalnej historii, wybierz dźwięk celownika albo włącz lub wyłącz sterowanie myszą i touchpadem."},
+        {"pl": "Mysz/touchpad: względny ruch poprawia położenie celownika, a lewy przycisk rozpoczyna celowanie lub wykonuje rzut. To osobiste sterowanie jest domyślnie włączone i można je zmienić skrótem Ctrl+P."}
       ]
     }
   ],
@@ -84,7 +85,6 @@
     "rounds": "scoring",
     "progressive": "options",
     "time_limit": "time",
-    "timeout_result": "time",
-    "mouse_input": "options"
+    "timeout_result": "time"
   }
 }

@@ -29,6 +29,7 @@ class DartsPresentationAudio
   def impact(points, x:, y:); @calls << [:impact, points, x, y]; 0.3; end
   def quality(points); @calls << [:quality, points]; 0.4; end
   def result(won:); @calls << [won ? :win : :loss]; 0.25; end
+  def round_started; @calls << :round; 0.4; end
   def silence; end
   def close; @calls << :close; end
 end
@@ -56,9 +57,10 @@ end
 
 now = 0.0
 clock = -> { now }
+speech_active = true
 audio = DartsPresentationAudio.new
 client = GameRoomDarts::Client.new(Object.new, DartsPresentationGame.new, clock: clock,
-  audio: audio, mouse: DartsPresentationMouse.new)
+  audio: audio, mouse: DartsPresentationMouse.new, speech_active: -> { speech_active })
 capture_presentation_speech.call(client)
 before = DartsPresentationReplay.new(false, nil, %w[Alice Bob], {throw_index: 0}, 'Alice')
 after = DartsPresentationReplay.new(true, 'Alice', %w[Alice Bob], {throw_index: 1}, nil)
@@ -95,7 +97,8 @@ assert(darts_presentation_speech.empty?, 'score speech interrupted the quality c
 now = 1.61
 client.frame
 assert(audio.calls.last == [:loss], 'the losing participant did not receive consolation applause after the score cue')
-assert(darts_presentation_speech.map(&:first) == ["Alice scores #{score} points.", 'Alice won the game.'],
+assert(darts_presentation_speech.flat_map { |item| item.first.to_s.lines(chomp: true) } ==
+  ["Alice scores #{score} points.", 'Alice won the game.'],
   "score or final result speech did not wait for the audible throw sequence: #{darts_presentation_speech.inspect}")
 assert(client.presentation_pending?, 'finished view was exposed while the result recording was still playing')
 now = 1.85
@@ -103,8 +106,12 @@ client.frame
 assert(client.presentation_pending?, 'result recording tail was shortened')
 now = 1.86
 client.frame
-assert(!client.presentation_pending?, 'finished view remained deferred after the audible result ended')
-assert(remote_playback.finished?, 'Darts did not release the shared queue after the audible result')
+assert(client.presentation_pending? && !remote_playback.finished?,
+  'finished view was exposed before the final score and result speech completed')
+speech_active = false
+client.frame
+assert(!client.presentation_pending? && remote_playback.finished?,
+  'Darts did not release the shared queue after final speech and result audio')
 
 local_audio = DartsPresentationAudio.new
 local = GameRoomDarts::Client.new(Object.new, DartsPresentationGame.new, clock: clock,
@@ -126,7 +133,7 @@ next_audio = DartsPresentationAudio.new
 next_client = GameRoomDarts::Client.new(Object.new, DartsPresentationGame.new, clock: clock,
   audio: next_audio, mouse: DartsPresentationMouse.new)
 capture_presentation_speech.call(next_client)
-next_before = DartsPresentationReplay.new(false, nil, %w[Alice Bob], {throw_index: 0}, 'Alice')
+next_before = DartsPresentationReplay.new(false, nil, %w[Alice Bob], {throw_index: 0, round: 7, dart: 3}, 'Alice')
 next_after = DartsPresentationReplay.new(false, nil, %w[Alice Bob],
   {throw_index: 1, dart: 2, round: 8, options: {'mode'=>'training'}}, 'Bob')
 now = 4.0
@@ -136,8 +143,10 @@ next_client.frame
 now = 5.21
 next_client.frame
 assert(darts_presentation_speech.empty?, 'next-stage speech started with the score-quality cue')
+assert(next_audio.calls.none? { |call| call == :round }, 'next-round cue played during the previous dart')
 now = 5.61
 next_client.frame
+assert(next_audio.calls.last == :round, 'next-round cue did not wait for the complete dart audio sequence')
 assert(darts_presentation_speech.map(&:first) == ['Hit', "Alice scores #{score} points.", 'Round 8 throw 2'],
   'the next throw and round did not follow the score as one concise presentation')
 

@@ -955,6 +955,19 @@ playback boundary, including volume, optional-effects and output gates.
   list, not the game field. Help checks current availability, and execution
   rechecks permissions and identity, not just the row index.
 
+- Server schema declarations do not prove that a type or additive migration is
+  supported. Inspect the current SDK and live `Apps.preview_update` before an
+  authorized update; reject unexpected row resets, share removal or unrelated
+  changes. Adding one column can recreate its whole table. Darts v2 deliberately
+  retains its deployed 4096-byte columns and puts compact records and account
+  progression in the same document; never restore the rejected 8192-byte or
+  extra-column migration. See `docs/DARTS_RANKINGS.md`.
+- Account progression caches must carry their canonical account owner and
+  invalidate the memory view on account changes. Late callbacks must retain
+  their original account and refuse to update another user's preferences.
+  Private client history changes use the shared `local_history_revision` hook
+  on the owning form timer, not a full-game refresh or background control writes.
+
 ## Acceptance review for new games and game PRs
 
 Use [the game review checklist](docs/GAME_ACCEPTANCE.md) when implementing,
