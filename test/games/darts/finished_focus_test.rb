@@ -22,6 +22,7 @@ class DartsFinishedFocusClient
   attr_accessor :pending
   def presentation_pending?; pending == true; end
   def context_data; {}; end
+  def local_history_entries; ['New private Darts record.']; end
 end
 
 game = GameRoomGames::Darts.new
@@ -48,6 +49,8 @@ screen.instance_variable_set(:@game_client, client)
 
 active = game.replay(session, [start, *throws.first(2)], repository)
 screen.send(:prepare_action_view, active)
+assert(screen.send(:combined_history_entries, active).last.text == 'New private Darts record.',
+  'the Darts client could not append an opted-in private record to local table history')
 
 client.pending = true
 finished = game.replay(session, [start, *throws], repository)

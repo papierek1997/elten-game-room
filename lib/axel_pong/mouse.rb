@@ -47,10 +47,10 @@ module GameRoomPong
       nil
     end
 
-    def suspend
+    def suspend(restore: true)
       # Never move the cursor in the application the user has switched to.
       # Nor overwrite mouse motion already made after leaving our playfield.
-      if @api && @restore && @hwnd && @api.foreground == @hwnd && @api.position == @anchor
+      if restore && @api && @restore && @hwnd && @api.foreground == @hwnd && @api.position == @anchor
         @api.warp(*@restore)
       end
       nil

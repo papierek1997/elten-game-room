@@ -441,6 +441,11 @@ opublikować także zapisane wcześniej rekordy. Osobna opcja usuwa wyniki
 publiczne, pozostawiając prywatne. Samo wyłączenie publikowania zatrzymuje
 tylko wysyłanie nowych wyników.
 
+W tych samych ustawieniach możesz osobno włączyć pokazywanie nowych prywatnych
+rekordów w swojej lokalnej historii stołu oraz wyłączyć lub ponownie włączyć
+sterowanie Dartsem za pomocą myszy albo touchpada. Sterowanie to jest domyślnie
+włączone.
+
 ### Krowa
 
 - W rankingu słowa lepszy jest wynik z mniejszą liczbą prób.

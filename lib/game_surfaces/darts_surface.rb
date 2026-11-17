@@ -92,10 +92,14 @@ module GameSurfaces
     end
 
     def input_active?(form)
+      focused?(form) && @spec.active && !@spec.finished
+    end
+
+    def focused?(form)
       return false if form.respond_to?(:game_room_background_help?) && form.game_room_background_help?
       active = form.fields[form.index] == @field
       active &&= $activecontrols.include?(@field) if defined?($activecontrols) && $activecontrols.is_a?(Array)
-      active && @spec.active && !@spec.finished
+      active
     end
 
     def input(form)

@@ -2,7 +2,9 @@
 require_relative 'engine'
 require_relative 'audio'
 require_relative 'mouse'
+require_relative 'preferences'
 require_relative 'rankings/result'
+require_relative 'rankings/time_text'
 require_relative '../realtime/event_channel'
 require_relative '../realtime/protocol'
 require_relative '../realtime/progress'
@@ -21,15 +23,22 @@ module GameRoomDarts
     CURSOR_SEND_INTERVAL = 0.05
     CURSOR_TIMEOUT = 0.3
     MAX_RANKING_MESSAGES = GameRoomRealtime::EventChannel::LIMIT
+    TERMINAL_SPEECH_START_GRACE = 1.0
+    TERMINAL_SPEECH_MAX_WAIT = 60.0
 
     class PresentationHandle
-      def initialize; @finished = false; end
-      def finished?; @finished; end
-      def finish!; @finished = true; end
+      def initialize
+        @pending = 1
+        @lock = Mutex.new
+      end
+      def finished?; @lock.synchronize { @pending <= 0 }; end
+      def wait_for!; @lock.synchronize { @pending += 1 if @pending.positive? }; self; end
+      def finish!; @lock.synchronize { @pending -= 1 if @pending.positive? }; self; end
+      def force_finish!; @lock.synchronize { @pending = 0 }; self; end
     end
 
     def initialize(program, game, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) }, mouse: nil, audio: nil,
-      progress_factory: nil, channel_factory: nil, ranking_service: nil, **_services)
+      progress_factory: nil, channel_factory: nil, ranking_service: nil, speech_active: nil, **_services)
       @program, @game, @clock = program, game, clock
       @engine = Engine.new(clock: clock)
       @mouse = mouse || Mouse.new
@@ -40,8 +49,11 @@ module GameRoomDarts
         factory.call(**options).tap { |channel| channel.enable_events('darts-rankings-1') }
       end
       @ranking_service = ranking_service
-      @presentations = []
+      @presentations, @presentation_handles = [], []
+      @terminal_speech_waits = []
+      @speech_active = speech_active || -> { respond_to?(:speech_actived, true) && speech_actived }
       @ranking_announcements, @ranking_outbox, @ranking_seen = [], [], {}
+      @private_record_history = []
       reset_cursor_network
     end
 
@@ -60,6 +72,7 @@ module GameRoomDarts
       return false if @closed
       register_ping_channel if @channel
       @audio.load
+      refresh_preferences
       @progress ||= @progress_factory.call(program: @program, clock: @clock,
         key: [:darts, @table_id, @session_id, @viewer]) { |background| frame(background: background) }
       true
@@ -92,9 +105,12 @@ module GameRoomDarts
       prompt = next_throw_prompt(after, viewer)
       descriptions << prompt if prompt
       result_text = @game.result_text(after) if terminal
+      round_started = !after.finished? && before&.state&.[](:round).is_a?(Integer) &&
+        after.state[:round].is_a?(Integer) && after.state[:round] > before.state[:round]
       handle = PresentationHandle.new
+      @presentation_handles << handle
       schedule_presentation({kind: :impact, due: impact_at, points: points, x: x, y: y, handle: handle,
-        descriptions: descriptions, result: terminal, result_text: result_text})
+        descriptions: descriptions, result: terminal, result_text: result_text, round_started: round_started})
       @owned_result_index = after.state[:throw_index].to_i if terminal
       @local_throw = nil if local
       handle
@@ -103,7 +119,14 @@ module GameRoomDarts
     def presents_game_result?(replay)
       replay.finished? && @owned_result_index == replay.state[:throw_index].to_i
     end
-    def presentation_pending?; !@presentations.empty?; end
+    def presentation_pending?
+      !@presentations.empty? || @presentation_handles.any? { |handle| !handle.finished? }
+    end
+    def local_history_entries
+      return [] unless Preferences.read(@program)['private_records_in_history']
+
+      @private_record_history.dup
+    end
     def after_events(replay, viewer, context:); before_wait(replay, viewer); end
 
     def automatic_error(_status)
@@ -153,18 +176,21 @@ module GameRoomDarts
     def frame(background: false)
       return if @closed
       now = @clock.call.to_f
-      presentation_was_pending = !@presentations.empty?
+      presentation_was_pending = presentation_pending?
       process_presentations(now)
-      synchronize_aim_state if presentation_was_pending && @presentations.empty?
+      process_terminal_speech(now)
+      @presentation_handles.reject!(&:finished?)
+      synchronize_aim_state if presentation_was_pending && !presentation_pending?
       collect_ranking_feedback
       receive_cursor_network(now)
       publish_ranking_outbox
       present_ranking_announcements if @presentations.empty?
 
-      selected = !background && !@settings_open && @form && @surface && @surface.input_active?(@form)
+      focused = !background && !@settings_open && @form && @surface && @surface.focused?(@form)
+      selected = focused && @surface.input_active?(@form)
       commands = selected ? @surface.input(@form) : []
-      mouse_commands, clicked = if @replay && @replay.state[:options]['mouse_input']
-        @mouse.sample(active: selected)
+      mouse_commands, clicked = if @mouse_enabled && focused
+        @mouse.sample(active: selected, capture: focused)
       else
         @mouse.suspend
       end
@@ -214,8 +240,10 @@ module GameRoomDarts
       shutdown_cursor_network
       @progress&.close
       detach_view
-      @presentations.map { |item| item[:handle] }.compact.uniq.each(&:finish!)
+      @presentation_handles.each(&:force_finish!)
       @presentations.clear
+      @presentation_handles.clear
+      @terminal_speech_waits.clear
       @audio.close
     end
 
@@ -232,7 +260,7 @@ module GameRoomDarts
         @settings_open = false
         @surface&.clear_input
         @mouse.suspend
-        @audio.refresh_preferences if @audio.respond_to?(:refresh_preferences)
+        refresh_preferences
       end
     end
 
@@ -269,7 +297,7 @@ module GameRoomDarts
     end
 
     def start_aim(now)
-      return false unless awaiting_start? && @presentations.empty?
+      return false unless awaiting_start? && !presentation_pending?
 
       difficulty = active_difficulty(@replay.state)
       identity = [@replay.state[:throw_index], @replay.current_player.to_s.downcase, difficulty]
@@ -323,7 +351,7 @@ module GameRoomDarts
     def schedule_presentation(item)
       while @presentations.length >= MAX_PRESENTATIONS
         discarded = @presentations.shift
-        discarded[:handle]&.finish!
+        discarded[:handle]&.force_finish!
       end
       @presentations << item
     end
@@ -343,16 +371,21 @@ module GameRoomDarts
           tail = @audio.quality(item[:points]).to_f
           schedule_presentation(item.merge(kind: :announcement, due: now + tail))
         elsif item[:kind] == :announcement
+          round_tail = item[:round_started] ? @audio.round_started.to_f : 0.0
           result_tail = if [:win, :loss].include?(item[:result])
             @audio.result(won: item[:result] == :win).to_f
           else
             0.0
           end
-          (item[:descriptions].to_a + [item[:result_text]].compact).each do |text|
-            speak(GameRoomContent.utf8(text.to_s), stop: false, break_sequence: false) unless text.to_s.empty?
+          messages = (item[:descriptions].to_a + [item[:result_text]].compact).reject { |text| text.to_s.empty? }
+          if item[:result]
+            speak_terminal(messages, item[:handle])
+          else
+            messages.each { |text| speak(GameRoomContent.utf8(text.to_s), stop: false, break_sequence: false) }
           end
-          if result_tail.positive?
-            schedule_presentation(kind: :completion, due: now + result_tail, handle: item[:handle])
+          tail = [round_tail, result_tail].max
+          if tail.positive?
+            schedule_presentation(kind: :completion, due: now + tail, handle: item[:handle])
           else
             item[:handle]&.finish!
           end
@@ -522,9 +555,12 @@ module GameRoomDarts
         next unless feedback.is_a?(Hash) && GameRoomParticipants.same?(feedback['user'], @viewer)
         record = feedback['personal_record']
         if record.is_a?(Hash)
-          seconds = format('%.3f', record.fetch('time_ms').to_i / 1000.0)
-          queue_ranking_announcement(_('New personal three-dart record: %{score} points in %{seconds} seconds.') % {
-            score: record.fetch('score'), seconds: seconds})
+          seconds = GameRoomDartsRankings::TimeText.seconds(record.fetch('time_ms'))
+          message = _('New personal three-dart record: %{score} points in %{seconds} seconds.') % {
+            score: record.fetch('score'), seconds: seconds}
+          queue_ranking_announcement(message)
+          @private_record_history << message
+          @private_record_history.shift while @private_record_history.length > MAX_RANKING_MESSAGES
         end
         feedback.fetch('placements', []).each do |placement|
           body = {'type'=>'darts_ranking', 'key'=>feedback.fetch('result_key'), 'player'=>feedback.fetch('user'),
@@ -575,6 +611,43 @@ module GameRoomDarts
     def queue_ranking_announcement(message)
       @ranking_announcements << message
       @ranking_announcements.shift while @ranking_announcements.length > MAX_RANKING_MESSAGES
+    end
+
+    def refresh_preferences
+      values = Preferences.read(@program)
+      @mouse_enabled = values['mouse_input']
+      @audio.refresh_preferences if @audio.respond_to?(:refresh_preferences)
+      values
+    end
+
+    def speak_terminal(messages, handle)
+      values = messages.map { |text| GameRoomContent.utf8(text.to_s) }
+      return if values.empty?
+      handle&.wait_for!
+      @terminal_speech_waits << {handle: handle, queued_at: @clock.call.to_f, started: false}
+      speak(values.join("\n"), stop: false, break_sequence: false)
+    rescue StandardError
+      @terminal_speech_waits.delete_if { |wait| wait[:handle].equal?(handle) }
+      handle&.finish!
+      raise
+    end
+
+    def process_terminal_speech(now)
+      return if @terminal_speech_waits.empty?
+
+      active = @speech_active.call == true
+      @terminal_speech_waits.delete_if do |wait|
+        wait[:started] = true if active
+        elapsed = now.to_f - wait[:queued_at]
+        complete = (wait[:started] && !active) ||
+          (!wait[:started] && elapsed >= TERMINAL_SPEECH_START_GRACE) ||
+          elapsed >= TERMINAL_SPEECH_MAX_WAIT
+        wait[:handle]&.finish! if complete
+        complete
+      end
+    rescue StandardError
+      @terminal_speech_waits.each { |wait| wait[:handle]&.finish! }
+      @terminal_speech_waits.clear
     end
 
     def queue_ranking_outbox(body)

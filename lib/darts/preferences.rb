@@ -6,15 +6,18 @@ module GameRoomDarts
       'clear' => 'darts_locator_clear',
       'bright' => 'darts_locator_bright'
     }.freeze
-    DEFAULTS = {'locator_sound' => 'round', 'public_rankings' => false}.freeze
+    DEFAULTS = {'locator_sound'=>'round', 'public_rankings'=>false,
+      'private_records_in_history'=>false, 'mouse_input'=>true}.freeze
 
     module_function
 
     def normalize(values)
       values = values.is_a?(Hash) ? values : {}
       choice = values['locator_sound'].to_s
-      {'locator_sound' => LOCATOR_ASSETS.key?(choice) ? choice : DEFAULTS['locator_sound'],
-        'public_rankings' => values['public_rankings'] == true}
+      {'locator_sound'=>LOCATOR_ASSETS.key?(choice) ? choice : DEFAULTS['locator_sound'],
+        'public_rankings'=>values['public_rankings'] == true,
+        'private_records_in_history'=>values['private_records_in_history'] == true,
+        'mouse_input'=>values.key?('mouse_input') ? values['mouse_input'] == true : DEFAULTS['mouse_input']}
     end
 
     def read(program)

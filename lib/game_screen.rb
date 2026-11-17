@@ -1275,10 +1275,17 @@ class GameScreen
       Session.name,
       surface_state: @surface_state
     )
+    local_entries = if @game_client&.respond_to?(:local_history_entries)
+      @game_client.local_history_entries.to_a.map do |text|
+        GameRoomHistory::Entry.new(text: text.to_s, category: :game)
+      end
+    else
+      []
+    end
     if @activity_repository == nil
       return game_entries.map do |entry|
         GameRoomHistory::Entry.new(text: entry.text.to_s, category: :game)
-      end
+      end + local_entries
     end
 
     @activity_repository.merged_history_entries(
@@ -1286,7 +1293,7 @@ class GameScreen
       game_events: replay.accepted_events,
       activity_entries: @activity_entries.to_a,
       game_name: @game_name
-    )
+    ) + local_entries
   end
 
   def combined_history_items(replay)

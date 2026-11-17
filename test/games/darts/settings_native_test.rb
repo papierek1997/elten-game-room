@@ -29,11 +29,13 @@ driver.define_singleton_method(:tick) do |form|
   return unless form.is_a?(GameRoomUI::Form) && form.instance_variable_get(:@wait)
   raise 'The native settings form repeated its action' if @settings_done
   @settings_done = true
-  list, publication, preview, withdraw, = form.fields
+  publication, private_history, list, preview, mouse_input, withdraw, = form.fields
   assert(list.instance_of?(EltenAPI::Controls::ListBox) && publication.instance_of?(EltenAPI::Controls::CheckBox),
     'Darts settings replaced native controls')
   list.index = 2
   publication.checked = true
+  private_history.checked = true
+  mouse_input.checked = false
   preview.press
   withdraw.press
   form.accept_button.press
@@ -42,7 +44,8 @@ program = DartsNativeSettingsProgram.new
 withdrawn, publish_prompt = 0, 0
 outcome = GameRoomDarts::Settings.new({}, program:program, withdraw:-> { withdrawn += 1; true },
   confirm_withdraw:-> { true }, confirm_publish:-> { publish_prompt += 1; true }, notify:->(_text) {}).wait
-assert(outcome.values == {'locator_sound'=>'bright', 'public_rankings'=>true} && outcome.publish_saved,
+assert(outcome.values == {'locator_sound'=>'bright', 'public_rankings'=>true,
+  'private_records_in_history'=>true, 'mouse_input'=>false} && outcome.publish_saved,
   'The native save did not preserve sound and publication selections')
 assert(withdrawn == 1 && publish_prompt == 1, 'The native settings repeated or lost an account operation')
 assert(program.sounds.length == 1 && program.sounds.first.closed, 'Native preview leaked after closing settings')

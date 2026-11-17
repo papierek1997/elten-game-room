@@ -502,7 +502,7 @@ msgstr "%{deck}; предел очков: %{score}; ответы на штраф
 msgid "%{deck}; up to %{count} battles"
 msgstr "%{deck}; до %{count} сражений"
 
-#: lib/darts/rankings/screen.rb:66
+#: lib/darts/rankings/screen.rb:67
 msgid "%{difficulty}: %{ranking}"
 msgstr "%{difficulty}: %{ranking}"
 
@@ -1260,7 +1260,7 @@ msgstr "%{player} забрал приз бесплатной парковки: %
 msgid "%{player} completed the %{group}."
 msgstr "%{player} собрал группу: %{group}."
 
-#: games/darts.rb:266
+#: games/darts.rb:445
 msgid "%{player} completed the game with %{score} point."
 msgid_plural "%{player} completed the game with %{score} points."
 msgstr[0] "%{player} завершает игру с результатом %{score} очко."
@@ -2589,7 +2589,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: games/darts.rb:421
+#: games/darts.rb:436
 msgid "%{player} scores %{points} point."
 msgid_plural "%{player} scores %{points} points."
 msgstr[0] "%{player} получает %{points} очко."
@@ -2770,7 +2770,7 @@ msgstr[2] "%{player} размораживается и получает %{count}
 msgid "%{player} thaws and receives %{count} feathers."
 msgstr "%{player} размораживается и получает перья: %{count}."
 
-#: games/darts.rb:416
+#: games/darts.rb:431
 msgid "%{player} throws automatically and scores %{points} point."
 msgid_plural "%{player} throws automatically and scores %{points} points."
 msgstr[0] "%{player} выполняет автоматический бросок и получает %{points} очко."
@@ -3018,7 +3018,7 @@ msgstr "Фишка %{pawn} игрока %{player}"
 msgid "%{player}'s piece"
 msgstr "Фигура игрока %{player}"
 
-#: lib/darts/client.rb:570
+#: lib/darts/client.rb:606
 msgid "%{player}'s result took place %{place} in %{category}, %{difficulty}."
 msgstr "Результат игрока %{player} занял %{place}-е место в категории %{category}, сложность %{difficulty}."
 
@@ -3280,7 +3280,7 @@ msgstr "%{player}: %{result}"
 msgid "%{player}: %{result}."
 msgstr "%{player}: %{result}."
 
-#: games/biblios.rb:1297 games/cat_head_tail.rb:433 games/farkle.rb:761 games/three_five_eight.rb:1025 games/tysiac.rb:1647 games/uno.rb:1403 games/yahtzee.rb:553 lib/game_surfaces/darts_surface.rb:111
+#: games/biblios.rb:1297 games/cat_head_tail.rb:433 games/darts.rb:454 games/farkle.rb:761 games/three_five_eight.rb:1025 games/tysiac.rb:1647 games/uno.rb:1403 games/yahtzee.rb:553 lib/game_surfaces/darts_surface.rb:115
 msgid "%{player}: %{score}"
 msgstr "%{player}: %{score}"
 
@@ -3576,7 +3576,7 @@ msgstr[0] "%{seconds} секунда"
 msgstr[1] "%{seconds} секунды"
 msgstr[2] "%{seconds} секунд"
 
-#: games/categories.rb:272 games/darts.rb:61 games/uno.rb:205
+#: games/categories.rb:272 games/darts.rb:62 games/uno.rb:205
 msgid "%{seconds} seconds"
 msgstr "%{seconds} секунд"
 
@@ -7674,7 +7674,7 @@ msgstr "Направить выбранный шар в указанную лу�
 msgid "Aiming and striking"
 msgstr "Прицеливание и удар"
 
-#: lib/darts/settings.rb:33
+#: lib/darts/settings.rb:37
 msgid "Aiming sound (only for you)"
 msgstr "Звук прицела (только для вас)"
 
@@ -8817,7 +8817,7 @@ msgstr "По умолчанию автоматическое возвращен�
 msgid "Automatic return is a personal setting, off by default. When enabled, your paddle returns a reachable ball automatically near your end. You still position the paddle and serve yourself. Open Pong settings with Ctrl+P to change it; your opponent chooses independently."
 msgstr "Автоматическое возвращение — это персональная настройка, по умолчанию выключена. Когда включено, ваша ракетка автоматически отбивает досягаемый мяч возле вашей стороны. Вы всё ещё управляете положением ракетки и подачей самостоятельно. Откройте настройки Pong с помощью Ctrl+P, чтобы изменить их; ваш противник выбирает независимо."
 
-#: lib/darts/client.rb:318
+#: lib/darts/client.rb:346
 msgctxt "Darts training"
 msgid "Automatic throw"
 msgstr "Автоматический бросок"
@@ -9022,7 +9022,7 @@ msgstr "B: прочитать текущий аукцион."
 msgid "B: respond to the buzzer."
 msgstr "B: ответить на сигнальную карту."
 
-#: __app.rb:1678 __app.rb:1722 games/krowa_support/leaderboards.rb:42 lib/darts/rankings/screen.rb:39 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:739 lib/game_room_screens.rb:756 lib/game_screen.rb:815 lib/game_screen.rb:854 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/recordings/ui.rb:243 lib/sports_rankings/screen.rb:206 lib/sports_rankings/screen.rb:58 lib/sports_rankings/screen.rb:88 lib/table_voice_screen.rb:158 lib/table_voice_screen.rb:176 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:69 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/partner_choice.rb:55 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:190 lib/tournaments/public_preview.rb:211 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:118
+#: __app.rb:1678 __app.rb:1722 games/krowa_support/leaderboards.rb:42 lib/darts/rankings/screen.rb:40 lib/game_room_presence_screen.rb:16 lib/game_room_screens.rb:739 lib/game_room_screens.rb:756 lib/game_screen.rb:815 lib/game_screen.rb:854 lib/game_statistics_screen.rb:115 lib/game_statistics_screen.rb:17 lib/game_statistics_screen.rb:77 lib/recordings/ui.rb:243 lib/sports_rankings/screen.rb:206 lib/sports_rankings/screen.rb:58 lib/sports_rankings/screen.rb:88 lib/table_voice_screen.rb:158 lib/table_voice_screen.rb:176 lib/tournaments/draft_preview.rb:24 lib/tournaments/draft_preview.rb:77 lib/tournaments/draft_screen.rb:26 lib/tournaments/local_fixed_team_execution_details.rb:19 lib/tournaments/local_fixed_team_execution_screen.rb:103 lib/tournaments/local_fixed_team_plan_screen.rb:69 lib/tournaments/local_game_choice_dialog.rb:28 lib/tournaments/local_individual_plan_screen.rb:25 lib/tournaments/local_organizer_decision_screen.rb:28 lib/tournaments/local_participant_manager.rb:16 lib/tournaments/local_realtime_game_dialog.rb:44 lib/tournaments/local_test_hub.rb:58 lib/tournaments/local_tournament_overview.rb:26 lib/tournaments/match_entry_screen.rb:280 lib/tournaments/match_entry_screen.rb:375 lib/tournaments/operations_screen.rb:59 lib/tournaments/participant_manager.rb:20 lib/tournaments/partner_choice.rb:55 lib/tournaments/public_preview.rb:127 lib/tournaments/public_preview.rb:190 lib/tournaments/public_preview.rb:211 lib/tournaments/public_screen.rb:75 lib/tournaments/server_proposal_screen.rb:31 lib/tournaments/server_schedule_overview.rb:297 lib/tournaments/server_schedule_overview.rb:38 lib/tournaments/server_trial_hub.rb:32 lib/tournaments/tournament_invitation_screen.rb:13 lib/tournaments/tournament_invite_picker.rb:24 lib/tournaments/tournament_setup_editor.rb:118
 msgid "Back"
 msgstr "Назад"
 
@@ -9433,7 +9433,7 @@ msgstr "Зональность увеличивает и награды, и шт
 msgid "Belote"
 msgstr "Белот"
 
-#: lib/darts/client.rb:610 lib/darts/rankings/screen.rb:86
+#: lib/darts/client.rb:683 lib/darts/rankings/screen.rb:87
 msgid "Best average score"
 msgstr "Лучший средний результат"
 
@@ -9445,7 +9445,7 @@ msgstr "Лучший результат"
 msgid "Best result: %{players}."
 msgstr "Лучший результат: %{players}."
 
-#: lib/darts/client.rb:610 lib/darts/rankings/screen.rb:86
+#: lib/darts/client.rb:683 lib/darts/rankings/screen.rb:87
 msgid "Best three-dart round"
 msgstr "Лучший раунд из трёх дротиков"
 
@@ -10369,7 +10369,7 @@ msgstr "Спокойный (короткий поиск)"
 msgid "Calza: exact calls can recover a die"
 msgstr "Calza: точное количество может вернуть кость"
 
-#: __app.rb:2311 __app.rb:3595 games/krowa_support/client.rb:219 games/krowa_support/client.rb:380 games/krowa_support/leaderboards.rb:250 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/darts/settings.rb:39 lib/game_option_editor.rb:72 lib/game_room_screens.rb:362 lib/game_room_ui.rb:78 lib/game_screen.rb:726 lib/game_screen.rb:775 lib/game_surfaces/billiards_surface.rb:390 lib/game_surfaces/word_board.rb:208 lib/krowa_word_proposals.rb:119 lib/mania_pisania/client.rb:353 lib/mania_pisania/client.rb:623 lib/mania_pisania/text_import_dialog.rb:18 lib/quiz_contributions/views.rb:145 lib/quiz_contributions/views.rb:166 lib/table_voice_screen.rb:196 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:30
+#: __app.rb:2311 __app.rb:3595 games/krowa_support/client.rb:219 games/krowa_support/client.rb:380 games/krowa_support/leaderboards.rb:250 games/rummy_ui.rb:26 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/darts/settings.rb:42 lib/game_option_editor.rb:72 lib/game_room_screens.rb:362 lib/game_room_ui.rb:78 lib/game_screen.rb:726 lib/game_screen.rb:775 lib/game_surfaces/billiards_surface.rb:390 lib/game_surfaces/word_board.rb:208 lib/krowa_word_proposals.rb:119 lib/mania_pisania/client.rb:353 lib/mania_pisania/client.rb:623 lib/mania_pisania/text_import_dialog.rb:18 lib/quiz_contributions/views.rb:145 lib/quiz_contributions/views.rb:166 lib/table_voice_screen.rb:196 lib/tournaments/draft_details_editor.rb:123 lib/tournaments/draft_details_editor.rb:35 lib/tournaments/draft_editor.rb:42 lib/tournaments/local_fixed_team_execution_details.rb:40 lib/tournaments/local_fixed_team_execution_details.rb:68 lib/tournaments/local_test_dialogs.rb:182 lib/tournaments/local_test_dialogs.rb:213 lib/tournaments/match_entry_screen.rb:386 lib/tournaments/public_preview.rb:104 lib/tournaments/publication_editor.rb:82 lib/tournaments/server_forfeit_screen.rb:183 lib/tournaments/server_forfeit_screen.rb:207 lib/tournaments/server_forfeit_screen.rb:217 lib/tournaments/server_forfeit_screen.rb:30 lib/tournaments/server_forfeit_screen.rb:62 lib/tournaments/server_forfeit_screen.rb:86 lib/tournaments/tournament_dates_editor.rb:61 lib/tournaments/tournament_setup_editor.rb:30
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -12272,7 +12272,7 @@ msgstr "Очистка раскладки"
 msgid "Clearing the table with your play earns a scopa worth 1 point, including on the last play of the round. Receiving leftover cards at the end is not a scopa."
 msgstr "Если своим ходом вы забираете все карты со стола, вы получаете скопу стоимостью 1 очко, в том числе за последний ход раунда. Получение оставшихся карт в конце раунда скопой не считается."
 
-#: games/krowa_support/client.rb:200 games/krowa_support/client.rb:248 games/krowa_support/client.rb:290 games/krowa_support/leaderboards.rb:340 games/krowa_support/leaderboards.rb:341 lib/darts/rankings/screen.rb:68 lib/game_room_screens.rb:66 lib/game_room_screens.rb:82 lib/game_room_ui.rb:372 lib/game_surfaces/billiards_surface.rb:438 lib/mania_pisania/text_library_dialog.rb:21 lib/quiz_contributions/views.rb:121 lib/recordings/ui.rb:161 lib/recordings/ui.rb:232
+#: games/krowa_support/client.rb:200 games/krowa_support/client.rb:248 games/krowa_support/client.rb:290 games/krowa_support/leaderboards.rb:340 games/krowa_support/leaderboards.rb:341 lib/darts/rankings/screen.rb:69 lib/game_room_screens.rb:66 lib/game_room_screens.rb:82 lib/game_room_ui.rb:372 lib/game_surfaces/billiards_surface.rb:438 lib/mania_pisania/text_library_dialog.rb:21 lib/quiz_contributions/views.rb:121 lib/recordings/ui.rb:161 lib/recordings/ui.rb:232
 msgid "Close"
 msgstr "Закрыть"
 
@@ -12805,7 +12805,7 @@ msgstr "Стоимость в перьях: %{count}."
 msgid "Cosy nest"
 msgstr "Уютное гнездо"
 
-#: lib/darts/rankings/screen.rb:78
+#: lib/darts/rankings/screen.rb:79
 msgid "Could not connect to the Darts ranking."
 msgstr "Не удалось подключиться к рейтингу дартса."
 
@@ -12857,7 +12857,7 @@ msgstr "Не удалось опубликовать результат."
 msgid "Could not queue publication of your saved personal Darts records."
 msgstr "Не удалось поставить в очередь публикацию сохранённых личных рекордов в дартсе."
 
-#: lib/darts/settings.rb:51
+#: lib/darts/settings.rb:54
 msgid "Could not queue removal of your public Darts results."
 msgstr "Не удалось поставить в очередь удаление ваших общедоступных результатов в дартсе."
 
@@ -13810,9 +13810,14 @@ msgstr "Тёмные поля, простые шашки и дамки"
 msgid "Darts"
 msgstr "Дартс"
 
-#: lib/darts/rankings/screen.rb:21
+#: lib/darts/rankings/screen.rb:22
 msgid "Darts difficulty"
 msgstr "Сложность дартса"
+
+#: lib/darts/client.rb:567
+#, ruby-format
+msgid "Darts difficulty unlocked: %{difficulty}."
+msgstr "Уровень сложности Darts разблокирован: %{difficulty}."
 
 #: games/generated/rulebooks/darts.rb:10
 msgid "Darts is an audio aiming game for one to eight players. Guide the moving sound towards the centre of the target and score as many points as possible. Each round gives every player three darts."
@@ -13822,15 +13827,15 @@ msgstr ""
 msgid "Darts no longer loses an arrow-key press or throw when a modifier key is pressed immediately afterwards."
 msgstr "В «Дартсе» больше не теряются нажатие стрелки или бросок, если сразу после них нажать клавишу-модификатор, например Ctrl или Shift."
 
-#: games/darts.rb:225
+#: games/darts.rb:243
 msgid "Darts playfield"
 msgstr "Игровое поле для дартса"
 
-#: lib/darts/rankings/screen.rb:15
+#: lib/darts/rankings/screen.rb:16
 msgid "Darts rankings are temporarily unavailable."
 msgstr "Рейтинги дартса временно недоступны."
 
-#: games/darts.rb:42
+#: games/darts.rb:43
 msgid "Darts settings"
 msgstr "Настройки дартса"
 
@@ -13838,7 +13843,7 @@ msgstr "Настройки дартса"
 msgid "Data stays on this computer. Test names do not authenticate network accounts. No invitations or matches are started."
 msgstr "Данные остаются на этом компьютере. Тестовые имена не подтверждают подлинность сетевых аккаунтов. Приглашения не отправляются, матчи не начинаются."
 
-#: games/krowa_support/leaderboards.rb:173 games/krowa_support/leaderboards.rb:305 lib/darts/rankings/screen.rb:65
+#: games/krowa_support/leaderboards.rb:173 games/krowa_support/leaderboards.rb:305 lib/darts/rankings/screen.rb:66
 msgid "Date"
 msgstr "Дата"
 
@@ -14326,7 +14331,7 @@ msgstr[2] "Кубик от 1 до %{sides}, осталось %{count} броск
 msgid "Die: 1 to %{sides}, %{count} race rolls left."
 msgstr "Кубик: от 1 до %{sides}, осталось бросков для движения: %{count}."
 
-#: games/darts.rb:51
+#: games/darts.rb:52
 msgid "Difficulty"
 msgstr "Сложность"
 
@@ -14961,7 +14966,7 @@ msgstr "Спортивный бридж"
 msgid "Duplicate, 5 points"
 msgstr "Совпавший, 5 очков"
 
-#: games/base/information.rb:70 lib/game_duration.rb:11 lib/game_duration.rb:22
+#: games/base/information.rb:73 lib/game_duration.rb:11 lib/game_duration.rb:22
 msgid "Duration is unavailable."
 msgstr "Не удалось определить длительность игры."
 
@@ -15324,7 +15329,7 @@ msgstr "Восток–Запад"
 msgid "East-West vulnerable"
 msgstr "Восток–Запад в зоне"
 
-#: games/axel_pong.rb:49 games/billiards.rb:99 games/darts.rb:52 games/mania_pisania.rb:74 lib/darts/client.rb:613 lib/darts/rankings/screen.rb:82
+#: games/axel_pong.rb:49 games/billiards.rb:99 games/darts.rb:53 games/mania_pisania.rb:74 lib/darts/client.rb:686 lib/darts/rankings/screen.rb:83
 msgid "Easy"
 msgstr "Лёгкий"
 
@@ -17817,7 +17822,7 @@ msgstr "G: прочитать свою лучшую текущую комбин�
 msgid "G: read your best current hand."
 msgstr ""
 
-#: games/darts.rb:48 games/mancala.rb:97 lib/game_history_navigation.rb:124 lib/game_statistics_screen.rb:72 lib/tournaments/draft_editor.rb:28 lib/tournaments/draft_preview.rb:169 lib/tournaments/public_text.rb:99 lib/tournaments/tournament_setup_editor.rb:29
+#: games/darts.rb:49 games/mancala.rb:97 lib/game_history_navigation.rb:124 lib/game_statistics_screen.rb:72 lib/tournaments/draft_editor.rb:28 lib/tournaments/draft_preview.rb:169 lib/tournaments/public_text.rb:99 lib/tournaments/tournament_setup_editor.rb:29
 msgid "Game"
 msgstr "Игра"
 
@@ -18402,7 +18407,7 @@ msgstr "Раздачи продолжаются со сменой дилера, 
 msgid "Hands or minutes between blind increases"
 msgstr "Раздач или минут между повышениями блайндов"
 
-#: games/axel_pong.rb:49 games/billiards.rb:100 games/darts.rb:54 games/mania_pisania.rb:74 lib/darts/client.rb:613 lib/darts/rankings/screen.rb:82
+#: games/axel_pong.rb:49 games/billiards.rb:100 games/darts.rb:55 games/mania_pisania.rb:74 lib/darts/client.rb:686 lib/darts/rankings/screen.rb:83
 msgid "Hard"
 msgstr "Сложный"
 
@@ -18511,7 +18516,7 @@ msgstr "История и справка F1 теперь представлен�
 msgid "Hit"
 msgstr "Взять"
 
-#: lib/darts/client.rb:90
+#: lib/darts/client.rb:103
 msgctxt "Darts training"
 msgid "Hit"
 msgstr "Попадание"
@@ -19712,7 +19717,7 @@ msgstr "Повышать блайнды"
 msgid "Increase blinds can be Never, after a number of hands, or after a number of minutes. The default is every 5 hands with a multiplier of 2. The interval can be 1–100 hands or minutes; the multiplier 2–10. Increases are applied when a new hand begins, not in the middle of betting. These controls are relevant only when the variant uses blinds."
 msgstr "Блайнды можно не повышать, повышать через заданное число раздач или минут. По умолчанию — каждые 5 раздач вдвое. Интервал — 1–100 раздач или минут, множитель — 2–10. Повышение происходит в начале новой раздачи, не посреди торговли. Настройки действуют только в вариантах с блайндами."
 
-#: games/darts.rb:58
+#: games/darts.rb:59
 msgid "Increase difficulty during the match"
 msgstr "Повышать сложность по ходу игры"
 
@@ -21055,7 +21060,7 @@ msgstr "Загрузка дат Daily Krowa"
 msgid "Loading Daily Krowa leaderboard"
 msgstr "Загрузка рейтинга Daily Krowa"
 
-#: lib/darts/rankings/screen.rb:52
+#: lib/darts/rankings/screen.rb:53
 msgid "Loading Darts ranking"
 msgstr "Загрузка рейтинга дартса"
 
@@ -22159,7 +22164,7 @@ msgstr "В мизере цели меняются местами: сдающий
 msgid "Misery"
 msgstr "Мизер"
 
-#: lib/darts/client.rb:90
+#: lib/darts/client.rb:103
 msgctxt "Darts training"
 msgid "Miss"
 msgstr "Промах"
@@ -22196,7 +22201,7 @@ msgstr "Открытый и закрытый конг"
 msgid "Mixed mode here is for incurable nerds, because you have to recall both the word and the way you were supposed to type it."
 msgstr "Смешанный режим здесь — для неисправимых фанатов: приходится вспоминать не только слово, но и то, каким способом его нужно было набрать."
 
-#: games/darts.rb:47
+#: games/darts.rb:48
 msgid "Mode"
 msgstr "Режим"
 
@@ -22647,7 +22652,7 @@ msgstr "Новый черновик"
 msgid "New games are selected in the widget by default, while saved manual deselections are remembered. Older settings also enable Rummy, Domino, Mexican Train, Scrabble, Taboo and Biblios once."
 msgstr "Новые игры по умолчанию выбираются в виджете, а ручное отключение запоминается. При обновлении старых настроек также однократно включаются Rummy, Domino, Mexican Train, Scrabble, Taboo и Biblios."
 
-#: lib/darts/client.rb:526
+#: lib/darts/client.rb:559
 msgid "New personal three-dart record: %{score} points in %{seconds} seconds."
 msgstr "Новый личный рекорд за три дротика: %{score} очков за %{seconds} секунд."
 
@@ -23073,7 +23078,7 @@ msgstr "Таблиц лидеров в этой версии нет."
 msgid "No legal win is available for your hand now; no final value can be given."
 msgstr "Сейчас нет допустимой победы; итоговую стоимость руки определить нельзя."
 
-#: games/darts.rb:60 games/poker.rb:23
+#: games/darts.rb:61 games/poker.rb:23
 msgid "No limit"
 msgstr "Без лимита"
 
@@ -23258,7 +23263,7 @@ msgstr "Арендная плата не взимается: у этой нед�
 msgid "No rent: this property is mortgaged."
 msgstr "Арендная плата не взимается: эта недвижимость заложена."
 
-#: games/krowa_support/leaderboards.rb:306 lib/darts/rankings/screen.rb:67
+#: games/krowa_support/leaderboards.rb:306 lib/darts/rankings/screen.rb:68
 msgid "No results"
 msgstr "Ничего не найдено"
 
@@ -23420,7 +23425,7 @@ msgstr "Ни одна из оставшихся костей не позволя
 msgid "None of your cards fits within 31"
 msgstr "Ни одна карта не укладывается в предел 31"
 
-#: games/axel_pong.rb:49 games/darts.rb:53 lib/darts/client.rb:613 lib/darts/rankings/screen.rb:82
+#: games/axel_pong.rb:49 games/darts.rb:54 lib/darts/client.rb:686 lib/darts/rankings/screen.rb:83
 msgid "Normal"
 msgstr "Нормальный"
 
@@ -23605,7 +23610,7 @@ msgstr "Число матчей по умолчанию 1, диапазон 1–
 msgid "Number of question rounds (8 to 32)"
 msgstr "Количество раундов с вопросом (от 8 до 32)"
 
-#: games/blackjack.rb:40 games/blackjack_dice.rb:46 games/darts.rb:56 games/dice_poker.rb:42 games/mania_pisania.rb:75
+#: games/blackjack.rb:40 games/blackjack_dice.rb:46 games/darts.rb:57 games/dice_poker.rb:42 games/mania_pisania.rb:75
 msgid "Number of rounds"
 msgstr "Количество раундов"
 
@@ -24013,7 +24018,7 @@ msgstr "Учитываются только взятки сверх первых
 msgid "Only the tricks promised beyond the first six earn contract points. If you make your contract, they are worth:"
 msgstr "Выполненный контракт приносит очки за обещанные взятки сверх первых шести:"
 
-#: __app.rb:1677 games/krowa_support/leaderboards.rb:340 games/krowa_support/leaderboards.rb:41 lib/darts/rankings/screen.rb:39 lib/game_room_screens.rb:111 lib/game_room_screens.rb:738 lib/game_statistics_screen.rb:17 lib/mania_pisania/client.rb:623 lib/quiz_contributions/views.rb:144 lib/recordings/ui.rb:242 lib/recordings/ui.rb:45 lib/sports_rankings/screen.rb:58
+#: __app.rb:1677 games/krowa_support/leaderboards.rb:340 games/krowa_support/leaderboards.rb:41 lib/darts/rankings/screen.rb:40 lib/game_room_screens.rb:111 lib/game_room_screens.rb:738 lib/game_statistics_screen.rb:17 lib/mania_pisania/client.rb:623 lib/quiz_contributions/views.rb:144 lib/recordings/ui.rb:242 lib/recordings/ui.rb:45 lib/sports_rankings/screen.rb:58
 msgid "Open"
 msgstr "Открыть"
 
@@ -24863,7 +24868,7 @@ msgstr "Пигменты"
 msgid "Pile: %{total}."
 msgstr "Сумма стопки: %{total}."
 
-#: games/krowa_support/leaderboards.rb:214 games/krowa_support/leaderboards.rb:305 games/krowa_support/leaderboards.rb:77 lib/darts/rankings/screen.rb:65 lib/tournaments/server_forfeit_screen.rb:81
+#: games/krowa_support/leaderboards.rb:214 games/krowa_support/leaderboards.rb:305 games/krowa_support/leaderboards.rb:77 lib/darts/rankings/screen.rb:66 lib/tournaments/server_forfeit_screen.rb:81
 msgid "Place"
 msgstr "Место"
 
@@ -24998,6 +25003,10 @@ msgstr "Растение"
 msgid "Play"
 msgstr "Играть"
 
+#: lib/darts/settings.rb:40
+msgid "Play Darts using the mouse or touchpad"
+msgstr "Играть в Darts с помощью мыши или сенсорной панели"
+
 #: games/mahjong.rb:58
 msgid "Play Mahjong Solitaire, Hong Kong, Riichi or MCR."
 msgstr "Играй в пасьянс маджонг, гонконгский маджонг, риичи или MCR."
@@ -25130,7 +25139,7 @@ msgstr "Воспроизвести повтор"
 msgid "Play return match"
 msgstr "Сыграть ответный матч"
 
-#: lib/darts/settings.rb:37
+#: lib/darts/settings.rb:39
 msgid "Play selected sound"
 msgstr "Воспроизвести выбранный звук"
 
@@ -25194,7 +25203,7 @@ msgstr "Сыграно"
 msgid "Played words"
 msgstr "Сыгранные слова"
 
-#: lib/darts/rankings/screen.rb:65 lib/sports_rankings/screen.rb:98
+#: lib/darts/rankings/screen.rb:66 lib/sports_rankings/screen.rb:98
 msgid "Player"
 msgstr "Игрок"
 
@@ -25292,7 +25301,7 @@ msgstr "Игроки: %{count}"
 msgid "Players: %{players}."
 msgstr "Игроки: %{players}."
 
-#: lib/darts/client.rb:304
+#: lib/darts/client.rb:332
 msgctxt "Darts training"
 msgid "Playfield boundary"
 msgstr "Граница игрового поля"
@@ -25888,7 +25897,7 @@ msgstr "Подготовка расклада пасьянса маджонг."
 msgid "Preparing the match"
 msgstr "Подготовка партии"
 
-#: lib/game_screen.rb:1478
+#: lib/game_screen.rb:1485
 msgid "Preparing the next round"
 msgstr "Подготовка следующего раунда"
 
@@ -26259,7 +26268,7 @@ msgstr "Прогресс сброшен."
 msgid "Progress shows how many pairs you have removed and how many tiles remain. Your score is the number of removed pairs, up to 72. When no pair is available, undo a move to try another route or choose End this puzzle. Ending early does not count as clearing the layout."
 msgstr "Ход игры показывает число убранных пар и оставшихся костей. Счёт равен числу убранных пар, не больше 72. Если доступных пар нет, отмените ход для другого пути или выберите «Завершить эту раскладку». Досрочное завершение не считается очисткой раскладки."
 
-#: lib/darts/client.rb:614 lib/darts/rankings/screen.rb:82
+#: lib/darts/client.rb:687 lib/darts/rankings/screen.rb:83
 msgid "Progressive game"
 msgstr "Прогрессивная игра"
 
@@ -26389,7 +26398,7 @@ msgstr "Опубликовать в серверном тесте"
 msgid "Publish my Darts records in the public rankings"
 msgstr "Публиковать мои рекорды в дартсе в общедоступных рейтингах"
 
-#: lib/darts/settings.rb:35
+#: lib/darts/settings.rb:33
 msgid "Publish new Darts records in the public rankings"
 msgstr "Публиковать новые рекорды в дартсе в общедоступных рейтингах"
 
@@ -26871,7 +26880,7 @@ msgstr "Случайные слова, выживание"
 msgid "Randomly"
 msgstr "Случайно"
 
-#: lib/darts/rankings/screen.rb:26
+#: lib/darts/rankings/screen.rb:27
 msgid "Ranking type"
 msgstr "Тип рейтинга"
 
@@ -27413,7 +27422,7 @@ msgstr "Запоминайте растущую мелодию и повторя
 msgid "Removal of %{player} from tournament %{id}"
 msgstr "Исключение %{player} из турнира %{id}"
 
-#: lib/darts/settings.rb:49
+#: lib/darts/settings.rb:52
 msgid "Removal of your public Darts results has been queued."
 msgstr "Удаление ваших общедоступных результатов в дартсе поставлено в очередь."
 
@@ -27440,7 +27449,7 @@ msgstr "Удалить все ваши результаты из общедос�
 msgid "Remove computer"
 msgstr "Удалить бота"
 
-#: lib/darts/settings.rb:38
+#: lib/darts/settings.rb:41
 msgid "Remove my results from the public Darts rankings"
 msgstr "Удалить мои результаты из общедоступных рейтингов дартса"
 
@@ -28359,11 +28368,11 @@ msgstr "Раунд %{round} начался."
 msgid "Round %{round} started. Letter: %{letter}."
 msgstr "Раунд %{round} начался. Буква: %{letter}."
 
-#: games/darts.rb:236
+#: games/darts.rb:254
 msgid "Round %{round} throw %{dart}"
 msgstr "Раунд %{round} бросок %{dart}"
 
-#: games/darts.rb:240
+#: games/darts.rb:258
 msgid "Round %{round} throw %{dart} player %{player}"
 msgstr "Раунд %{round} бросок %{dart} игрок %{player}"
 
@@ -28828,7 +28837,7 @@ msgstr "Бутерброд"
 msgid "Sarajevo Railway Station"
 msgstr "Вокзал Сараево"
 
-#: games/krowa_support/client.rb:219 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/darts/settings.rb:39 lib/game_room_screens.rb:361 lib/mania_pisania/client.rb:353 lib/quiz_contributions/controller.rb:186 lib/quiz_contributions/views.rb:165
+#: games/krowa_support/client.rb:219 lib/audio_ball/settings.rb:24 lib/axel_pong/settings.rb:41 lib/darts/settings.rb:42 lib/game_room_screens.rb:361 lib/mania_pisania/client.rb:353 lib/quiz_contributions/controller.rb:186 lib/quiz_contributions/views.rb:165
 msgid "Save"
 msgstr "Сохранить"
 
@@ -29093,7 +29102,7 @@ msgstr "Scopone"
 msgid "Scopone: an empty table and larger hands instead of three-card deals"
 msgstr "Scopone: пустой стол и большие руки вместо раздач по три карты"
 
-#: lib/darts/rankings/screen.rb:65
+#: lib/darts/rankings/screen.rb:66
 msgid "Score"
 msgstr "Счёт"
 
@@ -29168,7 +29177,7 @@ msgstr "До порога не хватает: %{count}"
 msgid "Score target"
 msgstr "Цель по очкам"
 
-#: games/darts.rb:65
+#: games/darts.rb:66
 msgid "Score zero points"
 msgstr "Начислить ноль очков"
 
@@ -29180,7 +29189,7 @@ msgstr "Счёт: %{own} к %{opponent}."
 msgid "Score: %{score}; accuracy factor: %{accuracy} percent."
 msgstr "Оценка: %{score}; коэффициент точности: %{accuracy} процентов."
 
-#: games/cat_head_tail.rb:438 games/categories.rb:1419 games/farkle.rb:766 games/quiz_party.rb:1218 games/spades.rb:645 games/tysiac.rb:1645
+#: games/cat_head_tail.rb:438 games/categories.rb:1419 games/darts.rb:456 games/farkle.rb:766 games/quiz_party.rb:1218 games/spades.rb:645 games/tysiac.rb:1645
 msgid "Scores: %{scores}."
 msgstr "Счёт: %{scores}."
 
@@ -29502,7 +29511,7 @@ msgstr "Отправка и отклонение приглашений запи
 msgid "Sending assessment"
 msgstr "Отправка оценки"
 
-#: __app.rb:2238 lib/game_screen.rb:1383
+#: __app.rb:2238 lib/game_screen.rb:1390
 msgid "Sending chat message"
 msgstr "Отправка сообщения чата"
 
@@ -30286,6 +30295,10 @@ msgstr "Показать матчи"
 msgid "Show only tables created by contacts"
 msgstr "Показывать только столы, созданные контактами"
 
+#: lib/darts/settings.rb:35
+msgid "Show private Darts records in the table history"
+msgstr "Показывать личные рекорды Darts в истории стола"
+
 #: lib/tournaments/public_screen.rb:68
 msgid "Show tournaments"
 msgstr "Показать турниры"
@@ -30649,11 +30662,11 @@ msgstr "Набор звуков (только для вас)"
 msgid "Sound pairs"
 msgstr "Звуковые пары"
 
-#: lib/darts/settings.rb:76
+#: lib/darts/settings.rb:81
 msgid "Sound preview is unavailable."
 msgstr "Предварительное прослушивание недоступно."
 
-#: games/darts.rb:49 games/generated/rulebooks/darts.rb:29
+#: games/darts.rb:50 games/generated/rulebooks/darts.rb:29
 msgid "Sound training"
 msgstr "Звуковая тренировка"
 
@@ -31809,7 +31822,7 @@ msgstr "Цель %{number} из 5."
 msgid "Target and forbidden words"
 msgstr "Загаданное и запрещённые слова"
 
-#: lib/darts/client.rb:655
+#: lib/darts/client.rb:728
 msgctxt "Darts training"
 msgid "Target boundary"
 msgstr "Граница мишени"
@@ -33056,7 +33069,7 @@ msgstr "Игра объявляет переход игрока на бочку 
 msgid "The game cannot start until these players join the real-time session: %{players}."
 msgstr "Партия не начнётся, пока к сеансу реального времени не присоединятся: %{players}."
 
-#: lib/game_screen.rb:1004 lib/game_screen.rb:1680 lib/game_screen.rb:970
+#: lib/game_screen.rb:1004 lib/game_screen.rb:1687 lib/game_screen.rb:970
 msgid "The game changed before your action was accepted. Please choose again."
 msgstr "Состояние партии изменилось до принятия действия. Выберите заново."
 
@@ -33645,7 +33658,7 @@ msgstr "Первый удар должен попасть прямо в крас
 msgid "The opening shot uses the coloured ball from behind the home line at the left quarter. After hitting an object ball, either pot a ball, send three different object balls to cushions, or send two to cushions and an object ball across the centre line."
 msgstr ""
 
-#: __app.rb:1596 __app.rb:2537 __app.rb:3283 lib/game_room_widget.rb:251 lib/game_screen.rb:1718
+#: __app.rb:1596 __app.rb:2537 __app.rb:3283 lib/game_room_widget.rb:251 lib/game_screen.rb:1725
 msgid "The operation could not be completed. Please try again."
 msgstr "Не удалось выполнить операцию. Попробуйте снова."
 
@@ -35272,7 +35285,7 @@ msgstr "Этот вариант Tysiac требует ровно %{count} игр
 msgid "This Word Tower result has already been published."
 msgstr "Этот результат Word Tower уже опубликован."
 
-#: lib/game_screen.rb:1021 lib/game_screen.rb:1576
+#: lib/game_screen.rb:1021 lib/game_screen.rb:1583
 msgid "This action contains too much data and was not sent."
 msgstr "Действие содержит слишком много данных и не отправлено."
 
@@ -35936,12 +35949,12 @@ msgstr "Тройка: в следующем взятке игрок, сыгра�
 msgid "Threes"
 msgstr "Тройки"
 
-#: lib/darts/client.rb:318
+#: lib/darts/client.rb:346
 msgctxt "Darts training"
 msgid "Throw"
 msgstr "Бросок"
 
-#: games/darts.rb:64
+#: games/darts.rb:65
 msgid "Throw from the current position"
 msgstr "Бросить из текущего положения"
 
@@ -35985,7 +35998,7 @@ msgstr "Кости в раскладе"
 msgid "Tiles left: %{count}."
 msgstr "Осталось костей: %{count}."
 
-#: games/billiards.rb:85 lib/darts/rankings/screen.rb:65
+#: games/billiards.rb:85 lib/darts/rankings/screen.rb:66
 msgid "Time"
 msgstr "Время"
 
@@ -36019,7 +36032,7 @@ msgstr "Время на один ответ по умолчанию 20 секу�
 msgid "Time for one answer in seconds"
 msgstr "Время одного ответа в секундах"
 
-#: games/darts.rb:59
+#: games/darts.rb:60
 msgid "Time for one dart"
 msgstr "Время на один дротик"
 
@@ -36043,7 +36056,7 @@ msgstr "Лимит времени в минутах (1–180)"
 msgid "Time limits and a blocked round"
 msgstr "Ограничения по времени и заблокированный раунд"
 
-#: lib/darts/client.rb:187
+#: lib/darts/client.rb:213
 msgctxt "Darts training"
 msgid "Time starts"
 msgstr "Время пошло"
@@ -37399,7 +37412,7 @@ msgstr "Обновление партии"
 msgid "Updating table"
 msgstr "Обновление стола"
 
-#: lib/game_screen.rb:1431
+#: lib/game_screen.rb:1438
 msgid "Updating table status"
 msgstr "Обновление состояния стола"
 
@@ -37627,7 +37640,7 @@ msgstr "Пользователь"
 msgid "User name"
 msgstr "Имя пользователя"
 
-#: lib/game_screen.rb:1442
+#: lib/game_screen.rb:1449
 msgid "Users at the table (%{count})"
 msgstr "Пользователи за столом (%{count})"
 
@@ -38466,7 +38479,7 @@ msgstr "Когда типы совпадают, сравните ранги, ф�
 msgid "When time expires, everything currently entered is submitted automatically. The fields are not cleared before the server accepts the answers."
 msgstr "По истечении времени весь введённый текст отправляется автоматически. Поля не очищаются до принятия ответов сервером."
 
-#: games/darts.rb:63 games/generated/rulebooks/makao.rb:28 games/generated/rulebooks/mexican_train.rb:23
+#: games/darts.rb:64 games/generated/rulebooks/makao.rb:28 games/generated/rulebooks/mexican_train.rb:23
 msgid "When time runs out"
 msgstr "Когда время заканчивается"
 
@@ -40937,7 +40950,7 @@ msgstr "наличные (%{amount})"
 msgid "catch missing Makao"
 msgstr "поймать необъявленное «Макао»"
 
-#: games/darts.rb:291 lib/billiards/presentation.rb:47 lib/billiards/presentation.rb:76
+#: games/darts.rb:306 lib/billiards/presentation.rb:47 lib/billiards/presentation.rb:76
 msgid "centre"
 msgstr "центр"
 
@@ -41162,7 +41175,7 @@ msgstr "удвоение буквы"
 msgid "double word"
 msgstr "удвоение слова"
 
-#: games/darts.rb:293
+#: games/darts.rb:308
 msgid "down"
 msgstr "вниз"
 
@@ -41558,7 +41571,7 @@ msgstr "королей: %{kings}, ферзей: %{queens}, ладей: %{rooks},
 msgid "knight"
 msgstr "рыцарь"
 
-#: games/darts.rb:292 lib/billiards/presentation.rb:47
+#: games/darts.rb:307 lib/billiards/presentation.rb:47
 msgid "left"
 msgstr "слева"
 
@@ -41610,11 +41623,11 @@ msgstr "слушать со стороны третьего игрока"
 msgid "loss %{amount}"
 msgstr "проигрыш: %{amount}"
 
-#: games/darts.rb:292
+#: games/darts.rb:307
 msgid "lower left"
 msgstr "слева внизу"
 
-#: games/darts.rb:293
+#: games/darts.rb:308
 msgid "lower right"
 msgstr "справа внизу"
 
@@ -42061,11 +42074,11 @@ msgstr "прочитать финансы"
 msgid "read forbidden word %{number}"
 msgstr "прочитать запрещённое слово %{number}"
 
-#: games/base/information.rb:67
+#: games/base/information.rb:70
 msgid "read how long the game has lasted"
 msgstr "узнать длительность партии"
 
-#: games/base/information.rb:68
+#: games/base/information.rb:71
 msgid "read how long the round has lasted"
 msgstr "узнать длительность раунда"
 
@@ -42105,7 +42118,7 @@ msgstr "прочитать подготовленные комбинации и 
 msgid "read rack position %{number}"
 msgstr "прочитать фишку %{number} на подставке"
 
-#: games/axel_pong.rb:249 games/darts.rb:256 lib/recordings/controls.rb:28
+#: games/axel_pong.rb:249 games/darts.rb:274 lib/recordings/controls.rb:28
 msgid "read scores"
 msgstr "прочитать счёт"
 
@@ -42365,7 +42378,7 @@ msgstr "прочитать кость, ожидающую вашего отве�
 msgid "read the top card"
 msgstr "прочитать верхнюю карту"
 
-#: games/darts.rb:258
+#: games/darts.rb:276
 msgid "read the training cursor sector"
 msgstr "прочитать сектор тренировочного прицела"
 
@@ -42601,7 +42614,7 @@ msgstr "реверс"
 msgid "reviewing answers"
 msgstr "проверка ответов"
 
-#: games/darts.rb:291 lib/billiards/presentation.rb:47
+#: games/darts.rb:306 lib/billiards/presentation.rb:47
 msgid "right"
 msgstr "справа"
 
@@ -42996,7 +43009,7 @@ msgstr "выкупить участок из залога"
 msgid "unsupported"
 msgstr "не поддерживается"
 
-#: games/darts.rb:291
+#: games/darts.rb:306
 msgid "up"
 msgstr "вверх"
 
@@ -43004,11 +43017,11 @@ msgstr "вверх"
 msgid "up to %{count} tricks"
 msgstr "до %{count} взяток"
 
-#: games/darts.rb:292
+#: games/darts.rb:307
 msgid "upper left"
 msgstr "слева вверху"
 
-#: games/darts.rb:291
+#: games/darts.rb:306
 msgid "upper right"
 msgstr "справа вверху"
 

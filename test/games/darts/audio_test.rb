@@ -48,7 +48,7 @@ program = DartsAudioProgram.new
 audio = GameRoomDarts::Audio.new(program)
 audio.load
 expected = %w[darts_locator_round ding duck_note_c darts_edge darts_limit notice darts_throw darts_applause darts_consolation
-  darts_hit_1 darts_hit_2 darts_hit_3 darts_hit_4 darts_hit_5]
+  round_finished darts_hit_1 darts_hit_2 darts_hit_3 darts_hit_4 darts_hit_5]
 assert(program.created.map(&:first).sort == expected.sort,
   'Darts did not allocate the locator, release, result, quality and five impact assets once')
 GameRoomDarts::Preferences::LOCATOR_ASSETS.each_value do |asset|
@@ -143,6 +143,8 @@ assert(audio.result(won: true) == 0.4 && audio.result(won: false) == 0.4,
   'result recordings do not expose their tails to the non-blocking end-of-game presentation')
 assert(program.sounds['darts_applause'].plays == 1 && program.sounds['darts_consolation'].plays == 1,
   'winner and consolation applause were not distinct')
+assert(audio.round_started == 0.4 && program.sounds['round_finished'].plays == 1,
+  'the next-round cue does not expose its tail to the ordered throw presentation')
 
 audio.close
 assert(program.released.tally == program.managed.tally && program.sounds.values.all? { |sound| sound.closes == 1 },

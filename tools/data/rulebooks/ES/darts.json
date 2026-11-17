@@ -42,6 +42,7 @@
         {"es": "Tras el número de rondas elegido, gana quien tenga la suma más alta. Si varias personas empatan en cabeza, cada una lanza un dardo adicional. Los desempates de un solo dardo continúan únicamente entre quienes sigan empatados hasta que una persona obtenga el mejor resultado. En una partida individual, el resultado es la suma final."},
         {"es": "Cada partida terminada aporta tu mejor ronda de tres dardos y tu media de todos los lanzamientos normales. Tus tres mejores resultados de cada categoría se guardan de forma privada, por separado para cada dificultad. No cuentan el entrenamiento sonoro, los resultados de los bots ni los lanzamientos de desempate."},
         {"es": "Para compartir nuevos récords, abre tus ajustes personales de Darts con Ctrl+P y activa la publicación. También puedes publicar récords guardados anteriormente. Desactivar la publicación no elimina los resultados ya publicados; para ello hay una opción independiente en los mismos ajustes. Las copias privadas se conservan."},
+        {"es": "Los récords privados nuevos no aparecen de forma predeterminada en el historial compartido de la mesa. En los mismos ajustes de Ctrl+P puedes mostrarlos en tu historial local. Los demás jugadores no verán estas entradas y mostrarlas no publica los récords."},
         {"es": "Una puntuación mayor da un puesto mejor; si hay empate, decide el menor tiempo de lanzamiento. Si coinciden la puntuación y el tiempo, se comparte el puesto y aparece primero el resultado más antiguo. Cada clasificación muestra 30 resultados, como máximo tres por jugador. Todos los presentes en la mesa oyen un nuevo puesto publicado entre los 30 mejores; un nuevo récord personal de tres dardos solo se anuncia a su titular."}
       ]
     },
@@ -51,7 +52,7 @@
       "paragraphs": [
         {"es": "Las dificultades fácil, normal y difícil cambian la precisión de las correcciones, el tiempo que la mira permanece más estable después de corregirla y la velocidad de la deriva. Con la dificultad progresiva, la partida empieza en fácil, pasa a normal y termina en difícil a medida que avanzan las rondas."},
         {"es": "La partida puede durar 1, 3, 5 o 10 rondas. El tiempo para cada dardo y lo que ocurre al agotarse se eligen por separado."},
-        {"es": "Antes de jugar se puede activar el control relativo opcional con ratón. El movimiento del ratón corrige entonces la mira y el botón izquierdo inicia la puntería o lanza igual que la tecla Espacio."}
+        {"es": "El control con ratón o panel táctil es un ajuste personal y está activado de forma predeterminada. Puedes desactivarlo o volver a activarlo con Ctrl+P. Cuando está activo, el movimiento relativo corrige la mira y el botón izquierdo empieza a apuntar o lanza igual que la tecla Espacio."}
       ]
     },
     {
@@ -71,8 +72,8 @@
         {"es": "S: lee las puntuaciones."},
         {"es": "T: lee a quién le toca."},
         {"es": "C: repite el sector actual en el entrenamiento de sonidos."},
-        {"es": "Ctrl+P: abre los ajustes personales de Dardos, elige el sonido de puntería, controla la publicación de nuevos récords o elimina tus resultados públicos."},
-        {"es": "Control opcional con ratón: el movimiento relativo corrige la mira y el botón izquierdo comienza a apuntar o lanza. Actívalo en las opciones de la mesa antes de jugar."}
+        {"es": "Ctrl+P: abre los ajustes personales de Darts, controla la publicación de récords y su aparición en el historial local, elige el sonido de puntería o activa y desactiva el ratón y el panel táctil."},
+        {"es": "Ratón/panel táctil: el movimiento relativo corrige la mira y el botón izquierdo empieza a apuntar o lanza. Este control personal está activado de forma predeterminada y se puede cambiar con Ctrl+P."}
       ]
     }
   ],
@@ -82,7 +83,6 @@
     "rounds": "scoring",
     "progressive": "options",
     "time_limit": "time",
-    "timeout_result": "time",
-    "mouse_input": "options"
+    "timeout_result": "time"
   }
 }

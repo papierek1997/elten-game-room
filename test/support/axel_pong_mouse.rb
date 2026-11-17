@@ -29,5 +29,5 @@ class PongMouseBackend
   end
   def available?; @supported; end
   def sample; @samples += 1; @delta; end
-  def suspend; @suspends += 1; end
+  def suspend(**_options); @suspends += 1; end
 end
