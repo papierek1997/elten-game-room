@@ -127,8 +127,7 @@ module GameRoomGames
       elsif normalized_kind == :grid_preview
         raise ArgumentError, "a grid preview requires a grid" unless default_value.is_a?(GameSurfaces::GridSpec)
       elsif normalized_kind == :form
-        raise ArgumentError, "a form shortcut requires fields and an action" if fields.to_a.empty? || action_kind.to_s.empty? || action_name.to_s.empty?
-        raise ArgumentError, "invalid form field" if fields.any? { |field| !field.is_a?(OptionDefinition) || ![:integer, :choice, :multiple_choice, :boolean].include?(field.kind.to_sym) }
+        validate_form_fields(fields, prompt, action_kind, action_name)
       elsif normalized_kind == :number_input
         raise ArgumentError, "a number shortcut requires a prompt" if prompt.to_s.empty?
         raise ArgumentError, "a number shortcut requires an action" if action_kind.to_s.empty? || action_name.to_s.empty?
@@ -197,6 +196,14 @@ module GameRoomGames
 
     private
 
+    def validate_form_fields(fields, prompt, action_kind, action_name)
+      raise ArgumentError, "a form shortcut requires fields or a confirmation prompt and an action" if
+        (fields.to_a.empty? && prompt.to_s.empty?) || action_kind.to_s.empty? || action_name.to_s.empty?
+      raise ArgumentError, "invalid form field" if fields.to_a.any? do |field|
+        !field.is_a?(OptionDefinition) || ![:integer, :choice, :multiple_choice, :boolean].include?(field.kind.to_sym)
+      end
+    end
+
     def normalize_shortcut_modifiers(modifiers)
       normalized = modifiers.to_a.map(&:to_sym).uniq.sort
       if normalized.any? { |modifier| ![:alt, :control, :shift].include?(modifier) }
@@ -231,6 +238,7 @@ module GameRoomGames
     # Optional presentation-only round boundaries, reconstructed from accepted
     # events. Not another rule-state member or a saved-game wire field.
     attr_accessor :round_timing
+    attr_accessor :presentation_event_count, :presentation_events, :presentation_session
 
     def finished?
       winner != nil || draw == true

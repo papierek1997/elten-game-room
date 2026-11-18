@@ -296,7 +296,7 @@ module GameRoomGames
     def shortcut_feature_data(feature, replay, viewer)
       case feature.to_sym
       when :scores
-        {message: replay.state[:chips].map { |person, chips| "#{participant_name(person)}: #{auction_amount(chips)}" }.join("; ")}
+        {message: replay.state[:chips].map { |person, chips| "#{participant_full_name(person)}: #{auction_amount(chips)}" }.join("; ")}
       when :hand
         hand = displayed_hand(replay.state, viewer)
         {message: hand ? blackjack_hand_text(hand[:cards]) : _("Your hand is empty"), hand_id: nil}
@@ -588,7 +588,7 @@ module GameRoomGames
         outcomes.each_with_index.map { |value, index| _("hand %{hand}: %{outcome}") % {hand: index + 1, outcome: value} }.join("; ")
       end
       _("%{player}: %{outcome}. Balance: %{balance}.") % {
-        player: participant_name(player), outcome: outcome, balance: auction_amount(balance)}
+        player: participant_full_name(player), outcome: outcome, balance: auction_amount(balance)}
     end
 
     def advance_hand(state)

@@ -55,6 +55,7 @@ require_relative "dice_poker"
 require_relative "kosciane"
 require_relative "balut"
 require_relative "liars_dice"
+require_relative "cheat"
 require_relative "go"
 require_relative "roulette"
 require_relative "billiards"
@@ -116,6 +117,7 @@ module GameRoomGames
     GameRoomGames::Kosciane,
     GameRoomGames::Balut,
     GameRoomGames::LiarsDice,
+    GameRoomGames::Cheat,
     GameRoomGames::Go,
     GameRoomGames::Roulette,
     GameRoomGames::Billiards

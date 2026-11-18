@@ -192,7 +192,7 @@ module GameRoomGames
       shortcuts << announcement_shortcut(key: "d", label: _("read the dice"), message: dice_text(state))
       entries = replay.players.map do |player|
         match = state[:match_model]
-        "#{participant_name(player)}: #{match.total(player) - match.bonuses(player).values.sum}"
+        "#{participant_full_name(player)}: #{match.total(player) - match.bonuses(player).values.sum}"
       end
       shortcuts << GameShortcut.new(key: "s", modifiers: [:shift], kind: :announcement,
         label: _("read the sum of recorded scores"), message: entries.join("\n"))
@@ -230,7 +230,7 @@ module GameRoomGames
     end
 
     def score_sheet_title(_state, player)
-      _("Score sheet: %{player}") % {player: participant_name(player)}
+      _("Score sheet: %{player}") % {player: participant_full_name(player)}
     end
 
     def score_sheet_choices(state, player, incomplete_only: false)

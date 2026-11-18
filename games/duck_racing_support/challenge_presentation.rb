@@ -11,6 +11,11 @@ module GameRoomDuckRacing
     using GameRoomLocalization::Translations
     module_function
 
+    def participant_name(view, participant, form: :first)
+      names = view[:receiver_name_presentation]
+      names ? names.format(participant, form: form) : GameRoomParticipants.display_name(participant)
+    end
+
     def project(kind:, view:, viewer:, previous_view: nil)
       raise ArgumentError, "Invalid challenge view" unless view.is_a?(Hash) && view[:type] == kind
       participants = view[:participants] || view[:seats] || []
@@ -87,7 +92,7 @@ module GameRoomDuckRacing
     def observation_choices(view)
       chosen = view[:answered] || view[:ready] || {}
       chosen.filter_map do |seat, ready|
-        text(GameRoomParticipants.display_name(view[:player_names].fetch(seat))) if ready && view[:player_names]&.key?(seat)
+        text(participant_name(view, view[:player_names].fetch(seat), form: :full)) if ready && view[:player_names]&.key?(seat)
       end
     end
 
@@ -95,14 +100,14 @@ module GameRoomDuckRacing
       parts = [_('You are watching.')]
       turn = current_turn(view)
       if !turn.nil? && view[:player_names]&.key?(turn)
-        parts << (_("%{player}'s turn.") % {player: text(GameRoomParticipants.display_name(view[:player_names].fetch(turn)))})
+        parts << (_("%{player}'s turn.") % {player: text(participant_name(view, view[:player_names].fetch(turn)))})
       end
       chosen = observation_choices(view) if %w[rock_paper_scissors quiz].include?(kind)
       parts << (_('Already chosen: %{players}.') % {players: chosen.join(', ')}) if chosen && !chosen.empty?
       if totals && kind == 'numbered_balls'
         view.fetch(:scores, {}).each do |seat, score|
           next unless view[:player_names]&.key?(seat)
-          parts << (_('%{player}: %{result}.') % {player: text(GameRoomParticipants.display_name(view[:player_names].fetch(seat))), result: score})
+          parts << (_('%{player}: %{result}.') % {player: text(participant_name(view, view[:player_names].fetch(seat), form: :full)), result: score})
         end
       end
       parts.join(' ')
@@ -165,7 +170,7 @@ module GameRoomDuckRacing
       end
       instruction = _('Waiting for others.') if ready
       if ready && view[:waiting]&.any? && view[:player_names]
-        names = view[:waiting].map { |seat| text(GameRoomParticipants.display_name(view[:player_names].fetch(seat))) }.join(', ')
+        names = view[:waiting].map { |seat| text(participant_name(view, view[:player_names].fetch(seat), form: :full)) }.join(', ')
         instruction = _('Ready. Waiting for: %{players}.') % {players: names}
       end
       instruction = _('You are watching.') unless participating
@@ -227,7 +232,7 @@ module GameRoomDuckRacing
       when "race_question"
         question = view.fetch(:question)
         name = view.dig(:player_names, question.fetch(:seat))
-        name = GameRoomParticipants.display_name(name) unless name.nil?
+        name = participant_name(view, name) unless name.nil?
         name = _('Player %{number}') % {number: question.fetch(:seat) + 1} if name.nil?
         template = {square: _('Which square is %{player} on?'), lap: _('Which lap is %{player} on?'),
           feathers: _('How many feathers does %{player} have?'), card_count: _('How many cards does %{player} have?')}.fetch(question.fetch(:field))
@@ -367,9 +372,9 @@ module GameRoomDuckRacing
       %w[count_ducks rhythm simon hit_duck].include?(kind)
     end
 
-    def memory_feedback(event, players)
+    def memory_feedback(event, players, names: nil)
       result = {announcement: _('%{player}: %{position}.') % {
-        player: text(GameRoomParticipants.display_name(players.fetch(event.fetch(:seat)))),
+        player: text(participant_name({receiver_name_presentation: names}, players.fetch(event.fetch(:seat)))),
         position: event.fetch(:position)}}
       result[:result_announcement] = event[:matched] ? _('Correct!') : _('Wrong!') if event.key?(:matched)
       result

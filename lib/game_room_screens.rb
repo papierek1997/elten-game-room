@@ -12,8 +12,9 @@ module GameRoomScreens
   MenuResult = Struct.new(:action, :index, keyword_init: true)
 
   class TeamList < ListBox
-    def initialize(assignment, index: 0)
+    def initialize(assignment, index: 0, names: nil)
       @assignment = assignment
+      @names = names
       super(rows, header: GameRoomContent.utf8(_("Players and teams")), index: index, quiet: true)
       GameRoomContextHelp.replace([self], [
         GameRoomContextHelp.shortcut_tip('Shift+Up', _("Move the selected person up")),
@@ -23,6 +24,13 @@ module GameRoomScreens
     end
 
     def update
+      token = @names&.token
+      if @receiver_token != token
+        position = index
+        self.options = rows
+        self.index = position
+        @receiver_token = token
+      end
       if respond_to?(:keyboard_binding_pressed?, true)
         direction = if keyboard_binding_pressed?([:key_up, :shift])
           -1
@@ -46,7 +54,7 @@ module GameRoomScreens
     def rows
       @assignment.players.each_with_index.map do |person, position|
         GameRoomContent.utf8(_("%{player}, team %{team}")) % {
-          player: GameRoomContent.utf8(GameRoomParticipants.display_name(person)),
+          player: GameRoomContent.utf8(@names ? @names.format(person, form: :full) : GameRoomParticipants.display_name(person)),
           team: @assignment.seats[position] + 1
         }
       end

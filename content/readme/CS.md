@@ -63,11 +63,11 @@ výsledky do žebříčků. Ve vývojářském režimu jsou statistiky vždy vyp
 
 ## Co si můžete zahrát
 
-Power Games obsahuje 57 her: karetní a deskové hry, slovní a vědomostní
+Power Games obsahuje 58 her: karetní a deskové hry, slovní a vědomostní
 hry, procvičování psaní i hry založené na sluchu a postřehu.
 
 - Karetní hry: 3-5-8, 99, 1000 mil, Biblios, Blackjack, Bouillabaisse,
-  Bridž, Belote, Cribbage, Francouzský tarot, Jass, Srdce, Makao, Piky, Poker,
+  Bridž, Belote, Cribbage, Francouzský tarot, Jass, Srdce, Karetní podvodník, Makao, Piky, Poker,
   Rummy, Scopa, Tisíc, UNO, War a Scientific War.
 - Deskové a strategické hry: Člověče, nezlob se, Čtyři v řadě, Go,
   Piškvorky, Mahjong, Mancala, Monopoly, Reversi, Lodě, Šachy, Vrhcáby,

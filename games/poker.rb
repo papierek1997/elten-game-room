@@ -1629,7 +1629,7 @@ module GameRoomGames
     def stack_text(state, viewer)
       replay = Replay.new(state: state)
       out = state[:players].to_h { |p| [p, eliminated_from_game?(replay, p)] }
-      score_announcement_order(state[:players], state[:stacks], eliminated: out).reject { |player| same_user?(player, viewer) }.map { |player| _("%{player}: %{chips}") % { player: participant_name(player), chips: state[:stacks][player] } }.join("; ")
+      score_announcement_order(state[:players], state[:stacks], eliminated: out).reject { |player| same_user?(player, viewer) }.map { |player| _("%{player}: %{chips}") % { player: participant_full_name(player), chips: state[:stacks][player] } }.join("; ")
     end
 
     def active_text(state)

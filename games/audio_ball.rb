@@ -67,6 +67,7 @@ module GameRoomGames
 
     def _(source); GameRoomContent.utf8(super(source)); end
     def participant_name(player); GameRoomContent.utf8(super(player)); end
+    def participant_full_name(player); GameRoomContent.utf8(super(player)); end
 
     def build_client(program, **services)
       require_relative '../lib/audio_ball/audio'
@@ -224,7 +225,7 @@ module GameRoomGames
 
     def score_labels(options,players)
       assignment=team_assignment(options,players:players)
-      assignment ? assignment.team_ids.map { |id| assignment.members_for(id).map { |p| participant_name(p) }.join(', ') } : players.map { |p| participant_name(p) }
+      assignment ? assignment.team_ids.map { |id| assignment.members_for(id).map { |p| participant_full_name(p) }.join(', ') } : players.map { |p| participant_full_name(p) }
     end
 
     def result_text(replay)

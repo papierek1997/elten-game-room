@@ -12,11 +12,13 @@ class GameRoomEventPresenter
   attr_reader :presentation_session_id
 
   def initialize(game:, repository:, program:, viewer:, client:, surface_state:,
-    clock:, covered:, speech:, trace:, history_changed:, session_changed:)
+    clock:, covered:, speech:, trace:, history_changed:, session_changed:, display_game: nil, display_replay: nil, raw_input: nil)
     @game, @repository, @program, @viewer = game, repository, program, viewer
     @client, @surface_state, @clock, @covered = client, surface_state, clock, covered
     @speech, @trace = speech, trace
     @history_changed, @session_changed = history_changed, session_changed
+    @display_game, @display_replay = display_game || game, display_replay || ->(replay, _session) { replay }
+    @raw_input = raw_input
     @turn_history_entries, @spoken_timer_announcements = {}, {}
   end
 
@@ -123,7 +125,7 @@ class GameRoomEventPresenter
               defer_replay: after_replay.finished? || stage[:defer_replay], delay: stage.fetch(:delay, 0.0),
               wait_for_sounds: stage.fetch(:wait_for_sounds, false),
               start: -> { present_game_event(event, before_replay, after_replay, after_replay, signal_received_at,
-                stage: stage, notify_client: index.zero?, include_result: last) }, finish: last ? finish : nil)
+                stage: stage, stage_index: index, notify_client: index.zero?, include_result: last) }, finish: last ? finish : nil)
           end
         else
           @event_presentation.enqueue(replay: after_replay, defer_replay: after_replay.finished?,
@@ -161,8 +163,17 @@ class GameRoomEventPresenter
   end
 
   def present_game_event(event, before_replay, after_replay, description_replay, signal_received_at,
-    stage: nil, notify_client: true, include_result: true)
+    stage: nil, stage_index: nil, notify_client: true, include_result: true)
     client_playback = @client.call&.event(event, before_replay, after_replay, @viewer.call, @repository.call) if notify_client
+    presentation_game = @display_game.call
+    if !presentation_game.equal?(@game.call)
+      before_replay, after_replay, description_replay = [before_replay, after_replay, description_replay].map do |value|
+        value && @display_replay.call(value, @presentation_session)
+      end
+      if stage_index
+        stage = presentation_game.event_presentation_stages(event, @repository.call, before_replay, after_replay, @viewer.call).fetch(stage_index)
+      end
+    end
     sounds = begin
       cues = GameRoomSounds.event_cue(
         game: @game.call, event: event, before_replay: before_replay, after_replay: after_replay,
@@ -181,12 +192,12 @@ class GameRoomEventPresenter
       []
     end
     descriptions = normalize_event_descriptions(
-      stage ? stage.fetch(:descriptions) : @game.call.describe_event_for_display(event, @repository.call, description_replay, @viewer.call, surface_state: @surface_state.call)
+      stage ? stage.fetch(:descriptions) : presentation_game.describe_event_for_display(event, @repository.call, description_replay, @viewer.call, surface_state: @surface_state.call)
     )
     descriptions = [] if @client.call&.respond_to?(:presents_game_event?) && @client.call.presents_game_event?(event)
     # The result remains in canonical history, but the common result presenter
     # owns its automatic announcement (also after serialized sound playback).
-    result = @game.call.result_text(after_replay) if after_replay != nil
+    result = presentation_game.result_text(after_replay) if after_replay != nil
     descriptions = descriptions.reject { |text| GameRoomContent.utf8(text) == GameRoomContent.utf8(result) } if result != nil
     tail = @game.call.event_speech_tail_sound(event: event, before_replay: before_replay,
       after_replay: after_replay, viewer: @viewer.call)
@@ -224,7 +235,7 @@ class GameRoomEventPresenter
   def present_turn_transition(turn_entry, replay)
     return if turn_entry == nil
 
-    message = @game.call.turn_announcement(replay, @viewer.call)
+    message = @display_game.call.turn_announcement(replay, @viewer.call)
     @speech.call(message) if !message.to_s.empty?
   end
 
@@ -248,7 +259,7 @@ class GameRoomEventPresenter
 
   def present_game_result(replay, signal_received_at)
     return if @client.call&.respond_to?(:presents_game_result?) && @client.call.presents_game_result?(replay)
-    result = @game.call.result_text(replay)
+    result = @display_game.call.result_text(replay)
     return if result == nil
 
     @trace.call("result_speech_queued", signal_received_at)
@@ -264,7 +275,7 @@ class GameRoomEventPresenter
   end
 
   def presentation_replay
-    @presentation_replay ||= GameRoomPresentationReplay.new(@game.call.build_presentation_game, @repository.call)
+    @presentation_replay ||= GameRoomPresentationReplay.new(@game.call.build_presentation_game, @repository.call, raw_input: @raw_input)
   end
 
   def remember_turn_transition(before_replay, after_replay, event_id)

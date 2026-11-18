@@ -258,7 +258,7 @@ module GameRoomGames
     def custom_game_shortcuts(replay, viewer)
       counts = [25, 0].map do |point|
         replay.players.zip(replay.board).map do |player, board|
-          "#{GameRoomContent.utf8(participant_name(player))}, #{board.fetch(point, 0)}"
+          "#{GameRoomContent.utf8(participant_full_name(player))}, #{board.fetch(point, 0)}"
         end.join(". ")
       end
       [announcement_shortcut(key: "s", label: _("Read scores"), message: score_text(replay.players, replay.state)),
@@ -411,7 +411,7 @@ module GameRoomGames
     end
 
     def score_text(players, state)
-      players.zip(state[:scores]).map { |player, points| "#{GameRoomContent.utf8(participant_name(player))}, #{points}" }.join(". ")
+      players.zip(state[:scores]).map { |player, points| "#{GameRoomContent.utf8(participant_full_name(player))}, #{points}" }.join(". ")
     end
 
     def can_double?(state)

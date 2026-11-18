@@ -289,7 +289,7 @@ module GameRoomGames
       others = replay.players.reject { |player| same_user?(player,viewer) }
       unless others.empty?
         choices = others.length == 1 ? score_sheet_choices(replay.state,others.first) : others.map do |player|
-          ShortcutChoice.new(label: participant_name(player), value: score_sheet_choices(replay.state,player))
+          ShortcutChoice.new(label: participant_full_name(player), value: score_sheet_choices(replay.state,player))
         end
         shortcuts << browse_shortcut(key: "v", modifiers: [:shift], label: _("view another player's score sheet"),
           prompt: others.length == 1 ? score_sheet_title(replay.state,others.first) : _("Choose a player's score sheet"), choices: choices)
@@ -307,7 +307,7 @@ module GameRoomGames
     end
 
     def score_sheet_title(state,player)
-      _("%{player}'s score sheet, match %{match}") % { player: participant_name(player), match: state[:match] }
+      _("%{player}'s score sheet, match %{match}") % { player: participant_full_name(player), match: state[:match] }
     end
     def score_sheet_choices(state,player)
       sheet = state[:sheets].fetch(player)
@@ -585,7 +585,7 @@ module GameRoomGames
     def scores_text(state, sorted: false)
       players = sorted ? score_announcement_order(state[:players], state[:players].to_h { |p| [p, total_score(state, p)] }) : state[:players]
       players.map do |player|
-        _("%{player}: %{score}") % { player: participant_name(player), score: total_score(state, player) }
+        _("%{player}: %{score}") % { player: participant_full_name(player), score: total_score(state, player) }
       end.join("; ")
     end
 

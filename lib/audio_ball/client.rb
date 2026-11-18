@@ -561,7 +561,7 @@ module GameRoomAudioBall
       return false unless rally_state.engine.warn(data['side']) || (!host? && @side == nil && rally_state.engine.warning)
       presentation_state.warning_key = key
       @clock_reset = true
-      @audio.hurry(GameRoomParticipants.display_name(@players[rally_state.engine.holder]))
+      @audio.hurry(receiver_participant_name(@players[rally_state.engine.holder]))
       true
     end
 
@@ -641,8 +641,8 @@ module GameRoomAudioBall
         if @announced_orientation != orientation
           @announced_orientation = orientation
           @audio.announce(GameRoomContent.utf8(_('%{left} is on the left; %{right} is on the right.')) % {
-            left: GameRoomContent.utf8(GameRoomParticipants.display_name(orientation[0])),
-            right: GameRoomContent.utf8(GameRoomParticipants.display_name(orientation[1]))})
+            left: GameRoomContent.utf8(receiver_participant_name(orientation[0])),
+            right: GameRoomContent.utf8(receiver_participant_name(orientation[1]))})
         end
       end
       number = @replay.state[:set_number]
@@ -657,8 +657,8 @@ module GameRoomAudioBall
       @announced_service = service
       template = @players.length == 2 ? _('%{player} serves.') : _('%{player} serves to %{receiver}.')
       text = GameRoomContent.utf8(template) % {
-        player: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[server])),
-        receiver: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[receiver]))}
+        player: GameRoomContent.utf8(receiver_participant_name(@players[server])),
+        receiver: GameRoomContent.utf8(receiver_participant_name(@players[receiver]))}
       if @audio.respond_to?(:announce)
         @audio.announce(text)
       else

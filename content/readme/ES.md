@@ -65,12 +65,12 @@ pueden seguir funcionando si el servidor permite el acceso.
 
 ## A qué puedes jugar
 
-Power Games incluye 57 juegos: cartas, juegos de tablero, palabras
+Power Games incluye 58 juegos: cartas, juegos de tablero, palabras
 y conocimientos, práctica de escritura y juegos basados en el oído
 y los reflejos.
 
 - Cartas: 3-5-8, 99, 1000 millas, Biblios, Blackjack, Bouillabaisse,
-  Bridge, Belote, Cribbage, Tarot francés, Corazones, Jass, Makao, Picas,
+  Bridge, Belote, Mentiroso, Cribbage, Tarot francés, Corazones, Jass, Makao, Picas,
   Póker, Rummy, Scopa, Mil, UNO, War y Scientific War.
 - Tablero y estrategia: Ludo, Cuatro en raya, Go, Tres en raya, Mahjong,
   Mancala, Monopoly, Reversi, Hundir la flota, Ajedrez, Backgammon, Damas y Carrera de patos.

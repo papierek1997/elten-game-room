@@ -2,6 +2,7 @@ require_relative 'timer'
 require_relative '../game_background_policy'
 require_relative '../game_background_presentation'
 require_relative '../recordings/capture'
+require_relative '../local_game_presentation'
 
 module GameRoomRealtime
   # The form and the active-UI bridge share ONE clock-gated timer. Detaching a
@@ -63,6 +64,25 @@ module GameRoomRealtime
 
   module ProgressClient
     include GameRoomRecordings::CaptureClient
+
+    def receiver_participant_name(participant, form: :first)
+      names = @program.local_name_presentation if @program.respond_to?(:local_name_presentation)
+      if names && GameRoomParticipants.same?(names.account, @viewer)
+        names.format(participant, form: form)
+      else
+        GameRoomParticipants.display_name(participant)
+      end
+    end
+
+    def receiver_game
+      names = @program.local_name_presentation if @program.respond_to?(:local_name_presentation)
+      return @game unless names&.value && GameRoomParticipants.same?(names.account, @viewer)
+      if @receiver_game_token != names.token
+        @receiver_game = GameRoomLocalGamePresentation.new(@game, names).game
+        @receiver_game_token = names.token
+      end
+      @receiver_game
+    end
     def background_progress?; true; end
 
     def start_progress

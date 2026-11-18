@@ -231,7 +231,7 @@ module GameRoomGames
         message: racer_text(replay, seat)) if seat
       if round && (view = local_client&.local_view).is_a?(Hash) && view[:type] == round[:challenge][:kind]
         keys << announcement_shortcut(key: "p", label: _("repeat the task"),
-          message: Logic::ChallengePresentation.reminder(view[:type], view))
+          message: Logic::ChallengePresentation.reminder(view[:type], view.merge(receiver_name_presentation: receiver_name_presentation)))
       end
       return keys if round
       if legal_actions(replay, viewer).any? { |action| action.dig("input", "kind") == "roll" }

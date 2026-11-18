@@ -206,7 +206,7 @@ module GameRoomParticipantMenu
       end
       role = participant_role_action(available: actions, room: snapshot, participant: participant)
       if role
-        tips << GameRoomContextHelp.shortcut_tip("Ctrl+Shift+P", participant_role_label(participant, role == :make_player))
+        tips << GameRoomContextHelp.shortcut_tip("Ctrl+Shift+P", participant_role_label(participant, role == :make_player, names: receiver_names_for(layout)))
       end
       tips
     end
@@ -247,7 +247,7 @@ module GameRoomParticipantMenu
       end
       role = participant_role_action(available: actions, room: snapshot, participant: participant)
       if role
-        label = participant_role_label(participant, role == :make_player)
+        label = participant_role_label(participant, role == :make_player, names: receiver_names_for(layout))
         menu.option(label, nil, "P") do
           current = participant_role_action(available: available.call, room: room&.call, participant: participant)
           if current == role
@@ -267,9 +267,14 @@ module GameRoomParticipantMenu
     room.observer?(participant) ? :make_player : :make_observer
   end
 
-  def participant_role_label(participant, observing)
+  def receiver_names_for(layout)
+    program = layout.form.game_room_program if layout.form.respond_to?(:game_room_program)
+    program.local_name_presentation if program&.respond_to?(:local_name_presentation)
+  end
+
+  def participant_role_label(participant, observing, names: nil)
     (observing ? _("Make %{player} a player for the next game") : _("Make %{player} an observer for the next game")) % {
-      player: GameRoomParticipants.display_name(participant)
+      player: names ? names.format(participant, form: :full) : GameRoomParticipants.display_name(participant)
     }
   end
 

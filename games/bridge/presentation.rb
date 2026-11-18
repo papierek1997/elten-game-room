@@ -124,15 +124,20 @@ module GameRoomGames
 
       player = after[:current_player]
       seat = after[:seat_to_play]
-      text = if after[:phase] == :bidding
+      turn_history_entry(player, {phase: after[:phase], seat: seat, dummy: seat == dummy_seat(after)}, event_id: event_id)
+    end
+
+    def turn_history_entry(player, boundary, event_id:)
+      seat = boundary.fetch(:seat)
+      text = if boundary[:phase] == :bidding
         _("%{player} (%{seat}) is bidding.") % { player: participant_name(player), seat: seat_name(seat) }
-      elsif seat == dummy_seat(after)
+      elsif boundary[:dummy]
         _("%{player} plays from dummy (%{seat}).") % { player: participant_name(player), seat: seat_name(seat) }
       else
         _("It is %{player}'s turn (%{seat}).") % { player: participant_name(player), seat: seat_name(seat) }
       end
-      HistoryEntry.new(key: "turn:#{event_id.to_i}:#{after[:phase]}:#{seat}", text: text, event_id: event_id.to_i,
-        actor: player, kind: :turn)
+      HistoryEntry.new(key: "turn:#{event_id.to_i}:#{boundary[:phase]}:#{seat}", text: text, event_id: event_id.to_i,
+        actor: player, kind: :turn, field: boundary)
     end
 
     # Declarer decides for two seats, so a new decision includes the seat.

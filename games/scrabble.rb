@@ -185,7 +185,7 @@ module GameRoomGames
     def expired?(state, now); state[:phase] == :playing && now && state[:turn_deadline] > 0 && now.to_i >= state[:turn_deadline]; end
     def scores_text(state, sorted: false)
       players = sorted ? score_announcement_order(state[:scores].keys, state[:scores]) : state[:scores].keys
-      players.map { |p| "#{participant_name(p)}, #{state[:scores][p]}" }.join("; ")
+      players.map { |p| "#{participant_full_name(p)}, #{state[:scores][p]}" }.join("; ")
     end
     def record(history, event_id, actor, kind, text)
       history << HistoryEntry.new(key: "scrabble:#{event_id}:#{history.length}", event_id: event_id, actor: actor, kind: kind, text: text)

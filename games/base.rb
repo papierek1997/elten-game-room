@@ -32,6 +32,7 @@ module GameRoomGames
   end
 
   class Base
+    attr_accessor :receiver_name_presentation
     def self.inherited(game)
       super
       game.prepend(GameRoomParticipantReplay)
@@ -410,6 +411,10 @@ module GameRoomGames
       end
 
       player = after_replay.current_player
+      turn_history_entry(player, after_kind, event_id: event_id)
+    end
+
+    def turn_history_entry(player, after_kind, event_id:)
       text = case after_kind
       when :bidding
         _("%{player} is bidding.") % { player: participant_name(player) }
@@ -425,7 +430,8 @@ module GameRoomGames
         text: text,
         event_id: event_id.to_i,
         actor: player,
-        kind: :turn
+        kind: :turn,
+        field: after_kind
       )
     end
 
@@ -530,7 +536,7 @@ module GameRoomGames
 
     def result_text(replay)
       if replay.winner != nil
-        return _("%{player} won the game.") % { player: participant_name(replay.winner) }
+        return _("%{player} won the game.") % { player: participant_full_name(replay.winner) }
       end
       return _("The game ended in a draw.") if replay.draw
 
@@ -631,12 +637,12 @@ module GameRoomGames
     def starting_history(players)
       text = if players.length == 2
         _("Game started: %{first} versus %{second}.") % {
-          first: participant_name(players[0]),
-          second: participant_name(players[1])
+          first: participant_full_name(players[0]),
+          second: participant_full_name(players[1])
         }
       else
         _("Game started: %{players}.") % {
-          players: players.map { |player| participant_name(player) }.join(", ")
+          players: players.map { |player| participant_full_name(player) }.join(", ")
         }
       end
       HistoryEntry.new(
@@ -652,7 +658,7 @@ module GameRoomGames
       if winner != nil
         HistoryEntry.new(
           key: "result:#{event_id}",
-          text: _("%{player} won the game.") % { player: participant_name(winner) },
+          text: _("%{player} won the game.") % { player: participant_full_name(winner) },
           event_id: event_id,
           actor: winner,
           kind: :result
@@ -685,6 +691,12 @@ module GameRoomGames
     end
 
     def participant_name(participant)
+      return @receiver_name_presentation.format(participant, form: :first) if @receiver_name_presentation
+      GameRoomParticipants.display_name(participant)
+    end
+
+    def participant_full_name(participant)
+      return @receiver_name_presentation.format(participant, form: :full) if @receiver_name_presentation
       GameRoomParticipants.display_name(participant)
     end
 

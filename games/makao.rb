@@ -1019,7 +1019,7 @@ module GameRoomGames
 
     def counts_text(state)
       state[:players].map do |player|
-        "#{participant_name(player)}, #{state[:hands].fetch(player, []).length}"
+        "#{participant_full_name(player)}, #{state[:hands].fetch(player, []).length}"
       end.join(". ") + "."
     end
   end

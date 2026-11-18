@@ -1,0 +1,191 @@
+{
+  "source": "games/cheat.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry a rozdání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Zbavte se všech karet jako první. Celý balíček 52 karet bez žolíků se rozdá co nejrovnoměrněji mezi 2–8 hráčů. Začínající hráč se losuje. Vidíte svou ruku; klávesa S přečte počet karet každého hráče."
+        },
+        {
+          "cs": "Ve výchozí hře pokládáte jednu až čtyři karty lícem dolů a oznamujete jejich hodnotu. Začíná se esy, následují dvojky, trojky a další hodnoty až po desítky, kluky, dámy a krále. Po králích přijdou znovu esa. Skutečné karty mohou být jiné: blufování je dovoleno. Počet položených karet se vždy oznamuje pravdivě."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "cs": "Výběr a zahrání karet"
+      },
+      "paragraphs": [
+        {
+          "cs": "Šipkami nahoru a dolů procházíte celou ruku, vlevo a vpravo přecházíte mezi barvami. H přečte ruku v právě zobrazeném pořadí. Vybrat můžete kteroukoli vlastní kartu, i když neodpovídá oznámené hodnotě."
+        },
+        {
+          "cs": "Jednu kartu připravíte klávesou Enter. Pro více karet je označujte pomocí Shift+Enter; opakovaný stisk kartu odebere. P přečte označené karty a Shift+P výběr vymaže. Enter přidá i kartu pod kurzorem, pokud dosud označená nebyla. Zkontrolujte konečný počet a oznámení a zvolte Zahrát. Escape nebo Zrušit vás vrátí do ruky bez zahrání a ponechá připravený výběr. Zahrání je dostupné také v kontextové nabídce ruky."
+        },
+        {
+          "cs": "Například při esech můžete vybrat dvě různé karty a oznámit dvě esa. Esy mohou být obě, žádná nebo jen jedna. Soupeři slyší počet a oznámenou hodnotu, nikoli názvy skrytých karet. Po reakcích další hráč oznamuje dvojky, i když někdo vaše esa zkontroloval."
+        }
+      ]
+    },
+    {
+      "id": "reaction",
+      "title": {
+        "cs": "Kontrola oznámení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po každém zakrytém zahrání rozhodují soupeři postupně podle míst, počínaje následujícím hráčem. Když jste na řadě s reakcí, K nebo příkaz Zkontrolovat zpochybní poslední zahrání. Mezerník nebo Nekontrolovat předá rozhodnutí dalšímu soupeři. Odmítnutí kontroly nepotvrzuje pravdivost karet a není pasováním ve variantě Bluff."
+        },
+        {
+          "cs": "Na reakci není časový limit. Pouhým čekáním, čtením nápovědy ani odchodem od klávesnice tah nepotvrdíte. Odpovídá jen právě vyzvaný hráč. První kontrola ukončí ostatní reakce. Pokud nikdo nekontroluje, karty zůstanou na hromádce a hra pokračuje."
+        },
+        {
+          "cs": "Odkryje se pouze poslední skupina karet. Stačí jediná karta jiné hodnoty a celou hromádku si vezme její autor. Pokud odpovídají všechny, vezme si ji kontrolující. Starší zakryté karty se tím neodhalují. Pořadí míst ani sled hodnot se kontrolou nemění. C přečte velikost hromádky, poslední oznámení a očekávané rozhodnutí; T řekne, kdo má jednat."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "cs": "Vítězství"
+      },
+      "paragraphs": [
+        {
+          "cs": "Odložení posledních karet ještě neznamená okamžitou výhru: soupeři stále dostanou reakci. Vyhrajete, pokud všichni poslední zahrání přijmou, i kdyby šlo o bluf. Vyhrajete také po neoprávněné kontrole pravdivých posledních karet. Odhalený poslední bluf znamená sebrání hromádky a pokračování hry. Partie má jediného vítěze; ostatním se nepřidělují body ani další pořadí."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "cs": "Volba varianty"
+      },
+      "paragraphs": [
+        {
+          "cs": "Variantu zvolíte při vytváření stolu. Výchozí je Klasická: vzestupné hodnoty, popsaná výše. Všechny varianty používají jeden balíček a postupné reakce bez časového limitu."
+        },
+        {
+          "cs": "- Sestupné hodnoty začínají esy, potom přijdou králové, dámy, kluci, desítky a nižší hodnoty až po dvojky, následně opět esa. Kontrola tento sled nerestartuje."
+        },
+        {
+          "cs": "- Stejná nebo sousední hodnota začíná esy. Potom volíte poslední oznámenou hodnotu nebo jejího souseda. Po sedmičkách lze oznámit šestky, sedmičky či osmičky; po esech krále, esa nebo dvojky. Král a eso jsou v této verzi sousedé. Oznámení vyberte v dialogu zahrání a odešlete je společně s kartami volbou Zahrát."
+        },
+        {
+          "cs": "- Bluff: pevná hodnota hromádky je pro 3–6 hráčů a dovoluje pasování, popsané níže."
+        },
+        {
+          "cs": "- Barva: jednotlivé karty používá odkryté zahájení a potom jednotlivé zakryté karty."
+        }
+      ]
+    },
+    {
+      "id": "bluff",
+      "title": {
+        "cs": "Bluff: jedna hodnota do uzavření hromádky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Zahajující zahraje jednu až čtyři karty a v dialogu vybere libovolnou ze třinácti hodnot. Ta platí pro všechny další skupiny na této hromádce. Ve svém tahu můžete přiložit jednu až čtyři karty, nebo klávesou X pasovat do uzavření hromádky. Prázdnou hromádku nelze zahájit pasem."
+        },
+        {
+          "cs": "Po pasu už na tuto hromádku nepřikládáte, ale stále můžete kontrolovat každé nové zahrání. Další zahrání nevrací právo přikládat hráčům, kteří už pasovali. Zbývá-li jediný hráč bez pasu, může přikládat opakovaně a ostatní pokaždé rozhodnou, zda nové zahrání zkontrolují."
+        },
+        {
+          "cs": "Jakmile pasují všichni, hromádka se odloží zakrytá mimo partii a poslední přikládající začne novou s libovolnou hodnotou. Po správné kontrole zahajuje kontrolující, po chybné autor kontrolovaného zahrání. Pasy se vymažou. I poslední skupina karet musí projít reakcemi, než hráč vyhraje. Tato verze rozdává celý balíček a nepoužívá žolíky ani pravidla Force."
+        }
+      ]
+    },
+    {
+      "id": "suit",
+      "title": {
+        "cs": "Barva: odkryté zahájení"
+      },
+      "paragraphs": [
+        {
+          "cs": "Zahajující vybere kartu a Enterem potvrdí její odkryté vyložení. Její skutečná barva určí barvu hromádky. Tuto viditelnou kartu nelze kontrolovat. Další hráči přikládají po jedné zakryté kartě a hlásí stejnou barvu; hodnotu neoznamují. Shift+Enter zde nevytváří skupinu více karet."
+        },
+        {
+          "cs": "Při reakci na zakrytou kartu použijte K nebo mezerník. Kontroluje se jen barva: srdcová sedmička i srdcový král odpovídají hlášeným srdcím. Za jinou barvu bere hromádku autor, za kontrolu pravdivé barvy kontrolující. Ten, kdo hromádku sebere, zahájí další libovolnou odkrytou kartou. Je-li odkryté zahájení vaší poslední kartou, vyhrajete ihned. Poslední zakrytá karta vyžaduje obvyklé reakce."
+        }
+      ]
+    },
+    {
+      "id": "sound",
+      "title": {
+        "cs": "Zvuky hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Rozdání doprovází míchání a přijaté zahrání zvuk položených karet, stejný při pravdě i blufu. Kontrola má samostatný signál, potom následuje odkrytí, výsledek kontroly a sebrání karet. Obvyklý signál rozhodnutí oznámí váš tah nebo reakci a závěrečné zvuky konec partie. Důležité informace se také vyslovují, takže lze hrát i s vypnutými volitelnými efekty."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Přehled kláves"
+      },
+      "paragraphs": [
+        {
+          "cs": "Enter: připravte a potvrďte kartu nebo skupinu"
+        },
+        {
+          "cs": "Shift+Enter: označte nebo odznačte kartu, kromě varianty Barva"
+        },
+        {
+          "cs": "P: přečtěte připravené karty"
+        },
+        {
+          "cs": "Shift+P: vymažte připravený výběr"
+        },
+        {
+          "cs": "K: zkontrolujte zahrání při své reakci"
+        },
+        {
+          "cs": "Mezerník: odmítněte kontrolu tohoto zahrání"
+        },
+        {
+          "cs": "X: pasujte do uzavření hromádky ve variantě Bluff"
+        },
+        {
+          "cs": "H: přečtěte svou ruku"
+        },
+        {
+          "cs": "T: zjistěte, kdo má hrát nebo reagovat"
+        },
+        {
+          "cs": "S: přečtěte počty karet hráčů"
+        },
+        {
+          "cs": "C: přečtěte veřejný stav hromádky a oznámení"
+        },
+        {
+          "cs": "Shift+C: seřaďte podle barvy"
+        },
+        {
+          "cs": "Shift+H: seřaďte podle hodnoty"
+        },
+        {
+          "cs": "Shift+M: obnovte pořadí získání"
+        },
+        {
+          "cs": "Z: přejděte na další hratelnou kartu bez zahrání"
+        },
+        {
+          "cs": "Shift+Z: přejděte na předchozí hratelnou kartu bez zahrání"
+        },
+        {
+          "cs": "Escape: zrušte aktuální výběr"
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants"
+  }
+}

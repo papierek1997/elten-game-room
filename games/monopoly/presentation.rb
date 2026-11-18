@@ -89,7 +89,7 @@ module GameRoomGames
             key: "e", label: _("arrange a trade"), kind: :staged_form, prompt: _("Choose a player for the trade"),
             action_kind: "command", action_name: "trade_prepare", value_key: "target",
             choices: active_players(state).reject { |other| same_user?(other, player) }.map do |other|
-              OptionChoice.new(value: player_index(state[:players], other), label: participant_name(other))
+              OptionChoice.new(value: player_index(state[:players], other), label: participant_full_name(other))
             end
           )
         end
@@ -261,14 +261,14 @@ module GameRoomGames
         state[:players].map do |player|
           square = current_square(state, player)
           _("%{player}: field %{number}, %{square}") % {
-            player: participant_name(player), number: square[:index], square: square[:name]
+            player: participant_full_name(player), number: square[:index], square: square[:name]
           }
         end.join("; ")
       end
 
       def finances_text(state)
         worth = state[:players].to_h { |player| [player, net_worth(state, player)] }
-        score_announcement_order(state[:players], worth, eliminated: state[:bankrupt]).map { |player| _("%{player}: cash %{cash}, net worth %{value}") % { player: participant_name(player), cash: state[:cash][player], value: worth[player] } }.join("; ")
+        score_announcement_order(state[:players], worth, eliminated: state[:bankrupt]).map { |player| _("%{player}: cash %{cash}, net worth %{value}") % { player: participant_full_name(player), cash: state[:cash][player], value: worth[player] } }.join("; ")
       end
 
       def deed_text(state, square)

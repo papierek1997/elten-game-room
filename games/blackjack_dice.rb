@@ -96,7 +96,7 @@ module GameRoomGames
       case feature.to_sym
       when :scores
         scores = participant_scores(replay)
-        {message: state[:players].map { |player| "#{participant_name(player)}: #{scores[player]}" }.join("; ")}
+        {message: state[:players].map { |player| "#{participant_full_name(player)}: #{scores[player]}" }.join("; ")}
       when :current_total
         return nil unless state[:phase] == :playing
         {message: _("Current total: %{total}") % {total: state[:total]}}

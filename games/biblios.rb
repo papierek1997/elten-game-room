@@ -1235,7 +1235,7 @@ module GameRoomGames
           _("%{category}: nobody") % { category: category_name(category) }
         else
           _("%{category}: %{player} with %{total}") % {
-            category: category_name(category), player: participant_name(leader),
+            category: category_name(category), player: participant_full_name(leader),
             total: total_of(state[:revealed].fetch(leader, []), category)
           }
         end
@@ -1295,7 +1295,7 @@ module GameRoomGames
     def scores_text(state, sorted: false)
       players = sorted ? score_announcement_order(state[:players], state[:players].to_h { |p| [p, victory_points(state, p)] }) : state[:players]
       values = players.map do |player|
-        _("%{player}: %{score}") % { player: participant_name(player), score: victory_points(state, player) }
+        _("%{player}: %{score}") % { player: participant_full_name(player), score: victory_points(state, player) }
       end
       _("Victory Points: %{values}.") % { values: values.join("; ") }
     end

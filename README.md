@@ -64,11 +64,11 @@ zawsze wyłączone; rankingi mogą działać, jeśli serwer zezwala na dostęp.
 
 ## W co można zagrać
 
-Power Games zawiera 57 gier: od karcianek i planszówek po zabawy słowne,
+Power Games zawiera 58 gier: od karcianek i planszówek po zabawy słowne,
 ćwiczenia pisania i gry, w których najważniejsze są słuch i refleks.
 
 - Karcianki: 3-5-8, 99, 1000 mil, Biblios, Blackjack, Bouillabaisse,
-  Brydż, Belote, Cribbage, Francuski tarot, Jass, Kierki, Makao, Piki, Poker,
+  Brydż, Belote, Cribbage, Francuski tarot, Jass, Kierki, Kłamczuch, Makao, Piki, Poker,
   Remik, Scopa, Tysiąc, UNO, Wojna i Wojna naukowa.
 - Gry planszowe i strategiczne: Chińczyk, Cztery w rzędzie, Go,
   Kółko i krzyżyk, Mahjong, Mankala, Monopoly, Reversi, Statki, Szachy,
