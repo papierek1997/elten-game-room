@@ -12,6 +12,7 @@ class GameRoomRoundPause
 
   def active?(game:, replay:, session:, now:)
     return false unless replay && !replay.finished? && game.round_pause_seconds(replay).positive?
+    return false if session['__round_pause_released'] == true
     key = [session['created_at'], session['__server_started_at'], session['__clock_offset']]
     unless @game.equal?(game) && @replay.equal?(replay) && @clock_key == key
       @game, @replay, @clock_key = game, replay, key

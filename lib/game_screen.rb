@@ -263,8 +263,8 @@ class GameScreen
         signal_received_at,
         stage_started_at: replay_started_at
       )
-      process_new_events(replay, signal_received_at: signal_received_at)
       process_new_table_activity(replay)
+      process_new_events(replay, signal_received_at: signal_received_at)
       @pending_signal_received_at = nil
       verify_pending_move(replay) unless using_cached_payload
 
@@ -1146,7 +1146,9 @@ class GameScreen
           raise unless latest_id.positive? && latest_id != @repository.session_id(@session)
           next [:new_session, latest_id]
         end
-        [snapshot, room, @activity_entries || activity_entries_for(room)]
+        activity = @activity_entries
+        activity = nil if snapshot && snapshot.session['__game_boundary'] != @session['__game_boundary']
+        [snapshot, room, activity || activity_entries_for(room)]
       end
     end
   end

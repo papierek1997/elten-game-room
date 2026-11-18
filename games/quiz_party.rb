@@ -1054,7 +1054,7 @@ module GameRoomGames
 
     def next_question_pause_over?(state, now)
       resume_at = state[:resume_at].to_i
-      return true if resume_at <= 0
+      return true if resume_at <= 0 || state[:round_pause_released]
       return true if now == nil
 
       now.to_i >= resume_at

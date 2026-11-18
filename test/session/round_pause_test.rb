@@ -23,8 +23,19 @@ selected.each do |id|
     assert(clock.active?(game: game, replay: replay, session: session, now: now), "#{id}: early next round")
   end
   assert(!clock.active?(game: game, replay: replay, session: session, now: 125), "#{id}: late next round")
+  assert(!clock.active?(game: game, replay: replay, session: session.merge('__round_pause_released' => true), now: 121),
+    "#{id}: manual resume retained the remaining break")
   replay.winner = 'Alice'
   assert(!clock.active?(game: game, replay: replay, session: session, now: 121), "#{id}: pause after final result")
+end
+
+{'poker' => :next_hand_ready?, 'categories' => :next_round_ready?, 'quiz' => :next_question_pause_over?}.each do |id, method|
+  game = GameRoomGames::CATALOG.build(id)
+  state = {phase: :hand_complete, resume_at: 125, hand_resume_at: 125}
+  GameRoomSessionClock.attach(state, session.merge('__round_pause_released' => true))
+  assert(game.send(method, state, 121), "#{id}: the model-owned deadline ignored manual resume")
+  GameRoomSessionClock.attach(state, session)
+  assert(!game.send(method, state, 121), "#{id}: a release leaked into the following break")
 end
 
 %w[kosciane balut yahtzee makao axel_pong audio_ball].each do |id|

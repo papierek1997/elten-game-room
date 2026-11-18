@@ -206,6 +206,9 @@ entry warns once about this client's missing uploads, not on each move or round;
 only games with a leaderboard mention ranking results. Known table denial also
 suspends captured analytics workers without deleting their backlog. This does
 not add access probes to UI frames or change ordinary gameplay admission.
+An unchecked provider has no refusal to announce yet. Passive widget discovery
+uses LiveSessions and does not announce auxiliary-table availability; explicit
+program/feature entry still checks and explains a confirmed restriction once.
 
 ### Game models
 
@@ -314,6 +317,12 @@ hand. Resume targets the marked boundary only, never a save/recovery/presence
 freeze. Failed saves preserve a pre-existing manual pause. The runner holds
 its normal operation lock and revalidates this control like a move; the UI
 only offers it at a round break or while that manual pause is held.
+Resuming ends that break immediately, without advancing the logical clock.
+The validated projection marks the release for its exact game revision; the
+shared clock attaches it for model-owned readiness checks, and the next game
+action expires it. It must never skip a later round's break. Foreground payloads
+invalidate cached room activity when the native game boundary changes, so pause
+and resume feedback is presented at that boundary, not after the next move.
 
 Games can declare `paced_event_presentation?` and return plain-data stages
 from `event_presentation_stages`. The existing presentation queue separates

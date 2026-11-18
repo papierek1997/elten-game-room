@@ -669,6 +669,7 @@ class EltenGameRoom < Program
   end
 
   def announce_server_table_access
+    return if @server_tables&.access_state == :unchecked
     state = [@server_tables&.access_state, $developer_mode == true]
     return if @announced_table_access_state == state
 
@@ -3060,7 +3061,7 @@ class EltenGameRoom < Program
         self.class.contacts_cache.snapshot(force: true) if game_room_settings(reload: true)["widget_contacts_only"]
       },
       id_for: ->(snapshot) { @lobby.table_id(snapshot.table) },
-      foreground: ->(&operation) { run_network_task(_("Loading Power Games tables"), silent: true, &operation) },
+      foreground: ->(&operation) { run_network_task(_("Loading Power Games tables"), silent: true, announce_access: false, &operation) },
       active: -> { widget_active? }
     )
     self.class.manage(@widget_control) if self.class.respond_to?(:manage)

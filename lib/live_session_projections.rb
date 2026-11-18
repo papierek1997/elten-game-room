@@ -504,6 +504,10 @@ class GameRoomLiveSessionStore
       session['__game_revision'] = records_for(table_id).reverse.find do |item|
         item.packet['kind'] == 'game_action' && item.packet.dig('data', 'session_id') == id
       end&.message_id.to_s
+      pause = boundaries.reverse.find { |item| item.packet.dig('data', 'round_pause') }&.packet&.fetch('data')
+      if pause && pause['frozen'] == false && pause['round_pause']['revision'] == session['__game_revision']
+        session['__round_pause_released'] = true
+      end
       boundaries
     end
 
