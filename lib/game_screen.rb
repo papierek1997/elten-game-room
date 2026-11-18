@@ -485,7 +485,7 @@ class GameScreen
     if packet && !packet.equal?(@background_presented_snapshot)
       @background_presented_snapshot = packet
       data = Marshal.load(Marshal.dump(packet))
-      presentation_replay.bind_source(data[:session], data[:replay], data[:snapshot].events)
+      presentation_replay.bind_source(data[:session], data[:replay], data[:snapshot].events) unless data[:session]['__aborted']
       if data[:session]['__aborted'] && @program.respond_to?(:background_music)
         @program.background_music.leave_game(event_presenter)
       end

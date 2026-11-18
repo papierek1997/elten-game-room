@@ -39,7 +39,7 @@ Enter prepares the current card together with the selected packet; Shift+Enter
 toggles a selection. The declaration, where selectable, and final confirmation
 remain local until submission. Escape cancels without losing the prepared cards.
 K challenges and Space declines a challenge only during the player's ordered
-reaction. X passes until the pile closes only in Bluff. H reads the own hand;
+reaction. X passes until the pile closes only in Bluff. H reads your own hand;
 S reads public card counts; C reads the public pile/declaration state. F1 and
 Ctrl+F1 use the shared shortcut help and complete multilingual rulebook.
 
