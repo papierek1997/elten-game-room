@@ -25,6 +25,11 @@ class GameRoomSessionClock
       session["created_at"].to_i - session["__server_started_at"].to_i : 0
     state[:clock_offset] = session["__clock_offset"].to_i
     state[:frozen_at] = session["__frozen_at"]
+    if session['__round_pause_released'] == true
+      state[:round_pause_released] = true
+    else
+      state.delete(:round_pause_released)
+    end
     state
   end
 

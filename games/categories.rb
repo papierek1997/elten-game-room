@@ -1122,7 +1122,7 @@ module GameRoomGames
 
     def next_round_ready?(state, now)
       ready_at = state[:resume_at].to_i
-      ready_at <= 0 || (now || GameRoomSessionClock.for_state(state)).to_f >= ready_at
+      ready_at <= 0 || state[:round_pause_released] || (now || GameRoomSessionClock.for_state(state)).to_f >= ready_at
     end
 
     # These easy-to-confuse letter names need a short, familiar cue. Adverbs

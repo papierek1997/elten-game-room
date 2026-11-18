@@ -573,6 +573,7 @@ module GameRoomGames
 
     def next_hand_ready?(state, now)
       return true if state[:phase] != :hand_complete || !state[:hand_resume_at]
+      return true if state[:round_pause_released]
       (now || GameRoomSessionClock.for_state(state)).to_f >= state[:hand_resume_at]
     end
 

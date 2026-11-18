@@ -33,14 +33,11 @@ ClockEventContract.with_server_time do |time|
     assert(h.events('Alice') == before && f.replay.state[:hand_number] == 1, 'Permanent pause expired by itself')
     assert(f.logical_now == 1003, 'Manual pause advanced the rule clock')
     assert(toggle.call('Alice') == :ok, 'The same shortcut cannot resume')
-    time.call(1306)
     step(h, runners['Alice'], count: 3)
-    assert(f.replay.state[:hand_number] == 1, 'Resume discarded the remaining fixed pause')
-    time.call(1307)
-    step(h, runners['Alice'], count: 3)
-    assert(f.replay.state[:hand_number] == 2 && f.replay.state[:turn_deadline] == 1037,
-      'Resume lost the deadline or the full next thinking time')
-    assert(f.replay.state[:blind_paused_seconds] == 5, 'Manual pause was counted again in blind escalation')
+    assert(f.replay.state[:hand_number] == 2 && f.replay.state[:turn_deadline] == 1033,
+      'Manual resume did not deal immediately with the full next thinking time')
+    assert(f.logical_now == 1003, 'Resume advanced the logical clock to skip the break')
+    assert(f.replay.state[:blind_paused_seconds] == 1, 'Blind escalation did not exclude the actual inter-hand gap')
     h.as('Alice') { h.transports['Alice'].freeze_game(stale_boundary, round_pause: true) }
     assert(!f.snapshot.session['__frozen'], 'A stale round-pause record froze a later hand')
     # Technical freezes have a different owner/receipt and are never released
@@ -48,6 +45,13 @@ ClockEventContract.with_server_time do |time|
     f.freeze('Alice', true)
     assert(toggle.call('Alice') == :unavailable && f.snapshot.session['__frozen'], 'Shortcut released a technical freeze')
     f.freeze('Alice', false)
+    time.call(1304)
+    f.submit(f.replay.current_player, {'kind' => 'command', 'action' => 'fold'})
+    step(h, runners['Alice'], count: 3)
+    assert(f.replay.state[:hand_number] == 2, 'A previous manual resume skipped the next hand break')
+    time.call(1309)
+    step(h, runners['Alice'], count: 3)
+    assert(f.replay.state[:hand_number] == 3, 'The next ordinary five-second break did not finish')
     h.assert_converged('manual round pause')
   ensure
     runners.each_value(&:close)
