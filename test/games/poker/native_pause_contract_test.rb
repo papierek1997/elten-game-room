@@ -38,7 +38,7 @@ end
       actor = h.replay('Alice').current_player
       choice = game.legal_actions(h.replay(actor), actor).find { |item| item['action'] == 'fold' }
       PrivateCardGamesTest.submit(h, runners, actor, choice)
-      assert(h.replay('Alice').state[:hand_resume_at] == 1010, "#{label}: hand end used wall time after a pause")
+      assert(h.replay('Alice').state[:hand_resume_at] == 1009, "#{label}: hand end used wall time after a pause")
       first_events = poker_snapshot(h).events
       time.call(1066)
       h.as('Alice') { h.transports.fetch('Alice').transfer_room_owner(h.table, 'Bob') }
@@ -48,22 +48,22 @@ end
       poker_freeze(h, 'Bob', true)
       time.call(1127)
       poker_freeze(h, 'Bob', false)
-      # Rebuilding the new owner's executor must not start a fresh six seconds.
+      # Rebuilding the new owner's executor must not start a fresh five seconds.
       runners['Bob'].close
       runners['Bob'] = runner_for(h, 'Bob')
       runners['Bob'].instance_variable_set(:@clock, ClockEventContract.clock)
-      time.call(1129)
+      time.call(1128)
       4.times { PrivateCardGamesTest.tick(h, runners) }
       assert(h.replay('Bob').state[:hand_number] == 1 && poker_snapshot(h).events == first_events,
         "#{label}: freeze/reconstruction changed accepted history or shortened the delay")
-      time.call(1130)
+      time.call(1129)
       16.times { PrivateCardGamesTest.tick(h, runners) }
       h.users.each do |user|
         rep = h.replay(user)
         assert(rep.state[:hand_number] == 2 && rep.state[:phase] == :betting,
           "#{label}: #{user} did not resume at the same logical deadline")
         assert(!rep.state.key?(:hand_resume_at), "#{label}: previous hand delay survived a deal")
-        assert(rep.state[:turn_deadline] == 1040, "#{label}: new deal lost thinking time") if thinking_time > 0
+        assert(rep.state[:turn_deadline] == 1039, "#{label}: new deal lost thinking time") if thinking_time > 0
       end
       PrivateCardGamesTest.assert_private(h) if private_cards
       assert(poker_snapshot(h).events.count { |event| event['action'] == 'deal' } == 2, "#{label}: duplicate deal")
@@ -107,7 +107,7 @@ end
       rep = h.replay('Alice')
       assert(rep.state[:phase] == :hand_complete && snapshot.events.last['action'] == 'private_show',
         "#{variant}: fixture did not finish on a private reveal")
-      assert(rep.state[:hand_resume_at] == 1011, "#{variant}: final private receipt restarted or omitted the delay")
+      assert(rep.state[:hand_resume_at] == 1010, "#{variant}: final private receipt restarted or omitted the delay")
       before = game.replay(snapshot.session, snapshot.events[0...-1], h.repositories['Alice'])
       cues = GameRoomSounds.event_cue(game: game, event: snapshot.events.last, before_replay: before,
         after_replay: rep, repository: h.repositories['Alice'], viewer: 'Alice')

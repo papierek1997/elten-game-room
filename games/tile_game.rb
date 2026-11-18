@@ -10,6 +10,7 @@ require_relative "../lib/game_room_localization"
 module GameRoomGames
   using GameRoomLocalization::Translations
   class TileGame < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
     def standard_round_end_sound?; false; end
     def player_spatial_audio?; true; end
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)

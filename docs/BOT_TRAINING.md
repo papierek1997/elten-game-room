@@ -154,7 +154,7 @@ Current bounded mechanisms include:
 | Jass, Belote, French Tarot, 3-5-8 | `GameRoomTrickForecast` compares at most four roots in up to 12 common worlds once the acting hand has at most four cards; 4,096 nodes. Games supply production legality, winner and scoring callbacks. A candidate must not lose against the fallback in any sampled world. Long-deal speculative rollouts do not override the normal opening policy. |
 | Cribbage | Every discard uses the same 192 conditioned full-crib samples and all possible starters for the retained hand. Pegging compares 96 common possible rival hands: the rival chooses a legal reply, including an immediate public-score finish, rather than receiving a random reply card. The second discard reuses the plan for the same original six cards. |
 | Bridge | At most 20 proposed worlds are softly auction-weighted, retaining up to five. Public voids remain hard constraints. A deducible short tail keeps its existing exact solve. |
-| Poker | The existing 64 common equity worlds remain bounded. `poker_opponents.rb` uses at most 2,048 typed public history entries to smooth fold/aggression rates and revealed final-street weak aggression by actual account identity. Street and relative-call-size evidence shrink toward the global prior; an unseen context stays neutral. It adapts fold equity and range credibility, not the rules or hidden cards. |
+| Poker | Hold'em compares 256 common equity worlds, independent of account names and hand-list order. Direct best-five evaluation avoids enumerating 21 subsets for each seven-card sample. Public calls, their pot price and raises softly weight hypothetical hands at the street where the action occurred. At most four street aggregates per rival, each capped at three calls/raises, retain bounded evidence. Draw poker retains its 64-world exchange-conditioned policy. `poker_opponents.rb` smooths account-specific fold/aggression rates and final-street weak aggression from at most 2,048 typed public entries. |
 | Dice Poker | A cached distribution models retaining dice across the allowed throws, rather than the best of independent full rerolls. It uses the same rank evaluator and a neutral percentile-maximizing policy; it is an estimate of a rival, not a read of their hidden dice. |
 | 99 | Each accepted search depth compares every root in the same worlds. On budget exhaustion use the last completed iteration, never a mixture of root depths. The default fair sampler remains distinct from the existing explicitly selected omniscient variant; this change does not expand either one's information access. |
 | Cat/head/tail | A reused small Bellman table models the real eight-sided outcomes, including immediately banked twos, repeating sevens and signed eights. Match-ending decisions still take precedence. |
@@ -231,6 +231,33 @@ This follows the selective-simulation design in
 The method is inspired by public-observation opponent
 modelling, such as [Bayes' Bluff](https://arxiv.org/abs/1207.1411), not an
 implementation of its complete inference algorithm or a Nash/CFR solver.
+
+Hold'em call evidence uses the actual accepted payment divided by the pot
+after that payment. Free checks and forced blinds are not paid calls. Frequent
+callers give weaker evidence than players who normally fold. Each street keeps
+a capped call count and its largest observed pot price. Evaluate earlier
+decisions against that street's board prefix, never the final board or
+a sampled future runout. Postflop strength uses tied percentiles in the common
+worlds so a paired board does not make every hand equally strong. These are
+soft likelihood estimates, not proof of an opponent's cards. Do not apply this
+look-back inference to draw poker's unknown pre-exchange hand.
+
+Only one position's unweighted worlds are retained; changing public weights
+reuses them, while own cards, board, deck, variant or opponent count invalidate
+them. The weighted cache additionally includes actual identities and evidence.
+Test ranking against the unchanged five-card evaluator over every subset,
+including two triples, three pairs, flush kickers and ace-low straights.
+
+```console
+ruby tools/benchmark-poker.rb --seed 481100 --boards 256 --output tmp/poker-pairs.json TRUSTED_LOCAL_REVISION
+```
+
+This compares completed single hands with the production reducer, identical
+deals/seats/opponents and a separate policy RNG. It is not a whole-match win
+rate. The report clusters uncertainty by deal, lists every comparison and
+measures decision latency. Use fresh seeds after tuning and report both
+variant-specific results and independent equity error; one spectacular lost
+hand is not evidence that a made straight should have been folded.
 
 Keep caches local and bounded. `DealtCardGame#incremental_replay` mutates an
 existing replay. Identity and actor alone are not a revision: also include the

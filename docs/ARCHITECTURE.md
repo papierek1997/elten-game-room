@@ -180,8 +180,9 @@ there is no separate name directory or profile-publication task.
 Every `program_main` call and entry through a notification rechecks access to
 `game_room_users` with a minimal read for the current account.
 `GameRoomServerTables` shares the result with existing table handles.
-Detection uses the server response: the `apps.tables.stamp_required` code
-means developer mode without tables.
+Detection uses the server response: `apps.tables.stamp_required` means that
+the server requires official-launcher confirmation. Developer mode is a likely
+cause, not an alternative permission check; the author can have access in dev.
 
 After access is denied, no further reads or writes to auxiliary tables are
 performed. Global-lobby history polling does not start; features requiring
@@ -189,9 +190,22 @@ tables indicate the access restriction. Local Settings categories still work,
 and unknown subscriptions must not be saved as an empty list. Discovery,
 gameplay, invitations, room history and chat use LiveSessions and ELTEN
 notifications, not the former invitation table. Timeouts and other errors
-also suspend table operations until the next entry, but are presented as an
-access-check problem, not developer mode. Running main again may restore
-table features without creating a new application instance.
+also suspend table operations until the next entry. Present them as an
+inconclusive access check, with conditional developer-mode guidance rather than
+a false diagnosis. Running main again may restore table features without
+creating a new application instance.
+
+`GameRoomServerTables::Runtime` binds the checked provider to its account and
+native runtime. Do not replace it with an unchecked widget provider. A first
+explicit module entry may check an unchecked provider; refusals do not retry on
+every click. `GameRoomAvailability` owns the translated explanations shared by
+startup, feature admission, Settings and table entry. Rankings and tournaments
+refuse entry before building lists or starting readers. Statistics/presence also
+explain their intentional dev-mode opt-out, even with available tables. A table
+entry warns once about this client's missing uploads, not on each move or round;
+only games with a leaderboard mention ranking results. Known table denial also
+suspends captured analytics workers without deleting their backlog. This does
+not add access probes to UI frames or change ordinary gameplay admission.
 
 ### Game models
 
@@ -203,6 +217,18 @@ piece-to-square move model for turn-based board games.
 Every game must deterministically reconstruct the same state from the same
 events. Randomness should be represented by an event or a controlled source
 from `game_random.rb`.
+
+Quiz's current `question` event uses `round,position,q:<128-bit seed>` for
+both the question draw and answer order, with one native server request.
+Domain-separated SHA-256 entropy seeds `GameRoomRandom.shuffle` for answers;
+do not restart the question-selection RNG at its first draw for the shuffle.
+The accepted answer-order seed is replay-owned and shared by presentation,
+reporting and scoring, so reads and reconnects never reshuffle a question.
+The old `n:` and explicit-question events retain their original displayed
+order when read; current producers never emit them. Do not enforce answer
+quotas or suppress legitimate repeated positions. Check all 24 permutations,
+the approximately uniform correct-answer positions, two-client commit/reveal
+and the immutable historical corpus when changing this boundary.
 
 ### Shared interface
 
@@ -270,6 +296,24 @@ remain next to the current participants until the next game starts.
 
 The game describes the surface and actions. It should not create its own form,
 intercept system keys or manually drive the UI loop unnecessarily.
+
+Round-settlement pauses use `GameRoomRoundPause` in the existing session runner,
+before planning or submitting the next action. Games opt in through
+`round_pause_seconds` and their public settlement history kinds; an existing
+model-owned deadline can be exposed by `round_pause_deadline`. This is scheduling,
+not a new legality rule for replayed histories. The cached event-local deadline
+uses the session clock, including archive epochs and native freeze offsets.
+Do not add sleeps, polling, a new scheduler, or a pause after every player turn.
+Poker excludes actual inter-hand gaps from minute-based blind escalation;
+hand-count escalation and the next hand's full thinking time are unchanged.
+
+Shift+P lets the current host hold an inter-round break indefinitely. It uses
+the existing native game boundary/frozen clock, marked `round_pause` and guarded
+by the previous boundary and game revision. A stale request cannot freeze a new
+hand. Resume targets the marked boundary only, never a save/recovery/presence
+freeze. Failed saves preserve a pre-existing manual pause. The runner holds
+its normal operation lock and revalidates this control like a move; the UI
+only offers it at a round break or while that manual pause is held.
 
 Games can declare `paced_event_presentation?` and return plain-data stages
 from `event_presentation_stages`. The existing presentation queue separates

@@ -297,6 +297,12 @@ class GameScreen
         show_game_rules(replay)
       when :save_table_history
         save_presented_history(replay)
+      when :toggle_round_pause
+        status = network_task(_("Pause between rounds"), ui: :none) do
+          @session_runner.toggle_round_pause(session: @session, replay: replay)
+        end
+        speak(_("You can pause only between rounds.")) if status && status != :ok
+        @suppress_surface_focus = true
       when :save_game
         if GameRoomTournamentMarker.present?(@table, @session)
           speak(_("Tournament games cannot be saved or resumed from a saved game."))

@@ -6,6 +6,7 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class MilleBornes < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
     def tournament_small_point_policy(options:)
       tournament_target_small_points(normalize_options(options).fetch('target_score'))
     end

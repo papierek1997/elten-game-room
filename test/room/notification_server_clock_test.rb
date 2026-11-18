@@ -26,7 +26,7 @@ begin
     transport.define_singleton_method(:start) { true }
     app.instance_variable_set(:@transport,transport)
     app.define_singleton_method(:initialize_services) {}
-    app.define_singleton_method(:check_server_table_access) {}
+    app.define_singleton_method(:check_server_table_access) { |announce: true| }
     app.define_singleton_method(:run_network_task) { |*_,&block| block.call }
     choice = InvitationRepository::PendingInvitation.new(invitation: row)
     app.define_singleton_method(:load_pending_invitations) { [{invitation:choice}] }
@@ -89,7 +89,7 @@ begin
   # Reconnecting unsuccessfully must not revoke a valid invitation.
   app = EltenGameRoom.allocate
   app.define_singleton_method(:initialize_services) {}
-  app.define_singleton_method(:check_server_table_access) {}
+  app.define_singleton_method(:check_server_table_access) { |announce: true| }
   app.define_singleton_method(:run_network_task) { |*_, &_| nil }
   app.define_singleton_method(:alert) { |_| raise "Failed connection falsely expired an invitation" }
   app.notification_action(:open_invitation,ClockNotice.new(type:"game_room.invitation"))

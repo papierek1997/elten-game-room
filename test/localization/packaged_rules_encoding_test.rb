@@ -121,7 +121,9 @@ binary_transport = Object.new
 binary_transport.define_singleton_method(:start) { true }
 invitation_app.instance_variable_set(:@transport, binary_transport)
 invitation_app.define_singleton_method(:initialize_services) {}
-invitation_app.define_singleton_method(:check_server_table_access) {}
+invitation_app.define_singleton_method(:check_server_table_access) do |announce: true|
+  raise 'Ordinary invitation suppressed its access announcement' unless announce
+end
 invitation_app.define_singleton_method(:run_network_task) { |*_args, **_kwargs, &operation| operation.call }
 invitation_app.define_singleton_method(:load_pending_invitations) do
   collector.pending(recipient: "Bob").map do |row|

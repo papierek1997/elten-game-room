@@ -12,6 +12,7 @@ GameRoomServerRandom.register('spades', ['deal'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class Spades < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
     CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def tournament_small_point_policy(options:)
       tournament_target_small_points(normalize_options(options).fetch('score_limit'))

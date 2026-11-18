@@ -1,6 +1,7 @@
 require_relative "contracts"
 require_relative "../lib/game_surfaces/specifications"
 require_relative "../lib/game_session_clock"
+require_relative "../lib/game_round_pause"
 require "json"
 require_relative "../lib/game_participants"
 require_relative "../lib/game_teams"
@@ -51,6 +52,11 @@ module GameRoomGames
     # Turn-based model/actions can continue behind another native scene. A
     # realtime client owns its simulation, focus and pause protocol separately.
     def session_runner?; true; end
+
+    # Opt in only for games with separately settled rounds, never each turn.
+    def round_pause_seconds(_replay); 0; end
+    def round_pause_end_kinds; round_timing_end_kinds; end
+    def round_pause_deadline(_replay); nil; end
 
     # Pure presentation cues from one accepted event. The presenter supplies
     # its event-local history and cosmetic RNG, then owns playback and mixing.
@@ -429,6 +435,8 @@ module GameRoomGames
         _("The game has already ended.")
       when :not_your_turn
         _("It is not your turn.")
+      when :round_pause
+        _("Waiting for the next round.")
       when :local_storage_unavailable
         _("Your answer could not be saved on this device and was not sent. Please try again.")
       else

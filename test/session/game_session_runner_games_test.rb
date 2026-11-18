@@ -34,8 +34,14 @@ EltenGameRoom::GAME_REGISTRY.ids.each do |id|
     action = game.legal_actions(current, 'Alice', context: r.send(:context)).first
     if action
       h.as('Alice') do
+        before = h.events('Alice')
         status, = r.submit(session: h.session, replay: current, selection: action, actor: 'Alice')
-        assert(status == :ok, "#{id}: its legal human action was rejected: #{status}")
+        if status == :round_pause
+          assert(r.send(:round_pause_active?) && h.events('Alice') == before,
+            "#{id}: a round pause wrote an action or rejected input outside its boundary")
+        else
+          assert(status == :ok, "#{id}: its legal human action was rejected: #{status}")
+        end
       end
     end
   end

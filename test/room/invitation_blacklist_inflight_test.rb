@@ -9,13 +9,13 @@ class BlacklistInflightApp < InvitationAppDriver
   attr_reader :entered, :membership_attempts
   def initialize(*args, **options)
     super
-    @invitations, @server_tables = nil, {}
+    @invitations, @server_tables = nil, AvailableTables.new
     @membership_attempts = []
     initialize_services
   end
   def register_room_presence; end
   def record_statistics_visit; end
-  def check_server_table_access; end
+  def check_server_table_access(announce: true); end
   def run_program_interface(row); @entered = row; end
   def select_notification_invitation_action; choice || :accept; end
   def ordinary_tournament_service(*, **); fixture_service; end

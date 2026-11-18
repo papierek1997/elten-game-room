@@ -1,10 +1,17 @@
 require_relative 'service'
 require_relative '../../game_room_analytics_storage'
+require_relative '../../game_room_server_tables'
 
 module GameRoomDartsRankings
   module Runtime
+    include GameRoomServerTables::Runtime
+
+    def darts_rankings_enabled?
+      server_tables_available?
+    end
+
     def darts_rankings_service
-      return unless analytics_enabled?
+      return unless darts_rankings_enabled?
       return unless respond_to?(:app_runtime) && (runtime = app_runtime) && !Session.name.to_s.empty?
       @darts_rankings_lock ||= Mutex.new
       @darts_rankings_lock.synchronize do
@@ -16,7 +23,7 @@ module GameRoomDartsRankings
         unless @darts_rankings_service
           @darts_rankings_context = [runtime, identity.freeze].freeze
           context = @darts_rankings_context
-          enabled = -> { @darts_rankings_context.equal?(context) && analytics_enabled? && app_runtime.equal?(runtime) && Session.name.to_s.casecmp?(user) }
+          enabled = -> { @darts_rankings_context.equal?(context) && darts_rankings_enabled? && app_runtime.equal?(runtime) && Session.name.to_s.casecmp?(user) }
           job = nil
           service = Service.new(program: self, user: user, storage: GameRoomAnalyticsStorage.new(self), enabled: enabled,
             trigger: -> { job&.request })
@@ -36,7 +43,7 @@ module GameRoomDartsRankings
     end
 
     def darts_rankings_tick
-      return unless analytics_enabled?
+      return unless darts_rankings_enabled?
       darts_rankings_service
       @darts_rankings_job&.tick
     end
@@ -47,7 +54,9 @@ module GameRoomDartsRankings
 
     def stop_darts_rankings
       @darts_rankings_lock ||= Mutex.new
-      @darts_rankings_lock.synchronize { close_darts_rankings_context }
+      @darts_rankings_lock.synchronize do
+        close_darts_rankings_context
+      end
     end
 
     private

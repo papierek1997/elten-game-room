@@ -16,16 +16,17 @@ module GameRoomSportsRankings
     end
     private_constant :Form
 
-    def initialize(program:, game:, service:, today: -> { GameRoomStatistics::Periods.today })
+    def initialize(program:, game:, service:, today: -> { GameRoomStatistics::Periods.today }, unavailable: -> { nil })
       @program, @game, @service, @today = program, game, service, today
       @user = Session.name.to_s.dup.freeze
       @runtime = program.class.app_runtime if program.class.respond_to?(:app_runtime)
       @closed = false
+      @unavailable = unavailable
     end
 
     def run
       unless @service && @program.class.analytics_enabled?
-        alert(text(_("Player statistics are temporarily unavailable.")))
+        alert(text(unavailable_message))
         return
       end
       index = 0
@@ -162,8 +163,13 @@ module GameRoomSportsRankings
 
     def show_error(control, error)
       Log.warning("Player statistics read failed: #{error.class}") if defined?(Log)
-      control.set_text(text(_('Player statistics are unavailable. Try Refresh.')))
-      show_opponents(nil, text(_('Player statistics are unavailable. Try Refresh.')))
+      message = text(unavailable_message)
+      control.set_text(message)
+      show_opponents(nil, message)
+    end
+
+    def unavailable_message
+      @unavailable.call || _('Player statistics could not be loaded. Check your connection and try Refresh.')
     end
 
     # Rows count the selected period and omit opponents not met in it; the

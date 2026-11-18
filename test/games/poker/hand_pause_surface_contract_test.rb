@@ -50,7 +50,7 @@ label_errors = []
         unless poker_idle_label(game, paused, viewer) == 'Waiting for the next deal.'
           label_errors << "#{label}: #{viewer} receives a blank-player status during the hand pause"
         end
-        assert(paused.state[:hand_resume_at] == 1008, "#{label}: presentation changed the six-second boundary")
+        assert(paused.state[:hand_resume_at] == 1007, "#{label}: presentation changed the five-second boundary")
         final = GameRoomSnapshot.copy(paused)
         final.winner = 'Alice'
         final.state[:winner] = 'Alice'
@@ -58,7 +58,7 @@ label_errors = []
         assert(poker_idle_label(game, final, viewer) == game.result_text(final),
           "#{label}: the idle label replaced the final result")
       end
-      time.call(1008)
+      time.call(1007)
       16.times { PrivateCardGamesTest.tick(h, runners) }
       assert(h.replay('Alice').state[:phase] == :betting && h.replay('Alice').state[:hand_number] == 2,
         "#{label}: the neutral status prevented the next deal")
@@ -69,4 +69,4 @@ label_errors = []
 end
 assert(label_errors.empty?, label_errors.join("\n"))
 
-puts 'PASS Poker idle surface: named active player, neutral initial/hand pause, unchanged final result and six-second next deal'
+puts 'PASS Poker idle surface: named active player, neutral initial/hand pause, unchanged final result and five-second next deal'

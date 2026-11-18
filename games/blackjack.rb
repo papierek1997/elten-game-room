@@ -10,6 +10,7 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class Blackjack < CardGame
+    def round_pause_seconds(replay); social?(replay.state) ? 0 : GameRoomRoundPause::SECONDS; end
     CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'none', sort_modes: %w[none], suits: PLAYROOM_SUIT_ORDER, ranks: CARD_RANKS)
     include PublicHistoryAnnouncements
     include BlackjackAuction

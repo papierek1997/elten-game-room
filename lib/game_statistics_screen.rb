@@ -55,9 +55,10 @@ class GameRoomStatisticsScreen
   end
   private_constant :Form
 
-  def initialize(program:, reader:, years_reader:, registry:, today: -> { GameRoomStatistics::Periods.today }, valid: -> { true })
+  def initialize(program:, reader:, years_reader:, registry:, today: -> { GameRoomStatistics::Periods.today }, valid: -> { true }, unavailable: -> { nil })
     @program, @reader, @years_reader, @registry, @today = program, reader, years_reader, registry, today
     @valid = valid
+    @unavailable = unavailable
   end
 
   def run
@@ -252,7 +253,7 @@ class GameRoomStatisticsScreen
   end
 
   def empty_label(data)
-    text(before_collection?(data) ? _("No statistics were collected for this period.") : _("Statistics unavailable"))
+    text(before_collection?(data) ? _("No statistics were collected for this period.") : unavailable_message)
   end
 
   def game_rows(data)
@@ -270,14 +271,14 @@ class GameRoomStatisticsScreen
   end
 
   def summary_text(data)
-    return text(_("Statistics are unavailable. Try Refresh.")) unless @period
+    return text(unavailable_message) unless @period
     first_date = data && data["first_day"] && Date.strptime(data.fetch("first_day").to_s, "%Y%m%d")
     from = @period.from_date || first_date
     lines = [text(_("Period: %{period}")) % { period: @period.label },
       text(_("Date range: %{from} to %{to} (inclusive; Europe/Warsaw)")) % {
         from: from ? from.iso8601 : text(_("collection start (unknown)")), to: @period.to_date.iso8601 }]
-    lines << text(_("Calendar years are unavailable. Try Refresh.")) if @years_unavailable
-    return (lines + [text(_("Statistics are unavailable. Try Refresh."))]).join("\n") unless data
+    lines << text(_("The list of years could not be loaded. Try Refresh.")) if @years_unavailable && !@unavailable.call
+    return (lines + [text(unavailable_message)]).join("\n") unless data
     lines << if first_date
       text(_("Collection started: %{date}.")) % { date: first_date.iso8601 }
     else
@@ -292,5 +293,9 @@ class GameRoomStatisticsScreen
       text(_("Games started: %{count}")) % { count: data.fetch("started") },
       text(_("Games completed: %{count}")) % { count: data.fetch("completed") }
     ]).join("\n")
+  end
+
+  def unavailable_message
+    @unavailable.call || _('Statistics could not be loaded. Check your connection and try Refresh.')
   end
 end

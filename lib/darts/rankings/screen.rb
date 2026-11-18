@@ -7,14 +7,15 @@ module GameRoomDartsRankings
   class Screen
     using GameRoomLocalization::Translations
 
-    def initialize(program:, game:, service:)
+    def initialize(program:, game:, service:, unavailable: -> { nil })
       @program, @game, @service = program, game, service
       @closed = false
+      @unavailable = unavailable
     end
 
     def run
-      unless @service
-        alert(text(_('Darts rankings are temporarily unavailable.')))
+      if !@service || @unavailable.call
+        alert(text(unavailable_message))
         return
       end
       difficulty_index = 0
@@ -77,7 +78,11 @@ module GameRoomDartsRankings
       nil
     rescue StandardError => error
       Log.warning("Darts ranking: #{error.class}: #{error.message}") if defined?(Log)
-      alert(text(_('Could not connect to the Darts ranking.')))
+      alert(text(unavailable_message))
+    end
+
+    def unavailable_message
+      @unavailable.call || _('The Darts ranking could not be loaded. Check your connection and try again.')
     end
 
     def difficulty_choices

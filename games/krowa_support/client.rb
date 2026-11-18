@@ -65,6 +65,7 @@ module GameRoomGames
         program: @program
       )
       @leaderboards = KrowaLeaderboardClient.new(@program, @game, store: @server_store,
+        unavailable: -> { GameRoomAvailability.unavailable(:rankings, tables: @server_tables) },
         definition: ->(word) { definition_dialog(word) })
       true
     end

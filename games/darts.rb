@@ -119,9 +119,10 @@ module GameRoomGames
         **services.slice(:clock, :mouse, :audio, :channel_factory))
     end
 
-    def build_leaderboard_client(program, **_services)
+    def build_leaderboard_client(program, **services)
       require_relative '../lib/darts/rankings/screen'
-      GameRoomDartsRankings::Screen.new(program: program, game: self, service: program.class.darts_rankings_service)
+      GameRoomDartsRankings::Screen.new(program: program, game: self, service: program.class.darts_rankings_service,
+        unavailable: -> { program.server_feature_unavailable_message(:rankings) })
     end
 
     def replay(session, events, repository)

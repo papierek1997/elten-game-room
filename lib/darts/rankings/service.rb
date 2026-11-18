@@ -13,6 +13,7 @@ module GameRoomDartsRankings
       @progression_synced = false
       store ||= Store.new(app_uuid: program.respond_to?(:server_app_uuid) ? program.server_app_uuid : program.class.server_app_uuid,
         user: user, current_user: options.fetch(:current_user, -> { Session.name }),
+        enabled: options.fetch(:enabled, -> { true }),
         feedback_requested: ->(key) { feedback_requested?(key) }, on_feedback: ->(value) { confirm_feedback(value) },
         on_progression: ->(value) { update_progression(value) })
       queue ||= GameRoomStatistics::Queue.new(storage: storage, user: user, path: PATH,

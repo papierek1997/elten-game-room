@@ -89,6 +89,11 @@ existing creator-text protection and source restrictions intact.
 - Do not restore a second bot scheduler in `GameScreen`: turn-based games
   are executed by `GameRoomSessionRunner`, realtime bots by their own client.
   Tests of bot move writes and acknowledgements must use the active executor.
+- Round breaks belong to the existing runner and session clock. Opt in through
+  `GameRoomRoundPause`; keep chat/navigation usable and give the next round its
+  full input time. Manual Shift+P pauses may release only their own marked
+  boundary, not a technical freeze. Poker blind intervals count active play,
+  excluding actual inter-hand gaps. Test these boundaries with the native runner.
 - Unfreezing after a failed write requires confirmation of that write's own
   boundary, the same game and the current host. Do not unlock a newer write.
   Accepting an invitation and leaving normally share the private-phase
@@ -582,6 +587,9 @@ Details: `docs/UI.md`.
   game or planner code, especially `shuffle(random: ...)`. For new calls,
   use `GameRoomRandom.shuffle(values, random: Random.new(seed))`, passing
   the shared seed recorded in the event, not a new random seed during replay.
+  Do not replace it with a hand-written generator and low-bit modulo choices.
+  Separate question-selection and answer-order entropy; test all 24 four-answer
+  permutations, approximately equal A–D frequencies and stable scoring on peers.
   Preserve existing deterministic helpers (`CardGame#shuffled_cards`,
   `GameRoomDominoTiles.shuffle`, planner helpers) and their seed conversion;
   do not migrate older games incidentally if that would change saved games.
@@ -920,6 +928,19 @@ playback boundary, including volume, optional-effects and output gates.
   per 15 min. Developer mode still disables statistics. Smoothness tests
   must explicitly enable isolated statistics or they do not test this path.
   Details: docs/STATISTICS.md.
+- Darts records and leaderboards are not telemetry: their availability uses
+  the confirmed `GameRoomServerTables` access decision, never developer mode.
+  Gate factories, captured observers, workers and direct store reads alike;
+  preserve queued records on lost access. Keep general/presence/sports
+  statistics under their existing developer-mode policy. See
+  [DARTS_RANKINGS.md](docs/DARTS_RANKINGS.md).
+- Server-feature admission and explanations share `GameRoomAvailability` and
+  the account/runtime-bound `GameRoomServerTables::Runtime` decision. Refuse
+  unusable Rankings/Tournaments/Statistics screens before starting readers.
+  Explain missing uploads once on table entry; do not repeat on moves, mislabel
+  connection errors as confirmed dev mode, or imply that available-table Darts
+  records are disabled by the separate statistics opt-out. Every no-table
+  explanation includes conditional dev-mode/official-launcher guidance.
 - Statistics send at most 25 entries per batch and yield the worker after
   exceeding a soft budget between batches. Acknowledge only the returned,
   validated prefix; a lost response does not remove deduplication or

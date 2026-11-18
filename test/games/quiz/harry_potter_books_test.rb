@@ -104,8 +104,14 @@ replay = append.call(plan)
 assert(replay.state[:phase] == :answering, 'Question did not open')
 surface = game.surface_spec(replay, 'Alice')
 assert(surface.options.length == 4 && surface.options.map(&:label) == game.surface_spec(replay, 'Bob').options.map(&:label), 'Clients show different answer lists')
-positions = questions.first(80).map do |question|
-  state = replay.state.merge(question_id:question.fetch('id'))
+positions = 80.times.map do |index|
+  # A new draw carries fresh answer entropy. Retaining the previous accepted
+  # seed while replacing only question_id would not represent a real question.
+  before = replay.state.merge(position:0, used_questions:[])
+  event = {'value'=>"#{before[:round]},1,q:#{index.to_s(16).rjust(32, '0')}"}
+  parsed = game.send(:parse_seeded_question, before, event)
+  state = before.merge(parsed)
+  question = game.send(:current_question, state)
   choices = game.send(:shuffled_options, state)
   assert(choices.sort == [question['correct'], *question['wrong']].sort, 'Shuffling changed an answer')
   choices.index(question.fetch('correct'))

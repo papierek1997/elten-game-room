@@ -85,6 +85,8 @@ app.define_singleton_method(:run_network_task) { |*_args, **_options| raise "Sta
 app.define_singleton_method(:announce_server_table_access) { raise "Statistics changed the lobby access status" }
 lobby_error = IOError.new("existing lobby error")
 server_tables = Struct.new(:last_error).new(lobby_error)
+def server_tables.available?; true; end
+def server_tables.access_state; :available; end
 app.instance_variable_set(:@server_tables, server_tables)
 forms = []
 Form.statistics_driver = lambda do |form|
@@ -116,8 +118,8 @@ begin
   [IOError.new("statistics offline"), EltenLink::Error.new("statistics denied")].each do |failure|
     read_error = failure
     Form.statistics_driver = lambda do |form|
-      assert(form.fields.first.text.include?("Statistics are unavailable. Try Refresh."), "Read failures were presented as counts")
-      assert(form.fields.first.text.include?("Calendar years are unavailable."), "Year read failure was hidden")
+      assert(form.fields.first.text.include?("Statistics could not be loaded. Check your connection and try Refresh."), "Read failures were presented as counts")
+      assert(form.fields.first.text.include?("The list of years could not be loaded."), "Year read failure was hidden")
       assert(form.fields.find { |field| field.is_a?(TableBox) }.rows.empty?, "Read failure retained stale rows")
       form.cancel_button.trigger(:press)
     end
@@ -130,8 +132,8 @@ begin
     before_tokens = tokens.length
     Form.statistics_driver = lambda do |form|
       summary = form.fields.first.text
-      assert(summary.include?("Calendar years are unavailable.") == (kind == :years), "Cancelled year discovery was accepted")
-      assert(summary.include?("Statistics are unavailable."), "Cancelled snapshot was accepted")
+      assert(summary.include?("The list of years could not be loaded.") == (kind == :years), "Cancelled year discovery was accepted")
+      assert(summary.include?("Statistics could not be loaded."), "Cancelled snapshot was accepted")
       form.cancel_button.trigger(:press)
     end
     app.send(:show_statistics)
@@ -142,7 +144,7 @@ begin
   service = nil
   previous_reads = reads.dup
   Form.statistics_driver = lambda do |form|
-    assert(form.fields.first.text.include?("Statistics are unavailable."), "Unavailable statistics service aborted the menu")
+    assert(form.fields.first.text.include?("Statistics could not be loaded."), "Unavailable statistics service aborted the menu")
     form.cancel_button.trigger(:press)
   end
   app.send(:show_statistics)

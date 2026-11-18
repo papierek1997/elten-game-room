@@ -54,6 +54,12 @@ everyone has an up-to-date version before playing together.
 Read about changes in “What's new”. As in this guide, H moves to the next
 heading, Shift+H to the previous one, and Escape closes the document.
 
+If server features are unavailable, Power Games explains at entry what is
+restricted and how to try restoring access. Ordinary tables still work, but
+you cannot open rankings or tournaments, and the program will not send
+statistics or ranking results. Developer mode always disables statistics;
+rankings can still work when the server permits access.
+
 ## What you can play
 
 Power Games includes 57 games, ranging from cards and board games to word
@@ -206,6 +212,11 @@ the previous window. Each game's help also has a separate shortcut list.
 
 Some games provide personal settings or toggles through Ctrl+P and the table
 menu. These change your own experience, not the shared variant set by the host.
+
+Games with a break after round settlement wait five seconds. During that break,
+the host can press Shift+P in the game area to pause indefinitely. Press it again
+to resume; the rest of the short break then elapses. Chat and history remain
+available. In Poker, time between hands does not count towards the next blind increase.
 
 ### Sorting cards and finding a playable move
 
@@ -519,6 +530,7 @@ This list covers the program's common controls. Use F1 for a specific game's com
 - Ctrl+Shift+O — choose to play or spectate in the next game.
 - Ctrl+Shift+M — mute or unmute your microphone in the table conference.
 - Ctrl+P — personal settings or a personal toggle, in games that provide one.
+- Shift+P — the host pauses or resumes play during a break between rounds.
 - Ctrl+S — save the game and close the table; for the host, in supported games outside tournaments.
 - Ctrl+Shift+S — keep text history or an audio-game replay in the library without closing the game.
 - Ctrl+Q — end the current game without closing the table; for the host.

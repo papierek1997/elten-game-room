@@ -33,10 +33,10 @@ commit.call('Alice', surface_action('review', 'finish', 'decisions' => {}))
 completed = commit.call('Alice')
 assert(completed.state[:phase] == :round_complete, 'Scoring did not finish the round')
 finished_at = events.find { |entry| entry['action'] == 'round_finished' }.fetch('created_at')
-assert(completed.state[:resume_at] == finished_at + 2, 'Pause is not based on the committed round-finish timestamp')
+assert(completed.state[:resume_at] == finished_at + 5, 'Pause is not based on the committed round-finish timestamp')
 revision = events.map { |event| event.fetch('id') }
 
-[finished_at, finished_at + 1].each do |now|
+[finished_at, finished_at + 4].each do |now|
   context.now = now
   assert(game.automatic_action(completed, 'Alice', context: context).nil?, 'The next round started before the fixed pause')
   assert(!game.automatic_action_due?(completed, 'Alice', context: context), 'The executor wakes before the pause expires')
@@ -44,7 +44,7 @@ revision = events.map { |event| event.fetch('id') }
   assert(status != :ok && plan.nil?, 'A previously selected start bypassed the remaining pause')
 end
 
-context.now = finished_at + 2
+context.now = finished_at + 5
 assert(game.automatic_action_due?(completed, 'Alice', context: context),
   'An unchanged event revision never wakes the executor when the pause ends')
 action = game.automatic_action(completed, 'Alice', context: context)
@@ -60,7 +60,7 @@ assert(next_round.accepted_events.length == events.length, 'The normal history l
 shifted_session = session.merge('__server_started_at' => 1_000, 'created_at' => 900, '__clock_offset' => 17)
 shifted_events = events.take(revision.length).map { |entry| entry.merge('created_at' => entry['created_at'] + 117) }
 shifted = game.replay(shifted_session, shifted_events, repository)
-assert(shifted.state[:resume_at] == completed.state[:resume_at], 'Server/restore clock offset changed the two-second pause')
+assert(shifted.state[:resume_at] == completed.state[:resume_at], 'Server/restore clock offset changed the five-second pause')
 assert(game.automatic_action_due?(shifted, 'Alice', context: context), 'A restored game did not wake at the same game-time boundary')
 
 # Completed history must include everyone, including a shared winner. This

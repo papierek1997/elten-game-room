@@ -9,6 +9,8 @@ GameRoomServerRandom.register('categories', %w[category_round])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class Categories < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    def round_pause_deadline(replay); replay.state[:resume_at] if replay.state[:phase] == :round_complete; end
     def tournament_small_point_policy(options:)
       tournament_target_small_points(normalize_options(options).fetch('target_score'))
     end
@@ -65,7 +67,7 @@ module GameRoomGames
     MINIMUM_ROUND_TIME = 10
     MAXIMUM_ROUND_TIME = 3_600
     DEADLINE_SUBMISSION_GRACE = 3
-    NEXT_ROUND_PAUSE = 2
+    NEXT_ROUND_PAUSE = GameRoomRoundPause::SECONDS
     DECISION_POINTS = {
       "unique" => 2,
       "partial" => 1,

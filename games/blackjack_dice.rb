@@ -8,6 +8,8 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class BlackjackDice < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    def round_pause_end_kinds; %i[round settlement pot]; end
     include PublicHistoryAnnouncements
     include BlackjackAuction
     include RoundTournament

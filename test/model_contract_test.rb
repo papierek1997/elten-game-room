@@ -1,6 +1,7 @@
 require_relative '../games/catalog'
 require_relative 'support/private_simulation'
 require_relative 'support/model_contract'
+require_relative 'support/historical_quiz'
 include GameRoomTest::Assertions
 
 corpus = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/histories.json'), encoding: 'UTF-8'))
@@ -149,6 +150,7 @@ assert((ARGV - expected_ids).empty?, 'unknown game requested for contract verifi
 cases = cases.select { |item| ARGV.include?(item.fetch('game')) } unless ARGV.empty?
 cases.each do |item|
   game = GameRoomGames::CATALOG.build(item.fetch('game'))
+  game.extend(GameRoomTest::HistoricalQuizQuestionProducer) if game.id == 'quiz'
   random = Random.new(item.fetch('seed'))
   SecureRandom.define_singleton_method(:hex) { |n = 16| Array.new(n) { random.rand(256).to_s(16).rjust(2, '0') }.join }
   env = GameRoomTest::PrivateSimulation.new_game(game: game, players: item.fetch('players'), options: item.fetch('options'), seed: item.fetch('seed'))

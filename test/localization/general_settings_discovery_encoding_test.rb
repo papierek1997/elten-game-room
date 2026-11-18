@@ -52,7 +52,7 @@ using GameRoomLocalization::Translations
     raise 'Restricted explanation is not UTF-8' unless [note.text, note.header].all? do |text|
       text.encoding == Encoding::UTF_8 && (text + ' Флажок').valid_encoding?
     end
-    expected_note = _("New-table subscriptions are unavailable without access to server settings. Other settings can still be changed.")
+    expected_note = _("New-table notification settings could not be loaded. Reopen Settings to try again. Other settings can still be changed.")
     raise 'Restricted explanation has the wrong language' unless note.text.start_with?(expected_note)
     form.accept_button.trigger(:press)
   end

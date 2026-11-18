@@ -43,7 +43,7 @@ module StatisticsNativeClockBoundary
     assert(periods.is_a?(EltenAPI::Controls::ListBox) && table.is_a?(EltenAPI::Controls::TableBox),
       'Clock regression did not exercise native controls')
     assert(EltenAPI::ServerClock.now.nil? && reads.empty? && years.empty?, 'Cold host clock fabricated a date or read tables')
-    assert(summary.text.include?('Statistics are unavailable.') && table.rows.empty? && periods.options.empty?,
+    assert(summary.text.include?('Statistics could not be loaded.') && table.rows.empty? && periods.options.empty?,
       'Cold native clock did not reach an unavailable but usable form')
     form.index = 2
     form.accept_button.trigger(:press)

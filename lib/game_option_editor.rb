@@ -85,6 +85,9 @@ class GameRoomOptionEditor
       end
       refresh_visibility.call
       save_button.on(:press) do
+        # Numeric dependencies must also be applied when Enter submits an
+        # edit field without first moving through another choice control.
+        refresh_visibility.call
         action = :save
         form.resume
       end

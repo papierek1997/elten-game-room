@@ -167,12 +167,14 @@ class GameScreen
       history = layout.history
       shortcuts = normalized_game_shortcuts(@game.game_shortcuts(wait.replay, Session.name))
       shortcuts += @game_client.local_shortcuts if @game_client&.respond_to?(:local_shortcuts)
+      append_round_pause_shortcut(shortcuts, wait.replay)
       reports = @question_reports if @game.respond_to?(:reportable_question)
       if reports
         reports.observe(@repository.session_id(@session), @game.reportable_question(wait.replay))
         shortcuts += reports.shortcuts
       end
       handle_shortcut = lambda do |shortcut|
+        next if handle_round_pause_shortcut(shortcut, wait, form, remember_position)
         # A bookmark is local and instantaneous, even during a pending answer.
         # It must not resume the form, move focus or enter the move pipeline.
         if reports && shortcut.action_kind == "question_report"
@@ -233,12 +235,31 @@ class GameScreen
         wait.action = :game_action
         form.resume
       end
-      bind_game_shortcuts(
-        form,
-        layout.shortcut_fields,
-        shortcuts,
-        &handle_shortcut
-      )
+      bind_game_shortcuts(form, layout.shortcut_fields, shortcuts, &handle_shortcut)
+    end
+
+    def append_round_pause_shortcut(shortcuts, replay)
+      return unless round_pause_shortcut_available?(replay)
+      shortcuts << GameRoomGames::GameShortcut.new(key: 'p', modifiers: [:shift], kind: :action,
+        label: @session['__round_pause'] ? _("Resume the game") : _("Pause between rounds"),
+        action_kind: 'round_pause', action_name: 'toggle')
+    end
+
+    def handle_round_pause_shortcut(shortcut, wait, form, remember_position)
+      return false unless shortcut.action_kind == 'round_pause'
+      return true if wait.action || form.game_room_pending_operation
+      remember_position.call
+      wait.action = :toggle_round_pause
+      form.resume
+      true
+    end
+
+    def round_pause_shortcut_available?(replay)
+      return false unless @session_runner && same_user?(@table_owner, Session.name) && !replay.finished?
+      return true if @session['__round_pause'] == true
+      return false if @session['__frozen']
+      @round_pause_view ||= GameRoomRoundPause.new(@repository)
+      @round_pause_view.active?(game: @game, replay: replay, session: @session, now: action_context.now)
     end
 
     def bind_wait_history(wait, layout, remember_position)

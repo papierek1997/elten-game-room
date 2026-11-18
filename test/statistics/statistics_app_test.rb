@@ -38,7 +38,7 @@ begin
   app.instance_variable_set(:@lobby, lobby)
   app.define_singleton_method(:initialize_services) { nil }
   app.define_singleton_method(:show_update_changelog) { nil }
-  app.define_singleton_method(:check_server_table_access) { nil }
+  app.define_singleton_method(:check_server_table_access) { |announce: true| nil }
   app.define_singleton_method(:register_game_room_user) { nil }
   app.define_singleton_method(:run_network_task) { |*_args, **_options, &operation| operation.call }
   app.define_singleton_method(:run_program_interface) { |_row| nil }

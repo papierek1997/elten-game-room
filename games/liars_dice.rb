@@ -7,6 +7,7 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class LiarsDice < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
     def round_ended?(history:, **context)
       history.any? { |entry| entry.kind == :count } || super(history: history, **context)
     end

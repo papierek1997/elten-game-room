@@ -301,8 +301,9 @@ module GameRoomScreens
     attr_reader :table_watch_baseline
 
     def initialize(values, games:, program: nil, preset_editor: nil, preset_writer: nil,
-      table_watch_available: true, table_watch_loader: nil)
+      table_watch_available: true, table_watch_loader: nil, table_watch_unavailable: -> { nil })
       @program = program
+      @table_watch_unavailable = table_watch_unavailable
       @values = values.to_h
       @games = games.to_a
       @hrtf_games = @games.select { |game| game[:spatial_audio] == true }
@@ -572,7 +573,7 @@ module GameRoomScreens
 
     def watched_games_status(header, loading:)
       text = loading ? _("Loading notification settings") :
-        _("New-table subscriptions are unavailable without access to server settings. Other settings can still be changed.")
+        (@table_watch_unavailable.call || _("New-table notification settings could not be loaded. Reopen Settings to try again. Other settings can still be changed."))
       EditBox.new(header, type: EditBox::Flags::ReadOnly | EditBox::Flags::MultiLine,
         text: GameRoomContent.utf8(text), quiet: true)
     end

@@ -55,6 +55,12 @@ aby všichni používali aktuální verzi.
 Změny najdete v části „Co je nového“. Stejně jako v této příručce přejde H
 na další nadpis, Shift+H na předchozí a Escape dokument zavře.
 
+Pokud serverové funkce nejsou dostupné, Power Games při vstupu vysvětlí,
+co je omezené a jak zkusit přístup obnovit. Běžné stoly nadále fungují,
+ale nelze otevřít žebříčky ani turnaje a program neodesílá statistiky ani
+výsledky do žebříčků. Ve vývojářském režimu jsou statistiky vždy vypnuté;
+žebříčky mohou fungovat, pokud server přístup povolí.
+
 ## Co si můžete zahrát
 
 Power Games obsahuje 57 her: karetní a deskové hry, slovní a vědomostní
@@ -206,6 +212,12 @@ také samostatný seznam zkratek.
 
 Některé hry nabízejí osobní nastavení či přepínače pod Ctrl+P a v nabídce
 stolu. Týkají se vašeho způsobu hraní, ne společné varianty zvolené hostitelem.
+
+Ve hrách s přestávkou po vyhodnocení kola trvá tato přestávka pět sekund.
+Během ní může hostitel v herním poli stisknout Shift+P a hru pozastavit
+na libovolně dlouhou dobu. Dalším Shift+P ji obnoví a doběhne zbývající část
+krátké přestávky. Chat i historie zůstávají dostupné. V Pokeru se čas mezi
+rozdáními nezapočítává do doby do dalšího zvýšení blindů.
 
 ### Řazení karet a hledání možného tahu
 
@@ -517,6 +529,7 @@ Následující přehled se týká společného ovládání programu. Příkazy k
 - Ctrl+Shift+O — výběr role hráče či diváka pro další partii.
 - Ctrl+Shift+M — ztlumit či zapnout mikrofon v konferenci stolu.
 - Ctrl+P — osobní nastavení nebo přepínač ve hrách, které jej nabízejí.
+- Shift+P — hostitel pozastaví nebo obnoví hru během přestávky mezi koly.
 - Ctrl+S — uložení partie a zavření stolu; pro hostitele v podporovaných hrách mimo turnaje.
 - Ctrl+Shift+S — textová historie nebo záznam zvukové hry v knihovně bez ukončení partie.
 - Ctrl+Q — ukončení aktuální partie bez zavření stolu; pro hostitele.

@@ -13,10 +13,11 @@ module GameRoomDarts
     def _(text); GameRoomContent.utf8(super(text)); end
 
     def initialize(values, program:, tick: nil, withdraw: nil, confirm_publish: nil, confirm_withdraw: nil, notify: nil,
-      clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
+      clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) }, unavailable: -> { nil })
       @values, @program = Preferences.normalize(values), program
       @tick, @clock = tick, clock
       @withdraw = withdraw
+      @unavailable = unavailable
       @confirm_publish = confirm_publish || -> {
         confirm(_('Publish your three saved personal records in each Darts ranking too?'))
       }
@@ -51,7 +52,7 @@ module GameRoomDarts
         if @withdraw.call
           @notify.call(_('Removal of your public Darts results has been queued.'))
         else
-          @notify.call(_('Could not queue removal of your public Darts results.'))
+          @notify.call(@unavailable.call || _('Could not queue removal of your public Darts results.'))
         end
       end
       save.on(:press) { accepted = true; form.resume }

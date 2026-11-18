@@ -85,6 +85,14 @@ module GameRoomPokerOpponents
     ((pressure * 0.8) * (profile[:fold] / (3.0 / 8)) / (1 + raises * 0.5)).clamp(0.005, 0.85)
   end
 
+  def call_weight(profile, calls, strength, price)
+    # Calling a large price is stronger evidence than completing cheaply.
+    # Calling stations still retain weak hands; neither case is a hard cutoff.
+    credibility = (profile[:fold] / (3.0 / 8)).clamp(0.2, 2.0)
+    evidence = [calls, 3].min * (0.4 + 1.6 * price.clamp(0.0, 0.5)) * credibility
+    (1 + evidence * (strength - 0.5)).clamp(0.15, 2.5)
+  end
+
   # Public fold/call response model. Poker has at most seven opponents, so
   # every subset fits in 128 cases; no unbounded betting tree is introduced.
   def responders(players, fold_rates)

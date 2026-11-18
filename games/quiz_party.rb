@@ -9,12 +9,15 @@ require_relative "../lib/game_bots"
 require_relative "../lib/hidden_submissions"
 
 require_relative "../lib/game_room_localization"
+require "digest"
 
 GameRoomServerRandom.register('quiz', %w[round_draw question])
 
 module GameRoomGames
   using GameRoomLocalization::Translations
   class QuizParty < Base
+    def round_pause_seconds(replay); replay.state[:phase] == :drawing ? GameRoomRoundPause::SECONDS : 0; end
+    def round_pause_deadline(replay); replay.state[:resume_at] if replay.state[:resume_at].to_i.positive?; end
     def tournament_small_point_policy(options:)
       tournament_target_small_points(normalize_options(options).fetch('target_score'))
     end
@@ -31,7 +34,7 @@ module GameRoomGames
     DEADLINE_SUBMISSION_GRACE = 3
     REVEAL_TIMEOUT = 10
     NEXT_QUESTION_PAUSE = 4
-    NEXT_ROUND_PAUSE = 5
+    NEXT_ROUND_PAUSE = GameRoomRoundPause::SECONDS
     BOT_KNOWLEDGE_PERCENT = 40
     ROLL_LIMIT = 1_000
 
@@ -650,18 +653,15 @@ module GameRoomGames
         return [:not_your_turn, nil] if state[:phase] != :starting || !owner?(state[:players], actor)
         return [:invalid, nil] if !next_question_pause_over?(state, context&.now)
 
-        if context.server_random
-          return [:invalid, nil] if drawable_questions(state).empty?
-          return [:ok, ActionPlan.new(events:[GameRoomServerRandom.text_seed_command(action:'question',
-            template:"#{state[:round]},#{state[:position]+1},n:{seed}")])]
-        end
+        return [:invalid, nil] if drawable_questions(state).empty?
+        command = GameRoomServerRandom.text_seed_command(action:'question',
+          template:"#{state[:round]},#{state[:position]+1},q:{seed}")
+        return [:ok, ActionPlan.new(events:[command])] if context.server_random
 
-        question = draw_question(state, context)
-        return [:invalid, nil] if question == nil
-
-        duration = state[:options]["answer_time"].to_i
-        deadline = context.now.to_i + duration
-        value = [state[:round], state[:position] + 1, question["id"], deadline].join(",")
+        # Local simulations use the same durable seed dialect, not a second
+        # answer-order policy. Live tables request this entropy from the server.
+        values = context.random_source.roll(count:16, sides:256).values
+        value = GameRoomServerRandomRendering.render(command.random_request.fetch('recipe'), values)
         [:ok, event_plan("question", value)]
       when "close_answers"
         return [:not_your_turn, nil] if state[:phase] != :answering || !owner?(state[:players], actor)
@@ -998,6 +998,12 @@ module GameRoomGames
       return [] if question == nil
 
       answers = [question["correct"].to_s] + question["wrong"].to_a.map(&:to_s)
+      if state[:answer_order_seed]
+        return GameRoomRandom.shuffle(answers, random:Random.new(state[:answer_order_seed].to_i(16)))
+      end
+
+      # Read already accepted question events exactly as they were shown.
+      # New questions always carry q: entropy and never enter this old dialect.
       seed = "#{question["id"]}:#{state[:round]}:#{state[:position]}".each_char.reduce(7) do |result, character|
         (result * 31 + character.ord) & 0x7fffffff
       end
@@ -1140,11 +1146,22 @@ module GameRoomGames
     end
 
     def parse_seeded_question(state, event)
-      seed = GameRoomServerRandom.text_seed_value(event, template:"#{state[:round]},#{state[:position]+1},n:{seed}")
+      prefix = "#{state[:round]},#{state[:position]+1}"
+      seed = GameRoomServerRandom.text_seed_value(event, template:"#{prefix},q:{seed}")
+      shuffled = seed != nil
+      seed ||= GameRoomServerRandom.text_seed_value(event, template:"#{prefix},n:{seed}")
       return nil unless seed
       context = ActionContext.new(random_source:GameRoomRandom::SeededSource.new(seed.to_i(16)))
       question = draw_question(state,context)
-      {round:state[:round], position:state[:position]+1, question_id:question['id']} if question
+      return nil unless question
+
+      result = {round:state[:round], position:state[:position]+1, question_id:question['id']}
+      if shuffled
+        # Separate answer entropy from the RNG used to select the question:
+        # restarting it at the same seed would correlate these two choices.
+        result[:answer_order_seed] = Digest::SHA256.hexdigest("quiz-answers:#{seed}:#{prefix}:#{question['id']}")
+      end
+      result
     end
 
     def parse_round_category(value)

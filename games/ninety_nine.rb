@@ -14,6 +14,7 @@ GameRoomServerRandom.register('ninety_nine', ['deal'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class NinetyNine < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
     def standard_round_end_sound?; false; end
     CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def tournament_small_point_policy(options:)

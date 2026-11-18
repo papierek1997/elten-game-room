@@ -3,6 +3,25 @@ require "thread"
 class GameRoomServerTables
   STAMP_REQUIRED = "apps.tables.stamp_required".freeze
 
+  # The UI entry check also gates managed workers. Binding an unrelated widget's
+  # unchecked provider must not replace a confirmed application-entry decision.
+  module Runtime
+    def server_table_access=(tables)
+      runtime = app_runtime
+      @server_table_access = runtime && [runtime, Session.name.to_s.downcase.freeze, tables].freeze
+    end
+
+    def server_table_access
+      access = @server_table_access
+      access[2] if access && access[0].equal?(app_runtime) && !access[1].empty? &&
+        Session.name.to_s.casecmp?(access[1])
+    end
+
+    def server_tables_available?
+      server_table_access&.available? == true
+    end
+  end
+
   # Keep the access decision shared even by repositories holding cached handles.
   # Skipped writes return nil; they must never be reported as successful writes.
   class Table

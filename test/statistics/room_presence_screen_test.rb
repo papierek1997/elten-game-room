@@ -76,7 +76,7 @@ GameRoomPresenceScreen.new(program: program,
   reader: -> { refresh_reads += 1; data.merge("people" => 12 + refresh_reads) }).run
 Form.presence_driver = lambda do |form|
   summary = form.fields.first.text
-  assert(summary.include?("Room activity is unavailable. Try Refresh."), "Unavailable counts are not explained")
+  assert(summary.include?("Room activity could not be loaded. Check your connection and try Refresh."), "Unavailable counts are not explained")
   assert(!summary.include?("rooms: 0") && !summary.include?("People in rooms:"), "A failed read was presented as measured zero activity")
   assert(summary.include?("recent reports"), "Unavailable view lost the coverage explanation")
   form.cancel_button.press
@@ -98,14 +98,14 @@ Form.presence_driver = lambda do |form|
   form.index = refresh
   2.times do
     refresh.press
-    assert(summary.text.include?("unavailable") && !summary.text.include?("People in rooms:"), "Failed refresh left stale counts or invented zeros")
+    assert(summary.text.include?("Room activity could not be loaded.") && !summary.text.include?("People in rooms:"), "Failed refresh left stale counts or invented zeros")
     assert(form.fields[form.index].equal?(refresh), "Failed refresh stole focus")
   end
   refresh.press
   ["Public rooms: 0", "Private rooms: 0", "People in rooms: 0"].each do |line|
     assert(summary.text.include?(line), "A successful zero result was not rendered: #{line}")
   end
-  assert(!summary.text.include?("unavailable") && responses.empty?, "Refresh did not recover or made extra reader calls")
+  assert(!summary.text.include?("Room activity could not be loaded.") && responses.empty?, "Refresh did not recover or made extra reader calls")
   form.cancel_button.press
 end
 GameRoomPresenceScreen.new(program: program, reader: -> do

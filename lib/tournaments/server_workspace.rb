@@ -15,6 +15,7 @@ require_relative 'server_capacity'
 require_relative 'server_participant_lease'
 require_relative '../game_room_localization'
 require_relative '../game_content'
+require_relative '../game_room_availability'
 
 module GameRoomTournaments
   # Official application storage adapter. No schema deployment or fallback.
@@ -781,6 +782,8 @@ module GameRoomTournaments
         _("You already accepted another match. Cancel that invitation or finish the match first.")
       elsif error.respond_to?(:code)
         case error.code
+        when 'apps.tables.stamp_required', 'apps.tables.forbidden', 'auth.unauthorized'
+          GameRoomAvailability.unavailable(:tournaments, tables: nil, error: error)
         when :too_few_players
           if error.respond_to?(:details) && error.details[:minimum]
             _("Cannot start: %{count} participants registered; at least %{minimum} are required.") % error.details

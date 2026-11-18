@@ -220,8 +220,8 @@ class GameRoomTransport
     @live_store.shared_private_draws_snapshot(session, audiences)
   end
 
-  def freeze_game(session, frozen: true, expected_boundary: nil)
-    @live_store.freeze_game(session, frozen: frozen, expected_boundary: expected_boundary)
+  def freeze_game(session, frozen: true, expected_boundary: nil, round_pause: false)
+    @live_store.freeze_game(session, frozen: frozen, expected_boundary: expected_boundary, round_pause: round_pause)
   end
 
   def append_tournament_presence(session, **options)

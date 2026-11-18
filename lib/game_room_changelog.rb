@@ -823,6 +823,41 @@ module GameRoomChangelog
         "Hearts lets the host choose the point limit, with 100 points by default, and explains why a card cannot be played.",
         "Added a sound at the end of rounds that lacked one, without replacing existing round or game-ending sounds."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.10",
+      build: 273,
+      changes: [
+        "Darts has three new difficulty levels to unlock: Expert, Master and Legendary, with separate records. Unlocked levels are saved to your account. Many thanks to postukujący for the Darts improvements!",
+        "Darts settings now let each player switch mouse and touchpad control on or off independently of the table. Improved mouse handling when starting, leaving and returning to the game.",
+        "In Darts, you can choose to include personal-record announcements in the history. Results received later update it quietly, without moving focus or clearing the chat draft.",
+        "Darts has a round-ending sound and finishes announcing the result before moving to Restart.",
+        "Improved bots in many non-audio games. Card-game bots make better use of public plays, known missing suits, passing and opportunities to finish a hand.",
+        "Poker bots adapt to opponents' observed folds, calls and raises during the match. Dice Poker bots better assess hands that opponents may build by keeping and rerolling dice.",
+        "UNO and Makao bots look for winning sequences of their own cards without slowing urgent interceptions. Rummy, Domino, Mexican Train and 1000 Miles bots plan combinations and routes to finishing more carefully.",
+        "Improved move planning and endgame decisions in Backgammon, Chess, Reversi, Go, Ludo and Battleship, while keeping calculations bounded.",
+        "Yahtzee bots give more weight to keeping the 35-point upper-section bonus attainable. Dice General bots better account for the school, reserves and bonuses; Balut bots better value completed rows and the final entries.",
+        "In Dice General and Balut, score choices and confirmations use clearer category, point and column announcements.",
+        "After the third roll in Yahtzee, Dice General and Balut, the game announces that you should choose a scoring category. Up at the start of the score list reads its first entry.",
+        "Rolling five of a kind in Yahtzee, Dice General or Balut now plays the drum roll used in War.",
+        "Duck Racing bots make better decisions in numerical challenges and account for the effects of fields and cards when choosing a route.",
+        "Corrected the wording of six Polish quiz questions. Many thanks to Zuzler for the reports!",
+        "Added 31 questions to the Russian general-knowledge set. Many thanks to monstricek for the contribution!"
+      ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.11",
+      build: 274,
+      changes: [
+        "Quiz now shuffles answers independently for each question. Each of the four positions has the same chance of containing the correct answer.",
+        "Poker bots better judge hand strength after the flop, including straight opportunities shared by everyone through the board, and make better use of opponents' observed calls.",
+        "When Poker uses blinds, you now set only the small blind; the big blind is automatically twice as large. Raise announcements are shorter.",
+        "Added fixed five-second breaks after scoring a round or deal in many card, domino and casino games. Countries and Cities now also waits five seconds before the next round.",
+        "During these breaks, the host can press Shift+P to hold the game indefinitely and press it again to resume. Everyone is told when the game is paused or resumed.",
+        "Poker's timed blind increases count active play, excluding breaks between hands and manual pauses.",
+        "Darts rankings and record uploads now depend on server-table access rather than developer mode. General statistics and Axel Pong and Audio Ball player statistics remain disabled in developer mode.",
+        "Power Games now explains missing server access at startup, when opening restricted features and when entering a table, including which statistics or ranking results will not be sent. Unavailable rankings, tournaments and statistics are blocked before their lists open; ordinary games and local settings remain usable."
+      ].freeze
     ).freeze
   ].freeze
 

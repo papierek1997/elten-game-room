@@ -3,8 +3,8 @@
   "id": "c24d98cc-9ccd-4d50-b801-459da324ff60",
   "name": "Power Games",
   "description": "Accessible multiplayer games for ELTEN users.",
-  "version": "2.0.6.9",
-  "build_id": "272",
+  "version": "2.0.6.11",
+  "build_id": "274",
   "EltenAPIVersion": "3.0.5",
   "main_language": "en",
   "supported_languages": ["en", "pl", "cs", "es", "ru"],
@@ -156,6 +156,7 @@ require_relative "lib/game_room_transport"
 require_relative "lib/game_sync"
 require_relative "lib/game_table_background"
 require_relative "lib/game_room_server_tables"
+require_relative "lib/game_room_availability"
 require_relative "lib/game_room_user_registry"
 require_relative "lib/game_statistics_service"
 require_relative "lib/game_room_presence_store"
@@ -230,8 +231,8 @@ class EltenGameRoom < Program
   extend GameRoomAnalyticsRuntime
   extend GameRoomSportsRankings::Runtime
   extend GameRoomDartsRankings::Runtime
-  GAME_ROOM_VERSION = "2.0.6.9".freeze
-  GAME_ROOM_BUILD_ID = 272
+  GAME_ROOM_VERSION = "2.0.6.11".freeze
+  GAME_ROOM_BUILD_ID = 274
   GAME_ROOM_CAPABILITIES = ["invitations", "live_sessions", "live_session_stack"].freeze
   LOBBY_ACTIVITY_POLL_INTERVAL = 5.0
 
@@ -482,9 +483,9 @@ class EltenGameRoom < Program
   def program_main
     background_music.enter
     initialize_services
-    record_statistics_visit
     show_update_changelog
     check_server_table_access
+    record_statistics_visit
     current = run_network_task(_("Checking your current table")) do
       @transport.start
       register_game_room_user
@@ -510,8 +511,9 @@ class EltenGameRoom < Program
 
     invitation_user = Session.name.to_s.dup.freeze
     initialize_services
+    check_server_table_access(announce: !tournament)
     record_statistics_visit
-    check_server_table_access
+    return true if tournament && !server_feature_available?(:tournaments)
     connected = run_network_task(_("Connecting to Elten")) { @transport.start }
     return true unless connected
     return true unless invitation_user.casecmp?(Session.name.to_s)
@@ -572,14 +574,14 @@ class EltenGameRoom < Program
   end
 
   def statistics_observer_for(game, service: self.class.statistics_service, viewer: Session.name.to_s.dup.freeze)
-    return nil unless self.class.analytics_enabled?
-    rankings = self.class.sports_rankings_service if game.respond_to?(:sports_ranking_result)
     darts_rankings = self.class.darts_rankings_service if game.id == 'darts'
+    return nil unless darts_rankings || self.class.analytics_enabled?
+    rankings = self.class.sports_rankings_service if self.class.analytics_enabled? && game.respond_to?(:sports_ranking_result)
     return nil unless darts_rankings || rankings || service
     lambda do |session, replay|
-      next unless self.class.analytics_enabled?
       darts_rankings&.observe(session: session, replay: replay, viewer: viewer,
         publish: darts_preferences['public_rankings'])
+      next unless self.class.analytics_enabled?
       rankings&.observe(game: game, session: session, replay: replay)
       next unless service
       participants = session.fetch("__players", [])
@@ -655,38 +657,51 @@ class EltenGameRoom < Program
     register_room_presence
   end
 
-  def check_server_table_access
+  def check_server_table_access(announce: true)
     @announced_table_access_state = nil
     # Reset before entering Tasks.run: cancelling before the worker starts must
     # not retain access from an earlier invocation on this same instance.
     @server_tables.reset_access!
-    run_network_task(_("Checking server table access"), silent: true) do
+    self.class.server_table_access = @server_tables
+    run_network_task(_("Checking server table access"), silent: true, announce_access: announce) do
       @server_tables.check_access(username: Session.name)
     end
   end
 
   def announce_server_table_access
-    state = @server_tables&.access_state
-    return if ![:stamp_required, :unavailable].include?(state)
+    state = [@server_tables&.access_state, $developer_mode == true]
     return if @announced_table_access_state == state
 
     @announced_table_access_state = state
-    if state == :stamp_required
-      alert(_("The server requires an official launcher stamp that this Elten session cannot provide. Changing developer mode does not grant server table access. Global lobby history and sending invitations are unavailable until server table access is confirmed."))
-    else
-      alert(_("Server table access could not be checked. Global lobby history and sending invitations are unavailable until you reopen Power Games."))
-    end
+    message = GameRoomAvailability.startup(tables: @server_tables)
+    alert(message) if message
   end
 
   def invitation_sending_available?
-    return true if @server_tables.available?
+    server_feature_available?(:invitations)
+  end
 
-    if @server_tables.stamp_required?
-      alert(_("Sending invitations is unavailable because the server requires an official launcher stamp that this Elten session cannot provide. Changing developer mode does not grant server table access."))
-    else
-      alert(_("Sending invitations is unavailable because server table access could not be confirmed."))
-    end
+  def server_feature_unavailable_message(feature)
+    GameRoomAvailability.unavailable(feature, tables: current_server_tables)
+  end
+  public :server_feature_unavailable_message
+
+  def server_feature_available?(feature)
+    check_server_table_access(announce: false) if current_server_tables&.access_state == :unchecked
+    message = server_feature_unavailable_message(feature)
+    return true unless message
+    alert(message)
     false
+  end
+
+  def announce_table_server_availability(row)
+    game = game_definition(row['game'])
+    message = GameRoomAvailability.table(tables: current_server_tables, ranked: game&.supports_leaderboards?)
+    alert(message) if message
+  end
+
+  def current_server_tables
+    self.class.server_table_access || @server_tables
   end
 
   def run_program_interface(initial_table = nil)
@@ -864,12 +879,15 @@ class EltenGameRoom < Program
   end
 
   def show_tournaments(mine: false,reference:nil,initial_action:nil,initial_phase_id:nil)
-    self.class.refresh_tournament_deadlines
-    GameRoomTournaments::Hub.new(program: self, registry: GAME_REGISTRY,
-      user: -> { Session.name }, alert: ->(message) { alert(message) },
-      confirm: ->(message) { confirm(message) },mine:mine,reference:reference,initial_action:initial_action,initial_phase_id:initial_phase_id).run
-  ensure
-    self.class.refresh_tournament_deadlines
+    return unless server_feature_available?(:tournaments)
+    begin
+      self.class.refresh_tournament_deadlines
+      GameRoomTournaments::Hub.new(program: self, registry: GAME_REGISTRY,
+        user: -> { Session.name }, alert: ->(message) { alert(message) },
+        confirm: ->(message) { confirm(message) },mine:mine,reference:reference,initial_action:initial_action,initial_phase_id:initial_phase_id).run
+    ensure
+      self.class.refresh_tournament_deadlines
+    end
   end
 
   def open_tournament_notification(action,notification)
@@ -885,8 +903,9 @@ class EltenGameRoom < Program
       (action=='open_tournament_partner' || metadata['publication_ref']['author']==notification.sender.to_s.downcase) &&
       metadata['backend_identity']=="elten-tournaments:#{self.class.server_app_uuid}"
     initialize_services
+    check_server_table_access(announce: false)
     record_statistics_visit
-    check_server_table_access
+    return true unless server_feature_available?(:tournaments)
     if action=='open_tournament_partner'
       service=self.class.instance_variable_get(:@tournament_event_services)&.fetch('partnership')
       raise GameRoomTournaments::ProposalNotice::Stale,'Partnership notices unavailable' unless service
@@ -1087,7 +1106,7 @@ class EltenGameRoom < Program
   public :open_ordinary_tournament_match, :ordinary_tournament_overview, :reconcile_ordinary_tournament_operation, :award_ordinary_tournament_forfeit
 
   def game_local_services
-    {server_tables: @server_tables, transport: @transport,
+    {server_tables: current_server_tables, transport: @transport,
       tournament_presence: ->(table, session, replay, events, decisive:) do
         @ordinary_tournament_services&.values&.filter_map do |service|
           service&.presence_context(table, session, replay, events, decisive: decisive)
@@ -1102,6 +1121,7 @@ class EltenGameRoom < Program
   end
 
   def show_leaderboards
+    return unless server_feature_available?(:rankings)
     ids = GAME_REGISTRY.ids.select { |id| game_definition(id).supports_leaderboards? }
     selected = select_game(_("Leaderboards"), ids)
     return if selected == nil
@@ -1112,6 +1132,7 @@ class EltenGameRoom < Program
   end
 
   def show_room_activity
+    return unless server_feature_available?(:room_activity)
     user = Session.name.to_s.dup.freeze
     GameRoomPresenceScreen.new(program: self, reader: -> {
       read_statistics do |token|
@@ -1122,15 +1143,17 @@ class EltenGameRoom < Program
           collector.store.report(cancellation_token: token)
         end
       end
-    }).run
+    }, unavailable: -> { server_feature_unavailable_message(:room_activity) }).run
   end
 
   def show_statistics
+    return unless server_feature_available?(:statistics)
     GameRoomStatisticsMenu.new(program: self, registry: GAME_REGISTRY,
       general: method(:show_general_statistics)).run
   end
 
   def show_general_statistics
+    return unless server_feature_available?(:statistics)
     service = self.class.statistics_service
     runtime = self.class.app_runtime if self.class.respond_to?(:app_runtime)
     account = [Session.name.to_s.downcase.freeze, Session.token.to_s.dup.freeze].freeze
@@ -1140,6 +1163,7 @@ class EltenGameRoom < Program
       program: self,
       registry: GAME_REGISTRY,
       valid: valid,
+      unavailable: -> { server_feature_unavailable_message(:statistics) },
       reader: ->(period, token) { service&.store&.report(period, cancellation_token: token, reuse_snapshot: true) if self.class.analytics_enabled? },
       years_reader: ->(token) { service&.store&.years(today: GameRoomStatistics::Periods.today, cancellation_token: token) if self.class.analytics_enabled? }
     ).run
@@ -1155,6 +1179,7 @@ class EltenGameRoom < Program
   end
 
   def game_join_allowed?(table)
+    return false if table['tournament_match'] && !server_feature_available?(:tournaments)
     game = game_definition(table["game"])
     return true unless game
     error = game.table_join_error(game.options_from_json(table["game_options"]),
@@ -1918,9 +1943,11 @@ class EltenGameRoom < Program
     previous_reports = @question_reports
     return if row == nil
     if row['tournament_match']
+      return unless server_feature_available?(:tournaments)
       linked=run_network_task(_("Checking tournament match"),ui: :none){attach_tournament_table_on_worker(row,presentation_only:true)}
       return unless linked
     end
+    announce_table_server_availability(row)
 
     @question_reports = if game_definition(row["game"])&.respond_to?(:reportable_question)
       GameRoomQuizReports::Tracker.new(user: Session.name, current_user: -> { Session.name })
@@ -2991,6 +3018,7 @@ class EltenGameRoom < Program
 
   def show_darts_settings(tick: nil, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
     outcome = GameRoomDarts::Settings.new(darts_preferences, program: self, tick: tick, clock: clock,
+      unavailable: -> { server_feature_unavailable_message(:rankings) },
       withdraw: -> { self.class.darts_rankings_service&.withdraw_public_records == true }).wait
     return unless outcome
     updated = outcome.values
@@ -3005,7 +3033,7 @@ class EltenGameRoom < Program
       if service&.publish_saved_records
         alert(_('Publication of your saved personal Darts records has been queued.'))
       else
-        alert(_('Could not queue publication of your saved personal Darts records.'))
+        alert(server_feature_unavailable_message(:rankings) || _('Could not queue publication of your saved personal Darts records.'))
       end
     end
   end
@@ -3118,7 +3146,6 @@ class EltenGameRoom < Program
 
   def prepare_widget_program
     initialize_services
-    record_statistics_visit
     if @widget_program_prepared != true
       check_server_table_access
       run_network_task(_("Connecting to Elten"), silent: true) do
@@ -3127,6 +3154,7 @@ class EltenGameRoom < Program
       end
       @widget_program_prepared = true
     end
+    record_statistics_visit
   end
 
   def create_table_from_widget(slot = nil)
@@ -3198,7 +3226,7 @@ class EltenGameRoom < Program
     # Only subscriptions need the server. A denied, failed or cancelled read
     # must not block local preferences or turn unknown subscriptions into [].
     preferences_loader = nil
-    unless @server_tables && !@server_tables.available?
+    unless current_server_tables && !current_server_tables.available?
       self.class.table_watch_start(refresh: true)
       preferences_loader = -> { self.class.table_watch_preferences_snapshot }
     end
@@ -3207,6 +3235,7 @@ class EltenGameRoom < Program
     end
     screen = GameRoomScreens::Settings.new(settings, games: games, program: self,
       table_watch_available: false, table_watch_loader: preferences_loader,
+      table_watch_unavailable: -> { server_feature_unavailable_message(:subscriptions) },
       preset_editor: ->(entry) { edit_table_preset(entry) },
       preset_writer: ->(slot, entry) { save_table_preset(slot, entry) })
     updated = screen.wait
@@ -3279,14 +3308,14 @@ class EltenGameRoom < Program
     true
   end
 
-  def run_network_task(title, ui: nil, silent: false, &operation)
+  def run_network_task(title, ui: nil, silent: false, announce_access: true, &operation)
     view = @table_network_view
     layout = view && view[:layout]
     client = layout&.game_client if layout&.binding_generation.to_i > 0
     task = GameRoomNetworkTask.new
     result = task.run(title, layout: layout, table_id: view&.dig(:table_id),
       ui: ui, client: client, chat_admission: view&.dig(:chat_sends) != nil, &operation)
-    announce_server_table_access
+    announce_server_table_access if announce_access
     result
   rescue EltenAPI::Tasks::Cancelled
     layout&.computer_changes&.clear
@@ -3298,7 +3327,7 @@ class EltenGameRoom < Program
     layout&.computer_changes&.clear
     Log.warning("ELTEN Game Room network operation failed: #{error.class}: #{error.message}")
     if @server_tables&.last_error.equal?(error)
-      announce_server_table_access
+      announce_server_table_access if announce_access
     else
       alert(_("The operation could not be completed. Please try again.")) if !silent
     end

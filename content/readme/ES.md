@@ -56,6 +56,13 @@ que todos tengan una versión actualizada antes de jugar juntos.
 Consulta los cambios en «Novedades». Como en esta guía, H pasa al siguiente
 encabezado, Shift+H al anterior y Escape cierra el documento.
 
+Si las funciones del servidor no están disponibles, Power Games te explica
+al entrar qué está restringido y cómo intentar recuperar el acceso. Las mesas
+normales siguen funcionando, pero no puedes abrir clasificaciones ni torneos,
+y el programa no envía estadísticas ni resultados a las clasificaciones.
+El modo de desarrollo siempre desactiva las estadísticas; las clasificaciones
+pueden seguir funcionando si el servidor permite el acceso.
+
 ## A qué puedes jugar
 
 Power Games incluye 57 juegos: cartas, juegos de tablero, palabras
@@ -215,6 +222,12 @@ también una lista de atajos.
 Algunos juegos ofrecen ajustes o interruptores personales con Ctrl+P
 y en el menú de la mesa. Afectan a tu experiencia, no a la variante común
 elegida por el anfitrión.
+
+En los juegos con una pausa tras liquidar la ronda, esta dura cinco segundos.
+Durante esa pausa, el anfitrión puede pulsar Shift+P en el área de juego para
+detener la partida sin límite de tiempo. Al pulsarlo de nuevo, se reanuda
+y termina la parte restante de la pausa breve. El chat y el historial siguen
+disponibles. En Poker, el tiempo entre manos no cuenta para la siguiente subida de ciegas.
 
 ### Ordenar cartas y encontrar una jugada
 
@@ -551,6 +564,7 @@ Esta lista cubre los controles comunes del programa. Para las órdenes de un jue
 - Ctrl+Shift+O — elegir el papel de jugador o espectador para la siguiente partida.
 - Ctrl+Shift+M — silenciar o activar tu micrófono en la conferencia de la mesa.
 - Ctrl+P — ajustes o interruptor personal en los juegos que lo ofrecen.
+- Shift+P — el anfitrión pausa o reanuda la partida durante el descanso entre rondas.
 - Ctrl+S — guardar la partida y cerrar la mesa; para el anfitrión, en juegos compatibles fuera de los torneos.
 - Ctrl+Shift+S — guardar el historial de texto o una repetición de un juego sonoro en la biblioteca sin cerrar la partida.
 - Ctrl+Q — terminar la partida actual sin cerrar la mesa; para el anfitrión.

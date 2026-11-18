@@ -186,8 +186,11 @@ start = game.automatic_action(replay, "Alice", context: context)
 status, plan = game.action_for(start, replay, "Alice", context: context)
 assert(status == :ok, "the first question could not start")
 assert(plan.events.first.value.length <= 64, "the question event exceeds the server value limit")
-forged_question_parts = plan.events.first.value.split(",")
-forged_question_parts[3] = "999"
+parsed_question = game.send(:parse_seeded_question, replay.state, {'value'=>plan.events.first.value})
+# Keep testing the historical explicit-question dialect's untrusted deadline;
+# current questions instead carry one compact seed for selection and ordering.
+forged_question_parts = [parsed_question.fetch(:round), parsed_question.fetch(:position),
+  parsed_question.fetch(:question_id), '999']
 forged_question_event = {
   "id" => events.length + 1,
   "actor" => "Alice",
@@ -755,6 +758,7 @@ start = small_game.automatic_action(exhausted_replay, "Alice", context: context)
 assert(start != nil, "an exhausted category never asked for a new question")
 status, plan = small_game.action_for(start, exhausted_replay, "Alice", context: context)
 assert(status == :ok, "an exhausted category could not start a question")
-assert(science_ids.include?(plan.events.first.value.split(",")[2]), "the reopened pool asked a question from another category")
+drawn = small_game.send(:parse_seeded_question, exhausted_state, {'value'=>plan.events.first.value})
+assert(science_ids.include?(drawn.fetch(:question_id)), "the reopened pool asked a question from another category")
 
 puts "Quiz Party tests passed: options, category rounds, hidden answers, scoring, deadlines and a #{accuracy.round(1)}% computer"

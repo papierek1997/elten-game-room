@@ -38,6 +38,16 @@ app.games.append_events(session: session, sequence: app.games.next_sequence(sess
   events: plan.events, actor: actor, controller: true)
 assert(app.games.snapshot_for(session).events.length > snapshot.events.length, 'Next move did not persist')
 
+fresh = app.games.snapshot_for(session).session
+app.transport.freeze_game(fresh, round_pause: true)
+paused = app.games.snapshot_for(session).session
+view.instance_variable_set(:@fail_after_freeze, true)
+assert(!app.send(:save_current_game, table, paused, game), 'Failed snapshot was saved during a manual pause')
+after_failure = app.games.snapshot_for(session).session
+assert(after_failure['__frozen'] && after_failure['__round_pause'], 'A failed save released the earlier manual pause')
+assert(app.transport.freeze_game(after_failure, frozen: false, expected_boundary: after_failure['__game_boundary'], round_pause: true),
+  'A failed save made the manual pause impossible to resume')
+
 first = app.transport.freeze_game(session)
 second = app.transport.freeze_game(session)
 assert(!app.transport.freeze_game(session, frozen: false, expected_boundary: first), 'Old rollback released a newer pause')

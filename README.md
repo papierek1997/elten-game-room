@@ -56,6 +56,12 @@ Opis zmian znajdziesz w „Co nowego”. Podobnie jak w tym przewodniku,
 H przechodzi tam do następnego nagłówka, Shift+H do poprzedniego,
 a Escape zamyka dokument.
 
+Jeśli brakuje dostępu do funkcji serwerowych, Power Games wyjaśni przy wejściu,
+co jest niedostępne i jak spróbować przywrócić dostęp. Zwykłe stoły nadal
+działają, ale nie otworzysz rankingów ani turniejów, a program nie wyśle
+statystyk ani wyników do rankingów. W trybie deweloperskim statystyki są
+zawsze wyłączone; rankingi mogą działać, jeśli serwer zezwala na dostęp.
+
 ## W co można zagrać
 
 Power Games zawiera 57 gier: od karcianek i planszówek po zabawy słowne,
@@ -212,6 +218,12 @@ mają też własną listę w jej pomocy.
 Niektóre gry udostępniają osobiste ustawienia lub przełączniki pod Ctrl+P
 i w menu stołu. Zmieniają one Twój sposób korzystania z gry, nie wspólny
 wariant wybrany przez gospodarza.
+
+W grach z przerwą po rozliczeniu rundy trwa ona 5 sekund. W tym czasie
+gospodarz może nacisnąć Shift+P w polu gry, aby zatrzymać grę bezterminowo.
+Kolejne Shift+P ją wznawia; potem kończy się pozostała część krótkiej przerwy.
+Czat i historia są nadal dostępne. W Pokerze czas między rozdaniami nie
+przybliża kolejnej podwyżki ciemnych.
 
 ### Porządkowanie kart i wyszukiwanie zagrania
 
@@ -539,6 +551,7 @@ do wskazanej listy lub pola gry, nie do wpisywania wiadomości.
 - Ctrl+Shift+O — wybór roli gracza lub obserwatora na następną partię.
 - Ctrl+Shift+M — wyciszenie lub włączenie mikrofonu w konferencji stołu.
 - Ctrl+P — ustawienia lub przełącznik osobisty, w grach, które go mają.
+- Shift+P — zatrzymanie lub wznowienie gry przez gospodarza podczas przerwy między rundami.
 - Ctrl+S — zapis partii i zamknięcie stołu; dla gospodarza, w obsługiwanych grach poza turniejami.
 - Ctrl+Shift+S — historia tekstowa lub powtórka gry audio w bibliotece, bez zamykania partii.
 - Ctrl+Q — zakończenie bieżącej partii bez zamykania stołu; dla gospodarza.

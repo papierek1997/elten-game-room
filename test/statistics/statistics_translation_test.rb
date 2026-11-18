@@ -118,9 +118,9 @@ Form.statistics_translation_driver = lambda do |form|
   settle_statistics(form)
   summary = form.fields.first
   table = form.fields.find { |field| field.is_a?(TableBox) }
-  assert(summary.text.include?(translate.call("Statistics are unavailable. Try Refresh.")), "Statistics failure stayed English")
-  assert(summary.text.include?(translate.call("Calendar years are unavailable. Try Refresh.")), "Calendar failure stayed English")
-  assert(table.empty_label == translate.call("Statistics unavailable"), "Failed table has no translated status")
+  assert(summary.text.include?(translate.call("Statistics could not be loaded. Check your connection and try Refresh.")), "Statistics failure stayed English")
+  assert(summary.text.include?(translate.call("The list of years could not be loaded. Try Refresh.")), "Calendar failure stayed English")
+  assert(table.empty_label == translate.call("Statistics could not be loaded. Check your connection and try Refresh."), "Failed table has no translated status")
   verify_statistics_utf8(form)
   form.cancel_button.press
 end
@@ -141,7 +141,7 @@ Form.statistics_translation_driver = lambda do |form|
   assert(refresh.label == "Odśwież", "Presence refresh stayed English")
   refresh.press
   settle_statistics(form)
-  assert(summary.text.include?(translate.call("Room activity is unavailable. Try Refresh.")), "Presence failure stayed English")
+  assert(summary.text.include?(translate.call("Room activity could not be loaded. Check your connection and try Refresh.")), "Presence failure stayed English")
   assert(!summary.text.include?("Osoby w pokojach:"), "Presence failure retained stale counts")
   refresh.press
   settle_statistics(form)

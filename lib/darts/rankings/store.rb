@@ -17,12 +17,13 @@ module GameRoomDartsRankings
 
     def initialize(app_uuid:, user:, client: nil, api: nil, current_user: -> { Session.name },
       feedback_requested: ->(_key) { false }, on_feedback: nil, on_progression: nil,
-      monotonic: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) })
+      monotonic: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) }, enabled: -> { true })
       @app_uuid, @user, @current_user = app_uuid.to_s, user.to_s.dup.freeze, current_user
       @client, @api = client || EltenLink::Client.new, api || EltenLink::Apps
       @feedback_requested, @on_feedback = feedback_requested, on_feedback
       @on_progression = on_progression
       @monotonic, @lock = monotonic, Mutex.new
+      @enabled = enabled
     end
 
     def write_batch(payloads, cancellation_token: nil)
@@ -455,6 +456,7 @@ module GameRoomDartsRankings
 
     def check!(token)
       token&.raise_if_cancelled!
+      raise Unavailable, 'Darts server table access is unavailable' unless @enabled.call
       raise Unavailable, 'Darts ranking account changed' if @user.empty? ||
         !GameRoomParticipants.same?(@user, @current_user.call)
     end

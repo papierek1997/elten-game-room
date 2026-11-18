@@ -9,6 +9,8 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class DicePoker < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    def round_pause_end_kinds; [:settlement]; end
     include PublicHistoryAnnouncements
     include DicePokerPresentation
     include BlackjackAuction

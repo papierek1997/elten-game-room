@@ -13,6 +13,7 @@ module GameRoomGames
   # Round lifecycle and hand controls for games whose only decision is one
   # card. Rules, captures and scoring remain in the individual game models.
   class DealtCardGame < CardGame
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
     using GameRoomLocalization::Translations
     include PublicHistoryAnnouncements
     prepend DealtCardPrivate

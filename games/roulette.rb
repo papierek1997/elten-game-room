@@ -7,6 +7,8 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class Roulette < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    def round_pause_end_kinds; [:settlement]; end
     include PublicHistoryAnnouncements
     include RoundTournament
     GameRoomServerRandom.register('roulette', %w[spin])

@@ -21,5 +21,15 @@ sandbox do |c|
   assert_equal(1,workspace.load['members'].size,'Official composition lost creator enrollment')
   assert_equal(T::ServerWorkspace::IDENTITY,workspace.instance_variable_get(:@journal).backend_identity,'Publication journal points to the trial application')
   assert_equal([],c.alerts)
+  %w[apps.tables.stamp_required apps.tables.forbidden auth.unauthorized].each do |code|
+    result = workspace.send(:access) { raise EltenLink::Error.new('Test refusal', code:code) }
+    assert_equal(nil, result, 'A refused tournament operation claimed success')
+    message = c.alerts.last
+    assert(message.start_with?('Tournaments are unavailable without server table access.'), 'The backend bypassed the common tournament explanation')
+    assert(message.include?('developer mode'), 'The backend refusal omitted developer-mode guidance')
+    assert(message.include?(code == 'apps.tables.stamp_required' ? 'most likely' : 'If you are using'),
+      'A launcher refusal and an inconclusive access check shared a false diagnosis')
+  end
+  assert_equal(1,workspace.load['members'].size, 'A permission failure changed the confirmed tournament')
 end
 puts 'PASS official workspace target, no experimental UI, normal publication and own-account enrollment using SDK doubles'

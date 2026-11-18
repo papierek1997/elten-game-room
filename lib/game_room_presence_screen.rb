@@ -3,8 +3,9 @@ require_relative "game_room_ui"
 class GameRoomPresenceScreen
   using GameRoomLocalization::Translations
 
-  def initialize(program:, reader:)
+  def initialize(program:, reader:, unavailable: -> { nil })
     @program, @reader = program, reader
+    @unavailable = unavailable
   end
 
   def run
@@ -36,7 +37,7 @@ class GameRoomPresenceScreen
         GameRoomContent.utf8(_("Private rooms: %{count}")) % { count: data.fetch("private_rooms") },
         GameRoomContent.utf8(_("People in rooms: %{count}")) % { count: data.fetch("people") }]
     else
-      [GameRoomContent.utf8(_("Room activity is unavailable. Try Refresh."))]
+      [GameRoomContent.utf8(@unavailable.call || _("Room activity could not be loaded. Check your connection and try Refresh."))]
     end
     (lines + [
       GameRoomContent.utf8(_("These counts come from recent reports by updated clients. Reports expire after about five to six minutes; rooms without an updated client reporting them may be missing.")),

@@ -2,8 +2,21 @@
 
 The runtime owns record collection through the existing analytics extension,
 durable queue and managed upload job. Both initial service creation and existing
-callbacks use `analytics_enabled?`; developer mode neither collects nor uploads
-records. `GameRoomAnalyticsStorage` permits the separate
+callbacks use `darts_rankings_enabled?`, backed by the application's confirmed
+`GameRoomServerTables::Runtime` access decision for the current account and runtime.
+Developer mode itself does not disable Darts records: with table access they
+can be collected, read and uploaded in either mode. An unchecked, refused or
+failed access check suspends those operations, including captured callbacks
+and store reads. Already queued records remain intact for later retry. Bind
+the provider when checking access on application entry, not when an unchecked
+widget instance initializes its unrelated services. General/presence/sports
+statistics retain their separate developer-mode policy.
+The shared `GameRoomAvailability` messages distinguish missing table access from
+disabled statistics: an authorized developer Darts session can still send its
+records. Refuse the common Rankings entry before showing game choices when no
+table access is available. Captured readers and publication/removal actions use
+the same explanation after a later denial, rather than suggesting a useless retry.
+`GameRoomAnalyticsStorage` permits the separate
 `darts-rankings-pending.json` file. No ranking storage work runs in an aiming frame.
 
 The result projection uses accepted completed-game throws, excludes training,

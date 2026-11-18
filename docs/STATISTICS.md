@@ -76,7 +76,23 @@ Payloads do not include nicknames, private room names, participant lists, chat, 
 
 ## Development mode
 
-Game Room disables its analytics, including Axel Pong and Audio Ball player statistics, when the host's actual `$developer_mode` flag is true. Both use `analytics_enabled?`. This is an intentional local opt-out, even if the application author could access a particular table. Do not create telemetry queues or reporter identities, collect developer-mode activity for later upload, read analytics tables, or attempt background uploads. Do not display or log sending failures for this expected disabled state. Existing pending normal-mode events are retained without being sent or deleted.
+Game Room disables its analytics, including Axel Pong and Audio Ball player statistics, when the host's actual `$developer_mode` flag is true. Both use `analytics_enabled?`. This is an intentional local opt-out, even if the application author could access a particular table. Do not create telemetry queues or reporter identities, collect developer-mode activity for later upload, read analytics tables, or attempt background uploads. Explain the policy at application/table entry and when refusing the Statistics screen, using `GameRoomAvailability`; do not log it as an upload error or repeat it on moves. Existing pending normal-mode events are retained without being sent or deleted.
+
+The shared checked table provider also suspends analytics factories and captured
+workers while access is unchecked, denied or failed. Before any entry decision
+has been bound, the existing normal-mode widget collection policy is unchanged.
+Bind only on the actual entry probe, and record an entry visit after that probe,
+so the first successful launch is not missed. Restore the same queue on access
+recovery. User-facing readers refuse entry without confirmed access, and do not
+suggest Refresh for a known access refusal or the dev-mode opt-out. Normal read
+failures still offer Refresh without inventing their cause.
+
+Darts records and leaderboards are a separate feature. They reuse the worker
+and queue infrastructure but use confirmed server-table access, not
+`analytics_enabled?`. A Darts completion observer may therefore run while
+general and sports statistics remain disabled. Its captured service/store
+must still stop on denied access, account changes or a replaced runtime; see
+[DARTS_RANKINGS.md](DARTS_RANKINGS.md).
 
 Native gameplay communication is unaffected. A normal-mode participant can still report a shared room and its member count, including people playing in development mode; a room with no eligible reporter is missing from these counts. Explicitly opening an analytics screen can show unavailable without querying tables. Existing unrelated lobby/invitation table-access behavior is not changed by this analytics opt-out.
 
