@@ -13,7 +13,7 @@ module GameRoomGames
     def result_text(replay)
       winners = score_sheet_winners(replay)
       return super unless winners.length.between?(2, replay.players.length - 1)
-      _("Winners: %{players}") % {players: winners.map { |player| participant_name(player) }.join(', ')}
+      _("Winners: %{players}") % {players: winners.map { |player| participant_full_name(player) }.join(', ')}
     end
 
     def bot_reward(replay, actor)

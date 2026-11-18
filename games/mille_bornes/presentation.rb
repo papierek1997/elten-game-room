@@ -245,7 +245,7 @@ module GameRoomGames
 
     def unit_label(state, unit)
       players = state[:players].each_with_index.filter_map do |player, seat|
-        participant_name(player) if state[:seats][seat] == unit
+        participant_full_name(player) if state[:seats][seat] == unit
       end
       return GameRoomContent.utf8(players.first.to_s) unless state[:teams]
       GameRoomContent.utf8(_("Team %{team}: %{players}") % { team: unit + 1, players: players.join(", ") })

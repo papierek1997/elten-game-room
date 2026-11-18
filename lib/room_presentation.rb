@@ -16,7 +16,7 @@ module RoomPresentation
     user_rows(members, **options).map(&:label)
   end
 
-  def user_rows(members, bots: [], observers: [], owner:, players:, active:, team_assignment: nil, statuses: {}, scores: nil)
+  def user_rows(members, bots: [], observers: [], owner:, players:, active:, team_assignment: nil, statuses: {}, scores: nil, names: nil)
     participants = GameRoomParticipants.unique(members.to_a + bots.to_a + players.to_a)
     participants.map do |participant|
       roles = []
@@ -38,13 +38,13 @@ module RoomPresentation
       score = scores&.find { |player, _points| same_user?(player, participant) }
       roles << (_("%{points} points") % { points: score[1] }) if score != nil && score[1] != nil
       User.new(participant: participant, label: _("%{user}, %{roles}") % {
-        user: GameRoomParticipants.display_name(participant),
+        user: names ? names.format(participant, form: :full) : GameRoomParticipants.display_name(participant),
         roles: roles.join(", ")
       })
     end
   end
 
-  def game_users(room:, game:, replay:, players:, owner:, options: {}, controllers: {})
+  def game_users(room:, game:, replay:, players:, owner:, options: {}, controllers: {}, names: nil)
     players = players.to_a
     active = replay != nil && !replay.finished?
     # Finished results annotate people still at the table. Departed players
@@ -60,7 +60,7 @@ module RoomPresentation
       room.members, bots: room.bots.to_a, observers: room.observers.to_a, owner: owner,
       players: listed_players, active: active,
       team_assignment: active ? game.team_assignment(options, players: players) : game&.prepared_team_assignment(options, players: room.game_participants),
-      statuses: statuses, scores: replay == nil ? nil : game.participant_scores(replay)
+      statuses: statuses, scores: replay == nil ? nil : game.participant_scores(replay), names: names
     )
   end
 

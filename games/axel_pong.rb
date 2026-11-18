@@ -38,6 +38,7 @@ module GameRoomGames
 
     def _(source); GameRoomContent.utf8(super(source)); end
     def participant_name(player); GameRoomContent.utf8(super(player)); end
+    def participant_full_name(player); GameRoomContent.utf8(super(player)); end
 
     def option_definitions
       [
@@ -108,12 +109,12 @@ module GameRoomGames
       assignment = team_assignment(options, players: players)
       if assignment
         assignment.team_ids.map.with_index do |team, index|
-          names = assignment.members_for(team).map { |player| participant_name(player) }
+          names = assignment.members_for(team).map { |player| participant_full_name(player) }
           _('Team %{team}: %{players}') % { team: %w[A B][index],
             players: _('%{first} and %{second}') % { first: names[0], second: names[1] } }
         end
       else
-        players.map { |player| participant_name(player) }
+        players.map { |player| participant_full_name(player) }
       end
     end
 

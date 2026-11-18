@@ -532,7 +532,7 @@ module GameRoomGames
     def stores_text(state)
       scores = state[:players].each_with_index.to_h { |player, index| [player, store_of(state, index)] }
       values = score_announcement_order(state[:players], scores).map do |player|
-        _("%{player}: %{seeds}") % { player: participant_name(player), seeds: scores.fetch(player) }
+        _("%{player}: %{seeds}") % { player: participant_full_name(player), seeds: scores.fetch(player) }
       end
       _("Stores: %{values}.") % { values: values.join("; ") }
     end

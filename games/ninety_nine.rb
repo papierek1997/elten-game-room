@@ -913,9 +913,9 @@ module GameRoomGames
       players = sorted ? score_announcement_order(state[:players], state[:tokens], eliminated: state[:eliminated]) : state[:players]
       values = players.map do |player|
         if state[:eliminated][player]
-          _("%{player} eliminated") % { player: participant_name(player) }
+          _("%{player} eliminated") % { player: participant_full_name(player) }
         else
-          _("%{player} %{count}") % { player: participant_name(player), count: state[:tokens][player] }
+          _("%{player} %{count}") % { player: participant_full_name(player), count: state[:tokens][player] }
         end
       end
       values.join(", ") + "."

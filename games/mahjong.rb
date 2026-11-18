@@ -169,7 +169,7 @@ module GameRoomGames
       shortcuts = adapter_for_replay(replay).custom_game_shortcuts(replay, viewer).to_a.dup
       scores = mahjong_shortcut_scores(replay)
       text = replay.players.map do |player|
-        _('%{player}: %{points}') % {player: participant_name(player), points: scores.fetch(player)}
+        _('%{player}: %{points}') % {player: participant_full_name(player), points: scores.fetch(player)}
       end.join('; ')
       shortcuts << announcement_shortcut(key: 's', label: _('read the scores'), message: text)
       if (round = replay.state[:round]) && (!replay.state[:private_cards] || %i[playing between_hands finished].include?(replay.state[:phase]))
@@ -245,7 +245,9 @@ module GameRoomGames
     def adapter_for_options(options)
       variant = normalize_options(options).fetch('variant')
       @adapters ||= {}
-      @adapters[variant] ||= variant == 'solitaire' ? Solitaire.new : Table.new
+      adapter = @adapters[variant] ||= variant == 'solitaire' ? Solitaire.new : Table.new
+      adapter.receiver_name_presentation = receiver_name_presentation
+      adapter
     end
 
     def adapter_for_replay(replay)

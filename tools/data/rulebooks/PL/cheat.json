@@ -1,0 +1,191 @@
+{
+  "source": "games/cheat.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "pl": "Cel gry i rozdanie"
+      },
+      "paragraphs": [
+        {
+          "pl": "Pozbądź się wszystkich kart jako pierwszy. Cała talia 52 kart bez jokerów jest rozdawana możliwie równo między 2–8 graczy. Rozpoczynający jest losowany. Widzisz własną rękę, a pod S możesz sprawdzić jawną liczbę kart każdego uczestnika."
+        },
+        {
+          "pl": "W domyślnym wariancie wykładasz od jednej do czterech zakrytych kart i deklarujesz ich wartość. Pierwsza osoba deklaruje asy, następna dwójki, potem trójki i tak dalej do dziesiątek, waletów, dam i króli. Po królach znów przychodzą asy. Twoje karty mogą mieć inną wartość: blef jest dozwolony. Liczba wykładanych kart zawsze jest podawana zgodnie z prawdą."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "pl": "Wybieranie i zagrywanie kart"
+      },
+      "paragraphs": [
+        {
+          "pl": "Strzałkami w górę i w dół przechodzisz przez całą rękę, a w lewo i w prawo przeskakujesz między kolorami. H odczytuje rękę w aktualnej kolejności wyświetlania. Możesz wybrać dowolną własną kartę, także niepasującą do deklaracji."
+        },
+        {
+          "pl": "Aby zagrać jedną kartę, ustaw na niej kursor i naciśnij Enter. Większy pakiet przygotujesz, zaznaczając karty przez Shift+Enter; ponowne użycie usuwa kartę z pakietu. P odczytuje zaznaczenie, a Shift+P je czyści. Po Enter do pakietu dochodzi również karta pod kursorem, jeśli nie była zaznaczona. Sprawdź końcową liczbę kart i deklarację, po czym wybierz Zagraj. Escape lub Anuluj wraca do ręki bez zagrania i zachowuje przygotowany pakiet. Zagrać możesz również z menu kontekstowego ręki."
+        },
+        {
+          "pl": "Przykładowo, gdy trzeba deklarować asy, możesz wybrać dwie różne karty i ogłosić dwa asy. Możesz wyłożyć dwa asy, tylko jednego asa albo same karty o innych wartościach. Przeciwnicy poznają deklarację i liczbę, ale nie nazwy zakrytych kart. Po reakcjach następny gracz deklaruje dwójki, również wtedy, gdy twoje asy zostały sprawdzone."
+        }
+      ]
+    },
+    {
+      "id": "reaction",
+      "title": {
+        "pl": "Sprawdzanie deklaracji"
+      },
+      "paragraphs": [
+        {
+          "pl": "Po każdym zakrytym zagraniu przeciwnicy podejmują decyzję kolejno według miejsc, zaczynając od następnego po zagrywającym. Gdy przyjdzie twoja kolej na reakcję, K lub polecenie Sprawdzam kwestionuje zagranie. Spacja albo Nie sprawdzam przekazuje decyzję następnej osobie. Odmowa sprawdzenia nie oznacza zapewnienia, że karty są prawdziwe, ani pasa stosowanego w wariancie Bluff."
+        },
+        {
+          "pl": "Na reakcję nie ma limitu czasu. Czekanie, czytanie pomocy lub odejście od klawiatury nie zatwierdza zagrania. Odpowiada tylko wskazana osoba. Pierwsze sprawdzenie zamyka pozostałe reakcje. Jeśli nikt nie sprawdzi, karty pozostają na stosie i gra toczy się dalej."
+        },
+        {
+          "pl": "Sprawdzenie odkrywa tylko ostatni pakiet. Jeśli choć jedna jego karta ma inną wartość niż deklarowana, cały stos bierze autor zagrania. Jeżeli wszystkie karty pasują, stos bierze sprawdzający. Wcześniejsze zakryte karty nie są przy tym automatycznie ujawniane. Po obu rozstrzygnięciach kolejność miejsc i cykl wartości pozostają bez zmian. C odczytuje rozmiar stosu, ostatnią deklarację i oczekiwaną decyzję, a T mówi, kto ma działać."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "pl": "Zakończenie partii"
+      },
+      "paragraphs": [
+        {
+          "pl": "Wyłożenie ostatnich kart nie daje od razu zwycięstwa: przeciwnicy nadal mogą je sprawdzić. Wygrywasz, gdy wszyscy zaakceptują ten ruch, nawet jeśli był blefem. Wygrywasz także po niesłusznym sprawdzeniu prawdziwego ostatniego pakietu. Gdy ostatni blef zostanie wykryty, zbierasz stos i grasz dalej. Partia ma jednego zwycięzcę; pozostali nie otrzymują punktów ani dodatkowych miejsc."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "pl": "Wybór wariantu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Wariant wybierasz przy tworzeniu stołu. Domyślna gra to Klasyczny: wartości rosnąco, opisany powyżej. Każdy profil używa jednej talii i kolejnych reakcji bez ograniczenia czasu."
+        },
+        {
+          "pl": "- Wartości malejąco: po asach deklaruje się króle, damy, walety, dziesiątki i kolejne niższe wartości do dwójek, a potem znów asy. Sprawdzenie nie rozpoczyna cyklu od nowa."
+        },
+        {
+          "pl": "- Ta sama lub sąsiednia wartość: pierwsza deklaracja to asy. Potem wybierasz poprzednio zadeklarowaną wartość lub jednego z jej sąsiadów. Po siódemkach wolno zadeklarować szóstki, siódemki albo ósemki; po asach króle, asy albo dwójki. W tej wersji król sąsiaduje z asem. Wybierz deklarację w oknie zagrania i potwierdź Zagraj, aby wysłać ją razem z kartami."
+        },
+        {
+          "pl": "- Bluff: stała wartość stosu dopuszcza 3–6 graczy i dodaje pasowanie opisane niżej."
+        },
+        {
+          "pl": "- Na kolor: pojedyncze karty zaczyna się od odkrytej karty, a dalsza gra polega na zakrytym dokładaniu pojedynczych kart."
+        }
+      ]
+    },
+    {
+      "id": "bluff",
+      "title": {
+        "pl": "Bluff: jedna wartość do zamknięcia stosu"
+      },
+      "paragraphs": [
+        {
+          "pl": "Otwierający wykłada od jednej do czterech kart i wybiera w oknie zagrania dowolną z trzynastu wartości. Obowiązuje ona dla wszystkich kolejnych pakietów na tym stosie. W swojej turze dokładania możesz dołożyć od jednej do czterech kart albo nacisnąć X, aby spasować do końca stosu. Pustego stosu nie wolno otworzyć pasem."
+        },
+        {
+          "pl": "Po pasie nie możesz już dokładać do tego stosu, lecz nadal decydujesz o sprawdzaniu nowych pakietów. Kolejne zagranie nie przywraca prawa dokładania osobom, które spasowały. Gdy pozostanie tylko jeden gracz bez pasa, może on dokładać następne pakiety, a pozostali za każdym razem otrzymują reakcję."
+        },
+        {
+          "pl": "Kiedy spasują wszyscy, stos jest odkładany zakryty poza partię, a ostatni zagrywający otwiera nowy dowolną wartością. Po trafnym sprawdzeniu otwiera sprawdzający; po nietrafnym autor sprawdzonego ruchu. Pasy są wtedy zerowane. Ostatni pakiet nadal musi przejść przez reakcje, zanim jego autor wygra. W tej wersji rozdaje się całą talię; nie używa się jokerów ani reguł Force."
+        }
+      ]
+    },
+    {
+      "id": "suit",
+      "title": {
+        "pl": "Na kolor: odkryte otwarcie i pojedyncze karty"
+      },
+      "paragraphs": [
+        {
+          "pl": "Otwierający wybiera kartę i potwierdza Enterem jej jawne wyłożenie. Rzeczywisty kolor tej karty ustala kolor stosu. Odkrytego otwarcia nie można sprawdzać. Następne osoby dokładają po jednej zakrytej karcie, deklarując ten sam kolor; nie deklarują wartości. Shift+Enter nie tworzy tu wielokartowego pakietu."
+        },
+        {
+          "pl": "Gdy przyjdzie twoja kolej na decyzję o zakrytym zagraniu, użyj K lub Spacji. Sprawdzenie dotyczy wyłącznie koloru: siódemka i król kier jednakowo pasują do deklaracji kier. Za błędny kolor stos bierze zagrywający, a za sprawdzenie prawdziwego koloru sprawdzający. Osoba, która zebrała stos, otwiera następny dowolną odkrytą kartą. Jeśli odkryte otwarcie jest twoją ostatnią kartą, wygrywasz natychmiast. Ostatnia karta zagrana zakryta wymaga zwykłych reakcji."
+        }
+      ]
+    },
+    {
+      "id": "sound",
+      "title": {
+        "pl": "Dźwięki podczas gry"
+      },
+      "paragraphs": [
+        {
+          "pl": "Rozdaniu towarzyszy tasowanie, a przyjętemu zagraniu odgłos wykładania kart, taki sam dla prawdy i blefu. Sprawdzenie ma osobny sygnał, po którym następują odgłosy odkrycia, rozstrzygnięcia i zebrania stosu. Zwykły sygnał decyzji wskazuje twoją turę lub reakcję, a efekty wyniku oznaczają koniec partii. Ważne informacje są także wypowiadane, więc można grać z wyłączonymi opcjonalnymi efektami."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "pl": "Enter: przygotuj i zatwierdź bieżącą kartę lub pakiet"
+        },
+        {
+          "pl": "Shift+Enter: zaznacz lub odznacz bieżącą kartę, poza wariantem na kolor"
+        },
+        {
+          "pl": "P: odczytaj przygotowany pakiet"
+        },
+        {
+          "pl": "Shift+P: wyczyść przygotowany pakiet"
+        },
+        {
+          "pl": "K: sprawdź zagranie podczas swojej reakcji"
+        },
+        {
+          "pl": "Spacja: odmów sprawdzenia tego zagrania"
+        },
+        {
+          "pl": "X: spasuj do końca stosu w Bluff"
+        },
+        {
+          "pl": "H: odczytaj własną rękę"
+        },
+        {
+          "pl": "T: odczytaj, kto ma zagrać lub zareagować"
+        },
+        {
+          "pl": "S: odczytaj liczbę kart każdego gracza"
+        },
+        {
+          "pl": "C: odczytaj jawny stan stosu i deklarację"
+        },
+        {
+          "pl": "Shift+C: sortuj według koloru"
+        },
+        {
+          "pl": "Shift+H: sortuj według wartości"
+        },
+        {
+          "pl": "Shift+M: przywróć kolejność otrzymania kart"
+        },
+        {
+          "pl": "Z: przejdź do następnej możliwej karty bez zagrywania"
+        },
+        {
+          "pl": "Shift+Z: przejdź do poprzedniej możliwej karty bez zagrywania"
+        },
+        {
+          "pl": "Escape: anuluj bieżący wybór"
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants"
+  }
+}

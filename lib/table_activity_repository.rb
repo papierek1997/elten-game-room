@@ -175,13 +175,13 @@ class TableActivityRepository
     nil
   end
 
-  def text_for(entry, game_name:, global: false)
+  def text_for(entry, game_name:, global: false, names: nil)
     pause_text = round_pause_activity_text(entry.kind) unless global
     return pause_text if pause_text
-    player = GameRoomContent.utf8(GameRoomParticipants.display_name(entry.actor))
-    owner = GameRoomContent.utf8(GameRoomParticipants.display_name(entry.owner))
+    display = ->(person) { names ? names.format(person, form: :full) : GameRoomParticipants.display_name(person) }
+    player, owner = [entry.actor, entry.owner].map { |person| GameRoomContent.utf8(display.call(person)) }
     game = game_name.call(entry.game).to_s
-    bot = GameRoomParticipants.display_name(entry.subject) if !entry.subject.to_s.empty?
+    bot = display.call(entry.subject) if !entry.subject.to_s.empty?
     if global
       case entry.kind
       when "created"
@@ -216,40 +216,40 @@ class TableActivityRepository
       when "voice_started"
         _("%{player} invites you to a voice conversation.") % { player: player }
       when "invited"
-        _("%{player} invited %{user}.") % { player: player, user: GameRoomParticipants.display_name(entry.subject) }
+        _("%{player} invited %{user}.") % { player: player, user: display.call(entry.subject) }
       when "invitation_rejected"
-        _("%{user} declined %{player}'s invitation.") % { player: player, user: GameRoomParticipants.display_name(entry.subject) }
+        _("%{user} declined %{player}'s invitation.") % { player: player, user: display.call(entry.subject) }
       when "game_aborted"
         return _("The game was interrupted because fewer than two participants remain.") if entry.reason == 'not_enough_players'
         if entry.reason == 'tournament_absence'
           return _("%{player} loses by forfeit after five minutes of absence.") % {
-            player: GameRoomContent.utf8(GameRoomParticipants.display_name(entry.subject)) }
+            player: GameRoomContent.utf8(display.call(entry.subject)) }
         end
         _("%{player} ended the game. The table remains open.") % { player: player }
       when 'tournament_elimination'
         _("%{player} is eliminated by forfeit. The remaining participants continue playing.") % {
-          player: GameRoomContent.utf8(GameRoomParticipants.display_name(entry.subject)) }
+          player: GameRoomContent.utf8(display.call(entry.subject)) }
       when "options_changed"
         if entry.teams && !entry.teams.empty?
           return entry.teams.each_with_index.map do |members, index|
-            _("Team %{team}: %{players}.") % { team: index + 1, players: members.map { |user| GameRoomContent.utf8(GameRoomParticipants.display_name(user)) }.join(", ") }
+            _("Team %{team}: %{players}.") % { team: index + 1, players: members.map { |user| GameRoomContent.utf8(display.call(user)) }.join(", ") }
           end.join(" ")
         end
         _("%{player} changed the settings for the next game.") % { player: player }
       when "role_changed"
         if entry.role == "observer"
-          _("%{player} chose %{user} as an observer for the next game.") % { player: player, user: GameRoomContent.utf8(GameRoomParticipants.display_name(entry.subject)) }
+          _("%{player} chose %{user} as an observer for the next game.") % { player: player, user: GameRoomContent.utf8(display.call(entry.subject)) }
         else
-          _("%{player} chose %{user} as a player for the next game.") % { player: player, user: GameRoomContent.utf8(GameRoomParticipants.display_name(entry.subject)) }
+          _("%{player} chose %{user} as a player for the next game.") % { player: player, user: GameRoomContent.utf8(display.call(entry.subject)) }
         end
       when "owner_changed"
         _("%{player} becomes the table master.") % { player: player }
       when 'player_replaced'
         _("%{replacement} replaces %{player}.") % {
-          replacement: GameRoomContent.utf8(GameRoomParticipants.display_name(entry.replacement)),
-          player: GameRoomContent.utf8(GameRoomParticipants.display_name(entry.subject)) }
+          replacement: GameRoomContent.utf8(display.call(entry.replacement)),
+          player: GameRoomContent.utf8(display.call(entry.subject)) }
       when "seat_control_changed"
-        subject = GameRoomContent.utf8(GameRoomParticipants.display_name(entry.subject))
+        subject = GameRoomContent.utf8(display.call(entry.subject))
         entry.role == "bot" ? (_("A computer takes over %{player}'s place.") % { player: subject }) :
           (_("%{player} takes back control of their place.") % { player: subject })
       end
@@ -264,21 +264,21 @@ class TableActivityRepository
   end
   private :round_pause_activity_text
 
-  def merge_history(game_entries:, game_events:, activity_entries:, game_name:)
+  def merge_history(game_entries:, game_events:, activity_entries:, game_name:, names: nil)
     merged_history_entries(
       game_entries: game_entries,
       game_events: game_events,
       activity_entries: activity_entries,
-      game_name: game_name
+      game_name: game_name, names: names
     ).map(&:text)
   end
 
-  def merged_history_entries(game_entries:, game_events:, activity_entries:, game_name:)
+  def merged_history_entries(game_entries:, game_events:, activity_entries:, game_name:, names: nil)
     games = game_entries.to_a.map { |entry| [entry.event_id.to_i, entry.text.to_s] }
     events = game_events.to_a.map { |event| [row_id(event), event["__stack_sequence"], event["created_at"], event["move_id"]] }
     activities = activity_entries.to_a
-    names = activities.map(&:game).uniq.to_h { |id| [id, game_name.call(id).to_s] }
-    formatted = formatted_activities(activities, names)
+    game_names = activities.map(&:game).uniq.to_h { |id| [id, game_name.call(id).to_s] }
+    formatted = formatted_activities(activities, game_names, receiver_names: names)
     inputs = [games, events]
     cacheable = games.length + events.length + activities.length <= PROJECTION_CACHE_LIMIT
     cached_projection(:@merged_history_projection, inputs, context: formatted, cacheable: cacheable) do |owned|
@@ -307,10 +307,10 @@ class TableActivityRepository
     Marshal.load(packed)
   end
 
-  def formatted_activities(activities, names)
+  def formatted_activities(activities, names, receiver_names: nil)
     # Formatting room/chat entries is independent of new game moves. Retain
     # that work, and its owned input snapshot, across subsequent game turns.
-    context = GameRoomLocalization.cache_token
+    context = [GameRoomLocalization.cache_token, receiver_names&.token]
     cached = @formatted_activity_projection
     cached = nil unless cached && cached[:context] == context && cached[:names] == names
     known = cached ? cached[:items] : {}
@@ -318,7 +318,7 @@ class TableActivityRepository
     source = project_values(activities, known, key: ->(entry) { entry.id.to_i }) do |entry|
       [entry.id.to_i, entry.stack_sequence.to_i, entry.created_at.to_i,
         entry.kind == 'chat' ? :chat : :room,
-        text_for(entry, game_name: ->(id) { own_names.fetch(id) }, global: false).to_s.freeze].freeze
+        text_for(entry, game_name: ->(id) { own_names.fetch(id) }, global: false, names: receiver_names).to_s.freeze].freeze
     end
     return cached if cached && cached[:source] == source
 

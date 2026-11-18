@@ -1401,12 +1401,12 @@ module GameRoomGames
 
     def scores_text(state, sorted: false)
       players = sorted ? score_announcement_order(state[:players], state[:scores], eliminated: state[:eliminated]) : state[:players]
-      players.map { |player| _("%{player}: %{score}") % { player: participant_name(player), score: state[:scores][player] } }.join("; ")
+      players.map { |player| _("%{player}: %{score}") % { player: participant_full_name(player), score: state[:scores][player] } }.join("; ")
     end
 
     def card_counts_text(state)
       state[:players].map do |player|
-        "#{participant_name(player)}, #{state[:hands].fetch(player, []).length}"
+        "#{participant_full_name(player)}, #{state[:hands].fetch(player, []).length}"
       end.join(". ") + "."
     end
 

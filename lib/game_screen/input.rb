@@ -31,6 +31,11 @@ class GameScreen
       bind_wait_surface(wait, layout, remember_position)
       bind_wait_chat(wait, layout, remember_position)
       bind_wait_timer(wait, layout, remember_position)
+      form.on(:local_presentation_changed) do
+        remember_position.call
+        wait.action = :presentation_refresh
+        form.resume
+      end
       if pending_move_ready?
         wait.action = :queued_game_action
       elsif pending_chat_ready?
@@ -83,8 +88,11 @@ class GameScreen
     def prepare_action_view(replay)
       user_items = room_user_items(replay)
       @game.board_presentation_preferences = @board_preferences.values
-      @game.prepare_view(replay, Session.name, context: action_context)
-      view_spec = @game.game_view_spec(replay, Session.name)
+      presentation_game = display_game
+      presentation_game.board_presentation_preferences = @board_preferences.values
+      visible_replay = display_replay(replay)
+      presentation_game.prepare_view(visible_replay, Session.name, context: action_context)
+      view_spec = presentation_game.game_view_spec(visible_replay, Session.name)
       @board_view_spec = view_spec.surface
       @surface_state = @board_preferences.restore(@board_view_spec, @surface_state)
       history_items = combined_history_items(replay)
@@ -165,7 +173,7 @@ class GameScreen
       surface = layout.surface
       form = layout.form
       history = layout.history
-      shortcuts = normalized_game_shortcuts(@game.game_shortcuts(wait.replay, Session.name))
+      shortcuts = normalized_game_shortcuts(display_game.game_shortcuts(display_replay(wait.replay), Session.name))
       shortcuts += @game_client.local_shortcuts if @game_client&.respond_to?(:local_shortcuts)
       append_round_pause_shortcut(shortcuts, wait.replay)
       reports = @question_reports if @game.respond_to?(:reportable_question)
@@ -366,7 +374,7 @@ class GameScreen
       back_button = layout.back_button
       if surface
         surface.on_action do |selection|
-          shortcut = @game.surface_action_shortcut(selection, wait.replay, Session.name)
+          shortcut = display_game.surface_action_shortcut(selection, display_replay(wait.replay), Session.name)
           if shortcut
             next if wait.action != nil || @session["__frozen"] || event_presentation_busy?
             next form.game_room_pending_operation.reject_action if form.game_room_pending_operation

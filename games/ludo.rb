@@ -292,7 +292,7 @@ module GameRoomGames
       end
       shortcuts + [
         announcement_shortcut(key: "c", label: _("read players' colours"),
-          message: replay.players.each_with_index.map { |name, index| "#{participant_name(name)}, #{player_colour(index)}" }.join("; ")),
+          message: replay.players.each_with_index.map { |name, index| "#{participant_full_name(name)}, #{player_colour(index)}" }.join("; ")),
         surface_shortcut(key: "c", modifiers: [:control], label: _("switch between player names and colours"),
           command: "toggle_player_labels", payload: {"names" => _("Player names."), "colours" => _("Player colours.")}),
         announcement_shortcut(

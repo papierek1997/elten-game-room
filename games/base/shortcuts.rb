@@ -26,7 +26,7 @@ module GameRoomGames
           return nil if counts == nil
 
           message = replay.players.each_with_index.map do |player, index|
-            _("%{player}: %{pieces}") % { player: participant_name(player), pieces: counts.fetch(index) }
+            _("%{player}: %{pieces}") % { player: participant_full_name(player), pieces: counts.fetch(index) }
           end.join("; ")
           { message: message }
         else

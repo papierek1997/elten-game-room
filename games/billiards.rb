@@ -46,14 +46,14 @@ module GameRoomGames
       return super unless feature.to_sym == :scores
       {message: replay.players.each_with_index.map do |player, i|
         if B::Rules.competition?(replay.state[:options])
-          line = _('%{player}; rounds won: %{count}') % {player: participant_name(player), count: replay.state[:racks][i]}
+          line = _('%{player}; rounds won: %{count}') % {player: participant_full_name(player), count: replay.state[:racks][i]}
           line += '; ' + _('Points: %{points}') % {points: replay.state[:scores][i]} if B::Rules.points_game?(replay.state)
           if replay.state[:options]['discipline'] == 'cutthroat'
             line += '; ' + _('Balls remaining: %{count}') % {count: B::Cutthroat.remaining(replay.state, i)}
           end
           GameRoomContent.utf8(line)
         else
-          _('%{player}; points: %{points}') % {player: participant_name(player), points: replay.state[:scores].fetch(i)}
+          _('%{player}; points: %{points}') % {player: participant_full_name(player), points: replay.state[:scores].fetch(i)}
         end
       end.join('; ')}
     end
@@ -296,7 +296,7 @@ module GameRoomGames
       return nil unless replay.finished?
       return _('Practice finished.') unless B::Rules.competition?(replay.state[:options])
       return _('The match is tied, %{score}.') % {score: replay.state[:racks].join(':')} if replay.draw
-      _('%{player} wins the match, %{score}.') % {player: participant_name(replay.winner), score: replay.state[:racks].join(':')}
+      _('%{player} wins the match, %{score}.') % {player: participant_full_name(replay.winner), score: replay.state[:racks].join(':')}
     end
 
     def surface_spec(replay, viewer)

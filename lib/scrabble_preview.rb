@@ -153,7 +153,8 @@ class GameRoomScrabblePreview
   def announce_changes(before, after)
     return unless @program.class.respond_to?(:normalized_settings) && @program.class.normalized_settings['scrabble_draft_speech'] == true
     return unless GameRoomBackgroundPolicy.speech?(@program, covered: @progress&.covered?)
-    player = GameRoomParticipants.display_name(@scope[1])
+    names = @program.local_name_presentation if @program.respond_to?(:local_name_presentation)
+    player = names ? names.format(@scope[1], form: :first) : GameRoomParticipants.display_name(@scope[1])
     [[before - after, _('%{player} removes %{letter} from %{field}.')],
       [after - before, _('%{player} places %{letter} on %{field}.')]].each do |tiles, message|
       tiles.each do |tile|

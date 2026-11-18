@@ -12,6 +12,7 @@ require_relative "conference_controls"
 # holds no application/runtime reference. Upgrade the legacy fixed-key bridge
 # once; subsequent application reloads reuse dynamic control dispatch.
 require_relative "game_room_localization"
+require_relative 'local_name_dialog'
 
 module GameRoomUI
   using GameRoomLocalization::Translations
@@ -117,6 +118,7 @@ module GameRoomUI
   end
 
   class Form < HostForm
+    include ReceiverInput
     include PingControl
     attr_accessor :game_room_program, :game_room_volume_reader, :game_room_volume_writer
     attr_accessor :game_room_general_help_tips, :game_room_text_help_tips
@@ -216,6 +218,7 @@ module GameRoomUI
     end
 
     def update
+      return if handle_receiver_input
       @game_room_program.send(:announce_volume_save_error) if @game_room_program&.respond_to?(:announce_volume_save_error, true)
       game_room_conference_refresh&.call
       if game_room_table_controls && game_room_hotkeys_active? && @game_room_program&.respond_to?(:toggle_conference_microphone,true) &&

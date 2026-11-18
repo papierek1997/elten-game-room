@@ -767,7 +767,7 @@ class EltenGameRoom < Program
     return [] if !@server_tables.available?
 
     @lobby_activity_entries.to_a.map do |entry|
-      @table_activity.text_for(entry, game_name: ->(id) { game_name(id) }, global: true)
+      @table_activity.text_for(entry, game_name: ->(id) { game_name(id) }, global: true, names: local_name_presentation)
     end.compact
   end
 
@@ -797,7 +797,7 @@ class EltenGameRoom < Program
       # The lobby history still contains the event, but does not speak it twice.
       next if entry.kind.to_s == "created" && self.class.table_watch_receiver.games.to_a.include?(entry.game.to_s)
 
-      text = @table_activity.text_for(entry, game_name: ->(id) { game_name(id) }, global: true)
+      text = @table_activity.text_for(entry, game_name: ->(id) { game_name(id) }, global: true, names: local_name_presentation)
       speak(text, stop: false, break_sequence: false) if !text.to_s.empty?
     end
     @last_seen_lobby_activity_id = [@last_seen_lobby_activity_id.to_i, newest_id].max
@@ -1414,7 +1414,7 @@ class EltenGameRoom < Program
       selected = select_saved_game_item(rows.map { |row|
         _("%{game}; %{date}; %{players}") % { game: game_name(row["game"]),
           date: Time.at(row["saved_at"]).strftime("%Y-%m-%d %H:%M"),
-          players: row["players"].map { |player| GameRoomParticipants.display_name(player) }.join(", ") }
+          players: row["players"].map { |player| local_participant_name(player) }.join(", ") }
       }, _("Saved games"))
       return if selected == nil
       row = rows[selected]
@@ -1638,7 +1638,7 @@ class EltenGameRoom < Program
     restoration = saved_games.restored_data(saved, game: game, table_id: @lobby.table_id(row))
     missing = restoration[:players].reject { |player| restoration.fetch(:controllers, {})[player] == 'bot' || GameRoomParticipants.includes?(state.room.game_participants, player) }
     unless missing.empty?
-      alert(_("Waiting for these players: %{players}.") % { players: missing.map { |player| GameRoomParticipants.display_name(player) }.join(", ") })
+      alert(_("Waiting for these players: %{players}.") % { players: missing.map { |player| local_participant_name(player) }.join(", ") })
       return nil
     end
     started = run_network_task(_("Resuming game")) do
@@ -1746,11 +1746,16 @@ class EltenGameRoom < Program
       join_button = Button.new(_("Join"))
       back_button = Button.new(_("Back"))
       form = GameRoomUI::Form.new([tables, join_button, back_button], program: self, quiet: true)
+      form.on(:local_presentation_changed) do
+        position = tables.index
+        tables.options = snapshots.map { |snapshot| table_join_label(snapshot) }
+        tables.index = position
+      end
       form.accept_button = join_button
       form.cancel_button = back_button
       form.hide(join_button)
       form.hide(back_button)
-      roster_reader = GameRoomTableRosterReader.new(loader: ->(snapshot) { @lobby.discovered_roster(snapshot) },
+      roster_reader = GameRoomTableRosterReader.new(name_for: method(:local_participant_name), loader: ->(snapshot) { @lobby.discovered_roster(snapshot) },
         selected: -> { snapshots[tables.index.to_i] }, id_for: ->(snapshot) { @lobby.table_id(snapshot.table) },
         active: -> { form.fields[form.index.to_i].equal?(tables) }, speaker: ->(text) { speak(text) })
       options_reader = GameRoomTableOptionsReader.new(loader: ->(snapshot) { @lobby.discovered_options(snapshot) },
@@ -1932,7 +1937,8 @@ class EltenGameRoom < Program
 
   def table_game_view_spec(state)
     if !state.waiting? && state.replay != nil && state.game != nil
-      state.game.game_view_spec(state.replay, Session.name)
+      game, replay = receiver_room_presentation(state)
+      game.game_view_spec(replay, Session.name)
     else
       state.game ? state.game.waiting_view_spec(Session.name, history_empty_label: _("No games have been played yet")) :
         GameRoomLayout::ViewSpec.new(history_empty_label: _("No games have been played yet"))
@@ -2113,6 +2119,10 @@ class EltenGameRoom < Program
     layout.begin_bindings
     layout.back_button.label = _("Leave")
     form = layout.form
+    form.on(:local_presentation_changed) do
+      layout.update_users(room_user_rows(state), header: table_header(state.room))
+      layout.update_history(room_history_items(state, state.activity_entries))
+    end
     GameRoomHistory.bind(form) do |operation, value|
       entries = room_history_entries(state, state.activity_entries)
       message = history_navigator.navigate(entries, operation, value, view: layout.history,
@@ -2238,7 +2248,7 @@ class EltenGameRoom < Program
       return :normal
     when :save_table_history
       save_table_history(room_history_entries(state, state.activity_entries),game:state.game,
-        players:state.players.map { |person| GameRoomParticipants.display_name(person) })
+        players:state.players.map { |person| local_participant_name(person) })
     when :invite_online
       show_invite_users(row, source: :online)
       return :normal
@@ -2270,7 +2280,7 @@ class EltenGameRoom < Program
       end
       if entry != nil
         play_game_sound("chatmsg")
-        text = @table_activity.text_for(entry, game_name: ->(id) { game_name(id) }, global: false)
+        text = @table_activity.text_for(entry, game_name: ->(id) { game_name(id) }, global: false, names: local_name_presentation)
         speak(text, stop: false, break_sequence: false) if !text.to_s.empty?
         intent.receipt.clear_if_current(layout.chat, session_id: layout.session_id)
       end
@@ -2497,7 +2507,7 @@ class EltenGameRoom < Program
 
   def choose_table_participant(candidates, header)
     labels = candidates.map do |person|
-      person == :new_bot ? _("Add a new computer in this place") : GameRoomParticipants.display_name(person)
+      person == :new_bot ? _("Add a new computer in this place") : local_participant_name(person)
     end.map { |label| GameRoomContent.utf8(label) }
     selected = GameRoomUI.choose_index(header, labels, program: self)
     selected.nil? ? nil : candidates[selected]
@@ -2882,7 +2892,7 @@ class EltenGameRoom < Program
   def announce_joined_room(row)
     play_game_sound("connect")
     speak(_("You joined %{player}'s room.") % {
-      player: GameRoomParticipants.display_name(@lobby.owner_of(row))
+      player: local_participant_name(@lobby.owner_of(row))
     })
     # The waiting status is the first focused field for a guest. Queue it
     # after the room confirmation instead of letting it cut that message off.
@@ -3408,7 +3418,7 @@ class EltenGameRoom < Program
 
   def table_join_label(snapshot)
     label = GameRoomContent.utf8(_("%{owner}, %{count}/%{maximum}, %{status}")) % {
-      owner: GameRoomContent.utf8(@lobby.owner_of(snapshot.table)),
+      owner: GameRoomContent.utf8(local_participant_name(@lobby.owner_of(snapshot.table))),
       count: snapshot.participant_count, maximum: @lobby.capacity_of(snapshot.table),
       status: table_status_label(snapshot.table)
     }
@@ -3428,7 +3438,7 @@ class EltenGameRoom < Program
       status: table_status_label(row),
       name: table_display_name(row),
       game: game_name(row["game"]),
-      owner: @lobby.owner_of(row),
+      owner: local_participant_name(@lobby.owner_of(row)),
       count: snapshot.participant_count,
       maximum: @lobby.capacity_of(row)
     }
@@ -3458,13 +3468,13 @@ class EltenGameRoom < Program
   end
 
   def room_history_entries(state, room_activity = [])
-    replay = state.replay
+    _game, replay = receiver_room_presentation(state)
     game_events = replay == nil ? [] : replay.accepted_events
     @table_activity.merged_history_entries(
-      game_entries: state.history,
+      game_entries: replay ? replay.history : state.history,
       game_events: game_events,
       activity_entries: room_activity,
-      game_name: ->(id) { game_name(id) }
+      game_name: ->(id) { game_name(id) }, names: local_name_presentation
     )
   end
 
@@ -3476,7 +3486,7 @@ class EltenGameRoom < Program
       next if entry.kind == "chat" && GameRoomParticipants.same?(entry.actor, Session.name)
 
       GameRoomSounds.table_activity(self, entry, viewer: Session.name)
-      text = @table_activity.text_for(entry, game_name: ->(id) { game_name(id) }, global: false)
+      text = @table_activity.text_for(entry, game_name: ->(id) { game_name(id) }, global: false, names: local_name_presentation)
       if !text.to_s.empty? && GameRoomBackgroundPolicy.speech?(self, covered: covered)
         speak(text, stop: false, break_sequence: false)
       end
@@ -3489,8 +3499,21 @@ class EltenGameRoom < Program
     options = state.game&.options_from_json(source)
     RoomPresentation.game_users(
       room: state.room, game: state.game, replay: state.waiting? ? nil : state.replay,
-      players: state.waiting? ? [] : state.players, owner: @lobby.owner_of(state.room.table), options: options
+      players: state.waiting? ? [] : state.players, owner: @lobby.owner_of(state.room.table), options: options,
+      names: local_name_presentation
     )
+  end
+
+  def receiver_room_presentation(state)
+    names = local_name_presentation
+    return [state.game, state.replay] unless names&.value && state.game && state.game_snapshot
+    token = [state.game.object_id, names.token, GameRoomLocalization.cache_token]
+    if @receiver_room_token != token
+      @receiver_room = GameRoomLocalGamePresentation.new(state.game, names)
+      @receiver_room_token = token
+    end
+    snapshot = state.game_snapshot
+    [@receiver_room.game, @receiver_room.replay(snapshot.session, snapshot.events, @games)]
   end
 
   def table_status_label(row)
@@ -3562,7 +3585,7 @@ class EltenGameRoom < Program
     if !missing_live_members.empty?
       alert(
         _("The game cannot start until these players join the real-time session: %{players}.") % {
-          players: missing_live_members.map { |player| GameRoomParticipants.display_name(player) }.join(", ")
+          players: missing_live_members.map { |player| local_participant_name(player) }.join(", ")
         }
       )
       return
@@ -3612,7 +3635,7 @@ class EltenGameRoom < Program
   end
 
   def alert_start_error(error, participants)
-    players = participants.map { |person| GameRoomParticipants.display_name(person) }.join(", ")
+    players = participants.map { |person| local_participant_name(person) }.join(", ")
     players = _("None") if players.empty?
     alert("#{error}\n#{_("Players: %{players}.") % {players: players}}")
   end
@@ -3637,7 +3660,7 @@ class EltenGameRoom < Program
     player_index = 0
     loop do
       player_index = [[player_index, 0].max, assignment.players.length - 1].min
-      players = GameRoomScreens::TeamList.new(assignment, index: player_index)
+      players = GameRoomScreens::TeamList.new(assignment, index: player_index, names: local_name_presentation)
       change_button = Button.new(_("Change team"))
       automatic_button = Button.new(_("Choose teams randomly"))
       start_button = Button.new(_("Accept teams"))
@@ -3841,7 +3864,7 @@ class EltenGameRoom < Program
       manage_computer: ->(current_table, action, participant) { change_room_computer(current_table, action, participant) },
       manage_observer: ->(current_table, action, participant = nil) { change_observer_mode(current_table, action, participant) },
       manage_teams: ->(current_table) { change_table_teams(current_table) },
-      save_table_history: ->(entries) { save_table_history(entries,game:game,players:@games.players_for(session).map { |person| GameRoomParticipants.display_name(person) }) },
+      save_table_history: ->(entries) { save_table_history(entries,game:game,players:@games.players_for(session).map { |person| local_participant_name(person) }) },
       save_recording: ->(client) { save_audio_history(client) },
       edit_options: ->(current_table) { change_table_game_options(current_table) },
       abort_game: ->(current_table, current_session) { abort_current_game(current_table, current_session) },

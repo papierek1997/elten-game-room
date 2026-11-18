@@ -878,10 +878,10 @@ module GameRoomGames
 
     def totals_text(state)
       state[:players].map do |player|
-        next _("%{player}: out") % { player: participant_name(player) } if state[:eliminated][player]
+        next _("%{player}: out") % { player: participant_full_name(player) } if state[:eliminated][player]
 
         n_("%{player}: %{count} card", "%{player}: %{count} cards", total(state, player)) % {
-          player: participant_name(player), count: total(state, player) }
+          player: participant_full_name(player), count: total(state, player) }
       end.join("; ") + "."
     end
 

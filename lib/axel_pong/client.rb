@@ -123,11 +123,11 @@ module GameRoomPong
       team = assignment ? assignment.seats[perspective] : perspective
       winner = [0, 1].find { |i| after.state[:scores][i] > before.state[:scores][i] }
       preview = point_state.goal_preview if point_state.goal_preview && point_state.goal_preview[:rally] == before.state[:rally] && point_state.goal_preview[:winner] == winner
-      labels = @game.score_labels(after.state[:options], after.players)
+      labels = receiver_game.score_labels(after.state[:options], after.players)
       order = team == 1 ? [1, 0] : [0, 1]
       score_text = order.map { |i| "#{labels[i]}: #{after.state[:scores][i]}" }.join('; ') + '.'
       @audio.point(after.state[:scores], viewer: team, winner: winner, finished: after.finished?,
-        goal_at: preview && preview[:at], score_text: score_text, result_text: @game.result_text(after))
+        goal_at: preview && preview[:at], score_text: score_text, result_text: receiver_game.result_text(after))
       if preview
         score_at = [@clock.call, preview[:at] + 3.0].max
         rally_state.ready_at, rally_state.serve_announce_at = score_at + SINGLE_SERVE_DELAY, score_at + 2.0
@@ -309,7 +309,7 @@ module GameRoomPong
         if @single_point && rally_state.snapshot
           speak(single_point_spectator_announcement)
         else
-          speak(_('Perspective: %{player}.') % { player: @game.participant_name(@observed_player) })
+          speak(_('Perspective: %{player}.') % { player: receiver_participant_name(@observed_player, form: :full) })
         end
       when 'crowd'
         if @audio.toggle_crowd
@@ -530,13 +530,13 @@ module GameRoomPong
         # its final speech index; it must not gate the match or extend the
         # ordinary score + SINGLE_SERVE_DELAY deadline for any participant.
         announce_progress(_('%{server} will serve against %{receiver}.') % {
-          server: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[rally_state.rotation.server])),
-          receiver: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[rally_state.rotation.receiver])) })
+          server: GameRoomContent.utf8(receiver_participant_name(@players[rally_state.rotation.server])),
+          receiver: GameRoomContent.utf8(receiver_participant_name(@players[rally_state.rotation.receiver])) })
       else
         text = if @single_point && @side.nil?
           single_point_spectator_announcement
         else
-          _('%{player} serves.') % { player: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[rally_state.snapshot['server']])) }
+          _('%{player} serves.') % { player: GameRoomContent.utf8(receiver_participant_name(@players[rally_state.snapshot['server']])) }
         end
         announce_progress(text)
       end
@@ -545,8 +545,8 @@ module GameRoomPong
 
     def single_point_spectator_announcement
       _("Watching %{player}. %{server} serves.") % {
-        player: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[observer_side])),
-        server: GameRoomContent.utf8(GameRoomParticipants.display_name(@players[rally_state.snapshot['server']]))}
+        player: GameRoomContent.utf8(receiver_participant_name(@players[observer_side])),
+        server: GameRoomContent.utf8(receiver_participant_name(@players[rally_state.snapshot['server']]))}
     end
 
     def peer_service_waiting?

@@ -19,6 +19,7 @@ require_relative "game_session_clock"
 require_relative "game_duration"
 require_relative "game_session_runner"
 require_relative "presentation_replay"
+require_relative 'local_game_presentation'
 require_relative "game_background_presentation"
 require_relative "game_background_policy"
 require_relative "board_preferences"
@@ -203,6 +204,7 @@ class GameScreen
       snapshot_started_at = monotonic_time
       log_signal_timing("snapshot_started", signal_received_at)
       presentation_only = @presentation_refresh_requested && @last_game_payload != nil
+      using_cached_payload = presentation_only
       @presentation_refresh_requested = false
       payload = presentation_only ? @last_game_payload : nil
       payload = fetch_game_payload unless presentation_only || @synchronizer.waiting?
@@ -251,6 +253,7 @@ class GameScreen
       return :game_aborted if @session["__aborted"]
       replay_started_at = monotonic_time
       replay = @game.replay(@session, snapshot.events, @repository)
+      presentation_replay.bind_source(@session, replay, snapshot.events)
       departed_players = using_cached_payload ? [] : departed_players_for_replacement(replay, next_room_snapshot)
       next if !departed_players.empty? && replace_departed_players(departed_players)
       @statistics_observer&.call(@session, replay) unless using_cached_payload
@@ -482,6 +485,7 @@ class GameScreen
     if packet && !packet.equal?(@background_presented_snapshot)
       @background_presented_snapshot = packet
       data = Marshal.load(Marshal.dump(packet))
+      presentation_replay.bind_source(data[:session], data[:replay], data[:snapshot].events)
       if data[:session]['__aborted'] && @program.respond_to?(:background_music)
         @program.background_music.leave_game(event_presenter)
       end
@@ -677,7 +681,7 @@ class GameScreen
   def refreshed_game_shortcut(shortcut, replay, viewer)
     return shortcut unless %i[announcement grid_preview].include?(shortcut.kind)
 
-    normalized_game_shortcuts(@game.game_shortcuts(replay, viewer)).find do |candidate|
+    normalized_game_shortcuts(display_game.game_shortcuts(display_replay(replay), viewer)).find do |candidate|
       candidate.key == shortcut.key && candidate.modifiers.to_a == shortcut.modifiers.to_a
     end || shortcut
   end
@@ -760,6 +764,12 @@ class GameScreen
   # Reuse the same controls and visibility declarations as table options.
   # No network action is emitted until the entire proposal is submitted.
   def form_shortcut_action(shortcut)
+    if shortcut.fields.to_a.empty?
+      selected = GameRoomUI.choose_index(shortcut.prompt, [shortcut.submit_label || _("Select"), _("Cancel")], program: @program)
+      return nil unless selected == 0
+      return GameSurfaces::Action.new(kind: shortcut.action_kind, name: shortcut.action_name,
+        payload: shortcut.payload, source: "shortcut:#{shortcut.key}")
+    end
     bindings = shortcut.fields.map do |definition|
       control = case definition.kind.to_sym
       when :integer
@@ -970,7 +980,10 @@ class GameScreen
     if @session_runner
       inserted = submit_runner_action(replay, selection, actor, title: title)
       return nil unless inserted
-      updated = @game.replay(@session, replay.accepted_events + inserted, @repository)
+      events = replay.presentation_events ? replay.presentation_events.take(replay.presentation_event_count) : replay.accepted_events
+      events = events + inserted
+      updated = @game.replay(@session, events, @repository)
+      presentation_replay.bind_source(@session, updated, events)
       accepted_ids = updated.accepted_events.map { |event| @repository.event_id(event) }
       if inserted.any? { |event| !accepted_ids.include?(@repository.event_id(event)) }
         alert(_("The game changed before your action was accepted. Please choose again."))
@@ -1004,7 +1017,10 @@ class GameScreen
     end
     return nil if inserted == nil || inserted.empty?
 
-    updated = @game.replay(@session, replay.accepted_events + inserted, @repository)
+    events = replay.presentation_events ? replay.presentation_events.take(replay.presentation_event_count) : replay.accepted_events
+    events = events + inserted
+    updated = @game.replay(@session, events, @repository)
+    presentation_replay.bind_source(@session, updated, events)
     accepted_ids = updated.accepted_events.map { |event| @repository.event_id(event) }
     if inserted.any? { |event| !accepted_ids.include?(@repository.event_id(event)) }
       alert(_("The game changed before your action was accepted. Please choose again."))
@@ -1264,7 +1280,7 @@ class GameScreen
     RoomPresentation.game_users(
       room: @room_snapshot, game: @game, replay: replay,
       players: @repository.players_for(@session), owner: @table_owner,
-      controllers: @session.fetch("__controllers", {}),
+      controllers: @session.fetch("__controllers", {}), names: receiver_names,
       options: @game.options_from_json(replay.finished? ? @room_snapshot.table["game_options"] : @session["options"])
     )
   end
@@ -1276,8 +1292,8 @@ class GameScreen
   end
 
   def combined_history_entries(replay)
-    game_entries = @game.history_entries_for_display(
-      replay,
+    game_entries = display_game.history_entries_for_display(
+      display_replay(replay),
       Session.name,
       surface_state: @surface_state
     )
@@ -1298,7 +1314,7 @@ class GameScreen
       game_entries: game_entries,
       game_events: replay.accepted_events,
       activity_entries: @activity_entries.to_a,
-      game_name: @game_name
+      game_name: @game_name, names: receiver_names
     ) + local_entries
   end
 
@@ -1328,7 +1344,7 @@ class GameScreen
   def process_new_table_activity(replay, entries: @activity_entries, background: false)
    event_presenter.last_seen_activity_id = @layout.activity_cursor if !background && event_presenter.last_seen_activity_id == nil && @layout != nil
    changed = event_presenter.process_table_activity(entries, viewer: Session.name,
-     text: ->(entry) { @activity_repository&.text_for(entry, game_name: @game_name, global: false) })
+     text: ->(entry) { @activity_repository&.text_for(entry, game_name: @game_name, global: false, names: receiver_names) })
    follow_presentation_history(replay) if !background && changed
    @layout.activity_cursor = event_presenter.last_seen_activity_id if !background && @layout != nil
  end
@@ -1627,6 +1643,8 @@ class GameScreen
   def event_presenter
     @event_presenter ||= GameRoomEventPresenter.new(
       game: -> { @game }, repository: -> { @repository }, program: -> { @program }, viewer: -> { Session.name },
+      display_game: -> { display_game }, display_replay: ->(replay, session) { display_replay(replay, session: session) },
+      raw_input: ->(session) { receiver_presentation_snapshot(session, required: false)&.events },
       client: -> { @game_client }, surface_state: -> { @surface_state }, clock: -> { monotonic_time },
       covered: -> { table_presentation_covered? }, speech: ->(message) { speak_table_automatically(message) },
       trace: method(:log_signal_timing), session_changed: -> { @background_timer_data = nil },
@@ -1649,6 +1667,38 @@ class GameScreen
   def process_new_events(*args, session: @session, **options)
     timer_now = (@action_clock ||= GameRoomSessionClock.new).now(session)
     event_presenter.process_new_events(*args, session: session, timer_now: timer_now, **options)
+  end
+
+  def receiver_names
+    @program.local_name_presentation if @program.respond_to?(:local_name_presentation)
+  end
+
+  def display_game
+    names = receiver_names
+    token = [names&.token, GameRoomLocalization.cache_token]
+    if @receiver_presentation_token != token
+      @receiver_presentation = names&.value ? GameRoomLocalGamePresentation.new(@game, names) : nil
+      @receiver_presentation_token = token
+    end
+    @receiver_presentation ? @receiver_presentation.game : @game
+  end
+
+  def display_replay(replay, session: @session)
+    return replay unless display_game != @game
+    if replay.presentation_events
+      return @receiver_presentation.replay(replay.presentation_session, replay.presentation_events, @repository, boundary: replay)
+    end
+    snapshot = receiver_presentation_snapshot(session)
+    @receiver_presentation.replay(session, snapshot.events, @repository, boundary: replay)
+  end
+
+  def receiver_presentation_snapshot(session, required: true)
+    candidates = [@last_game_payload&.first, @background_presented_snapshot&.snapshot,
+      @session_runner&.ready_presentation_snapshot&.snapshot]
+    semantic = ->(value) { value.reject { |key, _| key == '__game_revision' } }
+    snapshot = candidates.compact.select { |candidate| semantic.call(candidate.session) == semantic.call(session) }.max_by { |candidate| candidate.events.length }
+    raise ArgumentError, 'Missing authenticated presentation input' if required && !snapshot
+    snapshot
   end
 
   def present_game_event(*args, **options)

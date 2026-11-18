@@ -82,6 +82,8 @@ the current code; confirm any unresolved decision before changing behavior.
 
 ## Maintenance
 
+- [Cheat](CHEAT.md): five card-bluffing profiles, ordered reactions, ordinary-table privacy and targeted checks.
+
 - [Bingo](BINGO.md): variants, tickets, manual/automatic marking, native draws and sound licensing.
 - [Dice games](DICE_GAMES.md): poker/Liar's dice variants, hidden rolls and controls; shared Yahtzee, General and Balut score-sheet feedback.
 - [Go and roulette](GO_ROULETTE.md): boards, scoring agreement, wheels, bets, social pool and rule sources.

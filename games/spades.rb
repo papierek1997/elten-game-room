@@ -893,11 +893,11 @@ module GameRoomGames
       if unit.to_s.start_with?("team:")
         members = Scoring.new(state[:players], state[:options]).members_for(unit)
         return _("Team %{players}") % {
-          players: members.map { |player| participant_name(player) }.join(" and ")
+          players: members.map { |player| participant_full_name(player) }.join(" and ")
         }
       end
 
-      participant_name(unit)
+      participant_full_name(unit)
     end
 
     def turn_information_text(state)

@@ -479,7 +479,7 @@ module GameRoomGames
     def final_scores_text(players, scores)
       ordered = score_announcement_order(players, scores)
       values = ordered.map do |player|
-        _('%{player}: %{score}') % {player: participant_name(player), score: scores[player].to_i}
+        _('%{player}: %{score}') % {player: participant_full_name(player), score: scores[player].to_i}
       end
       _('Scores: %{scores}.') % {scores: values.join('; ')}
     end

@@ -1,0 +1,191 @@
+{
+  "source": "games/cheat.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo y reparto"
+      },
+      "paragraphs": [
+        {
+          "es": "Sé la primera persona en quedarte sin cartas. Se reparte toda la baraja de 52 cartas, sin comodines, lo más equitativamente posible entre 2 y 8 jugadores. Se sortea quién empieza. Solo ves tu mano; S lee cuántas cartas tiene cada participante."
+        },
+        {
+          "es": "En la variante predeterminada juegas de una a cuatro cartas boca abajo y declaras su valor. La primera declaración es ases; siguen doses, treses y los demás valores hasta diez, jotas, reinas y reyes. Después de los reyes vuelven los ases. Las cartas reales pueden ser distintas: se permite mentir. La cantidad de cartas jugadas siempre se anuncia correctamente."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "es": "Preparar una jugada"
+      },
+      "paragraphs": [
+        {
+          "es": "Recorre toda tu mano con las flechas arriba y abajo, o cambia de palo con izquierda y derecha. H lee la mano en el orden mostrado. Puedes elegir cualquier carta propia, aunque no coincida con la declaración."
+        },
+        {
+          "es": "Para preparar una sola carta, sitúate en ella y pulsa Enter. Para un grupo, marca cartas con Shift+Enter; al repetirlo quitas la carta de la selección. P lee las cartas marcadas y Shift+P borra la selección. Enter añade también la carta situada bajo el cursor si no estaba marcada. Comprueba la cantidad final y la declaración y elige Jugar. Escape o Cancelar vuelve a la mano sin jugar ni borrar el grupo. El menú contextual de la mano también ofrece Jugar."
+        },
+        {
+          "es": "Por ejemplo, en un turno de ases puedes seleccionar dos cartas distintas y declarar dos ases. Ambas pueden ser ases, ninguna o solo una. Los rivales oyen la declaración y la cantidad, pero no los nombres de las cartas ocultas. Tras las reacciones, el siguiente jugador declara doses, aunque alguien haya comprobado tus ases."
+        }
+      ]
+    },
+    {
+      "id": "reaction",
+      "title": {
+        "es": "Comprobar una declaración"
+      },
+      "paragraphs": [
+        {
+          "es": "Después de cada jugada boca abajo, los rivales deciden por orden de asiento, empezando por el siguiente. Cuando te corresponda reaccionar, K o Comprobar cuestiona la jugada. Espacio o No comprobar pasa la decisión al siguiente rival. No comprobar no garantiza que las cartas sean verdaderas ni equivale a pasar en la variante Bluff."
+        },
+        {
+          "es": "No hay límite de tiempo para reaccionar. La jugada no se da por aceptada por esperar, consultar la ayuda o alejarse del teclado. Solo responde la persona indicada. La primera comprobación cierra las demás reacciones. Si nadie comprueba, las cartas quedan en el montón y continúa el juego."
+        },
+        {
+          "es": "Solo se descubre el último grupo. Si una sola carta tiene otro valor, quien lo jugó recoge todo el montón. Si todas coinciden, lo recoge quien comprobó. Las cartas ocultas anteriores no se revelan por recogerlas. El orden de asientos y el ciclo de valores continúan tras ambos resultados. C repite el tamaño del montón, la última declaración y la decisión pendiente; T dice quién debe actuar."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "es": "Ganar la partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Jugar tus últimas cartas no te da la victoria de inmediato: los rivales aún pueden reaccionar. Ganas si todos aceptan esa jugada, aunque fuera mentira. También ganas si una comprobación demuestra que tu último grupo era verdadero. Si descubren tu último farol, recoges el montón y sigues jugando. Hay una sola persona ganadora; las demás no reciben puntos ni una clasificación."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "es": "Elegir una variante"
+      },
+      "paragraphs": [
+        {
+          "es": "Elige Variante al crear la mesa. Clásica: valores ascendentes es la opción predeterminada explicada arriba. Todas las variantes usan una baraja y reacciones sucesivas sin límite de tiempo."
+        },
+        {
+          "es": "- Valores descendentes empieza por ases, después reyes, reinas, jotas, dieces y los valores inferiores hasta doses; luego vuelve a ases. Una comprobación no reinicia el ciclo."
+        },
+        {
+          "es": "- Mismo valor o adyacente empieza por ases. Después eliges el último valor declarado o uno de sus vecinos. Tras sietes puedes declarar seises, sietes u ochos; tras ases, reyes, ases o doses. Rey y as son adyacentes en esta versión. Elige la declaración en el diálogo de la jugada y confirma Jugar para enviarla con las cartas."
+        },
+        {
+          "es": "- Bluff: valor fijo del montón admite de 3 a 6 jugadores y permite pasar, como se explica abajo."
+        },
+        {
+          "es": "- Palo: cartas individuales empieza con una carta descubierta y continúa con cartas individuales boca abajo."
+        }
+      ]
+    },
+    {
+      "id": "bluff",
+      "title": {
+        "es": "Bluff: un valor hasta cerrar el montón"
+      },
+      "paragraphs": [
+        {
+          "es": "Quien abre juega de una a cuatro cartas y elige cualquiera de los trece valores en el diálogo. Ese valor rige para todos los grupos posteriores de este montón. En tu turno de juego puedes añadir de una a cuatro cartas o pulsar X para pasar hasta que se cierre el montón. No puedes abrir un montón vacío pasando."
+        },
+        {
+          "es": "Después de pasar ya no puedes añadir cartas a ese montón, pero sigues pudiendo comprobar cada nuevo grupo. Una nueva jugada no devuelve el derecho a añadir a quienes pasaron. Si queda una sola persona sin pasar, puede añadir grupos repetidamente; las demás vuelven a decidir si comprueban cada jugada cada vez."
+        },
+        {
+          "es": "Cuando todos han pasado, el montón se aparta boca abajo de la partida y quien jugó por última vez abre otro con cualquier valor. Tras una comprobación acertada abre quien comprobó; tras una equivocada, quien hizo la jugada comprobada. Se borran los pases. El último grupo también debe superar las reacciones antes de dar la victoria. Esta versión reparte toda la baraja y no usa comodines ni reglas Force."
+        }
+      ]
+    },
+    {
+      "id": "suit",
+      "title": {
+        "es": "Palo: apertura descubierta"
+      },
+      "paragraphs": [
+        {
+          "es": "Quien abre selecciona una carta y confirma con Enter que la juega boca arriba. Su palo real fija el palo del montón. Esa carta visible no se puede comprobar. Las siguientes personas juegan una sola carta boca abajo y declaran el mismo palo, sin declarar valor. Shift+Enter no prepara grupos de varias cartas aquí."
+        },
+        {
+          "es": "Cuando te corresponda reaccionar, usa K o Espacio. Solo se comprueba el palo: un siete y un rey de corazones cumplen por igual una declaración de corazones. Con un palo falso recoge quien jugó; con uno verdadero, quien comprobó. Quien recoge abre el siguiente montón con cualquier carta descubierta. Si tu última carta es esa apertura descubierta, ganas inmediatamente. Una última carta oculta requiere las reacciones habituales."
+        }
+      ]
+    },
+    {
+      "id": "sound",
+      "title": {
+        "es": "Sonidos de la partida"
+      },
+      "paragraphs": [
+        {
+          "es": "El reparto usa el sonido de barajar y una jugada aceptada el de colocar cartas, igual para una verdad y un farol. Una señal distingue la comprobación; después se oyen el descubrimiento, el resultado y la recogida. La señal habitual de decisión avisa de tu turno o reacción, y los efectos de resultado marcan el final. La información importante también se anuncia por voz, por lo que puedes jugar con los efectos opcionales desactivados."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Referencia de teclas"
+      },
+      "paragraphs": [
+        {
+          "es": "Enter: prepara y confirma la carta o el grupo actual"
+        },
+        {
+          "es": "Shift+Enter: marca o desmarca la carta, salvo en Palo"
+        },
+        {
+          "es": "P: lee el grupo preparado"
+        },
+        {
+          "es": "Shift+P: borra el grupo preparado"
+        },
+        {
+          "es": "K: comprueba la jugada durante tu reacción"
+        },
+        {
+          "es": "Espacio: decide no comprobar esta jugada"
+        },
+        {
+          "es": "X: pasa hasta que se cierre el montón en Bluff"
+        },
+        {
+          "es": "H: lee tu propia mano"
+        },
+        {
+          "es": "T: anuncia quién debe jugar o reaccionar"
+        },
+        {
+          "es": "S: lee cuántas cartas tiene cada jugador"
+        },
+        {
+          "es": "C: lee el montón público y la declaración"
+        },
+        {
+          "es": "Shift+C: ordena por palo"
+        },
+        {
+          "es": "Shift+H: ordena por valor"
+        },
+        {
+          "es": "Shift+M: restaura el orden de recepción"
+        },
+        {
+          "es": "Z: pasa a la siguiente carta jugable sin jugar"
+        },
+        {
+          "es": "Shift+Z: pasa a la carta jugable anterior sin jugar"
+        },
+        {
+          "es": "Escape: cancela la selección actual"
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants"
+  }
+}

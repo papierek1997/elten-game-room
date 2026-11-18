@@ -1584,10 +1584,10 @@ module GameRoomGames
     end
 
     def unit_label(state, unit)
-      return participant_name(unit) unless unit.to_s.start_with?("team:")
+      return participant_full_name(unit) unless unit.to_s.start_with?("team:")
       members = state[:players].select { |player| score_unit(state, player) == unit }
       _("Team %{team}: %{players}") % {team: unit.delete_prefix("team:").to_i + 1,
-        players: members.map { |player| participant_name(player) }.join(", ")}
+        players: members.map { |player| participant_full_name(player) }.join(", ")}
     end
 
     def surrender_command(state, viewer)
@@ -1758,7 +1758,7 @@ module GameRoomGames
 
     def round_score_text(player, collected, delta)
       values = {
-        player: participant_name(player),
+        player: participant_full_name(player),
         collected: collected.to_i,
         points: delta.to_i.abs
       }

@@ -33,7 +33,7 @@ module GameRoomGames
           command: "word_place", payload: { "slot" => number-1 })
       end
       result << announcement_shortcut(key: "e", label: _("tiles in racks and bag"), message:
-        state[:players].map { |p| "#{participant_name(p)}, #{state[:racks][p].length}" }.join("; ") + ". " + (_("Bag: %{count} tiles.") % { count: state[:bag].length }))
+        state[:players].map { |p| "#{participant_full_name(p)}, #{state[:racks][p].length}" }.join("; ") + ". " + (_("Bag: %{count} tiles.") % { count: state[:bag].length }))
       choices = state[:words].map do |w|
         direction = w[:direction] == 1 ? _("horizontal") : _("vertical")
         ShortcutChoice.new(label: "#{w[:word]}, #{Rules.field(w[:start])}, #{direction}, #{w[:score]}", value: w[:start])

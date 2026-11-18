@@ -192,7 +192,7 @@ module GameRoomGames
     end
 
     def result_text(replay)
-      return _("Shared victory: %{players}.") % { players: replay.state[:winners].map { |p| participant_name(p) }.join(", ") } if replay.state[:winners].length > 1
+      return _("Shared victory: %{players}.") % { players: replay.state[:winners].map { |p| participant_full_name(p) }.join(", ") } if replay.state[:winners].length > 1
       super
     end
 

@@ -477,9 +477,9 @@ module GameRoomGames
       winners = replay.state[:winners].to_a
       return nil if winners.empty?
       if winners.length == 1
-        _("%{winner} won the game.") % { winner: participant_name(winners.first) }
+        _("%{winner} won the game.") % { winner: participant_full_name(winners.first) }
       else
-        _("The game ended in a draw between %{players}.") % { players: winners.map { |player| participant_name(player) }.join(", ") }
+        _("The game ended in a draw between %{players}.") % { players: winners.map { |player| participant_full_name(player) }.join(", ") }
       end
     end
 
@@ -1069,7 +1069,7 @@ module GameRoomGames
 
     def scores_text(state)
       score_announcement_order(state[:players], state[:scores]).map do |player|
-        _("%{player}: %{score}") % { player: participant_name(player), score: state[:scores][player] }
+        _("%{player}: %{score}") % { player: participant_full_name(player), score: state[:scores][player] }
       end.join("; ")
     end
 

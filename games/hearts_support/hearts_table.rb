@@ -90,7 +90,7 @@ module GameRoomGames
         points = state[:round_penalties] || state.fetch(:captured, {}).transform_values do |cards|
           cards.count { |suit, _| suit == :hearts } + (cards.include?([:spades, 12]) ? 13 : 0)
         end
-        names = replay.players.map { |player| "#{GameRoomContent.utf8(participant_name(player))}: #{points.fetch(player, 0)}" }
+        names = replay.players.map { |player| "#{GameRoomContent.utf8(participant_full_name(player))}: #{points.fetch(player, 0)}" }
         return {label: _('Penalty points this deal'), message: names.empty? ? _('No points yet.') : names.join(". ")}
       end
       if feature == :led_suit

@@ -470,12 +470,12 @@ module GameRoomGames
       return nil if winners.empty?
       if winners.length == 1
         _("%{player} won the game with %{points} points.") % {
-          player: participant_name(winners.first),
+          player: participant_full_name(winners.first),
           points: state[:scores].fetch(winners.first, 0)
         }
       else
         _("Shared victory: %{players}, %{points} points.") % {
-          players: winners.map { |player| participant_name(player) }.join(", "),
+          players: winners.map { |player| participant_full_name(player) }.join(", "),
           points: state[:scores].fetch(winners.first, 0)
         }
       end
@@ -1228,7 +1228,7 @@ module GameRoomGames
       players = sorted ? score_announcement_order(state[:players], state[:scores]) : state[:players]
       values = players.map do |player|
         _("%{player}: %{points}") % {
-          player: participant_name(player),
+          player: participant_full_name(player),
           points: state[:scores].fetch(player, 0).to_i
         }
       end

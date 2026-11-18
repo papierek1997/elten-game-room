@@ -274,7 +274,7 @@ module GameRoomGames
     end
     def first_player(state); state[:seats][(state[:dealer] + 1) % state[:seats].size]; end
     def unit_label(state, unit)
-      state[:players].select { |player| state[:unit_for][player] == unit }.map { |player| participant_name(player) }.join(' / ')
+      state[:players].select { |player| state[:unit_for][player] == unit }.map { |player| participant_full_name(player) }.join(' / ')
     end
     def cards_text(cards); cards.map { |card| playing_card_label(card) }.join(', '); end
     def scores_text(state)

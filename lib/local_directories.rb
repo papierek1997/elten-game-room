@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'thread'
+require_relative 'local_name_presentation'
 
 # Resolve the host's storage identity once, before any interactive game starts.
 # The adapter belongs to this application's Runtime only, never to the global
@@ -57,12 +58,16 @@ module GameRoomLocalDirectories
   end
 
   module Entry
+    include GameRoomLocalNamePresentation::Entry
+
     def prepare_local_directories
       runtime = self.class.app_runtime
-      return if GameRoomLocalDirectories.ready?(runtime)
+      account = defined?(Session) && Session.respond_to?(:name) ? Session.name.to_s : ''
+      return if GameRoomLocalDirectories.ready?(runtime) && (account.empty? || local_name_presentation)
 
       EltenAPI::Tasks.run(title: 'Power Games', ui: :none, cancellable: false) do
         GameRoomLocalDirectories.prepare(runtime)
+        @local_name_presentation = GameRoomLocalNamePresentation.new(runtime: runtime, account: account) unless account.empty? || local_name_presentation
       end
     end
   end

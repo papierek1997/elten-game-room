@@ -287,7 +287,7 @@ module GameRoomGames
     end
 
     def score_text(state)
-      state[:players].map { |p| _("%{player} has %{chips} chips.") % {player:participant_name(p),chips:state[:chips][p]} }.join(" ")
+      state[:players].map { |p| _("%{player} has %{chips} chips.") % {player:participant_full_name(p),chips:state[:chips][p]} }.join(" ")
     end
 
     def apply_event(state, event, event_id, history)

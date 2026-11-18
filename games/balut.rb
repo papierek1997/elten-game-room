@@ -114,9 +114,9 @@ module GameRoomGames
       shortcuts = super.reject { |shortcut| shortcut.key == "s" }
       state = replay.state
       players = state.fetch(:players).sort_by { |player| -total_score(state, player) }
-      points = players.map { |player| "#{participant_name(player)}: #{total_score(state, player)}" }
+      points = players.map { |player| "#{participant_full_name(player)}: #{total_score(state, player)}" }
       entries = players.map do |player|
-        "#{participant_name(player)}: #{state.fetch(:sheets).fetch(player).values.sum(&:sum)}"
+        "#{participant_full_name(player)}: #{state.fetch(:sheets).fetch(player).values.sum(&:sum)}"
       end
       owner = player_key(state, viewer)
       if owner
@@ -142,7 +142,7 @@ module GameRoomGames
     def scores_text(state, sorted: false)
       players = state.fetch(:players)
       players = players.sort_by { |player| -total_score(state, player) } if sorted
-      players.map { |player| "#{participant_name(player)}. #{balut_totals_text(state, player)}" }.join("\n")
+      players.map { |player| "#{participant_full_name(player)}. #{balut_totals_text(state, player)}" }.join("\n")
     end
 
     def total_score(state, player)

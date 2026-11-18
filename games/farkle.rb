@@ -759,7 +759,7 @@ module GameRoomGames
       players = sorted ? score_announcement_order(state[:players], state[:scores]) : state[:players]
       values = players.map do |player|
         _("%{player}: %{score}") % {
-          player: participant_name(player),
+          player: participant_full_name(player),
           score: state[:scores].fetch(player, 0)
         }
       end

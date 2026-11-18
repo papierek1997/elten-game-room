@@ -170,7 +170,8 @@ module GameRoomDuckRacing
         presentation = {id: id, audio: build_audio(clock_ms: -> { presentation_milliseconds }, memory: true, challenge_id: id)}
         @memory_presenters << presentation
       end
-      feedback = event[:sound] == :memory ? ChallengePresentation.memory_feedback(event, before.players) : {}
+      names = @program.local_name_presentation if @program.respond_to?(:local_name_presentation)
+      feedback = event[:sound] == :memory ? ChallengePresentation.memory_feedback(event, before.players, names: names) : {}
       if presentation[:audio].sound_event(event.merge(feedback).merge(id: @memory_sequence))
         presentation[:audio]
       end
@@ -740,6 +741,7 @@ module GameRoomDuckRacing
         end
       end
       view[:player_names] = @replay.players.each_with_index.to_h { |name, seat| [seat, name.dup] }
+      view[:receiver_name_presentation] = @program.local_name_presentation if @program.respond_to?(:local_name_presentation)
       view = ChallengePresentation.observation_view(view) unless participant?
       if view != @view
         presentation = ChallengePresentation.project(kind: @challenge[:kind], view: view, viewer: @seat, previous_view: @view)

@@ -127,7 +127,7 @@ module GameRoomGames
 
     def result_text(replay)
       return nil unless replay.finished?
-      _("Game winners: %{players}.") % { players: replay.state[:winners].map { |p| participant_name(p) }.join(", ") }
+      _("Game winners: %{players}.") % { players: replay.state[:winners].map { |p| participant_full_name(p) }.join(", ") }
     end
 
     def hand(state, actor)
@@ -206,10 +206,10 @@ module GameRoomGames
     def waiting_players(state); active_players(state).reject { |p| state[:hands][p].empty? }; end
     def unit_label(state, unit)
       members = state[:units].fetch(unit)
-      members.length == 1 ? participant_name(members.first) : _("Team %{number}: %{players}") % { number: state[:units].keys.index(unit) + 1, players: members.map { |p| participant_name(p) }.join(", ") }
+      members.length == 1 ? participant_full_name(members.first) : _("Team %{number}: %{players}") % { number: state[:units].keys.index(unit) + 1, players: members.map { |p| participant_full_name(p) }.join(", ") }
     end
     def tile_counts_text(state)
-      active_players(state).map { |p| "#{participant_name(p)}, #{state[:hands][p].length}" }.join("; ") + ". " +
+      active_players(state).map { |p| "#{participant_full_name(p)}, #{state[:hands][p].length}" }.join("; ") + ". " +
         ((state[:options]["forbid_draw"] ? _("Boneyard unavailable: %{count}.") : _("Boneyard: %{count}.")) % { count: state[:stock].length })
     end
     def bot_elimination_risk(state, actor, remaining)

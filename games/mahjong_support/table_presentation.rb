@@ -57,7 +57,7 @@ module GameRoomGames
           parts << mahjong_table_part('value', mahjong_table_info('mahjong-hand-value', _('Hand value'), value))
         end
         payments = settlement.payments.each_with_index.map do |points, seat|
-          _('%{player}: %{points}') % {player: participant_name(players.fetch(seat)), points: points}
+          _('%{player}: %{points}') % {player: participant_full_name(players.fetch(seat)), points: points}
         end
         parts << mahjong_table_part('payments', mahjong_table_info('mahjong-payments', _('Point changes'), payments.join("\n")))
       end

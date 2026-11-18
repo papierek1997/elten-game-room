@@ -85,8 +85,8 @@ module GameRoomGames
         surface_shortcut(key: "c", label: _("browse melds on the table"), command: "meld_table"),
         announcement_shortcut(key: "d", label: _("read the discard pile"), message: discard_message),
         surface_shortcut(key: "d", modifiers: [:shift], label: _("take cards from the discard pile"), command: "meld_discard_pile"),
-        announcement_shortcut(key: "e", label: _("card counts"), message: active_players(state).map { |p| "#{participant_name(p)}, #{state[:hands][p].length}" }.join("; ") + ". " + _("Draw pile: %{count}.") % { count: state[:stock].length }),
-        announcement_shortcut(key: "s", label: _("scores"), message: score_announcement_order(state[:players], state[:scores], eliminated: state[:eliminated]).map { |p| "#{participant_name(p)}, #{state[:scores][p]}" }.join("; "))
+        announcement_shortcut(key: "e", label: _("card counts"), message: active_players(state).map { |p| "#{participant_full_name(p)}, #{state[:hands][p].length}" }.join("; ") + ". " + _("Draw pile: %{count}.") % { count: state[:stock].length }),
+        announcement_shortcut(key: "s", label: _("scores"), message: score_announcement_order(state[:players], state[:scores], eliminated: state[:eliminated]).map { |p| "#{participant_full_name(p)}, #{state[:scores][p]}" }.join("; "))
       ]
       if state[:options]["discard_mode"] == "none"
         shortcuts << GameShortcut.new(key: "f", modifiers: [:shift], label: _("end your turn"), kind: :action, action_kind: "command", action_name: "end", payload: {})

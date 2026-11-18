@@ -161,7 +161,7 @@ module GameRoomGames
 
     def custom_game_shortcuts(replay, viewer)
       state = replay.state
-      shortcuts = [announcement_shortcut(key: 's', label: _('read the chip balances'), message: state[:players].map { |p| "#{participant_name(p)}: #{roulette_amount(state[:chips][p])}" }.join('; '))]
+      shortcuts = [announcement_shortcut(key: 's', label: _('read the chip balances'), message: state[:players].map { |p| "#{participant_full_name(p)}: #{roulette_amount(state[:chips][p])}" }.join('; '))]
       player = state[:players].find { |p| same_user?(p, viewer) }
       if player
         bets = state[:bets][player].map do |key, amount|

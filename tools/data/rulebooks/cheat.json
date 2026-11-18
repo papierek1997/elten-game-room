@@ -1,0 +1,234 @@
+{
+  "source": "games/cheat.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "Getting rid of your cards",
+        "pl": "Cel gry i rozdanie"
+      },
+      "paragraphs": [
+        {
+          "en": "Be the first to empty your hand. The whole 52-card deck, without jokers, is dealt as evenly as possible to 2–8 players. The first player is chosen at random. You see your own hand; everyone can read how many cards each player holds by pressing S.",
+          "pl": "Pozbądź się wszystkich kart jako pierwszy. Cała talia 52 kart bez jokerów jest rozdawana możliwie równo między 2–8 graczy. Rozpoczynający jest losowany. Widzisz własną rękę, a pod S możesz sprawdzić jawną liczbę kart każdego uczestnika."
+        },
+        {
+          "en": "In the default game you play one to four cards face down and declare their rank. The first declaration is aces, followed by twos, threes and so on through ten, jack, queen and king, then back to aces. The actual cards may be different: bluffing is a legal part of the game. The number of cards you play is always announced accurately.",
+          "pl": "W domyślnym wariancie wykładasz od jednej do czterech zakrytych kart i deklarujesz ich wartość. Pierwsza osoba deklaruje asy, następna dwójki, potem trójki i tak dalej do dziesiątek, waletów, dam i króli. Po królach znów przychodzą asy. Twoje karty mogą mieć inną wartość: blef jest dozwolony. Liczba wykładanych kart zawsze jest podawana zgodnie z prawdą."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Preparing a play",
+        "pl": "Wybieranie i zagrywanie kart"
+      },
+      "paragraphs": [
+        {
+          "en": "Use Up and Down to move through your whole hand, or Left and Right to jump between suits. H reads your hand in its current display order. You may choose any of your cards, including cards that do not match the declaration.",
+          "pl": "Strzałkami w górę i w dół przechodzisz przez całą rękę, a w lewo i w prawo przeskakujesz między kolorami. H odczytuje rękę w aktualnej kolejności wyświetlania. Możesz wybrać dowolną własną kartę, także niepasującą do deklaracji."
+        },
+        {
+          "en": "To play one card, select it and press Enter. For a larger packet, mark cards with Shift+Enter; pressing it again removes a card from the packet. P reads the marked cards and Shift+P clears them. When you press Enter, the card under the cursor is added too if it was not marked. Check the final card count and declaration, then choose Play. Escape or Cancel returns to the hand without playing or clearing your packet. The hand’s context menu also offers Play.",
+          "pl": "Aby zagrać jedną kartę, ustaw na niej kursor i naciśnij Enter. Większy pakiet przygotujesz, zaznaczając karty przez Shift+Enter; ponowne użycie usuwa kartę z pakietu. P odczytuje zaznaczenie, a Shift+P je czyści. Po Enter do pakietu dochodzi również karta pod kursorem, jeśli nie była zaznaczona. Sprawdź końcową liczbę kart i deklarację, po czym wybierz Zagraj. Escape lub Anuluj wraca do ręki bez zagrania i zachowuje przygotowany pakiet. Zagrać możesz również z menu kontekstowego ręki."
+        },
+        {
+          "en": "For example, on an ace turn you can select two different cards and declare two aces. Both may be aces, neither may be an ace, or only one may be an ace. Opponents hear the declaration and count, not the hidden card names. Once the reactions finish, the next player declares twos even if someone challenged your aces.",
+          "pl": "Przykładowo, gdy trzeba deklarować asy, możesz wybrać dwie różne karty i ogłosić dwa asy. Możesz wyłożyć dwa asy, tylko jednego asa albo same karty o innych wartościach. Przeciwnicy poznają deklarację i liczbę, ale nie nazwy zakrytych kart. Po reakcjach następny gracz deklaruje dwójki, również wtedy, gdy twoje asy zostały sprawdzone."
+        }
+      ]
+    },
+    {
+      "id": "reaction",
+      "title": {
+        "en": "Challenging a declaration",
+        "pl": "Sprawdzanie deklaracji"
+      },
+      "paragraphs": [
+        {
+          "en": "After every face-down play, the other players decide in seat order, starting with the next seat. When your decision is due, press K or choose Challenge to question the play. Press Space or choose Do not challenge to pass this decision to the next opponent. This is not a promise that the cards are true and is not the Bluff variant’s pass.",
+          "pl": "Po każdym zakrytym zagraniu przeciwnicy podejmują decyzję kolejno według miejsc, zaczynając od następnego po zagrywającym. Gdy przyjdzie twoja kolej na reakcję, K lub polecenie Sprawdzam kwestionuje zagranie. Spacja albo Nie sprawdzam przekazuje decyzję następnej osobie. Odmowa sprawdzenia nie oznacza zapewnienia, że karty są prawdziwe, ani pasa stosowanego w wariancie Bluff."
+        },
+        {
+          "en": "There is no reaction countdown. Waiting, reading help or leaving the keyboard does not accept the play. Only the player currently asked may respond. The first challenge closes the other reactions. If everyone declines to challenge, the cards stay on the pile and play continues.",
+          "pl": "Na reakcję nie ma limitu czasu. Czekanie, czytanie pomocy lub odejście od klawiatury nie zatwierdza zagrania. Odpowiada tylko wskazana osoba. Pierwsze sprawdzenie zamyka pozostałe reakcje. Jeśli nikt nie sprawdzi, karty pozostają na stosie i gra toczy się dalej."
+        },
+        {
+          "en": "A challenge reveals only the latest packet. If even one of its cards has a different rank, its author takes the whole pile. If every card matches, the challenger takes the whole pile. Earlier hidden cards are not revealed merely because the pile is collected. The required rank and next seat continue normally after either outcome. C repeats the public pile size, last declaration and current decision; T says who must act.",
+          "pl": "Sprawdzenie odkrywa tylko ostatni pakiet. Jeśli choć jedna jego karta ma inną wartość niż deklarowana, cały stos bierze autor zagrania. Jeżeli wszystkie karty pasują, stos bierze sprawdzający. Wcześniejsze zakryte karty nie są przy tym automatycznie ujawniane. Po obu rozstrzygnięciach kolejność miejsc i cykl wartości pozostają bez zmian. C odczytuje rozmiar stosu, ostatnią deklarację i oczekiwaną decyzję, a T mówi, kto ma działać."
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": {
+        "en": "Winning",
+        "pl": "Zakończenie partii"
+      },
+      "paragraphs": [
+        {
+          "en": "Playing your last cards does not immediately win: opponents still get their normal reactions. You win when everyone accepts that play, even if it was a bluff. You also win if a challenge proves your last packet true. If your last bluff is caught, you take the pile and keep playing. The game ends with one winner; the other players receive no points and are not ranked.",
+          "pl": "Wyłożenie ostatnich kart nie daje od razu zwycięstwa: przeciwnicy nadal mogą je sprawdzić. Wygrywasz, gdy wszyscy zaakceptują ten ruch, nawet jeśli był blefem. Wygrywasz także po niesłusznym sprawdzeniu prawdziwego ostatniego pakietu. Gdy ostatni blef zostanie wykryty, zbierasz stos i grasz dalej. Partia ma jednego zwycięzcę; pozostali nie otrzymują punktów ani dodatkowych miejsc."
+        }
+      ]
+    },
+    {
+      "id": "variants",
+      "title": {
+        "en": "Choosing a variant",
+        "pl": "Wybór wariantu"
+      },
+      "paragraphs": [
+        {
+          "en": "Choose Variant when creating the table. Classic: ascending ranks is the default described above. All variants use one deck and the same ordered, untimed reactions.",
+          "pl": "Wariant wybierasz przy tworzeniu stołu. Domyślna gra to Klasyczny: wartości rosnąco, opisany powyżej. Każdy profil używa jednej talii i kolejnych reakcji bez ograniczenia czasu."
+        },
+        {
+          "en": "- Descending ranks starts with aces, then king, queen, jack, ten and down to two, returning to ace. Challenges do not reset this cycle.",
+          "pl": "- Wartości malejąco: po asach deklaruje się króle, damy, walety, dziesiątki i kolejne niższe wartości do dwójek, a potem znów asy. Sprawdzenie nie rozpoczyna cyklu od nowa."
+        },
+        {
+          "en": "- Same or neighbouring rank starts with aces. Afterwards choose the previous declared rank or either neighbour. After seven you can declare six, seven or eight; after ace you can declare king, ace or two. King and ace are neighbours in this version. Select the declaration in the play dialog and choose Play to submit the cards together with it.",
+          "pl": "- Ta sama lub sąsiednia wartość: pierwsza deklaracja to asy. Potem wybierasz poprzednio zadeklarowaną wartość lub jednego z jej sąsiadów. Po siódemkach wolno zadeklarować szóstki, siódemki albo ósemki; po asach króle, asy albo dwójki. W tej wersji król sąsiaduje z asem. Wybierz deklarację w oknie zagrania i potwierdź Zagraj, aby wysłać ją razem z kartami."
+        },
+        {
+          "en": "- Bluff: fixed pile rank is for 3–6 players and adds passing, explained below.",
+          "pl": "- Bluff: stała wartość stosu dopuszcza 3–6 graczy i dodaje pasowanie opisane niżej."
+        },
+        {
+          "en": "- Suit: single cards uses a face-up opening and then concealed single cards, explained below.",
+          "pl": "- Na kolor: pojedyncze karty zaczyna się od odkrytej karty, a dalsza gra polega na zakrytym dokładaniu pojedynczych kart."
+        }
+      ]
+    },
+    {
+      "id": "bluff",
+      "title": {
+        "en": "Bluff: one rank until the pile closes",
+        "pl": "Bluff: jedna wartość do zamknięcia stosu"
+      },
+      "paragraphs": [
+        {
+          "en": "The opener plays one to four cards and chooses any of the thirteen ranks in the play dialog. That rank applies to every later packet on this pile. On your playing turn, add one to four cards or press X to pass until the pile closes. You cannot open an empty pile by passing.",
+          "pl": "Otwierający wykłada od jednej do czterech kart i wybiera w oknie zagrania dowolną z trzynastu wartości. Obowiązuje ona dla wszystkich kolejnych pakietów na tym stosie. W swojej turze dokładania możesz dołożyć od jednej do czterech kart albo nacisnąć X, aby spasować do końca stosu. Pustego stosu nie wolno otworzyć pasem."
+        },
+        {
+          "en": "A pass prevents you from adding more cards to this pile, but you still decide whether to challenge each new packet. Playing another packet does not bring passed players back. If only one player has not passed, that player may keep adding packets; the others still get reactions each time.",
+          "pl": "Po pasie nie możesz już dokładać do tego stosu, lecz nadal decydujesz o sprawdzaniu nowych pakietów. Kolejne zagranie nie przywraca prawa dokładania osobom, które spasowały. Gdy pozostanie tylko jeden gracz bez pasa, może on dokładać następne pakiety, a pozostali za każdym razem otrzymują reakcję."
+        },
+        {
+          "en": "When every player has passed, the pile is set aside face down and the last person who played opens a new pile with any rank. After a correct challenge, the challenger opens; after a wrong challenge, the challenged author opens. Passes are then cleared. A last packet must still survive reactions before its author wins. In this version the entire deck is dealt, and neither jokers nor Force rules are used.",
+          "pl": "Kiedy spasują wszyscy, stos jest odkładany zakryty poza partię, a ostatni zagrywający otwiera nowy dowolną wartością. Po trafnym sprawdzeniu otwiera sprawdzający; po nietrafnym autor sprawdzonego ruchu. Pasy są wtedy zerowane. Ostatni pakiet nadal musi przejść przez reakcje, zanim jego autor wygra. W tej wersji rozdaje się całą talię; nie używa się jokerów ani reguł Force."
+        }
+      ]
+    },
+    {
+      "id": "suit",
+      "title": {
+        "en": "Suit: face-up opening and single cards",
+        "pl": "Na kolor: odkryte otwarcie i pojedyncze karty"
+      },
+      "paragraphs": [
+        {
+          "en": "The opener selects a card and presses Enter to confirm a face-up opening. Its actual suit becomes the pile’s suit. This visible card cannot be challenged. Each following player plays one card face down, declaring that same suit; no rank is declared. Shift+Enter cannot build a multi-card packet here.",
+          "pl": "Otwierający wybiera kartę i potwierdza Enterem jej jawne wyłożenie. Rzeczywisty kolor tej karty ustala kolor stosu. Odkrytego otwarcia nie można sprawdzać. Następne osoby dokładają po jednej zakrytej karcie, deklarując ten sam kolor; nie deklarują wartości. Shift+Enter nie tworzy tu wielokartowego pakietu."
+        },
+        {
+          "en": "Use K or Space when asked about a concealed play. A challenge checks only the suit: a seven and a king of hearts both satisfy a hearts declaration. A wrong suit makes the author collect the pile; a true suit makes the challenger collect it. Whoever collects opens the next pile with any face-up card. If your last card is the face-up opening, you win immediately. A last concealed card must survive reactions as usual.",
+          "pl": "Gdy przyjdzie twoja kolej na decyzję o zakrytym zagraniu, użyj K lub Spacji. Sprawdzenie dotyczy wyłącznie koloru: siódemka i król kier jednakowo pasują do deklaracji kier. Za błędny kolor stos bierze zagrywający, a za sprawdzenie prawdziwego koloru sprawdzający. Osoba, która zebrała stos, otwiera następny dowolną odkrytą kartą. Jeśli odkryte otwarcie jest twoją ostatnią kartą, wygrywasz natychmiast. Ostatnia karta zagrana zakryta wymaga zwykłych reakcji."
+        }
+      ]
+    },
+    {
+      "id": "sound",
+      "title": {
+        "en": "Recognising the game sounds",
+        "pl": "Dźwięki podczas gry"
+      },
+      "paragraphs": [
+        {
+          "en": "Dealing uses the shuffle sound, and an accepted play uses the card-placement sound whether it is true or a bluff. A challenge has a distinct signal, followed by reveal, outcome and collection sounds. The usual decision cue tells you when to play or react; the usual result cues mark the end. All important information is also spoken, so the game remains playable with optional effects switched off.",
+          "pl": "Rozdaniu towarzyszy tasowanie, a przyjętemu zagraniu odgłos wykładania kart, taki sam dla prawdy i blefu. Sprawdzenie ma osobny sygnał, po którym następują odgłosy odkrycia, rozstrzygnięcia i zebrania stosu. Zwykły sygnał decyzji wskazuje twoją turę lub reakcję, a efekty wyniku oznaczają koniec partii. Ważne informacje są także wypowiadane, więc można grać z wyłączonymi opcjonalnymi efektami."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Cheat keyboard controls",
+        "pl": "Skróty klawiszowe"
+      },
+      "paragraphs": [
+        {
+          "en": "Enter: prepare and confirm the current card or packet",
+          "pl": "Enter: przygotuj i zatwierdź bieżącą kartę lub pakiet"
+        },
+        {
+          "en": "Shift+Enter: mark or unmark the current card, except in Suit",
+          "pl": "Shift+Enter: zaznacz lub odznacz bieżącą kartę, poza wariantem na kolor"
+        },
+        {
+          "en": "P: read the prepared packet",
+          "pl": "P: odczytaj przygotowany pakiet"
+        },
+        {
+          "en": "Shift+P: clear the prepared packet",
+          "pl": "Shift+P: wyczyść przygotowany pakiet"
+        },
+        {
+          "en": "K: challenge when it is your reaction",
+          "pl": "K: sprawdź zagranie podczas swojej reakcji"
+        },
+        {
+          "en": "Space: decline to challenge this play",
+          "pl": "Spacja: odmów sprawdzenia tego zagrania"
+        },
+        {
+          "en": "X: pass until the pile closes in Bluff",
+          "pl": "X: spasuj do końca stosu w Bluff"
+        },
+        {
+          "en": "H: read your own hand",
+          "pl": "H: odczytaj własną rękę"
+        },
+        {
+          "en": "T: read who must play or react",
+          "pl": "T: odczytaj, kto ma zagrać lub zareagować"
+        },
+        {
+          "en": "S: read each player’s card count",
+          "pl": "S: odczytaj liczbę kart każdego gracza"
+        },
+        {
+          "en": "C: read the public pile and declaration",
+          "pl": "C: odczytaj jawny stan stosu i deklarację"
+        },
+        {
+          "en": "Shift+C: sort by suit",
+          "pl": "Shift+C: sortuj według koloru"
+        },
+        {
+          "en": "Shift+H: sort by rank",
+          "pl": "Shift+H: sortuj według wartości"
+        },
+        {
+          "en": "Shift+M: restore acquisition order",
+          "pl": "Shift+M: przywróć kolejność otrzymania kart"
+        },
+        {
+          "en": "Z: move to the next playable card without playing",
+          "pl": "Z: przejdź do następnej możliwej karty bez zagrywania"
+        },
+        {
+          "en": "Shift+Z: move to the previous playable card without playing",
+          "pl": "Shift+Z: przejdź do poprzedniej możliwej karty bez zagrywania"
+        },
+        {
+          "en": "Escape: cancel your current choice",
+          "pl": "Escape: anuluj bieżący wybór"
+        }
+      ]
+    }
+  ]
+}

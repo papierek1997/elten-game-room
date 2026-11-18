@@ -53,7 +53,7 @@ module GameRoomGames
         return super unless feature.to_sym == :scores
         {message: replay.players.each_with_index.map do |player, seat|
           _('%{player}: points: %{points}; black chests: %{chests}') % {
-            player: participant_name(player), points: replay.state[:cash][seat], chests: replay.state[:chests][seat]}
+            player: participant_full_name(player), points: replay.state[:cash][seat], chests: replay.state[:chests][seat]}
         end.join('; ')}
       end
 
@@ -72,7 +72,7 @@ module GameRoomGames
         else _('%{player}, %{amount}, going three times.')
         end
         message = template % {
-          player: GameRoomParticipants.display_name(replay.players[state[:leader]]), amount: state[:highest]}
+          player: participant_name(replay.players[state[:leader]]), amount: state[:highest]}
         [["cash-auction:#{state[:game_id]}:#{state[:round]}:#{state[:bid_revision]}:#{ordinal}", message,
           ordinal == 1 ? 'auction_call_low' : 'auction_call_high', :skip_on_reconstruction]]
       end
@@ -117,7 +117,7 @@ module GameRoomGames
         seats.map do |seat|
           count = replay.state[:cash][seat]
           points = n_('%{count} point', '%{count} points', count) % {count: count}
-          "#{participant_name(replay.players[seat])}: #{points}"
+          "#{participant_full_name(replay.players[seat])}: #{points}"
         end.join('; ')
       end
 

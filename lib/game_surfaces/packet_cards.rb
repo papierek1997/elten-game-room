@@ -52,8 +52,12 @@ module GameSurfaces
         empty_label: (spec.empty_label || _("Your hand is empty")).to_s
       )
       @control.card_navigation_source = -> { @cards if @spec.hand_order != nil && @pending == nil }
-      @control.on(:select) { |parameters| activate(parameters.to_a[0].to_i) }
+      @control.on(:select) do |parameters|
+        mark_packet = GameRoomUI.modifiers_when_pressed(@control, :enter).include?(:shift)
+        activate(parameters.to_a[0].to_i, mark_packet: mark_packet)
+      end
       @control.extend(PacketHelp)
+      @control.bind_context { |menu| packet_context_menu(menu) }
       refresh_packet_help
     end
 
@@ -157,9 +161,23 @@ module GameSurfaces
 
     private
 
+    def packet_context_menu(menu)
+      return if @pending || @cards.empty?
+      menu.option(_("Play the current card or prepared packet")) do
+        next unless action_allowed?
+        activate(@control.index.to_i)
+      end
+      if @spec.allow_packet != false
+        menu.option(_("Add or remove the current card from the packet")) { toggle_card(@cards[@control.index.to_i]) }
+        menu.option(_("Read the prepared packet")) { handle_command('announce_packet') }
+        menu.option(_("Clear the prepared packet")) { handle_command('clear_packet') }
+      end
+    end
+
     def refresh_packet_help
-      @control.packet_help_tip = if !@pending && @spec.allow_packet != false
-        [@spec.activation_tip, @spec.packet_tip || _("Press Shift+Enter to add or remove the current card from the prepared packet.")].compact
+      @control.packet_help_tip = if !@pending
+        packet_tip = @spec.packet_tip || _("Press Shift+Enter to add or remove the current card from the prepared packet.") if @spec.allow_packet != false
+        [@spec.activation_tip, packet_tip].compact
       end
     end
 
@@ -210,7 +228,7 @@ module GameSurfaces
       true
     end
 
-    def activate(index)
+    def activate(index, mark_packet: false)
       if @pending != nil
         choice = card_choices(@pending[:card])[@control.index.to_i]
         return if choice == nil
@@ -222,7 +240,7 @@ module GameSurfaces
 
       card = @cards[index]
       return if card == nil
-      if @spec.allow_packet != false && GameRoomUI.modifiers_when_pressed(@control, :enter).include?(:shift)
+      if @spec.allow_packet != false && mark_packet
         toggle_card(card)
         return
       end

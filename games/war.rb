@@ -491,7 +491,7 @@ module GameRoomGames
     def counts_text(state)
       state[:players].map do |player|
         n_("%{player}: %{count} card", "%{player}: %{count} cards", state[:piles][player].length) % {
-          player: participant_name(player), count: state[:piles][player].length }
+          player: participant_full_name(player), count: state[:piles][player].length }
       end.join("; ") + "."
     end
 
