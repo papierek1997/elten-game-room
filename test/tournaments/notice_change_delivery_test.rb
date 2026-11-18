@@ -30,6 +30,9 @@ coordinator.close
 
 # Exercise the application composition, not only the coordinator's queue.
 app=Class.new { extend T::ServerCoordinationRuntime }
+table_access=Object.new
+table_access.define_singleton_method(:available?){true}
+app.define_singleton_method(:server_table_access){table_access}
 original_name=Session.method(:name)
 original_token=Session.token
 original_account=Session.instance_variable_get(:@name)
@@ -44,6 +47,7 @@ inbox.define_singleton_method(:close) {}
 coordinator=T::ServerCoordination.new(workspace:workspace,user:-> {Session.name},clock:-> {1000},worker:TournamentNoticeTestWorker.new,wake:->(*) {})
 app.instance_variable_set(:@tournament_runtime_program,Object.new)
 app.instance_variable_set(:@tournament_runtime_account,'alice')
+app.instance_variable_set(:@tournament_runtime_tables,table_access)
 app.instance_variable_set(:@tournament_coordinator,coordinator)
 app.instance_variable_set(:@tournament_event_inboxes,{'registration'=>inbox})
 begin

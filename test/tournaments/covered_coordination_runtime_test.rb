@@ -10,6 +10,9 @@ scene=Object.new.extend(EltenAPI::UI)
 program_class=Class.new do
   extend GameRoomTournaments::ServerCoordinationRuntime
 end
+table_access=Object.new
+table_access.define_singleton_method(:available?){true}
+program_class.define_singleton_method(:server_table_access){table_access}
 program=program_class.new
 coordinator=Object.new
 ticks=[]
@@ -23,6 +26,7 @@ Session.name=Session.name
 Session.token='covered-coordination-fixture'
 program_class.instance_variable_set(:@tournament_runtime_program,program)
 program_class.instance_variable_set(:@tournament_runtime_account,Session.name.downcase)
+program_class.instance_variable_set(:@tournament_runtime_tables,table_access)
 program_class.instance_variable_set(:@tournament_coordinator,coordinator)
 covered=true
 runner=Object.new

@@ -1,8 +1,10 @@
 require_relative 'tournament_start_runtime'
 require_relative 'server_coordination'
+require_relative '../game_room_server_tables'
 
 module GameRoomTournaments
   module ServerCoordinationRuntime
+    include GameRoomServerTables::Runtime
     include TournamentStartRuntime
 
     def start_tournament_coordination(program)
@@ -15,11 +17,18 @@ module GameRoomTournaments
       # Extensions are loaded before ELTEN logs in. A missing account/token is
       # normal here; the existing extension tick starts us after authentication.
       return unless Session.logged?
+      tables=server_table_access
+      # The explicit program/feature entry owns the one server access probe.
+      # Background coordination must neither bypass that result with its own
+      # client nor keep retrying protected tables in an unofficial launch.
+      return unless tables&.available?
       account=Publication::Data.account(Session.name).downcase
       @tournament_runtime_account=account
+      @tournament_runtime_tables=tables
       @tournament_runtime_epoch=SecureRandom.uuid
       workspace=ServerWorkspace.new(program:@tournament_runtime_program,registry:const_get(:GAME_REGISTRY),
-        user:-> {Session.name},alert:->(message){raise ProposalNotice::Unavailable,message},backend_uuid:server_app_uuid)
+        user:-> {Session.name},alert:->(message){raise ProposalNotice::Unavailable,message},backend_uuid:server_app_uuid,
+        provider_factory:-> {tables})
       context=-> {{'account'=>Session.name.to_s.downcase,'account_epoch'=>@tournament_runtime_epoch,
         'backend_identity'=>workspace.backend_identity}}
       clock=-> {GameRoomClock.now.to_i}
@@ -68,6 +77,7 @@ module GameRoomTournaments
       @tournament_coordinator&.close
       @tournament_coordinator=nil
       @tournament_runtime_account=nil
+      @tournament_runtime_tables=nil
       @tournament_runtime_epoch=nil
       @tournament_runtime_error=nil
       @tournament_coordination_tick_at=nil
@@ -120,7 +130,13 @@ module GameRoomTournaments
           stop_tournament_coordination if @tournament_runtime_account || @tournament_coordinator || @tournament_start_inbox
           return
         end
-        configure_tournament_coordination if @tournament_runtime_account!=Session.name.to_s.downcase
+        tables=server_table_access
+        unless tables&.available?
+          stop_tournament_coordination if @tournament_runtime_account || @tournament_coordinator || @tournament_start_inbox
+          return
+        end
+        configure_tournament_coordination if @tournament_runtime_account!=Session.name.to_s.downcase ||
+          !@tournament_runtime_tables.equal?(tables)
         now=Process.clock_gettime(Process::CLOCK_MONOTONIC)
         return if @tournament_coordination_tick_at && now-@tournament_coordination_tick_at<1.0
         @tournament_coordination_tick_at=now

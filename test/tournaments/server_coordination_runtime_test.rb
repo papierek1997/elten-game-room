@@ -15,6 +15,9 @@ warnings, workspaces, coordinators, directory_reads = [], [], [], []
 runtime = TestTaskRuntime.new('tournament-startup')
 app = Class.new(EltenGameRoom)
 app.define_singleton_method(:app_runtime) { runtime }
+table_access_available = false
+table_access = Object.new
+table_access.define_singleton_method(:available?) { table_access_available }
 program = app.new
 Log.define_singleton_method(:warning) { |message| warnings << message }
 GameRoomTournaments::ServerWorkspace.define_singleton_method(:new) do |**arguments|
@@ -51,6 +54,13 @@ begin
   assert_equal([], warnings, 'Incomplete login produced a warning')
 
   Session.token = 'fixture-token'
+  app.server_table_access = table_access
+  10.times { app.tournament_coordination_tick }
+  assert_equal([], workspaces, 'Protected tables started a tournament workspace')
+  assert_equal([], coordinators, 'Protected tables started tournament coordination')
+  assert_equal(0, workers.call, 'Protected tables retained a background worker')
+
+  table_access_available = true
   app.tournament_coordination_tick
   first = coordinators.fetch(0)
   first_worker = first.instance_variable_get(:@worker)
@@ -59,6 +69,8 @@ begin
   first_notice = app.instance_variable_get(:@tournament_start_service)
   first_inbox = app.instance_variable_get(:@tournament_start_inbox)
   assert_equal('Alice', workspaces.first.actor)
+  assert(workspaces.first.instance_variable_get(:@provider_factory).call.equal?(table_access),
+    'Tournament coordination bypassed the checked table provider')
   assert_equal('alice', app.instance_variable_get(:@tournament_runtime_account))
   assert_equal(['Alice'], directory_reads, 'Login did not bootstrap once')
   10.times { app.tournament_coordination_tick }
@@ -70,6 +82,7 @@ begin
   assert_equal(1, coordinators.size, 'Display-name casing recreated the coordinator')
 
   Session.name = 'Bob'
+  app.server_table_access = table_access
   app.tournament_coordination_tick
   second = coordinators.fetch(1)
   second_worker = second.instance_variable_get(:@worker)
@@ -115,6 +128,7 @@ begin
   assert(warnings.first.start_with?('Tournament setup unavailable:'), 'The setup diagnostic was lost')
 ensure
   app.stop_tournament_coordination
+  app.instance_variable_set(:@server_table_access, nil)
   runtime.close
   Session.name = original_account
   Session.token = original_token
