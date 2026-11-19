@@ -9,8 +9,11 @@ table = app.lobby.create_table(name: 'Save boundary', game: game.id, owner: 'Ali
 players = ['Alice'] + GameRoomParticipants.bots_for(table['__id'], 1, names: ['pl20'])
 session = app.games.start_session(table: table, game: game.id, players: players,
   options: JSON.generate(game.default_options))
-app.prepare_playing_game(table, session, game)
 view = broker.endpoint('Alice').sessions.first
+# A real native deal in which the first playable card is wild. The continuation
+# below must exercise a saveable move, not accidentally leave a colour prompt.
+view.next_random_values = Array.new(16, 10)
+app.prepare_playing_game(table, session, game)
 view.singleton_class.prepend(Module.new do
   def stack_push(packet, message_id:)
     result = super
@@ -21,8 +24,15 @@ view.singleton_class.prepend(Module.new do
     result
   end
 end)
-view.instance_variable_set(:@fail_after_freeze, true)
-assert(!app.send(:save_current_game, table, session, game), 'Failed read was treated as a saved archive')
+expect_failed_read = lambda do |source|
+  before = app.errors.size
+  view.instance_variable_set(:@fail_after_freeze, true)
+  assert(!app.send(:save_current_game, table, source, game), 'Failed read was treated as a saved archive')
+  errors = app.errors.drop(before)
+  assert(errors.size == 1 && errors.first.is_a?(EltenAPI::LiveSessions::TimeoutError) &&
+    errors.first.message == 'Read failed after confirmed freeze', 'Save never reached the injected post-freeze read')
+end
+expect_failed_read.call(session)
 assert(!app.games.snapshot_for(session, force_events: true).session['__frozen'], 'Confirmed pause was left behind')
 assert(app.send(:saved_games).list.empty?, 'Failed snapshot created an archive')
 assert(app.transport.current_room('Alice') && !broker.cores.values.first.closed, 'Failed save closed the table')
@@ -31,18 +41,20 @@ assert(boundaries.map { |entry| entry['packet']['data']['frozen'] } == [true, fa
 snapshot = app.games.snapshot_for(session)
 replay = game.replay(snapshot.session, snapshot.events, app.games)
 actor = replay.current_player
-selection = game.legal_actions(replay, actor).first
+selection = game.legal_actions(replay, actor).find { |action| action['action'] == 'draw' }
+assert(selection, 'The save fixture needs a legal move without a colour choice')
 status, plan = game.action_for(selection, replay, actor)
 assert(status == :ok, 'Game cannot continue after the failed save')
 app.games.append_events(session: session, sequence: app.games.next_sequence(session, snapshot.events),
   events: plan.events, actor: actor, controller: true)
 assert(app.games.snapshot_for(session).events.length > snapshot.events.length, 'Next move did not persist')
 
-fresh = app.games.snapshot_for(session).session
-app.transport.freeze_game(fresh, round_pause: true)
+fresh = app.games.snapshot_for(session)
+assert(game.save_game_error(game.replay(fresh.session, fresh.events, app.games)).nil?,
+  'The second save fixture is not at a saveable game boundary')
+app.transport.freeze_game(fresh.session, round_pause: true)
 paused = app.games.snapshot_for(session).session
-view.instance_variable_set(:@fail_after_freeze, true)
-assert(!app.send(:save_current_game, table, paused, game), 'Failed snapshot was saved during a manual pause')
+expect_failed_read.call(paused)
 after_failure = app.games.snapshot_for(session).session
 assert(after_failure['__frozen'] && after_failure['__round_pause'], 'A failed save released the earlier manual pause')
 assert(app.transport.freeze_game(after_failure, frozen: false, expected_boundary: after_failure['__game_boundary'], round_pause: true),

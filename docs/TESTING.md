@@ -113,6 +113,9 @@ time happens to pass, or increase action budgets to accommodate a scheduling
 break. Fixtures without this explicit clock retain their existing behavior.
 `session/private_fixture_round_pause_test.rb` checks both clock modes, native
 receipt time, blocked writes before five seconds and consecutive audited deals.
+Fault-injected save tests must assert that the intended read failure was
+consumed by each save attempt; a game-rule refusal before the freeze does not
+exercise persistence or rollback.
 
 UI-only scenarios that assume a completed auxiliary-table check should use an
 explicit `GameRoomTest::ServerTableAccess` state from

@@ -1,16 +1,15 @@
-require_relative 'session_runner'
-require_relative 'native_private_pools'
+require_relative 'private_card_games'
 require_relative '../../games/mille_bornes'
 
 module MillePrivateTest
   module_function
 
-  def create(users: %w[Alice Bob], options: {}, opening: nil)
+  def create(users: %w[Alice Bob], options: {}, opening: nil, clock: nil)
     marker = {'publication_ref' => {'author' => users.first, 'publication_key' => 'private-test'},
       'schedule_id' => 'a' * 64, 'match_id' => 'b' * 64, 'leg' => 1}
     game = GameRoomGames::MilleBornes.new
     h = NativeRoomHarness.new(game: game, users: users, tournament: marker,
-      options: game.default_options.merge('bot_delay' => 0, 'target_score' => 100).merge(options))
+      options: game.default_options.merge('bot_delay' => 0, 'target_score' => 100).merge(options), clock: clock)
     h.start
     runners = users.to_h { |user| [user, runner_for(h, user)] }
     step(h, runners[users.first], users.first)
@@ -27,7 +26,7 @@ module MillePrivateTest
   end
 
   def tick(h, runners)
-    runners.each { |user, runner| step(h, runner, user) }
+    PrivateCardGamesTest.tick(h, runners)
   end
 
   def move(h, runners, user, action, card: nil, target: nil)
