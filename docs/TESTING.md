@@ -99,6 +99,29 @@ Test local-time roundtrips against the current system clock, but use the shared
 `support/tournament_time.rb` adapter for specific daylight-saving gaps and folds.
 Those cases must run on UTC machines too, without changing Windows time-zone settings.
 
+Multi-round private-card fixtures may opt into
+`ClockEventContract::ManualTime` through `PrivateCardGamesTest.create(clock: ...)`
+or `NativeRoomHarness.new(clock: ...)`. The same clock timestamps the broker's
+ordinary, random and private-pool receipts and supplies each runner's real
+`GameRoomSessionClock` adapter through `runner_for`; fixtures constructing a
+runner directly must inject `h.clock.session_clock` too.
+`PrivateCardGamesTest.tick` checks that paused
+runners write nothing, advances five seconds and leaves the next normal tick
+to resume play. Use `advance_pause: false` when inspecting the boundary itself.
+Do not delete timestamps, disable `GameRoomRoundPause`, busy-loop until wall
+time happens to pass, or increase action budgets to accommodate a scheduling
+break. Fixtures without this explicit clock retain their existing behavior.
+`session/private_fixture_round_pause_test.rb` checks both clock modes, native
+receipt time, blocked writes before five seconds and consecutive audited deals.
+
+UI-only scenarios that assume a completed auxiliary-table check should use an
+explicit `GameRoomTest::ServerTableAccess` state from
+`support/server_table_access.rb`, not nil or a stub with only `available?`.
+Its `fetch` raises on unexpected I/O. It does not replace the real probe tests
+in `room/development_table_access_test.rb`, and must not be used to bypass a
+feature's access guard. Keep denied/unchecked feedback separate from successful
+menu dispatch and preserve passive widget entry's `announce_access: false`.
+
 Tests owning Open3 children/readers use `GameRoomTest::OwnedProcessCleanup.run`
 around their body, passing the arrays they populate. The scope records its own
 primary exception before cleanup; an unrelated caller's rescued exception must

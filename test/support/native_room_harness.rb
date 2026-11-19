@@ -7,10 +7,11 @@ require_relative "replay_snapshot"
 def n_(singular, plural, count); count == 1 ? singular : plural; end
 
 class NativeRoomHarness
-  attr_reader :broker, :users, :table, :transports, :repositories, :session, :game
+  attr_reader :broker, :users, :table, :transports, :repositories, :session, :game, :clock
 
-  def initialize(game: nil, users: %w[Alice Bob Carol Dave], options: nil, bots: 0, tournament: nil)
-    @broker = NativeLiveSessionsBroker.new
+  def initialize(game: nil, users: %w[Alice Bob Carol Dave], options: nil, bots: 0, tournament: nil, clock: nil)
+    @clock = clock
+    @broker = clock ? NativeLiveSessionsBroker.new(clock: clock) : NativeLiveSessionsBroker.new
     @users = users
     @game = game
     @options = options || game&.default_options || {}

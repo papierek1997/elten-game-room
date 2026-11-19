@@ -8,13 +8,13 @@ class GameRoomServerTables
   module Runtime
     def server_table_access=(tables)
       runtime = app_runtime
-      @server_table_access = runtime && [runtime, Session.name.to_s.downcase.freeze, tables].freeze
+      @server_table_access = runtime && [runtime, Session.name.to_s.downcase.freeze, Session.token, tables].freeze
     end
 
     def server_table_access
       access = @server_table_access
-      access[2] if access && access[0].equal?(app_runtime) && !access[1].empty? &&
-        Session.name.to_s.casecmp?(access[1])
+      access[3] if access && access[0].equal?(app_runtime) && !access[1].empty? &&
+        Session.name.to_s.casecmp?(access[1]) && Session.token == access[2]
     end
 
     def server_tables_available?
@@ -80,6 +80,12 @@ class GameRoomServerTables
 
   def access_state
     @mutex.synchronize { @access_state }
+  end
+
+  # Background consumers must distinguish a fresh successful check from a
+  # previously available decision when recovering from a later refusal.
+  def access_snapshot
+    @mutex.synchronize { [@access_state, @access_generation] }
   end
 
   def last_error

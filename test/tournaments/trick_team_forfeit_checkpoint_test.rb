@@ -6,7 +6,8 @@ require_relative '../support/trick_game_checkpoint'
 ].each do |game, options|
   users = %w[Alice Bob Carol Dave]
   options = game.default_options.merge(options).merge('score_limit'=>10_000, 'bot_delay'=>0)
-  TournamentForfeitNative.with_fixture(game: game, users: users, options: options) do |f|
+  TournamentForfeitNative.with_fixture(game: game, users: users, options: options,
+    clock: ClockEventContract::ManualTime.new) do |f|
     f.candidate.merge!('players_per_match'=>4, 'team_template'=>[0,1,0,1],
       'membership'=>{'version'=>1, 'kind'=>'fixed-teams', 'units'=>[
         {'unit_id'=>'red', 'accounts'=>%w[alice bob]}, {'unit_id'=>'blue', 'accounts'=>%w[carol dave]}]})

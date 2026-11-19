@@ -2,7 +2,7 @@ require_relative '../../support/private_card_games'
 require_relative '../../../games/bouillabaisse'
 
 game = GameRoomGames::Bouillabaisse.new
-h, runners = PrivateCardGamesTest.create(game, users:%w[Alice Bob Carol])
+h, runners = PrivateCardGamesTest.create(game, users:%w[Alice Bob Carol], clock: ClockEventContract::ManualTime.new)
 begin
   shortened = []
   6.times do |round|

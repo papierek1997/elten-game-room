@@ -5,7 +5,8 @@ game = GameRoomGames::Rummy.new
 [[2, false], [3, true]].each do |count, elimination|
   users = Array.new(count) { |index| "Player#{index}" }
   h, runners = PrivateCardGamesTest.create(game, users: users,
-    options: {'elimination'=>elimination, 'score_limit'=>50, 'first_meld'=>15, 'manipulation'=>true})
+    options: {'elimination'=>elimination, 'score_limit'=>50, 'first_meld'=>15, 'manipulation'=>true},
+    clock: ClockEventContract::ManualTime.new)
   PrivateCardGamesTest.assert_private(h)
   moves = []
   450.times do |index|

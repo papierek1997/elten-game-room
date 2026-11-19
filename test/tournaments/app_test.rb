@@ -1,5 +1,6 @@
 # encoding: UTF-8
 require_relative '../support/settings_widget'
+require_relative '../support/server_table_access'
 
 entry = EltenGameRoom::MAIN_OPTIONS.index('Tournaments')
 assert(entry, 'Brakuje wejścia do turniejów w menu Game Roomu')
@@ -32,6 +33,7 @@ GameRoomTournaments::Hub.define_singleton_method(:new) do |**options|
 end
 begin
   instance = EltenGameRoom.new
+  instance.instance_variable_set(:@server_tables, GameRoomTest::ServerTableAccess.new(:available))
   instance.send(:show_tournaments)
   assert(ran && received[:program].equal?(instance), 'Wejście menu nie uruchomiło modułu na własnym programie')
   assert(received[:registry].equal?(EltenGameRoom::GAME_REGISTRY), 'Moduł nie otrzymał rejestru wszystkich gier')

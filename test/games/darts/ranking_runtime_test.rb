@@ -15,6 +15,7 @@ end
 
 module Session
   def self.name; 'Alice'; end
+  def self.token; 'darts-ranking-fixture-token'; end
 end
 
 TableAccess = Struct.new(:state) do

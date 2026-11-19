@@ -17,7 +17,7 @@ def drive_cribbage(h, runners, limit: 100)
 end
 
 game = GameRoomGames::CribbageTable.new
-h, runners = PrivateCardGamesTest.create(game, users: %w[Alice Bob])
+h, runners = PrivateCardGamesTest.create(game, users: %w[Alice Bob], clock: ClockEventContract::ManualTime.new)
 begin
   drive_cribbage(h, runners) { |replay| replay.state[:phase] == :playing }
   actor = h.replay('Alice').current_player
@@ -39,7 +39,7 @@ ensure
   runners.each_value(&:close)
 end
 
-h, runners = PrivateCardGamesTest.create(game, users: %w[Alice Bob])
+h, runners = PrivateCardGamesTest.create(game, users: %w[Alice Bob], clock: ClockEventContract::ManualTime.new)
 begin
   result = drive_cribbage(h, runners, limit: 200) do |replay|
     raise 'Valid private hand failed its audit' if replay.state[:private_error]
@@ -52,7 +52,7 @@ begin
 ensure
   runners.each_value(&:close)
 end
-h, runners = PrivateCardGamesTest.create(game, users: %w[Alice Bob])
+h, runners = PrivateCardGamesTest.create(game, users: %w[Alice Bob], clock: ClockEventContract::ManualTime.new)
 begin
   saw_terminal_audit = false
   result = drive_cribbage(h, runners, limit: 1200) do |replay|
@@ -78,7 +78,7 @@ class CribbageAuditBoundary < GameRoomGames::CribbageTable
     super.tap { |state| state[:scores].transform_values! { 120 } }
   end
 end
-h, runners = PrivateCardGamesTest.create(CribbageAuditBoundary.new, users: %w[Alice Bob])
+h, runners = PrivateCardGamesTest.create(CribbageAuditBoundary.new, users: %w[Alice Bob], clock: ClockEventContract::ManualTime.new)
 begin
   gate = drive_cribbage(h, runners) do |replay|
     replay.state[:scores].values.any? { |points| points >= 121 }

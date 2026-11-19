@@ -1,5 +1,6 @@
 require_relative 'tournament_start_runtime'
 require_relative 'server_coordination'
+require_relative 'background_table_access'
 
 module GameRoomTournaments
   module ServerCoordinationRuntime
@@ -17,9 +18,15 @@ module GameRoomTournaments
       return unless Session.logged?
       account=Publication::Data.account(Session.name).downcase
       @tournament_runtime_account=account
-      @tournament_runtime_epoch=SecureRandom.uuid
+      epoch=@tournament_runtime_epoch=SecureRandom.uuid
+      token=Session.token
+      uuid=server_app_uuid
+      access=@tournament_background_table_access=BackgroundTableAccess.new(
+        current:-> {Session.logged? && Session.name.to_s.casecmp?(account) && Session.token==token && @tournament_runtime_epoch==epoch},
+        checked_tables:-> {server_table_access})
       workspace=ServerWorkspace.new(program:@tournament_runtime_program,registry:const_get(:GAME_REGISTRY),
-        user:-> {Session.name},alert:->(message){raise ProposalNotice::Unavailable,message},backend_uuid:server_app_uuid)
+        user:-> {Session.name},alert:->(message){raise ProposalNotice::Unavailable,message},backend_uuid:uuid,
+        provider_factory:-> {ServerWorkspace::Provider.new(app_uuid:uuid,access:access)})
       context=-> {{'account'=>Session.name.to_s.downcase,'account_epoch'=>@tournament_runtime_epoch,
         'backend_identity'=>workspace.backend_identity}}
       clock=-> {GameRoomClock.now.to_i}
@@ -69,6 +76,7 @@ module GameRoomTournaments
       @tournament_coordinator=nil
       @tournament_runtime_account=nil
       @tournament_runtime_epoch=nil
+      @tournament_background_table_access=nil
       @tournament_runtime_error=nil
       @tournament_coordination_tick_at=nil
       stop_tournament_starts
@@ -97,6 +105,12 @@ module GameRoomTournaments
       @tournament_coordinator&.bootstrap
     end
 
+    def tournament_starts_tick
+      access=@tournament_background_table_access
+      return if access && (!access.current? || access.blocked?)
+      super
+    end
+
     def receive_tournament_change(notification)
       return if notification.respond_to?(:revoked) && notification.revoked
       return unless notification.app_uuid.to_s.downcase==server_app_uuid.to_s.downcase
@@ -120,10 +134,14 @@ module GameRoomTournaments
           stop_tournament_coordination if @tournament_runtime_account || @tournament_coordinator || @tournament_start_inbox
           return
         end
-        configure_tournament_coordination if @tournament_runtime_account!=Session.name.to_s.downcase
+        if @tournament_runtime_account!=Session.name.to_s.downcase ||
+            @tournament_background_table_access&.current? == false
+          configure_tournament_coordination
+        end
         now=Process.clock_gettime(Process::CLOCK_MONOTONIC)
         return if @tournament_coordination_tick_at && now-@tournament_coordination_tick_at<1.0
         @tournament_coordination_tick_at=now
+        return if @tournament_background_table_access&.blocked?
         @tournament_coordinator&.tick
         @tournament_coordinator&.take_observed_references&.each do |reference|
           @tournament_event_inboxes&.each_value { |inbox| inbox.refresh(reference) }

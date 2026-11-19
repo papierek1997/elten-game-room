@@ -1,4 +1,5 @@
 require_relative "../support/room_interface"
+require_relative '../support/server_table_access'
 
 row = { "__id" => 7, "owner" => "Alice", "game" => "four_in_a_row", "status" => "waiting", "max_players" => 8, "name" => "Test room", "game_options" => "{}" }
 room = LobbyRepository::TableSnapshot.new(table: row, members: ["Alice", "Bob"], bots: [])
@@ -11,6 +12,7 @@ finished_replay = game.replay(session, [], repository)
 finished_replay.winner = "Alice"
 finished = GameRoomLifecycle::State.new(room: room, game_snapshot: Struct.new(:session).new(session), game: game, replay: finished_replay, players: %w[Alice Bob])
 app = EltenGameRoom.allocate
+app.instance_variable_set(:@server_tables, GameRoomTest::ServerTableAccess.new(:available))
 lobby = LobbyRepository.allocate
 app.instance_variable_set(:@lobby, lobby)
 app.instance_variable_set(:@games, repository)

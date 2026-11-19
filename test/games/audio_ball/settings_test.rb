@@ -3,6 +3,7 @@ require_relative "../../support/translation_reference"
 require_relative "../../support/ui"
 require_relative "../../support/log"
 require_relative "../../support/localization"
+require_relative '../../support/server_table_access'
 
 class Program
   def self.server_app(**_options); end
@@ -275,7 +276,8 @@ check('Waiting table opens the real local dialog from Ctrl+P and menu without ch
   state = GameRoomLifecycle::State.new(room: room, game_snapshot: nil, game: game, replay: nil)
   app = EltenGameRoom.allocate
   {lobby: LobbyRepository.allocate, games: ListeningRepository.new, transport: Object.new,
-    game_room_settings: {}}.each { |key, value| app.instance_variable_set("@#{key}", value) }
+    game_room_settings: {}, server_tables: GameRoomTest::ServerTableAccess.new(:available)}.
+      each { |key, value| app.instance_variable_set("@#{key}", value) }
   tracker = Object.new
   tracker.define_singleton_method(:observe) { |_| [] }
   app.define_singleton_method(:room_membership_tracker) { |_| tracker }

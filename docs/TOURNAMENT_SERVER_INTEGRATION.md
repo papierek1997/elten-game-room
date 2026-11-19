@@ -349,6 +349,13 @@ unresolved operations instead of dropping them to meet its 128-entry
 completed-history target.
 Network failures also retain the failed startup or one-shot coordination job;
 retrying does not require reopening the tournament or receiving another notice.
+After authenticated login, the coordinator starts even before Power Games has
+been opened. It uses the normal SDK request rather than an extra access probe.
+Only an explicit `apps.tables.stamp_required` refusal suspends background
+table work, including notice verification. The refusal belongs to the current
+login; a fresh successful access check can clear it. An unchecked state, a
+timeout or a rate limit is not a refusal. Ordinary live tables and explicit
+access checks remain independent of the suspended workers.
 
 ## Optional timing and player views
 

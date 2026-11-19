@@ -7,7 +7,8 @@ specs = [
 ]
 specs.each do |game, users, options|
   options = game.default_options.merge(options).merge('score_limit'=>10_000, 'bot_delay'=>0)
-  TournamentForfeitNative.with_fixture(game: game, users: users, options: options) do |f|
+  TournamentForfeitNative.with_fixture(game: game, users: users, options: options,
+    clock: ClockEventContract::ManualTime.new) do |f|
     f.start
     h = f.h
     runners = users.to_h { |user| [user, runner_for(h, user)] }
@@ -40,7 +41,8 @@ end
   [GameRoomGames::Tysiac.new, %w[Alice Bob], {'variant'=>'two_players'}]
 ].each do |game, users, options|
   h = NativeRoomHarness.new(game: game, users: users,
-    options: game.default_options.merge(options).merge('score_limit'=>10_000, 'bot_delay'=>0))
+    options: game.default_options.merge(options).merge('score_limit'=>10_000, 'bot_delay'=>0),
+    clock: ClockEventContract::ManualTime.new)
   h.start
   runners = users.to_h { |user| [user, runner_for(h, user)] }
   expected = TrickGameCheckpointTest.verify_boundary(h, runners, surrender: game.id == 'tysiac')

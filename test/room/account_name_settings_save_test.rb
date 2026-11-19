@@ -1,4 +1,5 @@
 require_relative '../support/table_watch_runtime'
+require_relative '../support/server_table_access'
 
 class Form
   class << self; attr_accessor :account_settings_driver; end
@@ -7,7 +8,7 @@ end
 GameRoomLocalization.boot(settings: {}, host_language: 'en')
 stored = GameRoomPreferences.normalize(EltenGameRoom::DEFAULT_SETTINGS, EltenGameRoom::GAME_REGISTRY.ids).merge('display_name'=>'Old Name')
 app = EltenGameRoom.allocate
-app.instance_variable_set(:@server_tables, Struct.new(:available?).new(false))
+app.instance_variable_set(:@server_tables, GameRoomTest::ServerTableAccess.new(:unavailable))
 notices = []
 app.define_singleton_method(:game_room_settings) { |**_| Marshal.load(Marshal.dump(stored)) }
 app.define_singleton_method(:update_json) do |_, default:, &operation|

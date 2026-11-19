@@ -43,6 +43,7 @@ class InvitationAppDriver < EltenGameRoom
     # Native startup publishes local preferences before notification actions.
     self.class.remember_settings({}) unless self.class.instance_variable_get(:@normalized_settings)
     @alerts, @errors, @sent = [], [], []
+    @server_tables = AvailableTables.new
     @user, @gateway = user, gateway
     program = ProgramDouble.new(broker.endpoint(user, fresh: fresh))
     @transport = GameRoomTransport.new(program)

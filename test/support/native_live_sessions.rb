@@ -56,11 +56,14 @@ class NativeLiveSessionsBroker
   attr_reader :cores
   attr_accessor :automatic_delivery
 
-  def initialize
+  def initialize(clock: -> { Time.now.to_i })
     @cores = {}
     @endpoints = {}
     @automatic_delivery = true
+    @clock = clock
   end
+
+  def now; @clock.call.to_i; end
 
   # Delivery is separate from storage/acknowledgement. Tests can stop one
   # reader, advance others and then catch up by ordered pages or a gap.
@@ -117,7 +120,7 @@ class NativeLiveSessionsBroker
       items = @broker.cores.values.reject(&:closed).select do |core|
         (sources.include?(:public) && core.visibility == :public) ||
           (sources.include?(:created) && core.creator.casecmp(@user) == 0) ||
-          (sources.include?(:invited) && core.invitations[@user.downcase].to_i > Time.now.to_i)
+          (sources.include?(:invited) && core.invitations[@user.downcase].to_i > @broker.now)
       end.map { |core| Discovery.new(self, core) }
       Page.new(items: items, next_cursor: nil)
     end
@@ -160,7 +163,7 @@ class NativeLiveSessionsBroker
 
     def add_view(core, participant_metadata: {})
       raise EltenAPI::LiveSessions::SessionClosed if core.closed
-      if core.visibility == :private && core.owner.casecmp(@user) != 0 && core.invitations[@user.downcase].to_i <= Time.now.to_i
+      if core.visibility == :private && core.owner.casecmp(@user) != 0 && core.invitations[@user.downcase].to_i <= @broker.now
         raise EltenLink::Error.new("not_invited")
       end
       raise EltenLink::Error.new("full") if core.participants.length >= core.capacity
@@ -187,7 +190,7 @@ class NativeLiveSessionsBroker
       @core = core
       @id = core.id
       @visibility = core.visibility
-      @invitation = { "invitation_id" => "server:#{core.id}:#{endpoint.user}", "expires_at" => core.invitations[endpoint.user.downcase], "generation" => 1 } if core.invitations[endpoint.user.downcase].to_i > Time.now.to_i
+      @invitation = { "invitation_id" => "server:#{core.id}:#{endpoint.user}", "expires_at" => core.invitations[endpoint.user.downcase], "generation" => 1 } if core.invitations[endpoint.user.downcase].to_i > endpoint.broker.now
       @discovery_metadata = core.discovery_metadata
       @capacity = core.capacity
       @participant_count = core.participants.length
@@ -229,7 +232,7 @@ class NativeLiveSessionsBroker
       @metadata = core.metadata
       @invitation_metadata = metadata
       @inviter = Participant.new(id: "inviter", user: inviter)
-      @expires_at = Time.now.to_i + 600
+      @expires_at = target.broker.now + 600
       @pending = true
     end
 
@@ -338,7 +341,7 @@ class NativeLiveSessionsBroker
         raise EltenAPI::LiveSessions::StackFull if @core.entries.length >= @core.stack_entries
         raise EltenAPI::LiveSessions::StackPacketTooLarge if JSON.generate(packet).bytesize > @core.stack_entry_bytes
         sequence = @core.last_seq + 1
-        created_at = Time.now.to_i
+        created_at = @endpoint.broker.now
         entry = {
           "seq" => sequence,
           "message_id" => message_id,
@@ -391,7 +394,7 @@ class NativeLiveSessionsBroker
         raise EltenAPI::LiveSessions::StackPacketTooLarge if JSON.generate(packet).bytesize > @core.stack_entry_bytes
         sequence = @core.last_seq + 1
         result = {'seq'=>sequence, 'message_id'=>message_id, 'sender'=>{'user'=>user},
-          'sender_id'=>@core.participants.fetch(user.downcase).id, 'created_at'=>Time.now.to_i,
+          'sender_id'=>@core.participants.fetch(user.downcase).id, 'created_at'=>@endpoint.broker.now,
           'packet'=>packet, 'origin'=>'server', 'random'=>{'min'=>min, 'max'=>max, 'count'=>count}}
         @core.entries << result
         @core.last_seq = sequence

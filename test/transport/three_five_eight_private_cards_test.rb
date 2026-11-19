@@ -8,7 +8,7 @@ require_relative '../../games/three_five_eight'
   # that is legal play, but it must not randomly skip this test's subject.
   server_values = Array.new(16, 1)
   h, runners = PrivateCardGamesTest.create(game, users: %w[Alice Bob Carol],
-    options: {'card_exchange'=>exchange}, random_values: server_values.dup)
+    options: {'card_exchange'=>exchange}, random_values: server_values.dup, clock: ClockEventContract::ManualTime.new)
   h.view('Alice').transfer_ownership(h.view('Alice').participants.find { |player| player.user == 'Carol' })
   PrivateCardGamesTest.tick(h, runners)
   3.times do |round|

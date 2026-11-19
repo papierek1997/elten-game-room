@@ -136,8 +136,10 @@ assert(c.game.send(:poker_public_exchanges, c.replay).empty?, "forced standing p
   assert(trial.replay.state[:phase] == :hand_complete && trial.replay.state[:turn_deadline] == 0, "uncontested hand did not stop timer")
   old_timeout = trial.events.last.merge("id"=>900)
   trial.context.now = trial.replay.state.fetch(:hand_resume_at)
+  assert(trial.context.now == 125, 'The five-second settlement break changed')
+  expected_deadline = trial.context.now + 20
   trial.act({"kind"=>"command","action"=>"deal"}, "A")
-  assert(trial.replay.state[:turn_deadline] == 146 && trial.replay.state[:stacks].values.sum + trial.replay.state[:contributions].values.sum == 2000, "new hand clock or chips changed")
+  assert(trial.replay.state[:turn_deadline] == expected_deadline && trial.replay.state[:stacks].values.sum + trial.replay.state[:contributions].values.sum == 2000, "new hand clock or chips changed")
   assert(trial.game.replay(trial.session,trial.events + [old_timeout],trial.repo).accepted_events == trial.events, "old timeout folded a player in the next hand")
 end
 

@@ -62,7 +62,8 @@ end
   game = GameRoomGames::Bridge.new
   options = {'team_seats'=>[0, 0, 1, 1], 'honors'=>false}
   options.merge!('variant'=>'duplicate', 'boards'=>4, 'scoring'=>variant) unless variant == 'rubber'
-  h, runners = PrivateCardGamesTest.create(game, users:%w[Alice Bob Carol Dave], options:options)
+  h, runners = PrivateCardGamesTest.create(game, users:%w[Alice Bob Carol Dave], options:options,
+    clock: ClockEventContract::ManualTime.new)
   begin
     assert(h.replay('Alice').state[:seats] == %w[Alice Carol Bob Dave], 'explicit partnership was not honored')
     original = h.users.to_h { |user| [user, h.replay(user).state[:hands][user].dup] }

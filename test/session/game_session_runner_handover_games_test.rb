@@ -54,8 +54,14 @@ selected_ids.each do |id|
     action = game.legal_actions(current, 'Bob', context: human.send(:context)).first
     if action
       h.as('Bob') do
+        before = h.events('Bob')
         status, = human.submit(session: snapshot.session, replay: current, selection: action, actor: 'Bob')
-        assert(status == :ok, "#{id}: remaining human action rejected: #{status}")
+        if status == :round_pause
+          assert(human.send(:round_pause_active?) && h.events('Bob') == before,
+            "#{id}: a round break wrote a human action or rejected it outside its boundary")
+        else
+          assert(status == :ok, "#{id}: remaining human action rejected: #{status}")
+        end
       end
     end
   end

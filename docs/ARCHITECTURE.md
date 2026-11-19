@@ -195,10 +195,10 @@ inconclusive access check, with conditional developer-mode guidance rather than
 a false diagnosis. Running main again may restore table features without
 creating a new application instance.
 
-`GameRoomServerTables::Runtime` binds the checked provider to its account and
-native runtime. Do not replace it with an unchecked widget provider. A first
-explicit module entry may check an unchecked provider; refusals do not retry on
-every click. `GameRoomAvailability` owns the translated explanations shared by
+`GameRoomServerTables::Runtime` binds the checked provider to its authenticated
+login and native runtime. Do not replace it with an unchecked widget provider.
+A first explicit module entry may check an unchecked provider; refusals do not
+retry on every click. `GameRoomAvailability` owns the translated explanations shared by
 startup, feature admission, Settings and table entry. Rankings and tournaments
 refuse entry before building lists or starting readers. Statistics/presence also
 explain their intentional dev-mode opt-out, even with available tables. A table
@@ -209,6 +209,10 @@ not add access probes to UI frames or change ordinary gameplay admission.
 An unchecked provider has no refusal to announce yet. Passive widget discovery
 uses LiveSessions and does not announce auxiliary-table availability; explicit
 program/feature entry still checks and explains a confirmed restriction once.
+
+Background tournament coordination uses its first ordinary SDK read after
+login, without waiting for an explicit program entry. A launcher-stamp refusal
+pauses it and notice verification for this login; transient errors still retry.
 
 ### Game models
 

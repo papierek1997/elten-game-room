@@ -187,7 +187,8 @@ app.define_singleton_method(:run_network_task) do |title, **options, &operation|
 end
 entry_widget = app.send(:build_widget_control)
 entry_widget.focus
-assert(entry_tasks == [["Loading Power Games tables", { silent: true }]], "entry bypassed the host task")
+assert(entry_tasks == [["Loading Power Games tables", { silent: true, announce_access: false }]],
+  "entry bypassed the host task or announced an unrelated auxiliary-table warning")
 assert(entry_widget.options == ["UNO, Bob, 1/8, open"] && entry_widget.sayoption_count.to_i == 0, "entry did not read current rows through native focus")
 entry_widget.close
 unavailable_session = Object.new

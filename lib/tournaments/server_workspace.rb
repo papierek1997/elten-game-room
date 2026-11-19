@@ -37,15 +37,32 @@ module GameRoomTournaments
     end
 
     class Provider
-      def initialize(app_uuid: APP_UUID)
+      def initialize(app_uuid: APP_UUID, access: nil)
         @app_uuid=app_uuid
         @client = EltenLink::Client.new
+        @access = access
       end
-      def available?; true; end
+      def available?; !@access || (@access.current? && !@access.blocked?); end
       def fetch(name)
         raise ArgumentError, 'Not a tournament table' unless (TablesGateway::TABLES + ['tournament_plan_documents']).include?(name)
-        EltenLink::Apps.table(@client, @app_uuid, name)
+        table = EltenLink::Apps.table(@client, @app_uuid, name)
+        @access ? GuardedTable.new(table, @access) : table
       end
+
+      class GuardedTable
+        def initialize(table, access)
+          @table, @access = table, access
+        end
+
+        def select(**query)
+          @access.perform { @table.select(**query) }
+        end
+
+        def insert(values)
+          @access.perform { @table.insert(values) }
+        end
+      end
+      private_constant :GuardedTable
     end
 
     def initialize(program:, registry:, user:, alert:, clock: -> { GameRoomClock.now.to_i }, provider_factory: nil, backend_uuid: APP_UUID, backend_identity: nil,
