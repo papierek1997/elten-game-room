@@ -194,7 +194,7 @@ module GameRoomGames
       if action == 'start'
         return [:invalid, nil] unless context&.random_source
         data['seed'] = context.random_source.roll(count: 4, sides: 256).values.reduce(0) { |seed, byte| (seed << 8) + byte - 1 }
-        data['scoring'] = multiplayer_free?(replay.state) ? Scoring::WORD_COUNT : Scoring::ACCURACY_ADJUSTED
+        data['scoring'] = multiplayer_free?(replay.state) ? Scoring::WEIGHTED_WORD_COUNT : Scoring::ACCURACY_ADJUSTED
       elsif action == 'result'
         return [:invalid, nil] unless selection['round'] == replay.state[:round]
         data['result'] = selection['result']
@@ -390,7 +390,7 @@ module GameRoomGames
         return false unless data['seed'].is_a?(Integer) && data['seed'].between?(0, 2**32 - 1)
         scoring_version = data['scoring']
         return false unless scoring_version.nil? || scoring_version == Scoring::ACCURACY_ADJUSTED ||
-          (scoring_version == Scoring::WORD_COUNT && multiplayer_free?(state))
+          (Scoring::MULTIPLAYER_FREE_VERSIONS.include?(scoring_version) && multiplayer_free?(state))
         state[:round] += 1
         state[:scoring] = scoring_version
         state[:seed], state[:phase], state[:results] = data['seed'], :active, {}
@@ -425,8 +425,9 @@ module GameRoomGames
       when 'survival' then 'words'
       else 'elapsed_ms'
       end
+      multiplayer_scoring = Scoring::MULTIPLAYER_FREE_VERSIONS.include?(state[:scoring])
       eligible = state[:results].reject do |_name, result|
-        result['assisted'] || (state[:scoring] == Scoring::WORD_COUNT && result['words'].zero?)
+        result['assisted'] || (multiplayer_scoring && result['words'].zero?)
       end
       values = eligible.transform_values do |result|
         state[:scoring] ? Scoring.rank(result, state[:options]['variant'], version: state[:scoring]) : result[field]

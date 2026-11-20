@@ -5,9 +5,9 @@ game = GameRoomGames::ManiaPisania.new
 users = %w[Alice Bob]
 cases = [
   ['A single fast word cannot outrank four correct words', [[4, 0, 82.8], [1, 0, 198.5]], 'Alice'],
-  ['Word count takes precedence even when the shorter result has fewer errors', [[4, 8, 82.8], [1, 0, 198.5]], 'Alice'],
-  ['Accuracy separates equal word counts', [[4, 1, 82.8], [4, 2, 198.5]], 'Alice'],
-  ['Tempo separates equally accurate results with the same word count', [[4, 0, 82.8], [4, 0, 198.5]], 'Bob'],
+  ['Many errors can outweigh a higher correct word count', [[100, 100, 198.5], [30, 0, 82.8]], 'Bob'],
+  ['An equally good score goes to the more accurate player', [[8, 8, 198.5], [2, 0, 82.8]], 'Bob'],
+  ['Tempo separates equally accurate results with the same score', [[4, 0, 82.8], [4, 0, 198.5]], 'Bob'],
   ['Identical results tie', [[4, 0, 82.8], [4, 0, 82.8]], nil],
   ['No correct words earns no round point', [[0, 3, 0.0], [0, 0, 0.0]], nil]
 ]
@@ -37,10 +37,13 @@ cases.each_with_index do |(description, reports, winner), index|
     end
     if index.zero?
       assert(game.surface_spec(replay, 'Alice').status.include?('4 words, 0 errors, 82.8 WPM. Score: 4.0;'),
-        'The status must show the word-count score alongside the measured WPM')
+        'The status must show the accuracy-adjusted word score alongside the measured WPM')
+    elsif index == 1
+      assert(game.surface_spec(replay, 'Alice').status.include?('100 words, 100 errors, 198.5 WPM. Score: 25.0; accuracy factor: 50.0 percent.'),
+        'The status must show that 50% accuracy reduces the score to one quarter')
     end
   ensure
     runners.each_value(&:close)
   end
 end
-puts 'PASS multiplayer Free Typing ranks by correct words, accuracy and then typing speed'
+puts 'PASS multiplayer Free Typing scores correct words with a quadratic accuracy penalty'
