@@ -16,6 +16,7 @@ module GameRoomGames
   class ManiaPisania < Base
     include PublicHistoryAnnouncements
     include ManiaPisaniaSaving
+    Scoring = GameRoomTyping::Scoring
 
     def id; 'mania_pisania'; end
     def name; _('Typoholism'); end
@@ -193,7 +194,7 @@ module GameRoomGames
       if action == 'start'
         return [:invalid, nil] unless context&.random_source
         data['seed'] = context.random_source.roll(count: 4, sides: 256).values.reduce(0) { |seed, byte| (seed << 8) + byte - 1 }
-        data['scoring'] = 1
+        data['scoring'] = multiplayer_free?(replay.state) ? Scoring::WORD_COUNT : Scoring::ACCURACY_ADJUSTED
       elsif action == 'result'
         return [:invalid, nil] unless selection['round'] == replay.state[:round]
         data['result'] = selection['result']
@@ -334,7 +335,7 @@ module GameRoomGames
       result = replay.state[:results].values.first
       return _('Typing finished.') unless result
       text = _('%{words} words, %{errors} errors, %{wpm} WPM.') % {words: result['words'], errors: result['errors'], wpm: result['wpm']}
-      text += ' ' + scoring_text(result, replay.state[:options]) if replay.state[:scoring] == 1
+      text += ' ' + scoring_text(result, replay.state) if replay.state[:scoring]
       text
     end
     def participant_status(replay, participant, connected: true)
@@ -357,12 +358,17 @@ module GameRoomGames
     def player_result_text(player, result, state)
       text = _('%{player}: %{words} words, %{errors} errors, %{wpm} WPM.') % {
         player: participant_name(player), words: result['words'], errors: result['errors'], wpm: result['wpm']}
-      text += ' ' + scoring_text(result, state[:options]) if state[:scoring] == 1
+      text += ' ' + scoring_text(result, state) if state[:scoring]
       text
     end
 
-    def scoring_text(result, options)
-      _('Score: %{score}; accuracy factor: %{accuracy} percent.') % GameRoomTyping::Scoring.summary(result, options['variant'])
+    def scoring_text(result, state)
+      _('Score: %{score}; accuracy factor: %{accuracy} percent.') %
+        Scoring.summary(result, state[:options]['variant'], version: state[:scoring])
+    end
+
+    def multiplayer_free?(state)
+      state[:options]['variant'] == 'free' && state[:players].length > 1
     end
 
     def shared_text_required?(state)
@@ -382,9 +388,11 @@ module GameRoomGames
         return false unless [:setup, :between].include?(state[:phase]) && same_user?(actor, state[:players].first)
         return false if shared_text_required?(state) && !state[:shared_text]
         return false unless data['seed'].is_a?(Integer) && data['seed'].between?(0, 2**32 - 1)
-        return false unless [nil, 1].include?(data['scoring'])
+        scoring_version = data['scoring']
+        return false unless scoring_version.nil? || scoring_version == Scoring::ACCURACY_ADJUSTED ||
+          (scoring_version == Scoring::WORD_COUNT && multiplayer_free?(state))
         state[:round] += 1
-        state[:scoring] = data['scoring']
+        state[:scoring] = scoring_version
         state[:seed], state[:phase], state[:results] = data['seed'], :active, {}
       when 'text_part'
         return false unless state[:phase] == :setup && shared_text_required?(state) && !state[:shared_text] && same_user?(actor, state[:players].first)
@@ -417,9 +425,11 @@ module GameRoomGames
       when 'survival' then 'words'
       else 'elapsed_ms'
       end
-      eligible = state[:results].reject { |_name, result| result['assisted'] }
+      eligible = state[:results].reject do |_name, result|
+        result['assisted'] || (state[:scoring] == Scoring::WORD_COUNT && result['words'].zero?)
+      end
       values = eligible.transform_values do |result|
-        state[:scoring] == 1 ? GameRoomTyping::Scoring.value(result, state[:options]['variant']) : result[field]
+        state[:scoring] ? Scoring.rank(result, state[:options]['variant'], version: state[:scoring]) : result[field]
       end
       best = values.values.max
       winners = values.keys.select { |name| values[name] == best }
