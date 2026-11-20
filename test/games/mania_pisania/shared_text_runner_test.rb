@@ -5,7 +5,10 @@ require_relative '../../../lib/mania_pisania/client'
 
 game = GameRoomGames::ManiaPisania.new
 [['local', 'Alice'], ['pasted', 'Host']].each do |source, host|
-  text = ('Zażółć gęślą jaźń, potem wpisz kolejne słowo. ' * 48).strip
+  random = Random.new(119)
+  alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ąćęłńóśźż'.chars
+  words = Array.new(260) { Array.new(random.rand(5..15)) { alphabet.sample(random: random) }.join }
+  text = (['Zażółć'] + words).join(' ')
   item = {'text' => text, 'title' => 'Wspólny tekst'}
   id = "local:#{Digest::SHA256.hexdigest(text)}"
   options = game.normalize_options({'variant'=>'free', 'text'=>source}.merge(GameRoomTyping::TextSelection.describe(id, item)))
@@ -19,6 +22,7 @@ game = GameRoomGames::ManiaPisania.new
       h.transports['Alice'].transfer_room_owner(h.table, host)
     end
   end
+  h.core.stack_entry_bytes = 1536
   runner = runner_for(h, host)
   guest_runner = runner_for(h, 'Bob')
   begin
@@ -27,7 +31,7 @@ game = GameRoomGames::ManiaPisania.new
       program.define_singleton_method(:read_json) do |path, default:|
         path == GameRoomTyping::TextLibrary::STORE && name == host ? {'texts'=>{id=>item}} : default
       end
-      client = game.build_client(program)
+      client = game.build_client(program, transport:h.transports.fetch(name))
       client.bind_screen(session_id:h.repositories.fetch(name).session_id(h.session), table_id:h.table['__id'],
         owner:host, viewer:name, members:-> { h.users })
       client.define_singleton_method(:covered?) { true }
@@ -53,16 +57,19 @@ game = GameRoomGames::ManiaPisania.new
     end
     step(h, guest_runner, 'Bob', count:2)
     assert(h.replay('Bob').state[:phase] == :setup, 'The guest started without the shared text')
-    expected_parts = GameRoomTyping::SharedText.parts(item).length
-    (expected_parts + 3).times do
+    40.times do
       publish.call(host,runner)
       step(h,runner,host,count:2) # The second pass may have the old UI snapshot.
+      break if h.replay(host).state[:phase] == :active
     end
+    actions = h.view(host).instance_variable_get(:@push_attempts).map(&:last).select { |packet| packet['kind'] == 'game_action' }
+    assert(actions.all? { |packet| JSON.generate(packet).bytesize <= 1536 }, 'The host attempted to send an oversized native game action')
     h.users.each do |name|
       replay = h.replay(name)
       assert(replay.state[:phase] == :active, 'A prepared multiplayer text did not start without a button')
       assert(replay.state[:shared_text]['text'] == text, 'The received text differs from the selected one')
-      assert(replay.state[:text_transfer][:chunks].length == expected_parts, 'A fragment was duplicated or lost')
+      assert(replay.state[:shared_text]['title'] == item['title'], 'The received title differs from the selected one')
+      assert(actions.length == replay.state[:text_transfer][:total] + 1, 'A fragment was duplicated or lost')
     end
     publish.call('Bob', guest_runner)
     assert(clients.fetch('Bob').instance_variable_get(:@practice).current_word == 'Zażółć', 'The guest could not type the transferred text')

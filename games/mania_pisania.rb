@@ -198,7 +198,7 @@ module GameRoomGames
         return [:invalid, nil] unless selection['round'] == replay.state[:round]
         data['result'] = selection['result']
       elsif action == 'text_part'
-        data['part'] = selection['part']
+        data = GameRoomTyping::SharedText.action_data(replay.state[:round], selection['part'])
       elsif ManiaPisaniaSaving::SAVE_ACTIONS.include?(action)
         data['save_id'] = selection['save_id']
         data['checkpoint'] = selection['checkpoint'] if action == 'checkpoint'

@@ -20,8 +20,9 @@ module GameRoomTyping
   class Client
     using GameRoomLocalization::Translations
 
-    def initialize(program, game, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) }, checkpoint_vault: nil, progress_factory: nil, **_services)
+    def initialize(program, game, clock: -> { Process.clock_gettime(Process::CLOCK_MONOTONIC) }, checkpoint_vault: nil, progress_factory: nil, transport: nil, **_services)
       @program, @game, @clock = program, game, clock
+      @transport = transport
       @ui_thread = Thread.current
       @progress_factory = progress_factory || ->(**options, &block) { GameRoomRealtime::Progress.new(**options, &block) }
       @library = TextLibrary.new(program)
@@ -530,7 +531,9 @@ module GameRoomTyping
       end
       current = @replay.state
       if item && shared_text_pending?(@replay) && current.values_at(:round, :owner, :options) == state.values_at(:round, :owner, :options)
-        @shared_text_parts = SharedText.parts(item)
+        packet = {session_id: @session_id, actor: replay.players.first}
+        limits = @transport&.game_action_limits(@table_id) || {}
+        @shared_text_parts = SharedText.parts(item, game_id: @game.id, round: state[:round], packet: packet, limits: limits)
       end
     rescue ArgumentError => error
       @shared_text_preparation_error = if error.is_a?(TextSelection::Unavailable)
