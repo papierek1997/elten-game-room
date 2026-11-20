@@ -5,13 +5,16 @@
       "id": "play",
       "paragraphs": [
         {
-          "es": "Cribbage es para dos jugadores. Gana quien llegue primero a 121 puntos. Recibes seis cartas; selecciona dos con Intro para dejarlas en el crib, una mano aparte de cuatro cartas que puntuará para quien reparte. El reparto se alterna en cada mano."
+          "es": "Pueden jugar de dos a seis personas. Gana el primer jugador o equipo que alcanza la puntuación objetivo. En los ajustes de la mesa, introduce un número positivo de puntos para ganar. El valor predeterminado es 121. El turno de repartir rota y el crib puntúa para quien reparte."
         },
         {
-          "es": "Tras los descartes se descubre la carta inicial. Si es una jota, quien reparte gana dos puntos. Empieza el otro jugador. Jugad una carta por turno sin superar 31 en el total acumulado. El as vale uno, las cartas numéricas su número y las figuras diez."
+          "es": "Con dos se reparten seis cartas por persona y se descartan dos. Con tres o cuatro se reparten cinco y se descarta una. Con tres se añade al crib una carta del mazo. Con cinco, quien reparte recibe cuatro y el resto cinco. Con seis recibe cinco y el resto seis. En estas dos últimas variantes solo los demás descartan una."
         },
         {
-          "es": "Elige Paso si ninguna carta cabe. El rival puede seguir jugando. Cuando ninguno pueda continuar, quien jugó la última carta gana un punto y el total vuelve a cero. Alcanzar exactamente 31 da dos puntos en su lugar. Tras reiniciar, sale el otro jugador si aún tiene cartas."
+          "es": "Tras los descartes se descubre la carta inicial. Una jota da dos puntos a quien reparte. Empieza la siguiente persona. Se juega una carta por turno sin superar 31. El as vale uno, las figuras diez y las demás cartas su valor."
+        },
+        {
+          "es": "Elige Paso si ninguna carta cabe. Se salta a quienes hayan pasado o no tengan cartas. Si nadie puede seguir, la última persona que jugó suma un punto. Llegar a 31 da dos. El total vuelve a cero y empieza la siguiente persona con cartas."
         }
       ],
       "title": {
@@ -25,15 +28,29 @@
           "es": "Durante el juego, sumar 15 da dos puntos. Dos, tres o cuatro cartas consecutivas del mismo valor dan 2, 6 o 12 puntos. Una escalera de al menos tres valores consecutivos al final de la secuencia puntúa su longitud, sin importar el orden de juego: 3, 5, 4 da tres puntos."
         },
         {
-          "es": "Al acabar las cartas, se cuentan la mano de quien no reparte, la de quien reparte y el crib, siempre con la carta inicial. Cada combinación que sume 15 y cada pareja dan dos puntos. Cada escalera máxima de tres o más cartas puntúa su longitud; las cartas repetidas pueden formar varias escaleras. Cuatro cartas del mismo palo en la mano dan cuatro puntos, o cinco con la inicial del mismo palo. En el crib deben coincidir las cinco. Una jota del palo de la inicial añade un punto."
+          "es": "Contad las manos por orden a partir de la persona que sigue a quien repartió y al final el crib. Incluid la carta inicial. Cada combinación de 15 y cada pareja dan dos puntos. Cada escalera de longitud máxima de tres cartas o más da un punto por carta. El color requiere que todas las cartas de la mano sean del mismo palo; en el crib debe coincidir también la carta inicial. Una jota del palo inicial da un punto."
         },
         {
-          "es": "El juego muestra las cartas que debes contar. Pulsa Intro e indica la puntuación. Si te equivocas, recibes como máximo la puntuación correcta y el rival recibe la diferencia. La partida termina en cuanto alguien llega a 121, también durante el juego o el recuento."
+          "es": "Pulsa Intro para declarar la puntuación. Si te equivocas, el siguiente rival recibe la diferencia y tú recibes como máximo la puntuación correcta. Con seis jugadores, cada mano y el crib tienen cinco cartas más la inicial, con un máximo de 39 puntos."
+        },
+        {
+          "es": "Oirás un sonido breve cuando una carta jugada dé puntos. Llegar exactamente a 31 tiene su propio sonido. Un tercer sonido indica que se han jugado todas las cartas y va a comenzar el recuento."
         }
       ],
       "title": {
         "es": "Puntuación y recuento"
       }
+    },
+    {
+      "id": "teams",
+      "title": {
+        "es": "Juego por equipos"
+      },
+      "paragraphs": [
+        {
+          "es": "Se juega en parejas con cuatro o seis jugadores y en tríos con seis. Cada equipo comparte puntuación y los asientos alternan entre equipos. Oculta tus cartas también a tus compañeros."
+        }
+      ]
     },
     {
       "id": "controls",
@@ -86,5 +103,8 @@
       }
     }
   ],
-  "option_chapters": {}
+  "option_chapters": {
+    "team_size": "teams",
+    "score_limit": "play"
+  }
 }

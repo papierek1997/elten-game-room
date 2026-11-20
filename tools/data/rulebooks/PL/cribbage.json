@@ -5,13 +5,16 @@
       "id": "play",
       "paragraphs": [
         {
-          "pl": "W Cribbage grają dwie osoby. Wygrywa ta, która pierwsza zdobędzie 121 punktów. Dostajesz sześć kart. Wybierz dwie Enterem, aby odłożyć je do cribu, czyli osobnego czterokartowego układu, który zapunktuje dla rozdającego. Po każdym rozdaniu rozdaje druga osoba."
+          "pl": "W Cribbage gra od dwóch do sześciu osób. Wygrywa gracz lub drużyna, która pierwsza osiągnie cel punktowy. W ustawieniach stołu można wpisać dowolną dodatnią liczbę punktów potrzebnych do wygranej. Domyślnie jest to 121. Rozdający zmienia się po każdym rozdaniu i otrzymuje punkty za crib."
         },
         {
-          "pl": "Gdy obie osoby odłożą karty, gra odkrywa kartę startową. Jeśli to walet, rozdający od razu dostaje dwa punkty. Pierwszy zagrywa przeciwnik rozdającego. Zagrywajcie po jednej karcie na zmianę, nie przekraczając sumy 31. As jest wart jeden, karty liczbowe tyle, ile wskazują, a walet, dama i król po dziesięć."
+          "pl": "Przy dwóch osobach każdy dostaje sześć kart i odkłada dwie. Przy trzech lub czterech każdy dostaje pięć i odkłada jedną. Przy trzech czwarta karta cribu pochodzi z talii. Przy pięciu osobach rozdający dostaje cztery karty, a pozostali po pięć. Przy sześciu rozdający dostaje pięć, a pozostali po sześć. W dwóch ostatnich wariantach tylko pozostali odkładają po jednej karcie."
         },
         {
-          "pl": "Wybierz Pas, gdy żadna twoja karta nie mieści się w limicie. Druga osoba może dalej zagrywać. Gdy obie nie mogą już dołożyć, gracz, który położył ostatnią kartę, dostaje punkt, a suma wraca do zera. Dokładnie 31 daje zamiast tego dwa punkty. Po wyzerowaniu zaczyna druga osoba, jeśli ma jeszcze karty."
+          "pl": "Po odłożeniu kart odkrywa się kartę startową. Walet daje rozdającemu dwa punkty. Zaczyna osoba po rozdającym. Zagrywajcie kolejno po jednej karcie, bez przekraczania 31. As liczy się za jeden, figury za dziesięć, a karty liczbowe według wartości."
+        },
+        {
+          "pl": "Wybierz Pas, jeśli żadna karta nie mieści się w limicie. Pomija się osoby, które spasowały lub nie mają kart. Gdy nikt nie może dołożyć karty, ostatni zagrywający dostaje punkt, a suma wraca do zera. Dokładnie 31 daje dwa punkty. Zaczyna następna osoba, która ma karty."
         }
       ],
       "title": {
@@ -25,15 +28,29 @@
           "pl": "Podczas zagrywania suma 15 daje dwa punkty. Dwie, trzy lub cztery kolejne karty tej samej wartości dają odpowiednio 2, 6 lub 12 punktów. Sekwencja co najmniej trzech kolejnych wartości na końcu zagrywanych kart daje punkt za każdą kartę, niezależnie od kolejności ich położenia. Na przykład 3, 5, 4 daje trzy punkty."
         },
         {
-          "pl": "Po zagraniu wszystkich kart policzcie rękę przeciwnika rozdającego, rękę rozdającego, a na końcu crib. Za każdym razem dodajcie kartę startową. Każda kombinacja dająca 15 i każda para dają dwa punkty. Liczy się każdą najdłuższą sekwencję od trzech kart: punkt za kartę. Powtórzone wartości mogą tworzyć kilka sekwencji. Cztery karty jednego koloru w ręce dają cztery punkty, a zgodna karta startowa piąty. W cribie kolor wymaga wszystkich pięciu kart. Walet w kolorze karty startowej daje dodatkowy punkt."
+          "pl": "Policzcie ręce w kolejności od osoby po rozdającym, a na końcu crib. Doliczcie kartę startową. Każda kombinacja dająca 15 i każda para są warte dwa punkty. Każda najdłuższa sekwencja od trzech kart daje punkt za kartę. Kolor punktuje, gdy cała ręka jest jednego koloru. W cribie karta startowa również musi pasować. Walet w kolorze karty startowej daje punkt."
         },
         {
-          "pl": "Gra pokazuje karty do podliczenia. Naciśnij Enter i podaj wynik. Jeśli się pomylisz, nie dostaniesz więcej niż prawidłowy wynik, a różnicę otrzyma przeciwnik. Mecz kończy się od razu po zdobyciu 121 punktów, również podczas zagrywania lub liczenia układów."
+          "pl": "Naciśnij Enter, by podać punktację. Przy pomyłce następny przeciwnik otrzymuje różnicę, a ty dostajesz najwyżej prawidłową liczbę punktów. Przy sześciu osobach w każdej ręce i w cribie jest pięć kart plus karta startowa, a maksymalny wynik to 39."
+        },
+        {
+          "pl": "Za punktujące zagranie usłyszysz krótki sygnał. Osiągnięcie dokładnie 31 ma własny dźwięk. Trzeci sygnał rozlega się po zagraniu wszystkich kart, tuż przed liczeniem układów."
         }
       ],
       "title": {
         "pl": "Punktacja i liczenie układów"
       }
+    },
+    {
+      "id": "teams",
+      "title": {
+        "pl": "Gra drużynowa"
+      },
+      "paragraphs": [
+        {
+          "pl": "Pary są dostępne przy czterech lub sześciu osobach, a trójki przy sześciu. Partnerzy mają wspólną punktację i zajmują miejsca na zmianę z innymi drużynami. Nie pokazuj kart nawet partnerom."
+        }
+      ]
     },
     {
       "id": "controls",
@@ -83,5 +100,8 @@
       }
     }
   ],
-  "option_chapters": {}
+  "option_chapters": {
+    "team_size": "teams",
+    "score_limit": "play"
+  }
 }
