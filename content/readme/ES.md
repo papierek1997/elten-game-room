@@ -102,7 +102,10 @@ Con Escribe tu propio texto (solo en solitario), el texto permanece en el campo 
 Al volver al campo de edición, se lee la parte de la palabra que ya has escrito, también al escribir en braille.
 
 Teclamanía ofrece Escritura libre, Palabras aleatorias, Cadena de
-memoria y Modo supervivencia, en solitario o con otros. Modo supervivencia confirma
+memoria y Modo supervivencia, en solitario o con otros. En multijugador, el campo
+de estado de escritura muestra a todos los jugadores y sus resultados a medida
+que completan la ronda. El juego comparte automáticamente el texto local o pegado
+que se haya elegido al comenzar. Modo supervivencia confirma
 tras el último carácter correcto, sin Espacio. Cada palabra correcta acelera
 la música un 2,5 %. Un Espacio prematuro en las
 otras variantes se ignora sin añadir errores. En multijugador, Palabras aleatorias

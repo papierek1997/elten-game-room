@@ -82,8 +82,10 @@ module GameRoomTyping
           'save_id' => @replay.state[:saving][:id], 'checkpoint' => checkpoint})
         return {'typing_checkpoint' => checkpoint}
       end
-      if @shared_text_parts && @replay&.state&.[](:phase) == :setup && @viewer.to_s.casecmp?(@replay.state[:owner].to_s)
-        return {'typing_text_parts' => @shared_text_parts}
+      if @shared_text_parts && shared_text_pending?(@replay)
+        state = @replay.state
+        part = @shared_text_parts[SharedText.next_index(state[:text_transfer], @shared_text_parts.first)]
+        return {'typing_text_part' => {'session_id' => @session_id, 'owner' => state[:owner], 'round' => state[:round], 'part' => part}} if part
       end
       return {'typing_result' => @blocked_result} if @blocked_result && !@result_confirmed && !@result_error
       return {} unless @practice&.result && !@result_error && !@result_confirmed
@@ -106,13 +108,12 @@ module GameRoomTyping
         queue_save_action('save_resume', replay.state[:saving][:id])
       end
       if replay.state[:phase] == :setup && SharedText.required?(replay.state[:options], replay.players, owner: replay.state[:owner]) && !replay.state[:shared_text]
-        identity = [replay.state[:round], replay.state[:owner]]
-        if !covered? && viewer.casecmp?(replay.state[:owner]) && @shared_text_prompted != identity
-          @shared_text_prompted = identity
-          choose_shared_text
-        end
+        prepare_shared_text(replay) if shared_text_pending?(replay)
         return
       end
+      @shared_text_parts = nil
+      @shared_text_preparation_error = nil
+      @deferred_shared_text = false
       @result_confirmed = replay.state[:results].keys.any? { |name| name.casecmp?(viewer) }
       synchronize_save_pause
       return unless replay.state[:phase] == :active && !@result_confirmed && replay.players.any? { |name| name.casecmp?(viewer) }
@@ -228,7 +229,15 @@ module GameRoomTyping
     end
 
     def frame(background: false)
-      return if @presenting || @closed || !@practice
+      return if @presenting || @closed
+      if @deferred_shared_text && !background && !covered? && shared_text_pending?(@replay)
+        prepare_shared_text(@replay)
+      end
+      if @shared_text_preparation_error && !background && !covered?
+        message, @shared_text_preparation_error = @shared_text_preparation_error, nil
+        alert(message)
+      end
+      return unless @practice
       @background_frame = background
       complete_prompt unless speech_pending?
       @practice.tick
@@ -259,10 +268,6 @@ module GameRoomTyping
     end
 
     def command(command)
-      if command == 'typing_choose_text'
-        return choose_shared_text if @replay&.state&.[](:phase) == :setup && @viewer.to_s.casecmp?(@replay.state[:owner].to_s)
-        return
-      end
       return unless @practice && !@practice.paused?
       case command
       when 'typing_spell' then present_help { @practice.spell }
@@ -491,29 +496,48 @@ module GameRoomTyping
       end
     end
 
-    def choose_shared_text
-      return unless SharedText.required?(@replay.state[:options], @replay.players, owner: @replay.state[:owner])
-      options = @replay.state[:options]
-      if TextSelection.descriptor(options)
-        item = TextSelection.resolve(options, @library)
-        unless item
-          alert(_('The selected text is no longer available on this computer. Choose it again in the table settings before starting.'))
-          return
-        end
+    def shared_text_pending?(replay)
+      state = replay.state
+      state[:phase] == :setup && !state[:shared_text] && @viewer.to_s.casecmp?(state[:owner].to_s) &&
+        SharedText.required?(state[:options], replay.players, owner: state[:owner])
+    end
+
+    def prepare_shared_text(replay)
+      state = replay.state
+      options = state[:options]
+      descriptor = TextSelection.descriptor(options)
+      identity = [state[:round], state[:owner], options['text'], descriptor]
+      return if @shared_text_prepared == identity
+      # An already selected text needs no dialog and can be staged before the
+      # game form attaches. Only legacy tables can still require a picker.
+      if !descriptor && covered?
+        @deferred_shared_text = true
+        return
+      end
+      @deferred_shared_text = false
+      @shared_text_prepared = identity
+      @shared_text_parts = nil
+      @shared_text_preparation_error = nil
+      item = if descriptor
+        TextSelection.resolve(options, @library) || raise(TextSelection::Unavailable)
       else
         id = if options['text'] == 'pasted'
           TextImportDialog.new(@program, @library, paste_only: true).wait
         else
           choose_text
         end
-        item = id && @library.fetch(id)
+        id && @library.fetch(id)
       end
-      return unless item
-      if item['text'].bytesize > SharedText::MAX_BYTES
-        alert(_('Maximum text size: %{bytes} UTF-8 bytes (1000 kB).') % {bytes: SharedText::MAX_BYTES})
-        return
+      current = @replay.state
+      if item && shared_text_pending?(@replay) && current.values_at(:round, :owner, :options) == state.values_at(:round, :owner, :options)
+        @shared_text_parts = SharedText.parts(item)
       end
-      @shared_text_parts = SharedText.parts(item)
+    rescue ArgumentError => error
+      @shared_text_preparation_error = if error.is_a?(TextSelection::Unavailable)
+        _('The selected text is no longer available on this computer. Choose it again in the table settings before starting.')
+      else
+        GameRoomContent.utf8(error.message)
+      end
     end
 
     def present_help

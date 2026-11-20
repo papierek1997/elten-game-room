@@ -128,7 +128,9 @@ W opcji Pisz własny tekst (tylko solo) wpisana treść pozostaje w polu podczas
 Po powrocie do pola edycji odczytywane jest rozpoczęte słowo, również podczas pisania brajlem.
 
 Mania pisania oferuje Swobodne pisanie, Losowe słowa, Łańcuch pamięciowy
-i Tryb przetrwania, solo lub z innymi osobami. Tryb przetrwania zatwierdza słowo po
+i Tryb przetrwania, solo lub z innymi osobami. W grze wieloosobowej pole „Stan pisania”
+pokazuje graczy i ich wyniki w miarę kończenia rundy. Wybrany tekst lokalny lub
+wklejony gra udostępnia automatycznie przy starcie. Tryb przetrwania zatwierdza słowo po
 ostatnim poprawnym znaku, bez Spacji. Każde poprawne słowo przyspiesza muzykę
 o 2,5%. W pozostałych wariantach słownych
 przedwczesna Spacja jest ignorowana i nie dodaje błędu. Kara za bezczynność w wieloosobowych

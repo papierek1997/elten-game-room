@@ -103,7 +103,9 @@ Při volbě Psaní vlastního textu (pouze sólo) zůstává napsaný text v pol
 Po návratu do editačního pole se přečte rozepsané slovo, i při psaní braillem.
 
 Psanománie nabízí Volné psaní, Náhodná slova, Paměťový řetězec a Režim přežití,
-sólo i s ostatními. Režim přežití potvrzuje posledním správným znakem bez Mezerníku.
+sólo i s ostatními. Ve hře více hráčů se v poli stavu psaní zobrazují všichni hráči
+a jejich výsledky, jakmile dokončí kolo. Vybraný místní nebo vložený text hra
+sdílí automaticky při spuštění. Režim přežití potvrzuje posledním správným znakem bez Mezerníku.
 Každé správné slovo zrychlí hudbu o 2,5 %.
 Předčasný Mezerník se v ostatních slovních variantách ignoruje a nepřidá chybu.
 Ve hře více hráčů v Náhodných slovech a Paměťovém řetězci nastává trest po

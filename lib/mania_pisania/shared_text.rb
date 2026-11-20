@@ -40,6 +40,13 @@ module GameRoomTyping
       end.freeze
     end
 
+    def next_index(transfer, part)
+      return 0 unless transfer && transfer.values_at(:digest, :total) == part.values_at('digest', 'total')
+      return 0 if part.key?('title') && transfer[:title] != part['title']
+
+      transfer[:chunks].length
+    end
+
     def apply(state, part)
       return false unless part.is_a?(Hash)
       digest, title, index, total, text = part.values_at('digest', 'title', 'index', 'total', 'text')

@@ -127,8 +127,6 @@ module GameSurfaces
       @repeat.on(:press) { handle_command('typing_repeat') }
       @sentence.on(:press) { handle_command('typing_sentence') }
       @finish.on(:press) { handle_command('typing_finish') }
-      @choose_text = Button.new(_('Share the table text'))
-      @choose_text.on(:press) { handle_command('typing_choose_text') }
       @commands = spec.commands.to_a.map do |command|
         button = Button.new(command.label)
         button.on(:press) { emit_action('command', command.id, command.payload || {}) }
@@ -140,8 +138,8 @@ module GameSurfaces
 
     def fields
       return [@input, @information, *@commands] if @spec.own_text && !@spec.enabled
-      @spec.enabled ? [@input, @spell, @repeat, (@word_rest if @spec.remaining_word), (@sentence if @spec.remaining_sentence), @finish].compact :
-        [@information, (@choose_text if @spec.choose_text), *@commands].compact
+      @spec.enabled ? [@input, @spell, @repeat, (@word_rest if @spec.remaining_word), (@sentence if @spec.remaining_sentence), @finish, @information].compact :
+        [@information, *@commands]
     end
 
     def state; {}; end
@@ -149,12 +147,17 @@ module GameSurfaces
       spec.is_a?(TypingSpec) && spec.round == @spec.round && spec.enabled == @spec.enabled &&
         spec.own_text == @spec.own_text &&
         spec.remaining_sentence == @spec.remaining_sentence &&
-        spec.remaining_word == @spec.remaining_word && spec.auto_commit == @spec.auto_commit && spec.choose_text == @spec.choose_text &&
+        spec.remaining_word == @spec.remaining_word && spec.auto_commit == @spec.auto_commit &&
         spec.commands.to_a == @spec.commands.to_a
     end
     def update_spec(spec)
+      if spec.status != @spec.status
+        index, check = @information.index, @information.check
+        @information.set_text(spec.status.to_s)
+        limit = spec.status.to_s.length
+        @information.restore_selection(index: [index.to_i, limit].min, check: [check.to_i, limit].min)
+      end
       @spec = spec
-      @information.set_text(spec.status.to_s)
       self
     end
 
@@ -164,10 +167,9 @@ module GameSurfaces
     end
 
     def handle_command(command, _payload = {})
-      return false unless %w[typing_spell typing_repeat typing_finish typing_status typing_sentence typing_word_rest typing_choose_text].include?(command)
+      return false unless %w[typing_spell typing_repeat typing_finish typing_status typing_sentence typing_word_rest].include?(command)
       return false if command == 'typing_sentence' && !@spec.remaining_sentence
       return false if command == 'typing_word_rest' && !@spec.remaining_word
-      return false if command == 'typing_choose_text' && !@spec.choose_text
       @on_command&.call(command)
       true
     end

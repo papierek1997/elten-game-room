@@ -103,7 +103,9 @@ With Write your own text (solo only), the text remains in the field during the c
 When you return to the editing field, the partial word you have entered is read aloud, including when typing in braille.
 
 Typoholism offers Free typing, Random words, Memory chain and Survival mode,
-alone or with others. Survival mode confirms after the last correct character,
+alone or with others. In multiplayer, the Typing status field shows each player
+and their result as they finish the round. The game automatically shares the
+selected local or pasted text at the start. Survival mode confirms after the last correct character,
 without Space. Each correct word speeds the music up by 2.5%.
 An early Space in the other word variants is ignored without an error.
 Multiplayer Random words and Memory chain penalise five seconds of
