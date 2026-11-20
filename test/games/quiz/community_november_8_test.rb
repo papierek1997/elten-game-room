@@ -6,10 +6,10 @@ require_relative '../../support/quiz_editorial_baseline'
 
 def assert(value, message); raise message unless value; end
 
-def original_checksum(pack, questions, source: pack.data.fetch('source'))
+def original_checksum(pack, questions, version:, source: pack.data.fetch('source'))
   GameRoomContent::Pack.new(id: pack.id, set_id: pack.set_id, kind: pack.kind,
     language_id: pack.language_id, title: pack.title, game_ids: pack.game_ids,
-    version: pack.version - 1, data: pack.data.merge('questions' => questions, 'source' => source)).checksum
+    version: version, data: pack.data.merge('questions' => questions, 'source' => source)).checksum
 end
 
 general = GameRoomContent.registry.pack('quiz.wikidata.pl')
@@ -48,11 +48,12 @@ assert(by_id.fetch('community_zz_20261108a_03').values_at('prompt', 'correct') =
   'Reviewed geography wording or answer changed')
 older_general = questions.reject { |row| row.fetch('id').start_with?('community_zz_20261108') }
 older_general = QuizEditorialBaseline.before_november_8_review(older_general)
-assert(original_checksum(general, older_general) == 'b857e9337d332f807de6619e586bae0d79e764240c2ec0152e306838ea3cca16',
+# Historical identity is v22, not one less than whichever version is current.
+assert(original_checksum(general, older_general, version:22) == 'b857e9337d332f807de6619e586bae0d79e764240c2ec0152e306838ea3cca16',
   'Unreviewed changes to existing general questions')
 
 older_potter = potter.data.fetch('questions').reject { |row| row.fetch('id').start_with?('community_hp_zz_20261108_') }
 old_source = 'J.K. Rowling: siedem powieści o Harrym Potterze; propozycja LordKiller, redakcja Power Games'
-assert(original_checksum(potter, older_potter, source: old_source) == '7592f7682d77cdee9d9f372593d23b673c71a18e517b5608b434537bac984b93',
+assert(original_checksum(potter, older_potter, version:2, source: old_source) == '7592f7682d77cdee9d9f372593d23b673c71a18e517b5608b434537bac984b93',
   'Unreviewed changes to existing Potter questions')
 puts 'PASS reviewed community additions, rejected items, source attribution, and preservation of both earlier question sets'

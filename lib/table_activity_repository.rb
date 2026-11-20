@@ -29,7 +29,7 @@ class TableActivityRepository
   )
 
   TABLE_NAME = "table_activity".freeze
-  KINDS = %w[created joined left bot_added bot_removed chat invited invitation_rejected game_aborted tournament_elimination options_changed role_changed owner_changed seat_control_changed player_replaced voice_started].freeze
+  KINDS = %w[created joined left bot_added bot_removed chat invited invitation_rejected game_aborted game_paused game_resumed tournament_elimination options_changed role_changed owner_changed seat_control_changed player_replaced voice_started].freeze
   GLOBAL_KINDS = %w[created joined left bot_added bot_removed].freeze
   BOT_KINDS = %w[bot_added bot_removed].freeze
   TABLE_LIMIT = 2_000
@@ -176,6 +176,8 @@ class TableActivityRepository
   end
 
   def text_for(entry, game_name:, global: false)
+    pause_text = round_pause_activity_text(entry.kind) unless global
+    return pause_text if pause_text
     player = GameRoomContent.utf8(GameRoomParticipants.display_name(entry.actor))
     owner = GameRoomContent.utf8(GameRoomParticipants.display_name(entry.owner))
     game = game_name.call(entry.game).to_s
@@ -254,6 +256,14 @@ class TableActivityRepository
     end
   end
 
+  def round_pause_activity_text(kind)
+    case kind
+    when "game_paused" then _("Game paused.")
+    when "game_resumed" then _("Game resumed.")
+    end
+  end
+  private :round_pause_activity_text
+
   def merge_history(game_entries:, game_events:, activity_entries:, game_name:)
     merged_history_entries(
       game_entries: game_entries,
@@ -302,7 +312,7 @@ class TableActivityRepository
     # that work, and its owned input snapshot, across subsequent game turns.
     context = GameRoomLocalization.cache_token
     cached = @formatted_activity_projection
-    cached = nil unless cached && cached[:context].equal?(context) && cached[:names] == names
+    cached = nil unless cached && cached[:context] == context && cached[:names] == names
     known = cached ? cached[:items] : {}
     own_names = GameRoomSnapshot.copy(names)
     source = project_values(activities, known, key: ->(entry) { entry.id.to_i }) do |entry|

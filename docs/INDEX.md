@@ -35,6 +35,9 @@ content work to their existing contracts; it does not replace reading them.
   The [Polish guide](../README.md) and the other translations in
   [content/readme/](../content/readme/) remain available.
 
+The [billiards implementation contract](BILLIARDS.md) describes the practice
+stage, physics and wire units, module ownership and remaining disciplines.
+
 ## Implementation and audit plans
 
 These dated plans record agreed scope, past decisions and status at their last
@@ -80,7 +83,7 @@ the current code; confirm any unresolved decision before changing behavior.
 ## Maintenance
 
 - [Bingo](BINGO.md): variants, tickets, manual/automatic marking, native draws and sound licensing.
-- [Dice poker and Liar's dice](DICE_GAMES.md): variants, ranking, hidden-roll protocol, controls and rule sources.
+- [Dice games](DICE_GAMES.md): poker/Liar's dice variants, hidden rolls and controls; shared Yahtzee, General and Balut score-sheet feedback.
 - [Go and roulette](GO_ROULETTE.md): boards, scoring agreement, wheels, bets, social pool and rule sources.
 - [Local background music](BACKGROUND_MUSIC.md): general/game tracks, files, MIDI, volumes and lifecycle.
 - [Blackjack games](BLACKJACK.md): card and dice variants, scoring, replay,
@@ -112,6 +115,8 @@ the current code; confirm any unresolved decision before changing behavior.
 - [Teams, roles and focus](TEAMS_ROLES_AND_FOCUS.md).
 - [Interface languages](INTERFACE_LANGUAGES.md).
 - [Statistics](STATISTICS.md) and their [schema fragment](STATISTICS_TABLES.json).
+- [Darts records and leaderboards](DARTS_RANKINGS.md): analytics lifecycle,
+  concurrent snapshot writes, bounded reads and deployment.
 - [Sports player statistics](SPORTS_LEADERBOARDS.md): match results, goal totals and background persistence.
 - [Question creator](QUIZ_CONTRIBUTIONS.md): private account drafts and
   proposals delivered through messages with a TXT/JSON attachment.

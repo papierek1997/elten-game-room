@@ -1,13 +1,14 @@
-# Dice poker and Liar's dice
+# Dice games
 
-Both games use the ordinary LiveSessions game/action/replay path, shared
+Dice poker and Liar's dice use the ordinary LiveSessions game/action/replay path, shared
 SessionRunner, bot coordinator, history, context help and sound output. No
 separate scheduler or UI loop is introduced. Both support 2–8 seats.
 
 ## Dice poker
 
-Five public six-sided dice; choose two or three throws and 1–20 rounds.
-The default is three throws, three rounds, sixes high, with straights.
+Five six-sided dice; choose two or three throws and 1–20 rounds.
+The default is three throws, three rounds, sixes high, with straights,
+1,000 chips per player and a 10-chip ante.
 Hands descend: five equal, four equal, full house, straight, three equal,
 two pairs, pair, high die. Compare repeated faces first, then kickers.
 The two straights are 1–5 and 2–6; the latter is higher. Other table variants
@@ -26,12 +27,12 @@ Sources:
 - [Nordic Dice Games](https://nordicdicegames.com/games/poker-dice):
   the optional opener throw limit.
 
-Power Games awards each round's strongest hand one point. Exact ties each
-receive one point; equal final totals draw. This is the declared match format,
-when point scoring is selected. The optional chip mode collects ante from every
-seat (or their shorter all-in), then runs the shared poker-style auction before
-throws and again after all contenders keep their hands. Folded seats skip dice;
-all-in seats still throw. Main/side pots follow covered contribution levels and
+Dice poker always plays for chips and conceals rolls from other players'
+ordinary views; there is no public-dice or point-scoring selector.
+It collects ante from every seat (or their shorter all-in), then proceeds
+directly to throws. The shared `start_auction(..., betting: false)` builds the
+same contribution ledger but completes its opening stage without bids. The
+only auction follows everyone's kept hand. Main/side pots follow covered contribution levels and
 eligible hand ranks, with tied layers divided in seat order and uncalled excess
 refunded. A sole contender wins immediately. Balances plus pot are conserved;
 zero balance is permanent elimination only after settlement. The match ends at
@@ -39,7 +40,28 @@ the round limit or with one solvent seat. B/R enters a custom raise, C checks
 or calls, F folds, A goes all-in. All rolls use native server dice, retaining
 the selected values. The existing RollAndScore surface handles dice selection.
 Enter rolls; 1–6 select values for reroll, Shift+1–6 keeps them, K stands,
-Space reads the dice, S reads scores. No card-hand metadata is used.
+Space reads the dice, S reads balances. H recalls only the viewer's own
+hand, also while waiting and betting. No card-hand metadata is used.
+
+Shared history and other viewers' live speech say only that the actor rolls
+or keeps the hand. The owner receives the detailed roll through `describe_event`;
+shared history never stores that private presentation. At contested settlement,
+the remaining contenders' complete final hands appear before pot awards.
+Folded hands and an uncontested winner are not revealed. This is presentation
+privacy, **not protection against a modified client**: the existing native public
+dice events still contain faces. No server-private protocol is claimed here.
+Do not confuse this with Liar's dice's commitment protocol below.
+
+Bots use their own dice, public throw limit, balances and eligible
+pot layers, not completed opponents' hands. Unknown strength is approximated
+by the best of the public number of independent full throws; this is a bounded
+heuristic, not an exact retained-dice opponent solver. Raises model matching
+solvent opponents and cap exposure. Regression: `poker_hidden_test.rb` compares
+action values, chosen actions and subsequent RNG state with opposite hidden
+hands; pot tests retain independent probability and production-settlement
+oracles. `default_hidden_test.rb` checks the single supported format and
+ante-only all-in showdown. The reviewed `v2/dice_poker_hidden.json` model trace
+covers complete rounds after retirement of the old point-only fixture.
 
 ## Liar's dice
 
@@ -101,3 +123,39 @@ data and storage failures. Public replay never stores private values before
 the challenge. UI and bot views are separate, bounded, viewer-scoped copies.
 The bot uses only its own cup and public counts, with an explicit replay-only
 strategy contract. Permanent loss of the final die uses the shared elimination hook.
+
+## Shared score-sheet feedback
+
+Yahtzee, Dice General and Balut use `GameRoomFiveDiceSounds`, through their
+existing `event_sound_cues` hooks. `roll(dice)` selects the ordinary roll or
+roll plus five-equal feedback. `score(column: nil, effect: nil, zero: false,
+recording: nil)` selects a non-card recording cue. Columns 1–6 reuse the
+combined `kosciane_column_*` recordings; do not split their timing or
+re-encode them in a build. Effects are `:bonus`, `:complete`, `:failure` and
+`:doubled`. A zero adds `five_dice_zero` (the user-selected DENY_SOUND), but
+never duplicates a school failure. Other games retain their existing `lose1`.
+General's history can supply its already selected `recording` unchanged.
+The existing `win1`, `draw2` and `cht-bank` roles now use the selected
+`five_dice_bonus`, `five_dice_doubled` and `five_dice_record` recordings only
+inside this helper. Bonus/doubled column cues concatenate the original column
+prefix with the complete new jingle, through the explicit authoring tool
+`tools/author-five-dice-feedback.rb`. Old column assets remain available for
+captured recordings; no action gains a cue that it did not previously have.
+
+The helper only selects names. Games retain scoring and the meaning of each
+effect; for example, zero in Yahtzee Misery is not a failed combination, and
+an ordinary Balut zero does not revoke General's school bonuses. Shared
+presentation still owns event order, deduplication, playback, volume and output
+gates. No helper may publish moves, use the game RNG or start an audio worker.
+
+Balut's table entries and game points are separate. Its feedback explains new
+category points and changes to the total-score adjustment before reporting the
+new game total. The native table and V readout share `balut_row_status`;
+`BalutScoring.row_points_possible?` determines whether remaining entries can
+still earn category points. It never changes the score or legal actions.
+
+Regressions: `test/games/five_dice/shared_sounds_test.rb`,
+`balut_feedback_test.rb`, `balut_grid_native_test.rb`,
+`score_sounds_playback_test.rb` and `feedback_contract_test.rb` in the same
+directory. Also run the three games' model contracts and the affected native,
+localization and rulebook checks. A names-only test does not prove playback.

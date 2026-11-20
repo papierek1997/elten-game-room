@@ -8,8 +8,8 @@ require_relative 'tournament_legacy_forfeit_fixture'
 module TournamentForfeitNative
   class Fixture
     attr_reader :h, :documents, :candidate, :match, :services, :changes
-    def initialize(directory, game:GameRoomGames::TicTacToe.new, users:%w[Alice Bob], options:nil)
-      @h=NativeRoomHarness.new(game:game,users:users,options:options)
+    def initialize(directory, game:GameRoomGames::TicTacToe.new, users:%w[Alice Bob], options:nil, clock:nil)
+      @h=NativeRoomHarness.new(game:game,users:users,options:options,clock:clock)
       @directory=directory
       program=ProgramDouble.new(h.broker.endpoint(users.first))
       lobby=LobbyRepository.new(program,transport:h.transports[users.first],server_tables:Object.new)

@@ -10,6 +10,7 @@ GameRoomServerRandom.register('makao', ['deal'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class Makao < CardGame
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def player_spatial_audio?; true; end
     def remembered_option_definitions(definitions, options: nil)
       return super unless options == nil || options["profile"].to_s == "custom"
@@ -71,7 +72,7 @@ module GameRoomGames
     end
 
     def bot_strategy
-      @bot_strategy ||= GameRoomBots::HeuristicStrategy.new
+      @bot_strategy ||= BotStrategy.new
     end
 
     def rule_sections
@@ -346,10 +347,11 @@ module GameRoomGames
           GameSurfaces::CardChoice.new(id: choice, label: choice_label(choice), value: choice)
         end
         GameSurfaces::Card.new(id: card, label: makao_card_label(card), value: card, choices: choices,
+          navigation_group: standard_hand_navigation_group(rank: card_rank(card), suit: card_suit(card)),
           sort_keys: standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: hand_for(state, viewer).index(card)),
           choice_header: joker?(card) ? _("Choose the card represented by the joker") : card_rank(card) == "A" ? _("Choose a suit") : _("Choose the requested rank"))
       end
-      packet = GameSurfaces::PacketCardSpec.new(id: "makao_hand", header: same_user?(state[:current_player], viewer) ? _("Your hand") : _("Waiting for %{player}") % { player: participant_name(state[:current_player]) },
+      packet = GameSurfaces::PacketCardSpec.new(id: "makao_hand", default_sort: default_hand_sort, sort_modes: hand_sort_modes, header: same_user?(state[:current_player], viewer) ? _("Your hand") : _("Waiting for %{player}") % { player: participant_name(state[:current_player]) },
         activation_tip: _("Press Enter to play the current card or the prepared packet."),
         cards: cards, action_name: "play", allow_packet: true, empty_label: _("Your hand is empty"),
         hand_order: hand_for(state, viewer).dup, hand_epoch: [viewer, state[:seed]].join(":"))
@@ -924,7 +926,7 @@ module GameRoomGames
     end
 
     def makao_sort_key(card)
-      [SUITS.index(card_suit(card)) || 9, RANKS.index(card_rank(card)) || 99, card]
+      standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: 0).fetch('colour') + [card]
     end
 
     def special_card?(card)
@@ -1026,3 +1028,4 @@ end
 require_relative 'generated/rulebooks/makao'
 require_relative 'makao_private'
 GameRoomGames::Makao.prepend(GameRoomGames::MakaoPrivate)
+require_relative 'makao_bot'

@@ -61,6 +61,7 @@ module GameRoomShortcutBindings
     key = shifted_character || case shortcut.key.to_s
     when 'space' then _("Space")
     when 'semicolon' then ';'
+    when 'comma' then ','
     else shortcut.key.to_s.upcase
     end
     prefixes = []

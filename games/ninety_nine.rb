@@ -14,6 +14,9 @@ GameRoomServerRandom.register('ninety_nine', ['deal'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class NinetyNine < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    def standard_round_end_sound?; false; end
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def tournament_small_point_policy(options:)
       tournament_target_small_points(normalize_options(options).fetch('starting_tokens'))
     end
@@ -355,9 +358,10 @@ module GameRoomGames
       cards = hand_for(state, viewer).to_a.sort_by { |card| card_sort_key(card) }.map do |card|
         item = card_surface_card(card, state[:total])
         item.sort_keys = standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: hand_for(state, viewer).index(card))
+        item.navigation_group = standard_hand_navigation_group(rank: card_rank(card), suit: card_suit(card))
         item
       end
-      hand = GameSurfaces::CardTableSpec.new(
+      hand = GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes,
         zones: [
           GameSurfaces::CardZoneSpec.new(
             id: "hand",

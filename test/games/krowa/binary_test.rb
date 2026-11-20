@@ -55,7 +55,7 @@ windows = 0
   end
 end
 repository = GameRoomKrowa::WordRepository.default
-raise "Noun entries lost or duplicated" unless repository.words.length == 85_135 && repository.words.uniq.length == 85_135
+raise "Noun entries lost or duplicated" unless repository.words.length == 85_069 && repository.words.uniq.length == 85_069
 raise "Polish nouns corrupted" unless repository.include?("żółć")
 %w[łam zacios zaciosy prosię silnia silnie afro szmat ksero
   szamanka szamanki sokownik sokowniki geomanta geomantka geomanci geomantki
@@ -67,10 +67,11 @@ raise "Polish nouns corrupted" unless repository.include?("żółć")
   ścierak ścieraki roaming roamingi szpring szpringi pluszak pluszaki oscypek oscypki].each do |word|
   raise "Added noun missing from binary dictionary: #{word}" unless repository.include?(word)
 end
-%w[alias aliasy podolog podolodzy podolożka podolożki wibrys wibrysy kodek kodeki polik poliki kebab kebaby].each do |word|
+%w[alias aliasy podolog podolodzy podolożka podolożki wibrys wibrysy kodek kodeki polik poliki kebab kebaby
+  tonik włam włamy funk kuluar schód zmywarka zmywarki bankomat bankomaty baner banery kofta kofty kilt kilty ploter plotery skaner skanery toner tonery ociekacz ociekacze].each do |word|
   raise "Requested noun missing from binary dictionary: #{word}" unless repository.include?(word)
 end
-%w[cytacik cytaciki owocek owocki].each do |word|
+%w[cytacik cytaciki owocek owocki quiz quizy hiszpański fractocumulus volvo divertimento].each do |word|
   raise "Removed noun remains in binary dictionary: #{word}" if repository.include?(word)
 end
 provider = GameRoomKrowa::SjpDefinitionProvider.new(fetcher: ->(_uri) { '<p><b>znaczenie:</b></p></div><p>Żółć &amp; słowo.<br>Drugi wiersz.</p>'.b })

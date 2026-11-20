@@ -1,0 +1,192 @@
+{
+  "source": "games/cash_auction.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "en": "The aim"
+      },
+      "paragraphs": [
+        {
+          "en": "Cash Auction combines simultaneous bidding with quiz questions for two to eight players, including bots. Each question has four choices and one correct answer. Everyone starts with 10000 points by default. Finish with the most points among the players still in the match. Black chests can raise or lower your final score."
+        },
+        {
+          "en": "Each auction starts with a category draw and an opening payment from every remaining player. You bid against one another for the right to answer a question. A correct answer wins the whole pool; a wrong answer leaves it for a later auction."
+        }
+      ]
+    },
+    {
+      "id": "rounds",
+      "title": {
+        "en": "Starting an auction"
+      },
+      "paragraphs": [
+        {
+          "en": "The wheel announces the question category and its set. The question will come from that category in the named set. Every player still in the match then pays 100 points into the common pool. If you cannot afford this payment, you are permanently eliminated. Money already in the pool stays there."
+        },
+        {
+          "en": "Bidding is simultaneous: you do not wait for a turn. The bid field has focus when the auction starts. Enter an amount and press Enter to make an offer. An accepted offer clears the field; an invalid one leaves your text so you can correct it. The current question round, pool, highest offer and leading player are announced."
+        },
+        {
+          "en": "After a bid, the auctioneer calls once, twice and three times, normally three seconds apart. Bidding stays open for one more interval after the third call; only Sold ends it. Every higher offer starts the calls afresh. With the default interval, an auction closes after twelve seconds without a new bid. If nobody bids, the pool carries over."
+        },
+        {
+          "en": "P reads the pool. T explains whose decision is pending; during bidding, all eligible players may bid at once. H reads the current bids. D reads your points, and Shift+D reads the other players’ points."
+        }
+      ]
+    },
+    {
+      "id": "bidding",
+      "title": {
+        "en": "What an offer costs"
+      },
+      "paragraphs": [
+        {
+          "en": "Your offer is the total amount you commit to this auction, in addition to the opening payment. The first offer must be at least as much as that payment, even if you go all-in. Every offer must beat the current highest offer. Every bidder pays immediately, even if they later lose the auction; those payments are not refunded."
+        },
+        {
+          "en": "When you raise your own offer, pay only the difference. For example, after offering 100, raising to 250 costs another 150. You may commit at most your remaining balance plus what you have already paid in bids this auction."
+        },
+        {
+          "en": "To go all-in while you still have points, type A in the bid field and press Enter. You commit every remaining point, with earlier bid payments this auction counted in the total offer. You can also type that total amount instead of A. If this total beats the highest offer, all-in immediately closes the auction and wins the question or black chest. Nobody can raise after it. If your available total is no higher than the leading offer, you cannot bid or go all-in."
+        },
+        {
+          "en": "You can raise your own offer until the auction closes. The last accepted highest offer wins when the auction is closed. A bid reaching the game after the deadline is refused, even if the closing announcement has not finished speaking."
+        }
+      ]
+    },
+    {
+      "id": "passing",
+      "title": {
+        "en": "The penalty for making no bids"
+      },
+      "paragraphs": [
+        {
+          "en": "If you do not want to bid, wait for the auction to end."
+        },
+        {
+          "en": "An auction in which you make no bid counts towards a run of missed auctions. The opening payment does not count as a bid. After three consecutive auctions without a bid, you lose 5% of your remaining points when the third auction closes, then the count returns to zero. Round the penalty up to a whole point. Any accepted bid resets your count, even if you later lose that auction."
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "title": {
+        "en": "Answering the question"
+      },
+      "paragraphs": [
+        {
+          "en": "After the auction, everyone can read the question and its four answers, A to D, but only the auction winner can answer. The question is a read-only text field. Press Down to reach the answer list, choose with the arrows and press Enter to submit. There is no answer time limit."
+        },
+        {
+          "en": "A correct answer transfers the entire pool to the winner of the auction and starts a new pool at zero. A wrong answer leaves the whole pool for the next auction. If you went all-in and answer wrongly with nothing left, you are permanently eliminated."
+        },
+        {
+          "en": "Before answering, the auction winner may buy one hint to remove two wrong choices. The price is 10% of their remaining points, rounded up, with a minimum of one point; the button shows the exact cost. The payment leaves the game rather than entering the pool. With no points left, a hint cannot be bought."
+        }
+      ]
+    },
+    {
+      "id": "chests",
+      "title": {
+        "en": "Black chests"
+      },
+      "paragraphs": [
+        {
+          "en": "A black chest replaces the category and question on 10% of spins by default. Bid for it normally; the winner keeps it unopened. The pool left by earlier questions remains for the next question, but opening payments, bids and penalties from the chest auction do not increase it. Those payments leave the game. Chest auctions do not count towards the question limit."
+        },
+        {
+          "en": "Before settling the match, the game waits five seconds and opens all chests automatically, including those owned by eliminated players. You hear an opening announcement, the chest sound and each chest’s contents. The final result follows four seconds after the contents have been announced."
+        },
+        {
+          "en": "A chest can add or subtract 5%, 10%, 15%, 20%, 25%, 30% or 35% of your points. There is a 60% chance of a gain, 30% of a loss and 10% of no change. Small changes are more common: 5% is the most likely magnitude and 35% the rarest."
+        },
+        {
+          "en": "If you own several chests, add their signed percentages and apply the total to your balance before opening any of them. For example, +20% and -10% turn 10000 points into 11000, regardless of opening order. Round the adjusted score once to the nearest whole point; it cannot fall below zero. Opening a chest does not return an eliminated player to the match."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "en": "The end of the match"
+      },
+      "paragraphs": [
+        {
+          "en": "A normal match lasts eight answered questions, right or wrong. Chest auctions and auctions without bids do not count. The match also ends when at most one player remains. Everyone opens their chests and their effects are applied before the final result is announced."
+        },
+        {
+          "en": "After all chests are open, the remaining player with the most points wins. If several remaining players share the highest balance, play on until another question has been answered, with every player still in the match taking part, not just the tied leaders. Chest auctions and auctions with no bids do not finish this extra question round. Open any new chests before comparing balances again, and repeat if necessary. If no players remain, the match is a draw."
+        },
+        {
+          "en": "S reads everyone’s balances and unopened chest counts outside the auction, including while a question is on screen. Use Shift+S during bidding."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "en": "Table settings"
+      },
+      "paragraphs": [
+        {
+          "en": "Before starting, choose the question language and one to three Quiz sets in the table settings. Only the general knowledge set in that language is selected by default. Use Space to mark or clear sets and Enter to confirm. The wheel draws categories from the selected sets. Each category stays tied to its own set, so categories with the same name in different sets remain separate. The question language can differ from the interface language."
+        },
+        {
+          "en": "You can change the starting balance from 10000 to any whole number from 10 to 1000000. The opening payment can be from 1 point up to that starting balance."
+        },
+        {
+          "en": "Choose 8–32 answered questions and 1–5 seconds between calls. By default there are eight questions and three seconds between calls. Without all-in, the auction closes after four intervals without a higher offer, leaving one interval after the third call. The black-chest chance is adjustable from 5% to 15%, with 10% as the default."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Controls"
+      },
+      "paragraphs": [
+        {
+          "en": "Enter in the bid field: submit the amount you typed."
+        },
+        {
+          "en": "A: type A in the bid field, then press Enter to go all-in if your total exceeds the highest offer and win the auction immediately."
+        },
+        {
+          "en": "Down from the question: move to the answers. Arrows select an answer; Enter submits it if you won the auction."
+        },
+        {
+          "en": "S: outside bidding, read balances and unopened chests."
+        },
+        {
+          "en": "Shift+S: during bidding, read balances and unopened chests."
+        },
+        {
+          "en": "P: read the pool."
+        },
+        {
+          "en": "T: read whose decision is pending."
+        },
+        {
+          "en": "H: read the current bids."
+        },
+        {
+          "en": "D: read your points."
+        },
+        {
+          "en": "Shift+D: read the other players’ points."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "starting_points": "settings",
+    "ante": "rounds",
+    "pass_penalty": "passing",
+    "rounds": "finish",
+    "count_interval": "settings",
+    "black_chest_chance": "chests",
+    "content_language_id": "settings",
+    "content_pack_ids": "settings"
+  }
+}

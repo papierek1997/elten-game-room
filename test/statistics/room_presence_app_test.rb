@@ -93,6 +93,10 @@ GameRoomPresenceScreen.define_singleton_method(:new) do |**options|
   Object.new.tap { |screen| screen.define_singleton_method(:run) { viewed << options[:reader].call } }
 end
 app3 = klass.new
+available_tables = Struct.new(:access_state) do
+  def available?; true; end
+end.new(:available)
+app3.instance_variable_set(:@server_tables, available_tables)
 app3.define_singleton_method(:read_statistics) { |&operation| operation.call(token) }
 begin
   app3.send(:show_room_activity)
@@ -162,20 +166,21 @@ recovered_store.define_singleton_method(:report) do |cancellation_token:|
   {"public_rooms" => 0, "private_rooms" => 1, "people" => 2}
 end
 screen_app = factory.new
+screen_app.instance_variable_set(:@server_tables, available_tables)
 screen_app.define_singleton_method(:read_statistics) { |&operation| operation.call(token) }
 original_wait, original_name = Form.instance_method(:wait), Session.method(:name)
 account = "Alice"
 Session.define_singleton_method(:name) { account }
 Form.define_method(:wait) do
   summary, refresh = fields
-  assert(summary.text.include?("unavailable"), "Unavailable factory was not shown as unavailable")
+  assert(summary.text.include?("Room activity could not be loaded."), "Unavailable factory was not shown as unavailable")
   runtime_available = true
   refresh.trigger(:press)
   assert(summary.text.include?("People in rooms: 2") && report_reads == 1,
     "Refresh retained the failed factory result instead of recovering in the open screen")
   account = "Bob"
   refresh.trigger(:press)
-  assert(summary.text.include?("unavailable") && report_reads == 1,
+  assert(summary.text.include?("Room activity could not be loaded.") && report_reads == 1,
     "An old presence screen read through a new account")
   account = "ALICE"
   refresh.trigger(:press)

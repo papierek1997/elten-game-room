@@ -51,12 +51,17 @@ h = NativeRoomHarness.new(game: game, users: %w[Alice Bob], options: game.normal
 h.start
 runners = h.users.to_h { |user| [user,runner_for(h,user)] }
 begin
+  step(h, runners.fetch('Alice'))
   h.users.each do |user|
     [ {'kind'=>'dice','action'=>'roll'}, {'kind'=>'dice','action'=>'score','category'=>'stand'} ].each do |input|
       h.as(user) { assert(runners[user].submit(session: h.session, replay: h.replay(user), selection: input, actor: user).first == :ok, 'Native poker input rejected') }
     end
   end
-  assert(h.replay('Alice').finished? && h.replay('Alice').accepted_events.size == 4, 'Native poker did not finish')
+  h.users.each do |user|
+    h.as(user) { assert(runners[user].submit(session:h.session, replay:h.replay(user),
+      selection:{'kind'=>'command','action'=>'check'}, actor:user).first == :ok, 'Native poker check rejected') }
+  end
+  assert(h.replay('Alice').finished? && h.replay('Alice').accepted_events.size == 7, 'Native poker did not finish')
   assert(h.events('Alice').select { |e| e['action'] == 'roll' }.all? { |e| e['__server_random'] }, 'Poker uses local public rolls')
   h.assert_converged('dice poker native')
 ensure

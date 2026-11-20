@@ -349,6 +349,13 @@ unresolved operations instead of dropping them to meet its 128-entry
 completed-history target.
 Network failures also retain the failed startup or one-shot coordination job;
 retrying does not require reopening the tournament or receiving another notice.
+After authenticated login, the coordinator starts even before Power Games has
+been opened. It uses the normal SDK request rather than an extra access probe.
+Only an explicit `apps.tables.stamp_required` refusal suspends background
+table work, including notice verification. The refusal belongs to the current
+login; a fresh successful access check can clear it. An unchecked state, a
+timeout or a rate limit is not a refusal. Ordinary live tables and explicit
+access checks remain independent of the suspended workers.
 
 ## Optional timing and player views
 
@@ -370,8 +377,8 @@ data. Unresolved expired tournaments remain in Current with the usual ordering;
 only sporting completion moves them to Completed. Existing schema-1
 publications retain their recorded dated contract.
 
-Registration projections retain authenticated display names separately from
-canonical account keys. Notice delivery uses those display names without
+Registration projections retain authenticated account-name spelling separately from
+canonical account keys. Notice delivery uses that original spelling without
 rewriting schedule candidates, bindings, operation keys or historical results.
 Organizer notes use the existing publication `rules` field; no schema change is
 needed. Returning to game settings preserves the tournament form. Automatic

@@ -7,6 +7,12 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class LiarsDice < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    def round_ended?(history:, **context)
+      history.any? { |entry| entry.kind == :count } || super(history: history, **context)
+    end
+    def round_timing_start_kinds; [:dice_ready]; end
+    def round_timing_end_kinds; [:count]; end
     include PublicHistoryAnnouncements
     include HiddenSubmissions::Cleanup
     include RoundTournament

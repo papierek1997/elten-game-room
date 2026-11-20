@@ -1,6 +1,7 @@
 require_relative "contracts"
 require_relative "../lib/game_surfaces/specifications"
 require_relative "../lib/game_session_clock"
+require_relative "../lib/game_round_pause"
 require "json"
 require_relative "../lib/game_participants"
 require_relative "../lib/game_teams"
@@ -45,10 +46,17 @@ module GameRoomGames
     def audio_game?; false; end
     # Shared HRTF placement of move sounds by seat. A game opts in only when its
     # event cues come from the moving player; audio and realtime games own their sound scene.
+    # A physical game may instead implement event_sound_positions(history:, replay:)
+    # returning per-cue directions from the current stage's copied public contacts.
     def player_spatial_audio?; false; end
     # Turn-based model/actions can continue behind another native scene. A
     # realtime client owns its simulation, focus and pause protocol separately.
     def session_runner?; true; end
+
+    # Opt in only for games with separately settled rounds, never each turn.
+    def round_pause_seconds(_replay); 0; end
+    def round_pause_end_kinds; round_timing_end_kinds; end
+    def round_pause_deadline(_replay); nil; end
 
     # Pure presentation cues from one accepted event. The presenter supplies
     # its event-local history and cosmetic RNG, then owns playback and mixing.
@@ -59,6 +67,18 @@ module GameRoomGames
     # A game with a local completion presenter may suppress the shared cue.
     def result_sound_cue(before_replay:, after_replay:, viewer:, default_cue:)
       default_cue
+    end
+
+    # Existing game-owned round feedback keeps its audience and tie policy.
+    def standard_round_end_sound?; true; end
+
+    # A round boundary is a public settlement, not a turn, draw or new deal.
+    # Games with other boundary vocabularies override this pure predicate.
+    def round_ended?(before_replay:, after_replay:, history:)
+      return true if history.any? { |entry| %i[round_result round_end round_score hand_result].include?(entry.kind) }
+      before_phase = before_replay.state&.[](:phase)
+      after_phase = after_replay.state&.[](:phase)
+      after_phase == :round_complete && before_phase != :round_complete
     end
 
     # A new participant inherits the existing place, never a rewritten event log.
@@ -129,6 +149,18 @@ module GameRoomGames
 
     PLAYROOM_SUIT_ORDER = %w[H S D C].freeze
     PLAYROOM_RANK_ORDER = %w[2 3 4 5 6 7 8 9 T J Q K A].freeze
+    PLAYROOM_HAND_ORDER = CardHandOrder.new(default_sort: 'colour', sort_modes: %w[colour number], suits: PLAYROOM_SUIT_ORDER, ranks: PLAYROOM_RANK_ORDER)
+    ACQUISITION_HAND_ORDER = CardHandOrder.new(default_sort: 'none', sort_modes: %w[none], suits: [], ranks: [])
+
+    # Each card game declares CARD_HAND_ORDER, even if it never sorts a hand.
+    # Board/dice games need no policy and do not gain card-hand behavior.
+    def card_hand_order(options: {})
+      return nil unless self.class.const_defined?(:CARD_HAND_ORDER)
+
+      order = self.class.const_get(:CARD_HAND_ORDER)
+      raise ArgumentError, "#{self.class} has an invalid CARD_HAND_ORDER" unless order.is_a?(CardHandOrder)
+      order
+    end
 
     # Headless simulations may override this to extend an already materialized
     # replay with newly appended events. Returning nil keeps the safe generic
@@ -403,11 +435,18 @@ module GameRoomGames
         _("The game has already ended.")
       when :not_your_turn
         _("It is not your turn.")
+      when :round_pause
+        _("Waiting for the next round.")
       when :local_storage_unavailable
         _("Your answer could not be saved on this device and was not sent. Please try again.")
       else
         _("This move is not available.")
       end
+    end
+
+    # An optional local cue follows an event's speech, without delaying play.
+    def event_speech_tail_sound(event:, before_replay:, after_replay:, viewer:)
+      nil
     end
 
     def move_error_for(status, selection: nil, replay: nil, actor: nil)
@@ -511,7 +550,16 @@ module GameRoomGames
     # Standard Playroom hand order: group cards by suit, then expose each suit
     # from its lowest rank to its highest rank. Games with duplicate decks may
     # provide a final stable key without changing the visible rank order.
-    def playroom_hand_sort_key(card, ranks: PLAYROOM_RANK_ORDER, suits: PLAYROOM_SUIT_ORDER, tie_breaker: 0)
+    def declared_card_hand_order(options: {})
+      card_hand_order(options: options) || raise(ArgumentError, "#{self.class} must declare CARD_HAND_ORDER")
+    end
+
+    def default_hand_sort(options: {}); declared_card_hand_order(options: options).default_sort; end
+    def hand_sort_modes(options: {}); declared_card_hand_order(options: options).sort_modes; end
+    def hand_suit_order; declared_card_hand_order.suits; end
+    def hand_rank_order; declared_card_hand_order.ranks; end
+
+    def playroom_hand_sort_key(card, ranks: hand_rank_order, suits: hand_suit_order, tie_breaker: 0)
       suit_index = suits.index(card_suit(card))
       rank_index = ranks.index(card_rank(card))
       [
@@ -522,9 +570,22 @@ module GameRoomGames
     end
 
     def standard_hand_sort_keys(rank:, suit:, position:)
-      suit_index = PLAYROOM_SUIT_ORDER.index(suit) || PLAYROOM_SUIT_ORDER.length
-      rank_index = PLAYROOM_RANK_ORDER.index(rank) || PLAYROOM_RANK_ORDER.length
+      suit_index = hand_suit_order.index(suit) || hand_suit_order.length
+      rank_index = hand_rank_order.index(rank) || hand_rank_order.length
       { "colour" => [suit_index, rank_index], "number" => [rank_index, suit_index], "none" => [position] }
+    end
+
+    def standard_hand_navigation_group(rank:, suit:)
+      label = case suit
+      when "H" then p_("Card suit", "Hearts")
+      when "S" then p_("Card suit", "Spades")
+      when "D" then p_("Card suit", "Diamonds")
+      when "C" then p_("Card suit", "Clubs")
+      end
+      if rank == "X"
+        return GameSurfaces::CardNavigationGroup.new(id: "joker", label: p_("Card suit", "Jokers"), order: hand_suit_order.length)
+      end
+      GameSurfaces::CardNavigationGroup.new(id: suit, label: label, order: hand_suit_order.index(suit)) if label
     end
 
     def canonical_value(value)
@@ -644,4 +705,5 @@ require_relative "base/teams"
 require_relative "base/bots"
 
 require_relative "base/shortcuts"
+require_relative "base/information"
 require_relative "base/tournaments"

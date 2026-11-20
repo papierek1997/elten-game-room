@@ -4,7 +4,7 @@ require_relative '../../games/ninety_nine'
 [2, 4, 8].each do |count|
   game = GameRoomGames::NinetyNine.new
   h, runners = PrivateCardGamesTest.create(game, users: Array.new(count) { |i| "Player#{i}" },
-    options: {'starting_tokens'=>2, 'thinking_time'=>600})
+    options: {'starting_tokens'=>2, 'thinking_time'=>600}, clock: ClockEventContract::ManualTime.new)
   assert(h.replay(h.users.first).state[:phase] == :playing, 'private deal stalled')
   draws = 0
   300.times do

@@ -546,7 +546,7 @@ module GameRoomGames
 
     def normalized_ranked_word(value)
       word = @bank.normalize(value)
-      @bank.include?(word) ? word : nil
+      @bank.historical?(word) ? word : nil
     end
   end
 end

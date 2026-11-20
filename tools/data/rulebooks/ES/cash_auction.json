@@ -1,0 +1,192 @@
+{
+  "source": "games/cash_auction.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "es": "Objetivo del juego"
+      },
+      "paragraphs": [
+        {
+          "es": "Subasta de dinero combina pujas simultáneas y preguntas para dos a ocho jugadores, incluidos bots. Cada pregunta tiene cuatro opciones y una correcta. Se empieza con 10000 puntos por defecto. Gana quien conserve más puntos entre quienes sigan en la partida. Los cofres negros pueden aumentar o reducir tu puntuación final."
+        },
+        {
+          "es": "Cada subasta empieza con el sorteo de una categoría y una aportación de todos los jugadores que sigan en juego. Después pujáis por el derecho a responder. Acertar da todo el bote; un fallo lo deja para otra subasta."
+        }
+      ]
+    },
+    {
+      "id": "rounds",
+      "title": {
+        "es": "Comienzo de la subasta"
+      },
+      "paragraphs": [
+        {
+          "es": "La ruleta anuncia la categoría de la pregunta y el conjunto al que pertenece. La pregunta saldrá de esa categoría en el conjunto anunciado. Todos los jugadores que sigan en la partida aportan entonces 100 puntos al bote común. Quien no pueda pagar queda eliminado definitivamente. Los puntos que ya hubiera en el bote permanecen en él."
+        },
+        {
+          "es": "Las pujas son simultáneas: no tienes que esperar un turno. Al empezar la subasta, el foco está en el campo del importe. Escribe tu oferta y pulsa Intro. Una oferta aceptada vacía el campo; si es inválida, el texto queda para que lo corrijas. Se anuncian la ronda de preguntas actual, el bote, la mayor oferta y el jugador que va ganando."
+        },
+        {
+          "es": "Tras una oferta se anuncia a la de una, a la de dos y a la de tres, normalmente cada tres segundos. Después del tercer aviso queda un intervalo más para pujar; solo la adjudicación cierra la subasta. Cada subida reinicia los avisos. Por defecto se cierra tras doce segundos sin otra oferta. Si nadie puja, el bote se acumula."
+        },
+        {
+          "es": "P anuncia el bote. T indica quién puede actuar; durante la subasta, todos los jugadores habilitados pueden pujar a la vez. H anuncia las ofertas actuales. D anuncia tus puntos y Mayús+D los de los demás jugadores."
+        }
+      ]
+    },
+    {
+      "id": "bidding",
+      "title": {
+        "es": "Cuánto cuesta una puja"
+      },
+      "paragraphs": [
+        {
+          "es": "Tu oferta es el importe total que comprometes en esta subasta, aparte de la aportación inicial. La primera oferta debe ser como mínimo igual a esa aportación, incluso si vas con todo. Todas las ofertas deben superar la más alta. Todos los que pujan pagan en el acto, aunque después pierdan la subasta; esos puntos no se devuelven."
+        },
+        {
+          "es": "Al subir tu propia oferta solo pagas la diferencia. Si ofreciste 100, subir a 250 cuesta otros 150. Como máximo puedes ofrecer tu saldo restante más lo que ya hayas pagado en pujas durante esta subasta."
+        },
+        {
+          "es": "Si todavía te quedan puntos, puedes ir con todo: escribe A en el campo del importe y pulsa Intro. Comprometes todos los puntos restantes; lo ya pagado en pujas durante esta subasta se suma para formar la oferta total. También puedes escribir ese importe total en vez de A. Si supera la mayor oferta, cierras la subasta al instante y ganas la pregunta o el cofre negro. Nadie puede volver a subirla. Si tu total disponible no supera la oferta que va ganando, no puedes pujar ni ir con todo."
+        },
+        {
+          "es": "Puedes subir tu propia oferta hasta que se cierre la subasta. Gana la última oferta más alta aceptada. Se rechaza la que llegue después del plazo, aunque aún se esté leyendo el anuncio de cierre."
+        }
+      ]
+    },
+    {
+      "id": "passing",
+      "title": {
+        "es": "Penalización por no pujar"
+      },
+      "paragraphs": [
+        {
+          "es": "Si no quieres pujar, espera a que termine la subasta."
+        },
+        {
+          "es": "Cada subasta en la que no haces ninguna oferta cuenta como una subasta sin participar. La aportación inicial no cuenta como oferta. Tras tres subastas seguidas sin pujar, pierdes el 5 % de los puntos que te quedan al cerrarse la tercera y la cuenta vuelve a cero. La penalización se redondea hacia arriba a un punto entero. Cualquier oferta aceptada reinicia la cuenta, aunque luego pierdas la subasta."
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "title": {
+        "es": "Responder a la pregunta"
+      },
+      "paragraphs": [
+        {
+          "es": "Tras la subasta, todos pueden leer la pregunta y las respuestas A–D, pero solo responde quien la haya ganado. La pregunta aparece en un campo de texto de solo lectura. Pulsa Abajo para ir a la lista, elige con las flechas y confirma con Intro. No hay límite de tiempo para responder."
+        },
+        {
+          "es": "Si acierta, el ganador de la subasta recibe todo el bote y el nuevo bote empieza en cero. Si falla, se conserva todo para la siguiente subasta. Si fuiste con todo y tras el fallo no te quedan puntos, quedas eliminado definitivamente."
+        },
+        {
+          "es": "Antes de responder, quien gane la subasta puede comprar una pista una vez para eliminar dos opciones incorrectas. Cuesta el 10 % de sus puntos restantes, redondeado hacia arriba, con un mínimo de uno; el botón muestra el precio exacto. El pago sale del juego y no entra en el bote. Sin puntos no se puede comprar."
+        }
+      ]
+    },
+    {
+      "id": "chests",
+      "title": {
+        "es": "Cofres negros"
+      },
+      "paragraphs": [
+        {
+          "es": "Por defecto, un cofre negro sustituye a la categoría y la pregunta en el 10 % de los giros. Se puja normalmente y quien gane lo conserva cerrado. El bote de las preguntas anteriores se conserva para la siguiente pregunta, pero las aportaciones iniciales, las pujas y las penalizaciones de la subasta del cofre no lo aumentan. Esos puntos salen del juego. Estas subastas no cuentan para el límite de preguntas."
+        },
+        {
+          "es": "Antes del recuento final, el juego espera cinco segundos y abre automáticamente todos los cofres, incluidos los de los jugadores eliminados. Oirás el anuncio de apertura, el sonido de los cofres y su contenido. Cuatro segundos después de anunciar su contenido, se comunica el resultado final."
+        },
+        {
+          "es": "Un cofre puede sumar o restar el 5 %, 10 %, 15 %, 20 %, 25 %, 30 % o 35 % de tus puntos. Hay un 60 % de probabilidades de ganar puntos, un 30 % de perderlos y un 10 % de que nada cambie. Los cambios pequeños son más frecuentes: el 5 % es el más probable y el 35 % el más raro."
+        },
+        {
+          "es": "Si tienes varios cofres, suma sus porcentajes con el signo correspondiente y aplica el total al saldo que tenías antes de abrirlos. Por ejemplo, +20 % y -10 % convierten 10000 puntos en 11000, sin importar el orden de apertura. Solo se redondea la puntuación final al entero más cercano, y nunca puede bajar de cero. Abrir un cofre no devuelve a la partida a un jugador eliminado."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "es": "Final de la partida"
+      },
+      "paragraphs": [
+        {
+          "es": "Una partida normal incluye ocho preguntas respondidas, bien o mal. No cuentan los cofres ni las subastas sin ofertas. También termina si queda como máximo un jugador. Todos abren sus cofres y se aplican sus efectos antes de anunciar el resultado final."
+        },
+        {
+          "es": "Después de abrir todos los cofres, gana quien tenga más puntos entre los jugadores que sigan en la partida. Si varios comparten el saldo más alto, se sigue hasta responder otra pregunta con todos los que sigan en juego, no solo con los líderes empatados. Las subastas de cofres y las subastas sin ofertas no terminan este desempate. Se abren los nuevos cofres antes de comparar otra vez los saldos y se repite si hace falta. Si no queda ningún jugador, la partida termina en empate."
+        },
+        {
+          "es": "Fuera de la subasta, S anuncia los saldos y los cofres sin abrir de todos los jugadores, también mientras se muestra una pregunta. Durante las pujas, usa Mayús+S."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "es": "Ajustes de la mesa"
+      },
+      "paragraphs": [
+        {
+          "es": "Antes de empezar, elige el idioma de las preguntas y entre uno y tres conjuntos de Quiz en los ajustes de la mesa. De forma predeterminada solo está marcado el conjunto de cultura general del idioma elegido. Usa Espacio para marcar o desmarcar conjuntos e Intro para confirmar. La ruleta elige categorías de los conjuntos seleccionados. Cada categoría conserva su conjunto de origen, por lo que no se mezclan las de igual nombre en conjuntos distintos. Las preguntas pueden estar en un idioma distinto al de la interfaz."
+        },
+        {
+          "es": "En lugar de los 10000 puntos iniciales puedes elegir cualquier número entero entre 10 y 1000000. La aportación al empezar cada subasta puede ir de 1 punto hasta todo el saldo inicial."
+        },
+        {
+          "es": "Puedes elegir de 8 a 32 preguntas y de 1 a 5 segundos entre avisos. Por defecto son ocho preguntas y tres segundos. Sin apostar todo, la subasta cierra tras cuatro intervalos sin subida, dejando uno tras el tercer aviso. La probabilidad de cofre puede fijarse entre el 5 % y el 15 %, con un 10 % por defecto."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "es": "Controles"
+      },
+      "paragraphs": [
+        {
+          "es": "Intro en el campo del importe: enviar la oferta escrita."
+        },
+        {
+          "es": "A: escribe A en el campo del importe y pulsa Intro. Si tu total supera la mayor oferta, vas con todo y ganas la subasta al instante."
+        },
+        {
+          "es": "Abajo desde la pregunta: ir a las respuestas. Las flechas eligen una opción e Intro la envía si ganaste la subasta."
+        },
+        {
+          "es": "S: fuera de las pujas, leer saldos y cofres cerrados."
+        },
+        {
+          "es": "Mayús+S: durante las pujas, leer saldos y cofres cerrados."
+        },
+        {
+          "es": "P: consultar el bote."
+        },
+        {
+          "es": "T: consultar quién puede actuar."
+        },
+        {
+          "es": "H: consultar las ofertas actuales."
+        },
+        {
+          "es": "D: consultar tus puntos."
+        },
+        {
+          "es": "Mayús+D: consultar los puntos de los demás jugadores."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "starting_points": "settings",
+    "ante": "rounds",
+    "pass_penalty": "passing",
+    "rounds": "finish",
+    "count_interval": "settings",
+    "black_chest_chance": "chests",
+    "content_language_id": "settings",
+    "content_pack_ids": "settings"
+  }
+}

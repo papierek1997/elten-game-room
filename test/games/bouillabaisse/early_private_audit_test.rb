@@ -2,7 +2,8 @@ require_relative '../../support/private_card_games'
 require_relative '../../../games/bouillabaisse'
 
 game = GameRoomGames::Bouillabaisse.new
-h, runners = PrivateCardGamesTest.create(game, users: %w[Alice Bob Carol], random_values: Array.new(16, 2))
+h, runners = PrivateCardGamesTest.create(game, users: %w[Alice Bob Carol], random_values: Array.new(16, 2),
+  clock: ClockEventContract::ManualTime.new)
 begin
   51.times do
     actor = h.replay('Alice').current_player

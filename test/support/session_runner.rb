@@ -12,10 +12,12 @@ def runner_for(h, user = h.users.first, covered: -> { true })
   context = GameRoomGames::ActionContext.new(hidden_submissions: HiddenSubmissions::Vault.new(HiddenSubmissions::MemoryStorage.new),
     random_source: GameRoomRandom::LocalSecureSource.new)
   h.as(user) do
-    GameRoomSessionRunner.new(program: program, transport: transport, repository: h.repositories.fetch(user),
+    runner = GameRoomSessionRunner.new(program: program, transport: transport, repository: h.repositories.fetch(user),
       game: h.game, session: h.session, table: h.table, owner: h.users.first, viewer: user,
       room_snapshot_provider: -> { lobby.snapshot_for(h.table) }, context: context,
       game_status_changed: ->(table, active) { lobby.set_game_active(table, active) }, covered: covered)
+    runner.instance_variable_set(:@clock, h.clock.session_clock) if h.clock
+    runner
   end
 end
 

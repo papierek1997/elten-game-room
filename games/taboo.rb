@@ -27,6 +27,7 @@ module GameRoomGames
     def id; "taboo"; end
     def notification_option_keys(_options); %w[content_language_id content_set_id]; end
     def name; _("Taboo"); end
+    def round_timing_start_kinds; [:taboo_start]; end
 
 def short_description
   _("Help your team guess as many words as possible by describing them aloud without using the forbidden words.")

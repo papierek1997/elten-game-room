@@ -22,6 +22,14 @@ game = GameRoomGames::Poker.new
 end
 
 trial = TimedCardCase.new(game, {}, %w[A B C])
+raising = TimedCardCase.new(game, {}, %w[A B C])
+raise_actor = raising.replay.current_player
+raise_move = game.legal_actions(raising.replay, raise_actor).find { |item| item['action'] == 'raise' }
+before_raise = raising.replay.state[:current_bet]
+raising.act(raise_move)
+bet = raising.replay.history.reverse.find { |entry| entry.field == 'poker_bet' }
+expected_raise = "#{raise_actor} raises by #{raising.replay.state[:street_bets][raise_actor] - before_raise}."
+assert(bet.text == expected_raise, 'Raise repeats the total instead of just the increment')
 before = trial.replay
 actor = before.current_player
 choice = game.legal_actions(before, actor).find { |item| item['action'] == 'call' }

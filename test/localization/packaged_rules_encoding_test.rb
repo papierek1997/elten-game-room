@@ -15,7 +15,8 @@ GameRoomBotNames::NAMES.each do |token, name|
   end
 end
 expected_games = JSON.parse(File.read(File.join(__dir__, '../fixtures/game_descriptions_pl.json'), encoding: 'UTF-8')).keys
-raise "Unexpected games during binary loading" unless registry.ids.sort == expected_games.sort
+missing_games, unexpected_games = expected_games - registry.ids, registry.ids - expected_games
+raise "Unexpected games during binary loading: missing=#{missing_games.inspect}, extra=#{unexpected_games.inspect}" unless missing_games.empty? && unexpected_games.empty?
 raise "Typing Mania was not loaded from binary sources" unless registry.ids.include?('mania_pisania')
 %w[bouillabaisse scopa].each { |id| raise "Missing new card game: #{id}" unless registry.ids.include?(id) }
 raise "Bridge was not loaded from binary sources" unless registry.ids.include?("bridge")
@@ -120,7 +121,9 @@ binary_transport = Object.new
 binary_transport.define_singleton_method(:start) { true }
 invitation_app.instance_variable_set(:@transport, binary_transport)
 invitation_app.define_singleton_method(:initialize_services) {}
-invitation_app.define_singleton_method(:check_server_table_access) {}
+invitation_app.define_singleton_method(:check_server_table_access) do |announce: true|
+  raise 'Ordinary invitation suppressed its access announcement' unless announce
+end
 invitation_app.define_singleton_method(:run_network_task) { |*_args, **_kwargs, &operation| operation.call }
 invitation_app.define_singleton_method(:load_pending_invitations) do
   collector.pending(recipient: "Bob").map do |row|

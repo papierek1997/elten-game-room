@@ -3,7 +3,7 @@ require 'json'
 module GameRoomContent
   module Packa0830f585cc4689a1e2a6335
     def self.load
-      JSON.parse(<<'QUIZ_DATA_da9ba54b6f1641e06aa7c8dfe773fa1b8d8421dc2ea4ea5c899f536032cc1b63')
+      JSON.parse(<<'QUIZ_DATA_7b9a417ee0590cd544985b1abeb873a163be8331562ce566179f385a73ab29fb')
 {
   "questions": [
     {
@@ -15130,7 +15130,7 @@ module GameRoomContent
       "id": "1z10_5b5b64f5b3bbee7b",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "Geografia Polski. Nad którą rzeką leży Włodawa?",
+      "prompt": "Nad którą rzeką leży Włodawa?",
       "correct": "Nad Bugiem",
       "wrong": [
         "Nad Wieprzem",
@@ -20522,7 +20522,7 @@ module GameRoomContent
       "id": "1z10_46314e99c70bbc6b",
       "category": "Geografia",
       "level": "medium",
-      "prompt": "Miasta. Tartu, Narwa i Parnawa. To miasta w którym bałtyckim państwie?",
+      "prompt": "W którym państwie bałtyckim leżą Tartu, Narwa i Parnawa?",
       "correct": "W Estonii",
       "wrong": [
         "Na Łotwie",
@@ -35578,7 +35578,7 @@ module GameRoomContent
       "id": "polqa_02877",
       "category": "Historia",
       "level": "medium",
-      "prompt": "Żoną którego króla Maria Kazimiera d'Arquien, zwana Marysieńką?",
+      "prompt": "Żoną którego króla była Maria Kazimiera d'Arquien, zwana Marysieńką?",
       "correct": "Jana III Sobieskiego",
       "wrong": [
         "Michała Korybuta Wiśniowieckiego",
@@ -109898,7 +109898,7 @@ module GameRoomContent
       "id": "polqa_01743",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "„Tak, zemsta, zemsta na wroga, z Bogiem i choćby mimo Boga” – kto wypowiada te słowa w III części „Dziadów” Adama Mickiewicza?",
+      "prompt": "„Tak, zemsta, zemsta na wroga, z Bogiem i choćby mimo Boga” – kto wypowiada te słowa w 3. części „Dziadów” Adama Mickiewicza?",
       "correct": "Konrad",
       "wrong": [
         "ksiądz Piotr",
@@ -111354,7 +111354,7 @@ module GameRoomContent
       "id": "polqa_02519",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Kto jest autorem powieści „Dzieci pan Granta”?",
+      "prompt": "Kto jest autorem powieści „Dzieci kapitana Granta”?",
       "correct": "Juliusz Verne",
       "wrong": [
         "Robert Louis Stevenson",
@@ -130138,7 +130138,7 @@ module GameRoomContent
       "id": "1z10_c99621ab81243487",
       "category": "Literatura",
       "level": "medium",
-      "prompt": "Jakie znamię pojawia się na czole Balladyny, bohaterki?",
+      "prompt": "Jakie znamię pojawia się na czole Balladyny, bohaterki dramatu Juliusza Słowackiego?",
       "correct": "Krwawa plama, której nie da się zmyć",
       "wrong": [
         "Blizna w kształcie krzyża",
@@ -239717,7 +239717,7 @@ module GameRoomContent
   ],
   "source": "content/QUIZ_PL_GENERAL_SOURCES.txt"
 }
-QUIZ_DATA_da9ba54b6f1641e06aa7c8dfe773fa1b8d8421dc2ea4ea5c899f536032cc1b63
+QUIZ_DATA_7b9a417ee0590cd544985b1abeb873a163be8331562ce566179f385a73ab29fb
     end
   end
 end

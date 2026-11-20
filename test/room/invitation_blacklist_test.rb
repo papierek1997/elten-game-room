@@ -19,11 +19,11 @@ class BlacklistInvitationApp < InvitationAppDriver
   def initialize(*args, **options)
     super
     @invitations = nil
-    @server_tables = {}
+    @server_tables = AvailableTables.new
     initialize_services # Exercise the actual factory's callback, not a test-only filter.
   end
   def register_room_presence; end
-  def check_server_table_access; end
+  def check_server_table_access(announce: true); end
   def record_statistics_visit; end
   def run_program_interface(row); @entered = row; end
   def select_notification_invitation_action; :accept; end

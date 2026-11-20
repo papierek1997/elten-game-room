@@ -90,8 +90,7 @@ module GameRoomGames
             GameRoomRules.translate("S: read the scores."),
             GameRoomRules.translate("T: read whose turn it is."),
             GameRoomRules.translate("Shift+C: sort cards by suit."),
-            GameRoomRules.translate("Shift+H: sort cards by rank."),
-            GameRoomRules.translate("Shift+M: restore received order."))
+            GameRoomRules.translate("Shift+H: sort cards by rank."))
         ]
       end
 
@@ -183,8 +182,7 @@ module GameRoomGames
               "S: sk\u00F3re.",
               "T: kdo je na tahu.",
               "Shift+C: \u0159azen\u00ED karet podle barvy.",
-              "Shift+H: \u0159azen\u00ED podle hodnoty.",
-              "Shift+M: p\u016Fvodn\u00ED po\u0159ad\u00ED karet.")
+              "Shift+H: \u0159azen\u00ED podle hodnoty.")
           ]
         when "en"
           [
@@ -272,8 +270,7 @@ module GameRoomGames
               "S: read the scores.",
               "T: read whose turn it is.",
               "Shift+C: sort cards by suit.",
-              "Shift+H: sort cards by rank.",
-              "Shift+M: restore received order.")
+              "Shift+H: sort cards by rank.")
           ]
         when "es"
           [
@@ -450,8 +447,7 @@ module GameRoomGames
               "S: odczyt wyniku.",
               "T: odczyt, czyja jest tura.",
               "Shift+C: sortowanie kart wed\u0142ug koloru.",
-              "Shift+H: sortowanie kart wed\u0142ug warto\u015Bci.",
-              "Shift+M: przywr\u00F3cenie kolejno\u015Bci otrzymanych kart.")
+              "Shift+H: sortowanie kart wed\u0142ug warto\u015Bci.")
           ]
         when "ru"
           [
@@ -539,8 +535,7 @@ module GameRoomGames
               "S: \u0441\u0447\u0451\u0442.",
               "T: \u0447\u0435\u0439 \u0445\u043E\u0434.",
               "Shift+C: \u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0430 \u043F\u043E \u043C\u0430\u0441\u0442\u0438.",
-              "Shift+H: \u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0430 \u043F\u043E \u0441\u0442\u0430\u0440\u0448\u0438\u043D\u0441\u0442\u0432\u0443.",
-              "Shift+M: \u0438\u0441\u0445\u043E\u0434\u043D\u044B\u0439 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043A\u0430\u0440\u0442.")
+              "Shift+H: \u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0430 \u043F\u043E \u0441\u0442\u0430\u0440\u0448\u0438\u043D\u0441\u0442\u0432\u0443.")
           ]
         end
       end

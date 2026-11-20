@@ -79,9 +79,11 @@ module GameRoomContactFiltersRuntime
       @contact_revision = revision
       contact_notifications_changed
     end
-    active_ids = contact_notice_active_ids
     queue = @contact_pending
-    queue.entries.each do |notification, _deadline, was_active|
+    entries = queue.entries
+    return if entries.empty?
+    active_ids = contact_notice_active_ids
+    entries.each do |notification, _deadline, was_active|
       next if GameRoomClock.server_available? && !GameRoomClock.synchronized?
       expires = GameRoomNotificationTime.expires_at(notification)
       expired = expires > 0 && expires <= GameRoomClock.now.to_i

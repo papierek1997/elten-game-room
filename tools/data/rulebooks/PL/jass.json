@@ -1,0 +1,104 @@
+{
+  "source": "games/jass_support/jass_table.rb",
+  "sections": [
+    {
+      "id": "play",
+      "paragraphs": [
+        {
+          "pl": "Cztery osoby grają w dwóch parach, z partnerami naprzeciw siebie. Każdy dostaje dziewięć kart z talii 36 kart, od szóstki do asa. Osoba po rozdającym wybiera atut albo przekazuje wybór partnerowi, który musi zdecydować. Do pierwszej lewy zawsze wychodzi osoba po rozdającym. Po każdym rozdaniu rozdaje następny gracz."
+        },
+        {
+          "pl": "Pierwsza karta ustala kolor lewy. Do wyjścia w atucie trzeba dołożyć atut, jeśli go masz. Do innego koloru możesz dołożyć albo zagrać atut. Gdy nie masz koloru wyjścia, możesz też zrzucić inną kartę. Niższy atut od już położonego wolno zagrać tylko przy braku innego legalnego ruchu. Wygrywa najwyższy atut, a bez atutu najwyższa karta koloru wyjścia. Zwycięzca wychodzi do następnej lewy."
+        }
+      ],
+      "title": {
+        "pl": "Jak grać w Jassa"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "pl": "Atuty od najsilniejszego to walet, dziewiątka, as, król, dama, dziesiątka, ósemka, siódemka i szóstka. Walet daje dwadzieścia punktów, a dziewiątka czternaście. Poza atutem kolejność to as, król, dama, walet, dziesiątka, dziewiątka, ósemka, siódemka i szóstka. As daje 11, dziesiątka 10, król 4, dama 3, a walet poza atutem 2 punkty. Pozostałe karty dają zero. Ostatnia lewa dodaje pięć, więc w rozdaniu jest razem 157 punktów."
+        }
+      ],
+      "title": {
+        "pl": "Siła kart i punkty"
+      }
+    },
+    {
+      "id": "settings",
+      "paragraphs": [
+        {
+          "pl": "Wariant z atutem pozwala wybrać jeden z czterech kolorów. Schieber dodaje Obenabe i Undenufe, oba bez atutu. W Obenabe wygrywa najwyższa karta koloru wyjścia, a ósemki dają osiem punktów. W Undenufe wygrywa najniższa karta: szóstki dają jedenaście, asy zero, a ósemki osiem punktów. W obu trybach trzeba dokładać do koloru, jeśli go masz."
+        },
+        {
+          "pl": "Punkty za lewę trafiają do pary, która ją wygrała. Przy tworzeniu stołu wybierz cel meczu: 1000, 1500, 2000 albo 2500 punktów. Mecz kończy się na końcu rozdania, w którym para osiągnie ten cel."
+        }
+      ],
+      "title": {
+        "pl": "Odmiany i cel punktowy"
+      }
+    },
+    {
+      "id": "controls",
+      "paragraphs": [
+        {
+          "pl": "Strzałki: przeglądaj karty lub pozycje menu."
+        },
+        {
+          "pl": "Enter: wybierz zasady rozdania przed rozgrywką albo zagraj kartę podczas lewy."
+        },
+        {
+          "pl": "B: otwórz dostępne kolory atutowe i tryby bez atutu."
+        },
+        {
+          "pl": "F: odczytaj zasady rozdania i kolor wyjścia."
+        },
+        {
+          "pl": "R: sprawdź, kto wybiera atut albo jaki tryb wybrano."
+        },
+        {
+          "pl": "V: przypomnij zasady rozdania."
+        },
+        {
+          "pl": "Shift+S: odczytaj punkty rozdania."
+        },
+        {
+          "pl": "H: odczytaj swoją rękę."
+        },
+        {
+          "pl": "C: odczytaj karty na stole."
+        },
+        {
+          "pl": "Ctrl+C: przejrzyj te karty."
+        },
+        {
+          "pl": "S: odczytaj wyniki."
+        },
+        {
+          "pl": "T: sprawdź, czyja jest tura."
+        },
+        {
+          "pl": "Z: znajdź następną kartę, którą można zagrać."
+        },
+        {
+          "pl": "Shift+Z: znajdź poprzednią kartę, którą można zagrać."
+        },
+        {
+          "pl": "Shift+C: sortuj rękę według kolorów."
+        },
+        {
+          "pl": "Shift+H: sortuj rękę według wartości."
+        }
+      ],
+      "title": {
+        "pl": "Skróty klawiszowe"
+      }
+    }
+  ],
+  "option_chapters": {
+    "variant": "settings",
+    "score_limit": "settings"
+  }
+}

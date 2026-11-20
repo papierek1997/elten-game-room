@@ -1,0 +1,104 @@
+{
+  "source": "games/jass_support/jass_table.rb",
+  "sections": [
+    {
+      "id": "play",
+      "paragraphs": [
+        {
+          "cs": "Čtyři hráči tvoří dvě dvojice, spoluhráči sedí naproti sobě. Každý dostane devět karet z balíčku 36, od šestky po eso. Hráč po rozdávajícím zvolí trumfy nebo přenechá volbu spoluhráči, který už musí rozhodnout. První zdvih vždy začíná hráč po rozdávajícím. V dalším rozdání rozdává další hráč."
+        },
+        {
+          "cs": "První karta určuje barvu. Na trumfový výnos musíš přiznat trumf, máš-li ho. Na jinou barvu můžeš přiznat nebo trumfovat; bez ní smíš odhodit. Nižší trumf než už zahraný smíš dát jen tehdy, nemáš-li jinou dovolenou kartu. Bere nejvyšší trumf, jinak nejvyšší karta vynesené barvy. Vítěz začíná další zdvih."
+        }
+      ],
+      "title": {
+        "cs": "Jak hrát Jass"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "cs": "Trumfy mají pořadí kluk, devítka, eso, král, dáma, desítka, osmička, sedmička, šestka. Kluk dává dvacet bodů a devítka čtrnáct. V ostatních barvách je pořadí eso, král, dáma, kluk, desítka, devítka, osmička, sedmička, šestka. Eso dává 11, desítka 10, král 4, dáma 3 a netrumfový kluk 2 body, ostatní nulu. Poslední zdvih přidává pět, celkem je 157 bodů."
+        }
+      ],
+      "title": {
+        "cs": "Pořadí karet a body"
+      }
+    },
+    {
+      "id": "settings",
+      "paragraphs": [
+        {
+          "cs": "Varianta s trumfy nabízí čtyři barvy. Schieber přidává Obenabe a Undenufe bez trumfů. V Obenabe vyhrává nejvyšší karta vynesené barvy a osmičky dávají osm bodů. V Undenufe bere nejnižší karta; šestky dávají jedenáct, esa nulu a osmičky osm. V obou režimech musíš přiznat barvu, pokud ji máš."
+        },
+        {
+          "cs": "Body za zdvih získá dvojice jeho vítěze. Při tvorbě stolu zvol cíl 1000, 1500, 2000 nebo 2500 bodů. Hra končí na konci rozdání, v němž dvojice cíle dosáhne."
+        }
+      ],
+      "title": {
+        "cs": "Varianty a bodový cíl"
+      }
+    },
+    {
+      "id": "controls",
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházej karty nebo nabídku."
+        },
+        {
+          "cs": "Enter: zvol pravidla rozdání nebo zahraj kartu do zdvihu."
+        },
+        {
+          "cs": "B: otevři dostupné trumfy a režimy bez trumfů."
+        },
+        {
+          "cs": "F: přečti pravidla rozdání a vynesenou barvu."
+        },
+        {
+          "cs": "R: zjisti, kdo volí trumfy nebo jaký režim byl zvolen."
+        },
+        {
+          "cs": "V: zopakuj pravidla rozdání."
+        },
+        {
+          "cs": "Shift+S: přečti body za rozdání."
+        },
+        {
+          "cs": "H: přečti svou ruku."
+        },
+        {
+          "cs": "C: přečti karty na stole."
+        },
+        {
+          "cs": "Ctrl+C: prohlédni si tyto karty."
+        },
+        {
+          "cs": "S: přečti skóre."
+        },
+        {
+          "cs": "T: zjisti, kdo je na tahu."
+        },
+        {
+          "cs": "Z: najdi další hratelnou kartu."
+        },
+        {
+          "cs": "Shift+Z: najdi předchozí hratelnou kartu."
+        },
+        {
+          "cs": "Shift+C: seřaď ruku podle barev."
+        },
+        {
+          "cs": "Shift+H: seřaď ruku podle hodnot."
+        }
+      ],
+      "title": {
+        "cs": "Klávesové zkratky"
+      }
+    }
+  ],
+  "option_chapters": {
+    "variant": "settings",
+    "score_limit": "settings"
+  }
+}

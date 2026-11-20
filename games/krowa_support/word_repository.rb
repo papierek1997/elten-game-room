@@ -10,10 +10,10 @@ module GameRoomKrowa
     attr_reader :lengths, :size, :words
 
     def self.default
-      new(NounData::WORDS.each_line)
+      new(NounData::WORDS.each_line, retired: NounData::RETIRED_WORDS.each_line)
     end
 
-    def initialize(lines)
+    def initialize(lines, retired: [])
       @words_by_length = Hash.new { |hash, length| hash[length] = [] }
       @word_set = {}
       @word_indexes = {}
@@ -37,12 +37,18 @@ module GameRoomKrowa
       @word_set.freeze
       @word_indexes.freeze
       @words_by_length.freeze
+      @retired = retired.to_h { |word| [Normalizer.call(word), true] }.freeze
 
       raise ArgumentError, "The noun repository is empty" if @size == 0
     end
 
     def include?(word)
       @word_set.key?(Normalizer.call(word))
+    end
+
+    def historical?(word)
+      normalized = Normalizer.call(word)
+      @word_set.key?(normalized) || @retired.key?(normalized)
     end
 
     def words_of_length(length)

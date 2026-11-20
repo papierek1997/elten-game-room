@@ -14,6 +14,10 @@ module GameRoomGames
     CARD_SUITS = %w[C D H S].freeze
     CARD_RANKS = %w[2 3 4 5 6 7 8 9 T J Q K A].freeze
 
+    def card_hand_order(options: {})
+      super || raise(ArgumentError, "#{self.class} must declare CARD_HAND_ORDER")
+    end
+
     def perfect_information?
       false
     end
@@ -65,24 +69,34 @@ module GameRoomGames
     end
 
     def playing_card_sort_key(card)
-      [
-        CARD_SUITS.index(playing_card_suit(card)) || CARD_SUITS.length,
-        CARD_RANKS.index(playing_card_rank(card)) || CARD_RANKS.length,
-        card.to_s
-      ]
+      standard_hand_sort_keys(rank: playing_card_rank(card), suit: playing_card_suit(card), position: 0).fetch('colour') + [card.to_s]
+    end
+
+    # One declared order for the initial hand, received cards and model readouts.
+    # Physical acquisition order remains in the reducer and the `none` keys.
+    def hand_cards_for_display(hand)
+      return hand if default_hand_sort.to_s.empty? || default_hand_sort == 'none'
+      return hand.sort_by { |card| playing_card_sort_key(card) } if default_hand_sort == 'colour'
+
+      hand.each_with_index.sort_by do |card, position|
+        standard_hand_sort_keys(rank: playing_card_rank(card), suit: playing_card_suit(card), position: position).fetch(default_hand_sort) + [card.to_s]
+      end.map(&:first)
     end
 
     def card_hand_surface(cards, header: _("Your hand"), zone: "hand", choices: nil, hand_epoch: nil)
-      visible = cards.to_a.sort_by { |card| playing_card_sort_key(card) }.map do |card|
+      visible = hand_cards_for_display(cards.to_a).map do |card|
         GameSurfaces::Card.new(
           id: card,
           label: playing_card_label(card),
           value: card,
+          navigation_group: standard_hand_navigation_group(rank: playing_card_rank(card), suit: playing_card_suit(card)),
           sort_keys: standard_hand_sort_keys(rank: playing_card_rank(card), suit: playing_card_suit(card), position: cards.index(card)),
           choices: choices.respond_to?(:call) ? choices.call(card) : nil
         )
       end
       GameSurfaces::CardTableSpec.new(
+        default_sort: default_hand_sort,
+        sort_modes: hand_sort_modes,
         zones: [
           GameSurfaces::CardZoneSpec.new(
             id: zone,

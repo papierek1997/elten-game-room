@@ -1,0 +1,153 @@
+{
+  "source": "games/belote_support/belote_table.rb",
+  "sections": [
+    {
+      "id": "play",
+      "paragraphs": [
+        {
+          "en": "Four players form two partnerships, with partners sitting across the table. Play with 32 cards, from seven to ace in each suit. The first dealer is drawn at random; dealing then rotates. The first partnership to reach 1000 points with a higher score than the other wins at the end of a deal.",
+          "pl": "Cztery osoby grają w dwóch parach. Partnerzy siedzą naprzeciw siebie. Talia ma 32 karty, od siódemki do asa w każdym kolorze. Pierwszego rozdającego wybiera losowanie, a po każdym rozdaniu rozdaje następna osoba. Na końcu rozdania wygrywa para, która ma co najmniej 1000 punktów i więcej od drugiej."
+        },
+        {
+          "en": "In Classic Belote, everyone receives five cards and one more is turned face up. Starting after the dealer, each player may accept its suit as trumps or pass. After four passes, choose a different suit or pass. Eight passes cause a redeal. The first player to choose trumps takes the upcard, and everyone’s hand is filled to eight cards.",
+          "pl": "W klasycznym Belote każdy dostaje pięć kart, a następna zostaje odkryta. Zaczynając od osoby po rozdającym, możecie przyjąć jej kolor jako atut albo spasować. Po czterech pasach wybieracie inny kolor albo pas. Osiem pasów powoduje nowe rozdanie. Pierwszy wybór atutu kończy licytację. Odkryta karta trafia do osoby, która wybrała atut, a gra uzupełnia wszystkim ręce do ośmiu kart."
+        },
+        {
+          "en": "The player after the dealer leads the first trick. Follow suit if you can. Without that suit, play a trump unless your partner is winning. When required to trump, beat the highest trump already played if possible. If you cannot follow suit or trump, discard any card. The highest trump wins, or the highest card of the suit led if no trump was played. The winner leads next.",
+          "pl": "Do pierwszej lewy wychodzi osoba po rozdającym. Trzeba dokładać do koloru. Jeśli go nie masz, zagraj atut, chyba że lewę wygrywa partner. Gdy musisz zagrać atut, przebij najwyższy atut w lewie, jeśli możesz. Bez koloru wyjścia i atutu możesz zrzucić dowolną kartę. Wygrywa najwyższy atut, a jeśli go nie zagrano, najwyższa karta koloru wyjścia. Zwycięzca zaczyna następną lewę."
+        }
+      ],
+      "title": {
+        "en": "Bidding and tricks",
+        "pl": "Licytacja i lewy"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "en": "Trumps from highest to lowest are jack (20 points), nine (14), ace (11), ten (10), king (4), queen (3), eight and seven (zero each). Other suits rank ace (11), ten (10), king (4), queen (3), jack (2), nine, eight and seven (zero). The last trick adds ten, making 162 points in the deal.",
+          "pl": "Atuty od najsilniejszego to walet (20 punktów), dziewiątka (14), as (11), dziesiątka (10), król (4), dama (3), ósemka i siódemka (po zero). Poza atutem kolejność to as (11), dziesiątka (10), król (4), dama (3), walet (2), dziewiątka, ósemka i siódemka (po zero). Ostatnia lewa daje dodatkowe dziesięć, czyli razem w rozdaniu są 162 punkty."
+        },
+        {
+          "en": "With both the trump king and queen in hand, play either with Shift+Enter to declare belote, then play the other with Shift+Enter to declare rebelote. Completing both announcements gives your partnership twenty points, even if you lose the contract. Playing without the announcement does not earn this bonus.",
+          "pl": "Gdy masz króla i damę atutową, zagraj dowolną z nich przez Shift+Enter, aby zgłosić belote. Drugą zagraj tak samo, aby zgłosić rebelote. Oba zgłoszenia dają parze dwadzieścia punktów, nawet przy przegranym kontrakcie. Zagranie bez zgłoszenia nie daje tej premii."
+        },
+        {
+          "en": "The partnership choosing trumps must collect at least 82 points and more than the defenders, including belote bonuses. On success, both sides record their points. On failure, the defenders record all 162 trick points. In a tie, the defenders record their own trick points and the takers’ trick points carry over to the next decisive deal. Belote bonuses are always retained. Winning all eight tricks adds ninety points.",
+          "pl": "Para wybierająca atut musi zdobyć co najmniej 82 punkty i więcej od obrony, z uwzględnieniem meldunku. Przy sukcesie obie strony zapisują zdobyte punkty. Przy porażce obrona zapisuje wszystkie 162 punkty z lew. Przy remisie obrona zapisuje własne punkty z lew, a punkty licytujących przechodzą do zwycięzcy następnego rozstrzygniętego rozdania. Meldunki zawsze zostają przy swoich parach. Wygranie wszystkich ośmiu lew daje dodatkowe dziewięćdziesiąt punktów."
+        }
+      ],
+      "title": {
+        "en": "Card values and scoring",
+        "pl": "Wartości kart i punktacja"
+      }
+    },
+    {
+      "id": "coinchee",
+      "paragraphs": [
+        {
+          "en": "Choose Classic or Coinchée when creating the table. Coinchée normally deals all eight cards before bidding. The five-card option instead uses two-stage dealing: the upcard goes to the winning bidder and hands are completed afterwards, but the upcard does not restrict the choice of trumps.",
+          "pl": "Przy tworzeniu stołu wybierz klasyczne Belote albo Coinchée. W Coinchée domyślnie dostajesz od razu osiem kart. Opcja pięciu kart włącza rozdawanie w dwóch etapach: odkryta karta trafia do zwycięzcy licytacji, a pozostałe karty rozdaje się po niej. Odkryta karta nie ogranicza tu wyboru atutu."
+        },
+        {
+          "en": "A bid names a trump suit and 80–160 points in steps of ten. Each new bid must raise the point value. Opponents can double, locking the contract and doubling the scores; the takers may redouble to quadruple them. Three consecutive passes end bidding after a bid, double or redouble. Four passes without a bid cause a redeal.",
+          "pl": "Oferta podaje kolor atutu i od 80 do 160 punktów, co dziesięć. Kolejna musi zwiększać liczbę punktów. Przeciwnicy mogą dać kontrę, która blokuje podbijanie i podwaja zapis. Licytująca para może dać rekontrę, zwiększając mnożnik do czterech. Trzy kolejne pasy po ofercie, kontrze lub rekontrze kończą licytację. Cztery pasy bez oferty powodują nowe rozdanie."
+        },
+        {
+          "en": "The takers must reach their bid and outscore the defenders. On success, each side records its trick points; otherwise, including a tie, the defenders receive 162 and the takers zero. Add any sweep and belote bonuses, then apply the double or redouble multiplier to both sides.",
+          "pl": "Licytująca para musi osiągnąć zadeklarowany próg i zdobyć więcej punktów od obrony. Przy sukcesie każda strona zapisuje punkty z lew. W przeciwnym razie, także przy remisie, obrona dostaje 162, a licytujący zero. Gra dolicza premię za komplet lew i meldunki, a następnie stosuje mnożnik kontry albo rekontry do obu par."
+        }
+      ],
+      "title": {
+        "en": "Coinchée and table options",
+        "pl": "Coinchée i ustawienia stołu"
+      }
+    },
+    {
+      "id": "controls",
+      "paragraphs": [
+        {
+          "en": "Arrows: browse cards or menu choices.",
+          "pl": "Strzałki: przeglądaj karty lub pozycje menu."
+        },
+        {
+          "en": "Enter: choose a bid while bidding, or play a card during tricks.",
+          "pl": "Enter: otwórz wybór oferty podczas licytacji albo zagraj kartę podczas lewy."
+        },
+        {
+          "en": "B: open the bids and passes available on your turn.",
+          "pl": "B: otwórz oferty i pas dostępne w swojej turze."
+        },
+        {
+          "en": "Shift+Enter: play the selected trump king or queen and declare belote or rebelote.",
+          "pl": "Shift+Enter: zagraj wskazanego króla lub damę atutową i zgłoś belote albo rebelote."
+        },
+        {
+          "en": "D: read the turned-up card when one is used.",
+          "pl": "D: odczytaj odkrytą kartę, jeśli jest używana w tym rozdaniu."
+        },
+        {
+          "en": "F: read trumps and the suit led.",
+          "pl": "F: odczytaj atut i kolor wyjścia."
+        },
+        {
+          "en": "R: read the contract.",
+          "pl": "R: odczytaj kontrakt."
+        },
+        {
+          "en": "V: read the contract.",
+          "pl": "V: odczytaj kontrakt."
+        },
+        {
+          "en": "Shift+S: read this deal’s points before any multiplier.",
+          "pl": "Shift+S: odczytaj punkty rozdania przed mnożnikiem kontry."
+        },
+        {
+          "en": "H: read your hand.",
+          "pl": "H: odczytaj rękę."
+        },
+        {
+          "en": "C: read the cards on the table.",
+          "pl": "C: odczytaj karty na stole."
+        },
+        {
+          "en": "Ctrl+C: browse those cards.",
+          "pl": "Ctrl+C: przejrzyj te karty."
+        },
+        {
+          "en": "S: read the scores.",
+          "pl": "S: odczyt wyniku."
+        },
+        {
+          "en": "T: read whose turn it is.",
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "en": "Z: find the next playable card.",
+          "pl": "Z: znajdź następną kartę, którą można zagrać."
+        },
+        {
+          "en": "Shift+Z: find the previous playable card.",
+          "pl": "Shift+Z: poprzednia karta, którą można zagrać."
+        },
+        {
+          "en": "Shift+C: sort your hand by suit.",
+          "pl": "Shift+C: sortuj rękę według kolorów."
+        },
+        {
+          "en": "Shift+H: sort your hand by rank.",
+          "pl": "Shift+H: sortuj rękę według wartości."
+        }
+      ],
+      "title": {
+        "en": "Controls",
+        "pl": "Sterowanie"
+      }
+    }
+  ],
+  "option_chapters": {
+    "variant": "coinchee",
+    "coinchee_two_stage": "coinchee"
+  }
+}

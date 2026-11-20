@@ -91,6 +91,7 @@ module GameRoomPreferences
       source, allowed_games, "hrtf_games", "hrtf_known_games", allowed_games
     )
     result["hrtf_enabled"] = source["hrtf_enabled"] != false
+    result.delete("display_name")
     result["invitation_notifications"] = normalized_invitation_policy(result["invitation_notifications"])
     result["invitation_blacklist"] = invitation_blacklist(result["invitation_blacklist"])
     result["background_game_sounds"] = %w[all audio never].include?(source["background_game_sounds"]) ? source["background_game_sounds"] : "never"

@@ -5,7 +5,7 @@ def check_private_uno_game(options = {}, users: %w[Alice Bob Carol])
 game = GameRoomGames::Uno.new
 h, runners = PrivateCardGamesTest.create(game, users:users, options:{'score_limit'=>50,
   'zero_seven'=>true, 'interceptions'=>true, 'super_interceptions'=>true, 'straights'=>true, 'buzzers'=>true,
-  'bluff_challenge'=>true}.merge(options), random_values:Array.new(16,8))
+  'bluff_challenge'=>true}.merge(options), random_values:Array.new(16,8), clock:ClockEventContract::ManualTime.new)
 80.times do
   break unless game.send(:private_waiting?, h.replay('Alice').state)
   PrivateCardGamesTest.tick(h,runners)
@@ -19,6 +19,7 @@ returned = false
   first = h.replay('Alice')
   warn "UNO #{index}: #{first.accepted_events.size} events, #{first.state[:phase]}, side #{first.state[:side]}" if ENV['UNO_PRIVATE_PROGRESS']
   break if first.finished? || first.state[:round] >= 2
+  next if first.state[:phase] == :round_complete
   choices = h.users.filter_map do |user|
     mine = h.replay(user)
     actions = game.legal_actions(mine,user)

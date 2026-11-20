@@ -2,7 +2,7 @@ require_relative '../../support/private_card_games'
 require_relative '../../../games/bouillabaisse'
 
 game = GameRoomGames::Bouillabaisse.new
-h, runners = PrivateCardGamesTest.create(game, users:%w[Alice Bob Carol])
+h, runners = PrivateCardGamesTest.create(game, users:%w[Alice Bob Carol], clock: ClockEventContract::ManualTime.new)
 begin
   shortened = []
   6.times do |round|
@@ -26,7 +26,18 @@ begin
       break unless replay.state[:phase] == :playing
       actor = replay.current_player
       assert(actor, "no turn: #{replay.state[:phase]} / #{replay.state[:private_error]}")
-      action = game.legal_actions(h.replay(actor), actor).first
+      actor_replay = h.replay(actor)
+      legal = game.legal_actions(actor_replay, actor)
+      # Round four has exactly one scoring card. Play it as soon as its owner
+      # receives a turn so this private-card regression deterministically
+      # exercises the early disclosure/audit path instead of depending on a
+      # secure-random deal and the arbitrary first legal card.
+      action = if round == 3
+        special = actor_replay.state[:penalties]['card']
+        legal.find { |candidate| candidate['card'] == special } || legal.first
+      else
+        legal.first
+      end
       PrivateCardGamesTest.submit(h,runners,actor,action)
       PrivateCardGamesTest.assert_private(h)
     end

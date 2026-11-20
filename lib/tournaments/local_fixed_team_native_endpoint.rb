@@ -197,8 +197,9 @@ module GameRoomTournaments
             next @endpoint.detached({'entry' => entry, 'seq' => entry['seq']})
           end
           creation = core['entries'].empty? && value['kind'] == 'room_created'
+          prefix = core['entries'].take_while { |row| row.dig('packet', 'kind') == 'room_created' }
           start = @endpoint.instance_variable_get(:@start_target) == id && core['owner'] == @endpoint.user &&
-            [[1, 'room_state'], [2, 'game_started']].include?([core['last_seq'], value['kind']])
+            [[prefix.size, 'room_state'], [prefix.size + 1, 'game_started']].include?([core['last_seq'], value['kind']])
           target = @endpoint.instance_variable_get(:@move_target)
           move = target && target[:native_uuid] == id && target[:after] == core['last_seq'] &&
             value['kind'] == 'game_action' && value.dig('data', 'session_id') == target[:session_id] &&
@@ -221,8 +222,10 @@ module GameRoomTournaments
       end
       def stack_trim(through:)
         @endpoint.core(id) do |core|
+          checkpoint = core['entries'].find { |row| row.dig('packet', 'kind') == 'room_state' }
           unless @endpoint.instance_variable_get(:@start_target) == id && core['owner'] == @endpoint.user &&
-              core['last_seq'] == 3 && through.eql?(1)
+              checkpoint && core['last_seq'] == checkpoint['seq'] + 1 && through.eql?(checkpoint['seq'] - 1) &&
+              core['entries'].last.dig('packet', 'kind') == 'game_started'
             raise C::Blocked, :local_create_only
           end
           core['entries'].reject! { |row| row['seq'] <= through }

@@ -48,5 +48,35 @@ module GameRoomTest
     def finish_round
       play while state[:phase] == :playing
     end
+
+    # New round/bot regressions drive the registered production table, including
+    # bidding, exchanges and counting, rather than a second Match model.
+    def play_strategy
+      actor = replay.current_player
+      actions = game.legal_actions(replay, actor)
+      selection = GameRoomBots.choose(game.bot_strategy, {
+        actions: actions, actor: actor, random_source: @random,
+        game: game, replay: replay,
+        context: GameRoomGames::ActionContext.new(random_source: @random)
+      }) { game.bot_observation(replay, actor) }
+      raise "No production action in #{state[:phase]}" unless selection
+      raise 'Production action was rejected' unless act(actor, selection) == :ok
+    end
+
+    def finish_production_round(limit: 300)
+      limit.times do
+        return if replay.finished? || state[:phase] == :round_complete
+        play_strategy
+      end
+      raise "Unfinished production round: #{state[:phase]}"
+    end
+
+    def finish_production_match(limit: 4_000)
+      limit.times do
+        return if replay.finished?
+        state[:phase] == :round_complete ? deal : play_strategy
+      end
+      raise "Unfinished production match: #{state[:phase]}"
+    end
   end
 end

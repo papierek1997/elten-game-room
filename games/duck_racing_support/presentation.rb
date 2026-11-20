@@ -207,7 +207,7 @@ module GameRoomGames
       # Keep the command in place between turns. Like the cards above it,
       # an attempted action is still validated against the current replay.
       commands = [GameSurfaces::Command.new(id: "roll", label: _("Roll the die"), enabled: true)]
-      hand = GameSurfaces::CardTableSpec.new(zones: [GameSurfaces::CardZoneSpec.new(id: "hand", header: _("Your cards"),
+      hand = GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: [GameSurfaces::CardZoneSpec.new(id: "hand", header: _("Your cards"),
         cards: cards, empty_label: _("Your hand is empty"), hand_order: racer[:hand].map(&:id),
         hand_epoch: [replay.state[:session_id], seat, racer[:hand_epoch]].join(":"), commands: commands, select_drawn: false)])
       parts = [GameSurfaces::SurfacePart.new(id: "hand", surface: hand)]

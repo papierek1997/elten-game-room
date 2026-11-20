@@ -218,6 +218,14 @@ module GameRoomDuckRacing
         view[:remaining] = state[:remaining].dup
         view[:scores] = state[:players].transform_values { |player| player[:total] }
       end
+      if ATTEMPT_TURN_TYPES.include?(state[:type])
+        # Finished attempts have already been announced. A blackjack hand
+        # that reached 21 on the initial deal is not public until its turn.
+        view[:completed_totals] = state[:players].filter_map do |seat, player|
+          [seat, player[:total]] if player[:done] &&
+            (state[:type] != "blackjack" || player[:hand_announced])
+        end.to_h
+      end
       if state[:players].key?(viewer)
         view[:own] = player_view(state[:players].fetch(viewer))
         view[:own][:die] = state[:dice].fetch(viewer).dup if state.key?(:dice)

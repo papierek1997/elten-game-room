@@ -1,0 +1,111 @@
+{
+  "source": "games/backgammon.rb",
+  "sections": [
+    {
+      "id": "play",
+      "title": {
+        "pl": "Tryktrak"
+      },
+      "paragraphs": [
+        {
+          "pl": "Gracie we dwoje. Wygrywa osoba, która pierwsza zdejmie wszystkie swoje pionki. Plansza ma 24 pola. Każdy gracz liczy je od własnego domu. Twoje pole 24 to pole 1 przeciwnika. Komunikaty o ruchach i historia używają numerów widocznych na twojej planszy. Przesuwasz pionki od wyższych numerów ku niższym, a twój dom obejmuje pola od 1 do 6."
+        },
+        {
+          "pl": "Na początku gra losuje po jednej kości dla każdego gracza. Przy remisie rzut się powtarza. Wyższy wynik daje pierwszą turę, w której zwycięzca używa obu wylosowanych wartości. W następnych turach gracz rzuca dwiema kośćmi. Każda kość daje osobny ruch. Przy dublecie możesz użyć tej samej wartości cztery razy."
+        },
+        {
+          "pl": "Możesz przesunąć dwa różne pionki albo ten sam pionek dwa razy. Przy rzucie 5 i 3 ruch o osiem pól składa się z dwóch kroków. Pole po pierwszym kroku musi być dostępne. Gra pokazuje tylko ruchy, które pozwalają wykorzystać możliwie najwięcej kości. Gdy z dwóch różnych kości możesz użyć tylko jednej i obie dają jakiś ruch, musisz użyć wyższej."
+        },
+        {
+          "pl": "Dwa lub więcej pionków przeciwnika zamykają pole. Jeśli wylądujesz na samotnym pionku przeciwnika, zbijasz go na bandę. W swojej turze najpierw wprowadzasz zbite pionki do domu przeciwnika. Na przykład kość 3 pozwala wejść na twoje pole 22, jeśli jest dostępne. Wybierz pole wejścia strzałkami i naciśnij Enter. Jeśli kości nie pozwalają na żaden ruch, kolej przechodzi na przeciwnika."
+        },
+        {
+          "pl": "Gdy wszystkie twoje pionki pozostające na planszy są w domu, możesz je zdejmować. Kość 4 zdejmuje pionek z pola 4. Gdy na polu 4 i na wszystkich wyższych polach nie masz pionków, możesz użyć tej kości do zdjęcia pionka z najwyższego zajętego pola poniżej 4. Żeby zdjąć pionek, wybierz go Enterem, a potem naciśnij Enter ponownie na tym samym polu."
+        },
+        {
+          "pl": "Zwycięzca dostaje 1 punkt, jeśli przeciwnik zdjął co najmniej jeden pionek. Gdy przeciwnik nie zdjął żadnego, zwycięzca dostaje 2 punkty. Dostaje 3, jeśli przeciwnik dodatkowo ma pionek na bandzie lub w domu zwycięzcy."
+        }
+      ]
+    },
+    {
+      "paragraphs": [
+        {
+          "pl": "- Klasyczny. Każdy zaczyna z 15 pionkami. Dwa stoją na polu 24, pięć na 13, trzy na 8 i pięć na 6."
+        },
+        {
+          "pl": "- Nackgammon. Po dwa pionki stoją na polach 24 i 23, po cztery na 13 i 6, a trzy na 8."
+        },
+        {
+          "pl": "- Hypergammon. Każdy zaczyna z trzema pionkami, po jednym na polach 24, 23 i 22."
+        },
+        {
+          "pl": "- LongGammon. Wszystkie 15 pionków zaczyna na polu 24. Obowiązują zwykłe zasady bicia i ruchu."
+        },
+        {
+          "pl": "- Reguła egipska. Pionki startują jak w klasycznym Tryktraku. Na jednym polu planszy może stać najwyżej pięć twoich pionków. Limit nie dotyczy bandy ani pionków zdjętych z planszy."
+        }
+      ],
+      "id": "variants",
+      "title": {
+        "pl": "Warianty"
+      }
+    },
+    {
+      "title": {
+        "pl": "Mecz i kostka dublująca"
+      },
+      "id": "match",
+      "paragraphs": [
+        {
+          "pl": "Ustaw cel punktowy przy tworzeniu stołu. Zero oznacza jedną partię. W meczu punkty z kolejnych partii sumują się, a wygrywa pierwszy gracz, który osiągnie cel. S odczytuje wynik."
+        },
+        {
+          "pl": "Jeśli włączysz kostkę dublującą, każda partia zaczyna się od stawki 1. Przed rzutem w swojej turze wybierz strzałkami propozycję podwojenia i zatwierdź Enterem. Przeciwnik wybiera przyjęcie albo odrzucenie. Po przyjęciu stawka rośnie dwukrotnie, a kolejny dubel może zaproponować tylko przyjmujący. Maksymalna stawka wynosi 64."
+        },
+        {
+          "pl": "Po odmowie oferujący wygrywa partię za stawkę sprzed propozycji. Po zdjęciu wszystkich pionków punkty bazowe od 1 do 3 mnoży się przez aktualną stawkę. Gdy po raz pierwszy komuś brakuje jednego punktu do wygrania meczu, w następnej partii obowiązuje reguła Crawforda i podwajanie jest wyłączone."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "pl": "Klawiatura"
+      },
+      "paragraphs": [
+        {
+          "pl": "Enter: rzuć, zatwierdź decyzję o stawce lub wybierz pionek, a potem jego pole docelowe. Ponowny Enter na wybranym pionku zdejmuje go z planszy, jeśli to możliwe. Poza domem anuluje wybór pionka."
+        },
+        {
+          "pl": "Strzałki: przeglądaj planszę lub wybierz decyzję. Górny rząd biegnie od 24 do 13, dolny od 1 do 12, oba od lewej do prawej. Jeśli masz pionek na bandzie, wybierz od razu pole wejścia i zatwierdź Enterem."
+        },
+        {
+          "pl": "Escape: anuluj wybór pionka. Po błędnym ruchu wybór również się anuluje."
+        },
+        {
+          "pl": "V: przeglądaj planszę bez wykonywania ruchów."
+        },
+        {
+          "pl": "D: odczytaj kości pozostałe do wykorzystania."
+        },
+        {
+          "pl": "Spacja: odczytaj pozostałe kości podczas ruchu."
+        },
+        {
+          "pl": "B: odczytaj pionki obu graczy na bandzie."
+        },
+        {
+          "pl": "Z: odczytaj zdjęte pionki obu graczy."
+        },
+        {
+          "pl": "S: odczytaj wynik meczu."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "variant": "variants",
+    "score_limit": "match",
+    "doubling_cube": "match"
+  }
+}

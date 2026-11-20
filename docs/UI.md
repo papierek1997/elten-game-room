@@ -55,6 +55,18 @@ Ascending native IDs retain the first assignment even across duplicate-filled
 pages; current/future dates are excluded before querying. Missing history stays
 blank and a corrupt canonical assignment remains an error, not a redraw.
 
+## Participant labels
+
+Human participants are always shown under their complete ELTEN account name,
+including in live speech, lists, history and invitations. Saved or remote custom
+aliases are ignored. `GameRoomParticipants.display_name` and
+`Base#participant_name` only decode computer-player labels; they return a human
+account name unchanged. Do not shorten logins or rewrite announcement text.
+The existing finite local-directory startup task removes the obsolete
+`display_name` preference through the host's locked JSON update, without opening
+Settings. It preserves other keys, does not create or rewrite an already clean
+file, and retries on the next startup entry if the write failed.
+
 ## Option editor
 
 ### Single-choice modal dialogs
@@ -151,6 +163,48 @@ Regression: `test/games/duck_racing/challenge_descriptions_native_test.rb`
 
 ## F1 and extending the interface
 
+### Grid move explanations
+
+`GridSpec#move_actions` defines legal origin/destination pairs; `GridBoard`
+selects them through the same path for native Enter and movement commands.
+Optional `origin_error.call(cell)` and `destination_error.call(origin, cell)`
+return a localized explanation for a refused selection. Coordinates are logical
+`[x, y]` cells. A nil or empty message retains the shared generic explanation.
+These pure callbacks never write a move, and
+do not run when input is guarded or the grid has read-only `row_actions: []`.
+They do not replace the game's ordinary action validation. Backgammon uses
+them for blocked points, dice restrictions, bar entry and bearing off.
+
+An obligatory incoming piece need not occupy a selectable board cell. Set
+`forced_origin: :external` and use that same origin in every `GridMove`;
+destinations must still be bounded `[x, y]` cells. An external origin without
+that declaration, or an external destination, is invalid. The first Enter
+then chooses the destination directly. Read-only previews remain read-only.
+
+Optional `selection_message.call(cell)` overrides the first-Enter prompt;
+nil or empty text retains the shared prompt. It is a pure presentation callback,
+with the same guard as the refusal callbacks. A second Enter on the origin
+performs only an explicitly declared self-destination move; it never chooses
+an ordinary move implicitly, even when there is only one available.
+The selected origin's native cell label also
+includes the localized "Selected" state, so it remains readable after moving
+the cursor away and back, in speech and braille. Local selection changes update
+only the affected cell labels, without refocusing or reannouncing the grid.
+Quiet reconstruction restores that label from the same validated epoch; a
+refusal cleanup, accepted selection or Escape removes it. Read-only previews
+and externally forced origins never mark a board cell.
+Backgammon uses a self-destination move for bearing off, without inventing an
+extra board cell. Repeating Enter on its selected checker outside home instead
+cancels selection, with the existing localized cancellation message; bearing-off
+errors apply only to its home points 1 to 6. A refused destination retains
+selection by default. Set `clear_selection_on_error: true` to clear the local origin after its refusal
+explanation, as Backgammon does. Guarded input does not clear it, and a forced
+external origin remains obligatory after a refusal. Selection survives a quiet refresh only within the same
+`selection_epoch`; a new accepted move clears it. All emitted actions still
+pass through the ordinary game validator.
+Regression: `test/ui/grid_moves_native_test.rb` and
+`test/games/backgammon/presentation_native_test.rb`.
+
 ### Composite controls and reuse
 
 Keep sibling `SurfacePart` IDs unique. A composite forwards the program,
@@ -201,6 +255,95 @@ one visible control; Enter/Escape closes it, and the previous cursor position
 returns without rebuilding the form.
 
 ## Help during a game
+
+### Score targets and elapsed time
+
+`Base::Information` appends `score_target_text(replay)` once, after the plain-S
+score announcement. The default reads visible, declared `score_limit` or
+`target_score` controls without expanding stored options; nonpositive or absent
+targets produce no suffix. Games with fixed or compound goals override
+`score_target` or `score_target_text`. Pong and Audio Ball pass the same text
+through their surface specifications to `RealtimeInformation`, so a requested
+score readout in live play or a recording has one owner. Automatic point speech
+does not gain this suffix.
+
+Ctrl+T reads game duration and Ctrl+Shift+T the current or last round. These
+are ordinary read-only announcement shortcuts carrying `duration_scope`; the
+screen resolves their text at activation, not when the form is built. Grid
+inspection reuses that resolver. Countries and Cities opts out through
+`duration_shortcuts?` and keeps its original Ctrl+T countdown. Quiz's countdown
+and War's battle number use Ctrl+Alt+T. Existing modified informational shortcuts
+remain available while typing; ordinary letters and native read-only text
+commands keep their usual handling.
+
+`GameRoomDuration` uses the current `GameRoomSessionClock` and authenticated
+accepted-event timestamps, preserving archived logical times, event-time pause
+offsets and a frozen session. Finished games stop at their last accepted event.
+It does no network/file access, reducer replay, polling or periodic refresh.
+Games expose their semantic boundaries through `round_timing_event_ids(replay,
+repository:)`. The default uses deal/round-start history and declared end kinds;
+`round_timing_start_actions` supports adapters such as Mahjong. A completed
+round waiting in the declared `round_timing_end_phases` (by default,
+`round_complete`) stops at its last accepted event when no end-history kind
+exists, including a thrown-in deal. Explicit hooks
+cover immediate settlement-to-next-round games, Darts and Audio Ball sets.
+An adapter already decoding compound actions, such as Typing Mania, may attach
+the two accepted boundary IDs as `Replay#round_timing` during reconstruction.
+This optional copied metadata is outside rule state and the archive wire; a
+restored game derives it again. Never decode a large action tape or rerun the
+reducer from the shortcut callback just to find a boundary.
+Billiards retains the same two IDs beside its owned reducer checkpoint,
+resetting on a new rack and stopping at `rack_end`, without changing rule state.
+Without separate round boundaries, the game is treated as one round. Missing
+timestamps produce an unavailable message, never a fabricated elapsed time.
+
+Tests: `test/ui/game_information_test.rb` and
+`test/ui/game_information_native_test.rb` cover logical time, late-bound native
+shortcuts, one utterance, focus/drafts, all five languages and the exception.
+Hearts' limit and specific refusals are checked by
+`test/games/hearts/limits_and_errors_test.rb`. Its shared
+`DealtCardGame#illegal_card_status` hook runs only after turn, card ownership and
+legal-card checks; other games retain the ordinary follow-suit refusal.
+
+### End-of-round feedback
+
+The shared event-sound path adds `round_finished` when `Base#round_ended?`
+identifies a new public round settlement and that event has no existing
+completion cue. Games already owning a round-feedback policy opt out through
+`standard_round_end_sound?`, preserving their existing audience and tie behavior
+even when that policy intentionally produces no cue for one viewer.
+The default recognizes round-result/end history and entering
+`round_complete`; games with another public vocabulary override the pure
+predicate. It does not infer a round from a new deal, a turn change or scoring
+an ordinary move. Existing round wins/losses, pot payouts, Taboo's end signal
+and final party feedback keep their own sounds. Cold reconstruction, a repeated
+accepted event and unchanged refresh add nothing. The fallback is one ordinary
+game effect, centred for everyone, with the same sound preferences and lifetime
+as other effects; it adds no timer, polling, file read or server write.
+
+### Inspecting score grids
+
+Score-sheet games may use `GameShortcut` kind `grid_preview` with a `GridSpec`
+as `default_value`. The shared modal uses the ordinary native grid and returns
+its action through the existing move validation; Escape returns no action.
+`GridSpec#row_actions` is an array of ordinary `GameSurfaces::Action` values:
+each row activates its declared action regardless of the inspected column.
+General and Balut use the inherited `score_entry_column_label` for writable
+row labels: it names the first empty score column and total score columns,
+not the historical cell currently inspected. Read-only labels stay unchanged.
+At the top of a row-action table, Up repeats the current cell without its
+header or a submission; ordinary board grids retain their existing borders.
+An empty array makes the grid read-only; nil preserves ordinary board-coordinate
+selection. Summary rows without an action are inert. `hide_coordinates` affects
+presentation only. A grid may declare read-only announcement `shortcuts`, such
+as the dice readout; the shared modal never reads game-specific state fields.
+Pending writes and frozen sessions still prohibit submission, not inspection.
+Yahtzee and its score-sheet subclasses declare a new `decision_focus_key` at
+the third roll. The shared decision-focus path also accepts a single surface
+without a part name, queues its prompt after event speech, and remains quiet
+for an unchanged decision or while chat, history or users hold focus.
+Tests cover native opening, navigation, Enter/Escape, one prompt and unchanged
+parent focus/drafts, as well as an ordinary coordinate board.
 
 The live in-game shortcut reference also includes a game's declared personal
 settings command (Ctrl+P), using the same entry as its table menu. Do not
@@ -254,6 +397,14 @@ as explicit submission, then the ordinary action guard; do not maintain a
 second payload/permission path. This is separate from a read-only prompt:
 `prompt_as_text` can display read-only question text while its answers remain
 writable. See `test/ui/question_read_only_native_test.rb`.
+
+Text questions may explicitly reserve game information keys with
+`QuestionSpec#text_shortcuts`, a list of `[key, modifiers]` signatures from
+their declared `GameShortcut` entries. Cash Auction uses this for P/T/H/D,
+Shift+D and Shift+S in its numeric bid field. Other text keeps normal editing.
+The control retains the matched press frame to discard the host's cached
+character without changing the draft or its edit generation. Native selection
+and copy remain available. See `test/games/cash_auction/bid_shortcuts_native_test.rb`.
 
 Tournament Operations must render every journal kind exposed by its workspace,
 including current `partnership` and `pair_draw` records, not only historical
@@ -319,6 +470,16 @@ History uses `GameRoomHistory::View` and `GameRoomHistory.bind`.
 Shortcuts for previous tricks or battles read historical authors without
 substituting the names of the current participants.
 
+Backgammon projects move coordinates through `history_entries_for_display`
+and `describe_event_for_display`, using the same viewer seat as `board_grid`.
+Each move retains its event-time seat, coordinates and capture flag in
+`HistoryEntry#value`; historical authors and the canonical replay remain unchanged.
+Do not resolve a historical actor against today's roster after replacement.
+Observers use the first seat's numbering, as on the board. The shared history
+and TXT export consume the same projected entries as the visible view.
+The opening roll already names the starter after both dice, so its shared
+turn-transition hook suppresses only that duplicate, not later turns.
+
 Ctrl+Shift+S or “Zapisz historię stołu” (“Save table history”) in the menu saves
 the available event and chat history as UTF-8 TXT in the account's local
 recording library. Audio Ball and Axel Pong instead save a versioned passive
@@ -357,6 +518,14 @@ Read-only history keeps native text selection and copying, including Ctrl+C;
 it is not a game shortcut field. The same key still operates the game when
 its actual playfield is focused. Explicit history-navigation shortcuts retain
 their existing scope.
+
+Clients may expose `local_history_entries` for private presentation-only text
+and a cheap monotonic `local_history_revision` when that text or its visibility
+changes independently of accepted moves. GameScreen consumes the revision on
+its owning form timer and replaces only history entries, preserving selection,
+focus and chat. Do not mutate controls from a background client frame or set a
+whole-game refresh flag merely to display a late record. Darts covers this
+contract in `test/games/darts/local_history_native_test.rb`.
 
 A browse shortcut may set `default_value` to select the matching choice on
 opening. This does not reorder the choices: arrows, Home and End keep their
@@ -413,3 +582,62 @@ selected identity and does not refocus or announce the list. Ordinary time
 boundaries do not read the server; retention expiry uses one fresh directory
 read. Closing the dashboard disposes its pending timer. Regression:
 `test/tournaments/public_preview_time_boundary_native_test.rb`.
+
+## Krowa word proposals
+
+`KrowaWordProposals` in `lib/krowa_word_proposals.rb` is a local client service.
+Ctrl+B posts the current answer-field text; Ctrl+Shift+B posts the most recent
+word rejected as `unknown_noun`, captured before the surface clears the draft.
+Chat text, private solutions and accepted guesses are not proposal sources.
+Both actions preserve the answer, cursor and game history and post immediately
+through `EltenLink::Forum.create_post` to thread 28245. The native server supplies
+the authenticated author; the post body contains only the normalized word.
+
+The first-use rules explain the nominative common-noun policy, excluded word
+classes, spelling review, Power Games membership and forum visibility. Accepting
+them is required before that first post; Escape returns without accepting or
+posting. The versioned acknowledgement and delivery state use a separate local,
+account-partitioned JSON file. Malformed JSON/shape is refused without replacement.
+The player reference belongs in Krowa's authored `vocabulary` chapter, with
+both keys also listed in `controls`; maintain all five complete editions.
+
+Every file/network operation runs in a finite managed task. The SDK wrapper
+passes cancellation and a 15-second timeout and rechecks the signed-in account
+before and after requests. Fresh structure verifies membership and that the
+thread/forum are open; the server still enforces write permissions. This never
+joins a group or changes its notification settings automatically.
+
+A pending marker is saved before posting. A confirmed post ID is retained in
+memory before persisting the receipt. An explicit uncertain retry examines the
+account's own posts, matching the exact word and target thread, without reading
+or marking the proposal thread. Acquisition is bounded to ten 50-post pages;
+an incomplete or malformed continuation refuses another send. Nonempty short
+pages continue according to the SDK's `more`/`next_before` contract. State retains
+up to 32 pending words and the latest 256 confirmed receipts. This reconciles
+ordinary retries, not concurrent exactly-once delivery across computers or
+external deletion/editing of the evidence. There is no automatic resend.
+
+The screen accepts optional client `local_shortcuts` and
+`handle_local_shortcut` hooks before the move pipeline. Its optional
+`action_rejected` callback receives only a guarded current-session submission,
+before clearing the corresponding surface. These hooks perform no move writes.
+Tests: `test/games/krowa/word_proposals_test.rb` and
+`word_proposals_native_test.rb`; the latter uses native controls and captured
+speech in all supported languages, without publishing a live forum post.
+
+## A cue after event speech
+
+Games may declare `event_speech_tail_sound(event:, before_replay:,
+after_replay:, viewer:)`; the base returns `nil`. The shared event presenter
+puts the event's complete live announcement and a non-immediate
+native `SpeechCommands::CustomCommand` into one `SpeechSequence`. The callback
+enters the owning program Runtime and rechecks its session and sound-output
+gate before playing the ordinary configured effect. Canonical history remains
+plain full-name text. Cash Auction uses this for the closing gavel.
+
+The sequence never becomes a model, input or network readiness barrier.
+Leaving/replacing the game drops the stale callback; interruption or a missing
+speech index may cancel the cue. If background speech is disabled, the sound
+still follows its independent sound policy. Regression:
+`test/ui/event_speech_tail_test.rb` uses the real host sequence class and covers
+index order, duplicate indexes, session/leave guards and missing-index progress.

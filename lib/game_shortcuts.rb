@@ -61,16 +61,18 @@ module GameRoomShortcuts
     kind = value(data, :kind, :announcement).to_sym
     label = value(data, :label, definition.label).to_s
     common = {
-      key: definition.key,
-      modifiers: definition.modifiers,
+      key: value(data, :key, definition.key),
+      modifiers: value(data, :modifiers, definition.modifiers),
       label: label,
       kind: kind
     }
     case kind
     when :announcement
+      hand_id = value(data, :hand_id, definition.id == :hand ? 'hand' : nil)
       GameRoomGames::GameShortcut.new(
         **common,
-        message: value(data, :message)
+        message: value(data, :message),
+        payload: hand_id.to_s.empty? ? {} : {'hand_id'=>hand_id.to_s}
       )
     when :browse
       GameRoomGames::GameShortcut.new(

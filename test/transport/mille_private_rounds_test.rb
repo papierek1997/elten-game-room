@@ -9,7 +9,7 @@ require_relative '../../lib/tournaments/ordinary_match_results'
     options = GameRoomGames::MilleBornes.new.with_team_assignment(options, players: users,
       seats: Array.new(count) { |i| i % teams })
   end
-  h, runners = MillePrivateTest.create(users: users, options: options)
+  h, runners = MillePrivateTest.create(users: users, options: options, clock: ClockEventContract::ManualTime.new)
   hands = h.users.flat_map { |user| h.replay(user).state[:hands][user] }
   assert(hands.size == count * 6 && hands.uniq.size == hands.size, 'duplicate physical card in initial hands')
   MillePrivateTest.assert_private(h)
@@ -75,7 +75,9 @@ puts 'PASS private custom deck: repeated recycling and private hands'
 
 options = types.to_h { |type| ["#{type}_cards", type == '25' ? 24 : (type == 'go' ? 6 : 0)] }.merge(
   'custom_deck' => true, 'include_safeties' => false, 'target_score' => 600)
-h, runners = MillePrivateTest.create(options: options)
+clock = ClockEventContract::ManualTime.new
+started_at = clock.now
+h, runners = MillePrivateTest.create(options: options, clock: clock)
 400.times do
   MillePrivateTest.tick(h, runners)
   break if h.replay('Alice').finished?
@@ -96,6 +98,9 @@ h, runners = MillePrivateTest.create(options: options)
     assert(room.private_draws.keys.all? { |key| active_pools.include?(key[1]) }, 'fresh round retained obsolete reader draw cache')
   end
 end
-assert(h.replay('Alice').finished? && h.replay('Alice').state[:round] > 1, 'private match did not cross a round boundary')
+final = h.replay('Alice')
+assert(final.state[:round] > 1 && final.finished?, 'private multi-round match did not finish')
+assert(clock.now - started_at == (final.state[:round] - 1) * GameRoomRoundPause::SECONDS,
+  'A private deal skipped or repeated the preceding round break')
 runners.each_value(&:close)
 puts 'PASS private multi-round match: old pools retired, fresh hands and complete game'

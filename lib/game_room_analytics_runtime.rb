@@ -1,11 +1,18 @@
 require_relative "game_room_analytics_storage"
 require_relative "game_room_analytics_job"
+require_relative "game_room_server_tables"
 
 # Factories are memory-only. All file resolution, snapshots and HTTP remain on
 # the application's managed worker. Account/runtime changes invalidate old jobs.
 module GameRoomAnalyticsRuntime
+  include GameRoomServerTables::Runtime
+
   def analytics_enabled?
-    $developer_mode != true
+    return false if $developer_mode == true
+    # Preserve pre-entry widget collection. Once the entry probe has a provider,
+    # its unchecked/denied decision also suspends already captured workers.
+    tables = server_table_access
+    !tables || tables.available?
   end
 
   def statistics_service

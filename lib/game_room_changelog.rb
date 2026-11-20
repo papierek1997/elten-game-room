@@ -745,6 +745,119 @@ module GameRoomChangelog
         "Replay names and perspectives follow player replacements during the game. Improved validation of saved games and imported histories.",
         "Fixed handling of expired table notifications and cleanup of table voice channels whose creation was not confirmed."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.5",
+      build: 268,
+      changes: [
+        "Added Dice General and Balut: two five-dice games with different score sheets and bonuses.",
+        "Added Billiards, with pool, snooker, English billiards and carom variants, spoken aiming and sounds of ball contacts.",
+        "Added Cash Auction: bid for questions from selected quiz sets and try your luck with black chests.",
+        "Added French Tarot, a four-player card game in which the declarer plays against three defenders.",
+        "Added Backgammon, with several variants, an optional doubling cube and matches played to a chosen score.",
+        "You can set a display name in General settings. Player lists and history use the full name, while game announcements use the first name.",
+        "In Krowa, Ctrl+B proposes the word from the answer field for the Polish dictionary. Ctrl+Shift+B proposes the last word rejected as unknown. Proposals go to the Power Games forum for review. The Polish noun list has also been expanded.",
+        "Improved handling of unrecognised Braille input and typing mistakes in Typoholism.",
+        "Reorganised and edited the README in all five languages. Game rules remain in the separate rulebooks.",
+        "Reduced unnecessary background work while Power Games is idle.",
+        "Many thanks to guliwer, paulinux, postukujący and turekcom (Grzegorz Turek) for the new games and other contributions!"
+      ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.6",
+      build: 269,
+      changes: [
+        "Removed custom display names. Player lists, game announcements, history and invitations now use ELTEN account names."
+      ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.7",
+      build: 270,
+      changes: [
+        "Added Darts, an audio target game with personal aiming and sound settings.",
+        "Added four card games: Cribbage, Belote with Coinchée, Jass and Hearts, with bots, tournament play and rules in all five interface languages.",
+        "In supported card hands, Left and Right jump between suits or colours, while Up and Down browse the current group without filtering the hand.",
+        "In 3-5-8, cards stay sorted by suit when received, including after exchanges.",
+        "The four-nines redeal option in Tysiac is now off by default for new tables.",
+        "Cash Auction lets you select several Quiz sets. Categories with the same name in different sets stay separate, and each category announcement names its set.",
+        "Cash Auction starts with 10000 points by default and counts answered questions, not chest auctions or auctions without bids. A tie leads to another answered question.",
+        "Cash Auction stays open for one more interval after the third call, and all-in must beat the highest offer. Accepted bids clear the field; rejected bids and newer drafts are kept.",
+        "Removed withdrawal from Cash Auction. The penalty applies after three consecutive auctions without a bid; any accepted bid resets the count, even if it loses.",
+        "In Cash Auction, one hint per question removes two wrong answers for 10% of the answerer's remaining points, rounded up to at least one point.",
+        "Cash Auction chests adjust the final balance by 5–35%: a 60% chance of a gain, 30% of a loss and 10% of no change, with larger changes less likely. They open automatically after five seconds, followed by their contents and a four-second pause before the result.",
+        "Cash Auction bots bid more cautiously for chests and no longer unnecessarily prolong auctions.",
+        "Dice General has distinct sounds for score columns, bonuses, doubled scores and completing or failing the school. Five of a kind is labelled General.",
+        "After closing personal game settings, focus returns to the previous field. Darts finishes presenting its result before moving to Restart.",
+        "Old custom display names are removed automatically from saved settings after updating.",
+        "Many thanks to guliwer, postukujący and turekcom for the new games and improvements!"
+      ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.8",
+      build: 271,
+      changes: [
+        "In card hands, Up and Down once again browse the entire list. Left and Right still jump between suits or colours.",
+        "Dice General now plays its column, bonus and school-scoring sounds correctly, respecting the selected volume and optional sound settings.",
+        "Category names in Dice General, Yahtzee and Balut now follow the current interface language, including after changing it without restarting Power Games.",
+        "Darts no longer loses an arrow-key press or throw when a modifier key is pressed immediately afterwards."
+      ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.9",
+      build: 272,
+      changes: [
+        "Added Darts rankings for the best three-dart round and best average score, separately for each difficulty. Personal records are private by default; Ctrl+P lets you publish them or remove public results. Many thanks to postukujący for this feature!",
+        "In Darts, bots continue playing after replacing a departing player, and a host who is observing can run a game with bots. Solo results and observers' aiming sounds have also been corrected.",
+        "Card hands now use consistent ordering for starting, received and exchanged cards. Tysiac, Belote and Jass use the same hand ordering as Spades. Mille Bornes keeps newly received cards at the end of the hand.",
+        "UNO starts with cards sorted by value for straights and super interceptions, and by colour otherwise. Redundant sorting modes have been removed. Pressing the shortcut for the current sorting mode reverses it from the first press.",
+        "In Hearts, a passed card disappears from your hand immediately, with a short confirmation.",
+        "Blackjack lists the dealer's visible card above your own cards, labelled Dealer's card rather than placed in the header. Space draws a card and Enter stands; doubling and splitting remain available when allowed.",
+        "Blackjack Dice identifies the starting player and announces a new turn even when the same player finishes one round and starts the next.",
+        "Dice Poker uses hidden dice and chips. Ante leads straight to throws, with one auction after everyone keeps a hand. Opponents hear only that a player rolls; H recalls your own hand.",
+        "Dice General, Balut and Yahtzee share consistent scoring sounds. Dice General and Balut show zero-point entries more clearly, and Balut explains points earned for completed rows and the overall total.",
+        "Cash Auction starts with an ante of 100 points by default. The first offer must be at least the ante; later offers only need to beat the highest bid. Three consecutive auctions without a bid cost 5% of the remaining balance.",
+        "In Cash Auction, payments for black chests no longer increase the question pool. The pool from earlier questions remains available for the next question.",
+        "New Cash Auction and Duck Racing tables select only the general-knowledge question set for the interface language by default, rather than remembering previous question-set selections.",
+        "In games with a point target, S now gives the target after the current scores.",
+        "Ctrl+T reads the elapsed game time and Ctrl+Shift+T the round time, except in Countries and Cities. In Quiz and War, the former Ctrl+T action is now on Ctrl+Alt+T.",
+        "Hearts lets the host choose the point limit, with 100 points by default, and explains why a card cannot be played.",
+        "Added a sound at the end of rounds that lacked one, without replacing existing round or game-ending sounds."
+      ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.10",
+      build: 273,
+      changes: [
+        "Darts has three new difficulty levels to unlock: Expert, Master and Legendary, with separate records. Unlocked levels are saved to your account. Many thanks to postukujący for the Darts improvements!",
+        "Darts settings now let each player switch mouse and touchpad control on or off independently of the table. Improved mouse handling when starting, leaving and returning to the game.",
+        "In Darts, you can choose to include personal-record announcements in the history. Results received later update it quietly, without moving focus or clearing the chat draft.",
+        "Darts has a round-ending sound and finishes announcing the result before moving to Restart.",
+        "Improved bots in many non-audio games. Card-game bots make better use of public plays, known missing suits, passing and opportunities to finish a hand.",
+        "Poker bots adapt to opponents' observed folds, calls and raises during the match. Dice Poker bots better assess hands that opponents may build by keeping and rerolling dice.",
+        "UNO and Makao bots look for winning sequences of their own cards without slowing urgent interceptions. Rummy, Domino, Mexican Train and 1000 Miles bots plan combinations and routes to finishing more carefully.",
+        "Improved move planning and endgame decisions in Backgammon, Chess, Reversi, Go, Ludo and Battleship, while keeping calculations bounded.",
+        "Yahtzee bots give more weight to keeping the 35-point upper-section bonus attainable. Dice General bots better account for the school, reserves and bonuses; Balut bots better value completed rows and the final entries.",
+        "In Dice General and Balut, score choices and confirmations use clearer category, point and column announcements.",
+        "After the third roll in Yahtzee, Dice General and Balut, the game announces that you should choose a scoring category. Up at the start of the score list reads its first entry.",
+        "Rolling five of a kind in Yahtzee, Dice General or Balut now plays the drum roll used in War.",
+        "Duck Racing bots make better decisions in numerical challenges and account for the effects of fields and cards when choosing a route.",
+        "Corrected the wording of six Polish quiz questions. Many thanks to Zuzler for the reports!",
+        "Added 31 questions to the Russian general-knowledge set. Many thanks to monstricek for the contribution!"
+      ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.11",
+      build: 274,
+      changes: [
+        "Quiz now shuffles answers independently for each question. Each of the four positions has the same chance of containing the correct answer.",
+        "Poker bots better judge hand strength after the flop, including straight opportunities shared by everyone through the board, and make better use of opponents' observed calls.",
+        "When Poker uses blinds, you now set only the small blind; the big blind is automatically twice as large. Raise announcements are shorter.",
+        "Added fixed five-second breaks after scoring a round or deal in many card, domino and casino games. Countries and Cities now also waits five seconds before the next round.",
+        "During these breaks, the host can press Shift+P to hold the game indefinitely and press it again to resume. Everyone is told when the game is paused or resumed.",
+        "Poker's timed blind increases count active play, excluding breaks between hands and manual pauses.",
+        "Darts rankings and record uploads now depend on server-table access rather than developer mode. General statistics and Axel Pong and Audio Ball player statistics remain disabled in developer mode.",
+        "Power Games now explains missing server access at startup, when opening restricted features and when entering a table, including which statistics or ranking results will not be sent. Unavailable rankings, tournaments and statistics are blocked before their lists open; ordinary games and local settings remain usable."
+      ].freeze
     ).freeze
   ].freeze
 

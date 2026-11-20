@@ -155,7 +155,7 @@ module GameRoomGames
 
     def hand_plans(state, cards, debts: state[:debts])
       minimum = state[:first_meld][state[:current_player]] ? 0 : state[:options]["first_meld"]
-      key = [cards, state[:options]["identities"], state[:options]["rounded"], minimum, debts]
+      key = Marshal.dump([cards, state[:options]["identities"], state[:options]["rounded"], minimum, debts])
       @rummy_plans ||= {}
       @rummy_plans.clear if @rummy_plans.length >= 32
       @rummy_plans[key] ||= GameRoomRummyPlanner.plans(cards,

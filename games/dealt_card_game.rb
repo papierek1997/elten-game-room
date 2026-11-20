@@ -13,6 +13,7 @@ module GameRoomGames
   # Round lifecycle and hand controls for games whose only decision is one
   # card. Rules, captures and scoring remain in the individual game models.
   class DealtCardGame < CardGame
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
     using GameRoomLocalization::Translations
     include PublicHistoryAnnouncements
     prepend DealtCardPrivate
@@ -20,6 +21,7 @@ module GameRoomGames
     def supports_bots?; true; end
     def player_spatial_audio?; true; end
     def rule_sections; generated_rule_sections; end
+    def round_timing_start_actions; %w[deal private_deal]; end
 
     def replay(session, events, repository)
       players = repository.players_for(session)
@@ -83,7 +85,7 @@ module GameRoomGames
       return [:invalid, nil] unless selection['kind'] == 'card' && selection['action'] == 'select' && selection['zone'] == 'hand'
       card = selection['card'].to_s
       return [:card_not_in_hand, nil] unless hand_for(state, actor).include?(card)
-      return [:must_follow_suit, nil] unless legal_cards(state, actor).include?(card)
+      return [illegal_card_status(state, actor, card), nil] unless legal_cards(state, actor).include?(card)
       [:ok, event_plan('play', card)]
     end
 
@@ -94,11 +96,12 @@ module GameRoomGames
     end
 
     def hand_sorting_available?(replay, viewer)
-      !hand_for(replay.state, viewer).empty?
+      !hand_for_display(replay.state, viewer).empty?
     end
 
     def playable_card_navigation(replay, viewer)
-      actions = legal_actions(replay, viewer).group_by { |action| action['card_id'] }
+      actions = legal_actions(replay, viewer).select { |action| action['kind'] == 'card' }
+      actions = actions.group_by { |action| action['card_id'] }
       return nil if actions.empty?
       card_navigation_spec(hand_id: 'hand', card_actions: actions, automatic_card_ids: actions.keys)
     end
@@ -107,12 +110,13 @@ module GameRoomGames
       state = replay.state
       return GameSurfaces::QuestionSpec.new(id: 'table', prompt: name, mode: :information,
         value: table_information_text(state)) unless state[:players].any? { |player| same_user?(player, viewer) }
-      hand = hand_for(state, viewer)
+      hand = hand_for_display(state, viewer)
       cards = hand_cards_for_display(hand).map do |card|
         GameSurfaces::Card.new(id: card, value: card, label: playing_card_label(card),
+          navigation_group: standard_hand_navigation_group(rank: playing_card_rank(card), suit: playing_card_suit(card)),
           sort_keys: standard_hand_sort_keys(rank: playing_card_rank(card), suit: playing_card_suit(card), position: hand.index(card)))
       end
-      GameSurfaces::CardTableSpec.new(zones: [GameSurfaces::CardZoneSpec.new(id: 'hand', header: _("Your hand"),
+      GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: [GameSurfaces::CardZoneSpec.new(id: 'hand', header: _("Your hand"),
         cards: cards, hand_order: hand.dup, hand_epoch: [viewer, state[:round], state[:deal_group]].join(':'),
         empty_label: _("Your hand is empty"))])
     end
@@ -130,7 +134,7 @@ module GameRoomGames
       state = replay.state
       case feature
       when :hand
-        hand = hand_cards_for_display(hand_for(state, viewer))
+        hand = hand_cards_for_display(hand_for_display(state, viewer))
         {message: hand.empty? ? _("Your hand is empty") : _("Your hand: %{cards}.") % {cards: cards_text(hand)}}
       when :table_cards then {message: table_information_text(state)}
       when :table_cards_list
@@ -192,10 +196,7 @@ module GameRoomGames
 
     protected
 
-    # Presentation and H share this order; never reorder the authoritative hand.
-    def hand_cards_for_display(hand)
-      hand
-    end
+    def hand_for_display(state, viewer); hand_for(state, viewer); end
 
     def score_order; 'higher'; end
 
@@ -248,11 +249,14 @@ module GameRoomGames
           player: participant_name(actor), card: playing_card_label(card)}, actor: actor, value: card)
         play_card(state, actor, card, event, repository, history)
         true
-      else false
+      else apply_extra_card_event(state, event, session, repository, history)
       end
     end
 
+    def apply_extra_card_event(_state, _event, _session, _repository, _history); false; end
+
     def legal_cards(state, actor); hand_for(state, actor); end
+    def illegal_card_status(_state, _actor, _card); :must_follow_suit; end
     def valid_roster?(state)
       players = state[:players]
       players.size.between?(minimum_players, maximum_players) && GameRoomParticipants.unique(players).size == players.size &&
@@ -281,6 +285,10 @@ module GameRoomGames
       cards = table_cards(state)
       cards.empty? ? _("No cards on the table") : cards_text(cards)
     end
+    def round_information_text(state)
+      table_information_text(state)
+    end
+
     def winning_units(state)
       best = score_order == 'lower' ? state[:scores].values.min : state[:scores].values.max
       state[:units].select { |unit| state[:scores][unit] == best }

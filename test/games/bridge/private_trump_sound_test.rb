@@ -25,10 +25,15 @@ begin
       entry = after.history.reverse.find { |item| item.kind == :play }
       event = h.events(user).find { |item| h.repositories[user].event_id(item).to_i == entry.event_id.to_i }
       assert(event, "Cannot find the authenticated card-reveal event")
+      event_history = after.history.select { |item| item.event_id.to_i == entry.event_id.to_i }
       cue = GameRoomSounds.event_cue(game: game, event: event, before_replay: before[user], after_replay: after,
-        repository: h.repositories[user], viewer: user, include_result: false)
-      assert(cue == (action["card"].end_with?("H") ? ["play", "draw2"] : "play"),
-        "Private receipt/card mismatch or missing trump cue for #{user}")
+        repository: h.repositories[user], viewer: user, history: event_history, include_result: false)
+      expected = ["play"]
+      expected << "draw2" if action["card"].end_with?("H")
+      expected << "round_finished" if game.round_ended?(before_replay: before[user],
+        after_replay: after, history: event_history)
+      assert(Array(cue) == expected,
+        "Private receipt/card mismatch or wrong trump/round-completion cue for #{user}")
     end
     if action["card"].end_with?("H")
       if seat == game.send(:dummy_seat, replay.state)

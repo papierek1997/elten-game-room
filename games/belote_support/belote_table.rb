@@ -1,0 +1,477 @@
+require_relative "../dealt_card_game"
+require_relative "../../lib/trick_forecast"
+require_relative "belote_bidding"
+require_relative "../../lib/private_card_round_audit"
+
+GameRoomServerRandom.register("belote", ["deal"])
+GameRoomPrivateCards.register("belote", host: %w[private_deal], claim: %w[private_ready belote_bid belote_meld belote_skip_meld],
+  take: %w[initial_hand private_draw], reveal: %w[play belote_play_meld], random: %w[deal])
+
+module GameRoomGames
+  using GameRoomLocalization::Translations
+  class BeloteTable < DealtCardGame
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
+    include BeloteBidding
+
+    def id; "belote"; end
+    def name; _('Belote'); end
+    def score_target(_replay); 1000; end
+    def short_description; _('Play in partnerships, bid for trumps and score for tricks and belote.'); end
+
+    def notification_option_keys(_options); %w[variant]; end
+
+    def rule_sections; generated_rule_sections; end
+    def minimum_players; 4; end
+    def maximum_players; 4; end
+    def team_size(_options, player_count:); player_count == 4 ? 2 : 0; end
+
+    def option_definitions
+      [OptionDefinition.new(key: "variant", label: _('Variant'), kind: :choice, default: "classic", choices: [
+        OptionChoice.new(value: "classic", label: _('Classic: choose a trump suit')),
+        OptionChoice.new(value: "coinchee", label: _('Coinchée: bid a point contract'))
+      ]), OptionDefinition.new(key: "coinchee_two_stage", label: _('Coinchée: deal five cards before bidding'), kind: :boolean, default: false)]
+    end
+
+    def surface_spec(replay, viewer)
+      surface = super
+      return surface unless surface.is_a?(GameSurfaces::CardTableSpec)
+
+      state = replay.state
+      surface.zones.each do |zone|
+        zone.cards.each do |card|
+          card.shift_choice = "meld" if state[:phase] == :playing
+          next unless meld_available?(state, viewer, card.id)
+
+          declaration = state[:belote_announced][viewer] ? "rebelote" : "belote"
+          card.choices = [
+            GameSurfaces::CardChoice.new(id: "normal", label: _('Play without declaring'), value: card.id),
+            GameSurfaces::CardChoice.new(id: "meld", label: _('Play and declare %{declaration}') % {declaration: declaration}, value: card.id)
+          ]
+          card.shift_choice = "meld"
+        end
+      end
+      surface
+    end
+
+    def action_for(selection, replay, actor, context: nil)
+      if selection["action"] == "belote_skip_meld" && replay.state[:phase] == :meld_end &&
+          same_user?(replay.current_player, actor)
+        plan = event_plan("belote_skip_meld", replay.state[:play_count].to_s)
+        return private_secure_plan(plan, replay.state, actor) if replay.state[:private_cards]
+        return [:ok, plan]
+      end
+      if selection["kind"] == "card" && selection["choice_id"] == "meld" &&
+          legal_cards(replay.state, actor).include?(selection["card"])
+        card = selection["card"]
+        return [:belote_no_meld, nil] unless meld_available?(replay.state, actor, card)
+
+        plan = event_plan("belote_play_meld", card)
+        return private_secure_plan(plan, replay.state, actor) if replay.state[:private_cards]
+        return [:ok, plan]
+      end
+      unless selection["action"] == "belote_meld"
+        status, plan = super
+        return [status, plan] unless status == :must_follow_suit
+
+        state = replay.state
+        trump = state[:trump]
+        lead = BeloteCards.decode(table_cards(state).first).first
+        if lead != trump && hand_for(state, actor).any? { |card| BeloteCards.decode(card).first == lead }
+          return [status, plan]
+        end
+
+        played_trump = table_cards(state).any? { |card| BeloteCards.decode(card).first == trump }
+        higher_required = played_trump && hand_for(state, actor).any? do |card|
+          BeloteCards.decode(card).first == trump && !legal_cards(state, actor).include?(card)
+        end
+        return [higher_required ? :belote_overtrump : :belote_trump, nil]
+      end
+      pending = replay.state[:pending_meld]
+      return [:invalid, nil] unless pending && same_user?(pending.first, actor) &&
+        selection["play"].to_s == replay.state[:play_count].to_s
+
+      plan = event_plan("belote_meld", replay.state[:play_count].to_s)
+      return private_secure_plan(plan, replay.state, actor) if replay.state[:private_cards]
+      [:ok, plan]
+    end
+
+    def move_error(status)
+      case status
+      when :belote_no_meld then _('You cannot declare belote with that card.')
+      when :belote_trump then _('You must play a trump.')
+      when :belote_overtrump then _('You must play a higher trump.')
+      else super
+      end
+    end
+
+    def shortcut_features
+      super + [:led_suit]
+    end
+
+    def shortcut_feature_data(feature, replay, viewer)
+      return super unless feature == :led_suit
+
+      card = table_cards(replay.state).first
+      suit = BeloteCards.decode(card).first if card
+      trump = replay.state[:trump]
+      trump_text = trump ? _('Trumps: %{suit}.') % {suit: bid_label(trump)} : _('Trumps have not been chosen yet.')
+      led_text = suit ? _('Suit led: %{suit}.') % {suit: bid_label(suit)} : nil
+      {label: _('read trumps and the suit led'), message: [trump_text, led_text].compact.join(" ")}
+    end
+
+    def custom_game_shortcuts(replay, viewer)
+      shortcuts = super
+      state = replay.state
+      shortcuts << announcement_shortcut(key: "r", label: _('read the contract'), message: round_information_text(state))
+      points = state.fetch(:units).map do |unit|
+        total = state.fetch(:trick_points, {}).fetch(unit, 0) + state.fetch(:bonuses, {}).fetch(unit, 0)
+        "#{GameRoomContent.utf8(unit_label(state, unit))}: #{total}"
+      end.join(". ")
+      shortcuts << GameShortcut.new(key: "s", modifiers: [:shift], kind: :announcement,
+        label: _('Points this deal'), message: points)
+      if state[:upcard]
+        shortcuts << GameShortcut.new(key: "d", kind: :announcement, label: _('read the turned-up card'),
+          message: _('Turned-up card: %{card}.') % {card: playing_card_label(state[:upcard])})
+      end
+      if state[:phase] == :bidding && same_user?(state[:current_player], viewer)
+        choices = bid_choices(state).map { |choice| ShortcutChoice.new(value: choice.to_s, label: bid_label(choice)) }
+        shortcuts << GameShortcut.new(key: "b", kind: :choice, label: _('Choose a contract or pass'),
+          prompt: bidding_header(state), choices: choices, action_kind: "command",
+          action_name: "belote_bid", value_key: "choice")
+        shortcuts << GameShortcut.new(key: "enter", kind: :choice, label: _('Choose a contract or pass'),
+          prompt: bidding_header(state), choices: choices, action_kind: "command",
+          action_name: "belote_bid", value_key: "choice")
+      end
+      shortcuts
+    end
+
+    def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
+      return "play2" if event["action"] == "belote_meld"
+      return %w[play draw2 play2] if event["action"] == "belote_play_meld"
+
+      cues = super
+      return cues unless event["action"] == "play" && history.any? { |entry| entry.kind == :play }
+
+      trump = before_replay&.state&.fetch(:trump, nil)
+      card = BeloteCards::DECODED[event["value"]]
+      trump && card&.first == trump ? Array(cues) + ["draw2"] : cues
+    end
+
+    def bot_strategy
+      @bot_strategy ||= GameRoomBots::HeuristicStrategy.new
+    end
+
+    def bot_action_score(replay, actor, action, context: nil)
+      state = replay.state
+      return bid_score(state, actor, action) if action["action"] == "belote_bid"
+      return 0 unless action["kind"] == "card"
+
+      legal = legal_cards(state, actor).map { |card| BeloteCards.decode(card) }
+      trick = table_cards(state).map { |card| BeloteCards.decode(card) }
+      partner_winning = !trick.empty? && unit_for(state, state[:trick][BeloteTrick.winner(trick, state[:trump])].first) == unit_for(state, actor)
+      preferred = BeloteBot.play(legal, state.fetch(:trump), trick: trick, partner_winning: partner_winning)
+      seats, trump = state[:seats], state[:trump]
+      units = seats.map { |player| unit_for(state, player) }
+      current = state[:trick].map { |player, card| [seats.index(player), BeloteCards.decode(card)] }
+      revision = replay.accepted_events.size
+      unless @belote_bot_replay.equal?(replay) && @belote_bot_revision == revision && @belote_bot_actor == actor
+        allied = ->(table, seat) { !table.empty? && units[table[BeloteTrick.winner(table.map(&:last), trump)].first] == units[seat] }
+        view = {seat: seats.index(actor), units: units, hand: hand_for(state, actor).map { |card| BeloteCards.decode(card) },
+          counts: seats.map { |player| state[:hands][player].size }, trick: current, deck: BeloteRules::DECK,
+          played: GameRoomTrickForecast.public_plays(GameRoomParticipantDecisionEvents.for(replay), seats, BeloteCards::DECODED)}
+        order = state[:units]
+        root = order.index(unit_for(state, actor))
+        taker = order.index(unit_for(state, state[:taker]))
+        bonuses = order.map { |unit| state[:bonuses].fetch(unit) }
+        points_before = order.map { |unit| state[:trick_points].fetch(unit) }
+        tricks_before = order.map { |unit| state[:tricks_won].fetch(unit) }
+        @belote_bot_card = GameRoomTrickForecast.new(view,
+          legal: ->(hand, table, who) { BeloteRules.legal(hand, table.map(&:last), trump: trump, partner_winning: allied.call(table, who)) },
+          winner: ->(cards) { BeloteTrick.winner(cards, trump) },
+          points: ->(cards, last) { BeloteTrick.points(cards, trump, last: last) },
+          policy: ->(cards, table, who, _hand) { BeloteBot.play(cards, trump, trick: table.map(&:last), partner_winning: allied.call(table, who)) },
+          evaluate: lambda do |completed, _reserve|
+            points, won = points_before.dup, tricks_before.dup
+            completed.each do |table, winner, last|
+              unit = order.index(units[winner])
+              points[unit] += BeloteTrick.points(table.map(&:last), trump, last: last)
+              won[unit] += 1
+            end
+            result = BeloteSettlement.contract(points, taker: taker, bonuses: bonuses,
+              carry: state.fetch(:carry, 0), sweep: won.index(8), coinchee: coinchee?(state) ? state[:contract] : nil,
+              multiplier: state.fetch(:multiplier, 1))
+            result[:scores][root] - result[:scores][1 - root]
+          end,
+          voided: ->(lead, card) { card.first != lead }).choose(legal, preferred)
+        @belote_bot_replay, @belote_bot_revision, @belote_bot_actor = replay, revision, actor
+      end
+      preferred = @belote_bot_card
+      preferred && action["card"] == BeloteCards.encode(preferred) ? 1 : 0
+    end
+
+    protected
+
+    def deal_round(state, seed, _event, _repository, _history)
+      seats = state.fetch(:seats)
+      state[:passes] = 0
+      state[:contract] = nil
+      state[:multiplier] = 1
+      state[:pending_meld] = nil
+      state[:taker] = state[:trump] = state[:upcard] = nil
+      state[:trick] = []
+      state[:play_count] = 0
+      state[:trick_points] = state[:units].to_h { |unit| [unit, 0] }
+      state[:tricks_won] = state[:trick_points].dup
+      state[:bonuses] = state[:trick_points].dup
+      state[:belote_announced] = {}
+      state[:phase], state[:current_player] = :bidding, first_player(state)
+
+      unless two_stage_deal?(state)
+        deck = shuffled_cards(BeloteCards::DECK, seed) unless state[:private_cards]
+        state[:hands] = seats.to_h { |seat| [seat, deck ? deck.shift(8) : Array.new(8)] }
+        return
+      end
+
+      if state[:private_cards]
+        state[:hands] = seats.to_h { |seat| [seat, Array.new(5)] }
+        state[:phase] = :awaiting_upcard
+      else
+        deck = shuffled_cards(BeloteCards::DECK, seed)
+        order = seats.rotate((state[:dealer] + 1) % seats.size)
+        state[:hands] = seats.to_h { |seat| [seat, []] }
+        [3, 2].each do |count|
+          order.each { |seat| state[:hands].fetch(seat).concat(deck.shift(count)) }
+        end
+        state[:upcard] = deck.shift
+        state[:undealt] = deck
+      end
+    end
+
+    def private_deal_spec(state)
+      GameRoomPrivateCardRoundAudit.begin_round(state)
+      {hands: state.fetch(:hands), deck: BeloteCards::DECK}
+    end
+
+    def private_dealing_applied(state, _event, _session, _repository, _history)
+      return unless state[:phase] == :awaiting_upcard
+
+      state[:phase] = :bidding
+      private_request_draw(state, actor: first_player(state), count: 1, purpose: "belote_upcard")
+    end
+
+    def private_received_cards(state, purpose, cards, event, repository, history)
+      return super unless purpose == "belote_upcard"
+
+      state[:upcard] = cards.fetch(0)
+    end
+
+    def complete_belote_deal(state)
+      seats = state[:seats]
+      taker = state[:taker]
+      state[:hands].fetch(taker) << state.fetch(:upcard)
+      state[:phase], state[:current_player] = :playing, first_player(state)
+      if state[:private_cards]
+        counts = seats.to_h { |seat| [seat, seat == taker ? 2 : 3] }
+        GameRoomPrivateCardDealing.append(state, counts)
+      else
+        seats.rotate(seats.index(taker)).each do |seat|
+          state[:hands].fetch(seat).concat(state.fetch(:undealt).shift(seat == taker ? 2 : 3))
+        end
+      end
+    end
+
+    def round_information_text(state)
+      taker = state[:taker]
+      return _('No contract has been chosen yet.') unless taker && state[:trump]
+
+      name = GameRoomContent.utf8(participant_name(taker))
+      pair = GameRoomContent.utf8(unit_label(state, unit_for(state, taker)))
+      suit = bid_label(state[:trump])
+      threshold = state[:contract] || 82
+      message = _('%{player} chooses %{suit} as trumps. Partnership %{team} must score at least %{points} and beat the defenders.') % {
+        player: name, suit: suit, team: pair, points: threshold}
+      multiplier = state.fetch(:multiplier, 1)
+      message += ' ' + _('Contract multiplier: %{multiplier}.') % {multiplier: multiplier} if multiplier > 1
+      message
+    end
+
+    def table_cards(state)
+      state.fetch(:trick, []).map(&:last)
+    end
+
+    def legal_cards(state, actor)
+      return [] unless state[:phase] == :playing && same_user?(state[:current_player], actor)
+
+      hand = hand_for(state, actor).filter_map { |card| BeloteCards::DECODED[card] }
+      trick = table_cards(state).map { |card| BeloteCards.decode(card) }
+      trump = state.fetch(:trump)
+      partner_winning = !trick.empty? &&
+        unit_for(state, state[:trick].fetch(BeloteTrick.winner(trick, trump)).first) == unit_for(state, actor)
+      BeloteRules.legal(hand, trick, trump: trump, partner_winning: partner_winning).map do |card|
+        BeloteCards.encode(card)
+      end
+    end
+
+    def meld_available?(state, actor, card)
+      return false unless legal_cards(state, actor).include?(card)
+
+      suit, rank = BeloteCards.decode(card)
+      return false unless suit == state[:trump]
+
+      [12, 13].include?(rank) && (state[:belote_announced][actor] || hand_for(state, actor).include?(BeloteCards.encode([suit, 25 - rank])))
+    end
+
+    def private_event_card(event, state)
+      return event["value"] if event["action"] == "belote_play_meld"
+
+      super
+    end
+
+    def apply_replay_event(state, event, session, repository, history)
+      return super unless event["action"] == "belote_play_meld"
+
+      actor = repository.actor_of(event, session)
+      card = event["value"]
+      if state[:private_cards]
+        return false unless state[:phase] == :playing && same_user?(state[:current_player], actor)
+        suit, rank = BeloteCards::DECODED[card]
+        return false unless suit == state[:trump] && [12, 13].include?(rank)
+      else
+        return false unless meld_available?(state, actor, card)
+      end
+
+      super(state, event.merge("action" => "play", "belote_declared" => true), session, repository, history)
+    end
+
+    def play_card(state, actor, card, event, repository, history)
+      trick = state.fetch(:trick)
+      state[:pending_meld] = nil
+      suit, rank = BeloteCards.decode(card)
+      if suit == state[:trump] && [12, 13].include?(rank)
+        state[:pending_meld] = [actor, rank]
+      end
+      if event["belote_declared"]
+        apply_meld(state, event.merge("value" => state[:play_count].to_s), nil, repository, history, actor: actor, resume: false)
+      end
+      trick << [actor, card]
+      if trick.size < 4
+        state[:current_player] = next_player(state, actor)
+
+        return
+      end
+
+      cards = table_cards(state).map { |value| BeloteCards.decode(value) }
+      trump = state.fetch(:trump)
+      winner = trick.fetch(BeloteTrick.winner(cards, trump)).first
+      last = state[:play_count] == 32
+      points = BeloteTrick.points(cards, trump, last: last)
+      state.fetch(:trick_points)[unit_for(state, winner)] += points
+      state.fetch(:tricks_won)[unit_for(state, winner)] += 1
+      name = GameRoomContent.utf8(participant_name(winner))
+      message = _('%{player} wins the trick for %{points} points.') % {player: name, points: points}
+      add_history(history, event, repository, :trick, message, actor: winner)
+      trick.clear
+      state[:current_player] = winner
+      if last
+        settle_belote_round(state, event, repository, history)
+      end
+    end
+
+    def pause_for_meld(state, actor)
+      state[:after_meld_player] = state[:current_player]
+      state[:phase], state[:current_player] = :meld_end, actor
+    end
+
+    def finish_meld_decision(state, event, repository, history)
+      state[:pending_meld] = nil
+      state[:phase], state[:current_player] = :playing, state.delete(:after_meld_player)
+      settle_belote_round(state, event, repository, history) if state[:play_count] == 32
+    end
+
+    def apply_meld(state, event, session, repository, history, actor: repository.actor_of(event, session), resume: true)
+      pending = state[:pending_meld]
+      return false unless pending && event["value"] == state[:play_count].to_s
+      owner, rank = pending
+      return false unless same_user?(owner, actor)
+
+      state[:pending_meld] = nil
+      unless state[:belote_announced][actor]
+        partner_card = BeloteCards.encode([state[:trump], 25 - rank])
+        return false unless state[:private_cards] || hand_for(state, actor).include?(partner_card)
+        state[:belote_announced][actor] = true
+        label = "belote"
+      else
+        state[:belote_announced].delete(actor)
+        state[:bonuses][unit_for(state, actor)] += 20
+        label = _('rebelote, 20 points')
+      end
+      add_history(history, event, repository, :belote, "#{GameRoomContent.utf8(participant_name(actor))}: #{label}.", actor: actor) unless state[:private_cards]
+      finish_meld_decision(state, event, repository, history) if resume && state[:phase] == :meld_end
+      true
+    end
+
+    def private_after_event(state, event, session, repository, history)
+      return unless %w[play belote_play_meld belote_meld belote_skip_meld].include?(event["action"])
+
+      state.fetch(:private_round_actions) << event
+      return unless state[:phase] == :private_round_end
+
+      audit = GameRoomPrivateCardRoundAudit.initial_state(state)
+      if audit
+        audit.merge!(state.slice(:upcard, :taker, :trump, :passes, :contract, :multiplier))
+        audit[:hands].fetch(audit[:taker]) << audit[:upcard] if two_stage_deal?(state)
+        audit[:phase], audit[:current_player] = :playing, first_player(audit)
+      end
+      audited_history = []
+      valid = audit && state.fetch(:private_round_actions).all? do |record|
+        apply_replay_event(audit, record, session, repository, audited_history)
+      end
+      if valid
+        state.merge!(audit)
+        history.concat(audited_history.select { |entry| %i[belote round_result result].include?(entry.kind) })
+      else
+        GameRoomPrivateCardRoundAudit.reject_round(state, event, repository, history)
+      end
+    end
+
+    def settle_belote_round(state, event, repository, history)
+      if state[:private_cards]
+        state[:phase], state[:current_player] = :private_round_end, nil
+        return
+      end
+
+      units = state.fetch(:units)
+      tricks = units.map { |unit| state.fetch(:trick_points).fetch(unit) }
+      taker = units.index(unit_for(state, state.fetch(:taker)))
+      bonuses = units.map { |unit| state.fetch(:bonuses).fetch(unit) }
+      sweep = units.index { |unit| state[:tricks_won][unit] == 8 }
+      settlement = BeloteSettlement.contract(tricks, taker: taker, bonuses: bonuses, carry: state.fetch(:carry, 0), sweep: sweep,
+        coinchee: coinchee?(state) ? state.fetch(:contract) : nil, multiplier: state.fetch(:multiplier, 1))
+      state[:carry] = settlement.fetch(:carry)
+      units.zip(settlement.fetch(:scores)).each { |unit, points| state[:scores][unit] += points }
+      winner = settlement.fetch(:winner)
+      pair = GameRoomContent.utf8(unit_label(state, units.fetch(taker)))
+      outcome = if winner.nil?
+        _('Tie. Partnership %{team} carries its trick points over to the next deal.') % {team: pair}
+      elsif winner == taker
+        _('Partnership %{team} makes the contract.') % {team: pair}
+      else
+        _('Partnership %{team} fails the contract.') % {team: pair}
+      end
+      add_history(history, event, repository, :round_result, outcome)
+      units.each_with_index do |unit, index|
+        name = GameRoomContent.utf8(unit_label(state, unit))
+        collected = tricks.fetch(index) + bonuses.fetch(index)
+        awarded = settlement.fetch(:scores).fetch(index)
+        add_history(history, event, repository, :round_result, _('%{team}: collected: %{collected}; recorded: %{awarded}.') % {
+          team: name, collected: collected, awarded: awarded})
+      end
+      state[:phase], state[:current_player] = :round_complete, nil
+      if state[:scores].values.max >= 1000 && winning_units(state).one?
+        finish_game(state, event, repository, history)
+      end
+    end
+  end
+end
+
+require_relative '../generated/rulebooks/belote'

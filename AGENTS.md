@@ -16,6 +16,19 @@ contract changes. The tested reference game and modal example demonstrate
 existing mechanisms; they do not authorize a new framework or copying every
 capability into every feature.
 
+Rules, interface translations and their generated files are mandatory parts of
+the same contribution, including imported PRs. Follow the
+[text acceptance gate](docs/TRANSLATIONS.md#required-acceptance-gate-for-text-changes):
+complete and edit every affected supported language, regenerate outputs and run
+the content checks after the final edit. Passing model tests alone is not enough;
+a stale catalog, missing option explanation or failing rulebook check blocks
+acceptance. Do not defer this work to a failed GitHub run or weaken the checks.
+Do not freeze translated UI labels in class constants at load time. Resolve
+their source messages when presenting them, and test language changes on the
+same game instance, including inherited score-sheet labels.
+Use the [recurring-risk review](docs/GAME_ACCEPTANCE.md#recurring-integration-risks)
+to select further regression cases from previous integration failures.
+
 The question and rulebook editorial templates below are mandatory, not optional
 style suggestions. Apply their process and separate full language review, but
 write natural target-language prose rather than mechanically filling their
@@ -41,6 +54,18 @@ existing creator-text protection and source restrictions intact.
   Encryption protects the ordinary view, not against a modified client.
 - Preserve both stale-closure guards, participant epochs, immutable history,
   reconciliation of uncertain writes and protection of private phases.
+- Show human participants under their complete ELTEN account names everywhere,
+  including live speech and invitations. Ignore former custom aliases, even
+  from saved settings or remote metadata. The participant-name formatter only
+  decodes bot labels; do not restore name profiles or first-name shortening.
+- New games use one production rule reducer. Complete-round and bot tests must
+  drive that reducer, not a parallel Round/Match model unused by the table.
+  Private trick/discard audits must actually gate scoring; native ownership
+  evidence alone does not prove follow-suit or legal discard choices.
+- `participant_scores` exposes player-visible units, even when internal scores
+  use half-points. Read the user list, score shortcut and final result together.
+  Validate sound cues, language, quiet refresh and selection retention alongside
+  legal moves; successful startup is not an acceptance test.
 - A valid native card reveal remains evidence even if its associated rule
   move is refused. A strict hand audit must replay that evidence in its original
   chronology separately from accepted moves, and reproduce the exact accepted
@@ -64,6 +89,11 @@ existing creator-text protection and source restrictions intact.
 - Do not restore a second bot scheduler in `GameScreen`: turn-based games
   are executed by `GameRoomSessionRunner`, realtime bots by their own client.
   Tests of bot move writes and acknowledgements must use the active executor.
+- Round breaks belong to the existing runner and session clock. Opt in through
+  `GameRoomRoundPause`; keep chat/navigation usable and give the next round its
+  full input time. Manual Shift+P pauses may release only their own marked
+  boundary, not a technical freeze. Poker blind intervals count active play,
+  excluding actual inter-hand gaps. Test these boundaries with the native runner.
 - Unfreezing after a failed write requires confirmation of that write's own
   boundary, the same game and the current host. Do not unlock a newer write.
   Accepting an invitation and leaving normally share the private-phase
@@ -557,6 +587,9 @@ Details: `docs/UI.md`.
   game or planner code, especially `shuffle(random: ...)`. For new calls,
   use `GameRoomRandom.shuffle(values, random: Random.new(seed))`, passing
   the shared seed recorded in the event, not a new random seed during replay.
+  Do not replace it with a hand-written generator and low-bit modulo choices.
+  Separate question-selection and answer-order entropy; test all 24 four-answer
+  permutations, approximately equal A–D frequencies and stable scoring on peers.
   Preserve existing deterministic helpers (`CardGame#shuffled_cards`,
   `GameRoomDominoTiles.shuffle`, planner helpers) and their seed conversion;
   do not migrate older games incidentally if that would change saved games.
@@ -589,6 +622,20 @@ Details: `docs/UI.md`.
   `hand_epoch` identifying the owner and deal. Details are in
   `docs/CARD_HAND.md`. Do not mark other lists, boards or dice as card hands;
   this mechanism must not change their behavior or announcements.
+- Every card game explicitly declares `CARD_HAND_ORDER` on its concrete class,
+  including acquisition-order games, with its allowed `sort_modes` and a default
+  from that list. Pass both to the hand surface; shared shortcuts and surfaces
+  must reject disabled modes, including retained callbacks and local view state.
+  Reuse `CardHandOrder` and the shared
+  helpers for default/manual display and suit navigation; do not silently use
+  a standard order or confuse presentation with trick strength. Variant defaults
+  select an existing mode, not another duplicate "default" option. Keep the
+  catalog's actual marked-hand gate and the
+  [hand regression review](docs/CARD_HAND.md#required-hand-order-regression-review):
+  initial/received/passed cards, current-list readout, interleaved horizontal
+  jumps, whole-list vertical arrows, physical cursor/prepared packets, quiet
+  refresh and new hand epochs. Update dependent tests alongside an approved
+  default change; do not hide ordering failures by removing order assertions.
 - A new game with an actual card hand implements `playable_card_navigation`
   and groups all legal actions by the physical card's stable ID. The shared
   framework provides `Z` and `Shift+Z`. Mark a move as automatic only when
@@ -612,6 +659,34 @@ Details: `docs/UI.md`.
   and a UTF-8 result do not prove that the key matched. Test with the actual
   dictionary or a faithful binary stub.
 - A bot chooses an action but executes it through the standard game path.
+- Own-continuation proofs stop at unknown rival choices, draws and hand
+  transfers. Reuse `GameRoomBots::OwnContinuations`; never call an unfinished
+  branch a loss. UNO interception/super-interception and urgent reactions must
+  bypass deeper planning. Check their actual computation as well as legality;
+  do not silently replace the user's configured pacing.
+- Small score-table forecasts use the game's actual record/bonus/settlement
+  functions. Known final outcome outranks extra points, but expected points
+  still break certain-loss/tie cases. Do not predict another player's future
+  competitive bonus claim. Test rare-zero versus flexible-category choices,
+  not only whether a table finishes.
+- Value finite resources only while remaining entries can use them; terminal
+  or excess reserve has no future value. A bonus must remain physically
+  reachable, and retries must consume real remaining opportunities. Keep raw
+  score opportunity cost separate from a lost bonus. Reproduce earlier choices
+  leading to a late failure and compare full common-dice matches before adding
+  a more elaborate estimator. See the school/threshold value regressions under
+  `test/games/five_dice/`.
+- Joint hidden-piece/card models must respect one physical inventory. Budget
+  exhaustion is fallback, not a partial posterior. Hypothetical opponent hands
+  and neutral size estimates are not permission to read real concealed data.
+- A fast search transition must match production state, terminal outcome,
+  repetition/clock rights and tactical metadata through special moves. Faster
+  imports and legal choices alone do not establish strategic improvement.
+- A replay object can be updated in place (notably `DealtCardGame`). A bot's
+  decision cache must include its accepted-event revision as well as replay
+  identity and actor. Exercise consecutive turns of the same actor on that
+  same object; cold replay tests alone cannot detect a stale preferred card.
+  See [bot evaluation contracts](docs/BOT_TRAINING.md#bounded-planning-contracts).
 - The LiveSessions stack synchronizes table and game state. Discover public
   tables through discovery and join them directly; do not restore bootstrap
   or synchronization through Signals.
@@ -727,7 +802,7 @@ and `docs/PRIVATE_STATE.md`:
   ask about removal only after persistent import succeeds. Preserve the delivery
   journal on an uncertain send and reconcile rather than duplicate it.
   The header describes the starting participants; same-session replacements
-  belong in the current frame roster using the same participant display names.
+  belong in the current frame roster using account names and existing bot labels.
   Validate an explicit roster against the fixed seat count before rendering.
   Information, context actions and perspective labels follow that frame while
   preserving the listening seat. Refresh native controls quietly on their own
@@ -788,6 +863,12 @@ invalid Opus headers but does not re-encode; sound IDs remain extensionless.
 `tools/generate-pong-echo.rb` also produces Opus from deterministic PCM.
 Procedure: `docs/BUILDING.md`. Preserve licensing and attribution.
 
+Presentation cues returned by a game's sound hook must be registered in
+`GameRoomSounds::ASSET_NAMES` and both required-assets manifests. A file in
+`Audio/` and a matching hook return value do not prove that it plays. Exercise
+the actual event through `GameRoomSounds.play_event` to the program's asset
+playback boundary, including volume, optional-effects and output gates.
+
 ## Contracts added after build 239
 
 - One UI instance per process: `GameRoomSingleInstance` switches the native
@@ -847,6 +928,19 @@ Procedure: `docs/BUILDING.md`. Preserve licensing and attribution.
   per 15 min. Developer mode still disables statistics. Smoothness tests
   must explicitly enable isolated statistics or they do not test this path.
   Details: docs/STATISTICS.md.
+- Darts records and leaderboards are not telemetry: their availability uses
+  the confirmed `GameRoomServerTables` access decision, never developer mode.
+  Gate factories, captured observers, workers and direct store reads alike;
+  preserve queued records on lost access. Keep general/presence/sports
+  statistics under their existing developer-mode policy. See
+  [DARTS_RANKINGS.md](docs/DARTS_RANKINGS.md).
+- Server-feature admission and explanations share `GameRoomAvailability` and
+  the account/runtime-bound `GameRoomServerTables::Runtime` decision. Refuse
+  unusable Rankings/Tournaments/Statistics screens before starting readers.
+  Explain missing uploads once on table entry; do not repeat on moves, mislabel
+  connection errors as confirmed dev mode, or imply that available-table Darts
+  records are disabled by the separate statistics opt-out. Every no-table
+  explanation includes conditional dev-mode/official-launcher guidance.
 - Statistics send at most 25 entries per batch and yield the worker after
   exceeding a soft budget between batches. Acknowledge only the returned,
   validated prefix; a lost response does not remove deduplication or
@@ -881,6 +975,19 @@ Procedure: `docs/BUILDING.md`. Preserve licensing and attribution.
 - Ctrl+M and Ctrl+Shift+R act on the selected person in the participant
   list, not the game field. Help checks current availability, and execution
   rechecks permissions and identity, not just the row index.
+
+- Server schema declarations do not prove that a type or additive migration is
+  supported. Inspect the current SDK and live `Apps.preview_update` before an
+  authorized update; reject unexpected row resets, share removal or unrelated
+  changes. Adding one column can recreate its whole table. Darts v2 deliberately
+  retains its deployed 4096-byte columns and puts compact records and account
+  progression in the same document; never restore the rejected 8192-byte or
+  extra-column migration. See `docs/DARTS_RANKINGS.md`.
+- Account progression caches must carry their canonical account owner and
+  invalidate the memory view on account changes. Late callbacks must retain
+  their original account and refuse to update another user's preferences.
+  Private client history changes use the shared `local_history_revision` hook
+  on the owning form timer, not a full-game refresh or background control writes.
 
 ## Acceptance review for new games and game PRs
 
@@ -1061,6 +1168,19 @@ not shortened descriptions. Preserve the author's manual edits and removed
 passages. Do not reintroduce removed text while updating translations.
 Adding an interface language also requires a complete README, document
 selection wiring, an explicit installer resource list and extended tests.
+
+README is the player guide to the application, not a second rulebook. Keep
+the complete, briefly introduced game catalogue in its own section; explain
+individual games' rules, variants, scoring and controls in their rulebooks.
+The guide owns shared table/chat/help controls and complete instructions for
+application modules such as tournaments, statistics, recordings and question
+creation. Describe their current use, not implementation details or release
+history. When removing a duplicated game instruction, check its rulebook first;
+do not discard essential guidance or copy every redundant paragraph there.
+Keep leaderboards and statistics separate, and the detailed tournament chapter
+immediately before the contribution chapter. Preserve selected author wording
+and credits. Review every changed language as natural prose, not just as a
+matching outline; update the native README/navigation coverage alongside it.
 
 In README, rules and other documentation, maintain correct Markdown,
 heading hierarchy and order, paragraphs, lists, spacing, working links and

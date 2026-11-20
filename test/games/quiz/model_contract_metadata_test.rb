@@ -1,6 +1,7 @@
 require_relative '../../../games/catalog'
 require_relative '../../support/private_simulation'
 require_relative '../../support/model_contract'
+require_relative '../../support/historical_quiz'
 include GameRoomTest::Assertions
 
 reference = JSON.parse(File.read(File.join(__dir__, '../../fixtures/contracts/v2/quiz.json'), encoding:'UTF-8'))
@@ -13,7 +14,9 @@ assert_equal(without_hashes.call(reference), without_hashes.call(current),
   'The versioned cleanup oracle must preserve every input, action, event, actor, legal-choice digest and RNG sample')
 random = Random.new(reference.fetch('seed'))
 SecureRandom.define_singleton_method(:hex) { |n = 16| Array.new(n) { random.rand(256).to_s(16).rjust(2,'0') }.join }
-env = GameRoomTest::PrivateSimulation.new_game(game:GameRoomGames::QuizParty.new,
+historical_game = GameRoomGames::QuizParty.new
+historical_game.extend(GameRoomTest::HistoricalQuizQuestionProducer)
+env = GameRoomTest::PrivateSimulation.new_game(game:historical_game,
   players:reference.fetch('players'), options:reference.fetch('options'), seed:reference.fetch('seed'))
 old_stages = [*reference.fetch('steps'), reference.fetch('final')]
 new_stages = [*current.fetch('steps'), current.fetch('final')]

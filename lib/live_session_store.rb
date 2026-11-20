@@ -897,7 +897,7 @@ class GameRoomLiveSessionStore
     enabled
   end
 
-  def freeze_game(session, frozen: true, expected_boundary: nil)
+  def freeze_game(session, frozen: true, expected_boundary: nil, round_pause: false)
     table_id = table_identifier(session["table_id"])
     return false if expected_boundary && active_session(table_id) == nil
     ensure_current(table_id, force: true)
@@ -907,13 +907,18 @@ class GameRoomLiveSessionStore
       boundary = records_for(table_id).reverse.find { |record| record.packet["kind"] == "game_boundary" && record.packet.dig("data", "session_id") == session["__id"].to_i }
       # Only release this operation's pause, never a later save, aborted match
       # or a different master's game. The confirmed record is the receipt.
-      return false unless !frozen && current && boundary && boundary.message_id == expected_boundary.message_id &&
+      expected_id = expected_boundary.respond_to?(:message_id) ? expected_boundary.message_id : expected_boundary
+      return false unless !frozen && current && boundary && boundary.message_id == expected_id &&
         boundary.packet.dig("data", "frozen") == true && !game_aborted?(table_id, session["__id"])
     end
     raise GameRoomNetworkErrors::GamePaused, "The game controller changed" unless current
     raise GameRoomNetworkErrors::GamePaused, "The game was ended by the master" if game_aborted?(table_id, session["__id"])
     # Return the confirmed write before any subsequent snapshot/network read.
-    append_record(table_id, "game_boundary", { "session_id" => session["__id"].to_i, "frozen" => frozen == true }, actor: endpoint.user)
+    data = {"session_id" => session["__id"].to_i, "frozen" => frozen == true}
+    if round_pause
+      data['round_pause'] = {'previous' => session['__game_boundary'].to_s, 'revision' => session['__game_revision'].to_s}
+    end
+    append_record(table_id, "game_boundary", data, actor: endpoint.user)
   end
 
   def wait_for_room(table_id, timeout: 10.0)

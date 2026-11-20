@@ -143,14 +143,15 @@ module GameRoomMahjong
       end
     end
 
-    def bot_action(seat:)
+    def bot_action(seat:, match_scores: nil, rounds_left: nil)
       actions = legal_actions(seat: seat)
       return actions.first if actions.size <= 1
       win = actions.find { |candidate| candidate[:type] == :win || candidate[:choice] == [:win] }
       return win if win
 
       Bot::Policy.new(flow.observation(viewer: seat), seat: seat, dealer: dealer,
-        variant: variant, round_wind: round_wind, riichi_levels: riichi_state&.levels).choose(actions)
+        variant: variant, round_wind: round_wind, riichi_levels: riichi_state&.levels,
+        match_scores: match_scores, rounds_left: rounds_left).choose(actions)
     end
 
     def action(seat:, type:, generation:, tile: nil, choice: nil)

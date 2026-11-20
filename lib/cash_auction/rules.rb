@@ -1,0 +1,281 @@
+# frozen_string_literal: true
+
+module GameRoomCashAuction
+  module Rules
+    DEFAULT_OPTIONS = {'starting_points'=>1000, 'ante'=>10, 'pass_penalty'=>200,
+      'rounds'=>8, 'count_interval'=>2, 'black_chest_chance'=>5}.freeze
+    CHEST_REWARDS = [100, 2500, 10_000, -100, -500, -1000, 'bankrupt'].freeze
+    BONUS_REWARDS = [100, 500, 1000, 2500, 5000, 7500, 10_000].freeze
+    CURRENT_VERSION = 6
+    INACTIVITY_PENALTY_PERCENT = 5
+    CHEST_MAGNITUDES = [5, 10, 15, 20, 25, 30, 35].freeze
+    CHEST_WEIGHTS = [49, 36, 25, 16, 9, 4, 1].freeze
+    CHEST_WEIGHT_TOTAL = CHEST_WEIGHTS.sum
+    module_function
+
+    def initial(players, options)
+      raise ArgumentError, 'Invalid cash auction options' unless options.is_a?(Hash)
+      configured = DEFAULT_OPTIONS.merge(options)
+      valid_options = DEFAULT_OPTIONS.keys.all? { |key| configured[key].is_a?(Integer) && configured[key] >= 0 } &&
+        configured['rounds'] > 0 && configured['count_interval'] > 0 && configured['black_chest_chance'] <= 100
+      unless players.is_a?(Array) && !players.empty? && players.all? { |player| player.is_a?(String) && !player.empty? } && valid_options
+        raise ArgumentError, 'Invalid cash auction setup'
+      end
+      count = players.length
+      state = {players: players.map(&:dup), options: Marshal.load(Marshal.dump(configured)),
+        round: 0, completed_rounds: 0, phase: :drawing,
+        cash: Array.new(count, configured['starting_points']), eliminated: Array.new(count, false),
+        pass_counts: Array.new(count, 0), pot: 0, contributions: Array.new(count, 0),
+        passed: Array.new(count, false), leader: nil, highest: 0, auction_deadline: 0,
+        bid_revision: 0, chests: Array.new(count, 0), question: nil, category: nil,
+        chest: false, winner: nil, draw: false}
+      state.merge!(completed_auctions: 0, question_target: configured['rounds'], round_penalties: Array.new(count, 0)) if revised?(state)
+      state
+    end
+
+    def active_seats(state)
+      state[:players].each_index.reject { |seat| state[:eliminated][seat] }
+    end
+    def finished?(state); state[:phase] == :finished; end
+    def time?(now); now.is_a?(Integer) && now >= 0; end
+    def seat?(state, seat); seat.is_a?(Integer) && seat.between?(0, state[:players].length - 1); end
+    def active?(state, seat); seat?(state, seat) && !state[:eliminated][seat]; end
+    def revised_options?(options); (2..CURRENT_VERSION).include?(options['auction_rules_version']); end
+    def revised?(state); revised_options?(state[:options]); end
+    def percentage_chests?(state); (3..CURRENT_VERSION).include?(state[:options]['auction_rules_version']); end
+    def percentage_penalty?(options); (5..CURRENT_VERSION).include?(options['auction_rules_version']); end
+    def opening_bid_minimum(state)
+      state[:leader].nil? && (6..CURRENT_VERSION).include?(state[:options]['auction_rules_version']) ? state[:options]['ante'] : 0
+    end
+    def inactivity_penalty(state, seat)
+      cash = state[:cash][seat]
+      percentage_penalty?(state[:options]) ? (cash * INACTIVITY_PENALTY_PERCENT + 99) / 100 :
+        [cash, state[:options]['pass_penalty']].min
+    end
+    def question_pool_auction?(state, chest: state[:chest])
+      !(4..CURRENT_VERSION).include?(state[:options]['auction_rules_version']) || !chest
+    end
+    def auction_duration(state); (revised?(state) ? 4 : 3) * state[:options]['count_interval']; end
+    def hint_price(state); [1, (state[:cash][state[:leader]].to_i + 9) / 10].max; end
+
+    def draw!(state, category:, chest:, now:)
+      return false unless %i[drawing spinning].include?(state[:phase]) && time?(now) && [true, false].include?(chest)
+      begin
+        owned_category = Marshal.load(Marshal.dump(category))
+      rescue TypeError
+        return false
+      end
+      ante = state[:options]['ante']
+      active_seats(state).each do |seat|
+        if state[:cash][seat] < ante
+          state[:eliminated][seat] = true
+        else
+          state[:cash][seat] -= ante
+          state[:pot] += ante if question_pool_auction?(state, chest: chest)
+        end
+      end
+      state[:round] += 1
+      state[:round_penalties].fill(0) if revised?(state)
+      state.merge!(phase: :auction, category: owned_category, chest: chest,
+        contributions: Array.new(state[:players].length, 0), passed: Array.new(state[:players].length, false),
+        leader: nil, highest: 0, bid_revision: 0, question: nil,
+        auction_deadline: now + auction_duration(state))
+      state.merge!(hint_used: false, hidden_answers: []) if revised?(state)
+      finish_round!(state, now: now) if active_seats(state).length <= 1
+      true
+    end
+
+    def bid!(state, seat, amount, now:, revision:, all_in: false)
+      return false unless state[:phase] == :auction && active?(state, seat) && !state[:passed][seat]
+      return false unless time?(now) && now < state[:auction_deadline] && revision.is_a?(Integer) && revision >= 0
+      maximum = state[:cash][seat] + state[:contributions][seat]
+      return false unless amount.is_a?(Integer) && amount <= maximum &&
+        (all_in ? amount == maximum && state[:cash][seat].positive? : amount > state[:highest])
+      return false if amount < opening_bid_minimum(state)
+      return false if revised?(state) && amount <= state[:highest]
+      difference = amount - state[:contributions][seat]
+      state[:cash][seat] -= difference
+      state[:pot] += difference if question_pool_auction?(state)
+      state[:contributions][seat] = amount
+      state[:highest], state[:leader], state[:bid_revision] = amount, seat, revision
+      state[:auction_deadline] = all_in ? now : now + auction_duration(state)
+      all_in ? award!(state, now: now) : true
+    end
+
+    def pass!(state, seat)
+      return false if revised?(state)
+      return false unless state[:phase] == :auction && active?(state, seat) && !state[:passed][seat] && state[:leader] != seat
+      state[:passed][seat] = true
+      state[:pass_counts][seat] += 1
+      if (state[:pass_counts][seat] % 3).zero?
+        penalty = inactivity_penalty(state, seat)
+        state[:cash][seat] -= penalty
+        state[:pot] += penalty
+      end
+      true
+    end
+
+    def award!(state, now:)
+      return false unless state[:phase] == :auction && time?(now) && now >= state[:auction_deadline]
+      close_participation!(state) if revised?(state)
+      if state[:leader] && !state[:chest]
+        state[:phase] = :question_pending
+      else
+        state[:chests][state[:leader]] += 1 if state[:leader]
+        finish_round!(state, now: now)
+      end
+      true
+    end
+
+    def start_question!(state, question)
+      return false unless state[:phase] == :question_pending && active?(state, state[:leader]) && question.is_a?(Hash) && !question.empty?
+      begin
+        owned_question = Marshal.load(Marshal.dump(question))
+      rescue TypeError
+        return false
+      end
+      state[:question], state[:phase] = owned_question, :answering
+      true
+    end
+
+    def answer!(state, seat, correct, now:)
+      return false unless state[:phase] == :answering && active?(state, seat) && seat == state[:leader] && [true, false].include?(correct) && time?(now)
+      if correct
+        state[:cash][seat] += state[:pot]
+        state[:pot] = 0
+      elsif state[:cash][seat].zero?
+        state[:eliminated][seat] = true
+      end
+      finish_round!(state, now: now)
+      true
+    end
+
+    def hint!(state, seat, keep:)
+      return false unless revised?(state) && state[:phase] == :answering && seat == state[:leader] && !state[:hint_used]
+      price = hint_price(state)
+      return false unless state[:cash][seat] >= price
+      wrong = (0..3).reject { |index| index == state[:question][:correct_index] }
+      return false unless wrong.include?(keep)
+      state[:cash][seat] -= price
+      state[:hint_used] = true
+      # Stable choice identities survive the shortened list. The hint removes
+      # two wrong options, never changes the already committed answer order.
+      state[:hidden_answers] = wrong.reject { |index| index == keep }
+      true
+    end
+
+    def finish_round!(state, now: 0)
+      completed = revised?(state) ? state[:completed_auctions] : state[:completed_rounds]
+      return false unless %i[auction question_pending answering].include?(state[:phase]) && completed < state[:round]
+      if revised?(state)
+        state[:completed_auctions] += 1
+        state[:completed_rounds] += 1 if state[:phase] == :answering
+      else
+        state[:completed_rounds] += 1
+      end
+      target = revised?(state) ? state[:question_target] : state[:options]['rounds']
+      if active_seats(state).length <= 1 || state[:completed_rounds] >= target
+        if state[:chests].any?(&:positive?)
+          state[:phase] = :opening_chests
+          if percentage_chests?(state)
+            state[:chest_base_cash] = state[:cash].dup
+            state[:chest_percentages] = Array.new(state[:players].length, 0)
+            state[:open_chests_at] = now + 5
+          end
+        else
+          settle!(state)
+        end
+      else
+        state[:phase] = :drawing
+      end
+      true
+    end
+
+    def close_participation!(state)
+      active_seats(state).each do |seat|
+        if state[:contributions][seat].positive?
+          state[:pass_counts][seat] = 0
+        else
+          state[:pass_counts][seat] += 1
+          next unless state[:pass_counts][seat] == 3
+          penalty = inactivity_penalty(state, seat)
+          state[:cash][seat] -= penalty
+          state[:pot] += penalty if question_pool_auction?(state)
+          state[:round_penalties][seat] = penalty
+          state[:pass_counts][seat] = 0
+        end
+      end
+    end
+
+    def settle!(state)
+      active = active_seats(state)
+      highest = active.map { |seat| state[:cash][seat] }.max
+      leaders = active.select { |seat| state[:cash][seat] == highest }
+      if leaders.length > 1
+        state[:phase], state[:winner], state[:draw] = :drawing, nil, false
+        state[:question_target] = state[:completed_rounds] + 1 if revised?(state)
+      else
+        state[:phase] = :finished
+        state[:winner] = leaders.empty? ? nil : state[:players][leaders.first].dup
+        state[:draw] = leaders.empty?
+      end
+      true
+    end
+
+    def chest_reward(state, random_source:)
+      unless percentage_chests?(state)
+        rewards = revised?(state) ? BONUS_REWARDS : CHEST_REWARDS
+        return rewards.fetch(random_source.rand(rewards.length))
+      end
+      sign = random_source.rand(10)
+      return 0 if sign == 9
+
+      remaining = random_source.rand(CHEST_WEIGHT_TOTAL)
+      CHEST_WEIGHTS.each_with_index do |weight, index|
+        return CHEST_MAGNITUDES[index] * (sign < 6 ? 1 : -1) if remaining < weight
+        remaining -= weight
+      end
+    end
+
+    def open_chests!(state, random_source:, now:)
+      return false unless percentage_chests?(state) && state[:phase] == :opening_chests &&
+        time?(now) && now >= state[:open_chests_at]
+
+      rewards = []
+      state[:chests].each_with_index do |count, seat|
+        count.times do
+          reward = chest_reward(state, random_source: random_source)
+          state[:chest_percentages][seat] += reward
+          rewards << [seat, reward]
+        end
+      end
+      state[:chests].fill(0)
+      state[:last_chest_rewards] = rewards
+      state[:cash] = state[:chest_base_cash].each_with_index.map do |base, index|
+        (base * [100 + state[:chest_percentages][index], 0].max + 50) / 100
+      end
+      settle!(state)
+      true
+    end
+
+    def open_chest!(state, seat, reward, now:)
+      return false if percentage_chests?(state)
+      return false unless state[:phase] == :opening_chests && seat?(state, seat) && state[:chests][seat] > 0 && time?(now)
+      rewards = revised?(state) ? BONUS_REWARDS : CHEST_REWARDS
+      valid_reward = reward.is_a?(Integer) && rewards.include?(reward) ||
+        !revised?(state) && reward.is_a?(String) && reward == 'bankrupt'
+      return false unless valid_reward
+      state[:chests][seat] -= 1
+      if revised?(state)
+        state[:bonus_prizes] ||= Array.new(state[:players].length, 0)
+        state[:bonus_prizes][seat] += reward
+      elsif reward == 'bankrupt'
+        state[:cash][seat], state[:eliminated][seat] = 0, true
+      else
+        state[:cash][seat] = [state[:cash][seat] + reward, 0].max
+      end
+      settle!(state) if state[:chests].none?(&:positive?)
+      true
+    end
+  end
+end

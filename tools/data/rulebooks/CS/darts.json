@@ -1,0 +1,90 @@
+{
+  "source": "games/darts.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {"cs": "Cíl hry"},
+      "paragraphs": [
+        {"cs": "Darts je zvuková hra pro jednoho až osm hráčů. Naveďte pohybující se zvuk ke středu terče a získejte co nejvíce bodů. V každém kole hází každý hráč třemi šipkami."}
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {"cs": "Hod šipkou"},
+      "paragraphs": [
+        {"cs": "Mezerníkem zahájíte míření. Zaměřovač se objeví na náhodném místě dále od středu a hned začne ujíždět. První sekundu jej můžete opravovat, ale ještě nelze hodit. Krátký signál oznámí, že je hod odemčený."},
+        {"cs": "Zaměřovač upravujte šipkami a po signálu znovu stiskněte mezerník. Po zvuku vypuštění uslyšíte zásah terče a samostatný tón, jehož výška vyjadřuje získané body. Další šipka čeká na nové stisknutí mezerníku, takže míření nezačne během hlášení předchozího výsledku."}
+      ]
+    },
+    {
+      "id": "aiming",
+      "title": {"cs": "Hledání středu podle zvuku"},
+      "paragraphs": [
+        {"cs": "Vodorovnou polohu uslyšíte ve stereu. Výška a hlasitost zvuku vyjadřují vzdálenost od středu: čím blíže jste, tím je zvuk vyšší a silnější. Při vzdalování klesá a slábne. Toto pravidlo platí ve všech směrech."},
+        {"cs": "U stolu pro více hráčů slyší ostatní hráči a diváci pohyb zaměřovače aktivního hráče živě. Každý posluchač používá vlastní zvolený zvuk zaměřovače. Jde pouze o dočasný zvukový náhled: uložený hod a body nadále pocházejí z běžné herní události a přerušený přenos vzdálený zaměřovač ztiší, místo aby jej ponechal na zastaralém místě."},
+        {"cs": "Každý stisk šipky posune zaměřovač o trochu jinou vzdálenost. Po opravě zůstane krátce klidnější a potom znovu pokračuje v pohybu, obvykle ven z terče. V blízkosti cenného středu se pohybuje rychleji, takže je důležitý poslech a správný okamžik, ne opakování pevné řady kláves."},
+        {"cs": "Dřevěný signál označuje okraj kruhového terče. Po čtvercové hrací ploše se můžete pohybovat i za ním, ale hod z této oblasti nepřinese žádný bod. Jiný, kovový signál znamená vnější hranici celé plochy; dál tím směrem zaměřovač neposunete."}
+      ]
+    },
+    {
+      "id": "time",
+      "title": {"cs": "Čas na hod"},
+      "paragraphs": [
+        {"cs": "Je-li zapnutý časový limit, tři nízké tóny odpočítají poslední tři sekundy. Po vypršení času hra podle nastavení stolu buď hodí ze současné polohy, nebo přidělí nula bodů. Čas se začne počítat až po signálu připravenosti, ne při prvním stisku mezerníku."},
+        {"cs": "Limit lze také vypnout. Zaměřovač se pak pohybuje, dokud nehodíte."}
+      ]
+    },
+    {
+      "id": "scoring",
+      "title": {"cs": "Body a vítězství"},
+      "paragraphs": [
+        {"cs": "Zásah přinese 1 až 100 bodů podle vzdálenosti od středu. Přesný střed má hodnotu 100 bodů a směrem k okraji hodnota plynule klesá. Šipka mimo kruhový terč znamená nula bodů."},
+        {"cs": "Po zvoleném počtu kol vyhrává hráč s nejvyšším součtem. Při shodě vedoucích výsledků hodí každý z těchto hráčů jednu další šipku. Jednohodové rozstřely pokračují jen mezi hráči, kteří se stále dělí o vedení, dokud jeden nezíská nejlepší výsledek. Ve hře jednoho hráče je výsledkem konečný součet bodů."},
+        {"cs": "Z každé dokončené hry se do rekordů započítá vaše nejlepší kolo se třemi šipkami a průměr ze všech běžných hodů. V každé kategorii se soukromě uchovávají tři nejlepší výsledky, zvlášť pro každou obtížnost. Zvukový trénink, výsledky počítačových hráčů a rozstřel se nezapočítávají."},
+        {"cs": "Chcete-li nové rekordy zveřejňovat, otevřete osobní nastavení Darts pomocí Ctrl+P a zapněte zveřejňování. Můžete zveřejnit i dříve uložené rekordy. Vypnutí zveřejňování již veřejné výsledky neodstraní; k tomu slouží samostatná volba ve stejném nastavení. Soukromé kopie zůstanou uložené."},
+        {"cs": "Nové soukromé rekordy se ve výchozím nastavení nezobrazují ve společné historii stolu. Ve stejném nastavení Ctrl+P můžete zapnout jejich zobrazení ve své místní historii. Ostatní hráči tyto záznamy neuvidí a jejich zobrazením se rekordy nezveřejní."},
+        {"cs": "Vyšší skóre znamená lepší umístění, při shodě rozhoduje kratší čas hodů. Shodné skóre i čas znamenají společné místo; dřívější výsledek se zobrazí první. Každý žebříček obsahuje 30 výsledků, nejvýše tři od jednoho hráče. Nové veřejné umístění v první třicítce uslyší všichni u stolu, nový osobní rekord kola se třemi šipkami pouze jeho držitel."}
+      ]
+    },
+    {
+      "id": "options",
+      "title": {"cs": "Obtížnost a nastavení hry"},
+      "paragraphs": [
+        {"cs": "Lehká, normální a těžká obtížnost mění přesnost oprav, dobu klidnější polohy po opravě a rychlost pohybu zaměřovače. Při postupném zvyšování obtížnosti začíná hra lehce, přejde na normální úroveň a poslední část proběhne na těžké."},
+        {"cs": "Obtížnosti expert, mistr a legendární pokračují méně předvídatelnými opravami, rychlejším pohybem u středu a stále užšími oblastmi s vysokým bodovým ziskem. Po opravě zůstane zaměřovač klidnější 0,07 sekundy na expertovi, 0,05 sekundy na mistrovi a 0,03 sekundy na legendární obtížnosti."},
+        {"cs": "Pokročilé obtížnosti se odemykají postupně po přesně třech kolech na předchozí pevné obtížnosti: nejméně 850 bodů na těžké odemkne experta, 800 bodů na expertovi mistra a 750 bodů na mistrovi legendární obtížnost. Odemčení patří k vašemu účtu a synchronizují se v soukromých rekordech. Ke stolu s dosud zamčenou obtížností se můžete připojit, ale nemůžete jej vytvořit ani procházet žebříček této obtížnosti, dokud ji neodemknete."},
+        {"cs": "Hra může mít 1, 3, 5 nebo 10 kol. Samostatně zvolíte čas na jednu šipku a následek jeho vypršení."},
+        {"cs": "Ovládání myší nebo touchpadem je osobní nastavení a ve výchozím stavu je zapnuté. Pomocí Ctrl+P je můžete vypnout nebo znovu zapnout. Při zapnuté volbě relativní pohyb opravuje polohu zaměřovače a levé tlačítko zahájí míření nebo provede hod stejně jako mezerník."}
+      ]
+    },
+    {
+      "id": "training",
+      "title": {"cs": "Zvukový trénink"},
+      "paragraphs": [
+        {"cs": "Zvukový trénink je dostupný u stolu pro jednoho hráče. Míření a bodování zůstávají stejné, ale řeč navíc oznamuje přechod do jiného sektoru, začátek a poslední sekundy času, obě hranice, ruční nebo automatický hod a zásah či minutí. Klávesou C zopakujete aktuální sektor."},
+        {"cs": "Trénink nevypíná odečítač obrazovky. V běžné hře zůstává samotné míření pouze zvukové, zatímco popisky rozhraní, body a výsledky se nadále oznamují řečí."}
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {"cs": "Ovládání klávesnicí a myší"},
+      "paragraphs": [
+        {"cs": "Mezerník: zahajte míření nebo po signálu připravenosti hoďte."},
+        {"cs": "Šipky: opravte polohu zvukového zaměřovače."},
+        {"cs": "S: přečtěte skóre."},
+        {"cs": "T: přečtěte, kdo je na tahu."},
+        {"cs": "C: zopakujte aktuální sektor ve zvukovém tréninku."},
+        {"cs": "Ctrl+P: otevřete osobní nastavení Darts, nastavte zveřejňování rekordů a jejich zobrazování v místní historii, vyberte zvuk zaměřovače nebo zapněte či vypněte ovládání myší a touchpadem."},
+        {"cs": "Myš/touchpad: relativní pohyb opravuje zaměřovač a levé tlačítko zahájí míření nebo hodí. Toto osobní ovládání je ve výchozím stavu zapnuté a lze je změnit pomocí Ctrl+P."}
+      ]
+    }
+  ],
+  "option_chapters": {
+    "mode": "training",
+    "difficulty": "options",
+    "rounds": "scoring",
+    "progressive": "options",
+    "time_limit": "time",
+    "timeout_result": "time"
+  }
+}

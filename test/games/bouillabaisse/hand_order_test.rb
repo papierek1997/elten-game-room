@@ -15,7 +15,7 @@ zone = spec.zones.first
 assert_equal(expected, zone.cards.map(&:id), 'Default Bouillabaisse hand differs from Spades')
 assert_equal(raw, zone.hand_order, 'Presentation changed the actual received order')
 assert_equal(raw.each_with_index.to_h, zone.cards.to_h { |card| [card.id, card.sort_keys.fetch('none').first] },
-  'Sorting disabled no longer restores the actual hand order')
+  'Physical receipt metadata changed with the display order')
 reminder = game.game_shortcuts(table.replay, viewer).find { |shortcut| shortcut.key == 'h' && shortcut.modifiers.empty? }.message
 labels = expected.map { |card| game.send(:playing_card_label, card) }
 assert_equal("Your hand: #{labels.join(', ')}.", reminder, 'H reminder differs from the default displayed order')
@@ -27,14 +27,14 @@ control = surface.fields.first
 selected = expected[4]
 control.index = 4
 surface.handle_command('sort_cards', 'mode' => 'colour', 'toggle' => true)
-assert_equal(labels, control.options, 'Manual suit sorting differs from the default hand')
+assert_equal(labels.reverse, control.options, 'First suit sorting did not reverse the active default')
 surface.handle_command('sort_cards', 'mode' => 'colour', 'toggle' => true)
-assert_equal(labels.reverse, control.options, 'Descending suit sorting is broken')
+assert_equal(labels, control.options, 'Second suit sorting did not restore ascending order')
 assert_equal(selected, surface.instance_variable_get(:@cards).fetch('hand')[control.index].id, 'Sorting moved the selected physical card')
 surface.update_spec(game.surface_spec(table.replay, viewer))
-assert_equal(labels.reverse, control.options, 'Refresh discarded the explicit sort direction')
-surface.handle_command('sort_cards', 'mode' => 'none')
-assert_equal(raw.map { |card| game.send(:playing_card_label, card) }, control.options, 'Unsorted mode lost the original received order')
+assert_equal(labels, control.options, 'Refresh discarded the explicit sort direction')
+assert(!surface.handle_command('sort_cards', 'mode' => 'none'), 'Removed acquisition mode is still accepted')
+assert_equal(labels, control.options, 'Refused sorting changed the display')
 surface.handle_command('sort_cards', 'mode' => 'number', 'toggle' => true)
 numeric = zone.cards.sort_by { |card| card.sort_keys.fetch('number') }.map(&:label)
 assert_equal(numeric, control.options, 'Rank sorting is broken')
@@ -42,11 +42,12 @@ assert_equal(selected, surface.instance_variable_get(:@cards).fetch('hand')[cont
 surface.update_spec(game.surface_spec(table.replay, viewer))
 assert_equal(numeric, control.options, 'Refresh discarded explicit rank sorting')
 
-# Other games in the same family retain their existing default order.
+# Each member follows its own declaration; Scopa now intentionally uses values.
 scopa = GameRoomTest::DealtCardTable.new('scopa')
 scopa_raw = scopa.state[:hands][viewer].dup
-assert_equal(scopa_raw, scopa.game.surface_spec(scopa.replay, viewer).zones.first.cards.map(&:id), 'Bouillabaisse change reordered Scopa')
-assert_equal("Your hand: #{scopa.game.send(:cards_text, scopa_raw)}.",
-  scopa.game.shortcut_feature_data(:hand, scopa.replay, viewer).fetch(:message), 'Bouillabaisse change reordered the Scopa reminder')
+scopa_expected = scopa_raw.sort_by { |card| [GameRoomGames::Scopa.card_value(card), %w[H S D C].index(card[1])] }
+assert_equal(scopa_expected, scopa.game.surface_spec(scopa.replay, viewer).zones.first.cards.map(&:id), 'Scopa did not use its declared value order')
+assert_equal("Your hand: #{scopa.game.send(:cards_text, scopa_expected)}.",
+  scopa.game.shortcut_feature_data(:hand, scopa.replay, viewer).fetch(:message), 'Scopa reminder differs from its declared value order')
 
-puts 'PASS Bouillabaisse hand order: Spades default/H parity, raw order and state preserved, manual sorting/cursor/refresh and Scopa unchanged'
+puts 'PASS Bouillabaisse hand order: Spades default/H parity, raw order and state preserved, manual sorting/cursor/refresh and separate Scopa value policy'

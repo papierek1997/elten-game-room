@@ -16,6 +16,7 @@ require_relative "room_presentation"
 require_relative "participant_menu"
 require_relative "network_errors"
 require_relative "game_session_clock"
+require_relative "game_duration"
 require_relative "game_session_runner"
 require_relative "presentation_replay"
 require_relative "game_background_presentation"
@@ -262,8 +263,8 @@ class GameScreen
         signal_received_at,
         stage_started_at: replay_started_at
       )
-      process_new_events(replay, signal_received_at: signal_received_at)
       process_new_table_activity(replay)
+      process_new_events(replay, signal_received_at: signal_received_at)
       @pending_signal_received_at = nil
       verify_pending_move(replay) unless using_cached_payload
 
@@ -296,6 +297,12 @@ class GameScreen
         show_game_rules(replay)
       when :save_table_history
         save_presented_history(replay)
+      when :toggle_round_pause
+        status = network_task(_("Pause between rounds"), ui: :none) do
+          @session_runner.toggle_round_pause(session: @session, replay: replay)
+        end
+        speak(_("You can pause only between rounds.")) if status && status != :ok
+        @suppress_surface_focus = true
       when :save_game
         if GameRoomTournamentMarker.present?(@table, @session)
           speak(_("Tournament games cannot be saved or resumed from a saved game."))
@@ -585,8 +592,16 @@ class GameScreen
   def activate_game_shortcut(shortcut, surface = nil, replay: nil)
     case shortcut.kind
     when :announcement
-      speak(shortcut.message) if !shortcut.message.to_s.empty?
+      message = game_announcement_text(shortcut, replay)
+      hand_id = shortcut.payload['hand_id']
+      if hand_id && replay && @game && surface.respond_to?(:displayed_hand_cards)
+        cards = surface.displayed_hand_cards(hand_id)
+        message = @game.displayed_hand_announcement(replay, Session.name, cards: cards, hand_id: hand_id) || message if cards
+      end
+      speak(message) if !message.to_s.empty?
       nil
+    when :grid_preview
+      show_shortcut_grid(shortcut, replay)
     when :browse
       browse_shortcut_choices(shortcut)
       nil
@@ -626,6 +641,14 @@ class GameScreen
     end
   end
 
+  def game_announcement_text(shortcut, replay)
+    scope = shortcut.payload['duration_scope']
+    return shortcut.message unless %w[game round].include?(scope)
+
+    GameRoomDuration.text(scope, game: @game, replay: replay, session: @session,
+      repository: @repository, now: @session && action_time)
+  end
+
   # The first selection is a small public event. Once it has been accepted,
   # the game supplies the actual form. Cancelling that form returns to the
   # player list; cancelling the player list refreshes the replay if at least
@@ -651,8 +674,8 @@ class GameScreen
     end
   end
 
-  def refreshed_announcement_shortcut(shortcut, replay, viewer)
-    return shortcut if shortcut.kind != :announcement
+  def refreshed_game_shortcut(shortcut, replay, viewer)
+    return shortcut unless %i[announcement grid_preview].include?(shortcut.kind)
 
     normalized_game_shortcuts(@game.game_shortcuts(replay, viewer)).find do |candidate|
       candidate.key == shortcut.key && candidate.modifiers.to_a == shortcut.modifiers.to_a
@@ -793,6 +816,38 @@ class GameScreen
     GameSurfaces::Action.new(kind: shortcut.action_kind, name: shortcut.action_name, payload: shortcut.payload.merge(result), source: "shortcut:#{shortcut.key}")
   end
 
+  def show_shortcut_grid(shortcut, replay)
+    surface = GameSurfaces.build(shortcut.default_value)
+    back = Button.new(_("Back"))
+    form = GameRoomUI::Form.new(surface.fields + [back], program: @program, quiet: true)
+    form.extend(GameRoomLayout::ShortcutFormBehavior)
+    form.cancel_button = back
+    form.hide(back)
+    back.on(:press) { form.resume }
+    result = nil
+    surface.on_action do |selection|
+      next if @layout&.form&.game_room_pending_operation || @session&.fetch("__frozen", false) || event_presentation_busy?
+      result = selection
+      form.resume
+    end
+    announcements = shortcut.default_value.shortcuts.to_a
+    if replay && @game
+      announcements += @game.game_shortcuts(replay, Session.name).select { |key| key.kind == :announcement }
+    end
+    unless announcements.empty?
+      raise ArgumentError, 'Grid inspection accepts announcement shortcuts only' unless announcements.all? { |key| key.kind == :announcement }
+      announcements = announcements.uniq { |key| [key.key, key.modifiers] }
+      bind_game_shortcuts(form, surface.fields, announcements) { |key| speak(game_announcement_text(key, replay)) }
+    end
+    if @layout&.form&.game_room_pending_operation
+      @layout.form.open_game_room_background_help(form)
+    else
+      form.wait
+    end
+    EltenAPI::KeyboardState.clear_current_frame if defined?(EltenAPI::KeyboardState)
+    result
+  end
+
   def browse_shortcut_choices(shortcut)
     choices = shortcut.choices.to_a
     index = choices.index { |choice| shortcut.default_value != nil && choice.value == shortcut.default_value } || 0
@@ -900,6 +955,9 @@ class GameScreen
   def confirm_surface_action(surface, selection, session_id:, status: :ok)
     return unless surface && @layout&.surface.equal?(surface) && @layout.session_id == session_id &&
       @repository.session_id(@session) == session_id
+    if status != :ok && @game_client&.respond_to?(:action_rejected)
+      @game_client.action_rejected(selection.to_h, status)
+    end
     changed = status == :ok ? surface.action_accepted(selection) : surface.action_rejected(selection, status)
     remember_layout_position if changed
   end
@@ -1088,7 +1146,9 @@ class GameScreen
           raise unless latest_id.positive? && latest_id != @repository.session_id(@session)
           next [:new_session, latest_id]
         end
-        [snapshot, room, @activity_entries || activity_entries_for(room)]
+        activity = @activity_entries
+        activity = nil if snapshot && snapshot.session['__game_boundary'] != @session['__game_boundary']
+        [snapshot, room, activity || activity_entries_for(room)]
       end
     end
   end
@@ -1223,10 +1283,17 @@ class GameScreen
       Session.name,
       surface_state: @surface_state
     )
+    local_entries = if @game_client&.respond_to?(:local_history_entries)
+      @game_client.local_history_entries.to_a.map do |text|
+        GameRoomHistory::Entry.new(text: text.to_s, category: :game)
+      end
+    else
+      []
+    end
     if @activity_repository == nil
       return game_entries.map do |entry|
         GameRoomHistory::Entry.new(text: entry.text.to_s, category: :game)
-      end
+      end + local_entries
     end
 
     @activity_repository.merged_history_entries(
@@ -1234,7 +1301,7 @@ class GameScreen
       game_events: replay.accepted_events,
       activity_entries: @activity_entries.to_a,
       game_name: @game_name
-    )
+    ) + local_entries
   end
 
   def combined_history_items(replay)
@@ -1244,6 +1311,20 @@ class GameScreen
   def refresh_history_control(history, replay)
     @layout.update_history(combined_history_items(replay))
     @history_index = history.entry_index
+  end
+
+  # Clients publish a cheap revision when private, presentation-only history
+  # changes independently of the durable game log. Consume it on the owning
+  # form timer, never from a background client frame or by rebuilding the form.
+  def refresh_local_client_history(replay)
+    client = @game_client
+    return unless client&.respond_to?(:local_history_revision) && @layout
+
+    revision = client.local_history_revision
+    return if @history_client.equal?(client) && @history_client_revision == revision
+
+    refresh_history_control(@layout.history, replay)
+    @history_client, @history_client_revision = client, revision
   end
 
   def process_new_table_activity(replay, entries: @activity_entries, background: false)

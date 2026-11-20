@@ -59,8 +59,7 @@ module GameRoomGames
             GameRoomRules.translate("S: read scores."),
             GameRoomRules.translate("T: read whose turn it is."),
             GameRoomRules.translate("Shift+C: sort by suit or colour; press again to reverse the order."),
-            GameRoomRules.translate("Shift+H: sort by rank or value; press again to reverse the order."),
-            GameRoomRules.translate("Shift+M: restore the order in which cards were received."))
+            GameRoomRules.translate("Shift+H: sort by rank or value; press again to reverse the order."))
         ]
       end
 
@@ -71,7 +70,7 @@ module GameRoomGames
             rule_section(:table, "C\u00EDl hry",
               "V Rummy sb\u00EDr\u00E1\u0161 karty do kombinac\u00ED a vykl\u00E1d\u00E1\u0161 je na st\u016Fl. Dal\u0161\u00ED karty m\u016F\u017Ee\u0161 p\u0159id\u00E1vat k tomu, co u\u017E je vylo\u017Een\u00E9. Zahran\u00E9 karty p\u0159in\u00E1\u0161ej\u00ED body a pr\u00E1zdn\u00E1 ruka vyhraje kolo. Sk\u00F3re z kol se s\u010D\u00EDt\u00E1; po skon\u010Den\u00ED kola, v n\u011Bm\u017E n\u011Bkdo dos\u00E1hne 1000, partii vyhraje hr\u00E1\u010D s nejvy\u0161\u0161\u00EDm v\u00FDsledkem.",
               "Hraj\u00ED dva a\u017E osm hr\u00E1\u010D\u016F. Na za\u010D\u00E1tku ka\u017Ed\u00E9ho kola dostane\u0161 \u010Dtrn\u00E1ct karet.",
-              "Ruku proch\u00E1z\u00ED\u0161 \u0161ipkami. Shift+C ji se\u0159ad\u00ED podle barev, Shift+H podle hodnot; opakov\u00E1n\u00EDm po\u0159ad\u00ED obr\u00E1t\u00ED\u0161. P\u016Fvodn\u00ED po\u0159ad\u00ED p\u0159ijat\u00FDch karet vr\u00E1t\u00ED Shift+M."),
+              "Ruku proch\u00E1z\u00ED\u0161 \u0161ipkami. Shift+C ji se\u0159ad\u00ED podle barev, Shift+H podle hodnot; opakov\u00E1n\u00EDm po\u0159ad\u00ED obr\u00E1t\u00ED\u0161."),
             rule_section(:combinations, "Postupky a skupiny",
               "Vykl\u00E1daj\u00ED se kombinace nejm\u00E9n\u011B t\u0159\u00ED karet. Z\u00E1kladn\u00ED jsou dv\u011B:",
               "- Postupka: sousedn\u00ED hodnoty stejn\u00E9 barvy, t\u0159eba srdcov\u00E1 5, 6 a 7. Pozd\u011Bji k n\u00ED pasuje srdcov\u00E1 4 z jedn\u00E9 strany nebo 8 z druh\u00E9.",
@@ -177,15 +176,14 @@ module GameRoomGames
               "Z: naj\u00EDt dal\u0161\u00ED vhodnou kartu; p\u0159i jedin\u00E9 mo\u017Enosti ji m\u016F\u017Ee rovnou p\u0159ilo\u017Eit.",
               "Shift+Z: naj\u00EDt p\u0159edchoz\u00ED vhodnou kartu; p\u0159i jedin\u00E9 mo\u017Enosti ji m\u016F\u017Ee rovnou p\u0159ilo\u017Eit.",
               "Shift+C: se\u0159adit podle barev; opakov\u00E1n\u00EDm obr\u00E1tit po\u0159ad\u00ED.",
-              "Shift+H: se\u0159adit podle hodnot; opakov\u00E1n\u00EDm obr\u00E1tit po\u0159ad\u00ED.",
-              "Shift+M: obnovit po\u0159ad\u00ED p\u0159ijat\u00FDch karet.")
+              "Shift+H: se\u0159adit podle hodnot; opakov\u00E1n\u00EDm obr\u00E1tit po\u0159ad\u00ED.")
           ]
         when "en"
           [
             rule_section(:table, "Aim of the game",
               "In Rummy, you collect cards that go together and lay them on the table. You can also add cards to combinations already in play. Each card you play earns points, and emptying your hand wins the round. Scores carry over between rounds. At the end of a round, if anyone has at least 1,000 points, the highest score wins.",
               "Two to eight people can play. Each round begins with fourteen cards in your hand.",
-              "Use the arrow keys to browse your hand. Shift+C sorts it by suit and Shift+H by rank; press either shortcut again to reverse that order. Shift+M restores the order in which you received the cards."),
+              "Use the arrow keys to browse your hand. Shift+C sorts it by suit and Shift+H by rank; press either shortcut again to reverse that order."),
             rule_section(:combinations, "Runs and sets",
               "A combination must contain at least three cards. There are two kinds:",
               "- A run consists of consecutive cards in one suit, such as the 5, 6 and 7 of hearts. You could later extend it with the 4 or 8 of hearts.",
@@ -291,15 +289,14 @@ module GameRoomGames
               "Z: find the next card you can add; may play it immediately if there is only one.",
               "Shift+Z: find the previous card you can add; may play it immediately if there is only one.",
               "Shift+C: sort by suit; press again to reverse.",
-              "Shift+H: sort by rank; press again to reverse.",
-              "Shift+M: restore the order in which you received the cards.")
+              "Shift+H: sort by rank; press again to reverse.")
           ]
         when "es"
           [
             rule_section(:table, "Objetivo",
               "En Rummy re\u00FAnes cartas para formar combinaciones y bajarlas a la mesa. Tambi\u00E9n puedes a\u00F1adir cartas a las combinaciones ya jugadas. Cada carta que juegas da puntos; ganas la ronda cuando te quedas sin cartas. Los resultados se acumulan. Al terminar una ronda, si alguien tiene al menos 1000 puntos, gana la partida quien tenga m\u00E1s.",
               "Juegan de dos a ocho personas. Cada ronda empieza con catorce cartas por jugador.",
-              "Recorre la mano con las flechas. Shift+C ordena por palos y Shift+H por valores; repetir cualquiera invierte el orden. Shift+M recupera el orden en que recibiste las cartas."),
+              "Recorre la mano con las flechas. Shift+C ordena por palos y Shift+H por valores; repetir cualquiera invierte el orden."),
             rule_section(:combinations, "Combinaciones v\u00E1lidas",
               "Una combinaci\u00F3n necesita al menos tres cartas. Hay dos tipos:",
               "- Escalera: valores consecutivos del mismo palo, como 5, 6 y 7 de corazones. Despu\u00E9s admite el 4 de corazones por un extremo o el 8 por el otro.",
@@ -405,15 +402,14 @@ module GameRoomGames
               "Z: ir a la siguiente carta que encaje; con una sola posibilidad puede a\u00F1adirla directamente.",
               "Shift+Z: ir a la carta anterior que encaje; con una sola posibilidad puede a\u00F1adirla directamente.",
               "Shift+C: ordenar por palos; repetir para invertir el orden.",
-              "Shift+H: ordenar por valores; repetir para invertir el orden.",
-              "Shift+M: recuperar el orden de recepci\u00F3n.")
+              "Shift+H: ordenar por valores; repetir para invertir el orden.")
           ]
         when "pl"
           [
             rule_section(:table, "Cel gry",
               "W Remiku zbierasz pasuj\u0105ce do siebie karty i wyk\u0142adasz je na st\u00F3\u0142. Mo\u017Cesz te\u017C dok\u0142ada\u0107 karty do uk\u0142ad\u00F3w, kt\u00F3re ju\u017C tam le\u017C\u0105. Za zagrane karty zdobywasz punkty, a gdy pozb\u0119dziesz si\u0119 ca\u0142ej r\u0119ki, wygrywasz rund\u0119. Wyniki kolejnych rund si\u0119 sumuj\u0105. Ca\u0142\u0105 parti\u0119 wygrywa osoba z najwi\u0119ksz\u0105 liczb\u0105 punkt\u00F3w po zako\u0144czeniu rundy, w kt\u00F3rej kto\u015B osi\u0105gnie 1000.",
               "W remika mo\u017Ce gra\u0107 od dw\u00F3ch do o\u015Bmiu os\u00F3b. Na pocz\u0105tku ka\u017Cdej rundy dostajesz czterna\u015Bcie kart.",
-              "Karty w r\u0119ce przegl\u0105dasz strza\u0142kami. Shift+C uk\u0142ada karty wed\u0142ug kolor\u00F3w, a Shift+H wed\u0142ug warto\u015Bci. Ponowne u\u017Cycie tych skr\u00F3t\u00F3w odwraca kolejno\u015B\u0107. Je\u015Bli wolisz kolejno\u015B\u0107, w kt\u00F3rej dostawa\u0142e\u015B karty, przywr\u00F3cisz j\u0105 skr\u00F3tem Shift+M."),
+              "Karty w r\u0119ce przegl\u0105dasz strza\u0142kami. Shift+C uk\u0142ada karty wed\u0142ug kolor\u00F3w, a Shift+H wed\u0142ug warto\u015Bci. Ponowne u\u017Cycie tych skr\u00F3t\u00F3w odwraca kolejno\u015B\u0107."),
             rule_section(:combinations, "Jakie karty do siebie pasuj\u0105",
               "Na st\u00F3\u0142 wyk\u0142adasz uk\u0142ady z\u0142o\u017Cone z co najmniej trzech kart. S\u0105 dwa rodzaje uk\u0142ad\u00F3w:",
               "- Seria to kolejne karty w jednym kolorze, na przyk\u0142ad 5, 6 i 7 kier. Do takiej serii pasuje potem 4 kier z jednej strony lub 8 kier z drugiej.",
@@ -519,15 +515,14 @@ module GameRoomGames
               "Z: przejd\u017A do nast\u0119pnej pasuj\u0105cej karty; przy jednej mo\u017Cliwo\u015Bci skr\u00F3t mo\u017Ce od razu j\u0105 do\u0142o\u017Cy\u0107.",
               "Shift+Z: przejd\u017A do poprzedniej pasuj\u0105cej karty; przy jednej mo\u017Cliwo\u015Bci skr\u00F3t mo\u017Ce od razu j\u0105 do\u0142o\u017Cy\u0107.",
               "Shift+C: sortuj karty wed\u0142ug kolor\u00F3w; ponownie \u2014 w odwrotnej kolejno\u015Bci.",
-              "Shift+H: sortuj karty wed\u0142ug warto\u015Bci; ponownie \u2014 w odwrotnej kolejno\u015Bci.",
-              "Shift+M: przywr\u00F3\u0107 kolejno\u015B\u0107 otrzymywania kart.")
+              "Shift+H: sortuj karty wed\u0142ug warto\u015Bci; ponownie \u2014 w odwrotnej kolejno\u015Bci.")
           ]
         when "ru"
           [
             rule_section(:table, "\u0426\u0435\u043B\u044C \u0438\u0433\u0440\u044B",
               "\u0412 \u0440\u0443\u043C\u043C\u0438 \u0432\u044B \u0441\u043E\u0431\u0438\u0440\u0430\u0435\u0442\u0435 \u0441\u043E\u0447\u0435\u0442\u0430\u043D\u0438\u044F \u043A\u0430\u0440\u0442 \u0438 \u0432\u044B\u043A\u043B\u0430\u0434\u044B\u0432\u0430\u0435\u0442\u0435 \u0438\u0445 \u043D\u0430 \u0441\u0442\u043E\u043B. \u041A \u0443\u0436\u0435 \u043B\u0435\u0436\u0430\u0449\u0438\u043C \u0441\u043E\u0447\u0435\u0442\u0430\u043D\u0438\u044F\u043C \u043C\u043E\u0436\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u044F\u0442\u044C \u043F\u043E\u0434\u0445\u043E\u0434\u044F\u0449\u0438\u0435 \u043A\u0430\u0440\u0442\u044B. \u0420\u043E\u0437\u044B\u0433\u0440\u044B\u0448 \u043A\u0430\u0440\u0442 \u043F\u0440\u0438\u043D\u043E\u0441\u0438\u0442 \u043E\u0447\u043A\u0438. \u0418\u0437\u0431\u0430\u0432\u0438\u0432\u0448\u0438\u0441\u044C \u043E\u0442 \u0432\u0441\u0435\u0445 \u043A\u0430\u0440\u0442, \u0432\u044B \u0432\u044B\u0438\u0433\u0440\u044B\u0432\u0430\u0435\u0442\u0435 \u0440\u0430\u0443\u043D\u0434. \u041E\u0447\u043A\u0438 \u0440\u0430\u0443\u043D\u0434\u043E\u0432 \u0441\u043A\u043B\u0430\u0434\u044B\u0432\u0430\u044E\u0442\u0441\u044F: \u043F\u043E\u0441\u043B\u0435 \u0440\u0430\u0443\u043D\u0434\u0430, \u0432 \u043A\u043E\u0442\u043E\u0440\u043E\u043C \u043A\u0442\u043E-\u043D\u0438\u0431\u0443\u0434\u044C \u0434\u043E\u0441\u0442\u0438\u0433\u043D\u0435\u0442 1000, \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0435\u0442 \u0438\u0433\u0440\u043E\u043A \u0441 \u043D\u0430\u0438\u0431\u043E\u043B\u044C\u0448\u0438\u043C \u043E\u0431\u0449\u0438\u043C \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u043E\u043C.",
               "\u0418\u0433\u0440\u0430\u044E\u0442 \u043E\u0442 \u0434\u0432\u0443\u0445 \u0434\u043E \u0432\u043E\u0441\u044C\u043C\u0438 \u0447\u0435\u043B\u043E\u0432\u0435\u043A. \u0412 \u043D\u0430\u0447\u0430\u043B\u0435 \u043A\u0430\u0436\u0434\u043E\u0433\u043E \u0440\u0430\u0443\u043D\u0434\u0430 \u0443 \u0432\u0441\u0435\u0445 \u043F\u043E \u0447\u0435\u0442\u044B\u0440\u043D\u0430\u0434\u0446\u0430\u0442\u044C \u043A\u0430\u0440\u0442.",
-              "\u041F\u0440\u043E\u0441\u043C\u0430\u0442\u0440\u0438\u0432\u0430\u0439\u0442\u0435 \u0440\u0443\u043A\u0443 \u0441\u0442\u0440\u0435\u043B\u043A\u0430\u043C\u0438. Shift+C \u0441\u043E\u0440\u0442\u0438\u0440\u0443\u0435\u0442 \u0435\u0451 \u043F\u043E \u043C\u0430\u0441\u0442\u044F\u043C, Shift+H \u2014 \u043F\u043E \u0434\u043E\u0441\u0442\u043E\u0438\u043D\u0441\u0442\u0432\u0443; \u043F\u043E\u0432\u0442\u043E\u0440\u043D\u043E\u0435 \u043D\u0430\u0436\u0430\u0442\u0438\u0435 \u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043D\u0430 \u043E\u0431\u0440\u0430\u0442\u043D\u044B\u0439. Shift+M \u0432\u043E\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u043A\u0430\u0440\u0442."),
+              "\u041F\u0440\u043E\u0441\u043C\u0430\u0442\u0440\u0438\u0432\u0430\u0439\u0442\u0435 \u0440\u0443\u043A\u0443 \u0441\u0442\u0440\u0435\u043B\u043A\u0430\u043C\u0438. Shift+C \u0441\u043E\u0440\u0442\u0438\u0440\u0443\u0435\u0442 \u0435\u0451 \u043F\u043E \u043C\u0430\u0441\u0442\u044F\u043C, Shift+H \u2014 \u043F\u043E \u0434\u043E\u0441\u0442\u043E\u0438\u043D\u0441\u0442\u0432\u0443; \u043F\u043E\u0432\u0442\u043E\u0440\u043D\u043E\u0435 \u043D\u0430\u0436\u0430\u0442\u0438\u0435 \u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043D\u0430 \u043E\u0431\u0440\u0430\u0442\u043D\u044B\u0439."),
             rule_section(:combinations, "\u0414\u043E\u043F\u0443\u0441\u0442\u0438\u043C\u044B\u0435 \u0441\u043E\u0447\u0435\u0442\u0430\u043D\u0438\u044F",
               "\u041D\u0430 \u0441\u0442\u043E\u043B \u0432\u044B\u043A\u043B\u0430\u0434\u044B\u0432\u0430\u044E\u0442 \u0441\u043E\u0447\u0435\u0442\u0430\u043D\u0438\u044F \u043C\u0438\u043D\u0438\u043C\u0443\u043C \u0438\u0437 \u0442\u0440\u0451\u0445 \u043A\u0430\u0440\u0442. \u0415\u0441\u0442\u044C \u0434\u0432\u0430 \u0432\u0438\u0434\u0430:",
               "- \u0420\u044F\u0434 \u2014 \u043F\u043E\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u043A\u0430\u0440\u0442\u044B \u043E\u0434\u043D\u043E\u0439 \u043C\u0430\u0441\u0442\u0438, \u043D\u0430\u043F\u0440\u0438\u043C\u0435\u0440 5, 6, 7 \u0447\u0435\u0440\u0432\u0435\u0439. \u041F\u043E\u0437\u0436\u0435 \u0435\u0433\u043E \u043C\u043E\u0436\u043D\u043E \u043F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u0447\u0435\u0442\u0432\u0451\u0440\u043A\u043E\u0439 \u0441 \u043E\u0434\u043D\u043E\u0433\u043E \u043A\u043E\u043D\u0446\u0430 \u0438\u043B\u0438 \u0432\u043E\u0441\u044C\u043C\u0451\u0440\u043A\u043E\u0439 \u0441 \u0434\u0440\u0443\u0433\u043E\u0433\u043E.",
@@ -633,8 +628,7 @@ module GameRoomGames
               "Z: \u043D\u0430\u0439\u0442\u0438 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0443\u044E \u043F\u043E\u0434\u0445\u043E\u0434\u044F\u0449\u0443\u044E \u043A\u0430\u0440\u0442\u0443; \u043F\u0440\u0438 \u0435\u0434\u0438\u043D\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0439 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u0438 \u043A\u0430\u0440\u0442\u0430 \u043C\u043E\u0436\u0435\u0442 \u0441\u0440\u0430\u0437\u0443 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C\u0441\u044F \u043A \u0441\u043E\u0447\u0435\u0442\u0430\u043D\u0438\u044E.",
               "Shift+Z: \u043D\u0430\u0439\u0442\u0438 \u043F\u0440\u0435\u0434\u044B\u0434\u0443\u0449\u0443\u044E \u043F\u043E\u0434\u0445\u043E\u0434\u044F\u0449\u0443\u044E \u043A\u0430\u0440\u0442\u0443; \u043F\u0440\u0438 \u0435\u0434\u0438\u043D\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0439 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u0438 \u043A\u0430\u0440\u0442\u0430 \u043C\u043E\u0436\u0435\u0442 \u0441\u0440\u0430\u0437\u0443 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C\u0441\u044F \u043A \u0441\u043E\u0447\u0435\u0442\u0430\u043D\u0438\u044E.",
               "Shift+C: \u0443\u043F\u043E\u0440\u044F\u0434\u043E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u044B \u043F\u043E \u043C\u0430\u0441\u0442\u044F\u043C; \u043F\u043E\u0432\u0442\u043E\u0440\u043D\u043E\u0435 \u043D\u0430\u0436\u0430\u0442\u0438\u0435 \u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043D\u0430 \u043E\u0431\u0440\u0430\u0442\u043D\u044B\u0439.",
-              "Shift+H: \u0443\u043F\u043E\u0440\u044F\u0434\u043E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u044B \u043F\u043E \u0434\u043E\u0441\u0442\u043E\u0438\u043D\u0441\u0442\u0432\u0443; \u043F\u043E\u0432\u0442\u043E\u0440\u043D\u043E\u0435 \u043D\u0430\u0436\u0430\u0442\u0438\u0435 \u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043D\u0430 \u043E\u0431\u0440\u0430\u0442\u043D\u044B\u0439.",
-              "Shift+M: \u0432\u0435\u0440\u043D\u0443\u0442\u044C \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u043A\u0430\u0440\u0442.")
+              "Shift+H: \u0443\u043F\u043E\u0440\u044F\u0434\u043E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u044B \u043F\u043E \u0434\u043E\u0441\u0442\u043E\u0438\u043D\u0441\u0442\u0432\u0443; \u043F\u043E\u0432\u0442\u043E\u0440\u043D\u043E\u0435 \u043D\u0430\u0436\u0430\u0442\u0438\u0435 \u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043D\u0430 \u043E\u0431\u0440\u0430\u0442\u043D\u044B\u0439.")
           ]
         end
       end

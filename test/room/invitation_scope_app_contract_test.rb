@@ -4,7 +4,7 @@ class ScopedInvitationApp < InvitationAppDriver
   attr_accessor :decision
   attr_reader :opened
   def initialize_services; end
-  def check_server_table_access; end
+  def check_server_table_access(announce: true); end
   def select_notification_invitation_action; decision; end
   def run_program_interface(table); @opened = table; end
 end

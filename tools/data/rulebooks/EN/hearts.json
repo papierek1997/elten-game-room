@@ -1,0 +1,84 @@
+{
+  "source": "games/hearts_support/hearts_table.rb",
+  "sections": [
+    {
+      "id": "play",
+      "paragraphs": [
+        {
+          "en": "Four people play individually with a 52-card deck. Everyone receives thirteen cards. Avoid winning hearts and the queen of spades: every heart is one penalty point and that queen is thirteen. Other cards score nothing. Aces are highest, then kings, queens and so on down to twos. There are no trumps."
+        },
+        {
+          "en": "Before the first deal, pass three cards to the left. In the next deals, pass right, then across, then keep all cards. This four-deal cycle repeats. Press Enter on each card you want to pass. Once the pass is confirmed, that card disappears from your hand. When everyone has passed three, the exchange is completed and you hear the cards you received. The player holding the two of clubs leads it to the first trick."
+        },
+        {
+          "en": "Take turns playing one card and follow the suit led if possible. Without that suit, discard any card, except that on the first trick you must avoid penalty cards if you have a safe card. The highest card of the suit led wins the trick and leads next. You may lead hearts only after someone has discarded a heart, unless your hand contains only hearts."
+        }
+      ],
+      "title": {
+        "en": "Playing Hearts"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "en": "After all thirteen tricks, add the penalties to each player’s total. If one player takes all thirteen hearts and the queen of spades, that player scores zero and every opponent scores 26 instead. The score limit is 100 by default and can be changed in the table settings before play. Once anyone reaches that limit, the player with the lowest total wins. If the lowest total is tied, play another deal."
+        }
+      ],
+      "title": {
+        "en": "Scoring and the winner"
+      }
+    },
+    {
+      "id": "controls",
+      "paragraphs": [
+        {
+          "en": "Arrows: browse cards or menu choices."
+        },
+        {
+          "en": "Enter: select a card to pass before play, or play the selected card during a trick."
+        },
+        {
+          "en": "F: read the suit led."
+        },
+        {
+          "en": "V: read passing progress or whether hearts have been broken."
+        },
+        {
+          "en": "Shift+S: read penalty points in this deal."
+        },
+        {
+          "en": "H: read your hand."
+        },
+        {
+          "en": "C: read the cards on the table."
+        },
+        {
+          "en": "Ctrl+C: browse those cards."
+        },
+        {
+          "en": "S: read the scores."
+        },
+        {
+          "en": "T: read whose turn it is."
+        },
+        {
+          "en": "Z: find the next playable card."
+        },
+        {
+          "en": "Shift+Z: find the previous playable card."
+        },
+        {
+          "en": "Shift+C: sort your hand by suit."
+        },
+        {
+          "en": "Shift+H: sort your hand by rank."
+        }
+      ],
+      "title": {
+        "en": "Controls"
+      }
+    }
+  ],
+  "option_chapters": {"score_limit": "scoring"}
+}

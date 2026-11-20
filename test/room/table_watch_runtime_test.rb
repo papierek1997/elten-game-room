@@ -1,4 +1,19 @@
 require_relative "../support/table_watch_runtime"
+module EltenAPI
+  module NotificationService
+    class << self
+      attr_accessor :rows, :reads, :revoked
+      def active_notifications
+        self.reads = reads.to_i + 1
+        rows || []
+      end
+      def revoke_active_notifications(ids)
+        self.revoked = ids
+      end
+    end
+  end
+end
+EltenAPI::NotificationService.rows = []
 now = 2_000_000_000
 uuid = EltenGameRoom.server_app_uuid
 session_id = "cP44FMhoJwxaQ80Rm02_JY0K9QxAsveo"
@@ -66,8 +81,18 @@ loader = EltenGameRoom.instance_variable_get(:@table_watch_loader)
 assert(loader && wait_background_work(loader), "finite startup load did not finish")
 EltenGameRoom.table_watch_tick
 assert(receiver.games == ["uno"] && loads == 1, "startup settings not applied")
+idle_games = ["uno"]
+idle_games.define_singleton_method(:to_a) { raise "idle tick built a Settings snapshot" }
+receiver.games = idle_games
+EltenAPI::NotificationService.reads = 0
 50.times { EltenGameRoom.table_watch_tick }
 assert(loads == 1, "ticks poll notification preferences")
+assert(EltenAPI::NotificationService.reads == 50, "table-notice cleanup cadence changed")
+pruned = (0...2050).to_h { |id| [id, true] }
+EltenGameRoom.instance_variable_set(:@table_watch_pruned, pruned)
+EltenGameRoom.table_watch_tick
+assert(pruned.size == 2048 && !pruned.key?(0) && !pruned.key?(1) && pruned.key?(2),
+  "table-notice cleanup did not retain the newest bounded history")
 EltenGameRoom.table_watch_stop
 EltenGameRoom.table_watch_start
 assert(EltenGameRoom.instance_variable_get(:@table_watch_loader).nil?, "loaded settings refetched on restart")

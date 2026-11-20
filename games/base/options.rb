@@ -52,6 +52,12 @@ module GameRoomGames
         nil
       end
 
+      # Opt in to another game's existing catalog without changing its packs.
+      # Stored pack identity and compatibility checks still apply normally.
+      def content_pack_game_id
+        id
+      end
+
       # Word games with one dictionary/deck per language do not need a redundant
       # one-item set picker. Quiz keeps its existing independent set selector.
       def single_content_set?
@@ -82,6 +88,13 @@ module GameRoomGames
       # Presentation choices may be narrower than the canonical replay schema.
       def option_editor_definitions(selected = {})
         effective_option_definitions(selected)
+      end
+
+      # The canonical schema must accept options received from another table
+      # owner. The local creation/editing form may expose a narrower set of
+      # choices based on account-private progress without changing replay.
+      def personal_option_editor_definitions(_program, selected = {}, creating_table: false)
+        option_editor_definitions(selected)
       end
 
       # Only the creator's option form uses these defaults. Replay and saved
@@ -293,7 +306,7 @@ module GameRoomGames
 
         normalized = normalize_options(options)
         pack = content_registry.pack(normalized[GameRoomContent::PACK_OPTION_KEY])
-        return nil if pack == nil || !pack.supports?(game_id: id, kind: content_pack_kind)
+        return nil if pack == nil || !pack.supports?(game_id: content_pack_game_id, kind: content_pack_kind)
         return nil if pack.set_id != normalized[GameRoomContent::SET_OPTION_KEY].to_s
         return nil if pack.language_id != normalized[GameRoomContent::LANGUAGE_OPTION_KEY].to_s
         return nil if pack.version != normalized[GameRoomContent::PACK_VERSION_KEY].to_i
@@ -307,13 +320,13 @@ module GameRoomGames
       def available_content_packs
         return [] if content_pack_kind.to_s.empty?
 
-        content_registry.packs_for(game_id: id, kind: content_pack_kind)
+        content_registry.packs_for(game_id: content_pack_game_id, kind: content_pack_kind)
       end
 
       def available_content_sets(language_id = nil)
         return [] if content_pack_kind.to_s.empty?
 
-        sets = content_registry.pack_sets_for(game_id: id, kind: content_pack_kind)
+        sets = content_registry.pack_sets_for(game_id: content_pack_game_id, kind: content_pack_kind)
         return sets if language_id.to_s.empty?
 
         sets.select { |pack_set| pack_set.language_ids.include?(language_id.to_s) }
@@ -392,7 +405,7 @@ module GameRoomGames
         result[GameRoomContent::SET_OPTION_KEY] = requested_set.to_s
         result[GameRoomContent::LANGUAGE_OPTION_KEY] = requested_language.to_s
         pack = content_registry.pack_for(
-          game_id: id,
+          game_id: content_pack_game_id,
           kind: content_pack_kind,
           set_id: requested_set,
           language_id: requested_language
@@ -421,11 +434,11 @@ module GameRoomGames
         language_id = option_source_value(values, GameRoomContent::LANGUAGE_OPTION_KEY).to_s
         pack_set = content_registry.pack_set(set_id)
         return _("The selected game content set is not installed.") if pack_set == nil
-        if !pack_set.supports?(game_id: id, kind: content_pack_kind)
+        if !pack_set.supports?(game_id: content_pack_game_id, kind: content_pack_kind)
           return _("The selected content set is not compatible with this game.")
         end
         selected = content_registry.pack_for(
-          game_id: id,
+          game_id: content_pack_game_id,
           kind: content_pack_kind,
           set_id: set_id,
           language_id: language_id

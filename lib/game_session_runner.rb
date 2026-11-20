@@ -5,6 +5,7 @@ require_relative "game_sync"
 require_relative "game_bots"
 require_relative "game_simulation"
 require_relative "game_session_clock"
+require_relative "game_round_pause"
 require_relative "game_execution_policy"
 require_relative "game_background_policy"
 require_relative "tournament_presence"
@@ -171,7 +172,47 @@ class GameRoomSessionRunner
         GameRoomSessionContracts::SessionIdentity.from_row(session) == GameRoomSessionContracts::SessionIdentity.from_row(@session) && @session["__control_ready"] != false &&
         GameRoomParticipants.includes?(@replay.players, actor) &&
         (revision(replay) == revision(@replay) || @game.concurrent_session_input?(replay, @replay, selection))
-      commit(selection, actor, controller: controller)
+      result = commit(selection, actor, controller: controller)
+      # A stack ACK proves storage, not acceptance by the game's reducer. A
+      # deadline or another player's action can win while this write is in
+      # flight. Check the confirmed local projection, without another poll,
+      # before clearing a human's draft or announcing a successful action.
+      if result.first == :ok
+        snapshot = @repository.snapshot_for(@session, read_only: true)
+        if snapshot
+          events = (snapshot.events + result.last).uniq { |event| @repository.event_id(event) }.sort_by { |event| @repository.event_id(event) }
+          confirmed = @game.replay(snapshot.session, events, @repository)
+          ids = confirmed.accepted_events.to_h { |event| [@repository.event_id(event), true] }
+          return [:stale_view, nil] unless result.last.all? { |event| ids[@repository.event_id(event)] }
+        else
+          return [:stale_view, nil]
+        end
+      end
+      result
+    end
+  end
+
+  # The normal controller owns this room-wide pause. Revalidate under the same
+  # operation lock as deals/bots; a captured shortcut cannot pause a new hand.
+  def toggle_round_pause(session:, replay:)
+    synchronize do
+      raise @internal_error if @internal_error
+      return :stale_view if closed? || !activate_executor || @sync.waiting?
+      refresh
+      return :stale_view unless @snapshot && @replay && !@replay.finished? &&
+        GameRoomSessionContracts::SessionIdentity.from_row(session) == GameRoomSessionContracts::SessionIdentity.from_row(@session) &&
+        revision(replay) == revision(@replay) && !@session['__aborted'] && @session['__control_ready'] != false
+      return :unavailable unless GameRoomParticipants.same?(@owner, @viewer)
+      paused = @session['__round_pause'] == true
+      return :unavailable if !paused && (@session['__frozen'] || !round_pause_active?)
+      receipt = @transport.freeze_game(@session, frozen: !paused, round_pause: true,
+        expected_boundary: paused ? @session['__game_boundary'] : nil)
+      @dirty = true
+      confirmed = @repository.snapshot_for(@session, read_only: true)
+      return :stale_view unless receipt && confirmed &&
+        confirmed.session['__game_boundary'] == receipt.message_id &&
+        (confirmed.session['__round_pause'] == true) == !paused
+      :ok
     end
   end
 
@@ -253,6 +294,7 @@ class GameRoomSessionRunner
       covered = covered?
       return unless covered && !@game.paced_event_presentation? || (view && view[:session_id] == @repository.session_id(@session) &&
         view[:revision] == revision(@replay) && !view[:busy])
+      return if round_pause_active?
       bot_work = prepare_bot unless perform_automatic(view)
     end
     perform_bot(bot_work) if bot_work
@@ -496,6 +538,7 @@ class GameRoomSessionRunner
   def commit(selection, actor, controller: false, lease: nil, write_guard: nil)
     return [:closed, nil] if closed?
     action_context = context
+    return [:round_pause, nil] if round_pause_active?(action_context.now)
     @action_context_observer&.call(action_context)
     status, plan = @game.action_for(selection, @replay, actor, context: action_context)
     return [status, nil] unless status == :ok
@@ -528,6 +571,13 @@ class GameRoomSessionRunner
       end
       raise
     end
+  end
+
+  def round_pause_active?(now = nil)
+    return false unless @replay && @game.round_pause_seconds(@replay).positive?
+    now ||= @clock.public_send(@game.precise_action_clock? ? :now_f : :now, @session)
+    @round_pause ||= GameRoomRoundPause.new(@repository)
+    @round_pause.active?(game: @game, replay: @replay, session: @session, now: now)
   end
 
   def update_table_status

@@ -29,7 +29,15 @@ end
 
 def prepare_group(surface, control)
   surface.handle_command("meld_new")
-  [0, 1, 2].each { |index| select_row(control, index) }
+  %w[2S0 3S0 4S0].each { |card| select_hand_card(control, card) }
+end
+
+def select_hand_card(control, card)
+  label = GameRoomGames::Rummy.new.send(:playing_card_label, card)
+  index = control.options.index { |item| item == label || item.start_with?(label + ';') }
+  raise "Missing card #{card} in #{control.options.inspect}" unless index
+
+  select_row(control, index)
 end
 
 def shortcut(game, replay, key, modifiers = [])
@@ -170,14 +178,14 @@ check.call("P reports missing first meld points and invalid selections honestly"
   prepare_group(surface, control)
   surface.handle_command("meld_read")
   assert($spoken_messages.last.include?("15 more required"), "P omits how much is missing")
-  select_row(control, 1)
+  select_hand_card(control, '3S0')
   surface.handle_command("meld_read")
   assert($spoken_messages.last.include?("do not form valid ordered melds"), "P does not flag invalid draft")
   state[:first_meld]["Alice"] = true
   surface.update_spec(game.surface_spec(replay, "Alice"))
-  select_row(control, 1) # append order is now 2,4,3: still invalid
-  select_row(control, 2)
-  select_row(control, 2) # restore 2,3,4
+  select_hand_card(control, '3S0') # append order is now 2,4,3: still invalid
+  select_hand_card(control, '4S0')
+  select_hand_card(control, '4S0') # restore 2,3,4
   surface.handle_command("meld_read")
   assert(!$spoken_messages.last.include?("first meld requires 0"), "P reads a fake minimum after opening")
 end
@@ -186,10 +194,11 @@ check.call("sorting tells both ascending and descending directions") do
   game, _state, replay, surface, _control, = interaction_fixture
   %w[c h].each do |key|
     item = shortcut(game, replay, key, [:shift])
+    directions = key == 'c' ? %w[descending ascending] : %w[ascending descending]
     surface.handle_command(item.action_name, item.payload)
-    assert($spoken_messages.last.include?("ascending"), "no ascending sort confirmation")
+    assert($spoken_messages.last.include?(directions.first), "wrong first sort confirmation for #{key}")
     surface.handle_command(item.action_name, item.payload)
-    assert($spoken_messages.last.include?("descending"), "no descending sort confirmation")
+    assert($spoken_messages.last.include?(directions.last), "wrong second sort confirmation for #{key}")
   end
 end
 
@@ -273,13 +282,13 @@ check.call("an invalid submission unticks only the invalid selection and permits
   game, state, replay, surface, control, emitted = interaction_fixture
   original = Marshal.dump(state)
   surface.handle_command("meld_new")
-  [0, 3].each { |index| select_row(control, index) }
+  %w[2S0 8H0].each { |card| select_hand_card(control, card) }
   cursor = control.index
   assert(surface.handle_command("meld_submit") == true, "invalid meld emitted an action")
   assert(surface.state["meld_selection"].empty? && surface.state["meld_draft"], "invalid cards remain selected or editor closed")
   assert(control.options.none? { |label| label.include?("; selected") } && control.index == cursor, "labels or cursor were not preserved")
   assert(emitted.empty? && Marshal.dump(state) == original, "invalid draft changed the game")
-  [0, 1, 2].each { |index| select_row(control, index) }
+  %w[2S0 3S0 4S0].each { |card| select_hand_card(control, card) }
   action = surface.handle_command("meld_submit")
   assert(action.is_a?(GameSurfaces::Action) && action.payload["groups"] == [%w[2S0 3S0 4S0]], "could not retry directly")
 end
@@ -288,7 +297,7 @@ check.call("N clears a malformed next meld without discarding correct prepared g
   _game, _state, _replay, surface, control, = interaction_fixture
   prepare_group(surface, control)
   surface.handle_command("meld_new")
-  [3, 4].each { |index| select_row(control, index) }
+  %w[8H0 KS0].each { |card| select_hand_card(control, card) }
   surface.handle_command("meld_new")
   assert(surface.state["meld_groups"] == [%w[2S0 3S0 4S0]] && surface.state["meld_selection"].empty?, "valid earlier meld lost or invalid cards retained")
 end
@@ -296,10 +305,10 @@ end
 check.call("invalid groups saved in the local editor are removed without losing a valid current selection") do
   _game, _state, _replay, surface, control, = interaction_fixture
   surface.handle_command("meld_new")
-  [3, 4].each { |index| select_row(control, index) }
+  %w[8H0 KS0].each { |card| select_hand_card(control, card) }
   surface.handle_command("meld_edit")
   surface.cancel_pending_action!
-  [0, 1, 2].each { |index| select_row(control, index) }
+  %w[2S0 3S0 4S0].each { |card| select_hand_card(control, card) }
   surface.handle_command("meld_submit")
   assert(surface.state["meld_groups"].empty? && surface.state["meld_selection"] == %w[2S0 3S0 4S0], "cleared the correct selection instead of the bad stored group")
 end
@@ -310,7 +319,7 @@ check.call("reading invalid cards and a valid meld below the opening minimum do 
   selected = surface.state["meld_selection"]
   surface.handle_command("meld_submit")
   assert(surface.state["meld_selection"] == selected, "opening minimum rejection cleared a valid meld")
-  select_row(control, 1)
+  select_hand_card(control, '3S0')
   invalid = surface.state["meld_selection"]
   surface.handle_command("meld_read")
   assert(surface.state["meld_selection"] == invalid, "P changed the selection")

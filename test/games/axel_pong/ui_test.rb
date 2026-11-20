@@ -24,6 +24,7 @@ native_dictionary = $rules_dictionary
   state['shields'] = [125, 0]
   surface.present(state, GameRoomLocalization.translate('Match in progress.'))
   field = surface.fields.first
+  field.model_keyboard_input! # This fixture supplies held/pressed keys, not native press snapshots.
   keys, pressed = [], []
   field.define_singleton_method(:key_held?) { |key| keys.include?(key) }
   field.define_singleton_method(:key_pressed?) { |key| pressed.include?(key) }
@@ -60,7 +61,10 @@ native_dictionary = $rules_dictionary
   observer_c = rules.game_shortcuts(replay, 'Watcher').find { |s| s.key == 'c' }
   assert(observer_c.label.include?(language == :pl ? 'obserwowanego' : 'observed'), 'observer C help still says your paddle')
   shortcuts = rules.game_shortcuts(replay, 'Żaneta'.b)
-  assert(shortcuts.map(&:key).sort == %w[c e e s t w], 'missing/extra Pong shortcuts')
+  assert(shortcuts.map(&:key).sort == %w[c e e s t t t w], 'missing/extra Pong shortcuts')
+  durations = shortcuts.select { |shortcut| shortcut.payload['duration_scope'] }
+  assert(durations.map { |shortcut| [shortcut.modifiers, shortcut.payload['duration_scope']] } ==
+    [[[:control], 'game'], [[:control, :shift], 'round']], 'Pong duration shortcuts have wrong modifiers or scope')
   assert(shortcuts.all? { |s| s.label.valid_encoding? }, 'shortcut encoding')
   echo_shortcut = shortcuts.find { |s| s.key == 'e' && s.modifiers == [:shift] }
   assert(echo_shortcut && echo_shortcut.label.include?(language == :pl ? 'brzmienie band' : 'side-wall cues'),

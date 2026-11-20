@@ -80,11 +80,21 @@ module GameRoomGames
         false
       end
 
+      # Called only for an explicitly marked hand reminder. Reuse the current
+      # surface order without mutating/reducing game state or rebuilding controls.
+      def displayed_hand_announcement(_replay, _viewer, cards:, hand_id:)
+        return nil if cards.empty?
+
+        _("Your hand: %{cards}.") % {cards: cards.map(&:label).join('; ')}
+      end
+
       def hand_sort_shortcuts(replay, viewer)
         return [] unless hand_sorting_available?(replay, viewer)
+        modes = declared_card_hand_order(options: replay.state&.fetch(:options, {}) || {}).sort_modes
         [["c", "colour", _("sort cards by suit"), _("Cards sorted by ascending suit."), _("Cards sorted by descending suit.")],
          ["h", "number", _("sort cards by rank"), _("Cards sorted by ascending rank."), _("Cards sorted by descending rank.")],
-         ["m", "none", _("restore acquisition order"), _("Cards restored to acquisition order."), nil]].map do |key, mode, label, ascending, descending|
+         ["m", "none", _("restore acquisition order"), _("Cards restored to acquisition order."), nil]].filter_map do |key, mode, label, ascending, descending|
+          next unless modes.include?(mode)
           surface_shortcut(key: key, modifiers: [:shift], label: label, command: "sort_cards",
             payload: { "mode" => mode, "toggle" => mode != "none", "ascending_message" => ascending, "descending_message" => descending })
         end
@@ -101,6 +111,7 @@ module GameRoomGames
         # labels and behaviour. Add only the missing shared hand commands.
         existing = result.map { |shortcut| [shortcut.key, shortcut.modifiers.to_a] }
         result += hand_sort_shortcuts(replay, viewer).reject { |shortcut| existing.include?([shortcut.key, shortcut.modifiers.to_a]) }
+        result = decorate_information_shortcuts(result, replay)
         keys = result.map { |shortcut| [shortcut.key, shortcut.modifiers.to_a] }
         raise ArgumentError, "game shortcut keys must be unique" if keys.uniq.length != keys.length
 
@@ -176,12 +187,13 @@ module GameRoomGames
         ]
       end
 
-      def announcement_shortcut(key:, label:, message:)
+      def announcement_shortcut(key:, label:, message:, hand_id: nil)
         GameShortcut.new(
           key: key,
           label: label,
           kind: :announcement,
-          message: message
+          message: message,
+          payload: hand_id.to_s.empty? ? {} : {'hand_id'=>hand_id.to_s}
         )
       end
 

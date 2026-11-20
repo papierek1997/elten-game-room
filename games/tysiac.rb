@@ -13,6 +13,9 @@ module GameRoomGames
   # The private-hand adapter preserves the same rules and presentation.
   # The interface never announces cards passed to the other defenders.
   class Tysiac < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    def standard_round_end_sound?; false; end
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def tournament_small_point_policy(options:)
       tournament_target_small_points(normalize_options(options).fetch('score_limit'))
     end
@@ -435,9 +438,10 @@ module GameRoomGames
       hand_cards = hand_for(state, viewer).sort_by { |card| card_sort_key(card) }.map do |card|
         item = surface_card(state, viewer, card)
         item.sort_keys = standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: hand_for(state, viewer).index(card))
+          item.navigation_group = standard_hand_navigation_group(rank: card_rank(card), suit: card_suit(card))
         item
       end
-      cards = GameSurfaces::CardTableSpec.new(default_sort: "colour", zones: [
+      cards = GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: [
         GameSurfaces::CardZoneSpec.new(
           id: "hand",
           header: hand_header(state, viewer),

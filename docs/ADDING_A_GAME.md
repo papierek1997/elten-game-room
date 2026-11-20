@@ -95,9 +95,35 @@ Choose the appropriate surface from `lib/game_surfaces/`:
 - `answer_sheet` or `review_surface` for answers and scoring;
 - `command_panel` for a small set of commands.
 
+For a grid where a move selects an origin and a destination, use
+`GridSpec.move_actions` with ordinary `GridMove`/`Action` objects. Coordinates
+and rules belong to the game, not to a game-ID branch in `GridBoard`.
+`forced_origin` supports mandatory re-entry, and `selection_epoch` identifies
+the current accepted move boundary. An unchanged refresh preserves the chosen
+origin; a new boundary clears it. Escape cancels selection. A read-only preview
+uses `row_actions: []` and must not retain any writable path through Enter or
+chat coordinates. Test the real control and its refresh, not only its spec.
+
+Keep a single production reducer. Do not ship a second stand-alone Round or
+Match implementation merely to test a new game: tests must exercise the table's
+actual replay, actions, rounds and scoring. Native-only random protocols need
+native evidence and a clock in their fixture, not a substituted local rule.
+
 History, the user list, F1 help, Ctrl+F1 rules and the overall screen layout are
 shared. Add shortcuts specific to a game family to the shared
 framework only when their meaning is genuinely the same.
+
+Every card game explicitly declares its initial display order through
+`CARD_HAND_ORDER`, with its allowed modes and one of them as default, even when
+it preserves receipt order. Use the shared semantic
+keys, hand cursor and readout contract in [Card hands](CARD_HAND.md), not a local
+sort in each deal/draw/reminder. The default chooses colour, rank or acquisition
+order; it is not an additional duplicate command. Include initial and received
+cards, manual overrides, interleaved suit jumps and native whole-list arrows in
+the [hand-order regression review](CARD_HAND.md#required-hand-order-regression-review).
+The catalog's marked-hand test checks the concrete declaration, allowed modes
+and active surface default for the current variant. Unavailable modes must be
+absent from help/menus and refused by the surface, not merely hidden.
 
 Use `GameShortcut` declarations for common action, number and choice prompts
 rather than binding a second game-specific handler. A local single-choice
@@ -220,10 +246,11 @@ Review the whole changed text in every affected language, not just a sample.
 
 Mark English messages with `_`, `n_`, `p_` or `np_`, and enable
 `using GameRoomLocalization::Translations` inside the file's root module.
-For interface messages, `ruby tools/translations.rb update` updates the PO
-catalogs; edit `locale/PL.po` or the relevant language's PO and compile it with
-`ruby tools/translations.rb compile PL` (substitute the language code).
-Do not edit generated MO or Ruby translation views.
+This includes the game's name and description, options, errors, history, prompts,
+results and contextual help, not just the main menu. Update the PO catalogs and
+complete the new messages in every supported interface language, then compile
+them. Do not edit generated MO or Ruby translation views. An untranslated
+fallback or a hard-coded Polish label does not count as a translated interface.
 
 The compiler needs both its root source/registration and the authored language
 editions. For a new game:
@@ -256,7 +283,11 @@ sentence patterns. New rules follow the editorial guide regardless of author
 credits. Preserve ready-to-use rules supplied or selected by the creator unless
 editing is requested; distinguish them from reference material as the guide explains.
 Do not add manually maintained interface JSON translation fragments.
-Details: `docs/TRANSLATIONS.md`.
+Before calling the game ready, complete the generation, all-language checks and
+separate editorial review in the
+[text acceptance gate](TRANSLATIONS.md#required-acceptance-gate-for-text-changes).
+These requirements apply to PR imports too; passing the new game's own tests
+does not excuse a failing common rulebook or translation check.
 
 ## 6. Write tests
 
@@ -282,3 +313,5 @@ or search state. Use current `AGENTS.md` test-scope instructions: run affected
 game/shared scenarios during development, and the full runner for a new-game
 PR when that broader run is authorized. Report an unavailable dependency,
 timeout, skipped scenario or unperformed live path explicitly, never as a pass.
+Select additional edge cases from the
+[recurring integration risks](GAME_ACCEPTANCE.md#recurring-integration-risks).

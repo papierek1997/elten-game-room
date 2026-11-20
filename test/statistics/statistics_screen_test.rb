@@ -128,9 +128,9 @@ GameRoomStatisticsScreen.new(program: program,
   settle_statistics(form)
     summary = form.fields.first.text
     table = form.fields.find { |field| field.is_a?(TableBox) }
-    assert(summary.include?("Statistics are unavailable. Try Refresh."), "A read failure was not explained")
+    assert(summary.include?("Statistics could not be loaded. Check your connection and try Refresh."), "A read failure was not explained")
     assert(!summary.include?("Visitors: 0") && table.rows.empty?, "A read failure was presented as zero activity")
-    assert(table.empty_label == "Statistics unavailable", "An empty failed table has no accessible status")
+    assert(table.empty_label == "Statistics could not be loaded. Check your connection and try Refresh.", "An empty failed table has no accessible status")
     form.cancel_button.trigger(:press)
   end
   GameRoomStatisticsScreen.new(program: program, reader: failed_reader, years_reader: ->(_token) { [] },
@@ -143,7 +143,7 @@ Form.statistics_driver = lambda do |form|
   refresh = form.fields.find { |field| field.is_a?(Button) && field.label == "Refresh" }
   refresh.trigger(:press)
   settle_statistics(form)
-  assert(table.rows.empty? && form.fields.first.text.include?("unavailable"), "Failed refresh leaves stale counts on screen")
+  assert(table.rows.empty? && form.fields.first.text.include?("Statistics could not be loaded."), "Failed refresh leaves stale counts on screen")
   refresh.trigger(:press)
   settle_statistics(form)
   assert(!table.rows.empty? && form.fields.first.text.include?("Visitors: 12"), "Refresh cannot recover from a failed read")
@@ -157,7 +157,7 @@ GameRoomStatisticsScreen.new(program: program, reader: ->(_, _token) { responses
     periods = form.fields.find { |field| field.is_a?(ListBox) }
     assert(periods.options == ["Today", "Last 7 days (including today)", "Last 30 days (including today)",
       "Last 365 days (including today)", "2026", "All time"], "Unavailable years hide required periods")
-    assert(form.fields.first.text.include?("Calendar years are unavailable. Try Refresh."), "Year discovery failure is silent")
+    assert(form.fields.first.text.include?("The list of years could not be loaded. Try Refresh."), "Year discovery failure is silent")
     form.cancel_button.trigger(:press)
   end
   GameRoomStatisticsScreen.new(program: program, reader: ->(_, _token) { data }, years_reader: failed_years,
@@ -345,7 +345,7 @@ Form.statistics_driver = lambda do |form|
   settle_statistics(form)
   assert(periods.options[periods.index] == "2026", "Failed year refresh lost a previously available calendar year")
   assert(table.rows[table.index].first == "Alpha", "Refresh preserved row number instead of game identity after sorting")
-  assert(form.fields.first.text.include?("Calendar years are unavailable."), "Failed year refresh was silent")
+  assert(form.fields.first.text.include?("The list of years could not be loaded."), "Failed year refresh was silent")
   form.cancel_button.trigger(:press)
 end
 GameRoomStatisticsScreen.new(program: program,

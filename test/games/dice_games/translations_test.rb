@@ -2,7 +2,7 @@ require_relative "../../../lib/game_room_localization"
 require_relative "../../../tools/support/translation_catalog"
 require "json"
 root = File.expand_path("../../..",__dir__)
-messages = %w[games/dice_poker.rb games/liars_dice.rb games/liars_dice_players.rb].flat_map do |relative|
+messages = %w[games/dice_poker.rb games/dice_poker_support/presentation.rb games/liars_dice.rb games/liars_dice_players.rb].flat_map do |relative|
   File.read(File.join(root,relative),encoding:'UTF-8').scan(/_\("((?:[^"\\]|\\.)*)"\)/).flatten.map { |value| JSON.parse('"'+value+'"') }
 end.uniq
 missing = []

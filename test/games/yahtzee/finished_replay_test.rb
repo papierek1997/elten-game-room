@@ -23,11 +23,13 @@ end
   replay = game.replay(session, events + late, repository)
   assert(replay.to_h == finished.to_h, "finished #{draw ? 'draw' : 'win'} accepted or displayed a late event")
   assert(game.legal_actions(replay, replay.current_player).empty?, 'finished game exposes actions')
+  assert(game.round_timing_event_ids(finished, repository: repository) == [nil, 52], 'final sheet duration has the wrong end boundary')
 end
 multi = {'options' => JSON.generate(options.merge('matches' => 2))}
 first = build_match.call('1,2,3,4,5', '1,2,3,4,5')
 next_sheet = game.replay(multi, first, repository)
 assert(!next_sheet.finished? && next_sheet.state[:match] == 2, 'intermediate tied sheet ended multi-match game')
+assert(game.round_timing_event_ids(next_sheet, repository: repository) == [52, nil], 'second sheet duration did not restart')
 continued = game.replay(multi, first + [cht_event(53, next_sheet.current_player, 'roll', '1,2,3,4,5')], repository)
 assert(continued.accepted_events.length == 53 && continued.state[:turn_rolls] == 1, 'new sheet rejected legitimate next roll')
 puts 'Yahtzee: terminal draw/win reject late roll/score; intermediate sheet continues OK'

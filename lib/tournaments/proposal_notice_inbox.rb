@@ -9,6 +9,7 @@ module GameRoomTournaments
   class ProposalNoticeInbox
     LIMIT = 64
     RETRY_DELAYS = [2, 5, 15].freeze
+    EMPTY_RESULTS = [].freeze
     attr_reader :last_error
     def initialize(service:, worker:, metadata:ProposalNotice.method(:metadata), clock:-> {Process.clock_gettime(Process::CLOCK_MONOTONIC)})
       @service, @worker = service, worker
@@ -37,7 +38,7 @@ module GameRoomTournaments
     end
 
     def tick
-      return [] if @closed
+      return EMPTY_RESULTS if @closed
       notices = []
       if (result = @worker.take)
         proof, error = result
@@ -97,6 +98,14 @@ module GameRoomTournaments
     def verified(id); @verified[id]; end
     def dismissed?(token); @dismissed.key?(token); end
 
+    # The extension keeps its one-second cadence, but a configured inbox with
+    # no receipt, retry, worker result or revocation has nothing to drain. An
+    # admitted worker always owns @running before this extension tick returns.
+    def work_pending?
+      !@closed && (@running != nil || !@pending.empty? || !@retries.empty? ||
+        !@revoked.empty?)
+    end
+
     # A verified tournament change wakes a finite read, never a timer poll.
     # If verification was already in flight, its earlier snapshot cannot
     # restore an invitation cancelled while that read was running.
@@ -118,6 +127,7 @@ module GameRoomTournaments
     end
 
     def take_revoked
+      return EMPTY_RESULTS if @revoked.empty?
       ids, @revoked = @revoked.uniq, []
       ids
     end

@@ -40,7 +40,7 @@ module GameRoomGames
       parts << part("attempts", list("krowa-attempts", _("Attempts"), labels.empty? ? [_("No attempts")] : labels))
       parts << part("results", information("krowa-results", _("Results"), result_summary(state)))
       if tower?(state)
-        parts << part("turn", list("krowa-turn", _("Now playing"), [replay.current_player || _("Waiting for the next round")]))
+        parts << part("turn", list("krowa-turn", _("Now playing"), [replay.current_player ? participant_name(replay.current_player) : _("Waiting for the next round")]))
       end
       commands = []
       if state[:phase] == :active && player
@@ -134,7 +134,7 @@ module GameRoomGames
       text = _("%{word}, %{matches} of %{length}") % {
         word: trial[:word], matches: trial[:matches], length: length
       }
-      show_player ? _("%{player}: %{attempt}") % {player: trial[:player], attempt: text} : text
+      show_player ? _("%{player}: %{attempt}") % {player: participant_name(trial[:player]), attempt: text} : text
     end
 
     def part(id, surface); GameSurfaces::SurfacePart.new(id: id, surface: surface); end
@@ -180,14 +180,14 @@ module GameRoomGames
       state[:players].sort_by { |player| result = state[:results][player]; result && result[:solved] ? [0, result[metric]] : [1, 0] }.map do |player|
         result = state[:results][player]
         if result.nil?
-          _("%{player}: %{attempts} attempts, playing") % {player: player, attempts: attempts_for(state, player).length}
+          _("%{player}: %{attempts} attempts, playing") % {player: participant_name(player), attempts: attempts_for(state, player).length}
         elsif result[:race_closed]
-          _("%{player}: not guessed, %{attempts} attempts") % {player: player, attempts: result[:attempts]}
+          _("%{player}: not guessed, %{attempts} attempts") % {player: participant_name(player), attempts: result[:attempts]}
         elsif !result[:solved]
-          _("%{player}: surrendered") % {player: player}
+          _("%{player}: surrendered") % {player: participant_name(player)}
         else
           _("%{player}: %{attempts} attempts, %{seconds} s") % {
-            player: player, attempts: result[:attempts], seconds: format('%.3f', result[:elapsed] / 1000.0)
+            player: participant_name(player), attempts: result[:attempts], seconds: format('%.3f', result[:elapsed] / 1000.0)
           }
         end
       end.join("\r\n")

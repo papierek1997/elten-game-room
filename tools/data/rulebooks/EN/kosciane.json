@@ -1,0 +1,137 @@
+{
+  "source": "games/kosciane.rb",
+  "sections": [
+    {
+      "id": "goal",
+      "title": {
+        "en": "Goal"
+      },
+      "paragraphs": [
+        {
+          "en": "Two to eight players take turns rolling five dice and filling their own score sheets. Each row has three spaces. On each turn you fill the first empty space in one row. Once every sheet is full, the player with the highest total, including bonuses, wins. Players tied for the highest score share the win."
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "title": {
+        "en": "Your turn"
+      },
+      "paragraphs": [
+        {
+          "en": "Press Enter to roll all five dice. You may record this result or reroll some dice, up to twice. Press a number from 1 to 6 to select one die showing that value for a reroll. Shift with the same number removes one such die from the selection. Enter rerolls the selected dice. With none selected, Enter opens your score sheet."
+        },
+        {
+          "en": "After the third roll, the score sheet appears in the game field. Use Up and Down to choose a row; Left and Right let you inspect its entries, total and reserve. Press Enter in any column of that row to record the result in its first empty space. If your dice do not qualify for a category, you may record zero there after the third roll."
+        }
+      ]
+    },
+    {
+      "id": "scores",
+      "title": {
+        "en": "Combinations"
+      },
+      "paragraphs": [
+        {
+          "en": "- One pair, two pairs of different values, three of a kind and four of a kind score the sum of the dice forming that combination."
+        },
+        {
+          "en": "- A small straight consists of four consecutive values; a large straight uses five. Add the values in the straight. If there are two possible small straights, the higher one counts."
+        },
+        {
+          "en": "- A full house is three dice of one value and two of another. A full house and five of a kind score the sum of all five dice."
+        },
+        {
+          "en": "- Chance also scores the sum of all five dice and accepts any roll."
+        }
+      ]
+    },
+    {
+      "id": "school",
+      "title": {
+        "en": "School and reserve"
+      },
+      "paragraphs": [
+        {
+          "en": "The School section has a row for each value from one to six. To record a result, you need three dice of that value, counting any reserve you have built up. You must have at least one in the current roll. Score only the dice actually rolled. For example, four sixes score 24 and add one six to your reserve. Later, two sixes can use that reserve six to qualify, but still score only 12."
+        }
+      ]
+    },
+    {
+      "id": "bonuses",
+      "title": {
+        "en": "Bonuses"
+      },
+      "paragraphs": [
+        {
+          "en": "The first player to complete a row without a zero gets its last score again as a bonus. The first to complete a column without zeros gets 60 points for that column. Recording zero in school removes bonuses you already earned."
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "title": {
+        "en": "Table settings"
+      },
+      "paragraphs": [
+        {
+          "en": "One or two columns disable bonuses. Optional even and odd rows require every die to have the chosen parity. Fixed scoring replaces points for triple, small straight, large straight, full house, four of a kind and five of a kind with 20, 25, 30, 35, 40 and 50. First-roll doubling never applies to school. In the strict school variant, recording zero also blocks future bonuses."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard"
+      },
+      "paragraphs": [
+        {
+          "en": "Enter: roll all five dice to begin your turn. Later, reroll the selected dice or open scoring if none are selected. In the score sheet, record the selected row. After the third roll, the sheet appears automatically."
+        },
+        {
+          "en": "1–6: select one die showing that value for a reroll."
+        },
+        {
+          "en": "Shift+1–6: keep one selected die showing that value."
+        },
+        {
+          "en": "Arrows: choose a row with Up and Down; inspect its entries and totals with Left and Right. Full rows are omitted from the scoring view."
+        },
+        {
+          "en": "B: open the score sheet in a separate window."
+        },
+        {
+          "en": "Escape: close the separate score-sheet window without recording a result."
+        },
+        {
+          "en": "Space: read the dice and, in the rolling field, their selection state."
+        },
+        {
+          "en": "D: read the last roll."
+        },
+        {
+          "en": "V: browse your score sheet."
+        },
+        {
+          "en": "Shift+V: browse another player's score sheet."
+        },
+        {
+          "en": "F: browse your unfilled rows."
+        },
+        {
+          "en": "S: read scores including bonuses."
+        },
+        {
+          "en": "Shift+S: read the sum of recorded scores."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "columns": "options",
+    "parity": "options",
+    "fixed": "options",
+    "double_first": "options",
+    "strict_school": "options"
+  }
+}

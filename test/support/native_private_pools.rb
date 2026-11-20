@@ -68,7 +68,7 @@ module NativePrivatePoolView
     end
     @core.last_seq += 1
     entry = {'seq' => @core.last_seq, 'message_id' => params['message_id'], 'sender' => {'user' => user},
-      'packet' => packet, 'created_at' => Time.now.to_i, 'origin' => 'server_pool',
+      'packet' => packet, 'created_at' => @endpoint.broker.now, 'origin' => 'server_pool',
       'pool' => {'id' => pool_id, 'operation' => operation.to_s}}
     @core.entries << entry
     response.merge!('seq' => entry['seq'], 'pool' => pool_state(pool_id))

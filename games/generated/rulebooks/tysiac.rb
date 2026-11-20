@@ -51,8 +51,7 @@ module GameRoomGames
             GameRoomRules.translate("S: read scores."),
             GameRoomRules.translate("T: read whose turn it is."),
             GameRoomRules.translate("Shift+C: sort by suit or colour; press again to reverse the order."),
-            GameRoomRules.translate("Shift+H: sort by rank or value; press again to reverse the order."),
-            GameRoomRules.translate("Shift+M: restore the order in which cards were received."))
+            GameRoomRules.translate("Shift+H: sort by rank or value; press again to reverse the order."))
         ]
       end
 
@@ -115,7 +114,7 @@ module GameRoomGames
               "Hra kon\u010D\u00ED dosa\u017Een\u00EDm alespo\u0148 1000 bod\u016F. Siln\u00FDm z\u00E1vazkem lze vyhr\u00E1t i bez p\u0159edchoz\u00EDho sudu. Pokud hranice v jednom vyhodnocen\u00ED dos\u00E1hne v\u00EDce hr\u00E1\u010D\u016F, rozhoduje nejvy\u0161\u0161\u00ED sk\u00F3re."),
             rule_section(:redeal_variants, "Mo\u017Enosti nov\u00E9ho rozd\u00E1n\u00ED",
               "P\u0159i vytv\u00E1\u0159en\u00ED stolu m\u016F\u017Ee\u0161 nastavit dv\u011B nez\u00E1visl\u00E1 pravidla:",
-              "- Nov\u00E9 rozd\u00E1n\u00ED p\u0159i \u010Dty\u0159ech dev\u00EDtk\u00E1ch v po\u010D\u00E1te\u010Dn\u00ED ruce je ve v\u00FDchoz\u00EDm nastaven\u00ED povoleno. M\u016F\u017Ee\u0161 ho vypnout.",
+              "- Nov\u00E9 rozd\u00E1n\u00ED p\u0159i \u010Dty\u0159ech dev\u00EDtk\u00E1ch v po\u010D\u00E1te\u010Dn\u00ED ruce je ve v\u00FDchoz\u00EDm nastaven\u00ED vypnut\u00E9. M\u016F\u017Ee\u0161 ho zapnout.",
               "- Dv\u011B dev\u00EDtky v talonu b\u011B\u017En\u011B neoprav\u0148uj\u00ED k nov\u00E9mu rozd\u00E1n\u00ED. Kdy\u017E tuto mo\u017Enost zapne\u0161, m\u016F\u017Ee v\u00EDt\u011Bz licitace stisknout Shift+D, pokud odkryt\u00FD talon obsahuje alespo\u0148 dv\u011B dev\u00EDtky. Mus\u00ED to ud\u011Blat d\u0159\u00EDve, ne\u017E p\u0159ed\u00E1 nebo odlo\u017E\u00ED prvn\u00ED kartu. Znovu rozd\u00E1v\u00E1 stejn\u00FD hr\u00E1\u010D, bez bod\u016F, trest\u016F a spot\u0159ebov\u00E1n\u00ED pokusu na sudu."),
             rule_section(:variants, "Po\u010Det hr\u00E1\u010D\u016F a dal\u0161\u00ED nastaven\u00ED",
               "P\u0159ed hrou se v nastaven\u00ED stolu vyb\u00EDr\u00E1 varianta. Z\u00E1klad pro t\u0159i byl pops\u00E1n v\u00FD\u0161e; dal\u0161\u00ED m\u011Bn\u00ED rozd\u00E1n\u00ED takto:",
@@ -148,7 +147,6 @@ module GameRoomGames
               "T: ozn\u00E1mit, kdo je na tahu.",
               "Shift+C: se\u0159adit podle barev; opakov\u00E1n\u00EDm obr\u00E1tit po\u0159ad\u00ED.",
               "Shift+H: se\u0159adit podle hodnot; opakov\u00E1n\u00EDm obr\u00E1tit po\u0159ad\u00ED.",
-              "Shift+M: obnovit po\u0159ad\u00ED p\u0159ijat\u00FDch karet.",
               "Shift+D: po\u017E\u00E1dej o nov\u00E9 rozd\u00E1n\u00ED, pokud spl\u0148uje\u0161 jeho podm\u00EDnky.")
           ]
         when "en"
@@ -208,7 +206,7 @@ module GameRoomGames
               "The game ends when someone reaches at least 1,000 points. A large enough contract can take you straight to a win without going onto the barrel. If several players cross the target in the same deal, the highest score wins."),
             rule_section(:redeal_variants, "Redeal options",
               "Two independent settings are available when creating the table:",
-              "- Redealing with four nines in an initial hand is enabled by default. You can turn it off.",
+              "- Redealing with four nines in an initial hand is disabled by default. You can turn it on.",
               "- Two nines in the talon do not normally allow a redeal. If you enable this option, the auction winner may press Shift+D when the revealed talon contains at least two nines, before passing or setting aside the first card. The same player deals again, without points, penalties or using a barrel chance."),
             rule_section(:variants, "Player counts and variants",
               "Choose the player count and variant in the table settings. Three-player Tysi\u0105c follows the rules above. The other versions change the deal:",
@@ -241,7 +239,6 @@ module GameRoomGames
               "T: announce whose turn it is.",
               "Shift+C: sort by suit; press again to reverse.",
               "Shift+H: sort by rank; press again to reverse.",
-              "Shift+M: restore the order in which you received the cards.",
               "Shift+D: request a redeal when its conditions are met.")
           ]
         when "es"
@@ -301,7 +298,7 @@ module GameRoomGames
               "La partida termina al alcanzar alguien al menos 1000. Tambi\u00E9n puedes hacerlo con un contrato alto antes de entrar en el barril. Si varios cruzan la meta en el mismo recuento, gana quien tenga m\u00E1s puntos."),
             rule_section(:redeal_variants, "Opciones de nuevo reparto",
               "Al crear la mesa puedes ajustar dos reglas independientes:",
-              "- La posibilidad de pedir un nuevo reparto por cuatro nueves en la mano inicial est\u00E1 activada de forma predeterminada. Puedes desactivarla.",
+              "- La posibilidad de pedir un nuevo reparto por cuatro nueves en la mano inicial est\u00E1 desactivada de forma predeterminada. Puedes activarla.",
               "- Normalmente, dos nueves en la reserva no permiten repetir el reparto. Si activas esta opci\u00F3n, quien gane la subasta podr\u00E1 pulsar May\u00FAs+D si la reserva descubierta contiene al menos dos nueves, antes de entregar o descartar la primera carta. Reparte de nuevo la misma persona, sin puntos, penalizaciones ni consumo de un intento en el barril."),
             rule_section(:variants, "Otros n\u00FAmeros de jugadores",
               "Antes de empezar se elige la modalidad. La de tres personas usa las reglas anteriores; las dem\u00E1s cambian el reparto as\u00ED:",
@@ -334,7 +331,6 @@ module GameRoomGames
               "T: consultar de qui\u00E9n es el turno.",
               "Shift+C: ordenar por palo; repetir para invertir el orden.",
               "Shift+H: ordenar por valor; repetir para invertir el orden.",
-              "Shift+M: recuperar el orden de recepci\u00F3n.",
               "May\u00FAs+D: pide un nuevo reparto si se cumplen sus condiciones.")
           ]
         when "pl"
@@ -394,7 +390,7 @@ module GameRoomGames
               "Gra ko\u0144czy si\u0119, kiedy kto\u015B osi\u0105gnie co najmniej 1000 punkt\u00F3w. Mo\u017Cna to zrobi\u0107 r\u00F3wnie\u017C du\u017Cym kontraktem jeszcze przed wej\u015Bciem na beczk\u0119. Je\u015Bli pr\u00F3g przekroczy kilka os\u00F3b w tym samym rozliczeniu, wygrywa osoba z najwy\u017Cszym wynikiem."),
             rule_section(:redeal_variants, "Opcje ponownego rozdania",
               "Przy tworzeniu sto\u0142u mo\u017Cesz zmieni\u0107 dwie niezale\u017Cne zasady:",
-              "- Ponowne rozdanie przy czterech dziewi\u0105tkach w pocz\u0105tkowej r\u0119ce jest domy\u015Blnie w\u0142\u0105czone. Mo\u017Cesz je wy\u0142\u0105czy\u0107.",
+              "- Ponowne rozdanie przy czterech dziewi\u0105tkach w pocz\u0105tkowej r\u0119ce jest domy\u015Blnie wy\u0142\u0105czone. Mo\u017Cesz je w\u0142\u0105czy\u0107.",
               "- Domy\u015Blnie dwie dziewi\u0105tki w musiku nie pozwalaj\u0105 powt\u00F3rzy\u0107 rozdania. Po w\u0142\u0105czeniu tej opcji zwyci\u0119zca licytacji mo\u017Ce nacisn\u0105\u0107 Shift+D, je\u015Bli w odkrytym musiku s\u0105 co najmniej dwie dziewi\u0105tki. Trzeba to zrobi\u0107 przed oddaniem lub od\u0142o\u017Ceniem pierwszej karty. Rozdaje ponownie ta sama osoba, bez punkt\u00F3w, kar i utraty szansy na beczce."),
             rule_section(:variants, "Liczba graczy i warianty",
               "Przed rozpocz\u0119ciem gry w ustawieniach sto\u0142u wybiera si\u0119 liczb\u0119 graczy i spos\u00F3b gry. Wariant trzyosobowy dzia\u0142a tak, jak opisano wcze\u015Bniej. Pozosta\u0142e zmieniaj\u0105 rozdanie w nast\u0119puj\u0105cy spos\u00F3b:",
@@ -427,7 +423,6 @@ module GameRoomGames
               "T: odczytaj, czyja jest tura.",
               "Shift+C: sortuj karty wed\u0142ug koloru; ponowne u\u017Cycie odwraca kolejno\u015B\u0107.",
               "Shift+H: sortuj karty wed\u0142ug warto\u015Bci; ponowne u\u017Cycie odwraca kolejno\u015B\u0107.",
-              "Shift+M: przywr\u00F3\u0107 kolejno\u015B\u0107 otrzymania kart.",
               "Shift+D: popro\u015B o ponowne rozdanie, je\u015Bli spe\u0142niasz jego warunki.")
           ]
         when "ru"
@@ -487,7 +482,7 @@ module GameRoomGames
               "\u041F\u0430\u0440\u0442\u0438\u044F \u0437\u0430\u043A\u0430\u043D\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044F \u043F\u0440\u0438 \u0434\u043E\u0441\u0442\u0438\u0436\u0435\u043D\u0438\u0438 1000 \u043E\u0447\u043A\u043E\u0432 \u0438\u043B\u0438 \u0431\u043E\u043B\u044C\u0448\u0435. \u0411\u043E\u043B\u044C\u0448\u0438\u043C \u043A\u043E\u043D\u0442\u0440\u0430\u043A\u0442\u043E\u043C \u043C\u043E\u0436\u043D\u043E \u0432\u044B\u0438\u0433\u0440\u0430\u0442\u044C \u0438 \u0434\u043E \u043F\u043E\u043F\u0430\u0434\u0430\u043D\u0438\u044F \u043D\u0430 \u0431\u043E\u0447\u043A\u0443. \u0415\u0441\u043B\u0438 \u0446\u0435\u043B\u044C \u043E\u0434\u043D\u043E\u0432\u0440\u0435\u043C\u0435\u043D\u043D\u043E \u0434\u043E\u0441\u0442\u0438\u0433\u043D\u0443\u0442\u0430 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u0438\u043C\u0438 \u0438\u0433\u0440\u043E\u043A\u0430\u043C\u0438, \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0435\u0442 \u0442\u043E\u0442, \u0443 \u043A\u043E\u0433\u043E \u0431\u043E\u043B\u044C\u0448\u0435 \u043E\u0447\u043A\u043E\u0432."),
             rule_section(:redeal_variants, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u043F\u0435\u0440\u0435\u0441\u0434\u0430\u0447\u0438",
               "\u041F\u0440\u0438 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u0438 \u0441\u0442\u043E\u043B\u0430 \u043C\u043E\u0436\u043D\u043E \u043D\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043C\u043E \u043D\u0430\u0441\u0442\u0440\u043E\u0438\u0442\u044C \u0434\u0432\u0430 \u043F\u0440\u0430\u0432\u0438\u043B\u0430:",
-              "- \u041F\u0435\u0440\u0435\u0441\u0434\u0430\u0447\u0430 \u043F\u0440\u0438 \u0447\u0435\u0442\u044B\u0440\u0451\u0445 \u0434\u0435\u0432\u044F\u0442\u043A\u0430\u0445 \u0432 \u043D\u0430\u0447\u0430\u043B\u044C\u043D\u043E\u0439 \u0440\u0443\u043A\u0435 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0430 \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E. \u0415\u0451 \u043C\u043E\u0436\u043D\u043E \u043E\u0442\u043A\u043B\u044E\u0447\u0438\u0442\u044C.",
+              "- \u041F\u0435\u0440\u0435\u0441\u0434\u0430\u0447\u0430 \u043F\u0440\u0438 \u0447\u0435\u0442\u044B\u0440\u0451\u0445 \u0434\u0435\u0432\u044F\u0442\u043A\u0430\u0445 \u0432 \u043D\u0430\u0447\u0430\u043B\u044C\u043D\u043E\u0439 \u0440\u0443\u043A\u0435 \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E \u043E\u0442\u043A\u043B\u044E\u0447\u0435\u043D\u0430. \u0415\u0451 \u043C\u043E\u0436\u043D\u043E \u0432\u043A\u043B\u044E\u0447\u0438\u0442\u044C.",
               "- \u041E\u0431\u044B\u0447\u043D\u043E \u0434\u0432\u0435 \u0434\u0435\u0432\u044F\u0442\u043A\u0438 \u0432 \u043F\u0440\u0438\u043A\u0443\u043F\u0435 \u043D\u0435 \u0434\u0430\u044E\u0442 \u043F\u0440\u0430\u0432\u0430 \u043D\u0430 \u043F\u0435\u0440\u0435\u0441\u0434\u0430\u0447\u0443. \u0415\u0441\u043B\u0438 \u0432\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u044D\u0442\u0443 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0443, \u043F\u043E\u0431\u0435\u0434\u0438\u0442\u0435\u043B\u044C \u0442\u043E\u0440\u0433\u043E\u0432\u043B\u0438 \u0441\u043C\u043E\u0436\u0435\u0442 \u043D\u0430\u0436\u0430\u0442\u044C Shift+D, \u043A\u043E\u0433\u0434\u0430 \u0432 \u043E\u0442\u043A\u0440\u044B\u0442\u043E\u043C \u043F\u0440\u0438\u043A\u0443\u043F\u0435 \u043E\u043A\u0430\u0436\u0435\u0442\u0441\u044F \u043D\u0435 \u043C\u0435\u043D\u0435\u0435 \u0434\u0432\u0443\u0445 \u0434\u0435\u0432\u044F\u0442\u043E\u043A. \u0421\u0434\u0435\u043B\u0430\u0442\u044C \u044D\u0442\u043E \u043D\u0443\u0436\u043D\u043E \u0434\u043E \u043F\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0438\u043B\u0438 \u0441\u043D\u043E\u0441\u0430 \u043F\u0435\u0440\u0432\u043E\u0439 \u043A\u0430\u0440\u0442\u044B. \u0421\u043D\u043E\u0432\u0430 \u0440\u0430\u0437\u0434\u0430\u0451\u0442 \u0442\u043E\u0442 \u0436\u0435 \u0438\u0433\u0440\u043E\u043A, \u0431\u0435\u0437 \u043E\u0447\u043A\u043E\u0432, \u0448\u0442\u0440\u0430\u0444\u043E\u0432 \u0438 \u0440\u0430\u0441\u0445\u043E\u0434\u043E\u0432\u0430\u043D\u0438\u044F \u043F\u043E\u043F\u044B\u0442\u043A\u0438 \u043D\u0430 \u0431\u043E\u0447\u043A\u0435."),
             rule_section(:variants, "\u0414\u0440\u0443\u0433\u0438\u0435 \u0441\u043E\u0441\u0442\u0430\u0432\u044B \u0438\u0433\u0440\u043E\u043A\u043E\u0432 \u0438 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438",
               "\u041F\u0435\u0440\u0435\u0434 \u043F\u0430\u0440\u0442\u0438\u0435\u0439 \u0432 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0430\u0445 \u0441\u0442\u043E\u043B\u0430 \u0432\u044B\u0431\u0438\u0440\u0430\u044E\u0442\u0441\u044F \u0441\u043E\u0441\u0442\u0430\u0432 \u0438 \u0432\u0430\u0440\u0438\u0430\u043D\u0442 \u0438\u0433\u0440\u044B. \u0422\u0440\u043E\u0435 \u0438\u0433\u0440\u0430\u044E\u0442 \u043F\u043E \u043E\u043F\u0438\u0441\u0430\u043D\u043D\u044B\u043C \u0432\u044B\u0448\u0435 \u043F\u0440\u0430\u0432\u0438\u043B\u0430\u043C. \u0414\u0440\u0443\u0433\u0438\u0435 \u0432\u0430\u0440\u0438\u0430\u043D\u0442\u044B \u043C\u0435\u043D\u044F\u044E\u0442 \u0440\u0430\u0437\u0434\u0430\u0447\u0443:",
@@ -520,7 +515,6 @@ module GameRoomGames
               "T: \u0443\u0437\u043D\u0430\u0442\u044C, \u0447\u0435\u0439 \u0441\u0435\u0439\u0447\u0430\u0441 \u0445\u043E\u0434.",
               "Shift+C: \u0443\u043F\u043E\u0440\u044F\u0434\u043E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u044B \u043F\u043E \u043C\u0430\u0441\u0442\u044F\u043C; \u043F\u043E\u0432\u0442\u043E\u0440\u043D\u043E\u0435 \u043D\u0430\u0436\u0430\u0442\u0438\u0435 \u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043D\u0430 \u043E\u0431\u0440\u0430\u0442\u043D\u044B\u0439.",
               "Shift+H: \u0443\u043F\u043E\u0440\u044F\u0434\u043E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u044B \u043F\u043E \u0434\u043E\u0441\u0442\u043E\u0438\u043D\u0441\u0442\u0432\u0443; \u043F\u043E\u0432\u0442\u043E\u0440\u043D\u043E\u0435 \u043D\u0430\u0436\u0430\u0442\u0438\u0435 \u043C\u0435\u043D\u044F\u0435\u0442 \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043D\u0430 \u043E\u0431\u0440\u0430\u0442\u043D\u044B\u0439.",
-              "Shift+M: \u0432\u0435\u0440\u043D\u0443\u0442\u044C \u043F\u043E\u0440\u044F\u0434\u043E\u043A \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u043A\u0430\u0440\u0442.",
               "Shift+D: \u043F\u043E\u043F\u0440\u043E\u0441\u0438\u0442\u044C \u043F\u0435\u0440\u0435\u0441\u0434\u0430\u0447\u0443, \u0435\u0441\u043B\u0438 \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u044B \u0435\u0451 \u0443\u0441\u043B\u043E\u0432\u0438\u044F.")
           ]
         end

@@ -5,6 +5,7 @@ require_relative "game_room_clock"
 require_relative "notification_time"
 require_relative "table_variant"
 require_relative "table_query_snapshot"
+require_relative "game_participants"
 
 # Public interests, not saved games. Identity always comes from the server's
 # immutable insertion author. A forged username can never subscribe somebody.
@@ -367,7 +368,8 @@ module GameRoomTableWatch
       @seen.delete_if { |_id, at| @clock.call - at > 600 }
       now = @clock.call.to_i
       @queue << { metadata: { "format" => 1, "game" => row["game"], "table_id" => row["__id"].to_i,
-        "live_session_id" => key, "created_at" => now, "expires_at" => now + 300, "variant" => @variant.call(row) }, recipients: nil }
+        "live_session_id" => key, "created_at" => now, "expires_at" => now + 300, "variant" => @variant.call(row),
+      }, recipients: nil }
       true
     end
 

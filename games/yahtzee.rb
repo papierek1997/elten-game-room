@@ -1,5 +1,8 @@
 require_relative "base"
 require_relative "../lib/game_bots"
+require_relative "../lib/five_dice_planner"
+require_relative "../lib/five_dice_upper_bonus"
+require_relative "../lib/five_dice_sounds"
 require_relative "../lib/server_random"
 
 require_relative "../lib/game_room_localization"
@@ -8,6 +11,9 @@ module GameRoomGames
   using GameRoomLocalization::Translations
   class Yahtzee < Base
     def player_spatial_audio?; true; end
+    def round_timing_event_ids(replay, repository:)
+      successive_round_timing_event_ids(replay, [:round_result])
+    end
     GameRoomServerRandom.register('yahtzee', ['roll'])
     STANDARD_CATEGORIES = %w[
       ones twos threes fours fives sixes three_kind four_kind full_house
@@ -19,20 +25,39 @@ module GameRoomGames
       'full_house' => 40, 'small_straight' => 40, 'large_straight' => 40,
       'chance' => 40, 'misery' => 40, 'yahtzee' => 50
     }.freeze
-    CATEGORY_LABELS = {
-      "ones" => _("Ones"), "twos" => _("Twos"), "threes" => _("Threes"),
-      "fours" => _("Fours"), "fives" => _("Fives"), "sixes" => _("Sixes"),
-      "three_kind" => _("Three of a kind"), "four_kind" => _("Four of a kind"),
-      "full_house" => _("Full house"), "small_straight" => _("Small straight"),
-      "large_straight" => _("Large straight"), "yahtzee" => _("Yahtzee"),
-      "chance" => _("Chance"), "pair" => _("One pair"),
-      "two_pairs" => _("Two pairs"), "misery" => _("Misery")
-    }.freeze
+    # Category text follows the viewer's current language, not the language
+    # active when this shared class was first loaded.
+    def category_label(category)
+      case category.to_s
+      when "ones" then _("Ones")
+      when "twos" then _("Twos")
+      when "threes" then _("Threes")
+      when "fours" then _("Fours")
+      when "fives" then _("Fives")
+      when "sixes" then _("Sixes")
+      when "three_kind" then _("Three of a kind")
+      when "four_kind" then _("Four of a kind")
+      when "full_house" then _("Full house")
+      when "small_straight" then _("Small straight")
+      when "large_straight" then _("Large straight")
+      when "yahtzee" then _("Yahtzee")
+      when "chance" then _("Chance")
+      when "pair" then _("One pair")
+      when "two_pairs" then _("Two pairs")
+      when "misery" then _("Misery")
+      else raise KeyError, "Unknown score category: #{category}"
+      end
+    end
 
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
       action = event["action"].to_s
-      return "roll" if action == "roll"
-      return "play" if action == "score"
+      return GameRoomFiveDiceSounds.roll(after_replay&.state&.[](:dice)) if action == "roll"
+      if action == "score"
+        score = history.find { |entry| entry.kind == :score }
+        bonus = history.any? { |entry| entry.key.to_s.start_with?('upper_bonus:') }
+        return GameRoomFiveDiceSounds.score(effect: bonus ? :bonus : nil,
+          zero: score&.value == 0 && event['value'] != 'misery')
+      end
     end
 
     def id
@@ -191,7 +216,7 @@ module GameRoomGames
         points = score_category(category, state[:dice], state, viewer)
         GameSurfaces::ScoreChoice.new(
           id: category,
-          label: _("%{category}: %{points} points") % { category: CATEGORY_LABELS.fetch(category), points: points },
+          label: _("%{category}: %{points} points") % { category: category_label(category), points: points },
           value: category
         )
       end : []
@@ -208,6 +233,13 @@ module GameRoomGames
         empty_label: _("No categories remain"),
         roll_number: state[:turn_rolls].to_i
       )
+    end
+
+    def game_view_spec(replay, viewer)
+      choosing = !replay.finished? && same_user?(replay.current_player, viewer) &&
+        replay.state[:turn_rolls].to_i >= 3
+      key = choosing ? [id, 'score', viewer.to_s.downcase, replay.accepted_events.to_a.size] : nil
+      GameRoomLayout::ViewSpec.new(surface: surface_spec(replay, viewer), decision_focus_key: key)
     end
 
     def participant_scores(replay)
@@ -281,7 +313,7 @@ module GameRoomGames
       sheet = state[:sheets].fetch(player)
       labels = [score_sheet_title(state,player)] + categories(state).map do |category|
         value = sheet.key?(category) ? sheet[category].to_s : _("not filled")
-        "#{CATEGORY_LABELS.fetch(category)}: #{value}"
+        "#{category_label(category)}: #{value}"
       end
       upper = %w[ones twos threes fours fives sixes].sum { |c| sheet[c].to_i }
       labels << (_("Ones through Sixes: %{points} of 63.") % { points: upper })
@@ -303,6 +335,8 @@ module GameRoomGames
 
     def bot_action_score(replay, actor, action, context: nil)
       state = replay.state
+      tail = bot_tail_value(state, actor, action)
+      return tail unless tail.nil?
       if action["action"] == "score"
         return 1_000_000.0 if bot_wins_by_scoring?(state, actor, action["category"])
         return bot_category_value(action["category"], state[:dice], state, actor)
@@ -317,10 +351,12 @@ module GameRoomGames
       key = [state[:sheets][actor], state[:options], state[:turn_rolls]].inspect
       if @dice_plan_key != key
         @dice_plan_key = key
-        @dice_expectations = {}
-        @dice_decisions = {}
+        @dice_planner = GameRoomFiveDicePlanner.new do |dice, _roll_number|
+          simulated = state.merge(dice: dice)
+          available_scoring_categories(simulated, actor).map { |category| bot_category_value(category, dice, simulated, actor) }.max
+        end
       end
-      bot_roll_value(kept.sort, 3 - state[:turn_rolls], state, actor) - 0.0001
+      @dice_planner.roll_value(kept.sort, 3 - state[:turn_rolls]) - 0.0001
     end
 
     def move_error(status)
@@ -340,6 +376,25 @@ module GameRoomGames
     end
 
     private
+
+    def bot_tail_position(state, _actor); state; end
+    def bot_tail_slots(position, actor); unused_categories(position,actor).size; end
+    def bot_tail_identity(position, actor)
+      Marshal.dump([position[:sheets][actor],position[:options],position[:totals],position[:match]])
+    end
+    def bot_tail_choices(position, actor, _dice, _rolls); unused_categories(position,actor); end
+    def bot_tail_record(position, actor, category, dice, _rolls)
+      return nil unless unused_categories(position,actor).include?(category)
+      sheet = position[:sheets][actor].merge(category=>score_category(category,dice,position,actor))
+      position.merge(sheets:position[:sheets].merge(actor=>sheet))
+    end
+    def bot_tail_total(position, actor); total_score(position,actor); end
+    def bot_tail_target(state, actor)
+      return nil unless state[:match].to_i >= state[:options]['matches'].to_i
+      rivals = state[:players]-[actor]
+      return nil unless rivals.all? { |p|unused_categories(state,p).empty? }
+      rivals.map { |p|total_score(state,p) }.max
+    end
 
     def initial_state(players, options)
       {
@@ -390,7 +445,7 @@ module GameRoomGames
       id = repository.event_id(event)
       history << HistoryEntry.new(
         key: "score:#{id}", text: _("%{player} scored %{points} in %{category}.") % {
-          player: participant_name(player), points: points, category: CATEGORY_LABELS.fetch(category)
+          player: participant_name(player), points: points, category: category_label(category)
         }, event_id: id, actor: player, kind: :score, value: points
       )
       upper_after = %w[ones twos threes fours fives sixes].sum { |key| state[:sheets][player][key].to_i }
@@ -458,6 +513,12 @@ module GameRoomGames
 
     def available_scoring_categories(state, actor)
       unused_categories(state, actor)
+    end
+
+    def score_entry_column_label(label, column:, columns:)
+      _("%{label}, column %{column} of %{columns}") % {
+        label: GameRoomContent.utf8(label), column: column, columns: columns
+      }
     end
 
     def score_category(category, dice, state, actor)
@@ -544,14 +605,32 @@ module GameRoomGames
       reserve = face ? (face + 1) * 3 : targets.fetch(category, 0)
       reserve = 0 if unused_categories(state, actor).length == 1
       value = points - reserve
-      if face && state[:options]["upper_bonus"]
-        previous = upper.sum { |name| state[:sheets][actor][name].to_i }
-        remaining = upper.each_index.select { |index| !state[:sheets][actor].key?(upper[index]) }
-        before = bot_upper_bonus_probability(remaining, 63 - previous)
-        after = bot_upper_bonus_probability(remaining - [face], 63 - previous - points.to_i)
-        value += 35.0 * (after - before)
-      end
+      value += bot_upper_bonus_delta(upper, face, points, state, actor) if state[:options]["upper_bonus"]
       value
+    end
+
+    def bot_upper_bonus_delta(upper, face, points, state, actor)
+      previous = upper.sum { |name| state[:sheets][actor][name].to_i }
+      remaining = upper.each_index.select { |index| !state[:sheets][actor].key?(upper[index]) }
+      needed = 63 - previous
+      return 0.0 if needed <= 0 || remaining.sum { |index| (index + 1) * 5 } < needed
+
+      if remaining.size <= 2
+        flexible = unused_categories(state, actor).count { |name| !upper.include?(name) }
+        @upper_retry_model ||= GameRoomFiveDiceUpperBonus.new
+        before = @upper_retry_model.probability(remaining, needed, flexible)
+        after = if face
+          @upper_retry_model.probability(remaining - [face], needed - points.to_i, flexible)
+        else
+          @upper_retry_model.probability(remaining, needed, flexible - 1)
+        end
+      elsif face
+        before = bot_upper_bonus_probability(remaining, needed)
+        after = bot_upper_bonus_probability(remaining - [face], needed - points.to_i)
+      else
+        return 0.0
+      end
+      35.0 * (after - before)
     end
 
     def bot_upper_bonus_probability(faces, needed)
@@ -564,8 +643,7 @@ module GameRoomGames
       # three rolls. This is an explicit approximation, not knowledge of rolls.
       @upper_distributions ||= { [] => { 0 => 1.0 } }
       unless @upper_distributions.key?(faces)
-        p = 1.0 - (5.0 / 6)**3
-        count_weights = [1, 5, 10, 10, 5, 1].each_with_index.map { |n, k| n * p**k * (1 - p)**(5 - k) }
+        count_weights = GameRoomFiveDicePlanner::TARGET_COUNTS
         distribution = { 0 => 1.0 }
         faces.each do |face|
           next_distribution = Hash.new(0.0)
@@ -591,35 +669,6 @@ module GameRoomGames
       others.all? { |other| total_score(after, player) > total_score(state, other) }
     end
 
-    def bot_roll_value(kept, rolls, state, actor)
-      key = [rolls, kept]
-      return @dice_expectations[key] if @dice_expectations.key?(key)
-      value = if kept.length == 5
-        bot_best_value(kept, rolls - 1, state, actor)
-      else
-        (1..6).sum { |face| bot_roll_value((kept + [face]).sort, rolls, state, actor) } / 6.0
-      end
-      @dice_expectations[key] = value
-    end
-
-    def bot_best_value(dice, rolls, state, actor)
-      key = [rolls, dice]
-      return @dice_decisions[key] if @dice_decisions.key?(key)
-      simulated = state.merge(dice: dice)
-      best = available_scoring_categories(simulated, actor).map { |category| bot_category_value(category, dice, simulated, actor) }.max
-      if rolls > 0
-        subsets = [[]]
-        dice.tally.each do |face, count|
-          subsets = subsets.flat_map { |subset| (0..count).map { |number| subset + Array.new(number, face) } }
-        end
-        subsets.each do |kept|
-          next if kept.length == 5
-          best = [best, bot_roll_value(kept, rolls, state, actor)].max
-        end
-      end
-      @dice_decisions[key] = best
-    end
-
     def match_summary(state)
       _("Match %{match} finished. %{scores}.") % { match: state[:match], scores: scores_text(state) }
     end
@@ -630,4 +679,6 @@ module GameRoomGames
   end
 end
 
+require_relative 'five_dice_tail'
+GameRoomGames::Yahtzee.include(GameRoomGames::FiveDiceTail)
 require_relative 'generated/rulebooks/yahtzee'

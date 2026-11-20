@@ -1,0 +1,83 @@
+require_relative '../../support/billiards_rules'
+
+module BilliardsFriendlyTest
+  extend GameRoomTest::Assertions
+  F = BilliardsRulesFixture
+  R = GameRoomBilliards::Rules
+  def self.run
+    match = BilliardsFixture::Match.new(players: %w[Alice Bob], options: {'discipline'=>'friendly', 'rounds'=>2})
+    assert_equal('friendly', match.replay.state[:options]['discipline'])
+    assert_equal(1, match.replay.state[:final_ball])
+    assert_equal('practice', GameRoomGames::Billiards.new.normalize_options({})['discipline'], 'Legacy practice changed rules')
+    assert_equal('friendly', match.game.table_creation_options('discipline'=>'practice')['discipline'])
+    assert_equal('friendly', match.game.new_game_options('discipline'=>'practice')['discipline'])
+    assert(match.game.options_error({'discipline'=>'friendly', 'rounds'=>0}, player_count: 2))
+    assert(match.game.options_error({'discipline'=>'friendly', 'rounds'=>31}, player_count: 2))
+    assert_equal(nil, match.game.options_error({'discipline'=>'friendly', 'rounds'=>30}, player_count: 8))
+    assert_equal(nil, match.game.options_error({'discipline'=>'friendly', 'rounds'=>1, 'race_to'=>0, 'point_target'=>0, 'time_limit_minutes'=>0}, player_count: 2),
+      'Hidden settings from a different discipline blocked social play')
+    assert(match.game.options_error({'discipline'=>'friendly', 'rounds'=>1}, player_count: 1))
+    state = F.state('friendly')
+    state[:options]['rounds'], state[:options]['layout'] = 2, 'triangle'
+    R.setup(state)
+    assert_equal(15, state[:final_ball])
+    result = F.result(state, first: 1, pots: [[15, 0]])
+    before = Marshal.load(Marshal.dump(state))
+    state[:balls] = result.balls.map(&:dup)
+    R.resolve_shot(state, before, result, {'call'=>0, 'pocket'=>0, 'mode'=>0})
+    assert_equal([0, 1], state[:racks], 'Early final pot did not lose the round')
+    assert_equal(:rack_end, state[:phase])
+    R.choose(state, 'next')
+    assert_equal(1, state[:breaker])
+    state[:balls].each { |b| b.status = :potted if b.id.between?(1, 14) }
+    result = F.result(state, first: 15, pots: [[15, 0], [0, 1]])
+    before = Marshal.load(Marshal.dump(state))
+    state[:balls] = result.balls.map(&:dup)
+    R.resolve_shot(state, before, result, {'call'=>0, 'pocket'=>0, 'mode'=>0})
+    assert_equal([1, 1], state[:racks])
+    assert_equal(:finished, state[:phase])
+    assert_equal(nil, state[:winner], 'A tied fixed-length match invented a winner')
+    game = BilliardsFixture::Match.new(players: %w[Alice Bob], options: {'discipline'=>'friendly', 'rounds'=>1})
+    assert_equal(:ok, game.game.action_for(game.game.legal_actions(game.replay, 'Alice').first, game.replay, 'Alice').first)
+    game.submit('concede')
+    assert_equal('Bob', game.replay.winner)
+    assert_equal(game.replay, GameRoomGames::Billiards.new.replay(game.session, game.events, game.repository))
+    group = BilliardsFixture::Match.new(players: %w[Alice Bob Carol], options: {'discipline'=>'friendly', 'rounds'=>2})
+    group.submit('stalemate')
+    group.submit('choice', {'choice'=>0})
+    assert_equal('Carol', group.replay.current_player, 'A rerack skipped a third player\'s consent')
+    assert_equal(:stalemate, group.replay.state[:decision])
+    group.submit('choice', {'choice'=>1})
+    assert_equal('Alice', group.replay.current_player)
+    assert_equal([], group.replay.state[:choices])
+    group.submit('stalemate')
+    group.submit('choice', {'choice'=>0})
+    group.submit('choice', {'choice'=>0})
+    assert_equal(1, group.replay.state[:rack_number])
+    assert_equal([0, 0, 0], group.replay.state[:racks])
+    group.submit('concede')
+    assert_equal(:rack_end, group.replay.state[:phase], 'An unscored rerack consumed a social round')
+    group.submit('choice', {'choice'=>0})
+    group.submit('concede')
+    assert_equal(:finished, group.replay.state[:phase])
+    assert_equal(2, group.replay.state[:racks].sum)
+    cutthroat = BilliardsRulesFixture.state('eight')
+    cutthroat[:options]['discipline'], cutthroat[:racks], cutthroat[:scores] = 'cutthroat', [0, 0, 0], [0, 0, 0]
+    R.setup(cutthroat)
+    R.concede(cutthroat)
+    assert_equal(:playing, cutthroat[:phase], 'One Cutthroat concession awarded the whole rack between two remaining players')
+    assert_equal([true, false, false], cutthroat[:cutthroat_conceded])
+    result = F.result(cutthroat, first: nil)
+    F.apply(cutthroat, result, call: 0)
+    assert_equal(0, GameRoomBilliards::Cutthroat.remaining(cutthroat, 0), 'A foul revived a conceded player')
+    live = BilliardsFixture::Match.new(players: %w[Alice Bob Carol], options: {'discipline'=>'cutthroat'})
+    live.submit('concede')
+    live.submit('stalemate')
+    live.submit('choice', {'choice'=>0})
+    assert_equal([true, false, false], live.replay.state[:cutthroat_conceded], 'A stalemate revived a conceded Cutthroat player')
+    assert_equal(0, GameRoomBilliards::Cutthroat.remaining(live.replay.state, 0))
+    assert_equal(1, live.replay.state[:breaker], 'A conceded player became breaker again')
+    puts 'Social billiards: final-numbered-ball win/early/scratch loss, fixed rounds/tie, limits1–30, seat counts, normal actions and legacy replay passed.'
+  end
+end
+BilliardsFriendlyTest.run if $PROGRAM_NAME == __FILE__

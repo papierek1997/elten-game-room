@@ -113,7 +113,7 @@ assert(active.game.local_action({"kind" => "command", "action" => "krowa_gallery
 assert(active.game.game_view_spec(active.replay, "Alice").status_commands.empty?, "active gallery remains visible")
 
 ranking_games = EltenGameRoom::GAME_REGISTRY.ids.select { |id| EltenGameRoom::GAME_REGISTRY.build(id).supports_leaderboards? }
-assert(ranking_games == %w[krowa], "retired sports rankings remain in the shared leaderboard menu")
+assert(ranking_games.sort == %w[darts krowa], "shared leaderboard menu differs from the Darts and Krowa rankings")
 assert(EltenGameRoom::MAIN_OPTIONS.include?("Leaderboards"), "rankings absent from main menu")
 Form.driver = nil
 puts "Krowa UI: Enter/custom nouns, shared Ctrl+P menu, gallery phases, same-table restart, answer/chat focus and rankings OK"

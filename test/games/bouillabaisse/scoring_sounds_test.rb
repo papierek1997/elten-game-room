@@ -19,9 +19,14 @@ seen = Hash.new(0)
     elsif [2, 5, 6].include?(round) && card[1] == penalties["suit"]
       "draw2"
     end
+    event_id = table.repository.event_id(event)
+    event_history = after.history.select { |entry| entry.event_id.to_i == event_id.to_i }
     cues = Array(GameRoomSounds.event_cue(game: table.game, event: event, before_replay: before, after_replay: after,
-      repository: table.repository, viewer: actor, include_result: false))
-    assert_equal(["play", expected].compact, cues, "Wrong scoring cue in round #{round}, #{card}")
+      repository: table.repository, viewer: actor, history: event_history, include_result: false))
+    expected_cues = ["play", expected].compact
+    expected_cues << "round_finished" if table.game.round_ended?(before_replay: before,
+      after_replay: after, history: event_history)
+    assert_equal(expected_cues, cues, "Wrong scoring or round-completion cue in round #{round}, #{card}")
     seen[[round, expected]] += 1
   end
   table.deal if index < 5

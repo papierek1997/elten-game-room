@@ -96,24 +96,24 @@ types.each do |type|
     original = hand_ids.call
     assert(original == %w[KH JS AS TD], "existing default hand order changed in #{game.id}")
     surface.handle_command("sort_cards", "mode" => "colour", "toggle" => true)
-    assert(hand_ids.call == original, "first suit sort disagrees with the existing default in #{game.id}")
+    assert(hand_ids.call == original.reverse, "first suit sort did not reverse the active default in #{game.id}")
     surface.handle_command("sort_cards", "mode" => "colour", "toggle" => true)
-    assert(hand_ids.call == original.reverse, "second suit sort did not reverse in #{game.id}")
+    assert(hand_ids.call == original, "second suit sort did not restore ascending order in #{game.id}")
     surface.handle_command("sort_cards", "mode" => "number", "toggle" => true)
     assert(hand_ids.call == %w[TD JS KH AS], "rank sort incorrectly used card points in #{game.id}")
     surface.handle_command("navigate_playable_card", "hand_id" => "hand", "card_ids" => %w[AS JS KH TD], "direction" => 1)
     selected = surface.state.fetch("zones").fetch("hand")
     assert(hand_ids.call[selected] == "AS", "playable navigation did not follow sorted hand in #{game.id}")
-    surface.handle_command("sort_cards", "mode" => "none")
-    assert(hand_ids.call == hand, "received order lost in #{game.id}")
+    assert(!surface.handle_command("sort_cards", "mode" => "none"), "removed receipt-order command was accepted in #{game.id}")
   end
-  %w[c h m].each do |key|
+  %w[c h].each do |key|
     shortcut = shortcuts.find { |item| item.key == key && item.modifiers == [:shift] }
     assert(shortcut && surface.handle_command("sort_cards", shortcut.payload), "unhandled Shift+#{key} in #{game.id}")
   end
+  assert(shortcuts.none? { |s| s.key == 'm' && s.modifiers == [:shift] }, "#{game.id}: removed order still has a shortcut")
   assert(Marshal.dump(state) == serialized, "sorting modified game state #{game.id}")
   if game.id == "uno"
-    assert(shortcuts.any? { |s| s.key == "d" && s.modifiers == [:shift] && s.payload["mode"] == "none" }, "lost UNO Shift+D")
+    assert(shortcuts.none? { |s| s.key == "d" && s.modifiers == [:shift] }, "removed UNO Shift+D remains")
     state[:colour_choice_player], state[:colour_choice_card] = "Alice", "WF1"
     assert(game.game_shortcuts(view, "Alice").none? { |s| s.action_name == "sort_cards" }, "colour picker shows unavailable sorting")
   elsif game.id == "rummy"

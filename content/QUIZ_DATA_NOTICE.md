@@ -18,10 +18,12 @@ English data retain the same license.
 
 ## Russian
 
-The Russian general-knowledge pack is an original editorial set prepared for
-ELTEN Game Room and released under CC0-1.0. It does not translate or derive
-questions from the English or Polish imports. The source intentionally writes
-the letter «ё» wherever standard Russian spelling requires it.
+The original 36 Russian general-knowledge questions were prepared for
+ELTEN Game Room and released under CC0-1.0. Data version 2 adds 31 reviewed
+community questions proposed by monstricek for Power Games. These additions
+are not relicensed as CC0; see `QUIZ_RU_GENERAL_SOURCES.txt` for their provenance
+and review decisions. The set does not translate the English or Polish imports.
+It intentionally writes «ё» wherever standard Russian spelling requires it.
 
 ## Current Polish general knowledge
 
@@ -48,6 +50,9 @@ their identifiers are retained.
 Data version 23 adds 37 reviewed questions from Zuzler, corrects four
 reported questions and removes one whose prompt disclosed the answer. The
 set has 14,976 questions; see `QUIZ_PL_GENERAL_SOURCES.txt` for provenance.
+
+Data version 24 addresses six further wording reports from Zuzler, without
+changing the number of questions, their identifiers, categories or answers.
 
 ## Current Polish Witcher books set
 

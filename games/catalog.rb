@@ -4,6 +4,12 @@ require_relative "card_game"
 require_relative "four_in_a_row"
 require_relative "tic_tac_toe"
 require_relative "chess"
+require_relative "cribbage_support/cribbage_table"
+require_relative "belote_support/belote_table"
+require_relative "jass_support/jass_table"
+require_relative "hearts_support/hearts_table"
+require_relative "french_tarot_support/french_tarot_table"
+require_relative "backgammon"
 require_relative "checkers"
 require_relative "reversi"
 require_relative "ludo"
@@ -24,6 +30,7 @@ require_relative "uno"
 require_relative "poker"
 require_relative "makao"
 require_relative "quiz_party"
+require_relative "cash_auction"
 require_relative "rummy"
 require_relative "domino"
 require_relative "mexican_train"
@@ -36,6 +43,7 @@ require_relative "krowa"
 require_relative "mania_pisania"
 require_relative "axel_pong"
 require_relative "audio_ball"
+require_relative "darts"
 require_relative "war"
 require_relative "scientific_war"
 require_relative "duck_racing"
@@ -44,9 +52,12 @@ require_relative "blackjack"
 require_relative "blackjack_dice"
 require_relative "bingo"
 require_relative "dice_poker"
+require_relative "kosciane"
+require_relative "balut"
 require_relative "liars_dice"
 require_relative "go"
 require_relative "roulette"
+require_relative "billiards"
 require_relative "registry"
 
 module GameRoomGames
@@ -54,6 +65,12 @@ module GameRoomGames
     GameRoomGames::FourInARow,
     GameRoomGames::TicTacToe,
     GameRoomGames::Chess,
+    GameRoomGames::CribbageTable,
+    GameRoomGames::BeloteTable,
+    GameRoomGames::JassTable,
+    GameRoomGames::HeartsTable,
+    GameRoomGames::FrenchTarotTable,
+    GameRoomGames::Backgammon,
     GameRoomGames::Checkers,
     GameRoomGames::Reversi,
     GameRoomGames::Ludo,
@@ -74,6 +91,7 @@ module GameRoomGames
     GameRoomGames::Poker,
     GameRoomGames::Makao,
     GameRoomGames::QuizParty,
+    GameRoomGames::CashAuction,
     GameRoomGames::Rummy,
     GameRoomGames::Domino,
     GameRoomGames::MexicanTrain,
@@ -86,6 +104,7 @@ module GameRoomGames
     GameRoomGames::ManiaPisania,
     GameRoomGames::AxelPong,
     GameRoomGames::AudioBall,
+    GameRoomGames::Darts,
     GameRoomGames::War,
     GameRoomGames::ScientificWar,
     GameRoomGames::DuckRacing,
@@ -94,8 +113,11 @@ module GameRoomGames
     GameRoomGames::BlackjackDice,
     GameRoomGames::Bingo,
     GameRoomGames::DicePoker,
+    GameRoomGames::Kosciane,
+    GameRoomGames::Balut,
     GameRoomGames::LiarsDice,
     GameRoomGames::Go,
-    GameRoomGames::Roulette
+    GameRoomGames::Roulette,
+    GameRoomGames::Billiards
   ])
 end

@@ -16,6 +16,7 @@ module GameRoomGames
   # reference score. Seats are kept as indices 0..3 (North, East, South,
   # West); side 0 (team:0) is North-South and side 1 (team:1) East-West.
   class Bridge < CardGame
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
     def player_spatial_audio?; true; end
     prepend BridgePrivateCards
     R = BridgeRules

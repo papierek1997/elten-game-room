@@ -798,6 +798,11 @@ by default. Other sets require selection. Each selected set has the same
 chance, then a question is selected uniformly within it. An unavailable
 selected set remains an error, not a silent switch to another one.
 
+Fresh table creation does not remember question sets or their language: use the
+creator's interface language (English fallback) and its general set every time,
+ignoring older question preferences. The separate challenge checklist remains
+remembered. Explicit presets, existing tables and saved games retain their pool.
+
 Private ABCD answers with an agreed 20-second deadline; resolve as soon as every
 required participant has answered. Each correct participant earns 4 feathers;
 no speed bonus or penalty for an incorrect answer. A duel question involves

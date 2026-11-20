@@ -29,6 +29,7 @@ module GameRoomUseCases
 
     def save(table:, table_id:, session:, game:, intent: nil,tournament:nil)
       boundary, attempt = nil, {}
+      round_paused = session['__round_pause'] == true
       if intent
         intent.check_context!(owner: table['owner'])
         if intent.for_source(table_id: table_id, session_id: @repository.session_id(session))
@@ -36,7 +37,7 @@ module GameRoomUseCases
         end
       end
       begin
-        boundary = @transport.freeze_game(session)
+        boundary = round_paused ? @transport.freeze_game(session, round_pause: true) : @transport.freeze_game(session)
         confirmed = @repository.snapshot_for(session, force_events: true)
         raise ArgumentError, 'The room is no longer active' if confirmed == nil
         options = intent ? {intent: intent, boundary: boundary, attempt: attempt} : {}
@@ -44,7 +45,7 @@ module GameRoomUseCases
         row = @archives.call.put(game: game, table: table, snapshot: confirmed, repository: @repository,
           now: (confirmed.session['__frozen_at'] || boundary.created_at).to_i, **options)
       rescue StandardError
-        @transport.freeze_game(session, frozen: false, expected_boundary: boundary) if boundary && !attempt[:hold_freeze]
+        @transport.freeze_game(session, frozen: false, expected_boundary: boundary) if boundary && !attempt[:hold_freeze] && !round_paused
         raise
       end
       # deactivate_table has no session/receipt CAS. Never call it for a durable
@@ -53,7 +54,7 @@ module GameRoomUseCases
       begin
         @transport.deactivate_table(table_id: table_id)
       rescue StandardError
-        @transport.freeze_game(session, frozen: false, expected_boundary: boundary)
+        @transport.freeze_game(session, frozen: false, expected_boundary: boundary) unless round_paused
         raise
       end
       true

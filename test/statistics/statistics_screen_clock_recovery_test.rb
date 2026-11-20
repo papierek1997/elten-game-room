@@ -47,7 +47,7 @@ module StatisticsClockRecoveryContract
     assert(reads.empty? && years.zero?, 'unavailable clock queried tables or fabricated a date')
     summary, period = form.fields.first(2)
     table = form.fields.find { |field| field.is_a?(TableBox) }
-    assert(summary.text.include?('Statistics are unavailable.'), 'missing explicit unavailable state')
+    assert(summary.text.include?('Statistics could not be loaded.'), 'missing explicit unavailable state')
     assert(period.options.empty? && table.rows.empty?, 'unconfirmed clock displayed plausible periods or zero counts')
     ready = true
     form.fields.find { |field| field.is_a?(Button) && field.label == 'Refresh' }.trigger(:press)

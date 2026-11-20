@@ -2,6 +2,7 @@ require "digest"
 require_relative "card_game"
 require_relative "../lib/game_bots"
 require_relative "../lib/game_turn_clock"
+require_relative "../lib/poker_opponents"
 
 require_relative "../lib/game_room_localization"
 
@@ -10,6 +11,9 @@ GameRoomServerRandom.register('poker', ['deal'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class Poker < CardGame
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    def round_pause_deadline(replay); replay.state[:hand_resume_at]; end
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def player_spatial_audio?; true; end
     VARIANTS = [
       OptionChoice.new(value: "holdem", label: _("Texas Hold'em")),
@@ -125,7 +129,8 @@ module GameRoomGames
         DECK_OPTION,
         OptionDefinition.new(key: "starting_chips", label: _("Starting chips"), kind: :integer, default: 1_000),
         OptionDefinition.new(key: "small_blind", label: _("Small blind"), kind: :integer, default: 5, visible_if: USES_BLINDS),
-        OptionDefinition.new(key: "big_blind", label: _("Big blind"), kind: :integer, default: 10, visible_if: USES_BLINDS),
+        OptionDefinition.new(key: "big_blind", label: _("Big blind"), kind: :integer, default: 10,
+          visible_if: ->(_options) { false }),
         OptionDefinition.new(key: "ante", label: _("Ante in five-card draw"), kind: :integer, default: 5,
           visible_if: ->(options) { DRAW_VARIANT.call(options) && !options["draw_uses_blinds"] }),
         OptionDefinition.new(key: "draw_uses_blinds", label: _("Use blinds in five-card draw"), kind: :boolean, default: false,
@@ -169,6 +174,18 @@ module GameRoomGames
         return _("The blind multiplier must be from 2 to 10.")
       end
       nil
+    end
+
+    def new_game_options(options)
+      values = super
+      return values unless USES_BLINDS.call(values)
+      values.merge('big_blind' => 2 * values['small_blind'])
+    end
+
+    def option_editor_changes(_previous, current)
+      return {} unless USES_BLINDS.call(current)
+      return {} if current['big_blind'] == 2 * current['small_blind']
+      {'big_blind' => 2 * current['small_blind']}
     end
 
     def normalize_options(values)
@@ -363,9 +380,10 @@ module GameRoomGames
       if state[:phase] == :exchange && same_user?(state[:current_player], viewer)
         cards = hand_for(state, viewer).sort_by { |card| playing_sort_key(card) }.map do |card|
           GameSurfaces::Card.new(id: card, label: poker_card_label(card), value: card,
+            navigation_group: standard_hand_navigation_group(rank: card[0], suit: card[1]),
             sort_keys: standard_hand_sort_keys(rank: card[0], suit: card[1], position: hand_for(state, viewer).index(card)))
         end
-        packet = GameSurfaces::PacketCardSpec.new(id: "poker_exchange", header: _("Choose cards to exchange"),
+        packet = GameSurfaces::PacketCardSpec.new(id: "poker_exchange", default_sort: default_hand_sort, sort_modes: hand_sort_modes, header: _("Choose cards to exchange"),
           packet_tip: _("Press Shift+Enter to select or unselect the current card for exchange."),
           activation_tip: _("Press Enter to exchange the current card or the selected cards."),
           cards: cards, action_name: "exchange", allow_packet: true, empty_label: _("No cards"),
@@ -450,29 +468,15 @@ module GameRoomGames
       call = [[state[:current_bet] - state[:street_bets][actor], 0].max, state[:stacks][actor]].min
       paid = action["amount"].to_i
       contributions = state[:contributions].merge(actor => state[:contributions][actor] + paid)
-      expectation = poker_pot_expectation(state, actor, contributions, ranges) - paid
       case action["action"]
       # Checking keeps our share of the existing pot. Comparing a raise with
       # zero incorrectly rewarded virtually any positive-equity hand for betting.
-      when "check", "call" then expectation
+      when "check", "call" then poker_pot_expectation(state, actor, contributions, ranges) - paid
       when "raise", "all_in"
-        return expectation if paid <= call
+        return poker_pot_expectation(state, actor, contributions, ranges) - paid if paid <= call
         raise_by = paid - call
-        opponents = contenders(state) - [actor]
-        fold_chance = opponents.reduce(1.0) do |chance, player|
-          next 0.0 if state[:all_in][player]
-          pressure = raise_by.to_f / [pot + raise_by, 1].max
-          # A token bet into a large pot should not inherit a large baseline
-          # chance of making EVERY rival fold. Public aggression reduces it.
-          chance * [[pressure * 0.8 / (1 + ranges.fetch(player, 0) * 0.5), 0.005].max, 0.65].min
-        end
-        opponents.each do |player|
-          extra = [state[:street_bets][actor] + paid - state[:street_bets][player], state[:stacks][player]].min
-          contributions[player] += [extra, 0].max
-        end
-        called = poker_pot_expectation(state, actor, contributions, ranges) - paid
         risk = 0.12 * raise_by * raise_by / [pot + current_big_blind(state), 1].max
-        fold_chance * pot + (1 - fold_chance) * called - risk
+        poker_raise_expectation(state, actor, paid, ranges, pot: pot, raise_by: raise_by) - risk
       else 0
       end
     end
@@ -558,7 +562,7 @@ module GameRoomGames
     private
 
     FORCED_BETS = %w[small_blind big_blind ante].freeze
-    HAND_PAUSE_SECONDS = 6
+    HAND_PAUSE_SECONDS = GameRoomRoundPause::SECONDS
 
     def parse_exchange_cards(value)
       cards = JSON.parse(value.to_s)
@@ -569,6 +573,7 @@ module GameRoomGames
 
     def next_hand_ready?(state, now)
       return true if state[:phase] != :hand_complete || !state[:hand_resume_at]
+      return true if state[:round_pause_released]
       (now || GameRoomSessionClock.for_state(state)).to_f >= state[:hand_resume_at]
     end
 
@@ -662,6 +667,11 @@ module GameRoomGames
       seated = seated_players(state)
       return false if seated.length < 2 || !seated.include?(state[:players][dealer])
       previous_blinds = [current_small_blind(state), current_big_blind(state)]
+      if state[:hand_resume_at]
+        completed_at = state[:hand_resume_at] - HAND_PAUSE_SECONDS
+        gap = [timestamp - completed_at, 0].max
+        state[:blind_paused_seconds] = state[:blind_paused_seconds].to_i + gap
+      end
       deck = shuffled_cards(poker_deck(state[:options]), seed)
       count = state[:options]["variant"] == "holdem" ? 2 : 5
       hands = state[:players].to_h { |player| [player, []] }
@@ -727,6 +737,8 @@ module GameRoomGames
       return false if candidate == nil
       paid = 0
       previous_bet = state[:current_bet]
+      previous_call = [[previous_bet - state[:street_bets][player], 0].max, state[:stacks][player]].min
+      previous_pot = state[:contributions].values.sum
       case action
       when "fold"
         state[:folded][player] = true
@@ -749,7 +761,9 @@ module GameRoomGames
       state[:acted][player] = true
       (state[:acted_at_bet] ||= {})[player] = state[:current_bet]
       id = repository.event_id(event)
-      history << HistoryEntry.new(key: "bet:#{id}", text: betting_history(player, action, paid, state, previous_bet), event_id: id, actor: actor, kind: :game)
+      history << HistoryEntry.new(key: "bet:#{id}", text: betting_history(player, action, paid, state, previous_bet), event_id: id, actor: actor, kind: :game,
+        field: 'poker_bet', value: {'action' => action, 'call' => previous_call, 'paid' => paid, 'pot' => previous_pot,
+          'raise_by' => [state[:street_bets][player] - previous_bet, 0].max, 'hand' => state[:hand_number], 'street' => state[:street]})
       progress_after_action(state, player, id, history)
       true
     end
@@ -877,7 +891,8 @@ module GameRoomGames
         cards = hand_for(state, player).sort_by { |card| playing_sort_key(card) }.map { |card| poker_card_label(card) }.join(', ')
         history << HistoryEntry.new(key: "showdown_hand:#{event_id}:#{player.downcase}",
           text: _("%{player} had %{cards}: %{hand}.") % {player: participant_name(player), cards: cards, hand: showdown_hand_text(ranks[player], [])},
-          event_id: event_id, actor: player, kind: :game)
+          event_id: event_id, actor: player, kind: :game, field: 'poker_showdown',
+          value: {'hand' => state[:hand_number], 'category' => ranks[player].first, 'variant' => state[:options]['variant']})
       end
       messages = []
       pots.each_with_index do |pot, index|
@@ -1000,7 +1015,43 @@ module GameRoomGames
     end
 
     def hand_rank(cards)
-      cards.combination(5).map { |five| five_card_rank(five) }.max || [0]
+      return [0] if cards.length < 5
+      return five_card_rank(cards) if cards.length == 5
+
+      # Evaluate the best five directly. Sampling used to evaluate all 21
+      # five-card subsets of seven cards, making more stable equity costly.
+      ranks = cards.map { |card| rank_index(card) }
+      counts = ranks.tally
+      values = counts.keys.sort.reverse
+      flush = cards.group_by { |card| card[1] }.values.find { |suit| suit.length >= 5 }
+      if flush
+        flush_values = flush.map { |card| rank_index(card) }.sort.reverse
+        high = poker_straight_high(flush_values)
+        return [8, high] if high
+      end
+      quads = values.find { |rank| counts[rank] == 4 }
+      return [7, quads, (values - [quads]).first] if quads
+      trips = values.select { |rank| counts[rank] >= 3 }
+      pair = (values - trips.first(1)).find { |rank| counts[rank] >= 2 }
+      return [6, trips.first, pair] if trips.any? && pair
+      return [5, *flush_values.first(5)] if flush
+      high = poker_straight_high(values)
+      return [4, high] if high
+      return [3, trips.first, *(values - trips.first(1)).first(2)] if trips.any?
+      pairs = values.select { |rank| counts[rank] >= 2 }
+      return [2, *pairs.first(2), (values - pairs.first(2)).first] if pairs.length >= 2
+      return [1, pairs.first, *(values - pairs).first(3)] if pairs.any?
+      [0, *values.first(5)]
+    end
+
+    def poker_straight_high(values)
+      run, previous = 0, nil
+      values.each do |value|
+        run = previous && previous == value + 1 ? run + 1 : 1
+        return value + 4 if run == 5
+        previous = value
+      end
+      3 if [12, 3, 2, 1, 0].all? { |rank| values.include?(rank) }
     end
 
     def five_card_rank(cards)
@@ -1096,16 +1147,45 @@ module GameRoomGames
     end
 
     def poker_public_ranges(replay)
-      events = GameRoomParticipantDecisionEvents.for(replay).to_a
+      source = GameRoomParticipantDecisionEvents.for(replay)
+      cache_key = [replay.object_id, source.object_id, source.size, replay.history.size]
+      return @poker_public_ranges if @poker_public_ranges_replay.equal?(replay) && @poker_public_ranges_key == cache_key
+      events = source.to_a
       start = events.rindex { |event| event["action"] == "deal" }
       events = events[(start + 1)..] if start
       ranges = Hash.new(0)
+      ranges[:pressure] = {}
+      ranges[:decisions] = {}
+      bets = replay.history.select { |entry| entry.field == 'poker_bet' }.to_h { |entry| [entry.event_id, entry.value] }
       events.each do |event|
         next unless event["action"] == "bet"
         name = event["value"].to_s.split("|", 2).first
-        ranges[event["actor"]] += 1 if %w[raise all_in].include?(name)
+        data = bets[event['id'] || event['__id']]
+        aggressive = data ? data['raise_by'].positive? : %w[raise all_in].include?(name)
+        if aggressive
+          player = event['actor']
+          ranges[player] += 1
+          ranges[:pressure][player] = [ranges[:pressure].fetch(player, 0), data ? data['raise_by'].fdiv([data['pot'], 1].max) : 0.0].max
+        end
+        # The price of an accepted call is public too. Keep at most one
+        # bounded aggregate per street, not an ever-growing action tree.
+        next unless data && replay.state[:options]['variant'] == 'holdem'
+        calls = !aggressive && %w[call all_in].include?(name) && data['paid'].positive?
+        next unless aggressive || calls
+        streets = ranges[:decisions][event['actor']] ||= {}
+        row = streets[data['street']] ||= {raises: 0, calls: 0, pressure: 0.0, call_price: 0.0}
+        if aggressive
+          row[:raises] = [row[:raises] + 1, 3].min
+          row[:pressure] = [row[:pressure], data['raise_by'].fdiv([data['pot'], 1].max)].max
+        else
+          row[:calls] = [row[:calls] + 1, 3].min
+          row[:call_price] = [row[:call_price], data['paid'].fdiv([data['pot'] + data['paid'], 1].max)].max
+        end
       end
       ranges[:exchanges] = poker_public_exchanges(replay) if replay.state[:options]["variant"] == "draw"
+      ranges[:profiles] = GameRoomPokerOpponents.profiles(replay.history)
+      @poker_public_ranges_key, @poker_public_ranges = cache_key, ranges
+      @poker_public_ranges_replay = replay
       ranges
     end
 
@@ -1122,15 +1202,34 @@ module GameRoomGames
       end
     end
 
-    def poker_pot_expectation(state, actor, contributions, ranges)
+    def poker_raise_expectation(state, actor, paid, ranges, pot:, raise_by:)
+      opponents = contenders(state) - [actor]
+      pressure = raise_by.to_f / [pot + raise_by, 1].max
+      rates = opponents.to_h do |player|
+        profile = GameRoomPokerOpponents.profile(ranges.fetch(:profiles), player, street:state[:street], pressure:pressure)
+        [player, state[:all_in][player] ? 0.0 : GameRoomPokerOpponents.fold_probability(profile, pressure, ranges.fetch(player, 0))]
+      end
+      # Some rivals may fold while others call. Dead chips stay in the pot,
+      # but a folded hypothetical hand cannot keep beating us at showdown.
+      GameRoomPokerOpponents.responders(opponents, rates).sum do |calling, chance|
+        contributions = state[:contributions].merge(actor => state[:contributions][actor] + paid)
+        calling.each do |player|
+          extra = [state[:street_bets][actor] + paid - state[:street_bets][player], state[:stacks][player]].min
+          contributions[player] += [extra, 0].max
+        end
+        chance * (poker_pot_expectation(state, actor, contributions, ranges, eligible: [actor] + calling) - paid)
+      end
+    end
+
+    def poker_pot_expectation(state, actor, contributions, ranges, eligible: contenders(state))
       cap = contributions[actor]
       previous = 0
       contributions.values.uniq.sort.sum do |level|
         next 0.0 if level > cap
         amount = (level - previous) * contributions.count { |_, chips| chips >= level }
         previous = level
-        eligible = contenders(state).select { |player| contributions[player] >= level }
-        amount * poker_equity(state, actor, opponents: eligible - [actor], ranges: ranges)
+        candidates = eligible.select { |player| contributions[player] >= level }
+        amount * poker_equity(state, actor, opponents: candidates - [actor], ranges: ranges)
       end
     end
 
@@ -1145,9 +1244,54 @@ module GameRoomGames
       if @poker_equity_key == key
         return poker_sample_equity(opponents)
       end
-      random = Random.new(Digest::SHA256.hexdigest(key).to_i(16))
+      # Identity and the order of cards in the displayed hand cannot change
+      # card odds. The same worlds also survive a change in public weights.
+      sample_key = [own.sort, board.sort, all_opponents.length, state[:options].values_at('variant', 'deck')]
+      # This change models Hold'em calls. Keep draw poker's existing worlds
+      # and exchange-conditioned policy, rather than guessing its earlier hand.
+      if state[:options]['variant'] == 'draw'
+        sample_key = [actor, own, board, all_opponents, state[:options].values_at('variant', 'deck')]
+      end
+      worlds = poker_equity_worlds(state, own, board, all_opponents, sample_key)
+      strengths = {}
+      @poker_samples = worlds.map.with_index do |(own_rank, rivals), index|
+        weighted = all_opponents.each_with_index.to_h do |player, seat|
+          rank, cards = rivals.fetch(seat)
+          decisions = ranges.fetch(:decisions, {}).fetch(player, {})
+          weight = if decisions.empty?
+            strength = poker_range_strengths(worlds, board, state[:street], state[:options]['variant'], strengths)[index][seat]
+            profile = GameRoomPokerOpponents.profile(ranges.fetch(:profiles, {}), player, street:state[:street])
+            GameRoomPokerOpponents.range_weight(profile, ranges.fetch(player, 0), strength,
+              pressure: ranges.fetch(:pressure, {}).fetch(player, 0))
+          else
+            decisions.reduce(1.0) do |product, (street, evidence)|
+              # A preflop call is interpreted on the preflop cards, never
+              # using a pair/straight that appeared on a later street.
+              strength = poker_range_strengths(worlds, board, street, state[:options]['variant'], strengths)[index][seat]
+              profile = GameRoomPokerOpponents.profile(ranges.fetch(:profiles, {}), player,
+                street:street, pressure:evidence[:call_price])
+              product * GameRoomPokerOpponents.range_weight(profile, evidence[:raises], strength, pressure:evidence[:pressure]) *
+                GameRoomPokerOpponents.call_weight(profile, evidence[:calls], strength, evidence[:call_price])
+            end.clamp(0.05, 20.0)
+          end
+          if state[:options]['variant'] == 'draw'
+            exchanged = ranges.fetch(:exchanges, {})[player]
+            weight *= poker_exchange_evidence_weight(rank, exchanged) unless exchanged == nil
+          end
+          [player, [rank, weight]]
+        end
+        [own_rank, weighted]
+      end
+      @poker_equity_key = key
+      @poker_subset_equities = {}
+      poker_sample_equity(opponents)
+    end
+
+    def poker_equity_worlds(state, own, board, all_opponents, sample_key)
+      return @poker_worlds if @poker_worlds_key == sample_key
+      random = Random.new(Digest::SHA256.hexdigest(sample_key.inspect).to_i(16))
       unknown = poker_deck(state[:options]) - own - board
-      @poker_samples = Array.new(64) do
+      worlds = Array.new(state[:options]['variant'] == 'holdem' ? 256 : 64) do
         sample = unknown.dup
         # Partial Fisher-Yates, independent of the actual deal seed and hands.
         needed = state[:options]["variant"] == "holdem" ? 5 - board.length + all_opponents.length * 2 : all_opponents.length * 5
@@ -1157,31 +1301,53 @@ module GameRoomGames
         end
         simulated_board = state[:options]["variant"] == "holdem" ? board + sample.shift(5 - board.length) : []
         own_rank = hand_rank(own + simulated_board)
-        rivals = all_opponents.to_h do |player|
+        rivals = all_opponents.map do |_player|
           cards = sample.shift(state[:options]["variant"] == "holdem" ? 2 : 5)
           rank = hand_rank(cards + simulated_board)
-          strength = if state[:options]["variant"] == "holdem"
-            values = cards.map { |card| rank_index(card) }
-            [values.sum / 24.0 + (values.uniq.length == 1 ? 0.45 : 0), 1.0].min
-          else
-            [rank[0] / 3.0, 1.0].min
-          end
-          # Importance weights condition the SAME worlds on public aggression;
-          # no actual opposing hand or private discard is read.
-          weight = 1.0 + [ranges.fetch(player, 0), 3].min * (strength - 0.5) * 0.5
-          if state[:options]["variant"] == "draw"
-            exchanged = ranges.fetch(:exchanges, {})[player]
-            weight *= poker_exchange_evidence_weight(rank, exchanged) unless exchanged == nil
-          end
-          [player, [rank, weight]]
+          [rank, cards]
         end
         [own_rank, rivals]
       end
-      @poker_equity_key = key
-      poker_sample_equity(opponents)
+      @poker_worlds_key, @poker_worlds = sample_key, worlds
+      worlds
+    end
+
+    def poker_range_strengths(worlds, board, street, variant, cache)
+      cache[street] ||= begin
+        visible = variant == 'holdem' ? board.first([0, 3, 4, 5].fetch(street)) : []
+        ranks = worlds.map do |_own, rivals|
+          rivals.map do |rank, cards|
+            if variant == 'holdem' && visible.empty?
+              values = cards.map { |card| rank_index(card) }
+              [values.sum / 24.0 + (values.uniq.length == 1 ? 0.45 : 0), 1.0].min
+            else
+              variant == 'holdem' ? hand_rank(cards + visible) : rank
+            end
+          end
+        end
+        if variant == 'draw'
+          ranks.map { |seats| seats.map { |rank| [rank[0] / 3.0, 1.0].min } }
+        elsif visible.empty?
+          ranks
+        else
+          # Percentiles distinguish kickers even when a paired/straight board
+          # gives every possible hand the same category. Ties share a midpoint.
+          ranks.transpose.map do |column|
+            weaker = 0
+            percentiles = column.tally.sort.to_h do |rank, count|
+              value = (weaker + count * 0.5) / column.length
+              weaker += count
+              [rank, value]
+            end
+            column.map { |rank| percentiles.fetch(rank) }
+          end.transpose
+        end
+      end
     end
 
     def poker_sample_equity(opponents)
+      @poker_subset_equities ||= {}
+      return @poker_subset_equities[opponents] if @poker_subset_equities.key?(opponents)
       weighted_wins = 0.0
       weights = 0.0
       @poker_samples.each do |own, rivals|
@@ -1191,7 +1357,7 @@ module GameRoomGames
         weighted_wins += weight / (1 + comparison.count(0)) unless comparison.include?(-1)
         weights += weight
       end
-      weighted_wins / weights
+      @poker_subset_equities[opponents.dup.freeze] = weighted_wins / weights
     end
 
     def poker_exchange_value(state, actor, discards, exchanges: {})
@@ -1312,13 +1478,13 @@ module GameRoomGames
 
     def information_shortcuts(state, viewer)
       player = player_key(state, viewer)
-      cards = hand_for(state, viewer)
+      cards = hand_for(state, viewer).sort_by { |card| playing_sort_key(card) }
       board = state[:community]
       result = [
         announcement_shortcut(key: "s", label: _("read your stack"), message: _("Your stack: %{chips}.") % { chips: state[:stacks][player].to_i }),
         GameShortcut.new(key: "s", modifiers: [:shift], label: _("read other stacks"), kind: :announcement, message: stack_text(state, viewer)),
         announcement_shortcut(key: "v", label: _("read the call amount"), message: _("To call: %{amount}.") % { amount: player == nil ? 0 : [state[:current_bet] - state[:street_bets][player], 0].max }),
-        announcement_shortcut(key: "d", label: _("read your cards"), message: cards.empty? ? _("You have no cards.") : cards.map { |card| poker_card_label(card) }.join(", ")),
+        announcement_shortcut(key: "d", label: _("read your cards"), message: cards.empty? ? _("You have no cards.") : cards.map { |card| poker_card_label(card) }.join(", "), hand_id: 'poker_exchange'),
         announcement_shortcut(key: "e", label: _("read visible table cards"), message: board.empty? ? _("No community cards are visible.") : board.map { |card| poker_card_label(card) }.join(", ")),
         announcement_shortcut(key: "p", label: _("read the pot"), message: _("Pot: %{amount}.") % { amount: state[:contributions].values.sum }),
         announcement_shortcut(key: "i", label: _("read your total investment"), message: _("You have invested %{amount} in this hand.") % { amount: state[:contributions][player].to_i }),
@@ -1352,7 +1518,7 @@ module GameRoomGames
       when "fold" then _("%{player} folds.") % { player: participant_name(player) }
       when "check" then _("%{player} checks.") % { player: participant_name(player) }
       when "call" then _("%{player} calls %{amount}.") % { player: participant_name(player), amount: amount }
-      when "raise" then _("%{player} raises by %{increase}, to %{amount}.") % { player: participant_name(player), increase: state[:street_bets][player] - (previous_bet || state[:current_bet]), amount: state[:street_bets][player] }
+      when "raise" then _("%{player} raises by %{increase}.") % { player: participant_name(player), increase: state[:street_bets][player] - (previous_bet || state[:current_bet]) }
       when "all_in" then _("%{player} is all in for %{amount}.") % { player: participant_name(player), amount: amount }
       end
     end
@@ -1361,7 +1527,7 @@ module GameRoomGames
       return 0 if state[:options]["blind_interval"] == "never"
       return 0 if state[:options]["blind_interval_value"].to_i.zero?
       return [state[:hand_number].to_i - 1, 0].max / state[:options]["blind_interval_value"].to_i if state[:options]["blind_interval"] == "hands"
-      elapsed = [state[:hand_started_at].to_i - state[:tournament_started_at].to_i, 0].max
+      elapsed = [state[:hand_started_at].to_i - state[:tournament_started_at].to_i - state[:blind_paused_seconds].to_i, 0].max
       elapsed / (state[:options]["blind_interval_value"].to_i * 60)
     end
 
@@ -1453,7 +1619,7 @@ module GameRoomGames
     end
 
     def playing_sort_key(card)
-      [PLAYROOM_SUIT_ORDER.index(card[1]) || 9, PLAYROOM_RANK_ORDER.index(card[0]) || 99]
+      standard_hand_sort_keys(rank: card[0], suit: card[1], position: 0).fetch('colour')
     end
 
     def poker_card_label(card)

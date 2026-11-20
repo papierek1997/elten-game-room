@@ -104,7 +104,7 @@ test("recycling bots release surplus remedies while standard choices and RNG sta
   end
 end
 
-test("recycling bots preserve a possible exact finish using only publicly spent distance cards") do
+test("both deck variants preserve a possible exact finish using only publicly spent distance cards") do
   [false, true].each do |recycling|
     fixture = Fixture.new(options: { "recycle_discard" => recycling })
     state = fixture.scenario
@@ -112,6 +112,17 @@ test("recycling bots preserve a possible exact finish using only publicly spent 
     state[:tracks][0].merge!(moving: true, miles: 775, two_hundreds: 2)
     state[:spent] = fixture.game.send(:deck_for, {}).select { |card| card.start_with?("25:", "50:") } +
       %w[200:1 200:2 100:1 100:4 100:8 100:9 100:11]
+    # Independent bounded subset sums over the public deck recipe. Both 200s
+    # have already been used; after spending 100 the remaining 125 is impossible,
+    # whereas spending 75 leaves 150, still reachable with two unspent 75s.
+    reachable_after = lambda do |played|
+      distances = fixture.game.send(:deck_for, {}).reject { |card| (state[:spent] + [played]).include?(card) }.
+        map { |card| card.split(':').first }.
+        select { |type| GameRoomGames::MilleBornes::DISTANCES.include?(type) && type != '200' }.map(&:to_i)
+      distances.reduce([0]) { |sums, distance| sums | sums.map { |sum| sum + distance }.select { |sum| sum <= 225 } }
+    end
+    assert(!reachable_after.call('100:3').include?(125), 'Public cards still permit the supposedly impossible 125-mile gap')
+    assert(reachable_after.call('75:4').include?(150), 'The alternative progress has no possible public finish')
     replay = fixture.snapshot(state)
     actions = fixture.game.legal_actions(replay, "Alice")
     assert(actions.any? { |action| action["action"] == "play" && action["card"] == "100:3" }, "100 remains legal even if strategically losing")
@@ -129,9 +140,19 @@ test("recycling bots preserve a possible exact finish using only publicly spent 
     other = fixture.game.bot_strategy.choose(actions: actions, game: fixture.game, replay: alternative,
       actor: "Alice", random_source: alternate_random)
     equal("play", chosen["action"], "bot chooses available progress")
-    equal(recycling ? "75" : "100", chosen["card"].split(":").first, "avoid an impossible 125-mile gap only in recycling variant")
+    equal("75", chosen["card"].split(":").first, "avoid an impossible 125-mile gap in both deck variants")
+    equal(:ok, fixture.game.action_for(chosen, replay, 'Alice').first, 'The finish-preserving choice follows ordinary rules')
     equal(chosen, other, "same decision without hidden-card knowledge")
     equal(random.roll(count: 8, sides: 1000).values, alternate_random.roll(count: 8, sides: 1000).values, "same subsequent RNG")
+
+    # Do not turn this into a blanket preference for shorter progress. If the
+    # publicly spent 25s/50s are available again, 100 also leaves a viable route.
+    control = Marshal.load(Marshal.dump(state))
+    control[:spent].reject! { |card| card.start_with?('25:', '50:') }
+    control_replay = fixture.snapshot(control)
+    control_choice = fixture.game.bot_strategy.choose(actions: fixture.game.legal_actions(control_replay, 'Alice'),
+      game:fixture.game, replay:control_replay, actor:'Alice', random_source:GameRoomRandom::SeededSource.new(42))
+    equal('100', control_choice['card'].split(':').first, 'Ordinary longer progress was penalized despite a possible finish')
   end
 end
 

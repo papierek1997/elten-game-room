@@ -118,6 +118,14 @@ class GameRoomLiveSessionStore
               (!event.key?('game_time') || GameRoomSessionClock.valid_event_time?(event['game_time']))
           end
       when "game_boundary"
+        if data.key?('round_pause')
+          pause = data['round_pause']
+          id = data['session_id']
+          return false unless pause.is_a?(Hash) && pause.keys.sort == %w[previous revision] &&
+            pause.values.all? { |value| value.is_a?(String) } && id == @latest_start && !@aborted[id] &&
+            pause['previous'] == @boundaries[id].to_s && pause['revision'] == @game_revisions[id].to_s &&
+            !data.key?('tournament_presence') && !data.key?('aborted') && !data.key?('reason')
+        end
         if data.key?('tournament_presence')
           presence = data['tournament_presence']
           authority = presence.is_a?(Hash) && presence['origin'] == 'organizer' ?

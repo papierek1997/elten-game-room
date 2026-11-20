@@ -163,7 +163,12 @@ check.call("a failed new-game switch keeps its target until recovery succeeds") 
   screen.send(:submit_chat)
   assert(layout.chat.text == 'hello while switching', 'Discarding a stale intention removed its unsent text')
   assert(sync.next_reconcile_at.finite?, "chat cancelled the pending game switch")
-  sync.synchronize(complete: false) { h.repositories["Bob"].snapshot_for(old) }
+  begin
+    sync.synchronize(complete: false) { h.repositories["Bob"].snapshot_for(old) }
+    raise 'A retired game was incorrectly returned as a readable snapshot'
+  rescue GameRoomNetworkErrors::GamePaused
+    assert(screen.instance_variable_get(:@new_session_id) == newest['__id'], 'Retired read lost the pending replacement')
+  end
   clock[0] = 200.0
   event = sync.next_event
   if event.kind == :table_changed

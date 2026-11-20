@@ -31,8 +31,9 @@ module GameRoomTournaments
       # Ta sama struktura co rzeczywiste create_room, nie discovery udające packet.
       projected = budget_readback(native: native, request: request, owner: owner['username'])
       raise C::Blocked, :native_limits if JSON.generate(projected['discovery']).bytesize > [1024, limits['discovery_bytes']].min
-      packet = projected['stack'].first['packet']
-      raise C::Blocked, :native_limits if JSON.generate(packet).bytesize > [16_384, limits['stack_entry_bytes']].min
+      if projected['stack'].any? { |entry| JSON.generate(entry['packet']).bytesize > [16_384, limits['stack_entry_bytes']].min }
+        raise C::Blocked, :native_limits
+      end
       begin
         Data.copy(projected, max_bytes: [262_144, limits['core_bytes']].min, max_nodes: 16_384, max_depth: 16)
         native_state = budget_native(projected).to_h { |key, rows| [key, (state ? state.fetch(key) : []) + rows] }
@@ -76,7 +77,8 @@ module GameRoomTournaments
         'resume_save_id' => '', 'statistics_room_id' => uuid, 'table_id' => Publication::MAX_INTEGER}
       room = metadata.slice('created_at', 'game', 'game_options', 'name', 'owner').merge(
         'bot_count' => 0, 'bot_names' => [], 'max_players' => match_capacity(request), 'status' => 'waiting')
-      discovery = metadata.reject { |key, _| key == 'statistics_room_id' }.merge(room.slice('bot_count', 'max_players', 'status')).merge('player_count' => 1)
+      discovery = metadata.reject { |key, _| key == 'statistics_room_id' }.merge(room.slice('bot_count', 'max_players', 'status'))
+        .merge('player_count' => 1)
       table = room.merge('player_count' => 1, 'private' => true, 'resume_save_id' => '', 'id' => Publication::MAX_INTEGER,
         '__id' => Publication::MAX_INTEGER, '__insertion_user' => owner, '__live_session_id' => uuid,
         '__statistics_room_id' => uuid, '__discovery_protocol' => GameRoomLiveSessionStore::CURRENT_DISCOVERY_PROTOCOL,
@@ -92,13 +94,14 @@ module GameRoomTournaments
       table = readback['table']
       uuid = table['__live_session_id']
       args = {'metadata' => readback['metadata'], 'discovery_metadata' => readback['discovery'],
-        'capacity' => table['max_players'], 'visibility' => 'private', 'participant_metadata' => {'client' => 'elten_game_room', 'table_id' => table['__id']},
+        'capacity' => table['max_players'], 'visibility' => 'private',
+        'participant_metadata' => {'client' => 'elten_game_room', 'table_id' => table['__id']},
         'stack_entries' => GameRoomLiveSessionStore::STACK_ENTRIES, 'stack_entry_bytes' => GameRoomLiveSessionStore::STACK_ENTRY_BYTES,
         'pool_count' => 1, 'private_messages' => true}
       core = args.slice('metadata', 'discovery_metadata', 'capacity', 'visibility', 'stack_entries', 'stack_entry_bytes').merge(
         'id' => uuid, 'owner' => table['owner'], 'participants' => readback['participants'], 'entries' => readback['stack'],
-        'closed' => false, 'last_seq' => 1, 'trimmed_through' => 0, 'invitations' => {},
-        'dedup' => [{'key' => [table['owner'], readback['stack'].first['message_id']], 'sequence' => 1}])
+        'closed' => false, 'last_seq' => readback['stack'].last.fetch('seq'), 'trimmed_through' => 0, 'invitations' => {},
+        'dedup' => readback['stack'].map { |entry| {'key' => [table['owner'], entry['message_id']], 'sequence' => entry['seq']} })
       {'creates' => [{'native_uuid' => uuid, 'pid' => Publication::MAX_INTEGER, 'arguments' => args}], 'cores' => [core]}
     end
 

@@ -1,5 +1,6 @@
 # Pure presentation values: safe to load without native ELTEN controls.
 module GameSurfaces
+  BilliardsSpec = Struct.new(:game_id, :epoch, :balls, :enabled, :options, :last, :last_shot, :undo, :shots, :rules, keyword_init: true)
   TypingSpec = Struct.new(:round, :enabled, :status, :commands, :remaining_sentence, :remaining_word, :auto_commit, :own_text, keyword_init: true)
   MovementCommandResult = Struct.new(:action, :message, keyword_init: true)
 
@@ -59,12 +60,14 @@ module GameSurfaces
     end
   end
 
+  GridMove = Struct.new(:origin, :destination, :action, keyword_init: true)
   GridSpec = Struct.new(
     :width,
     :height,
     :header,
     :cells,
-    :row_origin,
+    :row_origin, :row_actions, :hide_coordinates, :shortcuts, :move_actions, :forced_origin, :selection_epoch,
+    :origin_error, :destination_error, :selection_message, :clear_selection_on_error,
     keyword_init: true
   )
 
@@ -100,11 +103,15 @@ module GameSurfaces
 
   CardChoice = Struct.new(:id, :label, :value, keyword_init: true)
 
-  Card = Struct.new(:id, :label, :value, :choices, :shift_choice, :choice_header, :sort_keys, :confirmation, keyword_init: true)
+  CardNavigationGroup = Struct.new(:id, :label, :order, keyword_init: true)
 
-  CardZoneSpec = Struct.new(:id, :header, :cards, :empty_label, :hand_order, :hand_epoch, :commands, :select_drawn, keyword_init: true)
+  Card = Struct.new(:id, :label, :value, :choices, :shift_choice, :choice_header, :sort_keys, :confirmation, :navigation_group, keyword_init: true)
+  CardListRow = Struct.new(:id, :label, keyword_init: true)
 
-  CardTableSpec = Struct.new(:zones, :default_sort, keyword_init: true)
+  CardZoneSpec = Struct.new(:id, :header, :cards, :empty_label, :hand_order, :hand_epoch, :commands, :select_drawn,
+    :activation_action, :activation_tip, :leading_rows, keyword_init: true)
+
+  CardTableSpec = Struct.new(:zones, :default_sort, :sort_modes, keyword_init: true)
 
   AnswerField = Struct.new(
     :id,
@@ -125,7 +132,10 @@ module GameSurfaces
     keyword_init: true
   )
 
-  AudioBallSpec = Struct.new(:game_id, :header, :players, :viewer, :scores, :sets, :set_number, :finished, :teams, :score_labels, keyword_init: true)
+  AudioBallSpec = Struct.new(:game_id, :header, :players, :viewer, :scores, :sets, :set_number, :finished, :teams, :score_labels, :score_target_text, keyword_init: true)
+
+  DartsSpec = Struct.new(:game_id, :header, :players, :viewer, :current_player, :throw_index,
+    :round, :dart, :difficulty, :scores, :active, :finished, :training, keyword_init: true)
 
   Command = Struct.new(:id, :label, :enabled, :payload, keyword_init: true)
 
@@ -147,10 +157,11 @@ module GameSurfaces
   )
 
   MeldHandSpec = Struct.new(:zones, :turn, :editable, :can_discard, :minimum,
-    :validator, :table, :discard_choices, :discard_error, :action_error, keyword_init: true)
+    :validator, :table, :discard_choices, :discard_error, :action_error, :default_sort, :sort_modes, keyword_init: true)
 
   PacketCardSpec = Struct.new(
     :id, :header, :cards, :action_name, :allow_packet, :empty_label, :hand_order, :hand_epoch, :packet_tip, :activation_tip,
+    :default_sort, :sort_modes,
     keyword_init: true
   )
 
@@ -187,7 +198,7 @@ module GameSurfaces
     keyword_init: true
   )
 
-  PongSpec = Struct.new(:game_id, :header, :players, :viewer, :scores, :finished, :score_labels, keyword_init: true)
+  PongSpec = Struct.new(:game_id, :header, :players, :viewer, :scores, :finished, :score_labels, :score_target_text, keyword_init: true)
 
   QuestionOption = Struct.new(:id, :label, :value, keyword_init: true)
 
@@ -208,6 +219,7 @@ module GameSurfaces
     :clear_on_submit,
     :clear_on_rejection,
     :extra_commands,
+    :text_shortcuts,
     keyword_init: true
   )
 
@@ -240,7 +252,7 @@ module GameSurfaces
 
   RollAndScoreSpec = Struct.new(
     :id, :header, :dice, :categories, :can_roll, :force_categories,
-    :empty_label, :roll_number, keyword_init: true
+    :empty_label, :roll_number, :score_grid, keyword_init: true
   )
 
   TabooSpec = Struct.new(:token, :phase, :lines, :status, :action, :master, :review, :results, :opponent, keyword_init: true)
@@ -249,7 +261,7 @@ module GameSurfaces
 
   TileChoice = Struct.new(:id, :label, :value, keyword_init: true)
 
-  TileZoneSpec = Struct.new(:id, :header, :cards, :empty_label, :hand_order, :hand_epoch, :commands, :select_drawn, keyword_init: true)
+  TileZoneSpec = Struct.new(*CardZoneSpec.members, keyword_init: true)
 
   TileHandSpec = Struct.new(:zones, :table_header, :table, :table_epoch, :default_target, :selection_error, keyword_init: true)
 

@@ -7,7 +7,7 @@ require_relative '../../../lib/tournaments/ordinary_match_service'
 users = %w[Alice Bob Carol Dave]
 game = GameRoomGames::Bridge.new
 options = game.normalize_options('variant'=>'duplicate', 'boards'=>4, 'scoring'=>'imp')
-h = NativeRoomHarness.new(game: game, users: users, options: options)
+h = NativeRoomHarness.new(game: game, users: users, options: options, clock: ClockEventContract::ManualTime.new)
 programs = users.to_h { |user| [user, ProgramDouble.new(h.broker.endpoint(user))] }
 lobbies = users.to_h do |user|
   [user, LobbyRepository.new(programs[user], transport: h.transports[user], server_tables: Object.new)]
@@ -65,11 +65,13 @@ Dir.mktmpdir('bridge-team-') do |directory|
     end
     runners = users.to_h do |user|
       [user, h.as(user) do
-        GameRoomSessionRunner.new(program: programs[user], transport: h.transports[user],
+        runner = GameRoomSessionRunner.new(program: programs[user], transport: h.transports[user],
           repository: h.repositories[user], game: game, session: h.session, table: room,
           owner: 'Alice', viewer: user, room_snapshot_provider: -> { lobbies[user].snapshot_for(room) },
           covered: -> { true }, context: contexts[user],
           completion_observer: ->(session, replay, events) { services[user].observe(room, session, replay, events) })
+        runner.instance_variable_set(:@clock, h.clock.session_clock)
+        runner
       end]
     end
     100.times do

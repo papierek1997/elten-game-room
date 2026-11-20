@@ -48,3 +48,17 @@ refresh_decision(layout, decision_view([2, 13]), phase: :finished)
 assert_equal([:status, 0], layout.focus_location)
 assert(!layout.decision_focus_changed?, 'Finished game tried to focus an obsolete decision')
 puts 'PASS declarative decision focus: one transition per key, room text preserved, missing/finished targets ignored'
+
+# A one-field surface needs no artificial Composite solely to announce a new
+# decision. Named parts still require a matching actual composite part.
+flat_surface = GameSurfaces::QuestionSpec.new(id: 'score', prompt: 'Choose a category', mode: :single_choice,
+  options: [GameSurfaces::QuestionOption.new(id: 'first', value: 'first', label: 'First')])
+flat = ->(key, part=nil) { GameRoomLayout::ViewSpec.new(surface: flat_surface, decision_focus_key: key, decision_focus_part: part) }
+plain = GameRoomLayout::Screen.new(view_spec: flat.call(nil))
+refresh_decision(plain, flat.call('third roll'))
+assert(plain.decision_focus_changed?, 'A single-surface decision cannot announce its prompt')
+refresh_decision(plain, flat.call('third roll'))
+assert(!plain.decision_focus_changed?, 'An unchanged single-surface decision repeats its prompt')
+refresh_decision(plain, flat.call('fourth roll', 'missing'))
+assert(!plain.decision_focus_changed?, 'A named part silently falls back to an unrelated single surface')
+puts 'PASS single-surface decision focus: one boundary, quiet refresh and no missing-part fallback'

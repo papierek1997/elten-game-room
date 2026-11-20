@@ -1,0 +1,105 @@
+{
+  "source": "games/hearts_support/hearts_table.rb",
+  "sections": [
+    {
+      "id": "play",
+      "paragraphs": [
+        {
+          "en": "Four people play individually with a 52-card deck. Everyone receives thirteen cards. Avoid winning hearts and the queen of spades: every heart is one penalty point and that queen is thirteen. Other cards score nothing. Aces are highest, then kings, queens and so on down to twos. There are no trumps.",
+          "pl": "W Kierki grają cztery osoby, każda na własny wynik. Talia ma 52 karty, więc każdy dostaje trzynaście. Unikaj zabierania kierów i damy pik: każdy kier daje punkt karny, a dama pik trzynaście. Pozostałe karty nie dają punktów. Najsilniejszy jest as, potem król, dama i dalsze karty aż do dwójki. Nie ma atutu."
+        },
+        {
+          "en": "Before the first deal, pass three cards to the left. In the next deals, pass right, then across, then keep all cards. This four-deal cycle repeats. Press Enter on each card you want to pass. Once the pass is confirmed, that card disappears from your hand. When everyone has passed three, the exchange is completed and you hear the cards you received. The player holding the two of clubs leads it to the first trick.",
+          "pl": "Przed rozgrywką pierwszego rozdania przekaż trzy karty w lewo. W kolejnych rozdaniach przekazuj w prawo, naprzeciwko, a potem zachowaj całą rękę. Ten cykl czterech rozdań się powtarza. Naciśnij Enter na karcie, którą chcesz przekazać. Po potwierdzeniu znika ona z twojej ręki. Gdy wszyscy przekażą po trzy, następuje wymiana i usłyszysz otrzymane karty. Osoba z dwójką trefl wychodzi nią do pierwszej lewy."
+        },
+        {
+          "en": "Take turns playing one card and follow the suit led if possible. Without that suit, discard any card, except that on the first trick you must avoid penalty cards if you have a safe card. The highest card of the suit led wins the trick and leads next. You may lead hearts only after someone has discarded a heart, unless your hand contains only hearts.",
+          "pl": "Zagrywajcie po jednej karcie, dokładając do koloru wyjścia, jeśli go macie. Gdy go nie masz, możesz zrzucić dowolną kartę. Wyjątkiem jest pierwsza lewa: nie wolno w niej zrzucić karty karnej, jeśli masz inną. Najwyższa karta koloru wyjścia bierze lewę, a jej zwycięzca zaczyna następną. W kierach wolno wyjść dopiero po zagraniu kiera do innego koloru, chyba że masz same kiery."
+        }
+      ],
+      "title": {
+        "en": "Playing Hearts",
+        "pl": "Jak grać w Kierki"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "en": "After all thirteen tricks, add the penalties to each player’s total. If one player takes all thirteen hearts and the queen of spades, that player scores zero and every opponent scores 26 instead. The score limit is 100 by default and can be changed in the table settings before play. Once anyone reaches that limit, the player with the lowest total wins. If the lowest total is tied, play another deal.",
+          "pl": "Po trzynastu lewach gra dopisuje punkty karne do wyników graczy. Jeśli jedna osoba zbierze wszystkie trzynaście kierów i damę pik, sama dostaje zero, a każdy przeciwnik po 26 punktów. Limit domyślnie wynosi 100 punktów; gospodarz może go zmienić w ustawieniach stołu przed rozpoczęciem gry. Gdy ktoś osiągnie ten limit, wygrywa osoba z najniższym wynikiem. Jeśli na najniższym wyniku jest remis, gracie kolejne rozdanie."
+        }
+      ],
+      "title": {
+        "en": "Scoring and the winner",
+        "pl": "Punktacja i zwycięstwo"
+      }
+    },
+    {
+      "id": "controls",
+      "paragraphs": [
+        {
+          "en": "Arrows: browse cards or menu choices.",
+          "pl": "Strzałki: przeglądaj karty lub pozycje menu."
+        },
+        {
+          "en": "Enter: select a card to pass before play, or play the selected card during a trick.",
+          "pl": "Enter: wybierz kartę do przekazania przed rozgrywką albo zagraj wskazaną kartę podczas lewy."
+        },
+        {
+          "en": "F: read the suit led.",
+          "pl": "F: odczyt koloru wyjścia."
+        },
+        {
+          "en": "V: read passing progress or whether hearts have been broken.",
+          "pl": "V: sprawdź przekazywanie kart albo czy kiery są już otwarte."
+        },
+        {
+          "en": "Shift+S: read penalty points in this deal.",
+          "pl": "Shift+S: odczytaj punkty karne rozdania."
+        },
+        {
+          "en": "H: read your hand.",
+          "pl": "H: odczytaj rękę."
+        },
+        {
+          "en": "C: read the cards on the table.",
+          "pl": "C: odczytaj karty na stole."
+        },
+        {
+          "en": "Ctrl+C: browse those cards.",
+          "pl": "Ctrl+C: przejrzyj te karty."
+        },
+        {
+          "en": "S: read the scores.",
+          "pl": "S: odczyt wyniku."
+        },
+        {
+          "en": "T: read whose turn it is.",
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "en": "Z: find the next playable card.",
+          "pl": "Z: znajdź następną kartę, którą można zagrać."
+        },
+        {
+          "en": "Shift+Z: find the previous playable card.",
+          "pl": "Shift+Z: poprzednia karta, którą można zagrać."
+        },
+        {
+          "en": "Shift+C: sort your hand by suit.",
+          "pl": "Shift+C: sortuj rękę według kolorów."
+        },
+        {
+          "en": "Shift+H: sort your hand by rank.",
+          "pl": "Shift+H: sortuj rękę według wartości."
+        }
+      ],
+      "title": {
+        "en": "Controls",
+        "pl": "Sterowanie"
+      }
+    }
+  ],
+  "option_chapters": {"score_limit": "scoring"}
+}

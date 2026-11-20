@@ -8,7 +8,8 @@ module GameRoomSportsRankings
 
     def build_player_statistics_client(program)
       require_relative 'screen'
-      Screen.new(program: program, game: self, service: program.class.sports_rankings_service)
+      Screen.new(program: program, game: self, service: program.class.sports_rankings_service,
+        unavailable: -> { program.server_feature_unavailable_message(:statistics) })
     end
 
     def sports_ranking_result(replay)

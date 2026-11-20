@@ -59,11 +59,16 @@ module GameRoomGames
           return 2000 - type.to_i if bot_reverse_finish_possible?(state, actor, track, action["card"])
           return -10_000 - [track[:miles], type.to_i].min
         end
-        if recycling && !replay.state[:options]["counterflow"] && !bot_finish_possible?(replay, track, type)
-          return -20_000
-        end
         return 20_000 if track[:miles] + type.to_i == 1000
-        return 400 + type.to_i
+        value = 400 + type.to_i
+        if !state[:options]["counterflow"] && !bot_finish_possible?(replay, track, type)
+          return -20_000 if recycling
+          # The normal finish bonus is worth more than an extra 25/50/100
+          # miles now. Keep a possible finish unless this last card ends the
+          # round anyway; if every route is blocked, still prefer more miles.
+          value -= 300 if hand_for(state, actor).length > 1
+        end
+        return value
       end
       return type == "right_of_way" ? 3000 : 1500 if SAFETIES.include?(type)
       return 1200 if type == "go" || REMEDIES.key?(type)

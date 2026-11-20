@@ -9,10 +9,12 @@ module GameRoomGames
   class Scopa < DealtCardGame
     using GameRoomLocalization::Translations
     RANKS = %w[A 2 3 4 5 6 7 8 9 T].freeze
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'number', sort_modes: %w[colour number], suits: PLAYROOM_SUIT_ORDER, ranks: RANKS)
     DECK = CardGame::CARD_SUITS.flat_map { |suit| RANKS.map { |rank| "#{rank}#{suit}" } }.freeze
 
     def id; 'scopa'; end
     def name; 'Scopa'; end
+    def round_timing_end_kinds; [:score]; end
     def maximum_players; 6; end
     def short_description
       _("Capture cards by matching their values, and clear the table for extra points.")
@@ -129,12 +131,7 @@ module GameRoomGames
 
     protected
 
-    def standard_hand_sort_keys(rank:, suit:, position:)
-      suit_index = PLAYROOM_SUIT_ORDER.index(suit) || PLAYROOM_SUIT_ORDER.size
-      rank_index = RANKS.index(rank) || RANKS.size
-      {'colour' => [suit_index, rank_index], 'number' => [rank_index, suit_index], 'none' => [position]}
-    end
-
+    # Captures depend on values and sums; ace is one, not the highest card.
     def table_cards(state); state[:table].to_a; end
 
     def deal_round(state, seed, event, repository, history)

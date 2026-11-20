@@ -5,7 +5,7 @@ users = %w[Alice Bob Carol Dave]
 %w[imp mp].each do |scoring|
   game = GameRoomGames::Bridge.new
   h, runners = PrivateCardGamesTest.create(game, users: users,
-    options: {'variant'=>'duplicate', 'boards'=>4, 'scoring'=>scoring})
+    options: {'variant'=>'duplicate', 'boards'=>4, 'scoring'=>scoring}, clock: ClockEventContract::ManualTime.new)
   begin
     4.times do |index|
       16.times { PrivateCardGamesTest.tick(h, runners) }

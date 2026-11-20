@@ -38,14 +38,14 @@ end
     actor = f.replay.current_player
     f.submit(actor, game.legal_actions(f.replay(actor), actor).find { |item| item['action'] == 'fold' })
     original = f.replay
-    assert(original.state[:hand_resume_at] == 1010 + epoch, 'Original hand pause uses the wrong logical clock')
+    assert(original.state[:hand_resume_at] == 1009 + epoch, 'Original hand pause uses the wrong logical clock')
     time.call(1066)
     f.freeze('Alice', true)
     snapshot = f.snapshot
     saves = SavedGames.new(TimedArchiveMemory.new, owner: 'Alice')
     row = saves.put(game: game, table: f.h.table, snapshot: snapshot,
       repository: f.h.repositories['Alice'], now: 1066)
-    assert(row['game_time'] == 1006 + epoch, 'Saving did not preserve four seconds of pause')
+    assert(row['game_time'] == 1006 + epoch, 'Saving did not preserve three seconds of pause')
     assert(row['events'].last['created_at'] == 1064 && row['events'].last['game_time'] == 1004 + epoch,
       'Archive failed to retain both raw server time and logical event time')
     time.call(2000)
@@ -57,13 +57,13 @@ end
       replay = game.replay(restored.session, restored.events, repo)
       label = "#{variant}/#{thinking_time}/#{epoch}/#{user}"
       assert(ClockEventContract.clock.now(restored.session) == 1006 + epoch, "#{label}: restoration changed logical time")
-      assert(replay.state[:hand_resume_at] == 1010 + epoch,
-        "#{label}: archive moved hand_resume_at from #{1010 + epoch} to #{replay.state[:hand_resume_at].inspect}")
+      assert(replay.state[:hand_resume_at] == 1009 + epoch,
+        "#{label}: archive moved hand_resume_at from #{1009 + epoch} to #{replay.state[:hand_resume_at].inspect}")
       assert(replay.state[:hands] == original.state[:hands] && replay.state[:stacks] == original.state[:stacks],
         "#{label}: restoration changed cards or chips")
-      context = GameRoomGames::ActionContext.new(now: 1009 + epoch, random_source: GameRoomRandom::SeededSource.new(1))
+      context = GameRoomGames::ActionContext.new(now: 1008 + epoch, random_source: GameRoomRandom::SeededSource.new(1))
       assert(!game.automatic_action_due?(replay, 'Alice', context: context), "#{label}: pause elapsed too early")
-      context.now = 1010 + epoch
+      context.now = 1009 + epoch
       assert(game.automatic_action_due?(replay, 'Alice', context: context), "#{label}: remaining pause restarted after restore")
     end
 
@@ -82,9 +82,9 @@ end
     _table2, session2 = restore_poker_archive(f, saves, row2)
     snapshot2 = repository.snapshot_for(session2)
     replay2 = game.replay(snapshot2.session, snapshot2.events, repository)
-    assert(replay2.state[:hand_resume_at] == 1010 + epoch, 'Repeated restore lost the hand boundary')
+    assert(replay2.state[:hand_resume_at] == 1009 + epoch, 'Repeated restore lost the hand boundary')
     assert(ClockEventContract.clock.now(snapshot2.session) == 1008 + epoch, 'Repeated restore lost remaining delay')
-    time.call(3002)
+    time.call(3001)
     context = GameRoomGames::ActionContext.new(now: ClockEventContract.clock.now(snapshot2.session),
       random_source: GameRoomRandom::SeededSource.new(2), server_random: true)
     status, plan = game.action_for(game.automatic_action(replay2, 'Alice', context: context), replay2, 'Alice', context: context)
@@ -96,7 +96,7 @@ end
     fresh = repository.snapshot_for(session2)
     next_hand = game.replay(fresh.session, fresh.events, repository)
     assert(next_hand.state[:hand_number] == 2 && next_hand.state[:phase] == :betting, 'Native next deal failed after two restores')
-    assert(next_hand.state[:turn_deadline] == 1040 + epoch, 'Next deal lost thinking time after restore') if thinking_time > 0
+    assert(next_hand.state[:turn_deadline] == 1039 + epoch, 'Next deal lost thinking time after restore') if thinking_time > 0
   ensure
     GameRoomClock.define_singleton_method(:now, original_clock)
   end

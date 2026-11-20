@@ -12,6 +12,8 @@ GameRoomServerRandom.register('spades', ['deal'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class Spades < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    CARD_HAND_ORDER = PLAYROOM_HAND_ORDER
     def tournament_small_point_policy(options:)
       tournament_target_small_points(normalize_options(options).fetch('score_limit'))
     end
@@ -861,9 +863,10 @@ module GameRoomGames
       hand = hand_for(state, viewer).to_a.sort_by { |card| card_sort_key(card) }
       hand_cards = hand.map do |card|
         GameSurfaces::Card.new(id: card, label: card_label(card), value: card,
+          navigation_group: standard_hand_navigation_group(rank: card_rank(card), suit: card_suit(card)),
           sort_keys: standard_hand_sort_keys(rank: card_rank(card), suit: card_suit(card), position: hand_for(state, viewer).index(card)))
       end
-      GameSurfaces::CardTableSpec.new(
+      GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes,
         zones: [
           GameSurfaces::CardZoneSpec.new(
             id: "hand",

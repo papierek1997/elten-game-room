@@ -6,6 +6,7 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class MilleBornes < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
     def tournament_small_point_policy(options:)
       tournament_target_small_points(normalize_options(options).fetch('target_score'))
     end
@@ -34,6 +35,7 @@ module GameRoomGames
       "accident" => "driving_ace", "counterflow" => "driving_ace"
     }.freeze
     CARD_ORDER = (DECK_COUNTS.keys + %w[counterflow end_counterflow instant_repair]).freeze
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'none', sort_modes: %w[colour number none], suits: [], ranks: CARD_ORDER)
     SAFETIES = %w[right_of_way extra_tank puncture_proof driving_ace].freeze
     TEAM_COUNTS = { 4 => [2], 6 => [2, 3], 8 => [2, 4] }.freeze
 

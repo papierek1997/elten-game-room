@@ -13,6 +13,10 @@ module GameRoomGames
   # Rules and deterministic replay only. Room membership, invites, observers,
   # reconnects and the ordered event log belong to the shared Game Room stack.
   class Krowa < Base
+    def round_ended?(history:, **context)
+      history.any? { |entry| entry.kind == :solution } || super(history: history, **context)
+    end
+    def round_timing_end_kinds; [:solution]; end
     def tournament_private_protocol?; true; end
     include KrowaPresentation
     include KrowaSavedSecret
@@ -371,7 +375,12 @@ module GameRoomGames
     end
 
     def known_word?(state, word)
-      @bank.include?(word) || state[:vocabulary].include?(word)
+      return true if @bank.include?(word) || state[:vocabulary].include?(word)
+      # A canonical daily assignment survives withdrawing its answer from
+      # future draws. It authorizes only that answer, not all retired nouns.
+      options = state[:options]
+      options["variant"] == "daily" && @bank.historical?(word) && options["__daily_assignment"] &&
+        @bank.assigned_daily(options["__daily_day"], options["__daily_assignment"]).last == word
     end
 
     def guess_status(state, player, word, extra: [])
@@ -447,7 +456,7 @@ module GameRoomGames
         return false unless user_vocabulary_allowed?(state)
         return false unless state[:phase] == :active && valid_added_word?(value)
         state[:vocabulary] |= [value]
-        history << entry(event_id, _("%{player} adds a noun: %{word}.") % {player: actor, word: value}, actor, :dictionary)
+        history << entry(event_id, _("%{player} adds a noun: %{word}.") % {player: participant_name(actor), word: value}, actor, :dictionary)
       when "krowa_round"
         return false unless owner?(state, actor) && state[:phase] == :setup
         round, length, started, day = JSON.parse(value)
@@ -483,11 +492,11 @@ module GameRoomGames
         trial = pending.merge(matches: matches, elapsed: elapsed, event_id: event_id)
         state[:attempts] << trial
         history << entry(event_id, _("%{player}: %{word}, %{matches} of %{length}.") % {
-          player: pending[:player], word: pending[:word], matches: matches, length: state[:length]
+          player: participant_name(pending[:player]), word: pending[:word], matches: matches, length: state[:length]
         }, pending[:player], :guess)
         if matches == state[:length]
           state[:results][pending[:player]] = {attempts: attempts_for(state, pending[:player]).length, elapsed: elapsed, solved: true}
-          history << entry(event_id, _("%{player} guesses the word in %{count} attempts.") % {player: pending[:player], count: state[:results][pending[:player]][:attempts]}, pending[:player], :solved)
+          history << entry(event_id, _("%{player} guesses the word in %{count} attempts.") % {player: participant_name(pending[:player]), count: state[:results][pending[:player]][:attempts]}, pending[:player], :solved)
           state[:phase], state[:reason] = :revealing, :solved if tower?(state)
         end
         if tower?(state)
@@ -510,7 +519,7 @@ module GameRoomGames
           state[:surrender_words][actor] = nil if state[:options]["variant"] == "race"
           finish_word_if_ready(state)
         end
-        history << entry(event_id, _("%{player} surrenders.") % {player: actor}, actor, :surrender)
+        history << entry(event_id, _("%{player} surrenders.") % {player: participant_name(actor)}, actor, :surrender)
       when "krowa_surrender_word"
         # A solution for one player never belongs to the shared event log.
         return false
@@ -523,7 +532,7 @@ module GameRoomGames
         return false unless owner?(state, actor) && state[:phase] == :revealing && /\A[0-9a-f]{64}\z/.match?(value)
         state[:nonce] = value
       when "krowa_word"
-        return false unless owner?(state, actor) && state[:phase] == :revealing && @bank.include?(value) && value.length == state[:length]
+        return false unless owner?(state, actor) && state[:phase] == :revealing && @bank.historical?(value) && value.length == state[:length]
         return false unless HiddenSubmissions::Commitment.valid?(payload: {"word" => value, "day" => state[:day]}, nonce: state[:nonce], commitment: state[:commitment])
         return false unless state[:attempts].all? { |trial| @bank.matches(trial[:word], value) == trial[:matches] }
         return false unless state[:surrender_words].values.compact.all? { |word| word == value }

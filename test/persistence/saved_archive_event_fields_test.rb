@@ -12,7 +12,7 @@ game = GameRoomGames::DicePoker.new
 players = %w[Alice Bob]
 repository = DiceGamesSupport::Repository.new(players)
 session = dice_session(game).merge('__players' => players)
-events = [dice_event(1, 'Alice', 'roll', '1,2,3,4,5')]
+events = [dice_event(1, 'Alice', 'ante', '1'), dice_event(2, 'Alice', 'roll', '1,2,3,4,5')]
 archive = EventFieldsArchive.new(nil, owner: 'Alice')
 row = archive.put(game: game, table: {'owner' => 'Alice', 'name' => 'Saved dice'},
   snapshot: Struct.new(:session, :events).new(session, events), repository: repository, now: 100)

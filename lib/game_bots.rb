@@ -3,6 +3,28 @@ require_relative "game_participants"
 module GameRoomBots
   Decision = Struct.new(:actor, :action, :available_actions, keyword_init: true)
 
+  # Expected match outcome first, expected game points only to break ties.
+  # Arithmetic lets a finite chance tree preserve this order without a giant
+  # arbitrary winning bonus that could distort very small probabilities.
+  class ExpectedValue < Struct.new(:outcome, :points)
+    include Comparable
+
+    def <=>(other)
+      return [outcome, points] <=> [other,0] if other.is_a?(Numeric)
+      [outcome, points] <=> [other.outcome, other.points]
+    end
+
+    def +(other)
+      return self if other.is_a?(Numeric) && other.zero?
+      self.class.new(outcome + other.outcome, points + other.points)
+    end
+
+    def /(number); self.class.new(outcome / number.to_f, points / number.to_f); end
+    def -(penalty); self.class.new(outcome, points - penalty); end
+    def coerce(number); [self.class.new(number,0),self]; end
+    def to_f; outcome.to_f; end
+  end
+
   # An explicit opt-out for strategies that use only the supplied replay and
   # action context. Unknown/external strategies retain the full environment.
   # A strategy that starts using simulation must override this contract.
@@ -61,7 +83,8 @@ module GameRoomBots
       end
 
       scored = actions.to_a.map do |action|
-        [action, game.bot_action_score(replay, actor, action, context: context).to_f]
+        value = game.bot_action_score(replay, actor, action, context: context)
+        [action, value.is_a?(ExpectedValue) ? value : value.to_f]
       end
       return nil if scored.empty?
 

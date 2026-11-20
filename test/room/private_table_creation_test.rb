@@ -83,9 +83,17 @@ end
 
 tysiac = EltenGameRoom::GAME_REGISTRY.build("tysiac")
 app = CreationFormApp.new(tysiac)
+Form.driver = lambda do |form|
+  rule = form.fields.find { |field| field.is_a?(CheckBox) && field.header == "Allow a redeal with four initial nines" }
+  assert(rule && rule.checked == false, "The four-nines checkbox must be unchecked on a new table")
+  form.accept_button.trigger(:press)
+end
+created = app.send(:configure_game_options, tysiac, creating_table: true)
+assert(created[:game_options]['redeal_four_nines'] == false, "The new table did not store the unchecked rule")
+
 Form.driver = ->(form) { form.accept_button.trigger(:press) }
 legacy = app.send(:configure_game_options, tysiac, initial_options: tysiac.default_options, submit_label: "Save changes")
-assert(legacy == tysiac.default_options.merge("redeal_four_nines" => true, "redeal_talon_nines" => false),
+assert(legacy == tysiac.default_options.merge("redeal_four_nines" => false, "redeal_talon_nines" => false),
   "Editing a table without redeal options did not fill in the correct defaults")
 
 [GameRoomGames::QuizParty.new, GameRoomGames::Taboo.new].each do |game|

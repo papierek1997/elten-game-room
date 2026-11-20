@@ -178,7 +178,9 @@ module GameRoomGames
       seat = replay.players.index { |player| same_user?(player, actor) }
       return nil unless seat && replay.state[:round] && !replay.finished?
       return mahjong_ready_selection(replay.state, seat) if replay.state[:phase] == :between_hands
-      selected = replay.state[:round].bot_action(seat: seat)
+      match = replay.state[:match]
+      selected = replay.state[:round].bot_action(seat: seat, match_scores: match&.points,
+        rounds_left: match && match.seats * match.winds - match.rotations)
       selected && mahjong_scoped_selection(GameRoomMahjong::TableEvents.to_selection(selected), replay.state)
     end
 

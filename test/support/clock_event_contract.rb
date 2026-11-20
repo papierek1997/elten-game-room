@@ -4,6 +4,27 @@ require_relative '../../lib/game_session_clock'
 module ClockEventContract
   module_function
 
+  # One clock for fixture stack receipts and the real session-clock adapter.
+  # Advancing it does not sleep, patch Time globally or bypass a round gate.
+  class ManualTime
+    attr_reader :now
+
+    def initialize(initial = Time.now.to_i)
+      @now = initial
+    end
+
+    def call; now; end
+
+    def advance(seconds)
+      raise ArgumentError, 'Fixture time cannot go backwards' if seconds.negative?
+      @now += seconds
+    end
+
+    def session_clock
+      GameRoomSessionClock.new(sample: -> { now }, elapsed: -> { 0 }, wall: -> { now })
+    end
+  end
+
   def with_server_time(initial = 1000)
     old_time = Time.method(:now)
     stamp = initial

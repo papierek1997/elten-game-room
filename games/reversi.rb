@@ -8,6 +8,30 @@ require_relative "../lib/game_room_localization"
 module GameRoomGames
   using GameRoomLocalization::Translations
   class Reversi < Base
+    # Use the same bounded alpha-beta and production transition. Without
+    # voluntary passes, each ply fills a square; forced passes are automatic.
+    class Strategy
+      attr_reader :last_stats
+
+      def initialize
+        @normal = GameRoomBots::AlphaBetaStrategy.new(max_depth: 6, node_limit: 55_000, optimize_transpositions: true)
+        @endgame = GameRoomBots::AlphaBetaStrategy.new(max_depth: 8, node_limit: 55_000, optimize_transpositions: true)
+        @narrow_tail = GameRoomBots::AlphaBetaStrategy.new(max_depth: 10, node_limit: 55_000, optimize_transpositions: true)
+      end
+
+      def simulation_required?; true; end
+
+      def choose(replay:, **arguments)
+        empty = replay.board.flatten.count(nil)
+        finite = !replay.state[:options]['allow_passing']
+        search = if finite && empty.between?(9,10) && arguments.fetch(:actions).size<=3
+          @narrow_tail
+        else
+          finite && empty<=8 ? @endgame : @normal
+        end
+        search.choose(replay: replay, **arguments).tap { @last_stats = search.last_stats }
+      end
+    end
     def player_spatial_audio?; true; end
     include GameRoomBoardPresentation
 
@@ -61,7 +85,7 @@ module GameRoomGames
     end
 
     def bot_strategy
-      @bot_strategy ||= GameRoomBots::AlphaBetaStrategy.new(max_depth: 6, node_limit: 55_000, optimize_transpositions: true)
+      @bot_strategy ||= Strategy.new
     end
 
     def replay(session, events, repository)
@@ -161,6 +185,26 @@ module GameRoomGames
     def bot_search_key(replay, actor)
       board = replay.board.flatten.map { |cell| cell == nil ? "-" : cell }.join
       "#{player_index(replay.players, actor)}:#{player_index(replay.players, replay.current_player)}:#{rules_key(replay.state[:options])}:#{board}"
+    end
+
+    # Like the Checkers search adapter, this skips event/history accumulation
+    # only inside a hypothetical branch. Legality and turn settlement remain
+    # the same functions used by real moves and saved-game replay.
+    def bot_search_transition(replay, selection, actor, event_id:, context: nil)
+      status, plan = action_for(selection, replay, actor, context: context)
+      return [status, nil] unless status == :ok
+      command = plan.events.first
+      state = replay.state.merge(board: replay.board.map(&:dup))
+      if command.action == 'place'
+        x, y = parse_position(command.value)
+        place_disc!(state[:board], x, y, player_index(replay.players, actor))
+      end
+      history = []
+      advance_turn!(state, actor, event_id, history)
+      state[:counts] = disc_counts(state[:board])
+      [:ok, Replay.new(board: state[:board], players: replay.players, state: state,
+        current_player: state[:current_player], winner: state[:winner], draw: state[:draw],
+        accepted_events: replay.accepted_events, history: history)]
     end
 
     def bot_action_score(replay, actor, action, context: nil)
@@ -280,11 +324,8 @@ module GameRoomGames
         position = parse_position(event["value"])
         marker = player_index(state[:players], actor)
         next unless position && legal_placement?(state[:board], position[0], position[1], marker, state[:options])
-        flips = flips_for(state[:board], position[0], position[1], marker)
-
         x, y = position
-        state[:board][y][x] = marker
-        flips.each { |fx, fy| state[:board][fy][fx] = marker }
+        flips = place_disc!(state[:board], x, y, marker)
         accepted << event
         event_id = repository.event_id(event)
         field = field_label(x, y)
@@ -298,6 +339,13 @@ module GameRoomGames
         )
         advance_turn!(state, actor, event_id, history)
       end
+    end
+
+    def place_disc!(board, x, y, marker)
+      flips = flips_for(board, x, y, marker)
+      board[y][x] = marker
+      flips.each { |fx, fy| board[fy][fx] = marker }
+      flips
     end
 
     def advance_turn!(state, actor, event_id, history)

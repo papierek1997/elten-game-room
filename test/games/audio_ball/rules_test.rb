@@ -291,17 +291,20 @@ audio_ball_test('surface contract and nonconflicting participant shortcuts') do
   spec = game.surface_spec(replay, 'aLiCe')
   assert(spec.is_a?(GameSurfaces::AudioBallSpec), 'Audio Ball returned a different surface type')
   assert(spec.to_h == {game_id: 'audio_ball', header: 'Audio Ball playfield', players: ['Alice', 'Computer 1'],
-    viewer: 0, scores: [0, 0], sets: [0, 0], set_number: 1, finished: false,teams:nil,score_labels:['Alice','Computer 1']}, 'surface omitted match state or exposed raw bot IDs')
+    viewer: 0, scores: [0, 0], sets: [0, 0], set_number: 1, finished: false,teams:nil,
+    score_labels:['Alice','Computer 1'],score_target_text:'Score limit: 7 points.'},
+    'surface omitted match state, score target or exposed raw bot IDs')
   assert(game.surface_spec(replay, 'Watcher').viewer == nil && game.surface_spec(replay, 'bot:7:1').viewer == 1, 'surface gave observer a player seat')
   assert(game.shortcut_features == [], 'inherited bare-letter shortcuts conflict with shot controls')
   participant_keys = game.game_shortcuts(replay, 'Alice').map { |shortcut| [shortcut.key, shortcut.modifiers, shortcut.action_name] }
-  assert(participant_keys == [['s', [:shift], 'scores'], ['t', [], 'server'], ['w', [:control], 'hurry']], 'scores, status or hurry shortcut conflicts with shot controls')
+  assert(participant_keys == [['s', [:shift], 'scores'], ['t', [], 'server'], ['w', [:control], 'hurry'],
+    ['t', [:control], nil], ['t', [:control, :shift], nil]], 'scores, status, hurry or duration shortcut conflicts with shot controls')
   observer_keys = game.game_shortcuts(replay, 'Watcher').map(&:action_name)
-  assert(observer_keys == %w[scores server], 'observer received the hurry shortcut')
+  assert(observer_keys == ['scores', 'server', nil, nil], 'observer received the hurry shortcut or lost duration readouts')
   events = [audio_ball_event('audio_ball_start', '0')]
   7.times { replay = audio_ball_score(game, session, events, repository, 1) }
   assert(game.surface_spec(replay, 'Alice').finished && game.surface_spec(replay, 'Alice').scores == [0, 7], 'finished surface discarded the final score')
-  assert(game.game_shortcuts(replay, 'Alice').map(&:action_name) == %w[scores server], 'finished match still offers hurry')
+  assert(game.game_shortcuts(replay, 'Alice').map(&:action_name) == ['scores', 'server', nil, nil], 'finished match still offers hurry or lost duration readouts')
   binary_game = Class.new(GameRoomGames::AudioBall) do
     def _(text); super(text.b); end
   end.new

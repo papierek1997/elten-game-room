@@ -3,6 +3,7 @@
 require 'digest'
 require 'thread'
 require_relative 'game_snapshot'
+require_relative 'game_participants'
 
 # One owned, authenticated prefix. A changed earlier record, actor, session or
 # dependency invalidates it; returned reducers never share its mutable model.

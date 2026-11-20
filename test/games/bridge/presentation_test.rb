@@ -84,10 +84,16 @@ assert(game.shortcut_feature_data(:scores, table.replay, declarer)[:message].inc
     table.play_lowest_legal
     after = table.replay
     card = table.events.last.fetch("value")
+    event_id = table.repository.event_id(table.events.last)
+    event_history = after.history.select { |entry| entry.event_id.to_i == event_id.to_i }
     cue = GameRoomSounds.event_cue(game: table.game, event: table.events.last, before_replay: before, after_replay: after,
-      repository: table.repository, viewer: "Alice", include_result: false)
+      repository: table.repository, viewer: "Alice", history: event_history, include_result: false)
     trump = strain != "N" && card.end_with?(strain)
-    assert_equal(trump ? ["play", "draw2"] : "play", cue, "Wrong cue for #{card} in #{strain}")
+    expected = ["play"]
+    expected << "draw2" if trump
+    expected << "round_finished" if table.game.round_ended?(before_replay: before,
+      after_replay: after, history: event_history)
+    assert_equal(expected, Array(cue), "Wrong play, trump or round-completion cue for #{card} in #{strain}")
     count += 1 if trump
   end
   assert_equal(strain == "N" ? 0 : 13, count, "Did not check the full trump suit including dummy")

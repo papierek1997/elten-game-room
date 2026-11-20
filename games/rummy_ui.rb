@@ -25,11 +25,9 @@ module GameRoomGames
         end
         choices << GameSurfaces::CardChoice.new(id: "cancel", label: _("Cancel"), value: "") unless choices.empty?
         GameSurfaces::Card.new(id: card, label: playing_card_label(card), value: card,
-          choices: choices, choice_header: _("Choose an action"), sort_keys: {
-            "colour" => playing_card_sort_key(card),
-            "number" => [Rules.joker?(card) ? 99 : Rules.rank(card), Rules::SUITS.index(card[1]) || 4, card],
-            "none" => [index]
-          })
+          navigation_group: standard_hand_navigation_group(rank: playing_card_rank(card), suit: playing_card_suit(card)),
+          choices: choices, choice_header: _("Choose an action"),
+          sort_keys: standard_hand_sort_keys(rank: playing_card_rank(card), suit: playing_card_suit(card), position: index))
       end
       table = state[:melds].map do |meld|
         entry = { id: meld[:id], label: meld_label(meld), details: meld_label(meld), actions: [], merges: [] }
@@ -57,6 +55,8 @@ module GameRoomGames
         end
       end
       GameSurfaces::MeldHandSpec.new(
+        default_sort: default_hand_sort,
+        sort_modes: hand_sort_modes,
         zones: [GameSurfaces::CardZoneSpec.new(id: "hand", header: _("Your hand"), cards: cards,
           empty_label: _("Your hand is empty"), hand_order: hand(state, viewer).dup, hand_epoch: "#{viewer.to_s.downcase}:#{state[:round]}")],
         turn: [state[:round], state[:turn]], editable: editable, can_discard: can_discard,

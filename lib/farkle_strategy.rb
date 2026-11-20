@@ -85,7 +85,11 @@ module FarklePlanning
       @last_player = @remaining_turns == 0
       @final_round = state[:final_round] == true
       @terminal_race = @new_rules && @last_player && (@final_round || banked + state[:turn_points].to_i >= limit)
-      @race_key = [@new_rules,@leader,@remaining_turns,@final_round,@terminal_race]
+      # A small known final deficit has a finite Bellman table: every keep
+      # adds points and a bankable lead terminates. Do not truncate that race
+      # merely because catching up can require more than three further rolls.
+      @exact_final = @terminal_race && [@leader-banked,minimum].max-state[:turn_points].to_i <= 500
+      @race_key = [@new_rules,@leader,@remaining_turns,@final_round,@terminal_race,@exact_final]
       # A small curvature changes risk preference, not the amount of searching.
       # No giant bonus for a remote hypothetical winning roll.
       @risk_exponent = if leader >= limit * 0.8 && leader > banked
@@ -161,6 +165,7 @@ module FarklePlanning
     end
 
     def decision_value(dice, turn_points, banked, limit, minimum, depth)
+      depth = nil if @exact_final
       key = [dice, turn_points, banked, limit, minimum, depth, @risk_exponent, @race_key]
       cached = @memo[key]
       return cached if cached != nil
@@ -168,7 +173,7 @@ module FarklePlanning
       can_bank = turn_points >= minimum
       bank_value = can_bank ? bank_payoff(turn_points, banked, limit) : -Float::INFINITY
       return @memo[key] = bank_value if can_bank && guaranteed_win?(banked+turn_points,limit)
-      if depth <= 0
+      if depth && depth <= 0
         return @memo[key] = (can_bank ? bank_value : 0.0)
       end
 
@@ -193,7 +198,7 @@ module FarklePlanning
               banked,
               limit,
               minimum,
-              depth - 1
+              depth && depth - 1
             )
           end.max
         end

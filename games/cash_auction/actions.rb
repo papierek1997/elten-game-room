@@ -1,0 +1,190 @@
+# encoding: UTF-8
+module GameRoomGames
+  using GameRoomLocalization::Translations
+  class CashAuction
+    module Actions
+      def automatic_action_allowed?(replay, actor, table_owner:)
+        !replay.finished? && same_user?(actor, table_owner)
+      end
+
+      def automatic_action_due?(replay, actor, context: nil)
+        return false if replay.finished? || !same_user?(actor, replay.players.first)
+        state, now = replay.state, action_time(replay.state, context)
+        case state[:phase]
+        when :drawing, :spinning then now >= state.fetch(:resume_at, 0)
+        when :auction then now >= state[:auction_deadline]
+        when :question_pending then true
+        when :opening_chests then R.percentage_chests?(state) && now >= state[:open_chests_at]
+        else false
+        end
+      end
+
+      def automatic_action(replay, actor, context: nil)
+        return nil unless automatic_action_due?(replay, actor, context: context)
+        action = {drawing: 'wheel', spinning: 'auction_start', auction: 'auction_closed', question_pending: 'question',
+          opening_chests: 'open_chests'}[replay.state[:phase]]
+        {'kind'=>'automatic', 'action'=>action}
+      end
+
+      def action_for(selection, replay, actor, context: nil)
+        return [:finished, nil] if replay.finished?
+        state, seat = replay.state, player_index(replay.players, actor)
+        now = action_time(state, context)
+        if selection['kind'] == 'automatic'
+          return [:invalid, nil] unless same_user?(actor, replay.players.first) && automatic_action_due?(replay, actor, context: context)
+          expected = automatic_action(replay, actor, context: context)['action']
+          return [:invalid, nil] unless selection['action'] == expected
+          case expected
+          when 'wheel' then return [:ok, server_seed_plan('wheel', template: "#{state[:round]+1}|{seed}")]
+          when 'auction_start' then return [:ok, event_plan('auction_start', (state[:round]+1).to_s)]
+          when 'auction_closed' then return [:ok, event_plan('auction_closed', [state[:round], state[:bid_revision], state[:auction_deadline]].join('|'))]
+          when 'question' then return [:ok, server_seed_plan('question', template: "#{state[:round]}|#{state[:bid_revision]}|{seed}")]
+          when 'open_chests' then return [:ok, server_seed_plan('open_chests', template: "#{state[:round]}|#{state[:revision]}|{seed}")]
+          end
+        end
+        return [:not_your_turn, nil] unless seat
+        if selection['action'] == 'open_chest'
+          return [:invalid, nil] if R.percentage_chests?(state)
+          return [:invalid, nil] unless state[:phase] == :opening_chests && state[:chests][seat] > 0 &&
+            selection['round'] == state[:round] && selection['remaining'] == state[:chests][seat]
+          return [:ok, server_seed_plan('chest', template: "#{state[:round]}|#{seat}|#{state[:chests][seat]}|{seed}")]
+        end
+        return [:not_your_turn, nil] if state[:eliminated][seat]
+        if state[:phase] == :auction
+          return [:invalid, nil] unless selection['kind'] == 'question' && selection['question_id'] == auction_id(state)
+          return [:invalid, nil] if state[:passed][seat] || now >= state[:auction_deadline]
+          if selection['action'] == 'pass' && !R.revised?(state)
+            return [:invalid, nil] if seat == state[:leader]
+            return [:ok, event_plan('pass', state[:round].to_s)]
+          end
+          return [:invalid, nil] unless selection['action'] == 'submit'
+          text = selection['answer'].to_s.strip
+          maximum = state[:cash][seat] + state[:contributions][seat]
+          amount = if text.match?(/\Aa\z/i)
+            maximum
+          elsif text.match?(/\A[0-9]{1,8}\z/)
+            text.to_i
+          end
+          all_in = amount == maximum && state[:cash][seat].positive?
+          return [:invalid_bet, nil] unless amount && amount <= maximum && (all_in || amount > state[:highest])
+          return [:invalid_bet, nil] if amount < R.opening_bid_minimum(state)
+          return [:invalid_bet, nil] if R.revised?(state) && amount <= state[:highest]
+          return [:ok, event_plan(all_in ? 'all_in' : 'bid', "#{state[:round]}|#{amount}")]
+        end
+        if state[:phase] == :answering && seat == state[:leader] && selection['kind'] == 'question' &&
+            selection['question_id'] == question_id(state)
+          if selection['action'] == 'hint' && R.revised?(state) && !state[:hint_used] && state[:cash][seat] >= R.hint_price(state)
+            return [:ok, server_seed_plan('hint', template: "#{state[:round]}|#{state[:bid_revision]}|{seed}")]
+          elsif selection['action'] == 'submit' && selection['answer'].to_s.match?(/\A[0-3]\z/) &&
+              !state.fetch(:hidden_answers, []).include?(selection['answer'].to_i)
+            return [:ok, event_plan('answer', "#{state[:round]}|#{state[:bid_revision]}|#{selection['answer']}")]
+          end
+        end
+        [:invalid, nil]
+      end
+
+      def legal_actions(replay, actor, context: nil)
+        state, seat = replay.state, player_index(replay.players, actor)
+        return [] unless seat && !replay.finished?
+        if state[:phase] == :opening_chests && !R.percentage_chests?(state) && state[:chests][seat] > 0
+          return [{'kind'=>'command', 'action'=>'open_chest', 'round'=>state[:round], 'remaining'=>state[:chests][seat]}]
+        end
+        return [] if state[:eliminated][seat]
+        if state[:phase] == :auction && !state[:passed][seat] && action_time(state, context) < state[:auction_deadline]
+          base = {'kind'=>'question', 'question_id'=>auction_id(state)}
+          actions = !R.revised?(state) && seat != state[:leader] ? [base.merge('action'=>'pass')] : []
+          maximum = state[:cash][seat] + state[:contributions][seat]
+          minimum = R.opening_bid_minimum(state)
+          return actions if maximum < minimum
+          amount = [state[:highest] + [state[:options]['ante'], 1].max, maximum].min
+          if R.revised?(state)
+            increment = [state[:options]['ante'], 1, (maximum + 99) / 100].max
+            amount = [state[:highest] + increment, maximum].min
+            budget = bot_bid_budget(state, seat, maximum)
+            amount = [state[:highest] + 1, minimum].max if amount > budget && state[:highest] < budget
+          end
+          actions << base.merge('action'=>'submit', 'answer'=>amount.to_s) if amount > state[:highest] && amount >= minimum
+          can_raise = maximum >= minimum && (!R.revised?(state) || maximum > state[:highest])
+          actions << base.merge('action'=>'submit', 'answer'=>'A') if can_raise && state[:cash][seat].positive? && (maximum > amount || amount <= state[:highest])
+          return actions
+        elsif state[:phase] == :answering && seat == state[:leader]
+          return (0..3).reject { |index| state.fetch(:hidden_answers, []).include?(index) }.map { |index| {'kind'=>'question', 'action'=>'submit', 'question_id'=>question_id(state), 'answer'=>index.to_s} }
+        end
+        []
+      end
+
+      def bot_observation(replay, actor)
+        state = replay.state
+        {phase: state[:phase], round: state[:round], players: replay.players.map(&:dup),
+          seat: player_index(replay.players, actor), cash: state[:cash].dup, pot: state[:pot],
+          highest: state[:highest], leader: state[:leader], passed: state[:passed].dup,
+          contributions: state[:contributions].dup, eliminated: state[:eliminated].dup,
+          chests: state[:chests].dup, question: question_bank(state[:options]).public_view(state[:question])}
+      end
+
+      def move_error_for(status, selection: nil, replay: nil, actor: nil)
+        return super unless status == :invalid_bet && replay
+        seat = player_index(replay.players, actor)
+        return super unless seat
+        maximum = replay.state[:cash][seat] + replay.state[:contributions][seat]
+        minimum = R.opening_bid_minimum(replay.state)
+        if minimum.positive?
+          return _('You do not have enough points for the first bid (minimum: %{minimum}).') % {minimum: minimum} if maximum < minimum
+          return _('Enter an amount from %{minimum} to %{maximum}, or A for all-in.') % {minimum: minimum, maximum: maximum}
+        end
+        if R.revised?(replay.state) && maximum <= replay.state[:highest]
+          return _('You do not have enough points to beat the highest bid.')
+        end
+        return _('You have no points available to raise the bid.') unless replay.state[:cash][seat].positive?
+        return _('Enter %{maximum} or A to go all-in.') % {maximum: maximum} if maximum <= replay.state[:highest]
+        _('Enter an amount above %{minimum} and at most %{maximum}, or A for all-in.') % {
+          minimum: replay.state[:highest], maximum: maximum}
+      end
+
+      def bot_action_score(replay, actor, action, context: nil)
+        state, seat = replay.state, player_index(replay.players, actor)
+        return 0.0 unless state[:phase] == :auction && action['action'] == 'submit'
+        maximum = state[:cash][seat] + state[:contributions][seat]
+        amount = action['answer'] == 'A' ? maximum : action['answer'].to_i
+        budget = bot_bid_budget(state, seat, maximum)
+        return -10.0 if amount > budget
+
+        # Prefer the cheaper legal bid, not an unnecessary all-in. The limit
+        # applies to the full stake so repeated small raises cannot evade it.
+        1.0 + (budget - amount).to_f / [budget, 1].max
+      end
+
+      private
+
+      def bot_bid_budget(state, seat, maximum)
+        if R.percentage_chests?(state) && state[:chest]
+          # Expected adjustment is +3.6%, but the paid bid also lowers that
+          # base. This conservative public-data ceiling is fixed per auction.
+          return maximum * 36 / 1036
+        end
+        rounds_left = [state[:options]['rounds'] - state[:completed_rounds], 1].max
+        active = R.active_seats(state)
+        # On the last round, passing cannot rescue a player who is behind.
+        trailing = active.any? { |other| state[:cash][other] + state[:contributions][other] > maximum }
+        return maximum if rounds_left == 1 && trailing
+
+        reserve = [state[:options]['ante'] * (rounds_left - 1), maximum / 2].min
+        # Current auctions have no permanent Pass move. Their budget must not
+        # grow when other bidders pay: otherwise a bot that just declined can
+        # re-enter repeatedly and keep extending the same auction. The carried
+        # pool plus antes is fixed throughout bidding, and is all public data.
+        paid = R.revised?(state) ? state[:contributions].sum : state[:contributions][seat]
+        pool = [state[:pot] - paid, 0].max
+        budget = [maximum / [rounds_left, 4].max, pool / 3].max
+        if (state[:pass_counts][seat] + 1) % 3 == 0 && (!R.revised?(state) || state[:contributions][seat].zero?)
+          penalty = R.inactivity_penalty(state, seat)
+          budget = [budget, state[:contributions][seat] + penalty].max
+        end
+        [budget, [maximum - reserve, 0].max].min
+      end
+
+      def action_time(state, context); (context&.now || GameRoomSessionClock.for_state(state)).to_i; end
+    end
+    include Actions
+  end
+end

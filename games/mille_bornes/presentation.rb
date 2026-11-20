@@ -30,7 +30,7 @@ module GameRoomGames
           choices: choices, choice_header: GameRoomContent.utf8(repair_choices ? _("Choose a problem to remove") : _("Choose an opponent")),
           sort_keys: card_sort_keys(card, position), confirmation: confirmation)
       end
-      hand_spec = GameSurfaces::CardTableSpec.new(zones: [GameSurfaces::CardZoneSpec.new(
+      hand_spec = GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: [GameSurfaces::CardZoneSpec.new(
         id: "hand", header: GameRoomContent.utf8(_("Your hand")), cards: cards,
         empty_label: GameRoomContent.utf8(_("Your hand is empty")), hand_order: hand.dup,
         hand_epoch: [replay.session_identity, state[:seed], state[:round], viewer.to_s.downcase].join(":")

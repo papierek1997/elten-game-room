@@ -4,7 +4,7 @@ def check(value, message)
   NativeOptionTest.assert(value, message)
 end
 
-games = [GameRoomGames::QuizParty.new, GameRoomGames::Scrabble.new,
+games = [GameRoomGames::QuizParty.new, GameRoomGames::CashAuction.new, GameRoomGames::Scrabble.new,
   GameRoomGames::Taboo.new, GameRoomGames::Categories.new, GameRoomGames::DuckRacing.new]
 general_sets = {"en" => "quiz.general", "pl-PL" => "quiz.wikidata", "ru-RU" => "quiz.general.ru"}
 historical_defaults = games.to_h { |game| [game.id, game.default_options] }
@@ -17,7 +17,7 @@ scenarios = []
     key = game.content_language_option_key
     expected = if ui == "pl"
       game.id == "categories" ? "pl" : "pl-PL"
-    elsif ui == "ru" && %w[quiz duck_racing].include?(game.id)
+    elsif ui == "ru" && %w[quiz cash_auction duck_racing].include?(game.id)
       "ru-RU"
     else
       "en"
@@ -30,6 +30,9 @@ scenarios = []
     definitions = game.effective_option_definitions(defaults)
     if game.id == "quiz"
       check(defaults["content_set_id"] == general_sets.fetch(expected), "Quiz did not select the general set")
+    elsif game.id == "cash_auction"
+      pack = GameRoomContent.registry.pack_for(game_id: 'quiz', kind: 'quiz', set_id: general_sets.fetch(expected), language_id: expected)
+      check(defaults['content_pack_ids'] == [pack.id], 'Cash Auction did not select only the matching general set')
     elsif game.id == "duck_racing"
       check(defaults["question_sets"] == [general_sets.fetch(expected)], "Duck Racing did not select the matching general set")
     end
@@ -43,6 +46,11 @@ scenarios = []
     if game.id == "quiz"
       set = definitions.find { |definition| definition.key == "content_set_id" }
       check(driver.control(set.key).options == set.choices.map(&:label), "Quiz opened with the wrong set list")
+    elsif game.id == "cash_auction"
+      set = definitions.find { |definition| definition.key == 'content_pack_ids' }
+      checklist = driver.control(set.key)
+      check(checklist.options == set.choices.map(&:label), 'Cash Auction opened with the wrong checklist')
+      check(checklist.multiselections.map { |index| set.choices[index].value } == defaults['content_pack_ids'], 'Cash Auction checked additional topics by default')
     elsif game.id == "duck_racing"
       set = definitions.find { |definition| definition.key == "question_sets" }
       checklist = driver.control(set.key)
@@ -104,12 +112,12 @@ program = NativeOptionTest::Program.new
 stored = {duck.id => {"question_sets" => ["quiz.witcher.books"]}}
 program.define_singleton_method(:read_json) { |_path, default:| stored }
 options = program.send(:remembered_game_option_defaults, duck, duck.effective_option_definitions)
-check(options["question_language"] == "pl-PL" && options["question_sets"] == ["quiz.witcher.books"], "Remembered sets were mixed with another language")
+check(options["question_language"] == "en" && options["question_sets"] == ["quiz.general"], "Duck Racing restored former sets instead of its interface defaults")
 program.send(:remember_multiple_choice_options, duck, duck.effective_option_definitions(options), options)
-check(program.writes.last[1][duck.id]["question_language"] == "pl-PL", "Checklist language was not remembered with the sets")
+check(program.writes.last[1][duck.id].keys == ["challenges"], "Duck Racing persisted its question sets or language")
 stored[duck.id] = {"question_language" => "en", "question_sets" => []}
 options = program.send(:remembered_game_option_defaults, duck, duck.effective_option_definitions)
-check(options["question_sets"] == [], "An explicitly cleared checklist regained a default")
+check(options["question_sets"] == ["quiz.general"], "A former empty preference removed the general default")
 
 # A content registry missing the preferred pack still defaults to English.
 # Merely asking for defaults must not load any lazy resource.

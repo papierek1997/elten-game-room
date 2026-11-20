@@ -4,11 +4,14 @@ require_relative "../lib/game_bots"
 require_relative "../lib/blackjack_auction"
 require_relative "../lib/blackjack_social"
 require_relative "../lib/twenty_one_strategy"
+require_relative "../lib/context_help"
 
 module GameRoomGames
   using GameRoomLocalization::Translations
 
   class Blackjack < CardGame
+    def round_pause_seconds(replay); social?(replay.state) ? 0 : GameRoomRoundPause::SECONDS; end
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'none', sort_modes: %w[none], suits: PLAYROOM_SUIT_ORDER, ranks: CARD_RANKS)
     include PublicHistoryAnnouncements
     include BlackjackAuction
     include BlackjackSocial
@@ -17,6 +20,9 @@ module GameRoomGames
 
     def id; "blackjack"; end
     def name; _("Blackjack"); end
+
+    def round_timing_start_kinds; [:ante]; end
+    def round_timing_end_kinds; [:settlement]; end
     def short_description; _("Beat the automatic dealer without exceeding 21; play with virtual table chips."); end
     def minimum_players; 2; end
     def maximum_players; 6; end
@@ -237,30 +243,33 @@ module GameRoomGames
           cards: actions, empty_label: current_turn_shortcut_text(replay, viewer))])
       end
       hand = displayed_hand(state, viewer)
-      zones = []
+      public_dealer = state[:dealer_revealed] ? state[:dealer] : state[:dealer].take(1)
+      dealer_rows = social?(state) ? [] : public_dealer.map do |card|
+        GameSurfaces::CardListRow.new(id: "dealer:#{card}", label: _("Dealer's card: %{card}") % {card: playing_card_label(card)})
+      end
+      header = name
+      header = _("Dealing player: %{player}; no house hand.") % {player:participant_name(state[:dealing_player])} if social?(state)
       if hand
         player = replay.players.find { |person| same_user?(person, viewer) }
         index = state[:hands].fetch(player).index(hand)
         count, total = state[:hands].fetch(player).size, hand_total(hand[:cards])
-        header = if count > 1
+        hand_header = if count > 1
           _("Your hand %{hand} of %{count}: %{total}") % {hand: index + 1, count: count, total: total}
         else
           _("Your hand; total %{total}.") % {total: total}
         end
-        zones.concat(card_hand_surface(hand[:cards], header: header, hand_epoch: [state[:round], player.to_s.downcase, index]).zones)
+        spec = card_hand_surface(hand[:cards], header: social?(state) ? [header, hand_header].join("\n") : hand_header,
+          hand_epoch: [state[:round], player.to_s.downcase, index])
+        spec.zones.first.leading_rows = dealer_rows
+        if legal_actions(replay, viewer).any? { |action| action['action'] == 'stand' }
+          spec.zones.first.activation_action = GameSurfaces::Action.new(kind: 'command', name: 'stand')
+          spec.zones.first.activation_tip = GameRoomContextHelp.shortcut_tip(_("Enter"), _("Keep your total"))
+        end
+        return spec
       end
-      labels = {"hit" => _("Draw a card"), "stand" => _("Keep your total"), "double" => _("Double down"), "split" => _("Split pair"), "deal"=>_("Deal cards")}
-      actions = legal_actions(replay, viewer).map do |action|
-        GameSurfaces::Card.new(id: action["action"], value: action["action"], label: labels.fetch(action["action"]))
-      end
-      public_dealer = state[:dealer_revealed] ? state[:dealer] : state[:dealer].take(1)
-      dealer_text = public_dealer.map { |card| playing_card_label(card) }.join(", ")
-      dealer_text += ", " + _("hidden card") if !state[:dealer_revealed] && state[:dealer].size > 1
-      header = dealer_text.empty? ? _("Blackjack actions") : _("Dealer: %{cards}") % {cards: dealer_text}
-      header = _("Dealing player: %{player}; no house hand.") % {player:participant_name(state[:dealing_player])} if social?(state)
-      zones << GameSurfaces::CardZoneSpec.new(id: "actions", header: header, cards: actions,
-        empty_label: result_text(replay) || current_turn_shortcut_text(replay, viewer))
-      GameSurfaces::CardTableSpec.new(zones: zones)
+      GameSurfaces::CardTableSpec.new(default_sort: default_hand_sort, sort_modes: hand_sort_modes, zones: [
+        GameSurfaces::CardZoneSpec.new(id: "hand", header: result_text(replay) || current_turn_shortcut_text(replay, viewer), cards: [], leading_rows: dealer_rows,
+          empty_label: result_text(replay) || current_turn_shortcut_text(replay, viewer))])
     end
 
     def custom_game_shortcuts(replay, viewer)
@@ -268,6 +277,13 @@ module GameRoomGames
         return [GameShortcut.new(key:"d",label:_("deal the next social blackjack hand"),kind: :action,action_kind:"command",action_name:"deal")]
       end
       return auction_shortcuts(replay, viewer) if replay.state[:phase] == :betting && auction_rules?(replay.state[:options])
+      if replay.state[:phase] == :playing
+        choices = {'double'=>['d', _("Double down")], 'split'=>['p', _("Split pair")]}
+        return legal_actions(replay, viewer).filter_map do |action|
+          key, label = choices[action['action']]
+          GameShortcut.new(key: key, label: label, kind: :action, action_kind: 'command', action_name: action['action']) if key
+        end
+      end
       return [] unless replay.state[:phase] == :betting && same_user?(replay.current_player, viewer)
       maximum = maximum_bet(replay.state)
       [GameShortcut.new(key: "b", label: _("set your bet before the deal"), kind: :number_input,
@@ -283,7 +299,7 @@ module GameRoomGames
         {message: replay.state[:chips].map { |person, chips| "#{participant_name(person)}: #{auction_amount(chips)}" }.join("; ")}
       when :hand
         hand = displayed_hand(replay.state, viewer)
-        {message: hand ? blackjack_hand_text(hand[:cards]) : _("Your hand is empty")}
+        {message: hand ? blackjack_hand_text(hand[:cards]) : _("Your hand is empty"), hand_id: nil}
       when :draw_card
         if replay.state[:phase] == :playing && !replay.finished? && same_user?(replay.current_player, viewer)
           {kind: :action, action_kind: "command", action_name: "hit"}
@@ -316,22 +332,40 @@ module GameRoomGames
     end
 
     def blackjack_bot_plan(state, observation)
+      weights = blackjack_public_weights(state,observation)
       if social?(state)
         completed = state[:hands].filter_map do |player, hands|
           [player, hand_total(hands.first[:cards])] if hands.first[:done]
         end.to_h
         stand_value, bust_value = GameRoomTwentyOneStrategy.pot_values(auction_pots(state),
-          state[:current_player], completed, GameRoomTwentyOneStrategy.card_opponent)
-        return GameRoomTwentyOneStrategy::Plan.new(stand_value, bust_value: bust_value) { GameRoomTwentyOneStrategy::CARDS }
+          state[:current_player], completed, GameRoomTwentyOneStrategy.card_opponent(weights:weights))
+        return GameRoomTwentyOneStrategy::Plan.new(stand_value, bust_value: bust_value) { weights }
       end
       upcard = bot_card_value(observation["dealer_upcard"])
-      dealer = GameRoomTwentyOneStrategy.card_dealer(upcard)
+      dealer = GameRoomTwentyOneStrategy.card_dealer(upcard,weights:weights)
       stand_value = lambda do |sum|
         dealer.sum do |score, probability|
           score == GameRoomTwentyOneStrategy::BUST || sum > score ? probability : (sum < score ? -probability : 0)
         end
       end
-      GameRoomTwentyOneStrategy::Plan.new(stand_value, bust_value: -1) { GameRoomTwentyOneStrategy::CARDS }
+      GameRoomTwentyOneStrategy::Plan.new(stand_value, bust_value: -1) { weights }
+    end
+
+    def blackjack_public_weights(state,observation)
+      # The current deal has a fresh six-pack shoe (one deck in social mode).
+      # Only our cards and the exposed dealer card are known removals. Never
+      # inspect the shoe order, hole card or unfinished opponents' hands.
+      copies = social?(state) ? 1 : 6
+      weights = GameRoomTwentyOneStrategy::CARDS.transform_values { |n| n*4*copies }
+      own = state[:hands].fetch(state[:current_player],[]).flat_map { |hand|hand[:cards] }
+      known = own + (social?(state) ? [] : [observation['dealer_upcard']])
+      known.each do |card|
+        value = bot_card_value(card)
+        weights[value] -= 1 if weights[value]&.positive?
+      end
+      # Subsequent hypothetical draws still use this fixed approximation;
+      # it is a public composition estimate, not a claim of exact shoe search.
+      weights.reject { |_value,count|count.zero? }
     end
 
     def prepare_auction(state, rotate_dealer: true)

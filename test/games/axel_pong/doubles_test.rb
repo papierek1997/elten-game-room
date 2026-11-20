@@ -90,7 +90,8 @@ spec = game.surface_spec(running, 'D')
 surface = GameSurfaces.build(spec)
 $spoken_messages.clear
 surface.handle_command('scores')
-assert($spoken_messages == ['Team A: A and B. Points: 3. Team B: C and D. Points: 0.'], 'S does not read both teams, partners and scores with punctuation')
+assert($spoken_messages == ["Team A: A and B. Points: 3. Team B: C and D. Points: 0.\nScore limit: 11 points."],
+  'S does not read both teams, partners, scores and the winning target with punctuation')
 surface.present({'server' => 3, 'receiver' => 1, 'p' => [4, 8, 12, 16], 'shields' => [0, 0, 0, 0]}, 'Ready.')
 $spoken_messages.clear
 surface.handle_command('server')

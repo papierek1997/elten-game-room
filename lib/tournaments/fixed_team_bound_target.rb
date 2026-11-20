@@ -63,6 +63,7 @@ module GameRoomTournaments
       game.prepared_team_assignment(options, players: players)
     end
 
+
     def self.validate_readback!(readback, owner, capacity:)
       table = readback['table']
       metadata = table.slice('game', 'game_options', 'name', 'owner', 'private', 'resume_save_id').merge(

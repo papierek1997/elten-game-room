@@ -40,6 +40,16 @@ module GameSurfaces
       @surfaces.flat_map(&:fields)
     end
 
+    def displayed_hand_cards(hand_id)
+      @surfaces.each do |surface|
+        next unless surface.respond_to?(:displayed_hand_cards)
+
+        cards = surface.displayed_hand_cards(hand_id)
+        return cards unless cards == nil
+      end
+      nil
+    end
+
     def action_guard=(guard)
       super
       @surfaces.each { |surface| surface.action_guard = guard }

@@ -76,9 +76,11 @@ module GameRoomGames
       score += 9 if target == self_id && state[:trains][self_id][:open]
       # Follow only public ends and one's own tiles. A two-step continuation is
       # enough to avoid obvious dead-end doubles, without a permutation search.
-      ends = accessible_trains(state, actor).map { |key| key == target ? ending : state[:trains][key][:end] }
+      available = accessible_trains(state, actor)
+      ends = available.map { |key| key == target ? ending : state[:trains][key][:end] }
       connected = rest.count { |t| ends.any? { |value| Tiles.fits?(t, value) } }
       score += connected * 5
+      score += (Tiles.playable_count(rest,ends) - connected) * 6
       if Tiles.double?(tile)
         score += connected > 0 ? 22 : -20
         score += 1000 if rest.one? && ends.any? { |value| Tiles.fits?(rest.first, value) }

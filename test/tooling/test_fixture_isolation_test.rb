@@ -35,7 +35,7 @@ imports = paths.flat_map do |relative|
 end
 assert(observed_subjects.sort == subjects.sort, 'A cleanup subject exception is stale, missing or duplicated')
 assert(imports.empty?, "A test still imports another scenario: #{imports.join(', ')}")
-%w[audio_ball_point_audio axel_pong_doubles_lobby audio_tutorial_native table_lifecycle_controls_2 no_bot_table_control post_233_ping table_notice_presentation game_option_encoding score_announcements card_reshuffle translation_reference].each do |name|
+%w[audio_ball_point_audio axel_pong_doubles_lobby audio_tutorial_native table_lifecycle_controls_2 no_bot_table_control post_233_ping table_notice_presentation game_option_encoding score_announcements card_reshuffle translation_reference makao_positions].each do |name|
   helper = File.join(root, "test/support/#{name}.rb")
   output, status = Open3.capture2e(RbConfig.ruby, "-r", helper, "-e", 'puts "fixture loaded"')
   assert(status.success? && output.lines.last.to_s.strip == "fixture loaded", "#{name}: fixture failed: #{output}")

@@ -85,7 +85,46 @@ module GameRoomRummyPlanner
       beam.sort_by! { |p| [-utility(p, debts), -p[:points], p[:mask]] }
       beam = beam.first(BEAM)
     end
-    beam.select { |p| !p[:groups].empty? && p[:points] >= minimum }.first(8)
+    result = beam.select { |p| !p[:groups].empty? && p[:points] >= minimum }.first(8)
+    exact = exact_plan(hand,candidates,minimum,debts) if hand.size<=18
+    return result unless exact
+
+    ([exact]+result).uniq { |p|[p[:mask],p[:points]] }
+      .sort_by { |p|[-utility(p,debts),-p[:points],p[:mask]] }.first(8)
+  end
+
+  # A pivot either remains in hand or belongs to one chosen production meld.
+  # Carry the entry threshold and outstanding debts through the memo key;
+  # unconstrained maximum coverage alone can choose an illegal first meld.
+  def exact_plan(hand, candidates, minimum, debts, limit: 8_000)
+    by_bit = hand.each_index.to_h { |i|[i,candidates.select { |p|p[:mask][i]==1 }] }
+    memo, nodes = {}, 0
+    solve = lambda do |mask,needed,owed|
+      return needed.zero? ? {groups:[],mask:0,points:0,cards:[]} : nil if mask.zero?
+      key = [mask,needed,owed]
+      return memo[key] if memo.key?(key)
+      nodes += 1
+      throw :rummy_exact_budget if nodes>limit
+      Thread.pass if (nodes % 128).zero?
+      bit = (mask & -mask).bit_length-1
+      best = solve.call(mask & ~(1 << bit),needed,owed)
+      by_bit.fetch(bit).each do |candidate|
+        next unless (candidate[:mask] & mask)==candidate[:mask]
+        remaining = owed.dup
+        candidate[:cards].each do |card|
+          found = remaining.index(RULES.face(card))
+          remaining.delete_at(found) if found
+        end
+        tail = solve.call(mask ^ candidate[:mask],[needed-candidate[:points],0].max,remaining)
+        next unless tail
+        plan = {groups:candidate[:groups]+tail[:groups],mask:candidate[:mask]|tail[:mask],
+          points:candidate[:points]+tail[:points],cards:candidate[:cards]+tail[:cards]}
+        best = plan if !best || utility(plan,owed)>utility(best,owed)
+      end
+      memo[key] = best
+    end
+    result = catch(:rummy_exact_budget) { solve.call((1 << hand.size)-1,minimum,debts.sort) }
+    result if result && !result[:groups].empty?
   end
 
   def repaid(cards, debts)

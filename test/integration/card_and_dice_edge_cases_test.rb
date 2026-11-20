@@ -218,7 +218,7 @@ sound_cases = [
   [makao, "play", "7H|", "play"], [makao, "draw", "", "draw"],
   # Poker's accepted state transitions, including private exchange receipts,
   # have separate coverage in poker/accepted_sounds_contract_test.rb.
-  [yahtzee, "roll", "2,3,4,4,4", "roll"], [yahtzee, "score", "chance", "play"],
+  [yahtzee, "roll", "2,3,4,4,4", "roll"], [yahtzee, "score", "chance", "five_dice_record"],
   [monopoly, "roll", "1,2,seed", "roll"], [monopoly, "buy", "", "play2"]
 ]
 sound_cases.each do |game, action, value, expected|

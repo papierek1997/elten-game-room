@@ -1,5 +1,6 @@
 require_relative '../support/tournament_native'
 require File.join(EltenTestHost.root, 'src/ui/controls/grid_box')
+Object.send(:remove_const, :GridBox) if Object.const_defined?(:GridBox, false)
 Object.const_set(:GridBox, EltenAPI::Controls.const_get(:GridBox))
 require_relative '../support/tournament_individual_execution'
 require_relative '../support/tournament_declared_team_execution'
@@ -119,9 +120,28 @@ with_fixture(game: audio_ball ? 'audio_ball' : 'axel_pong', names: teams ? %w[Al
         commands << [command, Thread.current]
         original_command.call(command, payload)
       end
-      form.trigger(:key_s, audio_ball, false, false)
-      form.trigger(:key_w, false, false, false)
-      form.trigger(:key_w, false, true, false)
+      # Current native handlers use press-time state, not the later Boolean
+      # event arguments. Exercise the same snapshot boundary as real input.
+      press = lambda do |key, shift: false, control: false|
+        EltenAPI::KeyboardState.reset
+        raw = "\0" * 256
+        code = EltenAPI::KeyboardScheme.key_code(key) || form.__send__(:keyboard_code, key).first
+        raw.setbyte(code, 0x80)
+        raw.setbyte(0x10, 0x80) if shift
+        raw.setbyte(EltenAPI::KeyboardScheme.key_code(EltenAPI::KeyboardScheme.main_modifier), 0x80) if control
+        EltenAPI::KeyboardState.update(raw_state: raw, events: [[code, true, raw]])
+        $input_frame_serial = $input_frame_serial.to_i + 1
+        $keyboard_state_frame_serial = $input_frame_serial
+        $keyboard_state_frame_thread = Thread.current
+        expected = (shift ? [:shift] : []) + (control ? [:control] : [])
+        assert_equal(expected.sort, GameRoomUI.modifiers_when_pressed(form, key), 'Native shortcut press snapshot was not installed')
+        form.trigger(("key_" + key.to_s).to_sym, shift, control, false)
+      ensure
+        EltenAPI::KeyboardState.clear_current_frame
+      end
+      press.call(:s, shift: audio_ball)
+      press.call(:w)
+      press.call(:w, control: true)
       assert_equal(['scores', 'hurry'], commands.map(&:first))
       assert(commands.all? { |command| command.last == Thread.current }, 'Client shortcuts must remain on active UI')
       button = form.fields.grep(Button).find { |field| field.label == translate.call('Check status') }

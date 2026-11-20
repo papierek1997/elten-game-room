@@ -20,7 +20,8 @@ checks = {forms:0,checkbox_states:0,labels:0}
     surface.on_action { |action| selected = action }
     surface.fields.first.trigger(:select,[0])
     if selected
-      status, = game.action_for(selected,replay,'Alice')
+      context = GameRoomGames::ActionContext.new(random_source: GameRoomRandom::SeededSource.new(17))
+      status, = game.action_for(selected,replay,'Alice',context:context)
       raise "#{game.id} surface rejected" unless status==:ok
     end
     form = GameRoomUI::Form.new(surface.fields,program:EltenGameRoom.allocate,quiet:true)

@@ -1,6 +1,7 @@
 require_relative '../games/catalog'
 require_relative 'support/private_simulation'
 require_relative 'support/model_contract'
+require_relative 'support/historical_quiz'
 include GameRoomTest::Assertions
 
 corpus = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/histories.json'), encoding: 'UTF-8'))
@@ -31,6 +32,13 @@ assert_equal(without_replay_hashes.call(previous_quiz_v2), without_replay_hashes
 poker = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/poker.json'), encoding: 'UTF-8'))
 previous_poker = corpus.fetch('cases').find { |item| item.fetch('game') == 'poker' }
 assert_equal(without_replay_hashes.call(previous_poker), without_replay_hashes.call(poker), 'Poker wording must not replace the reference actions or RNG')
+# Typed public bot evidence changes only the two metadata fields on existing
+# bet/showdown history entries. The semantic regression reproduces all 17 old
+# full hashes after removing precisely those additions, not game state/text.
+poker_evidence = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v3/poker_bot_evidence.json'), encoding: 'UTF-8'))
+(poker.fetch('steps') + [poker.fetch('final')]).each_with_index do |checkpoint, index|
+  checkpoint['replay'] = poker_evidence.fetch(index.to_s)
+end
 # Categories adds pause, participant-departure and confirmed-cleanup metadata.
 # A separate semantic regression verifies their exact values and reproduces
 # both historical full replay hashes using detached copies.
@@ -72,7 +80,24 @@ cases << JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/mahjong-
 new_games = %w[blackjack blackjack_dice bingo dice_poker liars_dice go roulette]
 presentations = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/new_games_presentation.json'), encoding: 'UTF-8'))
 assert((presentations.keys - new_games).empty?, 'Unexpected new-game presentation override')
+feedback = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v3/new_games_feedback.json'), encoding: 'UTF-8'))
+assert((feedback.keys - %w[kosciane balut backgammon]).empty?, 'Unexpected new-game feedback override')
+# PR #71 adds per-column cue metadata, not scoring changes. The separate
+# five-dice feedback contract reconstructs every old hash without that metadata.
+dice_feedback = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v4/dice_general_feedback.json'), encoding: 'UTF-8'))
+assert_equal(['kosciane'], dice_feedback.keys)
+feedback.merge!(dice_feedback)
+# Compared with 2943170 on the exact original inputs: only presentation history
+# differs, including move metadata. Full state, moves, legal ordering and RNG agree.
+presentations.merge!(feedback)
+new_games += %w[kosciane balut french_tarot backgammon]
 (%w[bouillabaisse scopa mania_pisania] + new_games).each do |id|
+  if id == 'dice_poker'
+    # The point-only variant was deliberately removed. This reviewed hidden
+    # two-round trace retains the former chip game's moves, legal order and RNG.
+    cases << JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/dice_poker_hidden.json'), encoding: 'UTF-8'))
+    next
+  end
   item = JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding: 'UTF-8'))
   checkpoints = item.fetch('steps') + [item.fetch('final')]
   presentations.fetch(id, {}).each do |index, hash|
@@ -84,12 +109,48 @@ assert((presentations.keys - new_games).empty?, 'Unexpected new-game presentatio
   cases << item
 end
 duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/duck_racing.json'), encoding: 'UTF-8'))
+cash_auction = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/cash_auction.json'), encoding: 'UTF-8'))
+# Set-qualified category announcements are the only difference in the original
+# eight-auction trace. The separate feedback regression restores every old
+# full hash without changing moves, state, legal order, actors or random draws.
+cash_feedback = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/cash_auction_feedback.json'), encoding: 'UTF-8'))
+cash_feedback.each do |index, hash|
+  position = Integer(index, 10)
+  assert(position.between?(0, cash_auction.fetch('steps').size - 1) && hash.match?(/\A[0-9a-f]{64}\z/))
+  cash_auction.fetch('steps').fetch(position)['replay'] = hash
+end
+previous_darts = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/darts.json'), encoding: 'UTF-8'))
+darts = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/darts.json'), encoding: 'UTF-8'))
+darts_without_replay_hashes = lambda do |item|
+  item.merge('steps' => item.fetch('steps').map { |step| step.reject { |key, _| key == 'replay' } })
+end
+expected_darts = darts_without_replay_hashes.call(previous_darts)
+expected_darts['session'] = previous_darts.fetch('session').merge('options' => JSON.generate(
+  JSON.parse(previous_darts.fetch('session').fetch('options')).except('mouse_input')))
+assert_equal(expected_darts, darts_without_replay_hashes.call(darts),
+  'Darts personal mouse preference must not replace the reference actions, state or RNG')
+cases << JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v1/billiards.json'), encoding: 'UTF-8'))
+%w[cribbage belote jass hearts].each do |id|
+  item = JSON.parse(File.read(File.join(__dir__, "fixtures/contracts/v1/#{id}.json"), encoding: 'UTF-8'))
+  if id == 'hearts'
+    # An explicit default-limit option changes state, not the 100-point rules.
+    # limit_contract_test reproduces every original hash without that one field
+    # and verifies unchanged inputs, legal moves, actors and subsequent RNG.
+    hashes = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/hearts_limit.json')))
+    (item.fetch('steps') + [item.fetch('final')]).each_with_index do |checkpoint,index|
+      checkpoint['replay'] = hashes.fetch(index.to_s)
+    end
+  end
+  cases << item
+end
 expected_ids = GameRoomGames::CATALOG.ids.reject { |id| %w[axel_pong audio_ball].include?(id) }.sort
-assert_equal(expected_ids, (cases.map { |item| item.fetch('game') } + [duck.fetch('game')]).sort, 'corpus must explicitly cover every turn-based game')
+custom_games = [duck, cash_auction, darts].map { |item| item.fetch('game') }
+assert_equal(expected_ids, (cases.map { |item| item.fetch('game') } + custom_games).sort, 'corpus must explicitly cover every turn-based game')
 assert((ARGV - expected_ids).empty?, 'unknown game requested for contract verification')
 cases = cases.select { |item| ARGV.include?(item.fetch('game')) } unless ARGV.empty?
 cases.each do |item|
   game = GameRoomGames::CATALOG.build(item.fetch('game'))
+  game.extend(GameRoomTest::HistoricalQuizQuestionProducer) if game.id == 'quiz'
   random = Random.new(item.fetch('seed'))
   SecureRandom.define_singleton_method(:hex) { |n = 16| Array.new(n) { random.rand(256).to_s(16).rjust(2, '0') }.join }
   env = GameRoomTest::PrivateSimulation.new_game(game: game, players: item.fetch('players'), options: item.fetch('options'), seed: item.fetch('seed'))
@@ -105,10 +166,23 @@ cases.each do |item|
   puts "#{game.id}: #{item.fetch('steps').length} transitions, full/incremental replay, input ownership, action order and RNG OK"
 end
 
+if ARGV.empty? || ARGV.include?('cash_auction')
+  require_relative 'support/cash_auction_model_contract'
+  assert_equal(cash_auction, GameRoomTest::CashAuctionModelContract.capture, 'Cash Auction native public protocol contract changed')
+  puts 'cash_auction: eight auctions, competing bids, questions, carryover, chest settlement, cold/incremental replay, legal order and RNG OK'
+end
+
 if ARGV.empty? || ARGV.include?('duck_racing')
   require_relative 'support/duck_model_contract'
   assert_equal(duck, GameRoomTest::DuckModelContract.capture(legacy: true), 'Historical Duck public protocol contract changed')
   current_duck = JSON.parse(File.read(File.join(__dir__, 'fixtures/contracts/v2/duck_racing.json'), encoding: 'UTF-8'))
   assert_equal(current_duck, GameRoomTest::DuckModelContract.capture, 'Current Duck public protocol contract changed')
   puts 'duck_racing: historical ready/begin and current last-ready startup, three rolls, settlement, race continuation, full/incremental replay and RNG OK'
+end
+
+if ARGV.empty? || ARGV.include?('darts')
+  require_relative 'support/darts_model_contract'
+  assert_equal(darts, GameRoomTest::DartsModelContract.capture,
+    'Darts start, throws, tie-break or replay contract changed')
+  puts 'darts: durable seed, two three-dart turns, sudden death, full replay, input ownership, action order and RNG OK'
 end

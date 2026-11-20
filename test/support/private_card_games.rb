@@ -1,14 +1,15 @@
 require_relative 'session_runner'
 require_relative 'native_private_pools'
+require_relative 'clock_event_contract'
 
 module PrivateCardGamesTest
   module_function
 
-  def create(game, users:, options: {}, random_values: nil)
+  def create(game, users:, options: {}, random_values: nil, clock: nil)
     marker = {'publication_ref'=>{'author'=>users.first, 'publication_key'=>'private-cards'},
       'schedule_id'=>'a'*64, 'match_id'=>'b'*64, 'leg'=>1}
     h = NativeRoomHarness.new(game: game, users: users, tournament: marker,
-      options: game.default_options.merge('bot_delay'=>0).merge(options))
+      options: game.default_options.merge('bot_delay'=>0).merge(options), clock: clock)
     h.start
     h.view(users.first).next_random_values = random_values if random_values
     runners = users.to_h { |user| [user, runner_for(h, user)] }
@@ -16,8 +17,14 @@ module PrivateCardGamesTest
     [h, runners]
   end
 
-  def tick(h, runners)
+  def tick(h, runners, advance_pause: true)
     runners.each { |user, runner| step(h, runner, user) }
+    if advance_pause && h.clock && runners.values.any? { |runner| runner.send(:round_pause_active?) }
+      before = h.events(h.users.first)
+      runners.each { |user, runner| step(h, runner, user) }
+      assert(h.events(h.users.first) == before, 'Private fixture wrote during the round break')
+      h.clock.advance(GameRoomRoundPause::SECONDS)
+    end
   end
 
   def assert_private(h)

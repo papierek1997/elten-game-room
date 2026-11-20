@@ -151,15 +151,17 @@ module GameRoomMahjong
     # One decision owns its memo and tile inventory. The latter is computed
     # before discarding/calling: a tile leaving our hand is still visible.
     class Efficiency
-      Evaluation = Struct.new(:kind, :distance, :acceptance, :ron, :furiten, :links, :route)
+      Evaluation = Struct.new(:kind, :distance, :acceptance, :ron, :furiten, :links, :route, :value)
 
-      def initialize(variant:, available:, discards: [], completion: nil, dora: [], route: nil)
+      def initialize(variant:, available:, discards: [], completion: nil, dora: [], route: nil, completion_value: nil, lookahead:true)
         @variant, @available, @discards, @completion, @dora = variant, available, discards, completion, dora
         @route = route
+        @completion_value = completion_value
+        @lookahead = lookahead
         @memo = {}
       end
 
-      def discard(concealed, melds, choices, risk: nil)
+      def discard(concealed, melds, choices, risk: nil, push: nil)
         raw = melds.map { |meld| meld.first(2) }
         candidates = choices.uniq.to_h do |kind|
           tiles = concealed.dup
@@ -173,13 +175,26 @@ module GameRoomMahjong
         end
         pool = candidates.keys.select { |kind| candidates.fetch(kind).last == closest }
         best = pool.map(&evaluate).max_by { |item| rank(item, risk) }
+        if @lookahead && closest==1 && (!risk || pool.all? { |kind|risk.call(kind).zero? })
+          # Similar one-away shapes can have very different waits after the
+          # next improvement. Compare at most three in the same public tile
+          # inventory, not the actual wall. Defensive folding remains separate.
+          near = pool.map(&evaluate).select { |item|item.acceptance>=best.acceptance-4 }
+            .sort_by { |item|rank(item,nil) }.reverse.first(3)
+          if near.size>1
+            best = near.max_by do |item|
+              [two_draw_value(candidates.fetch(item.kind).first,melds,item.kind),*rank(item,nil)]
+            end
+          end
+        end
 
         if best.acceptance.zero?
           next_group = candidates.keys.select { |kind| candidates.fetch(kind).last == closest + 1 }
           alternative = next_group.map(&evaluate).select { |item| item.acceptance.positive? }.max_by { |item| rank(item, risk) }
           best = alternative if alternative
         end
-        if risk && !(best.distance.zero? && (best.acceptance >= 2 || risk.call(best.kind).zero?))
+        attack = push ? push.call(best) : best.distance.zero? && (best.acceptance >= 2 || risk && risk.call(best.kind).zero?)
+        if risk && !attack
           safest = candidates.keys.map(&risk).min
           return candidates.keys.select { |kind| risk.call(kind) == safest }.map(&evaluate)
             .max_by { |item| [-item.distance, *rank(item, nil)] }
@@ -191,10 +206,10 @@ module GameRoomMahjong
         raw = melds.map { |meld| meld.first(2) }
         counts = Hand.counts_for(concealed, raw)
         distance ||= Bot.shanten(concealed, melds: raw, variant: @variant, memo: @memo)
-        remaining, ron, furiten = if distance.zero?
+        remaining, ron, furiten, quality = if distance.zero?
           ready(concealed, raw, melds, kind)
         else
-          [advances(counts, raw.length, distance), 0, false]
+          [advances(counts, raw.length, distance), 0, false, 0.0]
         end
         links = counts.each_index.sum do |tile|
           next 0.0 if counts[tile].zero?
@@ -209,10 +224,35 @@ module GameRoomMahjong
           value
         end
         route = @route && distance.positive? ? @route.call(concealed, raw) : 0.0
-        Evaluation.new(kind, distance, remaining, ron, furiten, links, route)
+        Evaluation.new(kind, distance, remaining, ron, furiten, links, route, quality)
       end
 
       private
+
+      def two_draw_value(concealed,melds,discard)
+        population = @available.sum
+        return 0.0 if population<=1
+        raw = melds.map { |meld|meld.first(2) }
+        counts = Hand.counts_for(concealed,raw)
+        (0...34).sum do |tile|
+          number = @available[tile]
+          next 0.0 unless number.positive?
+          counts[tile] += 1
+          advances = Bot.shape_distance(counts,raw.size,@variant,@memo)<1
+          counts[tile] -= 1
+          next 0.0 unless advances
+          available = @available.dup
+          available[tile] -= 1
+          child = self.class.new(variant:@variant,available:available,discards:@discards+[discard],
+            completion:@completion,completion_value:@completion_value,dora:@dora,route:@route,lookahead:false)
+          child.instance_variable_set(:@memo,@memo)
+          drawn = concealed+[tile]
+          next_discard = child.discard(drawn,melds,drawn.uniq)
+          Thread.pass
+          next 0.0 unless next_discard.distance.zero?
+          number.fdiv(population)*next_discard.acceptance.fdiv(population-1)
+        end
+      end
 
       def rank(item, risk)
         cost = risk ? risk.call(item.kind) : 0.0
@@ -221,7 +261,9 @@ module GameRoomMahjong
           # than flexible shapes and a route to the fan minimum.
           return [item.acceptance.positive? ? 1 : 0, item.links + item.route + item.acceptance * 0.2, -item.kind]
         end
-        [item.acceptance * 2 + item.ron + item.route - cost * 3, item.links, -item.kind]
+        unit = @variant == 'riichi' ? 2000.0 : @variant == 'hong_kong' ? 40.0 : 48.0
+        value_bonus = item.value.to_f.positive? ? Math.log2(1 + item.value / unit) * 2 : 0
+        [item.acceptance * 2 + item.ron + item.route + value_bonus - cost * 3, item.links, -item.kind]
       end
 
       def advances(counts, meld_count, distance)
@@ -244,14 +286,19 @@ module GameRoomMahjong
         end
         furiten = !(own_discards & wait_tiles).empty?
         live = ron = 0
+        quality = 0.0
         wait_tiles.each do |tile|
           next unless @available[tile].positive?
 
           tsumo, by_discard = @completion ? @completion.call(concealed + [tile], tile, melds) : [true, true]
           live += @available[tile] if tsumo || (by_discard && !furiten)
           ron += @available[tile] if by_discard && !furiten
+          if @completion_value && (tsumo || by_discard && !furiten)
+            values = @completion_value.call(concealed + [tile], tile, melds)
+            quality += @available[tile] * [tsumo ? values[0] : 0, by_discard && !furiten ? values[1] : 0].max
+          end
         end
-        [live, ron, furiten]
+        [live, ron, furiten, quality.fdiv([live, 1].max)]
       end
     end
   end

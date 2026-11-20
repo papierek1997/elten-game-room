@@ -40,7 +40,7 @@ transport = Object.new
 transport.define_singleton_method(:start) { true }
 app.instance_variable_set(:@transport, transport)
 app.define_singleton_method(:initialize_services) {}
-app.define_singleton_method(:check_server_table_access) {}
+app.define_singleton_method(:check_server_table_access) { |announce: true| }
 app.define_singleton_method(:run_network_task) { |_title, &operation| operation.call }
 invitation = InvitationRepository::PendingInvitation.new(invitation: {"__id"=>7, "table_id"=>12, "sender"=>"Bob", "recipient"=>"Alice"})
 other = InvitationRepository::PendingInvitation.new(invitation: {"__id"=>8, "table_id"=>13, "sender"=>"Carol", "recipient"=>"Alice"})

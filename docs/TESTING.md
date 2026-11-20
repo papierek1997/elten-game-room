@@ -99,6 +99,32 @@ Test local-time roundtrips against the current system clock, but use the shared
 `support/tournament_time.rb` adapter for specific daylight-saving gaps and folds.
 Those cases must run on UTC machines too, without changing Windows time-zone settings.
 
+Multi-round private-card fixtures may opt into
+`ClockEventContract::ManualTime` through `PrivateCardGamesTest.create(clock: ...)`
+or `NativeRoomHarness.new(clock: ...)`. The same clock timestamps the broker's
+ordinary, random and private-pool receipts and supplies each runner's real
+`GameRoomSessionClock` adapter through `runner_for`; fixtures constructing a
+runner directly must inject `h.clock.session_clock` too.
+`PrivateCardGamesTest.tick` checks that paused
+runners write nothing, advances five seconds and leaves the next normal tick
+to resume play. Use `advance_pause: false` when inspecting the boundary itself.
+Do not delete timestamps, disable `GameRoomRoundPause`, busy-loop until wall
+time happens to pass, or increase action budgets to accommodate a scheduling
+break. Fixtures without this explicit clock retain their existing behavior.
+`session/private_fixture_round_pause_test.rb` checks both clock modes, native
+receipt time, blocked writes before five seconds and consecutive audited deals.
+Fault-injected save tests must assert that the intended read failure was
+consumed by each save attempt; a game-rule refusal before the freeze does not
+exercise persistence or rollback.
+
+UI-only scenarios that assume a completed auxiliary-table check should use an
+explicit `GameRoomTest::ServerTableAccess` state from
+`support/server_table_access.rb`, not nil or a stub with only `available?`.
+Its `fetch` raises on unexpected I/O. It does not replace the real probe tests
+in `room/development_table_access_test.rb`, and must not be used to bypass a
+feature's access guard. Keep denied/unchecked feedback separate from successful
+menu dispatch and preserve passive widget entry's `announce_access: false`.
+
 Tests owning Open3 children/readers use `GameRoomTest::OwnedProcessCleanup.run`
 around their body, passing the arrays they populate. The scope records its own
 primary exception before cleanup; an unrelated caller's rescued exception must
@@ -124,6 +150,13 @@ It refuses to overwrite an existing directory. A new version requires a review o
 we do not update expectations in response to a failing test. The quality check compares code
 with `fixtures/quality_baseline.json`; the check itself is tested by `tooling/quality_checks_test.rb`.
 
+A settled-outcome regression must not regenerate its historical game using the
+current bot strategy: the same deal can legally produce different moves and
+winners after a strategy improvement. Preserve accepted events from a pinned
+reference commit and replay every prefix through the production reducer; retain
+the original result assertions and test current bot completion separately.
+`tournaments/tile_winning_units_policy_test.rb` demonstrates this separation.
+
 The `contracts/v1` corpus comes from unchanged `0c86d03` (Ruby 4.0.5, EN).
 It covers 30 turn-based games, up to the first 16 legal moves, synthetic participants,
 seed 137 and a local secret store. Checkpoints verify replay fields,
@@ -133,6 +166,21 @@ are checked against their pattern and normalized to SHA-256 only for comparison.
 Battleships, Categories, Krowa, Scrabble and Taboo have only an initial
 checkpoint; they also require dedicated choice and data tests. The corpus
 does not replace tests of UI, networking, realtime, complete matches or all options.
+
+The separate `v1/kosciane.json` and `v1/balut.json` references cover 16
+reviewed transitions each: initial rolls, partial rerolls, third rolls and
+scoring by both players. They were added with the new models, not used to
+replace any older game's expected state. Complete matches, row/column bonuses,
+joint wins, native randomness, saves and replacement remain separate tests in
+`test/games/five_dice/`.
+
+`v3/poker_bot_evidence.json` records the reviewed replay hashes after adding
+typed public bet/showdown metadata for opponent learning. The original v2
+inputs and hashes are untouched. `games/poker/bot_evidence_contract_test.rb`
+removes exactly those two added metadata fields on detached history entries
+and reproduces all 17 former full hashes, while checking unchanged rule state,
+text, actions, events, actor, legal order and RNG. Updating hashes without this
+semantic proof is not an acceptable way to validate a strategy change.
 
 `fixtures/polish_messages.json` contains independent expected text for
 translation regressions, grouped by the behavior being checked. It comes
@@ -147,6 +195,10 @@ The contract for catalogs, manifests and both native ELTEN builders is checked b
 
 `fixtures/quiz/questions.json` stores approved counts, versions, logical
 question checksums, excluded IDs and selected media assignments.
+Later approved Polish wording edits extend the exact before/after fixture chain
+in `support/quiz_editorial_baseline.rb`; keep the old historical hashes rather
+than refreshing them. Pin historical pack versions explicitly, not relative to
+the current version, and verify that unapproved later edits are still rejected.
 `fixtures/audio_ball/recordings.json` ties current recordings to source
 files and checksums; licenses are described in `THIRD_PARTY_NOTICES.md`. These expectations
 replace the tests' dependency on old reports; they are not automatically
@@ -165,6 +217,7 @@ directory for every task. Add the affected game's or feature's own scenarios.
 | --- | --- | --- |
 | New game, rule or variant | The game's directory, a complete default/variant outcome, refusal and deterministic replay; [model contracts](../test/model_contract_test.rb) when the shared model shape changes; [reference scenario](../test/integration/contributor_game_example_test.rb) for the integration pattern | [Adding a game](ADDING_A_GAME.md), [acceptance](GAME_ACCEPTANCE.md), affected rules |
 | Shared surface, layout or binding | [Surface framework](../test/ui/surface_framework_test.rb), [catalog surfaces](../test/ui/catalog_surface_contract_test.rb), [press snapshots](../test/ui/press_snapshot_native_test.rb), plus actual affected consumers and text-field scope | [UI](UI.md), [card hands](CARD_HAND.md), contextual help |
+| Card-hand order or navigation | [Policy declarations](../test/models/card_hand_order_test.rb), [allowed modes and stale callbacks](../test/ui/card_sort_modes_test.rb), [default/received order](../test/ui/default_hand_sorting_test.rb), [native current-list readout](../test/ui/hand_order_policies_native_test.rb), [interleaved arrows](../test/ui/card_suit_navigation_native_test.rb), plus the changed game's actual initial/received/variant hand | [Required hand-order review](CARD_HAND.md#required-hand-order-regression-review), affected rules/help |
 | Dialog, option or list action | [Native choices](../test/ui/choice_dialog_native_test.rb), [application consumers](../test/ui/app_choice_dialog_native_test.rb), or [native option editor](../test/ui/game_option_editor_native_test.rb), according to control; open/edit/confirm/cancel/return with speech counts | [UI](UI.md), [interaction example](GAME_ACCEPTANCE.md#record-the-interaction-not-just-the-result) |
 | Execution, pending writes or background work | The owning `session/` or `transport/` cases and [pending-operation UI](../test/ui/game_screen_pending_operation_test.rb); concurrent input, own ACK, refusal/uncertainty, covered UI and close | [Architecture](ARCHITECTURE.md), [background execution](BACKGROUND_GAME_EXECUTION.md) |
 | LiveSessions or randomness/private state | [Transport](../test/transport/transport_test.rb), [synchronization](../test/transport/game_sync_test.rb), relevant `live_sessions_*` cases and affected multi-client/game tests; random recipes/private lifecycle tests when those contracts change | [Host API](HOST_API.md), [private state](PRIVATE_STATE.md) |
@@ -183,6 +236,15 @@ generated-content checks only for the inputs/consumers affected: for example
 `ruby tools/compile-rulebooks.rb --check`, `ruby tools/translations.rb check`
 or `ruby tools/export-quiz-text.rb --check`. Generation is a distinct step;
 `--check` must not silently repair the sources being verified.
+
+For new games and affected player text, the
+[text acceptance gate](TRANSLATIONS.md#required-acceptance-gate-for-text-changes)
+is required in addition to the selected mechanics tests. CI checks catalogs and
+generated sources before running its scenario suites; a failure there is not
+evidence that the game tests passed. Do not omit these checks from the local
+preflight or call a contribution ready with known failures. Select further
+edge cases from the [recurring integration risks](GAME_ACCEPTANCE.md#recurring-integration-risks),
+without expanding the task into an unrelated full test campaign.
 
 For a documentation-only change, start with:
 

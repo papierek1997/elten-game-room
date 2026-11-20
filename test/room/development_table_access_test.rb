@@ -19,6 +19,9 @@ class Program
     @server_app_uuid
   end
 
+  # The access fixture has no native program runtime or ranking worker.
+  def self.app_runtime; nil; end
+
   def server_app_uuid
     self.class.server_app_uuid
   end
@@ -160,7 +163,7 @@ client.error = EltenLink::Error.new("apps.tables.stamp_required")
 app.program_main
 assert(entries.length == 1, "Protected tables prevented reaching the interface")
 assert(client.calls == [["game_room_users", :select, { where: { "username" => "papierek" }, limit: 1 }]], "Startup made more than the probe request")
-assert(alerts.length == 1 && alerts.last.start_with?("The server requires an official launcher stamp"), "The restriction was not announced once")
+assert(alerts.length == 1 && alerts.last == GameRoomAvailability.startup(tables: tables), "The complete restriction was not announced once")
 
 menu_options = []
 menu_actions = [:exit]
@@ -182,10 +185,10 @@ assert(client.calls.length == 1, "A disabled optional feature queried a table")
 assert(alerts.length == 1, "Maintenance repeated the development notice")
 
 [:contacts, :online].each { |source| app.send(:show_invite_users, Object.new, source: source) }
-assert(alerts.last(2).all? { |message| message.start_with?("Sending invitations is unavailable because the server requires an official launcher stamp") }, "Invitation sending did not explain the restriction")
+assert(alerts.last(2).all? { |message| message == GameRoomAvailability.unavailable(:invitations, tables: tables) }, "Invitation sending did not explain the restriction")
 menu_actions.replace([:invite_contacts, :exit])
 app.send(:show_main_menu)
-assert(alerts.last.start_with?("Sending invitations is unavailable because the server requires an official launcher stamp"), "The main menu did not explain the invitation restriction")
+assert(alerts.last == GameRoomAvailability.unavailable(:invitations, tables: tables), "The main menu did not explain the invitation restriction")
 assert(client.calls.length == 1, "An invitation shortcut queried a protected table")
 
 # Reusing the same instance must probe again and recover cached repository handles.
@@ -224,9 +227,9 @@ client.write_error = nil
   app.program_main
   assert(client.calls.length == before + 1, "A failed probe was retried during the same launch")
   assert(!tables.available? && !tables.stamp_required?, "#{code} was mistaken for a development restriction")
-  assert(alerts.last.start_with?("Server table access could not be checked."), "An unresolved access check was not explained")
+  assert(alerts.last == GameRoomAvailability.startup(tables: tables) && alerts.last.include?('If you are using developer mode'), "An unresolved access check was not explained conditionally")
   app.send(:show_invite_users, Object.new, source: :online)
-  assert(alerts.last.start_with?("Sending invitations is unavailable because"), "An unrelated error was described as development mode")
+  assert(alerts.last == GameRoomAvailability.unavailable(:invitations, tables: tables) && !alerts.last.include?('most likely'), "An unrelated error was described as a known developer-mode refusal")
 end
 
 # Notification entry cannot bypass the access check, even on an existing instance.
@@ -248,5 +251,21 @@ EltenAPI::Tasks.cancel_next = true
 app.program_main
 assert(client.calls.length == before && !tables.available?, "Cancelling detection reused previous access")
 assert(!tables.stamp_required?, "Cancellation was classified as development mode")
+
+# A first direct module entry probes an unchecked provider, but must not speak
+# both the startup overview and the feature refusal for the same action.
+tables.reset_access!
+client.error = EltenLink::Error.new('apps.tables.stamp_required')
+app.define_singleton_method(:select_game) { |*| raise 'A refused Rankings entry opened its game picker' }
+before_calls, before_alerts = client.calls.length, alerts.length
+app.send(:show_leaderboards)
+assert(client.calls.length == before_calls + 1 && alerts.length == before_alerts + 1,
+  'Direct Rankings entry repeated the probe or announced the same refusal twice')
+assert(alerts.last == GameRoomAvailability.unavailable(:rankings, tables:tables), 'Direct entry lost its specific reason')
+before_alerts = alerts.length
+tournament_invitation = Struct.new(:sender, :metadata).new('Bob', {'tournament_match'=>true})
+assert(app.notification_action(:open_invitation, tournament_invitation), 'A restricted tournament invitation did not finish safely')
+assert(alerts.length == before_alerts + 1 && alerts.last == GameRoomAvailability.unavailable(:tournaments, tables:tables),
+  'A tournament invitation repeated the startup overview or entered a restricted match')
 
 puts "Development table access tests passed: entry points, rechecks, notices, skipped queries and invitations"

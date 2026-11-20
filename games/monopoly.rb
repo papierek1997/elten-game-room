@@ -10,6 +10,8 @@ GameRoomServerRandom.register('monopoly', ['roll'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class Monopoly < CardGame
+    # CardGame supplies deck helpers; Chance/Chest are not a sortable hand.
+    CARD_HAND_ORDER = ACQUISITION_HAND_ORDER
     def player_spatial_audio?; true; end
     def event_sound_cues(event:, before_replay:, after_replay:, history:, viewer:, random_variant:)
       action = event["action"].to_s

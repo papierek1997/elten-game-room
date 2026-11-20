@@ -5,6 +5,28 @@ module GameRoomGames
   using GameRoomLocalization::Translations
   EventCommand = Struct.new(:action, :value, keyword_init: true)
 
+  # Presentation only: these ranks never replace trick strength or deck order.
+  CardHandOrder = Struct.new(:default_sort, :sort_modes, :suits, :ranks, keyword_init: true) do
+    def initialize(default_sort:, sort_modes:, suits:, ranks:)
+      unless sort_modes.is_a?(Array) && !sort_modes.empty? && sort_modes.uniq == sort_modes &&
+          sort_modes.all? { |mode| %w[colour number none].include?(mode) } && sort_modes.include?(default_sort)
+        raise ArgumentError, "a card hand must declare its allowed sort modes and a default from that list"
+      end
+      [suits, ranks].each do |values|
+        unless values.is_a?(Array) && values.all? { |value| value.is_a?(String) && !value.empty? } && values.uniq == values
+          raise ArgumentError, "card hand suits and ranks must be unique semantic strings"
+        end
+      end
+      if default_sort != 'none' && (suits.empty? || ranks.empty?)
+        raise ArgumentError, "a sorted card hand must declare its suits and ranks"
+      end
+      super(default_sort: default_sort.dup.freeze, sort_modes: sort_modes.map { |mode| mode.dup.freeze }.freeze,
+        suits: suits.map { |value| value.dup.freeze }.freeze,
+        ranks: ranks.map { |value| value.dup.freeze }.freeze)
+      freeze
+    end
+  end
+
   # Untranslated text from a packaged app can retain ASCII-8BIT even when
   # its bytes are UTF-8. Host controls append their own translated labels.
   OptionChoice = Struct.new(:value, :label, :description, keyword_init: true) do
@@ -71,8 +93,8 @@ module GameRoomGames
     :submit_label,
     keyword_init: true
   ) do
-    KINDS = [:announcement, :browse, :number_input, :choice, :staged_form, :form, :action, :surface].freeze
-    NAMED_KEYS = ["space", "enter", "delete", "backspace", "semicolon"].freeze
+    KINDS = [:announcement, :browse, :grid_preview, :number_input, :choice, :staged_form, :form, :action, :surface].freeze
+    NAMED_KEYS = ["space", "enter", "delete", "backspace", "semicolon", "comma"].freeze
 
     def initialize(
       key:,
@@ -102,6 +124,8 @@ module GameRoomGames
       raise ArgumentError, "a game shortcut requires a label" if label.to_s.empty?
       if normalized_kind == :announcement
         raise ArgumentError, "an announcement shortcut requires a message" if message.to_s.empty?
+      elsif normalized_kind == :grid_preview
+        raise ArgumentError, "a grid preview requires a grid" unless default_value.is_a?(GameSurfaces::GridSpec)
       elsif normalized_kind == :form
         raise ArgumentError, "a form shortcut requires fields and an action" if fields.to_a.empty? || action_kind.to_s.empty? || action_name.to_s.empty?
         raise ArgumentError, "invalid form field" if fields.any? { |field| !field.is_a?(OptionDefinition) || ![:integer, :choice, :multiple_choice, :boolean].include?(field.kind.to_sym) }
@@ -204,6 +228,10 @@ module GameRoomGames
     :state,
     keyword_init: true
   ) do
+    # Optional presentation-only round boundaries, reconstructed from accepted
+    # events. Not another rule-state member or a saved-game wire field.
+    attr_accessor :round_timing
+
     def finished?
       winner != nil || draw == true
     end

@@ -4,11 +4,11 @@
     {
       "id": "aim",
       "title": {
-        "es": "Objetivo y puntos"
+        "es": "Objetivo"
       },
       "paragraphs": [
         {
-          "es": "Consigue con cinco dados una jugada mejor que la de tus rivales. Después de todos los turnos, la mejor jugada vale un punto. Si varias empatan en cabeza, cada una suma un punto. Gana quien tenga más puntos al final de las rondas; a igualdad en cabeza, hay empate."
+          "es": "Consigue con cinco dados una jugada mejor que la de tus rivales y gana las fichas del bote. Solo tú oyes tus tiradas. Cada jugador tira y confirma su jugada; después empiezan las apuestas. Gana quien tenga más fichas al final de las rondas acordadas."
         }
       ]
     },
@@ -47,10 +47,13 @@
       },
       "paragraphs": [
         {
-          "es": "Con fichas, todos ponen la entrada. Se apuesta antes de tirar y otra vez tras elegir todas las jugadas. C pasa o iguala, R o B sube, F retira y A apuesta todo. Si te retiras, no tiras ni optas al bote. Si apuestas todo, puedes completar tus tiradas."
+          "es": "Todos ponen la entrada y juegan sus turnos de dados. Solo tú oyes tus dados y tu jugada; los demás oyen que tiras. H te recuerda la jugada, también mientras esperas o apuestas."
         },
         {
-          "es": "La mejor jugada se lleva el bote; los empatados lo reparten y las fichas sobrantes se asignan por orden de turno. De otro jugador solo puedes ganar hasta lo que hayas aportado. Se devuelve la parte que nadie igualó. Si queda una sola persona, gana el bote sin más tiradas. Tras la última ronda, o cuando solo una persona conserva fichas, gana el saldo más alto. Si nadie puede ganar un bote, se devuelven sus apuestas. Si coinciden los mejores saldos, hay empate."
+          "es": "Las apuestas empiezan cuando todos han confirmado su jugada. C pasa o iguala, R o B sube, F te retira y A apuesta todo. Al retirarte renuncias al bote. Al terminar las apuestas se muestran las jugadas de quienes siguen compitiendo; las de quienes se retiraron quedan ocultas. Si solo queda una persona, gana el bote sin mostrar los dados."
+        },
+        {
+          "es": "La mejor jugada se lleva el bote; los empatados lo reparten y las fichas sobrantes se asignan por orden de turno. De otro jugador solo puedes ganar hasta lo que hayas aportado. Se devuelve la parte que nadie igualó. Tras la última ronda, o cuando solo una persona conserva fichas, gana el saldo más alto. Si nadie puede ganar un bote, se devuelven sus apuestas. Si coinciden los mejores saldos, hay empate."
         }
       ]
     },
@@ -76,7 +79,10 @@
           "es": "K: conservar la jugada"
         },
         {
-          "es": "S: consultar puntos o saldos"
+          "es": "H: recordar tu jugada"
+        },
+        {
+          "es": "S: consultar los saldos de fichas"
         },
         {
           "es": "C: pasar o igualar"
@@ -101,7 +107,6 @@
     "throws": "turns",
     "opener_limit": "turns",
     "round_limit": "turns",
-    "scoring": "betting",
     "starting_chips": "betting",
     "stake": "betting"
   }

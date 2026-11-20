@@ -8,7 +8,7 @@ GameRoomLocalization.boot(settings:{'interface_language'=>'en','known_languages'
 Form.prepend(TournamentPublicUI::Script)
 u=TournamentPublicUI
 cases=[['three_five_eight',{},[3]],['spades',{'team_size'=>0},[3,4,5,6]],
-  ['spades',{'team_size'=>2},[4,6]],['spades',{'team_size'=>3},[6]],['audio_ball',{},[2]]]
+  ['spades',{'team_size'=>2},[4,6]],['spades',{'team_size'=>3},[]],['audio_ball',{},[2]]]
 cases.each do |id,options,counts|
   editor=GameRoomTournaments::TournamentSetupEditor.new(program:Object.new,registry:GameRoomGames::CATALOG,
     configure:->(game,previous){game.normalize_options(previous.merge(options))},publish:->(**){raise 'Cancelled setup published'},alert:->(message){raise message})
@@ -33,4 +33,4 @@ u.script(->(form){u.field(form,'Game').trigger(:select)},->(form){
   assert(form.instance_variable_get(:@hidden_controls).include?(seats),'New game requires an identifier allowlist')
   form.cancel_button.trigger(:press)
 }){editor.wait}
-puts 'PASS immediate game-specific match sizes: 3-5-8 fixed three, Spades individual/pairs/triples, Audio Ball fixed two, fixed choices hidden'
+puts 'PASS immediate game-specific match sizes: 3-5-8 fixed three, public Spades individual/pairs only, Audio Ball fixed two, fixed choices hidden'

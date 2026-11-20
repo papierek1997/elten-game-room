@@ -1,0 +1,95 @@
+{
+  "source": "games/balut.rb",
+  "sections": [
+    {
+      "id": "play",
+      "title": {
+        "en": "Your turn"
+      },
+      "paragraphs": [
+        {
+          "en": "Two to eight players take turns filling their own score sheets. Each sheet has seven rows of four spaces, so you have 28 turns. The aim is to earn the most game points from combinations and completed rows. Press Enter to roll five dice. You may record the result or reroll selected dice up to twice. A result that does not qualify for the chosen row fills its next space with zero."
+        },
+        {
+          "en": "Use a digit from 1 to 6 to select a die showing that value for another roll. Shift with the same digit clears one selection. Enter rerolls the selected dice; with none selected, it opens the score sheet. Choose a row with Up and Down, then press Enter to record the shown value in its next empty space. After the third roll, the score sheet appears automatically."
+        },
+        {
+          "en": "B also opens the score sheet. Left and Right let you inspect the row's earlier entries, their sum and the points available for that category. The table shows what you still need to earn those points, or that they are no longer possible. Entries in the table are not the game points that decide the winner."
+        }
+      ]
+    },
+    {
+      "id": "points",
+      "title": {
+        "en": "The seven rows"
+      },
+      "paragraphs": [
+        {
+          "en": "In Fours, Fives and Sixes, sum only the dice showing the named value. Chance takes the sum of all five dice. A straight is five consecutive values, and a full house is three of one value and two of another. Both score the sum of all five dice. Five equal dice score 50 in Balut regardless of their value. If Balut is full, five sixes can still score 30 in Sixes or Chance."
+        }
+      ]
+    },
+    {
+      "id": "total",
+      "title": {
+        "en": "Final score"
+      },
+      "paragraphs": [
+        {
+          "en": "You earn two points for each of these row totals you reach: 52 in Fours, 65 in Fives, 78 in Sixes and 100 in Chance. Four straights earn four points, four full houses earn three and each Balut earns two. Add up all entries. Below 300, subtract two points. At 300–349, subtract one. At 350–399, make no adjustment. Starting at 400, add one point for each 50 above 350, up to six at 650. The highest final score wins. The maximum is 29 points."
+        },
+        {
+          "en": "A zero in the Straight or Full house row prevents you from earning that row's points: all four entries must be successful."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Keyboard"
+      },
+      "paragraphs": [
+        {
+          "en": "Enter: roll all five dice to begin your turn. Later, reroll the selected dice or open scoring if none are selected. In the score sheet, record the selected row. After the third roll, the sheet appears automatically."
+        },
+        {
+          "en": "1–6: select one die showing that value for a reroll."
+        },
+        {
+          "en": "Shift+1–6: keep one selected die showing that value."
+        },
+        {
+          "en": "Arrows: choose a row with Up and Down; inspect its entries and totals with Left and Right. Full rows are omitted from the scoring view."
+        },
+        {
+          "en": "B: open the score sheet in a separate window."
+        },
+        {
+          "en": "Escape: close the separate score-sheet window without recording a result."
+        },
+        {
+          "en": "Space: read the dice and, in the rolling field, their selection state."
+        },
+        {
+          "en": "D: read the last roll."
+        },
+        {
+          "en": "V: browse your score sheet."
+        },
+        {
+          "en": "Shift+V: browse another player's score sheet."
+        },
+        {
+          "en": "F: browse your unfilled rows."
+        },
+        {
+          "en": "S: read game points."
+        },
+        {
+          "en": "Shift+S: read the sum of recorded scores."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {}
+}

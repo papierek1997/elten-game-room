@@ -165,8 +165,8 @@ begin
   screen.instance_variable_set(:@mode,'singles')
   Form.driver = lambda do |form|
     settle_sports(form)
-    assert(form.fields.first.text=='Player statistics are unavailable. Try Refresh.', 'Failure became zero statistics')
-    assert(form.fields[1].rows.empty? && form.fields[1].empty_label=='Player statistics are unavailable. Try Refresh.',
+    assert(form.fields.first.text=='Player statistics could not be loaded. Check your connection and try Refresh.', 'Failure became zero statistics')
+    assert(form.fields[1].rows.empty? && form.fields[1].empty_label=='Player statistics could not be loaded. Check your connection and try Refresh.',
       'A failed read left an empty-looking opponents list')
     unavailable = false
     form.fields[5].trigger(:press)
@@ -220,7 +220,7 @@ begin
   screen.define_singleton_method(:alert) { |message| unavailable_messages << message }
   screen.define_singleton_method(:choose) { |*_, **_| raise 'Developer mode opened the sports selector' }
   Programs.with_runtime(runtime) { screen.run }
-  assert(unavailable_messages == ['Player statistics are temporarily unavailable.'], 'Developer mode did not report statistics as unavailable')
+  assert(unavailable_messages == ['Player statistics could not be loaded. Check your connection and try Refresh.'], 'A missing service did not report statistics as unavailable')
   $developer_mode = original_developer_mode
 
   # The common Statistics entry routes General and opt-in games independently.

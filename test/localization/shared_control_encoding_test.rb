@@ -24,12 +24,13 @@ require_relative "../support/binary_rule_dictionary"
       raise "Binary packet tip is invalid" unless text.valid_encoding?
     end
     shortcuts = game.game_shortcuts(replay, "Alice")
-    %w[c h m].each do |key|
+    %w[c h].each do |key|
       selected = shortcuts.select { |item| item.key == key && item.modifiers == [:shift] }
       raise "Sorting F1 shortcut missing/duplicated" unless selected.length == 1
       label = selected.first.label
       raise "Untranslated sorting help" unless english || RULES_CATALOG.values.include?(label)
     end
+    raise "Removed sorting shortcut remains in F1" if shortcuts.any? { |item| item.key == 'm' && item.modifiers == [:shift] }
   end
 end
 puts "PASS binary UI: Makao/Poker packet F1 and shared sorting help in PL/EN beside a non-English host"

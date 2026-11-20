@@ -1,0 +1,192 @@
+{
+  "source": "games/cash_auction.rb",
+  "sections": [
+    {
+      "id": "aim",
+      "title": {
+        "cs": "Cíl hry"
+      },
+      "paragraphs": [
+        {
+          "cs": "Dražba kombinuje současné přihazování s kvízem pro dva až osm hráčů včetně botů. Každá otázka má čtyři odpovědi a jednu správnou. Běžně začínáte s 10000 body. Vyhrává nejvyšší skóre mezi hráči, kteří zůstali ve hře. Černé truhly mohou tvé konečné skóre zvýšit nebo snížit."
+        },
+        {
+          "cs": "Každá aukce začíná vylosováním kategorie a povinným vkladem všech zbývajících hráčů. Potom dražíte právo odpovědět na otázku. Za správnou odpověď získáš celý bank, po chybné odpovědi se bank převádí do další aukce."
+        }
+      ]
+    },
+    {
+      "id": "rounds",
+      "title": {
+        "cs": "Začátek aukce"
+      },
+      "paragraphs": [
+        {
+          "cs": "Kolo štěstí oznámí kategorii otázky i název sady. Otázka bude pocházet z této kategorie v uvedené sadě. Každý hráč, který je dosud ve hře, vloží do společného banku 100 bodů. Kdo na vklad nemá, je trvale vyřazen. Body, které už v banku jsou, v něm zůstávají."
+        },
+        {
+          "cs": "Nabídky podáváte současně, nečekáte na tah. Při zahájení aukce je kurzor v poli pro částku. Napiš nabídku a potvrď ji Enterem. Přijatá nabídka pole vymaže; po neplatné zůstane text k opravě. Uslyšíš číslo kola s otázkou, výši banku, nejvyšší nabídku a jméno vedoucího hráče."
+        },
+        {
+          "cs": "Po nabídce vyvolávač volá poprvé, podruhé a potřetí, běžně po třech sekundách. Po třetím vyvolání zůstává ještě jeden interval na nabídku; až přiklepnutí dražbu uzavře. Každé zvýšení spustí volání znovu. Při výchozím nastavení se dražba uzavře po dvanácti sekundách bez nové nabídky. Bez nabídky se bank převádí dál."
+        },
+        {
+          "cs": "P přečte bank. T oznámí, kdo může jednat; během aukce mohou všichni oprávnění hráči přihazovat současně. H přečte aktuální nabídky. D přečte tvé body a Shift+D body ostatních hráčů."
+        }
+      ]
+    },
+    {
+      "id": "bidding",
+      "title": {
+        "cs": "Kolik stojí nabídka"
+      },
+      "paragraphs": [
+        {
+          "cs": "Nabídka udává celkovou částku, kterou dáváš do této aukce navíc k počátečnímu vkladu. První nabídka musí být alespoň tak vysoká jako počáteční vklad, i když sázíš všechny body. Každá nabídka musí převýšit dosud nejvyšší nabídku. Každý dražící platí okamžitě. Body se nevracejí ani hráčům, kteří později aukci prohrají."
+        },
+        {
+          "cs": "Při zvýšení vlastní nabídky doplatíš pouze rozdíl. Po nabídce 100 tedy zvýšení na 250 stojí dalších 150. Nabídnout můžeš nejvýše součet zbývajících bodů a bodů, které už jsi v této aukci zaplatil za nabídky."
+        },
+        {
+          "cs": "Pokud ti ještě zbývají body, můžeš vsadit vše: do pole částky napiš A a stiskni Enter. Vsadíš všechny zbývající body; platby za dřívější nabídky v této aukci se přičtou k celkové částce. Místo A můžeš zadat i tuto celkovou částku. Pokud převýší nejvyšší nabídku, aukci okamžitě ukončíš a získáš otázku nebo černou truhlu. Nikdo už nemůže přihodit. Jestliže tvá dostupná celková částka není vyšší než vedoucí nabídka, nemůžeš přihodit ani vsadit vše."
+        },
+        {
+          "cs": "Vlastní nabídku můžeš zvyšovat až do uzavření aukce. Vyhrává poslední přijatá nejvyšší nabídka. Nabídka doručená po termínu se odmítne, i když hlas ještě dočítá závěrečné oznámení."
+        }
+      ]
+    },
+    {
+      "id": "passing",
+      "title": {
+        "cs": "Pokuta za aukce bez nabídky"
+      },
+      "paragraphs": [
+        {
+          "cs": "Pokud nechceš přihazovat, počkej na konec aukce."
+        },
+        {
+          "cs": "Aukce, ve které nepodáš žádnou nabídku, se započítá do řady aukcí bez vlastní nabídky. Počáteční vklad se za nabídku nepovažuje. Po třech takových aukcích za sebou ztratíš při uzavření třetí aukce 5 % zbývajících bodů a počítadlo se vynuluje. Pokuta se zaokrouhluje nahoru na celý bod. Každá přijatá nabídka počítadlo vynuluje, i když pak aukci prohraješ."
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "title": {
+        "cs": "Odpověď na otázku"
+      },
+      "paragraphs": [
+        {
+          "cs": "Po aukci si všichni mohou přečíst otázku a odpovědi A až D, odpovídat však může jen vítěz aukce. Otázka je v textovém poli pouze pro čtení. Šipkou dolů přejdi na seznam odpovědí, šipkami vyber možnost a potvrď Enterem. Na odpověď není časový limit."
+        },
+        {
+          "cs": "Za správnou odpověď dostane vítěz aukce celý bank a nový bank začíná na nule. Po chybné odpovědi se vše převede do další aukce. Pokud jsi vsadil vše a po chybné odpovědi nemáš žádné body, jsi trvale vyřazen."
+        },
+        {
+          "cs": "Před odpovědí si vítěz dražby může jednou koupit nápovědu odstraňující dvě chybné možnosti. Stojí 10 % jeho zbývajících bodů, zaokrouhleno nahoru, nejméně jeden bod; tlačítko uvádí přesnou cenu. Platba se nevrací do banku. Bez bodů nápovědu koupit nelze."
+        }
+      ]
+    },
+    {
+      "id": "chests",
+      "title": {
+        "cs": "Černé truhly"
+      },
+      "paragraphs": [
+        {
+          "cs": "Ve výchozím nastavení nahradí černá truhla kategorii a otázku při 10 % losování. Draží se obvyklým způsobem a vítěz si ji nechá zavřenou. Bank z předchozích otázek zůstává na další otázku, ale počáteční vklady, nabídky ani pokuty z dražby truhly ho nezvyšují. Tyto zaplacené body opouštějí hru. Dražby truhel se nepočítají do limitu otázek."
+        },
+        {
+          "cs": "Před závěrečným vyhodnocením hra počká pět sekund a potom automaticky otevře všechny truhly, i ty vyřazených hráčů. Uslyšíš oznámení otevření, zvuk truhel a jejich obsah. Konečný výsledek zazní čtyři sekundy po oznámení obsahu."
+        },
+        {
+          "cs": "Truhla může přidat nebo odebrat 5 %, 10 %, 15 %, 20 %, 25 %, 30 % nebo 35 % tvých bodů. Šance na zisk je 60 %, na ztrátu 30 % a na žádnou změnu 10 %. Menší změny padají častěji: nejpravděpodobnější je 5 %, nejvzácnější 35 %."
+        },
+        {
+          "cs": "Máš-li více truhel, jejich procenta se sečtou se znaménky a celková změna se vypočítá ze zůstatku před otevřením první truhly. Například +20 % a -10 % změní 10000 bodů na 11000 bez ohledu na pořadí otevírání. Až konečný výsledek se zaokrouhlí na nejbližší celé číslo; nemůže klesnout pod nulu. Otevření truhly nevrátí vyřazeného hráče do zápasu."
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "title": {
+        "cs": "Konec zápasu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Běžná hra má osm zodpovězených otázek, správně či chybně. Truhly a dražby bez nabídek se nepočítají. Hra končí také při nejvýše jednom zbývajícím hráči. Před oznámením výsledku všichni otevřou truhly a jejich obsah se započítá do konečného skóre."
+        },
+        {
+          "cs": "Po otevření všech truhel vyhrává hráč s nejvíce body z těch, kteří zůstali ve hře. Má-li několik zbývajících hráčů stejný nejvyšší zůstatek, hraje se až do zodpovězení další otázky se všemi zbývajícími hráči, nejen s vedoucími. Aukce truhel ani aukce bez nabídek tuto dohrávku neukončí. Před dalším porovnáním otevřete i nově získané truhly; podle potřeby se dohrávka opakuje. Nezůstane-li nikdo ve hře, zápas končí remízou."
+        },
+        {
+          "cs": "Mimo aukci přečte S zůstatky všech hráčů a počty jejich neotevřených truhel, také během otázky. Při dražení použij Shift+S."
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": {
+        "cs": "Nastavení stolu"
+      },
+      "paragraphs": [
+        {
+          "cs": "Před začátkem zvol v nastavení stolu jazyk otázek a jednu až tři sady Kvízu. Ve výchozím nastavení je označena pouze sada všeobecných znalostí ve zvoleném jazyce. Mezerníkem sady označuješ nebo odznačuješ, Enterem výběr potvrdíš. Kolo vybírá kategorie z označených sad. Každá zůstává spojena se svou sadou, takže se kategorie se stejným názvem z různých sad neslučují. Jazyk otázek se může lišit od jazyka rozhraní."
+        },
+        {
+          "cs": "Místo počátečních 10000 bodů lze nastavit celé číslo od 10 do 1000000. Povinný vklad na začátku aukce může být od 1 bodu až po celý počáteční zůstatek."
+        },
+        {
+          "cs": "Lze zvolit 8 až 32 otázek a 1 až 5 sekund mezi vyvoláními. Výchozí hodnoty jsou osm otázek a tři sekundy. Bez sázky všeho se dražba uzavře po čtyřech intervalech bez zvýšení, s jedním intervalem po třetím vyvolání. Šanci na černou truhlu lze nastavit od 5 do 15 %, výchozí je 10 %."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "cs": "Ovládání"
+      },
+      "paragraphs": [
+        {
+          "cs": "Enter v poli částky: odeslat napsanou nabídku."
+        },
+        {
+          "cs": "A: do pole částky napiš A a stiskni Enter. Pokud tvá celková částka převýší nejvyšší nabídku, vsadíš vše a okamžitě vyhraješ aukci."
+        },
+        {
+          "cs": "Šipka dolů z otázky: přejít k odpovědím. Šipky vybírají možnost, Enter ji odešle, pokud jsi vyhrál aukci."
+        },
+        {
+          "cs": "S: mimo dražbu přečti skóre a zavřené truhly."
+        },
+        {
+          "cs": "Shift+S: během dražby přečti skóre a zavřené truhly."
+        },
+        {
+          "cs": "P: přečíst bank."
+        },
+        {
+          "cs": "T: přečíst, kdo může jednat."
+        },
+        {
+          "cs": "H: přečíst aktuální nabídky."
+        },
+        {
+          "cs": "D: přečíst vlastní body."
+        },
+        {
+          "cs": "Shift+D: přečíst body ostatních hráčů."
+        }
+      ]
+    }
+  ],
+  "option_chapters": {
+    "starting_points": "settings",
+    "ante": "rounds",
+    "pass_penalty": "passing",
+    "rounds": "finish",
+    "count_interval": "settings",
+    "black_chest_chance": "chests",
+    "content_language_id": "settings",
+    "content_pack_ids": "settings"
+  }
+}

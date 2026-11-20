@@ -37,11 +37,9 @@ module GameRoomDuckRacing
       when "dice_duel"
         {kind: :roll}
       when "blackjack"
-        {kind: own.fetch(:total) >= 17 ? :stand : :hit}
+        {kind: ceiling_decision(view, seat) ? :hit : :stand}
       when "risky_dice"
-        sides = own.fetch(:die).fetch(:die_sides)
-        save_at = 25 - (sides + 1)
-        {kind: own.fetch(:rolls).empty? || own.fetch(:total) < save_at ? :roll : :save}
+        {kind: own.fetch(:rolls).empty? || ceiling_decision(view, seat) ? :roll : :save}
       when "guess_number"
         guess_number(own, view.fetch(:answer_digits), random)
       when "copy_number", "arithmetic", "race_question"
@@ -51,6 +49,74 @@ module GameRoomDuckRacing
         count.empty? ? nil : {kind: :take, value: count.fetch(random.rand(count.length))}
       end
     end
+
+    # A bounded total-state expectation, not a view of the shuffled deck.
+    # Only already public finished attempts can alter the rival model.
+    def ceiling_decision(view, seat)
+      own = view.fetch(:own)
+      cards = view[:type] == "blackjack"
+      limit, threshold = cards ? [21, 17] : [25, 19]
+      draws = if cards
+        counts = (1..13).to_h { |rank| [rank, 4] }
+        own.fetch(:cards).each { |card| counts[card / 4 + 1] -= 1 }
+        counts.reject { |_rank, count| count.zero? }
+      else
+        (1..own.fetch(:die).fetch(:die_sides)).to_h { |value| [value, 1] }
+      end
+      value_of = ->(rank, total) { cards && rank == 1 ? (total + 11 <= limit ? 11 : 1) : (cards ? [rank, 10].min : rank) }
+      # Undecided opponents follow a neutral stopping model. Their unknown
+      # cards are never read, and the expectation is not claimed to be exact.
+      unknown_draws = cards ? (1..13).to_h { |rank| [rank, 4] } : (1..6).to_h { |value| [value, 1] }
+      distributions = {}
+      distribution = lambda do |total|
+        next distributions[total] if distributions.key?(total)
+        next distributions[total] = {total => 1.0} if total >= threshold
+        result = Hash.new(0.0)
+        unknown_draws.each do |rank, weight|
+          distribution.call(total + value_of.call(rank, total)).each do |score, probability|
+            result[score] += probability * weight.fdiv(unknown_draws.values.sum)
+          end
+        end
+        distributions[total] = result
+      end
+      completed = view.fetch(:completed_totals, {})
+      opponents = (view.fetch(:participants) - [seat]).map do |other|
+        completed.key?(other) ? {completed.fetch(other) => 1.0} : distribution.call(0)
+      end
+      utility = lambda do |total|
+        gain = -[total - limit, 0].max.to_f
+        if total <= limit
+          lower = opponents.map { |dist| dist.sum { |score, probability| score > limit || score < total ? probability : 0.0 } }
+          opponents.each_with_index do |dist, index|
+            amount = dist.sum { |score, probability| score > limit || score < total ? (total - score).abs * probability : 0.0 }
+            gain += amount * lower.each_with_index.reduce(1.0) { |product, (probability, other)| other == index ? product : product * probability }
+          end
+        end
+        opponents.each_with_index do |dist, index|
+          dist.each do |score, probability|
+            next if score > limit || total <= limit && score <= total
+            chance = opponents.each_with_index.reduce(probability) do |product, (other, other_index)|
+              next product if other_index == index
+              product * other.sum { |value, p| value > limit || value < score ? p : 0.0 }
+            end
+            gain -= (total - score).abs * chance
+          end
+        end
+        gain
+      end
+      values = {}
+      best = lambda do |total|
+        next values[total] if values.key?(total)
+        stand = utility.call(total)
+        next values[total] = stand if total >= limit
+        roll = draws.sum { |rank, weight| weight * best.call(total + value_of.call(rank, total)) }.fdiv(draws.values.sum)
+        values[total] = [stand, roll].max
+      end
+      total = own.fetch(:total)
+      roll = draws.sum { |rank, weight| weight * best.call(total + value_of.call(rank, total)) }.fdiv(draws.values.sum)
+      roll > utility.call(total) + 1e-9
+    end
+    private_class_method :ceiling_decision
 
     def guess_number(own, digits, random)
       raise ArgumentError, 'Invalid public guess width' unless digits.is_a?(Integer) && digits.between?(1, 3)

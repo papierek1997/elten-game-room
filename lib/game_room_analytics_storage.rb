@@ -6,7 +6,7 @@ require "thread"
 # data directory lazily, once per runtime; resolving an installed app can parse
 # its whole signed archive. Never do that on a UI/replay callback or each tick.
 class GameRoomAnalyticsStorage
-  FILES = %w[statistics-pending.json room-presence-client.json sports-rankings-pending.json].freeze
+  FILES = %w[statistics-pending.json room-presence-client.json sports-rankings-pending.json darts-rankings-pending.json].freeze
 
   def initialize(program)
     @program = program

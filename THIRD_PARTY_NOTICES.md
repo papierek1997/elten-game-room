@@ -1,5 +1,10 @@
 # Third-party notices
 
+Billiards uses CC0 ball/rail recordings by Za-Games and mccarthy@bedmas.com,
+and a CC BY 4.0 pool recording by cmusounddesign. Sources and edits are documented in
+`LICENSES/BILLIARDS-SOUNDS.txt`; the CC BY license is included in
+`LICENSES/CC-BY-4.0.txt`.
+
 Roulette wheel and casino-chip effects use CC0 sounds by Joao_Janz and reg7783.
 Sources and edits are documented in `LICENSES/ROULETTE-SOUNDS.txt`.
 
@@ -54,6 +59,85 @@ instructions. The Ayoayo variant retains the author's rules. This is not
 a statement that the PRs have been merged on GitHub.
 
 ## Sounds
+
+### Darts — dartboard impact
+
+`Audio/darts_hit_1.opus`, `Audio/darts_hit_2.opus`,
+`Audio/darts_hit_3.opus`, `Audio/darts_hit_4.opus` and
+`Audio/darts_hit_5.opus` use the complete Freesound HQ Ogg previews of
+“Dartboard 1.aif” through “Dartboard 5.aif” by **tonnonic**, Freesound
+[332200](https://freesound.org/s/332200/),
+[332199](https://freesound.org/s/332199/),
+[332198](https://freesound.org/s/332198/),
+[332197](https://freesound.org/s/332197/) and
+[332201](https://freesound.org/s/332201/), under
+[CC BY 3.0](LICENSES/CC-BY-3.0.txt). The user supplied the preview and its
+license notices on 13 November 2026. They were converted without trimming,
+normalization, gain or channel changes to Ogg Opus, target 144 kb/s VBR,
+48 kHz, 20 ms frames, audio mode and complexity 10. The author does not
+endorse the application. Preserve this attribution, source link,
+modification notice and license when distributing the recordings.
+
+### Darts — board edge
+
+`Audio/darts_edge.opus` uses “Wood Block.wav” by **jimbo555**, Freesound
+[630492](https://freesound.org/s/630492/), dedicated to the public domain
+under [CC0 1.0](LICENSES/CC0-1.0.txt). The user supplied the Freesound HQ
+Ogg preview and its license notice. The first 4–220 ms were retained to
+remove the long silent tail while preserving the attack, stereo channels
+and source level. It was encoded as Ogg Opus, target 144 kb/s VBR, 48 kHz,
+20 ms frames and audio mode.
+
+### Darts — hard cursor limit
+
+`Audio/darts_limit.opus` uses the complete “SFX_MetalPing-01.wav” recording
+by **Wavewire**, Freesound [837452](https://freesound.org/s/837452/),
+dedicated to the public domain under
+[CC0 1.0](LICENSES/CC0-1.0.txt). The user supplied the copy used as the
+“Słup standardowy” navigation cue in the Budowlańcy project. It was encoded
+without trimming or gain changes as Ogg Opus, target 144 kb/s VBR, 48 kHz,
+20 ms frames and audio mode, preserving both stereo channels. In Darts it
+marks an attempted movement beyond the outer coordinate limit, separately
+from the circular dartboard-edge cue.
+
+### Darts — throwing sound
+
+`Audio/darts_throw.opus` uses the complete Freesound HQ Ogg preview of
+“Axe Throwing Hitting Flesh.wav” by **SoundFlakes**, Freesound
+[492225](https://freesound.org/s/492225/), under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The user
+supplied the preview and its license notice on 13 November 2026. It was
+converted without trimming, normalization, gain or channel changes to Ogg
+Opus, target 144 kb/s VBR, 48 kHz, 20 ms frames, audio mode and complexity
+10. In Darts it is presented as the throw/release sound and followed by a
+separately licensed board-impact recording. The author does not endorse the
+application. Preserve this attribution, source link, modification notice and
+license when distributing the recording.
+
+### Darts — applause
+
+`Audio/darts_applause.opus` uses the complete Freesound HQ Ogg preview of
+“Applause Clapping” by **dersuperanton**, Freesound
+[435877](https://freesound.org/s/435877/), under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The user
+supplied the preview and its license notice on 13 November 2026. It was
+converted without trimming, normalization, gain or channel changes to Ogg
+Opus, target 144 kb/s VBR, 48 kHz, 20 ms frames, audio mode and complexity
+10. The author does not endorse the application. Preserve this attribution,
+source link, modification notice and license when distributing the recording.
+
+### Darts — consolation applause
+
+`Audio/darts_consolation.opus` uses the complete Freesound HQ Ogg preview
+of “Clapping, hands, slap, Four spaced claps close
+up_96Khz_Mono_ZoomH4n_NT5-001.wav” by **MattRuthSound**, Freesound
+[561558](https://freesound.org/s/561558/), under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The user
+supplied the preview and its license notice on 13 November 2026. It was
+converted without trimming, normalization, gain or channel changes to Ogg
+Opus, target 144 kb/s VBR, 48 kHz, 20 ms frames, audio mode and complexity
+10. The author does not endorse the application. Preserve this attribution,
+source link, modification notice and license when distributing the recording.
 
 ### Bouillabaisse — scoring-card cues
 
@@ -641,3 +725,73 @@ licensed under Creative Commons Attribution 4.0. Attribution, source and licence
 links are in `LICENSES/TYPING-WORDS-PL.txt`; the pinned input and selection policy
 are recorded with the other dictionaries. Hunspell is a build-time tool for the
 other languages, not a runtime dependency.
+
+### Dice General — school feedback
+
+The `Audio/kosciane_column_*.opus` cues combine the score cue with trimmed,
+gain-adjusted feedback effects. Balut also uses these shared recordings.
+School completion uses “Applause i.ogg” by
+Thore, released into the public domain:
+https://commons.wikimedia.org/wiki/File:Applause_i.ogg.
+School failure uses “Sad Trombone.wav” by Sad Tromboner, under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/):
+https://commons.wikimedia.org/wiki/File:Sad_Trombone.wav.
+The source effects have been edited and combined. The combined cues have
+playback gain adjustments in their Opus headers to balance their loudness;
+the compressed audio packets are unchanged. Their authors do not endorse
+Power Games.
+
+### Cash Auction — gavel and chest
+
+`Audio/auction_gavel.opus` uses “Wooden Gavel Hits” by Stefan021,
+[Freesound](https://freesound.org/people/Stefan021/sounds/798872/), under
+[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+`Audio/auction_chest.opus` uses “Open Chest” by spookymodem,
+[OpenGameArt](https://opengameart.org/content/open-chest), under
+[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+Both are short excerpts with normalized gain and edge fades, encoded as
+48 kHz Opus at 144 kbit/s VBR using the project's audio tool. Attribution,
+modifications and source links are in
+[LICENSES/AUCTION-SOUNDS.txt](LICENSES/AUCTION-SOUNDS.txt); full licences are
+[CC0](LICENSES/CC0-1.0.txt) and [CC BY 3.0](LICENSES/CC-BY-3.0.txt).
+The authors do not endorse this application.
+
+### Shared end-of-round cue
+
+`Audio/round_finished.opus` uses “Finished.wav” by **deleted_user_877451**,
+Freesound [76426](https://freesound.org/s/76426/), under
+[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+The user supplied the complete HQ Ogg preview. It was converted to 144 kb/s
+VBR Opus at 48 kHz with 20 ms frames, preserving both channels, level and
+the whole recording, without normalization or trimming. The full licence is
+in [LICENSES/CC-BY-3.0.txt](LICENSES/CC-BY-3.0.txt).
+The author does not endorse this application.
+
+### Score-sheet games — zero score
+
+`Audio/five_dice_zero.opus` uses “DENY_SOUND.mp3” by **ciapaqua**,
+Freesound [637108](https://freesound.org/s/637108/), supplied by the user with
+its [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) notice.
+The complete HQ Ogg preview was converted to Ogg Opus, target 144 kb/s VBR,
+48 kHz, 20 ms frames, audio mode and complexity 10. Channels, level and the
+complete recording are preserved; no normalization or trimming was applied.
+It replaces the short zero-score cue only in Balut, Dice General and Yahtzee.
+
+### Score-sheet games — positive feedback and recording a score
+
+`Audio/five_dice_bonus.opus` uses “Jingle_Win_Synth_03.wav” by
+**LittleRobotSoundFactory**, Freesound [274177](https://freesound.org/s/274177/).
+`Audio/five_dice_doubled.opus` uses “Jingle_Win_Synth_01.wav” by the same author,
+Freesound [274179](https://freesound.org/s/274179/).
+`Audio/five_dice_record.opus` uses “Save confirm, synth (Shutter & Focus Camera
+App UI)” by **Packsmithy**, Freesound [877300](https://freesound.org/s/877300/).
+All three are under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+The user supplied their HQ Ogg previews and licence notices. Complete previews
+were converted to 144 kb/s VBR Opus, 48 kHz, 20 ms frames, audio mode and
+complexity 10, preserving channels and levels without normalization or trimming.
+
+`Audio/kosciane_column_1_bonus.opus` through `kosciane_column_6_bonus.opus` and
+the corresponding `_doubled.opus` files concatenate an existing calibrated
+column cue with the complete new jingle. The composite was re-encoded to the
+same Opus profile. Attribution and licence for the original column recordings
+still apply. The authors do not endorse this application.

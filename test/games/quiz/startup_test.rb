@@ -108,7 +108,7 @@ assert(GameRoomContent.registry.pack_set("quiz.general").language_ids == ["en"],
 
 russian_pack = GameRoomContent.registry.pack("quiz.general.ru")
 assert(russian_pack != nil && russian_pack.language_id == "ru-RU", "the Russian question pack is not registered")
-assert(russian_pack.data["questions"].length == 36 && russian_pack.verified?, "the Russian question pack failed lazy verification")
+assert(russian_pack.data["questions"].length == expected_count.call(russian_pack.id) && russian_pack.verified?, "the Russian question pack failed lazy verification")
 assert(game.send(:available_content_sets, "ru-RU").map(&:id) == ["quiz.general.ru"], "Russian does not offer its question set")
 
 GameRoomContent.registry.register_language(

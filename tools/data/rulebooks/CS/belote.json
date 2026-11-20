@@ -1,0 +1,122 @@
+{
+  "source": "games/belote_support/belote_table.rb",
+  "sections": [
+    {
+      "id": "play",
+      "paragraphs": [
+        {
+          "cs": "Čtyři hráči tvoří dvě dvojice a spoluhráči sedí naproti sobě. Hraje se s 32 kartami od sedmičky po eso. První rozdávající je vylosován, poté se rozdávání posouvá. Na konci rozdání vyhrává dvojice s alespoň 1000 body a vyšším skóre než soupeři."
+        },
+        {
+          "cs": "V klasické Belote každý dostane pět karet a další se otočí. Od hráče po rozdávajícím můžete přijmout její barvu jako trumfy nebo pasovat. Po čtyřech pasech lze zvolit jinou barvu nebo pasovat. Osm pasů znamená nové rozdání. První volba trumfů ukončí licitaci; volící dostane otočenou kartu a všem se doplní ruka na osm karet."
+        },
+        {
+          "cs": "První zdvih začíná hráč po rozdávajícím. Musíš přiznat barvu. Nemáš-li ji, zahraj trumf, pokud nevyhrává spoluhráč. Musíš-li trumfovat, přebij nejvyšší zahraný trumf, pokud můžeš. Bez vynesené barvy i trumfů smíš odhodit cokoli. Bere nejvyšší trumf, jinak nejvyšší karta vynesené barvy. Vítěz začíná další zdvih."
+        }
+      ],
+      "title": {
+        "cs": "Licitace a zdvihy"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "cs": "Trumfy od nejvyššího jsou kluk (20 bodů), devítka (14), eso (11), desítka (10), král (4), dáma (3), osmička a sedmička (nula). Ostatní barvy mají pořadí eso (11), desítka (10), král (4), dáma (3), kluk (2), devítka, osmička a sedmička (nula). Poslední zdvih přidává deset, celkem je v rozdání 162 bodů."
+        },
+        {
+          "cs": "Máš-li trumfového krále i dámu, zahraj jednu přes Shift+Enter a ohlas belote. Druhou zahraj stejně a ohlas rebelote. Obě hlášení dávají dvojici dvacet bodů i při nesplnění závazku. Samotné zahrání bez hlášení bonus nedává."
+        },
+        {
+          "cs": "Dvojice volící trumfy musí získat alespoň 82 bodů a více než obránci, včetně belote. Při úspěchu si obě strany zapíší své body. Při neúspěchu zapíší obránci všech 162 bodů za zdvihy. Při remíze obránci zapíší vlastní zdvihové body a body útočníků získá vítěz příštího rozhodného rozdání. Belote zůstává vždy své dvojici. Všech osm zdvihů dává devadesát bodů navíc."
+        }
+      ],
+      "title": {
+        "cs": "Hodnoty karet a bodování"
+      }
+    },
+    {
+      "id": "coinchee",
+      "paragraphs": [
+        {
+          "cs": "Při tvorbě stolu zvol klasickou Belote nebo Coinchée. V Coinchée se běžně rozdává rovnou osm karet. Volba pěti karet zapne dvoufázové rozdávání: otočenou kartu dostane vítěz licitace a poté se ruce doplní. Její barva zde neomezuje volbu trumfů."
+        },
+        {
+          "cs": "Nabídka určuje trumfy a 80 až 160 bodů po deseti. Každá další musí zvýšit počet bodů. Soupeři mohou kontrovat, čímž uzamknou závazek a zdvojnásobí skóre; útočníci mohou rekontrovat na čtyřnásobek. Tři pasy po nabídce, kontře či rekontře ukončí licitaci. Čtyři pasy bez nabídky znamenají nové rozdání."
+        },
+        {
+          "cs": "Útočníci musí dosáhnout závazku a překonat obránce. Při úspěchu zapisují obě strany své zdvihové body; jinak, i při remíze, dostanou obránci 162 a útočníci nulu. Přidají se bonusy za všechny zdvihy a belote a poté se oběma stranám použije násobitel kontry či rekontry."
+        }
+      ],
+      "title": {
+        "cs": "Coinchée a nastavení stolu"
+      }
+    },
+    {
+      "id": "controls",
+      "paragraphs": [
+        {
+          "cs": "Šipky: procházej karty nebo nabídku."
+        },
+        {
+          "cs": "Enter: při licitaci zvol nabídku, při hře zahraj kartu."
+        },
+        {
+          "cs": "B: otevři nabídky a pas dostupné ve svém tahu."
+        },
+        {
+          "cs": "Shift+Enter: zahraj trumfového krále či dámu a ohlas belote nebo rebelote."
+        },
+        {
+          "cs": "D: přečti otočenou kartu, pokud se používá."
+        },
+        {
+          "cs": "F: přečti trumfy a vynesenou barvu."
+        },
+        {
+          "cs": "R: přečti závazek."
+        },
+        {
+          "cs": "V: přečti závazek."
+        },
+        {
+          "cs": "Shift+S: přečti body za rozdání před násobením."
+        },
+        {
+          "cs": "H: přečti svou ruku."
+        },
+        {
+          "cs": "C: přečti karty na stole."
+        },
+        {
+          "cs": "Ctrl+C: prohlédni si tyto karty."
+        },
+        {
+          "cs": "S: přečti skóre."
+        },
+        {
+          "cs": "T: zjisti, kdo je na tahu."
+        },
+        {
+          "cs": "Z: najdi další hratelnou kartu."
+        },
+        {
+          "cs": "Shift+Z: najdi předchozí hratelnou kartu."
+        },
+        {
+          "cs": "Shift+C: seřaď ruku podle barev."
+        },
+        {
+          "cs": "Shift+H: seřaď ruku podle hodnot."
+        }
+      ],
+      "title": {
+        "cs": "Klávesové zkratky"
+      }
+    }
+  ],
+  "option_chapters": {
+    "variant": "coinchee",
+    "coinchee_two_stage": "coinchee"
+  }
+}

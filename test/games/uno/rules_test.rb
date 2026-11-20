@@ -12,9 +12,11 @@ uno_replay = append_action(uno, uno_session, repository, uno_events, uno_replay,
 assert(uno_replay.state[:hands].values.all? { |hand| hand.length == 7 }, "UNO did not deal seven cards")
 assert(uno_replay.state[:discard].length == 1, "UNO has no first discard")
 uno_shortcuts = uno.custom_game_shortcuts(uno_replay, "Alice")
-assert(["c", "h", "d"].all? do |key|
+assert(["c", "h"].all? do |key|
   uno_shortcuts.any? { |shortcut| shortcut.key == key && shortcut.modifiers == [:shift] && shortcut.kind == :surface }
 end, "UNO is missing the agreed local card-sorting shortcuts")
+assert(uno_shortcuts.none? { |shortcut| shortcut.key == 'd' && shortcut.modifiers == [:shift] },
+  "UNO still exposes the removed acquisition-order shortcut")
 assert(uno_shortcuts.find { |shortcut| shortcut.key == "c" && shortcut.modifiers.empty? }.message !~ /Top card:/,
   "UNO still adds the redundant top-card prefix")
 uno_actor = uno_replay.current_player

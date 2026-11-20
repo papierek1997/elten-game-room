@@ -3,23 +3,26 @@ require_relative "base/round_tournament"
 require_relative "../lib/game_bots"
 require_relative "../lib/dice_poker_strategy"
 require_relative "../lib/blackjack_auction"
+require_relative "dice_poker_support/presentation"
 
 module GameRoomGames
   using GameRoomLocalization::Translations
 
   class DicePoker < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    def round_pause_end_kinds; [:settlement]; end
     include PublicHistoryAnnouncements
+    include DicePokerPresentation
     include BlackjackAuction
     include RoundTournament
-    CHIP_OPTIONS = [
-      OptionDefinition.new(key: "scoring", label: _("Dice poker scoring"), kind: :choice, default: "points", choices: [
-        OptionChoice.new(value: "points", label: _("Points, without betting")), OptionChoice.new(value: "chips", label: _("Chips with betting before and after throws"))]),
-      OptionDefinition.new(key: "starting_chips", label: _("Starting chips"), kind: :integer, default: 1000, visible_if: {"scoring"=>"chips"}),
-      OptionDefinition.new(key: "stake", label: _("Opening contribution"), kind: :integer, default: 10, visible_if: {"scoring"=>"chips"})].freeze
     GameRoomServerRandom.register("dice_poker", ["roll"])
 
     def id; "dice_poker"; end
     def name; _("Dice poker"); end
+
+    def round_timing_event_ids(replay, repository:)
+      successive_round_timing_event_ids(replay, [:settlement])
+    end
     def short_description; _("Keep useful dice, reroll the others and make the strongest poker combination."); end
     def minimum_players; 2; end
     def maximum_players; 8; end
@@ -38,36 +41,26 @@ module GameRoomGames
         OptionDefinition.new(key: "throws", label: _("Maximum throws per turn"), kind: :choice, default: 3, choices: [
           OptionChoice.new(value: 3, label: _("Three throws")), OptionChoice.new(value: 2, label: _("Two throws"))]),
         OptionDefinition.new(key: "opener_limit", label: _("The opener's throws limit the other players"), kind: :boolean, default: false),
-        OptionDefinition.new(key: "round_limit", label: _("Number of rounds"), kind: :integer, default: 3)] + CHIP_OPTIONS
+        OptionDefinition.new(key: "round_limit", label: _("Number of rounds"), kind: :integer, default: 3),
+        OptionDefinition.new(key: "starting_chips", label: _("Starting chips"), kind: :integer, default: 1000),
+        OptionDefinition.new(key: "stake", label: _("Opening contribution"), kind: :integer, default: 10)]
     end
 
     def options_error(options, player_count: nil)
       values = normalize_options(options)
       rounds = values["round_limit"]
       return _("Choose from 1 to 20 rounds.") unless rounds.is_a?(Integer) && rounds.between?(1, 20)
-      if chip_rules?(values)
-        return _("Starting chips must be from 10 to 10000.") unless values["starting_chips"].is_a?(Integer) && values["starting_chips"].between?(10,10000)
-        return _("The stake must be positive and cannot exceed starting chips.") unless values["stake"].is_a?(Integer) && values["stake"].between?(1,values["starting_chips"])
-      end
+      return _("Starting chips must be from 10 to 10000.") unless values["starting_chips"].is_a?(Integer) && values["starting_chips"].between?(10,10000)
+      return _("The stake must be positive and cannot exceed starting chips.") unless values["stake"].is_a?(Integer) && values["stake"].between?(1,values["starting_chips"])
       nil
-    end
-
-    def normalize_options(values)
-      result = super
-      unless chip_rules?(result)
-        CHIP_OPTIONS.each { |definition| result.delete(definition.key) if result[definition.key] == definition.default }
-      end
-      result
     end
 
     def replay(session, events, repository)
       players = repository.players_for(session)
       state = {players: players, options: options_from_json(session["options"]), round: 1, turn: 0,
-        dice: Array.new(5), rolls: 0, hands: {}, budget: nil, scores: players.to_h { |p| [p, 0] },
-        current_player: players.first, winner: nil, draw: false, phase: :playing}
-      if chip_rules?(state[:options])
-        state.merge!(phase: :awaiting_ante, chips: players.to_h { |p| [p,state[:options]["starting_chips"]] }, eliminated: [], pot: 0)
-      end
+        dice: Array.new(5), rolls: 0, hands: {}, budget: nil,
+        current_player: players.first, winner: nil, draw: false, phase: :awaiting_ante}
+      state.merge!(chips: players.to_h { |p| [p,state[:options]["starting_chips"]] }, eliminated: [], pot: 0)
       enable_round_tournament(state, session)
       accepted, history, seen = [], [starting_history(players)], {}
       events.each do |event|
@@ -149,6 +142,8 @@ module GameRoomGames
 
     def custom_game_shortcuts(replay, viewer)
       shortcuts = [announcement_shortcut(key: "s", label: _("read the scores"), message: score_text(replay.state))]
+      hand_shortcut = own_poker_hand_shortcut(replay.state, viewer)
+      shortcuts << hand_shortcut if hand_shortcut
       return shortcuts + auction_shortcuts(replay,viewer) if replay.state[:phase] == :betting
       state = replay.state
       return shortcuts unless state[:phase] == :playing && !replay.finished? && same_user?(replay.current_player, viewer)
@@ -164,7 +159,7 @@ module GameRoomGames
       shortcuts
     end
 
-    def participant_scores(replay); (replay.state[:chips] || replay.state[:scores]).dup; end
+    def participant_scores(replay); replay.state[:chips].dup; end
     def eliminated_from_game?(replay,viewer)
       super || GameRoomParticipants.includes?(replay&.state&.fetch(:eliminated, []).to_a, viewer)
     end
@@ -174,25 +169,14 @@ module GameRoomGames
 
     def bot_action_score(replay, actor, action, context: nil)
       state = replay.state
-      if state[:phase] == :betting
-        return auction_opening_bot_score(state, action) unless state[:betting_stage] == 2
-        return showdown_bot_score(state, action)
-      end
+      return showdown_bot_score(state, action) if state[:phase] == :betting
       return 10 if state[:rolls] == 0
 
       variant = state[:options]["variant"]
-      order = state[:round_order] || tournament_contenders(state)
-      completed = state[:hands].transform_values { |dice| GameRoomDicePokerHands.rank(dice, variant) }
-      pending = order.size - state[:turn] - 1
-      split_ties = chip_rules?(state[:options])
-      pots = auction_pots(state) if split_ties
-      key = [variant, completed, pending, split_ties, actor, pots]
+      pots = auction_pots(state)
+      key = [variant, actor, pots, throw_limit(state)]
       if @bot_plan_key != key
-        utility = if split_ties
-          GameRoomDicePokerStrategy.pot_value(variant, pots, actor, completed)
-        else
-          GameRoomDicePokerStrategy.contest_value(variant, completed.values, pending, split_ties: false)
-        end
+        utility = GameRoomDicePokerStrategy.pot_value(variant, pots, actor, {}, attempts: throw_limit(state))
         @bot_plan_key, @bot_plan = key, GameRoomDicePokerStrategy::Plan.new(variant, utility)
       end
       return @bot_plan.stand(state[:dice].sort) + 1e-9 if action["action"] == "score"
@@ -211,44 +195,46 @@ module GameRoomGames
 
     private
 
-    def chip_rules?(options); GameRoomOptionValues.read(CHIP_OPTIONS.first,options) == "chips"; end
     def auction_unit; 1; end
 
     def showdown_bot_score(state, action)
-      return 2 if action["action"] == "check"
-      return 1 if action["action"] == "fold"
-      return -1 unless action["action"] == "call"
+      return 0 if action["action"] == "fold"
 
-      player, paid = state[:current_player], action["amount"]
-      # Evaluate only layers the bot can actually win. A strong short-stacked
-      # hand must not make the bot abandon a winning side pot.
+      player, paid = state[:current_player], action.fetch("amount")
+      variant = state[:options]["variant"]
+      rank = GameRoomDicePokerHands.rank(state[:hands].fetch(player), variant)
       original = state[:auction][:contributions]
       contributions = original.merge(player => original.fetch(player) + paid)
-      hands = state[:hands].transform_values { |dice| GameRoomDicePokerHands.rank(dice, state[:options]["variant"]) }
-      share = auction_pots(state, contributions: contributions).sum do |pot|
-        eligible = pot[:eligible]
-        next 0 unless eligible.include?(player)
-        best = eligible.map { |person| hands.fetch(person) }.max
-        next 0 unless hands[player] == best
-        # The exact odd chip is not needed to decide whether to match.
-        pot[:amount] / eligible.count { |person| hands[person] == best }
+      if paid > auction_call(state, player)
+        # Value-bet only a strong own hand, with a bounded exposure. Model the
+        # other solvent contenders matching it; never inspect their dice.
+        below, = GameRoomDicePokerStrategy.modeled_outcomes(variant, throw_limit(state)).fetch(rank)
+        return -1 if below < 0.7 || paid > [state[:options]["stake"] * 4, state[:chips][player].div(4)].max
+
+        auction_actionable(state).each do |other|
+          next if other == player
+          call = [contributions[player] - original.fetch(other), state[:chips][other]].min
+          contributions[other] += [call, 0].max
+        end
       end
-      share > paid ? 2 : 0
+      utility = GameRoomDicePokerStrategy.pot_value(variant, auction_pots(state, contributions: contributions), player, {}, attempts: throw_limit(state))
+      utility.call(rank) - paid
     end
     def add_history(history,event_id,actor,kind,text)
       history << HistoryEntry.new(key:"#{kind}:#{event_id}:#{history.size}",event_id:event_id,actor:actor,kind:kind,text:text)
     end
 
     def complete_auction(state,event_id,history)
-      if auction_contenders(state).one? || state[:betting_stage] == 2
-        settle_chip_round(state,event_id,history)
-      else
+      if state[:hands].empty? && auction_contenders(state).size > 1
         state[:round_order] = auction_contenders(state)
         state.merge!(phase: :playing,current_player:state[:round_order].first,dice:Array.new(5),rolls:0,turn:0)
+      else
+        settle_chip_round(state,event_id,history)
       end
     end
 
     def settle_chip_round(state,event_id,history)
+      reveal_poker_hands(state, event_id, history)
       auction_pots(state).each do |pot|
         eligible = pot[:eligible]
         if eligible.empty? || pot[:contributors].one?
@@ -279,22 +265,14 @@ module GameRoomGames
     end
 
     def tournament_round_scores(state)
-      state[:chips] || state[:scores]
-    end
-
-    def point_round_order(state)
-      state[:players].rotate((state[:round] - 1) % state[:players].size) & tournament_contenders(state)
+      state[:chips]
     end
 
     def restart_dice_round(state)
       state.merge!(dice: Array.new(5), rolls: 0, hands: {}, budget: nil, turn: 0)
-      if state[:chips]
-        state[:restart_opener] = state[:round_opener] if state[:phase] != :awaiting_ante
-        refund_interrupted_auction(state)
-        state.merge!(phase: :awaiting_ante, current_player: state[:players].first)
-      else
-        state[:current_player] = point_round_order(state).first
-      end
+      state[:restart_opener] = state[:round_opener] if state[:phase] != :awaiting_ante
+      refund_interrupted_auction(state)
+      state.merge!(phase: :awaiting_ante, current_player: state[:players].first)
     end
 
     def throw_limit(state); state[:budget] || state[:options]["throws"].to_i; end
@@ -309,18 +287,13 @@ module GameRoomGames
     end
 
     def score_text(state)
-      return state[:players].map { |p| _("%{player} has %{chips} chips.") % {player:participant_name(p),chips:state[:chips][p]} }.join(" ") if state[:chips]
-      state[:players].map do |player|
-        points = state[:scores][player]
-        n_("%{player}: %{points} point", "%{player}: %{points} points", points) % {player: participant_name(player), points: points}
-      end.join(". ")
+      state[:players].map { |p| _("%{player} has %{chips} chips.") % {player:participant_name(p),chips:state[:chips][p]} }.join(" ")
     end
 
     def apply_event(state, event, event_id, history)
       player, value = state[:current_player], event["value"].to_s
       if event["action"] == "ante"
         return false unless state[:phase] == :awaiting_ante && value == state[:round].to_s
-        state[:betting_stage] = 1
         restart_opener = state.delete(:restart_opener)
         offset = if restart_opener
           state[:players].index(restart_opener)
@@ -331,7 +304,7 @@ module GameRoomGames
         end
         order = state[:players].rotate(offset) & tournament_contenders(state)
         state[:round_opener] = order.first
-        start_auction(state,order,event_id,history)
+        start_auction(state,order,event_id,history, betting: false)
       elsif event["action"] == "bet"
         return apply_auction(state,event,player,event_id,history)
       elsif event["action"] == "roll"
@@ -347,61 +320,27 @@ module GameRoomGames
           return false unless GameRoomServerRandom.valid_dice_event?(event, count: count, sides: 6, keep: keep, sort: true)
         end
         state[:dice], state[:rolls] = dice, state[:rolls] + 1
-        history << HistoryEntry.new(key: "roll:#{event_id}", event_id: event_id, actor: player, kind: :roll,
-          text: _("%{player} rolls %{dice}: %{hand}.") % {player: participant_name(player), dice: dice.join(", "), hand: hand_name(dice, state[:options]["variant"])})
+        text = _("%{player} rolls the dice.") % {player: participant_name(player)}
+        history << HistoryEntry.new(key: "roll:#{event_id}", event_id: event_id, actor: player, kind: :roll, text: text)
       elsif event["action"] == "stand"
         return false unless state[:phase] == :playing && state[:rolls] > 0 && value == state[:round].to_s
         state[:hands][player] = state[:dice].dup
-        add_history(history, event_id, player, :stand, _("%{player} keeps the hand: %{hand}.") % {
-          player: participant_name(player), hand: hand_name(state[:dice], state[:options]["variant"])})
+        text = _("%{player} keeps the hand.") % {player: participant_name(player)}
+        add_history(history, event_id, player, :stand, text)
         state[:budget] = state[:rolls] if state[:turn] == 0 && state[:options]["opener_limit"]
         state[:turn] += 1
-        if state[:chips]
-          if state[:hands].size == state[:round_order].size
-            state[:betting_stage] = 2
-            continue_auction(state,event_id,history)
-          else
-            state[:current_player] = state[:round_order][state[:hands].size]
-          end
-          state[:dice],state[:rolls] = Array.new(5),0 unless state[:phase] == :finished
-          return true
+        if state[:hands].size == state[:round_order].size
+          continue_auction(state,event_id,history)
+        else
+          state[:current_player] = state[:round_order][state[:hands].size]
         end
-        settle_round(state, event_id, history) if state[:turn] == tournament_contenders(state).size
-        unless state[:phase] == :finished
-          state[:current_player] = point_round_order(state).fetch(state[:turn])
-          state[:dice], state[:rolls] = Array.new(5), 0
-        end
+        state[:dice],state[:rolls] = Array.new(5),0 unless state[:phase] == :finished
       else
         return false
       end
       true
     end
 
-    def settle_round(state, event_id, history)
-      ranks = state[:hands].transform_values { |dice| GameRoomDicePokerHands.rank(dice, state[:options]["variant"]) }
-      winners = ranks.keys.select { |player| ranks[player] == ranks.values.max }
-      winners.each { |player| state[:scores][player] += 1 }
-      hand = hand_name(state[:hands].fetch(winners.first), state[:options]["variant"])
-      text = if winners.one?
-        _("Round %{round}: %{player} wins and earns one point. Winning hand: %{hand}.") % {
-          round: state[:round], player: participant_name(winners.first), hand: hand}
-      else
-        _("Round %{round}: %{players} tie. Each earns one point. Winning hand: %{hand}.") % {
-          round: state[:round], players: winners.map { |player| participant_name(player) }.join(", "), hand: hand}
-      end
-      add_history(history, event_id, "", :round, text)
-      record_tournament_round(state, event_id)
-      if state[:round] == state[:options]["round_limit"]
-        contenders = tournament_contenders(state)
-        best = contenders.map { |player| state[:scores].fetch(player) }.max
-        leaders = contenders.select { |player| state[:scores][player] == best }
-        record_tournament_winners(state, leaders)
-        state.merge!(phase: :finished, current_player: nil, winner: leaders.one? ? leaders.first : nil, draw: !leaders.one?)
-        history << result_history(event_id: event_id, winner: state[:winner], draw: state[:draw])
-      else
-        state.merge!(round: state[:round] + 1, turn: 0, hands: {}, budget: nil)
-      end
-    end
   end
 end
 

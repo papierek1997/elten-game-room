@@ -3,9 +3,14 @@ require_relative "game_turn_clock"
 require_relative "game_sound_output"
 require_relative "game_spatial_sound"
 require_relative "game_room_preferences"
+require_relative "game_round_cues"
 
 module GameRoomSounds
   ASSET_NAMES = %w[
+    auction_gavel
+    auction_chest
+    auction_call_low
+    auction_call_high
     connect
     disconnect
     chatmsg
@@ -19,6 +24,10 @@ module GameRoomSounds
     bingo_draw
     roulette_spin
     roulette_chips
+    billiards_cue
+    billiards_collision
+    billiards_cushion
+    billiards_pocket
     duck_challenge
     duck_question
     duck_correct
@@ -27,6 +36,7 @@ module GameRoomSounds
     war_open
     ding
     shuffle
+    round_finished
     scopa
     scopa_deal
     scopa_take
@@ -51,6 +61,52 @@ module GameRoomSounds
     cht-lost-points
     cht-cat-minus-8
     cht-cat-plus-8
+    five_dice_zero
+    five_dice_record
+    five_dice_bonus
+    five_dice_doubled
+    kosciane_column_1_bonus
+    kosciane_column_1_doubled
+    kosciane_column_2_bonus
+    kosciane_column_2_doubled
+    kosciane_column_3_bonus
+    kosciane_column_3_doubled
+    kosciane_column_4_bonus
+    kosciane_column_4_doubled
+    kosciane_column_5_bonus
+    kosciane_column_5_doubled
+    kosciane_column_6_bonus
+    kosciane_column_6_doubled
+    kosciane_column_1
+    kosciane_column_1_draw2
+    kosciane_column_1_lose3
+    kosciane_column_1_win1
+    kosciane_column_1_win2
+    kosciane_column_2
+    kosciane_column_2_draw2
+    kosciane_column_2_lose3
+    kosciane_column_2_win1
+    kosciane_column_2_win2
+    kosciane_column_3
+    kosciane_column_3_draw2
+    kosciane_column_3_lose3
+    kosciane_column_3_win1
+    kosciane_column_3_win2
+    kosciane_column_4
+    kosciane_column_4_draw2
+    kosciane_column_4_lose3
+    kosciane_column_4_win1
+    kosciane_column_4_win2
+    kosciane_column_5
+    kosciane_column_5_draw2
+    kosciane_column_5_lose3
+    kosciane_column_5_win1
+    kosciane_column_5_win2
+    kosciane_column_6
+    kosciane_column_6_draw2
+    kosciane_column_6_lose3
+    kosciane_column_6_win1
+    kosciane_column_6_win2
     ninety3366
     1000_mariage
     tysiac_surrender
@@ -79,6 +135,7 @@ module GameRoomSounds
     mille_extra_tank
     mille_end_counterflow
     mille_instant_repair
+    duck_memory_bell
     hit1
     hit_ship1
     hit_ship2
@@ -231,6 +288,8 @@ module GameRoomSounds
       cues.unshift("card-shuffle")
     end
     cues.concat(Array(result_cue(game, before_replay, after_replay, viewer))) if include_result
+    cues << GameRoomRoundCues.missing_completion_cue(game: game, before_replay: before_replay,
+      after_replay: after_replay, history: history, cues: cues)
     cues = cues.compact.map(&:to_s).reject(&:empty?).uniq
     return nil if cues.empty?
     return cues.first if cues.length == 1

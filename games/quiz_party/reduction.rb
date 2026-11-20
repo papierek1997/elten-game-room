@@ -102,7 +102,7 @@ module GameRoomGames
         value = input.value
         timestamp = input.timestamp
         accepted_event = false
-        parsed = if input.source['__server_random'] || value.include?(',n:')
+        parsed = if input.source['__server_random'] || value.match?(/,[nq]:/)
           parse_seeded_question(state,input.source)
         else
           parse_question(value)
@@ -120,6 +120,8 @@ module GameRoomGames
           reset_used_questions(state) if fresh_questions(state).empty?
           state[:position] = parsed[:position]
           state[:question_id] = parsed[:question_id]
+          state.delete(:answer_order_seed)
+          state[:answer_order_seed] = parsed[:answer_order_seed] if parsed.key?(:answer_order_seed)
           state[:deadline] = timestamp + state[:options]["answer_time"].to_i
           state[:resume_at] = 0
           state[:used_questions] << parsed[:question_id]

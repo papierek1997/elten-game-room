@@ -5,16 +5,18 @@ require_relative "warsaw_date"
 require_relative 'attempt_list_view'
 
 require_relative "../../lib/game_room_localization"
+require_relative "../../lib/game_room_availability"
 
 module GameRoomGames
   using GameRoomLocalization::Translations
   # Event-driven leaderboard presentation. Persistent queries live in
   # KrowaServerStore; this class only owns forms and user-facing formatting.
   class KrowaLeaderboardClient
-    def initialize(program, game, store: nil, server_tables: nil, definition: nil)
+    def initialize(program, game, store: nil, server_tables: nil, definition: nil, unavailable: nil)
       @program = program
       @game = game
       @definition = definition
+      @unavailable = unavailable || -> { GameRoomAvailability.unavailable(:rankings, tables: server_tables) if server_tables }
       @store = store || KrowaServerStore.new(
         server_tables: server_tables,
         bank: KrowaWordBank.default,
@@ -25,7 +27,7 @@ module GameRoomGames
 
     def run
       unless @store.available?
-        alert(_("Krowa leaderboards are temporarily unavailable."))
+        alert(@unavailable.call || _("Could not connect to the Krowa leaderboard."))
         return
       end
 
@@ -102,7 +104,7 @@ module GameRoomGames
         show_word_ranking(word)
         true
       else
-        alert(_("Could not publish the result."))
+        alert(@unavailable.call || _("Could not publish the result."))
         false
       end
     end
@@ -122,7 +124,7 @@ module GameRoomGames
         show_daily_ranking(date_id)
         true
       else
-        alert(_("Could not publish the Daily Krowa result."))
+        alert(@unavailable.call || _("Could not publish the Daily Krowa result."))
         false
       end
     end
@@ -144,7 +146,7 @@ module GameRoomGames
         show_tower_ranking
         true
       else
-        alert(_("Could not publish the Word Tower result."))
+        alert(@unavailable.call || _("Could not publish the Word Tower result."))
         false
       end
     end
@@ -377,7 +379,7 @@ module GameRoomGames
       nil
     rescue StandardError => error
       Log.warning("Krowa leaderboard: #{error.class}: #{error.message}") if defined?(Log)
-      alert(_("Could not connect to the Krowa leaderboard."))
+      alert(@unavailable.call || _("Could not connect to the Krowa leaderboard."))
       nil
     end
   end

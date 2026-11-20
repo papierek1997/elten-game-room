@@ -1,0 +1,129 @@
+{
+  "source": "games/jass_support/jass_table.rb",
+  "sections": [
+    {
+      "id": "play",
+      "paragraphs": [
+        {
+          "en": "Four players form two partnerships, with partners sitting across the table. Each receives nine cards from a 36-card deck, six through ace in each suit. The player after the dealer chooses trumps or lets their partner choose. That partner must decide. The opening lead stays with the player after the dealer. After each deal, the next player deals.",
+          "pl": "Cztery osoby grają w dwóch parach, z partnerami naprzeciw siebie. Każdy dostaje dziewięć kart z talii 36 kart, od szóstki do asa. Osoba po rozdającym wybiera atut albo przekazuje wybór partnerowi, który musi zdecydować. Do pierwszej lewy zawsze wychodzi osoba po rozdającym. Po każdym rozdaniu rozdaje następny gracz."
+        },
+        {
+          "en": "The first card sets the suit led. On a trump lead, follow with a trump if possible. On another suit, follow suit or play a trump; without that suit you may discard. You may play a lower trump than one already down only if no other legal card remains. The highest trump wins, or the highest card of the suit led if there are no trumps. The trick winner leads next.",
+          "pl": "Pierwsza karta ustala kolor lewy. Do wyjścia w atucie trzeba dołożyć atut, jeśli go masz. Do innego koloru możesz dołożyć albo zagrać atut. Gdy nie masz koloru wyjścia, możesz też zrzucić inną kartę. Niższy atut od już położonego wolno zagrać tylko przy braku innego legalnego ruchu. Wygrywa najwyższy atut, a bez atutu najwyższa karta koloru wyjścia. Zwycięzca wychodzi do następnej lewy."
+        }
+      ],
+      "title": {
+        "en": "Playing Jass",
+        "pl": "Jak grać w Jassa"
+      }
+    },
+    {
+      "id": "scoring",
+      "paragraphs": [
+        {
+          "en": "Trumps rank jack, nine, ace, king, queen, ten, eight, seven, six. The jack is worth twenty and the nine fourteen. In other suits the order is ace, king, queen, jack, ten, nine, eight, seven, six. Aces score 11, tens 10, kings 4, queens 3 and non-trump jacks 2; other cards score zero. The last trick adds five. There are 157 points per deal.",
+          "pl": "Atuty od najsilniejszego to walet, dziewiątka, as, król, dama, dziesiątka, ósemka, siódemka i szóstka. Walet daje dwadzieścia punktów, a dziewiątka czternaście. Poza atutem kolejność to as, król, dama, walet, dziesiątka, dziewiątka, ósemka, siódemka i szóstka. As daje 11, dziesiątka 10, król 4, dama 3, a walet poza atutem 2 punkty. Pozostałe karty dają zero. Ostatnia lewa dodaje pięć, więc w rozdaniu jest razem 157 punktów."
+        }
+      ],
+      "title": {
+        "en": "Card order and points",
+        "pl": "Siła kart i punkty"
+      }
+    },
+    {
+      "id": "settings",
+      "paragraphs": [
+        {
+          "en": "The Trumps variant offers four trump suits. Schieber also offers Obenabe and Undenufe, both without trumps. In Obenabe the highest card of the suit led wins and eights score eight. In Undenufe the lowest card wins; sixes score eleven, aces zero and eights eight. In either mode you must follow suit if possible.",
+          "pl": "Wariant z atutem pozwala wybrać jeden z czterech kolorów. Schieber dodaje Obenabe i Undenufe, oba bez atutu. W Obenabe wygrywa najwyższa karta koloru wyjścia, a ósemki dają osiem punktów. W Undenufe wygrywa najniższa karta: szóstki dają jedenaście, asy zero, a ósemki osiem punktów. W obu trybach trzeba dokładać do koloru, jeśli go masz."
+        },
+        {
+          "en": "Each trick’s points go to its winner’s partnership. Choose a match target of 1000, 1500, 2000 or 2500 when creating the table. The match ends at the end of the deal in which a partnership reaches the target.",
+          "pl": "Punkty za lewę trafiają do pary, która ją wygrała. Przy tworzeniu stołu wybierz cel meczu: 1000, 1500, 2000 albo 2500 punktów. Mecz kończy się na końcu rozdania, w którym para osiągnie ten cel."
+        }
+      ],
+      "title": {
+        "en": "Variants and the score target",
+        "pl": "Odmiany i cel punktowy"
+      }
+    },
+    {
+      "id": "controls",
+      "paragraphs": [
+        {
+          "en": "Arrows: browse cards or menu choices.",
+          "pl": "Strzałki: przeglądaj karty lub pozycje menu."
+        },
+        {
+          "en": "Enter: choose the deal rules before play, or play a card during tricks.",
+          "pl": "Enter: wybierz zasady rozdania przed rozgrywką albo zagraj kartę podczas lewy."
+        },
+        {
+          "en": "B: open the available trump and no-trump choices.",
+          "pl": "B: otwórz dostępne kolory atutowe i tryby bez atutu."
+        },
+        {
+          "en": "F: read the deal rules and suit led.",
+          "pl": "F: odczytaj zasady rozdania i kolor wyjścia."
+        },
+        {
+          "en": "R: read who chooses trumps or which mode was chosen.",
+          "pl": "R: sprawdź, kto wybiera atut albo jaki tryb wybrano."
+        },
+        {
+          "en": "V: repeat the deal rules.",
+          "pl": "V: przypomnij zasady rozdania."
+        },
+        {
+          "en": "Shift+S: read this deal’s points.",
+          "pl": "Shift+S: odczytaj punkty rozdania."
+        },
+        {
+          "en": "H: read your hand.",
+          "pl": "H: odczytaj rękę."
+        },
+        {
+          "en": "C: read the cards on the table.",
+          "pl": "C: odczytaj karty na stole."
+        },
+        {
+          "en": "Ctrl+C: browse those cards.",
+          "pl": "Ctrl+C: przejrzyj te karty."
+        },
+        {
+          "en": "S: read the scores.",
+          "pl": "S: odczyt wyniku."
+        },
+        {
+          "en": "T: read whose turn it is.",
+          "pl": "T: odczytaj, czyja jest tura."
+        },
+        {
+          "en": "Z: find the next playable card.",
+          "pl": "Z: znajdź następną kartę, którą można zagrać."
+        },
+        {
+          "en": "Shift+Z: find the previous playable card.",
+          "pl": "Shift+Z: poprzednia karta, którą można zagrać."
+        },
+        {
+          "en": "Shift+C: sort your hand by suit.",
+          "pl": "Shift+C: sortuj rękę według kolorów."
+        },
+        {
+          "en": "Shift+H: sort your hand by rank.",
+          "pl": "Shift+H: sortuj rękę według wartości."
+        }
+      ],
+      "title": {
+        "en": "Controls",
+        "pl": "Sterowanie"
+      }
+    }
+  ],
+  "option_chapters": {
+    "variant": "settings",
+    "score_limit": "settings"
+  }
+}

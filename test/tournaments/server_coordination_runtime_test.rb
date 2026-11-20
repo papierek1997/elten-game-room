@@ -2,7 +2,7 @@ require_relative '../support/settings_widget'
 require_relative '../support/assertions'
 include GameRoomTest::Assertions
 
-# The shared application fixture supplies a fixed display name. Restore the
+# The shared application fixture supplies a fixed account name. Restore the
 # host's reader here so its real Session.logged? also covers incomplete login.
 original_name = Session.method(:name)
 original_token = Session.token
@@ -47,7 +47,7 @@ begin
   Session.name = 'Alice'
   app.configure_tournament_coordination
   app.tournament_coordination_tick
-  assert_equal([], workspaces, 'A display name without a token started tournaments')
+  assert_equal([], workspaces, 'An account name without a token started tournaments')
   assert_equal([], warnings, 'Incomplete login produced a warning')
 
   Session.token = 'fixture-token'

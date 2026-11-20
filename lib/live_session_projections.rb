@@ -27,6 +27,8 @@ class GameRoomLiveSessionStore
           lifecycle.call(record, "game_aborted")
         elsif record.packet['kind'] == 'game_boundary' && record.packet.dig('data', 'tournament_presence', 'mode') == 'continue'
           lifecycle.call(record, 'tournament_elimination').merge('subject'=>record.packet['data']['tournament_presence']['loser'])
+        elsif record.packet['kind'] == 'game_boundary' && record.packet.dig('data', 'round_pause')
+          lifecycle.call(record, record.packet.dig('data', 'frozen') ? 'game_paused' : 'game_resumed')
         elsif record.packet["kind"] == "room_state" && record.packet.dig("data", "options_changed") == true
           lifecycle.call(record, "options_changed") if option_changes.include?(record.sequence)
         elsif record.packet["kind"] == "room_activity"
@@ -474,13 +476,7 @@ class GameRoomLiveSessionStore
       }
       session['__server_random'] = data['server_random'] if data.key?('server_random')
       session['__private_cards'] = data['private_cards'] if data.key?('private_cards')
-      boundaries = records_for(record.table_id).select do |item|
-        item.packet['kind'] == 'game_boundary' && item.packet.dig('data', 'session_id') == id
-      end
-      session['__game_boundary'] = boundaries.last&.message_id.to_s
-      session['__game_revision'] = records_for(record.table_id).reverse.find do |item|
-        item.packet['kind'] == 'game_action' && item.packet.dig('data', 'session_id') == id
-      end&.message_id.to_s
+      boundaries = apply_game_boundaries(session, record.table_id, id)
       presence, previous = nil, nil
       boundaries.each do |item|
         value = GameRoomTournamentPresence.transition(item.packet['data'], players: initial,
@@ -497,6 +493,22 @@ class GameRoomLiveSessionStore
         session['__statistics'] = GameRoomStatistics::Identity.copy(data['statistics'], started_at: record.created_at.to_i)
       end
       session
+    end
+
+    def apply_game_boundaries(session, table_id, id)
+      boundaries = records_for(table_id).select do |item|
+        item.packet['kind'] == 'game_boundary' && item.packet.dig('data', 'session_id') == id
+      end
+      session['__game_boundary'] = boundaries.last&.message_id.to_s
+      session['__round_pause'] = true if session['__frozen'] && boundaries.last&.packet&.dig('data', 'round_pause')
+      session['__game_revision'] = records_for(table_id).reverse.find do |item|
+        item.packet['kind'] == 'game_action' && item.packet.dig('data', 'session_id') == id
+      end&.message_id.to_s
+      pause = boundaries.reverse.find { |item| item.packet.dig('data', 'round_pause') }&.packet&.fetch('data')
+      if pause && pause['frozen'] == false && pause['round_pause']['revision'] == session['__game_revision']
+        session['__round_pause_released'] = true
+      end
+      boundaries
     end
 
     def game_clock_state(table_id, session_id, offset, before_sequence: nil)

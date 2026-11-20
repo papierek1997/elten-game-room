@@ -3,6 +3,7 @@ require_relative '../support/assertions'
 require_relative '../../games/mexican_train'
 require_relative '../../lib/tournaments/game_result'
 require_relative '../../lib/tournaments/standings'
+require 'digest'
 include GameRoomTest::Assertions
 
 TileResultMatch = Struct.new(:game, :session, :repository, :events, :replay, :options, keyword_init: true) do
@@ -36,8 +37,29 @@ end
 
 type = GameRoomTournaments::GameResult
 players = %w[Alice Bob Carol Dave Eve Frank Grace Heidi]
-match = finish_tile_match(GameRoomGames::MexicanTrain.new, players: players, seed: 87,
-  options: {'score_limit'=>1})
+# Keep the accepted pre-change game, not the choices of today's bot. A stronger
+# strategy may legally produce a different match from the same random seed.
+fixture = JSON.parse(File.read(File.expand_path('../fixtures/mexican_train_blocked_tie.json', __dir__)))
+assert_equal('1f0a35f7c194dbbe5e45828d867b94ca8d3ee5c6', fixture.fetch('source_commit'))
+assert_equal('mexican_train', fixture.fetch('game'))
+assert_equal(players, fixture.fetch('players'))
+assert_equal('69bbd565b0676f85260b8232eaac3b9da4f1cd1adc60e0987fc1e1b621802486', fixture.fetch('events_sha256'))
+assert_equal(fixture.fetch('events_sha256'), Digest::SHA256.hexdigest(JSON.generate(fixture.fetch('events'))))
+game = GameRoomGames::MexicanTrain.new
+options = game.normalize_options(fixture.fetch('options'))
+assert_equal(fixture.fetch('options'), options)
+session = {'options'=>JSON.generate(options)}
+repository = NewGames116Repository.new(players)
+events = fixture.fetch('events')
+replay = game.replay(session, [], repository)
+events.each_index do |index|
+  prefix = events.first(index + 1)
+  replay = game.replay(session, prefix, repository)
+  assert_equal(prefix, replay.accepted_events, 'The historical tile match rejected or reordered an accepted action')
+end
+assert(replay.finished?, 'The historical tile match did not finish')
+match = TileResultMatch.new(game:game, session:session, repository:repository,
+  events:events, replay:replay, options:options)
 assert_equal(98, match.events.length, 'Accepted blocked-match fixture changed')
 assert_equal(%w[Alice Heidi], match.replay.state[:winners])
 assert_equal({'Alice'=>8,'Bob'=>22,'Carol'=>60,'Dave'=>26,'Eve'=>10,'Frank'=>14,'Grace'=>28,'Heidi'=>8},
@@ -73,6 +95,13 @@ assert(rows.fetch('alice')['points'] > rows.fetch('eve')['points'], 'Co-winners 
   end
 end
 assert_equal(before, Marshal.dump([match.replay, match.session, match.events]), 'Result export mutated the completed match')
+
+# Exercise current bot choices separately, without forcing them to repeat an
+# older strategy's event count, exact scores or winning players.
+fresh = finish_tile_match(GameRoomGames::MexicanTrain.new, players:players, seed:87,
+  options:{'score_limit'=>1})
+assert_equal(fresh.replay.state.fetch(:winners).map(&:downcase).sort,
+  fresh.export(type::CURRENT_RESULT_POLICY).fetch('winners').sort)
 
 # Reuse the game-family hook, including teams: there is no tournament game-ID
 # switch and no generic inference from arbitrary state[:winners] fields.

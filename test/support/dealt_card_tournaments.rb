@@ -10,7 +10,7 @@ module DealtCardTournamentTest
     users=teams ? %w[Alice Bob Carol Dave] : %w[Alice Bob]
     game=GameRoomGames::CATALOG.build(id)
     options=game.normalize_options(teams ? {'team_size'=>2,'score_limit'=>1,'two_point_lead'=>false} : {'bot_delay'=>0})
-    h=NativeRoomHarness.new(game:game,users:users,options:options)
+    h=NativeRoomHarness.new(game:game,users:users,options:options,clock:ClockEventContract::ManualTime.new)
     programs=users.to_h { |user| [user,ProgramDouble.new(h.broker.endpoint(user))] }
     lobbies=users.to_h { |user| [user,LobbyRepository.new(programs[user],transport:h.transports[user],server_tables:Object.new)] }
     h.as('Alice') { lobbies['Alice'].close_table(h.table) }
@@ -44,11 +44,13 @@ module DealtCardTournamentTest
         end
         runners=users.to_h do |user|
           [user,h.as(user) do
-            GameRoomSessionRunner.new(program:programs[user],transport:h.transports[user],repository:h.repositories[user],
+            runner=GameRoomSessionRunner.new(program:programs[user],transport:h.transports[user],repository:h.repositories[user],
               game:game,session:h.session,table:room,owner:'Alice',viewer:user,
               context:GameRoomGames::ActionContext.new(random_source:GameRoomRandom::LocalSecureSource.new),
               room_snapshot_provider:-> { lobbies[user].snapshot_for(room) },covered:-> { true },
               completion_observer:->(session,replay,events) { services[user].observe(room,session,replay,events) })
+            runner.instance_variable_set(:@clock,h.clock.session_clock)
+            runner
           end]
         end
         700.times do

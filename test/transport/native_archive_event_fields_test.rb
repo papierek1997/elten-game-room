@@ -12,14 +12,14 @@ game = GameRoomGames::DicePoker.new
 players = %w[Alice Bob]
 source_session = {'__id'=>19, '__players'=>players,
   'options'=>JSON.generate(game.default_options)}
-source_events = [{'id'=>1, 'sequence'=>1, 'actor'=>'Alice', 'action'=>'roll',
-  'value'=>'1,2,3,4,5', 'created_at'=>1}]
+source_events = [{'id'=>1, 'sequence'=>1, 'actor'=>'Alice', 'action'=>'ante', 'value'=>'1', 'created_at'=>1},
+  {'id'=>2, 'sequence'=>2, 'actor'=>'Alice', 'action'=>'roll', 'value'=>'1,2,3,4,5', 'created_at'=>2}]
 source_repository = DiceGamesSupport::Repository.new(players)
 archive = NativeEventFieldsArchive.new(nil, owner:'Alice')
 row = archive.put(game:game, table:{'owner'=>'Alice', 'name'=>'Saved dice'},
   snapshot:Struct.new(:session, :events).new(source_session, source_events),
   repository:source_repository, now:100)
-assert(row.fetch('events').length == 1, 'Normal dice archive fixture did not contain its accepted move')
+assert(row.fetch('events').length == 2, 'Normal dice archive fixture did not contain its ante and accepted roll')
 
 cases = [[nil, nil], ['game_time', 1], ['__server_random', true],
   ['__server_pool', {'operation'=>'take'}], ['__payload', {'action'=>'roll'}],
@@ -44,7 +44,7 @@ cases.each do |key, value|
       snapshot = h.repositories.fetch(user).snapshot_for(remote)
       replay = game.replay(snapshot.session, snapshot.events, h.repositories.fetch(user))
       assert(!invalid, "Noncanonical native archive reached the reducer: #{key}")
-      assert(replay.accepted_events.length == 1 && replay.state[:rolls] == 1,
+      assert(replay.accepted_events.length == 2 && replay.state[:rolls] == 1,
         'Canonical native archive changed its game state')
       if key == 'game_time'
         assert(snapshot.events.first['__game_time'] == value,

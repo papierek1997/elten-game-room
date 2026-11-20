@@ -14,7 +14,7 @@ class OpeningInvitationApp < InvitationAppDriver
     @decision = :accept
   end
   def initialize_services; end
-  def check_server_table_access; end
+  def check_server_table_access(announce: true); end
   def select_notification_invitation_action
     @before_decision&.call
     @decision

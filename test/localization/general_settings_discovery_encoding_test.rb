@@ -21,7 +21,7 @@ using GameRoomLocalization::Translations
     raise "Wrong initial settings category" unless form.fields.first.index.to_i == 0 &&
       form.fields.first.options.first == _("General")
     visible = form.fields - form.hidden_controls
-    controls = visible[3..4]
+    controls = visible.select { |field| field.is_a?(CheckBox) }.first(2)
     raise "Background controls not in General" unless controls.map(&:label) == expected
     controls.each do |control|
       raise "Background option default disabled" unless control.checked
@@ -52,7 +52,7 @@ using GameRoomLocalization::Translations
     raise 'Restricted explanation is not UTF-8' unless [note.text, note.header].all? do |text|
       text.encoding == Encoding::UTF_8 && (text + ' Флажок').valid_encoding?
     end
-    expected_note = _("New-table subscriptions are unavailable without access to server settings. Other settings can still be changed.")
+    expected_note = _("New-table notification settings could not be loaded. Reopen Settings to try again. Other settings can still be changed.")
     raise 'Restricted explanation has the wrong language' unless note.text.start_with?(expected_note)
     form.accept_button.trigger(:press)
   end

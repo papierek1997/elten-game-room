@@ -92,7 +92,8 @@ navigation = game.playable_card_navigation(replay, replay.current_player)
 assert(navigation[:hand_id] == "hand" && !navigation[:card_actions].empty?, "playable-card navigation is unavailable")
 shortcut_keys = game.game_shortcuts(replay, replay.current_player).map { |shortcut| [shortcut.key, shortcut.modifiers] }
 assert(shortcut_keys.include?(["z", []]) && shortcut_keys.include?(["z", [:shift]]), "Z or Shift+Z is missing")
-assert(shortcut_keys.include?(["c", [:shift]]) && shortcut_keys.include?(["h", [:shift]]) && shortcut_keys.include?(["m", [:shift]]), "shared hand sorting shortcuts are missing")
+assert(shortcut_keys.include?(["c", [:shift]]) && shortcut_keys.include?(["h", [:shift]]), "shared hand sorting shortcuts are missing")
+assert(!shortcut_keys.include?(["m", [:shift]]), "3-5-8 still exposes the removed acquisition-order mode")
 
 until replay.state[:phase] == :round_complete
   actor = replay.current_player

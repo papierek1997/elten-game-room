@@ -58,10 +58,14 @@ worker=Class.new do
   def close; @operation=nil; end
 end.new
 inbox=T::ProposalNoticeInbox.new(service:fresh,worker:worker)
+assert_equal(false,inbox.work_pending?,'A fresh inbox schedules idle work')
 assert(inbox.receive(id:1,metadata:notice,sender:'owner'))
+assert(inbox.work_pending?,'A received notice did not wake the inbox')
 assert_equal(false,inbox.receive(id:2,metadata:notice,sender:'owner'),'Duplicate delivery with another notification ID')
 assert_equal([],inbox.tick)
+assert(inbox.work_pending?,'An in-flight verification was reported idle')
 assert_equal(1,inbox.tick.size)
+assert_equal(false,inbox.work_pending?,'A drained verification kept the inbox awake')
 10.times{assert_equal([],inbox.tick)}
 assert_equal(1,worker.starts,'Idle ticks must not poll')
 assert_equal([1],inbox.forget(notice['token']))
@@ -91,7 +95,9 @@ assert_equal([],inbox.tick,'A pre-change snapshot was delivered')
 backend.define_singleton_method(:lookup_proposal){|notice:|raise T::ProposalNotice::Stale,'Cancelled'}
 assert_equal([],inbox.tick)
 assert_equal([],inbox.pending,'A remotely cancelled invitation remains selectable')
+assert(inbox.work_pending?,'A pending native revocation was reported idle')
 assert_equal([5],inbox.take_revoked)
+assert_equal(false,inbox.work_pending?,'A drained native revocation kept the inbox awake')
 assert_equal([],inbox.take_revoked)
 assert_equal(false,inbox.receive(id:6,metadata:active_notice,sender:'owner'))
 # A connection failure does not mean cancellation.

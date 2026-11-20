@@ -33,6 +33,7 @@ end
 
 GameRoomLocalization.boot(settings: { 'interface_language' => 'en' }, host_language: 'en')
 provider = Struct.new(:available?).new(false)
+def provider.stamp_required?; false; end
 stored = GameRoomPreferences.defaults(EltenGameRoom::GAME_REGISTRY.ids).merge('sentinel' => 'keep')
 repository = Object.new
 reads, writes, cache_updates, notices, local_writes, tasks = [], [], [], [], [], []
@@ -98,7 +99,7 @@ Form.settings_access_driver = lambda do |form|
   else
     assert(watched.is_a?(EditBox) && watched.flags & EditBox::Flags::ReadOnly != 0,
       'Unavailable subscriptions look editable')
-    assert(watched.text.include?('Other settings'), 'No explanation of partial availability')
+    assert(watched.text.downcase.include?('other settings'), 'No explanation of partial availability')
   end
   controls.find { |control| control.header == 'Show invitation notifications from' }.index = 1
   if select_language

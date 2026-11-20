@@ -12,6 +12,8 @@ GameRoomServerRandom.register_payload('rummy', ['deal'])
 module GameRoomGames
   using GameRoomLocalization::Translations
   class Rummy < CardGame
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    def standard_round_end_sound?; false; end
     def tournament_small_point_policy(options:)
       values = normalize_options(options)
       tournament_target_small_points(values.fetch('score_limit'), order: values['elimination'] ? 'lower' : 'higher')
@@ -30,6 +32,7 @@ module GameRoomGames
     def player_spatial_audio?; true; end
     include PublicHistoryAnnouncements
     Rules = GameRoomRummyRules
+    CARD_HAND_ORDER = CardHandOrder.new(default_sort: 'colour', sort_modes: %w[colour number], suits: PLAYROOM_SUIT_ORDER, ranks: Rules::RANKS)
     DISCARDS = [
       OptionChoice.new(value: "none", label: _("No discard pile")),
       OptionChoice.new(value: "discard", label: _("Discarding without taking discards")),

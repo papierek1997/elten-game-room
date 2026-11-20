@@ -71,10 +71,36 @@ paths.each do |language, path|
   bytes = File.binread(File.join(root, path))
   markdown = bytes.dup.force_encoding(Encoding::UTF_8)
   assert(markdown.valid_encoding?, "#{language}: invalid UTF-8")
+  assert(markdown.match?(/\A# Power Games\r?\n/), "#{language}: missing guide title")
+  readable = markdown.gsub(/\s+/, ' ')
+  ['Create your own quiz question sets', 'Saved games', 'Games to resume',
+    'Histories and replays', 'Notification settings', 'Lobby announcements',
+    'Create voice conversation', 'Join voice conversation', 'Disconnect voice conversation',
+    'Join tournament', 'Leave tournament', 'Team partner', 'Tournament matches',
+    'Standings', 'Participants', 'Information and rules', 'Manage tournament',
+    'Review result', 'Confirm result', 'Check pending changes'].each do |label|
+    translated = GameRoomContent.utf8(GameRoomLocalization.translate(label))
+    assert(readable.include?(translated), "#{language}: guide does not use the interface label #{translated}")
+  end
   assert(markdown.include?(invitation_filter_exception_text.fetch(language)),
     "#{language}: invitation filters omit the tournament exception")
   tournament_title, help_title = section_titles.fetch(language)
   chapters = markdown.scan(/^## (.+)$/).flatten.map(&:strip)
+  catalogue_title = chapters.fetch(2)
+  catalogue = markdown[/^## #{Regexp.escape(catalogue_title)}\r?\n(.*?)(?=^## |\z)/m, 1]
+  catalogue_text = catalogue.gsub(/\s+/, ' ').downcase
+  game_ids = GameRoomGames::CATALOG.ids
+  assert(catalogue.include?(game_ids.length.to_s), "#{language}: game count differs from the catalogue")
+  assert(catalogue.lines.count { |line| line.start_with?('- ') } == 6,
+    "#{language}: game catalogue is not a complete, grouped list")
+  game_ids.each do |id|
+    name = GameRoomContent.utf8(GameRoomGames::CATALOG.name(id))
+    assert(catalogue_text.include?(name.downcase), "#{language}: catalogue omits the interface game name #{name}")
+  end
+  assert(!catalogue.match?(/Ctrl\+|Shift\+|\b(?:Enter|F1)\b/),
+    "#{language}: game instructions returned to the catalogue")
+  assert(!markdown.match?(/Liblouis|ura-dora|Palifico|Calza|\bWPM\b|la partage/),
+    "#{language}: game-specific implementation or scoring instructions returned to README")
   # Sports results belong to Statistics, not to a competitive leaderboard.
   sports = markdown.index(/^### Axel Pong /)
   statistics_heading = {'pl'=>'Statystyki','en'=>'Statistics','cs'=>'Statistiky','es'=>'Estadísticas','ru'=>'Статистика'}.fetch(language)
@@ -93,6 +119,8 @@ paths.each do |language, path|
     assert(tournament_section.include?(description), "#{language}: current tournament help omits #{description}")
   end
   contents_titles = markdown.lines.filter_map { |line| line[/\A- \[([^\]]+)\]\(#/, 1] }
+  assert(contents_titles.select { |title| chapters.include?(title) } == chapters.drop(1),
+    "#{language}: contents omit, duplicate or reorder an application chapter")
   contents_index = contents_titles.index(tournament_title)
   assert(contents_index && contents_titles[contents_index + 1] == help_title,
     "#{language}: contents order differs from the tournament chapter order")
@@ -104,7 +132,7 @@ paths.each do |language, path|
   assert(!markdown.include?(cancel_forfeit_key), "#{language}: obsolete separate started-match forfeit shortcut")
   assert(markdown.lines.filter_map { |line| line[/\A(#+) /, 1]&.length } == levels, "#{language}: section structure differs from the user's README")
   assert(markdown.lines.count { |line| line.start_with?("- ") } == bullets, "#{language}: missing list entries")
-  %w[Ctrl+R Ctrl+W Ctrl+I Ctrl+Shift+I Ctrl+J Ctrl+Shift+T Ctrl+O Ctrl+M Ctrl+Shift+R Ctrl+Q Ctrl+X Ctrl+F1 Ctrl+F4 Ctrl+P Ctrl+N Ctrl+S Ctrl+Shift+S Ctrl+Home Ctrl+End Shift+C Shift+H Shift+M Ctrl+C Ctrl+Shift+H Ctrl+H].each do |key|
+  %w[Ctrl+R Ctrl+W Ctrl+I Ctrl+Shift+I Ctrl+J Ctrl+T Ctrl+Shift+T Ctrl+O Ctrl+M Ctrl+Shift+M Ctrl+Shift+R Ctrl+Shift+P Ctrl+Q Ctrl+X Ctrl+F1 Ctrl+F4 Ctrl+P Ctrl+N Ctrl+S Ctrl+Shift+S Ctrl+Home Ctrl+End Shift+C Shift+H Shift+M].each do |key|
     assert(markdown.include?(key), "#{language}: missing shortcut #{key}")
   end
   visited = false
@@ -122,7 +150,8 @@ paths.each do |language, path|
     assert(headings.map { |h| field.text_range(h.from, h.to) } == expected_titles, "#{language}: native headings or Unicode offsets changed")
     links = elements(field, EditBox::Element::Link)
     contents = links.select { |link| link.param[1].start_with?("#") }
-    assert(contents.length == 20, "#{language}: lost a contents or chapter link, including separate leaderboards and statistics")
+    internal_link_count = markdown.scan(/\[[^\]\n]+\]\(#[^\s)]+\)/).length
+    assert(contents.length == internal_link_count, "#{language}: native view lost a contents or chapter link")
     contents.each do |link|
       target = field.instance_variable_get(:@contents_targets)[link]
       assert(target, "#{language}: broken internal link #{link.param[1]}")
@@ -140,8 +169,11 @@ paths.each do |language, path|
       assert(field.index == targets[0].from, "#{language}: native backward navigation failed")
     end
     external = links.reject { |link| link.param[1].start_with?("#") }
-    assert(external.length == 10, "#{language}: missing repository link")
-    assert(external.all? { |link| link.param[1].start_with?("https://github.com/papierek1997/elten-game-room/") }, "Repository-only docs became missing local links")
+    repository = "https://github.com/papierek1997/elten-game-room/"
+    expected_external = ["issues", "blob/main/CONTRIBUTING.md", "blob/main/docs/INDEX.md",
+      "blob/main/LICENSE", "blob/main/THIRD_PARTY_NOTICES.md"].map { |path| repository + path }
+    assert(external.map { |link| link.param[1] }.sort == expected_external.sort,
+      "#{language}: contributor, feedback or licence links changed")
     external.each do |link|
       field.index = link.from
       field.press(:key_enter)

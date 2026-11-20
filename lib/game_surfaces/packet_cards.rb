@@ -28,7 +28,8 @@ module GameSurfaces
       @spec = spec
       @card_sort_mode = state_value(state, "card_sort_mode", "").to_s
       @card_sort_direction = state_value(state, "card_sort_direction", "ascending").to_s
-      @cards = sorted_cards(spec.cards.to_a, @card_sort_mode)
+      reset_disallowed_card_sort
+      @cards = sorted_cards(spec.cards.to_a, active_card_sort_mode)
       validate!
       index = state_value(state, "index", 0)
       if spec.hand_order != nil
@@ -45,11 +46,12 @@ module GameSurfaces
       end
       @selected_ids.select! { |id| @cards.any? { |card| card_id(card) == id } }
       @pending = nil
-      @control = RefreshAwareListBox.new(
+      @control = CardHandListBox.new(
         labels, header: spec.header.to_s,
         index: bounded_index(index), quiet: true,
         empty_label: (spec.empty_label || _("Your hand is empty")).to_s
       )
+      @control.card_navigation_source = -> { @cards if @spec.hand_order != nil && @pending == nil }
       @control.on(:select) { |parameters| activate(parameters.to_a[0].to_i) }
       @control.extend(PacketHelp)
       refresh_packet_help
@@ -57,6 +59,10 @@ module GameSurfaces
 
     def fields
       [@control]
+    end
+
+    def displayed_hand_cards(hand_id)
+      @cards.dup if @spec.hand_order != nil && @spec.id.to_s == hand_id.to_s
     end
 
     def state
@@ -80,7 +86,8 @@ module GameSurfaces
     def update_spec(spec)
       remembered = state
       @spec = spec
-      @cards, index, changed = CardHandCursor.resolve(sorted_cards(spec.cards.to_a, @card_sort_mode), spec.hand_order, spec.hand_epoch,
+      reset_disallowed_card_sort
+      @cards, index, changed = CardHandCursor.resolve(sorted_cards(spec.cards.to_a, active_card_sort_mode), spec.hand_order, spec.hand_epoch,
         remembered["hand_cursor"], remembered["index"], sorted: sorted_hand?)
       validate!
       signature = @cards.map { |card| card_id(card) }.sort.join("|")
@@ -159,9 +166,10 @@ module GameSurfaces
     def sort_hand(payload)
       return false if @pending
       mode = (payload["mode"] || payload[:mode]).to_s
-      return false if mode.empty? || @cards.none? { |card| card_sort_keys(card).key?(mode) }
+      return false unless card_sort_mode_allowed?(mode)
+      return false if @cards.none? { |card| card_sort_keys(card).key?(mode) }
       toggle = payload["toggle"] || payload[:toggle]
-      direction = toggle && @card_sort_mode == mode && @card_sort_direction == "ascending" ? "descending" : "ascending"
+      direction = card_sort_direction_for(mode, toggle:toggle)
       selected = card_id(@cards[@control.index.to_i])
       @cards = sorted_cards(@cards, mode, direction)
       @card_sort_mode, @card_sort_direction = mode, direction

@@ -1,6 +1,7 @@
 require_relative '../support/room_interface'
 require_relative '../support/private_simulation'
 require_relative '../support/model_contract'
+require_relative '../support/card_hand_order'
 
 include GameRoomTest::Assertions
 
@@ -38,7 +39,9 @@ catalog.ids.each do |id|
   assert_equal(options_before, GameRoomTest::ContractValues.digest(original_options), "#{id}: validation mutated defaults")
   next if id == 'duck_racing'
 
-  assert_equal(false, game.paced_event_presentation?, "#{id}: inherited Duck pacing")
+  unless game.class.instance_methods(false).include?(:paced_event_presentation?)
+    assert_equal(false, game.paced_event_presentation?, "#{id}: inherited unrelated event pacing")
+  end
   assert_equal(false, game.replay_participant_transitions?, "#{id}: inherited Duck seat replay")
   presentation = game.build_presentation_game
   if !presentation.equal?(game)
@@ -49,12 +52,13 @@ catalog.ids.each do |id|
     assert_equal(game, presentation, "#{id}: replaced a custom presentation model")
   end
 end
-assert_equal(%w[audio_ball axel_pong duck_racing krowa mania_pisania scrabble], client_ids.sort)
+assert_equal(%w[audio_ball axel_pong darts duck_racing krowa mania_pisania scrabble], client_ids.sort)
 
 cases = JSON.parse(File.read(File.join(__dir__, '../fixtures/contracts/v1/histories.json'), encoding: 'UTF-8')).fetch('cases')
 cases.reject! { |item| item.fetch('game') == 'tysiac' }
 %w[v2/tysiac v1/mille_bornes v2/bridge v1/mahjong v1/bouillabaisse v1/scopa
-  v1/bingo v1/blackjack v1/blackjack_dice v1/dice_poker v1/go v1/liars_dice v1/roulette].each do |name|
+  v1/bingo v1/blackjack v1/blackjack_dice v2/dice_poker_hidden v1/go v1/liars_dice v1/roulette v1/billiards v1/french_tarot v1/backgammon
+  v1/cribbage v1/belote v1/jass v1/hearts].each do |name|
   cases << JSON.parse(File.read(File.join(__dir__, "../fixtures/contracts/#{name}.json"), encoding: 'UTF-8'))
 end
 
@@ -63,6 +67,7 @@ types = Hash.new(0)
 inspect_view = lambda do |game, replay, viewer|
   before = GameRoomTest::ContractValues.digest(replay)
   view = game.game_view_spec(replay, viewer)
+  GameRoomTest::CardHandOrderContract.check(game, view.surface, options: replay.state&.fetch(:options, {}) || {})
   # Construct the whole shared layout, not just a declaration of its fields.
   layout = GameRoomLayout::Screen.new(view_spec: view, chat_text: 'Keep this draft',
     chat_index: 4, chat_check: 8, history_items: [], user_items: replay.players)
@@ -97,10 +102,26 @@ cases.each do |item|
     "#{game.id}: surface coverage must use an accepted history, not a rejected fixture")
 end
 
-%w[axel_pong audio_ball duck_racing mania_pisania].each do |id|
+cash = JSON.parse(File.read(File.join(__dir__, '../fixtures/contracts/v1/cash_auction.json'), encoding: 'UTF-8'))
+cash_game = catalog.build('cash_auction')
+cash_repository = GameRoomSimulation::Repository.new(cash.fetch('players'))
+cash.fetch('events').length.succ.times do |length|
+  replay = cash_game.replay(cash.fetch('session'), cash.fetch('events').first(length), cash_repository)
+  (cash.fetch('players') + ['Spectator']).each { |viewer| inspect_view.call(cash_game, replay, viewer) }
+end
+assert_equal(cash.fetch('events'), cash_game.replay(cash.fetch('session'), cash.fetch('events'), cash_repository).accepted_events,
+  'Cash Auction surface coverage must use an accepted native history')
+
+%w[axel_pong audio_ball darts duck_racing mania_pisania].each do |id|
   game = catalog.build(id)
   env = GameRoomTest::PrivateSimulation.new_game(game: game, players: %w[Alice Bob])
   %w[Alice Bob Spectator].each { |viewer| inspect_view.call(game, env.replay, viewer) }
+end
+%w[kosciane balut].each do |id|
+  game = catalog.build(id)
+  players = %w[Alice Bob Carol Dan].take(game.minimum_players)
+  env = GameRoomTest::PrivateSimulation.new_game(game: game, players: players)
+  (players + ["Spectator"]).each { |viewer| inspect_view.call(game, env.replay, viewer) }
 end
 assert_equal(catalog.ids.sort, checks.keys.sort, 'Every catalog game must cross the shared UI boundary')
 puts "PASS catalog clients: #{catalog.ids.length} factories; #{client_ids.length} real clients accept optional services"

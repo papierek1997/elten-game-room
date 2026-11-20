@@ -42,6 +42,36 @@ module GameSurfaces
       include PromptNavigation
     end
 
+    class AnswerText < RefreshAwareEditBox
+      attr_writer :text_shortcuts
+
+      def game_shortcut_in_text?(key, modifiers)
+        matched = @text_shortcuts.to_a.any? { |name, keys| name.to_s == key && keys.to_a.sort == modifiers.sort }
+        if matched
+          character = modifiers.include?(:shift) ? key.upcase : key
+          @shortcut_character = [$input_frame_serial, character]
+        end
+        matched
+      end
+
+      def key_processed(key)
+        name = key.to_s.sub(/\Akey_/, '').downcase
+        return false if game_shortcut_in_text?(name, GameRoomUI.modifiers_when_pressed(self, key))
+
+        super
+      end
+
+      private
+
+      def getkeychar(*arguments)
+        character = super
+        # The host caches characters even after a shortcut consumes its press.
+        return '' if @shortcut_character == [$input_frame_serial, character]
+
+        character
+      end
+    end
+
     MODES = [:text, :single_choice, :multiple_choice, :information].freeze
 
     def initialize(spec, state: {})
@@ -62,10 +92,10 @@ module GameSurfaces
       bind_immediate_choice
       @submit = build_submit_button
       @answer.on_submit { submit_answer } if @mode == :text && !@spec.read_only && @spec.show_submit_button == false
-      @extra_buttons = if @spec.read_only || @mode != :text
+      @extra_buttons = if @spec.read_only || @mode == :information
         []
       else
-        @spec.extra_commands.to_a.map do |command|
+        @spec.extra_commands.to_a.select { |command| command.enabled != false }.map do |command|
           button = Button.new(command.label)
           button.on(:press) { submit_answer(command.id) }
           button
@@ -151,13 +181,14 @@ module GameSurfaces
         state = {} if remembered_id != @spec.id
         text = state_value(state, "text", @spec.value.to_s)
         flags = @spec.read_only == true ? EditBox::Flags::ReadOnly : 0
-        control = RefreshAwareEditBox.new(
+        control = AnswerText.new(
           @spec.prompt.to_s,
           type: flags,
           text: text,
           quiet: true,
           max_length: maximum_length
         )
+        control.text_shortcuts = @spec.text_shortcuts
         control.restore_selection(
           index: state_value(state, "index", text.length),
           check: state_value(state, "check", text.length)

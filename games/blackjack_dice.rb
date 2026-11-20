@@ -8,6 +8,8 @@ module GameRoomGames
   using GameRoomLocalization::Translations
 
   class BlackjackDice < Base
+    def round_pause_seconds(_replay); GameRoomRoundPause::SECONDS; end
+    def round_pause_end_kinds; %i[round settlement pot]; end
     include PublicHistoryAnnouncements
     include BlackjackAuction
     include RoundTournament
@@ -15,6 +17,13 @@ module GameRoomGames
 
     def id; "blackjack_dice"; end
     def name; _("Blackjack Dice"); end
+    def round_ended?(history:, **context)
+      history.any? { |entry| entry.kind == :round } || super(history: history, **context)
+    end
+
+    def round_timing_event_ids(replay, repository:)
+      successive_round_timing_event_ids(replay, %i[round settlement])
+    end
     def short_description; _("Roll towards 21, stop before going bust and outscore the other players."); end
     def minimum_players; 2; end
     def maximum_players; 8; end
@@ -249,6 +258,7 @@ module GameRoomGames
         GameSurfaces::Card.new(id: action["action"], value: action["action"], label: labels.fetch(action["action"]))
       end
       header = _("Round %{round}; current total %{total}") % {round: state[:round], total: state[:total]}
+      header += "; " + turn_announcement(replay, viewer) unless actions.empty?
       header += "; " + (_("Pot: %{chips} chips") % {chips: state[:pot]}) if chip_game?(state[:options])
       GameSurfaces::CardTableSpec.new(zones: [GameSurfaces::CardZoneSpec.new(id: "actions", header: header,
         cards: actions, empty_label: result_text(replay) || current_turn_shortcut_text(replay, viewer))])

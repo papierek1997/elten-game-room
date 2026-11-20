@@ -15,6 +15,7 @@ require_relative 'server_capacity'
 require_relative 'server_participant_lease'
 require_relative '../game_room_localization'
 require_relative '../game_content'
+require_relative '../game_room_availability'
 
 module GameRoomTournaments
   # Official application storage adapter. No schema deployment or fallback.
@@ -36,15 +37,32 @@ module GameRoomTournaments
     end
 
     class Provider
-      def initialize(app_uuid: APP_UUID)
+      def initialize(app_uuid: APP_UUID, access: nil)
         @app_uuid=app_uuid
         @client = EltenLink::Client.new
+        @access = access
       end
-      def available?; true; end
+      def available?; !@access || (@access.current? && !@access.blocked?); end
       def fetch(name)
         raise ArgumentError, 'Not a tournament table' unless (TablesGateway::TABLES + ['tournament_plan_documents']).include?(name)
-        EltenLink::Apps.table(@client, @app_uuid, name)
+        table = EltenLink::Apps.table(@client, @app_uuid, name)
+        @access ? GuardedTable.new(table, @access) : table
       end
+
+      class GuardedTable
+        def initialize(table, access)
+          @table, @access = table, access
+        end
+
+        def select(**query)
+          @access.perform { @table.select(**query) }
+        end
+
+        def insert(values)
+          @access.perform { @table.insert(values) }
+        end
+      end
+      private_constant :GuardedTable
     end
 
     def initialize(program:, registry:, user:, alert:, clock: -> { GameRoomClock.now.to_i }, provider_factory: nil, backend_uuid: APP_UUID, backend_identity: nil,
@@ -781,6 +799,8 @@ module GameRoomTournaments
         _("You already accepted another match. Cancel that invitation or finish the match first.")
       elsif error.respond_to?(:code)
         case error.code
+        when 'apps.tables.stamp_required', 'apps.tables.forbidden', 'auth.unauthorized'
+          GameRoomAvailability.unavailable(:tournaments, tables: nil, error: error)
         when :too_few_players
           if error.respond_to?(:details) && error.details[:minimum]
             _("Cannot start: %{count} participants registered; at least %{minimum} are required.") % error.details

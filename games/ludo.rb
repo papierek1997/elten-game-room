@@ -193,7 +193,7 @@ module GameRoomGames
 
     def result_text(replay)
       return super unless replay.winner
-      _("%{player} won the game.") % {player: display_player(replay.state, replay.winner)}
+      _("%{player} won the game.") % {player: full_player(replay.state, replay.winner)}
     end
 
     def action_for(selection, replay, actor, context: nil)
@@ -233,6 +233,10 @@ module GameRoomGames
       state = replay.state
       player = player_index(state[:players], actor)
       pawn = action["pawn"].to_i
+      bot_pawn_score(state, player, pawn, extra_roll: true)
+    end
+
+    def bot_pawn_score(state, player, pawn, extra_roll: false)
       return -10_000.0 if !legal_pawn_indices(state, player).include?(pawn)
 
       before = state[:pawns][player][pawn]
@@ -247,8 +251,19 @@ module GameRoomGames
       moved[:pawns][player][pawn] = after
       captures.each { |other, index| moved[:pawns][other][index] = -1 }
       score -= exposure_risk(moved, player, after) * (35 + after * 3)
+      if extra_roll && state[:roll] == 6 && state[:options]["extra_on_six"] &&
+          !moved[:pawns][player].all? { |progress| progress == FINISH_PROGRESS }
+        # Only the guaranteed next roll of the same player is considered.
+        # Opponent turns are not skipped or replaced by imagined safe replies.
+        score += (1..6).sum do |roll|
+          next 0.0 if roll == 6 && state[:options]["three_sixes"] && state[:consecutive_sixes].to_i >= 2
+          following = moved.merge(roll: roll)
+          legal_pawn_indices(following, player).map { |index| bot_pawn_score(following, player, index) }.max || 0.0
+        end / 6.0
+      end
       score
     end
+    private :bot_pawn_score
 
     def bot_position_value(replay, actor)
       return bot_reward(replay, actor) * 1_000_000.0 if replay.finished?
@@ -311,14 +326,14 @@ module GameRoomGames
     def shortcut_features; super + [:last_roll]; end
     def shortcut_feature_data(feature, replay, viewer)
       if feature == :turn && replay.finished? && replay.winner
-        return {message: _("%{player} wins the game.") % {player: display_player(replay.state, replay.winner)}}
+        return {message: _("%{player} wins the game.") % {player: full_player(replay.state, replay.winner)}}
       end
       if feature == :turn && !replay.finished?
         return {message: _("Turn: %{player}.") % {player: display_player(replay.state, replay.current_player)}}
       end
       if feature == :material
         return {message: replay.players.each_with_index.map { |name, index|
-          _("%{player}: %{count} at the finish") % {player: display_player(replay.state, name), count: replay.state[:pawns][index].count(FINISH_PROGRESS)}
+          _("%{player}: %{count} at the finish") % {player: full_player(replay.state, name), count: replay.state[:pawns][index].count(FINISH_PROGRESS)}
         }.join("; ")}
       end
       return super unless feature == :last_roll
@@ -335,6 +350,12 @@ module GameRoomGames
     end
 
     def display_player(state, name)
+      index = player_index(state[:players], name)
+      mode = board_presentation_preferences.to_h.fetch('player_labels', 'names')
+      mode == 'colours' && index != nil ? player_colour(index) : participant_name(name)
+    end
+
+    def full_player(state, name)
       index = player_index(state[:players], name)
       historical_player(name, index)
     end

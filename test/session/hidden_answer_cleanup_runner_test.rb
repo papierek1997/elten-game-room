@@ -78,7 +78,12 @@ Dir.mktmpdir('categories-runner-cleanup-') do |directory|
     f.tick
     %w[Bob Carol].each { |user| f.tick(user); assert(!f.stored(user, round), 'Scoring retained a private answer') }
     assert(f.replay.state[:scores].values_at('Bob', 'Carol') == [2, 2], 'Cleanup changed scores')
-    $quiz_regression_now += 3
+    before = f.h.events('Alice')
+    $quiz_regression_now += 4
+    f.tick
+    assert(f.replay.state[:round] == 1 && f.h.events('Alice') == before,
+      'Cleanup bypassed the five-second round break')
+    $quiz_regression_now += 1
     f.tick
     assert(f.replay.state[:round] == 2, 'Cleanup prevented the next round')
     f.h.assert_converged('Categories cleanup and next round')

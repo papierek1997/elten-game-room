@@ -26,6 +26,15 @@ class DurableNoticeGateway
 end
 
 class InvitationAppDriver < EltenGameRoom
+  # Invitation-only scenarios have confirmed access, but must not read tables.
+  # Actual probing and refused entry are covered by development_table_access_test.
+  class AvailableTables
+    def access_state; :available; end
+    def available?; true; end
+    def stamp_required?; false; end
+    def fetch(name); raise "Unexpected invitation fixture table read: #{name}"; end
+  end
+
   # These headless invitation fixtures have no installed Runtime/filesystem.
   # Real startup preparation is covered by local_directories_test and live UI.
   def prepare_local_directories; end
@@ -34,6 +43,7 @@ class InvitationAppDriver < EltenGameRoom
     # Native startup publishes local preferences before notification actions.
     self.class.remember_settings({}) unless self.class.instance_variable_get(:@normalized_settings)
     @alerts, @errors, @sent = [], [], []
+    @server_tables = AvailableTables.new
     @user, @gateway = user, gateway
     program = ProgramDouble.new(broker.endpoint(user, fresh: fresh))
     @transport = GameRoomTransport.new(program)

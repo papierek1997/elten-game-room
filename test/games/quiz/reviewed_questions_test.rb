@@ -33,6 +33,27 @@ end
 # Reviewed source decisions: preserve wording except for approved minimal
 # choice-list edits, corrected keys, distinct distractors and the Polsat negation.
 reviewed_general = {
+  # Further wording reports from Zuzler, November 17, 2026.
+  '1z10_5b5b64f5b3bbee7b' => {
+    'prompt' => 'Nad którą rzeką leży Włodawa?', 'correct' => 'Nad Bugiem'
+  },
+  '1z10_46314e99c70bbc6b' => {
+    'prompt' => 'W którym państwie bałtyckim leżą Tartu, Narwa i Parnawa?', 'correct' => 'W Estonii'
+  },
+  '1z10_c99621ab81243487' => {
+    'prompt' => 'Jakie znamię pojawia się na czole Balladyny, bohaterki dramatu Juliusza Słowackiego?',
+    'correct' => 'Krwawa plama, której nie da się zmyć'
+  },
+  'polqa_02519' => {
+    'prompt' => 'Kto jest autorem powieści „Dzieci kapitana Granta”?', 'correct' => 'Juliusz Verne'
+  },
+  'polqa_02877' => {
+    'prompt' => "Żoną którego króla była Maria Kazimiera d'Arquien, zwana Marysieńką?", 'correct' => 'Jana III Sobieskiego'
+  },
+  'polqa_01743' => {
+    'prompt' => '„Tak, zemsta, zemsta na wroga, z Bogiem i choćby mimo Boga” – kto wypowiada te słowa w 3. części „Dziadów” Adama Mickiewicza?',
+    'correct' => 'Konrad'
+  },
   '1z10_e0543b5f92049361' => {
     'prompt' => 'Kto stanął na czele Polskiego Komisariatu Plebiscytowego na Górnym Śląsku w 1920 roku?', 'correct' => 'Wojciech Korfanty'
   },

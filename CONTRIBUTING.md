@@ -19,6 +19,14 @@ For a new game or variant, use the [game acceptance checklist](docs/GAME_ACCEPTA
 Include evidence for the player-facing flow, keyboard, sound, bot decisions
 and rules, as applicable; distinguish automated checks from a live playthrough.
 
+A new game or changed feature is not ready while its affected rules, translations
+or generated-content checks fail, even if all game-mechanics tests pass. Complete
+the [text acceptance gate](docs/TRANSLATIONS.md#required-acceptance-gate-for-text-changes)
+and the applicable [recurring-risk cases](docs/GAME_ACCEPTANCE.md#recurring-integration-risks)
+in the same contribution. Inspect the complete diff, including shared hooks,
+assets and declarations; a PR title or description is not evidence that unrelated
+features, removed behavior or unreviewed data have not been included.
+
 ### Choose the route for the task
 
 Read `AGENTS.md` and this guide first, then the complete relevant contracts.

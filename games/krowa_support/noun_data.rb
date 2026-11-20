@@ -7059,8 +7059,6 @@ module GameRoomKrowa
       calizny
       calówka
       calówki
-      calvados
-      calvadosy
       całka
       całki
       całkowalność
@@ -7818,8 +7816,6 @@ module GameRoomKrowa
       cherubiny
       cherubinek
       cherubinki
-      chevrolet
-      chevrolety
       chęć
       chęci
       chędożenie
@@ -9106,36 +9102,10 @@ module GameRoomKrowa
       cokołówki
       cokół
       cokoły
-      collectivum
-      collectiva
       cologarytm
       cologarytmy
-      colt
-      colty
       comber
       combry
-      concertino
-      concertina
-      conradysta
-      conradyści
-      continuum
-      continua
-      corrida
-      corridy
-      corso
-      corsa
-      cosecans
-      cosecansy
-      cosinus
-      cosinusy
-      cosinusoida
-      cosinusoidy
-      cotangens
-      cotangensy
-      cotangensoida
-      cotangensoidy
-      cowboy
-      cowboye
       córa
       córy
       córeczka
@@ -9148,8 +9118,6 @@ module GameRoomKrowa
       córuchny
       córunia
       córunie
-      cracoviana
-      crawle
       cucenie
       cucenia
       cucha
@@ -11429,10 +11397,6 @@ module GameRoomKrowa
       diuretyny
       diureza
       diurezy
-      diuszesa
-      diuszesy
-      divertimento
-      divertimenta
       diwa
       diwy
       dławica
@@ -15893,10 +15857,6 @@ module GameRoomKrowa
       ewoluowania
       eworsja
       eworsje
-      exodus
-      exodusy
-      expres
-      expresy
       ezofagoskop
       ezofagoskopy
       ezofagoskopia
@@ -17546,8 +17506,6 @@ module GameRoomKrowa
       frachtowania
       frachtowiec
       frachtowce
-      fractocumulus
-      fractostratus
       fraczek
       fraczki
       fragmencik
@@ -21521,16 +21479,6 @@ module GameRoomKrowa
       histrioni
       hiszpanka
       hiszpanki
-      hiszpański
-      hiszpańskie
-      hitlerowiec
-      hitlerowcy
-      hitleryzm
-      hitleryzmy
-      hiw
-      hiwy
-      hizop
-      hizopy
       hoacyn
       hoacyny
       hobbista
@@ -59126,16 +59074,6 @@ module GameRoomKrowa
       pytony
       pyza
       pyzy
-      quadrivium
-      quadrivia
-      quantum
-      quanta
-      quattrocento
-      quattrocenta
-      quebracho
-      quebracha
-      quiz
-      quizy
       rab
       raby
       rabacja
@@ -65444,8 +65382,6 @@ module GameRoomKrowa
       solistki
       soliter
       solitery
-      sollux
-      solluksy
       solmizacja
       solmizacje
       solnictwo
@@ -66953,8 +66889,6 @@ module GameRoomKrowa
       strachy
       strachliwość
       strachliwości
-      stradivarius
-      stradivariusy
       stragan
       stragany
       straganiarka
@@ -74056,30 +73990,6 @@ module GameRoomKrowa
       użyźniania
       użyźnienie
       użyźnienia
-      vacat
-      vacaty
-      varia
-      varsaviana
-      varsavianista
-      varsavianiści
-      vedetta
-      vedetty
-      vendetta
-      vendetty
-      veto
-      veta
-      vis
-      visy
-      volksdeutsch
-      volksdeutsche
-      volkswagen
-      volkswageny
-      volley
-      volleye
-      volt
-      volty
-      volta
-      volvo
       volva
       wab
       wabie
@@ -85139,7 +85049,33 @@ module GameRoomKrowa
       kodeki
       polik
       poliki
+      tonik
+      włam
+      włamy
+      funk
+      kuluar
+      schód
+      zmywarka
+      zmywarki
+      bankomat
+      bankomaty
+      baner
+      banery
+      kofta
+      kofty
+      kilt
+      kilty
+      ploter
+      plotery
+      skaner
+      skanery
+      toner
+      tonery
+      ociekacz
+      ociekacze
     KROWA_NOUNS
     WORDS.freeze
+    # Historical reads only; these words never enter a new draw.
+    RETIRED_WORDS = "calvados\ncalvadosy\nchevrolet\nchevrolety\ncollectivum\ncollectiva\ncolt\ncolty\nconcertino\nconcertina\nconradysta\nconradyści\ncontinuum\ncontinua\ncorrida\ncorridy\ncorso\ncorsa\ncosecans\ncosecansy\ncosinus\ncosinusy\ncosinusoida\ncosinusoidy\ncotangens\ncotangensy\ncotangensoida\ncotangensoidy\ncowboy\ncowboye\ncracoviana\ncrawle\ndiuszesa\ndiuszesy\ndivertimento\ndivertimenta\nexodus\nexodusy\nexpres\nexpresy\nfractocumulus\nfractostratus\nhiszpański\nhiszpańskie\nhitlerowiec\nhitlerowcy\nhitleryzm\nhitleryzmy\nhiw\nhiwy\nhizop\nhizopy\nquadrivium\nquadrivia\nquantum\nquanta\nquattrocento\nquattrocenta\nquebracho\nquebracha\nquiz\nquizy\nsollux\nsolluksy\nstradivarius\nstradivariusy\nvacat\nvacaty\nvaria\nvarsaviana\nvarsavianista\nvarsavianiści\nvedetta\nvedetty\nvendetta\nvendetty\nveto\nveta\nvis\nvisy\nvolksdeutsch\nvolksdeutsche\nvolkswagen\nvolkswageny\nvolley\nvolleye\nvolt\nvolty\nvolta\nvolvo".freeze
   end
 end
