@@ -13,6 +13,10 @@ module GameRoomGames
     end
 
     def private_received_cards(state, purpose, cards, event, repository, history)
+      if purpose == 'cribbage_crib_extra'
+        state[:crib_extra] = cards.fetch(0)
+        return
+      end
       return super unless purpose == 'cribbage_starter'
 
       state[:starter] = cards.fetch(0)
@@ -25,6 +29,11 @@ module GameRoomGames
         state.fetch(:private_round_actions) << event
       end
       return unless [:counting, :crib_audit].include?(state[:phase])
+
+      if state[:seats].size == 3 && !state[:crib_extra]
+        private_request_draw(state, actor: cribbage_dealer(state), count: 1, purpose: 'cribbage_crib_extra')
+        return
+      end
 
       return if GameRoomPrivateCardDisclosure.prepare(state, state[:seats],
         purpose: 'cribbage_crib', zone: :crib)
@@ -52,7 +61,7 @@ module GameRoomGames
       audit = GameRoomPrivateCardRoundAudit.initial_state(state)
       audit_history = []
       discards = state[:crib].transform_values { |cards| cards.sort }
-      valid = audit && discards.values.all? { |cards| cards.size == 2 } &&
+      valid = audit && discards.all? { |seat, cards| cards.size == discard_count(state, seat) } &&
         state.fetch(:private_round_actions).all? do |record|
           if record['action'] == 'private_draw'
             proof = record['__server_pool']
@@ -75,6 +84,7 @@ module GameRoomGames
         return GameRoomPrivateCardRoundAudit.reject_round(state, event, repository, history)
       end
 
+      audit[:crib_extra] = state[:crib_extra] if state[:seats].size == 3
       state.merge!(audit)
       state[:private_crib_audited] = true
       if state[:phase] == :finished
@@ -83,7 +93,7 @@ module GameRoomGames
           history << entry
         end
       else
-        add_history(history, event, repository, :count, count_announcement(state))
+        announce_count_start(state, event, repository, history)
       end
     end
   end
