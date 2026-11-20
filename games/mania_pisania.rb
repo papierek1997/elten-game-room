@@ -16,6 +16,7 @@ module GameRoomGames
   class ManiaPisania < Base
     include PublicHistoryAnnouncements
     include ManiaPisaniaSaving
+    Scoring = GameRoomTyping::Scoring
 
     def id; 'mania_pisania'; end
     def name; _('Typoholism'); end
@@ -167,11 +168,7 @@ module GameRoomGames
         when 'start'
           _('Round %{round}.') % {round: state[:round]}
         when 'result'
-          result = data['result']
-          text = _('%{player}: %{words} words, %{errors} errors, %{wpm} WPM.') % {
-            player: participant_name(actor), words: result['words'], errors: result['errors'], wpm: result['wpm']}
-          text += ' ' + scoring_text(result, state[:options]) if state[:scoring] == 1
-          text
+          player_result_text(actor, data['result'], state)
         when 'end'
           _('The host ended the match.')
         when 'text_part'
@@ -197,12 +194,12 @@ module GameRoomGames
       if action == 'start'
         return [:invalid, nil] unless context&.random_source
         data['seed'] = context.random_source.roll(count: 4, sides: 256).values.reduce(0) { |seed, byte| (seed << 8) + byte - 1 }
-        data['scoring'] = 1
+        data['scoring'] = multiplayer_free?(replay.state) ? Scoring::WEIGHTED_WORD_COUNT : Scoring::ACCURACY_ADJUSTED
       elsif action == 'result'
         return [:invalid, nil] unless selection['round'] == replay.state[:round]
         data['result'] = selection['result']
       elsif action == 'text_part'
-        data['part'] = selection['part']
+        data = GameRoomTyping::SharedText.action_data(replay.state[:round], selection['part'])
       elsif ManiaPisaniaSaving::SAVE_ACTIONS.include?(action)
         data['save_id'] = selection['save_id']
         data['checkpoint'] = selection['checkpoint'] if action == 'checkpoint'
@@ -234,13 +231,13 @@ module GameRoomGames
         return {'kind' => 'typing', 'action' => 'checkpoint', 'save_id' => replay.state[:saving][:id], 'checkpoint' => checkpoint}
       end
       if replay.state[:phase] == :setup && shared_text_required?(replay.state) && !replay.state[:shared_text]
-        parts = context&.local_data&.[]('typing_text_parts')
-        return nil unless parts.is_a?(Array) && !parts.empty?
-        transfer = replay.state[:text_transfer]
-        matching = transfer && transfer.values_at(:digest, :title, :total) == parts.first.values_at('digest', 'title', 'total')
-        index = matching ? transfer[:chunks].length : 0
-        part = parts[index]
-        return part && {'kind' => 'command', 'action' => 'text_part', 'part' => part}
+        pending = local['typing_text_part']
+        state = replay.state
+        return nil unless pending && pending['session_id'] == context.session_id && pending['round'] == state[:round] &&
+          same_user?(pending['owner'], context.table_owner || state[:owner]) && same_user?(actor, replay.players.first)
+        part = pending['part']
+        return nil unless part && part['index'] == GameRoomTyping::SharedText.next_index(state[:text_transfer], part)
+        return {'kind' => 'command', 'action' => 'text_part', 'part' => part}
       end
       pending = context&.local_data&.[]('typing_result')
       if pending && pending['round'] == replay.state[:round] && replay.state[:phase] == :active &&
@@ -285,13 +282,31 @@ module GameRoomGames
         commands << GameSurfaces::Command.new(id: 'start', label: _('Next round'))
         commands << GameSurfaces::Command.new(id: 'end', label: _('End match'))
       end
-      status = replay.finished? ? result_text(replay) : _('Waiting for the other players or the next round.')
       choosing = state[:phase] == :setup && shared_text_required?(state) && !state[:shared_text]
-      status = _('Waiting for the host to share the table text.') if choosing
-      status = _('Waiting for all players to confirm their progress for the save.') if state[:saving]
+      status = if choosing
+        _('Waiting for the host to share the table text.')
+      elsif state[:saving]
+        _('Waiting for all players to confirm their progress for the save.')
+      elsif replay.finished?
+        result_text(replay)
+      elsif !playing
+        _('Waiting for the other players or the next round.')
+      end
+      if replay.players.length > 1 || status.nil?
+        players = replay.players.map do |player|
+          if (result = state[:results][player])
+            player_result_text(player, result, state)
+          elsif state[:phase] == :setup
+            participant_name(player)
+          else
+            _('%{player}: %{status}') % {player: participant_name(player), status: _('typing')}
+          end
+        end
+        status = [status, *players].compact.join("\n")
+      end
       GameSurfaces::TypingSpec.new(round: state[:round], enabled: playing, status: status, commands: commands,
         remaining_sentence: sentence_help?(state[:options]), remaining_word: state[:options] && state[:options]['variant'] != 'memory' && !(state[:options]['variant'] == 'free' && state[:options]['text'] == 'own'),
-        auto_commit: state[:options] && state[:options]['variant'] == 'survival', choose_text: choosing && same_user?(viewer, state[:owner]),
+        auto_commit: state[:options] && state[:options]['variant'] == 'survival',
         own_text: state[:phase] != :setup && replay.players.length == 1 && same_user?(viewer, replay.players.first) && state[:options]['variant'] == 'free' && state[:options]['text'] == 'own')
     end
 
@@ -320,7 +335,7 @@ module GameRoomGames
       result = replay.state[:results].values.first
       return _('Typing finished.') unless result
       text = _('%{words} words, %{errors} errors, %{wpm} WPM.') % {words: result['words'], errors: result['errors'], wpm: result['wpm']}
-      text += ' ' + scoring_text(result, replay.state[:options]) if replay.state[:scoring] == 1
+      text += ' ' + scoring_text(result, replay.state) if replay.state[:scoring]
       text
     end
     def participant_status(replay, participant, connected: true)
@@ -340,8 +355,20 @@ module GameRoomGames
 
     private
 
-    def scoring_text(result, options)
-      _('Score: %{score}; accuracy factor: %{accuracy} percent.') % GameRoomTyping::Scoring.summary(result, options['variant'])
+    def player_result_text(player, result, state)
+      text = _('%{player}: %{words} words, %{errors} errors, %{wpm} WPM.') % {
+        player: participant_name(player), words: result['words'], errors: result['errors'], wpm: result['wpm']}
+      text += ' ' + scoring_text(result, state) if state[:scoring]
+      text
+    end
+
+    def scoring_text(result, state)
+      _('Score: %{score}; accuracy factor: %{accuracy} percent.') %
+        Scoring.summary(result, state[:options]['variant'], version: state[:scoring])
+    end
+
+    def multiplayer_free?(state)
+      state[:options]['variant'] == 'free' && state[:players].length > 1
     end
 
     def shared_text_required?(state)
@@ -361,9 +388,11 @@ module GameRoomGames
         return false unless [:setup, :between].include?(state[:phase]) && same_user?(actor, state[:players].first)
         return false if shared_text_required?(state) && !state[:shared_text]
         return false unless data['seed'].is_a?(Integer) && data['seed'].between?(0, 2**32 - 1)
-        return false unless [nil, 1].include?(data['scoring'])
+        scoring_version = data['scoring']
+        return false unless scoring_version.nil? || scoring_version == Scoring::ACCURACY_ADJUSTED ||
+          (Scoring::MULTIPLAYER_FREE_VERSIONS.include?(scoring_version) && multiplayer_free?(state))
         state[:round] += 1
-        state[:scoring] = data['scoring']
+        state[:scoring] = scoring_version
         state[:seed], state[:phase], state[:results] = data['seed'], :active, {}
       when 'text_part'
         return false unless state[:phase] == :setup && shared_text_required?(state) && !state[:shared_text] && same_user?(actor, state[:players].first)
@@ -396,9 +425,12 @@ module GameRoomGames
       when 'survival' then 'words'
       else 'elapsed_ms'
       end
-      eligible = state[:results].reject { |_name, result| result['assisted'] }
+      multiplayer_scoring = Scoring::MULTIPLAYER_FREE_VERSIONS.include?(state[:scoring])
+      eligible = state[:results].reject do |_name, result|
+        result['assisted'] || (multiplayer_scoring && result['words'].zero?)
+      end
       values = eligible.transform_values do |result|
-        state[:scoring] == 1 ? GameRoomTyping::Scoring.value(result, state[:options]['variant']) : result[field]
+        state[:scoring] ? Scoring.rank(result, state[:options]['variant'], version: state[:scoring]) : result[field]
       end
       best = values.values.max
       winners = values.keys.select { |name| values[name] == best }

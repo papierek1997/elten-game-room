@@ -30,7 +30,11 @@ text library live in `lib/mania_pisania/`; `typing_surface.rb` in
 library owns the UTF-8 byte limit for both file and pasted imports. Dialogs
 report validation errors while retaining the input for correction. Table
 options use the game's option-editor extension and carry a bounded text
-descriptor; shared-text preparation handles transfer separately.
+descriptor. At multiplayer start the host's client resolves the chosen text
+once and hands the next fragment to the existing session runner. Each fragment
+is scoped to the session, host and round; players start after the full text is
+verified. The status field uses accepted results in player order and reuses its
+native control on content changes, preserving its selection without polling.
 The practice buffer retains raw braille cells for validation; the editing field
 receives their back-translation so native focus and navigation can read the
 entered prefix. Presentation never replaces the engine's raw input.
