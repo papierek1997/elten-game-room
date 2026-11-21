@@ -427,11 +427,12 @@ class GameRoomLiveSessionStore
       players = data["players"].to_a.map(&:to_s)
       id = positive_identifier(data["session_id"])
       return nil if id == nil || players.empty?
-      return nil if data.key?("archive_id") && archive_events_for(record) == nil
+      archive = archive_events_for(record) if data.key?('archive_id')
+      return nil if data.key?('archive_id') && archive.nil?
       clock = game_clock_state(record.table_id, id, data["clock_offset"].to_i)
       ledger = control_ledger(record.table_id)
       initial = data.fetch('initial_players', players).dup
-      restored_changes = data['archive_id'] ? archive_events_for(record).select { |item| item.key?('players') } : []
+      restored_changes = archive ? archive.select { |item| item.key?('players') } : []
       replacements = ledger.replacements(id, initial: players).map do |change|
         {'id' => data['event_id_base'].to_i + change.sequence * EVENT_ID_MULTIPLIER,
          'players' => change.packet['data']['players'].dup}
@@ -474,6 +475,7 @@ class GameRoomLiveSessionStore
         "__frozen" => clock[:frozen_at] != nil,
         "__aborted" => game_aborted?(record.table_id, id)
       }
+      session['__game_started_at'] = archived_start_time(data, archive) if archive
       session['__server_random'] = data['server_random'] if data.key?('server_random')
       session['__private_cards'] = data['private_cards'] if data.key?('private_cards')
       boundaries = apply_game_boundaries(session, record.table_id, id)
@@ -493,6 +495,12 @@ class GameRoomLiveSessionStore
         session['__statistics'] = GameRoomStatistics::Identity.copy(data['statistics'], started_at: record.created_at.to_i)
       end
       session
+    end
+
+    def archived_start_time(data, archive)
+      data.fetch('game_started_at') do
+        GameRoomSessionClock.archived_origin(archive, data['created_at'] - data['clock_offset'])
+      end
     end
 
     def apply_game_boundaries(session, table_id, id)

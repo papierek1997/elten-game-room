@@ -24,30 +24,41 @@ begin
   assert(f.surface.action_accepted(bid), 'Accepted own input did not clear its matching control')
   assert_equal('', f.input.text)
   assert_equal([0, 0], [f.input.index, f.input.check])
-  f.type('A')
-  f.press(13)
-  assert_equal('A', f.actions.last['answer'], 'Native A Enter did not capture all-in text')
+  f.type('250')
+  f.press(0x41)
+  assert_equal('A', f.actions.last['answer'], 'Native A did not immediately select all-in')
   assert_equal('submit', f.actions.last['action'])
+  assert_equal('250', f.input.text, 'All-in changed the amount draft')
+  assert_equal(2, f.actions.size, 'A emitted duplicate actions')
+  assert_equal(:ok, f.game.action_for(f.actions.last, f.replay, 'Alice', context: GameRoomGames::ActionContext.new(now: 101)).first)
+  assert_equal(:invalid, f.game.action_for(f.actions.last, f.replay, 'Alice', context: GameRoomGames::ActionContext.new(now: f.state[:auction_deadline])).first,
+    'Immediate all-in bypassed the auction deadline')
   f.press(9)
   assert(!f.form.fields[f.form.index].equal?(f.input), 'Tab did not leave the bid field')
   assert_equal(2, f.actions.length, 'Leaving the bid field submitted a withdrawal')
+  f.form.index = f.form.fields.index(f.layout.chat)
+  driver = f.instance_variable_get(:@driver)
+  driver.frame(f.form, driver.tap(0x41), characters: 'a')
+  assert_equal('a', f.layout.chat.text, 'Chat did not retain its A character')
+  assert_equal(2, f.actions.length, 'Typing A in chat submitted all-in')
   assert_equal(snapshot, Marshal.dump(f.state), 'Native bid/pass input mutated the model')
   assert_equal([], f.replay.accepted_events, 'Native controls wrote game events')
 
   invalid = CashAuctionNative::Fixture.new
   fixtures << invalid
-  invalid.type('xyz')
+  invalid.type('99999999')
   invalid.press(13)
   refused = invalid.actions.last
   assert_equal(false, invalid.surface.action_rejected(refused, :invalid_bet))
-  assert_equal('xyz', invalid.input.text, 'Validation refusal erased the draft')
+  assert_equal('99999999', invalid.input.text, 'Validation refusal erased the draft')
   invalid.type('250')
   invalid.press(13)
   assert_equal('250', invalid.actions.last['answer'], 'Correcting rejected input failed')
   invalid.surface.action_accepted(invalid.actions.last)
-  invalid.type('as')
-  assert_equal('as', invalid.input.text, 'Game shortcuts consumed bid-field letters')
-  assert_equal([], invalid.shortcut_actions, 'Editable text invoked a game shortcut')
+  invalid.type('123')
+  invalid.type('xyz')
+  assert_equal('123', invalid.input.text, 'A nonnumeric insertion replaced the selected bid')
+  assert_equal([], invalid.shortcut_actions, 'Undeclared letters invoked a game shortcut')
   invalid.press(0x24)
   invalid.press(0x27, modifiers: [0x10])
   assert(invalid.input.index != invalid.input.check, 'Native text selection stopped working')
@@ -172,9 +183,10 @@ begin
   fixtures << observer
   assert(observer.surface.fields.all? { |field| field.is_a?(EditBox) && (field.flags & EditBox::Flags::ReadOnly) != 0 }, 'Auction spectator received an editable control')
   observer.press(13)
+  observer.press(0x41)
   assert_equal([], observer.actions, 'Auction observer emitted a bid')
 
-  puts 'Cash Auction native controls: typed bids/all-in, Tab Pass, rejection and ACK boundaries, protected editing, concurrent refresh, round drafts, ABCD, chests and readonly viewers passed without move writes.'
+  puts 'Cash Auction native controls: numeric bids, immediate all-in, Tab, rejection and ACK boundaries, protected editing, concurrent refresh, round drafts, ABCD, chests and readonly viewers passed without move writes.'
 ensure
   fixtures.reverse_each(&:close)
   $activecontrols = []

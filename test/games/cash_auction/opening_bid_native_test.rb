@@ -43,15 +43,14 @@ context = GameRoomGames::ActionContext.new(now:101)
 
   short = CashAuctionNative::Fixture.new(options:options.merge('starting_points'=>599))
   begin
-    short.type('A')
-    short.press(13)
+    short.press(0x41)
     status, plan = short.game.action_for(short.actions.last, short.replay, 'Alice', context:context)
     assert_equal([:invalid_bet, nil], [status, plan])
     error = short.game.move_error_for(status, replay:short.replay, actor:'Alice')
     assert(error.include?('300'), 'A short balance refusal omitted the opening minimum')
     assert(!error.include?(' A '), 'A short balance refusal recommends an unavailable all-in')
     assert(language == 'en' || !error.start_with?('You do not have enough'), 'Short-balance refusal is untranslated')
-    assert_equal('A', short.input.text)
+    assert_equal('', short.input.text, 'A was inserted into the numeric editor')
   ensure
     short.close
   end

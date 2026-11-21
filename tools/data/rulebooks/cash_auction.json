@@ -38,8 +38,8 @@
           "pl": "Po ofercie prowadzący odlicza: po raz pierwszy, drugi i trzeci, domyślnie co trzy sekundy. Po trzeciej zapowiedzi licytacja pozostaje otwarta jeszcze przez jeden taki odstęp. Kończy ją dopiero ogłoszenie zwycięzcy. Każde podbicie rozpoczyna odliczanie od nowa. Przy domyślnych ustawieniach licytacja zamyka się po dwunastu sekundach bez nowej oferty. Jeśli nikt nie zalicytuje, pula przechodzi dalej."
         },
         {
-          "en": "P reads the pool. T explains whose decision is pending; during bidding, all eligible players may bid at once. H reads the current bids. D reads your points, and Shift+D reads the other players’ points.",
-          "pl": "P odczytuje pulę. T informuje, kto może działać; podczas licytacji wszyscy uprawnieni gracze mogą składać oferty równocześnie. H odczytuje bieżące oferty. D odczytuje twoje punkty, a Shift+D punkty pozostałych graczy."
+          "en": "P reads the pool. T explains whose decision is pending; during bidding, all eligible players may bid at once. H reads the current bids.",
+          "pl": "P odczytuje pulę. T informuje, kto może działać; podczas licytacji wszyscy uprawnieni gracze mogą składać oferty równocześnie. H odczytuje bieżące oferty."
         }
       ]
     },
@@ -59,8 +59,8 @@
           "pl": "Przy podnoszeniu własnej oferty dopłacasz tylko różnicę. Jeśli zaoferowałeś 100, podniesienie do 250 kosztuje jeszcze 150. Najwyżej możesz przeznaczyć pozostałe punkty oraz to, co już wpłaciłeś w ofertach w tej licytacji."
         },
         {
-          "en": "To go all-in while you still have points, type A in the bid field and press Enter. You commit every remaining point, with earlier bid payments this auction counted in the total offer. You can also type that total amount instead of A. If this total beats the highest offer, all-in immediately closes the auction and wins the question or black chest. Nobody can raise after it. If your available total is no higher than the leading offer, you cannot bid or go all-in.",
-          "pl": "Gdy masz jeszcze punkty, możesz zagrać vabank: wpisz A w polu kwoty i naciśnij Enter. Przeznaczasz wszystkie pozostałe punkty, a wcześniejsze wpłaty za oferty w tej licytacji doliczają się do łącznej kwoty. Możesz wpisać tę łączną kwotę zamiast A. Jeśli przebija ona najwyższą ofertę, vabank natychmiast kończy licytację i daje ci pytanie albo czarną skrzynię. Nikt nie może już podbić stawki. Gdy twoja dostępna łączna kwota nie przewyższa prowadzącej oferty, nie możesz zalicytować ani zagrać vabank."
+          "en": "To go all-in while you still have points, press A in the bid field. You commit every remaining point, with earlier bid payments this auction counted in the total offer. Alternatively, type that total amount and press Enter. If this total beats the highest offer, all-in immediately closes the auction and wins the question or black chest. Nobody can raise after it. If your available total is no higher than the leading offer, you cannot bid or go all-in.",
+          "pl": "Gdy masz jeszcze punkty, możesz zagrać vabank, naciskając A w polu kwoty. Przeznaczasz wszystkie pozostałe punkty, a wcześniejsze wpłaty za oferty w tej licytacji doliczają się do łącznej kwoty. Możesz też wpisać tę łączną kwotę i zatwierdzić Enterem. Jeśli przebija ona najwyższą ofertę, vabank natychmiast kończy licytację i daje ci pytanie albo czarną skrzynię. Nikt nie może już podbić stawki. Gdy twoja dostępna łączna kwota nie przewyższa prowadzącej oferty, nie możesz zalicytować ani zagrać vabank."
         },
         {
           "en": "You can raise your own offer until the auction closes. The last accepted highest offer wins when the auction is closed. A bid reaching the game after the deadline is refused, even if the closing announcement has not finished speaking.",
@@ -147,8 +147,8 @@
           "pl": "Po otwarciu wszystkich skrzyń wygrywa gracz z największą liczbą punktów spośród osób nadal w meczu. Jeśli kilka z nich ma równy najwyższy wynik, gracie do odpowiedzi na kolejne pytanie z udziałem wszystkich pozostających graczy, nie tylko liderów. Licytacje skrzyń i licytacje bez ofert nie kończą tej dogrywki. Przed kolejnym porównaniem otwieracie nowe skrzynie; w razie potrzeby powtarzacie dogrywkę. Gdy nikt nie pozostaje w grze, mecz kończy się remisem."
         },
         {
-          "en": "S reads everyone’s balances and unopened chest counts outside the auction, including while a question is on screen. Use Shift+S during bidding.",
-          "pl": "S odczytuje salda wszystkich graczy i liczbę ich zamkniętych skrzyń poza licytacją, także podczas pytania. W trakcie licytacji użyj Shift+S."
+          "en": "S reads everyone’s balances and unopened chest counts, including during bidding and while a question is on screen.",
+          "pl": "S odczytuje punkty wszystkich graczy i liczbę ich zamkniętych skrzynek, także podczas licytacji i pytania."
         }
       ]
     },
@@ -185,20 +185,16 @@
           "pl": "Enter w polu kwoty: wyślij wpisaną ofertę."
         },
         {
-          "en": "A: type A in the bid field, then press Enter to go all-in if your total exceeds the highest offer and win the auction immediately.",
-          "pl": "A: wpisz A w polu kwoty i zatwierdź Enterem. Vabank natychmiast wygrywa licytację, jeśli twoja łączna kwota przebija najwyższą ofertę."
+          "en": "A in the bid field: go all-in. If your total beats the highest offer, you win the auction immediately.",
+          "pl": "A w polu kwoty: zagraj vabank. Jeśli twoja łączna kwota przebija najwyższą ofertę, od razu wygrywasz licytację."
         },
         {
           "en": "Down from the question: move to the answers. Arrows select an answer; Enter submits it if you won the auction.",
           "pl": "Strzałka w dół z pytania: przejdź do odpowiedzi. Strzałki wybierają, a Enter zatwierdza, jeśli wygrałeś licytację."
         },
         {
-          "en": "S: outside bidding, read balances and unopened chests.",
-          "pl": "S: poza licytacją odczytaj punkty i zamknięte skrzynki."
-        },
-        {
-          "en": "Shift+S: during bidding, read balances and unopened chests.",
-          "pl": "Shift+S: podczas licytacji odczytaj punkty i zamknięte skrzynki."
+          "en": "S: read everyone’s balances and unopened chests.",
+          "pl": "S: odczytaj punkty wszystkich graczy i zamknięte skrzynki."
         },
         {
           "en": "P: read the pool.",
@@ -211,14 +207,6 @@
         {
           "en": "H: read the current bids.",
           "pl": "H: odczytaj bieżące oferty."
-        },
-        {
-          "en": "D: read your points.",
-          "pl": "D: odczytaj własne punkty."
-        },
-        {
-          "en": "Shift+D: read the other players’ points.",
-          "pl": "Shift+D: odczytaj punkty pozostałych graczy."
         }
       ]
     }

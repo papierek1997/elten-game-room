@@ -68,7 +68,7 @@ module CashAuctionAllInTest
     later = f.bid_selection('Alice', 1200)
     maximum = f.replay.state[:cash][1] + f.replay.state[:contributions][1]
     assert(maximum < f.replay.state[:highest], 'Fixture did not create a poorer bidder')
-    assert_equal('Enter 480 or A to go all-in.', f.game.move_error_for(:invalid_bet, replay: f.replay, actor: 'Bob'))
+    assert_equal('Enter 480 or press A to go all-in.', f.game.move_error_for(:invalid_bet, replay: f.replay, actor: 'Bob'))
     assert(f.game.legal_actions(f.replay, 'Bob', context: f.context).any? { |action| action['answer'] == 'A' })
     f.bid('Bob', input == :numeric ? maximum : input)
     assert_equal([:question_pending, 1, maximum, 0],

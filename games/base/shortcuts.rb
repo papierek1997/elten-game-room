@@ -107,6 +107,12 @@ module GameRoomGames
           raise ArgumentError, "a custom game shortcut must be a GameShortcut"
         end
         result = shortcuts + custom + playable_card_shortcuts(replay, viewer)
+        # Reading the active turn is shared, not an optional feature a game
+        # can accidentally omit when replacing its feature list. Keep explicit
+        # game-owned T commands (for example a realtime serving status).
+        if (replay.current_player || replay.finished?) && result.none? { |shortcut| shortcut.key == 't' && shortcut.modifiers.empty? }
+          result.unshift(*GameRoomShortcuts.build(self, [:turn], replay, viewer))
+        end
         # Explicit game shortcuts (UNO colour/value/Shift+D, Rummy) retain their
         # labels and behaviour. Add only the missing shared hand commands.
         existing = result.map { |shortcut| [shortcut.key, shortcut.modifiers.to_a] }
@@ -197,7 +203,7 @@ module GameRoomGames
         )
       end
 
-      def browse_shortcut(key:, label:, prompt:, choices:, modifiers: nil, default_value: nil)
+      def browse_shortcut(key:, label:, prompt:, choices:, modifiers: nil, default_value: nil, alternate_page: nil)
         GameShortcut.new(
           key: key,
           modifiers: modifiers,
@@ -205,7 +211,8 @@ module GameRoomGames
           kind: :browse,
           prompt: prompt,
           choices: choices,
-          default_value: default_value
+          default_value: default_value,
+          alternate_page: alternate_page
         )
       end
 

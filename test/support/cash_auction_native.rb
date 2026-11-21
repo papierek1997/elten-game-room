@@ -4,6 +4,7 @@ require_relative 'assertions'
 require_relative '../../lib/game_surfaces'
 require_relative '../../lib/game_layout'
 require_relative '../../lib/game_shortcut_bindings'
+require_relative '../../lib/game_screen'
 require_relative '../../games/cash_auction'
 
 unless defined?(Session)
@@ -142,6 +143,10 @@ module CashAuctionNative
         GameRoomShortcutBindings.normalize(game.game_shortcuts(replay, @viewer)),
         consume: ->(_key) { EltenAPI::KeyboardState.clear_current_frame }) do |shortcut|
         shortcut_actions << shortcut
+        if shortcut.kind == :action
+          selection = GameScreen.allocate.send(:activate_game_shortcut, shortcut, surface, replay: replay)
+          actions << selection.to_h
+        end
       end
     end
   end

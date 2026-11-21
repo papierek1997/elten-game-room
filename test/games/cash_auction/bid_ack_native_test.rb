@@ -105,7 +105,7 @@ begin
     [:unchanged, :new_draft, :retyped_same, :different_session, :invalid, :deadline].each do |boundary|
       f = CashBidAcknowledgementFixture.new(clock)
       begin
-        initial = boundary == :invalid ? 'xyz' : '125'
+        initial = boundary == :invalid ? '99999999' : '125'
         f.type(initial)
         f.enter
         submitted = f.screen.instance_variable_get(:@selected_surface_action)

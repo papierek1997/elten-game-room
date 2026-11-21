@@ -174,16 +174,20 @@ module GameRoomGames
       state = replay.state
       owner = player_key(state, viewer)
       if owner
-        missing = score_sheet_choices(state, owner, incomplete_only: true)
-        shortcuts << if missing.empty?
-          announcement_shortcut(key: "f", label: _("View unfilled categories"), message: _("The score sheet is full."))
-        else
-          browse_shortcut(key: "f", label: _("View unfilled categories"),
-            prompt: _("Unfilled categories"), choices: missing)
-        end
+        shortcuts << category_browser(state, owner)
         writable = !replay.finished? && same_user?(owner, replay.current_player) && state[:turn_rolls].positive?
         shortcuts << GameShortcut.new(key: "b", kind: :grid_preview, label: _("Open the score sheet"),
           default_value: score_grid(state, owner, writable: writable))
+      end
+      others = replay.players.reject { |player| same_user?(player, viewer) }
+      if others.one?
+        shortcuts << category_browser(state, others.first, other: true)
+      elsif !others.empty?
+        choices = others.map do |player|
+          ShortcutChoice.new(label: participant_name(player), value: category_browser(state, player, other: true))
+        end
+        shortcuts << browse_shortcut(key: 'f', modifiers: [:shift], label: _("View another player's categories"),
+          prompt: _("Choose a player"), choices: choices)
       end
       if state[:turn_rolls] == 3
         shortcuts.reject! { |shortcut| shortcut.key == "space" }
@@ -201,6 +205,7 @@ module GameRoomGames
     def score_grid(state, player, writable:)
       match = state[:match_model]
       columns = state[:options]["columns"]
+      bonuses = match.bonuses(player)
       choices = writable ? available_scoring_categories(state, player) : match.categories
       # Keep the protocol's failed-result marker and bonus rules, but offer
       # only one row per category: its score, or zero if no score is possible.
@@ -219,11 +224,12 @@ module GameRoomGames
         end
         total = entries.grep(Integer).sum
         reserve = category.is_a?(Integer) ? (_("Reserve: %{count}") % {count: match.reserve(player, category)}) : ""
-        [label, *Array.new(columns) { |index| cell_label(entries[index]) }, _("Total: %{points}") % {points: total}, reserve]
+        [label, *Array.new(columns) { |index| cell_label(entries[index]) }, _("Total: %{points}") % {points: total},
+          _("Bonus: %{points}") % {points: bonuses.fetch([:row, category], 0)}, reserve]
       end
       rows << [_("Total: %{points}") % {points: match.total(player)}, *Array.new(columns, ""),
-        _("Bonuses: %{points}") % {points: match.bonuses(player).values.sum}, ""]
-      GameSurfaces::GridSpec.new(width: columns + 3, height: rows.size, header: score_sheet_title(state, player),
+        "", _("Bonuses: %{points}") % {points: bonuses.values.sum}, ""]
+      GameSurfaces::GridSpec.new(width: columns + 4, height: rows.size, header: score_sheet_title(state, player),
         cells: rows, row_origin: :top, hide_coordinates: true,
         row_actions: writable ? choices.map { |choice| GameSurfaces::Action.new(kind: 'dice', name: 'score', payload: {'category' => choice}) } : [],
         shortcuts: [announcement_shortcut(key: 'space', label: _("read the dice"), message: dice_text(state))])
@@ -233,21 +239,42 @@ module GameRoomGames
       _("Score sheet: %{player}") % {player: participant_name(player)}
     end
 
-    def score_sheet_choices(state, player, incomplete_only: false)
+    def score_sheet_choices(state, player, view: :all)
       match = state[:match_model]
+      columns = state[:options]["columns"]
+      bonuses = match.bonuses(player)
       rows = match.sheet(player).filter_map do |category, entries|
-        next if incomplete_only && entries.size >= state[:options]["columns"]
+        complete = entries.size >= columns
+        next if (view == :unfilled && complete) || (view == :completed && !complete)
 
-        cells = Array.new(state[:options]["columns"]) { |index| cell_label(entries[index]) }
+        cells = Array.new(columns) { |index| cell_label(entries[index]) }
         line = "#{category_label(category)}: #{cells.join(', ')}"
         line += "; " + (_("Reserve: %{count}") % {count: match.reserve(player, category)}) if category.is_a?(Integer)
+        bonus = bonuses.fetch([:row, category], 0)
+        line += "; " + (_("Bonus: %{points}") % {points: bonus}) if bonus.positive?
         line
       end
-      unless incomplete_only
-        rows << (_("Bonuses: %{points}") % {points: match.bonuses(player).values.sum})
+      if view == :all
+        rows << (_("Bonuses: %{points}") % {points: bonuses.values.sum})
         rows << (_("Total: %{points}") % {points: match.total(player)})
       end
       rows.map { |line| ShortcutChoice.new(label: line, value: nil) }
+    end
+
+    def action_confirmation(selection, replay, actor)
+      return unless selection['kind'] == 'dice' && selection['action'] == 'score' &&
+        !replay.finished? && same_user?(actor, replay.current_player)
+
+      match = replay.state[:match_model]
+      category, cross = decode_choice(match, selection['category'])
+      return unless cross && FiveDiceScoring::SCHOOL.include?(category) && match.rolls == 3 &&
+        match.sheet(match.current_player).fetch(category).size < match.columns
+
+      lines = [_("Record zero for %{category}?") % {category: category_label(category)}]
+      points = match.bonuses(match.current_player).values.sum
+      lines << (_("You will lose your bonuses (%{points} points).") % {points: points}) if points.positive?
+      lines << _("You will not be able to earn any more bonuses in this game.") if match.school_zero_blocks_future_bonuses?(match.current_player)
+      lines.join(' ')
     end
 
     def total_score(state, player)
@@ -255,6 +282,20 @@ module GameRoomGames
     end
 
     private
+
+    def category_browser(state, player, other: false)
+      label = other ? _("View another player's categories") : _("View unfilled categories")
+      modifiers = other ? [:shift] : []
+      title = score_sheet_title(state, player) if other
+      completed = score_sheet_choices(state, player, view: :completed)
+      completed << ShortcutChoice.new(label: _("No categories are complete yet.")) if completed.empty?
+      alternate = browse_shortcut(key: 'f', modifiers: modifiers, label: label,
+        prompt: [title, _("Completed categories")].compact.join('. '), choices: completed)
+      unfilled = score_sheet_choices(state, player, view: :unfilled)
+      unfilled << ShortcutChoice.new(label: _("The score sheet is full.")) if unfilled.empty?
+      browse_shortcut(key: 'f', modifiers: modifiers, label: label,
+        prompt: [title, _("Unfilled categories")].compact.join('. '), choices: unfilled, alternate_page: alternate)
+    end
 
     def recorded_score_history(match, player, category, cross, event_id, before_bonuses)
       row = match.sheet(player).fetch(category)

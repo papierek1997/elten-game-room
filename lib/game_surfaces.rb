@@ -300,9 +300,7 @@ module GameSurfaces
     end
   end
 
-  class RefreshAwareListBox < ListBox
-    attr_reader :last_focus_spoken
-
+  module ShortcutCharacterFilter
     def game_shortcut_signatures=(signatures)
       keys = signatures.to_a.map do |key, modifiers|
         normalized = key.to_s.downcase
@@ -321,6 +319,83 @@ module GameSurfaces
         result << normalized if normalized.length == 1 && !result.include?(normalized)
       end
     end
+
+    private
+
+    def getkeychar(*arguments)
+      character = super
+      @game_shortcut_character_keys.to_a.include?(character.to_s.downcase) ? "" : character
+    end
+  end
+
+  # List-style row navigation is for score sheets, not coordinate playfields.
+  # Reuse native grid focus for a single cell announcement and Braille update.
+  class ScoreGridBox < OrientedGridBox
+    include ShortcutCharacterFilter
+
+    PAGE_ROWS = 15
+    JUMP_KEYS = {home: :home, end: :end, pageup: :page_up, pagedown: :page_down}.freeze
+    GRID_KEYS = %i[left right up down enter space].freeze
+
+    def update
+      native_input = GRID_KEYS.any? { |key| key_pressed?(key) }
+      super
+      return if native_input
+
+      case JUMP_KEYS.values.find { |key| row_jump_pressed?(key) }
+      when :home then read_cell(0, 0)
+      when :end then read_cell(0, @height - 1)
+      when :page_up then page_by(-PAGE_ROWS)
+      when :page_down then page_by(PAGE_ROWS)
+      else search_row(getkeychar)
+      end
+    end
+
+    def key_processed(key)
+      jump = JUMP_KEYS[key.to_s.sub(/\Akey_/, '').delete('_').to_sym]
+      (jump && row_jump_pressed?(jump)) || super
+    end
+
+    private
+
+    def row_jump_pressed?(key)
+      keyboard_binding_pressed?([key]) &&
+        !GameRoomUI.modifiers_when_pressed(self, key, include_insert: true).include?(:insert)
+    end
+
+    def page_by(delta)
+      row = (@y + delta).clamp(0, @height - 1)
+      read_cell(cell_label(@x, row).empty? ? 0 : @x, row)
+    end
+
+    def search_row(character)
+      letter = GameRoomContent.utf8(character).downcase
+      return unless letter.match?(/\A\p{L}\z/u)
+
+      step = raw_key_held?(:key_shift) ? -1 : 1
+      1.upto(@height) do |offset|
+        row = (@y + step * offset) % @height
+        next unless cell_label(0, row).downcase.start_with?(letter)
+
+        read_cell(0, row)
+        break
+      end
+    end
+
+    def read_cell(column, row)
+      moved = @x != column || @y != row
+      @x, @y = column, row
+      if moved
+        play_sound("listbox_focus", volume: 100, pitch: 100, pan: lpos) unless @silent
+        trigger(:move, @x, @y)
+      end
+      focus(nil, nil, true, include_header: false)
+    end
+  end
+
+  class RefreshAwareListBox < ListBox
+    include ShortcutCharacterFilter
+    attr_reader :last_focus_spoken
 
     def suppress_next_focus!
       @suppress_next_focus = true
@@ -344,15 +419,6 @@ module GameSurfaces
     # Other lists and ordinary focus transitions continue to use #focus.
     def announce_current_card
       focus(nil, nil, "", true)
-    end
-
-    private
-
-    def getkeychar(*arguments)
-      character = super
-      return "" if @game_shortcut_character_keys.to_a.include?(character.to_s.downcase)
-
-      character
     end
 
   end
@@ -517,7 +583,8 @@ module GameSurfaces
       end
       x = state_value(state, "x", 0)
       y = state_value(state, "y", 0)
-      @control = OrientedGridBox.new(
+      grid_control = @spec.row_actions ? ScoreGridBox : OrientedGridBox
+      @control = grid_control.new(
         @spec.width,
         @spec.height,
         row_origin: row_origin,

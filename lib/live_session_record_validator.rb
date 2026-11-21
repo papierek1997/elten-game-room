@@ -149,12 +149,17 @@ class GameRoomLiveSessionStore
       return false if !same_user?(sender, owner) || !same_user?(actor, owner)
       return false unless valid_private_start?(data) && valid_random_start?(data)
       return false if data.key?('statistics') && !GameRoomStatistics::Identity.valid?(data['statistics'])
+      return false unless positive_integer?(data['created_at'])
 
       if data.key?("archive_id")
         return false unless nonempty_text?(data["archive_id"]) && data["archive_id"].length <= 64 &&
           integer_between?(data["archive_events"], 0, MAX_ARCHIVE_EVENTS) &&
           data["event_id_base"].is_a?(Integer) && data["event_id_base"] >= 0 && data["clock_offset"].is_a?(Integer)
-      elsif %w[archive_events event_id_base clock_offset].any? { |key| data.key?(key) }
+        if data.key?('game_started_at') &&
+            !GameRoomSessionClock.valid_origin?(data['game_started_at'], data['created_at'] - data['clock_offset'])
+          return false
+        end
+      elsif %w[archive_events event_id_base clock_offset game_started_at].any? { |key| data.key?(key) }
         return false
       end
       players = data["players"]
@@ -170,8 +175,7 @@ class GameRoomLiveSessionStore
       players.is_a?(Array) && players.all? { |player| nonempty_text?(player) && player.length <= 64 } &&
         players.length.between?(1, MAX_CAPACITY) &&
         unique_users(players).length == players.length && positive_integer?(data["session_id"]) &&
-        nonempty_text?(data["game"]) && json_object_text?(data["options"]) &&
-        positive_integer?(data["created_at"])
+        nonempty_text?(data["game"]) && json_object_text?(data["options"])
     end
 
     def valid_game_action_record?(sender, actor, data, owner, ledger: nil, sequence: nil, server_random: nil, server_pool: nil)

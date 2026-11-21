@@ -31,7 +31,7 @@
           "en": "After a bid, the auctioneer calls once, twice and three times, normally three seconds apart. Bidding stays open for one more interval after the third call; only Sold ends it. Every higher offer starts the calls afresh. With the default interval, an auction closes after twelve seconds without a new bid. If nobody bids, the pool carries over."
         },
         {
-          "en": "P reads the pool. T explains whose decision is pending; during bidding, all eligible players may bid at once. H reads the current bids. D reads your points, and Shift+D reads the other players’ points."
+          "en": "P reads the pool. T explains whose decision is pending; during bidding, all eligible players may bid at once. H reads the current bids."
         }
       ]
     },
@@ -48,7 +48,7 @@
           "en": "When you raise your own offer, pay only the difference. For example, after offering 100, raising to 250 costs another 150. You may commit at most your remaining balance plus what you have already paid in bids this auction."
         },
         {
-          "en": "To go all-in while you still have points, type A in the bid field and press Enter. You commit every remaining point, with earlier bid payments this auction counted in the total offer. You can also type that total amount instead of A. If this total beats the highest offer, all-in immediately closes the auction and wins the question or black chest. Nobody can raise after it. If your available total is no higher than the leading offer, you cannot bid or go all-in."
+          "en": "To go all-in while you still have points, press A in the bid field. You commit every remaining point, with earlier bid payments this auction counted in the total offer. Alternatively, type that total amount and press Enter. If this total beats the highest offer, all-in immediately closes the auction and wins the question or black chest. Nobody can raise after it. If your available total is no higher than the leading offer, you cannot bid or go all-in."
         },
         {
           "en": "You can raise your own offer until the auction closes. The last accepted highest offer wins when the auction is closed. A bid reaching the game after the deadline is refused, even if the closing announcement has not finished speaking."
@@ -119,7 +119,7 @@
           "en": "After all chests are open, the remaining player with the most points wins. If several remaining players share the highest balance, play on until another question has been answered, with every player still in the match taking part, not just the tied leaders. Chest auctions and auctions with no bids do not finish this extra question round. Open any new chests before comparing balances again, and repeat if necessary. If no players remain, the match is a draw."
         },
         {
-          "en": "S reads everyone’s balances and unopened chest counts outside the auction, including while a question is on screen. Use Shift+S during bidding."
+          "en": "S reads everyone’s balances and unopened chest counts, including during bidding and while a question is on screen."
         }
       ]
     },
@@ -150,16 +150,13 @@
           "en": "Enter in the bid field: submit the amount you typed."
         },
         {
-          "en": "A: type A in the bid field, then press Enter to go all-in if your total exceeds the highest offer and win the auction immediately."
+          "en": "A in the bid field: go all-in. If your total beats the highest offer, you win the auction immediately."
         },
         {
           "en": "Down from the question: move to the answers. Arrows select an answer; Enter submits it if you won the auction."
         },
         {
-          "en": "S: outside bidding, read balances and unopened chests."
-        },
-        {
-          "en": "Shift+S: during bidding, read balances and unopened chests."
+          "en": "S: read everyone’s balances and unopened chests."
         },
         {
           "en": "P: read the pool."
@@ -169,12 +166,6 @@
         },
         {
           "en": "H: read the current bids."
-        },
-        {
-          "en": "D: read your points."
-        },
-        {
-          "en": "Shift+D: read the other players’ points."
         }
       ]
     }

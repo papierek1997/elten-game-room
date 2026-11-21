@@ -3,7 +3,7 @@ require 'json'
 module GameRoomContent
   module Packa0830f585cc4689a1e2a6335
     def self.load
-      JSON.parse(<<'QUIZ_DATA_7b9a417ee0590cd544985b1abeb873a163be8331562ce566179f385a73ab29fb')
+      JSON.parse(<<'QUIZ_DATA_6248b900a7da933e96261d18b41d15184a4cc862656cab8d7876a309cc119d80')
 {
   "questions": [
     {
@@ -32234,7 +32234,7 @@ module GameRoomContent
       "id": "polqa_01416",
       "category": "Historia",
       "level": "medium",
-      "prompt": "W którym roku Nixon ustąpił z fotelu prezydenta USA z powodu afery Watergate?",
+      "prompt": "W którym roku Nixon ustąpił z fotela prezydenta USA z powodu afery Watergate?",
       "correct": "w 1974",
       "wrong": [
         "w 1968",
@@ -108392,7 +108392,7 @@ module GameRoomContent
     },
     {
       "id": "polqa_00806",
-      "category": "Literatura",
+      "category": "Język",
       "level": "medium",
       "prompt": "Co dosłownie oznacza zwrot „in vitro”?",
       "correct": "w szkle",
@@ -110840,7 +110840,7 @@ module GameRoomContent
     },
     {
       "id": "polqa_02270",
-      "category": "Literatura",
+      "category": "Język",
       "level": "medium",
       "prompt": "Do ilu razy sztuka według przysłowia?",
       "correct": "do trzech",
@@ -232138,7 +232138,7 @@ module GameRoomContent
       "id": "1z10_f621cf3dd44b14cb",
       "category": "Życie codzienne",
       "level": "medium",
-      "prompt": "Profesje. Elementy której części garderoby wytwarza kamasznik?",
+      "prompt": "Elementy której części garderoby wytwarza kamasznik?",
       "correct": "Obuwia",
       "wrong": [
         "Kapeluszy",
@@ -239713,11 +239713,198 @@ module GameRoomContent
       "source_dataset": "Power Games community",
       "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
       "review_required": false
+    },
+    {
+      "id": "community_zz_20261119_02",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Kto napisał powieść poetycką „Maria”?",
+      "correct": "Antoni Malczewski",
+      "wrong": [
+        "Adam Mickiewicz",
+        "Kazimierz Brodziński",
+        "Juliusz Słowacki"
+      ],
+      "source": "https://wolnelektury.pl/katalog/lektura/maria-powiesc-ukrainska/",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261119_03",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Kto napisał wiersze „U wrót doliny” i „Dwie krople”?",
+      "correct": "Zbigniew Herbert",
+      "wrong": [
+        "Czesław Miłosz",
+        "Rafał Wojaczek",
+        "Krzysztof Kamil Baczyński"
+      ],
+      "source": "https://fundacjaherberta.com/biblioteka-herberta/wiersze/",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261119_04",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Którego z tych pisarzy nie zalicza się do „kaskaderów literatury”?",
+      "correct": "Stanisław Barańczak",
+      "wrong": [
+        "Marek Hłasko",
+        "Edward Stachura",
+        "Andrzej Bursa"
+      ],
+      "source": "https://pbl.ibl.poznan.pl/dostep/index.php?f=zapisy&p_dodosoba=H%C5%82askoMarek&s=d_biezacy",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261119_06",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Kto jest autorem nowel „Sieroca dola”, „Grzechy dzieciństwa” i „Nawrócony”?",
+      "correct": "Bolesław Prus",
+      "wrong": [
+        "Henryk Sienkiewicz",
+        "Maria Konopnicka",
+        "Eliza Orzeszkowa"
+      ],
+      "source": "https://www.filolog.uni.lodz.pl/zlpimp/dla-studentow",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261119_07",
+      "category": "Kultura",
+      "level": "medium",
+      "prompt": "Kto grał Stanisława Bogackiego w serialach „Lokatorzy” i „Sąsiedzi”?",
+      "correct": "Marek Siudym",
+      "wrong": [
+        "Stanisław Tym",
+        "Cezary Żak",
+        "Krzysztof Kowalewski"
+      ],
+      "source": "https://agencjaspinka.pl/szukaj/marek-siudym-616",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261119_09",
+      "category": "Życie codzienne",
+      "level": "medium",
+      "prompt": "Której z tych sieci restauracji AmRest nie prowadził w Polsce w czerwcu 2025 roku?",
+      "correct": "McDonald’s",
+      "wrong": [
+        "KFC",
+        "Pizza Hut",
+        "Burger King"
+      ],
+      "source": "https://www.amrest.eu/pl/media/download/3002",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261119_10",
+      "category": "Literatura",
+      "level": "medium",
+      "prompt": "Kto napisał powieść „Malwina, czyli domyślność serca”?",
+      "correct": "Maria Wirtemberska",
+      "wrong": [
+        "Franciszek Karpiński",
+        "Jean-Jacques Rousseau",
+        "Johann Wolfgang Goethe"
+      ],
+      "source": "https://literat.ug.edu.pl/malwina/index.htm",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261119_12",
+      "category": "Życie codzienne",
+      "level": "medium",
+      "prompt": "Co oznacza rozmiar 21 cali w opisie telewizora?",
+      "correct": "Długość przekątnej ekranu",
+      "wrong": [
+        "Szerokość ekranu",
+        "Wysokość ekranu",
+        "Długość przekątnej obudowy"
+      ],
+      "source": "https://pro.sony/pl_PL/pdf/bravia-bz30j-series",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261119_13",
+      "category": "Życie codzienne",
+      "level": "medium",
+      "prompt": "W jakim standardzie nadawano w Polsce naziemną telewizję cyfrową w paśmie UHF w 2026 roku?",
+      "correct": "DVB-T2",
+      "wrong": [
+        "DVB-T",
+        "DVB-S2",
+        "DVB-C"
+      ],
+      "source": "https://uke.gov.pl/blog/telewizja-naziemna-po-2030-roku-czy-czeka-nas-kolejna-rewolucja-w-eterze,164.html",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261119_14",
+      "category": "Życie codzienne",
+      "level": "medium",
+      "prompt": "Ile danych mieści płyta CD-R przeznaczona na 80 minut dźwięku?",
+      "correct": "Około 700 MB",
+      "wrong": [
+        "Około 250 MB",
+        "Około 400 MB",
+        "Około 1000 MB"
+      ],
+      "source": "https://www.verbatim.com/en/cd/products/97488-cd-r-80min-700mb-52x-50pk-wrap",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
+    },
+    {
+      "id": "community_zz_20261119_16",
+      "category": "Przyroda",
+      "level": "medium",
+      "prompt": "Jak inaczej nazywa się kanczyl filipiński?",
+      "correct": "Myszojeleń",
+      "wrong": [
+        "Myszoskoczek",
+        "Mysikrólik",
+        "Myszołów"
+      ],
+      "source": "https://www.wroclaw.pl/dla-mieszkanca/oto-10-wyjatkowych-mieszkancow-naszego-zoo",
+      "author": "Zuzler",
+      "source_dataset": "Power Games community",
+      "source_license": "Submitted by the contributor for inclusion in Power Games; no separate reuse license specified",
+      "review_required": false
     }
   ],
   "source": "content/QUIZ_PL_GENERAL_SOURCES.txt"
 }
-QUIZ_DATA_7b9a417ee0590cd544985b1abeb873a163be8331562ce566179f385a73ab29fb
+QUIZ_DATA_6248b900a7da933e96261d18b41d15184a4cc862656cab8d7876a309cc119d80
     end
   end
 end

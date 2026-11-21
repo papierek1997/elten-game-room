@@ -15,7 +15,11 @@ module QuizEditorialBaseline
   end
 
   def before_november_17_review(questions)
-    restore(questions, 'november_17_review.json')
+    restore(before_november_19_review(questions), 'november_17_review.json')
+  end
+
+  def before_november_19_review(questions)
+    restore(questions, 'november_19_review.json')
   end
 
   def restore(questions, fixture_name)
@@ -23,6 +27,13 @@ module QuizEditorialBaseline
     indexed = restored.to_h { |question| [question.fetch('id'), question] }
     raise 'Duplicate quiz IDs' unless indexed.size == restored.size
     fixture = JSON.parse(File.read(File.expand_path("../fixtures/quiz/#{fixture_name}", __dir__), encoding: 'UTF-8'))
+    # Additions are an exact approved suffix, not any row with a community ID.
+    # Require the entire content and order before restoring historical hashes.
+    fixture.fetch('additions', []).reverse_each do |addition|
+      raise "Unapproved quiz addition: #{addition.fetch('id')}" unless restored.last == addition
+      restored.pop
+      indexed.delete(addition.fetch('id'))
+    end
     fixture.fetch('changes').each do |change|
       if change.key?('deleted')
         row = change.fetch('deleted')

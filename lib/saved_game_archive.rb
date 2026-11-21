@@ -51,6 +51,8 @@ class GameRoomSavedGameArchive
         end
       end
     }
+    origin = snapshot.session.fetch('__game_started_at', snapshot.session['created_at'])
+    row['game_started_at'] = origin unless origin.nil?
     if snapshot.session.key?('__statistics')
       row['statistics'] = GameRoomStatistics::Identity.copy(snapshot.session['__statistics'])
     end
@@ -95,6 +97,9 @@ class GameRoomSavedGameArchive
     raise ArgumentError, "Invalid saved seats" unless players.is_a?(Array) && players.length.between?(game.minimum_players, game.maximum_players) &&
       players.all? { |player| player.is_a?(String) && player.length.between?(1, 64) } && GameRoomParticipants.unique(players).length == players.length
     raise ArgumentError, "Invalid saved game time" unless row["saved_at"].is_a?(Integer) && row["saved_at"] > 0 && row["game_time"].is_a?(Integer) && row["game_time"] > 0
+    if row.key?('game_started_at') && !GameRoomSessionClock.valid_origin?(row['game_started_at'], row['game_time'])
+      raise ArgumentError, 'Invalid saved game start time'
+    end
     controllers = row.fetch('controllers', {})
     raise ArgumentError, 'Invalid saved controllers' unless controllers.is_a?(Hash) && controllers.all? do |seat, kind|
       players.include?(seat) && !GameRoomParticipants.bot?(seat) && %w[bot human].include?(kind)
@@ -152,7 +157,8 @@ class GameRoomSavedGameArchive
       seat_changes: row.fetch('seat_changes', []).map { |change| change.merge('players' => change['players'].map { |player| mapping.fetch(player.downcase) }) },
       controllers: row.fetch('controllers', {}).dup,
       events: row["events"].map { |event| event.merge("actor" => mapping.fetch(event["actor"].downcase), "value" => game.restored_event_value(event, mapping)) },
-      clock_offset: now.to_i - row["game_time"].to_i, game_time: row["game_time"].to_i
+      clock_offset: now.to_i - row["game_time"].to_i, game_time: row["game_time"].to_i,
+      game_started_at: row.fetch('game_started_at') { GameRoomSessionClock.archived_origin(row['events'], row['game_time']) }
     }
     restored[:statistics] = GameRoomStatistics::Identity.copy(row['statistics']) if row.key?('statistics')
     replay = game.replay({ '__players' => restored[:players], '__initial_players' => restored[:initial_players],

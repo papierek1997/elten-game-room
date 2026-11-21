@@ -858,6 +858,20 @@ module GameRoomChangelog
         "Darts rankings and record uploads now depend on server-table access rather than developer mode. General statistics and Axel Pong and Audio Ball player statistics remain disabled in developer mode.",
         "Power Games now explains missing server access at startup, when opening restricted features and when entering a table, including which statistics or ranking results will not be sent. Unavailable rankings, tournaments and statistics are blocked before their lists open; ordinary games and local settings remain usable."
       ].freeze
+    ).freeze,
+    Entry.new(
+      version: "2.0.6.12",
+      build: 275,
+      changes: [
+        "Dice General now shows row bonuses in the score grid. Before recording zero in the school, the game asks you to confirm and explains any bonuses you would lose.",
+        "In Dice General, F opens your category list and Shift+F opens another player's list, also available to spectators. Press Right to see completed categories and Left to go back.",
+        "In the Dice General and Balut score grids, you can now use Home, End, Page Up, Page Down and jump to a row by typing its first letter.",
+        "After resuming a saved game, the game and round timers carry on from the saved time. Time away from the game is not counted.",
+        "T now reads whose turn it is even in games that do not announce turn changes automatically.",
+        "In Cash Auction, the bid field accepts only digits. Press A to go all-in without pressing Enter. S reads the scores during bidding too.",
+        "Added 11 questions to the Polish general-knowledge quiz set and corrected four others. Thanks to Zuzler for the questions and reports!",
+        "Power Games stops checking tournament tables in the background once the server confirms they are not accessible in developer mode."
+      ].freeze
     ).freeze
   ].freeze
 

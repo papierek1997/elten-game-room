@@ -43,10 +43,21 @@ module GameSurfaces
     end
 
     class AnswerText < RefreshAwareEditBox
-      attr_writer :text_shortcuts
+      attr_writer :text_shortcuts, :digits_only
+
+      def game_shortcut_signatures=(signatures)
+        super
+        @game_shortcut_signatures = signatures
+      end
 
       def game_shortcut_in_text?(key, modifiers)
-        matched = @text_shortcuts.to_a.any? { |name, keys| name.to_s == key && keys.to_a.sort == modifiers.sort }
+        signatures = @text_shortcuts.to_a
+        # Amount fields own digits and native editing, not letter commands.
+        # Use the current bindings rather than a game-specific key allowlist.
+        if @digits_only && key.match?(/\A[a-z]\z/) && (modifiers - [:shift]).empty?
+          signatures += @game_shortcut_signatures.to_a
+        end
+        matched = signatures.any? { |name, keys| name.to_s == key && keys.to_a.sort == modifiers.sort }
         if matched
           character = modifiers.include?(:shift) ? key.upcase : key
           @shortcut_character = [$input_frame_serial, character]
@@ -66,7 +77,8 @@ module GameSurfaces
       def getkeychar(*arguments)
         character = super
         # The host caches characters even after a shortcut consumes its press.
-        return '' if @shortcut_character == [$input_frame_serial, character]
+        return '' if @shortcut_character && @shortcut_character[0] == $input_frame_serial &&
+          @shortcut_character[1].casecmp?(character)
 
         character
       end
@@ -189,6 +201,10 @@ module GameSurfaces
           max_length: maximum_length
         )
         control.text_shortcuts = @spec.text_shortcuts
+        control.digits_only = @spec.digits_only == true
+        # Native validation also covers paste, without converting the draft
+        # to an Integer or dropping typed leading zeroes.
+        control.permitted_characters.concat(('0'..'9').to_a) if @spec.digits_only == true
         control.restore_selection(
           index: state_value(state, "index", text.length),
           check: state_value(state, "check", text.length)

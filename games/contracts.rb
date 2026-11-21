@@ -91,6 +91,7 @@ module GameRoomGames
     :choices,
     :fields,
     :submit_label,
+    :alternate_page,
     keyword_init: true
   ) do
     KINDS = [:announcement, :browse, :grid_preview, :number_input, :choice, :staged_form, :form, :action, :surface].freeze
@@ -112,7 +113,8 @@ module GameRoomGames
       payload: nil,
       choices: nil,
       fields: nil,
-      submit_label: nil
+      submit_label: nil,
+      alternate_page: nil
     )
       normalized_key = key.to_s.downcase
       normalized_modifiers = normalize_shortcut_modifiers(modifiers)
@@ -122,6 +124,9 @@ module GameRoomGames
       end
       raise ArgumentError, "unsupported game shortcut kind" if !KINDS.include?(normalized_kind)
       raise ArgumentError, "a game shortcut requires a label" if label.to_s.empty?
+      if alternate_page && (normalized_kind != :browse || !alternate_page.is_a?(GameShortcut) || alternate_page.kind != :browse)
+        raise ArgumentError, "an alternate page requires a browse shortcut"
+      end
       if normalized_kind == :announcement
         raise ArgumentError, "an announcement shortcut requires a message" if message.to_s.empty?
       elsif normalized_kind == :grid_preview
@@ -147,21 +152,7 @@ module GameRoomGames
           raise ArgumentError, "a choice shortcut requires an action" if action_kind.to_s.empty? || action_name.to_s.empty?
           raise ArgumentError, "a choice shortcut requires a payload key" if value_key.to_s.empty?
         end
-        choices = choices.to_a.map do |choice|
-          if choice.respond_to?(:value) && choice.respond_to?(:label)
-            ShortcutChoice.new(value: choice.value, label: choice.label.to_s)
-          elsif choice.respond_to?(:key?)
-            value = choice.key?(:value) ? choice[:value] : choice["value"]
-            label = choice.key?(:label) ? choice[:label] : choice["label"]
-            ShortcutChoice.new(value: value, label: label.to_s)
-          else
-            values = choice.to_a
-            ShortcutChoice.new(value: values[0], label: values[1].to_s)
-          end
-        end
-        if choices.empty? || choices.any? { |choice| choice.label.empty? }
-          raise ArgumentError, "a choice shortcut requires labelled choices"
-        end
+        choices = normalize_choices(choices)
       else
         raise ArgumentError, "an action shortcut requires an action" if action_kind.to_s.empty? || action_name.to_s.empty?
         raise ArgumentError, "an action shortcut payload must be a hash" if payload != nil && !payload.respond_to?(:to_h)
@@ -183,7 +174,8 @@ module GameRoomGames
         payload: payload == nil ? {} : payload.to_h,
         choices: choices,
         fields: fields,
-        submit_label: submit_label && GameRoomContent.utf8(submit_label)
+        submit_label: submit_label && GameRoomContent.utf8(submit_label),
+        alternate_page: alternate_page
       )
     end
 
@@ -196,6 +188,25 @@ module GameRoomGames
     end
 
     private
+
+    def normalize_choices(raw_choices)
+      choices = raw_choices.to_a.map do |choice|
+        if choice.respond_to?(:value) && choice.respond_to?(:label)
+          ShortcutChoice.new(value: choice.value, label: choice.label.to_s)
+        elsif choice.respond_to?(:key?)
+          value = choice.key?(:value) ? choice[:value] : choice["value"]
+          label = choice.key?(:label) ? choice[:label] : choice["label"]
+          ShortcutChoice.new(value: value, label: label.to_s)
+        else
+          values = choice.to_a
+          ShortcutChoice.new(value: values[0], label: values[1].to_s)
+        end
+      end
+      if choices.empty? || choices.any? { |choice| choice.label.empty? }
+        raise ArgumentError, "a choice shortcut requires labelled choices"
+      end
+      choices
+    end
 
     def normalize_shortcut_modifiers(modifiers)
       normalized = modifiers.to_a.map(&:to_sym).uniq.sort

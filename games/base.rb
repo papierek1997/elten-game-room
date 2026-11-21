@@ -138,6 +138,8 @@ module GameRoomGames
     end
     def run_room_command(_program, _command, viewer:, **_services); false; end
     def leave_confirmation(_replay, _viewer, own_table:); nil; end
+    # Human UI only; the executor still validates the ordinary action after confirmation.
+    def action_confirmation(_selection, _replay, _actor); nil; end
     def saved_game_requires_private_data?; false; end
     def saved_private_data(_replay, context:); nil; end
     def validate_saved_private_data(_replay, data)
@@ -367,6 +369,10 @@ module GameRoomGames
     attr_accessor :board_presentation_preferences
 
     def turn_announcement(replay, viewer)
+      default_turn_announcement(replay, viewer)
+    end
+
+    def default_turn_announcement(replay, viewer)
       return nil if replay == nil || replay.finished? || replay.current_player == nil
       if turn_phase_kind(replay) == :bidding
         return _("You are bidding.") if same_user?(replay.current_player, viewer)
@@ -395,6 +401,7 @@ module GameRoomGames
         player: participant_name(replay.current_player)
       }
     end
+    protected :default_turn_announcement
 
     # Turn changes are derived from accepted game events. They are displayed
     # consistently by GameScreen without creating extra server records, so all
@@ -608,7 +615,8 @@ module GameRoomGames
       return result_text(replay) || _("The game is finished.") if replay.finished?
       return _("There is no active turn.") if replay.current_player == nil
 
-      turn_announcement(replay, viewer)
+      announcement = turn_announcement(replay, viewer)
+      announcement.to_s.empty? ? default_turn_announcement(replay, viewer) : announcement
     end
 
     def turn_phase_kind(replay)

@@ -220,6 +220,7 @@ module GameSurfaces
     :clear_on_rejection,
     :extra_commands,
     :text_shortcuts,
+    :digits_only,
     keyword_init: true
   )
 

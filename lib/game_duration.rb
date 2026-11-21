@@ -2,7 +2,7 @@ require_relative 'game_session_clock'
 require_relative 'game_room_localization'
 
 # Read-only, on-demand projection of the existing logical game clock. No timer,
-# replay reduction, file access, network request or new persisted state.
+# replay reduction, file access, network request or writes.
 module GameRoomDuration
   using GameRoomLocalization::Translations
   module_function
@@ -11,7 +11,7 @@ module GameRoomDuration
     return _('Duration is unavailable.') unless session && replay
 
     first, last = scope == 'round' ? game.round_timing_event_ids(replay, repository: repository) : [nil, nil]
-    started = first ? event_time(first, replay, session, repository) : session['created_at']
+    started = first ? event_time(first, replay, session, repository) : session.fetch('__game_started_at', session['created_at'])
     ended = if last
       event_time(last, replay, session, repository)
     elsif replay.finished?

@@ -318,7 +318,7 @@ end
 
 class EditBox < FakeControl
   attr_accessor :text, :index, :check, :flags, :header
-  attr_reader :last_focus_spoken, :last_focus_header
+  attr_reader :last_focus_spoken, :last_focus_header, :permitted_characters
 
   module Flags
     ReadOnly = 1
@@ -344,6 +344,7 @@ class EditBox < FakeControl
     @index = @check = 0
     @max_length = max_length
     @elements = []
+    @permitted_characters = []
   end
 
   def focus(_index = nil, _count = nil, spk = true)

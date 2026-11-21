@@ -863,13 +863,20 @@ class GameRoomLiveSessionStore
       payload['statistics'] = statistics if statistics
       payload['controllers'] = restored_controllers unless restored_controllers.empty?
       payload['initial_players'] = restore.fetch(:initial_players, requested_players)
+      payload.merge!(restored_clock_metadata(restore, payload.fetch('created_at')))
       payload.merge!("archive_id" => archive_id, "archive_events" => archive.length,
-        "event_id_base" => archive.map { |event| event["id"] }.max.to_i,
-        "clock_offset" => restore[:game_time] == nil ? restore.fetch(:clock_offset).to_i : @clock.now.to_i - restore[:game_time].to_i)
+        "event_id_base" => archive.map { |event| event["id"] }.max.to_i)
     end
     record = append_record(table_id, "game_started", payload, actor: actor)
     trim_previous_games(table_id, checkpoint.sequence - 1) if record != nil && checkpoint != nil
     game_session_from(record)
+  end
+
+  private def restored_clock_metadata(restore, created_at)
+    saved_at = restore[:game_time]
+    values = {'clock_offset' => saved_at.nil? ? restore.fetch(:clock_offset).to_i : created_at - saved_at.to_i}
+    values['game_started_at'] = restore[:game_started_at] if restore.key?(:game_started_at)
+    values
   end
 
   private def validate_start_roster!(table_id, state, requested_players, restored_controllers)

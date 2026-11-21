@@ -279,7 +279,10 @@ commands keep their usual handling.
 `GameRoomDuration` uses the current `GameRoomSessionClock` and authenticated
 accepted-event timestamps, preserving archived logical times, event-time pause
 offsets and a frozen session. Finished games stop at their last accepted event.
-It does no network/file access, reducer replay, polling or periodic refresh.
+Saved games retain the original logical start separately from the new session's
+time origin. Rounds retain their accepted start and end events across a restore.
+In an older save, the first archived logical event is the earliest known start.
+The readout does no network/file access, reducer replay, polling or periodic refresh.
 Games expose their semantic boundaries through `round_timing_event_ids(replay,
 repository:)`. The default uses deal/round-start history and declared end kinds;
 `round_timing_start_actions` supports adapters such as Mahjong. A completed
@@ -333,11 +336,21 @@ row labels: it names the first empty score column and total score columns,
 not the historical cell currently inspected. Read-only labels stay unchanged.
 At the top of a row-action table, Up repeats the current cell without its
 header or a submission; ordinary board grids retain their existing borders.
+Home and End go to the first or last row label. Page Up and Page Down move
+15 rows (or to the nearest edge), retaining the current column if it has
+an entry there. A letter jumps to a matching row label unless the key is
+bound to a shortcut. These jumps never select or record a score.
 An empty array makes the grid read-only; nil preserves ordinary board-coordinate
 selection. Summary rows without an action are inert. `hide_coordinates` affects
 presentation only. A grid may declare read-only announcement `shortcuts`, such
 as the dice readout; the shared modal never reads game-specific state fields.
 Pending writes and frozen sessions still prohibit submission, not inspection.
+For an alternate page on a read-only `browse` shortcut, Right and Left switch
+between pages of the same native list and preserve each page's cursor. A
+player picker can open a nested browse shortcut, as General does for Shift+F.
+Games can declare an `action_confirmation` message before a local human
+submission. General uses it for a school zero, with No selected by default.
+The ordinary action pipeline still checks the revision, turn and legality.
 Yahtzee and its score-sheet subclasses declare a new `decision_focus_key` at
 the third roll. The shared decision-focus path also accepts a single surface
 without a part name, queues its prompt after event speech, and remains quiet
@@ -400,8 +413,13 @@ writable. See `test/ui/question_read_only_native_test.rb`.
 
 Text questions may explicitly reserve game information keys with
 `QuestionSpec#text_shortcuts`, a list of `[key, modifiers]` signatures from
-their declared `GameShortcut` entries. Cash Auction uses this for P/T/H/D,
-Shift+D and Shift+S in its numeric bid field. Other text keeps normal editing.
+their declared `GameShortcut` entries. `QuestionSpec#digits_only` instead
+uses the native permitted-character list for typed/pasted digits and releases
+declared plain/Shift letter commands through the current shared bindings.
+Cash Auction uses this for its bid field: Enter submits a numeric amount,
+A immediately selects the ordinary all-in action, and S/P/T/H read information.
+The amount draft keeps native selection, copy, paste, deletion and leading
+zeroes. Other text keeps normal editing; typing A in chat must not bid.
 The control retains the matched press frame to discard the host's cached
 character without changing the draft or its edit generation. Native selection
 and copy remain available. See `test/games/cash_auction/bid_shortcuts_native_test.rb`.
@@ -512,6 +530,14 @@ Previous/Next moves to another boundary instead of selecting the same cue.
 Ctrl+R reads `table_options_announcement`, based on the same definitions as
 the settings document. The board game's S counter uses
 `remaining_piece_counts(replay)` and the actual board, in player order.
+`Base#game_shortcuts` supplies T whenever a replay has an active player or
+is finished, even if the game replaces its optional `shortcut_features` list.
+An explicit game-owned T command takes precedence. The manual announcement
+keeps a useful role/phase-specific `turn_announcement`, but falls back to the
+shared actor/phase wording when automatic turn speech is intentionally silent.
+Silencing automatic speech must not silence a requested T or add automatic
+speech back. Test the player, another player and observer, native playfield
+and score-grid bindings, and the absence of writes or focus/draft changes.
 Unmodified letter-based game shortcuts do not apply in editable chat; explicitly
 declared modified shortcuts still use the shared text-scope rules above.
 Read-only history keeps native text selection and copying, including Ctrl+C;

@@ -130,14 +130,14 @@ module GameRoomGames
         minimum = R.opening_bid_minimum(replay.state)
         if minimum.positive?
           return _('You do not have enough points for the first bid (minimum: %{minimum}).') % {minimum: minimum} if maximum < minimum
-          return _('Enter an amount from %{minimum} to %{maximum}, or A for all-in.') % {minimum: minimum, maximum: maximum}
+          return _('Enter an amount from %{minimum} to %{maximum}, or press A to go all-in.') % {minimum: minimum, maximum: maximum}
         end
         if R.revised?(replay.state) && maximum <= replay.state[:highest]
           return _('You do not have enough points to beat the highest bid.')
         end
         return _('You have no points available to raise the bid.') unless replay.state[:cash][seat].positive?
-        return _('Enter %{maximum} or A to go all-in.') % {maximum: maximum} if maximum <= replay.state[:highest]
-        _('Enter an amount above %{minimum} and at most %{maximum}, or A for all-in.') % {
+        return _('Enter %{maximum} or press A to go all-in.') % {maximum: maximum} if maximum <= replay.state[:highest]
+        _('Enter an amount above %{minimum} and at most %{maximum}, or press A to go all-in.') % {
           minimum: replay.state[:highest], maximum: maximum}
       end
 

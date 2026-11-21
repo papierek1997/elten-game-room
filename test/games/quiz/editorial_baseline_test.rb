@@ -8,11 +8,14 @@ questions = GameRoomContent.registry.pack('quiz.wikidata.pl').data.fetch('questi
 original = JSON.generate(questions)
 restored = QuizEditorialBaseline.before_november_review(questions)
 assert(JSON.generate(questions) == original, 'Editorial baseline mutated the released questions')
-assert(restored.size == questions.size + 2, 'Rejected questions were not restored for the historical audit')
+before_latest = QuizEditorialBaseline.before_november_19_review(questions)
+assert(before_latest.size == 14976 && questions.size == before_latest.size + 11,
+  'The November 19 additions or their historical boundary changed')
+assert(restored.size == before_latest.size + 2, 'Rejected questions were not restored for the historical audit')
 assert(restored.any? { |row| row['id'] == '1z10_281cbf9bc456d7ce' }, 'Missing historical spelling question')
 assert(restored.find { |row| row['id'] == 'polqa_05662' }['correct'] == 'Gutenberg', 'Historical answer not restored')
 latest = QuizEditorialBaseline.before_november_17_review(questions)
-assert(latest.map { |row| row.except('prompt') } == questions.map { |row| row.except('prompt') },
+assert(latest.map { |row| row.except('prompt') } == before_latest.map { |row| row.except('prompt') },
   'The November 17 prompt review changed answers, provenance, IDs or order')
 changes = JSON.parse(File.read(File.expand_path('../../fixtures/quiz/november_17_review.json', __dir__))).fetch('changes')
 assert(changes.length == 6, 'The approved November 17 wording scope changed')

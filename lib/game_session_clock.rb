@@ -9,6 +9,17 @@ class GameRoomSessionClock
     value.is_a?(Integer) && value.between?(0, MAX_EVENT_TIME)
   end
 
+  def self.valid_origin?(origin, logical_time)
+    valid_event_time?(origin) && origin.positive? && origin <= logical_time
+  end
+
+  # Older saves did not record the time before the first accepted event.
+  # Only infer a start from a timestamp already in the saved logical clock.
+  def self.archived_origin(events, logical_time)
+    first = events.find { |event| valid_origin?(event['game_time'], logical_time) }
+    first ? first['game_time'] : logical_time
+  end
+
   # Only validated archives provide this logical timestamp. Keep raw server
   # created_at intact; a later restored epoch must not translate it again.
   def self.archived_event(event)

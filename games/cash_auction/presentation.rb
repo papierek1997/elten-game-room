@@ -7,9 +7,8 @@ module GameRoomGames
         state, seat = replay.state, player_index(replay.players, viewer)
         if state[:phase] == :auction && seat && !state[:eliminated][seat] && !state[:passed][seat]
           GameSurfaces::QuestionSpec.new(id: auction_id(state), mode: :text,
-            prompt: _('Bid amount; type A for all-in and press Enter'),
-            show_submit_button: false, clear_on_submit: true, max_length: 8,
-            text_shortcuts: custom_game_shortcuts(replay, viewer).map { |shortcut| [shortcut.key, shortcut.modifiers] })
+            prompt: _('Bid amount'), digits_only: true,
+            show_submit_button: false, clear_on_submit: true, max_length: 8)
         elsif state[:phase] == :answering
           question = state[:question]
           GameSurfaces::QuestionSpec.new(id: question_id(state), mode: :single_choice,
@@ -35,18 +34,20 @@ module GameRoomGames
         state = replay.state
         seat = player_index(replay.players, viewer)
         scores = shortcut_feature_data(:scores, replay, viewer)[:message]
-        own = seat ? points_text(replay, [seat]) : _('You are observing this game.')
-        others = points_text(replay, replay.players.each_index.reject { |index| index == seat })
-        [
-          ['s', state[:phase] == :auction ? [:shift] : [], _('read the scores'), scores],
+        shortcuts = [
+          ['s', [], _('read the scores'), scores],
           ['p', [], _('read the pool'), _('Pool: %{points}.') % {points: state[:pot]}],
           ['t', [], _('read whose turn it is'), auction_turn_text(replay, viewer)],
-          ['h', [], _('read the current bids'), bidding_text(replay)],
-          ['d', [], _('read your points'), own],
-          ['d', [:shift], _('read the other players’ points'), others]
+          ['h', [], _('read the current bids'), bidding_text(replay)]
         ].map do |key, modifiers, label, message|
           GameShortcut.new(key: key, modifiers: modifiers, label: label, kind: :announcement, message: message)
         end
+        if state[:phase] == :auction && seat && !state[:eliminated][seat] && !state[:passed][seat]
+          shortcuts << GameShortcut.new(key: 'a', label: _('go all-in'), kind: :action,
+            action_kind: 'question', action_name: 'submit',
+            payload: {'question_id'=>auction_id(state), 'answer'=>'A'})
+        end
+        shortcuts
       end
 
       def shortcut_feature_data(feature, replay, viewer)
@@ -112,14 +113,6 @@ module GameRoomGames
       end
 
       private
-
-      def points_text(replay, seats)
-        seats.map do |seat|
-          count = replay.state[:cash][seat]
-          points = n_('%{count} point', '%{count} points', count) % {count: count}
-          "#{participant_name(replay.players[seat])}: #{points}"
-        end.join('; ')
-      end
 
       def auction_turn_text(replay, viewer)
         return _('All eligible players may bid now.') if replay.state[:phase] == :auction

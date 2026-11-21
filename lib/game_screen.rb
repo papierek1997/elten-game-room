@@ -849,12 +849,15 @@ class GameScreen
   end
 
   def browse_shortcut_choices(shortcut)
-    choices = shortcut.choices.to_a
-    index = choices.index { |choice| shortcut.default_value != nil && choice.value == shortcut.default_value } || 0
+    pages = [shortcut, shortcut.alternate_page].compact
+    position = 0
+    indices = pages.map do |page|
+      page.choices.index { |choice| page.default_value != nil && choice.value == page.default_value } || 0
+    end
     list = ListBox.new(
-      choices.map(&:label),
+      shortcut.choices.map(&:label),
       header: shortcut.prompt,
-      index: index,
+      index: indices.first,
       quiet: true
     )
     back_button = Button.new(_("Back"))
@@ -862,12 +865,30 @@ class GameScreen
     form.cancel_button = back_button
     form.hide(back_button)
     back_button.on(:press) { form.resume }
+    if pages.size == 2
+      %i[key_left key_right].each_with_index do |key, destination|
+        list.on(key) do
+          next if position == destination || !GameRoomUI.modifiers_when_pressed(list, key, include_insert: true).empty?
+
+          indices[position] = list.index
+          position = destination
+          page = pages[position]
+          list.header = page.prompt
+          list.options = page.choices.map(&:label)
+          list.index = indices[position]
+          list.focus
+        end
+      end
+    end
     list.on(:select) do
-      choice = choices[list.index.to_i]
+      choice = pages[position].choices[list.index.to_i]
       children = choice&.value
-      next unless children.is_a?(Array) && !children.empty? && children.all? { |child| child.is_a?(GameRoomGames::ShortcutChoice) }
-      nested = GameRoomGames::GameShortcut.new(key: shortcut.key, kind: :browse, label: choice.label, prompt: choice.label, choices: children)
-      browse_shortcut_choices(nested)
+      if children.is_a?(GameRoomGames::GameShortcut) && children.kind == :browse
+        browse_shortcut_choices(children)
+      elsif children.is_a?(Array) && !children.empty? && children.all? { |child| child.is_a?(GameRoomGames::ShortcutChoice) }
+        nested = GameRoomGames::GameShortcut.new(key: shortcut.key, kind: :browse, label: choice.label, prompt: choice.label, choices: children)
+        browse_shortcut_choices(nested)
+      end
     end
     if @layout&.form&.game_room_pending_operation
       @layout.form.open_game_room_background_help(form)
@@ -912,6 +933,11 @@ class GameScreen
     @selected_surface_action = nil
     surface, surface_session = @layout&.surface, @layout&.session_id
     actor = selected_action_actor(selection, replay)
+    if same_user?(actor, Session.name) && (message = @game.action_confirmation(selection, replay, actor))
+      answer = GameRoomUI.choose_index(message, [_("No"), _("Yes")], program: @program, flags: ListBox::Flags::AnyDir)
+      return false unless answer == 1 && @new_session_id.nil? && !@session['__frozen'] &&
+        !connection_recovery_pending? && !event_presentation_busy?
+    end
     if @session_runner
       result = submit_runner_action(replay, selection, actor, title: _("Sending action"), intent: intent)
       return false unless result

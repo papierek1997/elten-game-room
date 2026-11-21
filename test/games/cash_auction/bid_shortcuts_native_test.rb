@@ -13,12 +13,12 @@ module SpeechOutput
   def self.list; []; end
 end
 
-def native_context_copy(form, driver)
+def native_context_edit(form, driver, key)
   # The host dispatches native edit-menu shortcuts from keyprocs, outside
   # Form.update. Use that real dispatcher instead of invoking Copy ourselves.
-  driver.frame(form, [[0x11, true], [0x43, true, driver.raw([0x11, 0x43])]], held: [0x11, 0x43])
+  driver.frame(form, [[0x11, true], [key, true, driver.raw([0x11, key])]], held: [0x11, key])
   form.send(:keyprocs)
-  driver.frame(form, [[0x43, false], [0x11, false]])
+  driver.frame(form, [[key, false], [0x11, false]])
 end
 
 baseline_driver = CashAuctionNative::Driver.new
@@ -26,7 +26,7 @@ baseline_field = EditBox.new('Baseline', text: 'baseline', quiet: true)
 baseline_form = GameRoomUI::Form.new([baseline_field])
 baseline_field.index, baseline_field.check = 0, 8
 Clipboard.text = 'not copied'
-native_context_copy(baseline_form, baseline_driver)
+native_context_edit(baseline_form, baseline_driver, 0x43)
 raise 'Baseline native edit-menu Ctrl+C dispatch failed' unless Clipboard.text == 'baseline'
 
 f = CashAuctionNative::Fixture.new
@@ -43,7 +43,7 @@ begin
     screen.send(:activate_game_shortcut, shortcut, f.surface, replay: f.replay)
   end
   driver = f.instance_variable_get(:@driver)
-  [['p', []], ['t', []], ['h', []], ['d', []], ['d', [:shift]], ['s', [:shift]]].each do |key, modifiers|
+  [['p', []], ['t', []], ['h', []], ['s', []]].each do |key, modifiers|
     expected = shortcuts.find { |shortcut| shortcut.key == key && shortcut.modifiers.to_a == modifiers }
     raise "Missing #{modifiers.inspect}+#{key} information shortcut" unless expected && expected.kind == :announcement
     saved = [f.input.text.dup, f.input.index, f.input.check, f.input.game_room_edit_generation]
@@ -56,16 +56,33 @@ begin
     raise "#{modifiers.inspect}+#{key} did not announce exactly its own information" unless spoken.last == expected.message
     raise "#{modifiers.inspect}+#{key} changed the bid draft, selection or generation" unless [f.input.text, f.input.index, f.input.check, f.input.game_room_edit_generation] == saved
   end
-  raise 'Information keys announced more than once per press' unless spoken.length == 6
+  raise 'Information keys announced more than once per press' unless spoken.length == 4
   driver.frame(f.form, [[0x53, true, driver.raw([0x53])]], held: [0x53], characters: 's')
   driver.frame(f.form, [[0x53, false]])
-  raise 'Plain S stopped editing the bid' unless f.input.text == '125s' && spoken.length == 6
+  raise 'S did not read scores without editing the bid' unless f.input.text == '125' && spoken.length == 5
+  driver.frame(f.form, driver.tap(0x58), characters: 'x')
+  raise 'The bid field accepted a non-digit' unless f.input.text == '125'
   f.press(0x41, modifiers: [0x11])
-  raise 'Ctrl+A was consumed by the all-in input or a game shortcut' unless [f.input.index, f.input.check].minmax == [0, 4]
+  raise 'Ctrl+A was consumed by the all-in input or a game shortcut' unless [f.input.index, f.input.check].minmax == [0, 3]
   Clipboard.text = 'not the bid'
-  native_context_copy(f.form, driver)
-  raise 'Native Ctrl+C no longer copies the selected bid' unless Clipboard.text == '125s'
-  raise 'Native editing announced game information' unless spoken.length == 6
+  native_context_edit(f.form, driver, 0x43)
+  raise 'Native Ctrl+C no longer copies the selected bid' unless Clipboard.text == '125'
+  raise 'Native editing announced game information' unless spoken.length == 5
+  raise 'Redundant score shortcuts remain' if shortcuts.any? { |shortcut| shortcut.key == 'd' || shortcut.key == 's' && !shortcut.modifiers.empty? }
+  Clipboard.text = '00420'
+  native_context_edit(f.form, driver, 0x56)
+  raise 'Numeric paste lost leading zeroes' unless f.input.text == '00420'
+  f.press(0x41, modifiers: [0x11])
+  saved = [f.input.text.dup, f.input.index, f.input.check, f.input.game_room_edit_generation]
+  Clipboard.text = 'a12'
+  native_context_edit(f.form, driver, 0x56)
+  raise 'Mixed paste changed the amount or activated all-in' unless [f.input.text, f.input.index, f.input.check, f.input.game_room_edit_generation] == saved
+  f.press(0x44)
+  f.press(0x44, modifiers: [0x10])
+  raise 'Removed D shortcuts still read information or edit the amount' unless spoken.length == 5 && f.input.text == '00420'
+  f.press(0x27)
+  f.press(0x08)
+  raise 'Native Backspace no longer edits digits' unless f.input.text == '0042'
   raise 'Information/editing keys emitted a game action' unless f.actions.empty? && f.replay.accepted_events.empty?
   raise 'Information/editing keys changed the model' unless Marshal.dump(f.state) == before
   answer = CashAuctionNative::Fixture.new(phase: :answering)
@@ -78,11 +95,11 @@ begin
   scores = answer_shortcuts.find { |shortcut| shortcut.key == 's' && shortcut.modifiers.to_a.empty? }
   raise 'Question scores still require Shift' unless scores
   answer.press(0x53)
-  raise 'S did not read question scores' unless spoken.length == 7 && spoken.last == scores.message
+  raise 'S did not read question scores' unless spoken.length == 6 && spoken.last == scores.message
   answer.press(0x53, modifiers: [0x10])
-  raise 'Question shortcuts retained the bidding Shift+S binding' unless spoken.length == 7
+  raise 'Question shortcuts retained the bidding Shift+S binding' unless spoken.length == 6
   raise 'Reading question scores answered the question' unless answer.actions.empty?
-  puts 'PASS native Cash bid information shortcuts P/T/H/D/Shift+D/Shift+S, character consumption, plain S, Ctrl+A/C and no actions or model writes'
+  puts 'PASS native Cash numeric bid information shortcuts P/T/H/S, Ctrl+A/C/V, leading zeroes, mixed-paste refusal, Backspace and no actions or model writes'
 ensure
   answer&.close
   f&.close

@@ -7,6 +7,9 @@ columns = {'pl'=>['1 kolumna punktacji','2 kolumny punktacji','5 kolumn punktacj
   'cs'=>['1 sloupec bodování','2 sloupce bodování','5 sloupců bodování'],
   'es'=>['1 columna de puntuación','2 columnas de puntuación','5 columnas de puntuación'],
   'ru'=>['1 столбец счёта','2 столбца счёта','5 столбцов счёта']}
+page_labels = {'en'=>'Completed categories', 'pl'=>'Wypełnione kategorie', 'cs'=>'Vyplněné kategorie',
+  'es'=>'Categorías completas', 'ru'=>'Заполненные категории'}
+bonus_labels = {'en'=>'Bonus: 0', 'pl'=>'Premia: 0', 'cs'=>'Prémie: 0', 'es'=>'Bonificación: 0', 'ru'=>'Премия: 0'}
 names.each do |language,name|
   GameRoomTestLocalization.use_language(language)
   general = GameRoomGames::Kosciane.new
@@ -44,6 +47,10 @@ balut = GameRoomGames::Balut.new
   state = {players: players, match_model: match, options: options, turn_rolls: 0, dice: match.dice}
   full_sheet = general.score_grid(state, 'Alice', writable: false)
   full_labels = full_sheet.cells.map(&:first)
+  assert(full_sheet.cells.first.include?(bonus_labels.fetch(language)), "#{language}: the row bonus uses a different language")
+  replay = GameRoomGames::Replay.new(players: players, current_player: 'Alice', state: state)
+  key = general.game_shortcuts(replay, 'Alice').find { |shortcut| shortcut.key == 'f' && shortcut.modifiers.empty? }
+  assert(key.alternate_page.prompt == page_labels.fetch(language), "#{language}: the completed-categories page uses a different language")
   general_label = GameRoomLocalization.translate('General (five of a kind)')
   assert(full_labels.include?(general_label), "#{language}: the full sheet omitted General")
   %w[Even Odd].each do |label|

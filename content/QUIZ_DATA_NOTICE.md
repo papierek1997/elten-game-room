@@ -54,6 +54,12 @@ set has 14,976 questions; see `QUIZ_PL_GENERAL_SOURCES.txt` for provenance.
 Data version 24 addresses six further wording reports from Zuzler, without
 changing the number of questions, their identifiers, categories or answers.
 
+Data version 25 incorporates four reports and 11 reviewed questions from
+Zuzler. Two existing questions move to Language; two receive minimal wording
+corrections. Four duplicate proposals and one ambiguous proposal are excluded.
+The general set now contains 14,987 questions. Community attribution and
+permission remain separate from the original datasets' licenses.
+
 ## Current Polish Witcher books set
 
 From Power Games 2.0.4.5 (build 244), `quiz.witcher.books.pl` replaces all

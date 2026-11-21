@@ -32,6 +32,10 @@ module GameRoomGames
       @bonuses.fetch(player).dup
     end
 
+    def school_zero_blocks_future_bonuses?(player)
+      @strict_school && FiveDiceScoring.bonuses_enabled?(@columns) && !@blocked[player]
+    end
+
     def total(player)
       @sheets.fetch(player).values.sum { |row| row.grep(Integer).sum } + @bonuses.fetch(player).values.sum
     end
