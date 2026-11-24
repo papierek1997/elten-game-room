@@ -4,11 +4,15 @@ require_relative "french_tarot_bot"
 module GameRoomGames
   using GameRoomLocalization::Translations
   module FrenchTarotBidding
-    LABELS = {pass: "Pass", petite: "Petite", garde: "Garde",
-      garde_sans: "Garde sans", garde_contre: "Garde contre"}.freeze
-
     def tarot_contract_label(contract)
-      contract == :pass ? _("Pass") : LABELS.fetch(contract)
+      case contract
+      when :pass then _("Pass")
+      when :petite then _("Little")
+      when :pousse then _("Push")
+      when :garde then _("Guard")
+      when :garde_sans then _("Guard without the kitty")
+      when :garde_contre then _("Guard against the kitty")
+      end
     end
 
     def legal_actions(replay, actor, context: nil)
@@ -47,7 +51,10 @@ module GameRoomGames
     def bids(state)
       contracts = FrenchTarotScoring::CONTRACTS
       current = contracts.fetch(state[:contract], 0)
-      [:pass] + contracts.keys.select { |choice| contracts.fetch(choice) > current }
+      [:pass] + contracts.keys.select do |choice|
+        contracts.fetch(choice) > current &&
+          (choice != :pousse || (state[:seats].size >= 5 && state[:options]["tarot_push"]))
+      end
     end
 
     def apply_extra_card_event(state, event, session, repository, history)
@@ -65,14 +72,12 @@ module GameRoomGames
       state[:bid_count] += 1
       if state[:bid_count] == state[:seats].size
         complete_tarot_bidding(state)
-        if state[:taker]
+        if state[:tarot_misere]
+          add_history(history, event, repository, :notice, _("Misère. Avoid taking card points."))
+        elsif state[:taker]
           add_history(history, event, repository, :notice, _("Declarer: %{player}.") % {player: participant_name(state[:taker])})
-          if state[:phase] == :discard && !state[:private_cards]
-            kitty = hand_for(state, state[:taker]).last(6)
-            add_history(history, event, repository, :notice, _("Kitty: %{cards}.") % {cards: cards_text(kitty)})
-            add_history(history, event, repository, :notice, tarot_discard_status(state))
-          end
-        else
+          announce_tarot_kitty(state, event, repository, history)
+        elsif !state[:tarot_misere]
           add_history(history, event, repository, :notice, _("Everyone passed. The cards will be dealt again."))
         end
       else

@@ -50,11 +50,11 @@ module GameRoomGames
       plans.fetch(count).last
     end
 
-    def play(legal, trick, taker:, seat:, leader:, hand: legal)
+    def play(legal, trick, taker:, seat:, leader:, hand: legal, seats: 4)
       return legal.min_by { |card| cost(card) } if trick.empty?
       current = FrenchTarotTrick.winner(trick)
       own_side = (seat == taker)
-      allied = current && (((leader + current) % 4 == taker) == own_side)
+      allied = current && (((leader + current) % seats == taker) == own_side)
       winners = legal.select { |card| FrenchTarotTrick.winner(trick + [card]) == trick.size }
       excuse = legal.find { |card| card.first == :excuse }
       cheapest = legal.reject { |card| card.first == :excuse }.map { |card| cost(card) }.min.to_i
@@ -64,7 +64,7 @@ module GameRoomGames
         unless losers.empty?
           # A defender's current high card is not a secured allied trick while
           # declarer still has to play. Do not donate a king to a likely trump.
-          taker_played = (taker - leader) % 4 < trick.length
+          taker_played = (taker - leader) % seats < trick.length
           return losers.min_by { |card| cost(card) } unless taker_played
           return losers.max_by { |card| FrenchTarotScoring.half_points(card) - (FrenchTarotScoring.oudler?(card) ? 20 : 0) }
         end

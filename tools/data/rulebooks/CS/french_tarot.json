@@ -11,7 +11,13 @@
           "cs": "Hrají čtyři lidé. Každý dostane 18 karet a dalších šest tvoří talon. Vítěz dražby se stává hlavním hráčem a hraje proti ostatním třem. Stiskněte B, vyberte nabídku šipkami a potvrďte Enterem. Můžete pasovat nebo zvolit vyšší závazek. Pokud všichni pasují, rozdává se znovu."
         },
         {
-          "cs": "Závazky od nejnižšího jsou Petite, Garde, Garde sans a Garde contre. U Petite a Garde všichni uvidí talon, pak jej hlavní hráč vezme a odloží šest karet. Krále ani tři oudlery odložit nelze. Trumfy lze odkládat, jen když již není vhodná běžná karta. Odložené karty se počítají hlavnímu hráči. U Garde sans mu patří body ze zakrytého talonu; u Garde contre je získá obrana."
+          "cs": "Závazky od nejnižšího jsou Malá hra, Obrana, Obrana bez talonu a Obrana proti talonu. U Malá hra a Obrana všichni uvidí talon, pak jej hlavní hráč vezme a odloží šest karet. Krále ani tři oudlery odložit nelze. Trumfy lze odkládat, jen když již není vhodná běžná karta. Odložené karty se počítají hlavnímu hráči. U Obrana bez talonu mu patří body ze zakrytého talonu; u Obrana proti talonu je získá obrana."
+        },
+        {
+          "cs": "Výchozí hra je pro čtyři hráče. V nastavení lze povolit hru ve třech, pěti nebo šesti. Ve třech, čtyřech, pěti a šesti dostane každý 24, 18, 15 nebo 12 karet. Při pěti hráčích má talón tři karty, jinak šest. První zdvih zahajuje hráč po rozdávajícím a další vítěz předchozího zdvihu."
+        },
+        {
+          "cs": "Při povoleném volání spoluhráčů použije vydražitel po dražbě Shift+B a zavolá krále. Při šesti hráčích zavolá také dámu. Majitel se přidá po zahrání volané karty. Karta v talónu nebo v ruce vydražitele spoluhráče neurčí. Volanou barvou se do prvního zdvihu vynáší jen volanou kartou nebo bez jiné povolené možnosti."
         }
       ]
     },
@@ -39,10 +45,28 @@
           "cs": "Tři oudlery jsou trumf 1, trumf 21 a Excuse. Každý má hodnotu 4,5 bodu stejně jako král. Dáma má 3,5, jezdec 2,5, kluk 1,5 a ostatní karty půl bodu. Po 18 zdvizích potřebuje hlavní hráč 56 bodů bez oudlerů, 51 s jedním, 41 se dvěma nebo 36 se třemi. Talon se připočte straně určené závazkem."
         },
         {
-          "cs": "K absolutnímu rozdílu od potřebného počtu bodů přičtěte 25. Výsledek násobte 1 pro Petite, 2 pro Garde, 4 pro Garde sans nebo 6 pro Garde contre. Při splněném závazku každý obránce tuto částku ztratí a hlavní hráč získá trojnásobek. Při nesplnění se znaménka obrátí. Například 44 bodů při hranici 41 v Garde znamená ztrátu 56 pro každého obránce a zisk 168 pro hlavního hráče."
+          "cs": "K absolutnímu rozdílu od potřebného počtu bodů přičtěte 25. Výsledek násobte 1 pro Malá hra, 2 pro Obrana, 4 pro Obrana bez talonu nebo 6 pro Obrana proti talonu. Při splněném závazku každý obránce tuto částku ztratí a hlavní hráč získá trojnásobek. Při nesplnění se znaménka obrátí. Například 44 bodů při hranici 41 v Obrana znamená ztrátu 56 pro každého obránce a zisk 168 pro hlavního hráče."
         },
         {
           "cs": "Ve výchozím nastavení hra končí po jednom odehraném rozdání. Při tvorbě stolu lze změnit počet rozdání nebo nastavit bodový limit; nula daný limit vypne. Jsou-li zapnuté oba, rozhodne první dosažený na konci rozdání. Rozdání se samými pasy se nepočítá. Vyhrává nejvyšší součet, při shodě jde o společné vítězství."
+        },
+        {
+          "cs": "Prémii za první trumf v posledním zdvihu můžete zapnout v nastavení stolu. Pokud v posledním zdvihu padne první trumf, vítěz zdvihu získá 30 bodů a každý další hráč 10 bodů ztratí. Násobitel závazku prémii neovlivňuje."
+        },
+        {
+          "cs": "Povolené přihazování je závazek mezi malou hrou a obranou pro pět nebo šest hráčů. Vydražitel bere talón a hodnota závazku se násobí 1,5. Je-li zapnuto misère a nikdo nenabídne alespoň obranu, hraje každý sám a snaží se nebrat body. Talón získá vítěz posledního zdvihu. Od 91 se odečte součin počtu hráčů a bodů daného hráče za karty a rozdíl se vynásobí čtyřmi."
+        },
+        {
+          "cs": "Je-li povoleno hlášení hrsti, stiskněte jako vydražitel Shift+P před zahráním první karty. Počty pro jednotlivé úrovně jsou 13/15/18, 10/13/15, 8/10/13 a 7/9/11 pro tři až šest hráčů. Ukazuje se nejnižší a nejvyšší trumf. Blázen může doplnit poslední místo, pokud jsou ukázány všechny skutečné trumfy. Vydražitel od každého získá nebo mu zaplatí 20, 30 či 40 bodů podle výsledku závazku. Prémie za první trumf činí 10 bodů od každého dalšího hráče."
+        },
+        {
+          "cs": "Při splnění závazku zaplatí každý obránce jeho hodnotu straně vydražitele. Při nesplnění každý obránce tuto částku dostane. Uvedené podíly se počítají z celkové částky za všechny obránce."
+        },
+        {
+          "cs": "V pěti hraje samotný vydražitel o celou částku proti čtyřem obráncům. Se spoluhráčem připadnou vydražiteli dvě třetiny a spoluhráči jedna třetina výhry nebo ztráty."
+        },
+        {
+          "cs": "V šesti se samotný vydražitel vyrovná s pěti obránci. Přidá-li se jen držitel první volané karty, podíl je dvě třetiny pro vydražitele a jedna třetina pro spoluhráče. Přidá-li se jen držitel druhé karty, je to pět šestin a jedna šestina. Má-li obě karty stejný spoluhráč, rozdělí se body v poměru tři čtvrtiny a jedna čtvrtina. Mají-li karty dva různí spoluhráči, připadne vydražiteli polovina, prvnímu třetina a druhému šestina."
         }
       ]
     },
@@ -81,12 +105,24 @@
         },
         {
           "cs": "Shift+S: body z dokončených zdvihů tohoto rozdání; talon se počítá při vyhodnocení."
+        },
+        {
+          "cs": "Shift+R přečte číslo rozdání a nastavený limit. Číslo se oznamuje také při rozdání karet."
+        },
+        {
+          "cs": "Dostupný stupeň můžete vybrat také Enterem na konci seznamu karet."
         }
       ]
     }
   ],
   "option_chapters": {
     "round_limit": "scoring",
-    "score_limit": "scoring"
+    "score_limit": "scoring",
+    "petit_au_bout": "scoring",
+    "tarot_player_counts": "play",
+    "tarot_partners": "play",
+    "tarot_push": "scoring",
+    "tarot_misere": "scoring",
+    "tarot_handful": "scoring"
   }
 }

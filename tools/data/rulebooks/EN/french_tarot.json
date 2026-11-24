@@ -11,7 +11,13 @@
           "en": "Four people play. Each receives 18 cards; six more form the kitty. The highest bidder becomes declarer and plays against the other three. Press B, choose a bid with the arrows and confirm with Enter. You may pass or name a higher contract. If everyone passes, the cards are dealt again."
         },
         {
-          "en": "The contracts, from lowest to highest, are Petite, Garde, Garde sans and Garde contre. In Petite and Garde everyone sees the kitty, then declarer takes it and discards six cards. Kings and the three oudlers cannot be discarded. Discard trumps only if no ordinary cards remain eligible. The discarded cards count for declarer. In Garde sans the unopened kitty also counts for declarer; in Garde contre it counts for the defenders."
+          "en": "The contracts, from lowest to highest, are Little, Guard, Guard without the kitty and Guard against the kitty. In Little and Guard everyone sees the kitty, then declarer takes it and discards six cards. Kings and the three oudlers cannot be discarded. Discard trumps only if no ordinary cards remain eligible. The discarded cards count for declarer. In Guard without the kitty the unopened kitty also counts for declarer; in Guard against the kitty it counts for the defenders."
+        },
+        {
+          "en": "French Tarot supports four players by default. Enable additional player counts for three, five or six players. With three, four, five and six players, each receives 24, 18, 15 and 12 cards respectively. The kitty contains three cards at five players and six otherwise. The player after the dealer leads the first trick. Its winner leads the next."
+        },
+        {
+          "en": "With partner calls enabled, the declarer uses Shift+B after bidding to call a king at five or six players, and also a queen at six. The owner joins the declarer when the called card is played. A card in the kitty or in the declarer’s hand brings no partner. A called suit cannot be led to the first trick unless the called card itself is led or no other legal lead exists."
         }
       ]
     },
@@ -25,7 +31,7 @@
           "en": "Choose a card with the arrows and play it with Enter. Everyone plays one card to each trick. You must follow the led suit if you can, even if someone has trumped. Without that suit, play a trump if you have one. If a trump is already on the table, overtrump when possible; otherwise play a lower trump. Without either suit or trumps you may play any card. The highest trump wins; without trumps the highest card in the led suit wins. The winner leads next."
         },
         {
-          "en": "Within each suit the order, highest first, is king, queen, knight, jack, 10 down to ace. Trump 21 is strongest and trump 1, the Petit, is weakest. The Excuse can be played at any time and does not set the led suit. Before the last trick it stays with its owner’s side; if the other side takes that trick, it receives half a point in exchange. In the last trick the Excuse belongs to the trick winner."
+          "en": "Within each suit the order, highest first, is king, queen, knight, jack, 10 down to ace. Trump 21 is strongest and trump 1, the Petit, is weakest. The Fool can be played at any time and does not set the led suit. Before the last trick it stays with its owner’s side; if the other side takes that trick, it receives half a point in exchange. In the last trick the Fool belongs to the trick winner."
         }
       ]
     },
@@ -36,13 +42,31 @@
       },
       "paragraphs": [
         {
-          "en": "The three oudlers are trump 1, trump 21 and the Excuse. Each is worth 4.5 points, as is a king. A queen is worth 3.5, a knight 2.5, a jack 1.5, and every other card half a point. After 18 tricks declarer needs 56 points without oudlers, 51 with one, 41 with two, or 36 with all three. The kitty is counted for the side named by the contract."
+          "en": "The three oudlers are trump 1, trump 21 and the Fool. Each is worth 4.5 points, as is a king. A queen is worth 3.5, a knight 2.5, a jack 1.5, and every other card half a point. After 18 tricks declarer needs 56 points without oudlers, 51 with one, 41 with two, or 36 with all three. The kitty is counted for the side named by the contract."
         },
         {
-          "en": "Add 25 to the absolute difference from the required score, then multiply by 1 for Petite, 2 for Garde, 4 for Garde sans or 6 for Garde contre. If declarer fulfils the contract, each defender loses that amount and declarer gains three times it. If declarer fails, reverse those gains and losses. For example, 44 points against a target of 41 in Garde gives 56 from each defender and 168 to declarer."
+          "en": "Add 25 to the absolute difference from the required score, then multiply by 1 for Little, 2 for Guard, 4 for Guard without the kitty or 6 for Guard against the kitty. If declarer fulfils the contract, each defender loses that amount and declarer gains three times it. If declarer fails, reverse those gains and losses. For example, 44 points against a target of 41 in Guard gives 56 from each defender and 168 to declarer."
         },
         {
           "en": "By default one played deal ends the game. When creating the table you can change the deal limit or set a score limit; zero disables that limit. If both are enabled, the first limit reached at the end of a deal ends the game. All-pass deals do not count. The highest total wins, with a shared win if tied."
+        },
+        {
+          "en": "Enable the little one at the end bonus in the table options. If trump 1 is played to the last trick, the winner of the trick gains 30 points and each other player loses 10. The contract multiplier does not affect the bonus."
+        },
+        {
+          "en": "Enable Push for a bid between Little and Guard at tables of five or six. The declarer takes the kitty and the contract is worth 1.5 times the base value. With Misère enabled, a deal without a bid of Guard or higher becomes an individual round where you avoid taking points. The last trick winner takes the kitty and each player scores four times 91 minus the number of players times their card points, with the subtraction applied before multiplying by four."
+        },
+        {
+          "en": "With handful announcements enabled, use Shift+P before playing your first card as declarer. The required counts for single, double and triple are 13/15/18 with three players, 10/13/15 with four, 8/10/13 with five and 7/9/11 with six. The smallest and largest trumps are shown. The Fool can fill the last place if all real trumps are shown. The declarer gains or pays 20, 30 or 40 points per other player according to the contract result. The last-trick bonus is 10 points from each other player."
+        },
+        {
+          "en": "Each defender pays the contract value to the attacking side if the contract succeeds. If it fails, each defender receives that amount. The following fractions apply to the total amount paid by or to all defenders."
+        },
+        {
+          "en": "With five players, a lone declarer settles the full amount with four defenders. If a partner joins, the declarer receives or pays two thirds of the total, and the partner one third."
+        },
+        {
+          "en": "With six players, a lone declarer settles the full amount with five defenders. If only the owner of the first called card joins, the declarer takes two thirds and the partner one third. If only the owner of the second called card joins, the shares are five sixths and one sixth. If both cards belong to the same partner, the shares are three quarters and one quarter. With two different partners, the declarer takes one half, the first partner one third and the second one sixth."
         }
       ]
     },
@@ -81,12 +105,24 @@
         },
         {
           "en": "Shift+S: read points from completed tricks in this deal; the kitty is counted at settlement."
+        },
+        {
+          "en": "Shift+R reads the deal number and the configured limit. The number is also announced when the cards are dealt."
+        },
+        {
+          "en": "You can also choose an available level with Enter at the bottom of your hand."
         }
       ]
     }
   ],
   "option_chapters": {
     "round_limit": "scoring",
-    "score_limit": "scoring"
+    "score_limit": "scoring",
+    "petit_au_bout": "scoring",
+    "tarot_player_counts": "play",
+    "tarot_partners": "play",
+    "tarot_push": "scoring",
+    "tarot_misere": "scoring",
+    "tarot_handful": "scoring"
   }
 }

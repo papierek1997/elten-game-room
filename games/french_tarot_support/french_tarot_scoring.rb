@@ -4,7 +4,7 @@ module GameRoomGames
 
     # Use half-points so no binary floating point enters settlement.
     TARGET = [112, 102, 82, 72].freeze
-    CONTRACTS = {petite: 1, garde: 2, garde_sans: 4, garde_contre: 6}.freeze
+    CONTRACTS = {petite: 1, pousse: Rational(3, 2), garde: 2, garde_sans: 4, garde_contre: 6}.freeze
 
     def oudler?(card)
       suit, rank = card

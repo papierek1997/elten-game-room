@@ -11,7 +11,13 @@
           "es": "Juegan cuatro personas. Cada una recibe 18 cartas y las seis restantes forman el talón. Quien gana la subasta juega como declarante contra las otras tres. Pulsa B, elige una oferta con las flechas y confírmala con Intro. Puedes pasar o anunciar un contrato superior. Si todos pasan, se vuelve a repartir."
         },
         {
-          "es": "Los contratos, de menor a mayor, son Petite, Garde, Garde sans y Garde contre. En Petite y Garde todos ven el talón; después el declarante lo recoge y descarta seis cartas. No puede descartar reyes ni los tres oudlers. Solo puede descartar triunfos cuando ya no queden cartas normales aptas. El descarte cuenta para el declarante. En Garde sans también le cuenta el talón sin abrir; en Garde contre cuenta para la defensa."
+          "es": "Los contratos, de menor a mayor, son Pequeña, Guardia, Guardia sin el perro y Guardia contra el perro. En Pequeña y Guardia todos ven el talón; después el declarante lo recoge y descarta seis cartas. No puede descartar reyes ni los tres oudlers. Solo puede descartar triunfos cuando ya no queden cartas normales aptas. El descarte cuenta para el declarante. En Guardia sin el perro también le cuenta el talón sin abrir; en Guardia contra el perro cuenta para la defensa."
+        },
+        {
+          "es": "La partida es de cuatro por defecto. Activa las plazas adicionales para jugar con tres, cinco o seis personas. Con tres, cuatro, cinco y seis se reparten 24, 18, 15 y 12 cartas por persona, respectivamente. La reserva tiene tres cartas con cinco jugadores y seis en los demás casos. Sale primero quien sigue al repartidor y después quien ganó la baza anterior."
+        },
+        {
+          "es": "Si las llamadas están activadas, tras la subasta el declarante pulsa Mayús+B y llama a un rey con cinco o seis jugadores, y también a una reina con seis. El dueño se une al jugar la carta llamada. Una carta en la reserva o en la propia mano no aporta compañero. En la primera baza se puede salir de un palo llamado con la carta llamada o cuando no hay otra salida válida."
         }
       ]
     },
@@ -39,10 +45,28 @@
           "es": "Los tres oudlers son el triunfo 1, el triunfo 21 y la Excusa. Cada uno vale 4,5 puntos, igual que un rey. Una dama vale 3,5; un caballo, 2,5; una sota, 1,5; y las demás cartas, medio punto. Tras 18 bazas el declarante necesita 56 puntos sin oudlers, 51 con uno, 41 con dos o 36 con los tres. El talón cuenta para el bando indicado por el contrato."
         },
         {
-          "es": "Suma 25 a la diferencia absoluta respecto al objetivo y multiplica por 1 en Petite, 2 en Garde, 4 en Garde sans o 6 en Garde contre. Si el declarante cumple, cada defensor pierde esa cantidad y el declarante gana el triple. Si falla, se invierten las ganancias y pérdidas. Por ejemplo, 44 puntos frente a un objetivo de 41 en Garde dan una pérdida de 56 a cada defensor y una ganancia de 168 al declarante."
+          "es": "Suma 25 a la diferencia absoluta respecto al objetivo y multiplica por 1 en Pequeña, 2 en Guardia, 4 en Guardia sin el perro o 6 en Guardia contra el perro. Si el declarante cumple, cada defensor pierde esa cantidad y el declarante gana el triple. Si falla, se invierten las ganancias y pérdidas. Por ejemplo, 44 puntos frente a un objetivo de 41 en Guardia dan una pérdida de 56 a cada defensor y una ganancia de 168 al declarante."
         },
         {
           "es": "Por defecto se juega un reparto. Al crear la mesa puedes cambiar el límite de repartos o fijar un límite de puntos; cero desactiva ese límite. Si están activos ambos, la partida termina al alcanzar el primero al final de un reparto. Los repartos en los que todos pasan no cuentan. Gana el total más alto; los empates comparten la victoria."
+        },
+        {
+          "es": "Puedes activar la bonificación por el triunfo 1 en la última baza en las opciones de la mesa. Si se juega ese triunfo en la última baza, quien la gana recibe 30 puntos y los demás pierden 10 cada uno. La bonificación se aplica sin el multiplicador del contrato."
+        },
+        {
+          "es": "El Empuje es una puja opcional entre Pequeña y Guardia para cinco o seis jugadores. El declarante toma la reserva y el multiplicador es 1,5. Con Misère activado, si nadie puja Guardia o superior, cada persona juega por su cuenta e intenta evitar los puntos. La reserva corresponde a quien gana la última baza. El resultado es cuatro veces la diferencia entre 91 y el producto de los puntos de cartas del jugador por el número de participantes."
+        },
+        {
+          "es": "Si se permiten los puñados, el declarante pulsa Mayús+P antes de jugar su primera carta. Los tres niveles requieren 13/15/18, 10/13/15, 8/10/13 y 7/9/11 triunfos con tres a seis jugadores. Se muestran el triunfo más bajo y el más alto. El Loco puede ocupar la última plaza si se muestran todos los triunfos. El declarante gana o paga 20, 30 o 40 puntos por persona según el resultado del contrato. La bonificación por el triunfo 1 es de 10 puntos de cada uno de los demás jugadores."
+        },
+        {
+          "es": "Si se cumple el contrato, cada defensor paga su valor al equipo del declarante. Si falla, cada defensor recibe ese importe. Las fracciones siguientes se aplican al total que pagan o reciben todos los defensores."
+        },
+        {
+          "es": "Con cinco jugadores, el declarante que juega solo liquida el total con los cuatro defensores. Si se une un compañero, el declarante cobra o paga dos tercios y el compañero un tercio."
+        },
+        {
+          "es": "Con seis jugadores, el declarante que juega solo liquida el total con cinco defensores. Si solo se une el dueño de la primera carta llamada, el declarante liquida dos tercios y el compañero un tercio. Si solo se une el dueño de la segunda, las partes son cinco sextos y un sexto. Si el mismo compañero tiene ambas cartas, se reparten tres cuartos y un cuarto. Con dos compañeros distintos, corresponde la mitad al declarante, un tercio al primer compañero y un sexto al segundo."
         }
       ]
     },
@@ -81,12 +105,24 @@
         },
         {
           "es": "Shift+S: leer los puntos de las bazas terminadas de este reparto; el talón se cuenta al final."
+        },
+        {
+          "es": "Mayús+R anuncia el número de la mano y el límite establecido. También se anuncia al repartir."
+        },
+        {
+          "es": "También puedes elegir el nivel disponible con Enter al final de tu mano."
         }
       ]
     }
   ],
   "option_chapters": {
     "round_limit": "scoring",
-    "score_limit": "scoring"
+    "score_limit": "scoring",
+    "petit_au_bout": "scoring",
+    "tarot_player_counts": "play",
+    "tarot_partners": "play",
+    "tarot_push": "scoring",
+    "tarot_misere": "scoring",
+    "tarot_handful": "scoring"
   }
 }
