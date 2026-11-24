@@ -14,10 +14,16 @@
           "pl": "Najpierw przejrzyj karty strzałkami lub odczytaj rękę klawiszem H. W swojej kolejce naciśnij B, wybierz Pas albo kontrakt i zatwierdź Enterem. Możesz wybrać tylko kontrakt wyższy od zgłoszonego. Jeśli wszyscy spasują, karty zostaną rozdane ponownie."
         },
         {
-          "pl": "Od najniższego do najwyższego kontrakty to Petite, Garde, Garde sans i Garde contre. W Petite oraz Garde bierzesz talon, a potem odkładasz sześć kart. Odłożone karty liczą się na twoją korzyść. Króle i trzy karty specjalne zostają w ręce. Atuty odkładasz tylko wtedy, gdy brakuje zwykłych kart do odłożenia."
+          "pl": "Od najniższego do najwyższego kontrakty to Little, Guard, Guard without the kitty i Guard against the kitty. Przy kontrakcie Little lub Guard bierzesz talon, a potem odkładasz sześć kart. Odłożone karty liczą się na twoją korzyść. Króle i trzy karty specjalne zostają w ręce. Atuty odkładasz tylko wtedy, gdy brakuje zwykłych kart do odłożenia."
         },
         {
-          "pl": "W Garde sans talon pozostaje zakryty i przy rozliczeniu liczy się dla ciebie. W Garde contre jego punkty przypadają obronie."
+          "pl": "Przy kontrakcie Guard without the kitty talon pozostaje zakryty i przy rozliczeniu liczy się dla ciebie. Przy kontrakcie Guard against the kitty jego punkty przypadają obronie."
+        },
+        {
+          "pl": "Domyślnie gra jest czteroosobowa. Włącz dodatkowe liczby graczy, aby zagrać w trzy, pięć lub sześć osób. Przy 3, 4, 5 i 6 graczach rozdaje się odpowiednio 24, 18, 15 i 12 kart na osobę. Talon ma trzy karty przy pięciu graczach i sześć w pozostałych przypadkach. Pierwszą lewę zaczyna gracz po rozdającym. Następną zaczyna zwycięzca poprzedniej."
+        },
+        {
+          "pl": "Jeśli włączono wołanie partnerów, po licytacji rozgrywający naciska Shift+B i woła króla, a przy sześciu osobach także damę. Właściciel dołącza do rozgrywającego, gdy zagra zawołaną kartę. Karta w talonie lub we własnej ręce nie daje partnera. Pierwszej lewy nie wolno zaczynać w zawołanym kolorze, chyba że zagrywa się zawołaną kartę lub brakuje innego legalnego wyjścia."
         }
       ]
     },
@@ -66,13 +72,31 @@
           "pl": "Król daje 4,5 punktu, dama 3,5, rycerz 2,5, a walet 1,5. Pozostałe karty dają po pół punktu."
         },
         {
-          "pl": "Po 18 lewach gra porównuje zdobyte punkty z progiem. Do różnicy, liczonej bez znaku, dodaje 25. Następnie mnoży wynik przez 1 dla Petite, 2 dla Garde, 4 dla Garde sans albo 6 dla Garde contre."
+          "pl": "Po 18 lewach gra porównuje zdobyte punkty z progiem. Do różnicy, liczonej bez znaku, dodaje 25. Następnie mnoży wynik przez 1 dla Little, 2 dla Guard, 4 dla Guard without the kitty albo 6 dla Guard against the kitty."
         },
         {
-          "pl": "Jeśli w Garde potrzebujesz 41 punktów i zdobędziesz 44, wygrywasz o 3. Gra dodaje 3 do 25 i mnoży przez 2, co daje 56. Każdy obrońca traci 56, a ty zyskujesz 168. Przy przegranej kontraktu punkty płyną w drugą stronę."
+          "pl": "Jeśli w kontrakcie Guard potrzebujesz 41 punktów i zdobędziesz 44, wygrywasz o 3. Gra dodaje 3 do 25 i mnoży przez 2, co daje 56. Każdy obrońca traci 56, a ty zyskujesz 168. Przy przegranej kontraktu punkty płyną w drugą stronę."
         },
         {
           "pl": "Domyślnie partia trwa jedno rozegrane rozdanie. W ustawieniach stołu możesz zmienić limit rozdań lub ustawić próg punktów. Wpisz zero, aby wyłączyć dany limit. Gdy ustawisz oba limity, partia kończy się po rozdaniu, w którym spełniono pierwszy z nich. Rozdania zakończone samymi pasami nie wliczają się do limitu. Wygrywa gracz z najwyższą sumą punktów."
+        },
+        {
+          "pl": "Włącz premię za atut 1 w ostatniej lewie w opcjach stołu. Gdy w ostatniej lewie zagrano atut 1, zdobywca lewy dostaje 30 punktów, a każdy z pozostałych traci 10. Mnożnik kontraktu nie wpływa na premię."
+        },
+        {
+          "pl": "Push jest odzywką między Little a Guard, dostępną po włączeniu tej opcji przy pięciu lub sześciu osobach. Rozgrywający bierze talon, a wynik kontraktu ma mnożnik 1,5. Przy włączonym Misère rozdanie bez Guard lub wyższej odzywki rozgrywa się indywidualnie, unikając zdobywania punktów. Talon bierze zwycięzca ostatniej lewy. Wynik gracza to czterokrotność różnicy między 91 a jego punktami kartowymi pomnożonymi przez liczbę graczy."
+        },
+        {
+          "pl": "Po włączeniu zgłaszania garści użyj Shift+P przed pierwszym zagraniem rozgrywającego. Progi pojedynczej, podwójnej i potrójnej garści to 13/15/18 przy trzech, 10/13/15 przy czterech, 8/10/13 przy pięciu i 7/9/11 przy sześciu osobach. Pokazuje się najniższy i najwyższy atut. Fool uzupełnia garść, gdy pokazano wszystkie właściwe atuty. Za udany kontrakt rozgrywający dostaje 20, 30 lub 40 punktów od każdego gracza, a za przegrany oddaje tę samą kwotę. Premia za jedynkę wynosi 10 punktów od każdej osoby poza zwycięzcą lewy."
+        },
+        {
+          "pl": "Po rozliczeniu kontraktu każdy obrońca oddaje jego wartość stronie rozgrywającego, jeśli kontrakt się udał. Przy przegranej każdy obrońca otrzymuje tę kwotę. Poniższe ułamki dotyczą łącznej kwoty od wszystkich obrońców lub dla wszystkich obrońców."
+        },
+        {
+          "pl": "Przy pięciu graczach rozgrywający bez partnera rozlicza całość z czterema obrońcami. Gdy ma partnera, rozgrywający otrzymuje lub płaci 2/3 łącznej kwoty, a partner 1/3."
+        },
+        {
+          "pl": "Przy sześciu graczach rozgrywający bez partnerów rozlicza całość z pięcioma obrońcami. Gdy dołącza tylko właściciel pierwszej zawołanej karty, podział wynosi 2/3 dla rozgrywającego i 1/3 dla partnera. Gdy dołącza tylko właściciel drugiej karty, podział wynosi 5/6 i 1/6. Jeśli obie karty ma ten sam partner, podział wynosi 3/4 i 1/4. Jeśli karty mają dwaj różni partnerzy, rozgrywający rozlicza 1/2, pierwszy partner 1/3, a drugi 1/6."
         }
       ]
     },
@@ -111,12 +135,24 @@
         },
         {
           "pl": "Shift+S: odczytaj punkty z zakończonych lew bieżącego rozdania; talon liczy się przy rozliczeniu."
+        },
+        {
+          "pl": "Shift+R odczytuje numer rozdania i ustawiony limit. Numer jest również ogłaszany przy rozdaniu kart."
+        },
+        {
+          "pl": "Dostępne poziomy można też wybrać Enterem na końcu listy kart."
         }
       ]
     }
   ],
   "option_chapters": {
     "round_limit": "scoring",
-    "score_limit": "scoring"
+    "score_limit": "scoring",
+    "petit_au_bout": "scoring",
+    "tarot_player_counts": "play",
+    "tarot_partners": "play",
+    "tarot_push": "scoring",
+    "tarot_misere": "scoring",
+    "tarot_handful": "scoring"
   }
 }
